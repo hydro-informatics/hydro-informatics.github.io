@@ -19,10 +19,10 @@ Big datasets resulting from airborne imagery and worldwide surveys affect all di
 
 Explore the page contents about
 
-- version control with *git*
-- *Python* programming
-- geospatial data analysis with QGIS and its Python tools
-- numerical modelling with the ETH Zurich's BASEMENT software
+- version control with [*git*](hy_git.html)
+- [*Python* programming](hy-install.html)
+- [geospatial data analysis](hypy_gdal.html) with QGIS and its Python tools
+- [numerical modelling](bm.html) with the ETH Zurich's BASEMENT software
 
 ***
 
