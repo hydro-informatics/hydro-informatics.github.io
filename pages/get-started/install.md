@@ -47,9 +47,9 @@ An office software such as [*LibreOffice*][libreoffice] or Microsoft's *Excel* i
 
 For the visualization of geodata (`.shp` and `.tif` files) a GIS software is required and the analyses described on these pages refer to the usage of [*QGIS* ](https://www.qgis.org/en/site/forusers/download.html) (*Please note: There is much more GIS software out there.*).
 
-The visualization of other 2- or 3-dimensional data is possible through [Paraview](https://www.paraview.org/), which can be downloaded on their [website](https://www.paraview.org/).
+The visualization of other 2- or 3-dimensional data is possible through [ParaView](https://www.paraview.org/), which can be downloaded on their [website](https://www.paraview.org/).
 
-2-dimensional (2D) numerical simulations described on these pages use the freely available software BASEMENT v.3, which is developed at the ETH Zurich in Switzerland. Visit their [website](https://basement.ethz.ch/) to download the program and documentation.
+2-dimensional (2D) numerical simulations described on these pages use the freely available software *BASEMENT* 3.x, which is developed at the ETH Zurich in Switzerland. Visit their [website](https://basement.ethz.ch/) to download the program and documentation.
 
 
 

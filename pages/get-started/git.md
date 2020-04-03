@@ -8,7 +8,7 @@ folder: get-started
 ---
 
 
-## Usage of git and download course materials<a name="dl"></a>
+## Usage of git<a name="dl"></a>
 The materials provided on these pages is best downloaded and updated using *git*-able environments (e.g., *PyCharm*'s Community Edition or [*Git Bash*](https://git-scm.com/downloads) - see the [installation](install) instructions). Updates are tricky when materials are downloaded as *zip* file.
 
 ### Download
@@ -20,7 +20,7 @@ The materials provided on these pages is best downloaded and updated using *git*
 
 Done.
 
-## Update downloaded repository (re-pull local copy with *git*) <a name="update"></a>
+### Update downloaded repository (re-pull local copy with *git*) <a name="update"></a>
 
 *git* (within *Git Bash* or *PyCharm*) is the only option to update local copies of a remote repository consistently.  In a *git*-able terminal do the following:
 
@@ -32,7 +32,7 @@ Done.
 Done.
 
 
-## Update remote repositories (push local changes)<a name="push"></a>
+### Update remote repositories (push local changes)<a name="push"></a>
 
 After editing files in a repository locally, *add* - *commit* - *push* (in that order) your edits to the remote copy of the repository with version control. To *add* - *commit* - *push* local changes to a remote repository, make sure to be the remote repository owner or a contributor. Then open a *git*-able terminal and type:
 1. `git status` - this shows the modifications made.
