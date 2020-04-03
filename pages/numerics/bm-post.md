@@ -107,14 +107,17 @@ Next, the point shapefile needs to be converted to a [GeoTIFF](https://en.wikipe
 - In *QGIS* `Raster` menu, click on `Conversion` and select `Rasterize (Vector to Raster)`
 - In the `Rasterize (Vector to Raster)` window define:
     * `Input layer` = `bm-vanilla-pts` 
-    * For `Field to use for a burn-in value`, select one target value, for example: `water_dept` (note: rasters can ave only one value per pixel)
+    * For `Field to use for a burn-in value`, select one target value, for example: `water_dept` (note: rasters can ave only one value per pixel)    
+    * Do not assign any value in the `A fixed value to burn` field
     *  `Output raster size units` = `Pixels`
     * `Width/Horizontal resolution` = `5.0`
     * `Height/Vertical resolution` = `5.0`
     * `Output extent (xmin, xmax, ymin, ymax)`: Click on the `...` button and select `Use Layer extent` > `Use extent from` `bm-vanilla-pts`
-    * In the `Advanced parameters`, define a raster output directory and name (e.g., `vanilla-depth.tif`)
+    * Below the `Advanced parameters` canvas, define a raster output directory and name (e.g., `vanilla-depth.tif`)
 - Click `Run`
-    
+   
+   <a name="qgis-make-tiff"></a>
+        {% include image.html file="qgis-make-tiff.png" alt="bm-3" caption="The SRasterize (Vector to Raster) window with required settings highlighted (green marker)." %}  
  
 ## Result interpretation
 In *ParaView* (renders faster) or *QGIS*, look at all variables (`flow_velocity`, `water_depth`, and `water_surface`), explore their evolution over time, different coloring and answer the following questions:
