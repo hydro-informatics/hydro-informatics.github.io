@@ -38,4 +38,16 @@ The animations can be saved as movie (e.g., `avi`) or image (e.g., `jpg`, `png`,
 The current state (variable, `Timestep[i])` can be saved as `pvsm` file via `File` > `Save State File`. The state file can also be saved as Python script for external execution and implementation in [Python programs](hy-install.html).
 
 # QGIS
-in progress...
+## Add the Crayfish Plugin
+For best visualization in *QGIS*, follow the developer's recommendation and install the *Crayfish* Plugin (*QGIS*' `Plugins`menu > `Manage and Install Plugins...` > `All` tab > enter *Crayfish* in the `Search...` field and install the Plugin).
+After successful installation, the *Crayfish* tools are available in *QGIS* toolbox, which can be activated as follows:
+<a name="qgis-tbx"></a>
+{% include image.html file="qgis-tbx.png" alt="bm-5" caption="Open QGIS' Toolbox window from the main menu." %}
+The *Crayfish* tools are listed at the bottom of the `Toolbox` window.
+
+## Import results
+Import the simulation results from the *QGIS* `Browser`, by navigating to the simulation directory and dragging the `results.h5` raster file into the *QGIS* `Layers` window. A pop-up window opens and asks for timesteps and layers to import. select the results (cell array and nodestrings) from the last timestep, as well as the grid data (`Topology`, `BottomEl`, `Coordnts`). 
+
+UNRESOLVED ISSUE: The results are most likely not correctly plotted in *QGIS* now. An inquiry in running in *BASEMENT*'s user forum ([go there](http://people.ee.ethz.ch/~basement/forum/viewtopic.php?pid=6095#p6095)).
+
+ 
