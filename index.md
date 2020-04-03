@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "Welcome"
 keywords: git, Python, Python3, version control
 tags: [getting_started]
 sidebar: mydoc_sidebar
