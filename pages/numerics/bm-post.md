@@ -7,11 +7,11 @@ permalink: bm-post.html
 folder: numerics
 ---
 
-# Visualize results with ParaView
-##	Get ready with ParaView
+## Visualize results with ParaView
+###	Get ready with ParaView
 *ParaView* is a freely available visualization software, which enables plotting *BASEMENT* v.3.x results in the shape of `xdmf` (*eXtensible Data Model and Format*) files. Download and install the latest version of *ParaView* from their [website](https://www.paraview.org/download/), if no yet done. 
 
-## Load BASEMENT results
+### Load BASEMENT results
 Open *ParaView* and click on the folder icon (top left of the window) to open the simulation results file (`results.xdmf`). *ParaView* might ask to choose an appropriate XMDF read plugin. Select `XDMF Reader` here and click `OK`:
  
 To explore the model results:
@@ -24,7 +24,7 @@ To explore the model results:
 
 All available time steps are listed in the Blocks tab (bottom-left in Figure 1). Anything should be visible at the beginning, because the initial conditions were defined as `dry` (see the [*BASEMENT* modelling exercise part](bm-main.html#init) ). The above [figure](#pv-vis) shows the last time step (`Timestep[25]`), with water flowing at a peak velocity of 3.7 m/s. The 25 available time steps result from the definition made in *BASEMENT*'s `SIMULATION` tab with a total duration of 5000.0 and an output step of 200.0. Note that the time units have no dimension here because they correspond to computational time steps.
 
-## Result interpretation
+### Result interpretation
 Look at all variables (`flow_velocity`, `water_depth`, and `water_surface`), explore their evolution over time, different coloring and answer the following questions:
 
 - Are the results are in a physically reasonable and meaningful range?
@@ -33,19 +33,19 @@ Look at all variables (`flow_velocity`, `water_depth`, and `water_surface`), exp
 - Are there particularities such as rapids that correspond (qualitatively) to field observations (are rapids on confinements and/or terrain drops)?
 
 
-##	Export visualizations
+###	Export visualizations
 The animations can be saved as movie (e.g., `avi`) or image (e.g., `jpg`, `png`, `tiff`) files via `File` > `Save Animation...`.
 The current state (variable, `Timestep[i])` can be saved as `pvsm` file via `File` > `Save State File`. The state file can also be saved as Python script for external execution and implementation in [Python programs](hy-install.html).
 
-# QGIS
-## Add the Crayfish Plugin
+## QGIS
+### Add the Crayfish Plugin
 For best visualization in *QGIS*, follow the developer's recommendation and install the *Crayfish* Plugin (*QGIS*' `Plugins`menu > `Manage and Install Plugins...` > `All` tab > enter *Crayfish* in the `Search...` field and install the Plugin).
 After successful installation, the *Crayfish* tools are available in *QGIS* toolbox, which can be activated as follows:
 <a name="qgis-tbx"></a>
 {% include image.html file="qgis-tbx.png" alt="bm-5" caption="Open QGIS' Toolbox window from the main menu." %}
 The *Crayfish* tools are listed at the bottom of the `Toolbox` window.
 
-## Import results
+### Import results
 Import the simulation results from the *QGIS* `Browser`, by navigating to the simulation directory and dragging the `results.h5` raster file into the *QGIS* `Layers` window. A pop-up window opens and asks for timesteps and layers to import. select the results (cell array and nodestrings) from the last timestep, as well as the grid data (`Topology`, `BottomEl`, `Coordnts`). 
 
 UNRESOLVED ISSUE: The results are most likely not correctly plotted in *QGIS* now. An inquiry in running in *BASEMENT*'s user forum ([go there](http://people.ee.ethz.ch/~basement/forum/viewtopic.php?pid=6095#p6095)).
