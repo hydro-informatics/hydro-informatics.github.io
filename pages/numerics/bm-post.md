@@ -100,8 +100,8 @@ To analyze the imported results, they need to be converted to geo-spatial data f
     * Check the `Extent (current: layer)` box
 - Now, click `OK`
 
-        <a name="qgis-exp-sim-pts"></a>
-        {% include image.html file="qgis-exp-sim-pts.png" alt="bm-3" caption="The Save Vector Layer As... window with required settings highlighted (green marker)." %} 
+<a name="qgis-exp-sim-pts"></a>
+{% include image.html file="qgis-exp-sim-pts.png" alt="bm-3" caption="The Save Vector Layer As... window with required settings highlighted (green marker)." %} 
 
 Next, the point shapefile needs to be converted to a [GeoTIFF](https://en.wikipedia.org/wiki/GeoTIFF) raster format to enable further data analyses. Therefore:
 - In *QGIS* `Raster` menu, click on `Conversion` and select `Rasterize (Vector to Raster)`
@@ -114,17 +114,16 @@ Next, the point shapefile needs to be converted to a [GeoTIFF](https://en.wikipe
     * `Height/Vertical resolution` = `5.0`
     * `Output extent (xmin, xmax, ymin, ymax)`: Click on the `...` button and select `Use Layer extent` > `Use extent from` `bm-vanilla-pts`
     * Below the `Advanced parameters` canvas, define a raster output directory and name (e.g., `vanilla-depth.tif`)
-- Click `Run`
+- Click `Run`.
    
-   <a name="qgis-make-tiff"></a>
-        {% include image.html file="qgis-make-tiff.png" alt="bm-3" caption="The SRasterize (Vector to Raster) window with required settings highlighted (green marker)." %}  
+<a name="qgis-make-tiff"></a>
+{% include image.html file="qgis-make-tiff.png" alt="bmx3" caption="The Rasterize (Vector to Raster) window with required settings highlighted (green marker)." %}  
  
 ## Result interpretation
 In *ParaView* (renders faster) or *QGIS*, look at all variables (`flow_velocity`, `water_depth`, and `water_surface`), explore their evolution over time, different coloring and answer the following questions:
 
 - Are the results are in a physically reasonable and meaningful range?
-- When did the simulation become stable?
-→ To save time, the simulation duration can be shortened (*BASEMENT*'s `SIMULATION` tab), down to the time step when stability was reached.
+- When did the simulation become stable?</br>To save time, the simulation duration can be shortened (*BASEMENT*'s `SIMULATION` tab), down to the time step when stability was reached.
 - Are there particularities such as rapids that correspond (qualitatively) to field observations (are rapids on confinements and/or terrain drops)?
 
 ## Further applications
