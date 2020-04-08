@@ -107,14 +107,14 @@ To analyze the imported results, they need to be converted to geo-spatial data f
 1. [Conversion with the Crayfish plugin after direct import of `results.xdmf` (recommended)](#crayfish-exp)
 1. [Conversion of *ParaView* exports (not recommended)](#pv-conv)
 
-#### Conversion with the Crayfish plugin<a name="crayfish-conv"></a>
+#### Conversion with the Crayfish plugin (recommended)<a name="crayfish-conv"></a>
 Ensure that the [*Crayfish* plugin is correctly installed](#add-crayfish) an open *Crayfish*'s `Rasterize` tool from *QGIS*' `Processing` menu > `Toolbox` > `Crayfish` > `Rasterize` (see beloew figure)
     <a name="qgis-crayfish-installed"></a>
     {% include image.html file="qgis-crayfish-installed.png" alt="bmy" caption="Open the Rasterize tool of the Crayfish plugin." %} 
 - In the `Rasterize` window make the following settings (see also [below figure](#qgis-crayfish-exp)):
     * `Input mesh layer` =  `finalmesh`
     * `Minimum extent to render (xmin, xmax, ymin, ymax)` =  click on the `...` button and select the `Layer` option (choose `finalmesh`)
-    * `Maps units` = `0.1` (can also be larger - the larger this number, the coarser the output *tif*)
+    * `Map units` = `0.1` (can also be larger - the larger this number, the coarser the output *tif*)
     * `Dataset group` =  `flow_velocity` (or whatever variable should be in the final *tif*  - note that rasters can/should have only one value per pixel)
     * `Timestep` = `208 days, 8:00:00` (last timestep in the case of steady-state simulations)
     * `Output layer` = `C:\ ... \u.tif` (or whatever variable / raster specifier applies)
