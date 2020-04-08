@@ -47,48 +47,89 @@ The point data export is now complete. The next step is to import the data (here
 {% include image.html file="pv-exp-steps.png" alt="bm-x3" caption="The CellCenters (dark-blue circle) filter in ParaView, with the maximum Time step setting (red circle) and the Properties definitions (green circle)" %} 
 
 ## QGIS
-### Add the Crayfish Plugin
+### Add the Crayfish Plugin<a name="add-crayfish"></a>
 For best visualization in *QGIS*, follow the developer's recommendation and install the *Crayfish* Plugin (*QGIS*' `Plugins`menu > `Manage and Install Plugins...` > `All` tab > enter *Crayfish* in the `Search...` field and install the Plugin).
 After successful installation, the *Crayfish* tools are available in *QGIS* toolbox, which can be activated as follows:
 <a name="qgis-tbx"></a>
 {% include image.html file="qgis-tbx.png" alt="bm-5" caption="Open QGIS' Toolbox window from the main menu." %}
 The *Crayfish* tools are listed at the bottom of the `Toolbox` window.
 
-### Import results<a name="pv-exp-steps"></a>
-There are two options to import the results in *QGIS*:
-1. Use the *ParaView* export (here: *bm-steady-vanilla.csv* - ***recommended procedure***):
-    * In *QGIS*, click on the `Layer` menu > `Add Layer` > `Add Delimited Text Layer...`.
+### Import results<a name="imp-steps"></a>
+There are two (to three) options to import the results in *QGIS*:
 
-        <a name="qgis-add-lyr"></a>
-        {% include image.html file="qgis-add-lyr.png" alt="bmx" caption="Open the Add Delimited Text Layer import wizard." %} 
+1. [Use *ParaView* Outputs](#pv-exp-steps)
+1. [Modify `results.xdmf` and directly import results in *QGIS*](#qigs-imp-steps)
+1. [Use an import tool (currently unavailable - so this option is not applicable for the moment)](#schmalzl)
 
-    * The `Data Source Manager | Delimited Text` window opens ([see figure below](#qgis-import-csv))
-    * In the `File name` field select *bm-steady-vanilla.csv*
-    * Enter a `Layer name` (e.g., *bm-steady-vanilla-csv*)
-    * In the `File Format` canvas, check the `CSV (comma separated values)` box
-    * In the `Record and Field Options` canvas, activate the `First record has field names` checkbox
-    * In the `Geometry Definition` canvas, define the `Point Coordinates` as `X field` = `Points:0`, `Y field` = `Points:1` and `Z field` = `Points:2` (verify the correctness: `X`-data should be in the order of 4.2 to 4.4·10<sup>6</sup>, `Y`-data should be in the order of 5.5·10<sup>6</sup>, and `Z`-data should be in the order of 100.0 to 200.0)
-    * Set the `Geometry CRS` to the `Project CRS` (`ESRI:31493 - Germany_Zone_3`).
-    * Click the `Add` and the `Close` buttons on the bottom of the window. The points should now be plotted in the main *QGIS* window.
-    * *Note: Do not wonder about only 20 points shown in the `Sample Data` canvas - this is literally not more than just a sample.*
-    
+#### Use *ParaView* export (here: *bm-steady-vanilla.csv* - ***recommended for visualization***)
+
+After data export from *ParaView*:<a name="pv-exp-steps"></a>
+- In *QGIS*, click on the `Layer` menu > `Add Layer` > `Add Delimited Text Layer...`.
+<a name="qgis-add-lyr"></a>
+{% include image.html file="qgis-add-lyr.png" alt="bmx" caption="Open the Add Delimited Text Layer import wizard." %} 
+
+- The `Data Source Manager | Delimited Text` window opens ([see figure below](#qgis-import-csv))
+- In the `File name` field select *bm-steady-vanilla.csv*
+- Enter a `Layer name` (e.g., *bm-steady-vanilla-csv*)
+- In the `File Format` canvas, check the `CSV (comma separated values)` box
+- In the `Record and Field Options` canvas, activate the `First record has field names` checkbox
+- In the `Geometry Definition` canvas, define the `Point Coordinates` as `X field` = `Points:0`, `Y field` = `Points:1` and `Z field` = `Points:2` (verify the correctness: `X`-data should be in the order of 4.2 to 4.4·10<sup>6</sup>, `Y`-data should be in the order of 5.5·10<sup>6</sup>, and `Z`-data should be in the order of 100.0 to 200.0)
+- Set the `Geometry CRS` to the `Project CRS` (`ESRI:31493 - Germany_Zone_3`).
+- Click the `Add` and the `Close` buttons on the bottom of the window. The points should now be plotted in the main *QGIS* window.
         <a name="qgis-import-csv"></a>
         {% include image.html file="qgis-import-csv.png" alt="bmy" caption="The Data Source Manager | Delimited Text window with required settings highlighted with the green marker." %} 
 
-2. Directly from the `results.xdmf` file (***not recommended***):
-    * If not yet done, load the mesh file (here: [`finalmesh.2dm`](bm-pre.html#2dm)) by clicking on *QGIS*' `Layer` menu > `Data Source Manager` > `Mesh` tab and select `finalmesh.2dm`.
-    * In *QGIS*' `Layers` window, double-click on the `finalmesh` layer to open the `Layer Properties` window.
-    * In the `Layer Properties` window, go to `Source` > click on `Assign Extra Data Set to Mesh` and choose  `results.xdmf` **WARNING: A powerful computer is required here - otherwise, *QGIS* freezes for a while and/or crashes.**
-    A pop-up window opens and asks for timesteps and layers to import. select the results (cell array and nodestrings) from the last timestep, as well as the grid data (`Topology`, `BottomEl`, `Coordnts`).
-    * After import, double-click on the new `results` layer to open the `Symbology` (`Layer Properties`) > `Groups` > click on gray square (right side of the window) and change to color.
+#### Use the `results.xdmf` file directly(***recommended for geospatial data conversion***)<a name="qgis-imp-steps"></a>
+Modify `results.xdmf` and directly import model result in *QGIS*:
+- Open `results.xdmf` in a text editor (e.g., [*Notepad++*](https://notepad-plus-plus.org/downloads/))
+- Use the find-and-replace tool (`CTRL` + `H` keys in *Notpad++*) to remove file paths before `results_aux.h5` in the document (otherwise *QGIS* will crash later on - [read more in *BASEMENT*'s User Forum](http://people.ee.ethz.ch/~basement/forum/viewtopic.php?id=5261)). For example: `Find` = `C:\temp\results_aux.h5` and `Replace with` = `results_aux.h5` (see [below figure](#npp-xdmf-replace)). After having removed all path occurrences in the document, save and close `results.xdmf`. 
+    <a name="npp-xdmf-replace"></a>
+    {% include image.html file="npp-xdmf-replace.png" alt="bmy" caption="Find the string results_aux.h5 in results.xdmf and remove the file directories." %} 
+- If not yet done, load the mesh file (here: [`finalmesh.2dm`](bm-pre.html#2dm)) by clicking on *QGIS*' `Layer` menu > `Data Source Manager` > `Mesh` tab and select `finalmesh.2dm`.
+- In *QGIS*' `Layers` window, double-click on the `finalmesh` layer to open the `Layer Properties` window.
+- In the `Layer Properties` window, go to `Source` > click on `Assign Extra Data Set to Mesh` and choose  `results.xdmf` 
+    <a name="qgis-assign-meshdata"></a>
+    {% include image.html file="qgis-assign-meshdata.png" alt="bmy" caption="Assign mesh data to the computational mesh." %}     
+- After import, double-click on the new `results` layer to open the `Symbology` (`Layer Properties`) and select a variable to represent from the `Groups` canvas. Make sure to enable the contour plot (right side in the [below figure](#qgis-meshdata-u)) symbol, select the timestep to plot (for steady-state simulation, select the last timestep), optionally go to the `Contours` ribbon to change the colour pattern (upper-most green circle in the [below figure](#qgis-meshdata-u)), and click `Apply`.
+    <a name="qgis-meshdata-u"></a>
+    {% include image.html file="qgis-meshdata-u.png" alt="bmy" caption="Illustrate the flow velocity with QGIS' Layer Propoerties > Symbology controls. The green circles highlight settings for the last timestep of a steady-state simulation." %}    
+    {% include image.html file="qgis-meshdata-u-plotted.png" alt="bmy" caption="After application of the above Symbology settings: The flow velocity is illustrated in red-shades." %}
     
-3. Another option in the future will be [Klaus Schmalzl's `Basement_post_W.exe`](http://people.ee.ethz.ch/~basement/baseweb/users-meetings/30-01-2020/6_Schmalzl.pdf), which is currently not available.
-
 Thanks to Matthias Bürgler who supported helped with these instructions through [*BASEMENT*'s user forum](http://people.ee.ethz.ch/~basement/forum/viewtopic.php?pid=6095#p6095).
+ 
+#### Klaus Schmalzl's `Basement_post_W.exe` <a name="schmalzl"></a>
+Another option in the future will be [Klaus Schmalzl's `Basement_post_W.exe`](http://people.ee.ethz.ch/~basement/baseweb/users-meetings/30-01-2020/6_Schmalzl.pdf), which is currently not available.
 
-### Convert results to geo-spatial formats<a name="pv-exp-steps"></a>
 
-To analyze the imported results, they need to be converted to geo-spatial data format such as [ESRI Shapefiles](https://en.wikipedia.org/wiki/Shapefile) or [GeoTIFF](https://en.wikipedia.org/wiki/GeoTIFF) rasters. Therefore:
+### Convert results to geospatial formats (SHP and TIF)<a name="qgis-exp-steps"></a>
+To analyze the imported results, they need to be converted to geo-spatial data format such as [ESRI Shapefiles](https://en.wikipedia.org/wiki/Shapefile) or [GeoTIFF](https://en.wikipedia.org/wiki/GeoTIFF) rasters. There are two options available depending on how data were imported:
+
+1. [Conversion with the Crayfish plugin after direct import of `results.xdmf` (recommended)](#crayfish-exp)
+1. [Conversion of *ParaView* exports (not recommended)](#pv-conv)
+
+#### Conversion with the Crayfish plugin<a name="crayfish-conv"></a>
+Ensure that the [*Crayfish* plugin is correctly installed](#add-crayfish) an open *Crayfish*'s `Rasterize` tool from *QGIS*' `Processing` menu > `Toolbox` > `Crayfish` > `Rasterize` (see beloew figure)
+    <a name="qgis-crayfish-installed"></a>
+    {% include image.html file="qgis-crayfish-installed.png" alt="bmy" caption="Open the Rasterize tool of the Crayfish plugin." %} 
+- In the `Rasterize` window make the following settings (see also [below figure](#qgis-crayfish-exp)):
+    * `Input mesh layer` =  `finalmesh`
+    * `Minimum extent to render (xmin, xmax, ymin, ymax)` =  click on the `...` button and select the `Layer` option (choose `finalmesh`)
+    * `Maps units` = `0.1` (can also be larger - the larger this number, the coarser the output *tif*)
+    * `Dataset group` =  `flow_velocity` (or whatever variable should be in the final *tif*  - note that rasters can/should have only one value per pixel)
+    * `Timestep` = `208 days, 8:00:00` (last timestep in the case of steady-state simulations)
+    * `Output layer` = `C:\ ... \u.tif` (or whatever variable / raster specifier applies)
+- Click `Run`
+
+<a name="qgis-crayfish-exp"></a>
+{% include image.html file="qgis-crayfish-exp.png" alt="bm-qce" caption="Settings to be made in Caryfish's Rasterize tool." %} 
+
+With a `Singleband pseudocolor` > `Spectral` `Symbology`-selection in the `Layer Properties`, the *QGIS* window should now look like this:
+
+<a name="qgis-crayfish-final"></a>
+{% include image.html file="qgis-crayfish-final.png" alt="bm-qce" caption="A Singleband pseudocolor (Layer Properties > Symbology) selection will represent the velocity distribution in the final velocity GeoTIFF." %}
+
+
+#### Conversion of ParaView exports (not recommended)<a name="pv-conv"></a>
 
 - In *QGIS*, right-click the above imported csv-points layer (here: `bm-steaedy-vanilla-csv`) > `Export` > `Save Features As...`
 - The `Save Vector Layer as...` window opens ([see figure below](#qgis-exp-sim-pts)), where the following settings need to be defined:
@@ -125,6 +166,7 @@ In *ParaView* (renders faster) or *QGIS*, look at all variables (`flow_velocity`
 - Are the results are in a physically reasonable and meaningful range?
 - When did the simulation become stable?</br>To save time, the simulation duration can be shortened (*BASEMENT*'s `SIMULATION` tab), down to the time step when stability was reached.
 - Are there particularities such as rapids that correspond (qualitatively) to field observations (are rapids on confinements and/or terrain drops)?
+- Zoom into the [final *tif* raster](#qgis-crayfish-final) and have a look at the triangulation artifacts. Obviously the artifacts are not realistic. How can the problem be addressed?
 
 ## Further applications
 After post-processing, the model still needs to be calibrated and validated ([see next part](bm-calibration.html)). Once the model is calibrated, it can be used to simulate flood hydrographs to assess the stability of river engineering features and the river landscape or inundation area. Moreover, the [habitat quality of rivers for target fish species](https://pubs.er.usgs.gov/publication/70121265) can be assessed as a function of water depth, flow velocity and grain size (and other parameters). There is even special software to perform these tasks, such as [CASiMiR](http://www.casimir-software.de/ENG/index_eng.html) (commericial) or [River Architect](https://riverarchitect.github.io).
