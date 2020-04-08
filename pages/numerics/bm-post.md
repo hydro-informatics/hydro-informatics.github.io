@@ -61,7 +61,7 @@ There are two (to three) options to import the results in *QGIS*:
 1. [Modify `results.xdmf` and directly import results in *QGIS*](#qigs-imp-steps)
 1. [Use an import tool (currently unavailable - so this option is not applicable for the moment)](#schmalzl)
 
-#### Use *ParaView* export (here: *bm-steady-vanilla.csv* - ***recommended for visualization***)
+#### Use *ParaView* export (here: *bm-steady-vanilla.csv*)
 
 After data export from *ParaView*:<a name="pv-exp-steps"></a>
 - In *QGIS*, click on the `Layer` menu > `Add Layer` > `Add Delimited Text Layer...`.
@@ -76,8 +76,8 @@ After data export from *ParaView*:<a name="pv-exp-steps"></a>
 - In the `Geometry Definition` canvas, define the `Point Coordinates` as `X field` = `Points:0`, `Y field` = `Points:1` and `Z field` = `Points:2` (verify the correctness: `X`-data should be in the order of 4.2 to 4.4·10<sup>6</sup>, `Y`-data should be in the order of 5.5·10<sup>6</sup>, and `Z`-data should be in the order of 100.0 to 200.0)
 - Set the `Geometry CRS` to the `Project CRS` (`ESRI:31493 - Germany_Zone_3`).
 - Click the `Add` and the `Close` buttons on the bottom of the window. The points should now be plotted in the main *QGIS* window.
-        <a name="qgis-import-csv"></a>
-        {% include image.html file="qgis-import-csv.png" alt="bmy" caption="The Data Source Manager | Delimited Text window with required settings highlighted with the green marker." %} 
+<a name="qgis-import-csv"></a>
+{% include image.html file="qgis-import-csv.png" alt="bmy" caption="The Data Source Manager | Delimited Text window with required settings highlighted with the green marker." %} 
 
 #### Use the `results.xdmf` file directly(***recommended for geospatial data conversion***)<a name="qgis-imp-steps"></a>
 Modify `results.xdmf` and directly import model result in *QGIS*:
@@ -109,8 +109,9 @@ To analyze the imported results, they need to be converted to geo-spatial data f
 
 #### Conversion with the Crayfish plugin (recommended)<a name="crayfish-conv"></a>
 Ensure that the [*Crayfish* plugin is correctly installed](#add-crayfish) an open *Crayfish*'s `Rasterize` tool from *QGIS*' `Processing` menu > `Toolbox` > `Crayfish` > `Rasterize` (see beloew figure)
-    <a name="qgis-crayfish-installed"></a>
-    {% include image.html file="qgis-crayfish-installed.png" alt="bmy" caption="Open the Rasterize tool of the Crayfish plugin." %} 
+<a name="qgis-crayfish-installed"></a>
+{% include image.html file="qgis-crayfish-installed.png" alt="bmy" caption="Open the Rasterize tool of the Crayfish plugin." %}
+
 - In the `Rasterize` window make the following settings (see also [below figure](#qgis-crayfish-exp)):
     * `Input mesh layer` =  `finalmesh`
     * `Minimum extent to render (xmin, xmax, ymin, ymax)` =  click on the `...` button and select the `Layer` option (choose `finalmesh`)
