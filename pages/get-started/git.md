@@ -9,22 +9,26 @@ folder: get-started
 
 
 ## Usage of git<a name="dl"></a>
-The materials provided on these pages is best downloaded and updated using *git*-able environments (e.g., *PyCharm*'s Community Edition or [*Git Bash*](https://git-scm.com/downloads) - see the [installation](install) instructions). Updates are tricky when materials are downloaded as *zip* file.
+The materials provided on these pages is best downloaded and updated using *git*-able environments (on Windows use for example [*PyCharm*'s Community Edition](https://www.jetbrains.com/pycharm/) or [*Git Bash*](https://git-scm.com/downloads); on *Linux*: you are already good to go). Updates are tricky when materials are downloaded as *zip* file.
 
-### Download
+### Clone (download)
 *GitHub* provides detailed descriptions and standard procedures to work with their repositories ([read more](https://help.github.com/en/articles/cloning-a-repository)). The following "recipe" guides through the first time download of *git* materials
 
-1. Open *PyCharm* (go to the `Terminal` tab, which is usually at the bottom of the window) or *Git Bash*
-2. Go to the local target directory with the command `cd "D:/Target/Directory/"` to change to the target installation directory. If the directory does not exist, it can be created in the system explorer (right-click in empty space > `New` > `Folder`).
-3. Clone the repository: `git clone https://github.com/hydro-informatics/materials]` (or whatever repository you want to clone)
+1. Open your favorite *git*-able command line:
+    * *Windows Option 1*: *PyCharm*
+        + go to the `Terminal` tab, which is usually at the bottom of the window
+        + Go to the local target directory with the command `cd "D:/Target/Directory/"` to change to the target installation directory. If the directory does not exist, it can be created in the system explorer (right-click in empty space > `New` > `Folder`).
+    * *Windows Option 2*: *Git Bash*
+    * *Linux*: Terminal
+1. Clone the course repository (change materials according to the course attended): `git clone https://github.com/hydro-informatics/materials]` (or whatever repository you want to clone)
 
 Done.
 
 ### Update downloaded repository (re-pull local copy with *git*) <a name="update"></a>
 
-*git* (within *Git Bash* or *PyCharm*) is the only option to update local copies of a remote repository consistently.  In a *git*-able terminal do the following:
+*git* (within *Git Bash*, *PyCharm* or *Terminal*) is the only option to update local copies of a remote repository consistently. To do so, open one of the above mention *git*-able command lines and do the following:
 
-1. Go to the local directory of the repository (e.g., `materiald`): `cd "D:/Python/materials/"` (or wherever `materials` was cloned).
+1. Go to the local directory of the repository with the [`cd`](https://en.wikipedia.org/wiki/Cd_(command)) command (e.g., `materials`): `cd "D:/Python/materials/"` (or wherever `materials` was cloned).
 1. `git status` - shows the modifications made.
 1.  Merge errors may occur when changes were made in the local copy. To avoid merge errors, type: </br> `git pull --rebase` - if locally edited scripts were modified remotely since the last pull, this will prompt issues and highlight problematic section with `>>>`. Manually open concerned files and resolve the issues (delete invalid `>>>` highlights).
 1. `git push`
@@ -42,4 +46,5 @@ After editing files in a repository locally, *add* - *commit* - *push* (in that 
 1. `git push`
 
 Done.
+
 

@@ -8,17 +8,17 @@ folder: lectures
 ---
 
 ## Overview
-These pages provide complementary material for the following lectures tought at the [University of Stuttgart](https://www.iws.uni-stuttgart.de/en/), Germany:
+These pages provide complementary material for the following lectures tought at the [University of Stuttgart](https://www.iws.uni-stuttgart.de/en/) (Germany):
 
 - [Integrated River Engineering and Sediment Management](https://ilias3.uni-stuttgart.de/goto_Uni_Stuttgart_crs_1855964.html) 
 
 - Python Programming in Water Resources Engineering and Research (available since winter semester 2020)
 
-## The Classroom
+## Virtual Classroom
 
 The majority of the course takes place in front of a screen. Students can work on computers at the University of Stuttgart or use their own laptop. 
 
-All codes provided in the lectures are based on *Python3* executed within Conda environments. The [install and setup](hypy_install.html#other) section provides more details and installation hints for external packages (preferred open-access).
+The codes provided in the lectures are mostly based on *Python3* executed for Conda environments. The [install and setup](hypy_install.html) section provides more details and installation hints for external packages (preferred open-access).
 <br/>
 
 ## Principles 

@@ -1,7 +1,7 @@
 ---
 title: "Welcome"
 keywords: git, Python, Python3, version control
-tags: [getting_started]
+tags: [hydro-informatics, hydraulics, morphodynamics, hydraulic_engineering, python]
 sidebar: mydoc_sidebar
 permalink: index.html
 toc: false
@@ -17,8 +17,10 @@ Big datasets resulting from airborne imagery and worldwide data surveys affect a
 Explore the page contents about
 
 - Version control with [*git*](hy_git.html)
-- [*Python* programming](hy-install.html)
-- [Geospatial data analysis](hypy_gdal.html) with *QGIS* and its *Python* tools
+- Documentation with [*Markdown*](hy_documentation.html) language
+- [Open-source software alternatives](hy_others.html) for global engineers and scientists
+- [*Python* programming](hypy_pyintro.html)
+- [Geospatial data analysis](geo_overview.html) with *QGIS* and its *Python* tools
 - [Numerical modelling](bm.html) with the *ETH Zurich*'s *BASEMENT* software
 
 ***
