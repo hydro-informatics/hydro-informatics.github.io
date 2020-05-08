@@ -9,7 +9,7 @@ folder: get-started
 
 
 ## NotepadPlusPlus {#npp}
-[*Notepad++*](https://notepad-plus-plus.org/) is an all-round text editor for basic coding (*R*, *Python*, *Java*, *C*, *Perl*, ...), markdown/html editing and many many (not a typo).
+[*Notepad++*](https://notepad-plus-plus.org/) is an all-round text editor for basic coding (*R*, *Python*, *Java*, *C*, *Perl*, ...), markdown/html editing and many many (not a typo). Alternatives for *Notepad++* are for example [*ATOM*](https://atom.io/), [*Vim*](https://www.vim.org/) or [*GNU Emacs*](https://www.gnu.org/software/emacs/).
 
 ## Libre Office (Instead of MS Office) {#lo}
 An office software such as [*LibreOffice*][libreoffice] or Microsoft's *Excel* is required for some of the analyses described on these pages.

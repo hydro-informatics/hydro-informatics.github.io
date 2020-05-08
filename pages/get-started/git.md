@@ -7,6 +7,7 @@ permalink: hy_git.html
 folder: get-started
 ---
 
+`Git` is a fast, scalable, distributed revision control system, originally developed by *Linus Torvalds*  ([ead more about the git kernel](https://git.kernel.org/)). Git enables to coordinate work among collaborators beyond programming, in any set of files. Its support of non-linear workflows, speed and data integrity make git an indispensable tool in many industries and research. 
 
 ## Usage of git<a name="dl"></a>
 The materials provided on these pages is best downloaded and updated using *git*-able environments (on Windows use for example [*PyCharm*'s Community Edition](https://www.jetbrains.com/pycharm/) or [*Git Bash*](https://git-scm.com/downloads); on *Linux*: you are already good to go). Updates are tricky when materials are downloaded as *zip* file.

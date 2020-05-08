@@ -14,16 +14,24 @@ Big datasets resulting from airborne imagery and worldwide data surveys affect a
 
 ## Contents
 
-Explore the page contents about
+The *Get started* pages provide systematic workflows to set up your computer for:
+- coding and [*Markdown*](hy_documentation.html) editing (*Get started*)
+- version control with [*git*](hy_git.html)
+- geospatial analyses with [desktop applications](geo_software.html) such as *QGIS* 
+- using [auxiliary tools and open-source/access alternatives](hy_others.html) to proprietary software such as *GNU Octave* (similar to *Matlab*) or *Libre Office* (similar to MS Office) for global engineers and scientists
 
-- Version control with [*git*](hy_git.html)
-- Documentation with [*Markdown*](hy_documentation.html) language
-- [Open-source software alternatives](hy_others.html) for global engineers and scientists
-- [*Python* programming](hypy_pyintro.html)
-- [Geospatial data analysis](geo_overview.html) with *QGIS* and its *Python* tools
-- [Numerical modelling](bm.html) with the *ETH Zurich*'s *BASEMENT* software
+The *Python* pages guide through:
+- the installation of *Python* within [conda environments](hypy_install.html)
+- the very basic application of [*Python*](hypy_pyintro.html)
+- the advanced application of *Python* by leveraging the power of [object-oriented programming](hypy_classes.html)
+- [geospatial *Python*](geo_overview.html) usage with popular *Python* packages
+
+The numerical modelling provide complete workflows for getting started with two-dimensional (2D) hydro-morphodynamic models:
+- [*ETH Zurich*'s *BASEMENT*](bm.html) software
+- More in the future ...
+
 
 ***
 
-The website is currently still growing. Please be patient with some descriptions lacking.
+This web site is still growing. Please be patient with some descriptions lacking.
  
