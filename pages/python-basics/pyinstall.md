@@ -24,3 +24,19 @@ To install an environment that suites most of the needs for codes and analyses s
 1. [OPTIONAL] To install more packages, type (in Anaconda prompt):
     - `conda activate geo-python`
     - `conda install PACKAGE_NAME`
+
+## Setup IDEs {#ide-setup}
+After the successful installation of your favorite [*IDE*](hy_ide.html#ide) within *Anaconda*, use the just created *conda* environment as interpreter. The following steps guide through the setup of *PyCharm* for using *conda* environments.
+
+1. Launch *PyCharm* and create a new project. 
+    {% include image.html file="pyc-project.png" alt="pyc-prj" max-width="500px" caption="Create a new project in PyCharm." %}
+1. Define The new `geo-python` environment as *Pure Python* project interpreter:
+    * Select *New environment using `Conda`
+    * In the *Location* box select the new `geo-python` environment
+    * Click *Create* to create the new project.
+    {% include image.html file="pyc-prj-setup.png" alt="pyc-prj-setup" caption="Setup the geo-python conda environment for the new project." %}
+1. Verify that the project interpreter is correctly defined:
+    * Click on *PyCharm*'s `File` menu and select `Settings...` 
+    * In the *Settings* window go to `Project: [NAME]` > `Project Interpreter` 
+    * Make sure that the above-created `gep-python` *conda* environment is defined as *Project Interpreter*.
+    {% include image.html file="pyc-prj-interp.png" alt="pyc-prj-interp" caption="Verify the correct setup of the Project Interpreter." %}

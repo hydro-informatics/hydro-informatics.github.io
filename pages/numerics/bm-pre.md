@@ -18,7 +18,7 @@ Download and install the latest version of the open-access GIS software [*QGIS*]
 1. Load the *QGIS* plugin manager: `Plugins` menu > `Manage and Install Plugins` (see details in [figure](#qgis-plugins))
 1. Go to the Settings tab; now the *QGIS*-plugin repository connections should be visible at the bottom of the `Plugin Manager` (`Plugin Repositories` listbox in below [figure](#qgis-plugins)).
 1. Scroll to the bottom, click on Add..., and enter a name for the new repository (e.g., *BASEmesh* repository)
-1. Enter the repository address: [http://people.ee.ethz.ch/~BASEMENT/QGIS_plugins/QGIS_plugins.xml]([http://people.ee.ethz.ch/~BASEMENT/QGIS_plugins/QGIS_plugins.xml])
+1. Enter the repository address: [http://people.ee.ethz.ch/~basement/qgis_plugins/qgis_plugins.xml]([http://people.ee.ethz.ch/~basement/qgis_plugins/qgis_plugins.xml])
 1. Click `OK`. The new repository should now be visible in the `Plugin Repositories` listbox. If the connection is `OK`, click on the Close button on the bottom of the window.
 1. Verify that the *BASEmesh* plugin is now available in the *QGIS*' `Plugins` menu (see [figure](#qgis-pluggedin)).
 
