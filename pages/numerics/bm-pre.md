@@ -35,18 +35,18 @@ Terrain survey data are mostly delivered in the shape of an x-y-z point dataset.
 1. [Download](https://github.com/hydro-informatics/materials/raw/master/numerics/breaklines.zip) the zipped breaklines shapefile into the project folder and unpack `breaklines.shp`.
 1. In *QGIS*, click on the `Layer` menu > `Add Layer` > `Add Delimited Text Layer...` (see [figure](#qgis-add-lyr))
 1. In the `Add Delimited Text Layer` (`Data Source Manager | Delimited Text`) wizard (see details in Figure 4):
-    * Choose *points.txt* in the `File name` field
+    * Choose [*points.txt*](https://github.com/hydro-informatics/materials/blob/master/numerics/points.txt) in the `File name` field (alternatively use [*points.csv*](https://github.com/hydro-informatics/materials/blob/master/numerics/points.csv))
     * Name the new layer (e.g., points)
     * In the `File Format` canvas, select `Custom Delimiters` and activate the `Space` checkbox
-    * In the `Record and Field Options` canvas, deactivate the `First record has field names` checkbox
-    * In the `Geometry Definition` canvas, define the `Point Coordinates` as `X Field` = `FIELD_1`, `Y Field` = `FIELD_2` and `Z Field` = `FIELD_3`; set the `Geometry CRS` to the `Project CRS`.
+    * In the `Record and Field Options` canvas, activate the `First record has field names` checkbox
+    * In the `Geometry Definition` canvas, define the `Point Coordinates` as `X Field` = `X`, `Y Field` = `Y` and `Z Field` = `Z`; set the `Geometry CRS` to the `Project CRS`.
     * Click the `Add` button on the bottom of the wizard window. The points should now be plotted in the main *QGIS* window.
 	
 <a name="qgis-add-lyr"></a>
 {% include image.html file="qgis-add-lyr.png" alt="bm-3" caption="Open the Add Delimited Text Layer import wizard." %} 
 
-<a name="qgis-export-pts"></a>
-{% include image.html file="qgis-export-pts.png" alt="bm-4" caption="Load the xyz-points.txt file with QGIS' Add Delimited Text Layer (Data Source Manager | Delimited Text) wizard." %}
+<a name="qgis-import-pts"></a>
+{% include image.html file="qgis-import-pts.png" alt="bm-4" caption="Load the xyz-points.txt file with QGIS' Add Delimited Text Layer (Data Source Manager | Delimited Text) wizard." %}
 
 Next, export the new point layer as shapefile: In *QGIS*' `Layer`S window, right-click on XYZ-POINTS, then `Export` > `Save Features As...` . In the Format field, select `ESRI Shapefile`. Define a FILE NAME (by clicking on the … button and defining for example *C:\QGIS-projects\xyz-points.shp*), ensure that the ADD SAVED FILE TO MAP checkbox is activated (on the bottom of the `Save Vector Layer As...` window) and click `OK`. Remove the `points` text layer from the `Layers` window (only the shape file should be visible here now).
 Finally, rename the three fields (`FIELD_1`, `FIELD_2`, `FIELD_3`) to `X`, `Y`, and `Z`, respectively. The fields can be renamed with a double-click on the `xyz-points` layer (opens `Layer Properties`), then left-click on the `Fields` ribbon, activate the editing mode (click on the pen symbol) and edit the `Name` fields.
