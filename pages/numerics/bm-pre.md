@@ -185,27 +185,27 @@ To run *BASEMENT*, the mesh needs to be exported in 2dm format. *BASEmesh*’s `
 <a name="qgis-exp-mesh"></a>
 {% include image.html file="qgis-exp-mesh.png" alt="bm-16" caption="Export of the mesh to 2dm format with BASEmesh's Export Mesh wizard." %} 
 
-In order to work with *BASEMENT* v3.x, the .2dm file requires a couple of adaptations. Open the produced finalmesh.2dm in a text editor software (right-click and, for example, edit with Notepad++) and:
+In order to work with *BASEMENT* v3.x, the .2dm file requires a couple of adaptations. Open the produced finalmesh.2dm in a text editor software (right-click and, for example, edit with [*Notepad++*](hy_others.html#npp)) and:
 
 - At the top, insert the following line at line N°2: </br> `NUM_MATERIALS_PER_ELEM 1`
-
-<a name="mod-2dm"></a>
-{% include image.html file="mod-2dm.png" alt="bm-x2" caption="Modification of the upper part of the .2dm file." %} 
- 
-- At the bottom of the file, add the node string definitions for the inflow and outflow boundary. Enter the following 2 new lines:
+    <a name="mod-2dm"></a>
+    {% include image.html file="mod-2dm.png" alt="bm-x2" max-width="500" caption="Modification of the upper part of the .2dm file." %}  
+- At the bottom of the file, add the node string definitions for the inflow and outflow boundary. Enter the following 2 new lines (where *nd<sub>i</sub>* and *nd<sub>j</sub>* represent the *Inflow* and *Outflow* nodes, respectively, of [finalmesh_interpolatedNodes_elevMesh.shp](#qualm-interp)):
     * *NS[SPACE][SPACE]nd<sub>1</sub>[SPACE]nd<sub>2</sub>[SPACE]nd<sub>i</sub>[SPACE]nd<sub>n</sub>[SPACE]Inflow*
     * *NS[SPACE][SPACE]nd<sub>1</sub>[SPACE]nd<sub>2</sub>[SPACE]nd<sub>j</sub>[SPACE]nd<sub>m</sub>[SPACE]Outflow*
-- Replace ndi and ndj with the inflow and outflow nodes of [finalmesh_interpolatedNodes_elevMesh.shp](#qualm-interp). To identify these nodes open *QGIS* and
-- Use *BASEmesh*’s `stringdef` wizard (from *BASEMENT* v2.8 user manual):<a name="stringdef"></a>
-    * For each line feature with a non-empty `stringdef`-field, all nodes that are lo-cated exactly on that line, are listed in a text file (*BASEMENT*-like `stringdef` block). The content of the `stringdef`-field represents the `stringdef` name.
-    * The `stringdef` line features are favorably included in the breaklines layer (shapefile) of the quality mesh. To distinguish between regular breaklines and `stringdef` lines, the `stringdef`-field can be used (empty or non-empty).
-    * The upstream direction of the generated `stringdef`s is right (see output textfile). Therefore the line feature has to be drawn from the left riverbank to the right riverbank
-- Finally, the bottom of the finalmesh.2dm (text editor) should look like this in the text editor (node `ID`s may vary from those in the screenshot):
- 
- <a name="mod-2dm-bottom"></a>
-{% include image.html file="mod-2dm-bottom.png" alt="bm-x3" caption="Modification of the bottom part of the .2dm file." %} 
-
+    
+    {% include tip.html content="To **identify** the **node IDs** open *QGIS* use ***BASEmesh*’s Stringdef** wizard (from *BASEMENT* v2.8 user manual - read more below)." %} 
+    <a name="stringdef"></a>
+    * *Stringdef* identifies points that have a non-empty `stringdef`-field (i.e., all nodes that are located exactly on that line) and writes them into a text file (*BASEMENT*-like `stringdef` block). The content of the `stringdef`-field represents the `stringdef` name.    
+    * In order to identify the node ids on the inflow and outflow boundary lines, select the final mesh nodes in the *Mesh Nodes* dialogue, select the provided [breaklines shapefile](https://github.com/hydro-informatics/materials/raw/master/numerics/breaklines.zip) in the *Breaklines* dialogue and select *stringdef* from the dropdown menu.
+    * In the *Textfile OUTPUT* dialogue, select an output text file (e.g., `C:/temp/stringdef-breaklines.txt`) and click on ***Find node IDs***
+    {% include image.html file="qgis-stringdef.png" alt="bm-strdef" caption="BASEmesh's Stringdef tool." %} 
+    * The *Stringdef* tool now has generated  `stringdef`s in upstream-looking right direction (note: to create new boundaries, the lines need to be drawn from the left riverbank to the right riverbank).
+    * Open the resulting text file (`C:/temp/stringdef-breaklines.txt` in the above example) and copy the node list to the bottom of *finalmesh.2dm* with the above-shown format (i.e., start with *NS*, followed by two SPACEs, then the node IDs *nd<sub>i/j </sub>* separated by on SPACE, then *Inflow* and *Outflow*, respectively). *Note: The node IDs my vary from those shown in the figure(s).*
+    {% include image.html file="qgis-stringdef-out.png" alt="bm-strdef" max-width="700" caption="The output of BASEmesh's Stringdef tool: Node IDs of the Inflow and Outflow boundaries." %}     
+    
+- Finally, the bottom of the finalmesh.2dm (text editor) should look like this in the text editor (node `ID`s may vary from those in the screenshot): 
+    <a name="mod-2dm-bottom"></a>
+    {% include image.html file="mod-2dm-bottom.png" alt="bm-x3" max-width="700" caption="Modification of the bottom part of the .2dm file." %} 
 
 Congratulations, you finished meshing!
-
-
