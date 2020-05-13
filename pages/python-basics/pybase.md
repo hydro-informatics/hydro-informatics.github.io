@@ -183,7 +183,6 @@ Also lists have many useful built-in functions:
 
 
 ```python
-flavors = ["chocolate", "bread", flavor1]
 flavors.append("cherry") # append an entry at the end
 print(flavors)
 flavors.insert(0, "lemon") # insert an entry at position 0
@@ -200,8 +199,8 @@ print("This is all I have: " + ", ".join(flavors))
     ['lemon', 'chocolate', 'bread', 'vanilla', 'cherry']
     There are 5 flavors in my list.
     lemon chocolate bread vanilla cherry
-    This is all I have:'lemon', 'chocolate', 'bread', 'vanilla', 'cherry'
-    This is all I have:lemon, chocolate, vanilla, cherry
+    This is all I have: 'lemon', 'chocolate', 'bread', 'vanilla', 'cherry'
+    This is all I have: lemon, chocolate, vanilla, cherry
     
 
 ### Dictionary
@@ -244,7 +243,7 @@ favorite_flavor = "vanilla" # choose your favorite flavor
 
 size_scoops = {1: "small", 2: "medium", 3: "this is too much ice cream"}
 price_scoops = {1: "3 dollars", 2: "5 dollars", 3: "your health"}
-print("Hi,\n I want % d scoop in a waffle, please." % scoops)
+print("Hi,\nI want %d scoop-s in a waffle, please." % scoops)
 size = " " + str(size_scoops[scoops])
 price = str(price_scoops[scoops])
 
@@ -260,3 +259,13 @@ for f in flavors:
 
 
 ```
+
+    Hi,
+    I want 2 scoop-s in a waffle, please.
+    My pleasure to serve you. You have chosen a medium ice cream. The price is 5 dollars.
+    Let me guess your favorite flavor. Say stop when I 'm correct.
+    I guess your favorite flavor is lemon.
+    I guess your favorite flavor is chocolate.
+    I guess your favorite flavor is vanilla.
+    Stop, that's it!
+    

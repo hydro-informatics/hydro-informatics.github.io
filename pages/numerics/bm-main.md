@@ -33,12 +33,13 @@ The window should now look like this:
 <a name="bm-mod-reg"></a>
 {% include image.html file="bm-mod-reg.png" alt="bm-7" caption="Region definitions." %} 
  
-- Next, we need to define inflow and outflow boundary condition with `stringdefs`. In the `GEOMETRY` section right-click – `Add item` `STRINGDEF` – `Add item` (2 times) and de-fine item [0] with:
+- Next, we need to define inflow and outflow boundary condition with `stringdefs`. In the `GEOMETRY` section right-click – `Add item` `STRINGDEF` – `Add item` (2 times) and define item [0] as:
     * `name` = `Inflow`
     * `upstream_direction` = `right`
 - Define `STRINGDEF` item [1] as:
     * `name` = `Outflow`
-    * `upstream_direction` = `right` (note: if you used [BASEmesh’s `STRINGDEF` tool](bm-pre.html#stringdef), the upstream direction must be defined as `right`)
+    * `upstream_direction` = `right` 
+    {% include note.html content="If you used [BASEmesh’s *Stringdef* tool](bm-pre.html#stringdef), the upstream direction must be defined as `right`." %}
 - Add the initial condition in the `HYDRAULICS` section with by right-clicking > `Add item` > `INITIAL` (if not yet present) and set `type`: “DRY” (i.e., the river is dry at the beginning of the simulation).<a name="init"></a>
 - Add upstream and downstream boundary conditions with a right-click on the `HYDRAULICS` section > `Add item` > `BOUNDARY` (if not yet present), then right-click on the new `BOUNDARY` section > `Add item STANDARD` > `Add item` (2 times) 
 - Define BOUNDARY item [0] as:<a name="bound"></a>
