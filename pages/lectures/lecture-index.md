@@ -14,12 +14,6 @@ These pages provide complementary material for the following lectures tought at 
 
 - Python Programming in Water Resources Engineering and Research (available since winter semester 2020)
 
-## Virtual Classroom
-
-The majority of the course takes place in front of a screen. Students can work on computers at the University of Stuttgart or use their own laptop. 
-
-The codes provided in the lectures are mostly based on *Python3* executed for Conda environments. The [install and setup](hypy_install.html) section provides more details and installation hints for external packages (preferred open-access).
-<br/>
 
 ## Principles 
 
