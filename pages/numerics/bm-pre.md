@@ -14,8 +14,20 @@ Merging LiDAR and bathymetric data produces point clouds that may be stored in m
 
 
 ## Get ready with *QGIS*<a name="start-qgis"></a>
-Download and install the latest version of the open-access GIS software [*QGIS*](https://www.qgis.org). Start *QGIS*, create a new project and save it (`Project` > `Save as...`). Then, set the project coordinate reference system (CRS) by clicking on `Project` > `Properties` > `CRS` tab and select `GERMANY_ZONE_3 (ESRI:31493)`. Install *BASEMENT*’s *BASEmesh* Plugin (instructions from the *BASEMENT* System Manual):
+
+{% include windows.html content="<br><br>Download and install the latest version of the open-access GIS software [*QGIS*](https://www.qgis.org). " %} 
+
+{% include unix.html content="<br><br>
+(1) Make sure to [**install QGIS v3.12 via *Flatpak***](https://flathub.org/apps/details/org.qgis.qgis) or directly the *Linux* *Software Manager* (open *Software Manager*, search for *QGIS* and install the *QGIS Flatpak*). If *Software Manager* cannot find *QGIS*, make sure that *Flatpak* is added as repository (find the good repository for you Unix-based operating system (OS) [here](https://flatpak.org/setup/)).<br><br>
+(2) The ***QGIS Flatpak* installation will** most likely **not include *scipy***. In order to **fix** this issue, **open  *Terminal*** (standard application on Unix-based OS) and type: 
+<br><br>**`flatpak run --command=pip3 org.qgis.qgis install scipy --user`**<br><br>
+This solution has been tested on ***Linux Ubuntu* and *Linux Mint*. It potentially also works with *Red Hat*, *openSUSE*, *Mac OS*, *Arch*, *Fedora*, *Android*, *Debian*, *Kubuntu*** and [many more](https://flatpak.org/setup/). Read more about *Flatpak* installation on the [*QGIS website*](https://qgis.org/en/site/forusers/alldownloads.html#flatpak)." %} 
+
+Start *QGIS*, create a new project and save it (`Project` > `Save as...`). Then, set the project coordinate reference system (CRS) by clicking on `Project` > `Properties` > `CRS` tab and select `GERMANY_ZONE_3 (ESRI:31493)`. Install *BASEMENT*’s *BASEmesh* Plugin (instructions from the *BASEMENT* System Manual):
 1. Load the *QGIS* plugin manager: `Plugins` menu > `Manage and Install Plugins` (see details in [figure](#qgis-plugins))
+
+
+
 1. Go to the Settings tab; now the *QGIS*-plugin repository connections should be visible at the bottom of the `Plugin Manager` (`Plugin Repositories` listbox in below [figure](#qgis-plugins)).
 1. Scroll to the bottom, click on Add..., and enter a name for the new repository (e.g., *BASEmesh* repository)
 1. Enter the repository address: [http://people.ee.ethz.ch/~basement/qgis_plugins/qgis_plugins.xml](http://people.ee.ethz.ch/~basement/qgis_plugins/qgis_plugins.xml)

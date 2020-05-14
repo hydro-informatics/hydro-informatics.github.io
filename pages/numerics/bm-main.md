@@ -10,10 +10,14 @@ folder: numerics
 This exercise uses *BASEMENT*'s *BASEplane* module (version 3.0.2) to perform a two-dimensional (2D) hydrodynamic numerical simulation. *BASEMENT* is developed and maintained at the [ETH Zurich](https://ethz.ch/en.html) (Switzerland). To download the program, detailed installation instructions and program documentation, visit the  [*BASEMENT* website](https://basement.ethz.ch/).
 
 ## Steady State 2D Simulation with BASEMENT
-With the 2D mesh ([see generation of the `.2dm` file](#bm-pre.html)) this exercise guides through the setup of a steady-flow, hydrodynamic simulation in *BASEMENT* v.3. The numerical engine of *BASEMENT* needs a model setup file (*model.json*) and a simulation file (*simulation.json*). For setting up the numerical model, make sure to have all required input files in the project folder. Make sure that the project directory name does not contain any dots.
+With the 2D mesh ([see generation of the `.2dm` file](#bm-pre.html)) this exercise guides through the setup of a steady-flow, hydrodynamic simulation in *BASEMENT* v.3. The numerical engine of *BASEMENT* needs a model setup file (*model.json*) and a simulation file (*simulation.json*), which both are created automatically by *BASEMENT*. The following sections describe how to make *BASEMENT* creating the two *.json* files. Before getting there, create a new project folder of your choice (e.g., `C:/BM/irme-exercise/`). 
 
-- A 2D mesh ([`.2dm` file](#bm-pre.html)).
-- The discharge inflow file (flat hydrograph) as upstream boundary condition can be downloaded [here](https://github.com/hydro-informatics/materials/blob/master/numerics/SteadyVanillaInflow.txt) (if necessary, copy the file contents locally into a text editor and save the file as `SteadyVannilaInflow.txt` in the local project directory).
+{% include tip.html content="The defined project folder directory must not contain any dots or special characters. Only use letters, numbers, *_* (underscore) or *-* (minus) for folder names." %} 
+
+Then, make sure to place the two required input files in the folder: 
+
+- The 2D mesh `.2dm` file (i.e., the *finalmesh.2d* from the [pre-processing](bm-pre.html)).
+- The provided discharge inflow file (flat hydrograph) as upstream boundary condition can be downloaded [here](https://github.com/hydro-informatics/materials/blob/master/numerics/SteadyVanillaInflow.txt) (if necessary, copy the file contents locally into a text editor and save the file as `SteadyVanillaInflow.txt` in the local project directory).
 
 
 ##	Setup the model file in *BASEMENT* v.3.x (Define Scenario Parameters)
@@ -43,7 +47,7 @@ The window should now look like this:
 - Add the initial condition in the `HYDRAULICS` section with by right-clicking > `Add item` > `INITIAL` (if not yet present) and set `type`: “DRY” (i.e., the river is dry at the beginning of the simulation).<a name="init"></a>
 - Add upstream and downstream boundary conditions with a right-click on the `HYDRAULICS` section > `Add item` > `BOUNDARY` (if not yet present), then right-click on the new `BOUNDARY` section > `Add item STANDARD` > `Add item` (2 times) 
 - Define BOUNDARY item [0] as:<a name="bound"></a>
-    * `discharge_file` = `C:/.../SteadyVanillyInflow.txt` (select by clicking on the folder symbol that occurs when the field is activated)
+    * `discharge_file` = `C:/.../SteadyVanillaInflow.txt` (select by clicking on the folder symbol that occurs when the field is activated)
     * `name` = `Inflow`
     * `slope` = 0.0056
     * `string_name` = `Inflow`
