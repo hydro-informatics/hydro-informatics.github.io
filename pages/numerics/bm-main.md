@@ -12,7 +12,7 @@ This exercise uses *BASEMENT*'s *BASEplane* module (version 3.0.2) to perform a 
 ## Steady State 2D Simulation with BASEMENT {#bm-intro}
 With the 2D mesh ([see generation of the `.2dm` file](#bm-pre.html)) this exercise guides through the setup of a steady-flow, hydrodynamic simulation in *BASEMENT* v.3. The numerical engine of *BASEMENT* needs a model setup file (*model.json*) and a simulation file (*simulation.json*), which both are created automatically by *BASEMENT*. The following sections describe how to make *BASEMENT* creating the two *.json* files. Before getting there, create a new project folder of your choice (e.g., `C:/BM/irme-exercise/`). 
 
-{% include tip.html content="The defined project folder directory must not contain any dots or special characters. Only use letters, numbers, *_* (underscore) or *-* (minus) for folder names." %} 
+{% include tip.html content="The defined project folder directory must not contain any dots nor special characters nor spaces. Only use letters, numbers, *_* (underscore) or *-* (minus) for folder names." %} 
 
 Then, make sure to place the two required input files in the folder: 
 
