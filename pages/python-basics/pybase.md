@@ -203,6 +203,49 @@ print("This is all I have: " + ", ".join(flavors))
     This is all I have: lemon, chocolate, vanilla, cherry
     
 
+### Tuple
+
+A tuple represents a collection of *Python* objects, similar to a list and the sequence of values (data types) in a tuple can take any type. Elements of a tuple are also indexed with integers. In contrast to lists, a tuple is embraced with round parentheses `()` and a **tuple is immutable** while **lists are mutable**. This means that a tuple object can no longer be modified after it has been created. So why would you like to use tuples then? The answer is that a tuple is more memory efficient than a mutable object because the immutable tuple can create references to existing objects. In addition, a tuple can serve as a `key` of a dictionary (see below), which is not possible with a list.
+
+
+```python
+a_tuple = ("a text element", 1, 3.03) # example tuple
+print(a_tuple[0])
+print(a_tuple[-1]) # last element of a tuple (this also works with lists ..)
+
+# comparison of lists and tuples
+import time # we need this package (module here) and we will learn more about modules later
+print("patience ...")
+
+# iterate over a list with 100000 elements
+start_time = time.perf_counter()
+a_list = [] # empty list
+x = range(100000)
+for item in x: a_list.append(item)
+print("Run time with list: " + str(time.perf_counter() - start_time) + " seconds.")
+
+# iterate over a tuple with 100000 elements with modifying the tuple
+start_time = time.perf_counter()
+new_tuple = () # empty tuple
+x = range(100000)
+for item in x: new_tuple = new_tuple + (item,)
+print("Run time with tuple modification: " + str(time.perf_counter() - start_time) + " seconds.")
+
+# iterate over a tuple with 100000 elements if no modification of the tuple is needed
+start_time = time.perf_counter()
+new_tuple = tuple(range(100000)) 
+for item in new_tuple: pass
+print("Run time without tuple modification: " + str(time.perf_counter() - start_time) + " seconds.")
+```
+
+    a text element
+    3.03
+    patience ...
+    Run time with list: 0.027351099999577855 seconds.
+    Run time with tuple modification: 17.711912199999915 seconds.
+    Run time without tuple modification: 0.006833699999788223 seconds.
+    
+
 ### Dictionary
 
 Dictionaries are a powerful data type in *Python* and have the basic structure `my_dict = {key: value}`. In contrast to lists, an element of a dictionary is called by invoking a `key` rather than an entry number. A dictionary is not enumerated and `key`s just point to their `value`s (whatever data type the `value`then is).
@@ -233,39 +276,27 @@ my_dict.__len__() # get the length (number of dictionary elements)
 
 ```
 
-## Summary exercise and outlook
-Let's practice a little bit with the data types and take already a "bite" of `for`loops and conditional `if` statements ...
+## Operators
+
+The following operators compare data types and output boolean values (`True`or `False`): 
+
+* `a == b` or `a is b` *a* equals / is *b*
+* `a and b` *a* and *b*
+* `a or b` *a* or *b*
+* `a <= b` *a* smaller than or equal to *b* (similar without equal sign)
+* `a >= b` *a* larger than or equal to *b* (similar without equal sign)
+* `a in b` *a* in *b* (meaningful in stings - see example below)
 
 
 ```python
-scoops = 2 # re-define the number of sccops
-favorite_flavor = "vanilla" # choose your favorite flavor
-
-size_scoops = {1: "small", 2: "medium", 3: "this is too much ice cream"}
-price_scoops = {1: "3 dollars", 2: "5 dollars", 3: "your health"}
-print("Hi,\nI want %d scoop-s in a waffle, please." % scoops)
-size = " " + str(size_scoops[scoops])
-price = str(price_scoops[scoops])
-
-print("My pleasure to serve you. You have chosen a" + size + " ice cream. The price is " + price + ".")
-print("Let me guess your favorite flavor. Say stop when I \'m correct.")
-for f in flavors:
-    print("I guess your favorite flavor is %s." % f)
-    if f == favorite_flavor:
-        print("Stop, that\'s it!")
-        if f == "bread":
-            print("Sorry, this is not a bakery.")
-        break 
-
-
+print(not False)
+print(1 is 1) # is
+print(1 is 2)
+print("ice" in "ice cream") 
 ```
 
-    Hi,
-    I want 2 scoop-s in a waffle, please.
-    My pleasure to serve you. You have chosen a medium ice cream. The price is 5 dollars.
-    Let me guess your favorite flavor. Say stop when I 'm correct.
-    I guess your favorite flavor is lemon.
-    I guess your favorite flavor is chocolate.
-    I guess your favorite flavor is vanilla.
-    Stop, that's it!
+    True
+    True
+    False
+    True
     
