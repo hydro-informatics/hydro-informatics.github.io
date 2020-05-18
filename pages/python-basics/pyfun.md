@@ -159,6 +159,9 @@ print(feet_to_meter(3, 1, 10, conv_factor=0.25))
 print("Function call with 3 values and a conversion factor of 1/7 with slightly different name: ")
 print(feet_to_meter(3, 1, 10, conversion_factor=1/7))
 
+print("Function call with 2 values with default conversion factor: ")
+print(feet_to_meter(25, 10))
+
 
 ```
 
@@ -168,8 +171,125 @@ print(feet_to_meter(3, 1, 10, conversion_factor=1/7))
     Function call with 3 values and a conversion factor of 1/7 with slightly different name: 
     Using conversion factor = 0.14285714285714285
     [0.42857142857142855, 0.14285714285714285, 1.4285714285714284]
+    Function call with 2 values with default conversion factor: 
+    [7.62, 3.048]
     
 
 ## Default keyword arguments
 
-Keyword arguments can also be defined by default.
+Keyword arguments can also be defined by default. The below example shows how the `conversion_factor` can be defaulted in the `def` function parentheses. Note that `conversion_factor` must be defined after any optional arguments `*args`.
+
+
+```python
+def feet_to_meter(*args, conversion_factor=0.3048):
+    """ 
+    :param *args: numeric values in feet
+    :output: returns list of values in meter
+    """
+    value_list = []
+   
+    for arg in args:
+        try:
+            value_list.append(arg * conversion_factor)
+        except TypeError:
+            print(str(arg) + " is not a number.")
+    return value_list
+```
+
+Now we can use `feet_to_meter` with or without or with a conversion factor and after the value list:
+
+
+```python
+print("Function call with a conversion factor of 0.313 and two values: ")
+print(feet_to_meter(1, 10, conversion_factor=0.313))
+                    
+print("Function call with 3 values without any conversion factor: ")
+print(feet_to_meter(3, 1, 10))
+```
+
+    Function call with a conversion factor of 0.313 and two values: 
+    [0.313, 3.13]
+    Function call with 3 values without any conversion factor: 
+    [0.9144000000000001, 0.3048, 3.048]
+    
+
+## Function wrappers and Decorators
+If multiple functions contain similar lines, chances are that those functions can be further factorized by using function wrappers and decorators. A typical example is for example if a license checkout is needed in order to use a commerical *Python* module/package (e.g., Esri's `arcpy`) or if we want to use a recurring error statement with `try` - `except` statements. 
+
+Consider two or more functions that should receive, process and produce numerical output from user input. These functions could look like this:
+
+
+```python
+def multiply_arguments(*args):
+    result = 0.0
+    try:
+        for arg in args:
+            result *= arg
+        print("The result is: " + str(result))
+    except TypeError:
+        print("ERROR: The calculation could not be performed failed (input arguments: %s)" % ", ".join(args))
+    except ValueError:
+        print("ERROR: The calculation could not be performed failed (input arguments: %s)" % ", ".join(args))
+    return result
+
+def sum_up_arguments(*args):
+    result = 0.0
+    try:
+        for arg in args:
+            result += arg
+    except TypeError:
+        print("ERROR: The calculation could not be performed failed (input arguments: %s)" % ", ".join(args))
+    except ValueError:
+        print("ERROR: The calculation could not be performed failed (input arguments: %s)" % ", ".join(args))   
+    return result
+```
+
+Both functions involve the statement `print("The result is: " + str(result))` to print the results to the *Python* console (e.g., to ensure get some intermediate information) and to run only on valid (i.e., numeric) input with the help of exception (`try` - `except`) statements. However, we want our functions to focus on the calculation only and this is where a wrapper function helps.
+
+A wrapper function can be defined by first defining a normal function (e.g., `def verify_result`) and passing a function (`func`) as argument. In that function, we can then place a nested `def wrapper()` function that will embrace `func`. It is important to use both optional `*args` and optional keyword `**kwargs` in the wrapper and the call to `func` in order to make the wrapper as flexible as possible.
+
+
+```python
+def verify_result(func):
+    def wrapper(*args, **kwargs):
+        try:
+            result = func(*args, **kwargs)
+            msg = "Success."
+        except TypeError:
+            result = 0.0
+            msg = "ERROR: The calculation could not be performed failed (input arguments: %s)" % ", ".join(args)
+        except ValueError:
+            result = 0.0
+            msg = "ERROR: The calculation could not be performed failed (input arguments: %s)" % ", ".join(args)
+        print(msg)
+    return wrapper
+```
+
+Now, we can use a decorator `@` to wrap the above function in the `verify_result(fun)` function. When *Python* reads the beautiful, code-decorating `@` sign, it will look for the wrapper function defined after the `@` sign to wrap the following function.
+
+
+```python
+@verify_result
+def multiply_arguments(*args):
+    result = 0.0
+    for arg in args:
+        result *= arg
+    return result
+
+@verify_result
+def sum_up_arguments(*args):
+    result = 0.0
+    for arg in args:
+        result += arg
+    return result
+```
+
+Call the `new function` with:
+
+
+```python
+multiply_arguments(3, 4)
+```
+
+    Success.
+    
