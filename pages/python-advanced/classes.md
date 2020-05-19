@@ -10,3 +10,6 @@ folder: python-advanced
 ## Hi
 
 InProgress
+
+
+## Decorators {#dec}

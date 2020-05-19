@@ -221,7 +221,7 @@ Consider two or more functions that should receive, process and produce numerica
 
 ```python
 def multiply_arguments(*args):
-    result = 0.0
+    result = 1.0
     try:
         for arg in args:
             result *= arg
@@ -254,24 +254,24 @@ def verify_result(func):
     def wrapper(*args, **kwargs):
         try:
             result = func(*args, **kwargs)
-            msg = "Success."
+            print("Success. The result is %1.3f." % float(result))
+            return result
         except TypeError:
-            result = 0.0
-            msg = "ERROR: The calculation could not be performed failed (input arguments: %s)" % ", ".join(args)
+            print("ERROR: The calculation could not be performed because of at least one non-numeric input (input arguments: %s)" % str(args))
+            return 0.0
         except ValueError:
-            result = 0.0
-            msg = "ERROR: The calculation could not be performed failed (input arguments: %s)" % ", ".join(args)
-        print(msg)
+            print("ERROR: The calculation could not be performed because of non-nmumeric input (input arguments: %s)" % str(args))
+            return 0.0
     return wrapper
 ```
 
-Now, we can use a decorator `@` to wrap the above function in the `verify_result(fun)` function. When *Python* reads the beautiful, code-decorating `@` sign, it will look for the wrapper function defined after the `@` sign to wrap the following function.
+Now, we can use an `@`-decorator to wrap the above function in the `verify_result(fun)` function. When *Python* reads the beautiful, code-decorating `@` sign, it will look for the wrapper function defined after the `@` sign to wrap the following function.
 
 
 ```python
 @verify_result
 def multiply_arguments(*args):
-    result = 0.0
+    result = 1.0
     for arg in args:
         result *= arg
     return result
@@ -284,12 +284,49 @@ def sum_up_arguments(*args):
     return result
 ```
 
-Call the `new function` with:
+The two functions (`multiply_arguments` and `sum_up_arguments`) can be called as usually, for example:
 
 
 ```python
 multiply_arguments(3, 4)
+multiply_arguments(3, 4, "not a number")
+sum_up_arguments(3, 4)
+sum_up_arguments("absolutely", "no", "valid", "input")
 ```
 
-    Success.
+    Success. The result is 12.000.
+    ERROR: The calculation could not be performed because of at least one non-numeric input (input arguments: (3, 4, 'not a number'))
+    Success. The result is 7.000.
+    ERROR: The calculation could not be performed because of at least one non-numeric input (input arguments: ('absolutely', 'no', 'valid', 'input'))
     
+
+
+
+
+    0.0
+
+
+
+The above wrapper function returns the wrapped function results, too. However, in order to use built-in function attributes (e.g., the function's name with `__name__`, the function's docstring with `__doc__`, or the module in which the function is defined with `__module__`) outside of the wrapper, we need the wrapper function to return the wrapped (decorated) function itself. This can be done as follows:
+
+
+```python
+def error_func(*args, **kwargs):
+    return 0.0
+
+def verify_result(func):
+    def wrapper(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except TypeError:
+            print("ERROR: The calculation could not be performed because of at least one non-numeric input (input arguments: %s)" % str(args))
+            return error_func(*args, **kwargs)
+        except ValueError:
+            print("ERROR: The calculation could not be performed because of non-nmumeric input (input arguments: %s)" % str(args))
+            return error_func(*args, **kwargs)
+    return wrapper
+```
+
+Note the difference: the `wrapper` function now returns `func(*arg, **kwargs)` instead of the numeric variable results. If the function can not be executed because of invalid input, the `wrapper` will return an error function (`error_func`), which ensures the consistency of the wrapper function. One may think that the error function returning 0.0 is obsolete, because the exception statements could directly return 0.0. However, 0.0 is a *float* variable, while `error_func` is a function and it is important that the function wrapper always returns the same data type, regardless of the an exception raise or successful execution. This is what makes code consistent.
+
+This page shows examples for using the decorators in the shape of an `@` sign to wrap (embrace) a function. Decorators are also a useful feature in classes, for example when a class function returns static values. Read more about decorators in classes later in the chapter about [object orientation and classes](http://localhost:4000/hypy_classes.html#dec).

@@ -48,7 +48,7 @@ A marginal note: In Python3 `print` is a function, not a keyword as in Python2. 
 It is also possible to print other types of variables than strings, but the combination of numerical and text variables requires more encoding. 
 
 
-## Python variables and data types
+## Python variables and data types {#var}
 
 The above print command already introduced string variables. In sum, there are five standard variable (or data) types in *Python*:
 

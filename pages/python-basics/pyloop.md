@@ -9,7 +9,7 @@ folder: python-basics
 
 *Python* provides two basic types of loops to iterate through objects or functions: the `for` and the `while` loop statements. Both loop types have additional options and can be combined with conditional statements. Conditional statements evaluate Boolean arguments (True/False) using the key words `if: ... else: ...`. This section introduces the two loop types and conditional statements as integral parts of loops.
 
-## Conditional `if` statements
+## Conditional `if` statements {#if}
 Conditional statements open with an `if` key word, followed by a test condition (e.g., `variable >= 2`) and action to accomplish when the test condition is true ([boolean](hypy_pybase.html#boolean) test result). The conditional statement can be followed by the `elif` (*else if*) and/or `else` key words, which represent alternative tests in the case that the `if` test-condition was false. However, when the `if` statement was `True`, none of the following statements will be evaluated.
 
 
@@ -47,7 +47,7 @@ else:
     That is reasonable.
     
 
-## `for` loop
+## `for` loop {#for}
 
 `for` loops serve for the sequential iteration through objects such as lists or arrays. `for` loops can also be complemented with `else` statements at the end (why ever you want to do this...). 
 
@@ -80,7 +80,7 @@ for e in flavors:
     cherry
     
 
-## `while` loop
+## `while` loop {#while}
 `while` loops run until a certain test condition (expression) is met. Similar to the `if` statement, the test condition can be composed by just one variable or an expression including [operators](hypy_pybase.html#operators) (e.g., `while a > b`). In order to modify a variable within a `while` loop, use `+=` (add ammount), `-=` (substract amount), `*=` (multiply with), or `/=` (divide by). Also `while`loops can be complemented with `else` statements.
 {% include warning.html content="Make sure that every `while` loop has some `break` statement - otherwise, the script may be caught in an endless loop." %}
 
