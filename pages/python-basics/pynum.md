@@ -179,7 +179,7 @@ else:
     Data appended.
     
 
-{% include idea.html content="The code block `', '.join([str(e) for e in a_list]) + '\n'` is a recurring expression in the above code snippets. How can a function look like, which avoids to type this code block again and again?" %}
+{% include idea.html content="The code block `', '.join([str(e) for e in a_list]) + '\n'` is a recurring expression in the above code snippets. How does a function look like that automatically generates this code block for lists of different data types?" %}
 
 
 ## NumPy
@@ -193,7 +193,11 @@ else:
 
 ### Usage
 
-The *NumPy* module (package) is typically imported with `import numpy as np`. Array handling is the baseline of linear algebra and *NumPy*, where arrays represent nested data lists. To create a *NumPy* array, use `np.array((values))`, where `values` is a sequences of values. The rounded parentheses indicated that the value sequence represents a tuple that may contain lists for creating multi-dimensional array. Thus, for creating an *2x3* array (with some random values), we can write:
+The *NumPy* module (package) is typically imported with **`import numpy as np`**. Array handling is the baseline of linear algebra and *NumPy*, where arrays represent nested data lists. To create a *NumPy* array, use `np.array((values))`, where `values` is a sequences of values. 
+
+{% include tip.html content="This section provides insights in some basic functions provided with *NumPy*, but does not (or cannot) cover all *NumPy* functions and data types. Generally speaking, be sure that whatever mathematical operation you want to perform, *NumPy* offers a solution. Just checkout the [*NumPy* documentation](https://numpy.org/devdocs/user/quickstart.html) or use your favorite search engine with the search words **numpy** ***FUNCTION***." %}
+
+The rounded parentheses indicated that the value sequence represents a tuple that may contain lists for creating multi-dimensional array. Thus, for creating an *2x3* array (with some random values), we can write:
 
 
 ```python
@@ -206,7 +210,239 @@ print(an_array)
      [4 5 6]]
     
 
-In the above example, measurement data were loaded from text files, manipulated, and modified text file were written. The data manipulation involved the introduction of `"nan"` (*not-a-number*) values, which were excluded because measurements *<1 mm* were considered errors. Why didn't we use zeros here? Well, zeros are numbers, too, and have significant effect on data statistics (e.g., for calculting mean values). However, the `"nan"` *string* value caused difficulties in data handling, in particular regarding the consistency of function output. *NumPy* provides with the `numpy.nan` data type a powerful alternative to the tedious `"nan"` *string*.
+*NumPy* arrays (data type: *ndarray*) have many built-in features, for example to output the array size:
+
+
+```python
+print(type(an_array))
+print("Array dimensions: " + str(an_array.shape))
+print("Total number of array elements: " + str(an_array.size))
+print("Number of array axes: " + str(an_array.ndim))
+```
+
+    <class 'numpy.ndarray'>
+    Array dimensions: (2, 3)
+    Total number of array elements: 6
+    Number of array axes: 2
+    
+
+There are many types of `np.array`s and many ways to create them:
+
+
+```python
+print(np.array([(2, 3, 1), (4, 5, 6)]))  # the same as an_array
+print(np.array([[2, 3, 1], [4, 5, 6]], dtype=complex))
+```
+
+    [[2 3 1]
+     [4 5 6]]
+    [[2.+0.j 3.+0.j 1.+0.j]
+     [4.+0.j 5.+0.j 6.+0.j]]
+    
+
+Arrays of zeros or ones, or empty arrays can be created with *integer* or *float*. When creating such arrays, be aware of using tuples (i.e., sequences embraced with rounded parentheses) to define array dimensions:
+
+
+```python
+print(np.zeros((2,6)))
+print(np.ones((2,6), dtype=np.float64))  # other dtypes: int16, np.int16, float, np.float32, np.complex32
+print(np.empty((2,6)))
+print(np.empty((2,6), dtype=np.int16))
+```
+
+    [[0. 0. 0. 0. 0. 0.]
+     [0. 0. 0. 0. 0. 0.]]
+    [[1. 1. 1. 1. 1. 1.]
+     [1. 1. 1. 1. 1. 1.]]
+    [[1. 1. 1. 1. 1. 1.]
+     [1. 1. 1. 1. 1. 1.]]
+    [[2 0 3 0 1 0]
+     [4 0 5 0 6 0]]
+    
+
+{% include note.html content="*NumPy* data types have different sizes (in [bytes](https://en.wikipedia.org/wiki/Byte)) and the more digits, the larger the variable size. For example, `np.float64` has an itemsize of 8 bytes (64/8), while `np.float32` has an itemsize of 4 bytes (32/8) only. Use `ndarray.itemsize` (e.g., `an_array.itemsize`) to find out the size of an array in bytes. For analyses of large datasets, the data type become very important regarding computation speed and storage." %}
+
+*NumPy* provides the `arange(start, end, step-size)` function to create numeric sequences. Such sequences represent arrays (`ndarray`) can then be reshaped (re-organized in columns and rows). 
+
+
+```python
+print("1D array:")
+print(np.arange(0, 10, 2))  # 1D array
+print("\n2D array:")
+print(np.arange(0, 12, 2).reshape(2, 3))  # 2D array
+print("\n3D array:")
+print(np.arange(1, 13, 1).reshape(2, 2, 3))  # 3D array
+print("\n1D Linspace (start, end, number-of-elements):")
+print(np.linspace(0, np.pi, 3))
+```
+
+    1D array:
+    [0 2 4 6 8]
+    
+    2D array:
+    [[ 0  2  4]
+     [ 6  8 10]]
+    
+    3D array:
+    [[[ 1  2  3]
+      [ 4  5  6]]
+    
+     [[ 7  8  9]
+      [10 11 12]]]
+    
+    Linspace:
+    [0.         1.57079633 3.14159265]
+    
+
+Random numbers can be generated with *NumPy*'s random number generator `np.random` and its `.random(range_tuple)` function.
+
+
+```python
+rand_array = np.random.random((2,4))
+print(rand_array)
+```
+
+    [[0.70781395 0.41779066 0.76871431 0.4963872 ]
+     [0.34329501 0.82674218 0.52689679 0.83429892]]
+    
+
+Built-in array functions enable finding minimum or maximum values, or sums of arrays:
+
+
+```python
+print("Sum of 12-elements ones-array: " + str(np.ones((2,6)).sum()))
+print("Minimum: " + str(an_array.min()))
+print("Maximum: " + str(an_array.max()))
+```
+
+    Sum of 12-elements ones-array: 12.0
+    Minimum: 1
+    Maximum: 6
+    
+
+### Array (matrix) operations
+Array calculations (matrix operations) follow the rules of linear algebra:
+
+
+```python
+A = np.random.random((2,4))
+B = np.random.random((4,2))
+print("Subtraction: " + str(A.transpose() - B))
+print("Element-wise product: " + str(A.transpose() * B))
+print("Matrix product (option 1): " + str(A @ B))
+print("Matrix product (option 2): " + str(A.dot(B)))
+```
+
+    Subtraction: [[ 0.38998859 -0.60449301]
+     [ 0.39763375  0.42913618]
+     [-0.42903473  0.45677191]
+     [ 0.57435302  0.48988202]]
+    Element-wise product: [[0.1950471  0.06687316]
+     [0.21500637 0.56989207]
+     [0.43878027 0.18134931]
+     [0.34501717 0.05852668]]
+    Matrix product (option 1): [[1.19385091 1.09176578]
+     [1.19716583 0.87664122]]
+    Matrix product (option 2): [[1.19385091 1.09176578]
+     [1.19716583 0.87664122]]
+    
+
+Further element-wise calculations include exponential (`**`), geometric (`np.sin`, `np.cos`, `np.tan` etc.), and boolean operators:
+
+
+```python
+print("A to the power of 3: " + str(A**3))
+print("Exponential: " + str(np.exp(A)))
+print("Square root: " + str(np.sqrt(A)))
+print("Sine of A times 3: " + str(np.sin(A) * 3))
+print("Boolean where A is smaller than 0.3: " + str(A < 0.3))
+```
+
+    A to the power of 3: [[3.11345110e-01 3.47919926e-01 1.11810877e-01 8.33242424e-01]
+     [8.71803779e-04 9.98144598e-01 3.60357582e-01 2.04557589e-01]]
+    Exponential: [[1.96947579 2.02047173 1.61891631 2.56254731]
+     [1.10024178 2.71660014 2.03727701 1.80256812]]
+    Square root: [[0.82326631 0.83864832 0.69408716 0.97005248]
+     [0.30907921 0.99969053 0.84357224 0.76760171]]
+    Sine of A times 3: [[1.88116637 1.94028542 1.39001069 2.42444565]
+     [0.28615417 2.52340937 1.95917102 1.66711916]]
+    Boolean where A is smaller than 0.3: [[False False False False]
+     [ True False False False]]
+    
+
+### Array shape manipulation
+Sometimes it is necessary to stack a multi-dimensional array into a vector, or recast the shape of an array. There are a couple of options to manipulate the shape of an array:
+
+
+```python
+print("Flattened matrix A (into a vector):\n" + str(A.ravel()))
+print("\nTranspose matrix A and append B:\n" + str(np.array([A.transpose(), B])))
+print("\nTranspose matrix A and append B and cast into a (4x4) array:\n" + str(np.array([A.transpose(), B]).reshape(4,4)))
+
+```
+
+    Flattened matrix A (into a vector):
+    [0.67776741 0.70333101 0.48175698 0.94100181 0.09552996 0.99938115
+     0.71161412 0.58921238]
+    
+    Transpose matrix A and append B:
+    [[[0.67776741 0.09552996]
+      [0.70333101 0.99938115]
+      [0.48175698 0.71161412]
+      [0.94100181 0.58921238]]
+    
+     [[0.28777882 0.70002297]
+      [0.30569726 0.57024497]
+      [0.91079171 0.2548422 ]
+      [0.36664879 0.09933036]]]
+    
+    Transpose matrix A and append B and cast into a (4x4) array:
+    [[0.67776741 0.09552996 0.70333101 0.99938115]
+     [0.48175698 0.71161412 0.94100181 0.58921238]
+     [0.28777882 0.70002297 0.30569726 0.57024497]
+     [0.91079171 0.2548422  0.36664879 0.09933036]]
+    
+
+### *NumPy* file handling and `np.nan`
+
+In the above examples on file handling, measurement data were loaded from text files, manipulated, and modified text file were written. The data manipulation involved the introduction of `"nan"` (*not-a-number*) values, which were excluded because measurements *<1 mm* were considered errors. Why didn't we use zeros here? Well, zeros are numbers, too, and have significant effect on data statistics (e.g., for calculting mean values). However, the `"nan"` *string* value caused difficulties in data handling, in particular regarding the consistency of function output. *NumPy* provides with the `np.nan` data type a powerful alternative to the tedious `"nan"` *string*.
+
+*NumPy* also has a text file load function called `np.loadtxt(file-name, *args, **kwargs)`, which imports text files as `np.array`s of *float* values. The default *float* value type can be adapted with the optional keyword `dtype`. Other optional (keyword) arguments are:
+* `delimiter=STR` (e.g., `delimiter=';'`), where default is `"None"`
+* `usecols=TUPLE` (e.g., `usecols=(1, 3)` will extract the 2<sup>nd</sup> and 4<sup>th</sup> column) also one *integer* value is possible to read just on single column
+* `skiprows=INT` (e.g., `skiprows=2` skips the first two lines), where default is `0`
+* more arguments are available and listed in the [numpy documentation](https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html).
+
+The following example loads the *csv* file *data/modified-data.csv* containing *integer* and `"nan"` *string* values, which are automatically converted to `np.nan`.
+
+
+```python
+experiment_data = np.loadtxt("data/modified-data.csv", delimiter=",")
+print("This is the data 4th line (row): " + str(experiment_data[3, :]))
+print("The data type of the 3rd (%s) entry is: " % str(experiment_data[3, 2]) + str(type(experiment_data[3, 2])))
+```
+
+    This is the data 4th line (row): [ 2.  5. nan  6.]
+    The data type of the 3rd (nan) entry is: <class 'numpy.float64'>
+    
+
+In addition, or as an alternative, the function `np.load()` picks up data from file-like `.npz`, `.npy`, or pickled (saved *Python* objects) data sources ([read more in the *Python* doc](https://numpy.org/doc/stable/reference/generated/numpy.load.html#numpy.load)). 
+
+### Can *NumPy* do *Matlab*?
+
+Are you considering to switch to *Python* after starting softly into programming with *Matlab*-like software? There are many reasons for enhancing data analyses with *Python* and here are some facilitators for previous *Matlab* users:
+
+* *Matlab* matrices can be loaded and saved with [`scipy.io.loadmat(matrix-file-name)`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.io.loadmat.html#scipy.io.loadmat) (use ` import scipy`).
+* *NumPy*'s `np.array` replaces *Matlab*'s matrix notation (even though there is the historic, deprecated *NumPy* data type `np.matrix`).
+* Import many *Matlab* features from `np.matlib` (e.g., `from numpy.matlib import rand, zeros, ones, empty, eye)` or more generally `import numpy.matlib as M`).
+* Find the *NumPy* equivalent of many *Matlab* function in the [*NumPy* documentation](https://numpy.org/doc/stable/user/numpy-for-matlab-users.html#table-of-rough-matlab-numpy-equivalents).
+
+*MATLAB® is a registered trademark of The MathWorks.*
 
 ## Array and file handling with pandas
 
+*pandas* is a powerful module (package) for data analyses and manipulation with *Python*. It has overlapping functions with *NumPy*, but none of these two packages should be missed. The power of *pandas* lies in data labeling (e.g., workbook-like columns names) and flexible file handling functions (e.g., the built-in `read_csv(csv-file)`).
+
+## Dates and Time
+
+The `datetime` module (package) provides sophisticated methods for handling time-dependent values. `datetime` is the best solution, for example when data were collected over several years including leap years.
