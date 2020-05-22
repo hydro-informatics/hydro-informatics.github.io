@@ -43,11 +43,11 @@ Start *QGIS*, create a new project and save it (`Project` > `Save as...`). Then,
 ## Elevation point data<a name="epd"></a>
 Terrain survey data are mostly delivered in the shape of an x-y-z point dataset. LiDAR produces massive point clouds, which quickly overcharge even powerful computers. Therefore, LiDAR data may need to be break down to smaller zones of less than approximately 106 points and special LiDAR point-treatment software (e.g., http://lastools.org/) may be helpful in this task. The range of possible data products and shape from terrain survey is board and this tutorial exemplary uses a set of x-y-z points stored within a text file. Load the points from the provided xyz-points.txt file as follows:
 
-1. [Download](https://github.com/hydro-informatics/materials/blob/master/numerics/points.txt) the point file from the repository (if necessary, copy the file contents locally into a text editor and save the file as `points.txt` in a local project directory)
-1. [Download](https://github.com/hydro-informatics/materials/raw/master/numerics/breaklines.zip) the zipped breaklines shapefile into the project folder and unpack `breaklines.shp`.
+1. [Download](https://github.com/hydro-informatics/materials-bm/blob/master/numerics/points.txt) the point file from the repository (if necessary, copy the file contents locally into a text editor and save the file as `points.txt` in a local project directory)
+1. [Download](https://github.com/hydro-informatics/materials-bm/raw/master/numerics/breaklines.zip) the zipped breaklines shapefile into the project folder and unpack `breaklines.shp`.
 1. In *QGIS*, click on the `Layer` menu > `Add Layer` > `Add Delimited Text Layer...` (see [figure](#qgis-add-lyr))
 1. In the `Add Delimited Text Layer` (`Data Source Manager | Delimited Text`) wizard (see details in Figure 4):
-    * Choose [*points.txt*](https://github.com/hydro-informatics/materials/blob/master/numerics/points.txt) in the `File name` field (alternatively use [*points.csv*](https://github.com/hydro-informatics/materials/blob/master/numerics/points.csv))
+    * Choose [*points.txt*](https://github.com/hydro-informatics/materials-bm/blob/master/numerics/points.txt) in the `File name` field (alternatively use [*points.csv*](https://github.com/hydro-informatics/materials-bm/blob/master/numerics/points.csv))
     * Name the new layer (e.g., points)
     * In the `File Format` canvas, select `Custom Delimiters` and activate the `Space` checkbox
     * In the `Record and Field Options` canvas, activate the `First record has field names` checkbox
@@ -96,7 +96,7 @@ The model boundary defines the calculation extent and needs to be define within 
 
 
 ## Breaklines<a name="breaklines"></a>
-Breaklines indicate, for instance, channel banks and the riverbed, and need to coincide with DEM points (shapefile from [above section](#epd)). Breaklines a stored in a line (vector) shapefile, which is here already provided (`breaklines.shp`). Integrate the breaklines file into the *QGIS* project as follows with a click on *QGIS*' `Layer` menu > `Add Vector Layer...` and select the provided `breaklines.shp` file (if not yet done, [download](https://github.com/hydro-informatics/materials/raw/master/numerics/breaklines.zip) and unpack the shapefile).
+Breaklines indicate, for instance, channel banks and the riverbed, and need to coincide with DEM points (shapefile from [above section](#epd)). Breaklines a stored in a line (vector) shapefile, which is here already provided (`breaklines.shp`). Integrate the breaklines file into the *QGIS* project as follows with a click on *QGIS*' `Layer` menu > `Add Vector Layer...` and select the provided `breaklines.shp` file (if not yet done, [download](https://github.com/hydro-informatics/materials-bm/raw/master/numerics/breaklines.zip) and unpack the shapefile).
 Note: The default layer style `Single Symbol`. For better representation, double-click on the breaklines layer, got to the `Symbology` ribbon and select `Categroized` (or `Graduated`) instead of `Single Symbol` (at the very top of the `Layer Properties` window). In the `Value` field, select `type`, then click the `classify` button on the bottom of the `Layer Properties` window. The listbox will now show the values bank, bed, hole, and all other values. Change color pattern and/or click `OK` on the bottom-right of the `Layer Properties` window.
 
 ## TIN Elevation Model<a name="tin"></a>
@@ -209,7 +209,7 @@ In order to work with *BASEMENT* v3.x, the .2dm file requires a couple of adapta
     {% include tip.html content="To **identify** the **node IDs** open *QGIS* use ***BASEmesh*’s Stringdef** wizard (from *BASEMENT* v2.8 user manual - read more below)." %} 
     <a name="stringdef"></a>
     * *Stringdef* identifies points that have a non-empty `stringdef`-field (i.e., all nodes that are located exactly on that line) and writes them into a text file (*BASEMENT*-like `stringdef` block). The content of the `stringdef`-field represents the `stringdef` name.    
-    * In order to identify the node ids on the inflow and outflow boundary lines, select the final mesh nodes in the *Mesh Nodes* dialogue, select the provided [breaklines shapefile](https://github.com/hydro-informatics/materials/raw/master/numerics/breaklines.zip) in the *Breaklines* dialogue and select *stringdef* from the dropdown menu.
+    * In order to identify the node ids on the inflow and outflow boundary lines, select the final mesh nodes in the *Mesh Nodes* dialogue, select the provided [breaklines shapefile](https://github.com/hydro-informatics/materials-bm/raw/master/numerics/breaklines.zip) in the *Breaklines* dialogue and select *stringdef* from the dropdown menu.
     * In the *Textfile OUTPUT* dialogue, select an output text file (e.g., `C:/temp/stringdef-breaklines.txt`) and click on ***Find node IDs***
     {% include image.html file="qgis-stringdef.png" alt="bm-strdef" caption="BASEmesh's Stringdef tool." %} 
     * The *Stringdef* tool now has generated  `stringdef`s in upstream-looking right direction (note: to create new boundaries, the lines need to be drawn from the left riverbank to the right riverbank).

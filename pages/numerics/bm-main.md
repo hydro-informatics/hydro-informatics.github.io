@@ -17,7 +17,7 @@ With the 2D mesh ([see generation of the `.2dm` file](#bm-pre.html)) this exerci
 Then, make sure to place the two required input files in the folder: 
 
 - The 2D mesh `.2dm` file (i.e., the *finalmesh.2d* from the [pre-processing](bm-pre.html)).
-- The provided discharge inflow file (flat hydrograph) as upstream boundary condition can be downloaded [here](https://github.com/hydro-informatics/materials/blob/master/numerics/SteadyVanillaInflow.txt) (if necessary, copy the file contents locally into a text editor and save the file as `SteadyVanillaInflow.txt` in the local project directory).
+- The provided discharge inflow file (flat hydrograph) as upstream boundary condition can be downloaded [here](https://github.com/hydro-informatics/materials-bm/blob/master/numerics/SteadyVanillaInflow.txt) (if necessary, copy the file contents locally into a text editor and save the file as `SteadyVanillaInflow.txt` in the local project directory).
 
 
 ##	Setup the model file in *BASEMENT* v.3.x (Define Scenario Parameters)
