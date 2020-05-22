@@ -1,7 +1,7 @@
 ---
 title: Python Basics - Data handling, read & write files
 keywords: python, numpy, array, matrix, scipy
-summary: "This page shows how data from basic text files can be imported and written with Python. In addition, the math and numeric data handling modules NumPy and pandas are introduced. "
+summary: "This page shows how data from basic text files can be imported and written with Python. In addition, the math and numeric data handling packages NumPy and pandas are introduced. "
 sidebar: mydoc_sidebar
 permalink: hypy_pynum.html
 folder: python-basics
@@ -184,18 +184,25 @@ else:
 
 ## NumPy
 
-*NumPy* provides high-level mathematical functions for linear algebra including operations on multi-dimensional arrays and matrices. The open-source *NumPy* package is written in *Python* and [*C*](https://en.wikipedia.org/wiki/C_(programming_language)), and comes with comprehensive documentation ([download the latest version on the developer's web site](https://numpy.org/doc/) or [read the developer's online tutorial](https://numpy.org/devdocs/user/quickstart.html)).
+*NumPy* provides high-level mathematical functions for linear algebra including operations on multi-dimensional arrays and matrices. The open-source *NumPy* (for *Numerical Python*) package is written in *Python* and [*C*](https://en.wikipedia.org/wiki/C_(programming_language)), and comes with comprehensive documentation ([download the latest version on the developer's web site](https://numpy.org/doc/) or [read the developer's online tutorial](https://numpy.org/devdocs/user/quickstart.html)).
 
 ### Installation
 
-*NumPy* can be installed within anaconda ([read instructions](hypy_install.html#install-pckg)) and the developers recommend to use a scientific *Python* distribution (such as *Anaconda*) with [*SciPy Stack*](https://www.scipy.org/install.html).
+*NumPy* can be installed within *Anaconda* ([read instructions](hypy_install.html#install-pckg)) and the developers recommend to use a scientific *Python* distribution (*Anaconda*) with [*SciPy Stack*](https://www.scipy.org/install.html).
 
+With the provided [*environment.yml* (geo-python)](https://github.com/hydro-informatics/materials-py-install/blob/master/environment.yml) for *Anaconda*, *NumPy* is already installed ([more information here](https://hydro-informatics.github.io/hypy_install.html)). To install *NumPy* in another *conda* environment, open *Anaconda Prompt* (*Start* > type *Anaconda Prompt*) and type:
+
+
+```python
+conda activate ENVIRONMENT-NAME
+conda install numpy
+```
 
 ### Usage
 
 The *NumPy* module (package) is typically imported with **`import numpy as np`**. Array handling is the baseline of linear algebra and *NumPy*, where arrays represent nested data lists. To create a *NumPy* array, use `np.array((values))`, where `values` is a sequences of values. 
 
-{% include tip.html content="This section provides insights in some basic functions provided with *NumPy*, but does not (or cannot) cover all *NumPy* functions and data types. Generally speaking, be sure that whatever mathematical operation you want to perform, *NumPy* offers a solution. Just checkout the [*NumPy* documentation](https://numpy.org/devdocs/user/quickstart.html) or use your favorite search engine with the search words **numpy** ***FUNCTION***." %}
+{% include tip.html content="This section provides insights in some basic functions provided with *NumPy*, but does not (or cannot) cover all *NumPy* functions and data types. Generally speaking, be sure that whatever mathematical operation you want to perform, *NumPy* offers a solution. Just checkout the [*NumPy* documentation](https://numpy.org/devdocs/user/quickstart.html), [have a look at *NumPy*'s functions and methods overview](https://numpy.org/devdocs/user/quickstart.html#functions-and-methods-overview), or use your favorite search engine with the search words **numpy** ***FUNCTION***." %}
 
 The rounded parentheses indicated that the value sequence represents a tuple that may contain lists for creating multi-dimensional array. Thus, for creating an *2x3* array (with some random values), we can write:
 
@@ -320,6 +327,18 @@ print("Maximum: " + str(an_array.max()))
     Maximum: 6
     
 
+### Color arrays
+Arrays may also contain color information, whee colors represent a mix of the three base colors red, green, and blue. One color is defined as `[red-value, green-value, blue-value]` and a value of 0 means that a color tone is not present, while 255 is its maximum value. When all color tone values are zero, there is no color, which corresponds to *black*; when all color tones are maximum (255), the color mix corresponds to *white*. This way, array elements can be lists of color tones and plotting such arrays produces images. The following example produces an array with 5 color-list elements, which could be plotted as a very basic image with 5 pixels (one black, red, green, blue, and white, respectively):
+
+
+```python
+color_set = np.array([[0, 0, 0],         # black
+                      [255, 0, 0],       # red
+                      [0, 255, 0],       # green
+                      [0, 0, 255],       # blue
+                      [255, 255, 255]])  # white
+```
+
 ### Array (matrix) operations
 Array calculations (matrix operations) follow the rules of linear algebra:
 
@@ -378,7 +397,6 @@ Sometimes it is necessary to stack a multi-dimensional array into a vector, or r
 print("Flattened matrix A (into a vector):\n" + str(A.ravel()))
 print("\nTranspose matrix A and append B:\n" + str(np.array([A.transpose(), B])))
 print("\nTranspose matrix A and append B and cast into a (4x4) array:\n" + str(np.array([A.transpose(), B]).reshape(4,4)))
-
 ```
 
     Flattened matrix A (into a vector):
@@ -428,6 +446,76 @@ print("The data type of the 3rd (%s) entry is: " % str(experiment_data[3, 2]) + 
 
 In addition, or as an alternative, the function `np.load()` picks up data from file-like `.npz`, `.npy`, or pickled (saved *Python* objects) data sources ([read more in the *Python* doc](https://numpy.org/doc/stable/reference/generated/numpy.load.html#numpy.load)). 
 
+### Statistics
+The above examples featured some array functions to assess basic array parameters such as the minimum and maximum. *NumPy* provides many more functions for array statistics such as the mean, median, or standard deviation, including functions that account for `np.nan` values. The following example illustrates some statistic function with the experimental data from the above examples. Note the usage of `nanmean` instead of `mean` and statistics along array axis, where the optional keyword argument `axis=0` corresponds to columns and `axis=1` to statistics along rows in 2-dimensional arrays (maximum axis number corresponds to the array dimensions *n* minus 1, i.e., maximum `axis=n-1`). 
+
+
+```python
+print("Mean value (without nan): " + str(np.mean(experiment_data)))  # no applicable result
+print("Mean value with np.nan: " + str(np.nanmean(experiment_data))) 
+print("Mean value along axis 0 (columns): " + str(np.nanmean(experiment_data, axis=0))) 
+print("Mean value along axis 1 (rows): " + str(np.nanmean(experiment_data, axis=1))) 
+```
+
+    Mean value (without nan): nan
+    Mean value with np.nan: 4.626865671641791
+    Mean value along axis 0 (columns): [4.11111111 4.25       4.53333333 5.55555556]
+    Mean value along axis 1 (rows): [4.25       2.5        6.25       4.33333333 6.75       6.33333333
+     3.         6.         3.75       4.75       4.66666667 3.75
+     3.         4.25       3.25       5.33333333 6.75       5.        ]
+    
+
+The following sections give a tabular overview of statistical functions in *NumPy* (source: *NumPy* v.1.13 docs). The listed functions only represent fundamental statistic functions and *NumPy* provides many more options, which can be leveraged using any search engine with *NumPy*  and the desired function as search keywords.
+
+Basic statistic functions
+
+***
+
+| Function                              | Description                                                                                 |
+|---------------------------------------|---------------------------------------------------------------------------------------------|
+| [`nanmin(a[, axis, out, keepdims])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.nanmin.html#numpy.nanmin)      | Minimum of an array or along an axis, ignoring `np.nan`.                     |
+| [`nanmax(a[, axis, out, keepdims])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.nanmax.html#numpy.nanmax)      | Maximum of an array or along an axis, ignoring `np.nan`.                 |
+| [`ptp(a[, axis, out])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.ptp.html#numpy.ptp)                   | Range of values (max - min) along an axis.                                          |
+| [`percentile(a, q[, axis, out, ...])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.percentile.html#numpy.percentile)    | q-th percentile of data along a specified axis.                            |
+| [`nanpercentile(a, q[, axis, out, ...])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.nanpercentile.html#numpy.nanpercentile) | q-th percentile of data along a specified axis, ignoring `np.nan`. |
+
+Mean (average), standard deviation, and variances
+
+***
+
+| Function                                          | Description                                                                   |
+|---------------------------------------------------|-------------------------------------------------------------------------------|
+| [`median(a[, axis, out, overwrite_input, keepdims])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.median.html#numpy.median) | Median along an (optional) axis.                                  |
+| [`average(a[, axis, weights, returned])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.average.html#numpy.average)             | Weighted average along an (optional) axis.                        |
+| [`mean(a[, axis, dtype, out, keepdims])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.mean.html#numpy.mean)             | Arithmetic mean along an (optional) axis.                         |
+| [`std(a[, axis, dtype, out, ddof, keepdims])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.std.html#numpy.std)        | Standard deviation along an (optional) axis.                      |
+| [`var(a[, axis, dtype, out, ddof, keepdims])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.var.html#numpy.var)        | Variance along an (optional) axis.                                |
+| [`nanmedian(a[, axis, out, overwrite_input, ...])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.nanmedian.html#numpy.nanmedian)   | Median along an (optional) axis, ignoring `np.nan`.             |
+| [`nanmean(a[, axis, dtype, out, keepdims])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.nanmean.html#numpy.nanmean)          | Arithmetic mean along an (optional) axis, ignoring `np.nan`.          |
+| [`nanstd(a[, axis, dtype, out, ddof, keepdims])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.nanstd.html#numpy.nanstd)     | Standard deviation along an (optional) axis, while ignoring `np.nan`. |
+
+Correlating data (arrays)
+
+***
+
+| Function                                       | Description                                             |
+|------------------------------------------------|---------------------------------------------------------|
+| [`corrcoef(x[, y, rowvar, bias, ddof])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.corrcoef.html#numpy.corrcoef)           | Pearson (product-moment) correlation coefficients. |
+| [`correlate(a, v[, mode])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.correlate.html#numpy.correlate)                        | Cross-correlation of two 1-dimensional sequences.       |
+| [`cov(m[, y, rowvar, bias, ddof, fweights, ...])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.cov.html#numpy.cov) | Estimate covariance matrix, based on data and weights.   |
+
+Generate and plot histrograms
+
+***
+
+| Function                                          | Description                                                                |
+|---------------------------------------------------|----------------------------------------------------------------------------|
+| [`histogram(a[, bins, range, normed, weights, ...])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.histogram.html#numpy.histogram) | Histogram of a set of data.                                    |
+| [`histogram2d(x, y[, bins, range, normed, weights])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.histogram2d.html#numpy.histogram2d) | Bi-dimensional histogram of two data samples.                  |
+| [`histogramdd(sample[, bins, range, normed, ...])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.histogramdd.html#numpy.histogramdd)   | Multidimensional histogram of some data.                       |
+| [`bincount(x[, weights, minlength])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.bincount.html#numpy.bincount)                 | Count number of occurrences of each value in array of non-negative ints.   |
+| [`digitize(x, bins[, right])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.digitize.html#numpy.digitize)                        | Indices of the bins to which each value in input array belongs. |
+
 ### Can *NumPy* do *Matlab*?
 
 Are you considering to switch to *Python* after starting softly into programming with *Matlab*-like software? There are many reasons for enhancing data analyses with *Python* and here are some facilitators for previous *Matlab* users:
@@ -439,10 +527,453 @@ Are you considering to switch to *Python* after starting softly into programming
 
 *MATLAB® is a registered trademark of The MathWorks.*
 
-## Array and file handling with pandas
+## Pandas
 
-*pandas* is a powerful module (package) for data analyses and manipulation with *Python*. It has overlapping functions with *NumPy*, but none of these two packages should be missed. The power of *pandas* lies in data labeling (e.g., workbook-like columns names) and flexible file handling functions (e.g., the built-in `read_csv(csv-file)`).
+*pandas* is a powerful module (package) for data analyses and manipulation with *Python*. It has can handle *NumPy* arrays, and both packages jointly represent a powerful data processing engine. The power of *pandas* lies in processing data frames, data labeling (e.g., workbook-like columns names), and flexible file handling functions (e.g., the built-in `read_csv(csv-file)`). While *NumPy* arrays enable calculations with multidimensional arrays (beyond 2-dimensional tables) and low memory consumption, *pandas* `DataFrame`s efficiently process and label tabular data with more than ~100,000 rows. Because of its labelling capacity, *pandas* also finds broad application in machine learning. In summary, *pandas*' functionality builds on top of *NumPy* and both packages are developed by the [*SciPy*](https://www.scipy.org/) (*Scientific computing tools for Python*) community that also develops `matplotlib` (see [the introduction to plotting with *Python*](hypy_pyplot.html) and *IPython* (*Jupyter*'s *Python* kernel).
+
+### Installation
+
+*pandas*' developer's recommend to install *pandas* with the *SciPy* stack in [*Anaconda*](https://hydro-informatics.github.io/hy_ide.html), similar to the recommendations for installing *NumPy*. With the provided [*environment.yml* (geo-python)](https://github.com/hydro-informatics/materials-py-install/blob/master/environment.yml) for *Anaconda*, *NumPy* is already installed ([more information here](https://hydro-informatics.github.io/hypy_install.html)). To install *NumPy* in another *conda* environment, open *Anaconda Prompt* (*Start* > type *Anaconda Prompt*) and type:
+
+
+```python
+conda activate ENVIRONMENT-NAME
+conda install pandas
+```
+
+### Usage
+
+*pandas* standard import alias is `pd`: `import pandas as pd`. The following sections provide an overview of basic *pandas* functions and much more functionalities are documented at the [developer's docs](https://pandas.pydata.org/pandas-docs/stable/user_guide/index.html).
+
+### Data frames
+The below code block illustrates the creation of *pandas* data frames, the core object of *pandas*. Note the difference between a 1-dimensional series (corresponds to a one-column data frame), and a 2-dimensional data frame with **row (=index)** and column names. The default row names number rows starting from 0 (unlike Office software that starts at row no. 1), without column names. Column names can be initially defined as a [list](hypy_pybase.html#list) and replaced with a [dictionary](hypy_pybase.html#dict) that maps the initial list entries to new names.
+
+
+```python
+import pandas as pd
+
+print("A 1-column pd.DataFrame:\n"+ str(pd.Series([3, 4, np.nan])))  # a simple pandas data frame with one column
+
+row_names = np.arange(1, 4, 1)
+wb_like_df = pd.DataFrame(np.random.randn(row_names.__len__(), 3), index=row_names, columns=['A', 'B', 'C'])
+print("\nThis is a workbook-like (row and column names) data frame:\n" + str(wb_like_df))
+print("\nRename column names with dictionary:\n" + str(wb_like_df.rename(columns={'A': 'Series 1', 'B': 'Series 2', 'C': 'Series 3'})))
+print("\nTranspose the data frame:\n" + str(wb_like_df.T))
+```
+
+    A 1-column pd.DataFrame:
+    0    3.0
+    1    4.0
+    2    NaN
+    dtype: float64
+    
+    This is a workbook-like (row and column names) data frame:
+              A         B         C
+    1 -1.248745  1.325094  0.333333
+    2 -0.633113 -0.557265 -0.738211
+    3  0.003630 -0.879839 -0.103568
+    
+    Rename column names with dictionary:
+       Series 1  Series 2  Series 3
+    1 -1.248745  1.325094  0.333333
+    2 -0.633113 -0.557265 -0.738211
+    3  0.003630 -0.879839 -0.103568
+    
+    Transpose the data frame:
+              1         2         3
+    A -1.248745 -0.633113  0.003630
+    B  1.325094 -0.557265 -0.879839
+    C  0.333333 -0.738211 -0.103568
+    
+
+A *pandas* `DataFrame` object can also be created with a [dictionary](hypy_pybase.html#dict), where the dictionary keys define column names and the dictionary items constitute the data of each column:
+
+
+```python
+dict_df = pd.DataFrame({'Flow depth': pd.Series(np.random.uniform(low=0.1, high=0.3, size=(4,)), dtype='float32'),
+                        'Sediment': ["yes", "no", "yes", "no"],
+                        'Flow regime': pd.Categorical(["fluvial", "fluvial", "supercritical", "critical"]),
+                        'Water': "Always there"})
+print("A dictionary-built data frame:\n" + str(dict_df))
+print("\nFrame data types:\n" + str(dict_df.dtypes))
+```
+
+    A dictionary-built data frame:
+       Flow depth Sediment    Flow regime         Water
+    0    0.170200      yes        fluvial  Always there
+    1    0.101888       no        fluvial  Always there
+    2    0.137656      yes  supercritical  Always there
+    3    0.127455       no       critical  Always there
+    
+    Frame data types:
+    Flow depth      float32
+    Sediment         object
+    Flow regime    category
+    Water            object
+    dtype: object
+    
+
+Built-in attributes and methods of a *pandas* `DataFrame` enable easy access to the top and the bottom of a data frame and many more features (recall: use `dir(dict_df)` or [read the developer's docs](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html)):
+
+
+```python
+print("Head of the dictionary-based dataframe (first two rows):\n" + str(dict_df.head(2)))
+print("\nEnd (tail) of the dictionary-based dataframe (last row):\n" + str(dict_df.tail(1)))
+```
+
+    Head of the dictionary-based dataframe (first two rows):
+       Flow depth Sediment Flow regime         Water
+    0    0.170200      yes     fluvial  Always there
+    1    0.101888       no     fluvial  Always there
+    
+    End (tail) of the dictionary-based dataframe (last row):
+       Flow depth Sediment Flow regime         Water
+    3    0.127455       no    critical  Always there
+    
+
+### Example {#exp-Froude}
+In hydraulics, the [*Froude* number* ***Fr***](https://en.wikipedia.org/wiki/Froude_number) characterizes the flow regime as *"fluvial"* (*Fr<1*), *"critical"* (*Fr=1*), and *"super-critical"* (*Fr>1*). The precision of measurement devices in physical flume experiments makes the exact determination of the *critical* moment a challenge and forces researchers to apply an interval around 1, rather than the exact value:
+
+| ***Fr*** | (0.00, 0.95( | (0.95, 1.00(           | (1.00)   | )1.00, 1.05)           | )1.05, inf(    |
+|----------|--------------|------------------------|----------|------------------------|----------------|
+| *Flow*   | fluvial      | nearby critical (slow) | critical | nearby critical (fast) | super-critical |
+
+`pd.DataFrame( ... )` objects are a convenient for to classify and store flume experiment data:
+
+
+```python
+Fr_dict = {0.925: "fluvial", 0.975: "nearby critical (slow)", 1.0: "critical", 1.025: "nearby critical (fast)", 1.075: "super-critical"}
+Fr_measured = np.random.uniform(low=0.01, high=2.00, size=(10,))
+Fr_classified = [Fr_dict[min(Fr_dict.keys(), key=lambda x:abs(x-m))] for m in Fr_measured]
+obs_df = pd.DataFrame({"measured": Fr_measured, "flow regime": Fr_classified})
+print(obs_df)
+```
+
+       measured             flow regime
+    0  0.643148                 fluvial
+    1  0.071981                 fluvial
+    2  0.713384                 fluvial
+    3  0.636614                 fluvial
+    4  0.324183                 fluvial
+    5  1.562118          super-critical
+    6  1.036869  nearby critical (fast)
+    7  0.258345                 fluvial
+    8  1.913183          super-critical
+    9  1.018824  nearby critical (fast)
+    
+
+### *NumPy* arrays and *pandas* data frames
+ 
+ The major difference between a *NumPy* `array` and a *pandas* `DataFrame` is that *NumPy* array only have one single data type (`dtype`), while a *pandas* `DataFrame` can have differents data types (one `dtype` per column). This is why a *NumPy* `array` can be seamlessly converted to a *pandas* `DataFrame`, but the opposite conversion can cause high computational cost. *pandas* comes with a built-in function to convert a *pandas* `DataFrame` into a *NumPy* `array`, where numeric variables are maintained where possible. If one column of the *pandas* `DataFrame` is non-numeric, the conversion involves copying the object, which then causes high computational cost. Note that *pandas* `DataFrame` *index* and *column* labels are lost in the conversion.
+
+
+```python
+print(dict_df.to_numpy())
+```
+
+    [[0.17019981145858765 'yes' 'fluvial' 'Always there']
+     [0.1018880233168602 'no' 'fluvial' 'Always there']
+     [0.13765563070774078 'yes' 'supercritical' 'Always there']
+     [0.12745524942874908 'no' 'critical' 'Always there']]
+    
+
+### Access data frames entries
+Elements of data frames are accessible by the column and row label (`df.loc[index=row, column-label]`) or number (`df.iloc`):
+
+
+```python
+print("Label localization results in: " + str(dict_df.loc[2, "Flow depth"]))
+print("Same result with integer grid location: " + str(dict_df.iloc[2, 0]))
+```
+
+    Label localization results in: 0.13765563
+    Same result with integer grid location: 0.13765563
+    
+
+### Reshape data frames
+Single or multiple rows (index) and columns can be extracted from and combined into new or existing `DataFrame` objects:
+
+
+```python
+print(pd.DataFrame([dict_df[:3], wb_like_df[1:]]))
+```
+
+                                                       0
+    0     Flow depth Sediment    Flow regime         ...
+    1            A         B         C
+    2 -0.633113 -0...
+    
+
+The `df.stack()` method pivots the columns of a data frame, which is a powerful tool to classify data that can take different dimensions (e.g., the volume and weight of 1 m<sup>3</sup> water - read more about the [stack method](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.stack.html#pandas.DataFrame.stack)). 
+
+
+```python
+print(dict_df.stack()[0])
+dict_df.unstack()  # unstack data frame
+```
+
+    Flow depth           0.1702
+    Sediment                yes
+    Flow regime         fluvial
+    Water          Always there
+    dtype: object
+    
+
+Big datasets often contain large amounts of data with many labels, where we are often only interested in a small subset of data. Data frame subsets can be created with the [`df.pivot(index, columns, **values)` method](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.pivot.html#pandas.DataFrame.pivot):
+
+
+```python
+print("Pivot table for \'Flow regime\':\n" + str(dict_df.pivot(index="Sediment", columns="Flow depth")["Flow regime"]))
+print("\nPivot table for \'Water\':\n" + str(dict_df.pivot(index="Sediment", columns="Flow depth")["Water"]))
+```
+
+    Pivot table for 'Flow regime':
+    Flow depth 0.101888  0.127455       0.137656 0.170200
+    Sediment                                             
+    no          fluvial  critical            NaN      NaN
+    yes             NaN       NaN  supercritical  fluvial
+    
+    Pivot table for 'Water':
+    Flow depth      0.101888      0.127455      0.137656      0.170200
+    Sediment                                                          
+    no          Always there  Always there           NaN           NaN
+    yes                  NaN           NaN  Always there  Always there
+    
+
+In addition, the [`df.pivot_table(index, columns, values, aggfunc)`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.pivot_table.html#pandas.DataFrame.pivot_table) function enables inline Office-like function application to one or more rows and/or columns.
+
+
+```python
+print("\'mean\' for \'Flow depth\':\n" + str(dict_df.pivot_table(index="Sediment", columns="Flow regime", values="Flow depth", aggfunc=np.mean)))
+```
+
+    'mean' for 'Flow depth':
+    Flow regime  critical   fluvial  supercritical
+    Sediment                                      
+    no           0.127455  0.101888            NaN
+    yes               NaN  0.170200       0.137656
+    
+
+Read more about reshaping and pivoting data frames in the [developer's docs](https://pandas.pydata.org/pandas-docs/stable/user_guide/reshaping.html).
+
+### File handling (*csv*, workbooks, and more) {#pd-files}
+
+*pandas* can read from and write to many data file types, which makes it extremely powerful in analyzing any data output. The following table summarizes the most important file types for numerical hydraulic, morphodynamic and fluvial landscape analyses and [more file type handlers can be found at the developer's docs](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html).
+
+|  File type                                                                  |  *pandas* read                                                                                         |  *pandas* write                                                                                       | Usage example                                                                                           |
+|-----------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
+|  CSV |  [`read_csv`](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-read-csv-table)       |  [`to_csv`](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-store-in-csv)          | Reading from data loggers (e.g., discharge, flow depth)    |
+|  Google BigQuery  |  [`read_gbq`](https://en.wikipedia.org/wiki/BigQuery)|  [`to_gbq`](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-bigquery)              | Analyze social media   |
+|  JSON |  [`read_json`](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-json-reader)         |  [`to_json`](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-json-writer)          | Manipulate [*BASEMENT*](bm-main.html#bm-intro) model files    |
+|  HTML |  [`read_html`](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-read-html)           |  [`to_html`](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-html)                 | Process  web site data        |
+|  [HDF5 Format](https://support.hdfgroup.org/HDF5/doc1.6/UG/08_TheFile.html) |  [`read_hdf`](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-hdf5)                 |  [`to_hdf`](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-hdf5)                  | Analyze [*BASEMENT*](bm-post.html) or [*HEC-RAS*](https://www.mdpi.com/2073-4441/10/10/1382) output files |
+|  Python Pickle Format |  [`read_pickle`](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-pickle)            |  [`to_pickle`](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-pickle)     | Cache memory dump       |
+|  SQL  |  [`read_sql`](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-sql)     |  [`to_sql`](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-sql)  | Retrieve and write data to SQL data bases    |
+|  Workbooks (Excel / Open doc) |  [`read_excel`](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-excel-reader)|  [`to_excel`](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-excel-writer)| Interface with non-programmers (Open only works in read mode)|
+
+
+The following code block illustrates how the above produced *data/modified-data.csv* file can be loaded with new file names and saved to a workbook with *pandas*. *pandas* uses the [*xlsxwriter*](https://xlsxwriter.readthedocs.io/) or [*openpyxl*](https://openpyxl.readthedocs.io) packages to process workbooks, depending on which packages are available in the *Python* environment.
+
+
+```python
+measurement_data = pd.read_csv("data/modified-data.csv", sep=",", header=None, names=["Test 1", "Test 2", "Test 3", "Test 4"])
+print("Header of data/modified-data.csv:\n" + str(measurement_data.head(3)))
+measurement_data.to_excel("data/modified-data-wb.xlsx", sheet_name="2025-01-01 Tests")
+```
+
+    Header of data/modified-data.csv:
+       Test 1 Test 2 Test 3  Test 4
+    0     3.0    5.0    4.0     5.0
+    1     4.0    2.0    1.0     3.0
+    2     4.0    8.0    3.0    10.0
+    
+
+{% include image.html file="py-pandas-xlsx-out.png" alt="py-pd-xlsx-o" max-width="700" %}
+
+{% include note.html content="*pandas* tries to convert all data into *dtype=float*, but as soon as there is only one text variable in a column, the entire column will be saved as *string* in a workbook." %}
+
+Alternatively, a *pandas* `ExcelWriter` object can be created to write multiple `pd.DataFrame` objects to a workbook, on one or more sheets. Here is an example, where the non-numeric `"nan"` strings are first replaced in `measurement_data` with `np.nan` to yield a purely numeric data frame in two steps (`# (1)` and `# (2)`):
+
+
+```python
+measurement_data = measurement_data.replace("nan", np.nan, regex=True)  # (1) replace "nan" with np.nan
+measurement_data = measurement_data.apply(pd.to_numeric)  # (2) convert all data to numeric
+
+# write workbook with pd ExcelWriter object
+with pd.ExcelWriter("data/modified-data-wb-EW.xlsx") as writer:
+    measurement_data.to_excel(writer, sheet_name="2025-01-01 Tests")
+    dict_df.to_excel(writer, sheet_name="pandas example")
+```
+
+{% include image.html file="py-pandas-xlsx-out2.png" alt="py-pd-xlsx-o" max-width="700" caption="The red-highlighted spots indicate where text has been replaced with numeric data." %}
+
+### Categorical data
+
+*string* variables that represent statistical relevant categories are the baseline for data classification and statistics. *pandas* provides a special data type (`dtype="category"`) to facilitate statistical analyses.
+
+In the above [example](#exp-Froude), we used five categories to classify the flow regime as a function of the *Froude number*, which can serve as categories. After an experiment, where no water was flowing in one test and the probe broke in the last test, we want to categorize our measurements to filter valid tests only:
+
+
+```python
+flow_regimes = ["fluvial", "nearby critical (slow)", "critical", "nearby critical (fast)", "super-critical"]
+observation_examples = ["fluvial", "dry", "critical", "nearby critical (slow)", "measurement error"]
+Fr_cat = pd.Categorical(observation_examples, categories=flow_regimes, ordered=False)
+print(pd.Series(Fr_cat))
+```
+
+    0                   fluvial
+    1                       NaN
+    2                  critical
+    3    nearby critical (slow)
+    4                       NaN
+    dtype: category
+    Categories (5, object): [fluvial, nearby critical (slow), critical, nearby critical (fast), super-critical]
+    
+
+### Data frame statistics
+
+*pandas* has efficient routines to perform workbook-like row or column sorting (e.g., [`df.sort_index()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sort_index.html) or [`df.sort_values()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sort_values.html)), and enables the fast calculation of data frame statistics with `df.describe()`, where 25%, 50%, and 75% represent the *i-th* percentiles:
+
+
+```python
+measurement_data.describe()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Test 1</th>
+      <th>Test 2</th>
+      <th>Test 3</th>
+      <th>Test 4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>count</td>
+      <td>18.000000</td>
+      <td>16.000000</td>
+      <td>15.000000</td>
+      <td>18.000000</td>
+    </tr>
+    <tr>
+      <td>mean</td>
+      <td>4.111111</td>
+      <td>4.250000</td>
+      <td>4.533333</td>
+      <td>5.555556</td>
+    </tr>
+    <tr>
+      <td>std</td>
+      <td>2.298053</td>
+      <td>2.792848</td>
+      <td>2.386470</td>
+      <td>2.617188</td>
+    </tr>
+    <tr>
+      <td>min</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <td>25%</td>
+      <td>2.250000</td>
+      <td>2.000000</td>
+      <td>3.000000</td>
+      <td>4.000000</td>
+    </tr>
+    <tr>
+      <td>50%</td>
+      <td>4.000000</td>
+      <td>4.000000</td>
+      <td>4.000000</td>
+      <td>5.500000</td>
+    </tr>
+    <tr>
+      <td>75%</td>
+      <td>5.000000</td>
+      <td>6.000000</td>
+      <td>6.000000</td>
+      <td>7.000000</td>
+    </tr>
+    <tr>
+      <td>max</td>
+      <td>9.000000</td>
+      <td>10.000000</td>
+      <td>9.000000</td>
+      <td>10.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Statistical *pandas* data frame methods overlap with *NumPy* methods and include:
+
+* `df.abs()` calculates asbolute values
+* `df.cumprod()` calculates the cumulative product
+* `df.cumsum()` calculates the cumulative sum
+* `df.count()` counts the number of non-null observations
+* `df.max()` calculates the maximum value
+* `df.mean()` calculates the mean (average)
+* `df.min()` calculates the minimum value
+* `df.mode()` calculates the mode
+* `df.prod()` calculates the product
+* `df.std()` calculates tthe standard deviation
+* `df.sum()` calculates the sum
+
+
+
+
+```python
+print("Mean:\n" + str(measurement_data.mean()))
+print("Median:\n" + str(measurement_data.median()))
+print("Standard deviation:\n" + str(measurement_data.std()))
+```
+
+    Mean:
+    Test 1    4.111111
+    Test 2    4.250000
+    Test 3    4.533333
+    Test 4    5.555556
+    dtype: float64
+    Median:
+    Test 1    4.0
+    Test 2    4.0
+    Test 3    4.0
+    Test 4    5.5
+    dtype: float64
+    Standard deviation:
+    Test 1    2.298053
+    Test 2    2.792848
+    Test 3    2.386470
+    Test 4    2.617188
+    dtype: float64
+    
+
+*pandas* has many more built-in functionalities, for example to plot histograms or any data using the `matplotlib` library, and machine learning. The following pages of the *Python* introduction on *hydro-informatics* occasionally make use of *pandas* and illustrate more functionalities.
 
 ## Dates and Time
 
-The `datetime` module (package) provides sophisticated methods for handling time-dependent values. `datetime` is the best solution, for example when data were collected over several years including leap years.
+*pandas* involves methods for calulations and labeling with date and time values. The `datetime` package provides even more sophisticated methods for handling time-dependent values. `datetime` is the best solution, for example when data were collected over several years including leap years.

@@ -99,7 +99,7 @@ print(int("c", 36)) # use int(letter, literal)
     12
     
 
-### Boolean
+### Boolean {#bool}
 
 Boolean variables are either True (1) or False (0) with many useful code implementations. We will come back to booelans later on in conditional statements.
 
@@ -112,7 +112,7 @@ print("The bowl exists: " + str(bowl))
     The bowl exists: False
     
 
-### Numbers (numeric)
+### Numbers (numeric) {#num}
 
 | Type    | Example | Description                                              |
 |---------|:-------:|----------------------------------------------------------|
@@ -163,7 +163,7 @@ print("My ice cream weighs " + weight + " kg.") # this cannot work because weigh
     TypeError: can only concatenate str (not "float") to str
 
 
-### List
+### List {#list}
 
 A list is a series of values, which is embraced with brackets `[]`. The values can be any other data type (i.e., numeric, text, dictionary or tuple) - even a list (so-called *nested lists*).
 
@@ -172,9 +172,11 @@ A list is a series of values, which is embraced with brackets `[]`. The values c
 flavors = ["chocolate", "bread", flavor1] # a list of strings
 nested_list = [[1, 2, 3], ["a", "b", "c"]]
 print(nested_list)
+print("A list of strings: " + str(list("ABC")))
 ```
 
     [[1, 2, 3], ['a', 'b', 'c']]
+    A list of strings: ['A', 'B', 'C']
     
 
 The items of a list are called *entries* and *entries* can be appended, inserted or deleted from a list.
@@ -203,7 +205,7 @@ print("This is all I have: " + ", ".join(flavors))
     This is all I have: lemon, chocolate, vanilla, cherry
     
 
-### Tuple
+### Tuple {#tuple}
 
 A tuple represents a collection of *Python* objects, similar to a list and the sequence of values (data types) in a tuple can take any type. Elements of a tuple are also indexed with integers. In contrast to lists, a tuple is embraced with round parentheses `()` and a **tuple is immutable** while **lists are mutable**. This means that a tuple object can no longer be modified after it has been created. So why would you like to use tuples then? The answer is that a tuple is more memory efficient than a mutable object because the immutable tuple can create references to existing objects. In addition, a tuple can serve as a `key` of a dictionary (see below), which is not possible with a list.
 
@@ -246,7 +248,7 @@ print("Run time without tuple modification: " + str(time.perf_counter() - start_
     Run time without tuple modification: 0.006833699999788223 seconds.
     
 
-### Dictionary
+### Dictionary {#dict}
 
 Dictionaries are a powerful data type in *Python* and have the basic structure `my_dict = {key: value}`. In contrast to lists, an element of a dictionary is called by invoking a `key` rather than an entry number. A dictionary is not enumerated and `key`s just point to their `value`s (whatever data type the `value`then is).
 
@@ -255,7 +257,6 @@ Dictionaries are a powerful data type in *Python* and have the basic structure `
 my_dict =  {1: "Value 1", 2: "Value 2"}
 another_dict = {"list1": [1, 2, 3], "number2": 1}
 my_dict [1]
-
 ```
 
 
@@ -265,7 +266,7 @@ my_dict [1]
 
 
 
-Also dictionary data types have many useful built-in functions.
+Also dictionary data types have many useful built-in functions:
 
 
 ```python
@@ -273,10 +274,22 @@ my_dict.update({3: "Value 3"})  # add a dictionary element
 my_dict
 my_dict.__delitem__(1) # delete a dictionary element 
 my_dict.__len__() # get the length (number of dictionary elements)
-
 ```
 
-## Operators
+Two lists of the same length can be *zipped* into a dictionary:
+
+
+```python
+weight = [0.5, 1.0, 1.5, 2.0]
+price = [1, 1.5, 1.8, 2.0]
+apple_weight_price = dict(zip(weight, price))
+print("{0} kg apples cost EUR {1}.".format(weight[2], apple_weight_price[weight[2]]))
+```
+
+    1.5 kg apples cost EUR 1.8.
+    
+
+## Operators {#op}
 
 The following operators compare data types and output boolean values (`True`or `False`): 
 

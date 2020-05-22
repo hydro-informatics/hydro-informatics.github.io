@@ -17,7 +17,7 @@ folder: python-basics
 ## Create and install conda environments 
 To install an environment that suites most of the needs for codes and analyses shown on these pages, apply our provided `environment.yml`:
 
-1. Download the environment file [here](https://github.com/hydro-informatics/materials/blob/master/python/environment.yml) (if needed: copy the file contents of `environment.yml` in a local text editor tool such as [Notedpad++](https://notepad-plus-plus.org/) ([alternatives](hy_others.html#npp)) and save the file for example in a directory called *C:/temp/*)
+1. Download the environment file [here](https://github.com/hydro-informatics/materials-py-install/blob/master/environment.yml) (if needed: copy the file contents of `environment.yml` in a local text editor tool such as [Notedpad++](https://notepad-plus-plus.org/) ([alternatives](hy_others.html#npp)) and save the file for example in a directory called *C:/temp/*)
 1. Open Anaconda prompt (`Windows` key > type `Anaconda prompt` > hit `Enter`)
 1. Navigate to the download directory where `environment.yml` is located (use [`cd`](https://www.digitalcitizen.life/command-prompt-how-use-basic-commands) to navigate for example to *C:/temp/*)
 1. Enter `conda env create -f environment.yml` (this creates the environment called `geo-python`)
