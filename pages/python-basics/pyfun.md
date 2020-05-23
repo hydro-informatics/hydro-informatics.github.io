@@ -330,3 +330,84 @@ def verify_result(func):
 Note the difference: the `wrapper` function now returns `func(*arg, **kwargs)` instead of the numeric variable results. If the function can not be executed because of invalid input, the `wrapper` will return an error function (`error_func`), which ensures the consistency of the wrapper function. One may think that the error function returning 0.0 is obsolete, because the exception statements could directly return 0.0. However, 0.0 is a *float* variable, while `error_func` is a function and it is important that the function wrapper always returns the same data type, regardless of the an exception raise or successful execution. This is what makes code consistent.
 
 This page shows examples for using the decorators in the shape of an `@` sign to wrap (embrace) a function. Decorators are also a useful feature in classes, for example when a class function returns static values. Read more about decorators in classes later in the chapter about [object orientation and classes](http://localhost:4000/hypy_classes.html#dec).
+
+## Lambda functions
+
+[Lambda (*&lambda;*) calculus](https://en.wikipedia.org/wiki/Lambda_calculus) is a formal language for expressing computation-based on function abstraction and was introduced in the 1930s by Alonzo Church and Stephen Cole Kleene. Lambda functions originate from functional programming and represent short, anonymous (i.e, without name) functions. Although *Python* is not inherently a functional programming language, functional concepts were implemented early in *Python*, for example with the `map()`, `filter()`, and deprecated `reduce()` functions and also the `lambda` operator. 
+
+In *Python*, an anonymous (nameless) lambda function can take any number of arguments, but can only have one expression. The list of arguments consists of a comma-separated list of variables and the expression uses these arguments. The **syntax** of `lambda` functions is:
+
+`lambda arguments : expression`
+
+The following example illustrates a `lambda` function with one argument and adds 1 to the argument:
+
+
+```python
+add_one = lambda number : number + 1
+print(add_one(1))
+```
+
+    2
+    
+
+That was nice, but pretty useless. So here is an example of a lambda function that sums up two input arguments:
+
+
+```python
+sum_up = lambda x, y : x + y
+print(sum_up(1, 5))
+```
+
+    6
+    
+
+The above-shown function for converting feet to meters can also be written as a lambda function:
+
+
+```python
+feet_to_meter = lambda ft_value : ft_value * 0.3048
+print(feet_to_meter(10))
+```
+
+    3.048
+    
+
+Using a `lambda` function made the code here shorter and more efficient. In order to evaluate the `feet_to_meter` `lambda` function for multiple values, we can use the `map()` function. The syntax of a `map()` function is: 
+
+`result = map(function, sequence)`
+
+where `sequence` can be a *list* or a *tuple*. Thus, to evaluate a *tuple* of four values, we can write:
+
+
+```python
+four_ft_values = (4, 9.7, 7, 2)
+print(list(map(feet_to_meter, four_ft_values)))
+```
+
+    [1.2192, 2.95656, 2.1336, 0.6096]
+    
+
+The `print` statement converts the `map()` object into a *list* to evaluate the `map()` object (otherwise, the result would be somethine like `<map object at ...>`).
+
+If the `feet_to_meter` function is not needed at another place in the code, one can also write:
+
+
+```python
+print(list(map(lambda x : x * 0.3048, (4, 9.7, 7, 2))))
+```
+
+    [1.2192, 2.95656, 2.1336, 0.6096]
+    
+
+Another feature are `filter(function, list)` objects which provide an elegant solution to filter out those elements from a list for which the function returns `True`. The following code block illustrates a `filter` that eliminates all numbers from the `some_numbers` list, which can be divided by three. 
+
+
+```python
+some_numbers = list(range(1, 10))
+print(list(filter(lambda x: x % 3, some_numbers)))
+```
+
+    [1, 2, 4, 5, 7, 8]
+    
+
+Formerly, the `reduce()` function to merge down list input into one value was implemented in *Python*. However, the *Python* developer *Guido van Rossum* successfully banned it from *Python3* ([read his post](https://www.artima.com/weblogs/viewpost.jsp?thread=98196)), which is why it is not used here.
