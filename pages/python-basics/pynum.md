@@ -1,7 +1,7 @@
 ---
-title: Python Basics - Data handling, read & write files
-keywords: python, numpy, array, matrix, scipy
-summary: "This page shows how data from basic text files can be imported and written with Python. In addition, the math and numeric data handling packages NumPy and pandas are introduced. "
+title: Python Basics - Data processing & file handlers
+keywords: python, numpy, array, matrix, scipy, datetime, pandas, dataframe
+summary: "This page shows how data from basic text files can be imported and written with Python. In addition, the numeric and tabular data handling packages NumPy and pandas are introduced, along with date-time format handling. "
 sidebar: mydoc_sidebar
 permalink: hypy_pynum.html
 folder: python-basics
@@ -976,4 +976,58 @@ print("Standard deviation:\n" + str(measurement_data.std()))
 
 ## Dates and Time
 
-*pandas* involves methods for calulations and labeling with date and time values. The `datetime` package provides even more sophisticated methods for handling time-dependent values. `datetime` is the best solution, for example when data were collected over several years including leap years.
+*pandas* involves methods for calulations and labeling with date and time values with [`pd.Timestamp`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Timestamp.html), which converts date-time-like strings into timestamps or creates timestamps from keyword arguments:
+
+
+```python
+print(pd.Timestamp('2025-01-01T12'))
+print(pd.Timestamp(year=2025, month=1, day=1, hour=12))
+print(pd.Timestamp(2025, 1, 1, 12))
+```
+
+    2025-01-01 12:00:00
+    2025-01-01 12:00:00
+    2025-01-01 12:00:00
+    
+
+The expression `pd.Timestamp(2025, 1, 1, 12)` mimics the powerful `datetime.datetime` *API* (Application Programming Interface) of the `datetime` *Python* package, which provides sophisticated methods for handling time-dependent values. While *pandas*' built-in timestamps are convenient for creating time series within `pd.DataFrame` objects and workbook-like tables, `datetime` is one of the best solutions for time-dependent calculations in *Python*. `datetime` is available by default (i.e., it must not be *conda*-installed) and is efficiently applicable for example to data that were collected over several years including leap years. The `datetime` package comes with many attributes and methods, which are documented in detail in the [*Python* docs](https://docs.python.org/3/library/datetime.html).
+
+The standard usage is:
+
+
+```python
+import datetime as dt
+start_date = dt.datetime(2024, 2, 25, 22, 30, 0)
+end_date = dt.datetime(year=2024, month=3, day=2, hour=2, minute=15, second=30)
+print("Datetime variables can be subtracted:\n" + str(end_date - start_date))
+print("The result is a %s object." % type(end_date - start_date))
+```
+
+    Datetime variables can be subtracted:
+    5 days, 3:45:30
+    The result is a <class 'datetime.timedelta'> object.
+    
+
+`dt.timedelta` objects can also be separately defined:
+
+
+```python
+time_diff = dt.timedelta(days=0, seconds=0, microseconds=0, milliseconds=0, minutes=0, hours=23, weeks=0)
+act_time = start_date
+print("Iterate from start to end date with stepsize=time_diff:")
+while act_time <= end_date:
+    print(act_time.strftime("%Y-%m(%h)-%d, %H:%M:%S"))
+    act_time += time_diff
+```
+
+    Iterate from start to end date with stepsize=time_diff:
+    2024-02(Feb)-25, 22:30:00
+    2024-02(Feb)-26, 21:30:00
+    2024-02(Feb)-27, 20:30:00
+    2024-02(Feb)-28, 19:30:00
+    2024-02(Feb)-29, 18:30:00
+    2024-03(Mar)-01, 17:30:00
+    
+
+
+That's it for the introduction to data and file handling. There is much more to data processing than on this page and the next pages will occasionally feature more tools.
