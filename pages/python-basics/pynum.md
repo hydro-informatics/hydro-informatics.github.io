@@ -7,7 +7,7 @@ permalink: hypy_pynum.html
 folder: python-basics
 ---
 
-## Load and write data files
+## Load and write data files (basics)
 
 Data can be stored in many different (text) file formats such as *txt* or *csv* files. *Python* provides the `open(file)` and `write(...)` functions to read and write data from nearby every text file format, respectively. There are packages such as `csv` (for *csv* files), which simplify handling specific file types. This section illustrates the use of the `load(file)` and `write(...)` functions, and introduces the *pandas* module with its capacity to import and export numeric data along with row and column headers.
 
@@ -182,7 +182,7 @@ else:
 {% include idea.html content="The code block `', '.join([str(e) for e in a_list]) + '\n'` is a recurring expression in the above code snippets. How does a function look like that automatically generates this code block for lists of different data types?" %}
 
 
-## NumPy
+## NumPy {#numpy}
 
 *NumPy* provides high-level mathematical functions for linear algebra including operations on multi-dimensional arrays and matrices. The open-source *NumPy* (for *Numerical Python*) package is written in *Python* and [*C*](https://en.wikipedia.org/wiki/C_(programming_language)), and comes with comprehensive documentation ([download the latest version on the developer's web site](https://numpy.org/doc/) or [read the developer's online tutorial](https://numpy.org/devdocs/user/quickstart.html)).
 
@@ -467,9 +467,9 @@ print("Mean value along axis 1 (rows): " + str(np.nanmean(experiment_data, axis=
 
 The following sections give a tabular overview of statistical functions in *NumPy* (source: *NumPy* v.1.13 docs). The listed functions only represent fundamental statistic functions and *NumPy* provides many more options, which can be leveraged using any search engine with *NumPy*  and the desired function as search keywords.
 
-Basic statistic functions
-
 ***
+
+Basic statistic functions
 
 | Function                              | Description                                                                                 |
 |---------------------------------------|---------------------------------------------------------------------------------------------|
@@ -479,9 +479,9 @@ Basic statistic functions
 | [`percentile(a, q[, axis, out, ...])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.percentile.html#numpy.percentile)    | q-th percentile of data along a specified axis.                            |
 | [`nanpercentile(a, q[, axis, out, ...])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.nanpercentile.html#numpy.nanpercentile) | q-th percentile of data along a specified axis, ignoring `np.nan`. |
 
-Mean (average), standard deviation, and variances
-
 ***
+
+Mean (average), standard deviation, and variances
 
 | Function                                          | Description                                                                   |
 |---------------------------------------------------|-------------------------------------------------------------------------------|
@@ -494,9 +494,9 @@ Mean (average), standard deviation, and variances
 | [`nanmean(a[, axis, dtype, out, keepdims])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.nanmean.html#numpy.nanmean)          | Arithmetic mean along an (optional) axis, ignoring `np.nan`.          |
 | [`nanstd(a[, axis, dtype, out, ddof, keepdims])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.nanstd.html#numpy.nanstd)     | Standard deviation along an (optional) axis, while ignoring `np.nan`. |
 
-Correlating data (arrays)
-
 ***
+
+Correlating data (arrays)
 
 | Function                                       | Description                                             |
 |------------------------------------------------|---------------------------------------------------------|
@@ -504,9 +504,9 @@ Correlating data (arrays)
 | [`correlate(a, v[, mode])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.correlate.html#numpy.correlate)                        | Cross-correlation of two 1-dimensional sequences.       |
 | [`cov(m[, y, rowvar, bias, ddof, fweights, ...])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.cov.html#numpy.cov) | Estimate covariance matrix, based on data and weights.   |
 
-Generate and plot histrograms
-
 ***
+
+Generate and plot histrograms
 
 | Function                                          | Description                                                                |
 |---------------------------------------------------|----------------------------------------------------------------------------|
@@ -516,18 +516,19 @@ Generate and plot histrograms
 | [`bincount(x[, weights, minlength])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.bincount.html#numpy.bincount)                 | Count number of occurrences of each value in array of non-negative ints.   |
 | [`digitize(x, bins[, right])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.digitize.html#numpy.digitize)                        | Indices of the bins to which each value in input array belongs. |
 
-### Can *NumPy* do *Matlab*?
+### Can *NumPy* do *MATLAB*&reg;?
 
-Are you considering to switch to *Python* after starting softly into programming with *Matlab*-like software? There are many reasons for enhancing data analyses with *Python* and here are some facilitators for previous *Matlab* users:
+Are you considering to switch to *Python* after starting softly into programming with *MATLAB&reg;*-like software? There are many reasons for enhancing data analyses with *Python* and here are some facilitators for previous *MATLAB&reg;* users:
 
-* *Matlab* matrices can be loaded and saved with [`scipy.io.loadmat(matrix-file-name)`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.io.loadmat.html#scipy.io.loadmat) (use ` import scipy`).
-* *NumPy*'s `np.array` replaces *Matlab*'s matrix notation (even though there is the historic, deprecated *NumPy* data type `np.matrix`).
-* Import many *Matlab* features from `np.matlib` (e.g., `from numpy.matlib import rand, zeros, ones, empty, eye)` or more generally `import numpy.matlib as M`).
-* Find the *NumPy* equivalent of many *Matlab* function in the [*NumPy* documentation](https://numpy.org/doc/stable/user/numpy-for-matlab-users.html#table-of-rough-matlab-numpy-equivalents).
+* *MATLAB&reg;* matrices can be loaded and saved with [`scipy.io.loadmat(matrix-file-name)`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.io.loadmat.html#scipy.io.loadmat) (use ` import scipy`).
+* *NumPy*'s `np.array` replaces *MATLAB&reg;*'s matrix notation (even though there is the historic, deprecated *NumPy* data type `np.matrix`).
+* Import many *MATLAB&reg;* features from `np.matlib` (e.g., `from numpy.matlib import rand, zeros, ones, empty, eye)` or more generally `import numpy.matlib as M`).
+* Find the *NumPy* equivalent of many *MATLAB&reg;* function in the [*NumPy* documentation](https://numpy.org/doc/stable/user/numpy-for-matlab-users.html#table-of-rough-matlab-numpy-equivalents).
+* To emulate *MATLAB&reg;*'s plot functions use the `pylab` package and import it as `from pylab import *`. &#9888; This overwrites all other (standard) definitions of the `plot()` function and `array()` objects. So this usage is deprecated. [Read the plotting pages](hypy_pyplot.html) for consistent plotting instructions with *Python*.
 
-*MATLAB® is a registered trademark of The MathWorks.*
+*MATLAB&reg; is a registered trademark of The MathWorks.*
 
-## Pandas
+## Pandas {#pandas}
 
 *pandas* is a powerful module (package) for data analyses and manipulation with *Python*. It has can handle *NumPy* arrays, and both packages jointly represent a powerful data processing engine. The power of *pandas* lies in processing data frames, data labeling (e.g., workbook-like columns names), and flexible file handling functions (e.g., the built-in `read_csv(csv-file)`). While *NumPy* arrays enable calculations with multidimensional arrays (beyond 2-dimensional tables) and low memory consumption, *pandas* `DataFrame`s efficiently process and label tabular data with more than ~100,000 rows. Because of its labelling capacity, *pandas* also finds broad application in machine learning. In summary, *pandas*' functionality builds on top of *NumPy* and both packages are developed by the [*SciPy*](https://www.scipy.org/) (*Scientific computing tools for Python*) community that also develops `matplotlib` (see [the introduction to plotting with *Python*](hypy_pyplot.html) and *IPython* (*Jupyter*'s *Python* kernel).
 
