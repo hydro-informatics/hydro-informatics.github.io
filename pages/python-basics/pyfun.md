@@ -213,7 +213,7 @@ print(feet_to_meter(3, 1, 10))
     [0.9144000000000001, 0.3048, 3.048]
     
 
-## Function wrappers and Decorators
+## Function wrappers and Decorators {#wrappers}
 If multiple functions contain similar lines, chances are that those functions can be further factorized by using function wrappers and decorators. A typical example is for example if a license checkout is needed in order to use a commerical *Python* module/package (e.g., Esri's `arcpy`) or if we want to use a recurring error statement with `try` - `except` statements. 
 
 Consider two or more functions that should receive, process and produce numerical output from user input. These functions could look like this:
@@ -298,13 +298,6 @@ sum_up_arguments("absolutely", "no", "valid", "input")
     ERROR: The calculation could not be performed because of at least one non-numeric input (input arguments: (3, 4, 'not a number'))
     Success. The result is 7.000.
     ERROR: The calculation could not be performed because of at least one non-numeric input (input arguments: ('absolutely', 'no', 'valid', 'input'))
-    
-
-
-
-
-    0.0
-
 
 
 The above wrapper function returns the wrapped function results, too. However, in order to use built-in function attributes (e.g., the function's name with `__name__`, the function's docstring with `__doc__`, or the module in which the function is defined with `__module__`) outside of the wrapper, we need the wrapper function to return the wrapped (decorated) function itself. This can be done as follows:
