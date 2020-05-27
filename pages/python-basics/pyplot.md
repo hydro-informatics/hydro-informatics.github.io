@@ -27,8 +27,40 @@ A `plt.figure` can be thought of as a box containing one or more axes, which rep
 
 {% include image.html file="pyplot-defs.png" alt="pyplot-defs" max-width="500" caption="Python objects (attributes) of a pyplot figure." %} 
 
+### 1D plots
+The following code blocks illustrate plot and figure adaptations of [randomly drawn samples from a weibull dsitribution](https://numpy.org/doc/stable/reference/random/generated/numpy.random.RandomState.weibull.html#numpy.random.RandomState.weibull):<br>
 
+<img src="https://render.githubusercontent.com/render/math?math=p(x) = {a}{\lambda}\left({x}{\lambda}\right)^{a-1}\cdot e^{-(x/\lambda)^a}"> <br>
+
+where *a* is the distribution shape (if *a*=1, the Weibull distribution reduces to an exponential distribution), and *&lambda;* is the the scale.
+
+
+The `seed` argument describes the source of randomness and `seed=None` makes *Python* use randomness from operating system variables.
+
+
+```python
+import matplotlib.pyplot as plt
+x = np.arange(1, 100)
+random_data = np.random.RandomState(seed=None)  # create 100 random data points
+plt.plot(x, random_data.weibull(3., x.__len__()))
+```
+
+
+
+
+    [<matplotlib.lines.Line2D at 0x1d4f6e7fc08>]
+
+
+
+
+![png](output_2_1.png)
+
+
+
+```python
+
+```
 
 ## Plotting with *pandas* {#pandas}
 
-Plotting with *matplotlib* can be frustrating, not because the library is poorly documented (the complete opposite is the case), but because *matplotlib* is very extensive. *pandas* brings remedy with simplified commands for high-quality plots.
+Plotting with *matplotlib* can be daunting, not because the library is poorly documented (the complete opposite is the case), but because *matplotlib* is very extensive. *pandas* brings remedy with simplified commands for high-quality plots.

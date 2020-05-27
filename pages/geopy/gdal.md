@@ -16,4 +16,4 @@ folder: geopy
      `setx GDAL_DRIVER_PATH 'C:\Program Files\GDAL\gdalplugins'`<br>
      `setx PROJ_LIB 'C:\Program Files\GDAL\projlib'`<br>
      `setx PYTHONPATH 'C:\Program Files\GDAL\'`<br><br>
- Wait a couple of moments until *PyCharm* adapted the new `environment_variables` and try to `import gdal` - it should work now." %}
+ Wait a couple of moments until *PyCharm* adapted the new `environment_variables` and `import gdal` - should work now." %}
