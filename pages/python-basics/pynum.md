@@ -39,7 +39,7 @@ where:
 When `"r"` or `"w"` modes are used, the file pointer (i.e, the blinking cursor that you can see for example in Word documents) is place at the beginning of the file. For `"a"` modes, the file pointer is placed at the end of the file.
 
 ### Read-only {#read}
-Once the file object is created, we can parse the file and copy the file data content to a desired *Python* [data type](hypy_pybase.html#var) (e.g., a list, tuple or dictionary). Parsing the data uses [*for-loops*](hypy_pyloop.html#for) (other loop types will also work) to iterate on lines and line entries. The lines represent *strings*, where the data columns can be separated by using the built-in *string* function `line_as_list = str().split("SEPARATOR")`, where `"SEPARATOR"` can be `","` (comma), `";"` (semicolon), `"|t"` (tab), or any other sign. After reading all data from a file, use `file_object.close()` to avoid that the file is locked by *Python* and cannot be opened by another program.
+Once the file object is created, we can parse the file and copy the file data content to a desired *Python* [data type](hypy_pybase.html#var) (e.g., a list, tuple or dictionary). Parsing the data uses [*for-loops*](hypy_pyloop.html#for) (other loop types will also work) to iterate on lines and line entries. The lines represent *strings*, where the data columns can be separated by using the built-in *string* function `line_as_list = str().split("SEPARATOR")`, where `"SEPARATOR"` can be `","` (comma), `";"` (semicolon), `"\t"` (tab), or any other sign. After reading all data from a file, use `file_object.close()` to avoid that the file is locked by *Python* and cannot be opened by another program.
 
 The following example opens a text file called *pure-numbers.txt* (located in a sub-folder called *data*) that contains *float* numbers between 0.0 and 10.0. The file has 17 data rows (e.g., for 17 experimental runs) and 4 data columns (e.g., for 4 measurements per experimental run), which are separated by a *TAB* (`"\t"` separator) The code snippet uses the built-in function `readlines()` to parse the file lines, splits the lines using the `"\t"` separator, and loops over the line entries to append them to the list variable `data_list`, if `entry` is numeric (verified with the `try` - `except` statement). `data_list` is a nested list that is initiated at the beginning of the script and a sub-list (nested list) is appended for every file line (row).
 
@@ -113,7 +113,7 @@ new_file.close()
 
 Existing text files can be opened and modified in either `mode="r+"` (pretending that information needs to be read before it is modified) or `mode="a+"`. Recall that `"r+"` will place the pointer at the beginning of the file and `"a+"` will place the pointer at the end of the file. So if we want to modify existing lines, `"r+"` is the good choice and if we want to append data at the end of the file, `"a+"` is the good choice (`+` is not strictly needed in the case of `"a+"`). This section shows to examples: (1) modification of existing data in a file using `"r+"`, and (2) appending data to an existing file using `"a+"`.
 
-***First example - replacing data:*** In the previous example, we eliminated all measurements that were smaller than 1 *mm* because of the precision of the measurement device. However, we have retained all other values with two-digit accuracy - an accuracy which is not given. Consequently, all decimal places in the measurements must also be eliminated. To achieve this we have to round all measured values with *Python*'s built-in rounding function (`round(number, n-digits`) to zero decimal places (i.e., `n-digits = 0`).
+***First example - replace data in file:*** In the previous example, we eliminated all measurements that were smaller than 1 *mm* because of the precision of the measurement device. However, we have retained all other values with two-digit accuracy - an accuracy which is not given. Consequently, all decimal places in the measurements must also be eliminated. To achieve this we have to round all measured values with *Python*'s built-in rounding function (`round(number, n-digits`) to zero decimal places (i.e., `n-digits = 0`).
 In this example, an exception `IOError` is raised when the file `"data/modified-data.csv"` does not exist (or is locked by another software). An `if` statement ensures that rounding the data is only attempted if the file exists.
 The overwriting procedures first reads all lines of the file into the `lines` variable. After reading the lines, the pointer is at the end of the file and `file.seek(0)` puts the pointer back to position 0 (i.e., at the beginning of the file). `file.truncate()` purges the file. Yes, the original file is blank for a moment and all file contents are stored in the `lines` variable. Rounding the data happens within a *for-loop* that:
 
@@ -156,8 +156,8 @@ if modified_file:
 
 Theoretically the above code snippet can be re-written as a function to modify any data in a file. In addition, other threshold values or particular data ranges can be filtered using `if` - `else` statements.
 
-***Second example - appending data:*** By coincidence, you find on one of the measurement protocols that there is an 18th experimental run that is not in the electronic measurement data file due to a data transmission error. Now, we want to add the data to the above-produce *csv* file manually. Entering the data does not take much work, because only 4 measurements were performed per experimental run and we could already manually apply the above filters (`"nan"` and rounding) in a list variable called `forgotten_data`.
-This example uses the `os` module ([recall modules](hypy_pckg.html)) to verify if the data file exists with `os.path.isfile()` (the `os.getcwd()` statement is a gadget here). This example features another way of directly opening and writing to the data file using a `with` statement. The `with` statement is particularly useful for file handling because the file object only exists in the indented `with` block, which makes the tedious call to `file.close()` obsolete.
+***Second example - append data to file:*** By coincidence, you find on one of the measurement protocols that there is an 18th experimental run that is not in the electronic measurement data file due to a data transmission error. Now, we want to add the data to the above-produce *csv* file manually. Entering the data does not take much work, because only 4 measurements were performed per experimental run and we could already manually apply the above filters (`"nan"` and rounding) in a list variable called `forgotten_data`.
+This example uses the `os` module ([recall modules](hypy_pckg.html)) to verify if the data file exists with `os.path.isfile()` (the `os.getcwd()` statement is a gadget here). This example features another way of directly opening and writing to the data file using a **`with`** statement (i.e., a ***context manager***). The `with` context is particularly useful for file handling because the file object only exists in the indented `with` context block, which makes the tedious call to `file.close()` obsolete.
 
 The essential part that writes the line to the data file is `file.write(line)`, where `line` corresponds to the above-introduced `", ".join(list-of-strings) + "\n"` *string*.
 
@@ -179,7 +179,7 @@ else:
     Data appended.
     
 
-{% include idea.html content="The code block `', '.join([str(e) for e in a_list]) + '\n'` is a recurring expression in the above code snippets. How does a function look like that automatically generates this code block for lists of different data types?" %}
+{% include challenge.html content="The code block `', '.join([str(e) for e in a_list]) + '\n'` is a recurring expression in the above code snippets. How does a function look like that automatically generates this code block for lists of different data types?" %}
 
 
 ## NumPy {#numpy}
@@ -327,7 +327,7 @@ print("Maximum: " + str(an_array.max()))
     Maximum: 6
     
 
-### Color arrays
+### Color arrays {#colors}
 Arrays may also contain color information, whee colors represent a mix of the three base colors red, green, and blue. One color is defined as `[red-value, green-value, blue-value]` and a value of 0 means that a color tone is not present, while 255 is its maximum value. When all color tone values are zero, there is no color, which corresponds to *black*; when all color tones are maximum (255), the color mix corresponds to *white*. This way, array elements can be lists of color tones and plotting such arrays produces images. The following example produces an array with 5 color-list elements, which could be plotted as a very basic image with 5 pixels (one black, red, green, blue, and white, respectively):
 
 
@@ -691,7 +691,7 @@ print("Same result with integer grid location: " + str(dict_df.iloc[2, 0]))
     Same result with integer grid location: 0.13765563
     
 
-### Reshape data frames
+### Reshape data frames {#pd-reshape}
 Single or multiple rows (index) and columns can be extracted from and combined into new or existing `DataFrame` objects:
 
 
