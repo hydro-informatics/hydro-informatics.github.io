@@ -7,6 +7,8 @@ permalink: hypy_pystyle.html
 folder: python-basics
 ---
 
+Take a deep breath, take off and look at what you have learned so far from a new perspective. After this chapter it is worth to have another look at old codes and to format them robustly. The style guidelines presented here go far beyond visual aesthetics and aid in writing effective codes.
+
 ## Background and PEP
 
 This style guide highlights parts of the *PEP 8 - Style Guide for Python Code* by Guido van Rossum, Barry Warsaw and Nick Coghlan. The full document is available at [python.org](https://www.python.org/dev/peps/pep-0008/) and only aspects with relevance for the applications shown at *hydro-informatics.github.io* are featured on this page.
@@ -105,7 +107,25 @@ def top_level_function():
 # blank 2 after top-level function
 ```
 
-## Package and module imports
+### Blanks (whitespaces)
+
+Whitespaces aid to relax the code layout, but too many white spaces should be avoided as for example:
+
+* in parentheses, brackets or braces (no: `list( e1, e2 )` vs. yes: `list(e1, e2)`)
+* in parentheses with tailing commas (no: `a_tuple = (1, )` vs. yes: `a_tuple = (1,)`)
+* immediately before any comma
+* between function name and argument parentheses (no: `fun (arg)` vs. yes: `fun(arg)`) and similar for list or dictionary elements
+* around the `=` sign of unannotated function parameters indicating a default value (no: `def fun(arg = 0.0)` vs. yes: `def fun(arg=0.0)`)
+* before `:` unless parentheses or brackets follow the `:` (e.g., `a_dict = {a_key: a_value}`)
+
+Whitespaces should be added:
+
+* around any operator, boolean, or (augmented) assignment (e.g., `==, <, >, !=, <>, <=, >=, in, not in, is, is not, and, or, not, +=, -=`)
+* after colons `:` if a value antecedes the `:` and no parentheses or brackets follow immediately after the `:` (e.g., `a_dict = {a_key: a_value}`)
+
+## Packages and modules
+
+### Imports
 Imports are at the top of the script, right after any [docstrings](#docstrings) or other module comments. Import libraries first, then third party packages, and lastly locally stored (own) modules.
 Preferably use absolute import (e.g., `import package.module` or `from package import module`) and avoid wild card imports (`from module import *`). Every import should have an own line and avoid using the comma sign for multiple imports:
 
@@ -118,7 +138,19 @@ import numpy as np
 import os, sys
 ```
 
-## Docstrings {#docstrings}
+### Name convention
+New, custom packages or modules should have short and all-lowercase names, where underscores may be used to improve readability (discouraged for packages).
+
+## Comments
+
+### Block and inline comments
+Block comments start with a single `#` at the first place of a line, followed by a whitespace and the comment text.
+
+Inline comments follow an expression and are indented with two whitespaces. The usage of inline comments is deprecated (i.e., do not use them or be sparse on their usage)
+
+
+
+### Docstrings {#docstrings}
 Docstrings are short text descriptions within a module, function, class or method with specifications of arguments, usage and output. When instantiating a standard object, or referencing to a class method, the `__doc__` attribute will print the object's docstring information. For example: 
 
 
@@ -159,3 +191,61 @@ print(let_there_be_light.__doc__)
     
 
 Note that the recommendations on docstringsare provided with [*PEP* 257](https://www.python.org/dev/peps/pep-0257/) rather than *PEP* 8.
+
+## Name conventions
+
+### Definition of name styles
+The naming conventions use the following styles (source: [*python.org*](https://www.python.org/dev/peps/pep-0008/#naming-conventions)):
+
+* `b` (single lowercase letter)
+* `B` (single uppercase letter)
+* `lowercase`
+* `lower_case_with_underscores`
+* `UPPERCASE`
+* `UPPER_CASE_WITH_UNDERSCORES`
+* `CamelCase` or `CapWords` or `CapitalizedWords` or `StudlyCaps`. <br>Note: When using acronyms in `CapWords`, capitalize all the letters of the acronym (e.g., `HTTPResponse` is better than `HttpResponse`).
+* `mixedCase` (differs from `CapitalizedWords` by initial lowercase character!)
+* `Capitalized_Words_With_Underscores` (deprecated)
+
+Some variable name formats imply a particular behavior of *Python*:
+
+* `_single_leading_underscore` variables indicate weak internal use and will not be imported with `from module import *`
+* `__double_leading_underscore` variables invoke name mangling in classes (e.g., a method called `__dlu` within the class `MyClass` will be mangled into `_MyClass__dlu`)
+* `__double_leading_and_tailing_underscore__` variables are *magic* objects or attributes in user-controlled namespaces (e.g., `__init__` or `__call__` in classes) <br>Only use documented magic object/attributes and never invent them. Read more about magic methods on the page on *Python* [classes](hypy_classes.html#magic).
+* `single_tailing_underscore__` variables are used to avoid conflicts with *Python* keywords (e.g., `MyClass(class_='AnotherClass')`)
+
+
+### Object names {#object-styles}
+
+Use the following styles for naming
+
+* Classes: `CamelCase` (`CapWords`) letters only such as `MyClass`
+* Constants: `UPPERCASE` letters only, where underscores may improve readability (e.g., use at a module level for example to assign water density `RHO = 1000`)
+* Exceptions: `CamelCase` (`CapWords`) letters only (exceptions should be classes and typically use the suffix `Error` (e.g., `TypeError`)
+* Functions: `lowercase` letters only, where underscores may improve readability; sometimes `mixedCase` applies to ensure backwards compatibility of prevailing styles
+* Methods (class function, non-public): `_lowercase` letters only with leading underscore, where underscores may improve readability
+* Methods (class function, public): `lowercase` letters only, where underscores may improve readability
+* Modules: `lowercase` letters only, where underscores may improve readability
+* Packages: `lowercase` letters only, where underscores are discouraged
+* Variables: `lowercase` letters only, where underscores may improve readability
+* Variables (global): `lowercase` letters only, where underscores may improve readability; note that "global" should limit to variable usage within a module only ...
+
+
+## More code style recommendations
+
+In order to ensure code compatibility and programm efficiency, the *PEP 8* style guide provides some general recommendations ([read more](https://www.python.org/dev/peps/pep-0008/#programming-recommendations)):
+
+* Prefer `is` or `is not` over equality operators
+* Prefer `is not` over `not ... is` expressions
+* When defining a function, prefer `def` statements over `lambda` expressions, which are only reasonable for one-time usage
+* When exceptions are expected, use `try` - `except` clauses (see [errors and exceptions](hypy_pyerror.html#try-except))
+* Ensure that methods and functions return objects consistently - for example:
+
+
+```python
+def a_function_with_return(x):
+    if x > 0:
+        return np.sqrt(x)
+    else:
+        return None
+```

@@ -3,7 +3,7 @@ title:
 tags: [python]
 keywords: python
 sidebar: mydoc_sidebar
-permalink: hypy_pyintro.html
+permalink: python.html
 folder: python-basics
 ---
 

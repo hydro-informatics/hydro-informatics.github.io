@@ -25,7 +25,7 @@ To err is human and *Python* helps us to find our mistakes by providing [error](
 Still, there are many more error types that can occur an *Python* developers maintain comprehensive descriptions of built-in exceptions on the [*Python* documentation web site](https://docs.python.org/3.8/library/exceptions.html).
 
 
-## Exception handling with `try` - `except` 
+## Exception handling with `try` - `except` {#try-except}
 `try` and `except` keywords test a code block and if it crashes, an `exception` is raised, but the script itself will not crash. The basic structure is:
 
 
@@ -52,6 +52,18 @@ except ValueError:
     What's that? sorry, please try again.
     
 
+What to do if you are unsure about the error type? Add an `else` statement:
+
+
+```python
+try:
+    value = a_dictionary[key]
+except KeyError:
+    return key_not_found(key)
+else:
+    return handle_value(value)
+```
+
 ## The `pass` statement
 When we start writing code we of start with a complex, modular and void code frame. In order to test the code, we need to run it incrementally (i.e., to debug the code). The above error type definitions help us to understand errors that we made in already written code. However, we want to run our code also with voids, or sometimes just to ignore minor errors silently. In this case, the `pass` statement helps:
 
@@ -72,7 +84,7 @@ Debugging is the act of removing bugs from code. Once you wrote more or less com
 
 Large code blocks can be a nightmare for debugging and this section provides some principles to reduce the factor of scariness that debugging may involve.
 
-### Use exceptions precisely
+### Use exceptions precisely 
 Embrace critical code blocks precisely with `try` - `except` keywords and possible errors. This will help later on to identify possible errors.
 {% include tip.html content="Document self-written error messages in except statements from the beginning on (e.g., in a markdown document) and establish a developer [wiki](hy_documentation.html) including possible error sources and remedy descriptions." %}
 
