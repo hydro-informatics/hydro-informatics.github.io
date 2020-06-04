@@ -214,7 +214,7 @@ print(feet_to_meter(3, 1, 10))
     
 
 ## Function wrappers and Decorators {#wrappers}
-If multiple functions contain similar lines, chances are that those functions can be further factorized by using function wrappers and decorators. A typical example is for example if a license checkout is needed in order to use a commerical *Python* module/package (e.g., Esri's `arcpy`) or if we want to use a recurring error statement with `try` - `except` statements. 
+If multiple functions contain similar lines, chances are that those functions can be further factorized by using function wrappers and decorators. A typical example is for example if a license checkout is needed in order to use a commercial *Python* module/package (e.g., Esri's `arcpy`) or if we want to use a recurring error statement with `try` - `except` statements. 
 
 Consider two or more functions that should receive, process and produce numerical output from user input. These functions could look like this:
 
@@ -298,6 +298,13 @@ sum_up_arguments("absolutely", "no", "valid", "input")
     ERROR: The calculation could not be performed because of at least one non-numeric input (input arguments: (3, 4, 'not a number'))
     Success. The result is 7.000.
     ERROR: The calculation could not be performed because of at least one non-numeric input (input arguments: ('absolutely', 'no', 'valid', 'input'))
+    
+
+
+
+
+    0.0
+
 
 
 The above wrapper function returns the wrapped function results, too. However, in order to use built-in function attributes (e.g., the function's name with `__name__`, the function's docstring with `__doc__`, or the module in which the function is defined with `__module__`) outside of the wrapper, we need the wrapper function to return the wrapped (decorated) function itself. This can be done as follows:
@@ -323,6 +330,38 @@ def verify_result(func):
 Note the difference: the `wrapper` function now returns `func(*arg, **kwargs)` instead of the numeric variable results. If the function can not be executed because of invalid input, the `wrapper` will return an error function (`error_func`), which ensures the consistency of the wrapper function. One may think that the error function returning 0.0 is obsolete, because the exception statements could directly return 0.0. However, 0.0 is a *float* variable, while `error_func` is a function and it is important that the function wrapper always returns the same data type, regardless of the an exception raise or successful execution. This is what makes code consistent.
 
 This page shows examples for using the decorators in the shape of an `@` sign to wrap (embrace) a function. Decorators are also a useful feature in classes, for example when a class function returns static values. Read more about decorators in classes later in the chapter about [object orientation and classes](http://localhost:4000/hypy_classes.html#dec).
+
+## Iterators and generators
+A characteristic of *list*, *tuple*, and *dictionary* data types is their iterability, which is provided by their `__iter__` built-in method. For example, iterability is the for why we can write:
+
+
+```python
+for e in [1, 2, 3]: print(e)
+```
+
+Besides iterations, *Python* also enables to create generators (i.e., generator functions). Instead of using a `return` statement, a generator function ends with a `yield` statement, that returns data as long as a `next()` function (inherent step in iterations) is called. An application of a generator is for example the flattening of nested lists (i.e., remove sub-lists and write all variables directly into a non-nested list):
+
+
+```python
+from collections.abc import Iterable
+
+def flatten(nested_list):
+    for e in nested_list:
+        if isinstance(e, Iterable) and not isinstance(e, str):
+            for x in flatten(e):
+                yield x
+        else:
+            yield e
+            
+a_nested_list = [[1, 2, 3], ["a", "b", "c"]]
+flattened_list = list(flatten(a_nested_list))
+print(flattened_list)
+```
+
+    [1, 2, 3, 'a', 'b', 'c']
+    
+
+{% include note.html content="The above example uses `Iterable` from the standard module `collections.abc`. More about importing packages and modules will be discussed on the [Modules & packages](hypy_pckg.html) page." %}
 
 ## Lambda functions
 
