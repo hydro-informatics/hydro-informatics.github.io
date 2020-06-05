@@ -1,13 +1,15 @@
 ---
 title: Python - Code Styles and Conventions
 keywords: python
-summary: "A robust code style facilitates programming."
 sidebar: mydoc_sidebar
 permalink: hypy_pystyle.html
 folder: python-basics
 ---
 
+
 Take a deep breath, take off and look at what you have learned so far from a new perspective. After this chapter it is worth to have another look at old codes and to format them robustly. The style guidelines presented here go far beyond visual aesthetics and aid in writing effective codes.
+
+{% include image.html file="style-loop.png" %}
 
 ## Background and PEP
 

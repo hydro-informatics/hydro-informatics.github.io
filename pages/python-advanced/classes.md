@@ -101,10 +101,10 @@ pacific_salmon.print_habitat()
 ### Polymorphism
 In computer science, polymorphism refers to the ability of presenting the same programming interface for different basic structures. Admittedly, a definition cannot be much more abstract. So it is sufficient to focus here only on the meaning of polymorphism relevant in *Python* and that is when child classes have methods of the same name as the parent class. For example, polymorphism in *Python* is when we re-define the `swim_to_position` function of the above show `Fish` parent class in the `Salmon` child class.
 
-### Encapsulation
+### Encapsulation (public and non-public attributes)
 The concept of encapsulation combines data and functions to manipulate data, whereby both (data and functions) are protected against external interference and manipulation. Encapsulation is also the baseline of [data hiding](https://en.wikipedia.org/wiki/Information_hiding) in computer science, which segregates design decisions in software regarding objects that are likely to change. Here, the most important aspect of encapsulation is the differentiation between `private` and `public` class variables. 
 
-`private` attributes cannot be modified from outside (i.e., they are protected and cannot be changed for an instance of a class). In *Python*, there are no inherently `private` variables and this is why *Python* docs talk about `non-public` attributes (i.e., `_single_leading_underscore` *def*s in a class) rather than `private` attributes. While using a single underscore is rather good practice without technical support, we can use `__double_leading_underscore` attributes to emulate private behavior with a mechanism called *name mangling*.
+`private` attributes cannot be modified from outside (i.e., they are protected and cannot be changed for an instance of a class). In *Python*, there are no inherently `private` variables and this is why *Python* docs talk about `non-public` attributes (i.e., `_single_leading_underscore` *def*s in a class) rather than `private` attributes. While using a single underscore is rather good practice without technical support, we can use `__double_leading_underscore` attributes to emulate private behavior with a mechanism called *name mangling*. Read more about variable definition styles in the [style guide](hypy_pystyle.html#object-styles).
 
 `public` attributes can be modified externally (i.e., different values can be assigned to `public` attributes of different instances of a class).
 
@@ -292,19 +292,24 @@ print(atlantic_mackerel * 10)
     20
     
 
-### Overloading custom *Python* classes
+## Template for a custom *Python* class
 
-In order to make your own custom functions capable of using operators, maybe in a slightly different way, magic methods need to be implemented. The standard magic methods that a custom class should have are:
+This page features a couple of examples with options for implementing public and non-public properties and customizations of *magic* methods to enable the use of operators such as `+` or `<=` with custom classes. So there are many options in writing custom classes and all custom classes should at least incorporate the following methods:
 
 * `__init__(self, [...)` is the class initializer, which is called when an instance of the class is created. More precisely, it is called along with the `__new__(cls, [...)` method, which is rarely used (read more at [python.org](https://docs.python.org/3/reference/datamodel.html?highlight=__new__%20method#object.__new__)). The initializer gets the arguments passed with which the object was called. For example when `var = MyClass(1, 'vanilla' )`, the `__init__(self, [...)` method gets `1` and `'vanilla'`.
 * `__call__(self, [...)` enables to call a class instance directly, for example `var('cherry')` (corresponds to `var.__call__('cherry')`) may be used to change from `'vanilla'` to `'cherry'`.
 
-As a result, a robust class skeleton looks like this:
+As a result, a robust class skeleton to start with looks like this:
 
 
 ```python
 class NewClass:
     def __init__(self, *args, **kwargs):
+        # initialize any class variable here (all self.attributes should be here)
+        pass
+    
+    def methods1_n(self, *args, **kwargs):
+        # place class methods between the __init__ and the __call__ methods
         pass
     
     def __call__(self, *args, **kwargs):
@@ -313,8 +318,4 @@ class NewClass:
         print(dir(self))
 ```
 
-## Public and non-public attributes
-
-Public attributes are any attributes that you expect to be used by unrelated clients (variables) of your class. Such attributes can be changed externally.
-
-Non-public attributes are not intended to be used by third parties. Although non-public attributes cannot usually be changed externally, there are no guarantees that non-public attributes will nevertheless be changed or even removed. Non-public attributes should be named with a leading underscore (e.g., `_non_public_method` - see the [style guide](hypy_pystyle.html#object-styles)) .
+Understanding the power and structure of classes and object orientation takes time and requires practicing. The next pages provide some more examples of classes to get more familiar with the concept.
