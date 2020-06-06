@@ -182,7 +182,7 @@ wb.close()
 Other workbook charts are available and their implementation (still: why would you?) is explained in the [*openpyxl* docs](https://openpyxl.readthedocs.io/en/stable/charts/introduction.html).
 
 ### Customize workbook manipulation
-There are many ways of modifying workbooks and *openpyxl* provides some "shovel-ready" methods to manipulate workbooks. Still, in order to avoid to re-read this lesson every time you want to manipulate a workbook, it is much more convenient to have your own workbook manipulation classes ready. For example, use custom `Read` and `Write` classes, where `Read` is the parent class of the `Write` class:
+There are many ways of modifying workbooks and *openpyxl* provides close-to "shovel-ready" methods to manipulate workbooks. Still, in order to avoid re-reading this lesson every time you want to manipulate a workbook, it is much more convenient to have your own workbook manipulation classes ready. For example, use custom `Read` and `Write` classes, where `Read` is the parent class of the `Write` class (see [inheritance of classes](hypy_classes.html#Inheritance)). The `Read` class may contain tailored functions for reading specific columns, rows, or arrays. The below code block illustrates a basic example for such `Read` and `Write` classes with the above `read_columns` function implemented as a method of the `Read` class.
 
 
 ```python
@@ -199,6 +199,10 @@ class Read:
         else:
             self.ws = self.wb[self.wb.sheetnames[0]]
             
+    def read_columns(self, start_row=0, columns="ABC"):
+        return [self.ws["{}{}".format(column, row)].value for row in range(start_row, len(self.ws.rows) + 1) for column
+                in columns]
+            
     def __call__(self):
         print(dir(self))
 
@@ -211,6 +215,27 @@ class Write(Read):
 
 ```
 
+An extended example script with more complex `Read` and `Write` classes can be downloaded from the [course repository](https://github.com/hydro-informatics/material-py-codes/raw/master/workbooks/xlsx.py) (please note that this script is only temporary available when the course takes place).
+
+{% include challenge.html content="What are your favorite fonts, table colors and layouts? Write your own `Read` and `Write` classes with formatting methods to have a personal template ready to be used at any time." %}
+
 ### An example from water resources engineering and research
 
-The ecological restoration or enhancement of rivers requires, among other data, information on preferred water depths and flow velocities of target fish species. This information is established by biologists and then often provided in the shape of so-called [habitat suitability index](https://riverarchitect.github.io/RA_wiki/SHArC#hefish) (HSI) curves in workbook formats. 
+The ecological restoration or enhancement of rivers requires, among other data, information on preferred water depths and flow velocities of target fish species. This information is established by biologists and then often provided in the shape of so-called [habitat suitability index](https://riverarchitect.github.io/RA_wiki/SHArC#hefish) (HSI) curves in workbook formats. As water resources researchers and engineers, we produce geospatially explicit data of water depth and flow velocity with numerical models. The output of two- or three-dimensional numerical models is way too large for being handled with office applications. So we need an advanced tool such as *Python* to handle the geospatially explicit data and to read and interpolate HSI curves from workbooks. How does that look like technically? The course assignments will help you to find out ...
+
+## JSON
+
+JavaScript Object Notation ([JSON](https://www.json.org/json-en.html)) files have a similar structure to XML and enable the structured storage of (human-readable) data. For example, the numerical code *BASEMENT v.3.x* ([read more on the numerical modelling pages](bm.html)) uses a *model.json* and a *simulation.json* file to store model setup parameters such as material properties. In water resources engineering and research, we often want to automate running numerical models, which involves the optimization of model parameters stored in *json* files. This is where *Python* steps in with the `JSON` package and `pandas`' *JSON* modules.
+
+### Read and write *JSON* files
+Read JSON files with *pandas* [`read_json`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_json.html) and [`normalize_json`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.json_normalize.html).
+
+Export *pandas* data frames with [`pandas.DataFrame.to_json`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_json.html).
+
+
+Alternative: *Python*s [`JSON` library](https://docs.python.org/3/library/json.html) (implemented in *pandas*).
+
+
+```python
+import JSON
+```
