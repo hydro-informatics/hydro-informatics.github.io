@@ -363,7 +363,7 @@ print(flattened_list)
 
 {% include note.html content="The above example uses `Iterable` from the standard module `collections.abc`. More about importing packages and modules will be discussed on the [Modules & packages](hypy_pckg.html) page." %}
 
-## Lambda functions
+## Lambda functions {#lambda}
 
 [Lambda (*&lambda;*) calculus](https://en.wikipedia.org/wiki/Lambda_calculus) is a formal language for expressing computation-based on function abstraction and was introduced in the 1930s by Alonzo Church and Stephen Cole Kleene. Lambda functions originate from functional programming and represent short, anonymous (i.e, without name) functions. Although *Python* is not inherently a functional programming language, functional concepts were implemented early in *Python*, for example with the `map()`, `filter()`, and deprecated `reduce()` functions and also the `lambda` operator. 
 

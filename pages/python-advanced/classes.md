@@ -292,7 +292,7 @@ print(atlantic_mackerel * 10)
     20
     
 
-## Template for a custom *Python* class
+## Template for a custom *Python* class {#template}
 
 This page features a couple of examples with options for implementing public and non-public properties and customizations of *magic* methods to enable the use of operators such as `+` or `<=` with custom classes. So there are many options in writing custom classes and all custom classes should at least incorporate the following methods:
 
