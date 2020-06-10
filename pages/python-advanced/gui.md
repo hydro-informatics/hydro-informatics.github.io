@@ -228,7 +228,6 @@ Now the question is, how does *Python* know when to retrieve a user-defined valu
 
 
 ```python
-import tkinter as tk
 from tkinter.messagebox import showinfo
 import random
 
@@ -285,11 +284,22 @@ if __name__ == '__main__':
 
 ## Design, place and modify widgets
 
-The above code examples use both the `OBJECT.grid()` and the `OBJECT.pack()` methods (geometry managers) to place widgets in the GUI. There is one additional geometry manager in the shape of the `place` method. Which of the geometry managers you want to use is entirely up to you - there are pros and cons for all geometry managers. 
+The above code examples use both the `OBJECT.grid()` and the `OBJECT.pack()` methods (geometry managers) to place widgets in the GUI. There is one additional geometry manager in the shape of the `place` method. Which of the geometry managers you want to use is entirely up to you - there are pros and cons for all geometry managers:
 
+* `pack`
+    - automatically places widgets within a box
+    - works best for simple GUIs, where all widgets are in one column or row
+    - complex layouts can be handled with complicated workarounds (tip: do not try)
+* `place`
+    - places widgets at absolute or relative *x*-*y* positions
+    - works well for graphical arrangements of widgets
+* `grid`
+    - places widgets in columns and rows of a grid
+    - works well with table-like apps and structured layouts
+    
 To enable more graphical flexibility, widgets accept many optional keywords to change their foreground (`fg`) or background (`bg`) color. In addition, widgets can be modified with the `tk.OBJECT.config(PARAMETER_TO_CONMFIGURE=NEW_CONFIG)` method.
 
-The following sections provide more details on the `place` and `grid` geometry managers and illustrate some keyword arguments as well as widget methods to modify widgets.
+The following sections provide more details on the `place` and `grid` geometry managers (the relevant functions of `pack` are already above shown: `pack()` -  that is basically all) and illustrate some keyword arguments as well as widget methods to modify widgets.
 
 ### Place with `place` and use object colors
 
@@ -319,6 +329,88 @@ if __name__ == '__main__':
 
 ### Place objects with `grid`
 In `grid`-ed GUIs, the widget alignment can be controlled with the `sticky` argument that uses cardinal directions (e.g., `sticky=tk.W` aligns or "sticks" a widget the west, i.e., left side, of a GUI).
+The `padx` and `pady` keywords arguments enable the implementation of pixel space around widgets
+
+
+```python
+from tkinter.messagebox import showinfo
+
+class GriddedApp(tk.Frame):
+    def __init__(self, master=None, **options):
+        tk.Frame.__init__(self, master, **options)
+        self.pack(expand=True, fill=tk.BOTH)
+        self.config(width=628, height=100)
+        self.master.title("A grid GUI")
+        tk.Label(self, text="Enter name: ", bg="bisque2", fg="gray21").grid(sticky=tk.W, row=0, column=0, padx=10)
+        tk.Entry(self, bg="gray76", width=20).grid(stick=tk.EW, row=0, column=1, padx=5)
+        tk.Button(self, text="Show message", bg="pale turquoise", fg="red4", command=lambda: showinfo("Info", "Random message")).grid(row=0, column=2, padx=5)
+        tk.Checkbutton(self, text="A Checkbutton over multiple columns").grid(stick=tk.E, row=1, column=0, columnspan=3, pady=15)
+
+
+if __name__ == '__main__':
+    GriddedApp().mainloop()
+```
+
+{% include image.html file="py-tk-grid.png" %}
 
 ### Configure and destroy widgets
-`tk.OBJECT.config(PARAMETER_TO_CONMFIGURE=NEW_CONFIG)` 
+Upon user actions (events), we may want to modify previously defined widgets. For example, we may want to change the text of a label or the layout of a button to indicate successful or failed operations. For this purpose, `tkinter` objects can be modified with `tk.OBJECT.config(PARAMETER_TO_CONMFIGURE=NEW_CONFIG)`. Moreover, objects can be delete (destroyed) with `tk.OBJECT.destroy()`, even though this is not an elegant method for any other widgets that pop-up windows (child frames of the master frame).
+
+
+
+```python
+from tkinter.messagebox import showinfo
+
+class ReConfigApp(tk.Frame):
+    def __init__(self, master=None, **options):
+        tk.Frame.__init__(self, master, **options)
+        self.config(width=628, height=100)
+        self.pack()
+        
+        self.user_depth = tk.DoubleVar()
+        self.kst = 40.0
+        self.w = 5.0
+        self.slope = 0.002
+        
+        
+        self.master.title("A GUI that reconfigures its widgets")
+        tk.Label(self, text="Enter flow depth (numeric, in meters): ", bg="powder blue", fg="medium blue").grid(sticky=tk.W, row=0, column=0, padx=10)
+        tk.Entry(self, bg="alice blue", width=20, textvariable=self.user_depth).grid(stick=tk.EW, row=0, column=1, padx=5)
+        self.eval_button = tk.Button(self, text="Estimate flow velocity", bg="snow2", fg="dark violet", command=lambda: self.call_estimator())
+        self.eval_button.grid(row=0, column=2, padx=5)
+        
+    def call_estimator(self):
+        try:
+            flow_depth = float(self.user_depth.get())
+        except tk.TclError:
+            return showinfo("ERROR", "Non-numeric value entered.")
+        self.eval_button.config(fg="green4", bg="DarkSeaGreen1")
+        showinfo("Result", "The estimated flow velocity is: " + str(self.estimate_u(flow_depth)))
+        
+    def estimate_u(self, h):
+        try:
+            return self.kst * h**(2/3) * self.slope**0.5
+        except ValueError:
+            showinfo("ERROR: Bad values defined.")
+            return None
+        except TypeError:
+            showinfo("ERROR: Bad data types defined.")
+            return None
+        
+
+if __name__ == '__main__':
+    ReConfigApp().mainloop()
+```
+
+{% include image.html file="py-tk-config.png" %}
+
+{% include challenge.html content="<br>(1) The roughness value varies from case to case. Can you implement a `ttk.Combobox` to let a user choose a Strickler *k<sub>st</sub>* roughness value between 10 and 85 (integers) and define the channel slope in a `tk.Entry`?<br><br>(2) The cross-section averaged flow velocity also depends on the cross-section geometry. Can you implement `tkinter` widgets to enable the bank slope `m` and channel base width `w` to calculate the hydraulic radius?" %}
+{% include image.html file="pyflowVariables_xs.png" %}
+
+## Pop-up windows
+
+The `tkinter.messagebox` window provides some standard pop-up windows such as:
+
+* `showinfo(title=STR, message=STR)` that prints some information message (see above examples).
+* `askyesno` that returns `False` or `True` depending on a user's answers to a *Yes-or-No* question.
+* `askokcancel` that returns `False` or `True` depending on a user's answers to a *OK-or-Cancel* question.
