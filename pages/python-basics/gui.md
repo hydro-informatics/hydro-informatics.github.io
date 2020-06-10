@@ -1,9 +1,9 @@
 ---
-title: Advanced Python - Graphical User Interfaces (GUIs)
+title: Python - Graphical User Interfaces (GUIs)
 keywords: gui python
 sidebar: mydoc_sidebar
 permalink: hypy_gui.html
-folder: python-advanced
+folder: python-basics
 ---
 
 {% include image.html file="hello-gui.png" %}
@@ -353,13 +353,13 @@ if __name__ == '__main__':
 
 {% include image.html file="py-tk-grid.png" %}
 
-### Configure and destroy widgets
+### Configure widgets
 Upon user actions (events), we may want to modify previously defined widgets. For example, we may want to change the text of a label or the layout of a button to indicate successful or failed operations. For this purpose, `tkinter` objects can be modified with `tk.OBJECT.config(PARAMETER_TO_CONMFIGURE=NEW_CONFIG)`. Moreover, objects can be delete (destroyed) with `tk.OBJECT.destroy()`, even though this is not an elegant method for any other widgets that pop-up windows (child frames of the master frame).
 
 
 
 ```python
-from tkinter.messagebox import showinfo
+from tkinter.messagebox import showinfo, showerror
 
 class ReConfigApp(tk.Frame):
     def __init__(self, master=None, **options):
@@ -383,7 +383,7 @@ class ReConfigApp(tk.Frame):
         try:
             flow_depth = float(self.user_depth.get())
         except tk.TclError:
-            return showinfo("ERROR", "Non-numeric value entered.")
+            return showerror("ERROR", "Non-numeric value entered.")
         self.eval_button.config(fg="green4", bg="DarkSeaGreen1")
         showinfo("Result", "The estimated flow velocity is: " + str(self.estimate_u(flow_depth)))
         
@@ -391,10 +391,10 @@ class ReConfigApp(tk.Frame):
         try:
             return self.kst * h**(2/3) * self.slope**0.5
         except ValueError:
-            showinfo("ERROR: Bad values defined.")
+            showerror("ERROR: Bad values defined.")
             return None
         except TypeError:
-            showinfo("ERROR: Bad data types defined.")
+            showerror("ERROR: Bad data types defined.")
             return None
         
 
@@ -404,13 +404,105 @@ if __name__ == '__main__':
 
 {% include image.html file="py-tk-config.png" %}
 
-{% include challenge.html content="<br>(1) The roughness value varies from case to case. Can you implement a `ttk.Combobox` to let a user choose a Strickler *k<sub>st</sub>* roughness value between 10 and 85 (integers) and define the channel slope in a `tk.Entry`?<br><br>(2) The cross-section averaged flow velocity also depends on the cross-section geometry. Can you implement `tkinter` widgets to enable the bank slope `m` and channel base width `w` to calculate the hydraulic radius?" %}
-{% include image.html file="pyflowVariables_xs.png" %}
+{% include challenge.html content="<br>(1) The roughness value varies from case to case. Can you implement a `ttk.Combobox` to let a user choose a Strickler *k<sub>st</sub>* roughness value between 10 and 85 (integers) and define the channel slope in a `tk.Entry` or a custom pop-up window (see below)?<br><br>(2) The cross-section averaged flow velocity also depends on the cross-section geometry. Can you implement `tkinter` widgets to enable the bank slope `m` and channel base width `w` to calculate the hydraulic radius?" %}
+{% include image.html file="flowVariables_xs.png" %}
 
 ## Pop-up windows
 
+### Default messages from `tkinter.messagebox`
 The `tkinter.messagebox` window provides some standard pop-up windows such as:
 
 * `showinfo(title=STR, message=STR)` that prints some information message (see above examples).
-* `askyesno` that returns `False` or `True` depending on a user's answers to a *Yes-or-No* question.
-* `askokcancel` that returns `False` or `True` depending on a user's answers to a *OK-or-Cancel* question.
+* `showwarning(title=STR, message=STR)` that prints a warning message.
+* `showerror(title=STR, message=STR)` that prints an error message (see above example).
+* `askyesno(title=STR, message=STR)` that returns `False` or `True` depending on a user's answers to a *Yes-or-No* question.
+* `askretrycancel(title=STR, message=STR)` that returns `False` or `True`, or re-attempts to run an event (function) depending on a user's answers to a *Yes-or-No-or-Cancel* question.
+* `askokcancel(title=STR, message=STR)` that returns `False` or `True` depending on a user's answers to a *OK* question.
+* `askretrycancel(title=STR, message=STR)` that returns `False` or `True`, or re-attempts to run an event (function) depending on a user's answers to a *OK-or-Cancel* question.
+
+Read more about default pop-up windows in the [*Python* docs](https://docs.python.org/3.9/library/tkinter.messagebox.html).
+
+### Top-level custom pop-ups
+The default windows may not meet the needs, for example to invite users to enter a custom value. In this case, a `tk.Toplevel` object aids to produce a custom window. The below example shows how a custom top-level pop-up window can be called within a method. With the `tk.Toplevel` widget and the `tk.Frame` (master) widgets, there are two frames now, where buttons, labels, or any other `tkinter` object can be placed. The very first argument of any `tkinter` object created determines whether the object is placed in the master or the top-level frame. For example, `tk.Entry(self).pack()` creates an entry in the master `tk.Frame`, and `tk.Entry(pop_up).pack()` creates an entry in the child `tk.Toplevel`.
+
+
+```python
+from tkinter.messagebox import showwarning
+
+class PopApp(tk.Frame):
+    def __init__(self, master=None, **options):
+        tk.Frame.__init__(self, master, **options)
+        self.config(width=628, height=50)
+        self.pack()
+        
+        self.master.title("Custom pop-up GUI")
+        self.pop_button = tk.Button(self, text="Open pop-up window", bg="cadet blue", fg="white smoke", command=lambda: self.new_window())
+        self.pop_button.pack()
+        
+    def destroy_buttons(self):
+        self.pop_button.destroy()
+        self.p_button1.destroy()
+        self.p_button2.destroy()        
+        showwarning("Congratulations", "This app is useless now. Don't press red-ish buttons ...'")
+        
+    def new_window(self):
+        pop_up = tk.Toplevel(master=self)
+        # add two buttons to the new pop_up Toplevel object (window)
+        self.p_button1 = tk.Button(pop_up, text="Destroy buttons (do not click here)", fg="DarkOrchid4",
+                                   bg="HotPink1", command=lambda: self.destroy_buttons())
+        self.p_button2 = tk.Button(pop_up, text="Close window", command=lambda: pop_up.quit())  
+        self.p_button1.pack()
+        self.p_button2.pack()
+
+
+if __name__ == '__main__':
+    PopApp().mainloop()
+```
+
+{% include image.html file="py-tk-popup-custom.png" %}
+
+### File dialog (open ...)
+When a custom function's argument is a file or file name, we most likely want the user to be able to select the file needed. The [`tkinter.filedialog`](https://docs.python.org/3.10/library/dialog.html#module-tkinter.filedialog) module provides methods to let user choose general or specific file types. Specific file types can be defined with the `filetypes=("Name", "*.ending")` (or `filetypes=("Name", "*.ending1;*.ending2;...")` for multiple file types) keyword argument. The following example illustrates the usage of `tkinter.filedialog`'s `askopenfilename`.
+
+
+```python
+from tkinter.filedialog import askopenfilename
+from tkinter.messagebox import showinfo
+
+class OpenFileApp(tk.Frame):
+    def __init__(self, master=None, **options):
+        tk.Frame.__init__(self, master, **options)
+        self.config(width=628, height=50)
+        self.pack()
+        
+        self.master.title("GUI to open a file")
+        
+        self.pop_button = tk.Button(self, text="Open a text file", bg="light steel blue", fg="dark slate gray", command=lambda: self.open_file())
+        self.pop_button.pack()
+        
+    def open_file(self):
+        file_types = (("Text", "*.txt;*.csv;*.asc"),)  # equivalent to [("Text", "*.txt;*.csv;*.asc")]
+        file_name = askopenfilename(initialdir=".", title="Select a text file", filetypes=file_types, parent=self)
+        showinfo("File info", "You selected " + str(file_name))
+
+
+if __name__ == '__main__':
+    OpenFileApp().mainloop()
+```
+
+{% include image.html file="py-tk-filedialog.png" %}
+
+## Quit
+to cleanly quit a GUI, use `tk.Frame.quit()` (i.e., in a custom class `self.quit()` or `master.quit()`. The above example of the `PopApp` class also features the `destroy()` method, which helps to remove particular widgets.
+
+`tkinter` provides many more options such as the implementation of tabs with `ttk.Notebook()` (requires [binding](https://effbot.org/tkinterbook/tkinter-events-and-bindings.htm) of tab objects), tables (`from tkintertable import TableCanvas, TableModel`), or interactive graphic objects with
+
+```python
+import matplotlib
+matplotlib.use('TkAgg')
+import numpy as np
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.figure import Figure
+```
+
+Enjoy creating your custom apps!

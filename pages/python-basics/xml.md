@@ -4,7 +4,7 @@ keywords: python
 summary: "Create, manipulate and copy xlsx-workbooks and JSON files."
 sidebar: mydoc_sidebar
 permalink: hypy_xml.html
-folder: python-advanced
+folder: python-basics
 ---
 
 This lesson starts with some background information about XML and what XML has to do with workbooks and JSON: XML is the abbreviation of [*E**x**tensible **M**arkup **L**anguage*](https://www.w3.org/TR/xml/) that defines rules for encoding documents. XML was designed for straightforward usage over the internet and we encounter XML documents all the time, on websites (e.g., *XHTML*), in the shape office documents (e.g., Office Open XML such as *docx*, *pptx*, or *xlsx*), or podcasts (e.g., *RSS*). The strength of the XML format is its characteristic of being both machine-readable (i.e., a computer can process XML files) and human-readable (i.e., we can read it like a newspaper). In simple words, entering formulas in an xlsx workbook is simultaneously machine-readable and human-readable, since humans and computers can interpret and evaluate the formulas in this XML frame. Other file formats such as [*JSON* (JavaScript Object Notation)](https://www.json.org/json-en.html) resemble XML and this is why we look at how *Python* can extract information from and export information to both formats. In water resources engineering and research, we are mainly interested in the exchange of information with office workbooks (*xlsx* files), or with JSON files, which provide boundary conditions for numerical models.
