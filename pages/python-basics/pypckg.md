@@ -70,6 +70,8 @@ print("Pi is %1.3f." % pi)
     Pi is 3.142.
     
 
+{% include tip.html content="Define default import packages for *JupyterLab*'s *IPython* kernel (read more on the [*Python* installation page](hypy_install.html#ipython))." %}
+
 ### What items (attributes, classes, functions) are in a module?
 Sometimes we want to explore modules or to check variable attributes. This is achieved with the `dir()` command:
 
