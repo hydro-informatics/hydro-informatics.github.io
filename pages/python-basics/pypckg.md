@@ -202,6 +202,8 @@ print(icecreamery_all.icecreamdialogue.welcome_msg)
 ### Package creation summary
 A hierachically organized package contains a `__init__.py` file with an `__all__` list to invoke relevant module scripts. The structure of a module can be more complex than the above example list (e.g., with sub-folders). When you write a package, remember to use meaningful script and variable names, and to document it.
 
+{% include tip.html content="Implement a custom [logger](hypy_pyerror.html#logging) in your module with `logger = logging.getLogger(__name__)` (replace `__name__` with for example `my-module-log`)." %}
+
 ## Reload (re-import) a package or module
 
 Since *Python3* reloading a module requires to import the `importlib` module first. Reloading makes only sense if you are actively writing a new module. To reload any module type:

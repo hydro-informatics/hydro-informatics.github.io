@@ -1,5 +1,5 @@
 ---
-title: Python - Graphical User Interfaces (GUIs)
+title: Advanced Python - Graphical User Interfaces (GUIs)
 keywords: gui python
 sidebar: mydoc_sidebar
 permalink: hypy_gui.html
@@ -15,6 +15,8 @@ python -m tkinter
 {% include unix.html content="If you encounter troubles with `tkinter` on *Linux*, make sure that `tkinter` for *Python* is installed, either with <br>`sudo apt-get install python3-tk`  or <br>`sudo apt-get install python3.X-tk` (replace `X` with your *Python* version) or<br> `sudo apt install tk8.6-dev` to install the library only (this should be sufficient). <br>If the above comments do not work, make sure that the `tkinter` repository is available to your system: `sudo add-apt-repository ppa:deadsnakes/ppa` (the repository address may change and depends on your *Linux* and *Python* versions)." %}
 
 `tkinter` works on many popular platforms (*Linux*, *macOS*, *Windows*) and is not only available to *Python*, but also to [*Ruby*](https://www.ruby-lang.org), [*Perl*](https://www.perl.org/), [*Tcl*](https://www.tcl-lang.org/) (the origin of of `tkinter`), and many more languages. Because of its support for languages like *Ruby* or *Perl*, `tkinter` can be used for local GUIs as well as for web applications.
+
+{% include note.html content="All GUI codes on this pages can be downloaded from the [course respository](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/) (please note that this scripts are only temporary available when the course takes place)." %}
 
 ## The first GUI 
 The very first step is to import `tkinter`, usually using the alias `as tk`. With `tk.Tk()`, a so-called parent window (e.g., `top`) can be created, in which all further elements will be accommodated. All futher elements are created as `tk` objects as child of the parent window and placed (arranged) in the parent window using the `pack()` or `.grid()` method. Here, we will use `pack` most of the time and `grid` will be useful to place elements at an exact position on the window (e.g., `tk.ELEMENT.grid(row=INT, column=INT)`). To display the GUI, the parent window `top` must be launched with `top.mainloop()` after arranging all elements. The following code block shows how to create a parent window with a label element (`tk.Label`).
@@ -125,7 +127,7 @@ Are there only labels and buttons? There are many more widgets and the following
 
 {% include image.html file="py-tk-elements.png" caption="tkinter widgets: Label, Button, Entry, Combobox, Listbox with Scrollbar, Checkbutton, and an Image." %}
 
-And this is the code that creates the `tkinter` widgets in the figure:
+And this is the code that creates the `tkinter` widgets in the figure (the [script](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/start_gui.py), [image](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/sunny_image.gif) and [icon](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/gui_icon.ico) are available at the course repository when the lecture takes place):
 
 
 ```python
@@ -224,7 +226,7 @@ In the above example, the checkbox receives a `tk.BooleanVar()`, which takes a `
 * `tk.IntVar()` is a numeric *integer* variable
 * `tk.StringVar()` is a *string* (i.e., typically some text)
 
-Now the question is, how does *Python* know when to retrieve a user-defined value? Typically, we want to evaluate user-defined values when we call a function that receives user-defined values as input arguments. Predefined default) values in a script can be set with `VARIABLE.set()` and the user settings can be retrieved with `VARIABLE.get()`.
+Now the question is, how does *Python* know when to retrieve a user-defined value? Typically, we want to evaluate user-defined values when we call a function that receives user-defined values as input arguments. Predefined default) values in a script can be set with `VARIABLE.set()` and the user settings can be retrieved with `VARIABLE.get()`. The following [script](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/variable_gui.py) and the [icon](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/gui_icon.ico) are available at the course repository (when the lecture takes place).
 
 
 ```python

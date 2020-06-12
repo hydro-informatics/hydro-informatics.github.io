@@ -48,6 +48,8 @@ A `plt.figure` can be thought of as a box containing one or more axes, which rep
 1. Add legend (optionally) with `axes.legend(loc=str, facecolor=str, edgecolor=str, framealpha=float_between_0_and_1)` and many more `**kwargs` can be defined ([go the *matplotlib* docs](https://matplotlib.org/3.1.1/api/legend_api.html#matplotlib.legend.Legend)).
 1. Optional: Save figure with `plt.savefig(fname=str, dpi=int)` with many more `**kwargs` available ([go the *matplotlib* docs](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.savefig.html)).
 
+{% include tip.html content="Most of the below illustrated `matplotlib` features are embedded in a plotter script, which is available at the [course repository](https://github.com/hydro-informatics/material-py-codes/raw/master/plotting/plotter.py) (only when the lecture is active)." %}
+
 The following code block illustrates the plot recipe using [randomly drawn samples from a *Weibull* distribution](https://numpy.org/doc/stable/reference/random/generated/numpy.random.RandomState.weibull.html#numpy.random.RandomState.weibull) with a the distribution shape factor *a* (for *a*=1, the *Weibull* distribution reduces to an exponential distribution). The `seed` argument describes the source of randomness and `seed=None` makes *Python* use randomness from operating system variables.
 
 The code block below makes use of a function called `plot_xy` that requires `x` and `y` arguments and accepts the following optional keyword arguments:

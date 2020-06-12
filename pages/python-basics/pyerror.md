@@ -7,7 +7,9 @@ permalink: hypy_pyerror.html
 folder: python-basics
 ---
 
-## Error types
+## Errors & exceptions
+
+### Error types
 
 To err is human and *Python* helps us to find our mistakes by providing [error](https://docs.python.org/3/tutorial/errors.html) type descriptions. Here is a list of common errors:
 
@@ -25,7 +27,7 @@ To err is human and *Python* helps us to find our mistakes by providing [error](
 Still, there are many more error types that can occur an *Python* developers maintain comprehensive descriptions of built-in exceptions on the [*Python* documentation web site](https://docs.python.org/3.8/library/exceptions.html).
 
 
-## Exception handling with `try` - `except` {#try-except}
+### Exception handling with `try` - `except` {#try-except}
 `try` and `except` keywords test a code block and if it crashes, an `exception` is raised, but the script itself will not crash. The basic structure is:
 
 
@@ -64,7 +66,7 @@ else:
     return handle_value(value)
 ```
 
-## The `pass` statement
+### The `pass` statement
 When we start writing code we of start with a complex, modular and void code frame. In order to test the code, we need to run it incrementally (i.e., to debug the code). The above error type definitions help us to understand errors that we made in already written code. However, we want to run our code also with voids, or sometimes just to ignore minor errors silently. In this case, the `pass` statement helps:
 
 
@@ -77,6 +79,52 @@ except NameError:
 ```
 
 {% include tip.html content="The `pass` statement should only be temporary and it has a much broader application range, for example in [functions](hypy_pyfun.html) and [classes](hypy_classes.html)." %}
+
+## Logging {#logging}
+
+The `print()` function is useful to print variables or computation progress to the console (not too often though - output takes time and slow calculations). For robust reporting of errors or other important messages, however, a log file represents a better choice. So what is a log file or the act of logging? We know logbooks from discoverers or adventurers, who write down their experiences ordered by dates. Similarly, a code can write down (*log*) its "experiences", but in a file instead of a book. For this purpose, *Python* provides the standard [*logging* library](https://docs.python.org/3/howto/logging.html). For the moment, it is sufficient to know that the *logging* library can be imported in any *Python* script with `import logging` and more information about packages, modules, and libraries is provided later (see the [Modules & packages](hypy_pckg.html) page).
+
+The following script imports the *logging* module, creates a `logger` object and defines the logging format as *time* (`%(asctime)s`) - *message* (`%(message)s`). 
+
+
+
+```python
+import logging
+
+logging.basicConfig(filename="my-logfile.log", format="%(asctime)s - %(message)s", level=logging.DEBUG)
+logging.getLogger().addHandler(logging.StreamHandler())
+logging.debug("This message is logged to the file.")
+logging.info("Less severe information is also logged to the file.")
+logging.warning("Warning messages are logged, too.")
+
+a = "text"
+
+try:
+    logging.info(str(a**2))
+except TypeError:
+    logging.error("The variable is not numeric.")
+
+# stop logging
+logging.getLogger().disabled = True
+```
+
+    This message is logged to the file.
+    Less severe information is also logged to the file.
+    Warning messages are logged, too.
+    The variable is not numeric.
+    
+
+And this is how `my-logfile.log` looks like:
+
+
+```python
+2050-00-00 18:51:46,657 - This message is logged to the file.
+2050-00-00 18:51:46,666 - Less severe information is also logged to the file.
+2050-00-00 18:51:46,667 - Warning messages are logged, too.
+2050-00-00 18:51:46,669 - The variable is not numeric.
+```
+
+A more sophisticated logger is provided with the [Logger script at the course repository](https://github.com/hydro-informatics/material-py-codes/raw/master/logging/Logger.py). 
 
 ## Debugging
 
