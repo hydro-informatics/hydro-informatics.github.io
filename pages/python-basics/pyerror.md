@@ -16,8 +16,8 @@ To err is human and *Python* helps us to find our mistakes by providing [error](
 | Error Type          | Description                                                 | Example                                                   |
 |---------------------|-------------------------------------------------------------|-----------------------------------------------------------|
 | `KeyError`          | A mapping key is not found.                                 | May occur when referencing a non-existing dictionary key. |
-| `ImportError`       | Importing a module that does not exist                      | `import the_almighty_module`                             |
-| `IndentationError`  | The code block indentation is not correct.                  | See [above](#indent)                                      |
+| `ImportError`       | Importing a module that does not exist                      | `import the-almighty-module`                              |
+| `IndentationError`  | The code block indentation is not correct.                  | See [code style page](hypy_pystyle.html#indentation)      |
 | `IndexError`        | An index outside the range of a variable is used.           | `list = [1, 2]  print(list[2])`                           |
 | `NameError`         | An undefined variable is referenced.                        | `print(a)`                                                |
 | `TypeError`         | Incompatible data types and/or operators are used together. | "my_string" / 10                                          |
