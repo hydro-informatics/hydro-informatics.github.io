@@ -11,9 +11,9 @@ folder: python-basics
 
 Data can be stored in many different (text) file formats such as *txt* or *csv* files. *Python* provides the `open(file)` and `write(...)` functions to read and write data from nearby every text file format, respectively. There are packages such as `csv` (for *csv* files), which simplify handling specific file types. This section illustrates the use of the `load(file)` and `write(...)` functions, and introduces the *pandas* module with its capacity to import and export numeric data along with row and column headers.
 
-### Load (open) text file with data
+### Load (open) text file with data {#open-modes}
 
-The `open` command loads text files as file object in *Python*. The syntax of the `open` command is: {#open-modes}
+The `open` command loads text files as file object in *Python*. The syntax of the `open` command is: 
 
 
 ```python
@@ -29,7 +29,7 @@ where:
     - `"r+"` - read and write.
     - `"w"` - write only; a new file is created if a file with the same name does not yet exist.
     - `"wb"` - write-only file in binary mode.
-    - `"w+"` - write and read.
+    - `"w+"` - create, write and read.
     - `"wb+"` - write and read in binary mode.
     - `"a"` - append new data to a file; the write-pointer is placed at the end of the file and a new file is created if a file with the provided file name does not yet exist.
     - `"ab"` - append new data in binary mode.
