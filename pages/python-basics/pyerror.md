@@ -82,16 +82,36 @@ except NameError:
 
 ## Logging {#logging}
 
-The `print()` function is useful to print variables or computation progress to the console (not too often though - output takes time and slow calculations). For robust reporting of errors or other important messages, however, a log file represents a better choice. So what is a log file or the act of logging? We know logbooks from discoverers or adventurers, who write down their experiences ordered by dates. Similarly, a code can write down (*log*) its "experiences", but in a file instead of a book. For this purpose, *Python* provides the standard [*logging* library](https://docs.python.org/3/howto/logging.html). For the moment, it is sufficient to know that the *logging* library can be imported in any *Python* script with `import logging` and more information about packages, modules, and libraries is provided later (see the [Modules & packages](hypy_pckg.html) page).
+The `print()` function is useful to print variables or computation progress to the console (not too often though - output takes time and slow calculations). For robust reporting of errors or other important messages, however, a log file represents a better choice. So what is a log file or the act of logging? We know logbooks from discoverers or adventurers, who write down their experiences ordered by dates. Similarly, a code can write down (*log*) its "experiences", but in a file instead of a book. For this purpose, *Python* provides the standard [*logging* library](https://docs.python.org/3/howto/logging.html). For the moment, it is sufficient to know that the *logging* library can be imported in any *Python* script with `import logging` (more information about packages, modules, and libraries is provided later on the [Modules & packages](hypy_pckg.html) page).
 
-The following script imports the *logging* module, creates a `logger` object and defines the logging format as *time* (`%(asctime)s`) - *message* (`%(message)s`). 
+The following script imports the *logging* module, and uses the following keyword arguments to set the `logging.basicConfig`:
+* `filename="my-logfile.log"` makes the logging module write to a file named `"my-logfile.log"` in the same directory where the *Pyhton* script is executed.
+* `format="%(asctime)s - %(message)s` sets the logging format to `YYYY-MM-DD HH:MM:SS.sss - `*Message text* (more format options are listed in the [*Python* docs](https://docs.python.org/3/howto/logging.html#displaying-the-date-time-in-messages)).
+* `filemode="w"` overwrites previous messages in the log file (remove this argument to append messages instead of overwriting).
+* `level=logging.DEBUG` defines the severity of messages written to the log file, where `DEBUG` is adequate for problem diagnoses in codes; other levels of event severity are:
+    - `logging.INFO` writes all confirmation messages of events that worked as expected.
+    - `logging.WARNING` (**default**) indicates when an unexpected event happened or when an event may cause an error in the future (e.g., because of insufficient disk space).
+    - `logging.ERROR` reports serious problems that caused that the code could not be executed.
+    - `logging.CRITICAL` is a broader serious problem indicator, where the program itself may not be able to continue running (e.g., *Python* crashes).
 
+Until here, messages are only written to the log file, but we cannot see any message in the console. To enable simultaneous logging to the log file and the console (*Python* terminal), use `logging.getLogger().addHandler(logging.StreamHandler())` (appends an *io* stream handler).
+
+To write a message to the log file (and *Python* terminal), use 
+* `logging.debug("message")` for code diagnoses,
+* `logging.info("message")` for progress information (just like we used `print("message")` before,
+* `logging.warning("warning-message")` for unexpected event documentation (without the program being interrupted),
+* `logging.error("error-message")` for errors that entail malfunction of the code, and
+* `logging.critical("message")` for critical error that may lead to program (*Python*) crashes.
+
+*Warning*, *error*, and *critical* message should be implemented in exception raises (see above `try` - `except` statements).
+
+At the end of a script, logging should be stopped with `logging.shutdown()` because otherwise the log file is locked by *Python* and the *Python Kernel* needs to be stopped in order to make modifications of the log file.
 
 
 ```python
 import logging
 
-logging.basicConfig(filename="my-logfile.log", format="%(asctime)s - %(message)s", level=logging.DEBUG)
+logging.basicConfig(filename="my-logfile.log", format="%(asctime)s - %(message)s", filemode="w", level=logging.DEBUG)
 logging.getLogger().addHandler(logging.StreamHandler())
 logging.debug("This message is logged to the file.")
 logging.info("Less severe information is also logged to the file.")
@@ -105,7 +125,7 @@ except TypeError:
     logging.error("The variable is not numeric.")
 
 # stop logging
-logging.getLogger().disabled = True
+logging.shutdown()
 ```
 
     This message is logged to the file.
@@ -124,7 +144,7 @@ And this is how `my-logfile.log` looks like:
 2050-00-00 18:51:46,669 - The variable is not numeric.
 ```
 
-A more sophisticated logger is provided with the [Logger script at the course repository](https://github.com/hydro-informatics/material-py-codes/raw/master/logging/Logger.py). 
+Events can also be documented by instantiating a logger object with `logger = logging.getLogger(__name__)`. This favorable solution is recommended for advanced coding such as writing a [custom *Python* library](hypy_pckg.html) (read more in the [*Python* docs on advanced logging](https://docs.python.org/3/howto/logging.html#advanced-logging-tutorial)). An example script with a more sophisticated logger is provided with the [Logger script at the course repository](https://github.com/hydro-informatics/material-py-codes/raw/master/logging/Logger.py) (available during lecture series).
 
 ## Debugging
 
