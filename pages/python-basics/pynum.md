@@ -556,9 +556,11 @@ import pandas as pd
 print("A 1-column pd.DataFrame:\n"+ str(pd.Series([3, 4, np.nan])))  # a simple pandas data frame with one column
 
 row_names = np.arange(1, 4, 1)
-wb_like_df = pd.DataFrame(np.random.randn(row_names.__len__(), 3), index=row_names, columns=['A', 'B', 'C'])
+wb_like_df = pd.DataFrame(np.random.randn(row_names.__len__(), 3), 
+                          index=row_names, columns=['A', 'B', 'C'])
 print("\nThis is a workbook-like (row and column names) data frame:\n" + str(wb_like_df))
-print("\nRename column names with dictionary:\n" + str(wb_like_df.rename(columns={'A': 'Series 1', 'B': 'Series 2', 'C': 'Series 3'})))
+print("\nRename column names with dictionary:\n" + str(wb_like_df.rename(
+        columns={'A': 'Series 1', 'B': 'Series 2', 'C': 'Series 3'})))
 print("\nTranspose the data frame:\n" + str(wb_like_df.T))
 ```
 
@@ -591,12 +593,12 @@ A *pandas* `DataFrame` object can also be created with a [dictionary](hypy_pybas
 
 
 ```python
-dict_df = pd.DataFrame({'Flow depth': pd.Series(np.random.uniform(low=0.1, high=0.3, size=(4,)), dtype='float32'),
-                        'Sediment': ["yes", "no", "yes", "no"],
-                        'Flow regime': pd.Categorical(["fluvial", "fluvial", "supercritical", "critical"]),
-                        'Water': "Always there"})
-print("A dictionary-built data frame:\n" + str(dict_df))
-print("\nFrame data types:\n" + str(dict_df.dtypes))
+df = pd.DataFrame({'Flow depth': pd.Series(np.random.uniform(low=0.1, high=0.3, size=(4,)), dtype='float32'),
+                   'Sediment': ["yes", "no", "yes", "no"],
+                   'Flow regime': pd.Categorical(["fluvial", "fluvial", "supercritical", "critical"]),
+                   'Water': "Always there"})
+print("A dictionary-built data frame:\n" + str(df))
+print("\nFrame data types:\n" + str(df.dtypes))
 ```
 
     A dictionary-built data frame:
@@ -618,8 +620,8 @@ Built-in attributes and methods of a *pandas* `DataFrame` enable easy access to 
 
 
 ```python
-print("Head of the dictionary-based dataframe (first two rows):\n" + str(dict_df.head(2)))
-print("\nEnd (tail) of the dictionary-based dataframe (last row):\n" + str(dict_df.tail(1)))
+print("Head of the dictionary-based dataframe (first two rows):\n" + str(df.head(2)))
+print("\nEnd (tail) of the dictionary-based dataframe (last row):\n" + str(df.tail(1)))
 ```
 
     Head of the dictionary-based dataframe (first two rows):
@@ -632,8 +634,8 @@ print("\nEnd (tail) of the dictionary-based dataframe (last row):\n" + str(dict_
     3    0.127455       no    critical  Always there
     
 
-### Example {#exp-Froude}
-In hydraulics, the [*Froude* number* ***Fr***](https://en.wikipedia.org/wiki/Froude_number) characterizes the flow regime as *"fluvial"* (*Fr<1*), *"critical"* (*Fr=1*), and *"super-critical"* (*Fr>1*). The precision of measurement devices in physical flume experiments makes the exact determination of the *critical* moment a challenge and forces researchers to apply an interval around 1, rather than the exact value:
+### Example creation of a `pandas.DataFrame` {#exp-Froude}
+In hydraulics, the [*Froude* number ***Fr***](https://en.wikipedia.org/wiki/Froude_number) characterizes the flow regime as *"fluvial"* (*Fr<1*), *"critical"* (*Fr=1*), and *"super-critical"* (*Fr>1*). The precision of measurement devices in physical flume experiments makes the exact determination of the *critical* moment a challenge and forces researchers to apply an interval around 1, rather than the exact value:
 
 | ***Fr*** | (0.00, 0.95( | (0.95, 1.00(           | (1.00)   | )1.00, 1.05)           | )1.05, inf(    |
 |----------|--------------|------------------------|----------|------------------------|----------------|
@@ -651,16 +653,56 @@ print(obs_df)
 ```
 
        measured             flow regime
-    0  0.643148                 fluvial
-    1  0.071981                 fluvial
-    2  0.713384                 fluvial
-    3  0.636614                 fluvial
-    4  0.324183                 fluvial
-    5  1.562118          super-critical
-    6  1.036869  nearby critical (fast)
-    7  0.258345                 fluvial
-    8  1.913183          super-critical
-    9  1.018824  nearby critical (fast)
+    0  0.608713                 fluvial
+    1  1.562811          super-critical
+    2  1.099344          super-critical
+    3  1.038562  nearby critical (fast)
+    4  0.212276                 fluvial
+    5  1.233920          super-critical
+    6  0.209036                 fluvial
+    7  0.517329                 fluvial
+    8  0.047344                 fluvial
+    9  0.486110                 fluvial
+    
+
+### Append data to a `pandas.DataFrame`
+The `loc`, `concat`, and `append` methods of *pandas* provide direct options for inserting rows or columns into a `pd.DataFrame`. However, all three built-in methods are approximately one order of magnitude slower than if we take the detour via a dictionary. This applies especially to data frames with more than 10,000 elements. This means that the fastest method to insert a data set is:
+
+1. Convert an existing `pd.DataFrame` object to a *dictionary* with `pd.DataFrame.to_dict()` (e.g., `dict_of_df = df.to_dict()`).
+1. Update the *dictionary* with new data
+    * Append rows with `dict_of_df.update{"existing-column-name": {"new-row-name": NEW_DATA}}`
+    * Append columns with `dict_of_df.update{"newcolumn-name": {"existing-row-names": NEW_DATA(size=existing-number-of-rows}}`
+1. Re-convert *dictionary to `pd.DataFrame` with `df = pd.DataFrame.from_dict(dict_of_df)`
+
+The following code blocks illustrates both adding a row and a column to an existing *pandas* data frame.
+
+
+
+```python
+import random
+
+# convert data frame to dictionary
+dict_of_obs_df = obs_df.to_dict()
+
+# append new row
+new_row_index = max(dict_of_obs_df["measured"]) + 1
+dict_of_obs_df["measured"].update({new_row_index: 0.996})
+dict_of_obs_df["flow regime"].update({new_row_index: "nearby critical (slow)"})
+
+# append column
+dict_of_obs_df.update({"with sediment": {}})
+for k in dict_of_obs_df["measured"].keys():
+    dict_of_obs_df["with sediment"].update({k: bool(random.getrandbits(1))})
+
+# re-build data frame
+obs_df = pd.DataFrame.from_dict(dict_of_obs_df)
+print(obs_df.tail(3))
+```
+
+        measured             flow regime  with sediment
+    8   0.047344                 fluvial           True
+    9   0.486110                 fluvial           True
+    10  0.996000  nearby critical (slow)          False
     
 
 ### *NumPy* arrays and *pandas* data frames
