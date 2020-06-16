@@ -10,3 +10,5 @@ folder: geopy
 ## Hi
 
 InProgress
+
+{% include requirements.html content="Make sure to understand the difference between rasters and shapefiles as explained in the [introduction of the GEOSPATIAL](geo_overview.html) section." %}

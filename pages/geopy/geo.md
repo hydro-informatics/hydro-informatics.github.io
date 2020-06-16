@@ -1,7 +1,6 @@
 ---
 title: Geospatial software
 keywords: geo-python gdal QGIS
-summary: "Python packages for algorithmic geospatial analyses."
 sidebar: mydoc_sidebar
 permalink: geo_overview.html
 folder: geopy
@@ -18,3 +17,5 @@ Some of the most common open-source packages are:
 In order to use proprietary packages, users often need to purchase licenses to activate (unlock) *Python* packages or functional parts of *Python packages. Some of the most popular propriertary packages are:
  * [`descarteslsbs`](https://docs.descarteslabs.com/api.html) with many free functions, provided by [Descartes Lab](https://www.descarteslabs.com/)
  * [`arcpy`](https://desktop.arcgis.com/en/arcmap/10.3/analyze/arcpy/what-is-arcpy-.htm) without any free functions and an [*ArcGIS Pro* license required from *Esri*](https://pro.arcgis.com/en/pro-app/get-started/about-licensing.htm).
+ 
+ This page introduces the usage of `gdal` and illustrates basic functions of the commercial `arcpy` library.

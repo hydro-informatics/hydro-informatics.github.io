@@ -227,15 +227,144 @@ The ecological restoration or enhancement of rivers requires, among other data, 
 
 JavaScript Object Notation ([JSON](https://www.json.org/json-en.html)) files have a similar structure to XML and enable the structured storage of (human-readable) data. For example, the numerical code *BASEMENT v.3.x* ([read more on the numerical modelling pages](bm.html)) uses a *model.json* and a *simulation.json* file to store model setup parameters such as material properties. In water resources engineering and research, we often want to automate running numerical models, which involves the optimization of model parameters stored in *json* files. This is where *Python* steps in with the `JSON` package and `pandas`' *JSON* modules.
 
-### Read and write *JSON* files
-Read JSON files with *pandas* [`read_json`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_json.html) and [`normalize_json`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.json_normalize.html).
+### *JSON* file structure
 
-Export *pandas* data frames with [`pandas.DataFrame.to_json`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_json.html).
+A *JSON* file consists of two types of data structures, which are *dictionary* objects and *array*s in the form of *lists* of values. The *dictionary* objects in a *JSON* file correspond to the same format that we already know in *Python*: Pairs of keys (names) and values embraced by curly brackets (*braces*) `{"name": value}`. The `value` can be a *string*, *numeric*, a comm-separated *list* `[]` (*array*) of data, or another *dictionary*.
+The following example shows a *JSON* file called `river_struct.json` with a `RIVER` key that has a nested dictionary as value. The value-*dictionary* contains three keys (`NAME`, `GEOMETRY`, and `HYDRAULICS`.
 
-
-Alternative: *Python*s [`JSON` library](https://docs.python.org/3/library/json.html) (implemented in *pandas*).
+{% include tip.html content="Take a couple of minutes to understand the elements of `river_struct.json`.<br>
+What is the purpose of the `FLOWBOUNDARIES` in `GEOMETRY`? <br>
+How could the `FLOWBOUNDARIES` be related to the `BOUNDARY` key of `HYDRAULICS`?<br>
+What units could the `FRICTION` values correspond to?<br>
+Can you find the river on a map?" %}
 
 
 ```python
-import JSON
+{
+	"RIVER": {
+		"NAME": "Vanilla Flow",
+		"GEOMETRY": {
+			"REGIONS": [
+				{
+				  "type": "wet",
+				  "name": "riverbed"
+				},
+				{
+				  "type": "dry",
+				  "name": "floodplain"
+				}
+			],
+			"FLOWBOUNDARIES": [
+				{
+				  "name": "Inflow",
+				  "nodes": [1, 3, 7, 31]
+				},
+				{
+				  "name": "Outflow",
+				  "nodes": [89, 90, 76, 69, 95]
+				}
+			]
+		},
+		"HYDRAULICS": {
+			"BOUNDARY": [
+				{
+					"discharge_file": "/simulation/directory/Inflow.txt",
+					"name": "Inflow",
+					"slope": 0.005,
+					"type": "hydrograph"
+				},
+				{
+					"name": "Outflow",
+					"type": "zero_gradient"
+				}
+			],
+			"FRICTION": {
+				"cobble": 20.0,
+				"gravel": 26.0,
+				"sand": 41
+			}
+		},
+		"LOCATION": [48.744079, 9.103928]
+	}
+}
 ```
+
+### Read (decode) and write (encode) *JSON* files with the `json` library 
+
+*JSON* files can be implemented in many programming languages including *HTML* and *Python*. This is also the reason why *Jupyter* notebooks (as used in this course) can be run in *Python* and displayed as a web page. *Python* has a built-in `json` library that enables *JSON* decoding and encoding. The `json` library provides a `json.dumps(DATA)` method to "dump" (i.e., encode) data in *JSON* format. Vice versa, the `json.load()` method reads data from *JSON* files. The following example illustrates encoding and decoding an arbitrary nested dataset with the `json` library.
+
+
+```python
+import json
+# create arbitrary nested data (list, dictionary, tuple)
+data_for_json = ["list_element1", {"dict_key": ("tuple_element", "text", 1.0, None)}]
+
+# create a json file
+json_file = open("data/my-first.json", mode="w+")
+# encode the random nested data list in json format and write to file
+json_file.write(json.dumps(data_for_json))
+# close file
+json_file.close()
+
+# re-open the json file to read data
+with open("data/my-first.json", mode="r") as re_opened_file:
+    raw_data = re_opened_file.readline()
+
+# decode json data in a Python variable
+data_from_json = json.loads(raw_data)
+print(json.dumps(data_from_json))
+```
+
+    ["list_element1", {"dict_key": ["tuple_element", "text", 1.0, null]}]
+    
+
+The [*Python* docs](https://docs.python.org/3/library/json.html) provide more options and descriptions on using the `json` library. However, here we will (once again) make use of the *pandas* library, which offers some powerful features for handling json data.
+
+### Read (decode) and write (encode) *JSON* files with *pandas* {#read-json}
+
+*pandas* (recall [data and file handling](hypy_pynum.html#pandas)) enables reading *JSON* files into its convenient table format with an embedded usage of the `json` library.
+The following code block uses the [`pandas.read_json(FILE)`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_json.html) method to read the above shown `RIVER` sample file.
+
+
+```python
+river = pd.read_json("data/river_struct.json")
+print(river)
+```
+
+                                                            RIVER
+    GEOMETRY    {'REGIONS': [{'type': 'wet', 'name': 'riverbed...
+    HYDRAULICS  {'BOUNDARY': [{'discharge_file': '/simulation/...
+    LOCATION                                [48.744079, 9.103928]
+    NAME                                             Vanilla Flow
+    
+
+Since a river without data is like ice cream without taste, we will add (random) data of flow characteristics to the data structure. Let us assume that we have used the data from `river_struct.json` to simulate a stationary discharge in a two-dimensional numerical model. As a result we have two regular grids (arrays) with data on flow velocity and flow depth. Now, we want to append both the flow depth and flow velocity arrays in the form of a result structure (dictionary in the `river_struct.json` and give the river a new name.
+
+
+```python
+# create random data
+h = np.random.weibull(np.arange(0,100)).reshape(10, 10)
+u = np.random.weibull(np.arange(0,100)).reshape(10, 10)
+
+# append RESULTS row to pandas dataframe
+river_dict = river.to_dict()
+river_dict["RIVER"].update({"RESULTS": {"flow_depth": h, "flow_velocity": u}})
+updated_river = pd.DataFrame.from_dict(river_dict)
+
+# re-NAME RIVER
+updated_river["RIVER"]["NAME"] = "Honey river"
+print(updated_river)
+
+# export to JSON
+updated_river.to_json("data/river_results.json")
+```
+
+                                                            RIVER
+    GEOMETRY    {'REGIONS': [{'type': 'wet', 'name': 'riverbed...
+    HYDRAULICS  {'BOUNDARY': [{'discharge_file': '/simulation/...
+    LOCATION                                [48.744079, 9.103928]
+    NAME                                              Honey river
+    RESULTS     {'flow_depth': [[0.0, 2.8512761758798386, 1.39...
+    
+
+{% include image.html file="py-json-file.png" caption="The exported JSON file (river_results.json)." %} 
