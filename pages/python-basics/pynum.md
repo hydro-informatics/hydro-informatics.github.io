@@ -1,5 +1,6 @@
 ---
-title: Python Basics - Data processing & file handlers
+title: Python - Data processing & file handlers
+tags: [python, numpy, xlsx, workbooks, csv, pandas, file_manipulation, formatting, froude, basement, matlab, matplotlib]
 keywords: python, numpy, array, matrix, scipy, datetime, pandas, dataframe
 summary: "This page shows how data from basic text files can be imported and written with Python. In addition, the numeric and tabular data handling packages NumPy and pandas are introduced, along with date-time format handling. "
 sidebar: mydoc_sidebar
@@ -546,7 +547,7 @@ conda install pandas
 
 *pandas* standard import alias is `pd`: `import pandas as pd`. The following sections provide an overview of basic *pandas* functions and much more functionalities are documented at the [developer's docs](https://pandas.pydata.org/pandas-docs/stable/user_guide/index.html).
 
-### Data frames
+### Data frames & series
 The below code block illustrates the creation of *pandas* data frames, the core object of *pandas*. Note the difference between a 1-dimensional series (corresponds to a one-column data frame), and a 2-dimensional data frame with **row (=index)** and column names. The default row names number rows starting from 0 (unlike Office software that starts at row no. 1), without column names. Column names can be initially defined as a [list](hypy_pybase.html#list) and replaced with a [dictionary](hypy_pybase.html#dict) that maps the initial list entries to new names.
 
 
@@ -666,7 +667,7 @@ print(obs_df)
     
 
 ### Append data to a `pandas.DataFrame`
-The `loc`, `concat`, and `append` methods of *pandas* provide direct options for inserting rows or columns into a `pd.DataFrame`. However, all three built-in methods are approximately one order of magnitude slower than if we take the detour via a dictionary. This applies especially to data frames with more than 10,000 elements. This means that the fastest method to insert a data set is:
+The `at`, `loc`, `concat`, and `append` methods of *pandas* provide direct options for inserting rows or columns into a `pd.DataFrame`. However, all three built-in methods are approximately one order of magnitude slower than if we take the detour via a dictionary. This applies especially to data frames with more than 10,000 elements. This means that the fastest method to insert a data set is:
 
 1. Convert an existing `pd.DataFrame` object to a *dictionary* with `pd.DataFrame.to_dict()` (e.g., `dict_of_df = df.to_dict()`).
 1. Update the *dictionary* with new data
@@ -1016,6 +1017,32 @@ print("Standard deviation:\n" + str(measurement_data.std()))
     
 
 *pandas* has many more built-in functionalities, for example to plot histograms or any data using the `matplotlib` library, and machine learning. The following pages of the *Python* introduction on *hydro-informatics* occasionally make use of *pandas* and illustrate more functionalities.
+
+### Apply custom (own) functions to data frames
+*pandas* data frame have a built-in `apply(fun)` method that enables applying a custom function to (parts of) a `pd.DataFrame` object. We will use here the `feet_to_meter` function from the [Functions](hypy_pyfun.html#kwargs) page, which is available at the [course repository in the `fun.converter.py`](https://github.com/hydro-informatics/material-py-codes/raw/master/fun/converter.py) directory (during lectures only).
+
+
+```python
+from fun.converter import feet_to_meter
+
+# create data frame with random integers
+df = pd.DataFrame({"Feets": np.random.randint(0, 100, size=6),
+                   "Meters": np.ones(6) * np.nan})
+
+# apply feet_to_meter to the Meters columns of the data frame
+df["Meters"] = df["Feets"].apply(feet_to_meter)
+
+print(df)
+```
+
+       Feets   Meters
+    0     98  29.8704
+    1     35  10.6680
+    2     35  10.6680
+    3     49  14.9352
+    4     54  16.4592
+    5     72  21.9456
+    
 
 ## Dates and Time
 

@@ -1,5 +1,6 @@
 ---
-title: Advanced Python - Graphical User Interfaces (GUIs)
+title: Python - Graphical User Interfaces (GUIs)
+tags: [python, object_orientation, interface]
 keywords: gui python
 sidebar: mydoc_sidebar
 permalink: hypy_gui.html

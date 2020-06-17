@@ -1,5 +1,5 @@
 ---
-title: "Collaboration pages"
+title: "Collaboration"
 tagName: collaboration
 search: exclude
 permalink: tag_collaboration.html

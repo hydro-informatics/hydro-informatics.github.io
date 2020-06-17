@@ -1,5 +1,6 @@
 ---
 title: Geospatial data
+tags: [geo, geospatial, shapefile, raster]
 keywords: geo-python gdal QGIS
 summary: "Learn more about shapefiles, geodatabases and rasters."
 sidebar: mydoc_sidebar

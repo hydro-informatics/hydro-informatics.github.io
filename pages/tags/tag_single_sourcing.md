@@ -1,5 +1,5 @@
 ---
-title: "Single sourcing pages"
+title: "Single sourcing"
 tagName: single_sourcing
 search: exclude
 permalink: tag_single_sourcing.html

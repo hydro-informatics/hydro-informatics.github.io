@@ -1,5 +1,6 @@
 ---
 title: Markdown and Code Documentation
+tags: [git, version_control, jupyter, markdown, sharing]
 keywords: md markdown document
 sidebar: mydoc_sidebar
 permalink: hy_documentation.html

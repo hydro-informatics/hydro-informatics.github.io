@@ -1,5 +1,6 @@
 ---
-title: Python Basics - First steps
+title: Python - First steps
+tags: [python, jupyter, pycharm, conda, anaconda]
 keywords: md markdown document
 summary: "About Python, variable types and script execution."
 sidebar: mydoc_sidebar

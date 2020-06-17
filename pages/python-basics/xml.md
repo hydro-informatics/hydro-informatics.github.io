@@ -1,5 +1,6 @@
 ---
 title: Python - Manipulation of workbooks and JSON files
+tags: [python, json, xlsx, workbooks, file_manipulation, formatting, basement]
 keywords: python
 summary: "Create, manipulate and copy xlsx-workbooks and JSON files."
 sidebar: mydoc_sidebar

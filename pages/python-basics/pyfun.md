@@ -1,5 +1,6 @@
 ---
-title: Python Basics - Functions
+title: Python - Functions
+tags: [python, object_orientation]
 keywords: git
 summary: "Leverage the power of code recycling with functions."
 sidebar: mydoc_sidebar
@@ -175,7 +176,7 @@ print(feet_to_meter(25, 10))
     [7.62, 3.048]
     
 
-## Default keyword arguments
+## Default keyword arguments {#kwargs}
 
 Keyword arguments can also be defined by default. The below example shows how the `conversion_factor` can be defaulted in the `def` function parentheses. Note that `conversion_factor` must be defined after any optional arguments `*args`.
 

@@ -1,5 +1,5 @@
 ---
-title: "Navigation pages"
+title: "Navigation"
 tagName: navigation
 search: exclude
 permalink: tag_navigation.html

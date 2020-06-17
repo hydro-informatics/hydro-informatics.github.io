@@ -1,5 +1,6 @@
 ---
 title: Classroom & Assignments
+tags: [python, modelling, hydraulics, git, version_control]
 keywords: teaching
 sidebar: mydoc_sidebar
 permalink: hy_assignments.html

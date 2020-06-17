@@ -1,5 +1,6 @@
 ---
-title: Python Basics - Errors and debugging
+title: Python - Errors, logging, and debugging
+tags: [python, logging, troubleshooting]
 keywords: python
 summary: "Handle error types and troubleshoot (debug)."
 sidebar: mydoc_sidebar

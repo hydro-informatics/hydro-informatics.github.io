@@ -1,5 +1,5 @@
 ---
-title: "Content types pages"
+title: "Content types"
 tagName: content_types
 search: exclude
 permalink: tag_content_types.html

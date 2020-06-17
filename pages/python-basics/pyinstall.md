@@ -1,6 +1,6 @@
 ---
 title: Install Python
-tags: [python, ipython, jupyter, pycharm]
+tags: [python, ipython, jupyter, pycharm, anaconda, conda, interface, install]
 keywords: python, ipython, jupyter, pycharm
 sidebar: mydoc_sidebar
 permalink: hypy_install.html

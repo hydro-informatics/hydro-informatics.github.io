@@ -1,8 +1,8 @@
 ---
-title: "Water Resources"
-tagName: water-resources
+title: "anaconda"
+tagName: anaconda
 search: exclude
-permalink: tag_water-resources.html
+permalink: tag_anaconda.html
 sidebar: mydoc_sidebar
 folder: tags
 ---

@@ -1,5 +1,6 @@
 ---
 title: Geospatial analysis
+tags: [python, gdal, arcpy, QGIS, ]
 keywords: geo-python gdal QGIS
 sidebar: mydoc_sidebar
 permalink: geo_overview.html

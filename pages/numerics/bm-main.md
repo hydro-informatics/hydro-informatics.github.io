@@ -1,5 +1,6 @@
 ---
 title: Run BASEMENT
+tags: [basement, numerical, modelling, hydraulics]
 keywords: numerics
 summary: "Set up BASEplane for 2D modelling of rivers."
 sidebar: mydoc_sidebar

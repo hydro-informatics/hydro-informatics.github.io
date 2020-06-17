@@ -1,5 +1,6 @@
 ---
 title: Python Basics - Plotting
+tags: [python, matplotlib, pandas, plotting, plotly, matlab]
 keywords: python
 summary: "Use matplotlib, pandas, and plotly to leverage Python's power of data visualization."
 sidebar: mydoc_sidebar

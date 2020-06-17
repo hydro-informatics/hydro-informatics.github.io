@@ -1,5 +1,6 @@
 ---
 title: Python - Code Styles and Conventions
+tags: [python, object_orientation, formatting]
 keywords: python
 sidebar: mydoc_sidebar
 permalink: hypy_pystyle.html
@@ -125,7 +126,7 @@ Whitespaces should be added:
 * around any operator, boolean, or (augmented) assignment (e.g., `==, <, >, !=, <>, <=, >=, in, not in, is, is not, and, or, not, +=, -=`)
 * after colons `:` if a value antecedes the `:` and no parentheses or brackets follow immediately after the `:` (e.g., `a_dict = {a_key: a_value}`)
 
-## Packages and modules
+## Packages and modules {#libs}
 
 ### Imports
 Imports are at the top of the script, right after any [docstrings](#docstrings) or other module comments. Import libraries first, then third party packages, and lastly locally stored (own) modules.

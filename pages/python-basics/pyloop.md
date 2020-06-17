@@ -1,5 +1,6 @@
 ---
-title: Python Basics - Loops and Conditional Statements
+title: Python - Loops and Conditional Statements
+tags: [python]
 keywords: python
 summary: "Iterate and apply conditional criteria"
 sidebar: mydoc_sidebar
@@ -9,7 +10,7 @@ folder: python-basics
 
 *Python* provides two basic types of loops to iterate through objects or functions: the `for` and the `while` loop statements. Both loop types have additional options and can be combined with conditional statements. Conditional statements evaluate Boolean arguments (True/False) using the key words `if: ... else: ...`. This section introduces the two loop types and conditional statements as integral parts of loops.
 
-## Conditional `if` statements {#if}
+## Conditional `if` statements  {#if}
 Conditional statements open with an `if` key word, followed by a test condition (e.g., `variable >= 2`) and action to accomplish when the test condition is true ([boolean](hypy_pybase.html#boolean) test result). The conditional statement can be followed by the `elif` (*else if*) and/or `else` key words, which represent alternative tests in the case that the `if` test-condition was false. However, when the `if` statement was `True`, none of the following statements will be evaluated.
 
 

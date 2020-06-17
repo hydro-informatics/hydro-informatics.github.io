@@ -1,6 +1,6 @@
 ---
-title: 
-tags: [python]
+title: "Python"
+tags: [python, jupyter]
 keywords: python
 sidebar: mydoc_sidebar
 permalink: python.html

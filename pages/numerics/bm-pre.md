@@ -1,5 +1,6 @@
 ---
 title: Pre-Processing with QGIS
+tags: [basement, shapefile, qgis, hydraulics]
 keywords: numerics
 summary: "Produce a numerical mesh with QGIS."
 sidebar: mydoc_sidebar

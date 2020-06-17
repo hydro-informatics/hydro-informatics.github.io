@@ -1,5 +1,6 @@
 ---
 title: Anaconda and Integrated Development Environments (IDEs)
+tags: [python, ipython, jupyter, pycharm, conda, anaconda, interface, install]
 keywords: IDEs, conda, Anaconda, jupyter, pycharm
 summary: "Let's start at the very beginning ..."
 sidebar: mydoc_sidebar

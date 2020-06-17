@@ -1,5 +1,6 @@
 ---
-title: Geo-Python - Commercial
+title: Geospatial Python - Commercial software
+tags: [python, arcpy, geo, geospatial, shapefile, raster, froude, pycharm, jupyter]
 keywords: geo python ArcGIS arcpy
 summary: "Geospatial analysis with ESRI's commercial ArcGIS software and arcpy package."
 sidebar: mydoc_sidebar

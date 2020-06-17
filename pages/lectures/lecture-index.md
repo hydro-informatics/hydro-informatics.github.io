@@ -1,7 +1,7 @@
 ---
 title: Lectures
+tags: [sharing]
 keywords: python teaching
-summary: "List of lectures."
 sidebar: mydoc_sidebar
 permalink: hy_lecture_index.html
 folder: lectures

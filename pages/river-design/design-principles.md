@@ -1,5 +1,6 @@
 ---
 title: River Design & Nature-based Engineering
+tags: [hydraulic_engineering, ecohydraulics, morphodynamics]
 keywords: nature-based
 summary: "Design principles in nature-based river engineering."
 sidebar: mydoc_sidebar

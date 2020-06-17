@@ -1,5 +1,6 @@
 ---
-title: Python Basics - Packages and Modules
+title: Python - Packages and Modules (Libraries)
+tags: [python, object_orientation, libraries]
 keywords: git
 sidebar: mydoc_sidebar
 permalink: hypy_pckg.html
@@ -144,7 +145,8 @@ def dialogue(scoops_wanted): #formerly in the __main__ statement
     print("That makes {0} please".format(price_scoops[scoops_wanted]))
 
 if (__name__ == '__main__'):
-    import sys  # we need sys here
+    # import the terminal function emulator sys
+    import sys
     if len(sys.argv) > 1: # make sure input is provided
         # if true: call the dialogue function with the input argument
         dialogue(int(sys.argv[1]))
@@ -200,7 +202,7 @@ print(icecreamery_all.icecreamdialogue.welcome_msg)
     
 
 ### Package creation summary
-A hierachically organized package contains a `__init__.py` file with an `__all__` list to invoke relevant module scripts. The structure of a module can be more complex than the above example list (e.g., with sub-folders). When you write a package, remember to use meaningful script and variable names, and to document it.
+A hierachically organized package contains a `__init__.py` file with an `__all__` list to invoke relevant module scripts. The structure of a module can be more complex than the above example list (e.g., with sub-folders). When you write a package, remember to use [meaningful script and variable names](hypy_pystyle.html#libs), and to document it.
 
 {% include tip.html content="Implement a custom [logger](hypy_pyerror.html#logging) in your module with `logger = logging.getLogger(__name__)` (replace `__name__` with for example `my-module-log`)." %}
 

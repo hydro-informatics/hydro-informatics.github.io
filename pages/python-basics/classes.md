@@ -1,5 +1,6 @@
 ---
 title: Python - Object Orientation and Classes
+tags: [python, object_orientation, ecohydraulics]
 keywords: python
 summary: "Leverage the power of Python by writing new classes."
 sidebar: mydoc_sidebar
