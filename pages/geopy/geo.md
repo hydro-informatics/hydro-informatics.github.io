@@ -1,14 +1,14 @@
 ---
-title: Geospatial software
+title: Geospatial analysis
 keywords: geo-python gdal QGIS
 sidebar: mydoc_sidebar
 permalink: geo_overview.html
 folder: geopy
 ---
 
-The *Python* libraries provide many open-source and commerical (proprietary) packages for the analyses of geospatial data.
+The *Python* libraries provide many open-source and commercial (proprietary) packages for the analyses of geospatial data.
 
-{% include note.html content="Geospatial data are either geographically referenced, pixel-based [rasters](https://en.wikipedia.org/wiki/Raster_graphics) data or vector-based *Esri* [shapefiles](https://en.wikipedia.org/wiki/Shapefile)." %}
+{% include tip.html content="Start with reading the [Geospatial data](geospatial-data.html) page to understand the underpinnings of any geospatial analysis." %}
 
 Some of the most common open-source packages are:
  * [`gdal`](https://gdal.org/) of the [OSGeo Project](http://www.osgeo.org/) for processing rasters and shapefiles.
