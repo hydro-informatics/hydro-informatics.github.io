@@ -1,5 +1,6 @@
 ---
 title: Geospatial software
+tags: [qgis, gdal, arcpy, basement, geo, geospatial]
 keywords: QGIS, ArcGIS, SAGA
 summary: "Software tools for geospatial analyses."
 sidebar: mydoc_sidebar
@@ -15,11 +16,9 @@ Geospatial analyses (or analytics) use, manipulate and illustrate data from geog
 For the visualization of geodata (`.shp` and `.tif` files) a GIS software is required and the analyses described on these pages refer to the usage of [*QGIS* ](https://www.qgis.org). This web site uses *QGIS* within the sections on [geospatial programming with *Python*](geo_overview) and [numerical modelling with the ETH Zurich's BASEMENT](bm-pre.html) software.
 
 ### Install QGIS on Windows
-{% include recommend.html %} 
 Download and install the latest version of [*QGIS*](https://www.qgis.org/en/site/forusers/download.html) for Windows.
 
 ### Install QGIS on Linux
-{% include recommend.html %} 
 The *QGIS* developers provide detailed installation instructions for several *Linux* distributions, but the instructions will not satisfy all requirement for the use of *QGIS* described on *hydro-informatics.github.io*. Therefore, install *QGIS* as follows:
 
 1. Install QGIS v3.12 either from the [*Flatpak* web site](https://flathub.org/apps/details/org.qgis.qgis) or using the *Linux* *Software Manager* (open *Software Manager*, search for *QGIS* and install the *QGIS Flatpak*). If *Software Manager* cannot find *QGIS*, make sure that *Flatpak* is added as repository (*Software Source*). The good repository for many Linux distributions can be found on the [*Flatpak web site*](https://flatpak.org/setup/)).
@@ -30,7 +29,7 @@ This solution has been tested on *Linux Ubuntu* and *Linux Mint*. It potentially
 
 
 ### Install QGIS on macOS
-{% include warning.html content="If you plan to use BASEMENT for numerical modelling: It will not run on macOS." %}
+{% include warning.html content="If you plan to use BASEMENT for numerical modelling: BASEMENT will not run on macOS." %}
 
 Download and install the latest version of [*QGIS*](https://www.qgis.org/en/site/forusers/download.html) for macOS. The integrity of using macOS for the applications on *hydro-informatics.github.io* is has not yet been tested. Possible trouble-shooting with *Python* is provided by [kynchaos.com](https://www.kyngchaos.com/software/qgis/). 
 
@@ -47,3 +46,7 @@ There are many other tools for geospatial analyses, which all deserve much more 
 * [Mapline](https://mapline.com/)
 * [Mapbox](https://www.mapbox.com/)
 * [uDig](http://udig.refractions.net/)
+
+## Geospatial data, file handling and analysis
+
+Geospatial analyses involve efficient code practices (e.g. with *Python*) and this is why detailed descriptions of geospatial data handling are embedded in the [*Python* (advanced)](geo_overview.html) section of this website.

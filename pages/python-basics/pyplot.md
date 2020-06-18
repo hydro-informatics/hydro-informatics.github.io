@@ -24,7 +24,7 @@ In 2003, the development of *matplotlib* was initiated in the field of neurobiol
 `import matplotlib.pyplot as plt`.
 
 ### Some terms and definitions
-A `plt.figure` can be thought of as a box containing one or more axes, which represent the actual plots. Within the axes, there are smaller objects in the hierarchy such as markers, lines, legends, and text fields. Almost every element of a plot is a manipulable attribute and the most important attributes are shown in the following figure.
+A `plt.figure` can be thought of as a box containing one or more axes, which represent the actual plots. Within the axes, there are smaller objects in the hierarchy such as markers, lines, legends, and text fields. Almost every element of a plot is a manipulable attribute and the most important attributes are shown in the following figure. More attributes can be found in the showcases of [matplotlib.org](https://matplotlib.org/examples/showcase/anatomy.html).
 
 {% include image.html file="pyplot-defs.png" alt="pyplot-defs" max-width="500" caption="Python objects (attributes) of a pyplot figure." %} 
 
