@@ -8,7 +8,6 @@ permalink: geospatial-data.html
 folder: geopy
 ---
 
-{% include callout.html content="Geospatial data are either geographically referenced, pixel-based [rasters](https://en.wikipedia.org/wiki/Raster_graphics) data or vector-based *Esri* [shapefiles](https://en.wikipedia.org/wiki/Shapefile)." %}
 
 {% include tip.html content="Use [*QGIS*](geo_software.html#qgis) to display geospatial data and to create maps in *PDF* or image formats (e.g., *tif*, *png*, *jpg*)." %}
 
@@ -21,10 +20,10 @@ Geospatial data can be retrieved for various purposes from different sources. He
     - [eesa's copernicus open access hub](https://scihub.copernicus.eu/dhus/#/home) (Sentinel-2)
 * [LiDAR](https://oceanservice.noaa.gov/facts/lidar.html) data can be found at [opentopography.org](https://opentopography.org/). 
 * Climatological data are provided by [NASA Earth Observation](https://neo.sci.gsfc.nasa.gov/).
-* Data on land use (including canopy cover), socioeconomic characteristics, and global change are available at the [FAO GeoNetwork](http://www.fao.org/geonetwork/srv/en/main.home) or the archived ISCGM Global Map portal ([got to their github archive](https://globalmaps.github.io/)).
+* Data on land use (including canopy cover), socioeconomic characteristics, and global change are available at the [FAO GeoNetwork](http://www.fao.org/geonetwork/srv/en/main.home) or the archived ISCGM Global Map portal ([go to their github archive](https://globalmaps.github.io/)).
 
 
-## Geodatabases
+## Geodatabase
 A geodatabase (also known as *spatial database*) can store, query (e.g., using [Structured Query Language *SQL*](https://en.wikibooks.org/wiki/Structured_Query_Language)), or modify data with geographic references (*geospatial data*). Primarily, geospatial data consist of vector data (see shapefiles), but raster data can also be implemented. A geodatabase links these data with attribute tables and geographic coordinates. The special aspect of geodatabases is that these data can be queried and manipulated by users via a (web or local) GIS (geographic information system) server. With software like [*QGIS*](geo_software.html#qgis) (or *ArcGIS Pro*), for example, queries can be made on a kind of local server using locally stored geodata. The typical geodatabase format is `.gdb`, which works actually like a directory in *QGIS* or *ArcGIS*, and the maximum size of a `.gdb` file is 1 terabyte.
 
 {% include image.html file="geo-database.png" alt="gdb" caption="Functional skeleton of a geodatabase." %}
@@ -39,10 +38,8 @@ Vector data are visually smooth and efficient for overlay operations, especially
 * Points with x-y-z coordinates and an *m* field containing point data.
 * (Poly) lines consisting of lines defined by start points and endpoints.
 
-### Shapefile versus geodatabase
-A shapefile can be understood as a concurring format to a geodatabase. Which file format is better? Strictly speaking, both a geodatabase and a shapefile can perform similar operations, but a shapefile requires more storage space to store similar contents, cannot store combinations of data and time, nor does it support raster files or *Null* (*not-a-number*) values. So basically we are better off with geodatabases, but the usage of shapefiles is popular and many geospatial operations focus on shapefile manipulations
 
-### Structure of shapefiles
+### Shapefile
 A shapefile is not just one file and consists of three essential parts:
 * a `.shp` file, where geometries are stored,
 * a `.shx` file, where indices of the geometries are stored, 
@@ -54,6 +51,9 @@ These three files need to be in the same folder - otherwise, the shapefile does 
 Shapefile vector data typically has an attribute table (just like any other geodatabase) in which each polygon, line or point object can be assigned an attribute value. Attributes are defined by columns along with their names (column headers) and can have numeric (e.g., *float*, *double*, *int*, or *long*), text (*string*), or date/time (e.g. *yyyymmdd* or *HH:MM:SS*) formats.
 
 {% include image.html file="geo-shp-illu.png" alt="shp-illu" caption="Illustration of point, (poly) line, and polygon shapefiles." %}
+
+### Shapefile versus geodatabase
+A shapefile can be understood as a concurring format to a geodatabase. Which file format is better? Strictly speaking, both a geodatabase and a shapefile can perform similar operations, but a shapefile requires more storage space to store similar contents, cannot store combinations of data and time, nor does it support raster files or *Null* (*not-a-number*) values. So basically we are better off with geodatabases, but the usage of shapefiles is popular and many geospatial operations focus on shapefile manipulations.
 
 ### Triangulated Irregular Network (TIN)
 
