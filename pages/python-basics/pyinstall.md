@@ -19,17 +19,17 @@ To install an environment that suites most of the needs for codes and analyses s
 
 1. Download the environment file [here](https://github.com/hydro-informatics/materials-py-install/blob/master/environment.yml) (if needed: copy the file contents of `environment.yml` in a local text editor tool such as [Notedpad++](https://notepad-plus-plus.org/) ([alternatives](hy_others.html#npp)) and save the file for example in a directory called *C:/temp/*)
 1. Open Anaconda prompt (`Windows` key > type `Anaconda prompt` > hit `Enter`)
-1. Navigate to the download directory where `environment.yml` is located (use [`cd`](https://www.digitalcitizen.life/command-prompt-how-use-basic-commands) to navigate for example to *C:/temp/*)
-1. Enter `conda env create -f environment.yml` (this creates the environment called `geo-python`)
+1. Navigate to the download directory where `environment.yml` is located (use   [`cd`](https://www.digitalcitizen.life/command-prompt-how-use-basic-commands)   to navigate for example to *C:/temp/*)
+1. Enter `conda env create -f environment.yml` (this creates an environment called `hypy`)
 
 ## Install additional *Python* packages in a *conda* environment {#install-pckg}
 To install more [*Python* packages](hypy_pckg.html): 
 
 1. Open *Anaconda Prompt* (`Windows` key or click on the start menu of your operating system > type `anaconda prompt` > hit `Enter` key on your keyboard)
-1. Activate environment `conda activate geo-python`
+1. Activate environment `conda activate hypy`
 1. Install package `conda install PACKAGE_NAME` (if the package cannot be found, try `conda install -c conda-forge PACKAGE_NAME`)
 
-Alternatively, press the `Windows` key (or click on the start menu of your operating system) > type `Anaconda Navigator` > got to the `Environments` tab > select the `geo-python` environment (or create another environment) > install & install packages. 
+Alternatively, press the `Windows` key (or click on the start menu of your operating system) > type `Anaconda Navigator` > got to the `Environments` tab > select the `hypy` environment (or create another environment) > install & install packages. 
 
 ## Setup Interfaces and IDEs
 
@@ -72,13 +72,13 @@ After the successful installation of [*PyCharm*](hy_ide.html#ide) within *Anacon
 
 1. Launch *PyCharm* and create a new project. 
     {% include image.html file="pyc-project.png" alt="pyc-prj" max-width="500px" caption="Create a new project in PyCharm." %}
-1. Define The new `geo-python` environment as *Pure Python* project interpreter:
+1. Define The new `hypy` environment as *Pure Python* project interpreter:
     * Select *New environment using `Conda`
-    * In the *Location* box select the new `geo-python` environment
+    * In the *Location* box select the new `hypy` environment
     * Click *Create* to create the new project.
-    {% include image.html file="pyc-prj-setup.png" alt="pyc-prj-setup" caption="Setup the geo-python conda environment for the new project." %}
+    {% include image.html file="pyc-prj-setup.png" alt="pyc-prj-setup" caption="Setup the hypy conda environment for the new project." %}
 1. Verify that the project interpreter is correctly defined:
     * Click on *PyCharm*'s `File` menu and select `Settings...` 
     * In the *Settings* window go to `Project: [NAME]` > `Project Interpreter` 
-    * Make sure that the above-created `gep-python` *conda* environment is defined as *Project Interpreter*.
+    * Make sure that the above-created `hypy` *conda* environment is defined as *Project Interpreter*.
     {% include image.html file="pyc-prj-interp.png" alt="pyc-prj-interp" caption="Verify the correct setup of the Project Interpreter." %}

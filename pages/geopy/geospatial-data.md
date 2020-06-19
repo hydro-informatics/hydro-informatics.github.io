@@ -23,12 +23,12 @@ Geospatial data can be retrieved for various purposes from different sources. He
 * Data on land use (including canopy cover), socioeconomic characteristics, and global change are available at the [FAO GeoNetwork](http://www.fao.org/geonetwork/srv/en/main.home) or the archived ISCGM Global Map portal ([go to their github archive](https://globalmaps.github.io/)).
 
 
-## Geodatabase
+## Geodatabase {#gdb}
 A geodatabase (also known as *spatial database*) can store, query (e.g., using [Structured Query Language *SQL*](https://en.wikibooks.org/wiki/Structured_Query_Language)), or modify data with geographic references (*geospatial data*). Primarily, geospatial data consist of vector data (see shapefiles), but raster data can also be implemented. A geodatabase links these data with attribute tables and geographic coordinates. The special aspect of geodatabases is that these data can be queried and manipulated by users via a (web or local) GIS (geographic information system) server. With software like [*QGIS*](geo_software.html#qgis) (or *ArcGIS Pro*), for example, queries can be made on a kind of local server using locally stored geodata. The typical geodatabase format is `.gdb`, which works actually like a directory in *QGIS* or *ArcGIS*, and the maximum size of a `.gdb` file is 1 terabyte.
 
 {% include image.html file="geo-database.png" alt="gdb" caption="Functional skeleton of a geodatabase." %}
 
-## Vector data
+## Vector data {#vector}
 
 Vector data are visually smooth and efficient for overlay operations, especially regarding shape-driven geo-information such as roads or surface delineations. Vector data are typically less storage-intensive, easier to scale, and more compatible with relational environments. Common formats are `.shp`, `JSON` or `TIN`.
  
@@ -39,7 +39,7 @@ Vector data are visually smooth and efficient for overlay operations, especially
 * (Poly) lines consisting of lines defined by start points and endpoints.
 
 
-### Shapefile
+### Shapefile {#shp}
 A shapefile is not just one file and consists of three essential parts:
 * a `.shp` file, where geometries are stored,
 * a `.shx` file, where indices of the geometries are stored, 
@@ -55,13 +55,13 @@ Shapefile vector data typically has an attribute table (just like any other geod
 ### Shapefile versus geodatabase
 A shapefile can be understood as a concurring format to a geodatabase. Which file format is better? Strictly speaking, both a geodatabase and a shapefile can perform similar operations, but a shapefile requires more storage space to store similar contents, cannot store combinations of data and time, nor does it support raster files or *Null* (*not-a-number*) values. So basically we are better off with geodatabases, but the usage of shapefiles is popular and many geospatial operations focus on shapefile manipulations.
 
-### Triangulated Irregular Network (TIN)
+### Triangulated Irregular Network (TIN) {#tin}
 
 A triangulated irregular network (TIN) represents a surface consisting of multiple triangles. In hydraulic engineering and water resources research, one of the most important usage of TIN is the generation of computational meshes for numerical models (e.g., [on this website's BASEMENT tutorial](bm-pre.html)). In such models, a TIN consists of lines and nodes forming georeferenced, three-dimensionally sloped triangles of the surface, which represent a digital elevation model (DEM). TIN nodes have georeferenced coordinates and potentially more attribute information such as node IDs and elevation. The advantage of a TIN DEM over a raster DEM is that it requires less storage space. Alas, manipulating a TIN is not that easy like manipulating a raster. The below figure shows an example TIN created with [`matplotlib.tri.TriAnalyzer`](https://matplotlib.org/3.1.1/api/tri_api.html#matplotlib.tri.TriAnalyzer)), and based on a [showcase from the matplotlib docs](https://matplotlib.org/3.1.1/gallery/images_contours_and_fields/tricontour_smooth_delaunay.html#sphx-glr-gallery-images-contours-and-fields-tricontour-smooth-delaunay-py). The file ending of a TIN is `.TIN`.
 
 {% include image.html file="geo-tin.png" alt="tin-illu" caption="Illustration of a TIN." %}
 
-### GeoJSON
+### GeoJSON {#geojson}
 
 [*GeoJSON*](https://geojson.org/) is an open format for representing geographic data with simple feature access standards, where *JSON* denotes *JavaScript Object Orientation* ([read more about *JSON* file manipulation in the *Python* intro on this website](hypy_xml.html#json)). The *GeoJSON* file name ending is `.geojson` and a file typically has the following structure:
 
@@ -85,7 +85,7 @@ A triangulated irregular network (TIN) represents a surface consisting of multip
 
 Visit [geojson.io](https://geojson.io/) to build a customized *GeoJSON* file. While *GeoJSON* metadata can provide height information (`z` values) as a `properties` value, there is a more suitable offspring to encode geospatial topology in the form of the still rather young [*TopoJSON*](https://github.com/topojson/topojson/wiki) format. 
 
-## Gridded cell (raster) data 
+## Gridded cell (raster) data {#raster}
 Raster datasets store pixel values (*cells*), which require large storage space, but have a simple structure. A big advantage of rasters is the possibility to perform powerful geospatial and statistical analyses. Common Raster datasets are, among others, `.tif` (*GeoTIFF*), *GRID* (a folder with a `BND`, `HDR`, `STA`, `VAT`, and other files), `.flt` (floating points), *ASCII* (American Standard Code for Information Interchange), and many more image-like file types.
 
 {% include tip.html content="Preferably use the [*GeoTIFF*](https://en.wikipedia.org/wiki/GeoTIFF) format in raster analyses. A *GeoTIFF* file, typically includes a `.tif` file (with heavy data) and a `.tfw` (a sixe-line plain text world file containing georeference information) file." %}

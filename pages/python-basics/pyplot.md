@@ -432,10 +432,10 @@ The above shown *matplotlib* and *pandas* packages are great for creating static
 
 
 ### Installation
-*plotly* is not a default package neither in the *geo-python.yml* environment file nor in the *conda base* environment. Therefore, it must be installed manually with *conda prompt* (or *Conda Navigator* if you prefer the Desktop version). So open *conda prompt* to install *plotly* for :
+*plotly* is not a default package neither in the *environment.yml* (`hypy`) file nor in the *conda base* environment. Therefore, it must be installed manually with *conda prompt* (or *Conda Navigator* if you prefer the Desktop version). So open *conda prompt* to install *plotly* for :
 
 * *jupyter* usage type with the base environment activated: <br> `conda install plotly` (confirm installation when asked for it) <br> `jupyter labextension install jupyterlab-plotly@4.7.1` (change version `4.7.1` to latest version listed [here](https://github.com/plotly/plotly.py/releases)) <br> optional: `conda install -c plotly chart-studio` (good for other plots than featured on this page)
-* *geo-python* (e.g., within *PyCharm*): <br> `conda activate geo-python` <br>  `conda install plotly` (confirm installation when asked for it)
+* *hypy* (e.g., within *PyCharm*): <br> `conda activate hypy` <br>  `conda install plotly` (confirm installation when asked for it)
 * [Read the trouble shooting info to fix problems with jupyter or *Python*](https://plotly.com/python/troubleshooting/) (there may be some...).
 
 Read more about installing packages within *conda environments* on the [*Python* installation page](https://hydro-informatics.github.io/hypy_install.html#install-pckg). 
