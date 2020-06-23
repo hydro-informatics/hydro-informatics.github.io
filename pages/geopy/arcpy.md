@@ -10,9 +10,9 @@ folder: geopy
 
 *ESRI*'s *ArcGIS Pro* software comes with an own *conda* environment that enables working with the commercial `arcpy` library. `arcpy` is accessible either directly in `ArcGIS Pro` or by using *ESRI*'s *conda* environment, which can be managed through *ArcGIS Pro*. Since `arcpy` is tied to the use of a commercial environment, it can only be accessed in online *jupyter* notebooks directly at [esri.com](https://notebooks.esri.com/) (however, these will not work with the examples on this page). This page explains the use of `arcpy` in external [*IDE*](hy_ide.html#ide)s (e.g. *PyCharm*), the integration of licenses, and basic functionality of `arcpy`.
 
-{% include requirements.html content="Make sure to understand the difference between rasters and shapefiles as explained in the [introduction of the GEOSPATIAL](geo_overview.html) section." %}
+{% include requirements.html content="Make sure to understand the difference between rasters and shapefiles as explained in the [introduction to geospatial data](geospatial-data.html) section." %}
 
-{% include note.html content="The development of ***ArcMap** with its *Python2* executable **is discontinued**. For this reason only the usage of *ArcGIS Pro* with its *Python3* environment is explained here." %}
+{% include note.html content="The development of **ArcMap** with its *Python2* executable **is discontinued**. For this reason only the usage of *ArcGIS Pro* with its *Python3* environment is explained here." %}
 
 {% include unix.html content="ArcGIS Pro and the wrappers that constitute the `arcpy` library are **Windows only** applications. At the time of writing this introduction *ArcGIS Pro* and `arcpy` cannot be used on *Linux* or *macOS* platforms." %}
 
@@ -157,11 +157,10 @@ u_stdv = CellStatistics([u_basement, u_tuflow], "STD")
 
 Read more options statistics types and handling non-numeric data on the [developer's website](https://pro.arcgis.com/en/pro-app/tool-reference/spatial-analyst/cell-statistics.htm).
 
-## Shapefile Features
+## Shapefile operations
 
 The geospatial [shapefile](https://en.wikipedia.org/wiki/Shapefile) vector format is an *Esri* invention. No wonder that `arcpy` is good at handling this vector data format. In hydraulic engineering, however, we usually create (draw) shapefiles manually either directly with *ArcGIS* or its open-source competitor [*QGIS*](https://www.qgis.org/) to delineate, for example, particular flow regions. Examples can be found here [on this website in the preparation of a BASEMENT](bm-pre.html) simulation (explore the creation of elevation point, boundary polygon, and breakline polyline shapefiles). In codes, the processing of shapefiles only becomes important in the analysis of the output of numerical models (e.g., to classify morphological unit features, exactly calculate patch areas, or automatically place reinforcements in construction plans). At this stage, raster data (output of numerical models) must first be converted into shapefiles. This is why this tutorial starts with the conversion of raster data to shapefiles along with the illustration of other functions such as calculating patch area and accessing shapefile attribute tables.
 
-### Create from raster
 Rasters can be converted to polygon and other shapefile types (e.g., point). The following example features the conversion of a raster to a polygon shapefile. It uses an integer raster of all pixels where the flow depth and velocity are smaller than 1.4 m and 0.15 m/s, respectively. Such shallow and slow-flow regions are called *slackwater* (according to [Wyrick & Pasternack 2014](https://doi.org/10.1016/j.geomorph.2013.12.040)). Because slackwater is designated preferred habitat of some aquatic species, we are wondering now how much slackwater area the numerical model predicts in the simulated river section. For this purpose, we convert the slackwater raster to a shapefile and calculate the surface area of the shapefile with the following `arcpy` methods:
 
 * Convert the raster to a shapefile with [`arcpy.RasterToPolygon_conversion()`](https://pro.arcgis.com/en/pro-app/tool-reference/conversion/raster-to-polygon.htm) with arguments:
