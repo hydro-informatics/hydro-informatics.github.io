@@ -25,6 +25,8 @@ Geospatial data can be retrieved for various purposes from different sources. He
 ## Visualization
 GIS software is needed to display geospatial data and many tools exist. This website primarily provides examples using [*QGIS*](geo_software.html#qgis). Since the use of GIS software, especially *QGIS*, is necessary in several places on the website, explanations on how to install *QGIS* are already included on the [Get Started > Geospatial software](geo_software.html) page.
 
+{% include tip.html content="The [*BASEMENT* pre-processing page](bm-pre.html) features the basics of geospatial data handling with *QGIS*. Therefore, this introduction to numerical modeling is also a good introduction to *QGIS*." %}
+
 ## Geodatabase {#gdb}
 A geodatabase (also known as *spatial database*) can store, query (e.g., using [Structured Query Language *SQL*](https://en.wikibooks.org/wiki/Structured_Query_Language)), or modify data with geographic references (*geospatial data*). Primarily, geospatial data consist of vector data (see shapefiles), but raster data can also be implemented. A geodatabase links these data with attribute tables and geographic coordinates. The special aspect of geodatabases is that these data can be queried and manipulated by users via a (web or local) GIS (geographic information system) server. With software like [*QGIS*](geo_software.html#qgis) (or *ArcGIS Pro*), for example, queries can be made on a kind of local server using locally stored geodata. The typical geodatabase format is `.gdb`, which works actually like a directory in *QGIS* or *ArcGIS*, and the maximum size of a `.gdb` file is 1 terabyte.
 
