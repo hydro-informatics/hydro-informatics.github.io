@@ -20,10 +20,11 @@ The `os` package provides some useful system-terminal like commands, for example
 ```python
 import os
 print(os.getcwd()) # print current working directory
-
+print(os.path.abspath('')) # print directory of script running
 ```
 
-    C:\Users\schwindt\jupyter\hypy
+    /usr/jupyter/hypy
+    /usr/jupyter/hypy/notebooks
     
 
 ### Overview of import options
