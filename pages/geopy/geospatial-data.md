@@ -44,6 +44,7 @@ Vector data are visually smooth and efficient for overlay operations, especially
 
 
 ### Shapefile {#shp}
+{% include note.html content="The `gdal.ogr` driver name for shapefile handling is `ogr.GetDriverByName('ESRI Shapefile')`." %}
 A shapefile is not just one file and consists of three essential parts:
 * a `.shp` file, where geometries are stored,
 * a `.shx` file, where indices of the geometries are stored, 
@@ -66,7 +67,7 @@ A triangulated irregular network (TIN) represents a surface consisting of multip
 {% include image.html file="geo-tin.png" alt="tin-illu" caption="Illustration of a TIN." %}
 
 ### GeoJSON {#geojson}
-
+{% include note.html content="The `gdal.ogr` driver name for shapefile handling is `ogr.GetDriverByName('GeoJSON')`." %}
 [*GeoJSON*](https://geojson.org/) is an open format for representing geographic data with simple feature access standards, where *JSON* denotes *JavaScript Object Orientation* ([read more about *JSON* file manipulation in the *Python* intro on this website](hypy_xml.html#json)). The *GeoJSON* file name ending is `.geojson` and a file typically has the following structure:
 
 ```json
@@ -95,3 +96,21 @@ Raster datasets store pixel values (*cells*), which require large storage space,
 {% include tip.html content="Preferably use the [*GeoTIFF*](https://en.wikipedia.org/wiki/GeoTIFF) format in raster analyses. A *GeoTIFF* file, typically includes a `.tif` file (with heavy data) and a `.tfw` (a sixe-line plain text world file containing georeference information) file." %}
 
 {% include image.html file="geo-raster-illu.png" alt="raster-illu" caption="Illustration of the Natural Earth's NE1_50M_SR_W.tif raster zoomed on Nepal, with point and line shapefiles indicating major cities and country borders, respectively. Take note of the tile-like appearance of the grid, where each tile corresponds to a 50m-x-50m raster cell." %}
+
+## Projections and coordinate systems {#prj}
+In geospatial data analyses, a projection represents an approach to flatten (a part of) the globe. In this flattening process, latitudinal (North/South) and longitudinal (West/East) coordinates of a location on the globe (three-dimensional *3D*) are projected into the coordinates of a two-dimensional (*2D*) map. When 3D coordinates are projected onto 2D coordinates, distortions occur and there is a variety of projection systems used in geospatial analyses. In practice this means that if we use geospatial data files with different projections, a distortion effect propagates in all subsequent calculations. It is absolutely crucial to avoid distortion effects by ensuring that the same projections and coordinate systems are applied to all geospatial data used. This starts with the creation of a new geospatial layer (e.g., a point vector shapefile) in *QGIS* and should be used consistently in all program codes. To specify a projection or coordinate system in *QGIS*, click on `Project` > `Properties` > `CRS` tab and select a `COORDINATE_SYSTEM`. For example, an appropriate coordinate system for central Europe is `ESRI:31493` (read more in the [*QGIS* docs](https://docs.qgis.org/testing/en/docs/user_manual/working_with_projections/working_with_projections.html)). Projected systems may vary with regions (*local coordinate systems*), which can, for example, be found at [epsg.io](https://epsg.io/) or [spatialreference.org](https://spatialreference.org/).
+
+In **shapefiles**, information about the projection is stored in a `.prj` file (recall definitions in the [geospatial data section](#vector)), which is a plain text file. The Open Spatial Consortium (*OGC*) and *Esri* use [*Well-Known Text* (**WKT**)](http://docs.opengeospatial.org/is/18-010r7/18-010r7.html) files for standard descriptions of coordinate systemsa and such a *WKT*-formatted `.prj` file can look like this:
+
+
+```python
+PROJCS["unknown",GEOGCS["GCS_unknown",
+                        DATUM["D_Unknown_based_on_GRS80_ellipsoid",SPHEROID["GRS_1980",6378137.0,298.257222101]],
+                        PRIMEM["Greenwich",0.0],UNIT["Degree",0.0174532925199433]],
+       PROJECTION["Lambert_Conformal_Conic"], PARAMETER["False_Easting",6561666.66666667], 
+       ..., UNIT["US survey foot",0.304800609601219]]
+```
+
+In [*GeoJSON*](#geojson) files, the standard coordinate system is [WGS84](https://www.unoosa.org/documents/pdf/icg/2018/icg13/wgd/wgd_12.pdf) according to the [developer's specifications](https://cran.r-project.org/web/packages/geojsonio/vignettes/geojson_spec.html).
+The units and measures defined in the *WKT*-formatted `.prj` file also determine the units of *WK**B*** (*Well-Known Binary*) definitions of geometries such as line length (e.g., in meters, feet or many more), or polygon area (square meters, square kilometers, acres, and many more). 
+{% include tip.html content="To ensure that all geometries are measures in meters and powers of meters, use [**EPSG:3857**](https://spatialreference.org/ref/sr-org/6864/) (former 900913 - g00glE) to define the *WKT*-formatted projection file." %}

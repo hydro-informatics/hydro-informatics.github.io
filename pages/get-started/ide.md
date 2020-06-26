@@ -32,7 +32,7 @@ To set up *PyCharm* through *Anaconda* navigator:
 1. In *PyCharm* click on `+ Create New Project`
 1. A window will open - enter:
     - *Location* - Select a local directory for the project (e.g., *C:/hydro/project*)
-    - *Project Interpreter* - Check the `Existing interpreter` box and select the above-installed [conda environment `geo-python`](#conda-env) (e.g., `C:\users\<your-user-name>\AppData\Local\Continuum\anaonda3\envs\`)
+    - *Project Interpreter* - Check the `Existing interpreter` box and select the above-installed [conda environment   `hypy`](#conda-env) (e.g., `C:\users\<your-user-name>\AppData\Local\Continuum\anaonda3\envs\`)
     - Click on the `Create` button.
 
 All set - you are ready to work with *Python*, markdown (documentation), and [git](hy_git.html) now.
@@ -44,7 +44,7 @@ All set - you are ready to work with *Python*, markdown (documentation), and [gi
 ### Install *JupyterLab* (Anaconda Navigator) {#jupyter}
 
 *JupyterLab* is a product of the nonprofit organization [*Project Jupyter*](https://jupyter.org/), which develops "open-source software, open-standards, and services for interactive computing across dozens of programming languages". A *Jupyter* notebook (*.ipynb* file) enables the combination of markdown text blocks with executable code blocks. Essentially, a *Jupyter* notebook is a JavaScript Object Notation ([JSON](https://www.json.org/json-en.html)) file. The version schema of *JSON* files enables the easy export of *.ipynb*  notebooks to many open standard output format such as *HTML*, [*LaTeX*](https://latex-project.org/), *markdown*, *Python*, *presentation slides*, or *PDF*. 
-The *Jupyter* kernels support the three core programming languages ***Ju**lia*, ***Pyt**hon* and ***R***, and many more (currently 49)  *Jupyter* kernels for other programming languages exist. 
+The *Jupyter* kernels support the three core programming languages **Ju**lia, **Pyt**hon and **R**, and many more (currently 49)  *Jupyter* kernels for other programming languages exist. 
 
 1. Open *Anaconda Navigator* and make sure to be in the *Home* tab.
 1. Look for *JupyterLab* (also) and click on the *Install* button (if already installed, there is only a *Launch* button).

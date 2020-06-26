@@ -44,24 +44,32 @@ The descriptions on the *Get started* for installing and launching [*JupyterLab*
 
 *Jupyter* is a spin-off of [*IPython*](https://ipython.org/), which is "a rich architecture for interactive computing". Therefore, when we start a *Python* kernel in *JupyterLab*, an *IPython* kernel is started. This is different from a *conda* environment, but it can still access packages installed in the *conda* `base` environment. So if you need to install a package for usage in *JupyterLab*, follow the [above instructions](##install-pckg), but make sure that the `base` environment is activated.
 
-{#ipython}
+
 *Python* cells in *Jupyter* notebooks often require certain packages, which must be reloaded for each cell after each kernel start (we will learn more about packages later on the [Modules and packages](hypy_pckg.html) page). So it can be useful to define default imports for *IPython* and this works as follows.
 
-1. Look for the `.ipython` folder on your computer
-    * In *Windows*, this ist typically in your user folder (`C:\Users\your-name\.ipython\`)
-    * In *Linux* (or other *Unix*-based system such as *macOS*), files beginning with a `.` are hidden and *IPython* is typically located in `/usr/local/etc/ipython/` or `/usr/local/etc/.ipython/`
+1. Look for the (hidden) `.ipython` folder on your computer
+    * In *Windows*, this ist typically in your user folder (`C:\Users\your-name\.ipython\`) ([how to show hidden files in *Windows*](https://support.microsoft.com/en-us/help/14201/windows-show-hidden-files))
+    * In *Linux* (or other *Unix*-based system such as *macOS*), files beginning with a `.` are hidden and *IPython* is typically located in `/usr/local/etc/ipython/` or `/usr/local/etc/.ipython/` (either use the terminal and type `ls -a` or simultaneously hit the `CTRL`+`H` keys)
 1. In the `.ipython` or `ipython` folder, create a sub-directory called `/profile_default/startup/` (if not yet present).
-1. In the `*ipython/profile_default/startup/` directory, create a *Python* file called `ipython_config.py` (if not yet present).
+1. If not yet present: Create the `...ipython/profile_default/startup/` directory, with a *Python* file called `ipython_config.py`.
 1. Open `ipython_config.py` (right-click > edit - do not run the file) and add default import packages.
 1. For the Python (basics) course it is recommended to define the following default imports in `ipython_config.py` (add modifications, then save and close the file):
 
 ```python
+import os
+import sys
 import numpy as np
-import scipy as sp
 import pandas as pd
 import matplotlib as plt
 import tkinter as tk
 from tkinter import ttk
+```
+
+For the geospatial *Python* section, consider to add ([read `gdal` installation instructions](geo-pckg.html#gdal) first):
+```python
+import gdal
+from gdal import ogr
+from gdal import osr
 ```
 
 {% include note.html content="The `default_profile` is part of the default *Jupyter* installation and it is normally not necessary to create it manually. The [*IPython* docs](https://ipython.org/ipython-doc/stable/config/intro.html) provide more detail about custom settings and modifying profiles on any platform." %}

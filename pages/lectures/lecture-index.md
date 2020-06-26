@@ -8,7 +8,7 @@ folder: lectures
 ---
 
 ## Overview
-These pages provide complementary material for the following lectures tought at the [University of Stuttgart](https://www.iws.uni-stuttgart.de/en/) (Germany):
+These pages provide complementary material for the following lectures taught at the [University of Stuttgart](https://www.iws.uni-stuttgart.de/en/) (Germany):
 
 - [Integrated River Engineering and Sediment Management](https://ilias3.uni-stuttgart.de/goto_Uni_Stuttgart_crs_1855964.html) 
 

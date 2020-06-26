@@ -4,7 +4,7 @@ tags: [python, arcpy, geo, geospatial, shapefile, raster, froude, pycharm, jupyt
 keywords: geo python ArcGIS arcpy
 summary: "Geospatial analysis with ESRI's commercial ArcGIS software and arcpy package."
 sidebar: mydoc_sidebar
-permalink: hypy_arcpy.html
+permalink: geo-arcpy.html
 folder: geopy
 ---
 
