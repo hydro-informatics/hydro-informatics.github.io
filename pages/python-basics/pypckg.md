@@ -155,7 +155,10 @@ if (__name__ == '__main__'):
 
 Now we can run `icecreamdialogue_standalone_withinput.py` in the terminal.
 
+```shell script
 C:\temp\ python3 icecreamdialogue_standalone.py 2
+```
+
 ### Initialization of a package (hierarchically organized module) {#make-pckg}
 Good practice involves that one script does not exceed 50-100 lines of code. In consequence, a package will most likely consist of multiple scripts that are stored in one folder and one master script serves for the initiation of the scripts. This master script is called `__init__.py` and *Python* will always invoke this script name in a package folder. Example structure of a module called `icecreamery`:
 
