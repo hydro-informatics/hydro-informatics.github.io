@@ -23,8 +23,8 @@ print(os.getcwd()) # print current working directory
 print(os.path.abspath('')) # print directory of script running
 ```
 
-    /usr/jupyter/hypy
-    /usr/jupyter/hypy/notebooks
+    C:\Users\schwindt\jupyter\hypy
+    C:\Users\schwindt\jupyter\hypy
     
 
 ### Overview of import options
@@ -131,7 +131,7 @@ if (__name__ == '__main__'):
 
 Now we can run `icecreamdialogue_standalone.py` in the terminal.
 C:\temp\ python3 icecreamdialogue_standalone.py
-### Make standalone script with input parameter
+### Make standalone script with input parameter {standalone}
 To make the script more flexible, we can define `scoops_wanted` as an input variable of a function.
 
 
@@ -154,6 +154,7 @@ if (__name__ == '__main__'):
 ```
 
 Now we can run `icecreamdialogue_standalone_withinput.py` in the terminal.
+
 C:\temp\ python3 icecreamdialogue_standalone.py 2
 ### Initialization of a package (hierarchically organized module) {#make-pckg}
 Good practice involves that one script does not exceed 50-100 lines of code. In consequence, a package will most likely consist of multiple scripts that are stored in one folder and one master script serves for the initiation of the scripts. This master script is called `__init__.py` and *Python* will always invoke this script name in a package folder. Example structure of a module called `icecreamery`:
