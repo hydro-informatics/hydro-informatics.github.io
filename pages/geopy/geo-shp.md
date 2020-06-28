@@ -9,7 +9,7 @@ folder: geopy
 ---
 
 
-{% include note.html content="Make sure to understand [shapefiles](geospatial-data.html#shp) and [vector data](geospatial-data.html#vector) before reading this section." %}
+{% include requirements.html content="Make sure to understand [shapefiles](geospatial-data.html#shp) and [vector data](geospatial-data.html#vector) before reading this section." %}
 {% include tip.html content="The core functions provided in this e-book (`create_shp`, `get_esriwkt`, and `get_wkt`) are available at [the course repository](https://github.com/hydro-informatics/material-py-codes/raw/master/geo/shp_control.py) (during courses only)." %}
 
 ## Load an existing shapefile
