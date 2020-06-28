@@ -155,7 +155,7 @@ if (__name__ == '__main__'):
 
 Now we can run `icecreamdialogue_standalone_withinput.py` in the terminal.
 
-```shell script
+```
 C:\temp\ python3 icecreamdialogue_standalone.py 2
 ```
 
