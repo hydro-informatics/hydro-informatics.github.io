@@ -58,6 +58,17 @@ Even though of proprietary origin, the [`descartes`](https://docs.descarteslabs.
 conda install -c conda-forge descartes 
 ```
 
+## Python Imaging Library (PIL) / *pillow*
+Processing images with *Python* is enabled with the *Python Imaging Library* (*PIL*). *PIL* supports many image file formats, and has efficient graphics processing capabilities.
+The `pillow` library is a user-friendly *PIL* fork and provides `Image*` modules (e.g., `Image`, `ImageDraw`, `ImageMath`, and many more).
+
+The comprehensive `pillow` documentation is available at [readthedocs.io](https://pillow.readthedocs.io/en/stable/). To install `pillow` in a *conda* environment  open [*Anaconda Prompt*](hypy_install.html#install-pckg) and type:
+
+```python
+conda install -c anaconda pillow 
+```
+
+
 ## pyshp and (or) shapely
 For [shapefile](geospatial-data.html#shp) handling, [`pyshp`](https://pypi.org/project/pyshp/) provides pure *Python* code (rather than wrappers), which simplifies direct dealing with shapefile in *Python*. To install `pyshp` for *Python*, open [*Anaconda Prompt*](hypy_install.html#install-pckg) and type:
 
