@@ -86,7 +86,7 @@ conda install -c conda-forge shapely
 
 ## Other packages
 Besides the above mentioned packages there are other useful libraries for geospatial analyses in *Python*:
- * [`rasterio`](https://rasterio.readthedocs.io/en/latest/) for processing raster data as [`numpy`](hypy_pynum.html#numpy) arrays.
+ * [`rasterio`](https://rasterio.readthedocs.io/en/latest/) for processing raster data as [`numpy`](hypy_pynum.html#numpy) arrays install in *Anaconda Prompt* with `conda install -c conda-forge rasterio`). 
  * [`rasterstats`](https://pythonhosted.org/rasterstats/) produces zonal statistics of rasters and can interact with *GeoJSON* files (install in *Anaconda Prompt* with `conda install -c conda-forge rasterstats`).
  * [`sckit-image`](https://scikit-image.org/) for machine learning applied to georeferenced images.
  * [`django`](https://docs.djangoproject.com/en/3.0/ref/contrib/gis/) as a geographic web frame and for database connections (install in *Anaconda Prompt* with `conda install -c anaconda django`).

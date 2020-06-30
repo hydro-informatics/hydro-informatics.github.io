@@ -31,7 +31,7 @@ This solution has been tested on *Linux Ubuntu* and *Linux Mint*. It potentially
 ### Install QGIS on macOS
 {% include warning.html content="If you plan to use BASEMENT for numerical modelling: BASEMENT will not run on macOS." %}
 
-Download and install the latest version of [*QGIS*](https://www.qgis.org/en/site/forusers/download.html) for macOS. The integrity of using macOS for the applications on *hydro-informatics.github.io* is has not yet been tested. Possible trouble-shooting with *Python* is provided by [kynchaos.com](https://www.kyngchaos.com/software/qgis/). 
+Download and install the latest version of [*QGIS*](https://www.qgis.org/en/site/forusers/download.html) for macOS. The integrity of using macOS for the applications on *hydro-informatics.github.io* is has not yet been tested. Possible trouble-shooting with *Python* is provided by [kyngchaos.com](https://www.kyngchaos.com/software/qgis/). 
 
 
 ## ArcGIS Pro {#agis}

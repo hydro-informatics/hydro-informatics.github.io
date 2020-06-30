@@ -93,7 +93,9 @@ Visit [geojson.io](https://geojson.io/) to build a customized *GeoJSON* file. Wh
 ## Gridded cell (raster) data {#raster}
 Raster datasets store pixel values (*cells*), which require large storage space, but have a simple structure. A big advantage of rasters is the possibility to perform powerful geospatial and statistical analyses. Common Raster datasets are, among others, `.tif` (*GeoTIFF*), *GRID* (a folder with a `BND`, `HDR`, `STA`, `VAT`, and other files), `.flt` (floating points), *ASCII* (American Standard Code for Information Interchange), and many more image-like file types.
 
-{% include tip.html content="Preferably use the [*GeoTIFF*](https://en.wikipedia.org/wiki/GeoTIFF) format in raster analyses. A *GeoTIFF* file, typically includes a `.tif` file (with heavy data) and a `.tfw` (a sixe-line plain text world file containing georeference information) file." %}
+{% include tip.html content="Preferably use the [*GeoTIFF*](https://en.wikipedia.org/wiki/GeoTIFF) format in raster analyses. A *GeoTIFF* file, typically includes a `.tif` file (with heavy data) and a `.tfw` (a six-line plain text world file containing georeference information) file." %}
+
+{% include note.html content="The `gdal` driver name for *GeoTIFF* handling is `gdal.GetDriverByName('GTiff')`." %}
 
 {% include image.html file="geo-raster-illu.png" alt="raster-illu" caption="Illustration of the Natural Earth's NE1_50M_SR_W.tif raster zoomed on Nepal, with point and line shapefiles indicating major cities and country borders, respectively. Take note of the tile-like appearance of the grid, where each tile corresponds to a 50m-x-50m raster cell." %}
 

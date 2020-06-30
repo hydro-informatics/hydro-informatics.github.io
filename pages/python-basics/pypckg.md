@@ -129,8 +129,15 @@ if (__name__ == '__main__'):
     print("That makes {0} please".format(price_scoops[scoops_wanted]))
 ```
 
-Now we can run `icecreamdialogue_standalone.py` in the terminal.
-C:\temp\ python3 icecreamdialogue_standalone.py
+Now we can run `icecreamdialogue_standalone.py` in the terminal (e.g., *PyCharm*'s *Terminal* tab at the bottom of the window).
+
+
+```python
+C:\temp\ python icecreamdialogue_standalone.py
+```
+
+{% include note.html content="Depending on the definition of system variables used in the *Terminal* environment, the *Python* must be called with a different variable name then `python` (e.g., `python3` on many *Linux* platforms)." %}
+
 ### Make standalone script with input parameter {standalone}
 To make the script more flexible, we can define `scoops_wanted` as an input variable of a function.
 
@@ -155,10 +162,7 @@ if (__name__ == '__main__'):
 
 Now we can run `icecreamdialogue_standalone_withinput.py` in the terminal.
 
-```
 C:\temp\ python3 icecreamdialogue_standalone.py 2
-```
-
 ### Initialization of a package (hierarchically organized module) {#make-pckg}
 Good practice involves that one script does not exceed 50-100 lines of code. In consequence, a package will most likely consist of multiple scripts that are stored in one folder and one master script serves for the initiation of the scripts. This master script is called `__init__.py` and *Python* will always invoke this script name in a package folder. Example structure of a module called `icecreamery`:
 
