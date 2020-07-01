@@ -12,6 +12,8 @@ toc: false
 
 Big datasets resulting from airborne imagery and worldwide data surveys affect all disciplines. With traditional spreadsheet analysis tools, however, the large amounts of data can hardly be analyzed, understood and used. This website aims to support hydraulic engineers, geomorphologists and river ecologists to use data analysis tools and digital methods for efficient water resources management. All methods described rely on open-access tools to leverage international and interdisciplinary collaboration on all levels.
 
+{% include note.html content="The term hydroinformatics (or hydro-informatics) is widely used in relation to the field of hydrology. Yet, the syllable *hydro* goes back to the Greek word for *water*. In this light the term *hydro-informatics* on this website also refers to water, but primarily in the field of hydraulic engineering with its links to ecohydraulics, geomorphology and hydrology." %}"
+
 ## Contents
 
 The *Get started* pages provide systematic workflows to set up your computer for:

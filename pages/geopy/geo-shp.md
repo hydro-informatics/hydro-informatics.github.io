@@ -10,7 +10,7 @@ folder: geopy
 
 
 {% include requirements.html content="Make sure to understand [shapefiles](geospatial-data.html#shp) and [vector data](geospatial-data.html#vector) before reading this section." %}
-{% include tip.html content="The core functions provided in this e-book (`create_shp`, `get_esriwkt`, and `get_wkt`) are available at [the course repository](https://github.com/hydro-informatics/material-py-codes/raw/master/geo/shp_control.py) (during courses only)." %}
+{% include tip.html content="The core functions illustrated in this e-book are implemented in the [`geo_utils`](https://github.com/hydro-informatics/geo-utils) package." %}
 
 ## Load an existing shapefile
 `gdal`'s `ogr` module is an excellent source for handling shapefiles. To open a shapefile in *Python*, we need to instantiate the correct driver (`"ESRI Shapefile"` for shapefiles) first. With the driver object (`ogr.GetDriverByName("SHAPEFILE")`), we can then open (instantiate) a shapefile (object with `shp_driver.Open("SHAPEFILE")`), which contains layer information. It is precisely this layer information (i.e., references to shapefile attributes) that we want to work with. Therefore we have to instantiate a shapefile layer object with `shp_dataset.GetLayer()`.
