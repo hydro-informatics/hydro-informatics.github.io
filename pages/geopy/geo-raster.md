@@ -14,6 +14,7 @@ The goal of this page is to provide an understanding of how geospatial data can 
 {% include requirements.html content="Make sure to understand [gridded raster data](geospatial-data.html#raster) before reading this section. Recall that we will mostly deal with the `.tif` (*GeoTIFF*) format for grid data and hat many other raster data types exist." %}
 {% include tip.html content="While `gdal`'s `ogr` module is useful for shapefile handling, raster data are best handled by `gdal` itself." %}
 {% include tip.html content="Download sample raster datasets from [*River Architect*](https://github.com/RiverArchitect/SampleData/archive/master.zip). This page uses *GeoTIFF* raster data located in [`RiverArchitect/SampleData/01_Conditions/2100_sample/`](https://github.com/RiverArchitect/SampleData/tree/master/01_Conditions/2100_sample)." %}
+{% include tip.html content="The core functions illustrated in this e-book are implemented in the [`geo_utils`](https://github.com/hydro-informatics/geo-utils) package." %}
 
 ## Load rasters
 
@@ -144,7 +145,7 @@ if (__name__ == '__main__'):
     main(int(sys.argv[1]), str(sys.argv[2]))
 ```
 
-To run this script, save it as `raster_band_info.py` (e.g., in `C:\temp`) and navigate to the script directory in a terminal application (e.g., in *PyCharm*'s *Termincal*) using the `cd` command. Now run the script to get information of the water depth raster `h001000.tif` with:
+To run this script, save it as `raster_band_info.py` (e.g., in `C:\temp`) and navigate to the script directory in a terminal application (e.g., in *PyCharm*'s *Terminal*) using the `cd` command. Now run the script to get information of the water depth raster `h001000.tif` with:
 
 
 ```python
@@ -274,7 +275,7 @@ create_raster(raster_name, unis_dem, raster_origin,  pixel_width=1,  pixel_heigh
 The procedure described in the create_raster function above can be used in a similar way to create [*numpy* array](hypy_pynum.html#array-matrix-operations) from raster bands.
 This enables algebraic or other logical operations to be applied to existing raster data. Need an example? In the *RiverArchitect SampleData*, the units of the water depth raster `h001000.tif` are in U.S. customary feet and the units of the flow velocity raster `u001000.tif` are in feet per second. To calculate the *Froude* number (recall the meaning of the [*Froude* number on the data processing page](hypy_pynum.html#exp-Froude)) for each pixel based on the two rasters (water depth and flow velocity), it is convenient to convert both rasters into m and m/s, respectively.
 
-First we want to write a custom function that loads a raster as an array and overwrites `NoDataValues` with `np.nan` (`raster` and `band` can alternatively be instantiated with the above `open_raster` function):
+First we want to write a custom function that loads a raster as an array and overwrites `NoDataValues` with `np.nan` (`raster` and `band` can be instantiated with the above `open_raster` function):
 
 
 ```python
@@ -286,14 +287,13 @@ def raster2array(file_name, band_number=1):
              (2) the GeoTransformation used in the original raster
     """
     # open the raster and band (see above)
-    raster = gdal.Open(file_name)
-    band = raster.GetRasterBand(band_number)
+    raster, band = open_raster(file_name, band_number=band_number)
     # read array data from band
     band_array = band.ReadAsArray()
     # overwrite NoDataValues with np.nan
     band_array = np.where(band_array == band.GetNoDataValue(), np.nan, band_array)
     # return the array and GeoTransformation used in the original raster
-    return band_array, raster.GetGeoTransform()
+    return raster, band_array, raster.GetGeoTransform()
 ```
 
 {% include challenge.html content="The `raster2array` function returns a tuple, where `output[0]` corresponds to the array and `output[1]` is the geo-transformation. Can you optimize the way how these information is returned?" %}
@@ -311,8 +311,8 @@ h_file = r"" + os.getcwd() + "/geodata/river-architect/h001000.tif"
 u_file = r"" + os.getcwd() + "/geodata/river-architect/h001000.tif"
 
 # load both rasters as arrays
-h, h_geo_info = raster2array(h_file)
-u, u_geo_info = raster2array(u_file)
+h_ras, h, h_geo_info = raster2array(h_file)
+u_ras, u, u_geo_info = raster2array(u_file)
 
 #convert to metric system
 h *= 0.3048
@@ -329,7 +329,7 @@ create_raster(file_name= r"" + os.getcwd() + "/geodata/rasters/Fr1000cfs.tif",
 
 {% include image.html file="qgis-py-fr.png" alt="geopy-fr" caption="The newly created Fr1000cfs.tif raster plotted in QGIS." %}
 
-## A practice example with zonal statistics
+## An application example with zonal statistics
 
 In hydraulic and geospatial analyses, the question of statistical values of certain areas of one or more rasters often arises. For example, we may be interested in mean values and standard deviations in specific water body zones. *Zonal statistics* enable the delineation of an area of a raster by using a polygon shapefile.
 
@@ -431,11 +431,102 @@ print(h_stats[0]["mini_raster_array"])
      [-- -- -- ... -- -- --]]
     
 
-{% include tip.html content="Use the above shown methods to assign a projection and save the clipped array as *GeoTIFF* raster." %}
+{% include tip.html content="Use the above shown methods to assign a projection and save the clipped array as *GeoTIFF* raster. The functions are implemented in the `geo_utils.raster_mgmt.create_raster` method ([get `geo_utils` from guthub](https://github.com/hydro-informatics/geo-utils))." %}
 
-## Least cost paths between pixels
+## Slope maps and built-in command line scripts
+Hill slope maps are an important parameter in hydraulics, hydrology and ecology. The slope determines the flow direction of the water and it is also a criteria for delineating habitat of many species. `gdal` has a command line tool called `gdaldem` , which enables the creation of slope rasters based on a DEM (Digital Elevation Model) raster.
+The general use of the `gdaldem` in the command line is (arguments in brackets are optional): 
 
 
 ```python
-pass
+gdaldem slope input_dem output_slope_map  [-p use percent slope (default=degrees)] [-s scale* (default=1)] [-alg ZevenbergenThorne] [-compute_edges] [-b Band (default=1)] [-of format] [-co "NAME=VALUE"]* [-q]
 ```
+
+To call the command line tool, we can use *Python*'s standard library `subprocess`. The following code block illustrates the usage of the `gdaldem` command line tool through [`subprocess.call`](https://docs.python.org/3/library/subprocess.html) to create a slope raster (in percent) from the *River Architect* sample data's `dem.tif`. `subprocess.call` returns `0` if the command execution was successful. Any other return value indicates an error.
+
+
+```python
+import subprocess, os
+
+cmd_create_slope = 'gdaldem slope {0}/geodata/river-architect/dem.tif {0}/geodata/river-architect/slope-percent.tif -p'.format(os.path.abspath(''))
+subprocess.call(cmd_create_slope)
+```
+
+
+
+
+    0
+
+
+
+{% include image.html file="qgis-slope.png" alt="slope" caption="The newly created slope-percent.tif raster plotted in QGIS." %}
+
+In addition to the absolute slope (i.e., inclination in degrees), or instead of the slope, it can be important to know the slope direction (e.g., inclination toward south, west, east, or north). A raster indicating the slope direction is called *Aspect* raster, where south corresponds to 0° (and 360°), west to 90°, north to 180°, and east to 270°. The ascpect raster can also be created with `gdaldem`:
+
+
+```python
+gdaldem aspect input_dem output_aspect_map [-trigonometric] [-zero_for_flat] [-alg ZevenbergenThorne] [-compute_edges] [-b Band (default=1)] [-of format] [-co "NAME=VALUE"]* [-q]
+```
+
+To create an aspect raster of the *River Architect* sample data DEM run:
+
+
+```python
+cmd_create_aspect = 'gdaldem aspect {0}/geodata/river-architect/dem.tif {0}/geodata/river-architect/slope-aspect.tif'.format(os.path.abspath(''))
+subprocess.call(cmd_create_aspect)
+```
+
+
+
+
+    0
+
+
+
+{% include image.html file="qgis-aspect.png" alt="aspect" caption="The newly created slope-aspect.tif raster plotted in QGIS." %}
+
+## Least cost paths between pixels
+ Least cost paths are important to plan efficient routes for navigation (e.g., in a car) and they can also be helpful in ecohydraulics. Let's take for a moment the position of a fish that after a flood with decreasing discharge wants to swim as fast as possible from the floodplain back into the main channel where there is enough water. In the figure below, point 1 shows the starting point on the floodplain and point 2 the destination in the main channel. The reddish background represents the previously produced slope raster (slope-percent.tif) and the water depth at normal runoff is colored in blue.
+
+{% include image.html file="qgis-slope-pts.png" alt="slope-pts" caption="Points 1 and 2 indicate start and end points, respectively of a fish traveling in a river." %}
+
+Naturally the path of least cost in this case corresponds to the path of the steepest monotonously downward facing slope and it can be assumed that a fish is able to find it.
+{% include note.html content="In many rivers fish face the daily challenge of escaping from the deadly trap of lateral depressions. The reason for this is that many hydroelectric power plants cause abrupt fluctuations in discharge due to fluctuations in energy demand and production (so-called hydro-peaking). As a result, there is a so-called stranding risk for fish in many regulated rivers. The following figure illustrates stranding risk zones as a function of discharge (in cubic feet per second) at the lower Yuba River (California, USA)." %}
+{% include image.html file="ra-stranding.png" alt="stranding" caption="Stranding risk zones as a function of discharge (in cubic feet per second) at the lower Yuba River (California, USA). Source: [The *River Architect* Wiki / Kenneth Larrieu](https://riverarchitect.github.io/RA_wiki/StrandingRisk)" %}
+
+Calculating the least cost path involves the application of an x-y shift of a raster source raster by a certain number of pixels. Therefore, we need to define a `coords2offset` method that returns an x- and y-pixel offset:
+
+
+```python
+def coords2offset(geo_transform, x_coord, y_coord):
+    """
+    Returns x-y pixel offset
+    :param geo_transform: osgeo.gdal.Dataset.GetGeoTransform() object
+    :param x_coord: FLOAT of x-coordinate
+    :param y_coord: FLOAT of y-coordinate
+    :return: offset_x, offset_y (both integer of pixel numbers)
+    """
+    origin_x = geo_transform[0]
+    origin_y = geo_transform[3]
+    pixel_width = geo_transform[1]
+    pixel_height = geo_transform[5]
+    offset_x = int((x_coord - origin_x) / pixel_width)
+    offset_y = int((y_coord - origin_y) / pixel_height)
+    return offset_x, offset_y
+
+```
+
+The following code block illustrates the calculation of the least cost path to get from point 1 to point 2. It uses:
+* The above defined `raster2array` function (also available in the [`geo-utils` package](https://github.com/hydro-informatics/geo-utils)).
+* The `skimage` (`scikit-image`) library (see [*Other packages* on the *Open source libraries* page](geo-pckg.html#others)).
+
+
+```python
+import gdal
+from gdal import osr
+from skimage.graph import route_through_array
+import numpy as np
+
+```
+
+
