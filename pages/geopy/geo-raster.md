@@ -1,8 +1,8 @@
 ---
 title: Geospatial Python - Raster (gridded) data handling
-tags: [python, gdal, pandas, geo, geospatial, raster, Froude]
+tags: [python, gdal, pandas, geo, geospatial, raster, froude, qgis, shapefile, numpy, ecohydraulics]
 keywords: geo-python gdal QGIS
-summary: "Geospatial analysis of raster (gridded) data with gdal."
+summary: "Geospatial analysis of raster (gridded) data with gdal and rasterstats."
 sidebar: mydoc_sidebar
 permalink: geo-raster.html
 folder: geopy
@@ -16,7 +16,7 @@ The goal of this page is to provide an understanding of how geospatial data can 
 {% include tip.html content="Download sample raster datasets from [*River Architect*](https://github.com/RiverArchitect/SampleData/archive/master.zip). This page uses *GeoTIFF* raster data located in [`RiverArchitect/SampleData/01_Conditions/2100_sample/`](https://github.com/RiverArchitect/SampleData/tree/master/01_Conditions/2100_sample)." %}
 {% include tip.html content="The core functions illustrated in this e-book are implemented in the [`geo_utils`](https://github.com/hydro-informatics/geo-utils) package." %}
 
-## Load rasters
+## Load raster
 
 ### Open existing raster data
 Raster data can be opened as a `gdal.Open("FILENAME")` object. The following code block provides a function to open any raster specified with the `file_name` input argument. One of the most important elements when dealing with raster data is the `RasterBand`, which takes on a similar data carrier role as `GetLayer` in shapefile handling.
@@ -163,6 +163,7 @@ ColorTable: None
 ```
 
 ## Create and save a raster (from array)
+### Raster drivers
 Just like for shapefile files, the appropriate `gdal` driver (analogous to `ogr` drivers) must be loaded to save a raster. To get a full list of `gdal` drivers run:
 
 
@@ -172,6 +173,7 @@ driver_list.sort()
 print(", ".join(driver_list[:]))
 ```
 
+### Raster data types
 The output raster pixels can have the following data types (source: [gdal.org/doxygen/](https://gdal.org/doxygen/classGDALDataset.html)):
 * `GDT_Unknown` Unknown or unspecified type
 * `GDT_Byte` 8 bit unsigned integer
@@ -186,6 +188,7 @@ The output raster pixels can have the following data types (source: [gdal.org/do
 * `GDT_CFloat32` Complex Float32
 * `GDT_CFloat64` Complex Float64 
 
+### Create raster (array to raster)
 With these ingredients, we can create a raster from a numeric array, because a raster is basically just a georeferenced array. In *Python* it is convenient to convert a [*numpy* array](hypy_pynum.html#array-matrix-operations) into a raster (band). The following functions features the conversion of a *numpy* array into a *GeoTIFF* rasters with the following workflow:
 
 1. Check out the *GeoTIFF* driver (`driver = gdal.GetDriverByName('GTiff')`).
@@ -236,7 +239,7 @@ def create_raster(file_name, raster_array, origin=None, epsg=4326, pixel_width=1
         new_raster.SetGeoTransform(geo_info)
     
     # replace np.nan values
-    raster_array = np.where(raster_array == raster_array.min(), nan_value, raster_array)
+    raster_array[np.isnan(raster_array)] = nan_value
 
     # retrieve band number 1
     band = new_raster.GetRasterBand(1)
@@ -271,7 +274,7 @@ create_raster(raster_name, unis_dem, raster_origin,  pixel_width=1,  pixel_heigh
 
 {% include image.html file="qgis-ras-unis.png" alt="unis-dem" caption="The newly created random_unis_dem.tif raster plotted in QGIS." %}
 
-### Raster band calculous
+### Raster calculus (raster / band to array)
 The procedure described in the create_raster function above can be used in a similar way to create [*numpy* array](hypy_pynum.html#array-matrix-operations) from raster bands.
 This enables algebraic or other logical operations to be applied to existing raster data. Need an example? In the *RiverArchitect SampleData*, the units of the water depth raster `h001000.tif` are in U.S. customary feet and the units of the flow velocity raster `u001000.tif` are in feet per second. To calculate the *Froude* number (recall the meaning of the [*Froude* number on the data processing page](hypy_pynum.html#exp-Froude)) for each pixel based on the two rasters (water depth and flow velocity), it is convenient to convert both rasters into m and m/s, respectively.
 
@@ -433,7 +436,7 @@ print(h_stats[0]["mini_raster_array"])
 
 {% include tip.html content="Use the above shown methods to assign a projection and save the clipped array as *GeoTIFF* raster. The functions are implemented in the `geo_utils.raster_mgmt.create_raster` method ([get `geo_utils` from guthub](https://github.com/hydro-informatics/geo-utils))." %}
 
-## Slope maps and built-in command line scripts
+## Slope / aspect maps and built-in command line scripts
 Hill slope maps are an important parameter in hydraulics, hydrology and ecology. The slope determines the flow direction of the water and it is also a criteria for delineating habitat of many species. `gdal` has a command line tool called `gdaldem` , which enables the creation of slope rasters based on a DEM (Digital Elevation Model) raster.
 The general use of the `gdaldem` in the command line is (arguments in brackets are optional): 
 
@@ -485,16 +488,78 @@ subprocess.call(cmd_create_aspect)
 
 {% include image.html file="qgis-aspect.png" alt="aspect" caption="The newly created slope-aspect.tif raster plotted in QGIS." %}
 
-## Least cost paths between pixels
- Least cost paths are important to plan efficient routes for navigation (e.g., in a car) and they can also be helpful in ecohydraulics. Let's take for a moment the position of a fish that after a flood with decreasing discharge wants to swim as fast as possible from the floodplain back into the main channel where there is enough water. In the figure below, point 1 shows the starting point on the floodplain and point 2 the destination in the main channel. The reddish background represents the previously produced slope raster (slope-percent.tif) and the water depth at normal runoff is colored in blue.
+## Least cost path between pixels
+### Ecohydraulic background
+Least cost paths are important to plan efficient routes for navigation (e.g., in a car) and they can also be helpful in ecohydraulics. Let's take for a moment the position of a fish that after a flood with decreasing discharge wants to swim as fast as possible from the floodplain back into the main channel where there is enough water. In the figure below, point 1 shows the starting point on the floodplain and point 2 the destination in the main channel. The reddish background represents the previously produced slope raster (slope-percent.tif) and the water depth at normal runoff is colored in blue.
 
 {% include image.html file="qgis-slope-pts.png" alt="slope-pts" caption="Points 1 and 2 indicate start and end points, respectively of a fish traveling in a river." %}
 
 Naturally the path of least cost in this case corresponds to the path of the steepest monotonously downward facing slope and it can be assumed that a fish is able to find it.
 {% include note.html content="In many rivers fish face the daily challenge of escaping from the deadly trap of lateral depressions. The reason for this is that many hydroelectric power plants cause abrupt fluctuations in discharge due to fluctuations in energy demand and production (so-called hydro-peaking). As a result, there is a so-called stranding risk for fish in many regulated rivers. The following figure illustrates stranding risk zones as a function of discharge (in cubic feet per second) at the lower Yuba River (California, USA)." %}
-{% include image.html file="ra-stranding.png" alt="stranding" caption="Stranding risk zones as a function of discharge (in cubic feet per second) at the lower Yuba River (California, USA). Source: [The *River Architect* Wiki / Kenneth Larrieu](https://riverarchitect.github.io/RA_wiki/StrandingRisk)" %}
+{% include image.html file="ra-stranding.png" alt="stranding" caption="Stranding risk zones as a function of discharge (in cubic feet per second) at the lower Yuba River (California, USA)." %}
+*Image source: [The River Architect Wiki / Kenneth Larrieu](https://riverarchitect.github.io/RA_wiki/StrandingRisk)*
 
-Calculating the least cost path involves the application of an x-y shift of a raster source raster by a certain number of pixels. Therefore, we need to define a `coords2offset` method that returns an x- and y-pixel offset:
+### Functions and libraries involved
+The `skimage` (`scikit-image`) library (see [*Other packages* on the *Open source libraries* page](geo-pckg.html#others)) provides with [`skimage.graph.route_through_array`](https://scikit-image.org/docs/0.13.x/api/skimage.graph.html) a smart method to calculate a least cost path by summing up pixel-wise connections from point 1 to point 2. 
+Here ist how it works: Assume a *numpy* array (e.g., with random slope values) that looks like this:
+
+
+```python
+slope_image = np.random.randint(100, size=(3, 5))
+slope_image
+```
+
+
+
+
+    array([[28, 67, 18,  2,  2],
+           [50, 76, 82, 96, 98],
+           [52, 32, 33, 37, 47]])
+
+
+
+To find the fastest way from array index `[0][0]` (top left point `A = (0, 0)`) to array index `[2][4]` (bottom right point `B = (2, 4)`) we can use `route_through_array` to get a *list* (`least_cost_path_indices`) with the array coordinates of the path to go and the costs (`weight`) involved (sum of all pixels of the least cost path):
+
+
+```python
+from skimage.graph import route_through_array
+
+point_A = (0, 0)
+point_B = (2, 4)
+least_cost_path_indices, weight = route_through_array(slope_image, point_A, point_B)
+least_cost_path_indices, weight
+```
+
+
+
+
+    ([(0, 0), (1, 0), (2, 1), (2, 2), (2, 3), (2, 4)], 206.4827560572969)
+
+
+
+To integrate the least cost path list into an array that we can *rasterize* (`create_raster`) afterwards, we can paste `least_cost_path_indices` into a *numpy* zeros array of the original slope raster (image) as a transposed list.
+
+
+```python
+least_cost_path_indices = np.array(least_cost_path_indices).T
+least_cost_path_array = np.zeros_like(slope_image)
+least_cost_path_array[least_cost_path_indices[0], least_cost_path_indices[1]] = 1
+least_cost_path_array
+```
+
+
+
+
+    array([[1, 0, 0, 0, 0],
+           [1, 0, 0, 0, 0],
+           [0, 1, 1, 1, 1]])
+
+
+
+In practice, the slope raster is georeferenced, and therefore, we have to use some pixel coordinates, relative to the coordinate system origin. For this purpose we have to define two more functions:
+
+* One function to calculate the pixel-index related offset that we will name `coords2offset`: The `coords2offset` returns the x-y shift in the form of "number of pixels" (two *integer*s, one for *x* and one for *y* shift). 
+* One function that automatically detects the raster projection and spatial reference system for use with the above defined `create_raster` function. We will name this function `get_srs` and use the `osr` library (part of `osgeo` / `gdal` ).
 
 
 ```python
@@ -513,20 +578,97 @@ def coords2offset(geo_transform, x_coord, y_coord):
     offset_x = int((x_coord - origin_x) / pixel_width)
     offset_y = int((y_coord - origin_y) / pixel_height)
     return offset_x, offset_y
-
 ```
-
-The following code block illustrates the calculation of the least cost path to get from point 1 to point 2. It uses:
-* The above defined `raster2array` function (also available in the [`geo-utils` package](https://github.com/hydro-informatics/geo-utils)).
-* The `skimage` (`scikit-image`) library (see [*Other packages* on the *Open source libraries* page](geo-pckg.html#others)).
 
 
 ```python
-import gdal
-from gdal import osr
-from skimage.graph import route_through_array
-import numpy as np
-
+def get_srs(dataset):
+    """
+    Get the spatial reference of any gdal.Dataset
+    :param dataset: osgeo.gdal.Dataset (raster)
+    :output: osr.SpatialReference
+    """
+    sr = osr.SpatialReference()
+    sr.ImportFromWkt(dataset.GetProjection())
+    # auto-detect epsg
+    sr.AutoIdentifyEPSG()
+    # assign input SpatialReference
+    sr.ImportFromEPSG(int(sr.GetAuthorityCode(None)))
+    return sr
 ```
 
+{% include tip.html content="Both functions are also available in the [`geo_utils`](https://github.com/hydro-informatics/geo-utils) package in robust raise-exception notation:<br>
+- Find `coords2offset` in    [`geo_utils/converter.py`](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/converter.py), and <br>
+- Find `get_srs` in    [`geo_utils/srs_mgmt.py`](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/srs_mgmt.py). <br>
+The documentation for both functions is provided with the [`geo_utils` docs](https://hydro-informatics.github.io/geo-utils/)." %}
 
+Now we can use `coords2offset` to convert a raster array (e.g., produced with the above-defined `raster2array` function) into an array that can be used with `route_through_array`:
+
+1. Use the raster's `geo_transform` (`gdal.Dataset.GetGeoTransform = (origin_x, pixel_width, 0, origin_y, 0, pixel_height)`) and the start and end point coordinates (i.e, `start_coord` of point A/1 and `stop_coord` of point B/2) in `coords2offset` to get their pixel indices (`start_index_x`, `start_index_y`, `stop_index_x`, and `stop_index_y`) in the raster array.
+1. Replace `np.nan` values in the raster array with values that are higher than the maximum of the array - do not use zeros, because we want to exclude these pixels from the least cost path by assigning very high costs).
+1. Use `route_through_array` as above explained with the optional arguments `geometric=True` (use the [`MCP_Geometric` class](https://scikit-image.org/docs/0.13.x/api/skimage.graph.html#skimage.graph.MCP_Geometric) rather than [`MCP_base`](https://scikit-image.org/docs/0.13.x/api/skimage.graph.html#skimage.graph.MCP) to calculate costs) and `fully_connected=True` (enables using diagonal pixels as direct neighbors).
+1. Integrate the least cost path list (`index_path`) into a *numpy* zeros array (child of `raster_array`), as above explained, and return the `path_array`.
+
+
+```python
+def create_path_array(raster_array, geo_transform, start_coord, stop_coord):
+    # transform coordinates to array index
+    start_index_x, start_index_y = coords2offset(geo_transform, start_coord[0], start_coord[1])
+    stop_index_x, stop_index_y = coords2offset(geo_transform, stop_coord[0], stop_coord[1])
+
+    # replace np.nan with max raised by an order of magnitude to exclude pixels from least cost
+    raster_array[np.isnan(raster_array)] = np.nanmax(raster_array) * 10
+
+    # create path and costs
+    index_path, cost = route_through_array(raster_array, (start_index_y, start_index_x),
+                                               (stop_index_y, stop_index_x),
+                                               geometric=True, fully_connected=True)
+
+
+    index_path = np.array(index_path).T
+    path_array = np.zeros_like(raster_array)
+    path_array[index_path[0], index_path[1]] = 1
+    return path_array
+```
+
+### Application
+Recall, we defined the following functions (all are available in the [`geo-utils` package](https://github.com/hydro-informatics/geo-utils)) that we can use now for the calculation of the least cost path to get from point 1 to point 2 in the `slope-percent.tif` raster:
+* `raster2array` 
+* `create_path_array`
+* `get_srs`
+* `create_raster`
+
+The below code block uses these functions as follows:
+
+1. Define input (`slope-percent.tif`) and output (`least_cost.tif`) raster directories.
+1. Define the coorindates of points 1 and 2 as *tuple*s (x, y) in the *EPSG:6418* projection.
+1. Load the input raster(`src_raster`), its band as array (`raster_array`), and geotransformation (`geo_transform`) with the `raster2array` function.
+1. Get the least cost path indicated with ones in a zero-s (on-off) array (`path_array`) with the `create_path_array` function.
+1. Get the `osgeo.osr.SpatialReference` of the input raster (`src_raster = osgeo.gdal.Dataset(slope-percent.tif)`).
+1. Create the least cost path raster *GeoTIFF* with the `create_raster` function as `gdal.GDT_Byte` band.
+
+
+```python
+from skimage.graph import route_through_array
+
+# define raster input and out names
+in_raster_name = r"" + os.path.abspath('') + "/geodata/river-architect/slope-percent.tif"
+out_raster_name = r"" + os.path.abspath('') + "/geodata/river-architect/least_cost.tif"
+# define coordinates of points 1 and 2 (in EPSG:6418)
+point_1_coord = (6749261.94092826917767525, 2206970.35179582564160228)  
+point_2_coord = (6749016.82820663042366505, 2207050.61491037486121058)
+
+# get source raster (osgeo.gdal.Dataset), the raster as nd.array, and the geotransformation tuple
+src_raster, raster_array, geo_transform = raster2array(in_raster_name)
+# get the zeros-like array with least cost pixels = 1
+path_array = create_path_array(raster_array, geo_transform, point_1_coord, point_2_coord)
+# get the spatial reference system of the input raster (slope-percent.tif)
+src_srs = get_srs(src_raster)
+# project the least cost path_array into a Byte (only zeros and ones) raster
+create_raster(out_raster_name, path_array, epsg=int(src_srs.GetAuthorityCode(None)),
+              rdtype=gdal.GDT_Byte, geo_info=geo_transform)
+```
+
+{% include image.html file="qgis-least-cost.png" alt="aspect" caption="The newly created least cost path least_cost.tif raster plotted in QGIS." %}
+
+Legitimately, you may wonder whether it was better to represent a least cost path as a line. That is correct, of course. This operation is a conversion of a raster into a line shapefile, which is explained on the [conversion page](geo-convert.html#raster2line). Curious readers can also directly use the `raster2line` function of the [`geo_utils` package](https://github.com/hydro-informatics/geo-utils) (the function is part of the [`geo_utils/converter.py`](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/converter.py) script).
