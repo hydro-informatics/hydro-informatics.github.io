@@ -9,8 +9,6 @@ folder: geopy
 ---
 
 
-The goal of this page is to provide an understanding of how geospatial data can be used and manipulated with *Python* code. The file manipulation involves logical and algebraic operations, and conversion from and to other geospatial file formats.
-
 {% include requirements.html content="Make sure to understand [gridded raster data](geospatial-data.html#raster) before reading this section. Recall that we will mostly deal with the `.tif` (*GeoTIFF*) format for grid data and hat many other raster data types exist." %}
 {% include tip.html content="While `gdal`'s `ogr` module is useful for shapefile handling, raster data are best handled by `gdal` itself." %}
 {% include tip.html content="Download sample raster datasets from [*River Architect*](https://github.com/RiverArchitect/SampleData/archive/master.zip). This page uses *GeoTIFF* raster data located in [`RiverArchitect/SampleData/01_Conditions/2100_sample/`](https://github.com/RiverArchitect/SampleData/tree/master/01_Conditions/2100_sample)." %}
@@ -18,7 +16,7 @@ The goal of this page is to provide an understanding of how geospatial data can 
 
 ## Load raster
 
-### Open existing raster data
+### Open existing raster data {#open}
 Raster data can be opened as a `gdal.Open("FILENAME")` object. The following code block provides a function to open any raster specified with the `file_name` input argument. One of the most important elements when dealing with raster data is the `RasterBand`, which takes on a similar data carrier role as `GetLayer` in shapefile handling.
 To create this important object, the `open_raster` function:
 
@@ -188,7 +186,7 @@ The output raster pixels can have the following data types (source: [gdal.org/do
 * `GDT_CFloat32` Complex Float32
 * `GDT_CFloat64` Complex Float64 
 
-### Create raster (array to raster)
+### Create raster (array to raster) {#create}
 With these ingredients, we can create a raster from a numeric array, because a raster is basically just a georeferenced array. In *Python* it is convenient to convert a [*numpy* array](hypy_pynum.html#array-matrix-operations) into a raster (band). The following functions features the conversion of a *numpy* array into a *GeoTIFF* rasters with the following workflow:
 
 1. Check out the *GeoTIFF* driver (`driver = gdal.GetDriverByName('GTiff')`).
@@ -274,7 +272,7 @@ create_raster(raster_name, unis_dem, raster_origin,  pixel_width=1,  pixel_heigh
 
 {% include image.html file="qgis-ras-unis.png" alt="unis-dem" caption="The newly created random_unis_dem.tif raster plotted in QGIS." %}
 
-### Raster calculus (raster / band to array)
+### Raster calculus (raster / band to array) {#createarray}
 The procedure described in the create_raster function above can be used in a similar way to create [*numpy* array](hypy_pynum.html#array-matrix-operations) from raster bands.
 This enables algebraic or other logical operations to be applied to existing raster data. Need an example? In the *RiverArchitect SampleData*, the units of the water depth raster `h001000.tif` are in U.S. customary feet and the units of the flow velocity raster `u001000.tif` are in feet per second. To calculate the *Froude* number (recall the meaning of the [*Froude* number on the data processing page](hypy_pynum.html#exp-Froude)) for each pixel based on the two rasters (water depth and flow velocity), it is convenient to convert both rasters into m and m/s, respectively.
 
@@ -332,7 +330,7 @@ create_raster(file_name= r"" + os.getcwd() + "/geodata/rasters/Fr1000cfs.tif",
 
 {% include image.html file="qgis-py-fr.png" alt="geopy-fr" caption="The newly created Fr1000cfs.tif raster plotted in QGIS." %}
 
-## An application example with zonal statistics
+## An application example with zonal statistics {#zonal}
 
 In hydraulic and geospatial analyses, the question of statistical values of certain areas of one or more rasters often arises. For example, we may be interested in mean values and standard deviations in specific water body zones. *Zonal statistics* enable the delineation of an area of a raster by using a polygon shapefile.
 
@@ -396,7 +394,7 @@ print(u_stats)
     [{'min': 0.0, 'max': 5.139162540435791, 'stdev': 1.1065991101701524}]
     
 
-## Clip raster
+## Clip raster {#clip}
 The above-introduced `rasterstats.zonal_stats` method works with *"Mini-Rasters"*, which represent clips of the input raster to the polygon shapefile used. The mini-rasters can be obtained by defining the optional keyword argument `raster_out=True`. In the case that we want to get the original raster clipped without and statistical operation, we can use a little trick by defining an additional statistics function that returns the original array:
 
 
@@ -488,7 +486,7 @@ subprocess.call(cmd_create_aspect)
 
 {% include image.html file="qgis-aspect.png" alt="aspect" caption="The newly created slope-aspect.tif raster plotted in QGIS." %}
 
-## Least cost path between pixels
+## Least cost path between pixels {#leastcost}
 ### Ecohydraulic background
 Least cost paths are important to plan efficient routes for navigation (e.g., in a car) and they can also be helpful in ecohydraulics. Let's take for a moment the position of a fish that after a flood with decreasing discharge wants to swim as fast as possible from the floodplain back into the main channel where there is enough water. In the figure below, point 1 shows the starting point on the floodplain and point 2 the destination in the main channel. The reddish background represents the previously produced slope raster (slope-percent.tif) and the water depth at normal runoff is colored in blue.
 
@@ -499,7 +497,7 @@ Naturally the path of least cost in this case corresponds to the path of the ste
 {% include image.html file="ra-stranding.png" alt="stranding" caption="Stranding risk zones as a function of discharge (in cubic feet per second) at the lower Yuba River (California, USA)." %}
 *Image source: [The River Architect Wiki / Kenneth Larrieu](https://riverarchitect.github.io/RA_wiki/StrandingRisk)*
 
-### Functions and libraries involved
+### Functions and libraries involved {#lc-fun}
 The `skimage` (`scikit-image`) library (see [*Other packages* on the *Open source libraries* page](geo-pckg.html#others)) provides with [`skimage.graph.route_through_array`](https://scikit-image.org/docs/0.13.x/api/skimage.graph.html) a smart method to calculate a least cost path by summing up pixel-wise connections from point 1 to point 2. 
 Here ist how it works: Assume a *numpy* array (e.g., with random slope values) that looks like this:
 
@@ -631,7 +629,7 @@ def create_path_array(raster_array, geo_transform, start_coord, stop_coord):
     return path_array
 ```
 
-### Application
+### Application {#lc-app}
 Recall, we defined the following functions (all are available in the [`geo-utils` package](https://github.com/hydro-informatics/geo-utils)) that we can use now for the calculation of the least cost path to get from point 1 to point 2 in the `slope-percent.tif` raster:
 * `raster2array` 
 * `create_path_array`
