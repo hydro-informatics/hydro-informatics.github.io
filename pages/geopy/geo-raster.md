@@ -72,7 +72,7 @@ depth = None
     <osgeo.gdal.Band; proxy of <Swig Object of type 'GDALRasterBandShadow *' at 0x000002101806F990> >
     
 
-### Raster band statistics and toolbox scripts
+### Raster band statistics and toolbox scripts {#terminal}
 Once we loaded a raster and a raster band with the above `open_raster` function, we can access statistical information (e.g., the minimum or the maximum), identify the *no-data* value (i.e., a pre-defined value that is assigned to pixels without value), or the type of units used.
 
 *Python* scripts for processing geospatial data can also be embedded as plugins in *GIS* desktop applications (e.g., as plugins in *QGIS* or *Toolbox* in *ArcGIS Pro*). To run a *Python* script in a *GIS* desktop application, it should be written as a standalone script that can receive input arguments. Creating plugins is not a primary learning goal here and the interested reader can read more about implementing plugins in *QGIS* in the [*QGIS* docs](https://docs.qgis.org/3.10/en/docs/pyqgis_developer_cookbook/plugins/index.html).
@@ -171,7 +171,7 @@ driver_list.sort()
 print(", ".join(driver_list[:]))
 ```
 
-### Raster data types
+### Raster data types {#etypes}
 The output raster pixels can have the following data types (source: [gdal.org/doxygen/](https://gdal.org/doxygen/classGDALDataset.html)):
 * `GDT_Unknown` Unknown or unspecified type
 * `GDT_Byte` 8 bit unsigned integer
@@ -596,7 +596,7 @@ def get_srs(dataset):
 ```
 
 {% include tip.html content="Both functions are also available in the [`geo_utils`](https://github.com/hydro-informatics/geo-utils) package in robust raise-exception notation:<br>
-- Find `coords2offset` in    [`geo_utils/converter.py`](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/converter.py), and <br>
+- Find `coords2offset` in    [`geo_utils/dataset_mgmt.py`](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/dataset_mgmt.py), and <br>
 - Find `get_srs` in    [`geo_utils/srs_mgmt.py`](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/srs_mgmt.py). <br>
 The documentation for both functions is provided with the [`geo_utils` docs](https://hydro-informatics.github.io/geo-utils/)." %}
 
@@ -669,4 +669,4 @@ create_raster(out_raster_name, path_array, epsg=int(src_srs.GetAuthorityCode(Non
 
 {% include image.html file="qgis-least-cost.png" alt="aspect" caption="The newly created least cost path least_cost.tif raster plotted in QGIS." %}
 
-Legitimately, you may wonder whether it was better to represent a least cost path as a line. That is correct, of course. This operation is a conversion of a raster into a line shapefile, which is explained on the [conversion page](geo-convert.html#raster2line). Curious readers can also directly use the `raster2line` function of the [`geo_utils` package](https://github.com/hydro-informatics/geo-utils) (the function is part of the [`geo_utils/converter.py`](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/converter.py) script).
+Legitimately, you may wonder whether it was better to represent a least cost path as a line. That is correct, of course. This operation is a conversion of a raster into a line shapefile, which is explained on the [conversion page](geo-convert.html#raster2line). Curious readers can also directly use the `raster2line` function of the [`geo_utils` package](https://github.com/hydro-informatics/geo-utils) (the function is part of the [`geo_utils/dataset_mgmt.py`](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/dataset_mgmt.py) script).

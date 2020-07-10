@@ -25,7 +25,7 @@ shp_layer = shp_dataset.GetLayer()
 
 {% include tip.html content="To get a full list of supported `ogr` drivers (e.g., for `DXF`, `ESRIJSON`, `GPS`, `PDF`, `SQLite`, `XLSX`, and many more), [download the script `get_ogr_drivers.py`](https://github.com/hydro-informatics/material-py-codes/raw/master/geo/get_ogr_drivers.py) from the course repository (script available during courses only)." %}
 
-## Create a new shapefile
+## Create a new shapefile {#create}
 The `ogr` module also enables creating a new point, line or polygon shapefile. The following code block defines a function for creating a shapefile, where the optional keyword argument `overwrite` is used to control whether an existing shapefile with the same name should be overwritten (default: `True`).
 The command `shp_driver.CreateDataSource(SHP-FILE-DIR)` creates a new shapefile and the rest of the function adds a layer to the shapefile if the optional keyword arguments `layer_name` and `layer_type` are provided. Both optional keywords must be *string*s, where `layer_name` can be any name for the new layer. `layer_type` must be either `"point"`, `"line"`, or `"polygon"` to create a point, (poly)line, or polygon shapefile respectively. The function uses the `geometry_dict` dictionary to assign the correct `ogr.SHP-TYPE` to the layer. There are more options for extending the `create_shp(...)` function listed on [*pcjerick*'s github pages](https://pcjericks.github.io/py-gdalogr-cookbook/geometry.html).
 
@@ -174,7 +174,7 @@ def get_wkt(epsg, wkt_format="esriwkt"):
     return spatial_ref.ExportToPrettyWkt()
 ```
 
-## Transform (re-project) a shapefile 
+## Transform (re-project) a shapefile {#transform}
 To apply a different projection to geometric objects of a shapefile it is not enough to simply rewrite the `.prj` file. A re-projection may be needed if, we want to use a shapefile in `EPSG:4326` (e.g., created wioth *QGIS*) onto `EPSG:3857` in order to use the shapefile in a web application. The following example shows the re-projection of the `countries.shp` shapefile (source: the [Natural Earth quick start kit](http://naciscdn.org/naturalearth/packages/Natural_Earth_quick_start.zip)). For now, just look at the sequence of steps (the creation of fields an features follows in the sections below):
 * The shapefile to transform is located in the subdirectory `geodata/shapefiles/countries.shp` and opened with as above described.
 * Read and identify the spatial reference system used in the input shapefile 
@@ -264,7 +264,7 @@ with open(r"" + os.path.abspath('') + "/geodata/shapefiles/countries-web.prj", "
 
 {% include challenge.html content="Re-write the above code block into a `re_project(shp_file, target_epsg)` function."%}
 
-## Add fields and point features to a shapefile
+## Add fields and point features to a shapefile {#add-field}
 
 A shapefile feature can be a point, a line, or a polygon, which has field attributes (e.g., `"id"=1` to describe that this is polygon number 1 or associated to an `id` block 1). Field attributes can be more than just an *ID*entifier and include for example the polygon area or city labels as in the example shown above (`shp_driver.Open("geodata/shapefiles/cities.shp")`). 
 
@@ -329,7 +329,7 @@ river_pts = None
 The resulting `rivers.shp` shapefile can be imported in [*QGIS*](geo_software.html#qgis) along with a DEM from the [Natural Earth quick start kit](http://naciscdn.org/naturalearth/packages/Natural_Earth_quick_start.zip).
 {% include image.html file="qgis-rivers.png" alt="qgis-rivers" caption="The newly created rivers.shp shapefile shown in QGIS." %}
 
-## Multiline (polyline) shapefile
+## Multiline (polyline) shapefile {#line-create}
 Similar to the procedure for creating and adding points to a new point shapefile, a (multi) line (or polyline) can be added to a shapefile. The `create_shp` creates a multi-line shapefile when the layer type is defined as `"line"`. The coordinate system is created with the above-defined `get_gps_code` function.
 {% include tip.html content="The term *multi-line* is used in *OGC* and `ogr`, while *polyline* is used in *Esri* GIS environments." %}
 The following code block uses the coordinates of cities along the *Rhine* stored in a *dictionary* named `station_names`. The city names are not used, and only the coordinates are appended with `line.AddPoint(X, Y)`. As before, a field is created to give the river a name. The actual line feature is again created as a child of the layer with `line_feature = ogr.Feature(lyr.GetLayerDefn())`. Running this code block produces a line that approximately follows the Rhine river between France and Germany.
@@ -377,7 +377,7 @@ rhine_line = None
 The resulting `rhine_proxy.shp` shapefile can be imported in [*QGIS*](geo_software.html#qgis) along with a DEM and the cities point shapefile from the [Natural Earth quick start kit](http://naciscdn.org/naturalearth/packages/Natural_Earth_quick_start.zip).
 {% include image.html file="qgis-rhine.png" alt="qgis-rhine" caption="The newly created rhine_proxy.shp multiline (poly) shapefile shown in QGIS." %}
 
-## Polygon shapefile
+## Polygon shapefile {#poly-create}
 
 Polygons are surface patches that can be created point-by-point, line-by-line, or from a `"Multipolygon"` *WKB* definition. When creating polygons from points or lines, we want to create a surface and this is why the corresponding geometry type is `wkbLinearRing` for building polygons from both point or lines (rather than `wkbPoint` or `wkbLine`, respectively). The following code block features an example for building a polygon shapefile delineating the hydraulic laboratory of the University of Stuttgart. The difference between the above example for creating a line shapefile are:
 
@@ -424,7 +424,7 @@ lyr = None
 va_geo = None
 ```
 
-## Build shapefile from *JSON*
+## Build shapefile from *JSON* {#json-create}
 Loading geometry data from a in-line defined variables is cumbersome in practice, where geospatial data are often provided on public platforms (e.g., land use or cover).  The following example uses a *JSON* file generated with map service data from the [Baden-Württemberg State Institute for the Environment, Survey and Nature Conservation *LUBW*](https://udo.lubw.baden-wuerttemberg.de/), where polygon nodes are stored in *WKB* polygon geometry format  (`"MultiPolygon (((node1_x node1_y, nodej_x, nodej_y, ... ...)))"`):
 
 * The *JSON* file is read with [*pandas*](hypy_pynum.html#pandas) and the shapefile is created, as before, with the `create_shp` function.
@@ -489,7 +489,7 @@ print("X=%d, Y=%d (EPSG:3857)" % (point.GetX(), point.GetY()))
     X=1013452, Y=6231540 (EPSG:3857)
     
 
-## Calculate geometric attributes
+## Calculate geometric attributes {#calc}
 
 The above code block illustrates the usage of `polygon.GetArea()` to calculate the polygon area n m<sup>2</sup>. The `ogr` library provides many more functions to calculate geometric attributes of features and here is a summary: 
 
@@ -519,7 +519,7 @@ The above code block illustrates the usage of `polygon.GetArea()` to calculate t
 
 {% include important.html content="The units of the geometric attribute (e.g., m<sup>2</sup>, U.S. feet, or others) are calculated based on the definitions in the [`.prj` file](#prj-shp) (recall also the definition of projections in *WKT* format [on the geospatial data page](geospatial-data.html#prj))." %}
 
-## Export to other format
+## Export to other format {#export}
 
 The above examples deal with `.shp` files only, but other formats can be useful (e.g., to create web applications or export to *Google Earth*). The following sections illustrate the creation of *GeoJSON* and *KML* files. Several other conversions can be performed, not only between file formats, but also between feature types. For example, polygons can be created from point clouds (among others with the `ConvexHull` method mentioned above). The interested reader can learn more about conversions in [Michael Diener's *Python Geospatial Analysis Cookbook*](https://github.com/mdiener21/python-geospatial-analysis-cookbook).
 

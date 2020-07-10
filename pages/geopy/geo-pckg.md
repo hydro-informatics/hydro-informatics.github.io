@@ -92,3 +92,4 @@ Besides the above mentioned packages there are other useful libraries for geospa
  * [`django`](https://docs.djangoproject.com/en/3.0/ref/contrib/gis/) as a geographic web frame and for database connections (install in *Anaconda Prompt* with `conda install -c anaconda django`).
  * [`postgresql`](https://www.postgresqltutorial.com/postgresql-python/) for SQL database connections (install in *Anaconda Prompt* with `conda install -c anaconda postgresql`).
  * [`owslib`](http://geopython.github.io/OWSLib/) to connect with *Open Geospatial Consortium* (*OGC*) web services (install in *Anaconda Prompt* with `conda install -c conda-forge owslib`)
+ * [`NetworkX`](https://networkx.github.io/documentation/stable/index.html) for network analyses such as finding a least cost / shortest path between two points (install in *Anaconda Prompt* with `conda install -c anaconda networkx`). 

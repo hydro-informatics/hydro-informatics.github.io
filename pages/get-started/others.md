@@ -1,6 +1,6 @@
 ---
 title: Other open source software resources
-tags: [matlab, workbooks, csv, xlsx]
+tags: [matlab, workbooks, csv, xlsx, markdown]
 keywords: office, octave, matlab, .m file, texteditor
 summary: "This page links to free tools and alternatives provided the open source community."
 sidebar: mydoc_sidebar
