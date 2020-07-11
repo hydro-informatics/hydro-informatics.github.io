@@ -1,5 +1,5 @@
 ---
-title: Geospatial Python - Shapefiles
+title: Shapefile (vector dataset) handling
 tags: [python, gdal, ogr, pandas, geo, geospatial, shapefile, json]
 keywords: geo-python gdal QGIS
 summary: "Geospatial analysis of shapefile with gdal, ogr and osr."
@@ -82,6 +82,17 @@ a_new_shape_file = None
 ```
 
 {% include important.html content="A **shapefile name** may **not** have **more than 13 characters** and a **field name** may **not** have **more than 10 characters** (read more in [*Esri*'s shapefile docs](http://resources.arcgis.com/en/help/main/10.1/index.html#//005600000013000000))." %}
+
+Shapefiles can also be created and drawn in [*QGIS*](geo_software.html#qgis) and the following figures guide through the procedure of creating of a polygon shapefile. We will not need this shapefile on this page, but for the later on interaction with raster datasets. So the shapefile creation with *QGIS* is just a note here.
+
+The first step to make a shapefile with *QGIS* is obviously to run *QGIS* and create a new project. The following example uses water depth and flow velocity raster data as background information to delineate a so-called [*morphological unit* of *slackwater*](https://www.sciencedirect.com/science/article/pii/S0169555X14000099). Both the water depth and flow velocity rasters are part of the [*River Architect* sample datasets](https://github.com/RiverArchitect/SampleData/archive/master.zip) (precisely located in  [`RiverArchitect/SampleData/01_Conditions/2100_sample/`](https://github.com/RiverArchitect/SampleData/tree/master/01_Conditions/2100_sample)). After downloading the sample data, they can be imported in *QGIS* by dragging the files from the *Browser* tab into the *Layers* tab. Then:
+
+{% include image.html file="qgis-create-shp.png" alt="create-shp" caption="In QGIS, go the Layer menu and click on Create Layer > New Shapefile Layer ..." %}
+{% include image.html file="qgis-new-shp.png" alt="new-shp" caption="In the New Shapefile window, edit the orange-highlighted fields: (1) Define a shapefile name and directory (click on the ... symbol on the right), (2) Select Polygon for Geometry type, (3) Define EPSG:6418 as projection (click on the globe symbol on the right and look for 6418), (4) Add a new Text data field called MU for morphological unit, and (5) Click OK." %}
+{% include image.html file="qgis-toggle-editing.png" alt="toggle" caption="In QGIS, click on (1) the Toggle Editing pen-like button to start editing the shapefile, and (2) the Add Polygon button." %}
+{% include image.html file="qgis-draw-polygon.png" alt="draw" caption="Draw a Polygon around the blue-highlighted zone by clicking in the image with the left mouse button. Finalize the Polygon with a right mouse click. The Feature Attributes window pops up: Enter id=1 and MU=slackwater." %}
+
+We will come back to these descriptions and use this shapefile on the *Raster handling* page.
 
 ## Get and set shapefile projections {#prj-shp}
 The terminology used in the `.prj` files of a shapefile corresponds to the defintions on the [geospatial data page](geospatial-data.html#prj). In *Python*, information on the coordinate system is available through `shp_layer.GetSpatialRef()` of the `ogr` library:

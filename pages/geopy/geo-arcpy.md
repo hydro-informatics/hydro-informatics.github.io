@@ -1,14 +1,14 @@
 ---
-title: Geospatial Python - Commercial software
+title: The commercial arcpy library
 tags: [python, arcpy, geo, geospatial, shapefile, raster, froude, pycharm, jupyter]
 keywords: geo python ArcGIS arcpy
-summary: "Geospatial analysis with ESRI's commercial ArcGIS software and arcpy package."
+summary: "Geospatial analyses with ESRI's commercial ArcGIS software and arcpy package."
 sidebar: mydoc_sidebar
 permalink: geo-arcpy.html
 folder: geopy
 ---
 
-*ESRI*'s *ArcGIS Pro* software comes with an own *conda* environment that enables working with the commercial `arcpy` library. `arcpy` is accessible either directly in `ArcGIS Pro` or by using *ESRI*'s *conda* environment, which can be managed through *ArcGIS Pro*. Since `arcpy` is tied to the use of a commercial environment, it can only be accessed in online *jupyter* notebooks directly at [esri.com](https://notebooks.esri.com/) (however, these will not work with the examples on this page). This page explains the use of `arcpy` in external [*IDE*](hy_ide.html#ide)s (e.g. *PyCharm*), the integration of licenses, and basic functionality of `arcpy`.
+*ESRI*'s *ArcGIS Pro* software comes with its own *conda* environment that enables working with the commercial `arcpy` library. `arcpy` is accessible either directly in `ArcGIS Pro` or by using *ESRI*'s *conda* environment, which can be managed through *ArcGIS Pro*. Since `arcpy` is tied to the use of a commercial environment, it can only be accessed in *jupyter* notebooks directly hosted at [esri.com](https://notebooks.esri.com/) (however, these will not work with the examples on this page). This page explains the basic usage of `arcpy` in external [*IDE*](hy_ide.html#ide)s (e.g. *PyCharm*), the integration of licenses, and basic functionality of `arcpy`.
 
 {% include requirements.html content="Make sure to understand the difference between rasters and shapefiles as explained in the [introduction to geospatial data](geospatial-data.html) section." %}
 
@@ -143,6 +143,11 @@ froude = calculate_froude(h, u)
 
 Find out more about *Raster Calculator* and *Map Algebra* on the [developer's website](https://pro.arcgis.com/en/pro-app/tool-reference/image-analyst/raster-calculator.htm).
 
+{% include tip.html content="The functions provided with *Raster Calculator* can also be performed with the open access libraries `gdal` and `numpy`. All you need to do is:<br>
+1. Read [raster as array](geo-raster.html#createarray).<br>
+2. Use [`numpy`](hypy_pynum.html#array-matrix-operations) and/or [`pandas`](hypy_pynum.html#pandas) to run typical *Raster Calculator* operations and many (many many) more on the array.<br>
+3. [Write the array back to a raster](geo-raster.html#create)." %}
+
 ### Cell statistics
 The evaluation of numerical model data often involves calculating statistical values (e.g., minimum or maximum) of one or more rasters. The comparison of several similar rasters is useful, for example, if the same parameter was calculated with two different models or at different dates (e.g., to assess the morphodynamic evolution of rivers). `arcpy.sa.CellStatistics([Raster1, Raster2, ... RasterN], TYPE, ...)` enables such statistical evaluations. The following code blocks illustrates the comparison of flow velocities calculated with two different hydrodynamic numerical models through the calculation of the `MEAN` (average) and standard deviation (`STD`).
 
@@ -156,6 +161,8 @@ u_stdv = CellStatistics([u_basement, u_tuflow], "STD")
 ```
 
 Read more options statistics types and handling non-numeric data on the [developer's website](https://pro.arcgis.com/en/pro-app/tool-reference/spatial-analyst/cell-statistics.htm).
+
+{% include oa.html content="An open access alternative to `arcpy`'s `CellStatistics` is the [`rasterstats` library](geo-raster.html#zonal) (usage: `rasterstats.zonal_stats(zone, raster_file_name, stats=["min", "max", "median", "majority", "sum", "...many more..."])`)." %} 
 
 ## Shapefile operations
 
@@ -207,3 +214,5 @@ print("Sum of all patches = {0} {1}".format(str(area), area_unit))
 ```
 
 {% include warning.html content="Never calculate areas directly from rasters by multiplying the number (quantity) of pixels that fulfill a certain criterion with the pixel size (e.g., 1mx1m). This calculation often fails in practice because of erroneous internal assignments of cell sizes, which can hardly be controlled in a robust manner (in particular when switching between U.S. customary and S.I. units)." %}
+
+{% include tip.html content="Shapefile handling, deriving geometric properties and many more operations can also be performed with the `ogr` library, which comes along with `gdal`. [Read more on the shapefile handling page](geo-shp.html)." %}

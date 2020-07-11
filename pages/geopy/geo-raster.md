@@ -1,5 +1,5 @@
 ---
-title: Geospatial Python - Raster (gridded) data handling
+title: Raster (gridded) dataset handling
 tags: [python, gdal, pandas, geo, geospatial, raster, froude, qgis, shapefile, numpy, ecohydraulics]
 keywords: geo-python gdal QGIS
 summary: "Geospatial analysis of raster (gridded) data with gdal and rasterstats."

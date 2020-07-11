@@ -1,5 +1,5 @@
 ---
-title: Geospatial Python - Convert Raster to Vector data and Vice Versa
+title: Convert Raster to Vector datasets and Vice Versa
 tags: [python, gdal, pandas, geo, geospatial, shapefile, raster]
 keywords: geo-python gdal QGIS
 sidebar: mydoc_sidebar
@@ -222,18 +222,14 @@ raster2polygon(src_raster, tar_shp)
 ```
 
     Info: Creating integer raster: 
-    >> /geodata/river-architect/h001000_int.tif
-    Success: Wrote /geodata/river-architect/h_poly_cls.shp
+    >> C:\Users\schwindt\jupyter\hypy/geodata/river-architect/h001000_int.tif
+    Success: Wrote C:\Users\schwindt\jupyter\hypy/geodata/river-architect/h_poly_cls.shp
     
 
 {% include image.html file="qgis-h-polygonized.png" alt="polygonized" caption="The newly created polygon shapefile form the float-type h001000.tif raster plotted in QGIS. Note that the float numbers are classified in 8 integer bins ranging from 0 to 7 fps." %}
 
-## Rasterize (vector to raster)
+## Rasterize (vector shapefile to raster) {#shp2raster}
 
-### Polygon to raster {#polygon2raster}
-Use rasterstats https://pythonhosted.org/rasterstats/manual.html#user-defined-statistics
-
-### Shapefile (vector) to raster {#shp2raster}
 Similar to `gdal.Polygonize`, [`gdal.RasterizeLayer`](https://gdal.org/python/osgeo.gdal-module.html#RasterizeLayer) represents a powerful option to easily convert a shapefile into a raster. More precisely, a shapefile is not really converted but burned onto a raster. That means, values stored in a field of a shapefile feature are used (burned) as pixel values in a new raster. A little attention is required to ensure that the correct values and data types are used. So let's write a `rasterize` function that we can use robustly over and over again, avoiding potential headaches. The `rasterize` function:
 1. Open the provided input shapefile name and its layer.
 1. Reads the spatial extent of the layer.
