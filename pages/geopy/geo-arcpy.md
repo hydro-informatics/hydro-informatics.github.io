@@ -162,7 +162,7 @@ u_stdv = CellStatistics([u_basement, u_tuflow], "STD")
 
 Read more options statistics types and handling non-numeric data on the [developer's website](https://pro.arcgis.com/en/pro-app/tool-reference/spatial-analyst/cell-statistics.htm).
 
-{% include oa.html content="An open access alternative to `arcpy`'s `CellStatistics` is the [`rasterstats` library](geo-raster.html#zonal) (usage: `rasterstats.zonal_stats(zone, raster_file_name, stats=["min", "max", "median", "majority", "sum", "...many more..."])`)." %} 
+{% include tip.html content="An open access alternative to `arcpy`'s `CellStatistics` is the [`rasterstats` library](geo-raster.html#zonal) (usage: `rasterstats.zonal_stats(zone, raster_file_name, stats=['min', 'max', 'median', 'majority', 'sum', '...many more...'])`)." %} 
 
 ## Shapefile operations
 
