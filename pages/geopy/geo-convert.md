@@ -45,7 +45,7 @@ Next we can write the core function to convert a raster dataset to a line shapef
 1. Gets the `trajectory` of pixels that have a user parameter-defined `pixel_value` (e.g., `1` to trace 1-pixels in the binary `least_cost.tif`) and throws an error if the trajectory is empty (i.e., `np.count_nonzero(trajectory) is 0`). 
 1. Uses the above define `offset2coords` function to append point coordinates to a `points` list.
 1. Creates a `multi_line` object (instance of `ogr.Geometry(ogr.wkbMultiLineString)`), which represents the (void) final least cost path.
-1. Iterates through all possible combinations of points (excluding combinations of points with themselves) with [`itertools.combinations(iterable, r=number-of-combinations=2`](https://docs.python.org/3/library/itertools.html).
+1. Iterates through all possible combinations of points (excluding combinations of points with themselves) with [`itertools.combinations(iterable, r=number-of-combinations=2`](https://docs.python.org/3/library/itertools.html)).
     * Points are stored in the `points` list.
     * `point1` and `point2` are required to get the distance between pairs of points.
     * If the `distance` between the point is smaller than `max_distance`, the function creates a line object from the two points and appends it to the `multi_line`.
