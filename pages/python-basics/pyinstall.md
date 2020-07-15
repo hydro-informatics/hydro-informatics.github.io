@@ -14,7 +14,7 @@ folder: python-basics
 
 {% include tip.html content="Before you continue, **make sure that *Anaconda* is installed** according to the [descriptions in the *Get Started*](hy_ide.html#anaconda) section." %}
 
-## Create and install conda environments 
+## Create and install conda environments  {#conda-env}
 To install an environment that suites most of the needs for codes and analyses shown on these pages, apply our provided `environment.yml`:
 
 1. Download the environment file [here](https://github.com/hydro-informatics/materials-py-install/blob/master/environment.yml) (if needed: copy the file contents of `environment.yml` in a local text editor tool such as [Notedpad++](https://notepad-plus-plus.org/) ([alternatives](hy_others.html#npp)) and save the file for example in a directory called *C:/temp/*)
@@ -90,3 +90,5 @@ After the successful installation of [*PyCharm*](hy_ide.html#ide) within *Anacon
     * In the *Settings* window go to `Project: [NAME]` > `Project Interpreter` 
     * Make sure that the above-created `hypy` *conda* environment is defined as *Project Interpreter*.
     {% include image.html file="pyc-prj-interp.png" alt="pyc-prj-interp" caption="Verify the correct setup of the Project Interpreter." %}
+	
+{% include tip.html content="**Are you struggling with setting up *PyCharm* correctly?** *PyCharm* and *Anaconda* are designed for working hand-in-hand and the developers provide an [up-to-date documentation](https://docs.anaconda.com/anaconda/user-guide/tasks/pycharm/) for setting up *PyCharm* to work with *conda* environments." %}

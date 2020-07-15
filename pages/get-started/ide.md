@@ -24,15 +24,16 @@ An interfaces to an *Integrated Development Environment* (*IDE*) enables the def
 
 
 ### Install *PyCharm* *IDE* (Anaconda Navigator) {#pycharm}
-To set up *PyCharm* through *Anaconda* navigator:
+Before *Anaconda* can launch *PyCharm*, download (from the [developer's website](https://www.jetbrains.com/pycharm/promo/anaconda/)) and install *PyCharm*. A reboot may be required after the installation.
+After the installation of *PyCharm* for *Anaconda*, open *Anaconda* navigator:
 
 1. Open *Anaconda Navigator* (i.e., *Anaconda*'s graphical user interface) and make sure to be in the *Home* tab.
-1. Look for *PyCharm* and click on the *Install* button (if already installed, there is only a *Launch* button).
-1. After successful installation, open *PyCharm*, by clicking on the *Launch* button.
+1. If the installation of *PyCharm* was successful, click on the *Launch* button to open *PyCharm*.
 1. In *PyCharm* click on `+ Create New Project`
-1. A window will open - enter:
+1. Option 1 (preferred): Use the [developer's up-to-date documentation](https://docs.anaconda.com/anaconda/user-guide/tasks/pycharm/) for setting up *PyCharm* with *Anaconda*.
+1. Option 2 (quick to read, but may fail): A window will open - enter:
     - *Location* - Select a local directory for the project (e.g., *C:/hydro/project*)
-    - *Project Interpreter* - Check the `Existing interpreter` box and select the above-installed [conda environment   `hypy`](#conda-env) (e.g., `C:\users\<your-user-name>\AppData\Local\Continuum\anaonda3\envs\`)
+    - *Project Interpreter* - Check the `Existing interpreter` box and select the above-installed [conda environment   `hypy`  ](hypy_install.html#conda-env) (e.g., `C:\users\<your-user-name>\AppData\Local\Continuum\anaonda3\envs\`)
     - Click on the `Create` button.
 
 All set - you are ready to work with *Python*, markdown (documentation), and [git](hy_git.html) now.

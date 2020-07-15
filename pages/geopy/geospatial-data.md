@@ -18,8 +18,10 @@ Geospatial data can be retrieved for various purposes from different sources. He
 * Satellite imagery is available at
     - [USGS' Earth Explorer](https://earthexplorer.usgs.gov/).
     - [eesa's copernicus open access hub](https://scihub.copernicus.eu/dhus/#/home) (Sentinel-2)
+    - [planet.com](https://www.planet.com/products/monitoring/) (commercial)
 * [LiDAR](https://oceanservice.noaa.gov/facts/lidar.html) data can be found at [opentopography.org](https://opentopography.org/). 
 * Climatological data are provided by [NASA Earth Observation](https://neo.sci.gsfc.nasa.gov/).
+* Meteorological (e.g., temperature or precipitation) and real-time satellite data are available at [wunderground.com](https://www.wunderground.com/) and its [wundermap](https://www.wunderground.com/wundermap).
 * Data on land use (including canopy cover), socioeconomic characteristics, and global change are available at the [FAO GeoNetwork](http://www.fao.org/geonetwork/srv/en/main.home) or the archived ISCGM Global Map portal ([go to their github archive](https://globalmaps.github.io/)).
 
 ## Visualization
