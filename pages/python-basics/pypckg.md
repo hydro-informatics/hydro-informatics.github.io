@@ -23,8 +23,8 @@ print(os.getcwd()) # print current working directory
 print(os.path.abspath('')) # print directory of script running
 ```
 
-    C:\Users\schwindt\jupyter\hypy
-    C:\Users\schwindt\jupyter\hypy
+    C:\...\jupyter\hypy
+    C:\...\jupyter\hypy
     
 
 ### Overview of import options
@@ -92,13 +92,13 @@ In object-oriented programming and code factorization, writing own, new modules 
 
 
 ```python
-## icecreamdialogue.py
+# icecreamdialogue.py
 flavors = ["vanilla", "chocolate", "bread"]
 price_scoops = {1: "two euros", 2: "three euros", 3: "your health"}
 welcome_msg = "Hi, I only have " + flavors[0] + ". How many scoops do you want?"
 ```
 
-`icecreamdialogue.py` can now either be executed as script without returning anything or imported.
+[`icecreamdialogue.py`](https://github.com/hydro-informatics/icecream/raw/master/single-scripts/icecreamdialogue.py) can now either be executed as script without returning anything or imported.
 
 
 ```python
@@ -108,16 +108,16 @@ scoops_wanted = 2
 print("That makes {0} please".format(icd.price_scoops[scoops_wanted]))
 ```
 
-    Hi, I only have vanillaleft. How many scoops do you want?
+    Hi, I only have vanilla. How many scoops do you want?
     That makes three euros please
     
 
 ### Make a script stand-alone {#standalone}
-As an alternative, we can append the call to items in `icecreamdialogue.py` in the script and run it as a stand-alone script by adding the called item in to a `if (__name__ == '__main__'):` statement:
+As an alternative, we can append the call to items in [`icecreamdialogue.py`](https://github.com/hydro-informatics/icecream/raw/master/single-scripts/icecreamdialogue.py) in the script and run it as a stand-alone script by adding the called item in to a `if (__name__ == '__main__'):` statement:
 
 
 ```python
-## icecreamdialogue_standalone.py
+# icecreamdialogue_standalone.py
 flavors = ["vanilla", "chocolate", "bread"]
 price_scoops = {1: "two euros", 2: "three euros", 3: "your health"}
 welcome_msg = "Hi, I only have " + flavors[0] + ". How many scoops do you want?"
@@ -129,7 +129,7 @@ if (__name__ == '__main__'):
     print("That makes {0} please".format(price_scoops[scoops_wanted]))
 ```
 
-Now we can run `icecreamdialogue_standalone.py` in the terminal (e.g., *PyCharm*'s *Terminal* tab at the bottom of the window).
+Now we can run [`icecreamdialogue_standalone.py`](https://github.com/hydro-informatics/icecream/raw/master/single-scripts/icecreamdialogue_standalone.py) in the terminal (e.g., *PyCharm*'s *Terminal* tab at the bottom of the window).
 
 
 ```python
@@ -143,7 +143,7 @@ To make the script more flexible, we can define `scoops_wanted` as an input vari
 
 
 ```python
-## icecreamdialogue_standalone_withinput.py
+# icecreamdialogue_standalone_withinput.py
 flavors = ["vanilla", "chocolate", "bread"]
 price_scoops = {1: "two euros", 2: "three euros", 3: "your health"}
 welcome_msg = "Hi, I only have " + flavors[0] + ". How many scoops do you want?"
@@ -162,7 +162,12 @@ if (__name__ == '__main__'):
 
 Now we can run `icecreamdialogue_standalone_withinput.py` in the terminal.
 
+
+
+```python
 C:\temp\ python3 icecreamdialogue_standalone.py 2
+```
+
 ### Initialization of a package (hierarchically organized module) {#make-pckg}
 Good practice involves that one script does not exceed 50-100 lines of code. In consequence, a package will most likely consist of multiple scripts that are stored in one folder and one master script serves for the initiation of the scripts. This master script is called `__init__.py` and *Python* will always invoke this script name in a package folder. Example structure of a module called `icecreamery`:
 
@@ -199,6 +204,8 @@ Do you remember the `dir()` function? It is intended to list all modules in a pa
 __all__ = ['icecreamdialogue', 'icecream_maker']
 import *
 ```
+
+The full example of the `icecreamery_all` package is available in the [*icecream*](https://github.com/hydro-informatics/icecream) repository.
 
 
 ```python

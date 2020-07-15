@@ -172,4 +172,4 @@ Think about the code structure before starting with punching in a bunch of code 
 
 ### Soft alternatives
 Explain your problem to a friend (or just speak out loud). Rephrasing and trying to explain a problem to another person (even if it is just an imaginery person or group of people) often represents the troubleshot itself.
-Take a walk, sleep on the problem or do other things with low brain occupation. While you are dealing with other things, your brain continues to think about the problem (Wikipedia devoted a page to this so-called process of [*incubation*](https://en.wikipedia.org/wiki/Incubation_(psychology)).
+Take a walk, sleep on the problem or do other things with low brain occupation. While you are dealing with other things, your brain continues to think about the problem (wikipedia devoted a page to this so-called process of [*incubation*](https://en.wikipedia.org/wiki/Incubation_(psychology))).

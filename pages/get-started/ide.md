@@ -38,8 +38,6 @@ After the installation of *PyCharm* for *Anaconda*, open *Anaconda* navigator:
 
 All set - you are ready to work with *Python*, markdown (documentation), and [git](hy_git.html) now.
 
-{% include note.html content="*PyCharm* can also be installed without *Anaconda*, directly from the [developer's website](https://www.anaconda.com/distribution/)." %}
-
 {% include important.html content="***Python* users** read more about setting up *conda* environments on the [*Python (basics)*](hypy_install.html#ide-setup) page." %}
 
 ### Install *JupyterLab* (Anaconda Navigator) {#jupyter}
