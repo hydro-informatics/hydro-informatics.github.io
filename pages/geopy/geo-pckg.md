@@ -23,7 +23,9 @@ To install `gdal` for *Python*, open [*Anaconda Prompt*](hypy_install.html#insta
 conda install -c conda-forge gdal
 ```
 
-{% include note.html content="If you **cannot `import gdal`**, for some apparently arbitrary reasons (e.g., `Error: Arbitrary-like stuff is missing.`), the problem probably lies in the definition of environmental variables. The problem can be trouble-shot in *PyCharm* with the following solution<br><br>
+{% include tip.html content="**Conda users** may experience that `gdal` cannot be imported after a system reboot or re-opening *PyCharm* / *Anaconda*. If this bug occurs, re-install `gdal` with *Anaconda Prompt* (the error should occur only once and then never again)." %}
+
+{% include note.html content="**None-conda users**, if you **cannot `import gdal`**, for some apparently arbitrary reasons (e.g., `Error: Arbitrary-like stuff is missing.`), the problem probably lies in the definition of environmental variables. The problem can be trouble-shot in *PyCharm* with the following solution<br><br>
  1. Go to *File* > *Settings ...*  > *Build, Execution, Deployment* > *Console* > *Python Console* > *Environment variables* <br>
  2. Set the following `environment_variables`<br> 
      `setx GDAL_DATA 'C:\Program Files\GDAL\gdal-data'`<br>
@@ -88,6 +90,7 @@ conda install -c conda-forge shapely
 Besides the above mentioned packages there are other useful libraries for geospatial analyses in *Python*:
  * [`rasterio`](https://rasterio.readthedocs.io/en/latest/) for processing raster data as [`numpy`](hypy_pynum.html#numpy) arrays install in *Anaconda Prompt* with `conda install -c conda-forge rasterio`). 
  * [`rasterstats`](https://pythonhosted.org/rasterstats/) produces zonal statistics of rasters and can interact with *GeoJSON* files (install in *Anaconda Prompt* with `conda install -c conda-forge rasterstats`).
+ * [`geopandas`](https://geopandas.org/) enables the application of *pandas* data frame operations to geospatial datasets (install in *Anaconda Prompt* with `conda install -c conda-forge geopandas`).
  * [`sckit-image`](https://scikit-image.org/) for machine learning applied to georeferenced images (install in *Anaconda Prompt* with `conda install -c anaconda scikit-image`).
  * [`django`](https://docs.djangoproject.com/en/3.0/ref/contrib/gis/) as a geographic web frame and for database connections (install in *Anaconda Prompt* with `conda install -c anaconda django`).
  * [`postgresql`](https://www.postgresqltutorial.com/postgresql-python/) for SQL database connections (install in *Anaconda Prompt* with `conda install -c anaconda postgresql`).
