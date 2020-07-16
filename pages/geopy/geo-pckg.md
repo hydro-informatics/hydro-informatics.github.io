@@ -23,7 +23,7 @@ To install `gdal` for *Python*, open [*Anaconda Prompt*](hypy_install.html#insta
 conda install -c conda-forge gdal
 ```
 
-{% include tip.html content="**Conda users** may experience that `gdal` cannot be imported after a system reboot or re-opening *PyCharm* / *Anaconda*. If this bug occurs, re-install `gdal` with *Anaconda Prompt* (the error should occur only once and then never again)." %}
+{% include tip.html content="**Conda users** may experience that installing `gdal` results in conflicts. Wait for *Anaconda Prompt* resolving the conflicts, then type `conda update conda`, `conda update anaconda`, and restart *Anaconda Prompt*. Now re-install `gdal` with `conda install -c conda-forge gdal` (a similar procedure may be required for other geospatial package installations)." %}
 
 {% include note.html content="**None-conda users**, if you **cannot `import gdal`**, for some apparently arbitrary reasons (e.g., `Error: Arbitrary-like stuff is missing.`), the problem probably lies in the definition of environmental variables. The problem can be trouble-shot in *PyCharm* with the following solution<br><br>
  1. Go to *File* > *Settings ...*  > *Build, Execution, Deployment* > *Console* > *Python Console* > *Environment variables* <br>
