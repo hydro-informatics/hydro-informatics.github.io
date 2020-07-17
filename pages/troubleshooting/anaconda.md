@@ -9,7 +9,7 @@ folder: troubleshooting
 
 Sometimes packages will not install as wanted (resulting in import errors, *Anaconda Navigator* is not behaving as expected or does not start up at all. This page summarizes remedies for such problems.
 
-## *Anaconda* does not start up
+## *Anaconda Navigator* does not start up
 
 The most common problems for *Anaconda* not starting up are listed in the [developer's docs](https://docs.anaconda.com/anaconda/navigator/troubleshooting/) and include:
 
