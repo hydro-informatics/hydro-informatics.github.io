@@ -42,7 +42,7 @@ Many text editors provide *Markdown* add-ons and *Markdown*-only editors are loo
 
 Basic text editors that support *Markdown* are listed [here](hy_others.html#npp). Popular and multi-platform *IDE*s for editing *Markdown* (`.md`) files are [*ATOM*](https://atom.io/) (for combination with *JavaScript*, *html*, and *CSS*), and [*Jupyter Lab*](https://jupyter.org) or [*PyCharm*](https://www.jetbrains.com/pycharm/) (for combination with *Python* or *R*), which both are available through [*Anaconda*](https://docs.conda.io/). [Read more about Anaconda and associated *IDE*s on the previous pages.](hy_ide.html)
 
-### Markdown command overview (including images)
+### Markdown command overview (+images)
 
 The following table and sections provide an overview of basic markdown commands. There is much more options out there, which you can find by using your favorite search engine with the keywords `markdown` `guide`.
   

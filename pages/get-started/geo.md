@@ -8,12 +8,12 @@ permalink: geo_software.html
 folder: get-started
 ---
 
-Geospatial analyses (or analytics) use, manipulate and illustrate data from geographic information systems (GIS). GIS data contain  geographically referenced and spatially explicit information of for example gauging stations, terrain elevation, or land use. Efficient processing of geospatial data involves programming methods, where *Python* is an efficient tool. This page presents Desktop software for manual geospatial analyses and the illustration of geospatial data. For geospatial programming, please refer to the section [*Python (applications) > GEOSPATIAL*](geo_overview.html).
+Geospatial analyses (or analytics) use, manipulate and illustrate data from geographic information systems (GIS). GIS data contain  geographically referenced and spatially explicit information of for example gauging stations, terrain elevation, or land use. Efficient processing of geospatial data involves programming methods, where *Python* is an efficient tool. This page presents Desktop software for manual geospatial analyses and the illustration of geospatial data. For geospatial programming, please refer to the section [*Python (applications) > GEOSPATIAL*](geo-python.html).
 
 {% include note.html content="Geospatial data are either geographically referenced, pixel-based [rasters](https://en.wikipedia.org/wiki/Raster_graphics) data or vector-based *Esri* [shapefiles](https://en.wikipedia.org/wiki/Shapefile) (read more on the [*Python (applications) > GEOSPATIAL*](geospatial-data.html) pages)." %}
 
 ## QGIS {#qgis}
-For the visualization of geodata (`.shp` and `.tif` files) a GIS software is required and the analyses described on these pages refer to the usage of [*QGIS*](https://www.qgis.org). This web site uses *QGIS* within the sections on [geospatial programming with *Python*](geo_overview) and [numerical modelling with the ETH Zurich's BASEMENT](bm-pre.html) software.
+For the visualization of geodata (`.shp` and `.tif` files) a GIS software is required and the analyses described on these pages refer to the usage of [*QGIS*](https://www.qgis.org). This web site uses *QGIS* within the sections on [geospatial programming with *Python*](geo-python.html) and [numerical modelling with the ETH Zurich's BASEMENT](bm-pre.html) software.
 
 ### Install QGIS on Windows
 Download and install the latest version of [*QGIS*](https://www.qgis.org/en/site/forusers/download.html) for Windows.
@@ -33,13 +33,17 @@ This solution has been tested on *Linux Ubuntu* and *Linux Mint*. It potentially
 
 Download and install the latest version of [*QGIS*](https://www.qgis.org/en/site/forusers/download.html) for macOS. The integrity of using macOS for the applications on *hydro-informatics.github.io* is has not yet been tested. Possible trouble-shooting with *Python* is provided by [kyngchaos.com](https://www.kyngchaos.com/software/qgis/). 
 
+### Learn QGIS
+Working with geospatial data editors involves complex tasks that require background knowledge before intuitive comprehension is possible.  The *QGIS* developers provide compound [tutorials on their website](https://docs.qgis.org/3.10/en/docs/training_manual/index.html) ([also available in other languages including Czech, French, German, and Portuguese](https://www.qgis.org/en/site/forusers/trainingmaterial/index.html)).
+On this website, *QGIS* is occasionally used for plotting and creating georeferenced data (e.g., the chapters on [geospatial programming](geo-python.html) and [numerical modelling *BASEMENT*](bm-pre.html)). These chapters illustrate the usage of *QGIS* with screenshots for specific tasks and do not cover a full tutorial for working with *QGIS*.
+
 
 ## ArcGIS Pro {#agis}
 {% include warning.html content="ArcGIS Pro is designed for Windows and will not run on macOS or Linux. In addition, a license needs to be purchased." %} 
 The proprietary software *ArcGIS Pro* represents a powerful tool for any kind of geospatial analysis including web applications. *ArcGIS Pro* is maintained by [ESRI](https://www.esri.com/) and comes with an own [*Python conda Environments*](hypy_install.html).
 With the focus on freely available software, the usage of *ArcGIS Pro* and its *Python* environment including the `arcpy` package is just mentioned on this website. 
 
-## Others {#others]
+## Others {#others}
 There are many other tools for geospatial analyses, which all deserve much more than just being mentioned here. Alas, for practical reasons, this website focuses on the usage of *QGIS*. This is why there is just a absolutely-not-complete list of other GIS tools here:
 
 * [SAGA (System for Automated Geoscientific Analyses)](http://www.saga-gis.org/en/index.html)
@@ -47,6 +51,6 @@ There are many other tools for geospatial analyses, which all deserve much more 
 * [Mapbox](https://www.mapbox.com/)
 * [uDig](http://udig.refractions.net/)
 
-## Geospatial data, file handling and analysis
+## Geospatial analysis
 
-Geospatial analyses involve efficient code practices (e.g. with *Python*) and this is why detailed descriptions of geospatial data handling are embedded in the [*Python* (advanced)](geo_overview.html) section of this website.
+Geospatial analyses involve efficient code practices (e.g., with *Python*) and this is why detailed descriptions of geospatial data handling are embedded in the [*Python* (geospatial)](geo-python.html) chapter of this website.

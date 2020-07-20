@@ -1,8 +1,8 @@
 ---
-title: Python - Data processing & file handlers
+title: Data processing & file handlers
 tags: [python, numpy, xlsx, workbooks, csv, pandas, file_manipulation, formatting, froude, basement, matlab, matplotlib]
 keywords: python, numpy, array, matrix, scipy, datetime, pandas, dataframe
-summary: "This page shows how data from basic text files can be imported and written with Python. In addition, the numeric and tabular data handling packages NumPy and pandas are introduced, along with date-time format handling. "
+summary: "Import data from basic text files and write files with Python. Handle numeric, tabular and date-time formatted data with the NumPy and pandas packages."
 sidebar: mydoc_sidebar
 permalink: hypy_pynum.html
 folder: python-basics
@@ -12,7 +12,7 @@ folder: python-basics
 
 Data can be stored in many different (text) file formats such as *txt* or *csv* files. *Python* provides the `open(file)` and `write(...)` functions to read and write data from nearby every text file format, respectively. There are packages such as `csv` (for *csv* files), which simplify handling specific file types. This section illustrates the use of the `load(file)` and `write(...)` functions, and introduces the *pandas* module with its capacity to import and export numeric data along with row and column headers.
 
-### Load (open) text file with data {#open-modes}
+### Load (open) text file data {#open-modes}
 
 The `open` command loads text files as file object in *Python*. The syntax of the `open` command is: 
 
@@ -38,6 +38,14 @@ where:
     - `"ab+"` - append and read data in binary mode.
 
 When `"r"` or `"w"` modes are used, the file pointer (i.e, the blinking cursor that you can see for example in Word documents) is place at the beginning of the file. For `"a"` modes, the file pointer is placed at the end of the file.
+
+It is good practive to read and write data from and to a file within a `with` statement to avoid file lock issues. For example, the following code block creates a new text file within a `with` statement:
+
+
+```python
+with open("data/new.csv", mode="w+") as file:
+    file.write("And yet it moves.")
+```
 
 ### Read-only {#read}
 Once the file object is created, we can parse the file and copy the file data content to a desired *Python* [data type](hypy_pybase.html#var) (e.g., a list, tuple or dictionary). Parsing the data uses [*for-loops*](hypy_pyloop.html#for) (other loop types will also work) to iterate on lines and line entries. The lines represent *strings*, where the data columns can be separated by using the built-in *string* function `line_as_list = str().split("SEPARATOR")`, where `"SEPARATOR"` can be `","` (comma), `";"` (semicolon), `"\t"` (tab), or any other sign. After reading all data from a file, use `file_object.close()` to avoid that the file is locked by *Python* and cannot be opened by another program.
@@ -67,7 +75,7 @@ print("Number of rows: %d" % data_list.__len__())
 # verify that the first sub-list has four entries (number of columns)
 print("Number of columns: %d" % data_list[0].__len__())
 
-file_object.close()  # close file (otherwise it will be locked as long as Python is still running!)
+file_object.close()  # close file (otherwise it will be locked as long as Python is still running!) alternative: use with-statement
 print(data_list)  # print the data
 ```
 
@@ -75,6 +83,8 @@ print(data_list)  # print the data
     Number of columns: 4
     [[2.59, 5.44, 4.06, 4.87], [4.43, 1.67, 1.26, 2.97], [4.04, 8.07, 2.8, 9.8], [2.25, 5.32, 0.04, 5.57], [6.26, 6.15, 5.98, 8.91], [7.93, 0.85, 5.88, 5.4], [4.72, 1.29, 4.18, 2.46], [7.03, 1.43, 5.53, 9.7], [5.2, 7.87, 1.44, 1.13], [3.18, 5.38, 3.6, 7.32], [5.37, 0.62, 5.29, 4.26], [3.48, 2.26, 3.11, 7.3], [1.36, 1.68, 3.38, 6.4], [1.68, 2.31, 9.29, 3.59], [1.33, 1.73, 3.98, 5.74], [2.38, 9.69, 0.06, 4.16], [9.3, 6.47, 9.14, 3.33]]
     
+
+{% include tip.html content="Recall the `with` statement from the above example. With the `with` statement, we do not have to write `file.close()`." %}
 
 ### Create and write files {#create}
 
@@ -191,7 +201,7 @@ else:
 
 *NumPy* can be installed within *Anaconda* ([read instructions](hypy_install.html#install-pckg)) and the developers recommend to use a scientific *Python* distribution (*Anaconda*) with [*SciPy Stack*](https://www.scipy.org/install.html).
 
-With the provided [*environment.yml* (hypy)](https://github.com/hydro-informatics/materials-py-install/blob/master/environment.yml) for *Anaconda*, *NumPy* is already installed ([more information here](https://hydro-informatics.github.io/hypy_install.html)). To install *NumPy* in another *conda* environment, open *Anaconda Prompt* (*Start* > type *Anaconda Prompt*) and type:
+With the provided [*environment.yml* (`hypy`)](https://github.com/hydro-informatics/materials-py-install/blob/master/environment.yml) for *Anaconda*, *NumPy* is already installed ([more information here](https://hydro-informatics.github.io/hypy_install.html)). To install *NumPy* in another *conda* environment, open *Anaconda Prompt* (*Start* > type *Anaconda Prompt*) and type:
 
 
 ```python
@@ -430,7 +440,7 @@ In the above examples on file handling, measurement data were loaded from text f
 * `delimiter=STR` (e.g., `delimiter=';'`), where default is `"None"`
 * `usecols=TUPLE` (e.g., `usecols=(1, 3)` will extract the 2<sup>nd</sup> and 4<sup>th</sup> column) also one *integer* value is possible to read just on single column
 * `skiprows=INT` (e.g., `skiprows=2` skips the first two lines), where default is `0`
-* more arguments are available and listed in the [numpy documentation](https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html).
+* more arguments are available and listed in the [*numpy* documentation](https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html).
 
 The following example loads the *csv* file *data/modified-data.csv* containing *integer* and `"nan"` *string* values, which are automatically converted to `np.nan`.
 
@@ -445,7 +455,7 @@ print("The data type of the 3rd (%s) entry is: " % str(experiment_data[3, 2]) + 
     The data type of the 3rd (nan) entry is: <class 'numpy.float64'>
     
 
-In addition, or as an alternative, the function `np.load()` picks up data from file-like `.npz`, `.npy`, or pickled (saved *Python* objects) data sources ([read more in the *Python* doc](https://numpy.org/doc/stable/reference/generated/numpy.load.html#numpy.load)). 
+In addition, or as an alternative, the function `np.load()` picks up data from file-like `.npz`, `.npy`, or pickled (saved *Python* objects) data sources ([read more in the *Python* docs](https://numpy.org/doc/stable/reference/generated/numpy.load.html#numpy.load)). 
 
 ### Statistics
 The above examples featured some array functions to assess basic array parameters such as the minimum and maximum. *NumPy* provides many more functions for array statistics such as the mean, median, or standard deviation, including functions that account for `np.nan` values. The following example illustrates some statistic function with the experimental data from the above examples. Note the usage of `nanmean` instead of `mean` and statistics along array axis, where the optional keyword argument `axis=0` corresponds to columns and `axis=1` to statistics along rows in 2-dimensional arrays (maximum axis number corresponds to the array dimensions *n* minus 1, i.e., maximum `axis=n-1`). 
@@ -521,11 +531,11 @@ Generate and plot histrograms
 
 Are you considering to switch to *Python* after starting softly into programming with *MATLAB&reg;*-like software? There are many reasons for enhancing data analyses with *Python* and here are some facilitators for previous *MATLAB&reg;* users:
 
-* *MATLAB&reg;* matrices can be loaded and saved with [`scipy.io.loadmat(matrix-file-name)`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.io.loadmat.html#scipy.io.loadmat) (use ` import scipy`).
+* *MATLAB&reg;* matrices can be loaded and saved with [`scipy.io.loadmat(matrix-file-name)`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.io.loadmat.html#scipy.io.loadmat) (use `import scipy`).
 * *NumPy*'s `np.array` replaces *MATLAB&reg;*'s matrix notation (even though there is the historic, deprecated *NumPy* data type `np.matrix`).
 * Import many *MATLAB&reg;* features from `np.matlib` (e.g., `from numpy.matlib import rand, zeros, ones, empty, eye)` or more generally `import numpy.matlib as M`).
 * Find the *NumPy* equivalent of many *MATLAB&reg;* function in the [*NumPy* documentation](https://numpy.org/doc/stable/user/numpy-for-matlab-users.html#table-of-rough-matlab-numpy-equivalents).
-* To emulate *MATLAB&reg;*'s plot functions use the `pylab` package and import it as `from pylab import *`. &#9888; This overwrites all other (standard) definitions of the `plot()` function and `array()` objects. So this usage is deprecated. [Read the plotting pages](hypy_pyplot.html) for consistent plotting instructions with *Python*.
+* To emulate *MATLAB&reg;*'s plot functions use the `pylab` package and import it as `from pylab import *`. <br>&#9888; This overwrites all other (standard) definitions of the `plot()` function and `array()` objects. So this usage is deprecated. [Read the plotting pages](hypy_pyplot.html) for consistent plotting instructions with *Python*.
 
 *MATLAB&reg; is a registered trademark of The MathWorks.*
 
@@ -535,7 +545,7 @@ Are you considering to switch to *Python* after starting softly into programming
 
 ### Installation
 
-*pandas*' developer's recommend to install *pandas* with the *SciPy* stack in [*Anaconda*](https://hydro-informatics.github.io/hy_ide.html), similar to the recommendations for installing *NumPy*. With the provided [*environment.yml* (hypy)](https://github.com/hydro-informatics/materials-py-install/blob/master/environment.yml) for *Anaconda*, *NumPy* is already installed ([more information here](https://hydro-informatics.github.io/hypy_install.html)). To install *NumPy* in another *conda* environment, open *Anaconda Prompt* (*Start* > type *Anaconda Prompt*) and type:
+*pandas*' developer's recommend to install *pandas* with the *SciPy* stack in [*Anaconda*](https://hydro-informatics.github.io/hy_ide.html), similar to the recommendations for installing *NumPy*. With the provided [*environment.yml* (`hypy`)](https://github.com/hydro-informatics/materials-py-install/blob/master/environment.yml) for *Anaconda*, *NumPy* is already installed ([more information here](https://hydro-informatics.github.io/hypy_install.html)). To install *NumPy* in another *conda* environment, open *Anaconda Prompt* (*Start* > type *Anaconda Prompt*) and type:
 
 
 ```python
@@ -545,7 +555,7 @@ conda install pandas
 
 ### Usage
 
-*pandas* standard import alias is `pd`: `import pandas as pd`. The following sections provide an overview of basic *pandas* functions and much more functionalities are documented at the [developer's docs](https://pandas.pydata.org/pandas-docs/stable/user_guide/index.html).
+*pandas* standard import alias is `pd`: `import pandas as pd`. The following sections provide an overview of basic *pandas* functions and much more functionalities are documented in the [developer's docs](https://pandas.pydata.org/pandas-docs/stable/user_guide/index.html).
 
 ### Data frames & series
 The below code block illustrates the creation of *pandas* data frames, the core object of *pandas*. Note the difference between a 1-dimensional series (corresponds to a one-column data frame), and a 2-dimensional data frame with **row (=index)** and column names. The default row names number rows starting from 0 (unlike Office software that starts at row no. 1), without column names. Column names can be initially defined as a [list](hypy_pybase.html#list) and replaced with a [dictionary](hypy_pybase.html#dict) that maps the initial list entries to new names.

@@ -7,12 +7,12 @@ sidebar: mydoc_sidebar
 permalink: hy_git.html
 folder: get-started
 ---
-
+## The concept
 *Git* is a fast, scalable, distributed revision control system, originally developed by *Linus Torvalds*  ([ead more about the git kernel](https://git.kernel.org/)). *Git* enables to coordinate work among collaborators beyond programming, in any set of files. Its support of non-linear workflows, speed and data integrity make git an indispensable tool in many industries and research. Before starting to read this *git* tutorial, have a look at the schematic functioning of repositories hosted with *git*.
 
 {% include image.html file="git-scheme.png" alt="git-scheme" max-width="800" caption="The concept of git with some basic vocabulary. The REMOTE frame is online (i.e., some one else's computer) and the LOCAL frame is what happens on a personal computer, which is connected to the internet. Repositories can be newly created or forked remotely. Remote repositories can be cloned locally, modified locally, and local changes can be pushed to a remote repository. Collaborators want to make sure to regularly pull changes of a remote repository. Working with and on different branches becomes increasingly important with the number of developers and for the moment we just need to remember that we start working in the master branch (i.e., upstream origin / HEAD = master)." %}  
 
-## Usage of git<a name="dl"></a>
+## Usage {#dl}
 The materials provided on these pages is best downloaded and updated using *git*-able environments (on Windows use for example [*PyCharm*'s Community Edition](https://www.jetbrains.com/pycharm/) or [*Git Bash*](https://git-scm.com/downloads); on *Linux*: you are already good to go). Updates are tricky when materials are downloaded as *zip* file.
 
 {% include tip.html content="Even though this web site is hosted on *GitHub*, keep in mind that there are other *git* providers out there, such as [GitLab](https://gitlab.com/pages), [plan.io](https://plan.io/knowledge-management/), or [BitBucket](https://bitbucket.org/)." %}
@@ -30,7 +30,7 @@ The materials provided on these pages is best downloaded and updated using *git*
 
 Done.
 
-### Update downloaded repository (re-pull local copy with *git*) <a name="update"></a>
+### Update a local repository (re-pull) {#update}
 
 *git* (within *Git Bash*, *PyCharm* or *Terminal*) is the only option to update local copies of a remote repository consistently. To do so, open one of the above mention *git*-able command lines and do the following:
 
@@ -42,7 +42,7 @@ Done.
 Done.
 
 
-### Update remote repositories (push local changes)<a name="push"></a>
+### Update a remote repository (push local changes) {#push}
 
 After editing files in a repository locally, *add* - *commit* - *push* (in that order) your edits to the remote copy of the repository with version control. To *add* - *commit* - *push* local changes to a remote repository, make sure to be the remote repository owner or a contributor. Then open a *git*-able terminal and type:
 1. `git status` - this shows the modifications made.
