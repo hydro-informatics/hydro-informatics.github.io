@@ -8,8 +8,8 @@ permalink: hy_ide.html
 folder: get-started
 ---
 
-The teaching contents on this website build on so-called *Application Programming Inferace*s (*API*s) and *Integrated Development Environment*s (*IDE*s). 
-An ***API*** represents a computing interface that enables interactions between multiple software intermediaries. Modular programming becomes easy with an *API*, because it systematically hides complex information that is not necessarily needed to write code according to industry standards. For instance, an *API* can define the interface between an application (such as *Python* or *Word*) and an *Operating System* (*OS*) such as *Windows*, *Linux*, or *macOS*.
+The teaching contents on this website build on so-called *Application Programming Inferace*s (*API*s) and *Integrated Development Environment*s (*IDE*s).<br>
+An ***API*** represents a computing interface that enables interactions between multiple software intermediaries. Modular programming becomes easy with an *API*, because it systematically hides complex information that is not necessarily needed to write code according to industry standards. For instance, an *API* can define the interface between an application (such as *Python* or *Word*) and an *Operating System* (*OS*) such as *Windows*, *Linux*, or *macOS*.<br>
  An ***IDE*** enables the definition of a project to use for example a specific [*Python Conda Environment*](https://docs.conda.io/) and it enables robust coding by pointing out issues directly in the code, even before it was executed once. Powerful *IDE*s go even further and provide assistance in documenting code with markdown (*.md* files) and direct pipes into *git* ([see section on the usage of *git*](hy_git.html)). 
 
 {% include note.html content="These pages are written with the web-based *IDE* [*JupyterLab*](https://jupyter.org/), which is suitable to follow the course contents. *IDE*s such as *PyCharm* or *Spyder* are more suitable to setup projects locally (e.g., for course assignments)." %}
@@ -18,15 +18,15 @@ An ***API*** represents a computing interface that enables interactions between 
 
 *Anaconda* is basically a *Python* distribution that enables the usage of a couple of *IDE*s. Today, *Anaconda* is not limited to *Python* anymore and also comes with interfaces and environments for [*R*](https://www.r-project.org/about.html).
 
-{% include note.html content="[Anaconda](https://www.anaconda.com/distribution/) represents the baseline for many applications presented on this website. It enables the built-in installation of programming language interpreters (e.g., *Python* and *R*), as well as *IDE*s such as [*PyCharm*](https://www.jetbrains.com/pycharm/), [*Spyder*](https://www.spyder-ide.org/), or [*Jupyter Notebook (Lab)*](https://jupyter.org/)." %}
+{% include note.html content="[Anaconda](https://www.anaconda.com/distribution/) represents the baseline for many applications presented on this website. It enables the built-in installation of programming language interpreters (e.g., *Python* and *R*), as well as *IDE*s such as [*PyCharm*](https://www.jetbrains.com/pycharm/), [*Spyder*](https://www.spyder-ide.org/), or [*JupyterLab (Notebook)*](https://jupyter.org/)." %}
 
-The very first step to get started with *Anaconda* consists in downloading and installing [*Anaconda*](https://www.anaconda.com/distribution/). On Windows, *Anaconda* ([download](https://docs.anaconda.com/anaconda/install/windows/)) should be installed in the *LOCAL* user folder (e.g., *C:\users\<your-user-name>\AppData\Local*). Linux or macOS users find download and installation instructions directly at the developer's website, tailored for their specific distribution. [Click here for *Linux* installation instructions.](https://docs.anaconda.com/anaconda/install/linux/) and [click here for *macOS* installation instructions](https://docs.anaconda.com/anaconda/install/mac-os/).
+The very first step to get started with *Anaconda* consists in downloading and installing [*Anaconda*](https://www.anaconda.com/distribution/). On Windows, *Anaconda* ([download](https://docs.anaconda.com/anaconda/install/windows/)) should be installed in the *LOCAL* user folder (e.g., *C:\users\<your-user-name>\AppData\Local*). Linux or macOS users find download and installation instructions directly at the developer's website, tailored for their specific distribution. [Click here for *Linux* installation instructions](https://docs.anaconda.com/anaconda/install/linux/) and [click here for *macOS* installation instructions](https://docs.anaconda.com/anaconda/install/mac-os/).
 
 After the successful installation of *Anaconda*, *IDE*s for *Python* programming or *markdown* editing can be directly installed by launching the **Anaconda navigator**. **`conda`** environments can be created later on following the [instructions in the *Python (fundamentals)* section](hypy_install.html#conda-env).
 
 
 
-## *PyCharm* *IDE* (Anaconda Navigator) {#pycharm}
+## PyCharm (via Anaconda Navigator) {#pycharm}
 *Jetbrains*'s [*PyCharm (Community Edition)*](https://www.jetbrains.com/pycharm/) is one of the best open-access IDEs for non-commercial use and good alternatives are [*Spyder IDE*](https://www.spyder-ide.org/) (for *Python*) or [*RStudio*](https://rstudio.com/) (*R* and *Python*). However, before launching any project in an *IDE*, the installation of an interpreter (e.g., *Python* or *R*) is necessary (we already installed an interpreter with *Anaconda*).
 
 *PyCharm* is available as an *Anaconda Navigator* (i.e., *Anaconda*'s graphical user interface) module. To enable *PyCharm* in *Anaconda*, download *PyCharm* from the [developer's website](https://www.jetbrains.com/pycharm/promo/anaconda/) and install *PyCharm*. A reboot may be required after the installation.
@@ -46,7 +46,7 @@ All set - you are ready to work with *Python*, markdown (documentation), and [gi
 
 {% include important.html content="***Python* users** read more about setting up *conda* environments on the [*Python (basics)*](hypy_install.html#ide-setup) page." %}
 
-## *JupyterLab* (Anaconda Navigator) {#jupyter}
+## JupyterLab (via Anaconda Navigator) {#jupyter}
 
 *JupyterLab* is a product of the nonprofit organization [*Project Jupyter*](https://jupyter.org/), which develops "open-source software, open-standards, and services for interactive computing across dozens of programming languages". A *Jupyter* notebook (*.ipynb* file) enables the combination of markdown text blocks with executable code blocks. Essentially, a *Jupyter* notebook is a *JavaScript Object Notation* ([*JSON*](https://www.json.org/json-en.html)) file. The structure of *JSON* files enables the easy export of *.ipynb*  notebooks to many other open standard output formats such as *HTML*, [*LaTeX*](https://latex-project.org/), *markdown*, *Python*, *presentation slides*, or *PDF*. 
 The *Jupyter* kernels support the three core programming languages **Ju**lia, **Pyt**hon and **R**, and many more *Jupyter* kernels (currently 49) for other programming languages exist. 

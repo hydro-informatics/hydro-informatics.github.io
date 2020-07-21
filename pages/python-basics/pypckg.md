@@ -23,8 +23,8 @@ print(os.getcwd()) # print current working directory
 print(os.path.abspath('')) # print directory of script running
 ```
 
-    C:\...\jupyter\hypy
-    C:\...\jupyter\hypy
+    C:\Users\schwindt\jupyter\hypy
+    C:\Users\schwindt\jupyter\hypy
     
 
 ### Overview of import options
@@ -98,7 +98,7 @@ price_scoops = {1: "two euros", 2: "three euros", 3: "your health"}
 welcome_msg = "Hi, I only have " + flavors[0] + ". How many scoops do you want?"
 ```
 
-[`icecreamdialogue.py`](https://github.com/hydro-informatics/icecream/raw/master/single-scripts/icecreamdialogue.py) can now either be executed as script without returning anything or imported.
+[`icecreamdialogue.py`](https://github.com/hydro-informatics/icecream/raw/master/single-scripts/icecreamdialogue.py) can now either be executed as script (nothing will happen visibly) or imported as module to access its variables (e.g., `icecreamdialogue.flavors`).
 
 
 ```python
@@ -180,7 +180,7 @@ In order to automatically invoke the two relevant scripts (sub-modules) of the `
 
 
 ```python
-## __init__.py
+# __init__.py
 print(f'Invoking __init__.py for {__name__}') # not absolutely needed ..
 import icecreamery.icecreamdialogue, icecreamery.icecream_maker
 ```
@@ -200,7 +200,7 @@ Do you remember the `dir()` function? It is intended to list all modules in a pa
 
 
 ```python
-## __init__.py with __all__ list
+# __init__.py with __all__ list
 __all__ = ['icecreamdialogue', 'icecream_maker']
 import *
 ```
