@@ -1,5 +1,5 @@
 ---
-title: Python - Loops and Conditional Statements
+title: Loops and Conditional Statements
 tags: [python]
 keywords: python
 summary: "Iterate and apply conditional criteria"
@@ -8,10 +8,10 @@ permalink: hypy_pyloop.html
 folder: python-basics
 ---
 
-*Python* provides two basic types of loops to iterate through objects or functions: the `for` and the `while` loop statements. Both loop types have additional options and can be combined with conditional statements. Conditional statements evaluate Boolean arguments (True/False) using the key words `if: ... else: ...`. This section introduces the two loop types and conditional statements as integral parts of loops.
+*Python* provides two basic types of loops to iterate through objects or functions: the `for` and the `while` loop statements. Both loop types have additional options and can be combined with conditional statements. Conditional statements evaluate *boolean* arguments (`True`/`False`) using the keywords `if: ... else: ...`. This section introduces the two loop types and conditional statements as integral parts of loops.
 
-## Conditional `if` statements  {#if}
-Conditional statements open with an `if` key word, followed by a test condition (e.g., `variable >= 2`) and action to accomplish when the test condition is true ([boolean](hypy_pybase.html#boolean) test result). The conditional statement can be followed by the `elif` (*else if*) and/or `else` key words, which represent alternative tests in the case that the `if` test-condition was false. However, when the `if` statement was `True`, none of the following statements will be evaluated.
+## Conditional statements (`if` - `else`) {#if}
+Conditional statements open with an `if` keyword, followed by a test condition (e.g., `variable >= 2`) and action to accomplish when the test condition is `True` ([*boolean*](hypy_pybase.html#boolean) test result). The conditional statement can be followed by the `elif` (*else if*) and/or `else` keywords, which represent alternative tests in the case that the `if` test-condition was `False`. However, when the `if` statement was `True`, none of the following statements will be evaluated.
 
 
 ```python
@@ -29,7 +29,7 @@ else:
     
 
 Any operator can be used in the test condition (see [operators](hypy_pybase.html#operators)) and conditions can be nested, too.
-{% include note.html content="The code blocks in the `if` - `else` statement is indented and *Python* uses the indentation to group statements. The same applies to loops, function and classes. An IDE automatically indents code, but basic text editors may not do the job. So be aware that wrong indentation can be an error source." %} {#indent}
+{% include note.html content="The code blocks in the `if` - `else` statement is indented and *Python* uses the indentation to group statements. The same applies to loops, function and classes. An IDE automatically indents code, but basic text editors may not do the job. So be aware that wrong indentation can be an error source." %}
 
 
 ```python
@@ -79,6 +79,19 @@ for e in flavors:
     chocolate
     bread
     cherry
+    
+
+In many cases it is useful to use not only either the iteration step (e.g., as an incrementing *integer* value) or the elements of a list (e.g., a *string* value), but both simultaneously. Both iteration step and list elements can be accessed with the `enumeration` method:
+
+
+```python
+for iteration_step, list_element in enumerate(flavors):
+    print("The list element {0} is at position number {1}.".format(list_element, str(iteration_step)))
+```
+
+    The list element chocolate is at position number 0.
+    The list element bread is at position number 1.
+    The list element cherry is at position number 2.
     
 
 ## `while` loop {#while}
