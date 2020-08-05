@@ -138,7 +138,7 @@ C:\temp\ python icecreamdialogue_standalone.py
 
 {% include note.html content="Depending on the definition of system variables used in the *Terminal* environment, the *Python* must be called with a different variable name then `python` (e.g., `python3` on many *Linux* platforms)." %}
 
-### Make standalone script with input parameter {standalone}
+### Make standalone script with input parameter {#standaloneplus}
 To make the script more flexible, we can define `scoops_wanted` as an input variable of a function.
 
 

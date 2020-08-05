@@ -22,7 +22,7 @@ In computer language, an **object** is an instance that contains data in the sha
 
 In *Python*, an object is an instance of a class. Thus, a **class** represents a blueprint for many similar objects with the same attributes and methods. A class does not use system memory and only its instance (i.e., objects) will use memory.
 
-{% include image.html file="classes_objects.png" caption="Illustration of an IceCream class and to instances (objects) of the IceCream class." %}
+{% include image.html file="classes_objects.png" caption="Illustration of an IceCream class and two instances (objects) of the IceCream class." %}
 
 
 The simplest form of a class in *Python* only includes some statements, and it is highly recommended to add an `__init__` statement where class variables are defined. We will come back to the `__init__` statement later in the section on *magic* methods. The following example shows one of the simplest classes with an `__init__` method. Note the usage of `self` in the class, which becomes `object_name.attribute` for instances of the class.

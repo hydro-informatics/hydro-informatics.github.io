@@ -1,5 +1,5 @@
 ---
-title: "Python"
+title: Python
 tags: [python, jupyter]
 keywords: python
 sidebar: mydoc_sidebar

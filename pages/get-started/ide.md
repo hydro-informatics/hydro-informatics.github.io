@@ -42,9 +42,9 @@ After the installation of *PyCharm* for *Anaconda*, open *Anaconda Navigator*:
     - *Project Interpreter* - Check the `Existing interpreter` box and select the above-installed [conda environment   `hypy`  ](hypy_install.html#conda-env) (e.g., `C:\users\<your-user-name>\AppData\Local\Continuum\anaonda3\envs\`)
     - Click on the `Create` button.
 
-All set - you are ready to work with *Python*, markdown (documentation), and [git](hy_git.html) now.
+All set - you are ready to work with *Python*, markdown (documentation), and [git](hy_git.html).
 
-{% include important.html content="***Python* users** read more about setting up *conda* environments on the [*Python (basics)*](hypy_install.html#ide-setup) page." %}
+{% include note.html content="***Python* users** read more about setting up *conda* environments on the [*Python (basics)*](hypy_install.html#ide-setup) page." %}
 
 ## JupyterLab (via Anaconda Navigator) {#jupyter}
 

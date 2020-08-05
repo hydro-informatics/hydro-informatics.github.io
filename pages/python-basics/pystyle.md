@@ -234,6 +234,8 @@ Use the following styles for naming
 * Variables (global): `lowercase` letters only, where underscores may improve readability; note that "global" should limit to variable usage within a module only ...
 
 
+{% include important.html content="Never start a variable name with a number. Do **use `array_2d`**, but do **not use `2d_array`**." %}
+
 ## More code style recommendations
 
 In order to ensure code compatibility and programm efficiency, the *PEP 8* style guide provides some general recommendations ([read more](https://www.python.org/dev/peps/pep-0008/#programming-recommendations)):
