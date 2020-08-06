@@ -83,7 +83,8 @@ After data export from *ParaView*:<a name="pv-exp-steps"></a>
 #### Use the `results.xdmf` file directly(***recommended for geospatial data conversion***)<a name="qgis-imp-steps"></a>
 Modify `results.xdmf` and directly import model result in *QGIS*:
 - Open `results.xdmf` in a text editor (e.g., [*Notepad++*](https://notepad-plus-plus.org/downloads/))
-- Use the find-and-replace tool (`CTRL` + `H` keys in *Notpad++*) to remove file paths before `results_aux.h5` in the document (otherwise *QGIS* will crash later on - [read more in *BASEMENT*'s User Forum](http://people.ee.ethz.ch/~basement/forum/viewtopic.php?id=5261)). For example: `Find` = `C:\temp\results_aux.h5` and `Replace with` = `results_aux.h5` (see [below figure](#npp-xdmf-replace)). After having removed all path occurrences in the document, save and close `results.xdmf`. 
+- Use the find-and-replace tool (`CTRL` + `H` keys in *Notpad++*) to remove file paths before `results_aux.h5` in the document (otherwise *QGIS* will crash later on - [read more in *BASEMENT*'s User Forum](http://people.ee.ethz.ch/~basement/forum/viewtopic.php?id=5261)).
+- For example: `Find what` = `C:/temp/results_aux.h5` (pay attention to use `/` rather than `\`) and `Replace with` = `results_aux.h5` (see [below figure](#npp-xdmf-replace)). After having removed all path occurrences in the document, save and close `results.xdmf`. 
     <a name="npp-xdmf-replace"></a>
     {% include image.html file="npp-xdmf-replace.png" alt="bmy" caption="Find the string results_aux.h5 in results.xdmf and remove the file directories." %} 
 - If not yet done, load the mesh file (here: [`finalmesh.2dm`](bm-pre.html#2dm)) by clicking on *QGIS*' `Layer` menu > `Data Source Manager` > `Mesh` tab and select `finalmesh.2dm`.
@@ -96,7 +97,7 @@ Modify `results.xdmf` and directly import model result in *QGIS*:
     {% include image.html file="qgis-meshdata-u.png" alt="bmy" caption="Illustrate the flow velocity with QGIS' Layer Properties > Symbology controls. The green circles highlight settings for the last timestep of a steady-state simulation." %}    
     {% include image.html file="qgis-meshdata-u-plotted.png" alt="bmy" caption="After application of the above Symbology settings: The flow velocity is illustrated in red-shades." %}
     
-Thanks to Matthias Bürgler who supported helped with these instructions through [*BASEMENT*'s user forum](http://people.ee.ethz.ch/~basement/forum/viewtopic.php?pid=6095#p6095).
+Thanks to Matthias Bürgler who helped with instructions in the [*BASEMENT* user forum](http://people.ee.ethz.ch/~basement/forum/viewtopic.php?pid=6095#p6095).
  
 #### Klaus Schmalzl's `Basement_post_W.exe` <a name="schmalzl"></a>
 Another option in the future will be [Klaus Schmalzl's `Basement_post_W.exe`](http://people.ee.ethz.ch/~basement/baseweb/users-meetings/30-01-2020/6_Schmalzl.pdf), which is currently only available on demand.
@@ -105,15 +106,15 @@ Another option in the future will be [Klaus Schmalzl's `Basement_post_W.exe`](ht
 ### Convert results to geospatial formats (SHP and TIF)<a name="qgis-exp-steps"></a>
 To analyze the imported results, they need to be converted to geo-spatial data format such as [ESRI Shapefiles](https://en.wikipedia.org/wiki/Shapefile) or [GeoTIFF](https://en.wikipedia.org/wiki/GeoTIFF) rasters. There are two options available depending on how data were imported:
 
-1. [Conversion with the Crayfish plugin after direct import of `results.xdmf` (recommended)](#crayfish-exp)
-1. [Conversion of *ParaView* exports (not recommended)](#pv-conv)
+1. Conversion with the [Crayfish plugin](#crayfish-exp) after [direct import of `results.xdmf`](#qgis-imp-steps) (recommended)
+1. Conversion of [*ParaView* exports](#pv-conv) (not recommended)
 
 #### Conversion with the Crayfish plugin (recommended)<a name="crayfish-conv"></a>
 {% include tip.html content="Ensure that the [*Crayfish* plugin is correctly installed](#add-crayfish) an open *Crayfish*'s `Rasterize` tool from *QGIS*' `Processing` menu > `Toolbox` > `Crayfish` > `Rasterize` (see figure below)" %}
 <a name="qgis-crayfish-installed"></a>
 {% include image.html file="qgis-crayfish-installed.png" alt="bmy" caption="Open the Rasterize tool of the Crayfish plugin." %}
 
-- In the `Rasterize` window make the following settings (see also [below figure](#qgis-crayfish-exp)):
+- In the `Rasterize` window make the following settings (see also [figure below](#qgis-crayfish-exp)):
     * `Input mesh layer` =  `finalmesh`
     * `Minimum extent to render (xmin, xmax, ymin, ymax)` =  click on the `...` button and select the `Layer` option (choose `finalmesh`)
     * `Map units` = `0.1` (can also be larger - the larger this number, the coarser the output *tif*)
@@ -141,7 +142,7 @@ With a `Singleband pseudocolor` > `Spectral` `Symbology`-selection in the `Layer
     * In the `Encoding`canvas, deactivate the `ns_hyd_discharge`, `Points:0`, `Points:1`, and `Points:2` fields
     * In the `Geometry` canvas, set the `Geometry type` to `Point` and active `Include z-dimension`
     * Check the `Extent (current: layer)` box
-- Now, click `OK`
+- Click `OK`
 
 <a name="qgis-exp-sim-pts"></a>
 {% include image.html file="qgis-exp-sim-pts.png" alt="bm-3" caption="The Save Vector Layer As... window with required settings highlighted (green marker)." %} 
@@ -166,7 +167,7 @@ Next, the point shapefile needs to be converted to a [GeoTIFF](https://en.wikipe
 In *ParaView* (renders faster) or *QGIS*, look at all variables (`flow_velocity`, `water_depth`, and `water_surface`), explore their evolution over time, different coloring and answer the following questions:
 
 - Are the results are in a physically reasonable and meaningful range?
-- When did the simulation become stable?</br>To save time, the simulation duration can be shortened (*BASEMENT*'s `SIMULATION` tab), down to the time step when stability was reached.
+- When did the simulation become stable?<br>*To save time, the simulation duration can be shortened (*BASEMENT*'s `SIMULATION` tab), down to the time step when stability was reached.*
 - Are there particularities such as rapids that correspond (qualitatively) to field observations (are rapids on confinements and/or terrain drops)?
 - Zoom into the [final *tif* raster](#qgis-crayfish-final) and have a look at the triangulation artifacts. The artifacts are not realistic. How can the problem be addressed?
 
