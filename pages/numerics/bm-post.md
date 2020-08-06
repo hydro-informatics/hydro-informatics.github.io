@@ -10,7 +10,7 @@ folder: numerics
 
 ## Visualize results with ParaView
 ###	Get ready with ParaView
-*ParaView* is a freely available visualization software, which enables plotting *BASEMENT* v.3.x results in the shape of `xdmf` (*eXtensible Data Model and Format*) files. Download and install the latest version of *ParaView* from their [web site](https://www.paraview.org/download/), if no yet done. 
+*ParaView* is freely available visualization software, which enables plotting *BASEMENT* v.3.x results in the shape of `xdmf` (*eXtensible Data Model and Format*) files. Download and install the latest version of *ParaView* from their [web site](https://www.paraview.org/download/), if not yet done. 
 
 ### Load BASEMENT results
 Open *ParaView* and click on the folder icon (top left of the window) to open the simulation results file (`results.xdmf`). *ParaView* might ask to choose an appropriate XMDF read plugin. Select `XDMF Reader` here and click `OK`:
@@ -23,7 +23,7 @@ To explore the model results:
 <a name="pv-vis"></a>
 {% include image.html file="pv-vis.png" alt="bm-x3" caption="ParaView after successful import of the model results (results.xdmf) - see above descriptions." %} 
 
-All available time steps are listed in the Blocks tab (bottom-left in Figure 1). Anything should be visible at the beginning, because the initial conditions were defined as `dry` (see the [*BASEMENT* modelling exercise part](bm-main.html#init) ). The above [figure](#pv-vis) shows the last time step (`Timestep[25]`), with water flowing at a peak velocity of 3.7 m/s. The 25 available time steps result from the definition made in *BASEMENT*'s `SIMULATION` tab with a total duration of 5000.0 and an output step of 200.0. Note that the time units have no dimension here because they correspond to computational time steps.
+All available time steps are listed in the Blocks tab (bottom-left in Figure 1). Anything should be visible at the beginning because the initial conditions were defined as `dry` (see the [*BASEMENT* modeling exercise part](bm-main.html#init) ). The above [figure](#pv-vis) shows the last time step (`Timestep[25]`), with water flowing at a peak velocity of 3.7 m/s. The 25 available time steps result from the definition made in *BASEMENT*'s `SIMULATION` tab with a total duration of 5000.0 and an output step of 200.0. Note that the time units have no dimension here because they correspond to computational time steps.
 
 ###	Export visualizations<a name="exp-vis"></a>
 The animations can be saved as movie (e.g., `avi`) or image (e.g., `jpg`, `png`, `tiff`) files via `File` > `Save Animation...`.
@@ -60,7 +60,7 @@ There are two (to three) options to import the results in *QGIS*:
 
 1. [Use *ParaView* Outputs](#pv-exp-steps)
 1. [Modify `results.xdmf` and directly import results in *QGIS*](#qigs-imp-steps)
-1. [Use an import tool (currently unavailable - so this option is not applicable for the moment)](#schmalzl)
+1. [Use an import tool (currently only available on demand)](#schmalzl)
 
 #### Use *ParaView* export (here: *bm-steady-vanilla.csv*)
 
@@ -91,15 +91,15 @@ Modify `results.xdmf` and directly import model result in *QGIS*:
 - In the `Layer Properties` window, go to `Source` > click on `Assign Extra Data Set to Mesh` and choose  `results.xdmf` 
     <a name="qgis-assign-meshdata"></a>
     {% include image.html file="qgis-assign-meshdata.png" alt="bmy" caption="Assign mesh data to the computational mesh." %}     
-- After import, double-click on the new `results` layer to open the `Symbology` (`Layer Properties`) and select a variable to represent from the `Groups` canvas. Make sure to enable the contour plot (right side in the [below figure](#qgis-meshdata-u)) symbol, select the timestep to plot (for steady-state simulation, select the last timestep), optionally go to the `Contours` ribbon to change the colour pattern (upper-most green circle in the [below figure](#qgis-meshdata-u)), and click `Apply`.
+- After import, double-click on the new `results` layer to open the `Symbology` (`Layer Properties`) and select a variable to represent from the `Groups` canvas. Make sure to enable the contour plot (right side in the [below figure](#qgis-meshdata-u)) symbol, select the timestep to plot (for steady-state simulation, select the last timestep), optionally go to the `Contours` ribbon to change the color pattern (upper-most green circle in the [below figure](#qgis-meshdata-u)), and click `Apply`.
     <a name="qgis-meshdata-u"></a>
-    {% include image.html file="qgis-meshdata-u.png" alt="bmy" caption="Illustrate the flow velocity with QGIS' Layer Propoerties > Symbology controls. The green circles highlight settings for the last timestep of a steady-state simulation." %}    
+    {% include image.html file="qgis-meshdata-u.png" alt="bmy" caption="Illustrate the flow velocity with QGIS' Layer Properties > Symbology controls. The green circles highlight settings for the last timestep of a steady-state simulation." %}    
     {% include image.html file="qgis-meshdata-u-plotted.png" alt="bmy" caption="After application of the above Symbology settings: The flow velocity is illustrated in red-shades." %}
     
 Thanks to Matthias Bürgler who supported helped with these instructions through [*BASEMENT*'s user forum](http://people.ee.ethz.ch/~basement/forum/viewtopic.php?pid=6095#p6095).
  
 #### Klaus Schmalzl's `Basement_post_W.exe` <a name="schmalzl"></a>
-Another option in the future will be [Klaus Schmalzl's `Basement_post_W.exe`](http://people.ee.ethz.ch/~basement/baseweb/users-meetings/30-01-2020/6_Schmalzl.pdf), which is currently not available.
+Another option in the future will be [Klaus Schmalzl's `Basement_post_W.exe`](http://people.ee.ethz.ch/~basement/baseweb/users-meetings/30-01-2020/6_Schmalzl.pdf), which is currently only available on demand.
 
 
 ### Convert results to geospatial formats (SHP and TIF)<a name="qgis-exp-steps"></a>
@@ -109,7 +109,7 @@ To analyze the imported results, they need to be converted to geo-spatial data f
 1. [Conversion of *ParaView* exports (not recommended)](#pv-conv)
 
 #### Conversion with the Crayfish plugin (recommended)<a name="crayfish-conv"></a>
-Ensure that the [*Crayfish* plugin is correctly installed](#add-crayfish) an open *Crayfish*'s `Rasterize` tool from *QGIS*' `Processing` menu > `Toolbox` > `Crayfish` > `Rasterize` (see beloew figure)
+{% include tip.html content="Ensure that the [*Crayfish* plugin is correctly installed](#add-crayfish) an open *Crayfish*'s `Rasterize` tool from *QGIS*' `Processing` menu > `Toolbox` > `Crayfish` > `Rasterize` (see figure below)" %}
 <a name="qgis-crayfish-installed"></a>
 {% include image.html file="qgis-crayfish-installed.png" alt="bmy" caption="Open the Rasterize tool of the Crayfish plugin." %}
 
@@ -168,7 +168,7 @@ In *ParaView* (renders faster) or *QGIS*, look at all variables (`flow_velocity`
 - Are the results are in a physically reasonable and meaningful range?
 - When did the simulation become stable?</br>To save time, the simulation duration can be shortened (*BASEMENT*'s `SIMULATION` tab), down to the time step when stability was reached.
 - Are there particularities such as rapids that correspond (qualitatively) to field observations (are rapids on confinements and/or terrain drops)?
-- Zoom into the [final *tif* raster](#qgis-crayfish-final) and have a look at the triangulation artifacts. Obviously the artifacts are not realistic. How can the problem be addressed?
+- Zoom into the [final *tif* raster](#qgis-crayfish-final) and have a look at the triangulation artifacts. The artifacts are not realistic. How can the problem be addressed?
 
-## Further applications
-After post-processing, the model still needs to be calibrated and validated ([see next part](bm-calibration.html)). Once the model is calibrated, it can be used to simulate flood hydrographs to assess the stability of river engineering features and the river landscape or inundation area. Moreover, the [habitat quality of rivers for target fish species](https://pubs.er.usgs.gov/publication/70121265) can be assessed as a function of water depth, flow velocity and grain size (and other parameters). There is even special software to perform these tasks, such as [CASiMiR](http://www.casimir-software.de/ENG/index_eng.html) (commercial) or [River Architect](https://riverarchitect.github.io).
+## Other applications
+After post-processing, the model still needs to be calibrated and validated ([see next part](bm-calibration.html)). Once the model is calibrated, it can be used to simulate flood hydrographs to assess the stability of river engineering features and the river landscape or inundation area. Moreover, the [habitat quality of rivers for target fish species](https://pubs.er.usgs.gov/publication/70121265) can be assessed as a function of water depth, flow velocity, and grain size (and other parameters). There is even special software to perform these tasks, such as [CASiMiR](http://www.casimir-software.de/ENG/index_eng.html) (commercial) or [River Architect](https://riverarchitect.github.io).
