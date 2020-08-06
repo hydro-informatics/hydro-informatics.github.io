@@ -70,29 +70,39 @@ The comprehensive `pillow` documentation is available at [readthedocs.io](https:
 conda install -c anaconda pillow 
 ```
 
+## shapely
 
-## pyshp and (or) shapely
-For [shapefile](geospatial-data.html#shp) handling, [`pyshp`](https://pypi.org/project/pyshp/) provides pure *Python* code (rather than wrappers), which simplifies direct dealing with shapefile in *Python*. To install `pyshp` for *Python*, open [*Anaconda Prompt*](hypy_install.html#install-pckg) and type:
-
-
-```python
-conda install -c conda-forge pyshp
-```
-
-However, the latest release of `pyshp` is from February 2019, which is a good reason to look for a currently maintained alternative. Another good and very well documented option for shapefile handling is [`shapely`](https://shapely.readthedocs.io/). To install `shapely` for *Python*, open [*Anaconda Prompt*](hypy_install.html#install-pckg) and type:
+A preferable and very well documented package for [shapefile](geospatial-data.html#shp) handling is [`shapely`](https://shapely.readthedocs.io/). To install `shapely` for *Python*, open [*Anaconda Prompt*](hypy_install.html#install-pckg) and type:
 
 
 ```python
 conda install -c conda-forge shapely
 ```
 
+`shapely` is also used in the [`geo_utils` package](https://github.com/hydro-informatics/geo-utils), which contains tailored functions for this course.
+
+## pyshp 
+Another shapfile handling package [`pyshp`](https://pypi.org/project/pyshp/), which provides pure *Python* code (rather than wrappers), which simplifies direct dealing with shapefiles in *Python*. To install `pyshp` for *Python*, open [*Anaconda Prompt*](hypy_install.html#install-pckg) and type:
+
+
+```python
+conda install -c conda-forge pyshp
+```
+
+
 ## Other packages {#other}
-Besides the above mentioned packages there are other useful libraries for geospatial analyses in *Python*:
+Besides the above mentioned packages there are other useful libraries for geospatial analyses in *Python* . **Packages in bold font** are used in the [`geo_utils` package](https://github.com/hydro-informatics/geo-utils), which contains tailored functions for this course.
+
+ * [**`alphashape`**](https://pypi.org/project/alphashape/) creates bounding polygons containing a set of points (install in *Anaconda Prompt* with `conda install -c conda-forge alphashape`). 
+ * [`django`](https://docs.djangoproject.com/en/3.0/ref/contrib/gis/) as a geographic web frame and for database connections (install in *Anaconda Prompt* with `conda install -c anaconda django`).
+ * [**`geopandas`**](https://geopandas.org/) enables the application of *pandas* data frame operations to geospatial datasets (install in *Anaconda Prompt* with `conda install -c conda-forge geopandas`).
+ * [`NetworkX`](https://networkx.github.io/documentation/stable/index.html) for network analyses such as finding a least cost / shortest path between two points (install in *Anaconda Prompt* with `conda install -c anaconda networkx`). 
+  * [`owslib`](http://geopython.github.io/OWSLib/) to connect with *Open Geospatial Consortium* (*OGC*) web services (install in *Anaconda Prompt* with `conda install -c conda-forge owslib`).
+  * [`postgresql`](https://www.postgresqltutorial.com/postgresql-python/) for SQL database connections (install in *Anaconda Prompt* with `conda install -c anaconda postgresql`).
  * [`rasterio`](https://rasterio.readthedocs.io/en/latest/) for processing raster data as [`numpy`](hypy_pynum.html#numpy) arrays install in *Anaconda Prompt* with `conda install -c conda-forge rasterio`). 
  * [`rasterstats`](https://pythonhosted.org/rasterstats/) produces zonal statistics of rasters and can interact with *GeoJSON* files (install in *Anaconda Prompt* with `conda install -c conda-forge rasterstats`).
- * [`geopandas`](https://geopandas.org/) enables the application of *pandas* data frame operations to geospatial datasets (install in *Anaconda Prompt* with `conda install -c conda-forge geopandas`).
  * [`sckit-image`](https://scikit-image.org/) for machine learning applied to georeferenced images (install in *Anaconda Prompt* with `conda install -c anaconda scikit-image`).
- * [`django`](https://docs.djangoproject.com/en/3.0/ref/contrib/gis/) as a geographic web frame and for database connections (install in *Anaconda Prompt* with `conda install -c anaconda django`).
- * [`postgresql`](https://www.postgresqltutorial.com/postgresql-python/) for SQL database connections (install in *Anaconda Prompt* with `conda install -c anaconda postgresql`).
- * [`owslib`](http://geopython.github.io/OWSLib/) to connect with *Open Geospatial Consortium* (*OGC*) web services (install in *Anaconda Prompt* with `conda install -c conda-forge owslib`)
- * [`NetworkX`](https://networkx.github.io/documentation/stable/index.html) for network analyses such as finding a least cost / shortest path between two points (install in *Anaconda Prompt* with `conda install -c anaconda networkx`). 
+
+
+
+
