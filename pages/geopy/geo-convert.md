@@ -126,7 +126,7 @@ raster2line(source_raster_fn, target_shp_fn, pixel_value)
 
 {% include image.html file="qgis-least-cost-line.png" alt="aspect" caption="The newly created least cost path least_cost.shp line shapefile plotted in QGIS." %}
 
-{% include challenge.html content="There is a small fault in the `least_cost` line. Can you find the fault? What can be done to fix the fault?" %}
+{% include challenge.html content="There is a little error in the `least_cost` line. Can you find the error? What can be done to fix the error?" %}
 
 {% include note.html content="Network routing is the core specialty of the [`NetworkX` package (see *Open source libraries*)](geo-pckg.html#other). Read more about network analyses in [Michael Diener's *GitHub* pages](https://github.com/mdiener21/python-geospatial-analysis-cookbook/tree/master/ch08)." %}
 
@@ -210,7 +210,7 @@ def raster2polygon(file_name, out_shp_fn, band_number=1, field_name="values"):
 
 {% include tip.html content="`Polygonize` can also be run as a [terminal command](geo-raster.html#terminal) with [`gdal_polygonize`](https://gdal.org/programs/gdal_polygonize.html)." %}
 
-|     Both the `float2int` and the `raster2polygon` functions are also available in the `geo_utils` package ([`geo_tuils/geo_tools.py`](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/geo_tools.py)).
+{% include tip.html content="Both the `float2int` and the `raster2polygon` functions are also available in the [`geo_utils` package (*geo_utils/geo_tools.py*](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/geo_tools.py))." %}
 
 Now we can use the `raster2polygon` function to convert the flow depth raster for 1000 cfs (`h001000.cfs` from the [*River Architect* sample datasets](https://github.com/RiverArchitect/SampleData/tree/master/01_Conditions/2100_sample)) to a polygon shapefile:
 

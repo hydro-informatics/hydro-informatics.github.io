@@ -39,11 +39,11 @@ On this website, *QGIS* is occasionally used for plotting and creating georefere
 
 
 ### Base maps for QGIS (google, open street maps and more)
-{% include note.html content="A fast internet connection is required for adding online base maps."}
+{% include note.html content="A fast internet connection is required for adding online base maps." %}
 
 To add a base map (e.g., satellite data, streets, or administrative boundaries), go to the ***Browser***, right-click on ***XYZ Tiles***, select ***New Connection...***, add a name and the URL of an online base map. Once the new connection is added, it can be added to a *QGIS* project by drag and drop just like any other geodata layer. The below figure illustrates the procedure of adding a new connection and its XYZ tiles as a layer to the project. 
 
-{% include image.html file="qgis-basemap.png" alt="basemap" caption="Add a base map to QGIS: (1) Loctate the Browser (2) right-click on XYZ-Tiles and select New Connection... (3) enter a Name and URL (see below table) for the new connection, click OK (4) drag and drop the new tile (here: Google Satellite) in the Layers tab." %} 
+{% include image.html file="qgis-basemap.png" alt="basemap" caption="Add a base map to QGIS: (1) Loctate the Browser (2) right-click on XYZ-Tiles and select New Connection... (3) enter a Name and URL (see below table) for the new connection, click OK (4) drag and drop the new tile (here: Google Satellite) into the Layers tab." %} 
 
 The following URL can be used for retrieving online XYZ tiles (more URLs can be found in the internet).
 
