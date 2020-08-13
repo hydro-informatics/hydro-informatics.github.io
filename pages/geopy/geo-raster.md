@@ -131,7 +131,7 @@ def main(band_number, input_file):
     except TypeError:
         print("ColorTable: None")
 
-if (__name__ == '__main__'):
+if __name__ == '__main__':
     # make standalone
     if len( sys.argv ) < 3:
         print("""
@@ -204,6 +204,9 @@ With these ingredients, we can create a raster from a numeric array, because a r
 
 
 ```python
+import osr
+
+
 def create_raster(file_name, raster_array, origin=None, epsg=4326, pixel_width=10, pixel_height=10,
                   nan_value=-9999.0, rdtype=gdal.GDT_Float32, geo_info=False):
     """
@@ -309,7 +312,7 @@ The following code block makes use of the `raster2array` function for converting
 
 ```python
 h_file = r"" + os.getcwd() + "/geodata/river-architect/h001000.tif"
-u_file = r"" + os.getcwd() + "/geodata/river-architect/h001000.tif"
+u_file = r"" + os.getcwd() + "/geodata/river-architect/u001000.tif"
 
 # load both rasters as arrays
 h_ras, h, h_geo_info = raster2array(h_file)
@@ -324,11 +327,70 @@ with np.errstate(divide="ignore", invalid="ignore"):
     Froude = u / np.sqrt(h * 9.81)
 
 # create Froude raster from array
-create_raster(file_name= r"" + os.getcwd() + "/geodata/rasters/Fr1000cfs.tif",
+create_raster(file_name= r"" + os.path.abspath("") + "/geodata/rasters/Fr1000cfs.tif",
               raster_array=Froude, epsg=6418, geo_info=h_geo_info)
 ```
 
+
+
+
+    0
+
+
+
 {% include image.html file="qgis-py-fr.png" alt="geopy-fr" caption="The newly created Fr1000cfs.tif raster plotted in QGIS." %}
+
+### Reproject raster {#reproject}
+
+The above introduced `raster2array` (with reference to `open_raster`) and `create_raster` functions enable the re-projection of raster data with the `osr` library. Based on the explanations on the [shapefile page](geo-shp.html#prj-shp), we can write a `get_srs` that uses the `osr` library (part of `osgeo` / `gdal` ). The `get_srs` function is also integrated in the [`geo_utils` package](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/srs_mgmt.py) for this course.
+
+
+```python
+def get_srs(dataset):
+    """
+    Get the spatial reference of any gdal.Dataset
+    :param dataset: osgeo.gdal.Dataset (raster)
+    :output: osr.SpatialReference
+    """
+    sr = osr.SpatialReference()
+    sr.ImportFromWkt(dataset.GetProjection())
+    # auto-detect epsg
+    auto_detect = sr.AutoIdentifyEPSG()
+    if auto_detect is not 0:
+        sr = sr.FindMatches()[0][0]  # Find matches returns list of tuple of SpatialReferences
+        sr.AutoIdentifyEPSG()
+    # assign input SpatialReference
+    sr.ImportFromEPSG(int(sr.GetAuthorityCode(None)))
+    return sr
+```
+
+With the `get_srs` function that automatically detects the raster projection and spatial reference system we can use the `create_raster` function to reproject the above-created `Fr1000cfs.tif` raster (e.g., to `epsg=4326`).
+
+
+```python
+# load original raster
+original_file_name = r"" + os.path.abspath("") + "/geodata/rasters/Fr1000cfs.tif"
+gdal_dataset, raster_array, geo_transformation = raster2array(original_file_name)
+original_srs = get_srs(gdal_dataset)
+print("Source EPSG: " + str(original_srs.GetAuthorityCode(None)))
+
+# create re-projected raster
+reproj_file_name = r"" + os.path.abspath("") + "/geodata/rasters/Fr1000cfs_reproj.tif"
+new_epsg = 6418
+create_raster(reproj_file_name, raster_array=raster_array, epsg=new_epsg, geo_info=geo_transformation, nan_val=-9999.0)
+```
+
+    Source EPSG: 6418
+    
+
+
+
+
+    0
+
+
+
+{% include tip.html content="To display multiple rasters with different coordinate systems on the same map in *QGIS*, the coordinate systems must be harmonized in most cases. *QGIS* has a dedicated function for adjusting raster coordinate systems: In *QGIS*, click on the `Raster` menu > `Projections` > `Warp (Reproject)...`. Select the raster(s) to reproject (i.e., the raster(s) to harmonize with project coordinate system)." %}
 
 ## An application example with zonal statistics {#zonal}
 
@@ -554,10 +616,12 @@ least_cost_path_array
 
 
 
-In practice, the slope raster is georeferenced, and therefore, we have to use some pixel coordinates, relative to the coordinate system origin. For this purpose we have to define two more functions:
+In practice, the slope raster is georeferenced, and therefore, we have to use some pixel coordinates, relative to the coordinate system origin. For this purpose we need two more functions:
 
 * One function to calculate the pixel-index related offset that we will name `coords2offset`: The `coords2offset` returns the x-y shift in the form of "number of pixels" (two *integer*s, one for *x* and one for *y* shift). 
-* One function that automatically detects the raster projection and spatial reference system for use with the above defined `create_raster` function. We will name this function `get_srs` and use the `osr` library (part of `osgeo` / `gdal` ).
+* The [above-defined `get_srs`](#reproject) function.
+
+The `coords2offset` function looks like this:
 
 
 ```python
@@ -576,23 +640,6 @@ def coords2offset(geo_transform, x_coord, y_coord):
     offset_x = int((x_coord - origin_x) / pixel_width)
     offset_y = int((y_coord - origin_y) / pixel_height)
     return offset_x, offset_y
-```
-
-
-```python
-def get_srs(dataset):
-    """
-    Get the spatial reference of any gdal.Dataset
-    :param dataset: osgeo.gdal.Dataset (raster)
-    :output: osr.SpatialReference
-    """
-    sr = osr.SpatialReference()
-    sr.ImportFromWkt(dataset.GetProjection())
-    # auto-detect epsg
-    sr.AutoIdentifyEPSG()
-    # assign input SpatialReference
-    sr.ImportFromEPSG(int(sr.GetAuthorityCode(None)))
-    return sr
 ```
 
 {% include tip.html content="Both functions are also available in the [`geo_utils`](https://github.com/hydro-informatics/geo-utils) package in robust raise-exception notation:<br>

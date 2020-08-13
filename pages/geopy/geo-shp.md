@@ -275,6 +275,22 @@ with open(r"" + os.path.abspath('') + "/geodata/shapefiles/countries-web.prj", "
 
 {% include challenge.html content="Re-write the above code block into a `re_project(shp_file, target_epsg)` function."%}
 
+The code sequence `in_sr.AutoIdentifyEPSG()` should return `0` for known `EPSG` numbers. Unfortunately, many EPSG numbers are not known to the `AutoIdentifyEPSG()` method. In the case that `AutoIdentifyEPSG()` did not function propperly, the method does not return the value `0`, but for example `7`. A workaround for the limited functionality of `srs.AutoIdentifyEPSG()` is `srs.FindMatches`. `srs.FindMatches` returns a *matching* `srs_match` from a larger database, which is somewhat nested, for example:<br>
+
+```python
+matches = srs.FindMatches()
+```
+
+Then, `matches` looks like this: `[(osgeo.osr.SpatialReference, INT)]`. Therefore, a complete workaround for `srs.AutoIdentifyEPSG()` (or `in_sr.AutoIdentifyEPSG()` in the code block above) looks like this:
+
+
+```python
+auto_detect = srs.AutoIdentifyEPSG()
+if auto_detect is not 0:
+    srs = srs.FindMatches()[0][0]  # Find matches returns list of tuple of SpatialReferences
+    srs.AutoIdentifyEPSG()  # Re-perform auto-identification
+```
+
 ## Add fields and point features to a shapefile {#add-field}
 
 A shapefile feature can be a point, a line, or a polygon, which has field attributes (e.g., `"id"=1` to describe that this is polygon number 1 or associated to an `id` block 1). Field attributes can be more than just an *ID*entifier and include for example the polygon area or city labels as in the example shown above (`shp_driver.Open("geodata/shapefiles/cities.shp")`). 
