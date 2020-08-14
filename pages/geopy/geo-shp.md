@@ -67,11 +67,12 @@ def create_shp(shp_file_dir, overwrite=True, *args, **kwargs):
             print("Error: Invalid layer_type provided (must be 'point', 'line', or 'polygon').")
         except TypeError:
             print("Error: layer_name and layer_type must be string.")
-
+        except AttributeError:
+            print("Error: Cannot access layer - opened in other program?")
     return new_shp
 ```
 
-A new shapefile can then be crated with (make sure to get the directory right):
+The `create_shp` function is also provided with the in the [*geo_utils* package](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/shp_mgmt.py) and aids to create a new shapefile (make sure to get the directory right):
 
 
 ```python
