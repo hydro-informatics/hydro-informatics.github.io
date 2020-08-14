@@ -38,7 +38,7 @@ Working with geospatial data editors involves complex tasks that require backgro
 On this website, *QGIS* is occasionally used for plotting and creating georeferenced data (e.g., the chapters on [geospatial programming](geo-python.html) and [numerical modelling *BASEMENT*](bm-pre.html)). These chapters illustrate the usage of *QGIS* with screenshots for specific tasks and do not cover a full tutorial for working with *QGIS*.
 
 
-### Base maps for QGIS (google, open street maps and more)
+### Base maps for QGIS (google, open street maps and more) {#basemap}
 {% include note.html content="A fast internet connection is required for adding online base maps." %}
 
 To add a base map (e.g., satellite data, streets, or administrative boundaries), go to the ***Browser***, right-click on ***XYZ Tiles***, select ***New Connection...***, add a name and the URL of an online base map. Once the new connection is added, it can be added to a *QGIS* project by drag and drop just like any other geodata layer. The below figure illustrates the procedure of adding a new connection and its XYZ tiles as a layer to the project. 
