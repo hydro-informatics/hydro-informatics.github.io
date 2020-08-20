@@ -7,6 +7,7 @@ sidebar: mydoc_sidebar
 permalink: hy_git.html
 folder: get-started
 ---
+
 ## The concept
 *Git* is a fast, scalable, distributed revision control system, originally developed by *Linus Torvalds*  ([ead more about the git kernel](https://git.kernel.org/)). *Git* enables to coordinate work among collaborators beyond programming, in any set of files. Its support of non-linear workflows, speed and data integrity make git an indispensable tool in many industries and research. Before starting to read this *git* tutorial, have a look at the schematic functioning of repositories hosted with *git*.
 
@@ -53,4 +54,4 @@ After editing files in a repository locally, *add* - *commit* - *push* (in that 
 
 Done.
 
-
+{% include exercise.html content="Practise *git* with the [markdown & git](ex_git.html) exercise." %}

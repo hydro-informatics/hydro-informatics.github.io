@@ -1,6 +1,6 @@
 ---
 title: Convert Raster to Vector datasets and Vice Versa
-tags: [python, gdal, pandas, geo, geospatial, shapefile, raster]
+tags: [python, gdal, pandas, geo, geospatial, shapefile, raster, georeference]
 keywords: geo-python gdal QGIS
 sidebar: mydoc_sidebar
 permalink: geo-convert.html
@@ -312,3 +312,5 @@ rasterize(src_shp, tar_ras, pixel_size=5, rdtype=gdal.GDT_Int32, field_name="val
 ```
 
 {% include image.html file="qgis-h-rasterized.png" alt="rasterized" caption="The re-rasterized flow depth raster h_re_rastered.tif plotted in QGIS." %}
+
+{% include exercise.html content="Get more familiar with the conversion of rasters and shapefiles in the [geospatial ecohydraulics](ex_geco.html) exercise." %}

@@ -224,6 +224,8 @@ An extended example script with more complex `Read` and `Write` classes can be d
 
 The ecological restoration or enhancement of rivers requires, among other data, information on preferred water depths and flow velocities of target fish species. This information is established by biologists and then often provided in the shape of so-called [habitat suitability index](https://riverarchitect.github.io/RA_wiki/SHArC#hefish) (HSI) curves in workbook formats. As water resources researchers and engineers, we produce geospatially explicit data of water depth and flow velocity with numerical models. The output of two- or three-dimensional numerical models is way too large for being handled with office applications. So we need an advanced tool such as *Python* to handle the geospatially explicit data and to read and interpolate HSI curves from workbooks. How does that look like technically? The course assignments will help you to find out ...
 
+{% include exercise.html content="Get more familiar with workbook handling in the [Sediment transport (1D)](ex_sediment.html) exercise." %}
+
 ## JSON
 
 JavaScript Object Notation ([JSON](https://www.json.org/json-en.html)) files have a similar structure to XML and enable the structured storage of (human-readable) data. For example, the numerical code *BASEMENT v.3.x* ([read more on the numerical modelling pages](bm.html)) uses a *model.json* and a *simulation.json* file to store model setup parameters such as material properties. In water resources engineering and research, we often want to automate running numerical models, which involves the optimization of model parameters stored in *json* files. This is where *Python* steps in with the `JSON` package and `pandas`' *JSON* modules.
@@ -369,3 +371,5 @@ updated_river.to_json("data/river_results.json")
     
 
 {% include image.html file="py-json-file.png" caption="The exported JSON file (river_results.json)." %} 
+
+{% include exercise.html content="Get more familiar with *JSON* file handling in the [geospatial ecohydraulics](ex_geco.html) exercise (requires understanding the chapter on geospatial *Python*)." %}

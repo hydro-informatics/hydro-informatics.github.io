@@ -205,8 +205,7 @@ More sophisticated *wiki*s are available on the *Jekyll* themes web site (e.g., 
   
 {% include tip.html content="There are other git-pages and wiki host providers out there, such as [GitLab](https://gitlab.com/pages) or [plan.io](https://plan.io/knowledge-management/)." %}
 
-
-
+{% include exercise.html content="Get practice in markdown with the [markdown & git](ex_git.html) exercise." %}
 
 
 [wiki]: https://wikipedia.org

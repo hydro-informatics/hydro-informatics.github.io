@@ -509,3 +509,5 @@ from matplotlib.figure import Figure
 ```
 
 Enjoy creating your custom apps!
+
+{% include exercise.html content="Get familiar with creating GUIs and object orientation in the [GUI](ex_gui.html) exercise." %}

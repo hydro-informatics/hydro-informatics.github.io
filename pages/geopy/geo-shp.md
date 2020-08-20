@@ -1,6 +1,6 @@
 ---
 title: Shapefile (vector dataset) handling
-tags: [python, gdal, ogr, pandas, geo, geospatial, shapefile, json]
+tags: [python, gdal, ogr, pandas, geo, geospatial, shapefile, json, georeference, epsg, projection, srs]
 keywords: geo-python gdal QGIS
 summary: "Geospatial analysis of shapefile with gdal, ogr and osr."
 sidebar: mydoc_sidebar
@@ -618,3 +618,5 @@ with open(r"" + os.path.abspath('') + "/geodata/pitillal-triangle.kml", "w+") as
 ```
 
 Similar to *GeoJSON* files and shapefiles, *KML* files can be generated more robustly (for example with a defined projection). All you need to do is load the *KML* driver (`kml_driver = ogr.GetDriverByName("KML")`) and define a *KML* data source (`kml_file = kml_driver.CreateDataSource(FILENAME.KML)`).
+
+{% include exercise.html content="Get more familiar with shapefile handling in the [geospatial ecohydraulics](ex_geco.html) exercise." %}

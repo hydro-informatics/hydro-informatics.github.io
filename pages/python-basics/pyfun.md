@@ -444,3 +444,5 @@ print(list(filter(lambda x: x % 3, some_numbers)))
     
 
 Formerly, the `reduce()` function to merge down list input into one value was implemented in *Python*. However, the *Python* developer *Guido van Rossum* successfully banned it from *Python3* ([read his post](https://www.artima.com/weblogs/viewpost.jsp?thread=98196)), which is why it is not used here.
+
+{% include exercise.html content="Get familiar with functions in the [Hydraulics (1D)](ex_ms.html) exercise." %}

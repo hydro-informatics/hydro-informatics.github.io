@@ -165,3 +165,5 @@ for f in flavors:
     I guess your favorite flavor is bread.
     I guess your favorite flavor is cherry.
     
+
+{% include exercise.html content="Practice the application of loops with the [Hydraulics (1D)](ex_ms.html) exercise." %}

@@ -1,6 +1,6 @@
 ---
 title: Raster (gridded) dataset handling
-tags: [python, gdal, pandas, geo, geospatial, raster, froude, qgis, shapefile, numpy, ecohydraulics]
+tags: [python, gdal, pandas, geo, geospatial, raster, froude, qgis, shapefile, numpy, ecohydraulics, georeference, epsg, srs]
 keywords: geo-python gdal QGIS
 summary: "Geospatial analysis of raster (gridded) data with gdal and rasterstats."
 sidebar: mydoc_sidebar
@@ -792,3 +792,5 @@ create_raster(out_raster_name, path_array, epsg=int(src_srs.GetAuthorityCode(Non
 {% include image.html file="qgis-least-cost.png" alt="aspect" caption="The newly created least cost path least_cost.tif raster plotted in QGIS." %}
 
 Legitimately, you may wonder whether it was better to represent a least cost path as a line. That is correct, of course. This operation is a conversion of a raster into a line shapefile, which is explained on the [conversion page](geo-convert.html#raster2line). Curious readers can also directly use the `raster2line` function of the [*geo_utils* package](https://github.com/hydro-informatics/geo-utils) (the function is part of the [*geo_utils/dataset_mgmt.py*](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/dataset_mgmt.py) script).
+
+{% include exercise.html content="Get more familiar with raster handling in the [geospatial ecohydraulics](ex_geco.html) exercise." %}

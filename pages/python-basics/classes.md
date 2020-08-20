@@ -320,3 +320,5 @@ class NewClass:
 ```
 
 Understanding the power and structure of classes and object orientation takes time and requires practicing. The next pages provide some more examples of classes to get more familiar with the concept.
+
+{% include exercise.html content="Get more familiar with object orientation in the [Sediment transport (1D)](ex_sediment.html) exercise." %}

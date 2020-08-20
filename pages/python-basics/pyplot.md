@@ -289,6 +289,9 @@ plt.show()
 
 {% include challenge.html content="The above code blocks involve many repetitive statements such as `import ...` - `rcParams.update(rcParamsDefault)`, and `plot.show()` at the end. Can you write a [wrapper function](hypy_pyfun.html#wrappers) to decorate any other *matplotlib* plot function?" %}
 
+
+{% include exercise.html content="Get familiar with built-in plot functions and matplotlib with the template script provided for the [Reservoir design](ex_sp.html) and [Flood return period calculation](ex_floods.html) exercises." %}
+
 ## Plotting with *pandas* {#pandas}
 
 Plotting with *matplotlib* can be daunting, not because the library is poorly documented (the complete opposite is the case), but because *matplotlib* is very extensive. *pandas* brings remedy with simplified commands for high-quality plots. The simplest way to plot a *pandas* data frame is [`pd.DataFrame.plot(x="col1", y="col2")`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html). The following example illustrates this fundamentally simple usage with a river discharge series stored in a workbook.
