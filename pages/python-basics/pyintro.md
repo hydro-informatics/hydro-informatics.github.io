@@ -14,6 +14,6 @@ folder: python-basics
 
 The content on the following pages is based on [*Jupyter notebooks*](https://jupyter.org/) and inspired by tutorials provided on [python.org](https://docs.python.org/3/tutorial/index.html). The descriptions aim to provide solid knowledge for the efficient use of *Python*. Keep in mind that there are always several possibilities to write code with some sophisticated gimmicks, which cannot all be covered within one course. 
 
-{% include tip.html content="The *Jupyter notebooks* are provided along with active courses via the University of Stuttgart's [ILIAS pages](https://ilias3.uni-stuttgart.de/) and upon e-mail request ([contact via the IWS/LWW web site](https://www.iws.uni-stuttgart.de/institut/team/Schwindt/))." %}
+{% include tip.html content="The *Jupyter notebooks* are provided along with active courses via the University of Stuttgart's [ILIAS portal](https://ilias3.uni-stuttgart.de/goto_Uni_Stuttgart_crs_2101155.html) and upon e-mail request ([contact via the IWS/LWW web site](https://www.iws.uni-stuttgart.de/institut/team/Schwindt/))." %}
 <!-- Thus,  all code cells can be run inline rather than using a separate Python interactive window. -->
 
