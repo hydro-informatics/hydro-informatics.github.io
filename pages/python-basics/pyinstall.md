@@ -15,7 +15,7 @@ folder: python-basics
 {% include tip.html content="Before you continue, **make sure that *Anaconda* is installed** according to the [descriptions in the *Get Started*](hy_ide.html#anaconda) section." %}
 
 ## Create and install conda environments  {#conda-env}
-To install an environment that suites most of the needs for codes and analyses shown on these pages, apply our provided `environment.yml`:
+To install an environment that suites most of the needs for codes and analyses shown on these pages, use the provided `environment.yml`:
 
 1. Download the environment file [here](https://github.com/hydro-informatics/materials-py-install/blob/master/environment.yml) (if needed: copy the file contents of `environment.yml` in a local text editor tool such as [Notedpad++](https://notepad-plus-plus.org/) ([alternatives](hy_others.html#npp)) and save the file for example in a directory called *C:/temp/*)
 1. Open Anaconda prompt (`Windows` key > type `Anaconda prompt` > hit `Enter`)
@@ -30,6 +30,21 @@ To install more [*Python* packages](hypy_pckg.html):
 1. Install package `conda install PACKAGE_NAME` (if the package cannot be found, try `conda install -c conda-forge PACKAGE_NAME`)
 
 Alternatively, press the `Windows` key (or click on the start menu of your operating system) > type `Anaconda Navigator` > got to the `Environments` tab > select the `hypy` environment (or create another environment) > install & install packages. 
+
+### Remove (delete) a conda environment
+To remove a conda environment open *Anaconda prompt* and type:
+
+```
+conda env remove --name ENVIRONMENT-TO- REMOVE
+```
+
+For example, to remove the `hypy` environment type:
+
+```
+conda env remove --name hypy
+```
+
+There are many more `conda` commands and the most important ones are summarized in the developer's [*conda* cheat sheet](https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf).
 
 ## Setup Interfaces and IDEs
 
