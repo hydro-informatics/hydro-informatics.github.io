@@ -22,7 +22,7 @@ To install an environment that suites most of the needs for codes and analyses s
 1. Navigate to the download directory where `environment.yml` is located (use   [`cd`](https://www.digitalcitizen.life/command-prompt-how-use-basic-commands)   to navigate for example to *C:/temp/*)
 1. Enter `conda env create -f environment.yml` (this creates an environment called `hypy`)
 
-## Install additional *Python* packages in a *conda* environment {#install-pckg}
+### Install additional *Python* packages in a *conda* environment {#install-pckg}
 To install more [*Python* packages](hypy_pckg.html): 
 
 1. Open *Anaconda Prompt* (`Windows` key or click on the start menu of your operating system > type `anaconda prompt` > hit `Enter` key on your keyboard)
