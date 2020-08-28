@@ -8,13 +8,15 @@ folder: python-basics
 ---
 
 
-*Python*'s two-fold development (*Python2* and *Python3*) and other parallel versions of *Python* (e.g., ESRI's ArcGIS or Nvidia's cuda *Python* versions) may cause that multiple versions of *Python* are installed on your computer. As a consequence packages might have been unintentionally or unknowingly installed for another *Python* than used for a project. However, the parallel existence of multiple *Python* interpreters that may access packages may be beneficial (e.g., when packages are installed that are not compatible with each other). So, **how to deal with the challenge of having multiple *Python* interpreters installed?**
+*Python*'s two-fold development (*Python2* and *Python3*) and other parallel versions of *Python* (e.g., ESRI's ArcGIS or Nvidia's cuda *Python* versions) may cause that multiple versions of *Python* are installed on your computer (even though *Python2* is about to disappear). As a consequence packages might have been unintentionally or unknowingly installed for another *Python* than used for a project. However, the parallel existence of multiple *Python* interpreters that may access packages may be beneficial (e.g., when packages are installed that are not compatible with each other). So, how to **deal with the challenge of having multiple *Python* interpreters (or environments) installed?**
 
-***Conda* environments** are the solution to this challenge: A *Conda Environment* is a directory on your computer that represents a virtual environment with a particular *Python* interpreter (e.g., a Python2 or Python3 executable) and packages. The directory is typically named `env` (or `venv` for virtual environment) and Anaconda will control automatically where the environment directories (folders) are stored on your computer. On Windows, the typical directory is `C:\users\<your-user-name>\AppData\Local\Continuum\anaonda3\envs\`. Note that *AppData* is a hidden folder ([view hidden folders on Windows](https://support.microsoft.com/en-us/help/4028316/windows-view-hidden-files-and-folders-in-windows-10)). Only change the default directory for Conda Environment directories, if you exactly know what you are doing.
+***Conda* environments** are the solution to this challenge: A *Conda Environment* is a directory on your computer that represents a virtual environment with a particular *Python* interpreter (e.g., a Python2 or Python3 executable) and packages. The directory is typically named `env` (or `venv` for virtual environment) and *Anaconda* will control automatically where the environment directories (folders) are stored on your computer. On Windows, the typical directory is `C:\users\<your-user-name>\AppData\Local\Continuum\anaonda3\envs\`. Note that *AppData* is a hidden folder ([view hidden folders on Windows](https://support.microsoft.com/en-us/help/4028316/windows-view-hidden-files-and-folders-in-windows-10)). Only change the default directory for Conda Environment directories, if you exactly know what you are doing.
 
 {% include tip.html content="Before you continue, **make sure that *Anaconda* is installed** according to the [descriptions in the *Get Started*](hy_ide.html#anaconda) section." %}
 
-## Create and install conda environments  {#conda-env}
+## Conda environments {#conda-env}
+
+### Create and install
 To install an environment that suites most of the needs for codes and analyses shown on these pages, use the provided `environment.yml`:
 
 1. Download the environment file [here](https://github.com/hydro-informatics/materials-py-install/blob/master/environment.yml) (if needed: copy the file contents of `environment.yml` in a local text editor tool such as [Notedpad++](https://notepad-plus-plus.org/) ([alternatives](hy_others.html#npp)) and save the file for example in a directory called *C:/temp/*)
@@ -31,7 +33,7 @@ To install more [*Python* packages](hypy_pckg.html):
 
 Alternatively, press the `Windows` key (or click on the start menu of your operating system) > type `Anaconda Navigator` > got to the `Environments` tab > select the `hypy` environment (or create another environment) > install & install packages. 
 
-### Remove (delete) a conda environment
+### Remove (delete) 
 To remove a conda environment open *Anaconda prompt* and type:
 
 ```
