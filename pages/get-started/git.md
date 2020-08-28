@@ -14,9 +14,13 @@ folder: get-started
 {% include image.html file="git-scheme.png" alt="git-scheme" max-width="800" caption="The concept of git with some basic vocabulary. The REMOTE frame is online (i.e., some one else's computer) and the LOCAL frame is what happens on a personal computer, which is connected to the internet. Repositories can be newly created or forked remotely. Remote repositories can be cloned locally, modified locally, and local changes can be pushed to a remote repository. Collaborators want to make sure to regularly pull changes of a remote repository. Working with and on different branches becomes increasingly important with the number of developers and for the moment we just need to remember that we start working in the master branch (i.e., upstream origin / HEAD = master)." %}  
 
 ## Install and use {#dl}
-The materials provided on these pages is best downloaded and updated using *git*-able environments (on Windows use for example [*PyCharm*'s Community Edition](https://www.jetbrains.com/pycharm/) or [*Git Bash*](https://git-scm.com/downloads); on *Linux*: you are already good to go). Updates are tricky when materials are downloaded as *zip* file.
+The materials provided on these pages is best downloaded and updated using *git*-able environments (avoid downloading materials as *zip* file).
 
-{% include tip.html content="Even though this web site is hosted on *GitHub*, keep in mind that there are other *git* providers out there, such as [GitLab](https://gitlab.com/pages), [plan.io](https://plan.io/knowledge-management/), or [BitBucket](https://bitbucket.org/)." %}
+{% include windows.html content="Download and install [*Git Bash*](https://git-scm.com/downloads) and use it for example [*PyCharm*'s Community Edition](https://www.jetbrains.com/pycharm/)." %}
+
+{% include unix.html content="You are already good to go - git is an integral feature of Linux." %}
+
+The repositories for this course are mainly hosted on *GitHub*. However, there are other *git* providers out there, such as [GitLab](https://gitlab.com/pages), [plan.io](https://plan.io/knowledge-management/), or [BitBucket](https://bitbucket.org/).
 
 ### Clone (download)
 *GitHub* provides detailed descriptions and standard procedures to work with their repositories ([read more](https://help.github.com/en/articles/cloning-a-repository)). The following "recipe" guides through the first time download of *git* materials
