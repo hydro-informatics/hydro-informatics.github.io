@@ -29,7 +29,7 @@ Start *QGIS*, create a new project and save it (`Project` > `Save as...`). Then,
 
 
 
-1. Go to the Settings tab; now the *QGIS*-plugin repository connections should be visible at the bottom of the `Plugin Manager` (`Plugin Repositories` listbox in below [figure](#qgis-plugins)).
+1. Go to the Settings tab; now the *QGIS* plugin repository connections should be visible at the bottom of the `Plugin Manager` (`Plugin Repositories` listbox in below [figure](#qgis-plugins)).
 1. Scroll to the bottom, click on Add..., and enter a name for the new repository (e.g., *BASEmesh* repository)
 1. Enter the repository address: [http://people.ee.ethz.ch/~basement/qgis_plugins/qgis_plugins.xml](http://people.ee.ethz.ch/~basement/qgis_plugins/qgis_plugins.xml)
 1. Click `OK`. The new repository should now be visible in the `Plugin Repositories` listbox. If the connection is `OK`, click on the Close button on the bottom of the window.
@@ -42,7 +42,7 @@ Start *QGIS*, create a new project and save it (`Project` > `Save as...`). Then,
 
 
 ## Elevation point data<a name="epd"></a>
-Terrain survey data are mostly delivered in the shape of an x-y-z point dataset. LiDAR produces massive point clouds, which quickly overcharge even powerful computers. Therefore, LiDAR data may need to be break down to smaller zones of less than approximately 106 points and special LiDAR point-treatment software (e.g., http://lastools.org/) may be helpful in this task. The range of possible data products and shape from terrain survey is board and this tutorial exemplary uses a set of x-y-z points stored within a text file. Load the points from the provided xyz-points.txt file as follows:
+Terrain survey data are mostly delivered in the shape of an x-y-z point dataset. LiDAR produces massive point clouds, which quickly overcharge even powerful computers. Therefore, LiDAR data may need to be break down to smaller zones of less than approximately 106 points and special LiDAR point processing software (e.g., http://lastools.org/) may be helpful in this task. The range of possible data products and shape from terrain survey is board and this tutorial exemplary uses a set of x-y-z points stored within a text file. Load the points from the provided xyz-points.txt file as follows:
 
 1. [Download](https://github.com/hydro-informatics/materials-bm/blob/master/points_raw/points.txt) the point file from the repository (if necessary, copy the file contents locally into a text editor and save the file as `points.txt` in a local project directory)
 1. [Download](https://github.com/hydro-informatics/materials-bm/raw/master/breaklines.zip) the zipped breaklines shapefile into the project folder and unpack `breaklines.shp`.
@@ -120,7 +120,7 @@ As a result, two new layers will now show up in the Layers window:
 
 ## Region Markers for Quality Meshing<a name="regions"></a>
 
-Region markers are placed within regions defined by breaklines and assign for instance mate-rial identifiers (MATIDs) and maximum mesh areas to ensure high mesh quality (e.g., the mesh area should be small in the active channel bed and can be wider on floodplains). To create a new region marker file:
+Region markers are placed within regions defined by breaklines and assign for instance material identifiers (MATIDs) and maximum mesh areas to ensure high mesh quality (e.g., the mesh area should be small in the active channel bed and can be wider on floodplains). To create a new region marker file:
 
 - Click on *QGIS*' `Layers` menu > `Create Layer` > `New Shapefile Layer...` (see [figure](#qgis-new-lyr))
 <a name="qgis-new-lyr"></a>
@@ -138,7 +138,7 @@ Region markers are placed within regions defined by breaklines and assign for in
 <a name="qgis-reg-lyr"></a>
 {% include image.html file="qgis-reg-lyr.png" alt="bm-11" caption="Definitions and fields to be added to the new regions point shapefile." %}
 
-After the successful creation, right-click on the new REGION-`points` layer and select TOGGLE EDITING. Then go to *QGIS*' EDIT menu and select ADD POINT FEATURE. Create 9 points to de-fine all areas delineated by the `breaklines` layer. These points should include the following region types:
+After the successful creation, right-click on the new REGION-`points` layer and select TOGGLE EDITING. Then go to *QGIS*' EDIT menu and select ADD POINT FEATURE. Create 9 points to define all areas delineated by the `breaklines` layer. These points should include the following region types:
 
 | Type     | riverbed | lower_bank | upper_bank | floodplain | street |
 |----------|----------|------------|------------|------------|--------|
@@ -152,7 +152,7 @@ The below [figure](#qgis-reg-pts) shows an example for defining points within th
 {% include image.html file="qgis-reg-pts.png" alt="bm-12" caption="Example for distributing region points in the project boundaries (remark: the max_area value may differ and is expert assessment-driven). After the placement of all region points, Save Layer Edits (floppy disk symbol) and Toggle Editing (pencil symbol – turn off)." %}  
 
 ## Quality meshing<a name="qualm"></a>
-A quality mesh accounts for the definitions made within the regions shapefile ([see above section](#regions)), but it does not include elevation data. Thus, after generating a quality mesh, elevation infor-mation needs to be added from the TIN ([see above section](#tin)). This section first explains the [generation of a quality mesh](qualm-gen) and then the [insertion of elevation data](#qualm-interp)).
+A quality mesh accounts for the definitions made within the regions shapefile ([see above section](#regions)), but it does not include elevation data. Thus, after generating a quality mesh, elevation information needs to be added from the TIN ([see above section](#tin)). This section first explains the [generation of a quality mesh](qualm-gen) and then the [insertion of elevation data](#qualm-interp)).
 
 ###	Quality mesh generation<a name="qualm-gen"></a>
 In *QGIS*' `Plugins` menu, click on *BASEmesh* > QUALITY MESHING to open the Quality mesh-ing wizard. Make the following settings in the window (see also [figure](#qgis-qualm)):
@@ -168,7 +168,7 @@ In *QGIS*' `Plugins` menu, click on *BASEmesh* > QUALITY MESHING to open the Qua
 Quality meshing may take time. After successful mesh generation the files `base_qualitymesh_qualityNodes.shp` and `base_qualitymesh_qualityElements.shp` are generated. Finally, click `Close`.
 
 ###	Elevation data interpolation on a quality mesh<a name="qualm-interp"></a>
-*BASEmesh*’s `Interpolation` wizard projects elevation data onto the quality mesh by interpo-lation from a TIN. Make sure to check (show) the `base_qualitymesh_qualityNodes` and `base_qualitymesh_qualityElements` from the last step, and `base_tin_elevation_nodes.shp` and [`base_tin_elevation_elements.shp`](#tin). Then, open *BASEmesh*’s `Interpolation` wizard (*QGIS* `Plugins` menu > *BASEmesh* > `Interpolation`) and (see also [figure](#qgis-qualm-interp)):
+*BASEmesh*’s `Interpolation` wizard projects elevation data onto the quality mesh by interpolation from a TIN. Make sure to check (show) the `base_qualitymesh_qualityNodes` and `base_qualitymesh_qualityElements` from the last step, and `base_tin_elevation_nodes.shp` and [`base_tin_elevation_elements.shp`](#tin). Then, open *BASEmesh*’s `Interpolation` wizard (*QGIS* `Plugins` menu > *BASEmesh* > `Interpolation`) and (see also [figure](#qgis-qualm-interp)):
 1. In the `Quality Mesh` canvas, select `base_qualitymesh_qualityNodes`
 1. In the `Elevation Data` canvas, activate the `Elevation Mesh` checkbox and select `base_tin_elevation_nodes.shp` and [`base_tin_elevation_elements.shp`](#tin)
 1. In the `Shapefile output` canvas, define the output file as finalmesh.shp.
@@ -184,7 +184,7 @@ After the elevation interpolation, verify that elevations were correctly assigne
 The below [figure](#qgis-verify-qualm) shows an example of interpolated mesh, with some irregularities (red points). The irregularities are caused by local imprecision of breaklines (line end points do not coincide with the [`xyz-points.shp`](#epd)). Also some points of the [boundary](#boundary) do not correspond the `xyz-points.shp`. If such irregularities occur, zoom at the red points (irregularities) and ensure that the breakline and boundary nodes all exactly coincide with those stored in `xyz-points.shp`. When all nodes are corrected, repeat all steps from the [TIN generation](#tin) onward.
 
 <a name="qgis-verify-qualm"></a>
-{% include image.html file="qgis-verify-qualm.png" alt="bm-15" caption="Verify elevation interpolation using graduated color ramps. In this example, the red-colored points indicated irregularities in the mesh." %} 
+{% include image.html file="qgis-verify-qualm.png" alt="bm-15" caption="Verify elevation interpolation using graduated color ramps. In this example, the red colored points indicated irregularities in the mesh." %} 
 
 
 ##	Export to 2dm<a name="2dm"></a>
