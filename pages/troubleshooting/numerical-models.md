@@ -1,6 +1,6 @@
 ---
 title: Debugging numerical models
-tags: [basement, troubleshooting, numerical, modelling, hydraulics, morphodynamics]
+tags: [basement, telemac, troubleshooting, numerical, modelling]
 keywords: basement, numerical modelling
 sidebar: mydoc_sidebar
 permalink: dbg_nm.html
@@ -19,3 +19,24 @@ Erik Mosselmann and Thai Binh Le highlight five widespread and common problems i
 1. Model setup: Read and understand how turbulence closures are implemented in the model to set the model parameters used for the turbulence closure realistically and yield a stable model.
 1. Model validation / post-processing: Wrong confidence in poorly validated numerical models: Every model requires validation data, which involve exhausting and labor-intensive fieldwork.
 1. Model interpretation: The direction of sediment transport and water flow vectors mostly differ.
+
+
+## Mesh generation and quality
+
+The hints for meshing are extracted from [Olsen (1999)](http://folk.ntnu.no/nilsol/cfd/class2.pdf) and [Olsen (2012)](http://folk.ntnu.no/nilsol/tvm4155/flures6.pdf).
+
+General:
+
+* Mesh transition: Cells should not be smaller or larger than 50% or 200%, respectively of the size of neighbouring cells.
+* Prefer triangular meshes over rectangular meshes (computational efficiency).
+
+
+Triangular meshes:
+
+* Avoid wide or acute triangles (optimum: equilateral triangles). No internal angle should be less than 22°.
+
+Rectangular meshes:
+
+* All internal angle should be close to 90°.
+
+
