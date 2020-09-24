@@ -8,7 +8,7 @@ permalink: vm.html
 folder: get-started
 ---
 
-Your computer is one of your important educational companions. So you want to protect the health of your computer and avoid problems caused by redundant or even malicious software. For this reason, it is recommended to install all software used on this website on a so-called Virtual Machine (VM). This page explains what VMs are, what advantages they have exactly, and how you can install Debian Linux, one of the most stable and secure operating systems. It does not matter if you use Apple's *mac OS* or Microsoft's *Windows*, or if you already use Linux: The VM will look the same at the end.
+Your computer is one of your important educational companions. So you want to protect the health of your computer and avoid problems caused by redundant or even malicious software. For this reason, it is recommended to install all software used on this website on a so-called Virtual Machine (VM). This page explains what VMs are, what advantages they have exactly, and how you can install [Debian Linux](https://www.debian.org/), one of the most stable and secure operating systems. It does not matter if you use Apple's *mac OS* or Microsoft's *Windows*, or if you already use Linux: The VM will look the same at the end.
 
 ## About
 
@@ -31,7 +31,7 @@ Free resources on a computer represent, from an economic point of view, dead sto
 
 In the context of hydro-informatics for water resources management, a VM can serve to execute various *Python* scripts with different dependencies or, most importantly, to set up a clean and efficient environment for the execution of numerical models such as [open TELEMAC-MASCARET](http://www.opentelemac.org/).
 
-### Why use Debian Linux?
+### Contents and Debian Linux
 
 This page guides through the installation of a [Debian Linux](https://www.debian.org/) virtual machine. The host hypervisor is assumed to be Oracle's [VirtualBox](https://www.virtualbox.org/) on *Windows 10*. If you are not using *Windows 10*, just download the *VirtualBox* installer that suits your system.
 
