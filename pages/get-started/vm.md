@@ -31,7 +31,7 @@ Free resources on a computer represent, from an economic point of view, dead sto
 
 In the context of hydro-informatics for water resources management, a VM can serve to execute various *Python* scripts with different dependencies or, most importantly, to set up a clean and efficient environment for the execution of numerical models such as [open TELEMAC-MASCARET](http://www.opentelemac.org/).
 
-### About this Tutorial and Debian Linux
+### Why use Debian Linux?
 
 This page guides through the installation of a [Debian Linux](https://www.debian.org/) virtual machine. The host hypervisor is assumed to be Oracle's [VirtualBox](https://www.virtualbox.org/) on *Windows 10*. If you are not using *Windows 10*, just download the *VirtualBox* installer that suits your system.
 
