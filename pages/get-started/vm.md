@@ -10,11 +10,13 @@ folder: get-started
 
 Your computer is one of your important educational companions. So you want to protect the health of your computer and avoid problems caused by redundant or even malicious software. For this reason, it is recommended to install all software used on this website on a so-called Virtual Machine (VM). This page explains what VMs are, what advantages they have exactly, and how you can install Debian Linux, one of the most stable and secure operating systems. It does not matter if you use Apple's *mac OS* or Microsoft's *Windows*, or if you already use Linux: The VM will look the same at the end.
 
-## What is a Virtual Machine (VM)?
+## About
+
+### What is a Virtual Machine (VM)?
 
 A Virtual Machine (VM) represents a virtual operating system (OS) running on a host system that directly runs on a physical computer.  The physical computer (hardware) resources of the host system are allocated via so-called hypervisors. For this reason, the virtual machine is referred to as a *guest machine* and the hypervisor as a *host machine*. Thus, a *guest machine* is an isolated, virtualized environment that runs independently on the host operating system.
 
-## Why use a VM?
+### Why use a VM?
 
 Free resources on a computer represent, from an economic point of view, dead storage space that causes costs without generating income. This is why system administrators often create multiple virtual servers to better allocate physical resources and save energy. A VM is also useful for smart end-users such as researchers and engineers. Here are some advantages of a VM:
 
