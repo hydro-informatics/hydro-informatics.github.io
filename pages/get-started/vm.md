@@ -225,7 +225,7 @@ To update the repositories, open *Terminal* and type:
 su
   ...password:
 
-sudo apt-get update
+apt-get update
 ```
 
 Instructions for installing particular and Debian-compatible software (e.g. QGIS) can be found directly on the website of software developers. For example, to install *Anaconda* *Python* visit [docs.anaconda.com](https://docs.anaconda.com/anaconda/install/linux/) and follow the instructions for Debian Linux.

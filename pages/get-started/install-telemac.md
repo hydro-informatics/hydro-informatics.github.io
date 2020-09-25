@@ -24,7 +24,7 @@ Mandatory prerequisites are:
 
 ### Python3
 
-> Estimated duration: 5-8 minutes.
+***Estimated duration: 5-8 minutes.***
 
 The high-level programing language *Python3* is pre-installed on Debian Linux 10.x and needed to launch the compiler script for TELEMAC-MASCARET. To launch *Python3*, open *Terminal* and type `python3`. To exit *Python*, type `exit()`.
 
@@ -67,7 +67,7 @@ None of the three library imports should return an `ImportError` message. To lea
 
 ### Subversion (svn)
 
-> Estimated duration: Less than 5 minutes.
+***Estimated duration: Less than 5 minutes.***
 
 We will need the version control system [*Subversion*](https://wiki.debian.org/SVNTutorial) for downloading (and keeping up-to-date) the TELEMAC-MASCARET source files. *Subversion* is installed through the Debian *Terminal* with (read more in the [Debian Wiki](https://wiki.debian.org/Subversion)):
 
@@ -82,7 +82,7 @@ After the successful installation, test if the installation went well by typing 
 
 ### GNU Fortran 95 compiler (gfortran)
 
-> Estimated duration: 3-10 minutes.
+***Estimated duration: 3-10 minutes.***
 
 The Fortran 95 compiler is needed to compile TELEMAC-MASCARET through a *Python3* script, which requires that `gfortran` is installed. The Debian Linux retrieves `gfortran` from the standard package repositories. Thus, to install the Fortran 95 compiler open *Terminal* and type:
 
@@ -135,6 +135,8 @@ Optional prerequisites are:
 
 ### Parallelism: MPI
 
+***Estimated duration: 5 minutes.***
+
 MPI stands for *Message Passing Interface*, which is a portable message-passing standard. MPI is implemented in many open-source C, C++, and Fortran applications ([read more](https://en.wikipedia.org/wiki/Message_Passing_Interface)). TELEMAC developers recommend to install either *MPICH* or *Open MPI*. Here, we opt for *Open MPI*, which can be installed through the *Terminal*.
 
 ```
@@ -154,7 +156,9 @@ The *Terminal* should prompt option flags for processing a *gfortran* file. The 
 
 ### Parallelism: Metis
 
-Metis is a software package for partitioning unstructured graphs, partitioning meshes, and computing fill-reducing orderings of sparse matrices by George Karypis. Learn more about metis on the [Karypis Lab website](http://glaros.dtc.umn.edu/gkhome/metis/metis/download) or reading the [PDF manual](http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/manual.pdf)
+***Estimated duration: 10-15 minutes.***
+
+Metis is a software package for partitioning unstructured graphs, partitioning meshes, and computing fill-reducing orderings of sparse matrices by George Karypis. TELEMAC-MASCARET uses *Metis* as a part of *Partel* to split the mesh in multiple parts for parallel runs. Learn more about metis on the [Karypis Lab website](http://glaros.dtc.umn.edu/gkhome/metis/metis/download) or reading the [PDF manual](http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/manual.pdf).
 
 To compile Metis, a *C* compiler is required to enable the command `cmake` in *Terminal*. To install *Cmake*, open *Terminal* and type:
 
@@ -165,23 +169,77 @@ su
 apt-get install -y cmake
 ```
 
+In addition to *Cmake*, *Metis* also requires `gcc`, which should be already included in Debian Linux (verify with `gcc --help`). 
+
 Then [download Metis 5.1.x](http://glaros.dtc.umn.edu/gkhome/metis/metis/download) from the Karypis Lab's website (University of Minnesota, USA).  Extract the metis source files from the `.tar.gz` archive into a directory of your choice, which corresponds to the `<install_path>`. For example, create a new folder in your Linux *Home* directory and call it `metis`.
 
 {% include note.html content="Alternatively, you can [download the automatic installer](http://opentelemac.org/index.php/download) of the latest version of open TELEMAC-MASCARET (login required), which contains Metis in the sub-folder `/optionals/metis-5.1.0/`. Copy the contents of the latter folder to your `<install_path>` instead of extracting the `.tar.gz` archive from the Karypis Lab website." %}
 
 
-In the following we use a new directory called `/home/deb-user/Telemac/metis/` as `<install_path>`, where the `.tar.gz` archive from the Karypis Lab was extracted using Debian's *Archive Manager* (in *Firefox* download [metis-5.1.0.tar.gz](http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/metis-5.1.0.tar.gz) > *Open With* > *Archive Manager* > select all files > right-click > *Extract* and navigate to `/home/deb-user/Telemac/metis/`). Open the directory `/home/deb-user/Telemac/metis/` in *Terminal* and type:
+In the following we use a new directory called `/home/deb-user/Telemac/metis/` as `<install_path>`, where the `.tar.gz` archive from the Karypis Lab was extracted using Debian's *Archive Manager* (in *Firefox* download [metis-5.1.0.tar.gz](http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/metis-5.1.0.tar.gz) > *Open With* > *Archive Manager* > select all files > right-click > *Extract* and navigate to `/home/deb-user/Telemac/metis/`).
+
+* Edit the file `<install_path>/include/metis.h`: Find the expression `#define IDXTYPEWIDTH` and replace `32` with `64` (assuming we are on a 64-bit system). Save and close the file.
+* Open the directory `<install_path>` (here: `/home/deb-user/Telemac/metis/` in *Terminal* and type:
 
 ```
 su 
   password:...
 
-
+cmake -D CMAKE_INSTALL_PREFIX=/.
 ```
 
+* Some warning messages because of the empty `CMAKE_INSTALL_PREFIX` may occur, which you can ignore for the moment.
+* Build *Metis* with the following sequence of commands (still as `su`). Type the commands step-by-step (every command will run for a while):
 
+```
+make config
+make
+make install
+```
+
+* The installation should run without error message. Verify the successful installation by running:
+
+```
+mpmetis --help
+```
 
 The installation of Metis on Linux is also documented in the [opentelemac wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_metis).
+
+
+### Hdf5 and MED format handlers
+
+***Estimated duration: 15-25 minutes (building libraries takes time).***
+
+***HDF5:*** Download the *hdf5* source files as `.tar.gz` archive ([hdf5-1.8.21.tar.gz](https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.21/src/hdf5-1.8.21.tar.gz)) - choose *Open with: Archive Manager*. 
+
+{% include important.html content="Do not try to use any other *hdf5* version because those will not work with the med file library." %}
+
+Extract the archive contents to the `Telemac` directory (e.g., `/home/deb-user/Telemac/hdf5-1.8.21/`). Open the directory in *Terminal* (as root/superuser, i.e., type `su`) and type (line by line - the commands take time to run):
+
+```
+./configure --prefix=
+make
+make install 
+```
+
+The installation of *hdf5* on Linux is also documented in the [opentelemac wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_hdf5).
+
+***MED FILE LIBRARY:*** Download the *med file library* from [salome-platform.org](https://salome-platform.org/) as `.tar.gz` archive ([med-3.2.0.tar.gz](hhttp://files.salome-platform.org/Salome/other/med-3.2.0.tar.gz)). Open the archive with *Archive Manager*.
+
+{% include important.html content="Do not try to use any other *med file library* version because those will not work properly with any other *hdf5* file library." %}
+
+Extract the archive contents to the `Telemac` directory (e.g., `/home/deb-user/Telemac/med-3.2.0/`). Open the directory in *Terminal* (as root/superuser, i.e., type `su`) and type (line by line - the commands take time to run):
+
+```
+./configure --with-hdf5=/home/deb-user/Telemac/hdf5-1.8.21/hdf5
+make
+make install 
+```
+
+{% include note.html content="The flag `--width-hdf5` tells the med library where it can find the *hdf5* library. Thus, adapt `/home/deb-user/Telemac/hdf5-1.8.21/hdf5` to your local `<install_path>` of the *hdf5* library." %}
+
+
+The installation of the *med file library* on Linux is also documented in the [opentelemac wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_med).
 
 ## Download and Compile TELEMAC-MASCARET
 
