@@ -156,13 +156,28 @@ The *Terminal* should prompt option flags for processing a *gfortran* file. The 
 
 Metis is a software package for partitioning unstructured graphs, partitioning meshes, and computing fill-reducing orderings of sparse matrices by George Karypis. Learn more about metis on the [Karypis Lab website](http://glaros.dtc.umn.edu/gkhome/metis/metis/download) or reading the [PDF manual](http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/manual.pdf)
 
-To compile Metis, a *C* compiler is required. CONTINUE
+To compile Metis, a *C* compiler is required to enable the command `cmake` in *Terminal*. To install *Cmake*, open *Terminal* and type:
+
+```
+su 
+  password:...
+
+apt-get install -y cmake
+```
+
+Then [download Metis 5.1.x](http://glaros.dtc.umn.edu/gkhome/metis/metis/download) from the Karypis Lab's website (University of Minnesota, USA).  Extract the metis source files from the `.tar.gz` archive into a directory of your choice, which corresponds to the `<install_path>`. For example, create a new folder in your Linux *Home* directory and call it `metis`.
+
+{% include note.html content="Alternatively, you can [download the automatic installer](http://opentelemac.org/index.php/download) of the latest version of open TELEMAC-MASCARET (login required), which contains Metis in the sub-folder `/optionals/metis-5.1.0/`. Copy the contents of the latter folder to your `<install_path>` instead of extracting the `.tar.gz` archive from the Karypis Lab website." %}
 
 
-[Download Metis 5.1.x](http://glaros.dtc.umn.edu/gkhome/metis/metis/download) from the Karypis Lab's website (University of Minnesota, USA). Alternatively [download the automatic installer](http://opentelemac.org/index.php/download) of the latest version of open TELEMAC-MASCARET (login required), which contains Metis in the sub-folder `/optionals/metis-5.1.0/`. Extract (when using the `.tar.gz` file from the Karypis Lab) or copy (when using the TELEMAC source files) the metis source files into a directory of your choice, which corresponds to the `<install_path>`. For example, create a new folder in your Linux *Home* directory and call it `metis`.
+In the following we use a new directory called `/home/deb-user/Telemac/metis/` as `<install_path>`, where the `.tar.gz` archive from the Karypis Lab was extracted using Debian's *Archive Manager* (in *Firefox* download [metis-5.1.0.tar.gz](http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/metis-5.1.0.tar.gz) > *Open With* > *Archive Manager* > select all files > right-click > *Extract* and navigate to `/home/deb-user/Telemac/metis/`). Open the directory `/home/deb-user/Telemac/metis/` in *Terminal* and type:
 
-The following example uses a new directory called `/home/deb-user/Telemac/metis/`, where the `.tar.gz` file from the Karypis Lab was extracted using Debian's *Archive Manager* (in *Firefox* download [metis-5.1.0.tar.gz](http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/metis-5.1.0.tar.gz) > *Open With* > *Archive Manager* > select all files > right-click > *Extract* and navigate to `/home/deb-user/Telemac/metis/`).
+```
+su 
+  password:...
 
+
+```
 
 
 

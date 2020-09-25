@@ -64,10 +64,10 @@ Remember where the *.iso* file is stored.
 In *Windows 10*, click on *Start*, type *Oracle VM VirtualBox* and hit enter. In the *VirtualBox* manager window:
 
 * Click on the blue *New* button to open the VM creation wizard and enter:
-    + Name: Debian Linux <br>*Note: The wizard should automatically recognize the *Type* and *Version* fields.*
-    + Machine Folder: `C:\Users\USERNAME\VirtualBox VMs`
-    + Type: Linux
-    + Version: Debian (64-bit)  <br>> Click on the *Next* button
+    + *Name:* Debian Linux <br>*Note: The wizard should automatically recognize the* Type *and*Version *fields.*
+    + *Machine Folder:* `C:\Users\USERNAME\VirtualBox VMs`
+    + *Type:* Linux
+    + *Version:* Debian (64-bit)  <br>> Click on the *Next* button
     + Allocate memory size: the more memory is allocated to the VM, the faster will be the VM (and for example TELEMAC-MASCARET), but the slower will be the host system (*Windows 10*). Rule of thumb: stay in the green range of the bar (e.g. allocate 8192 MB)
     <br>> Click on the *Next* button
     + Select *Create a virtual hard disk now* and click on the *Create* button.
@@ -79,8 +79,8 @@ In *Windows 10*, click on *Start*, type *Oracle VM VirtualBox* and hit enter. In
     + In the *System/Motherboard* tab, verify the memory allocation and check the *Enable EFI (special OSes only)* box (enable).
     + In the *System/Processor* tab, select the number of processors that the VM uses. For not slowing down the host system (*Windows 10*), stay in the green range of the CPU bar. For parallel processing with TELEMAC-MASCARET, allocate at least 4 CPUs. 
     + In the *Display* tab, check the *Enable 3D Acceleration* box.
-    + In the *Storage* tab, find the *Controller: IDE*, where an *Empty* disk symbol should be located below. Click on the *Empty* disk symbol and find the *Attributes* frame on the right side of the window, where a small blue disk symbol should be visible. Click on the small blue disk symbol to *Choose a virtual disk file ...*. Select the Debian Linux net installer (*debian-xx.x.x-amd64-netinst.iso*) that we downloaded before.
-    + Click *OK*
+    + In the *Storage* tab, find the *Controller: IDE*, where an *Empty* disk symbol should be located below. Click on the *Empty* disk symbol and find the *Attributes* frame on the right side of the window, where a small blue disk symbol should be visible. Click on the small blue disk symbol to *Choose a virtual disk file ...* > select the Debian Linux net installer (*debian-xx.x.x-amd64-netinst.iso*) that we downloaded before.
+    + Click *OK*.
 
 ### Install Debian Linux
 
@@ -107,7 +107,7 @@ To start the installation of Debian Linux, start the before created Debian Linux
 
 Once the VM is shut down, re-open the VM *Settings* (from *VirtualBox Manager* window) and go to the *Storage* tab. Verify that there is again an *Empty* disk symbol in the *Controller: IDE* field.
 
-### Setup and Familiarize with Debian Linux
+### Setup Debian Linux
 
 ***Estimated duration: 15-20 minutes.***
 
@@ -169,8 +169,20 @@ If the *Terminal*'s answer is something like `vboxguest   358395 2 vboxsf`, the 
 To improve the visual experience and getting familiar with Debian Linux do the following: 
 
 * In the top-left corner of the Debian Linux Desktop, click on *Activities* and type *display* in the search box. Open the *Displays* settings to select a convenient display resolution. If you choose a too high resolution, the *VirtualBox VM* window will turn black and jump back to the original resolution after 15-30 seconds. Consider also to turn on *Night Light* to preserve your eye vision. *Apply* the changes and close the *Displays* settings.
-* Familiarize with Debian Linux: Go to the *Activities* menu and find LibreOffice-Writer, Firefox, and the Software application. Find more applications by clicking on the four dots on the left of the menu bar - can you find the Text Editor?
-* To shut down the VM, click on the top-right corner arrow and press the Power symbol.
+
+### Familiarize with Debian Linux and Terminal
+
+To get familiar with Debian Linux, go to the *Activities* menu and find the applications *LibreOffice-Writer*, *Firefox*, the *Software* application (shopping bag symbol), and the *File* manager (filing container symbol).
+Find more applications by clicking on the four dots on the left of the menu bar - can you find the Text Editor?
+To shutdown Debian Linux (i.e., the VM), click on the top-right corner arrow and press the Power symbol.
+
+The GNOME *Terminal* is one of the most important features, event though it optically shows only an empty window with a blinking cursor at the beginning. There a many ways to open *Terminal* and here are two options:
+
+1. Go to *Applications* and type *Terminal* in the search box, or
+1. Open the *File* browser (*Applications* > *Files* - the filing container symbol), navigate to the folder where you want to run *Terminal*, right-click in the free space and left-click on *Open in Terminal*.
+
+*Terminal* runs many powerful native Linux (UNIX) commands, which is the most robust way to install and execute features. There are a couple of tutorials for learning to use *Terminal* and one of the most comprehensive is provided on the *Linux Ubuntu* website (Ubuntu is based on Debian Linux). It is highly recommended to go through the [tutorial provided by the Ubuntu community](https://ubuntu.com/tutorials/command-line-for-beginners) (*estimated duration: 51 minutes*), for better understanding some contents presented here on *hydro-informatics.github.io*. In particular, memorize the commands `cd` (change directory), `su`/`sudo` (superuser), `ls` (listen) and `mkdir` (make directory).
+
 
 ### Enable folder sharing
 
