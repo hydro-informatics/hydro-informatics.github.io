@@ -109,7 +109,7 @@ Once the VM is shut down, re-open the VM *Settings* (from *VirtualBox Manager* w
 
 ### Setup Debian Linux
 
-***Estimated duration: 15-20 minutes.***
+***Estimated duration: 15 minutes.***
 
 Start the *Debian Linux* VM from the *VirtualBox* manager window. Once Debian Linux has started, log on with your user credentials.
 
@@ -166,11 +166,11 @@ lsmod | grep vboxguest
 
 If the *Terminal*'s answer is something like `vboxguest   358395 2 vboxsf`, the installation was successful. Read more about *Guest Additions* on the [*VirtualBox* developer's website](https://www.virtualbox.org/manual/ch04.html).
 
-To improve the visual experience and getting familiar with Debian Linux do the following: 
+To improve the visual experience do the following: In the top-left corner of the Debian Linux Desktop, click on *Activities* and type *display* in the search box. Open the *Displays* settings to select a convenient display resolution. If you choose a too high resolution, the *VirtualBox VM* window will turn black and jump back to the original resolution after 15-30 seconds. Consider also to turn on *Night Light* to preserve your eye vision. *Apply* the changes and close the *Displays* settings.
 
-* In the top-left corner of the Debian Linux Desktop, click on *Activities* and type *display* in the search box. Open the *Displays* settings to select a convenient display resolution. If you choose a too high resolution, the *VirtualBox VM* window will turn black and jump back to the original resolution after 15-30 seconds. Consider also to turn on *Night Light* to preserve your eye vision. *Apply* the changes and close the *Displays* settings.
+### Familiarize with Debian Linux and Terminal {#terminal}
 
-### Familiarize with Debian Linux and Terminal
+***Estimated duration: 60 minutes.***
 
 To get familiar with Debian Linux, go to the *Activities* menu and find the applications *LibreOffice-Writer*, *Firefox*, the *Software* application (shopping bag symbol), and the *File* manager (filing container symbol).
 Find more applications by clicking on the four dots on the left of the menu bar - can you find the Text Editor?
