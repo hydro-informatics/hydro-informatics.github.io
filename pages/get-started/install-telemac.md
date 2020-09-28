@@ -47,7 +47,7 @@ apt-get install python3-matplotlib
   [...] Y [...]
 ```
 
-> If an error occurred during the installation, install the extended dependencies (includes Qt) with the following command (after `su`): `apt-get install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6`. Then re-try to install the libraries.
+{% include tip.html content="If an error occurred during the installation, install the extended dependencies (includes Qt) with the following command (after `su`): `apt-get install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6`. Then re-try to install the libraries." %}
 
 To test if the installation was successful, type `python3` in *Terminal* and import the three libraries:
 
@@ -110,7 +110,7 @@ If not defined otherwise, the [GNU nano](https://www.nano-editor.org/) text edit
 deb http://ftp.de.debian.org/debian buster main 
 ``` 
 
-> Note: This tutorial was written in Stuttgart, Germany, where `http://ftp.de.debian.org/debian` is the closest mirror. Replace this mirror depending on where you are sitting at the time of installing the Fortran 95 compiler. A full list of repositories can be found [here](https://packages.debian.org/buster/amd64/gfortran-multilib/download).
+{% include note.html content="This tutorial was written in Stuttgart, Germany, where `http://ftp.de.debian.org/debian` is the closest mirror. Replace this mirror depending on where you are sitting at the time of installing the Fortran 95 compiler. A full list of repositories can be found [here](https://packages.debian.org/buster/amd64/gfortran-multilib/download)." %}
 
 Then, save the edits with `CTRL` + `O` keys and exit *Nano* with `CTRL` + `X` keys. Next, update the repository information by typing (in *Terminal*):
 
@@ -185,7 +185,7 @@ In the following we use a new directory called `/home/deb-user/Telemac/metis/` a
 su 
   password:...
 
-cmake -D CMAKE_INSTALL_PREFIX=/.
+cmake -D CMAKE_INSTALL_PREFIX=/home/deb-user/Telemac/metis/. -DSHARED=TRUE
 ```
 
 * Some warning messages because of the empty `CMAKE_INSTALL_PREFIX` may occur, which you can ignore for the moment.
@@ -217,26 +217,35 @@ The installation of Metis on Linux is also documented in the [opentelemac wiki](
 Extract the archive contents to the `Telemac` directory (e.g., `/home/deb-user/Telemac/hdf5-1.8.21/`). Open the directory in *Terminal* (as root/superuser, i.e., type `su`) and type (line by line - the commands take time to run):
 
 ```
-./configure --prefix=
+./configure --prefix=/home/deb-user/Telemac/hdf5
 make
 make install 
 ```
 
+The flag `--prefix=/home/deb-user/Telemac/hdf5` determines the installation directory for the *hdf5* library, which we will need in the next step for installing the *med file* library.
 The installation of *hdf5* on Linux is also documented in the [opentelemac wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_hdf5).
 
 ***MED FILE LIBRARY:*** Download the *med file library* from [salome-platform.org](https://salome-platform.org/) as `.tar.gz` archive ([med-3.2.0.tar.gz](hhttp://files.salome-platform.org/Salome/other/med-3.2.0.tar.gz)). Open the archive with *Archive Manager*.
 
 {% include important.html content="Do not try to use any other *med file library* version because those will not work properly with any other *hdf5* file library." %}
 
+To ensure that the *zlib1g* library is installed, open *Terminal* (as root/superuser, i.e., type `su`) and type:
+
+```
+apt-cache search zlib | grep -i zlib
+apt-get install zlib1g zlib1g-dbg zlib1g-dev
+```
+
+ 
 Extract the archive contents to the `Telemac` directory (e.g., `/home/deb-user/Telemac/med-3.2.0/`). Open the directory in *Terminal* (as root/superuser, i.e., type `su`) and type (line by line - the commands take time to run):
 
 ```
-./configure --with-hdf5=/home/deb-user/Telemac/hdf5-1.8.21/hdf5
+./configure --with-hdf5=/home/deb-user/Telemac/hdf5
 make
 make install 
 ```
 
-{% include note.html content="The flag `--width-hdf5` tells the med library where it can find the *hdf5* library. Thus, adapt `/home/deb-user/Telemac/hdf5-1.8.21/hdf5` to your local `<install_path>` of the *hdf5* library." %}
+{% include note.html content="The flag `--width-hdf5` tells the med library where it can find the *hdf5* library. Thus, adapt `/home/deb-user/Telemac/hdf5` to your local `<install_path>` of the *hdf5* library." %}
 
 
 The installation of the *med file library* on Linux is also documented in the [opentelemac wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_med).
