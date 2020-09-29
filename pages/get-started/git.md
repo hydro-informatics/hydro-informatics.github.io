@@ -1,6 +1,6 @@
 ---
 title: Introduction to git
-tags: [git, version_control, sharing, markdown]
+tags: [git, version_control, sharing, markdown, linux]
 keywords: git
 summary: "This chapter explains the basics of git usage"
 sidebar: mydoc_sidebar

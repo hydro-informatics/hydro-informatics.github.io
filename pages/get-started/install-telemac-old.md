@@ -1,7 +1,5 @@
 ---
 title: open TELEMAC-MASCARET (Installation)
-tags: [telemac, linux, numerical, modelling, install, vm]
-keywords: Virtual, machine, TELEMAC-MASCARET
 summary: "Install the numerical modelling tool TELEMAC-MASCARET on Debian Linux."
 sidebar: mydoc_sidebar
 permalink: install-telemac.html
@@ -20,6 +18,7 @@ Mandatory prerequisites are:
 * *Python* (use *Python3* in the latest releases)
 * *Subversion (svn)*
 * GNU Fortran 95 compiler (*gfortran*)
+* SWIG compiler ( C/C++ integrity to *Python*)
 
 
 ### Python3
@@ -39,7 +38,12 @@ To install the three libraries, open *Terminal* and type (hit `Enter` after ever
 ```
 su
   ...password:
-apt-get install python3-numpy python3-scipy python3-matplotlib python3-distutils python3-dev 
+apt-get install python3-numpy
+  [...]
+apt-get install python3-scipy
+  [...] Y [...]
+apt-get install python3-matplotlib
+  [...] Y [...]
 ```
 
 {% include tip.html content="If an error occurred during the installation, install the extended dependencies (includes Qt) with the following command (after `su`): `apt-get install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6`. Then re-try to install the libraries." %}
@@ -58,7 +62,14 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> exit()
 ```
 
-None of the three library imports should return an `ImportError` message. To learn more about *Python* read the [*Python*<sup>basics</sup>](python.html) on this website.
+None of the three library imports should return an `ImportError` message. To learn more about *Python* visit [hydro-informatics.github.io/python](https://hydro-informatics.github.io/python.html).
+
+In addition to the three above-described packages described as requirements by the developers, install `distutils` and the `dev` versions of *Python3*:
+
+```
+apt-get install python3-distutils
+apt-get install python3-dev 
+```
 
 Debian Linux' standard installation comes with `python` for *Python2* and `python3` for *Python3*. To avoid confusion in the installation of TELEMAC-MASCARET, make sure that whatever `python*` environment variable is used, *Python3* is called. To do so, open *Terminal* (as superuser/root `su`) and find out what versions of *Python* are installed:
 
@@ -131,65 +142,21 @@ apt-get update
 apt-get install gfortran
 ```
 
+### Scripting interfaces to C/C++ (SWIG)
+
+The SWIG compiler aids to integrate C/C++ code with *Python*. *SWIG* is not listed on the TELEMAC-MASCARET developer's website, even though it essential for compiling the parallel version of TELEMAC-MASCARET. To install *SWIG* on Debian Linux, open *Terminal* and type:
+
+```
+su 
+  password:...
+
+apt-get install swig
+```
+
 ***
 
-### Compilers and other essentials
+## Optional (highly-recommended) Prerequisites
 
-To enable parallelism, a *C* compiler is required for recognition of the command `cmake` in *Terminal*. Moreover, we will need `build-essential` for building packages and create a comfortable environment for `dialog`ues. [Vim](https://www.vim.org/) is a text editor that we will use for bash file editing. Therefore, open *Terminal* (as root/superuser, i.e., type `su`) and type:
-
-```
-apt-get install -y cmake build-essential dialog vim
-```
-
-## Download TELEMAC-MASCARET
-
-We will need more packages to enable parallelism and compiling, but before installing them, download the latest version of TELEMAC-MASCARET through subversion (`svn`). The developers (irregularly) inform about the newest version on [their website](http://www.opentelemac.org/index.php/latest-news-development-and-distribution). To download TELEMAC-MASCARET open *Terminal* in the *Home* directory (either use `cd` or use the *Files* browser to navigate to the *Home* directory and right-click in the empty space to open *Terminal*) and type (enter `no` when asked for password encryption):
-
-```
-svn co http://svn.opentelemac.org/svn/opentelemac/tags/v8p1r0  ~/telemac/v8p1 --username ot-svn-public --password telemac1*
-```
-
-This will have downloaded TELEMAC-MASCARET *v8p1r0* to the directory `/home/USER-NAME/telemac/v8p1`.
-
-
-
-## Continue prerequisites (parallelism and compilers)
-
-
-### Setup environmental variables
-
-Environmental variables will help in the following to compile TELEMAC-MASCARET and helper programs. In this section, we will create a `PATH` variable for pointing at the *Python3* scripts and a `SYSTELCFG` variable to define the configuration file to use for compiling TELEMAC-MASCARET. First, verify that the *Python3* scripts are correctly downloaded in  `~/telemac/v8p1/scripts/python3/` and verify that a *systel* config file called `~/telemac/v8p1/configs/systel.debian.cfg` exists.
-
-Create a new bash file with *Vim* text editor by typing in *Terminal* (as superuser/root `su`)
-
-```
-vim ~/.bashrc
-```
-
-*Vim* opens in the *Terminal* window and they program may be a little bit confusing in its manipulation. When *Terminal* asks if you want to continue *E*diting, confirm with the `E` key. Then click on the end of the file and enable editing through pressing the `i` key. Now, `-- INSERT --` should be prompted on the bottom of the window. Copy the following lines (`CTRL` + `C` here) and insert the lines by clicking on *Edit* > *Paste*:
-```
-export PATH=~/telemac/v8p1/scripts/python3/:$PATH
-export SYSTELCFG=~/telemac/v8p1/configs/systel.debian.cfg
-```
-
-Press `Esc` to leave the *INSERT* mode and then type `:wq` (the letters are visible on the bottom of the window) to save (write-quit) the file. Hit `Enter` to return to the *Terminal*.
-
-Back in the *Terminal* typ the following to apply the new environmental variables (pointers):
-
-```
-source ~/.bashrc
-```
-
-{% include note.html content="Alternatively you may want to use `systel.ubuntu.cfg` in lieu of `systel.debian.cfg`. In this case, you will need to install `mpich` (`sudo apt-get install mpich`) in lieu of *openMPI* as shown in the following sections to enable parallelism." %}
-
-
-
-
-CONTINUE
-
-
-
-In addition to *Cmake*, *Metis* also requires `gcc`, which should be already included in Debian Linux (verify with `gcc --help`). 
 Optional prerequisites are:
 
 * For parallelism (substantial acceleration of simulations):
@@ -227,7 +194,16 @@ The *Terminal* should prompt option flags for processing a *gfortran* file. The 
 
 Metis is a software package for partitioning unstructured graphs, partitioning meshes, and computing fill-reducing orderings of sparse matrices by George Karypis. TELEMAC-MASCARET uses *Metis* as a part of *Partel* to split the mesh in multiple parts for parallel runs. Learn more about metis on the [Karypis Lab website](http://glaros.dtc.umn.edu/gkhome/metis/metis/download) or reading the [PDF manual](http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/manual.pdf).
 
+To compile Metis, a *C* compiler is required to enable the command `cmake` in *Terminal*. To install *Cmake*, open *Terminal* and type:
 
+```
+su 
+  password:...
+
+apt-get install -y cmake
+```
+
+In addition to *Cmake*, *Metis* also requires `gcc`, which should be already included in Debian Linux (verify with `gcc --help`). 
 
 Then [download Metis 5.1.x](http://glaros.dtc.umn.edu/gkhome/metis/metis/download) from the Karypis Lab's website (University of Minnesota, USA).  Extract the metis source files from the `.tar.gz` archive into a directory of your choice, which corresponds to the `<install_path>`. For example, create a new folder in your Linux *Home* directory and call it `metis`.
 
@@ -314,7 +290,7 @@ Make sure to adapt the *Python* version in the above code block (type `python -V
 
 The installation of the *med file library* on Linux is also documented in the [opentelemac wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_med).
 
-## Compile TELEMAC-MASCARET
+## Download and Compile TELEMAC-MASCARET
 
 
 ## Test TELEMAC MASCARET

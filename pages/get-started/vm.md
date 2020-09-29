@@ -1,6 +1,6 @@
 ---
 title: Virtual machines
-tags: [telemac, numerical, modelling, install, vm]
+tags: [telemac, numerical, linux, modelling, install, vm]
 keywords: Virtual, machine, TELEMAC-MASCARET
 summary: "Create a Debian Linux Virtual Machine (VM) with VirtualBox."
 sidebar: mydoc_sidebar
@@ -91,7 +91,7 @@ To start the installation of Debian Linux, start the before created Debian Linux
 * Inside the *VirtualBox VM* window select the *Graphical install* option.
 * Navigate through the language options (recommended: English - English (United States)).
 * Optionally define a hostname (e.g. debian-vm) and a domain name (e.g. debian-net).
-* Create a root user name and password (note the credentials!) as well as a user name (no root rights) and password.
+* Create a root user name and password (write down the credentials somewhere) as well as a user name (no root rights) and password.
 * Set up the clock.
 * Disk partitioning: Choose the *Guided - use entire disk* option. Click *Continue* (2 times).
 * Select the *All files in one partition (recommended for new users)* option. Click *Continue*.
