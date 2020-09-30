@@ -12,7 +12,7 @@ folder: get-started
 
 {% include note.html content="This page only guides through the installation of TELEMAC-MASCARET. A tutorial page for running a hydro-morphodynamic model with TELEMAC-MASCARET is under construction." %}
 
-## Install Mandatory Prerequisites (Dependencies)
+## Install mandatory Prerequisites (Part 1)
 
 Open TELEMAC-MASCARET requires some software for downloading source files, compiling and running the program.
 
@@ -21,6 +21,7 @@ Mandatory prerequisites are:
 * *Subversion (svn)*
 * GNU Fortran 95 compiler (*gfortran*)
 
+{% include tip.html content="Superuser (`sudo`) rights are required for many actions described in this workflow. Read more about how to set up and grant `sudo` rights for your user account on Debian Linux in the [tutorial for setting up Debian on a VM](vm.html#setupd-debian)." %}
 
 ### Python3
 
@@ -37,9 +38,7 @@ TELEMAC-MASCARET requires the following additional *Python* libraries:
 To install the three libraries, open *Terminal* and type (hit `Enter` after every line):
 
 ```
-su
-  ...password:
-apt-get install python3-numpy python3-scipy python3-matplotlib python3-distutils python3-dev 
+sudo apt-get install python3-numpy python3-scipy python3-matplotlib python3-distutils python3-dev 
 ```
 
 {% include tip.html content="If an error occurred during the installation, install the extended dependencies (includes Qt) with the following command (after `su`): `apt-get install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6`. Then re-try to install the libraries." %}
@@ -99,10 +98,7 @@ After the successful installation, test if the installation went well by typing 
 The Fortran 95 compiler is needed to compile TELEMAC-MASCARET through a *Python3* script, which requires that `gfortran` is installed. The Debian Linux retrieves `gfortran` from the standard package repositories. Thus, to install the Fortran 95 compiler open *Terminal* and type:
 
 ```
-su 
-  password:...
-
-apt-get install gfortran
+sudo apt-get install gfortran
 ```
 
 ***
@@ -110,10 +106,7 @@ apt-get install gfortran
 ***If the installation fails***, add the [buster repository](https://packages.debian.org/buster/gfortran) for *amd64* to the Debian's sources file (`/etc/apt/sources.list`). To open the file, go to *Activities* > *Files* (file container symbol)> *Other Locations* > *etc* > *apt* and right-click in the free space to open *Terminal* (you need to be root). In *Terminal* type:
 
 ```
-su 
-  password:...
-
-editor sources.list
+sudo editor sources.list
 ```
 
 If not defined otherwise, the [GNU nano](https://www.nano-editor.org/) text editor will open. Add the follow following line at the bottom of the file:
@@ -135,11 +128,12 @@ apt-get install gfortran
 
 ### Compilers and other essentials
 
-To enable parallelism, a *C* compiler is required for recognition of the command `cmake` in *Terminal*. Moreover, we will need `build-essential` for building packages and create a comfortable environment for `dialog`ues. [Vim](https://www.vim.org/) is a text editor that we will use for bash file editing. Therefore, open *Terminal* (as root/superuser, i.e., type `su`) and type:
+To enable parallelism, a *C* compiler is required for recognition of the command `cmake` in *Terminal*. Moreover, we will need `build-essential` for building packages and create a comfortable environment for `dialog`ues. [VIM](https://www.vim.org/) is a text editor that we will use for bash file editing. Therefore, open *Terminal* (as root/superuser, i.e., type `su`) and type:
 
 ```
 apt-get install -y cmake build-essential dialog vim
 ```
+
 
 ## Download TELEMAC-MASCARET
 
@@ -153,12 +147,21 @@ This will have downloaded TELEMAC-MASCARET *v8p1r0* to the directory `/home/USER
 
 
 
-## Continue prerequisites (parallelism and compilers)
+## Install recommended Prerequisites (Part 2: Parallelism and Compilers)
 
+This section guides through the installation of additional packages required for parallelism. Make sure that *Terminal* recognizes `gcc`, which should be already included in Debian Linux (verify with `gcc --help`). The proceed through this section to:
+
+* Set up environmental variables for the installation of TELEMAC-MASCARET
+* Install packages for parallelism to enable a substantial acceleration of simulations:
+    + MPI distribution
+    + Metis 5.1.x
+* Output MED Format:
+    + Hdf5
+    + MEDFichier 
 
 ### Setup environmental variables
 
-Environmental variables will help in the following to compile TELEMAC-MASCARET and helper programs. In this section, we will create a `PATH` variable for pointing at the *Python3* scripts and a `SYSTELCFG` variable to define the configuration file to use for compiling TELEMAC-MASCARET. First, verify that the *Python3* scripts are correctly downloaded in  `~/telemac/v8p1/scripts/python3/` and verify that a *systel* config file called `~/telemac/v8p1/configs/systel.debian.cfg` exists.
+Environmental variables will help in the following to compile TELEMAC-MASCARET and helper programs. In this section, we will create a `PATH` variable for pointing at the *Python3* scripts and a `SYSTELCFG` variable to define the configuration file to use for compiling TELEMAC-MASCARET. First, verify that the *Python3* scripts are correctly downloaded in  `~/telemac/v8p1/scripts/python3/` and verify that a *systel* config file called `~/telemac/v8p1/configs/systel.cis-debian.cfg` exists.
 
 Create a new bash file with *Vim* text editor by typing in *Terminal* (as superuser/root `su`)
 
@@ -167,53 +170,35 @@ vim ~/.bashrc
 ```
 
 *Vim* opens in the *Terminal* window and they program may be a little bit confusing in its manipulation. When *Terminal* asks if you want to continue *E*diting, confirm with the `E` key. Then click on the end of the file and enable editing through pressing the `i` key. Now, `-- INSERT --` should be prompted on the bottom of the window. Copy the following lines (`CTRL` + `C` here) and insert the lines by clicking on *Edit* > *Paste*:
+
 ```
 export PATH=~/telemac/v8p1/scripts/python3/:$PATH
-export SYSTELCFG=~/telemac/v8p1/configs/systel.debian.cfg
+export SYSTELCFG=~/telemac/v8p1/configs/systel.cis-debian.cfg
 ```
 
 Press `Esc` to leave the *INSERT* mode and then type `:wq` (the letters are visible on the bottom of the window) to save (write-quit) the file. Hit `Enter` to return to the *Terminal*.
 
-Back in the *Terminal* typ the following to apply the new environmental variables (pointers):
+{% include tip.html content="Here some hints to troubleshoot typical *VIM* problems:<br>***VIM freezes***: Maybe you hit `CTRL` + `S` keys, which is intuitive for *Windows* users to save a file. In Linux, it has a different meaning... to unfreeze the window, simply hit `CTRL` + `Q`<br>***:wq not working***: Maybe you enabled the *easy mode*. Disable *easy mode* by hitting the `CTRL` + `O` keys.<br> Other typical errors may occur if you installed another keyboard layout for a VM guest machine than the host machine uses." %}
+
+Back in the *Terminal* type the following to apply the new environmental variables (pointers):
 
 ```
 source ~/.bashrc
 ```
 
-{% include note.html content="Alternatively you may want to use `systel.ubuntu.cfg` in lieu of `systel.debian.cfg`. In this case, you will need to install `mpich` (`sudo apt-get install mpich`) in lieu of *openMPI* as shown in the following sections to enable parallelism." %}
+{% include note.html content="Alternatively you may want to use `systel.cis-ubuntu.cfg` in lieu of `systel.cis-debian.cfg`. In this case, you will need to install `mpich` (`sudo apt-get install mpich`) in lieu of *openMPI* as shown in the following sections to enable parallelism." %}
 
-
-
-
-CONTINUE
-
-
-
-In addition to *Cmake*, *Metis* also requires `gcc`, which should be already included in Debian Linux (verify with `gcc --help`). 
-Optional prerequisites are:
-
-* For parallelism (substantial acceleration of simulations):
-    + MPI distribution
-    + Metis 5.1.x
-    + *MUMPS (a new parallel solver) - not shown here*
-* Output MED Format:
-    + Hdf5
-    + MEDFichier 
-
-### Parallelism: MPI
+### Parallelism: Install MPI
 
 ***Estimated duration: 5 minutes.***
 
-MPI stands for *Message Passing Interface*, which is a portable message-passing standard. MPI is implemented in many open-source C, C++, and Fortran applications ([read more](https://en.wikipedia.org/wiki/Message_Passing_Interface)). TELEMAC developers recommend to install either *MPICH* or *Open MPI*. Here, we opt for *Open MPI*, which can be installed through the *Terminal*.
+MPI stands for *Message Passing Interface*, which is a portable message-passing standard. MPI is implemented in many open-source C, C++, and Fortran applications ([read more](https://en.wikipedia.org/wiki/Message_Passing_Interface)). TELEMAC developers recommend to install either *MPICH* or *Open MPI*. Here, we opt for *Open MPI*, which can be installed through the *Terminal*:
 
 ```
-su 
-  password:...
-
-apt-get install libopenmpi-dev openmpi-bin
+sudo apt-get install libopenmpi-dev openmpi-bin
 ```
 
-To test if the installation was successful type:
+Test if the installation was successful type:
 
 ```
 mpif90 --help
@@ -221,41 +206,58 @@ mpif90 --help
 
 The *Terminal* should prompt option flags for processing a *gfortran* file. The installation of MPI on Linux is also documented in the [opentelemac wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_mpi).
 
-### Parallelism: Metis
+{% include important.html content="Recall that we will use the config file `systel.cis-debian.cfg`, which includes parallelism compiling options that build on *Open MPI*. Other configuration files (e.g., `systel.cis-ubuntu.cfg`)   use *MPICH* in lieu of *Open MPI*. To use those configuration files, install *MPICH* with `sudo apt-get install mpich`." %}
+
+### Parallelism: Install Metis
 
 ***Estimated duration: 10-15 minutes.***
 
-Metis is a software package for partitioning unstructured graphs, partitioning meshes, and computing fill-reducing orderings of sparse matrices by George Karypis. TELEMAC-MASCARET uses *Metis* as a part of *Partel* to split the mesh in multiple parts for parallel runs. Learn more about metis on the [Karypis Lab website](http://glaros.dtc.umn.edu/gkhome/metis/metis/download) or reading the [PDF manual](http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/manual.pdf).
+Metis is a software package for partitioning unstructured graphs, partitioning meshes, and computing fill-reducing orderings of sparse matrices by George Karypis. TELEMAC-MASCARET uses *Metis* as a part of *Partel* to split the mesh in multiple parts for parallel runs. Learn more about *Metis* and potentially newer versions than `5.1.0` (used in the following) on the [Karypis Lab website](http://glaros.dtc.umn.edu/gkhome/metis/metis/download) or reading the [PDF manual](http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/manual.pdf).
 
-
-
-Then [download Metis 5.1.x](http://glaros.dtc.umn.edu/gkhome/metis/metis/download) from the Karypis Lab's website (University of Minnesota, USA).  Extract the metis source files from the `.tar.gz` archive into a directory of your choice, which corresponds to the `<install_path>`. For example, create a new folder in your Linux *Home* directory and call it `metis`.
-
-{% include note.html content="Alternatively, you can [download the automatic installer](http://opentelemac.org/index.php/download) of the latest version of open TELEMAC-MASCARET (login required), which contains Metis in the sub-folder `/optionals/metis-5.1.0/`. Copy the contents of the latter folder to your `<install_path>` instead of extracting the `.tar.gz` archive from the Karypis Lab website." %}
-
-
-In the following we use a new directory called `/home/deb-user/Telemac/metis/` as `<install_path>`, where the `.tar.gz` archive from the Karypis Lab was extracted using Debian's *Archive Manager* (in *Firefox* download [metis-5.1.0.tar.gz](http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/metis-5.1.0.tar.gz) > *Open With* > *Archive Manager* > select all files > right-click > *Extract* and navigate to `/home/deb-user/Telemac/metis/`).
-
-* Edit the file `<install_path>/include/metis.h`: Find the expression `#define IDXTYPEWIDTH` and replace `32` with `64` (assuming we are on a 64-bit system). Save and close the file.
-* Open the directory `<install_path>` (here: `/home/deb-user/Telemac/metis/` in *Terminal* and type:
+Here, we will install *Metis* from *Terminal* directly in the TELEMAC-MASCARET directory. Download the *Metis* archive and unpack it in a temporary (`temp`) directory. The following code block changes to the `optionals` directory (`cd`) of TELEMAC-MASCARET, creates the `temp` folder with `mkdir`, downloads, and unzips the *Metis* archive (run in *Terminal* as ***normal user*** - ***not as root***): 
 
 ```
-su 
-  password:...
-
-cmake -D CMAKE_INSTALL_PREFIX=/home/deb-user/Telemac/metis/. -DSHARED=TRUE
+cd ~/telemac/v8p1/optionals
+mkdir temp
+cd temp
+wget http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/metis-5.1.0.tar.gz
+gunzip metis-5.1.0.tar.gz
+tar -xvf metis-5.1.0.tar
+cd metis-5.1.0
 ```
 
-* Some warning messages because of the empty `CMAKE_INSTALL_PREFIX` may occur, which you can ignore for the moment.
-* Build *Metis* with the following sequence of commands (still as `su`). Type the commands step-by-step (every command will run for a while):
-
+Open *Metis*' `Makefile` in the *VIM* text editor (the same )
 ```
-make config
-make
-make install
+vim Makefile
 ```
 
-* The installation should run without error message. Verify the successful installation by running:
+In *VIM*, look for the `prefix  = not-set` and the `cc = not-set` definitions. Click in the according lines and press the `i` key to enable editing (recall: `-- INSERT --` will appear at the bottom of the window). Then change both variables to:
+
+```
+prefix = ~/telemac/v8p1/optionals/metis-5.1.0/build/
+cc = gcc
+```
+
+Press `Esc` to leave the *INSERT* mode and then type `:wq` (the letters are visible on the bottom of the window) to save (write-quit) the file. Hit `Enter` to return to the *Terminal*.
+
+Back in *Terminal*, copy the `Makefile` and remove the `temp` folder with the following command sequence (note: you may want to keep the `temp` folder for installing `hdf5` and `med` file libraries):
+
+```
+sudo cp Makefile ~/telemac/v8p1/optionals/metis-5.1.0
+cd ~/telemac/v8p1/optionals/
+rm -rf temp
+```
+
+Change to the final directory where *Metis* will live and compile *Metis*:
+
+```
+cd ~/telemac/v8p1/optionals/metis-5.1.0
+sudo make config
+sudo make
+sudo make install
+```
+
+Verify the successful installation by running:
 
 ```
 mpmetis --help
@@ -268,56 +270,149 @@ The installation of Metis on Linux is also documented in the [opentelemac wiki](
 
 ***Estimated duration: 15-25 minutes (building libraries takes time).***
 
-***HDF5:*** Download the *hdf5* source files as `.tar.gz` archive ([hdf5-1.8.21.tar.gz](https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.21/src/hdf5-1.8.21.tar.gz) from [HDFgroup.org](https://portal.hdfgroup.org/)) and choose *Open with: Archive Manager*. 
+***HDF5*** is a portable file format that incorporates metadata and communicates efficiently with *C/C++* and *Fortan* on small laptops as well as massively parallel systems. The *hdf5* file library is provided by the [HDFgroup.org](https://portal.hdfgroup.org/).
 
-{% include important.html content="Do not try to use any other *hdf5* version because those will not work with the med file library." %}
-
-Extract the archive contents to the `Telemac` directory (e.g., `/home/deb-user/Telemac/hdf5-1.8.21/`). Open the directory in *Terminal* (as root/superuser, i.e., type `su`) and type (line by line - the commands take time to run):
+We will install here version `1.8.21`. Do not try to use any other *hdf5* version because those will not work with the *med file* library (next step). The following code block, creates a `temp` folder with `mkdir` (can be omitted if the folder still exists from the *Metis* installation), downloads, and unzips the *hdf-5-1.8.21* archive (run in *Terminal* as ***normal user*** - ***not as root***): 
 
 ```
-./configure --prefix=/home/deb-user/Telemac/hdf5 --enable-parallel
-make
-make install 
+cd ~/telemac/v8p1/optionals
+mkdir temp
+cd temp
+sudo wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.21/src/hdf5-1.8.21.tar.gz
+sudo gunzip hdf5-1.8.21.tar.gz
+sudo tar -xvf hdf5-1.8.21.tar
+cd hdf5-1.8.21
 ```
 
-The flag `--prefix=/home/deb-user/Telemac/hdf5` determines the installation directory for the *hdf5* library, which we will need in the next step for installing the *med file* library.
+Configure and compile *hdf5*:
+
+```
+sudo ./configure --prefix=/home/USER-NAME/telemac/v8p1/optionals/hdf5 --enable-parallel
+sudo make
+sudo make install 
+```
+
+The flag `--prefix=/home/USER-NAME/telemac/v8p1/optionals/hdf5` determines the installation directory for the *hdf5* library, which we will need in the next step for installing the *med file* library. The absolute directory `/home/USER-NAME/` is required because `--prefix` does not accept a relative path. 
 The installation of *hdf5* on Linux is also documented in the [opentelemac wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_hdf5).
 
-***MED FILE LIBRARY:*** Download the *med file library* from [salome-platform.org](https://salome-platform.org/) as `.tar.gz` archive ([med-3.2.0.tar.gz](http://files.salome-platform.org/Salome/other/med-3.2.0.tar.gz)). Open the archive with *Archive Manager*.
-
-{% include important.html content="Do not try to use any other *med file library* version because those will not work properly with any other *hdf5* file library." %}
-
-The *med file library* requires that *zlib* is installed. To install *zlib* open *Terminal* (as root/superuser, i.e., type `su`) and type:
+***MED FILE LIBRARY:*** The *med file* library is provided by [salome-platform.org](https://salome-platform.org/) and we need to use the file ([med-3.2.0.tar.gz](http://files.salome-platform.org/Salome/other/med-3.2.0.tar.gz) to ensure compatibility with *hdf5*. So do not try to use any other *med file* library version because those will not work properly with any other *hdf5* file library. The *med file* library requires that *zlib* is installed. To install *zlib* open *Terminal* and type:
 
 ```
-apt-cache search zlib | grep -i zlib
-apt-get install zlib1g zlib1g-dbg zlib1g-dev
+sudo apt-cache search zlib | grep -i zlib
+sudo apt-get install zlib1g zlib1g-dbg zlib1g-dev
 ```
 
-Extract the archive contents to the `Telemac` directory (e.g., `/home/deb-user/Telemac/med-3.2.0/`). Make sure that *SWIG* is installed (`apt-get install swig`). Open the directory in *Terminal* (as root/superuser, i.e., type `su`) and type (line by line - the commands take time to run):
+The following command block, switches to the above-created`temp` folder, downloads, and unzips the *med-3.2.0* archive (run in *Terminal* as ***normal user*** - ***not as root***): 
 
 ```
-./configure --with-hdf5=/home/deb-user/Telemac/hdf5 PYTHON_LDFLAGS="-lpython3.7m" --with-swig
-make
-make install 
+cd ~/telemac/v8p1/optionals
+mkdir temp
+cd temp
+wget http://files.salome-platform.org/Salome/other/med-3.2.0.tar.gz
+gunzip med-3.2.0.tar.gz
+tar -xvf med-3.2.0.tar
+cd med-3.2.0.tar
 ```
 
-Make sure to adapt the *Python* version in the above code block (type `python -V`). Only use the first two version counters (e.g. use `3.7` for *Python* `3.7.3`). Also make sure to use the correct installation path of `hdf5` (see above `--prefix=`).
- If you consistently get an error message regarding the *Python* installation, make sure that the developer versions are installed (`apt-get install python3-dev` and `apt-get install python3.7-dev`). In the worst case, *Python* integration for the *med file library* can be bypassed, but this is likely to cause malfunctions later on. To bypass *Python* in the *med file library* replace the first line in the above code block with:
+To compile the *med file* library type:
 
 ```
-./configure --with-hdf5=/home/deb-user/Telemac/hdf5 --disable-python
+./configure --prefix=/home/USER-NAME/telemac/v8p1/optionals/med-3.2.0 --with-hdf5=/home/USER-NAME/telemac/v8p1/optionals/hdf5 --disable-python
+sudo make
+sudo make install 
 ```
 
-{% include note.html content="The flag `--width-hdf5` tells the med library where it can find the *hdf5* library. Thus, adapt `/home/deb-user/Telemac/hdf5` to your local `<install_path>` of the *hdf5* library." %}
+The flag `--prefix` sets the installation directory and `--width-hdf5` tells the med library where it can find the *hdf5* library. Thus, adapt `/home/USER-NAME/telemac/v8p1/optionals/hdf5` to your local `<install_path>` of the *hdf5* library. Both flags to not accept relative paths (`~/telemac/...`), and therefore, we need to use the absolute paths (`home/USER-NAME/telemac/...`)
+
+{% include note.html content="We need to disable *Python* for the *med file* library because this feature would require *SWIG* version 2.0 and it is not compatible with the current versions of *SWIG* (4.x). Because *SWIG* has no full backward compatibility, the only option we have is to disable *Python* integrity for the *med file* library. Otherwise, *Python* integrity could be implemented by installing *Python* developer kits (`sudo apt-get install python3-dev` and `sudo apt-get install python3.7-dev`) and using the configuration `./configure --with-hdf5=/home/USER-NAME/Telemac/hdf5 PYTHON_LDFLAGS='-lpython3.7m' --with-swig=yes`. To find out what version of *Python* is installed, type `python -V`." %} 
 
 
-The installation of the *med file library* on Linux is also documented in the [opentelemac wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_med).
+The installation of the *med file* library on Linux is also documented in the [opentelemac wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_med).
+
+{% include tip.html content="If you consistently get ***permission denied*** messages, unlock all read and write rights for the `telemac` directory with the following command: `sudo -R 777  /home/USER-NAME/telemac` (replace `USER-NAME` with the user for whom `telemac` is installed)." %}
 
 ## Compile TELEMAC-MASCARET
 
+### Adapt and Verify Configuration File (systel.*.cfg)
+
+The configuration file will tell the compiler how flags are defined and where optional software lives. Here, we use the configuration file `systel.cis-debian.cfg`, which lives in `~/telemac/v8p1/configs/`. In particular, we are interested in the following section of the file:
+
+```
+# _____                          ___________________________________
+# ____/ Debian gfortran openMPI /__________________________________/
+[debgfopenmpi]
+#
+par_cmdexec:   <config>/partel < PARTEL.PAR >> <partel.log>
+#
+mpi_cmdexec:   /usr/bin/mpiexec -wdir <wdir> -n <ncsize> <exename>
+mpi_hosts:
+#
+cmd_obj:    /usr/bin/mpif90 -c -O3 -DHAVE_MPI -fconvert=big-endian -frecord-marker=4 <mods> <incs> <f95name>
+cmd_lib:    ar cru <libname> <objs>
+cmd_exe:    /usr/bin/mpif90 -fconvert=big-endian -frecord-marker=4 -lpthread -v -lm -o <exename> <objs> <libs>
+#
+mods_all:   -I <config>
+#
+libs_all:    /usr/lib64/openmpi/lib/libmpi.so.0.0.2 /home/telemac/metis-5.1.0/build/Linux-x86_64/libmetis/libmetis.a
+```
+
+Verify where the following libraries live on your system (use *Terminal* and `cd` + `ls` commands or Debian's *File* browser):
+* *Metis* (something like `~/telemac/v8p1/optionals/metis-5.1.0/build/Linux-x86_64/libmetis/libmetis.a`)
+* *Open MPI* (something like `/usr/lib/x86_64-linux-gnu/openmpi/libmpi.so.40.10.3`)
+* *mpiexec* (`/usr/bin/mpiexec`)
+* *mpif90* (`/usr/bin/mpif90`)
+* `~/telemac/metis-5.1.0/build/Linux-x86_64/libmetis/libmetis.a`
+
+Open the configuration file in *VIM*:
+
+```
+cd ~/telemac/configs
+vim systel.cis-debian.cfg
+```
+
+Make the following adaptations in `systel.cis-debian.cfg` as a function of where you found the *Metis* and *Open MPI* libraries:
+
+* Search for *metis* in `libs_all` and adapt all *metis*-related directories to `/home/USER-NAME/telemac/v8p1/optionals/metis-5.1.0/build/Linux-x86_64/libmetis/libmetis.a` (i.e., adapt the absolute directory and the *Metis* version to `5.1.0`). 
+* Search for *openmpi* in `libs_all` and correct the library file to `/usr/lib/x86_64-linux-gnu/openmpi/libmpi.so.40.10.3`
+* Search for `cmd_obj:` definitions and add `-cpp` in front of the `-c` flags. For example:
+```
+cmd_obj:    /usr/bin/mpif90 -cpp -c -O3 -DHAVE_MPI -fconvert=big-endian -frecord-marker=4 <mods> <incs> <f95name>
+```
+
+{% include tip.html content="To facilitate setting up the `systel` file, we provide a template on our group repository ([download](https://raw.githubusercontent.com/Ecohydraulics/telemac-install-helpers/master/debian/systel.cis-debian.cfg)). Make sure to verify the above-described directories and replace the user name `ssc-deb` with your local user name in the provided `systel.cis-debian.cfg` file." %}
+
+### Setup *Python* source file
+The *Python* source file lives in `~/telemac/v8p1/configs` and there is a template available called `pysource.openmpi.sh`.
+
+{% include tip.html content="To facilitate setting up the `pysource` file, we provide a template on our group repository ([download](https://raw.githubusercontent.com/Ecohydraulics/telemac-install-helpers/master/debian/pysource.openmpi.sh)). Make sure to verify all directories set in the provided `pysource.openmpi.sh` file and replace the user name `ssc-deb` with your local user name." %}
+
+### Compile
+
+```
+source pysource.openmpi.sh
+config.py
+```
+
+If `config.py` runs successfully, launch the compilers with the `--clean` flag to avoid any interference with earlier installations:
+
+```
+compile_telemac.py --clean
+```
 
 ## Test TELEMAC MASCARET
 
+
+## Software for Pre- and Post-processing
+
+### QGIS
+
+*QGIS* is a powerful tool for viewing, creating and editing geospatial data that can be useful in Pre- and post-processing. Detailed installation guidelines are provided on the [Geospatial (GIS) page on this website](geo_software.html). The short path to install *QGIS* on Debian Linux is via *Terminal*:
+
+```
+sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
+sudo apt-get update && sudo apt-get install -y qgis python-qgis qgis-plugin
+```
+
+### Blue Kenue
 
 

@@ -20,6 +20,14 @@ In general, keep the system clean after updating it through typing in *Terminal*
 ```
 apt-get clean
 apt-get autoclean
+apt-get autoremove
+apt-get autoremove --purge
+```
+
+Subversion (*SVN*) repositories may also contain old and unnecessary chunks, which can be removed (e.g., from a local TELEMAC-MASCARET repository) with (the second argument is the *SVN* directory):
+
+```
+svn cleanup ~/telemac/v8p1 --non-interactive
 ```
 
 If the root partition of the virtual disk is running out of space, Debian prompts a warning message *Root drive is running out of disk space [...]*. There are many ways described for freeing up space through the deletion of obsolete or unnecessary packages, but this problem may occur even though only absolutely necessary packages are installed on a too small virtual disk.
@@ -48,3 +56,36 @@ Increasing the virtual disk space alone is not sufficient, because the free disk
 ### Keep system and software up to date
 
 Read more on the [developer's website]()https://www.debian.org/doc/manuals/debian-faq/uptodate.en.html).
+
+### Permission denied messages
+
+***Permission denied*** messages may occur because of the fail-safe design of Debian, but denied read and write rights may quickly become annoying, in particular if you need to switch between normal and superuser accounts for installing software packages.
+
+This is how you can unlock all read and write rights for a directory:
+
+```
+sudo chmod a+rwx /directory
+```
+
+Or for all subdirectories:
+
+```
+sudo chmod a+rwx /directory/*
+```
+
+Or for all files in a directory:
+
+```
+sudo chmod a+rwx /directory/*.*
+```
+
+Or for all subdirectories and files in these directories:
+```
+sudo chmod a+rwx /directory/*/*.*
+```
+
+And this lifts all restrictions from a directory, all its sub-folders and files contained (and sub-sub-folders and sub-sub-files contained, and so on):
+
+```
+sudo chmod -R 777 /directory/
+```

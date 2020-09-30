@@ -107,7 +107,7 @@ To start the installation of Debian Linux, start the before created Debian Linux
 
 Once the VM is shut down, re-open the VM *Settings* (from *VirtualBox Manager* window) and go to the *Storage* tab. Verify that there is again an *Empty* disk symbol in the *Controller: IDE* field.
 
-### Setup Debian Linux
+### Setup Debian Linux {#setup-debian}
 
 ***Estimated duration: 15 minutes.***
 
