@@ -2,7 +2,7 @@
 title: open TELEMAC-MASCARET (Installation)
 tags: [telemac, linux, numerical, modelling, install, vm]
 keywords: Virtual, machine, TELEMAC-MASCARET
-summary: "Install the numerical modelling tool TELEMAC-MASCARET on Debian Linux."
+summary: "A step-by-step workflow for installing the numerical modelling software TELEMAC-MASCARET on Debian Linux."
 sidebar: mydoc_sidebar
 permalink: install-telemac.html
 folder: get-started
@@ -14,7 +14,7 @@ folder: get-started
 
 ## Install mandatory Prerequisites (Part 1)
 
-Open TELEMAC-MASCARET requires some software for downloading source files, compiling and running the program.
+Open TELEMAC-MASCARET requires some software for downloading source files, compiling, and running the program.
 
 Mandatory prerequisites are:
 * *Python* (use *Python3* in the latest releases)
@@ -151,7 +151,6 @@ This will have downloaded TELEMAC-MASCARET *v8p1r0* to the directory `/home/USER
 
 This section guides through the installation of additional packages required for parallelism. Make sure that *Terminal* recognizes `gcc`, which should be already included in Debian Linux (verify with `gcc --help`). The proceed through this section to:
 
-* Set up environmental variables for the installation of TELEMAC-MASCARET
 * Install packages for parallelism to enable a substantial acceleration of simulations:
     + MPI distribution
     + Metis 5.1.x
@@ -159,40 +158,11 @@ This section guides through the installation of additional packages required for
     + Hdf5
     + MEDFichier 
 
-### Setup environmental variables
-
-Environmental variables will help in the following to compile TELEMAC-MASCARET and helper programs. In this section, we will create a `PATH` variable for pointing at the *Python3* scripts and a `SYSTELCFG` variable to define the configuration file to use for compiling TELEMAC-MASCARET. First, verify that the *Python3* scripts are correctly downloaded in  `~/telemac/v8p1/scripts/python3/` and verify that a *systel* config file called `~/telemac/v8p1/configs/systel.cis-debian.cfg` exists.
-
-Create a new bash file with *Vim* text editor by typing in *Terminal* (as superuser/root `su`)
-
-```
-vim ~/.bashrc
-```
-
-*Vim* opens in the *Terminal* window and they program may be a little bit confusing in its manipulation. When *Terminal* asks if you want to continue *E*diting, confirm with the `E` key. Then click on the end of the file and enable editing through pressing the `i` key. Now, `-- INSERT --` should be prompted on the bottom of the window. Copy the following lines (`CTRL` + `C` here) and insert the lines by clicking on *Edit* > *Paste*:
-
-```
-export PATH=~/telemac/v8p1/scripts/python3/:$PATH
-export SYSTELCFG=~/telemac/v8p1/configs/systel.cis-debian.cfg
-```
-
-Press `Esc` to leave the *INSERT* mode and then type `:wq` (the letters are visible on the bottom of the window) to save (write-quit) the file. Hit `Enter` to return to the *Terminal*.
-
-{% include tip.html content="Here some hints to troubleshoot typical *VIM* problems:<br>***VIM freezes***: Maybe you hit `CTRL` + `S` keys, which is intuitive for *Windows* users to save a file. In Linux, it has a different meaning... to unfreeze the window, simply hit `CTRL` + `Q`<br>***:wq not working***: Maybe you enabled the *easy mode*. Disable *easy mode* by hitting the `CTRL` + `O` keys.<br> Other typical errors may occur if you installed another keyboard layout for a VM guest machine than the host machine uses." %}
-
-Back in the *Terminal* type the following to apply the new environmental variables (pointers):
-
-```
-source ~/.bashrc
-```
-
-{% include note.html content="Alternatively you may want to use `systel.cis-ubuntu.cfg` in lieu of `systel.cis-debian.cfg`. In this case, you will need to install `mpich` (`sudo apt-get install mpich`) in lieu of *openMPI* as shown in the following sections to enable parallelism." %}
-
 ### Parallelism: Install MPI
 
 ***Estimated duration: 5 minutes.***
 
-MPI stands for *Message Passing Interface*, which is a portable message-passing standard. MPI is implemented in many open-source C, C++, and Fortran applications ([read more](https://en.wikipedia.org/wiki/Message_Passing_Interface)). TELEMAC developers recommend to install either *MPICH* or *Open MPI*. Here, we opt for *Open MPI*, which can be installed through the *Terminal*:
+MPI stands for *Message Passing Interface*, which is a portable message-passing standard. MPI is implemented in many open-source C, C++, and Fortran applications ([read more](https://en.wikipedia.org/wiki/Message_Passing_Interface)). TELEMAC developers recommend installing either *MPICH* or *Open MPI*. Here, we opt for *Open MPI*, which can be installed through the *Terminal*:
 
 ```
 sudo apt-get install libopenmpi-dev openmpi-bin
@@ -206,7 +176,7 @@ mpif90 --help
 
 The *Terminal* should prompt option flags for processing a *gfortran* file. The installation of MPI on Linux is also documented in the [opentelemac wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_mpi).
 
-{% include important.html content="Recall that we will use the config file `systel.cis-debian.cfg`, which includes parallelism compiling options that build on *Open MPI*. Other configuration files (e.g., `systel.cis-ubuntu.cfg`)   use *MPICH* in lieu of *Open MPI*. To use those configuration files, install *MPICH* with `sudo apt-get install mpich`." %}
+{% include important.html content="In this tutorial, we will use the configuration file `systel.cis-debian.cfg`, which includes parallelism compiling options that build on *Open MPI*. Other configuration files (e.g., `systel.cis-ubuntu.cfg`) use *MPICH* in lieu of *Open MPI*. To use those configuration files, install *MPICH* with `sudo apt-get install mpich`." %}
 
 ### Parallelism: Install Metis
 
@@ -226,12 +196,13 @@ tar -xvf metis-5.1.0.tar
 cd metis-5.1.0
 ```
 
-Open *Metis*' `Makefile` in the *VIM* text editor (the same )
+Open *Metis*' `Makefile` in the *VIM* text editor (installed earlier through `sudo apt-get install vim`):
+
 ```
 vim Makefile
 ```
 
-In *VIM*, look for the `prefix  = not-set` and the `cc = not-set` definitions. Click in the according lines and press the `i` key to enable editing (recall: `-- INSERT --` will appear at the bottom of the window). Then change both variables to:
+*VIM* opens in the *Terminal* window and the program may be a little bit confusing to use for someone who is used to *Windows* or *mac OS*. Right at the beginning, *VIM*/*Terminal* asks if you want to continue *E*diting. Confirm with the `E` key. Then click in the file and enable editing through pressing the `i` key. Now, `-- INSERT --` should be prompted on the bottom of the window. Look for the `prefix  = not-set` and the `cc = not-set` definitions. Click in the according lines and press the `i` key to enable editing (recall: `-- INSERT --` will appear at the bottom of the window). Then change both variables to:
 
 ```
 prefix = ~/telemac/v8p1/optionals/metis-5.1.0/build/
@@ -239,6 +210,8 @@ cc = gcc
 ```
 
 Press `Esc` to leave the *INSERT* mode and then type `:wq` (the letters are visible on the bottom of the window) to save (write-quit) the file. Hit `Enter` to return to the *Terminal*.
+
+{% include tip.html content="Here some hints to troubleshoot typical *VIM* problems:<br>***VIM freezes***: Maybe you hit `CTRL` + `S` keys, which is intuitive for *Windows* users to save a file. In Linux, it has a different meaning... to unfreeze the window, simply hit `CTRL` + `Q`<br>***:wq not working***: Maybe you enabled the *easy mode*. Disable *easy mode* by hitting the `CTRL` + `O` keys.<br> Other typical errors may occur if you installed another keyboard layout for a VM guest machine than the host machine uses." %}
 
 Back in *Terminal*, copy the `Makefile` and remove the `temp` folder with the following command sequence (note: you may want to keep the `temp` folder for installing `hdf5` and `med` file libraries):
 
@@ -272,7 +245,7 @@ The installation of Metis on Linux is also documented in the [opentelemac wiki](
 
 ***HDF5*** is a portable file format that incorporates metadata and communicates efficiently with *C/C++* and *Fortan* on small laptops as well as massively parallel systems. The *hdf5* file library is provided by the [HDFgroup.org](https://portal.hdfgroup.org/).
 
-We will install here version `1.8.21`. Do not try to use any other *hdf5* version because those will not work with the *med file* library (next step). The following code block, creates a `temp` folder with `mkdir` (can be omitted if the folder still exists from the *Metis* installation), downloads, and unzips the *hdf-5-1.8.21* archive (run in *Terminal* as ***normal user*** - ***not as root***): 
+We will install here version `1.8.21`. Do not try to use any other *hdf5* version because those will not work with the *med file* library (next step). The following code block creates a `temp` folder with `mkdir` (can be omitted if the folder still exists from the *Metis* installation), downloads, and unzips the *hdf-5-1.8.21* archive (run in *Terminal* as ***normal user*** - ***not as root***): 
 
 ```
 cd ~/telemac/v8p1/optionals
@@ -335,6 +308,8 @@ The installation of the *med file* library on Linux is also documented in the [o
 
 ### Adapt and Verify Configuration File (systel.*.cfg)
 
+***Estimated duration: 15-20 minutes.***
+
 The configuration file will tell the compiler how flags are defined and where optional software lives. Here, we use the configuration file `systel.cis-debian.cfg`, which lives in `~/telemac/v8p1/configs/`. In particular, we are interested in the following section of the file:
 
 ```
@@ -356,21 +331,21 @@ mods_all:   -I <config>
 libs_all:    /usr/lib64/openmpi/lib/libmpi.so.0.0.2 /home/telemac/metis-5.1.0/build/Linux-x86_64/libmetis/libmetis.a
 ```
 
-Verify where the following libraries live on your system (use *Terminal* and `cd` + `ls` commands or Debian's *File* browser):
+The configuration file contains other configurations such as a *scalar* or a *debug* configuration for compiling TELEMAC-MASCARET. Here, we only use the *Debian gfortran open MPI* section that has the configuration name `[debgfopenmpi]`. To verify if this section if correctly defined, check where the following libraries live on your system (use *Terminal* and `cd` + `ls` commands or Debian's *File* browser):
+
 * *Metis* (something like `~/telemac/v8p1/optionals/metis-5.1.0/build/Linux-x86_64/libmetis/libmetis.a`)
 * *Open MPI* (something like `/usr/lib/x86_64-linux-gnu/openmpi/libmpi.so.40.10.3`)
 * *mpiexec* (`/usr/bin/mpiexec`)
 * *mpif90* (`/usr/bin/mpif90`)
-* `~/telemac/metis-5.1.0/build/Linux-x86_64/libmetis/libmetis.a`
 
-Open the configuration file in *VIM*:
+Then open the configuration file in *VIM* to verify and adapt the *Debian gfortran open MPI* section:
 
 ```
-cd ~/telemac/configs
+cd ~/telemac/v8p1/configs
 vim systel.cis-debian.cfg
 ```
 
-Make the following adaptations in `systel.cis-debian.cfg` as a function of where you found the *Metis* and *Open MPI* libraries:
+Make the following adaptations in *Debian gfortran open MPI* section as a function of where you found the *Metis* and *Open MPI* libraries:
 
 * Search for *metis* in `libs_all` and adapt all *metis*-related directories to `/home/USER-NAME/telemac/v8p1/optionals/metis-5.1.0/build/Linux-x86_64/libmetis/libmetis.a` (i.e., adapt the absolute directory and the *Metis* version to `5.1.0`). 
 * Search for *openmpi* in `libs_all` and correct the library file to `/usr/lib/x86_64-linux-gnu/openmpi/libmpi.so.40.10.3`
@@ -382,27 +357,131 @@ cmd_obj:    /usr/bin/mpif90 -cpp -c -O3 -DHAVE_MPI -fconvert=big-endian -frecord
 {% include tip.html content="To facilitate setting up the `systel` file, we provide a template on our group repository ([download](https://raw.githubusercontent.com/Ecohydraulics/telemac-install-helpers/master/debian/systel.cis-debian.cfg)). Make sure to verify the above-described directories and replace the user name `ssc-deb` with your local user name in the provided `systel.cis-debian.cfg` file." %}
 
 ### Setup *Python* source file
-The *Python* source file lives in `~/telemac/v8p1/configs` and there is a template available called `pysource.openmpi.sh`.
+
+***Estimated duration: 15-20 minutes.***
+
+The *Python* source file lives in `~/telemac/v8p1/configs`, where there is also a template available called `pysource.template.sh`. Here, we will use the template to create our own *Python* source file called `pysource.openmpi.sh` tailored for compiling the parallel version of TELEMAC-MASCARET on Debian Linux with the *Open MPI* library. The *Python* source file starts with the definition of the following variables:
+
+* `HOMETEL`: The path to the `telemac/VERSION` folder (`<root>`).
+* `SYSTELCFG`: The path to the above-modified configuration file  (`systel.cis-debian.cfg`) relative to `HOMETEL`.
+* `USETELCFG`: The name of the configuration to be used (`debgfopenmpi`). Configurations enabled are defined in the `systel.*.cfg` file, in the brackets (`[debgfopenmpi]`) directly below the header of every configuration section. 
+* `SOURCEFILE`: The path to this file and its name relative to `HOMETEL`.
+
+More definitions are required to define Telemac's *Application Programming Interface* (*API*), (parallel) compilers to build Telemac with *Open MPI*, and external libraries located in the `optionals` folder. The following code block shows how the *Python* source file `pysource.openmpi.sh` should look like. Make sure to **verify every directory on your local file system**, use your *USER-NAME*, and take your time to get all directories right, without typos (critical task).
+
+```
+### TELEMAC settings -----------------------------------------------------------
+###
+# Path to Telemac s root dir
+export HOMETEL=/home/USER-NAME/telemac/v8p1
+# Add Python scripts to PATH
+export PATH=$HOMETEL/scripts/python3:.:$PATH
+# Configuration file
+export SYSTELCFG=$HOMETEL/configs/systel.cis-debian.cfg
+# Name of the configuration to use
+export USETELCFG=debgfopenmpi
+# Path to this Python source file
+export SOURCEFILE=$HOMETEL/configs/pysource.openmpi.sh
+# Force python to flush its output
+export PYTHONUNBUFFERED='true'
+### API
+export PYTHONPATH=$HOMETEL/scripts/python3:$PYTHONPATH
+export LD_LIBRARY_PATH=$HOMETEL/builds/$USETELCFG/wrap_api/lib:$LD_LIBRARY_PATH
+export PYTHONPATH=$HOMETEL/builds/$USETELCFG/wrap_api/lib:$PYTHONPATH
+###
+### COMPILERS -----------------------------------------------------
+export SYSTEL=$HOMETEL/optionals
+### MPI -----------------------------------------------------------
+export MPIHOME=/usr/bin/mpifort.mpich
+export PATH=lib/x86_64-linux-gnu/openmpi:$PATH
+export LD_LIBRARY_PATH=$PATH/lib:$LD_LIBRARY_PATH
+###
+### EXTERNAL LIBRARIES ---------------------------------------------
+### HDF5 -----------------------------------------------------------
+export HDF5HOME=$SYSTEL/hdf5
+export LD_LIBRARY_PATH=$HDF5HOME/lib:$LD_LIBRARY_PATH
+export LD_RUN_PATH=$HDF5HOME/lib:$MEDHOME/lib:$LD_RUN_PATH
+### MED  -----------------------------------------------------------
+export MEDHOME=$SYSTEL/med-3.2.0
+export LD_LIBRARY_PATH=$MEDHOME/lib:$LD_LIBRARY_PATH
+export PATH=$MEDHOME/bin:$PATH
+### METIS -------------------------------------------------------------
+export METISHOME=$SYSTEL/metis-5.1.0/build/Linux-x86_64/
+export LD_LIBRARY_PATH=$METISHOME/libmetis:$LD_LIBRARY_PATH
+```
 
 {% include tip.html content="To facilitate setting up the `pysource` file, we provide a template on our group repository ([download](https://raw.githubusercontent.com/Ecohydraulics/telemac-install-helpers/master/debian/pysource.openmpi.sh)). Make sure to verify all directories set in the provided `pysource.openmpi.sh` file and replace the user name `ssc-deb` with your local user name." %}
 
 ### Compile
+
+***Estimated duration: 20-30 minutes (compiling takes time).***
+
+The compiler is called through *Python* and the above-created bash script (*Python* source file). So the *Python* source file `pysource.openmpi.sh` knows where helper programs, and libraries are located, and it knows the configuration to be used. Therefore, compiling TELEMAC-MASCARET with the *Python* source file becomes an easy task in *Terminal*. First, load the *Python* source file `pysource.openmpi.sh` as source in *Terminal*, and then, test if it is correctly configured by running `config.py`:
 
 ```
 source pysource.openmpi.sh
 config.py
 ```
 
-If `config.py` runs successfully, launch the compilers with the `--clean` flag to avoid any interference with earlier installations:
+Running `config.py` should produce a character-based image in *Terminal* and end with `My work is done`. If that is not the case and error messages occur, *attentively read the error messages* to identify the issue (e.g., there might be a typo in a directory or file name, or a misplaced character somewhere in `pysource.openmpi.sh` or `systel.cis-debian.cfg`). 
+When `config.py` ran successfully, start compiling TELEMAC-MASCARET with the `--clean` flag to avoid any interference with earlier installations:
 
 ```
 compile_telemac.py --clean
 ```
 
-## Test TELEMAC MASCARET
+The compilation should run for a while (can take more than 30 minutes) and successfully end with the phrase `My work is done`.
+
+{% include tip.html content="If an error occurred in the compiling process, traceback error messages and identify the component that did not work. Revise setting up the concerned component in this workflow very thoroughly. Do not try to re-invent the wheel - the most likely problem is a tiny little detail in the files that you created on your own. Troubleshooting may be a tough task, in particular, because you need to put into question your own work." %}
+
+### Test TELEMAC-MASCARET
+
+To test if TELEMAC-MASCARET works, use a pre-defined case from the provided `examples` folder:
+
+```
+cd ~/telemac/v8p1/examples/telemac2d/gouttedo
+telemac2d.py t2d_gouttedo.cas
+``` 
+
+TELEMAC-MASCARET should startup, run the example case, and again end with the phrase `My work is done`.
+
+{% include tip.html content="If you interrupted the *Terminal* session and get an error message such as *No such file or directory*, you may need to re-define (re-load) the *Python* source file: In *Terminal* go (`cd`) to `~/telemac/v8p1/configs`, type `source pysource.openmpi.sh`, and then go back to the `examples` folder to re-run the example." %}
 
 
 ## Software for Pre- and Post-processing
+
+### Blue Kenue<sup>TM</sup>
+
+[*Blue Kenue<sup>TM</sup>*](https://nrc.canada.ca/en/research-development/products-services/software-applications/blue-kenuetm-software-tool-hydraulic-modellers) is a pre- and post-processing software provided by the [National Research Council Canada](https://nrc.canada.ca/en), which is compatible with TELEMAC-MASCARET. It provides similar functions as the [*Fudaa*](http://www.opentelemac.org/index.php/latest-news-development-and-distribution/240-fudaa-mascaret-3-6) software featured by the TELEMAC-MASCARET developers and additionally comes with a powerful mesh generator. It is in particular for the mesh generator that you want to install *Blue Kenue<sup>TM</sup>*. The only drawback is that *Blue Kenue<sup>TM</sup>* is designed for *Windows. So there are two options for installing *Blue Kenue<sup>TM</sup>*:
+
+1. TELEMAC-MASCARET is running on a Debian Linux VM and your host system is *Windows*:<br>[Download](http://www.opentelemac.org/index.php/assistance/forum5/blue-kenue) and install *Blue Kenue<sup>TM</sup>* on your host system and use the [shared folder](vm.html#share) of the VM to transfer mesh files.
+1. Install [*Wine*](https://wiki.debian.org/Wine) (compatibility layer in *Linux* that enables running *Windows* applications) on Debian Linux and install *Blue Kenue<sup>TM</sup>* through *Wine* on Debian Linux.
+
+The following paragraphs provide guidance for the latter option to install *Blue Kenue<sup>TM</sup>* through *Wine* on Debian Linux (*amd64*). On such a 64-bit architecture, we need to enable a 32-bit architecture for multiarch (do not worry if you do not totally understand this phrase or [read more](https://wiki.debian.org/Wine)) through running `sudo dpkg --add-architecture i386 && sudo apt update`. Then, we can install *Wine* with its full functionality using `sudo apt install ...`. So open *Terminal* and run:   
+
+```
+sudo dpkg --add-architecture i386 && sudo apt update
+sudo apt install wine wine32 wine64 libwine libwine:i386 fonts-wine
+``` 
+
+The Canadian Hydrological Model Stewardship (CHyMS) provides guidance on how to install *Blue Kenue<sup>TM</sup>* on Linux. Their server repository is [https://chyms.nrc.gc.ca](https://chyms.nrc.gc.ca) and to access the server use:
+
+* User name: `Public.User`
+* Password: `anonymous`
+
+The particular guidance is provided on the [FAQ](https://chyms.nrc.gc.ca/docs/FAQ.html) page in the troubleshooting section ([direct link to *how to run blue Kenue on another operating system](https://chyms.nrc.gc.ca/docs/FAQ.html#troubleshooting-how-run-on-another-os)). Here are the relevant steps from the websites:
+
+* Download the *Blue Kenue<sup>TM</sup>* `.msi` installer from the [developer's website](https://nrc.canada.ca/en/research-development/products-services/software-applications/blue-kenuetm-software-tool-hydraulic-modellers) (follow the instructions on the website).
+*  Install *Blue Kenue<sup>TM</sup>* by using the *Wine*'s `wine control` command (more information at [https://wiki.winehq.org/Control](https://wiki.winehq.org/Control)).
+* After running `sudo wine control` in *Terminal*, a windows-like window opens.
+* Click on the *Add/Remove...* button in the window, which opens up another window (*Add/Remove Programs*).
+* Click on the *Install...* button and select the downloaded `.msi` installer for *Blue Kenue<sup>TM</sup>*.
+* Follow the instructions to install *Blue Kenue<sup>TM</sup>*. After the successful installation, create a *Blue Kenue<sup>TM</sup>* desktop icon should appear.
+* To run *Blue Kenue<sup>TM</sup>* click on the *Blue Kenue<sup>TM</sup>* desktop icon or run the following: wine /path-to-exe/BlueKenue64.exe
+* For offline systems (systems without an internet connection),  run *Blue Kenue<sup>TM</sup>*  the following command to start Blue Kenue: /path-to-wine-built/bin/wine64 /path-to-exe/BlueKenue64.exe
+* In this case, the Desktop Icon may not work but it can be modified to use the command above. 
+
+<!-- Everything should work at this point. However, for JB Saulnier, he had some loading issues with NVIDIA GL libraries that were particular to his hardware that needed to be sorted out. -->
 
 ### QGIS
 
@@ -412,7 +491,3 @@ compile_telemac.py --clean
 sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
 sudo apt-get update && sudo apt-get install -y qgis python-qgis qgis-plugin
 ```
-
-### Blue Kenue
-
-

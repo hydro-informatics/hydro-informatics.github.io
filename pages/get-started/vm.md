@@ -184,7 +184,7 @@ The GNOME *Terminal* is one of the most important features, event though it opti
 *Terminal* runs many powerful native Linux (UNIX) commands, which is the most robust way to install and execute features. There are a couple of tutorials for learning to use *Terminal* and one of the most comprehensive is provided on the *Linux Ubuntu* website (Ubuntu is based on Debian Linux). It is highly recommended to go through the [tutorial provided by the Ubuntu community](https://ubuntu.com/tutorials/command-line-for-beginners) (*estimated duration: 51 minutes*), for better understanding some contents presented here on *hydro-informatics.github.io*. In particular, memorize the commands `cd` (change directory), `su`/`sudo` (superuser), `ls` (listen) and `mkdir` (make directory).
 
 
-### Enable folder sharing
+### Enable folder sharing {#share}
 
 ***Estimated duration: 5-10 minutes.***
 
