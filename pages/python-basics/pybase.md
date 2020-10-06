@@ -10,17 +10,17 @@ folder: python-basics
 
 ## Launch Python environment
 
-These pages are written with [*Jupyter Lab*](https://jupyter.org/) <img style="max-width:10px;" src="https://jupyter.org/assets/main-logo.svg">. *Jupyter* notebooks (`.ipynb`) are great to explore an explain *Python*, but if you want to build more complex code, other *IDE*s may be more suitable. [Anaconda](hy_ide.html#anaconda) provides both the pluged-in installation of [*Jupyter Lab*](https://jupyter.org/) and [*PyCharm*](hy_ide.html#anaconda). For the best learning experience use both environments as follows:
+These pages are written with [*JupyterLab*](https://jupyter.org/) <img style="max-width:10px;" src="https://jupyter.org/assets/main-logo.svg">. *Jupyter* notebooks (`.ipynb`) are great to explore *Python*, but other *IDE*s may be more suitable for complex code. [Anaconda](hy_ide.html#anaconda) provides both the pluged-in installation of [*Jupyter Lab*](https://jupyter.org/) and [*PyCharm*](hy_ide.html#anaconda) for guided coding of complex code. For the best learning experience use:
 
-* *Jupyter Lab* to follow course contents, inline exercises, and to produce own online material (mix of *Python* code and *markdown* text)
-* *PyCharm* to accomplish assignments and project work (object-oriented code mainly)
+* *JupyterLab* to follow course contents and inline exercises.
+* *PyCharm* to accomplish exercises and project work (object-oriented code mainly).
 
 
 {% include tip.html content="The setup of the [*PyCharm IDE*](hy_ide.html#ide) is explained on the [*Install Python*](hypy_install.html#ide-setup) pages." %}
 
 ## The first lines of code
 
-The examples in the first steps revolve around ice cream to illustrate the utility of presented code blocks. So if you do not like ice cream, just replace it with another category of things ...
+The examples in the first steps revolve around ice cream to illustrate the utility of presented code blocks. If you are not a fan of ice cream, replace it, for example, with your favorite food category.
 
 To start, let's get the very first "feedback" from the *Python* console by typing:
 
@@ -29,25 +29,24 @@ To start, let's get the very first "feedback" from the *Python* console by typin
 print("This is an ice cream callback.")
 ```
 
-In order to run the above `print`command in *Jupyter Lab*, just click in the above box, then click on the run (triangle) button in the top menu.
+To run the above `print` command in *JupyterLab*, just click in the above box, then click on the run (triangle) button in the top menu.
 
-In order to run a print command in *PyCharm*:
-* Expand the project branch (if not yet done: on left side of the window)
+In order to run a `print` command in *PyCharm*:
+* Expand the project branch (if not yet done: on the left side of the window)
 * Right-click in the project folder, select `New` > `Python File` and name the new *Python* (`.py`) file (e.g., `icecream_tutorial.py`). 
 * Copy the above `print("...")` code into the new Python file and save it.
-* Right-click in the Python file, then `Run icecream_tutorial.py` (alternatively: press the `Ctrl` + `Shift` + `F10`keys).
-* Now, the *Python Console* should pop up at the bottom of the window and it will print the text in the above `print`command.
+* Right-click in the *Python* file, then *Run icecream_tutorial.py* (alternatively: press the `Ctrl` + `Shift` + `F10` keys).
+* Now, the *Python Console* should pop up at the bottom of the window and it will *print* the text.
 
-{% include note.html content="In the following, there will not be anymore the differentiation between using *PyCharm* (or any other *IDE*) and *Jupyter Lab*. Thus, **Run the script** means: run the script in your favorite *IDE* in the following." %}
+{% include note.html content="In the following, there will not be anymore the differentiation between using *PyCharm* (or any other *IDE*) and *Jupyter Lab*. Thus, **Run the script** means: run the script in your favorite *IDE*." %}
 
-With the `"` apostrophes in the `print` command, we pass a ***string*** variable to the `print` command. Instead of using `"`, one can also use `'`, but it is important to use the same type of apostrophe at the beginning and at the end of the string (text) variable. 
+With the `"` apostrophes, we pass a ***string*** variable to the `print` function. Instead of using `"`, one can also use `'`, but it is important to use the same type of apostrophe at the beginning and at the end of the *string* (text) variable. 
 
-{% include warning.html content="Be reasonable with the usage of `print`. Especially in loops, the use of `print` leads to unnecessary system load and slows down the script." %}
+{% include warning.html content="Be reasonable with the usage of `print`. Especially in loops, `print` leads to unnecessary system load and slows down scripts." %}
 
-A marginal note: In Python3 `print` is a function, not a keyword as in Python2. `print` is usefull for example to make a running script show where it currently is.
+A marginal note: In *Python3*, `print` is a function, not a keyword as in *Python2*. `print` is usefull, for example, to prompt working progress of a running script.
 
-It is also possible to print other types of variables than strings, but the combination of numerical and text variables requires more encoding. 
-
+It is also possible to print other types of variables than *strings*, but the combination of numerical and text variables requires more encoding. Before we get there, let us have a look at variable and data types in *Python*. 
 
 ## Python variables and data types {#var}
 
@@ -129,9 +128,9 @@ scoops = 2 # int
 weight = 0.453 # float
 ```
 
-*Python* does not require a type assignment for a variable because it is a high-level, interpreted programming language (other than for example *C++*). However, once a variable was assigned a data type, do not change it in the code (it is just good practice - so that scoops remain integers).
+*Python* does not require a type assignment for a variable because it is a high-level, interpreted programming language (other than for example *C/C++*). However, once a variable was assigned a data type, do not change it in the code (it is just good practice to ensure for example that `scoops` remains an *integer*).
 
-If a print statement combines numeric and text variables, the numeric variables first have to be converted to text and then *concatenated* to a string. There are several ways to combine multiple variables in a text string.
+If a `print` call combines numeric and text variables, the numeric variables first have to be converted to text and then *concatenated* to a *string*. There are several ways to do so.
 
 
 ```python
@@ -181,7 +180,9 @@ print("A list of strings: " + str(list("ABC")))
     
 
 The items of a list are called *entries* and *entries* can be appended, inserted or deleted from a list.
-{% include note.html content="*Python* alway starts counting from zero. Thus, the first entry of a list is entry number 0." %}
+
+{% include important.html content="*Python* always starts counting from zero. Thus, the first entry of a list is entry number 0." %}
+
 Also lists have many useful built-in functions:
 
 
@@ -208,7 +209,7 @@ print("This is all I have: " + ", ".join(flavors))
 
 ### Tuple {#tuple}
 
-A tuple represents a collection of *Python* objects, similar to a list and the sequence of values (data types) in a tuple can take any type. Elements of a tuple are also indexed with integers. In contrast to lists, a tuple is embraced with round parentheses `()` and a **tuple is immutable** while **lists are mutable**. This means that a tuple object can no longer be modified after it has been created. So why would you like to use tuples then? The answer is that a tuple is more memory efficient than a mutable object because the immutable tuple can create references to existing objects. In addition, a tuple can serve as a `key` of a dictionary (see below), which is not possible with a list.
+A tuple represents a collection of *Python* objects, similar to a list and the sequence of values (data types) in a tuple can take any type. Elements of a tuple are also indexed with integers. In contrast to lists, a tuple is embraced with round parentheses `()` and a **tuple is immutable** while **lists are mutable**. This means that a tuple object can no longer be modified after it has been created. So why would you like to use tuples then? The answer is that a tuple is more memory-efficient than a mutable object because the immutable tuple can create references to existing objects. In addition, a tuple can serve as a `key` of a dictionary (see below), which is not possible for a list.
 
 
 ```python
