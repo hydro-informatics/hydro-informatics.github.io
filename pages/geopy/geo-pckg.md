@@ -8,13 +8,13 @@ folder: geopy
 ---
 
 
-This section lists open-source packages for geospatial file manipulation with *Python*. Except for `gdal` these packages are neither installed in the [`hypy`](hypy_install.html#create-and-install-conda-environments) nor in the *conda* `base` environment. The following sections explain relevant packages for this course and how those can be installed.
+This page lists open-source packages for geospatial file manipulation with *Python*. The necessary packages are already installed if you use the provided [`hypy`](hypy_install.html#create-and-install-conda-environments) environment. The following sections provide explanations of relevant and optional packages for this course and how those can be installed.
 
 {% include callout.html content="The proprietary license-requiring `arcpy` package is described on the [Commercial software](geo-arcpy.html) page." %}
 
-## gdal {#gdal}
+## gdal (including ogr and osr) {#gdal}
 [`gdal`](https://gdal.org/) and `ogr` of the [OSGeo Project](http://www.osgeo.org/) stem from the *GDAL* project, which is part of the Open Source
-Geospatial Foundation ([*OSGeo*](https://www.osgeo.org)) -  the developers of *QGIS*. `gdal` provides many methods to convert geospatial data (file types, projections, derive geometries), where `gdal` itself handels [raster data](geospatial-data.html#raster) and its `ogr` module handles [vector data](geospatial-data.html#vector). This page primarily uses `gdal` and `ogr`; so it is important to get the installation of `gdal` right.
+Geospatial Foundation ([*OSGeo*](https://www.osgeo.org)) -  the developers of *QGIS*. `gdal` provides many methods to convert geospatial data (file types, projections, derive geometries), where `gdal` itself handels [raster data](geospatial-data.html#raster) and its `ogr` module handles [vector data](geospatial-data.html#vector). The tutorials on this website depend on `gdal` and `ogr` (including `osr` for spatial referencing); so it is important to get the installation of `gdal` right.
 
 To install `gdal` for *Python*, open [*Anaconda Prompt*](hypy_install.html#install-pckg) and type:
 
@@ -100,8 +100,8 @@ Besides the above mentioned packages there are other useful libraries for geospa
   * [`owslib`](http://geopython.github.io/OWSLib/) to connect with *Open Geospatial Consortium* (*OGC*) web services - install in *Anaconda Prompt* with <br>`conda install -c conda-forge owslib`
   * [`postgresql`](https://www.postgresqltutorial.com/postgresql-python/) for SQL database connections - install in *Anaconda Prompt* with <br>`conda install -c anaconda postgresql`
  * [`rasterio`](https://rasterio.readthedocs.io/en/latest/) for processing raster data as [`numpy`](hypy_pynum.html#numpy) arrays install in *Anaconda Prompt* with <br>`conda install -c conda-forge rasterio`
- * [`rasterstats`](https://pythonhosted.org/rasterstats/) produces zonal statistics of rasters and can interact with *GeoJSON* files - install in *Anaconda Prompt* with <br>`conda install -c conda-forge rasterstats`
- * [`sckit-image`](https://scikit-image.org/) for machine learning applied to georeferenced images - install in *Anaconda Prompt* with <br>`conda install -c anaconda scikit-image`
+ * [**`rasterstats`**](https://pythonhosted.org/rasterstats/) produces zonal statistics of rasters and can interact with *GeoJSON* files - install in *Anaconda Prompt* with <br>`conda install -c conda-forge rasterstats`
+ * [**`sckit-image`**](https://scikit-image.org/) for machine learning applied to georeferenced images - install in *Anaconda Prompt* with <br>`conda install -c anaconda scikit-image`
 
 
 

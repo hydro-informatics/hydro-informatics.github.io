@@ -16,6 +16,7 @@ An ***API*** represents a computing interface that enables interactions between 
 
 ## Anaconda {#anaconda}
 
+### Anaconda Navigator
 *Anaconda* is basically a *Python* distribution that enables the usage of a couple of *IDE*s. Today, *Anaconda* is not limited to *Python* anymore and also comes with interfaces and environments for [*R*](https://www.r-project.org/about.html).
 
 {% include note.html content="[Anaconda](https://www.anaconda.com/distribution/) represents the baseline for many applications presented on this website. It enables the built-in installation of programming language interpreters (e.g., *Python* and *R*), as well as *IDE*s such as [*PyCharm*](https://www.jetbrains.com/pycharm/), [*Spyder*](https://www.spyder-ide.org/), or [*JupyterLab (Notebook)*](https://jupyter.org/)." %}
@@ -24,10 +25,20 @@ The very first step to get started with *Anaconda* consists in downloading and i
 
 After the successful installation of *Anaconda*, *IDE*s for *Python* programming or *markdown* editing can be directly installed by launching the **Anaconda navigator**. **`conda`** environments can be created later on following the [instructions in the *Python (fundamentals)* section](hypy_install.html#conda-env).
 
+### Miniconda
+
+*Anaconda* may create large environments that require several gigabytes of storage. To install lightweight environments, use [Miniconda](https://docs.conda.io/en/latest/miniconda.html). *Miniconda* does not include *Anaconda Navigator* and to enable working with *Jupyter* notebooks (in *Windows*):
+
+1. Click on *Start*.
+1. Type `Anaconda Prompt` and hit enter (use *Miniconda3*). A *Terminal* window (black background) opens.
+1. In *Anaconda prompt* type `conda install jupyter` and confirm with `y` when the *Terminal* asks `Proceed ([y]/n)?`.
+
+To work with *Jupyter* notebooks (open, create or modify), type `jupyter notebook` in *Anaconda Prompt (Miniconda3)* and hit *Enter*. The *Jupyter Notebook* application will open in the standard webbrowser. 
 
 
 ## PyCharm (via Anaconda Navigator) {#pycharm}
-*Jetbrains*'s [*PyCharm (Community Edition)*](https://www.jetbrains.com/pycharm/) is one of the best open-access IDEs for non-commercial use and good alternatives are [*Spyder IDE*](https://www.spyder-ide.org/) (for *Python*) or [*RStudio*](https://rstudio.com/) (*R* and *Python*). However, before launching any project in an *IDE*, the installation of an interpreter (e.g., *Python* or *R*) is necessary (we already installed an interpreter with *Anaconda*).
+
+*Jetbrains* [*PyCharm (Community Edition)*](https://www.jetbrains.com/pycharm/) is an open-access IDE for non-commercial use. Alternatives are [*Spyder IDE*](https://www.spyder-ide.org/) (for *Python*) or [*RStudio*](https://rstudio.com/) (*R* and *Python*). However, before launching any project in an *IDE*, the installation of an interpreter (e.g., *Python* or *R*) is necessary (we already installed an interpreter with *Anaconda*).
 
 *PyCharm* is available as an *Anaconda Navigator* (i.e., *Anaconda*'s graphical user interface) module. To enable *PyCharm* in *Anaconda*, download *PyCharm* from the [developer's website](https://www.jetbrains.com/pycharm/promo/anaconda/) and install *PyCharm*. A reboot may be required after the installation.
 
@@ -46,7 +57,9 @@ All set - you are ready to work with *Python*, markdown (documentation), and [gi
 
 {% include note.html content="***Python* users** read more about setting up *conda* environments on the [*Python (basics)*](hypy_install.html#ide-setup) page." %}
 
-## JupyterLab (via Anaconda Navigator) {#jupyter}
+## JupyterLab {#jupyter}
+
+### Via Anaconda Navigator 
 
 *JupyterLab* is a product of the nonprofit organization [*Project Jupyter*](https://jupyter.org/), which develops "open-source software, open-standards, and services for interactive computing across dozens of programming languages". A *Jupyter* notebook (*.ipynb* file) enables the combination of markdown text blocks with executable code blocks. Essentially, a *Jupyter* notebook is a *JavaScript Object Notation* ([*JSON*](https://www.json.org/json-en.html)) file. The structure of *JSON* files enables the easy export of *.ipynb*  notebooks to many other open standard output formats such as *HTML*, [*LaTeX*](https://latex-project.org/), *markdown*, *Python*, *presentation slides*, or *PDF*. 
 The *Jupyter* kernels support the three core programming languages **Ju**lia, **Pyt**hon and **R**, and many more *Jupyter* kernels (currently 49) for other programming languages exist. 
@@ -58,8 +71,13 @@ The *Jupyter* kernels support the three core programming languages **Ju**lia, **
 
 {% include tip.html content="Get familiar with *JupyterLab*, by creating files, adding new *Markdown* or *Python* cells and `Run`ning cells. The essentials of *markdown* are explained on the [Markdown and Documentation](hy_documentation.html#markdown) page (short read). Learning *Python* is more than a short read and the [*Python* (basics)](python.html) walks you through the course contents to learn *Python* (takes time)." %}
 
-{% include note.html content="*Anaconda Navigator* alternatively offers to install and launch the application *Jupyter Notebook*. However, *JupyterLab* is the *Project Jupyter*'s next-generation user interface, which is more flexible and powerful. This is why this website refers to *JupyterLab* rather than the *Jupyter Notebook* app." %}
+{% include note.html content="*Anaconda Navigator* alternatively provides the application *Jupyter Notebook*. However, *JupyterLab* is the *Project Jupyter*'s next-generation user interface, which is more flexible and powerful. This is why this website refers to *JupyterLab* rather than the *Jupyter Notebook* app." %}
 
 
+### Via *Anaconda Prompt*
 
+Open *Anaconda Prompt*, which represents a *Terminal* window with black background and a blinking cursor.
 
+If you are working with *Miniconda*, install the *Jupyter Notebook* app by typing `conda install jupyter` and confirm with `y` when *Anaconda Prompt* asks `Proceed ([y]/n)?`.
+
+To start the *Jupyter Notebook* app and open, create, or modify *Jupyter* notebooks, type `jupyter notebook` in *Anaconda Prompt (Miniconda3)* and hit *Enter*. The *Jupyter Notebook* application will open in the standard webbrowser. 

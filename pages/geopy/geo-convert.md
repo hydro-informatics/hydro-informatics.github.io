@@ -124,6 +124,9 @@ pixel_value = 1
 raster2line(source_raster_fn, target_shp_fn, pixel_value)
 ```
 
+    Success: Wrote C:\Users\schwindt\jupyter\nb-web/geodata/river-architect/least_cost.shp
+    
+
 {% include image.html file="qgis-least-cost-line.png" alt="aspect" caption="The newly created least cost path least_cost.shp line shapefile plotted in QGIS." %}
 
 {% include challenge.html content="There is a little error in the `least_cost` line. Can you find the error? What can be done to fix the error?" %}
@@ -221,9 +224,7 @@ tar_shp = r"" + os.path.abspath('') + "/geodata/river-architect/h_poly_cls.shp"
 raster2polygon(src_raster, tar_shp)
 ```
 
-    Info: Creating integer raster: 
-    >> C:\Users\schwindt\jupyter\hypy/geodata/river-architect/h001000_int.tif
-    Success: Wrote C:\Users\schwindt\jupyter\hypy/geodata/river-architect/h_poly_cls.shp
+    Success: Wrote C:\Users\schwindt\jupyter\nb-web/geodata/river-architect/h_poly_cls.shp
     
 
 {% include image.html file="qgis-h-polygonized.png" alt="polygonized" caption="The newly created polygon shapefile form the float-type h001000.tif raster plotted in QGIS. Note that the float numbers are classified in 8 integer bins ranging from 0 to 7 fps." %}
@@ -253,8 +254,8 @@ Similar to `gdal.Polygonize`, [`gdal.RasterizeLayer`](https://gdal.org/python/os
 
 
 ```python
-def rasterize(in_shp_file_name, out_raster_file_name, field_name, 
-              pixel_size=10, no_data_value=-9999, dtype=gdal.GDT_Float32):
+def rasterize(in_shp_file_name, out_raster_file_name, pixel_size=10, no_data_value=-9999,
+              rdtype=gdal.GDT_Float32, **kwargs):
     """
     Converts any shapefile to a raster
     :param in_shp_file_name: STR of a shapefile name (with directory e.g., "C:/temp/poly.shp")
@@ -262,12 +263,16 @@ def rasterize(in_shp_file_name, out_raster_file_name, field_name,
     :param pixel_size: INT of pixel size (default: 10)
     :param no_data_value: Numeric (INT/FLOAT) for no-data pixels (default: -9999)
     :param rdtype: gdal.GDALDataType raster data type - default=gdal.GDT_Float32 (32 bit floating point)
-    :param field_name: name of the shapefile's field with values to burn to the raster
+    :kwarg field_name: name of the shapefile's field with values to burn to the raster
     :return: produces the shapefile defined with in_shp_file_name
     """
 
     # open data source
-    source_ds = ogr.Open(in_shp_file_name)
+    try:
+        source_ds = ogr.Open(in_shp_file_name)
+    except RuntimeError as e:
+        print("Error: Could not open %s." % str(in_shp_file_name))
+        return None
     source_lyr = source_ds.GetLayer()
 
     # read extent
@@ -280,21 +285,23 @@ def rasterize(in_shp_file_name, out_raster_file_name, field_name,
     # create destination data source (GeoTIff raster)
     target_ds = gdal.GetDriverByName('GTiff').Create(out_raster_file_name, x_res, y_res, 1, eType=rdtype)
     target_ds.SetGeoTransform((x_min, pixel_size, 0, y_max, 0, -pixel_size))
-    
-    # get and fill band
     band = target_ds.GetRasterBand(1)
     band.Fill(no_data_value)
     band.SetNoDataValue(no_data_value)
 
     # get spatial reference system and assign to raster
     srs = get_srs(source_ds)
-    srs.ImportFromEPSG(int(srs.GetAuthorityCode(None)))
+    try:
+        srs.ImportFromEPSG(int(srs.GetAuthorityCode(None)))
+    except RuntimeError as e:
+        print(e)
+        return None
     target_ds.SetProjection(srs.ExportToWkt())
 
     # RasterizeLayer(Dataset dataset, int bands, Layer layer, pfnTransformer=None, pTransformArg=None,
     # int burn_values=0, options=None, GDALProgressFunc callback=0, callback_data=None)
     gdal.RasterizeLayer(target_ds, [1], source_lyr, None, None, burn_values=[0],
-                        options=["ALL_TOUCHED=TRUE", "ATTRIBUTE=" + str(kwargs.get("field_name"))])
+                                options=["ALL_TOUCHED=TRUE", "ATTRIBUTE=" + str(kwargs.get("field_name"))])
 
     # release raster band
     band.FlushCache()

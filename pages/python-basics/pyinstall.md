@@ -12,32 +12,41 @@ folder: python-basics
 
 ***Conda* environments** are the solution to this challenge: A *Conda Environment* is a directory on your computer that represents a virtual environment with a particular *Python* interpreter (e.g., a Python2 or Python3 executable) and packages. The directory is typically named `env` (or `venv` for virtual environment) and *Anaconda* will control automatically where the environment directories (folders) are stored on your computer. On Windows, the typical directory is `C:\users\<your-user-name>\AppData\Local\Continuum\anaonda3\envs\`. Note that *AppData* is a hidden folder ([view hidden folders on Windows](https://support.microsoft.com/en-us/help/4028316/windows-view-hidden-files-and-folders-in-windows-10)). Only change the default directory for Conda Environment directories, if you exactly know what you are doing.
 
-{% include tip.html content="Before you continue, **make sure that *Anaconda* is installed** according to the [descriptions in the *Get Started*](hy_ide.html#anaconda) section." %}
+{% include requirements.html content="Before you continue, **make sure that *Anaconda* or [Miniconda](https://docs.conda.io/en/latest/miniconda.html) is installed** according to the [descriptions in the *Get Started*](hy_ide.html#anaconda) section." %}
 
 ## Conda environments {#conda-env}
 
 ### Create and install
 To install an environment that suites most of the needs for codes and analyses shown on these pages, use the provided `environment.yml`:
 
-1. Download the environment file [here](https://github.com/hydro-informatics/materials-py-install/blob/master/environment.yml) (if needed: copy the file contents of `environment.yml` in a local text editor tool such as [Notedpad++](https://notepad-plus-plus.org/) ([alternatives](hy_others.html#npp)) and save the file for example in a directory called *C:/temp/*)
-1. Open Anaconda prompt (`Windows` key > type `Anaconda prompt` > hit `Enter`)
-1. Navigate to the download directory where `environment.yml` is located (use   [`cd`](https://www.digitalcitizen.life/command-prompt-how-use-basic-commands)   to navigate for example to *C:/temp/*)
-1. Enter `conda env create -f environment.yml` (this creates an environment called `hypy`)
+1. Download the environment file [here](https://github.com/hydro-informatics/materials-py-install/blob/master/environment.yml) (if needed: copy the file contents of `environment.yml` in a local text editor tool such as [Notedpad++](https://notepad-plus-plus.org/) ([alternatives](hy_others.html#npp)) and save the file for example in a directory called *C:/temp/*).
+1. Open *Anaconda Prompt* (`Windows` key > type `Anaconda Prompt` > hit `Enter`).
+1. Navigate to the download directory where `environment.yml` is located (use   [`cd`](https://www.digitalcitizen.life/command-prompt-how-use-basic-commands)   to navigate for example to *C:/temp/*).
+1. Enter `conda env create -f environment.yml` (this creates an environment called `hypy`).
+
+{% include tip.html content="The provided [environment.yml](https://github.com/hydro-informatics/materials-py-install/blob/master/environment.yml) file creates a carefree environment for using *Python* as described on this website. Still, you may want to create your own environment and use this section refresh your mind for installing any missing libraries." %}
+
+### Activate an environment
+
+The active environment corresponds to the environment that you are working in (e.g., for installing libraries or using *Jupyter*). To activate the above-created *hypy* environment:
+
+1. Open *Anaconda Prompt* (`Windows` key or click on the start menu of your operating system > type `Anaconda Prompt` > hit `Enter`).
+1. Activate the *hypy* environment with `conda activate hypy`
+
 
 ### Install additional *Python* packages in a *conda* environment {#install-pckg}
 To install more [*Python* packages](hypy_pckg.html): 
 
-1. Open *Anaconda Prompt* (`Windows` key or click on the start menu of your operating system > type `anaconda prompt` > hit `Enter` key on your keyboard)
-1. Activate environment `conda activate hypy`
-1. Install package `conda install PACKAGE_NAME` (if the package cannot be found, try `conda install -c conda-forge PACKAGE_NAME`)
+1. Activate the environment where you want to install, remove, or modify packages (e.g., `conda activate hypy` - see above).
+1. Install a package by typing `conda install PACKAGE_NAME` (if the package cannot be found, try `conda install -c conda-forge PACKAGE_NAME`).
 
-Alternatively, press the `Windows` key (or click on the start menu of your operating system) > type `Anaconda Navigator` > got to the `Environments` tab > select the `hypy` environment (or create another environment) > install & install packages. 
+Alternatively, press the `Windows` key (or click on the start menu of your operating system) > type `Anaconda Navigator` > got to the `Environments` tab > select the `hypy` environment (or create another environment) > *install* > install packages. 
 
-### Remove (delete) 
-To remove a conda environment open *Anaconda prompt* and type:
+### Remove (delete) an environment
+To remove a conda environment open *Anaconda Prompt* and type:
 
 ```
-conda env remove --name ENVIRONMENT-TO- REMOVE
+conda env remove --name ENVIRONMENT-TO-REMOVE
 ```
 
 For example, to remove the `hypy` environment type:
@@ -59,8 +68,7 @@ The descriptions on the *Get started* for installing and launching [*JupyterLab*
 
 {% include image.html file="jupyter-illu.png" alt="pyc-prj-setup" caption="JupyterLab in Dark theme appearance with a Jupyter notebook (xml.ipynb) opened showing the combination of a markdown cell (Charts(plots)) and a Python 3 cell." %}
 
-*Jupyter* is a spin-off of [*IPython*](https://ipython.org/), which is "a rich architecture for interactive computing". Therefore, when we start a *Python* kernel in *JupyterLab*, an *IPython* kernel is started. This is different from a *conda* environment, but it can still access packages installed in the *conda* `base` environment. So if you need to install a package for usage in *JupyterLab*, follow the [above instructions](##install-pckg), but make sure that the `base` environment is activated.
-
+*Jupyter* is a spin-off of [*IPython*](https://ipython.org/), which is "a rich architecture for interactive computing". Therefore, when we start a *Python* kernel in *JupyterLab*, an *IPython* kernel is started, which refers to the currently activated *conda* environment. So if you need to install a package for usage in *JupyterLab*, follow the [above instructions](##install-pckg) and make sure that the corresponding environment is activated.
 
 *Python* cells in *Jupyter* notebooks often require certain packages, which must be reloaded for each cell after each kernel start (we will learn more about packages later on the [Modules and packages](hypy_pckg.html) page). So it can be useful to define default imports for *IPython* and this works as follows.
 
@@ -68,7 +76,7 @@ The descriptions on the *Get started* for installing and launching [*JupyterLab*
     * In *Windows*, this ist typically in your user folder (`C:\Users\your-name\.ipython\`) ([how to show hidden files in *Windows*](https://support.microsoft.com/en-us/help/14201/windows-show-hidden-files))
     * In *Linux* (or other *Unix*-based system such as *macOS*), files beginning with a `.` are hidden and *IPython* is typically located in `/usr/local/etc/ipython/` or `/usr/local/etc/.ipython/` (either use the terminal and type `ls -a` or simultaneously hit the `CTRL`+`H` keys)
 1. In the `.ipython` or `ipython` folder, create a sub-directory called `/profile_default/startup/` (if not yet present).
-1. If not yet present: Create the `...ipython/profile_default/startup/` directory, with a *Python* file called `ipython_config.py`.
+1. If not yet present: Create the directory `.../ipython/profile_default/startup/`, with a *Python* file called `ipython_config.py`.
 1. Open `ipython_config.py` (right-click > edit - do not run the file) and add default import packages.
 1. For the Python (basics) course it is recommended to define the following default imports in `ipython_config.py` (add modifications, then save and close the file):
 

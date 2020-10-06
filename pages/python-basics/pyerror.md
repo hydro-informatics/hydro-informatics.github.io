@@ -31,7 +31,6 @@ Still, there are many more error types that can occur an *Python* developers mai
 ### Exception handling with `try` - `except` {#try-except}
 `try` and `except` keywords test a code block and if it crashes, an `exception` is raised, but the script itself will not crash. The basic structure is:
 
-
 ```python
 try:
     # code block
@@ -49,14 +48,10 @@ except ValueError:
     print("What's that? sorry, please try again.")
 ```
 
-    How many scoops of ice cream do you want?  3.4
+    How many scoops of ice cream do you want? 4
     
 
-    What's that? sorry, please try again.
-    
-
-What to do if you are unsure about the error type? Add an `else` statement:
-
+What to do if you are unsure about the error type? Add an `else` statement to call a function that handles other error types:
 
 ```python
 try:
@@ -137,8 +132,7 @@ logging.shutdown()
 
 And this is how `my-logfile.log` looks like:
 
-
-```python
+```
 2050-00-00 18:51:46,657 - This message is logged to the file.
 2050-00-00 18:51:46,666 - Less severe information is also logged to the file.
 2050-00-00 18:51:46,667 - Warning messages are logged, too.

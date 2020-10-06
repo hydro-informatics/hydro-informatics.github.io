@@ -23,8 +23,8 @@ print(os.getcwd()) # print current working directory
 print(os.path.abspath('')) # print directory of script running
 ```
 
-    C:\Users\schwindt\jupyter\hypy
-    C:\Users\schwindt\jupyter\hypy
+    C:\Users\schwindt\jupyter\nb-web
+    C:\Users\schwindt\jupyter\nb-web
     
 
 ### Overview of import options
@@ -87,6 +87,11 @@ a_string = "zabaglione"
 print(", ".join(dir(a_string)))
 ```
 
+    ['C:\\Users\\schwindt\\jupyter\\nb-web', 'C:\\Users\\schwindt\\Anaconda3\\python37.zip', 'C:\\Users\\schwindt\\Anaconda3\\DLLs', 'C:\\Users\\schwindt\\Anaconda3\\lib', 'C:\\Users\\schwindt\\Anaconda3', '', 'C:\\Users\\schwindt\\AppData\\Roaming\\Python\\Python37\\site-packages', 'C:\\Users\\schwindt\\Anaconda3\\lib\\site-packages', 'C:\\Users\\schwindt\\Anaconda3\\lib\\site-packages\\win32', 'C:\\Users\\schwindt\\Anaconda3\\lib\\site-packages\\win32\\lib', 'C:\\Users\\schwindt\\Anaconda3\\lib\\site-packages\\Pythonwin', 'C:\\Users\\schwindt\\Anaconda3\\lib\\site-packages\\IPython\\extensions', 'C:\\Users\\schwindt\\.ipython']
+    ['__add__', '__class__', '__contains__', '__delattr__', '__delitem__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__gt__', '__hash__', '__iadd__', '__imul__', '__init__', '__init_subclass__', '__iter__', '__le__', '__len__', '__lt__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__reversed__', '__rmul__', '__setattr__', '__setitem__', '__sizeof__', '__str__', '__subclasshook__', 'append', 'clear', 'copy', 'count', 'extend', 'index', 'insert', 'pop', 'remove', 'reverse', 'sort']
+    __add__, __class__, __contains__, __delattr__, __dir__, __doc__, __eq__, __format__, __ge__, __getattribute__, __getitem__, __getnewargs__, __gt__, __hash__, __init__, __init_subclass__, __iter__, __le__, __len__, __lt__, __mod__, __mul__, __ne__, __new__, __reduce__, __reduce_ex__, __repr__, __rmod__, __rmul__, __setattr__, __sizeof__, __str__, __subclasshook__, capitalize, casefold, center, count, encode, endswith, expandtabs, find, format, format_map, index, isalnum, isalpha, isascii, isdecimal, isdigit, isidentifier, islower, isnumeric, isprintable, isspace, istitle, isupper, join, ljust, lower, lstrip, maketrans, partition, replace, rfind, rindex, rjust, rpartition, rsplit, rstrip, split, splitlines, startswith, strip, swapcase, title, translate, upper, zfill
+    
+
 ## Create a module {#make-mod}
 In object-oriented programming and code factorization, writing own, new modules is an essential task. In order to write a new module, first create a new script. Then, open the new script and add some parameters and functions.
 
@@ -129,10 +134,13 @@ if (__name__ == '__main__'):
     print("That makes {0} please".format(price_scoops[scoops_wanted]))
 ```
 
+    Hi, I only have vanilla. How many scoops do you want?
+    That makes three euros please
+    
+
 Now we can run [`icecreamdialogue_standalone.py`](https://github.com/hydro-informatics/icecream/raw/master/single-scripts/icecreamdialogue_standalone.py) in the terminal (e.g., *PyCharm*'s *Terminal* tab at the bottom of the window).
 
-
-```python
+```
 C:\temp\ python icecreamdialogue_standalone.py
 ```
 
@@ -185,6 +193,10 @@ print(f'Invoking __init__.py for {__name__}') # not absolutely needed ..
 import icecreamery.icecreamdialogue, icecreamery.icecream_maker
 ```
 
+    Invoking __init__.py for __main__
+    Invoking __init__.py for icecreamery
+    
+
 
 ```python
 # example usage of the icecreamery package
@@ -192,7 +204,6 @@ import icecreamery
 print(icecreamery.icecreamdialogue.welcome_msg)
 ```
 
-    Invoking __init__.py for icecreamery
     Hi, I only have vanilla. How many scoops do you want?
     
 
@@ -202,7 +213,6 @@ Do you remember the `dir()` function? It is intended to list all modules in a pa
 ```python
 # __init__.py with __all__ list
 __all__ = ['icecreamdialogue', 'icecream_maker']
-import *
 ```
 
 The full example of the `icecreamery_all` package is available in the [*icecream*](https://github.com/hydro-informatics/icecream) repository.
@@ -210,8 +220,8 @@ The full example of the `icecreamery_all` package is available in the [*icecream
 
 ```python
 # example usage of the icecreamery package
-import icecreamery_all
-print(icecreamery_all.icecreamdialogue.welcome_msg)
+from icecreamery_all import *
+print(icecreamdialogue.welcome_msg)
 ```
 
     Hi, I only have vanilla. How many scoops do you want?

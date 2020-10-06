@@ -96,14 +96,10 @@ plot_xy(x, y, plot_type="scatter", label="Rand. Weibull scattered")
     Scatter plot
     
 
-
 ![png](images/output_3_1.png)
 
-
-
 ![png](images/output_3_2.png)
-
-
+    
 {% include challenge.html content="The `plot_xy` function has some weaknesses. For example if more arguments are provided or `y` data are an array that should produce multiple lines. How can you optimize the `plot_xy` function, to make it more robust and enable multi-line plotting?" %}
 
 ### Surface and contour plots
@@ -159,16 +155,12 @@ plt.show()
 
 ```
 
-
-![png](images/output_6_0.png)
+![png](images/output_6_0.png)    
 
 
 ### Fonts and styles
 
-The previous example already featured font type adjustment for the plot titles (`axes.set_title('title', font ...)`). The font and its characteristics (e.g., size, weight, style, or family) can be defined in a more coherent manner with `matplotlib.font_manager.FontProperties`, where plot font settings can be globally modified within a script.
-
-
-
+The previous example already featured font type adjustment for the plot titles (`axes.set_title('title', font ...)`). The font and its characteristics (e.g., size, weight, style, or family) can be defined in a more coherent manner with `matplotlib.font_manager.FontProperties` ([read more](https://matplotlib.org/3.1.1/api/font_manager_api.html)), where plot font settings can be globally modified within a script.
 
 ```python
 import matplotlib.pyplot as plt
@@ -177,18 +169,21 @@ from matplotlib import rc
 
 # create FontProperties object and set font characteristics
 font = FontProperties()
-font.set_family('serif')
-font.set_name('Times New Roman')
-font.set_style('italic')
-font.set_weight('normal')
+font.set_family("sans-serif")
+font.set_name("Times New Roman")
+font.set_style("italic")
+font.set_weight("semibold")
 font.set_size(10)
 print("Needs to be converted to a dictionary: " + str(font))
+
 # translate FontProperties to a dictionary
-font_dict = {}
-[font_dict.update({e.split("=")[0]: e.split("=")[1]}) for e in str(font).strip(":").split(":")]
+font_dict = {"family": "normal"}
+for e in str(font).strip(":").split(":"):
+    if "=" in e:
+        font_dict.update({e.split("=")[0]: e.split("=")[1]})
 
 # apply font properties to script
-rc('font', **font_dict)
+rc("font", **font_dict)
 
 # make some plot data
 x_lin = np.linspace(0.0, 10.0, 1000)  # evenly spaced numbers over a specific interval (start, stop, number-of-elements)
@@ -205,16 +200,12 @@ plt.show()
 ```
 
     Needs to be converted to a dictionary: :family=Times New Roman:style=italic:variant=normal:weight=normal:stretch=normal:size=10.0
-    
 
-
-![png](images/output_8_1.png)
-
+![png](images/output_8_1.png)   
 
 Instead of using `rc`, font characteristics can also be updated with *matplotlib*'s `rcParams` *dictionary*. In general, all font parameters can be accessed with `rcParams` along with many more parameters of plot layout options. The parametric options are stored in the [`matplotlibrc`](https://matplotlib.org/tutorials/introductory/customizing.html#customizing-with-matplotlibrc-files) file and can be accessed with `rcParams["matplotlibrc-parameter"]`. Read more about modification options (`"matplotlibrc-parameter"`) in the [*matplotlib* docs](https://matplotlib.org/tutorials/introductory/customizing.html#customizing-with-matplotlibrc-files). In order to modify a (font) style parameter use `rcParams.update({parameter-name: parameter-value})` (which does not always work - for example in [*jupyter*](https://github.com/jupyter/notebook/issues/3385)). 
 
 In addition, many default plot styles are available through [`matplotlib.style`](https://matplotlib.org/api/style_api.html#matplotlib-style) with many [style templates](https://matplotlib.org/gallery/style_sheets/style_sheets_reference.html). The following example illustrates the application of `rcParams` and `style` to the previously generated x-y oscillation dataset.
-
 
 ```python
 from matplotlib import rcParams
@@ -247,16 +238,13 @@ plt.show()
     Some available monospace fonts: DejaVu Sans Mono, Bitstream Vera Sans Mono, Computer Modern Typewriter, Andale Mono, Nimbus Mono L
     Some available fantasy fonts: Comic Sans MS, Chicago, Charcoal, Impact, Western
     Some available styles: bmh, classic, dark_background, fast, fivethirtyeight
-    
 
-
-![png](images/output_10_1.png)
+![png](images/output_10_1.png)   
 
 
 ### Annotations
 
 Pointing out particularities in graphs is sometimes helpful to explain observations on graphs. Here are some options illustrated with a self-explaining code block.
-
 
 ```python
 from matplotlib import rcParams
@@ -283,14 +271,11 @@ axes.axis([0, 10, 0, 1])  # x_min, x_max, y_min, y_max
 plt.show()
 ```
 
-
 ![png](images/output_12_0.png)
-
 
 {% include challenge.html content="The above code blocks involve many repetitive statements such as `import ...` - `rcParams.update(rcParamsDefault)`, and `plot.show()` at the end. Can you write a [wrapper function](hypy_pyfun.html#wrappers) to decorate any other *matplotlib* plot function?" %}
 
-
-{% include exercise.html content="Get familiar with built-in plot functions and matplotlib with the template script provided for the [Reservoir design](ex_sp.html) and [Flood return period calculation](ex_floods.html) exercises." %}
+{% include exercise.html content="Get familiar with built-in plot functions using *matplotlib* with the template scripts provided for the [Reservoir design](ex_sp.html) and [Flood return period calculation](ex_floods.html) exercises." %}
 
 ## Plotting with *pandas* {#pandas}
 
@@ -312,20 +297,15 @@ flow_df.plot(x="Date (mmm-jj)", y="Flow (CMS)", kind='line')
     
 
 
-
-
     <matplotlib.axes._subplots.AxesSubplot at 0x1c17af5cfc8>
 
 
-
-
-![png](images/output_15_2.png)
+![png](images/output_15_2.png)    
 
 
 ### Pandas and matplotlib
 
 Because *pandas* plot functionality roots in the *matplotlib* library, it can be easily combined, for example to create subplots:
-
 
 ```python
 import matplotlib.pyplot as plt
@@ -342,9 +322,6 @@ flow_ex_df.plot(x="Relative exceedance", y="Flow (CMS)", kind='scatter', color="
 
 
     <matplotlib.axes._subplots.AxesSubplot at 0x26709c37d48>
-
-
-
 
 ![png](images/output_17_1.png)
 
@@ -396,9 +373,7 @@ us_sensor_df.plot.box(color="tomato", vert=False, title="Hz. box-plot", flierpro
     <matplotlib.axes._subplots.AxesSubplot at 0x2670a06de08>
 
 
-
-
-![png](images/output_19_2.png)
+![png](images/output_19_2.png)    
 
 
 Box-plots represent the statistical assets of datasets, but box-plots can quickly become confusing when they are presented in technical reports for multiple measurement series. Yet it is state-of-the-art and good practice to present uncertainties in datasets in scientific and non-scientific publications, but somewhat more easily than, for example, with box-plots. To meet the standards of good practice, so-called [error bars](https://en.wikipedia.org/wiki/Error_bar) should be added to data bars. Error bars express the uncertainty of a data set graphically in a simple way by displaying only whiskers. Regardless of whether scatter or bar plot, error bars can easily be added to graphics with *matplotlib* ([read more in the developer's docs](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.errorbar.html)). The following example shows the application of error bars to bar plots of the above ultrasonic sensor data.
@@ -420,9 +395,7 @@ means.plot.barh(xerr=errors, capsize=5, color="lightsteelblue", title="Horizonta
     <matplotlib.axes._subplots.AxesSubplot at 0x267080c7dc8>
 
 
-
-
-![png](images/output_21_1.png)
+![png](images/output_21_1.png)    
 
 
 {% include note.html content="In scatter plots, errors are present in both *x* and *y* directions. For example, the *x*-uncertainty may result from the measurement device precision and *y*-uncertainty can be a result of signal processing. The above error measure in terms of the standard deviation is just an example of error amplitude. To measure and represent uncertainty correctly, always refer to device descriptions and assess precision effects of multiple devices or signal processing by calculating the [propagation of errors](https://en.wikipedia.org/wiki/Propagation_of_uncertainty)." %}
@@ -435,10 +408,10 @@ The above shown *matplotlib* and *pandas* packages are great for creating static
 
 
 ### Installation
-*plotly* is not a default package neither in the *environment.yml* (`hypy`) file nor in the *conda base* environment. Therefore, it must be installed manually with *conda prompt* (or *Conda Navigator* if you prefer the Desktop version). So open *conda prompt* to install *plotly* for :
+*plotly* is not a default package neither in the *environment.yml* (`hypy`) environment file nor in the *conda base* environment. Therefore, it must be installed manually with *conda prompt* (or *Conda Navigator* if you prefer the Desktop version). So open *conda prompt* to install *plotly* for :
 
-* *jupyter* usage type with the base environment activated: <br> `conda install plotly` (confirm installation when asked for it) <br> `jupyter labextension install jupyterlab-plotly@4.7.1` (change version `4.7.1` to latest version listed [here](https://github.com/plotly/plotly.py/releases)) <br> optional: `conda install -c plotly chart-studio` (good for other plots than featured on this page)
-* *hypy* (e.g., within *PyCharm*): <br> `conda activate hypy` <br>  `conda install plotly` (confirm installation when asked for it)
+* *jupyter* usage type with the base environment activated: <br> `conda install plotly` (confirm installation when asked for it) <br> `jupyter labextension install jupyterlab-plotly@4.11.0` (change version `4.11.0` to latest version listed [here](https://github.com/plotly/plotly.py/releases)) <br> optional: `conda install -c plotly chart-studio` (good for other plots than featured on this page).
+* *hypy* (e.g., within *PyCharm*): <br> `conda activate hypy` <br>  `conda install plotly` (confirm installation when asked for it) <br> `conda install "notebook>=5.3" "ipywidgets>=7.2"`
 * [Read the trouble shooting info to fix problems with jupyter or *Python*](https://plotly.com/python/troubleshooting/) (there may be some...).
 
 Read more about installing packages within *conda environments* on the [*Python* installation page](https://hydro-informatics.github.io/hypy_install.html#install-pckg). 
@@ -498,9 +471,7 @@ fig = go.Figure(data=bar_plots, layout=layout)
 pyo.iplot(fig, filename='temperature-evolution')
 ```
 
-
 {% include image.html file="plotly_temp.png" %}
-
 
 ### Interactive map applications
 *plotly* uses [*GeoJSON*](https://en.wikipedia.org/wiki/GeoJSON) data formats (an open standard for simple geospatial objects) to implement them into interactive maps. The developers provide many examples in their documentation and the below code block replicates a map representing unemployment rates in the United States. More examples are available at the [developer's web site](https://plotly.com/python/maps/).

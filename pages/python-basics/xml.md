@@ -118,7 +118,7 @@ The below code block provides the short helper function `read_columns` to read o
 
 ```python
 def read_columns(ws, start_row=0, columns="ABC"):
-    return [ws["{}{}".format(column, row)].value for row in range(start_row, len(ws.rows) + 1) for column in columns]
+    return [ws["{}{}".format(column, row)].value for row in range(start_row, int(ws.rows.__sizeof__()) + 1) for column in columns]
 
 # example usage:
 wb = oxl.load_workbook(filename="data/python_workbook.xlsx", read_only=False)
@@ -292,6 +292,24 @@ Can you find the river on a map?" %}
 }
 ```
 
+
+
+
+    {'RIVER': {'NAME': 'Vanilla Flow',
+      'GEOMETRY': {'REGIONS': [{'type': 'wet', 'name': 'riverbed'},
+        {'type': 'dry', 'name': 'floodplain'}],
+       'FLOWBOUNDARIES': [{'name': 'Inflow', 'nodes': [1, 3, 7, 31]},
+        {'name': 'Outflow', 'nodes': [89, 90, 76, 69, 95]}]},
+      'HYDRAULICS': {'BOUNDARY': [{'discharge_file': '/simulation/directory/Inflow.txt',
+         'name': 'Inflow',
+         'slope': 0.005,
+         'type': 'hydrograph'},
+        {'name': 'Outflow', 'type': 'zero_gradient'}],
+       'FRICTION': {'cobble': 20.0, 'gravel': 26.0, 'sand': 41}},
+      'LOCATION': [48.744079, 9.103928]}}
+
+
+
 ### Read (decode) and write (encode) *JSON* files with the `json` library 
 
 *JSON* files can be implemented in many programming languages including *HTML* and *Python*. This is also the reason why *Jupyter* notebooks (as used in this course) can be run in *Python* and displayed as a web page. *Python* has a built-in `json` library that enables *JSON* decoding and encoding. The `json` library provides a `json.dumps(DATA)` method to "dump" (i.e., encode) data in *JSON* format. Vice versa, the `json.load()` method reads data from *JSON* files. The following example illustrates encoding and decoding an arbitrary nested dataset with the `json` library.
@@ -367,7 +385,7 @@ updated_river.to_json("data/river_results.json")
     HYDRAULICS  {'BOUNDARY': [{'discharge_file': '/simulation/...
     LOCATION                                [48.744079, 9.103928]
     NAME                                              Honey river
-    RESULTS     {'flow_depth': [[0.0, 2.8512761758798386, 1.39...
+    RESULTS     {'flow_depth': [[0.0, 1.8204724788697753, 0.98...
     
 
 {% include image.html file="py-json-file.png" caption="The exported JSON file (river_results.json)." %} 

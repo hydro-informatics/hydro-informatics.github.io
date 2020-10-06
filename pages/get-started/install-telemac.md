@@ -73,7 +73,7 @@ Now set the `python` environment variable so that it points at *Python3*:
 update-alternatives --install /usr/bin/python python /usr/bin/python3.7 2
 ```
 
-Depending on the installed subversion of *Python3*, the folder name `python3.7` needs to be adapted (e.g. to `python3.8`).
+Depending on the installed subversion of *Python3*, the folder name `python3.7` needs to be adapted (e.g., to `python3.8`).
 
 
 ### Subversion (svn)
@@ -83,10 +83,7 @@ Depending on the installed subversion of *Python3*, the folder name `python3.7` 
 We will need the version control system [*Subversion*](https://wiki.debian.org/SVNTutorial) for downloading (and keeping up-to-date) the TELEMAC-MASCARET source files. *Subversion* is installed through the Debian *Terminal* with (read more in the [Debian Wiki](https://wiki.debian.org/Subversion)):
 
 ```
-su
-  ...password:
-
-apt-get install subversion
+sudo apt-get install subversion
 ```
 
 After the successful installation, test if the installation went well by typing `svn --help` (should prompt an overview of `svn` commands). The Debian Wiki provides a [tutorial](https://wiki.debian.org/SVNTutorial) for working with *Subversion*.
@@ -95,7 +92,7 @@ After the successful installation, test if the installation went well by typing 
 
 ***Estimated duration: 3-10 minutes.***
 
-The Fortran 95 compiler is needed to compile TELEMAC-MASCARET through a *Python3* script, which requires that `gfortran` is installed. The Debian Linux retrieves `gfortran` from the standard package repositories. Thus, to install the Fortran 95 compiler open *Terminal* and type:
+The Fortran 95 compiler is needed to compile TELEMAC-MASCARET through a *Python3* script, which requires that `gfortran` is installed. The Debian Linux retrieves `gfortran` from the standard package repositories. Thus, to install the Fortran 95 compiler, open *Terminal* and type:
 
 ```
 sudo apt-get install gfortran
@@ -115,7 +112,7 @@ If not defined otherwise, the [GNU nano](https://www.nano-editor.org/) text edit
 deb http://ftp.de.debian.org/debian buster main 
 ``` 
 
-{% include note.html content="This tutorial was written in Stuttgart, Germany, where `http://ftp.de.debian.org/debian` is the closest mirror. Replace this mirror depending on where you are sitting at the time of installing the Fortran 95 compiler. A full list of repositories can be found [here](https://packages.debian.org/buster/amd64/gfortran-multilib/download)." %}
+{% include note.html content="This tutorial was written in Stuttgart, Germany, where `http://ftp.de.debian.org/debian` is the closest mirror. Replace this mirror, depending on where you are at the time of installing the Fortran 95 compiler. A full list of repositories can be found [here](https://packages.debian.org/buster/amd64/gfortran-multilib/download)." %}
 
 Then, save the edits with `CTRL` + `O` keys and exit *Nano* with `CTRL` + `X` keys. Next, update the repository information by typing (in *Terminal*):
 
@@ -137,7 +134,7 @@ apt-get install -y cmake build-essential dialog vim
 
 ## Download TELEMAC-MASCARET
 
-We will need more packages to enable parallelism and compiling, but before installing them, download the latest version of TELEMAC-MASCARET through subversion (`svn`). The developers (irregularly) inform about the newest version on [their website](http://www.opentelemac.org/index.php/latest-news-development-and-distribution). To download TELEMAC-MASCARET open *Terminal* in the *Home* directory (either use `cd` or use the *Files* browser to navigate to the *Home* directory and right-click in the empty space to open *Terminal*) and type (enter `no` when asked for password encryption):
+We will need more packages to enable parallelism and compiling, but before installing them, download the latest version of TELEMAC-MASCARET through subversion (`svn`). The developers (irregularly) inform about the newest version on [their website](http://www.opentelemac.org/index.php/latest-news-development-and-distribution). To download TELEMAC-MASCARET, open *Terminal* in the *Home* directory (either use `cd` or use the *Files* browser to navigate to the *Home* directory and right-click in the empty space to open *Terminal*) and type (enter `no` when asked for password encryption):
 
 ```
 svn co http://svn.opentelemac.org/svn/opentelemac/tags/v8p1r0  ~/telemac/v8p1 --username ot-svn-public --password telemac1*
@@ -182,7 +179,7 @@ The *Terminal* should prompt option flags for processing a *gfortran* file. The 
 
 ***Estimated duration: 10-15 minutes.***
 
-Metis is a software package for partitioning unstructured graphs, partitioning meshes, and computing fill-reducing orderings of sparse matrices by George Karypis. TELEMAC-MASCARET uses *Metis* as a part of *Partel* to split the mesh in multiple parts for parallel runs. Learn more about *Metis* and potentially newer versions than `5.1.0` (used in the following) on the [Karypis Lab website](http://glaros.dtc.umn.edu/gkhome/metis/metis/download) or reading the [PDF manual](http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/manual.pdf).
+Metis is a software package for partitioning unstructured graphs, partitioning meshes, and computing fill-reducing orderings of sparse matrices by George Karypis. TELEMAC-MASCARET uses *Metis* as a part of *Partel* to split the mesh into multiple parts for parallel runs. Learn more about *Metis* and potentially newer versions than `5.1.0` (used in the following) on the [Karypis Lab website](http://glaros.dtc.umn.edu/gkhome/metis/metis/download) or reading the [PDF manual](http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/manual.pdf).
 
 Here, we will install *Metis* from *Terminal* directly in the TELEMAC-MASCARET directory. Download the *Metis* archive and unpack it in a temporary (`temp`) directory. The following code block changes to the `optionals` directory (`cd`) of TELEMAC-MASCARET, creates the `temp` folder with `mkdir`, downloads, and unzips the *Metis* archive (run in *Terminal* as ***normal user*** - ***not as root***): 
 
@@ -211,7 +208,7 @@ cc = gcc
 
 Press `Esc` to leave the *INSERT* mode and then type `:wq` (the letters are visible on the bottom of the window) to save (write-quit) the file. Hit `Enter` to return to the *Terminal*.
 
-{% include tip.html content="Here some hints to troubleshoot typical *VIM* problems:<br>***VIM freezes***: Maybe you hit `CTRL` + `S` keys, which is intuitive for *Windows* users to save a file. In Linux, it has a different meaning... to unfreeze the window, simply hit `CTRL` + `Q`<br>***:wq not working***: Maybe you enabled the *easy mode*. Disable *easy mode* by hitting the `CTRL` + `O` keys.<br> Other typical errors may occur if you installed another keyboard layout for a VM guest machine than the host machine uses." %}
+{% include tip.html content="Here some hints to troubleshooting typical *VIM* problems:<br>***VIM freezes***: Maybe you hit `CTRL` + `S` keys, which is intuitive for *Windows* users to save a file, but in *Linux*, it has a different effect. So, to unfreeze the window, simply hit `CTRL` + `Q`<br>***:wq not working***: Maybe you enabled the *easy mode*. Disable *easy mode* by hitting the `CTRL` + `O` keys.<br> Other typical errors may occur if you installed another keyboard layout for a VM guest machine than the host machine uses." %}
 
 Back in *Terminal*, copy the `Makefile` and remove the `temp` folder with the following command sequence (note: you may want to keep the `temp` folder for installing `hdf5` and `med` file libraries):
 
@@ -350,11 +347,12 @@ Make the following adaptations in *Debian gfortran open MPI* section as a functi
 * Search for *metis* in `libs_all` and adapt all *metis*-related directories to `/home/USER-NAME/telemac/v8p1/optionals/metis-5.1.0/build/Linux-x86_64/libmetis/libmetis.a` (i.e., adapt the absolute directory and the *Metis* version to `5.1.0`). 
 * Search for *openmpi* in `libs_all` and correct the library file to `/usr/lib/x86_64-linux-gnu/openmpi/libmpi.so.40.10.3`
 * Search for `cmd_obj:` definitions and add `-cpp` in front of the `-c` flags. For example:
+
 ```
 cmd_obj:    /usr/bin/mpif90 -cpp -c -O3 -DHAVE_MPI -fconvert=big-endian -frecord-marker=4 <mods> <incs> <f95name>
 ```
 
-{% include tip.html content="To facilitate setting up the `systel` file, we provide a template on our group repository ([download](https://raw.githubusercontent.com/Ecohydraulics/telemac-install-helpers/master/debian/systel.cis-debian.cfg)). Make sure to verify the above-described directories and replace the user name `ssc-deb` with your local user name in the provided `systel.cis-debian.cfg` file." %}
+{% include tip.html content="To facilitate setting up the `systel` file, use our template ([download](https://raw.githubusercontent.com/Ecohydraulics/telemac-install-helpers/master/debian/systel.cis-debian.cfg)). Make sure to verify the above-described directories and replace the user name `ssc-deb` with your local user name in the provided `systel.cis-debian.cfg` file." %}
 
 ### Setup *Python* source file
 
@@ -410,13 +408,13 @@ export METISHOME=$SYSTEL/metis-5.1.0/build/Linux-x86_64/
 export LD_LIBRARY_PATH=$METISHOME/libmetis:$LD_LIBRARY_PATH
 ```
 
-{% include tip.html content="To facilitate setting up the `pysource` file, we provide a template on our group repository ([download](https://raw.githubusercontent.com/Ecohydraulics/telemac-install-helpers/master/debian/pysource.openmpi.sh)). Make sure to verify all directories set in the provided `pysource.openmpi.sh` file and replace the user name `ssc-deb` with your local user name." %}
+{% include tip.html content="To facilitate setting up the `pysource` file, use our template  ([download](https://raw.githubusercontent.com/Ecohydraulics/telemac-install-helpers/master/debian/pysource.openmpi.sh)). Make sure to verify all directories set in the provided `pysource.openmpi.sh` file and replace the user name `ssc-deb` with your local user name." %}
 
 ### Compile
 
 ***Estimated duration: 20-30 minutes (compiling takes time).***
 
-The compiler is called through *Python* and the above-created bash script (*Python* source file). So the *Python* source file `pysource.openmpi.sh` knows where helper programs, and libraries are located, and it knows the configuration to be used. Therefore, compiling TELEMAC-MASCARET with the *Python* source file becomes an easy task in *Terminal*. First, load the *Python* source file `pysource.openmpi.sh` as source in *Terminal*, and then, test if it is correctly configured by running `config.py`:
+The compiler is called through *Python* and the above-created bash script (*Python* source file). So the *Python* source file `pysource.openmpi.sh` knows where helper programs and libraries are located, and it knows the configuration to be used. Therefore, compiling TELEMAC-MASCARET with the *Python* source file becomes an easy task in *Terminal*. First, load the *Python* source file `pysource.openmpi.sh` as source in *Terminal*, and then, test if it is correctly configured by running `config.py`:
 
 ```
 source pysource.openmpi.sh
@@ -436,6 +434,8 @@ The compilation should run for a while (can take more than 30 minutes) and succe
 
 ### Test TELEMAC-MASCARET
 
+***Estimated duration: 5 minutes.***
+
 To test if TELEMAC-MASCARET works, use a pre-defined case from the provided `examples` folder:
 
 ```
@@ -452,38 +452,41 @@ TELEMAC-MASCARET should startup, run the example case, and again end with the ph
 
 ### Blue Kenue<sup>TM</sup>
 
+***Estimated duration: 10 minutes.***
+
 [*Blue Kenue<sup>TM</sup>*](https://nrc.canada.ca/en/research-development/products-services/software-applications/blue-kenuetm-software-tool-hydraulic-modellers) is a pre- and post-processing software provided by the [National Research Council Canada](https://nrc.canada.ca/en), which is compatible with TELEMAC-MASCARET. It provides similar functions as the [*Fudaa*](http://www.opentelemac.org/index.php/latest-news-development-and-distribution/240-fudaa-mascaret-3-6) software featured by the TELEMAC-MASCARET developers and additionally comes with a powerful mesh generator. It is in particular for the mesh generator that you want to install *Blue Kenue<sup>TM</sup>*. The only drawback is that *Blue Kenue<sup>TM</sup>* is designed for *Windows. So there are two options for installing *Blue Kenue<sup>TM</sup>*:
 
 1. TELEMAC-MASCARET is running on a Debian Linux VM and your host system is *Windows*:<br>[Download](http://www.opentelemac.org/index.php/assistance/forum5/blue-kenue) and install *Blue Kenue<sup>TM</sup>* on your host system and use the [shared folder](vm.html#share) of the VM to transfer mesh files.
-1. Install [*Wine*](https://wiki.debian.org/Wine) (compatibility layer in *Linux* that enables running *Windows* applications) on Debian Linux and install *Blue Kenue<sup>TM</sup>* through *Wine* on Debian Linux.
+1. Use [*Wine*](https://wiki.debian.org/Wine) (compatibility layer in *Linux* that enables running *Windows* applications) to install *Blue Kenue<sup>TM</sup>* on *Linux*.
 
-The following paragraphs provide guidance for the latter option to install *Blue Kenue<sup>TM</sup>* through *Wine* on Debian Linux (*amd64*). On such a 64-bit architecture, we need to enable a 32-bit architecture for multiarch (do not worry if you do not totally understand this phrase or [read more](https://wiki.debian.org/Wine)) through running `sudo dpkg --add-architecture i386 && sudo apt update`. Then, we can install *Wine* with its full functionality using `sudo apt install ...`. So open *Terminal* and run:   
+Here are the steps for installing *Blue Kenue<sup>TM</sup>* on Debian Linux with *Wine* ([read more about installing *Windows* applications with *Wine*](vm.html#wine)): 
 
-```
-sudo dpkg --add-architecture i386 && sudo apt update
-sudo apt install wine wine32 wine64 libwine libwine:i386 fonts-wine
-``` 
-
-The Canadian Hydrological Model Stewardship (CHyMS) provides guidance on how to install *Blue Kenue<sup>TM</sup>* on Linux. Their server repository is [https://chyms.nrc.gc.ca](https://chyms.nrc.gc.ca) and to access the server use:
-
-* User name: `Public.User`
-* Password: `anonymous`
-
-The particular guidance is provided on the [FAQ](https://chyms.nrc.gc.ca/docs/FAQ.html) page in the troubleshooting section ([direct link to *how to run blue Kenue on another operating system](https://chyms.nrc.gc.ca/docs/FAQ.html#troubleshooting-how-run-on-another-os)). Here are the relevant steps from the websites:
-
-* Download the *Blue Kenue<sup>TM</sup>* `.msi` installer from the [developer's website](https://nrc.canada.ca/en/research-development/products-services/software-applications/blue-kenuetm-software-tool-hydraulic-modellers) (follow the instructions on the website).
-*  Install *Blue Kenue<sup>TM</sup>* by using the *Wine*'s `wine control` command (more information at [https://wiki.winehq.org/Control](https://wiki.winehq.org/Control)).
-* After running `sudo wine control` in *Terminal*, a windows-like window opens.
+* Make sure to install *Wine* according to the descriptions on the [Virtual Machines page](vm.html#wine).
+* Download the *Blue Kenue<sup>TM</sup>* *msi* installer from the [developer's website](https://nrc.canada.ca/en/research-development/products-services/software-applications/blue-kenuetm-software-tool-hydraulic-modellers) (follow the instructions on the website - [direct download](https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/Installer/BlueKenue_3.3.4_64bit.msi)). In detail:
+    + Go to [https://chyms.nrc.gc.ca](https://chyms.nrc.gc.ca) and log in with
+    + User name: `Public.User`
+    + Password: `anonymous`
+* Install *Blue Kenue<sup>TM</sup>* by using the *Wine*: In *Terminal* type `wine control`.
+* After running `wine control` in *Terminal*, a windows-like window opens.
 * Click on the *Add/Remove...* button in the window, which opens up another window (*Add/Remove Programs*).
-* Click on the *Install...* button and select the downloaded `.msi` installer for *Blue Kenue<sup>TM</sup>*.
-* Follow the instructions to install *Blue Kenue<sup>TM</sup>*. After the successful installation, create a *Blue Kenue<sup>TM</sup>* desktop icon should appear.
-* To run *Blue Kenue<sup>TM</sup>* click on the *Blue Kenue<sup>TM</sup>* desktop icon or run the following: wine /path-to-exe/BlueKenue64.exe
-* For offline systems (systems without an internet connection),  run *Blue Kenue<sup>TM</sup>*  the following command to start Blue Kenue: /path-to-wine-built/bin/wine64 /path-to-exe/BlueKenue64.exe
-* In this case, the Desktop Icon may not work but it can be modified to use the command above. 
+* Click on the *Install...* button and select the downloaded *msi* installer for *Blue Kenue<sup>TM</sup>*.
+* Follow the instructions to install *Blue Kenue<sup>TM</sup>* for *Everyone* (all users) and create a *Desktop Icon*.
 
-<!-- Everything should work at this point. However, for JB Saulnier, he had some loading issues with NVIDIA GL libraries that were particular to his hardware that needed to be sorted out. -->
+After the successful installation, launch *Blue Kenue<sup>TM</sup>* with *Wine* ([read more about starting *Windows* applications through *Wine*](vm.html#wine)):
+
+* In *Terminal* type `wine explorer` 
+* In the *Wine Explorer* window, navigate to *Desktop* and find the *BlueKenue* shortcut.
+* Start *BlueKenue* by double-clicking on the shortcut.
+* Alternatively, identify the installation path and the *Blue Kenue<sup>TM</sup>* executable.
+    + The 64-bit version is typically installed in `"C:\\Program Files\\CHC\\BlueKenue\\BlueKenue.exe"`.
+    + The 32-bit version is typically installed in `"C:\\Program Files (x86)\\CHC\\BlueKenue\\BlueKenue.exe"`.
+    + Start *Blue Kenue<sup>TM</sup>* with `wine "C:\\Program Files\\CHC\\BlueKenue\\BlueKenue.exe"`.
+
+The Canadian Hydrological Model Stewardship (CHyMS) provides more guidance for installing *Blue Kenue<sup>TM</sup>* on other platforms than *Windows* on their [FAQ](https://chyms.nrc.gc.ca/docs/FAQ.html) page in the troubleshooting section ([direct link to *how to run blue Kenue on another operating system](https://chyms.nrc.gc.ca/docs/FAQ.html#troubleshooting-how-run-on-another-os)).
 
 ### QGIS
+
+***Estimated duration: 5-10 minutes (depends on connection speed).***
 
 *QGIS* is a powerful tool for viewing, creating and editing geospatial data that can be useful in Pre- and post-processing. Detailed installation guidelines are provided on the [Geospatial (GIS) page on this website](geo_software.html). The short path to install *QGIS* on Debian Linux is via *Terminal*:
 

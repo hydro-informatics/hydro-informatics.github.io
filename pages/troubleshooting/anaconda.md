@@ -56,7 +56,9 @@ Several reason may cause that installing new packages fails in *Anaconda Prompt*
 The *Anaconda* *base* environment comes with many pre-installed packages and can be very storage intensive in the order of many gigabytes. Every new environment that is produced can take the same size and multiple *conda* environments may jam your hard disk. Again, there are some solutions:
 
 * Create light-weight environments with [*Miniconda*](https://docs.conda.io/en/latest/miniconda.html).
-* Clean tarballs an unnecessary package installation files with *Anaconda Prompt* or *Linux* / *macOS* *Terminal*: `conda clean --all` (read more in the [developer's docs](https://docs.conda.io/projects/conda/en/latest/commands/clean.html)).
+* Clean tarballs an unnecessary package installation files with *Anaconda Prompt* or *Linux* / *macOS* *Terminal*:
+    + Aggressive cleanup: `conda clean --all` (read more in the [developer's docs](https://docs.conda.io/projects/conda/en/latest/commands/clean.html)).
+    + Conservative cleanup: `conda clean -tipsy`
 
 
 ## Cannot find ... path

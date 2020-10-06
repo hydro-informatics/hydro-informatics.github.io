@@ -16,7 +16,6 @@ Data can be stored in many different (text) file formats such as *txt* or *csv* 
 
 The `open` command loads text files as file object in *Python*. The syntax of the `open` command is: 
 
-
 ```python
 open("file-name", "mode")
 ```
@@ -186,7 +185,7 @@ else:
     print("The file does not exist.")
 ```
 
-    C:\Users\schwindt\jupyter\hypy
+    C:\Users\schwindt\jupyter\nb-web
     Data appended.
     
 
@@ -203,8 +202,7 @@ else:
 
 With the provided [*environment.yml* (`hypy`)](https://github.com/hydro-informatics/materials-py-install/blob/master/environment.yml) for *Anaconda*, *NumPy* is already installed ([more information here](https://hydro-informatics.github.io/hypy_install.html)). To install *NumPy* in another *conda* environment, open *Anaconda Prompt* (*Start* > type *Anaconda Prompt*) and type:
 
-
-```python
+```
 conda activate ENVIRONMENT-NAME
 conda install numpy
 ```
@@ -308,7 +306,7 @@ print(np.linspace(0, np.pi, 3))
      [[ 7  8  9]
       [10 11 12]]]
     
-    Linspace:
+    1D Linspace (start, end, number-of-elements):
     [0.         1.57079633 3.14159265]
     
 
@@ -320,8 +318,8 @@ rand_array = np.random.random((2,4))
 print(rand_array)
 ```
 
-    [[0.70781395 0.41779066 0.76871431 0.4963872 ]
-     [0.34329501 0.82674218 0.52689679 0.83429892]]
+    [[0.91394824 0.67294789 0.74636132 0.81334914]
+     [0.78115187 0.42887164 0.57284675 0.74418875]]
     
 
 Built-in array functions enable finding minimum or maximum values, or sums of arrays:
@@ -363,18 +361,18 @@ print("Matrix product (option 1): " + str(A @ B))
 print("Matrix product (option 2): " + str(A.dot(B)))
 ```
 
-    Subtraction: [[ 0.38998859 -0.60449301]
-     [ 0.39763375  0.42913618]
-     [-0.42903473  0.45677191]
-     [ 0.57435302  0.48988202]]
-    Element-wise product: [[0.1950471  0.06687316]
-     [0.21500637 0.56989207]
-     [0.43878027 0.18134931]
-     [0.34501717 0.05852668]]
-    Matrix product (option 1): [[1.19385091 1.09176578]
-     [1.19716583 0.87664122]]
-    Matrix product (option 2): [[1.19385091 1.09176578]
-     [1.19716583 0.87664122]]
+    Subtraction: [[ 0.47341629 -0.49767626]
+     [-0.43004557  0.82374279]
+     [ 0.32428884 -0.27884582]
+     [ 0.23571957  0.07882216]]
+    Element-wise product: [[0.30408453 0.46702309]
+     [0.08848649 0.06711223]
+     [0.48898957 0.17941811]
+     [0.27147158 0.0334852 ]]
+    Matrix product (option 1): [[1.15303217 1.43963554]
+     [0.96147814 0.74703863]]
+    Matrix product (option 2): [[1.15303217 1.43963554]
+     [0.96147814 0.74703863]]
     
 
 Further element-wise calculations include exponential (`**`), geometric (`np.sin`, `np.cos`, `np.tan` etc.), and boolean operators:
@@ -388,16 +386,16 @@ print("Sine of A times 3: " + str(np.sin(A) * 3))
 print("Boolean where A is smaller than 0.3: " + str(A < 0.3))
 ```
 
-    A to the power of 3: [[3.11345110e-01 3.47919926e-01 1.11810877e-01 8.33242424e-01]
-     [8.71803779e-04 9.98144598e-01 3.60357582e-01 2.04557589e-01]]
-    Exponential: [[1.96947579 2.02047173 1.61891631 2.56254731]
-     [1.10024178 2.71660014 2.03727701 1.80256812]]
-    Square root: [[0.82326631 0.83864832 0.69408716 0.97005248]
-     [0.30907921 0.99969053 0.84357224 0.76760171]]
-    Sine of A times 3: [[1.88116637 1.94028542 1.39001069 2.42444565]
-     [0.28615417 2.52340937 1.95917102 1.66711916]]
-    Boolean where A is smaller than 0.3: [[False False False False]
-     [ True False False False]]
+    A to the power of 3: [[0.58596482 0.00351328 0.68141334 0.27723555]
+     [0.10952196 0.72521891 0.02879634 0.01163484]]
+    Exponential: [[2.30897613 1.16418491 2.41083883 1.91947769]
+     [1.61356641 2.45577231 1.35867612 1.2543238 ]]
+    Square root: [[0.91477002 0.38989896 0.93806969 0.80749806]
+     [0.69169856 0.94786143 0.55363416 0.47602166]]
+    Sine of A times 3: [[2.22751872 0.45430898 2.31216837 1.82045874]
+     [1.38120307 2.34707116 0.90520167 0.67398737]]
+    Boolean where A is smaller than 0.3: [[False  True False False]
+     [False False False  True]]
     
 
 ### Array shape manipulation
@@ -411,25 +409,25 @@ print("\nTranspose matrix A and append B and cast into a (4x4) array:\n" + str(n
 ```
 
     Flattened matrix A (into a vector):
-    [0.67776741 0.70333101 0.48175698 0.94100181 0.09552996 0.99938115
-     0.71161412 0.58921238]
+    [0.83680419 0.1520212  0.87997475 0.65205311 0.47844689 0.8984413
+     0.30651079 0.22659662]
     
     Transpose matrix A and append B:
-    [[[0.67776741 0.09552996]
-      [0.70333101 0.99938115]
-      [0.48175698 0.71161412]
-      [0.94100181 0.58921238]]
+    [[[0.83680419 0.47844689]
+      [0.1520212  0.8984413 ]
+      [0.87997475 0.30651079]
+      [0.65205311 0.22659662]]
     
-     [[0.28777882 0.70002297]
-      [0.30569726 0.57024497]
-      [0.91079171 0.2548422 ]
-      [0.36664879 0.09933036]]]
+     [[0.36338791 0.97612316]
+      [0.58206677 0.07469851]
+      [0.55568591 0.5853566 ]
+      [0.41633354 0.14777447]]]
     
     Transpose matrix A and append B and cast into a (4x4) array:
-    [[0.67776741 0.09552996 0.70333101 0.99938115]
-     [0.48175698 0.71161412 0.94100181 0.58921238]
-     [0.28777882 0.70002297 0.30569726 0.57024497]
-     [0.91079171 0.2548422  0.36664879 0.09933036]]
+    [[0.83680419 0.47844689 0.1520212  0.8984413 ]
+     [0.87997475 0.30651079 0.65205311 0.22659662]
+     [0.36338791 0.97612316 0.58206677 0.07469851]
+     [0.55568591 0.5853566  0.41633354 0.14777447]]
     
 
 ### *NumPy* file handling and `np.nan`
@@ -539,6 +537,8 @@ Are you considering to switch to *Python* after starting softly into programming
 
 *MATLAB&reg; is a registered trademark of The MathWorks.*
 
+{% include exercise.html content="Practice *numpy* and *csv* file handling in the [Reservoir design](ex_sp.html) exercise." %}
+
 ## Pandas {#pandas}
 
 *pandas* is a powerful module (package) for data analyses and manipulation with *Python*. It has can handle *NumPy* arrays, and both packages jointly represent a powerful data processing engine. The power of *pandas* lies in processing data frames, data labeling (e.g., workbook-like columns names), and flexible file handling functions (e.g., the built-in `read_csv(csv-file)`). While *NumPy* arrays enable calculations with multidimensional arrays (beyond 2-dimensional tables) and low memory consumption, *pandas* `DataFrame`s efficiently process and label tabular data with more than ~100,000 rows. Because of its labelling capacity, *pandas* also finds broad application in machine learning. In summary, *pandas*' functionality builds on top of *NumPy* and both packages are developed by the [*SciPy*](https://www.scipy.org/) (*Scientific computing tools for Python*) community that also develops `matplotlib` (see [the introduction to plotting with *Python*](hypy_pyplot.html) and *IPython* (*Jupyter*'s *Python* kernel).
@@ -547,8 +547,7 @@ Are you considering to switch to *Python* after starting softly into programming
 
 *pandas*' developer's recommend to install *pandas* with the *SciPy* stack in [*Anaconda*](https://hydro-informatics.github.io/hy_ide.html), similar to the recommendations for installing *NumPy*. With the provided [*environment.yml* (`hypy`)](https://github.com/hydro-informatics/materials-py-install/blob/master/environment.yml) for *Anaconda*, *NumPy* is already installed ([more information here](https://hydro-informatics.github.io/hypy_install.html)). To install *NumPy* in another *conda* environment, open *Anaconda Prompt* (*Start* > type *Anaconda Prompt*) and type:
 
-
-```python
+```
 conda activate ENVIRONMENT-NAME
 conda install pandas
 ```
@@ -583,21 +582,21 @@ print("\nTranspose the data frame:\n" + str(wb_like_df.T))
     
     This is a workbook-like (row and column names) data frame:
               A         B         C
-    1 -1.248745  1.325094  0.333333
-    2 -0.633113 -0.557265 -0.738211
-    3  0.003630 -0.879839 -0.103568
+    1  0.101979 -2.022688 -0.642124
+    2  2.813837  2.051969  1.833285
+    3  0.484006 -1.050316  1.355425
     
     Rename column names with dictionary:
        Series 1  Series 2  Series 3
-    1 -1.248745  1.325094  0.333333
-    2 -0.633113 -0.557265 -0.738211
-    3  0.003630 -0.879839 -0.103568
+    1  0.101979 -2.022688 -0.642124
+    2  2.813837  2.051969  1.833285
+    3  0.484006 -1.050316  1.355425
     
     Transpose the data frame:
               1         2         3
-    A -1.248745 -0.633113  0.003630
-    B  1.325094 -0.557265 -0.879839
-    C  0.333333 -0.738211 -0.103568
+    A  0.101979  2.813837  0.484006
+    B -2.022688  2.051969 -1.050316
+    C -0.642124  1.833285  1.355425
     
 
 A *pandas* `DataFrame` object can also be created with a [dictionary](hypy_pybase.html#dict), where the dictionary keys define column names and the dictionary items constitute the data of each column:
@@ -614,10 +613,10 @@ print("\nFrame data types:\n" + str(df.dtypes))
 
     A dictionary-built data frame:
        Flow depth Sediment    Flow regime         Water
-    0    0.170200      yes        fluvial  Always there
-    1    0.101888       no        fluvial  Always there
-    2    0.137656      yes  supercritical  Always there
-    3    0.127455       no       critical  Always there
+    0    0.234927      yes        fluvial  Always there
+    1    0.258540       no        fluvial  Always there
+    2    0.193682      yes  supercritical  Always there
+    3    0.102647       no       critical  Always there
     
     Frame data types:
     Flow depth      float32
@@ -637,12 +636,12 @@ print("\nEnd (tail) of the dictionary-based dataframe (last row):\n" + str(df.ta
 
     Head of the dictionary-based dataframe (first two rows):
        Flow depth Sediment Flow regime         Water
-    0    0.170200      yes     fluvial  Always there
-    1    0.101888       no     fluvial  Always there
+    0    0.234927      yes     fluvial  Always there
+    1    0.258540       no     fluvial  Always there
     
     End (tail) of the dictionary-based dataframe (last row):
        Flow depth Sediment Flow regime         Water
-    3    0.127455       no    critical  Always there
+    3    0.102647       no    critical  Always there
     
 
 ### Example creation of a `pandas.DataFrame` {#exp-Froude}
@@ -663,17 +662,17 @@ obs_df = pd.DataFrame({"measured": Fr_measured, "flow regime": Fr_classified})
 print(obs_df)
 ```
 
-       measured             flow regime
-    0  0.608713                 fluvial
-    1  1.562811          super-critical
-    2  1.099344          super-critical
-    3  1.038562  nearby critical (fast)
-    4  0.212276                 fluvial
-    5  1.233920          super-critical
-    6  0.209036                 fluvial
-    7  0.517329                 fluvial
-    8  0.047344                 fluvial
-    9  0.486110                 fluvial
+       measured     flow regime
+    0  1.860103  super-critical
+    1  1.147524  super-critical
+    2  0.287520         fluvial
+    3  1.630355  super-critical
+    4  1.693910  super-critical
+    5  1.375499  super-critical
+    6  0.160285         fluvial
+    7  0.186754         fluvial
+    8  0.507953         fluvial
+    9  1.860051  super-critical
     
 
 ### Append data to a `pandas.DataFrame`
@@ -711,9 +710,9 @@ print(obs_df.tail(3))
 ```
 
         measured             flow regime  with sediment
-    8   0.047344                 fluvial           True
-    9   0.486110                 fluvial           True
-    10  0.996000  nearby critical (slow)          False
+    8   0.507953                 fluvial           True
+    9   1.860051          super-critical          False
+    10  0.996000  nearby critical (slow)           True
     
 
 ### *NumPy* arrays and *pandas* data frames
@@ -722,13 +721,20 @@ print(obs_df.tail(3))
 
 
 ```python
-print(dict_df.to_numpy())
+print(obs_df.to_numpy())
 ```
 
-    [[0.17019981145858765 'yes' 'fluvial' 'Always there']
-     [0.1018880233168602 'no' 'fluvial' 'Always there']
-     [0.13765563070774078 'yes' 'supercritical' 'Always there']
-     [0.12745524942874908 'no' 'critical' 'Always there']]
+    [[1.8601029486574328 'super-critical' False]
+     [1.147523955431718 'super-critical' False]
+     [0.287519516185936 'fluvial' True]
+     [1.630354793380838 'super-critical' False]
+     [1.6939102308699938 'super-critical' True]
+     [1.375498993359171 'super-critical' True]
+     [0.16028532444596663 'fluvial' False]
+     [0.18675380291557087 'fluvial' True]
+     [0.5079531171876418 'fluvial' True]
+     [1.8600513118910387 'super-critical' False]
+     [0.996 'nearby critical (slow)' True]]
     
 
 ### Access data frames entries
@@ -736,12 +742,12 @@ Elements of data frames are accessible by the column and row label (`df.loc[inde
 
 
 ```python
-print("Label localization results in: " + str(dict_df.loc[2, "Flow depth"]))
-print("Same result with integer grid location: " + str(dict_df.iloc[2, 0]))
+print("Label localization results in: " + str(df.loc[2, "Flow depth"]))
+print("Same result with integer grid location: " + str(df.iloc[2, 0]))
 ```
 
-    Label localization results in: 0.13765563
-    Same result with integer grid location: 0.13765563
+    Label localization results in: 0.19368207
+    Same result with integer grid location: 0.19368207
     
 
 ### Reshape data frames {#pd-reshape}
@@ -749,63 +755,85 @@ Single or multiple rows (index) and columns can be extracted from and combined i
 
 
 ```python
-print(pd.DataFrame([dict_df[:3], wb_like_df[1:]]))
+print(pd.DataFrame([df["Flow depth"], df["Sediment"]]))
 ```
 
-                                                       0
-    0     Flow depth Sediment    Flow regime         ...
-    1            A         B         C
-    2 -0.633113 -0...
+                       0        1         2         3
+    Flow depth  0.234927  0.25854  0.193682  0.102647
+    Sediment         yes       no       yes        no
     
 
 The `df.stack()` method pivots the columns of a data frame, which is a powerful tool to classify data that can take different dimensions (e.g., the volume and weight of 1 m<sup>3</sup> water - read more about the [stack method](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.stack.html#pandas.DataFrame.stack)). 
 
 
 ```python
-print(dict_df.stack()[0])
-dict_df.unstack()  # unstack data frame
+print(df.stack()[0])
+df.unstack()  # unstack data frame
 ```
 
-    Flow depth           0.1702
+    Flow depth         0.234927
     Sediment                yes
     Flow regime         fluvial
     Water          Always there
     dtype: object
     
 
+
+
+
+    Flow depth   0         0.234927
+                 1          0.25854
+                 2         0.193682
+                 3         0.102647
+    Sediment     0              yes
+                 1               no
+                 2              yes
+                 3               no
+    Flow regime  0          fluvial
+                 1          fluvial
+                 2    supercritical
+                 3         critical
+    Water        0     Always there
+                 1     Always there
+                 2     Always there
+                 3     Always there
+    dtype: object
+
+
+
 Big datasets often contain large amounts of data with many labels, where we are often only interested in a small subset of data. Data frame subsets can be created with the [`df.pivot(index, columns, **values)` method](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.pivot.html#pandas.DataFrame.pivot):
 
 
 ```python
-print("Pivot table for \'Flow regime\':\n" + str(dict_df.pivot(index="Sediment", columns="Flow depth")["Flow regime"]))
-print("\nPivot table for \'Water\':\n" + str(dict_df.pivot(index="Sediment", columns="Flow depth")["Water"]))
+print("Pivot table for \'Flow regime\':\n" + str(df.pivot(index="Sediment", columns="Flow depth")["Flow regime"]))
+print("\nPivot table for \'Water\':\n" + str(df.pivot(index="Sediment", columns="Flow depth")["Water"]))
 ```
 
     Pivot table for 'Flow regime':
-    Flow depth 0.101888  0.127455       0.137656 0.170200
+    Flow depth  0.102647       0.193682 0.234927 0.258540
     Sediment                                             
-    no          fluvial  critical            NaN      NaN
-    yes             NaN       NaN  supercritical  fluvial
+    no          critical            NaN      NaN  fluvial
+    yes              NaN  supercritical  fluvial      NaN
     
     Pivot table for 'Water':
-    Flow depth      0.101888      0.127455      0.137656      0.170200
+    Flow depth      0.102647      0.193682      0.234927      0.258540
     Sediment                                                          
-    no          Always there  Always there           NaN           NaN
-    yes                  NaN           NaN  Always there  Always there
+    no          Always there           NaN           NaN  Always there
+    yes                  NaN  Always there  Always there           NaN
     
 
 In addition, the [`df.pivot_table(index, columns, values, aggfunc)`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.pivot_table.html#pandas.DataFrame.pivot_table) function enables inline Office-like function application to one or more rows and/or columns.
 
 
 ```python
-print("\'mean\' for \'Flow depth\':\n" + str(dict_df.pivot_table(index="Sediment", columns="Flow regime", values="Flow depth", aggfunc=np.mean)))
+print("\'mean\' for \'Flow depth\':\n" + str(df.pivot_table(index="Sediment", columns="Flow regime", values="Flow depth", aggfunc=np.mean)))
 ```
 
     'mean' for 'Flow depth':
     Flow regime  critical   fluvial  supercritical
     Sediment                                      
-    no           0.127455  0.101888            NaN
-    yes               NaN  0.170200       0.137656
+    no           0.102647  0.258540            NaN
+    yes               NaN  0.234927       0.193682
     
 
 Read more about reshaping and pivoting data frames in the [developer's docs](https://pandas.pydata.org/pandas-docs/stable/user_guide/reshaping.html).
@@ -856,7 +884,7 @@ measurement_data = measurement_data.apply(pd.to_numeric)  # (2) convert all data
 # write workbook with pd ExcelWriter object
 with pd.ExcelWriter("data/modified-data-wb-EW.xlsx") as writer:
     measurement_data.to_excel(writer, sheet_name="2025-01-01 Tests")
-    dict_df.to_excel(writer, sheet_name="pandas example")
+    df.to_excel(writer, sheet_name="pandas example")
 ```
 
 {% include image.html file="py-pandas-xlsx-out2.png" alt="py-pd-xlsx-o" max-width="700" caption="The red-highlighted spots indicate where text has been replaced with numeric data." %}
@@ -881,7 +909,7 @@ print(pd.Series(Fr_cat))
     3    nearby critical (slow)
     4                       NaN
     dtype: category
-    Categories (5, object): [fluvial, nearby critical (slow), critical, nearby critical (fast), super-critical]
+    Categories (5, object): ['fluvial', 'nearby critical (slow)', 'critical', 'nearby critical (fast)', 'super-critical']
     
 
 ### Data frame statistics
@@ -922,56 +950,56 @@ measurement_data.describe()
   </thead>
   <tbody>
     <tr>
-      <td>count</td>
+      <th>count</th>
       <td>18.000000</td>
       <td>16.000000</td>
       <td>15.000000</td>
       <td>18.000000</td>
     </tr>
     <tr>
-      <td>mean</td>
+      <th>mean</th>
       <td>4.111111</td>
       <td>4.250000</td>
       <td>4.533333</td>
       <td>5.555556</td>
     </tr>
     <tr>
-      <td>std</td>
+      <th>std</th>
       <td>2.298053</td>
       <td>2.792848</td>
       <td>2.386470</td>
       <td>2.617188</td>
     </tr>
     <tr>
-      <td>min</td>
+      <th>min</th>
       <td>1.000000</td>
       <td>1.000000</td>
       <td>1.000000</td>
       <td>1.000000</td>
     </tr>
     <tr>
-      <td>25%</td>
+      <th>25%</th>
       <td>2.250000</td>
       <td>2.000000</td>
       <td>3.000000</td>
       <td>4.000000</td>
     </tr>
     <tr>
-      <td>50%</td>
+      <th>50%</th>
       <td>4.000000</td>
       <td>4.000000</td>
       <td>4.000000</td>
       <td>5.500000</td>
     </tr>
     <tr>
-      <td>75%</td>
+      <th>75%</th>
       <td>5.000000</td>
       <td>6.000000</td>
       <td>6.000000</td>
       <td>7.000000</td>
     </tr>
     <tr>
-      <td>max</td>
+      <th>max</th>
       <td>9.000000</td>
       <td>10.000000</td>
       <td>9.000000</td>
@@ -1046,12 +1074,12 @@ print(df)
 ```
 
        Feets   Meters
-    0     98  29.8704
-    1     35  10.6680
-    2     35  10.6680
-    3     49  14.9352
-    4     54  16.4592
-    5     72  21.9456
+    0      1   0.3048
+    1     81  24.6888
+    2     47  14.3256
+    3     20   6.0960
+    4     52  15.8496
+    5     47  14.3256
     
 
 ## Dates and Time
@@ -1111,3 +1139,5 @@ while act_time <= end_date:
 
 
 That's it for the introduction to data and file handling. There is much more to data processing than on this page and the next pages will occasionally feature more tools.
+
+{% include exercise.html content="Practice *pandas* and its *csv* file handling routines, as well as basic date-time handling in the [Flood return period calculation](ex_floods.html) exercise." %}

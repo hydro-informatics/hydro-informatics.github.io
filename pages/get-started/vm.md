@@ -8,7 +8,7 @@ permalink: vm.html
 folder: get-started
 ---
 
-Your computer is one of your important educational companions. So you want to protect the health of your computer and avoid problems caused by redundant or even malicious software. For this reason, it is recommended to install all software used on this website on a so-called Virtual Machine (VM). This page explains what VMs are, what advantages they have exactly, and how you can install [Debian Linux](https://www.debian.org/), one of the most stable and secure operating systems. It does not matter if you use Apple's *mac OS* or Microsoft's *Windows*, or if you already use Linux: The VM will look the same at the end.
+Your computer is one of your most important educational companions. So you want to protect the health of your computer and avoid problems caused by redundant or even malicious software. For this reason, it is recommended to install all software used on this website on a so-called Virtual Machine (VM). This page explains what VMs are, what advantages they have exactly, and how you can install [Debian Linux](https://www.debian.org/), one of the most stable and secure operating systems. It does not matter if you use Apple's *mac OS* or Microsoft's *Windows*, or if you already use Linux: The VM will look the same at the end.
 
 ## About
 
@@ -35,7 +35,7 @@ In the context of hydro-informatics for water resources management, a VM can ser
 
 This page guides through the installation of a [Debian Linux](https://www.debian.org/) virtual machine. The host hypervisor is assumed to be Oracle's [VirtualBox](https://www.virtualbox.org/) on *Windows 10*. If you are not using *Windows 10*, just download the *VirtualBox* installer that suits your system.
 
-The guest machine will run Debian Linux, which is one of the most stable Linux distributions and it is freely available. Because of its stability, Debian is an ideal baseline for running numerical simulations that may last for days or even weeks. Of course, there are other options and Debian is rather one of the best options than *the best option*.
+The guest machine will run Debian Linux, which is one of the most stable Linux distributions, and it is freely available. Because of its stability, Debian is an ideal baseline for running numerical simulations that may last for days or even weeks. Of course, there are other options, and Debian is rather one of the best options than *the best option*.
 
 
 ## Create a Debian Linux VM
@@ -46,7 +46,7 @@ The guest machine will run Debian Linux, which is one of the most stable Linux d
 
 * Download and install the latest version of [VirtualBox](https://www.virtualbox.org/).
     + *Oracles*'s *VirtualBox* is a free and open-source hosted hypervisor software.
-    + The installation of *VirtualBox* requires administrator rights on the host machine. So if you are working in a professional environment talk to your IT administrator.
+    + The installation of *VirtualBox* requires administrator rights on the host machine. So if you are working in a professional environment, talk to your IT administrator.
     + *VirtualBox* installers are available for *Windows*, *mac OS*, and *Solaris*.
 * Download the latest Debian Linux net installer:
     + Visit [debian.org](https://www.debian.org/)
@@ -61,14 +61,14 @@ Remember where the *.iso* file is stored.
 
 ***Estimated duration: 5-8 minutes.***
 
-In *Windows 10*, click on *Start*, type *Oracle VM VirtualBox* and hit enter. In the *VirtualBox* manager window:
+In *Windows 10*, click on *Start*, type *Oracle VM VirtualBox*, and hit enter. In the *VirtualBox* manager window:
 
 * Click on the blue *New* button to open the VM creation wizard and enter:
     + *Name:* Debian Linux <br>*Note: The wizard should automatically recognize the* Type *and*Version *fields.*
     + *Machine Folder:* `C:\Users\USERNAME\VirtualBox VMs`
     + *Type:* Linux
     + *Version:* Debian (64-bit)  <br>> Click on the *Next* button
-    + Allocate memory size: the more memory is allocated to the VM, the faster will be the VM (and for example TELEMAC-MASCARET), but the slower will be the host system (*Windows 10*). Rule of thumb: stay in the green range of the bar (e.g. allocate 8192 MB)
+    + Allocate memory size: the more memory is allocated to the VM, the faster will be the VM (and for example TELEMAC-MASCARET), but the slower will be the host system (*Windows 10*). Rule of thumb: stay in the green range of the bar (e.g., allocate 8192 MB)
     <br>> Click on the *Next* button
     + Select *Create a virtual hard disk now* and click on the *Create* button.
     + Select *VDI* (native to *VirtualBox*) and click on *Next*.
@@ -77,7 +77,7 @@ In *Windows 10*, click on *Start*, type *Oracle VM VirtualBox* and hit enter. In
 * Great - the basics are all set now and we are back in the *VirtualBox* main window, where a *Debian Linux* VM should be visible now on the left side of the window.
 * With the *Debian Linux* VM highlighted (i.e., just click on it), click on the yellow *Settings* wheel-button, which opens the *Settings* window:
     + In the *System/Motherboard* tab, verify the memory allocation and check the *Enable EFI (special OSes only)* box (enable).
-    + In the *System/Processor* tab, select the number of processors that the VM uses. For not slowing down the host system (*Windows 10*), stay in the green range of the CPU bar. For parallel processing with TELEMAC-MASCARET, allocate at least 4 CPUs. 
+    + In the *System/Processor* tab, select the number of processors that the VM uses. To not slowing down the host system (*Windows 10*), stay in the green range of the CPU bar. For parallel processing with TELEMAC-MASCARET, allocate at least 4 CPUs. 
     + In the *Display* tab, check the *Enable 3D Acceleration* box.
     + In the *Storage* tab, find the *Controller: IDE*, where an *Empty* disk symbol should be located below. Click on the *Empty* disk symbol and find the *Attributes* frame on the right side of the window, where a small blue disk symbol should be visible. Click on the small blue disk symbol to *Choose a virtual disk file ...* > select the Debian Linux net installer (*debian-xx.x.x-amd64-netinst.iso*) that we downloaded before.
     + Click *OK*.
@@ -88,9 +88,9 @@ In *Windows 10*, click on *Start*, type *Oracle VM VirtualBox* and hit enter. In
 
 To start the installation of Debian Linux, start the before created Debian Linux VM in the *VirtualBox* manager window (click on the *Debian Linux* VM and then on the green *Start* arrow). The *VirtualBox VM* window will ask for the *.iso* file to use (confirm the selected one), and start navigating through the installation:
 
-* Inside the *VirtualBox VM* window select the *Graphical install* option.
+* Inside the *VirtualBox VM* window, select the *Graphical install* option.
 * Navigate through the language options (recommended: English - English (United States)).
-* Optionally define a hostname (e.g. debian-vm) and a domain name (e.g. debian-net).
+* Optionally define a hostname (e.g., debian-vm) and a domain name (e.g., debian-net).
 * Create a root user name and password (write down the credentials somewhere) as well as a user name (no root rights) and password.
 * Set up the clock.
 * Disk partitioning: Choose the *Guided - use entire disk* option. Click *Continue* (2 times).
@@ -105,7 +105,7 @@ To start the installation of Debian Linux, start the before created Debian Linux
  <br>... continue enjoying your favorite beverage and wait while the installation progresses ...
 * Click *Continue* to finalize the installation and reboot (or shutdown) the VM.
 
-Once the VM is shut down, re-open the VM *Settings* (from *VirtualBox Manager* window) and go to the *Storage* tab. Verify that there is again an *Empty* disk symbol in the *Controller: IDE* field.
+Once the VM is shutdown, re-open the VM *Settings* (from *VirtualBox Manager* window) and go to the *Storage* tab. Verify that there is again an *Empty* disk symbol in the *Controller: IDE* field.
 
 ### Setup Debian Linux {#setup-debian}
 
@@ -121,7 +121,7 @@ su
 
 Enter the above-created password for the root user name (see installation section).
 
-{% include note.html content="Root access (e.g. for installing software) is granted on many Linux distribution using the `sudo` command before the command to execute. In Debian Linux, `sudo` may refer to the wrong account and not work as desired. As a workaround use `su` in the *Terminal*. Alternatively, type `sudo usermod -a -G sudo YOUR-USER-NAME` in *Terminal* (after `su`)." %}
+{% include note.html content="Root access (e.g., for installing software) is granted on many Linux distribution using the `sudo` command before the command to execute. In Debian Linux, `sudo` may refer to the wrong account and not work as desired. As a workaround type `su` in *Terminal*. Alternatively, type `sudo usermod -a -G sudo YOUR-USER-NAME` in *Terminal* (after `su`)." %}
 
 Install all packages required for building kernel modules:
 
@@ -130,7 +130,7 @@ apt update
 apt install build-essential dkms linux-headers-$(uname -r)
 ```
 
-Find the *Devices* drop-down menu of the *VirtualBox VM* window (not in Debian Linux itself) and select *Insert Guest Additions CD image...* (depending on the version of *VirtualBox*, this menu can be on the top or on the bottom of the window).
+Find the *Devices* drop-down menu of the *VirtualBox VM* window (not in Debian Linux itself) and select *Insert Guest Additions CD image...* (depending on the version of *VirtualBox*, this menu can be on the top or the bottom of the window).
 
 {% include tip.html content="The *VirtualBox VM* window does not show the menu with the *Devices* entry anywhere?
     + This may happen when the *View* was set to *Scaled mode*.
@@ -152,7 +152,7 @@ cd /mnt/cdrom
 sh ./VBoxLinuxAdditions.run --nox11
 ```
 
-The kernel modules will be installed now and *Terminal* should produce a message that invites to reboot the system. Do so by typing:
+The kernel modules will be installed now and *Terminal* should prompt a message that invites to reboot the system. Do so by typing:
 
 ```
 sudo shutdown -r now
@@ -166,7 +166,12 @@ lsmod | grep vboxguest
 
 If the *Terminal*'s answer is something like `vboxguest   358395 2 vboxsf`, the installation was successful. Read more about *Guest Additions* on the [*VirtualBox* developer's website](https://www.virtualbox.org/manual/ch04.html).
 
-To improve the visual experience do the following: In the top-left corner of the Debian Linux Desktop, click on *Activities* and type *display* in the search box. Open the *Displays* settings to select a convenient display resolution. If you choose a too high resolution, the *VirtualBox VM* window will turn black and jump back to the original resolution after 15-30 seconds. Consider also to turn on *Night Light* to preserve your eye vision. *Apply* the changes and close the *Displays* settings.
+To improve the visual experience do the following:
+* In the top-left corner of the Debian Linux Desktop, click on *Activities* and type *display* in the search box.
+* Open the *Displays* settings to select a convenient display resolution.
+    + If you choose a too high resolution, the *VirtualBox VM* window will turn black and jump back to the original resolution after 15-30 seconds.
+    + Consider also to turn on *Night Light* to preserve your eye vision. 
+* *Apply* the changes and close the *Displays* settings.
 
 ### Familiarize with Debian Linux and Terminal {#terminal}
 
@@ -176,10 +181,10 @@ To get familiar with Debian Linux, go to the *Activities* menu and find the appl
 Find more applications by clicking on the four dots on the left of the menu bar - can you find the Text Editor?
 To shutdown Debian Linux (i.e., the VM), click on the top-right corner arrow and press the Power symbol.
 
-The GNOME *Terminal* is one of the most important features, event though it optically shows only an empty window with a blinking cursor at the beginning. There a many ways to open *Terminal* and here are two options:
+The GNOME *Terminal* is one of the most important features, event though it optically shows only an empty window with a blinking cursor at the beginning. There are many ways to open *Terminal* and here are two options:
 
 1. Go to *Applications* and type *Terminal* in the search box, or
-1. Open the *File* browser (*Applications* > *Files* - the filing container symbol), navigate to the folder where you want to run *Terminal*, right-click in the free space and left-click on *Open in Terminal*.
+1. Open the *File* browser (*Applications* > *Files* - the filing container symbol), navigate to the folder where you want to run *Terminal*, right-click in the free space, and left-click on *Open in Terminal*.
 
 *Terminal* runs many powerful native Linux (UNIX) commands, which is the most robust way to install and execute features. There are a couple of tutorials for learning to use *Terminal* and one of the most comprehensive is provided on the *Linux Ubuntu* website (Ubuntu is based on Debian Linux). It is highly recommended to go through the [tutorial provided by the Ubuntu community](https://ubuntu.com/tutorials/command-line-for-beginners) (*estimated duration: 51 minutes*), for better understanding some contents presented here on *hydro-informatics.github.io*. In particular, memorize the commands `cd` (change directory), `su`/`sudo` (superuser), `ls` (listen) and `mkdir` (make directory).
 
@@ -188,9 +193,9 @@ The GNOME *Terminal* is one of the most important features, event though it opti
 
 ***Estimated duration: 5-10 minutes.***
 
-Sharing data between the host system (e.g. *Windows 10*) and the guest system (Debian Linux VM) will be needed to transfer input and output files to and from the VM to the host system.
+Sharing data between the host system (e.g., *Windows 10*) and the guest system (Debian Linux VM) will be needed to transfer input and output files to and from the VM to the host system.
 
-* At a place of your convenience, create a new folder on the host system (e.g. *Windows 10*) and call it shared (e.g. `C:\Users\USER\documents\shared\`).
+* At a place of your convenience, create a new folder on the host system (e.g., *Windows 10*) and call it shared (e.g., `C:\Users\USER\documents\shared\`).
 * Start *VirtualBox* and the Debian Linux VM.<br>Make sure that the scaled view mode is off (toggle view modes with RIGHT `CTRL` (`Host`) key + the `C` on the keyboard).
 * Go to the VM VirtualBox window's *Devices* menu, click on *Shared Folders* > *Shared Folders Settings...* and click on the little blue *Add new shared folder* symbol on the right side of the window (see figure below). Make the following settings in the pop-up window:
     + *Folder Path:* Select the just created `...\shared` folder
@@ -200,34 +205,72 @@ Sharing data between the host system (e.g. *Windows 10*) and the guest system (D
 
 ![share-folder](https://github.com/Ecohydraulics/media/raw/master/png/vm-share-folder.png)
 
-The shared folder will then be visible in the *Files* (*Activities* > *Filing cabinet symbol*) on the left (e.g. as *sf_shared*). A reboot may be required.
+The shared folder will then be visible in the *Files* (*Activities* > *Filing cabinet symbol*) on the left (e.g., as *sf_shared*). A reboot may be required.
 
 {% include note.html content="File sharing only works with the *Guest Additions CD image* installed (see above section on setting up and familiarizing with Debian Linux)." %}
 
-When trying to access the shared folder, a *Permission denied* message may appear. To grant access for your own account, add it to the *vboxsf* group. The *vboxsf* is the one automatically assigned for having access to the shared folder. To verify the group name, go to the shared folder, right-click in the free space, and select *Permissions*. A window with group names that have access to the shared folder opens. To add your own username type (in *Terminal*):
+When trying to access the shared folder, a *Permission denied* message may appear. To grant access for your account, add it to the *vboxsf* group. The *vboxsf* is the one automatically assigned for having access to the shared folder. To verify the group name, go to the shared folder, right-click in the free space, and select *Permissions*. A window with group names that have access to the shared folder opens. To add your username type (in *Terminal*):
 
 ```
-su
-  ...password:
-
 sudo usermod -a -G vboxsf YOUR-USER-NAME
 ```
 
-Reboot the Debian Linux VM, and afterwards, test if you can access the folder, and create and modify files. 
+Reboot the Debian Linux VM, and afterward, test if you can access the folder, and create and modify files. 
 
 ### Install and Update Software (optional)
+
+***Estimated duration: Variable.***
 
 To install other software, preferably use the built-in software manager (*Activities* > *Shopping bag* symbol). The *Software* manager uses official releases in the stable Debian repository ([read more about lists of sources](https://wiki.debian.org/SourcesList)).
 
 To update the repositories, open *Terminal* and type:
 
 ```
-su
-  ...password:
-
-apt-get update
+sudo apt-get update
 ```
 
-Instructions for installing particular and Debian-compatible software (e.g. QGIS) can be found directly on the website of software developers. For example, to install *Anaconda* *Python* visit [docs.anaconda.com](https://docs.anaconda.com/anaconda/install/linux/) and follow the instructions for Debian Linux.
+Instructions for installing particular and Debian-compatible software (e.g., QGIS) can be found directly on the website of software developers. For example, to install *Anaconda* *Python* visit [docs.anaconda.com](https://docs.anaconda.com/anaconda/install/linux/) and follow the instructions for Debian Linux.
 
-{% include important.html content="If the main purpose of the VM is to run resource-intensive simulations (e.g. with TELEMAC-MASCARET), avoid installing any other software than those required for running the model. Also, as a general rule of thumb: Less is better than more." %}
+{% include important.html content="If the main purpose of the VM is to run resource-intensive simulations (e.g., with TELEMAC-MASCARET), avoid installing any other software than those required for running the model. Also, as a general rule of thumb: Less is better than more." %}
+
+
+### Install & Use *Windows* Applications in *Linux* (*Wine*) {#wine}
+
+***Estimated duration: 10-15 minutes.***
+
+If you want to emulate a *Windows* environment on any *Linux* system (for whatever reason), use the [*Wine*](https://wiki.debian.org/Wine) compatibility layer, which enables installing and running *Windows* applications. The above-described installation of Debian Linux creates a 64-bit VM and to enable program compatibility with 32-bit architectures, add 32-bit architectures through *Terminal*:
+
+```
+sudo dpkg --add-architecture i386 && sudo apt update
+```
+
+Then, install *Wine* with:
+
+```
+sudo apt install wine wine32 wine64 libwine libwine:i386 fonts-wine
+```
+
+After installing *Wine*, verify or configure folder links and compatibility environments by typing  `wine winecfg`, which opens the *Wine configuration* window, where:
+
+* Folder links are defined in the *Desktop Integration* tab.
+* The *Applications* tab enables to define the *Windows* compatibility layer to use (e.g., *Windows 10*) and set applications.
+
+To install a *Windows* application:
+
+1. Download the installer (e.g., an *exe* or *msi* file).
+1. Open *Terminal* and type `wine control` > A *Windows*-like window opens ([read more](https://wiki.winehq.org/Control)).
+1. In that window, click on the *Add/Remove...* button, which opens up another window (*Add/Remove Programs*).
+1. Click on the *Install...* button and select the downloaded *exe* or *msi* installer.
+    + Follow the installation instructions (standard *Windows* procedure).
+    + Consider to add a *Desktop Icon*, or note the installation directory (e.g., `"C:\\Program Files (x86)\\CHC\\BlueKenue\\"`).
+    + In the background. *Terminal* might prompt the message `err:mscoree:LoadLibraryShim error reading registry key for installroot` - you may ignore such messages ([read more](https://forum.winehq.org/viewtopic.php?t=14618)).
+
+***Launch a *Windows* application*** by typing `wine explorer` in *Terminal*.  *Wine*'s *Windows* file system will be displayed in a *Windows*-like window. To start and application:
+
+* If a *Desktop Icon* was created during the installation, go to *Desktop* and double-click on the application (e.g., *BlueKenue*) 
+* Otherwise, identify the installation path and the executable that launches the application.
+    + 32-bit programs are typically installed in `"C:\\Program Files (x86)\\` (e.g., `"C:\\Program Files (x86)\\CHC\\BlueKenue\\BlueKenue.exe"`).
+    + 64-bit programs are typically installed in `"C:\\Program Files\\`.
+* With the installation path, any *Windows* application can be launched through *Terminal* with:
+    + `wine "C:\\path\\to\\the.exe"` (use `\\` to separate sub-directories).
+    + For example, `wine "C:\\Program Files (x86)\\CHC\\BlueKenue\\BlueKenue.exe"` typically starts *Blue Kenue<sup>TM</sup>*.

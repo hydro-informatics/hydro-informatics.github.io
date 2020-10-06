@@ -104,11 +104,18 @@ shp_srs = shp_layer.GetSpatialRef()
 print(shp_srs)
 ```
 
-    GEOGCS["GCS_WGS_1984",
+    GEOGCS["WGS 84",
         DATUM["WGS_1984",
-            SPHEROID["WGS_84",6378137.0,298.257223563]],
-        PRIMEM["Greenwich",0.0],
-        UNIT["Degree",0.0174532925199433]]
+            SPHEROID["WGS 84",6378137,298.257223563,
+                AUTHORITY["EPSG","7030"]],
+            AUTHORITY["EPSG","6326"]],
+        PRIMEM["Greenwich",0,
+            AUTHORITY["EPSG","8901"]],
+        UNIT["degree",0.0174532925199433,
+            AUTHORITY["EPSG","9122"]],
+        AXIS["Latitude",NORTH],
+        AXIS["Longitude",EAST],
+        AUTHORITY["EPSG","4326"]]
     
 
 This `GEOGCS` definition of the above shapefile corresponds to *Esri*'s *well-known* text. Since the shapefile format was developed by *Esri*, *Esri*'s *WKT* (***esriwkt***) format must be used in `.prj` files. The *Open Geospatial Consortium* (*OGC*) uses a different well-known text as in their `EPSG:XXXX` definitions (e.g., available at [spatialreference.org](http://www.spatialreference.org)). 
@@ -286,6 +293,12 @@ Then, `matches` looks like this: `[(osgeo.osr.SpatialReference, INT)]`. Therefor
 
 
 ```python
+# set epsg and create spatial reference object
+epsg = 3857
+srs = osr.SpatialReference()
+srs.ImportFromEPSG(epsg)
+
+# identify spatial reference
 auto_detect = srs.AutoIdentifyEPSG()
 if auto_detect is not 0:
     srs = srs.FindMatches()[0][0]  # Find matches returns list of tuple of SpatialReferences
@@ -322,7 +335,6 @@ river_pts = create_shp(shp_dir, layer_name="basemap", layer_type="point")
 # create .prj file for the shapefile for web application references
 with open(shp_dir.split(".shp")[0] + ".prj", "w+") as prj:
     prj.write(get_esriwkt(3857))
-    prj.write(get_esriwkt(6864))  #results in the same!
 
 # get basemap layer
 lyr = river_pts.GetLayer()

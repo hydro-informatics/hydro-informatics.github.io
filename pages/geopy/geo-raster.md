@@ -68,8 +68,8 @@ print(depth)
 depth = None
 ```
 
-    <osgeo.gdal.Dataset; proxy of <Swig Object of type 'GDALDatasetShadow *' at 0x0000021017DB5D20> >
-    <osgeo.gdal.Band; proxy of <Swig Object of type 'GDALRasterBandShadow *' at 0x000002101806F990> >
+    <osgeo.gdal.Dataset; proxy of <Swig Object of type 'GDALDatasetShadow *' at 0x000001B208E89270> >
+    <osgeo.gdal.Band; proxy of <Swig Object of type 'GDALRasterBandShadow *' at 0x000001B208E892A0> >
     
 
 ### Raster band statistics and toolbox scripts {#terminal}
@@ -81,7 +81,6 @@ Once we loaded a raster and a raster band with the above `open_raster` function,
 " %}
 
 Here we will only write the next code block so that it can be run in a console/terminal application as standalone script (recall the [instructions to writing standalone script](hypy_pckg.html#standalone)).
-
 
 ```python
 # make sure to use exceptions
@@ -145,13 +144,11 @@ if __name__ == '__main__':
 
 To run this script, save it as `raster_band_info.py` (e.g., in `C:\temp`) and navigate to the script directory in a terminal application (e.g., in *PyCharm*'s *Terminal*) using the `cd` command. Now run the script to get information of the water depth raster `h001000.tif` with:
 
-
-```python
+```
 C:\temp\ python raster_band_info.py 1 "C:\temp\geodata\river-architect\h001000.tif"
 ```
 
-
-```python
+```
 Band minimum:  0.0
 Band maximum:  7.0613012313843
 No-data value:  -3.4028234663852886e+38
@@ -170,6 +167,9 @@ driver_list = [str(gdal.GetDriver(i).GetDescription()) for i in range(gdal.GetDr
 driver_list.sort()
 print(", ".join(driver_list[:]))
 ```
+
+    AAIGrid, ACE2, ADRG, AIG, ARCGEN, ARG, AVCBin, AVCE00, AeronavFAA, AirSAR, AmigoCloud, BAG, BIGGIF, BLX, BMP, BNA, BSB, BT, BYN, CAD, CALS, CEOS, COASP, COSAR, CPG, CSV, CSW, CTG, CTable2, Carto, Cloudant, CouchDB, DAAS, DB2ODBC, DERIVED, DGN, DIMAP, DIPEx, DOQ1, DOQ2, DTED, DXF, E00GRID, ECRGTOC, EDIGEO, EEDA, EEDAI, EHdr, EIR, ELAS, ENVI, ERS, ESAT, ESRI Shapefile, ESRIJSON, ElasticSearch, FAST, FIT, FITS, FujiBAS, GFF, GFT, GIF, GML, GMLAS, GMT, GNMDatabase, GNMFile, GPKG, GPSBabel, GPSTrackMaker, GPX, GRASSASCIIGrid, GRIB, GS7BG, GSAG, GSBG, GSC, GTX, GTiff, GXF, GenBin, GeoJSON, GeoJSONSeq, GeoRSS, Geoconcept, Geomedia, HDF4, HDF4Image, HDF5, HDF5Image, HF2, HFA, HTF, HTTP, IDA, IGNFHeightASCIIGrid, ILWIS, INGR, IRIS, ISCE, ISIS2, ISIS3, Idrisi, JAXAPALSAR, JDEM, JML, JP2OpenJPEG, JPEG, KEA, KML, KMLSUPEROVERLAY, KRO, L1B, LAN, LCP, LOSLAS, Leveller, MAP, MBTiles, MEM, MFF, MFF2, MRF, MSGN, MSSQLSpatial, MVT, MapInfo File, Memory, NAS, NDF, NGSGEOID, NGW, NITF, NTv1, NTv2, NWT_GRC, NWT_GRD, ODBC, ODS, OGR_GMT, OGR_PDS, OGR_SDTS, OGR_VRT, OSM, OZI, OpenAir, OpenFileGDB, PAux, PCIDSK, PCRaster, PDF, PDS, PDS4, PGDUMP, PGeo, PLMOSAIC, PLSCENES, PNG, PNM, PRF, PostGISRaster, PostgreSQL, R, RDA, REC, RIK, RMF, ROI_PAC, RPFTOC, RRASTER, RS2, RST, Rasterlite, S57, SAFE, SAGA, SAR_CEOS, SDTS, SEGUKOOA, SEGY, SENTINEL2, SGI, SIGDEM, SNODAS, SQLite, SRP, SRTMHGT, SUA, SVG, SXF, Selafin, TIGER, TIL, TSX, Terragen, TileDB, TopoJSON, UK .NTF, USGSDEM, VDV, VFK, VICAR, VRT, WAsP, WCS, WEBP, WFS, WFS3, WMS, WMTS, Walk, XLS, XLSX, XPM, XPlane, XYZ, ZMap, netCDF
+    
 
 ### Raster data types {#etypes}
 The output raster pixels can have the following data types (source: [gdal.org/doxygen/](https://gdal.org/doxygen/classGDALDataset.html)):
@@ -266,7 +266,7 @@ raster_name = r"" + os.getcwd() + "/geodata/rasters/random_unis_dem.tif"
 # create a random numpy array (DEM-like values) - can be replaced with any other numpy.array
 unis_dem = np.random.rand(300, 300) + 455.0
 # overwrite one pixel with np.nan
-va_dem[5, 7] = np.nan
+unis_dem[5, 7] = np.nan
 # define a raster origin in EPSG:3857
 raster_origin = (1013428.396233, 6231555.006177)
 # call create_raster to create a 1-m-resolution raster in EPSG:4326 projection
@@ -330,13 +330,6 @@ with np.errstate(divide="ignore", invalid="ignore"):
 create_raster(file_name= r"" + os.path.abspath("") + "/geodata/rasters/Fr1000cfs.tif",
               raster_array=Froude, epsg=6418, geo_info=h_geo_info)
 ```
-
-
-
-
-    0
-
-
 
 {% include image.html file="qgis-py-fr.png" alt="geopy-fr" caption="The newly created Fr1000cfs.tif raster plotted in QGIS." %}
 
@@ -572,12 +565,11 @@ print(h_stats[0]["mini_raster_array"])
      [-- -- -- ... -- -- --]]
     
 
-{% include tip.html content="Use the above shown methods to assign a projection and save the clipped array as *GeoTIFF* raster. The functions are implemented in the `geo_utils.raster_mgmt.create_raster` method ([viw *geo_utils* on github](https://github.com/hydro-informatics/geo-utils))." %}
+{% include tip.html content="Use the above shown methods to assign a projection and save the clipped array as *GeoTIFF* raster. The functions are implemented in the `geo_utils.raster_mgmt.create_raster` method ([view *geo_utils* on github](https://github.com/hydro-informatics/geo-utils))." %}
 
 ## Slope / aspect maps and built-in command line scripts
 Hill slope maps are an important parameter in hydraulics, hydrology and ecology. The slope determines the flow direction of the water and it is also a criteria for delineating habitat of many species. `gdal` has a command line tool called `gdaldem` , which enables the creation of slope rasters based on a DEM (Digital Elevation Model) raster.
 The general use of the `gdaldem` in the command line is (arguments in brackets are optional): 
-
 
 ```python
 gdaldem slope input_dem output_slope_map  [-p use percent slope (default=degrees)] [-s scale* (default=1)] [-alg ZevenbergenThorne] [-compute_edges] [-b Band (default=1)] [-of format] [-co "NAME=VALUE"]* [-q]
@@ -603,7 +595,6 @@ subprocess.call(cmd_create_slope)
 {% include image.html file="qgis-slope.png" alt="slope" caption="The newly created slope-percent.tif raster plotted in QGIS." %}
 
 In addition to the absolute slope (i.e., inclination in degrees), or instead of the slope, it can be important to know the slope direction (e.g., inclination toward south, west, east, or north). A raster indicating the slope direction is called *Aspect* raster, where south corresponds to 0° (and 360°), west to 90°, north to 180°, and east to 270°. The ascpect raster can also be created with `gdaldem`:
-
 
 ```python
 gdaldem aspect input_dem output_aspect_map [-trigonometric] [-zero_for_flat] [-alg ZevenbergenThorne] [-compute_edges] [-b Band (default=1)] [-of format] [-co "NAME=VALUE"]* [-q]
@@ -650,9 +641,9 @@ slope_image
 
 
 
-    array([[28, 67, 18,  2,  2],
-           [50, 76, 82, 96, 98],
-           [52, 32, 33, 37, 47]])
+    array([[79, 79, 45, 87, 82],
+           [55, 93, 35,  7, 28],
+           [27, 32, 59, 68, 94]])
 
 
 
@@ -671,7 +662,7 @@ least_cost_path_indices, weight
 
 
 
-    ([(0, 0), (1, 0), (2, 1), (2, 2), (2, 3), (2, 4)], 206.4827560572969)
+    ([(0, 0), (0, 1), (0, 2), (1, 3), (2, 4)], 249.1873375215418)
 
 
 
@@ -688,9 +679,9 @@ least_cost_path_array
 
 
 
-    array([[1, 0, 0, 0, 0],
-           [1, 0, 0, 0, 0],
-           [0, 1, 1, 1, 1]])
+    array([[1, 1, 1, 0, 0],
+           [0, 0, 0, 1, 0],
+           [0, 0, 0, 0, 1]])
 
 
 
