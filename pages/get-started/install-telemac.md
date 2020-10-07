@@ -331,7 +331,8 @@ libs_all:    /usr/lib64/openmpi/lib/libmpi.so.0.0.2 /home/telemac/metis-5.1.0/bu
 The configuration file contains other configurations such as a *scalar* or a *debug* configuration for compiling TELEMAC-MASCARET. Here, we only use the *Debian gfortran open MPI* section that has the configuration name `[debgfopenmpi]`. To verify if this section if correctly defined, check where the following libraries live on your system (use *Terminal* and `cd` + `ls` commands or Debian's *File* browser):
 
 * *Metis* (something like `~/telemac/v8p1/optionals/metis-5.1.0/build/Linux-x86_64/libmetis/libmetis.a`)
-* *Open MPI* (something like `/usr/lib/x86_64-linux-gnu/openmpi/libmpi.so.40.10.3`)
+* *Open MPI* includes (something like the directory `/usr/lib/x86_64-linux-gnu/openmpi/include`)
+* *Open MPI* library (something like `/usr/lib/x86_64-linux-gnu/openmpi/libmpi.so.40.10.3`)
 * *mpiexec* (`/usr/bin/mpiexec`)
 * *mpif90* (`/usr/bin/mpif90`)
 
@@ -345,6 +346,12 @@ vim systel.cis-debian.cfg
 Make the following adaptations in *Debian gfortran open MPI* section as a function of where you found the *Metis* and *Open MPI* libraries:
 
 * Search for *metis* in `libs_all` and adapt all *metis*-related directories to `/home/USER-NAME/telemac/v8p1/optionals/metis-5.1.0/build/Linux-x86_64/libmetis/libmetis.a` (i.e., adapt the absolute directory and the *Metis* version to `5.1.0`). 
+* Add the `incs_all` variable to point include *openmpi*:
+
+```
+incs_all:  -I /usr/lib/x86_64-linux-gnu/openmpi/include
+```
+
 * Search for *openmpi* in `libs_all` and correct the library file to `/usr/lib/x86_64-linux-gnu/openmpi/libmpi.so.40.10.3`
 * Search for `cmd_obj:` definitions and add `-cpp` in front of the `-c` flags. For example:
 
@@ -442,6 +449,29 @@ To test if TELEMAC-MASCARET works, use a pre-defined case from the provided `exa
 cd ~/telemac/v8p1/examples/telemac2d/gouttedo
 telemac2d.py t2d_gouttedo.cas
 ``` 
+
+To test if parallelism works, install *htop* to visualize *CPU* usage:
+
+```
+sudo apt-get update
+sudo apt-get install htop
+``` 
+
+Start *htop*'s *CPU* monitor with:
+
+```
+htop
+```
+
+In a new *Terminal* tab run the above TELEMAC-MASCARET example with the flag `--ncsize=N`, where `N` is the number of *CPU*s tu use for parallel computation (make sure that `N` *CPU*s are also available on your machine:
+
+```
+cd ~/telemac/v8p1/examples/telemac2d/gouttedo
+telemac2d.py t2d_gouttedo.cas --ncsize=4
+``` 
+
+When the computation is running, observe the *CPU* charge. If the *CPU*s are all working with different percentages, the parallel version is working well. 
+
 
 TELEMAC-MASCARET should startup, run the example case, and again end with the phrase `My work is done`.
 
