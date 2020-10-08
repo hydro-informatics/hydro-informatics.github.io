@@ -8,7 +8,8 @@ permalink: tm-post.html
 folder: numerics
 ---
 
-Coming soon (under construction). Expected release of this tutorial: Spring 2021.
-
+## Under construction. Expected release of this tutorial: Spring 2021.
 
 Thank you for your patience.
+
+{% include requirements.html content="Make sure that TELEMAC-MASCARET ran successfully as described on the [model setup & run page](tm-main.html) or use one of the example cases to explore results." %}

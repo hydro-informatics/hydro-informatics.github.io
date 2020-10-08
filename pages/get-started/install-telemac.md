@@ -490,7 +490,7 @@ Start *htop*'s *CPU* monitor with:
 htop
 ```
 
-In a new *Terminal* tab run the above TELEMAC-MASCARET example with the flag `--ncsize=N`, where `N` is the number of *CPU*s tu use for parallel computation (make sure that `N` *CPU*s are also available on your machine:
+In a new *Terminal* tab run the above TELEMAC-MASCARET example with the flag `--ncsize=N`, where `N` is the number of *CPU*s tu use for parallel computation (make sure that `N` *CPU*s are also available on your machine):
 
 ```
 cd ~/telemac/v8p1/examples/telemac2d/gouttedo
@@ -501,9 +501,9 @@ telemac2d.py t2d_gouttedo.cas --ncsize=4
 
 When the computation is running, observe the *CPU* charge. If the *CPU*s are all working with different percentages, the parallel version is working well. 
 
-TELEMAC-MASCARET should startup, run the example case, and again end with the phrase `My work is done`.
+TELEMAC-MASCARET should startup, run the example case, and again end with the phrase `My work is done`. To assess the efficiency of the number of *CPU*s used, vary `ncsize`. For instance, the *donau* example (`cd ~/telemac/v8p1/examples/telemac2d/donau`) ran with `telemac2d.py t2d_donau.cas --ncsize=4` may take approximately 1.5 minutes, while `telemac2d.py t2d_donau.cas --ncsize=2` (i.e., half the number of *CPU*s) takes approximately 2.5 minutes. The absolute calculation duration may differ depending on your hardware, but it is remarkable that doubling the number of *CPU*s does not cut the calculation time by a factor of two. So to optimize system resources, it can be reasonable to start several simulation cases on less cores than one simulation on multiple cores.
 
-{% include tip.html content="If you interrupted the *Terminal* session and get an error message such as *No such file or directory*, you may need to re-define (re-load) the *Python* source file: In *Terminal* go (`cd`) to `~/telemac/v8p1/configs`, type `source pysource.openmpi.sh`, and then go back to the `examples` folder to re-run the example." %}
+{% include tip.html content="If you interrupted the *Terminal* session and get an error message such as *No such file or directory*, you may need to re-define (re-load) the *Python* source file: In *Terminal* go (`cd`) to `~/telemac/v8p1/configs`, type `source pysource.openmpi.sh` > `config.py`, and then go back to the `examples` folder to re-run the example." %}
 
 
 ## Software for Pre- and Post-processing
