@@ -38,7 +38,7 @@ TELEMAC-MASCARET requires the following additional *Python* libraries:
 To install the three libraries, open *Terminal* and type (hit `Enter` after every line):
 
 ```
-sudo apt-get install python3-numpy python3-scipy python3-matplotlib python3-distutils python3-dev 
+sudo apt-get install python3-numpy python3-scipy python3-matplotlib python3-distutils python3-dev python3-pip 
 ```
 
 {% include tip.html content="If an error occurred during the installation, install the extended dependencies (includes Qt) with the following command (after `su`): `apt-get install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6`. Then re-try to install the libraries." %}
@@ -71,9 +71,15 @@ Now set the `python` environment variable so that it points at *Python3*:
 
 ```
 update-alternatives --install /usr/bin/python python /usr/bin/python3.7 2
+alias python=python3
 ```
 
-Depending on the installed subversion of *Python3*, the folder name `python3.7` needs to be adapted (e.g., to `python3.8`).
+Depending on the installed subversion of *Python3*, the folder name `python3.7` needs to be adapted (e.g., to `python3.8`). Finally, verify that the the user environment correctly points at *Python3*:
+
+```
+/usr/bin/env python --version
+```
+    Python 3.7.3
 
 
 ### Subversion (svn)
@@ -117,8 +123,8 @@ deb http://ftp.de.debian.org/debian buster main
 Then, save the edits with `CTRL` + `O` keys and exit *Nano* with `CTRL` + `X` keys. Next, update the repository information by typing (in *Terminal*):
 
 ```
-apt-get update
-apt-get install gfortran
+sudo apt-get update
+sudo apt-get install gfortran
 ```
 
 ***
@@ -128,7 +134,7 @@ apt-get install gfortran
 To enable parallelism, a *C* compiler is required for recognition of the command `cmake` in *Terminal*. Moreover, we will need `build-essential` for building packages and create a comfortable environment for `dialog`ues. [VIM](https://www.vim.org/) is a text editor that we will use for bash file editing. Therefore, open *Terminal* (as root/superuser, i.e., type `su`) and type:
 
 ```
-apt-get install -y cmake build-essential dialog vim
+sudo apt-get install -y cmake build-essential dialog vim
 ```
 
 
@@ -193,7 +199,7 @@ tar -xvf metis-5.1.0.tar
 cd metis-5.1.0
 ```
 
-Open *Metis*' `Makefile` in the *VIM* text editor (installed earlier through `sudo apt-get install vim`):
+<!-- Open *Metis*' `Makefile` in the *VIM* text editor (installed earlier through `sudo apt-get install vim`):
 
 ```
 vim Makefile
@@ -210,6 +216,7 @@ Press `Esc` to leave the *INSERT* mode and then type `:wq` (the letters are visi
 
 {% include tip.html content="Here some hints to troubleshooting typical *VIM* problems:<br>***VIM freezes***: Maybe you hit `CTRL` + `S` keys, which is intuitive for *Windows* users to save a file, but in *Linux*, it has a different effect. So, to unfreeze the window, simply hit `CTRL` + `Q`<br>***:wq not working***: Maybe you enabled the *easy mode*. Disable *easy mode* by hitting the `CTRL` + `O` keys.<br> Other typical errors may occur if you installed another keyboard layout for a VM guest machine than the host machine uses." %}
 
+
 Back in *Terminal*, copy the `Makefile` and remove the `temp` folder with the following command sequence (note: you may want to keep the `temp` folder for installing `hdf5` and `med` file libraries):
 
 ```
@@ -222,10 +229,29 @@ Change to the final directory where *Metis* will live and compile *Metis*:
 
 ```
 cd ~/telemac/v8p1/optionals/metis-5.1.0
-sudo make config
-sudo make
-sudo make install
+make config
+make
+make install
 ```
+-->
+
+Clean up the *Metis* folder (there is an existing *Makefile*, which we do not want to use):
+
+```
+cd ~/telemac/v8p1/optionals/metis-5.1.0
+make clean
+rm -r build
+rm Makefile
+```
+
+* Build *Metis* (use for example `~/telemac/v8p1/optionals/metis-5.1.0/build` as `<install_path>`):
+
+```
+cmake -D CMAKE_INSTALL_PREFIX=~/telemac/v8p1/optionals/metis-5.1.0/build .
+make
+make install
+```
+
 
 Verify the successful installation by running:
 
@@ -257,9 +283,9 @@ cd hdf5-1.8.21
 Configure and compile *hdf5*:
 
 ```
-sudo ./configure --prefix=/home/USER-NAME/telemac/v8p1/optionals/hdf5 --enable-parallel
-sudo make
-sudo make install 
+./configure --prefix=/home/USER-NAME/telemac/v8p1/optionals/hdf5 --enable-parallel
+make
+make install 
 ```
 
 The flag `--prefix=/home/USER-NAME/telemac/v8p1/optionals/hdf5` determines the installation directory for the *hdf5* library, which we will need in the next step for installing the *med file* library. The absolute directory `/home/USER-NAME/` is required because `--prefix` does not accept a relative path. 
@@ -288,8 +314,8 @@ To compile the *med file* library type:
 
 ```
 ./configure --prefix=/home/USER-NAME/telemac/v8p1/optionals/med-3.2.0 --with-hdf5=/home/USER-NAME/telemac/v8p1/optionals/hdf5 --disable-python
-sudo make
-sudo make install 
+make
+make install 
 ```
 
 The flag `--prefix` sets the installation directory and `--width-hdf5` tells the med library where it can find the *hdf5* library. Thus, adapt `/home/USER-NAME/telemac/v8p1/optionals/hdf5` to your local `<install_path>` of the *hdf5* library. Both flags to not accept relative paths (`~/telemac/...`), and therefore, we need to use the absolute paths (`home/USER-NAME/telemac/...`)
@@ -314,7 +340,7 @@ The configuration file will tell the compiler how flags are defined and where op
 # ____/ Debian gfortran openMPI /__________________________________/
 [debgfopenmpi]
 #
-par_cmdexec:   <config>/partel < PARTEL.PAR >> <partel.log>
+par_cmdexec:   <config>/partel < partel.par >> <partel.log>
 #
 mpi_cmdexec:   /usr/bin/mpiexec -wdir <wdir> -n <ncsize> <exename>
 mpi_hosts:
@@ -325,12 +351,12 @@ cmd_exe:    /usr/bin/mpif90 -fconvert=big-endian -frecord-marker=4 -lpthread -v 
 #
 mods_all:   -I <config>
 #
-libs_all:    /usr/lib64/openmpi/lib/libmpi.so.0.0.2 /home/telemac/metis-5.1.0/build/Linux-x86_64/libmetis/libmetis.a
+libs_all:    /usr/lib64/openmpi/lib/libmpi.so.0.0.2 /home/telemac/metis-5.1.0/build/lib/libmetis.a
 ```
 
 The configuration file contains other configurations such as a *scalar* or a *debug* configuration for compiling TELEMAC-MASCARET. Here, we only use the *Debian gfortran open MPI* section that has the configuration name `[debgfopenmpi]`. To verify if this section if correctly defined, check where the following libraries live on your system (use *Terminal* and `cd` + `ls` commands or Debian's *File* browser):
 
-* *Metis* (something like `~/telemac/v8p1/optionals/metis-5.1.0/build/Linux-x86_64/libmetis/libmetis.a`)
+* *Metis* - if you choose `~/telemac/v8p1/optionals/metis-5.1.0/build` as `<install_path>` (see above), verify where `libmetis.a` lives (typically `~/telemac/v8p1/optionals/metis-5.1.0/build/lib/libmetis.a`)
 * *Open MPI* includes (something like the directory `/usr/lib/x86_64-linux-gnu/openmpi/include`)
 * *Open MPI* library (something like `/usr/lib/x86_64-linux-gnu/openmpi/libmpi.so.40.10.3`)
 * *mpiexec* (`/usr/bin/mpiexec`)
@@ -343,9 +369,10 @@ cd ~/telemac/v8p1/configs
 vim systel.cis-debian.cfg
 ```
 
-Make the following adaptations in *Debian gfortran open MPI* section as a function of where you found the *Metis* and *Open MPI* libraries:
+Make the following adaptations in *Debian gfortran open MPI* section to enable parallelism:<a name="parcmd"></a>
 
-* Search for *metis* in `libs_all` and adapt all *metis*-related directories to `/home/USER-NAME/telemac/v8p1/optionals/metis-5.1.0/build/Linux-x86_64/libmetis/libmetis.a` (i.e., adapt the absolute directory and the *Metis* version to `5.1.0`). 
+* Remove `par_cmdexec` from the configuration file; that means delete the line (otherwise, parallel processing will crash with a message that says *cannot find PARTEL.PAR*):<br>`par_cmdexec:   <config>/partel < PARTEL.PAR >> <partel.log>`
+* Search for *metis* in `libs_all` and adapt all *metis*-related directories to `/home/USER-NAME/telemac/v8p1/optionals/metis-5.1.0/build/lib/libmetis.a` (i.e., adapt the absolute directory and the *Metis* version to `5.1.0`). 
 * Add the `incs_all` variable to point include *openmpi*:
 
 ```
@@ -411,8 +438,8 @@ export MEDHOME=$SYSTEL/med-3.2.0
 export LD_LIBRARY_PATH=$MEDHOME/lib:$LD_LIBRARY_PATH
 export PATH=$MEDHOME/bin:$PATH
 ### METIS -------------------------------------------------------------
-export METISHOME=$SYSTEL/metis-5.1.0/build/Linux-x86_64/
-export LD_LIBRARY_PATH=$METISHOME/libmetis:$LD_LIBRARY_PATH
+export METISHOME=$SYSTEL/metis-5.1.0/build/
+export LD_LIBRARY_PATH=$METISHOME/lib:$LD_LIBRARY_PATH
 ```
 
 {% include tip.html content="To facilitate setting up the `pysource` file, use our template  ([download](https://raw.githubusercontent.com/Ecohydraulics/telemac-install-helpers/master/debian/pysource.openmpi.sh)). Make sure to verify all directories set in the provided `pysource.openmpi.sh` file and replace the user name `ssc-deb` with your local user name." %}
@@ -468,10 +495,11 @@ In a new *Terminal* tab run the above TELEMAC-MASCARET example with the flag `--
 ```
 cd ~/telemac/v8p1/examples/telemac2d/gouttedo
 telemac2d.py t2d_gouttedo.cas --ncsize=4
-``` 
+```
+
+{% include note.html content="If there is an error message such as **`Cannot find << PARTEL.PAR >>`** ... **`TypeError: can only concatenate str (not ...) to str`**, make sure that `par_cmdexec` is removed from the configuration file ([see above](#parcmd))." %} 
 
 When the computation is running, observe the *CPU* charge. If the *CPU*s are all working with different percentages, the parallel version is working well. 
-
 
 TELEMAC-MASCARET should startup, run the example case, and again end with the phrase `My work is done`.
 
@@ -480,7 +508,7 @@ TELEMAC-MASCARET should startup, run the example case, and again end with the ph
 
 ## Software for Pre- and Post-processing
 
-### Blue Kenue<sup>TM</sup>
+### Blue Kenue<sup>TM</sup> {#bluekenue}
 
 ***Estimated duration: 10 minutes.***
 
