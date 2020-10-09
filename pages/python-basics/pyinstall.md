@@ -63,7 +63,11 @@ To follow the course content and run code cells, it is recommended to use [*Jupy
     
 ### *JupyterLab*
 
-The descriptions on the *Get started* for installing and launching [*JupyterLab*](hy_ide.html#jupyter), where *Jupyter* notebooks (*.ipynb* files), *Python* scripts (*.py* files), folders and more can be created from the *File* menu. The *Kernel* menu runs the defined programming language (*Python 3* in the example below). The *Settings* menu provides options to configure styles (e.g., choose the *JupyterLab Dark* theme shown in the below figure). 
+The descriptions on the *Get started* for installing and launching [*JupyterLab*](hy_ide.html#jupyter), where *Jupyter* notebooks (*.ipynb* files), *Python* scripts (*.py* files), folders and more can be created from the *File* menu. 
+
+{% include tip.html content="Start *JupyterLab* by typing `jupyter lab` in *Anaconda Prompt*." %}
+
+ The *Kernel* menu runs the defined programming language (*Python 3* in the example below). The *Settings* menu provides options to configure styles (e.g., choose the *JupyterLab Dark* theme shown in the below figure). 
 *JupyterLab* runs on a local server (typically on `localhost:XXPORTXX/lab`), which is why it is just like an interactive website in your browser. At the beginning it takes some getting used to, but one gets quickly familiar with it and there are many advantages such as the inline use of online graphics.
 
 {% include image.html file="jupyter-illu.png" alt="pyc-prj-setup" caption="JupyterLab in Dark theme appearance with a Jupyter notebook (xml.ipynb) opened showing the combination of a markdown cell (Charts(plots)) and a Python 3 cell." %}

@@ -27,10 +27,10 @@ The repositories for this course are mainly hosted on *GitHub*. However, there a
 
 1. Open your favorite *git*-able command line:
     * *Windows Option 1*: *PyCharm*
-        + go to the `Terminal` tab, which is usually at the bottom of the window
+        + Go to the `Terminal` tab, which is usually at the bottom of the window
         + Go to the local target directory with the command `cd "D:/Target/Directory/"` to change to the target installation directory. If the directory does not exist, it can be created in the system explorer (right-click in empty space > `New` > `Folder`).
     * *Windows Option 2*: *Git Bash*
-    * *Linux*: Terminal
+    * *Linux*: *Terminal*
 1. Clone the course repository (change materials according to the course attended): `git clone https://github.com/hydro-informatics/materials]` (or whatever repository you want to clone)
 
 Done.

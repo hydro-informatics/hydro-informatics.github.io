@@ -245,7 +245,7 @@ def sum_up_arguments(*args):
     return result
 ```
 
-Both functions involve the statement `print("The result is: " + str(result))` to print the results to the *Python* console (e.g., to ensure get some intermediate information) and to run only on valid (i.e., numeric) input with the help of exception (`try` - `except`) statements. However, we want our functions to focus on the calculation only and this is where a wrapper function helps.
+Both functions involve the statement `print("The result is: " + str(result))` to print results to the *Python* console (e.g., to get some intermediate information) or to run only on valid (i.e., numeric) input with the help of exception (`try` - `except`) statements. However, we want our functions to focus on the calculation only and this is where a wrapper function helps.
 
 A wrapper function can be defined by first defining a normal function (e.g., `def verify_result`) and passing a function (`func`) as argument. In that function, we can then place a nested `def wrapper()` function that will embrace `func`. It is important to use both optional `*args` and optional keyword `**kwargs` in the wrapper and the call to `func` in order to make the wrapper as flexible as possible.
 
@@ -333,12 +333,17 @@ Note the difference: the `wrapper` function now returns `func(*arg, **kwargs)` i
 This page shows examples for using the decorators in the shape of an `@` sign to wrap (embrace) a function. Decorators are also a useful feature in classes, for example when a class function returns static values. Read more about decorators in classes later in the chapter about [object orientation and classes](http://localhost:4000/hypy_classes.html#dec).
 
 ## Iterators and generators
-A characteristic of *list*, *tuple*, and *dictionary* data types is their iterability, which is provided by their `__iter__` built-in method. For example, iterability is the for why we can write:
+A characteristic of *list*, *tuple*, and *dictionary* data types is their iterability, which is provided by their `__iter__` built-in method. For example, iterability is the reason why we can write:
 
 
 ```python
 for e in [1, 2, 3]: print(e)
 ```
+
+    1
+    2
+    3
+    
 
 Besides iterations, *Python* also enables to create generators (i.e., generator functions). Instead of using a `return` statement, a generator function ends with a `yield` statement, that returns data as long as a `next()` function (inherent step in iterations) is called. An application of a generator is for example the flattening of nested lists (i.e., remove sub-lists and write all variables directly into a non-nested list):
 
@@ -366,7 +371,7 @@ print(flattened_list)
 
 ## Lambda functions {#lambda}
 
-[Lambda (*&lambda;*) calculus](https://en.wikipedia.org/wiki/Lambda_calculus) is a formal language for expressing computation-based on function abstraction and was introduced in the 1930s by Alonzo Church and Stephen Cole Kleene. Lambda functions originate from functional programming and represent short, anonymous (i.e, without name) functions. Although *Python* is not inherently a functional programming language, functional concepts were implemented early in *Python*, for example with the `map()`, `filter()`, and deprecated `reduce()` functions and also the `lambda` operator. 
+[Lambda (*&lambda;*) calculus](https://en.wikipedia.org/wiki/Lambda_calculus) is a formal language for expressing computations based on function abstraction and was introduced in the 1930s by Alonzo Church and Stephen Cole Kleene. Lambda functions originate from functional programming and represent short, anonymous (i.e, without name) functions. Although *Python* is not inherently a functional programming language, functional concepts were implemented early in *Python*, for example with the `map()`, `filter()`, and deprecated `reduce()` functions. 
 
 In *Python*, an anonymous (nameless) lambda function can take any number of arguments, but can only have one expression. The list of arguments consists of a comma-separated list of variables and the expression uses these arguments. The **syntax** of `lambda` functions is:
 
@@ -443,6 +448,6 @@ print(list(filter(lambda x: x % 3, some_numbers)))
     [1, 2, 4, 5, 7, 8]
     
 
-Formerly, the `reduce()` function to merge down list input into one value was implemented in *Python*. However, the *Python* developer *Guido van Rossum* successfully banned it from *Python3* ([read his post](https://www.artima.com/weblogs/viewpost.jsp?thread=98196)), which is why it is not used here.
+Formerly, a `reduce()` function was implemented in *Python* to merge list input into one value. However, the *Python* developer *Guido van Rossum* successfully banned it from *Python3* ([read his post](https://www.artima.com/weblogs/viewpost.jsp?thread=98196)), which is why it is not further mentioned here.
 
 {% include exercise.html content="Get familiar with functions in the [Hydraulics (1D)](ex_ms.html) exercise." %}

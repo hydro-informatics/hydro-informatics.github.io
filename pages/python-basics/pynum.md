@@ -25,7 +25,7 @@ where:
 * `file-name` is the file to open (e.g., `"data.txt"`); if the file is not in the script directory, the *file name* needs to be extended by the full directory (path) to the data file (e.g., `"C:/experiment1/data.txt"`).
 * `mode` defines the access type to the file and it can take the following values:
     - `"r"` - read only (default value if no `"mode"` value is provided (the file cannot be modified nor overwritten).
-    - `rb"` - read-only in binary format; the binary format is advantageous if the file is not a text file but media such as pictures or videos.
+    - `"rb"` - read-only in binary format; the binary format is advantageous if the file is not a text file but media such as pictures or videos.
     - `"r+"` - read and write.
     - `"w"` - write only; a new file is created if a file with the same name does not yet exist.
     - `"wb"` - write-only file in binary mode.
@@ -682,7 +682,7 @@ The `at`, `loc`, `concat`, and `append` methods of *pandas* provide direct optio
 1. Update the *dictionary* with new data
     * Append rows with `dict_of_df.update{"existing-column-name": {"new-row-name": NEW_DATA}}`
     * Append columns with `dict_of_df.update{"newcolumn-name": {"existing-row-names": NEW_DATA(size=existing-number-of-rows}}`
-1. Re-convert *dictionary to `pd.DataFrame` with `df = pd.DataFrame.from_dict(dict_of_df)`
+1. Re-convert the *dictionary* to `pd.DataFrame` with `df = pd.DataFrame.from_dict(dict_of_df)`
 
 The following code blocks illustrates both adding a row and a column to an existing *pandas* data frame.
 

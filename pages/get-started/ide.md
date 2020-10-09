@@ -33,7 +33,7 @@ After the successful installation of *Anaconda*, *IDE*s for *Python* programming
 1. Type `Anaconda Prompt` and hit enter (use *Miniconda3*). A *Terminal* window (black background) opens.
 1. In *Anaconda prompt* type `conda install jupyter` and confirm with `y` when the *Terminal* asks `Proceed ([y]/n)?`.
 
-To work with *Jupyter* notebooks (open, create or modify), type `jupyter notebook` in *Anaconda Prompt (Miniconda3)* and hit *Enter*. The *Jupyter Notebook* application will open in the standard webbrowser. 
+To work with *Jupyter* notebooks (open, create or modify), type `jupyter lab` (or `jupyter notebook`) in *Anaconda Prompt (Miniconda3)* and hit *Enter*. The *JupyterLab* application will open in the default webbrowser. 
 
 
 ## PyCharm (via Anaconda Navigator) {#pycharm}
@@ -80,4 +80,4 @@ Open *Anaconda Prompt*, which represents a *Terminal* window with black backgrou
 
 If you are working with *Miniconda*, install the *Jupyter Notebook* app by typing `conda install jupyter` and confirm with `y` when *Anaconda Prompt* asks `Proceed ([y]/n)?`.
 
-To start the *Jupyter Notebook* app and open, create, or modify *Jupyter* notebooks, type `jupyter notebook` in *Anaconda Prompt (Miniconda3)* and hit *Enter*. The *Jupyter Notebook* application will open in the standard webbrowser. 
+To start the *JupyterLab* app and open, create, or modify *Jupyter* notebooks, type `jupyter lab` (`jupyter notebook` for *Jupyter Notebook*) in *Anaconda Prompt (Miniconda3)* and hit *Enter*. The *Jupyter Notebook* application will open in the default webbrowser. 
