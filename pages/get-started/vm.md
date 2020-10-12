@@ -231,7 +231,7 @@ The shared folder will then be visible in the *Files* (*Activities* > *Filing ca
 
 ***
 
-> **If a *Permission denied* message appears...**
+> **If a *Permission denied* message appears when you click on `sf_shared` ...**
 
 When trying to access the shared folder, a *Permission denied* message may appear because it is not assigned to the *vboxsf* group. The *vboxsf* is the one, which is automatically assigned for accessing the shared folder. To verify the group name, go to the shared folder, right-click in the free space, and select *Permissions*. A window with group names that have access to the shared folder opens. To add your username type (in *Terminal*):
 
@@ -239,7 +239,8 @@ When trying to access the shared folder, a *Permission denied* message may appea
 sudo usermod -a -G vboxsf YOUR-USER-NAME
 ```
 
-Reboot the *Debian Linux VM*, and afterward, test if you can access the folder, and create and modify files. 
+Afterwards, **reboot the *Debian Linux VM*** and test if you can access the folder, and create and modify files. 
+
 ***
 
 ### Install and Update Software (optional)
