@@ -81,3 +81,21 @@ Open *Anaconda Prompt*, which represents a *Terminal* window with black backgrou
 If you are working with *Miniconda*, install the *Jupyter Notebook* app by typing `conda install jupyter` and confirm with `y` when *Anaconda Prompt* asks `Proceed ([y]/n)?`.
 
 To start the *JupyterLab* app and open, create, or modify *Jupyter* notebooks, type `jupyter lab` (`jupyter notebook` for *Jupyter Notebook*) in *Anaconda Prompt (Miniconda3)* and hit *Enter*. The *Jupyter Notebook* application will open in the default webbrowser. 
+
+### Extensions and spellchecker
+
+Many additional features for *JupyterLab* are available through [*nbextensions*](https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/install.html), which can be installed through *Anaconda Prompt*:
+
+```
+conda install -c conda-forge jupyter_contrib_nbextensions
+```
+
+When reading through the *Python* tutorials on this website, you will probably find one or another spelling mistake (please <a href="mailto:sebastian.schwindt[AT]iws.uni-stuttgart.de?subject=HYPY%20Spelling%20mistake">report mistakes!</a>). In particular, the *Python* pages are affected, because they were created with *Jupyter Lab*, where there is no spell checker pre-installed. To avoid at least the most unpleasant errors you can install a spellchecker in *jupyter*. One solution is to install [*@ijmbbarr*](https://github.com/ijmbarr/jupyterlab_spellchecker)s spellchecker, which requires installing *nodejs* (through *Anaconda Prompt* and in addition to *nbextensions*): 
+
+```
+conda install -c conda-forge nodejs
+jupyter labextension install @ijmbarr/jupyterlab_spellchecker
+```
+
+The spellchecker uses [Typo.js](https://github.com/cfinke/Typo.js) as dictionary and only identifies misspelled words without proposing corrections. More details on spellchecking are available at the [developer's website](https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/spellchecker/README.html). 
+
