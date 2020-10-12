@@ -55,7 +55,7 @@ Increasing the virtual disk space alone is not sufficient, because the free disk
 
 ### Keep system and software up to date
 
-Read more on the [developer's website]()https://www.debian.org/doc/manuals/debian-faq/uptodate.en.html).
+Read more on the [developer's website](https://www.debian.org/doc/manuals/debian-faq/uptodate.en.html).
 
 ### Permission denied messages
 

@@ -49,8 +49,7 @@ The guest machine will run Debian Linux, which is one of the most stable Linux d
     + The installation of *VirtualBox* requires administrator rights on the host machine. So if you are working in a professional environment, talk to your IT administrator.
     + *VirtualBox* installers are available for *Windows*, *mac OS*, and *Solaris*.
 * Download the latest Debian Linux net installer:
-    + Visit [debian.org](https://www.debian.org/)
-    + In the *Getting Debian* section click on *CD/USB ISO images*
+    + Visit [debian.org](https://www.debian.org/) and in the *Getting Debian* section (do not click on the one in the top menu), click on *CD/USB ISO images*
     + Click on [Download CD/DVD images using HTTP](https://www.debian.org/CD/http-ftp/)
     + Find the CD-section and click on the [*amd64*](https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/) version
     + Scroll to the bottom of the page and download the latest net installer (*debian-xx.x.x-amd64-netinst.iso*)
@@ -61,7 +60,7 @@ Remember where the *.iso* file is stored.
 
 ***Estimated duration: 5-8 minutes.***
 
-In *Windows 10*, click on *Start*, type *Oracle VM VirtualBox*, and hit enter. In the *VirtualBox* manager window:
+In your host system (e.g., *Windows 10*), click on *Start*, type *Oracle VM VirtualBox*, and hit enter. In the opened *VirtualBox* manager window:
 
 * Click on the blue *New* button to open the VM creation wizard and enter:
     + *Name:* Debian Linux <br>*Note: The wizard should automatically recognize the* Type *and*Version *fields.*
@@ -79,14 +78,16 @@ In *Windows 10*, click on *Start*, type *Oracle VM VirtualBox*, and hit enter. I
     + In the *System/Motherboard* tab, verify the memory allocation and check the *Enable EFI (special OSes only)* box (enable).
     + In the *System/Processor* tab, select the number of processors that the VM uses. To not slowing down the host system (*Windows 10*), stay in the green range of the CPU bar. For parallel processing with TELEMAC-MASCARET, allocate at least 4 CPUs. 
     + In the *Display* tab, check the *Enable 3D Acceleration* box.
-    + In the *Storage* tab, find the *Controller: IDE*, where an *Empty* disk symbol should be located below. Click on the *Empty* disk symbol and find the *Attributes* frame on the right side of the window, where a small blue disk symbol should be visible. Click on the small blue disk symbol to *Choose a virtual disk file ...* > select the Debian Linux net installer (*debian-xx.x.x-amd64-netinst.iso*) that we downloaded before.
+    + In the *Storage* tab, find the *Controller: IDE*, where an *Empty* disk symbol should be located below. 
+        - Click on the *Empty* disk symbol and find the *Attributes* frame on the right side of the window, where a small blue disk symbol should be visible.
+        - Click on the small blue disk symbol to *Choose a disk file ...* > select the Debian Linux net installer (*debian-xx.x.x-amd64-netinst.iso*) that you downloaded before.
     + Click *OK*.
 
 ### Install Debian Linux
 
 ***Estimated duration: 30 minutes.***
 
-To start the installation of Debian Linux, start the before created Debian Linux VM in the *VirtualBox* manager window (click on the *Debian Linux* VM and then on the green *Start* arrow). The *VirtualBox VM* window will ask for the *.iso* file to use (confirm the selected one), and start navigating through the installation:
+To install Debian Linux to the VM, start the before created *Debian Linux VM* in the *VirtualBox* manager window (click on the *Debian Linux* VM and then on the green *Start* arrow). The *VirtualBox VM* window will ask for the *.iso* file to use (confirm the selected one), and start navigating through the installation:
 
 * Inside the *VirtualBox VM* window, select the *Graphical install* option.
 * Navigate through the language options (recommended: English - English (United States)).
@@ -107,7 +108,9 @@ To start the installation of Debian Linux, start the before created Debian Linux
 
 Once the VM is shutdown, re-open the VM *Settings* (from *VirtualBox Manager* window) and go to the *Storage* tab. Verify that there is again an *Empty* disk symbol in the *Controller: IDE* field.
 
-### Setup Debian Linux {#setup-debian}
+## Get started with Debian Linux 
+
+## Setup Debian Linux {#setup-debian}
 
 ***Estimated duration: 15 minutes.***
 
@@ -121,7 +124,7 @@ su
 
 Enter the above-created password for the root user name (see installation section).
 
-{% include note.html content="Root access (e.g., for installing software) is granted on many Linux distribution using the `sudo` command before the command to execute. In Debian Linux, `sudo` may refer to the wrong account and not work as desired. As a workaround type `su` in *Terminal*. Alternatively, type `sudo usermod -a -G sudo YOUR-USER-NAME` in *Terminal* (after `su`)." %}
+{% include note.html content="Root access (e.g., for installing software) is granted on many Linux distribution using the `sudo` command before the command to execute. In Debian Linux, `sudo` may refer to the wrong account and not work as desired. As a workaround type `su` in *Terminal*. More later on this page." %}
 
 Install all packages required for building kernel modules:
 
@@ -132,11 +135,11 @@ apt install build-essential dkms linux-headers-$(uname -r)
 
 Find the *Devices* drop-down menu of the *VirtualBox VM* window (not in Debian Linux itself) and select *Insert Guest Additions CD image...* (depending on the version of *VirtualBox*, this menu can be on the top or the bottom of the window).
 
-{% include tip.html content="The *VirtualBox VM* window does not show the menu with the *Devices* entry anywhere?
-    + This may happen when the *View* was set to *Scaled mode*.
+{% include tip.html content="The *VirtualBox VM* window does not show the menu with the *Devices* entry anywhere?<br><br>
+    + This may happen when the *View* was set to *Scaled mode*.<br><br>
     + To toggle the view mode and make the menu bar visible, press the RIGHT `CTRL` (`Host`) key + the `C` on your keyboard, while being in the host system view." %}
 
-{% include note.html content="If an error occurs ('The guest system has no CR-ROM ...'), shutdown the VM. In the *VirtualBox* manager window, right-click on the *Debian Linux* VM > *Storage* tab > Add new Optical Drive to *Controller: IDE*. Restart the *Debian Linux* VM." %}
+{% include note.html content="If the error `The guest system has no CR-ROM ...` occurs, shutdown the VM. In the *VirtualBox* manager window, right-click on the *Debian Linux* VM > *Storage* tab > Add new Optical Drive to *Controller: IDE*. Restart the *Debian Linux* VM." %}
 
 Back in the Debian Linux *Terminal*, mount the *Guest Additions* *iso* file by typing (do not forget `su` if you needed to restart *Terminal*):
 
@@ -164,10 +167,10 @@ After rebooting, make sure that the installation was successful. In *Terminal* t
 lsmod | grep vboxguest
 ``` 
 
-If the *Terminal*'s answer is something like `vboxguest   358395 2 vboxsf`, the installation was successful. Read more about *Guest Additions* on the [*VirtualBox* developer's website](https://www.virtualbox.org/manual/ch04.html).
+If the *Terminal*'s answer is something like `vboxguest   358395 2`, the installation was successful. Read more about *Guest Additions* on the [*VirtualBox* developer's website](https://www.virtualbox.org/manual/ch04.html).
 
 To improve the visual experience do the following:
-* In the top-left corner of the Debian Linux Desktop, click on *Activities* and type *display* in the search box.
+* In the top-left corner of the Debian Linux Desktop, click on *Activities* and type *displays* in the search box.
 * Open the *Displays* settings to select a convenient display resolution.
     + If you choose a too high resolution, the *VirtualBox VM* window will turn black and jump back to the original resolution after 15-30 seconds.
     + Consider also to turn on *Night Light* to preserve your eye vision. 
@@ -189,15 +192,32 @@ The GNOME *Terminal* is one of the most important features, event though it opti
 *Terminal* runs many powerful native Linux (UNIX) commands, which is the most robust way to install and execute features. There are a couple of tutorials for learning to use *Terminal* and one of the most comprehensive is provided on the *Linux Ubuntu* website (Ubuntu is based on Debian Linux). It is highly recommended to go through the [tutorial provided by the Ubuntu community](https://ubuntu.com/tutorials/command-line-for-beginners) (*estimated duration: 51 minutes*), for better understanding some contents presented here on *hydro-informatics.github.io*. In particular, memorize the commands `cd` (change directory), `su`/`sudo` (superuser), `ls` (listen) and `mkdir` (make directory).
 
 
+### Setup user rights {#users}
+When installing software later, it is good practice to install it for your user account and not for `root`. Such system-relevant actions require *superuser* (`su`) rights. However, your default user name is not on the so-called *su-doers* list, which is essentially a file where all user accounts are listed that are authorized to use `sudo` in front of any command. So add your user account to the *su-doers* list by opening *Terminal* and typing:
+
+```
+su
+    password: ...
+sudo usermod -aG sudo YOUR-USER-NAME
+```
+
+Open a new *Terminal* tab (`Shift` + `CTRL` + `T`), which should open up in your default user space with default user rights. Check if your account is on the *su-doers* list by typing:
+
+```
+sudo -v
+```
+
+If visually nothing happens, you are good to go. Otherweise, if you get a message like `Sorry, user [username] may not run sudo on [hostname].`, verify that you correctly typed the above command and *YOUR-USER-NAME* (with correct cases).
+
 ### Enable folder sharing {#share}
 
 ***Estimated duration: 5-10 minutes.***
 
-Sharing data between the host system (e.g., *Windows 10*) and the guest system (Debian Linux VM) will be needed to transfer input and output files to and from the VM to the host system.
+Sharing data between the host system (e.g., *Windows 10*) and the guest system (*Debian Linux VM*) enables to transfer files to and from the VM to the host system.
 
 * At a place of your convenience, create a new folder on the host system (e.g., *Windows 10*) and call it shared (e.g., `C:\Users\USER\documents\shared\`).
-* Start *VirtualBox* and the Debian Linux VM.<br>Make sure that the scaled view mode is off (toggle view modes with RIGHT `CTRL` (`Host`) key + the `C` on the keyboard).
-* Go to the VM VirtualBox window's *Devices* menu, click on *Shared Folders* > *Shared Folders Settings...* and click on the little blue *Add new shared folder* symbol on the right side of the window (see figure below). Make the following settings in the pop-up window:
+* Start *VirtualBox* and the Debian Linux VM.<br>*Make sure that the scaled view mode is off (toggle view modes with RIGHT `CTRL` (`Host`) key + the `C` on the keyboard).*
+* Go to the VM *VirtualBox* window's *Devices* menu, click on *Shared Folders* > *Shared Folders Settings...* and click on the little blue *Add new shared folder* symbol on the right side of the window (see figure below). Make the following settings in the pop-up window:
     + *Folder Path:* Select the just created `...\shared` folder
     + Check the *Enable Auto-mount* box
     + Check the *Make Permanent* box
@@ -209,13 +229,18 @@ The shared folder will then be visible in the *Files* (*Activities* > *Filing ca
 
 {% include note.html content="File sharing only works with the *Guest Additions CD image* installed (see above section on setting up and familiarizing with Debian Linux)." %}
 
-When trying to access the shared folder, a *Permission denied* message may appear. To grant access for your account, add it to the *vboxsf* group. The *vboxsf* is the one automatically assigned for having access to the shared folder. To verify the group name, go to the shared folder, right-click in the free space, and select *Permissions*. A window with group names that have access to the shared folder opens. To add your username type (in *Terminal*):
+***
+
+> **If a *Permission denied* message appears...**
+
+When trying to access the shared folder, a *Permission denied* message may appear because it is not assigned to the *vboxsf* group. The *vboxsf* is the one, which is automatically assigned for accessing the shared folder. To verify the group name, go to the shared folder, right-click in the free space, and select *Permissions*. A window with group names that have access to the shared folder opens. To add your username type (in *Terminal*):
 
 ```
 sudo usermod -a -G vboxsf YOUR-USER-NAME
 ```
 
-Reboot the Debian Linux VM, and afterward, test if you can access the folder, and create and modify files. 
+Reboot the *Debian Linux VM*, and afterward, test if you can access the folder, and create and modify files. 
+***
 
 ### Install and Update Software (optional)
 
@@ -274,3 +299,15 @@ To install a *Windows* application:
 * With the installation path, any *Windows* application can be launched through *Terminal* with:
     + `wine "C:\\path\\to\\the.exe"` (use `\\` to separate sub-directories).
     + For example, `wine "C:\\Program Files (x86)\\CHC\\BlueKenue\\BlueKenue.exe"` typically starts *Blue Kenue<sup>TM</sup>*.
+
+## Re-use (transfer or copy) a VM to another Host
+
+Once you have created a VM on a virtual hard disk (the ***vdi*** file), you can always transfer it to another *host* system. To copy (or transport) a VM:
+
+1. Copy the *vdi* file where your VM is installed (e.g., *Debian Linux.vdi*) to another system (let's call it *Host-2*), for example by using a USB flash drive.
+1. Make sure that *VirtualBox* is installed on the *Host-2* system and open *VirtualBox* on  *Host-2*.
+1. In *VirtualBox*, create a *New* (the blue rack-wheel) *Virtual Machine*.
+1. In the process of creating a *New* VM, the wizard asks if you want to create a new hard disk image or an existing one. Select *Existing hard disk* and choose the copied *vdi* file.
+1. Finalize the *New* VM wizard and start the VM as usual.
+
+

@@ -21,7 +21,7 @@ Mandatory prerequisites are:
 * *Subversion (svn)*
 * GNU Fortran 95 compiler (*gfortran*)
 
-{% include tip.html content="Superuser (`sudo`) rights are required for many actions described in this workflow. Read more about how to set up and grant `sudo` rights for your user account on Debian Linux in the [tutorial for setting up Debian on a VM](vm.html#setupd-debian)." %}
+{% include tip.html content="Superuser (`sudo`) rights are required for many actions described in this workflow. Read more about how to set up and grant `sudo` rights for your user account on Debian Linux in the [tutorial for setting up Debian on a VM](vm.html#users)." %}
 
 ### Python3
 
@@ -70,7 +70,7 @@ ls /usr/bin/python*
 Now set the `python` environment variable so that it points at *Python3*:
 
 ```
-update-alternatives --install /usr/bin/python python /usr/bin/python3.7 2
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.7 2
 alias python=python3
 ```
 
@@ -187,7 +187,7 @@ The *Terminal* should prompt option flags for processing a *gfortran* file. The 
 
 Metis is a software package for partitioning unstructured graphs, partitioning meshes, and computing fill-reducing orderings of sparse matrices by George Karypis. TELEMAC-MASCARET uses *Metis* as a part of *Partel* to split the mesh into multiple parts for parallel runs. Learn more about *Metis* and potentially newer versions than `5.1.0` (used in the following) on the [Karypis Lab website](http://glaros.dtc.umn.edu/gkhome/metis/metis/download) or reading the [PDF manual](http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/manual.pdf).
 
-Here, we will install *Metis* from *Terminal* directly in the TELEMAC-MASCARET directory. Download the *Metis* archive and unpack it in a temporary (`temp`) directory. The following code block changes to the `optionals` directory (`cd`) of TELEMAC-MASCARET, creates the `temp` folder with `mkdir`, downloads, and unzips the *Metis* archive (run in *Terminal* as ***normal user*** - ***not as root***): 
+<!--  Download the *Metis* archive and unpack it in a temporary (`temp`) directory. The following code block changes to the `optionals` directory (`cd`) of TELEMAC-MASCARET, creates the `temp` folder with `mkdir`, downloads, and unzips the *Metis* archive (run in *Terminal* as ***normal user*** - ***not as root***): 
 
 ```
 cd ~/telemac/v8p1/optionals
@@ -199,7 +199,7 @@ tar -xvf metis-5.1.0.tar
 cd metis-5.1.0
 ```
 
-<!-- Open *Metis*' `Makefile` in the *VIM* text editor (installed earlier through `sudo apt-get install vim`):
+Open *Metis*' `Makefile` in the *VIM* text editor (installed earlier through `sudo apt-get install vim`):
 
 ```
 vim Makefile
@@ -235,7 +235,7 @@ make install
 ```
 -->
 
-Clean up the *Metis* folder (there is an existing *Makefile*, which we do not want to use):
+Here, we will install *Metis* from *Terminal* directly in the TELEMAC-MASCARET directory tree downloaded with `svn`. Before compiling *Metis, clean up the *Metis* folder (there is an existing *Makefile*, which we do not want to use):
 
 ```
 cd ~/telemac/v8p1/optionals/metis-5.1.0
@@ -244,7 +244,7 @@ rm -r build
 rm Makefile
 ```
 
-* Build *Metis* (use for example `~/telemac/v8p1/optionals/metis-5.1.0/build` as `<install_path>`):
+* Then build *Metis* (use for example `~/telemac/v8p1/optionals/metis-5.1.0/build` as `<install_path>`):
 
 ```
 cmake -D CMAKE_INSTALL_PREFIX=~/telemac/v8p1/optionals/metis-5.1.0/build .
@@ -252,14 +252,7 @@ make
 make install
 ```
 
-
-Verify the successful installation by running:
-
-```
-mpmetis --help
-```
-
-The installation of Metis on Linux is also documented in the [opentelemac wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_metis).
+* To verify the successful installation, make sure that the file `~/telemac/v8p1/optionals/metis-5.1.0/build/lib/libmetis.a` exists (i.e., `<install_path>/lib/libmetis.a`). The installation of *Metis* on Linux is also documented in the [opentelemac wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_metis).
 
 
 ### Hdf5 and MED format handlers
@@ -268,15 +261,15 @@ The installation of Metis on Linux is also documented in the [opentelemac wiki](
 
 ***HDF5*** is a portable file format that incorporates metadata and communicates efficiently with *C/C++* and *Fortan* on small laptops as well as massively parallel systems. The *hdf5* file library is provided by the [HDFgroup.org](https://portal.hdfgroup.org/).
 
-We will install here version `1.8.21`. Do not try to use any other *hdf5* version because those will not work with the *med file* library (next step). The following code block creates a `temp` folder with `mkdir` (can be omitted if the folder still exists from the *Metis* installation), downloads, and unzips the *hdf-5-1.8.21* archive (run in *Terminal* as ***normal user*** - ***not as root***): 
+We will install here version `1.8.21`. Do not try to use any other *hdf5* version because those will not work with the *med file* library (next step). The following code block creates a `temp` folder with `mkdir`, downloads, and unzips the *hdf-5-1.8.21* archive (run in *Terminal* as normal user - not as root): 
 
 ```
 cd ~/telemac/v8p1/optionals
 mkdir temp
 cd temp
-sudo wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.21/src/hdf5-1.8.21.tar.gz
-sudo gunzip hdf5-1.8.21.tar.gz
-sudo tar -xvf hdf5-1.8.21.tar
+wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.21/src/hdf5-1.8.21.tar.gz
+gunzip hdf5-1.8.21.tar.gz
+tar -xvf hdf5-1.8.21.tar
 cd hdf5-1.8.21
 ```
 
@@ -307,7 +300,7 @@ cd temp
 wget http://files.salome-platform.org/Salome/other/med-3.2.0.tar.gz
 gunzip med-3.2.0.tar.gz
 tar -xvf med-3.2.0.tar
-cd med-3.2.0.tar
+cd med-3.2.0
 ```
 
 To compile the *med file* library type:
@@ -318,7 +311,7 @@ make
 make install 
 ```
 
-The flag `--prefix` sets the installation directory and `--width-hdf5` tells the med library where it can find the *hdf5* library. Thus, adapt `/home/USER-NAME/telemac/v8p1/optionals/hdf5` to your local `<install_path>` of the *hdf5* library. Both flags to not accept relative paths (`~/telemac/...`), and therefore, we need to use the absolute paths (`home/USER-NAME/telemac/...`)
+The flag `--prefix` sets the installation directory and `--width-hdf5` tells the med library where it can find the *hdf5* library. Thus, adapt `/home/USER-NAME/telemac/v8p1/optionals/hdf5` to your local `<install_path>` of the *hdf5* library. Both flags to not accept relative paths (`~/telemac/...`), and therefore, we need to use the absolute paths (`home/USER-NAME/telemac/...`) here.
 
 {% include note.html content="We need to disable *Python* for the *med file* library because this feature would require *SWIG* version 2.0 and it is not compatible with the current versions of *SWIG* (4.x). Because *SWIG* has no full backward compatibility, the only option we have is to disable *Python* integrity for the *med file* library. Otherwise, *Python* integrity could be implemented by installing *Python* developer kits (`sudo apt-get install python3-dev` and `sudo apt-get install python3.7-dev`) and using the configuration `./configure --with-hdf5=/home/USER-NAME/Telemac/hdf5 PYTHON_LDFLAGS='-lpython3.7m' --with-swig=yes`. To find out what version of *Python* is installed, type `python -V`." %} 
 
@@ -326,6 +319,13 @@ The flag `--prefix` sets the installation directory and `--width-hdf5` tells the
 The installation of the *med file* library on Linux is also documented in the [opentelemac wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_med).
 
 {% include tip.html content="If you consistently get ***permission denied*** messages, unlock all read and write rights for the `telemac` directory with the following command: `sudo -R 777  /home/USER-NAME/telemac` (replace `USER-NAME` with the user for whom `telemac` is installed)." %}
+
+Finally **remove the `temp` folder** to avoid storing garbage:
+
+```
+cd ~/telemac/v8p1/optionals
+sudo rm -r temp
+```
 
 ### AED2
 
@@ -344,6 +344,8 @@ make
 ### Adapt and Verify Configuration File (systel.*.cfg)
 
 ***Estimated duration: 15-20 minutes.***
+
+{% include tip.html content="To facilitate setting up the `systel` file, use our template (right-click on [this download](https://raw.githubusercontent.com/Ecohydraulics/telemac-install-helpers/master/debian/systel.cis-debian.cfg) > *Save Link As...* > `~ /telemac/v8p1/configs/systel.cis-debian.cfg` > *Replace Existing*). Make sure to verify the  directories described in this section and replace the user name `ssc-deb` with your local user name in the provided `systel.cis-debian.cfg` file." %}
 
 The configuration file will tell the compiler how flags are defined and where optional software lives. Here, we use the configuration file `systel.cis-debian.cfg`, which lives in `~/telemac/v8p1/configs/`. In particular, we are interested in the following section of the file:
 
@@ -368,9 +370,9 @@ libs_all:    /usr/lib64/openmpi/lib/libmpi.so.0.0.2 /home/telemac/metis-5.1.0/bu
 
 The configuration file contains other configurations such as a *scalar* or a *debug* configuration for compiling TELEMAC-MASCARET. Here, we only use the *Debian gfortran open MPI* section that has the configuration name `[debgfopenmpi]`. To verify if this section if correctly defined, check where the following libraries live on your system (use *Terminal* and `cd` + `ls` commands or Debian's *File* browser):
 
-* *Metis* is typically located in `~/telemac/v8p1/optionals/metis-5.1.0/build` (if you used this directory for `<install_path>`), where `libmetis.a` typically lives in `~/telemac/v8p1/optionals/metis-5.1.0/build/lib/libmetis.a`)
-* *Open MPI*'s *include* folder is typically located in `/usr/lib/x86_64-linux-gnu/openmpi/include`)
-* *Open MPI* library typically lives in `/usr/lib/x86_64-linux-gnu/openmpi/libmpi.so.40.10.3`
+* *Metis* is typically located in `~/telemac/v8p1/optionals/metis-5.1.0/build` (if you used this directory for `<install_path>`), where `libmetis.a` typically lives in `~/telemac/v8p1/optionals/metis-5.1.0/build/lib/libmetis.a`
+* *Open MPI*'s *include* folder is typically located in `/usr/lib/x86_64-linux-gnu/openmpi/include`
+* *Open MPI* library typically lives in `/usr/lib/x86_64-linux-gnu/openmpi/libmpi.so.40.10.3`<br>The number **40.10.3** may be different depending on the latest version. Make sure to adapt the number after **libmpi.so.**.
 * *mpiexec* is typically installed in `/usr/bin/mpiexec`
 * *mpif90* is typically installed in `/usr/bin/mpif90`
 * *AED2* typically lives in `~/telemac/v8p1/optionals/aed2/`, which should contain the file `libaed2.a` (among others) and the folders *include*, *obj*, and *src*.
@@ -408,11 +410,11 @@ incs_all: -I /usr/lib/x86_64-linux-gnu/openmpi/include -I /home/USER-NAME/telema
 cmd_obj:    /usr/bin/mpif90 -cpp -c -O3 -DHAVE_AED2 -DHAVE_MPI -DHAVE_MED -fconvert=big-endian -frecord-marker=4 <mods> <incs> <f95name>
 ```
 
-{% include tip.html content="To facilitate setting up the `systel` file, use our template ([download](https://raw.githubusercontent.com/Ecohydraulics/telemac-install-helpers/master/debian/systel.cis-debian.cfg)). Make sure to verify the above-described directories and replace the user name `ssc-deb` with your local user name in the provided `systel.cis-debian.cfg` file." %}
-
 ### Setup *Python* source file
 
 ***Estimated duration: 15-20 minutes.***
+
+{% include tip.html content="To facilitate setting up the `pysource` file, use our template  (right-click on [this download](https://raw.githubusercontent.com/Ecohydraulics/telemac-install-helpers/master/debian/pysource.openmpi.sh) > *Save Link As...* > `~ /telemac/v8p1/configs/pysource.openmpi.sh`). Make sure to verify all directories set in the provided `pysource.openmpi.sh` file as described in this section, and replace the user name `ssc-deb` with your local user name." %}
 
 The *Python* source file lives in `~/telemac/v8p1/configs`, where there is also a template available called `pysource.template.sh`. Here, we will use the template to create our own *Python* source file called `pysource.openmpi.sh` tailored for compiling the parallel version of TELEMAC-MASCARET on Debian Linux with the *Open MPI* library. The *Python* source file starts with the definition of the following variables:
 
@@ -466,8 +468,6 @@ export LD_LIBRARY_PATH=$METISHOME/lib:$LD_LIBRARY_PATH
 export AEDHOME=$SYSTEL/aed2
 export LD_LIBRARY_PATH=$AEDHOME/obj:$LD_LIBRARY_PATH
 ```
-
-{% include tip.html content="To facilitate setting up the `pysource` file, use our template  ([download](https://raw.githubusercontent.com/Ecohydraulics/telemac-install-helpers/master/debian/pysource.openmpi.sh)). Make sure to verify all directories set in the provided `pysource.openmpi.sh` file and replace the user name `ssc-deb` with your local user name." %}
 
 ### Compile
 
