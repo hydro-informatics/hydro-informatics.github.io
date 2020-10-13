@@ -291,7 +291,7 @@ To install a *Windows* application:
     + Consider to add a *Desktop Icon*, or note the installation directory (e.g., `"C:\\Program Files (x86)\\CHC\\BlueKenue\\"`).
     + In the background. *Terminal* might prompt the message `err:mscoree:LoadLibraryShim error reading registry key for installroot` - you may ignore such messages ([read more](https://forum.winehq.org/viewtopic.php?t=14618)).
 
-***Launch a *Windows* application*** by typing `wine explorer` in *Terminal*.  *Wine*'s *Windows* file system will be displayed in a *Windows*-like window. To start and application:
+**Launch a *Windows* application** by typing `wine explorer` in *Terminal*.  *Wine*'s *Windows* file system will be displayed in a *Windows*-like window. To start and application:
 
 * If a *Desktop Icon* was created during the installation, go to *Desktop* and double-click on the application (e.g., *BlueKenue*) 
 * Otherwise, identify the installation path and the executable that launches the application.

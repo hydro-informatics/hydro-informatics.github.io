@@ -545,7 +545,7 @@ TELEMAC-MASCARET should startup, run the example case, and again end with the ph
 Here are the steps for installing *Blue Kenue<sup>TM</sup>* on Debian Linux with *Wine* ([read more about installing *Windows* applications with *Wine*](vm.html#wine)): 
 
 * Make sure to install *Wine* according to the descriptions on the [Virtual Machines page](vm.html#wine).
-* Download the *Blue Kenue<sup>TM</sup>* *msi* installer from the [developer's website](https://nrc.canada.ca/en/research-development/products-services/software-applications/blue-kenuetm-software-tool-hydraulic-modellers) (follow the instructions on the website - [direct download](https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/Installer/BlueKenue_3.3.4_64bit.msi)). In detail:
+* Download the *Blue Kenue<sup>TM</sup>* *msi* installer (**32-bit**) from the [developer's website](https://nrc.canada.ca/en/research-development/products-services/software-applications/blue-kenuetm-software-tool-hydraulic-modellers) (follow the instructions on the website - [direct download](https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/Installer/BlueKenue_3.3.4_32bit.msi)). In detail:
     + Go to [https://chyms.nrc.gc.ca](https://chyms.nrc.gc.ca) and log in with
     + User name: `Public.User`
     + Password: `anonymous`
@@ -561,8 +561,8 @@ After the successful installation, launch *Blue Kenue<sup>TM</sup>* with *Wine* 
 * In the *Wine Explorer* window, navigate to *Desktop* and find the *BlueKenue* shortcut.
 * Start *BlueKenue* by double-clicking on the shortcut.
 * Alternatively, identify the installation path and the *Blue Kenue<sup>TM</sup>* executable.
-    + The 64-bit version is typically installed in `"C:\\Program Files\\CHC\\BlueKenue\\BlueKenue.exe"`.
     + The 32-bit version is typically installed in `"C:\\Program Files (x86)\\CHC\\BlueKenue\\BlueKenue.exe"`.
+    + The 64-bit version is typically installed in `"C:\\Program Files\\CHC\\BlueKenue\\BlueKenue.exe"`.
     + Start *Blue Kenue<sup>TM</sup>* with `wine "C:\\Program Files\\CHC\\BlueKenue\\BlueKenue.exe"`.
 
 The Canadian Hydrological Model Stewardship (CHyMS) provides more guidance for installing *Blue Kenue<sup>TM</sup>* on other platforms than *Windows* on their [FAQ](https://chyms.nrc.gc.ca/docs/FAQ.html) page in the troubleshooting section ([direct link to *how to run blue Kenue on another operating system](https://chyms.nrc.gc.ca/docs/FAQ.html#troubleshooting-how-run-on-another-os)).
