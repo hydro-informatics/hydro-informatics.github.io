@@ -99,3 +99,8 @@ jupyter labextension install @ijmbarr/jupyterlab_spellchecker
 
 The spellchecker uses [Typo.js](https://github.com/cfinke/Typo.js) as dictionary and only identifies misspelled words without proposing corrections. More details on spellchecking are available at the [developer's website](https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/spellchecker/README.html). 
 
+In the case that several warning messages occur when starting *JupyterLab* (such as `[W 18:49:22.283 NotebookApp] Config option template_path not recognized by LenvsHTMLExporter. Did you mean one of: template_file, template_name, template_paths?`), downgrade *jupyter notebook* from version 6.x to 5.6.1 (there is currently an issue with the `temp_path` variable):
+
+```
+conda install "nbconvert=5.6.1"
+```

@@ -59,7 +59,14 @@ The following URL can be used for retrieving online XYZ tiles (more URLs can be 
 
 {% include tip.html content="Most base maps are provided in the `EPSG:3857 -WGS84 / Pseudo Mercator` coordinate system (CRS). To use custom geodata products, make sure that all other layers have the same coordinate system. Read more about coordinate systems projections on the [geospatial data](geospatial-data.html#prj) and [shapefile projection](geo-shp.html#prj-shp) pages." %}
 
+### Install *QGIS* conda ennvironment
 
+In [*Anaconda Prompt*](hy_ide.html#anaconda), you can create a new environment to specifically use *QGIS* features (i.e., tools and scripts) including its raster calculator. The environment is featured by *Open Data Cube* ([read more](https://datacube-qgis.readthedocs.io/en/latest/installation.html)) and can be installed as follows:
+
+```
+conda create  -c conda-forge -n qgiscube python=3.6 qgis=3 datacube
+conda activate qgiscube
+```
 
 ## ArcGIS Pro {#agis}
 {% include important.html content="ArcGIS Pro is designed for Windows and will not run on macOS or Linux. In addition, a license needs to be purchased." %} 

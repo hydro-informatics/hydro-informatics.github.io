@@ -167,7 +167,7 @@ After rebooting, make sure that the installation was successful. In *Terminal* t
 lsmod | grep vboxguest
 ``` 
 
-If the *Terminal*'s answer is something like `vboxguest   358395 2`, the installation was successful. Read more about *Guest Additions* on the [*VirtualBox* developer's website](https://www.virtualbox.org/manual/ch04.html).
+If the *Terminal*'s answer is something like `vboxguest   358395 2 vboxsf`, the installation was successful. Read more about *Guest Additions* on the [*VirtualBox* developer's website](https://www.virtualbox.org/manual/ch04.html).
 
 To improve the visual experience do the following:
 * In the top-left corner of the Debian Linux Desktop, click on *Activities* and type *displays* in the search box.

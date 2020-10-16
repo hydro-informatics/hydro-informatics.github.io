@@ -15,13 +15,13 @@ Debian Linux is documented in a comprehensive [Wiki](https://wiki.debian.org/) w
 
 {% include tip.html content="Read this entire section before taking action. Otherwise, you risk to unnecessarily allocate disk space." %}
 
-In general, keep the system clean after updating it through typing in *Terminal* (as superuser/root `su`):
+In general, keep the system clean after updating it through typing in *Terminal*:
 
 ```
-apt-get clean
-apt-get autoclean
-apt-get autoremove
-apt-get autoremove --purge
+sudo apt-get clean
+sudo apt-get autoclean
+sudo apt-get autoremove
+sudo apt-get autoremove --purge
 ```
 
 Subversion (*SVN*) repositories may also contain old and unnecessary chunks, which can be removed (e.g., from a local TELEMAC-MASCARET repository) with (the second argument is the *SVN* directory):
