@@ -12,7 +12,11 @@ folder: python-basics
 A Graphical User Interface (GUI) facilitates setting input variables of scripts. This is particularly useful if you want to reuse a script that you have written a long time ago without having to study the whole script again in detail. Although it is arguable whether GUIs are still appropriate in times of web applications, large and in particular copyrighted data must be processed locally. And for local data processing, a GUI is a very convenient way to control self-written, custom programs.
 
 Several GUI library (packages) are available for *Python* and this introduction uses the [`tkinter`](https://docs.python.org/3/library/tkinter.html) library. Alternatives are, for example, [*wxPython*](https://www.wxpython.org/) or [*Jython*](https://www.jython.org/) (a *Java* implementation of *Python 2*). `tkinter` is a standard library, which does not need to be installed additionally. For a quick example, type in the terminal (e.g., *PyCharm* or *Linux* terminal - not in the *Python* console):
+
+```
 python -m tkinter
+```
+
 {% include unix.html content="If you encounter troubles with `tkinter` on *Linux*, make sure that `tkinter` for *Python* is installed, either with <br>`sudo apt-get install python3-tk`  or <br>`sudo apt-get install python3.X-tk` (replace `X` with your *Python* version) or<br> `sudo apt install tk8.6-dev` to install the library only (this should be sufficient). <br>If the above comments do not work, make sure that the `tkinter` repository is available to your system: `sudo add-apt-repository ppa:deadsnakes/ppa` (the repository address may change and depends on your *Linux* and *Python* versions)." %}
 
 `tkinter` works on many popular platforms (*Linux*, *macOS*, *Windows*) and is not only available to *Python*, but also to [*Ruby*](https://www.ruby-lang.org), [*Perl*](https://www.perl.org/), [*Tcl*](https://www.tcl-lang.org/) (the origin of of `tkinter`), and many more languages. Because of its support for languages like *Ruby* or *Perl*, `tkinter` can be used for local GUIs as well as for web applications.

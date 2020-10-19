@@ -43,7 +43,7 @@ Other, bug-fixes, not listed on the above-metioned developer's website are:
 ## Conda package installation fails
 Several reason may cause that installing new packages fails in *Anaconda Prompt* or *Linux* / *macOS* *Terminal*.
 
-* Make sure to close all *Python*-dependent applications (e.g., * Jupyter* or *PyCharm*) before installing. 
+* Make sure to close all *Python*-dependent applications (e.g., *Jupyter* or *PyCharm*) before installing. 
 * Conflict solving activates:
 	- Wait until conflicts are parsed (and solved)
 	- Enter `conda update conda`
