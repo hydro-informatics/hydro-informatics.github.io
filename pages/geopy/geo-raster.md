@@ -12,7 +12,7 @@ folder: geopy
 {% include requirements.html content="Make sure to understand [gridded raster data](geospatial-data.html#raster) before reading this section. Recall that we will mostly deal with the `.tif` (*GeoTIFF*) format for grid data and hat many other raster data types exist." %}
 {% include tip.html content="While `gdal`'s `ogr` module is useful for shapefile handling, raster data are best handled by `gdal` itself." %}
 {% include tip.html content="Download sample raster datasets from [*River Architect*](https://github.com/RiverArchitect/SampleData/archive/master.zip). This page uses *GeoTIFF* raster data located in [`RiverArchitect/SampleData/01_Conditions/2100_sample/`](https://github.com/RiverArchitect/SampleData/tree/master/01_Conditions/2100_sample)." %}
-{% include tip.html content="The core functions illustrated in this e-book are implemented in the [`geo_utils`](https://github.com/hydro-informatics/geo-utils) package." %}
+{% include tip.html content="The core functions illustrated in this e-book are implemented in the [`geo_utils`](https://geo-utils.readthedocs.io/) package." %}
 
 ## Load raster
 
@@ -565,7 +565,7 @@ print(h_stats[0]["mini_raster_array"])
      [-- -- -- ... -- -- --]]
     
 
-{% include tip.html content="Use the above shown methods to assign a projection and save the clipped array as *GeoTIFF* raster. The functions are implemented in the `geo_utils.raster_mgmt.create_raster` method ([view *geo_utils* on github](https://github.com/hydro-informatics/geo-utils))." %}
+{% include tip.html content="Use the above shown methods to assign a projection and save the clipped array as *GeoTIFF* raster. The functions are implemented in the `geo_utils.raster_mgmt.create_raster` method ([view *geo_utils* on github](https://geo-utils.readthedocs.io/))." %}
 
 ## Slope / aspect maps and built-in command line scripts
 Hill slope maps are an important parameter in hydraulics, hydrology and ecology. The slope determines the flow direction of the water and it is also a criteria for delineating habitat of many species. `gdal` has a command line tool called `gdaldem` , which enables the creation of slope rasters based on a DEM (Digital Elevation Model) raster.
@@ -711,7 +711,7 @@ def coords2offset(geo_transform, x_coord, y_coord):
     return offset_x, offset_y
 ```
 
-{% include tip.html content="The `coords2offset` function is also available in the [*geo_utils*](https://github.com/hydro-informatics/geo-utils) package in robust raise-exception notation:  [*geo_utils/dataset_mgmt.py*](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/dataset_mgmt.py)." %}
+{% include tip.html content="The `coords2offset` function is also available in the [*geo_utils*](https://geo-utils.readthedocs.io/) package in robust raise-exception notation:  [*geo_utils/dataset_mgmt.py*](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/dataset_mgmt.py)." %}
 
 Now we can use `coords2offset` to convert a raster array (e.g., produced with the above-defined `raster2array` function) into an array that can be used with `route_through_array`:
 
@@ -743,7 +743,7 @@ def create_path_array(raster_array, geo_transform, start_coord, stop_coord):
 ```
 
 ### Application {#lc-app}
-Recall, we defined the following functions (all are available in the [*geo_utils* package](https://github.com/hydro-informatics/geo-utils)) that we can use now for the calculation of the least cost path to get from point 1 to point 2 in the `slope-percent.tif` raster:
+Recall, we defined the following functions (all are available in the [*geo_utils* package](https://geo-utils.readthedocs.io/)) that we can use now for the calculation of the least cost path to get from point 1 to point 2 in the `slope-percent.tif` raster:
 * `raster2array` 
 * `create_path_array`
 * `get_srs`
@@ -782,6 +782,6 @@ create_raster(out_raster_name, path_array, epsg=int(src_srs.GetAuthorityCode(Non
 
 {% include image.html file="qgis-least-cost.png" alt="aspect" caption="The newly created least cost path least_cost.tif raster plotted in QGIS." %}
 
-Legitimately, you may wonder whether it was better to represent a least cost path as a line. That is correct, of course. This operation is a conversion of a raster into a line shapefile, which is explained on the [conversion page](geo-convert.html#raster2line). Curious readers can also directly use the `raster2line` function of the [*geo_utils* package](https://github.com/hydro-informatics/geo-utils) (the function is part of the [*geo_utils/dataset_mgmt.py*](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/dataset_mgmt.py) script).
+Legitimately, you may wonder whether it was better to represent a least cost path as a line. That is correct, of course. This operation is a conversion of a raster into a line shapefile, which is explained on the [conversion page](geo-convert.html#raster2line). Curious readers can also directly use the `raster2line` function of the [*geo_utils* package](https://geo-utils.readthedocs.io/) (the function is part of the [*geo_utils/dataset_mgmt.py*](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/dataset_mgmt.py) script).
 
 {% include exercise.html content="Get more familiar with raster handling in the [geospatial ecohydraulics](ex_geco.html) exercise." %}

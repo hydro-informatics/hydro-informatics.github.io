@@ -106,7 +106,7 @@ sudo apt-get install gfortran
 
 ***
 
-***If the installation fails***, add the [buster repository](https://packages.debian.org/buster/gfortran) for *amd64* to the Debian's sources file (`/etc/apt/sources.list`). To open the file, go to *Activities* > *Files* (file container symbol)> *Other Locations* > *etc* > *apt* and right-click in the free space to open *Terminal* (you need to be root). In *Terminal* type:
+***If the installation fails***, add the [buster repository](https://packages.debian.org/buster/gfortran) for *amd64* to the Linux sources file (`/etc/apt/sources.list`). To open the file, go to *Activities* > *Files* (file container symbol)> *Other Locations* > *etc* > *apt* and right-click in the free space to open *Terminal* (you need to be root). In *Terminal* type:
 
 ```
 sudo editor sources.list
@@ -537,7 +537,7 @@ TELEMAC-MASCARET should startup, run the example case, and again end with the ph
 
 ***Estimated duration: 10 minutes.***
 
-[*Blue Kenue<sup>TM</sup>*](https://nrc.canada.ca/en/research-development/products-services/software-applications/blue-kenuetm-software-tool-hydraulic-modellers) is a pre- and post-processing software provided by the [National Research Council Canada](https://nrc.canada.ca/en), which is compatible with TELEMAC-MASCARET. It provides similar functions as the [*Fudaa*](http://www.opentelemac.org/index.php/latest-news-development-and-distribution/240-fudaa-mascaret-3-6) software featured by the TELEMAC-MASCARET developers and additionally comes with a powerful mesh generator. It is in particular for the mesh generator that you want to install *Blue Kenue<sup>TM</sup>*. The only drawback is that *Blue Kenue<sup>TM</sup>* is designed for *Windows. So there are two options for installing *Blue Kenue<sup>TM</sup>*:
+[*Blue Kenue<sup>TM</sup>*](https://nrc.canada.ca/en/research-development/products-services/software-applications/blue-kenuetm-software-tool-hydraulic-modellers) is a pre- and post-processing software provided by the [National Research Council Canada](https://nrc.canada.ca/en), which is compatible with TELEMAC-MASCARET. It provides similar functions as the [*Fudaa*](http://www.opentelemac.org/index.php/latest-news-development-and-distribution/240-fudaa-mascaret-3-6) software featured by the TELEMAC-MASCARET developers and additionally comes with a powerful mesh generator. It is in particular for the mesh generator that you want to install *Blue Kenue<sup>TM</sup>*. The only drawback is that *Blue Kenue<sup>TM</sup>* is designed for *Windows*. So there are two options for installing *Blue Kenue<sup>TM</sup>*:
 
 1. TELEMAC-MASCARET is running on a Debian Linux VM and your host system is *Windows*:<br>[Download](http://www.opentelemac.org/index.php/assistance/forum5/blue-kenue) and install *Blue Kenue<sup>TM</sup>* on your host system and use the [shared folder](vm.html#share) of the VM to transfer mesh files.
 1. Use [*Wine*](https://wiki.debian.org/Wine) (compatibility layer in *Linux* that enables running *Windows* applications) to install *Blue Kenue<sup>TM</sup>* on *Linux*.
@@ -565,7 +565,7 @@ After the successful installation, launch *Blue Kenue<sup>TM</sup>* with *Wine* 
     + The 64-bit version is typically installed in `"C:\\Program Files\\CHC\\BlueKenue\\BlueKenue.exe"`.
     + Start *Blue Kenue<sup>TM</sup>* with `wine "C:\\Program Files\\CHC\\BlueKenue\\BlueKenue.exe"`.
 
-The Canadian Hydrological Model Stewardship (CHyMS) provides more guidance for installing *Blue Kenue<sup>TM</sup>* on other platforms than *Windows* on their [FAQ](https://chyms.nrc.gc.ca/docs/FAQ.html) page in the troubleshooting section ([direct link to *how to run blue Kenue on another operating system](https://chyms.nrc.gc.ca/docs/FAQ.html#troubleshooting-how-run-on-another-os)).
+The Canadian Hydrological Model Stewardship (CHyMS) provides more guidance for installing *Blue Kenue<sup>TM</sup>* on other platforms than *Windows* on their [FAQ](https://chyms.nrc.gc.ca/docs/FAQ.html) page in the troubleshooting section ([direct link to *how to run blue Kenue on another operating system*](https://chyms.nrc.gc.ca/docs/FAQ.html#troubleshooting-how-run-on-another-os)).
 
 ### QGIS
 

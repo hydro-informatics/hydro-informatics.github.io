@@ -17,7 +17,14 @@ folder: python-basics
 ## Conda environments {#conda-env}
 
 ### Create and install
-To install an environment that suites most of the needs for codes and analyses shown on these pages, use the provided `environment.yml`:
+
+To create a new *conda* environment, open *Anaconda Prompt* and type (replace `ENV-NAME` for example with `hypy`):
+
+```
+conda create --name ENV-NAME python=3.8
+```
+
+An alternative (and recommended for the tutorials on this page) option is to install an environment that suites most of the needs for codes and analyses shown on these pages through an *environment* (*YML*) file:
 
 1. Download the environment file [here](https://github.com/hydro-informatics/materials-py-install/blob/master/environment.yml) (if needed: copy the file contents of `environment.yml` in a local text editor tool such as [Notedpad++](https://notepad-plus-plus.org/) ([alternatives](hy_others.html#npp)) and save the file for example in a directory called *C:/temp/*).
 1. Open *Anaconda Prompt* (`Windows` key > type `Anaconda Prompt` > hit `Enter`).

@@ -18,7 +18,7 @@ The materials provided on these pages is best downloaded and updated using *git*
 
 {% include windows.html content="Download and install [*Git Bash*](https://git-scm.com/downloads) and use it for example [*PyCharm*'s Community Edition](https://www.jetbrains.com/pycharm/)." %}
 
-{% include unix.html content="You are already good to go - git is an integral feature of Linux." %}
+{% include unix.html content="You are already good to go - git is an integral feature of the most Linux distributions." %}
 
 The repositories for this course are mainly hosted on *GitHub*. However, there are other *git* providers out there, such as [GitLab](https://gitlab.com/pages), [plan.io](https://plan.io/knowledge-management/), or [BitBucket](https://bitbucket.org/).
 

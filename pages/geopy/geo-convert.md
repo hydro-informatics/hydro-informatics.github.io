@@ -11,7 +11,7 @@ folder: geopy
 The goal of this page is to guide to an understanding of conversions from raster and to vector data formats and vice versa.
 
 {% include requirements.html content="Make sure to understand [gridded raster data](geo-raster.html) and [vector data](geo-shp.html) data handling before reading this section.<br>Recall the [`open_raster`](geo-raster.html#open) and [`create_shp`](geo-shp.html#create) functions.<br>Read through the creation of the [*least cost path*](geo-raster.html#leastcost) raster dataset." %}
-{% include tip.html content="The core functions used in this e-book are introduced with the raster and vector data handling explanations and additionally implemented in the [`geo_utils`](https://github.com/hydro-informatics/geo-utils) package." %}
+{% include tip.html content="The core functions used in this e-book are introduced with the raster and vector data handling explanations and additionally implemented in the [`geo_utils`](https://geo-utils.readthedocs.io/) package." %}
 {% include tip.html content="Download sample raster datasets from [*River Architect*](https://github.com/RiverArchitect/SampleData/archive/master.zip). This page uses *GeoTIFF* raster data located in [`RiverArchitect/SampleData/01_Conditions/2100_sample/`](https://github.com/RiverArchitect/SampleData/tree/master/01_Conditions/2100_sample)." %}
 
 ## Vectorize
@@ -49,7 +49,7 @@ Next we can write the core function to convert a raster dataset to a line shapef
     * Points are stored in the `points` list.
     * `point1` and `point2` are required to get the distance between pairs of points.
     * If the `distance` between the point is smaller than `max_distance`, the function creates a line object from the two points and appends it to the `multi_line`.
-1. Creates a new shapefile (named `out_shp_fn`) using the [`create_shp`](geo-shp.html#create) function (with integrated shapefile name length verification as per the [`geo_utils`](https://github.com/hydro-informatics/geo-utils) package).
+1. Creates a new shapefile (named `out_shp_fn`) using the [`create_shp`](geo-shp.html#create) function (with integrated shapefile name length verification as per the [`geo_utils`](https://geo-utils.readthedocs.io/) package).
 1. Adds the `multi_line` object as new feature to the shapefile (follows the descriptions on the [shapefile page](geo-shp.html#line-create)).
 1. Creates a `.prj` projection file (recall descriptions on the [shapefile page](geo-shp.html#prj-shp)) using the spatial reference system of the input `raster` with the [`get_srs`](geo-raster.html##lc-fun) function.
 The `raster2line` function is also implemented in the [`geo_utils/geo_tools.py`](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/geo_tools.py) script.
@@ -168,7 +168,7 @@ def float2int(raster_file_name, band_number=1):
 
 The following `raster2polygon` function:
 1. Uses the `float2int` function to ensure that any raster `file_name` provided is converted to purely integer values.
-1. Creates a new shapefile (named `out_shp_fn`) using the [`create_shp`](geo-shp.html#create) function (with integrated shapefile name length verification as per the [`geo_utils`](https://github.com/hydro-informatics/geo-utils) package).
+1. Creates a new shapefile (named `out_shp_fn`) using the [`create_shp`](geo-shp.html#create) function (with integrated shapefile name length verification as per the [`geo_utils`](https://geo-utils.readthedocs.io/) package).
 1. Adds a new `ogr.OFTInteger` field (recall [the field creation](geo-shp.html#add-field)) named by the optional `field_name` input argument.
 1. Runs [`gdal.Polygonize`](https://gdal.org/api/gdal_alg.html#_CPPv414GDALPolygonize15GDALRasterBandH15GDALRasterBandH9OGRLayerHiPPc16GDALProgressFuncPv) with:
     * `hSrcBand=raster_band`

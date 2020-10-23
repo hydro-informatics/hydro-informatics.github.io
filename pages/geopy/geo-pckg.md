@@ -79,7 +79,7 @@ A preferable and very well documented package for [shapefile](geospatial-data.ht
 conda install -c conda-forge shapely
 ```
 
-`shapely` is also used in the [`geo_utils` package](https://github.com/hydro-informatics/geo-utils), which contains tailored functions for this course.
+`shapely` is also used in the [`geo_utils` package](https://geo-utils.readthedocs.io/), which contains tailored functions for this course.
 
 ## pyshp 
 Another shapfile handling package [`pyshp`](https://pypi.org/project/pyshp/), which provides pure *Python* code (rather than wrappers), which simplifies direct dealing with shapefiles in *Python*. To install `pyshp` for *Python*, open [*Anaconda Prompt*](hypy_install.html#install-pckg) and type:
@@ -91,7 +91,7 @@ conda install -c conda-forge pyshp
 
 
 ## Other packages {#other}
-Besides the above mentioned packages there are other useful libraries for geospatial analyses in *Python* . **Packages in bold font** are used in the [`geo_utils` package](https://github.com/hydro-informatics/geo-utils), which contains tailored functions for this course.
+Besides the above mentioned packages there are other useful libraries for geospatial analyses in *Python* . **Packages in bold font** are used in the [`geo_utils` package](https://geo-utils.readthedocs.io/), which contains tailored functions for this course.
 
  * [**`alphashape`**](https://pypi.org/project/alphashape/) creates bounding polygons containing a set of points install in *Anaconda Prompt* with <br>`conda install -c conda-forge alphashape`). 
  * [`django`](https://docs.djangoproject.com/en/3.0/ref/contrib/gis/) as a geographic web frame and for database connections - install in *Anaconda Prompt* with <br>`conda install -c anaconda django`
