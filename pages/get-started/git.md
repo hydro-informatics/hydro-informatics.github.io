@@ -22,6 +22,13 @@ The materials provided on these pages is best downloaded and updated using *git*
 
 The repositories for this course are mainly hosted on *GitHub*. However, there are other *git* providers out there, such as [GitLab](https://gitlab.com/pages), [plan.io](https://plan.io/knowledge-management/), or [BitBucket](https://bitbucket.org/).
 
+
+### Create
+
+To create a *git* repository, make sure to have access to a *git* provider. The most popular way to get access to a *git*-able server is to register with one of the long list of popular *git* providers.
+
+{% include tip.html content="Students of the University of Stuttgart may use *GitHub* using their institutional ID (e.g., `st9009133`) through the [TIK's GitHub account and login page](https://github.tik.uni-stuttgart.de/login)." %}
+
 ### Clone (download)
 *GitHub* provides detailed descriptions and standard procedures to work with their repositories ([read more](https://help.github.com/en/articles/cloning-a-repository)). The following "recipe" guides through the first time download of *git* materials
 
@@ -58,4 +65,4 @@ After editing files in a repository locally, *add* - *commit* - *push* (in that 
 
 Done.
 
-{% include exercise.html content="Practise *git* with the [markdown & git](ex_git.html) exercise." %}
+{% include exercise.html content="Practice *git* with the [markdown & git](ex_git.html) exercise." %}
