@@ -37,6 +37,7 @@ This page guides through the installation of a [Debian Linux](https://www.debian
 
 The guest machine will run Debian Linux, which is one of the most stable Linux distributions, and it is freely available. Because of its stability, Debian is an ideal baseline for running numerical simulations that may last for days or even weeks. Of course, there are other options, and Debian is rather one of the best options than *the best option*.
 
+There are a couple of Debian Linux spin-offs, such as [*Ubuntu*](https://ubuntu.com) with some other derivatives that are more light-weight (and faster). New Linux users will have an easy start with the *Ubuntu* variants [*Linux Mint* (*Xfce*)](https://www.linuxmint.com) or [*Lubuntu*](https://lubuntu.me/downloads/). Most versions *Ubuntu* can be used instead of the Debian Linux presented here to complete the tutorials on this website.
 
 ## Create a Debian Linux VM
 
@@ -48,13 +49,16 @@ The guest machine will run Debian Linux, which is one of the most stable Linux d
     + *Oracles*'s *VirtualBox* is a free and open-source hosted hypervisor software.
     + The installation of *VirtualBox* requires administrator rights on the host machine. So if you are working in a professional environment, talk to your IT administrator.
     + *VirtualBox* installers are available for *Windows*, *mac OS*, and *Solaris*.
-* Download the latest Debian Linux net installer:
+* Download the latest Debian Linux (or on of its spin-offs - see next bullet point) net installer:
     + Visit [debian.org](https://www.debian.org/) and in the *Getting Debian* section (do not click on the one in the top menu), click on *CD/USB ISO images*
     + Click on [Download CD/DVD images using HTTP](https://www.debian.org/CD/http-ftp/)
     + Find the CD-section and click on the [*amd64*](https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/) version
     + Scroll to the bottom of the page and download the latest net installer (*debian-xx.x.x-amd64-netinst.iso*)
+* Alternative *ISO* images can be used to complete the tutorials on this website:
+    + [*Lubuntu*](https://lubuntu.me/downloads/) is a fast and light-weight derivative of *Ubuntu*
+    + [*Linux Mint* (*Xfce*)](https://www.linuxmint.com) is another efficient *Ubuntu* spin-off that is always based the penultimate *Ubuntu* version (e.g., if the current *Ubuntu* version is 20.0, then the current *Mint* version is 19.0 and builds on *Ubuntu* 19.0) 
 
-Remember where the *.iso* file is stored.
+Remember where the downloaded Linux *.ISO* file is stored.
     
 ### Create a VM with *VirtualBox*
 
