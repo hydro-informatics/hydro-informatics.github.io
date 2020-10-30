@@ -43,18 +43,17 @@ There are a couple of Debian Linux spin-offs, such as [*Ubuntu*](https://ubuntu.
 
 ### Get prerequisites (required software)
 
-***Estimated duration: 5-10 minutes.***
+***Estimated duration: 5-30 minutes (depends on connection speed).***
 
 * Download and install the latest version of [VirtualBox](https://www.virtualbox.org/).
     + *Oracles*'s *VirtualBox* is a free and open-source hosted hypervisor software.
     + The installation of *VirtualBox* requires administrator rights on the host machine. So if you are working in a professional environment, talk to your IT administrator.
     + *VirtualBox* installers are available for *Windows*, *mac OS*, and *Solaris*.
-* Download the latest Debian Linux (or on of its spin-offs - see next bullet point) net installer:
-    + Visit [debian.org](https://www.debian.org/) and in the *Getting Debian* section (do not click on the one in the top menu), click on *CD/USB ISO images*
-    + Click on [Download CD/DVD images using HTTP](https://www.debian.org/CD/http-ftp/)
+* Download the latest Debian Linux (or on of its spin-offs - see next bullet point) net installer (this is the **recommended** solution **for** working with **TELEMAC**):
     + Find the CD-section and click on the [*amd64*](https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/) version
     + Scroll to the bottom of the page and download the latest net installer (*debian-xx.x.x-amd64-netinst.iso*)
-* Alternative *ISO* images can be used to complete the tutorials on this website:
+    + If the above link is not working, visit [debian.org](https://www.debian.org/), find the *Getting Debian* section (do not click on the one in the top menu), click on *CD/USB ISO images* and click on [Download CD/DVD images using HTTP](https://www.debian.org/CD/http-ftp/).
+* *ISO* images for Debian spin-offs can also be used to complete the tutorials on this website (all-round systems):
     + [*Lubuntu*](https://lubuntu.me/downloads/) is a fast and light-weight derivative of *Ubuntu*
     + [*Linux Mint* (*Xfce*)](https://www.linuxmint.com) is another efficient *Ubuntu* spin-off that is always based the penultimate *Ubuntu* version (e.g., if the current *Ubuntu* version is 20.0, then the current *Mint* version is 19.0 and builds on *Ubuntu* 19.0) 
 
