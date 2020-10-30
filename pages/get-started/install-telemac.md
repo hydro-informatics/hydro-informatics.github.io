@@ -171,7 +171,7 @@ MPI stands for *Message Passing Interface*, which is a portable message-passing 
 sudo apt-get install libopenmpi-dev openmpi-bin
 ```
 
-Test if the installation was successful type:
+To test if the installation was successful type:
 
 ```
 mpif90 --help
@@ -185,7 +185,7 @@ The *Terminal* should prompt option flags for processing a *gfortran* file. The 
 
 ***Estimated duration: 10-15 minutes.***
 
-Metis is a software package for partitioning unstructured graphs, partitioning meshes, and computing fill-reducing orderings of sparse matrices by George Karypis. TELEMAC-MASCARET uses *Metis* as a part of *Partel* to split the mesh into multiple parts for parallel runs. Learn more about *Metis* and potentially newer versions than `5.1.0` (used in the following) on the [Karypis Lab website](http://glaros.dtc.umn.edu/gkhome/metis/metis/download) or reading the [PDF manual](http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/manual.pdf).
+Metis is a software package for partitioning unstructured graphs, partitioning meshes, and computing fill-reducing orderings of sparse matrices by George Karypis. TELEMAC uses *Metis* as a part of *Partel* to split the mesh into multiple parts for parallel runs. Learn more about *Metis* and potentially newer versions than `5.1.0` (used in the following) on the [Karypis Lab website](http://glaros.dtc.umn.edu/gkhome/metis/metis/download) or reading the [PDF manual](http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/manual.pdf).
 
 <!--  Download the *Metis* archive and unpack it in a temporary (`temp`) directory. The following code block changes to the `optionals` directory (`cd`) of TELEMAC-MASCARET, creates the `temp` folder with `mkdir`, downloads, and unzips the *Metis* archive (run in *Terminal* as ***normal user*** - ***not as root***): 
 
@@ -235,7 +235,7 @@ make install
 ```
 -->
 
-Here, we will install *Metis* from *Terminal* directly in the TELEMAC-MASCARET directory tree downloaded with `svn`. Before compiling *Metis, clean up the *Metis* folder (there is an existing *Makefile*, which we do not want to use):
+Here, we will install *Metis* from *Terminal* directly in the TELEMAC-MASCARET directory tree downloaded with `svn`. Before compiling *Metis*, clean up the *Metis* folder (there is an existing *Makefile*, which we do not want to use):
 
 ```
 cd ~/telemac/v8p1/optionals/metis-5.1.0
@@ -244,7 +244,7 @@ rm -r build
 rm Makefile
 ```
 
-* Then build *Metis* (use for example `~/telemac/v8p1/optionals/metis-5.1.0/build` as `<install_path>`):
+Then build *Metis* (use for example `~/telemac/v8p1/optionals/metis-5.1.0/build` as `<install_path>`):
 
 ```
 cmake -D CMAKE_INSTALL_PREFIX=~/telemac/v8p1/optionals/metis-5.1.0/build .
@@ -252,7 +252,7 @@ make
 make install
 ```
 
-* To verify the successful installation, make sure that the file `~/telemac/v8p1/optionals/metis-5.1.0/build/lib/libmetis.a` exists (i.e., `<install_path>/lib/libmetis.a`). The installation of *Metis* on Linux is also documented in the [opentelemac wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_metis).
+To verify the successful installation, make sure that the file `~/telemac/v8p1/optionals/metis-5.1.0/build/lib/libmetis.a` exists (i.e., `<install_path>/lib/libmetis.a`). The installation of *Metis* on Linux is also documented in the [opentelemac wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_metis).
 
 
 ### Hdf5 and MED format handlers
@@ -320,7 +320,7 @@ The installation of the *med file* library on Linux is also documented in the [o
 
 {% include tip.html content="If you consistently get ***permission denied*** messages, unlock all read and write rights for the `telemac` directory with the following command: `sudo -R 777  /home/USER-NAME/telemac` (replace `USER-NAME` with the user for whom `telemac` is installed)." %}
 
-Finally **remove the `temp` folder** to avoid storing garbage:
+Finally, **remove the `temp` folder** to avoid storing garbage:
 
 ```
 cd ~/telemac/v8p1/optionals

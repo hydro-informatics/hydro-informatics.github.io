@@ -112,9 +112,9 @@ To install Debian Linux to the VM, start the before created *Debian Linux VM* in
 
 Once the VM is shutdown, re-open the VM *Settings* (from *VirtualBox Manager* window) and go to the *Storage* tab. Verify that there is again an *Empty* disk symbol in the *Controller: IDE* field.
 
-## Get started with Debian Linux 
+## Get started with (Debian) Linux 
 
-## Setup Debian Linux {#setup-debian}
+## Setup Linux {#setup-debian}
 
 ***Estimated duration: 15 minutes.***
 
@@ -145,24 +145,24 @@ Find the *Devices* drop-down menu of the *VirtualBox VM* window (not in Debian L
 
 {% include note.html content="If the error `The guest system has no CR-ROM ...` occurs, shutdown the VM. In the *VirtualBox* manager window, right-click on the *Debian Linux* VM > *Storage* tab > Add new Optical Drive to *Controller: IDE*. Restart the *Debian Linux* VM." %}
 
-Back in the Debian Linux *Terminal*, mount the *Guest Additions* *iso* file by typing (do not forget `su` if you needed to restart *Terminal*):
+Back in the Debian Linux *Terminal*, mount the *Guest Additions* *iso* file by typing in *Terminal*:
 
 ```
-mkdir -p /mnt/cdrom
-mount /dev/cdrom /mnt/cdrom
+sudo mkdir -p /mnt/cdrom
+sudo mount /dev/cdrom /mnt/cdrom
 ```
 
 Navigate to the mounted directory and execute the *VBoxLinuxAdditions.run* file with the *--nox11* flag to avoid spawning an xterm window.
 
 ```
 cd /mnt/cdrom
-sh ./VBoxLinuxAdditions.run --nox11
+sudo sh ./VBoxLinuxAdditions.run --nox11
 ```
 
 The kernel modules will be installed now and *Terminal* should prompt a message that invites to reboot the system. Do so by typing:
 
 ```
-sudo shutdown -r now
+shutdown -r now
 ```
 
 After rebooting, make sure that the installation was successful. In *Terminal* type:
@@ -217,6 +217,8 @@ If visually nothing happens, you are good to go. Otherweise, if you get a messag
 
 ***Estimated duration: 5-10 minutes.***
 
+{% include requirements.html content="Make sure to install *Guest Additions* to enable folder sharing (see the above [Setup Linux](#setup-debian) section)." %}
+
 Sharing data between the host system (e.g., *Windows 10*) and the guest system (*Debian Linux VM*) enables to transfer files to and from the VM to the host system.
 
 * At a place of your convenience, create a new folder on the host system (e.g., *Windows 10*) and call it shared (e.g., `C:\Users\USER\documents\shared\`).
@@ -229,18 +231,14 @@ Sharing data between the host system (e.g., *Windows 10*) and the guest system (
 
 ![share-folder](https://github.com/Ecohydraulics/media/raw/master/png/vm-share-folder.png)
 
-The shared folder will then be visible in the *Files* (*Activities* > *Filing cabinet symbol*) on the left (e.g., as *sf_shared*). A reboot may be required.
+The shared folder will then be visible in the *Files* (*Activities* > *Filing cabinet symbol*) on the left (e.g., as *sf_shared*). 
 
 {% include note.html content="File sharing only works with the *Guest Additions CD image* installed (see above section on setting up and familiarizing with Debian Linux)." %}
 
-***
-
-> **If a *Permission denied* message appears when you click on `sf_shared` ...**
-
-When trying to access the shared folder, a *Permission denied* message may appear because it is not assigned to the *vboxsf* group. The *vboxsf* is the one, which is automatically assigned for accessing the shared folder. To verify the group name, go to the shared folder, right-click in the free space, and select *Permissions*. A window with group names that have access to the shared folder opens. To add your username type (in *Terminal*):
+A ***Permission denied*** message is likely to appear when you click on `sf_shared`. The message may appear because your user name is not assigned to the *vboxsf* group. The *vboxsf* is the one, which is automatically assigned for accessing the shared folder. To verify the group name, go to the shared folder, right-click in the free space, and select *Permissions*. A window with group names that have access to the shared folder opens. To add your username type (in *Terminal*):
 
 ```
-sudo usermod -a -G vboxsf YOUR-USER-NAME
+sudo usermod -aG vboxsf YOUR-USER-NAME
 ```
 
 Afterwards, **reboot the *Debian Linux VM*** and test if you can access the folder, and create and modify files. 
@@ -259,7 +257,7 @@ To update the repositories, open *Terminal* and type:
 sudo apt-get update
 ```
 
-Instructions for installing particular and Debian-compatible software (e.g., QGIS) can be found directly on the website of software developers. For example, to install *Anaconda* *Python* visit [docs.anaconda.com](https://docs.anaconda.com/anaconda/install/linux/) and follow the instructions for Debian Linux.
+Instructions for installing particular and Debian-compatible software (e.g., QGIS) can be found directly on the website of software developers. For example, to install *Anaconda* *Python* visit [docs.anaconda.com](https://docs.anaconda.com/anaconda/install/linux/) and follow the installation instructions for Debian Linux.
 
 {% include important.html content="If the main purpose of the VM is to run resource-intensive simulations (e.g., with TELEMAC-MASCARET), avoid installing any other software than those required for running the model. Also, as a general rule of thumb: Less is better than more." %}
 
