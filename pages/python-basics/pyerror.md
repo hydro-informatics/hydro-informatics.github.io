@@ -83,7 +83,7 @@ The `print()` function is useful to print variables or computation progress to t
 So what is a log file or the act of logging? We know logbooks from discoverers or adventurers, who write down their experiences ordered by dates. Similarly, a code can write down (*log*) its "experiences", but in a file instead of a book. For this purpose, *Python* comes with the standard [*logging* library](https://docs.python.org/3/howto/logging.html). The *logging* library can be used in any *Python* script by importing it with `import logging` (more information about packages, modules, and libraries is provided later, on the [Modules & packages](hypy_pckg.html) page).
 
 The below code block imports the *logging* module and uses the following keyword arguments to set the `logging.basicConfig`:
-* `filename="my-logfile.log"` makes the logging module write to a file named `"my-logfile.log"` (rather than just the *Python* console) in the same directory where the *Pyhton* script runs.
+* `filename="my-logfile.log"` makes the logging module write to a file named `"my-logfile.log"` (rather than just the *Python* console) in the same directory where the *Python* script runs.
 * `format="%(asctime)s - %(message)s` sets the logging format to `YYYY-MM-DD HH:MM:SS.sss - `*Message text* (more format options are listed in the [*Python* docs](https://docs.python.org/3/howto/logging.html#displaying-the-date-time-in-messages)).
 * `filemode="w"` overwrites previous messages in the log file (remove this argument to append messages instead of overwriting).
 * `level=logging.DEBUG` defines the severity of messages written to the log file, where `DEBUG` is adequate for problem diagnoses in codes; other levels of event severity are:

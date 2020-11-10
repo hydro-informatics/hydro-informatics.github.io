@@ -44,7 +44,7 @@ With the `"` apostrophes, we pass a ***string*** variable to the `print` functio
 
 {% include warning.html content="Be reasonable with the usage of `print`. Especially in loops, `print` leads to unnecessary system load and slows down scripts." %}
 
-A marginal note: In *Python3*, `print` is a function, not a keyword as in *Python2*. `print` is usefull, for example, to prompt working progress of a running script.
+A marginal note: In *Python3*, `print` is a function, not a keyword as in *Python2*. `print` is useful, for example, to prompt working progress of a running script.
 
 It is also possible to print other types of variables than *strings*, but the combination of numerical and text variables requires more encoding. Before we get there, let us have a look at variable and data types in *Python*. 
 
@@ -101,7 +101,7 @@ print(int("c", 36)) # use int(letter, literal)
 
 ### Boolean {#bool}
 
-Boolean variables are either True (1) or False (0) with many useful code implementations. We will come back to booelans later on in conditional statements.
+Boolean variables are either True (1) or False (0) with many useful code implementations. We will come back to booleans later on in conditional statements.
 
 
 ```python
