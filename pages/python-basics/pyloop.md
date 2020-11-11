@@ -8,7 +8,7 @@ permalink: hypy_pyloop.html
 folder: python-basics
 ---
 
-*Python* provides two basic types of loops to iterate through objects or functions: the `for` and the `while` loop statements. Both loop types have additional options and can be combined with conditional statements. Conditional statements evaluate *boolean* arguments (`True`/`False`) using the keywords `if: ... else: ...`. This section introduces the two loop types and conditional statements as integral parts of loops.
+*Python* provides two basic types of loops to iterate through objects or functions: the `for` and the `while` loop statements. Both loop types have additional options and can be combined with conditional statements. Conditional statements evaluate *boolean* arguments (`True`/`False`) using the keywords `if: ... else: ...`. This page introduces the two loop types and conditional statements as integral parts of loops.
 
 ## Conditional statements (`if` - `else`) {#if}
 Conditional statements open with an `if` keyword, followed by a test condition (e.g., `variable >= 2`) and action to accomplish when the test condition is `True` ([*boolean*](hypy_pybase.html#boolean) test result). The conditional statement can be followed by the `elif` (*else if*) and/or `else` keywords, which represent alternative tests in the case that the `if` test-condition was `False`. However, when the `if` statement was `True`, none of the following statements will be evaluated.
@@ -22,7 +22,6 @@ elif "ice" in variable_2_test:
     print("It's cold, ice-cold cream.")
 else:
 	print("Anything but ice cream.")
-
 ```
 
     It's creamy, for sure.
@@ -95,8 +94,8 @@ for iteration_step, list_element in enumerate(flavors):
     
 
 ## `while` loop {#while}
-`while` loops run until a certain test condition (expression) is met. Similar to the `if` statement, the test condition can be composed by just one variable or an expression including [operators](hypy_pybase.html#operators) (e.g., `while a > b`). In order to modify a variable within a `while` loop, use `+=` (add ammount), `-=` (substract amount), `*=` (multiply with), or `/=` (divide by). Also `while`loops can be complemented with `else` statements.
-{% include warning.html content="Make sure that every `while` loop has some `break` statement - otherwise, the script may be caught in an endless loop." %}
+`while` loops run until a certain test condition (expression) is met. Similar to the `if` statement, the test condition can be composed by just one variable or an expression including [operators](hypy_pybase.html#operators) (e.g., `while a > b`). In order to modify a variable within a `while` loop, use `+=` (add amount), `-=` (substract amount), `*=` (multiply with), or `/=` (divide by). Also `while`loops can be complemented with `else` statements.
+{% include warning.html content="Make sure that every `while` loop has a `break` statement - otherwise, the script may be caught in an endless loop." %}
 
 
 ```python
@@ -126,7 +125,7 @@ while True:
     
 
 ## Example
-Use this code block to practice with data types, `for` loops and conditional `if` statements by modifying the variables `scoops` and `favorite_flavor`. Note the implementation of `try` and `except` key words, which ensure that whatever number of `scoops` or `favorite_flavor` you define will not crash the script.
+Use this code block to practice with data types, `for` loops and conditional `if` statements by modifying the variables `scoops` and `favorite_flavor`. Have a look at the implementation of `try` and `except` key words, which ensure that whatever number of `scoops` or `favorite_flavor` you define will not crash the script.
 
 
 ```python

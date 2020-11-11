@@ -45,7 +45,7 @@ def feet_to_meter(feet):
 
 ## Function calls
 
-In order to call a function, it must be defined before the call. The function may be defined in the same script or in another script, which can than be imported as module ([read more about modules and packages in the next section](hypy_pckg.html)). Then we can call, for example, the above-defined `feet_to_meter` function as follows:
+In order to call a function, it must be defined before the call. The function may be defined in the same script or in another script, which can then be imported as module ([read more about modules and packages in the next section](hypy_pckg.html)). Then we can call, for example, the above-defined `feet_to_meter` function as follows:
 
 
 ```python
@@ -59,11 +59,13 @@ print("{0} feet are {1} meters.".format(feet_value, feet_to_meter(feet_value)))
 ## Optional arguments *args
 Let's replace the non-optional `feet` argument in the above function with an optional argument `*args` to enable the conversion of as many length values as the function receives. The following lines explain step by step how that works.
 
-1. We want to ensure that anyone understands the input and output parameters of the function. This is why we defined within a pair of triple double-apostrophes (`"""`) input parameters (`:params parameter_name: definition`) and the function return (`:output: definition`).
-1. By default, we will assume that multiple values are provided. Therefore, a list called `value_list` in intantiated at the beginning of the function, while `conversion_factor` remains the same as before.
+1. We want to ensure that anyone understands the input and output parameters of the function. This is why we defined within a pair of triple double-apostrophes (`"""`) input parameters (`:params parameter_name: definition`) and the function return (`:returns: definition`).
+1. By default, we will assume that multiple values are provided. Therefore, a list called `value_list` in instantiated at the beginning of the function, while `conversion_factor` remains the same as before.
 1. A for-loop over `*args` identifies and processes the arguments provided. Why a for-loop? Well, *Python* recognizes `*args` automatically as a list, and therefore, we can iterate over `*args`, even though the provided range of values was not a list type.
 1. The for-loop in the `try` code block includes a `try` - `except` statement in order to verify if the provided values (arguments) are numeric and can be converted to meters. If the `try` block runs successfully, the expression `arg * conversion_factor` appends the converted argument `arg` to `value_list`.
 1. Eventually, the `return` keyword returns the value list.
+
+{% include tip.html content="A neat way to document code is to implement an automatically generated documentation with [*Sphinx*](https://www.sphinx-doc.org/en/master/) (uses [reStructuredText](https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html)) and [readthedocs](https://readthedocs.org/). *Sphinx* docs perform well with the here described parameter definitions, but there is another way to describe parameters, function returns, and also the usage or special hints for a function with [google style](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html) docs." %}
 
 
 ```python
@@ -215,7 +217,7 @@ print(feet_to_meter(3, 1, 10))
     
 
 ## Function wrappers and Decorators {#wrappers}
-If multiple functions contain similar lines, chances are that those functions can be further factorized by using function wrappers and decorators. A typical example is for example if a license checkout is needed in order to use a commercial *Python* module/package (e.g., Esri's `arcpy`) or if we want to use a recurring error statement with `try` - `except` statements. 
+If multiple functions contain similar lines, chances are that those functions can be further factorized by using function wrappers and decorators. A typical example is for example if a license checkout is needed in order to use a commercial *Python* package (e.g., Esri's `arcpy`) or if we want to use a recurring error statement with `try` - `except` statements. 
 
 Consider two or more functions that should receive, process and produce numerical output from user input. These functions could look like this:
 
@@ -245,9 +247,9 @@ def sum_up_arguments(*args):
     return result
 ```
 
-Both functions involve the statement `print("The result is: " + str(result))` to print results to the *Python* console (e.g., to get some intermediate information) or to run only on valid (i.e., numeric) input with the help of exception (`try` - `except`) statements. However, we want our functions to focus on the calculation only and this is where a wrapper function helps.
+Both functions involve `print("The result is: " + str(result))` to print results to the *Python* console (e.g., to get some intermediate information) or to run only on valid (i.e., numeric) input with the help of exception (`try` - `except`) statements. However, we want our functions to focus on the calculation only and this is where a wrapper function helps.
 
-A wrapper function can be defined by first defining a normal function (e.g., `def verify_result`) and passing a function (`func`) as argument. In that function, we can then place a nested `def wrapper()` function that will embrace `func`. It is important to use both optional `*args` and optional keyword `**kwargs` in the wrapper and the call to `func` in order to make the wrapper as flexible as possible.
+A wrapper function can be defined by first defining a *normal* function (e.g., `def verify_result`) and passing a function (`func`) as argument. In that function, we can then place a nested `def wrapper()` function that will embrace `func`. It is important to use both optional `*args` and optional keywords `**kwargs` in the wrapper, and the call to `func` in order to make the wrapper as flexible as possible.
 
 
 ```python
@@ -285,7 +287,7 @@ def sum_up_arguments(*args):
     return result
 ```
 
-The two functions (`multiply_arguments` and `sum_up_arguments`) can be called as usually, for example:
+The two functions (`multiply_arguments` and `sum_up_arguments`) can be called as usual, for example:
 
 
 ```python
@@ -328,9 +330,9 @@ def verify_result(func):
     return wrapper
 ```
 
-Note the difference: the `wrapper` function now returns `func(*arg, **kwargs)` instead of the numeric variable results. If the function can not be executed because of invalid input, the `wrapper` will return an error function (`error_func`), which ensures the consistency of the wrapper function. One may think that the error function returning 0.0 is obsolete, because the exception statements could directly return 0.0. However, 0.0 is a *float* variable, while `error_func` is a function and it is important that the function wrapper always returns the same data type, regardless of the an exception raise or successful execution. This is what makes code consistent.
+Note the difference: the `wrapper` function now returns `func(*arg, **kwargs)` instead of the numeric variable results. If the function can not be executed because of invalid input, the `wrapper` will return an error function (`error_func`), which ensures the consistency of the wrapper function. One may think that the error function returning 0.0 is obsolete, because the exception statements could directly return 0.0. However, 0.0 is a *float* variable, while `error_func` is a function and it is important that the function wrapper always returns the same data type, regardless of an exception raise or successful execution to makes code consistent.
 
-This page shows examples for using the decorators in the shape of an `@` sign to wrap (embrace) a function. Decorators are also a useful feature in classes, for example when a class function returns static values. Read more about decorators in classes later in the chapter about [object orientation and classes](http://localhost:4000/hypy_classes.html#dec).
+This page shows examples for using the decorators in the shape of an `@` sign to wrap (embrace) a function. In addition, decorators are also a useful feature in classes, for example when a class function returns static values. Read more about decorators in classes on the page about [object orientation and classes](hypy_classes.html#dec).
 
 ## Iterators and generators
 A characteristic of *list*, *tuple*, and *dictionary* data types is their iterability, which is provided by their `__iter__` built-in method. For example, iterability is the reason why we can write:
@@ -367,7 +369,7 @@ print(flattened_list)
     [1, 2, 3, 'a', 'b', 'c']
     
 
-{% include note.html content="The above example uses `Iterable` from the standard module `collections.abc`. More about importing packages and modules will be discussed on the [Modules & packages](hypy_pckg.html) page." %}
+{% include note.html content="The above example uses `Iterable` from the standard module `collections.abc`. Read more about importing packages and modules on the [Modules & packages](hypy_pckg.html) page." %}
 
 ## Lambda functions {#lambda}
 
@@ -410,7 +412,7 @@ print(feet_to_meter(10))
     3.048
     
 
-Using a `lambda` function made the code here shorter and more efficient. In order to evaluate the `feet_to_meter` `lambda` function for multiple values, we can use the `map()` function. The syntax of a `map()` function is: 
+Here, using a `lambda` function made the code shorter and more efficient. In addition, to evaluate the `feet_to_meter` `lambda` function for multiple values, we can use the `map()` function. The syntax of a `map()` function is: 
 
 `result = map(function, sequence)`
 
@@ -425,7 +427,7 @@ print(list(map(feet_to_meter, four_ft_values)))
     [1.2192, 2.95656, 2.1336, 0.6096]
     
 
-The `print` statement converts the `map()` object into a *list* to evaluate the `map()` object (otherwise, the result would be somethine like `<map object at ...>`).
+In the `print` function, the `map()` object is converted to a *list* to evaluate the `map()` object (otherwise, the result would be something like `<map object at ...>`).
 
 If the `feet_to_meter` function is not needed at another place in the code, one can also write:
 
@@ -437,7 +439,7 @@ print(list(map(lambda x : x * 0.3048, (4, 9.7, 7, 2))))
     [1.2192, 2.95656, 2.1336, 0.6096]
     
 
-Another feature are `filter(function, list)` objects which provide an elegant solution to filter out those elements from a list for which the function returns `True`. The following code block illustrates a `filter` that eliminates all numbers from the `some_numbers` list, which can be divided by three. 
+Moreover, `filter(function, list)` objects represent an elegant solution to filter out those elements from a list for which the function returns `True`. The following code block illustrates a `filter` that eliminates all numbers from the `some_numbers` list, which can be divided by three. 
 
 
 ```python
