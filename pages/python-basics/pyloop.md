@@ -129,7 +129,7 @@ Use this code block to practice with data types, `for` loops and conditional `if
 
 
 ```python
-scoops = 2 # re-define the number of sccops
+scoops = 2 # re-define the number of scoops
 favorite_flavor = "vanilla" # choose your favorite flavor
 
 size_scoops = {1: "small", 2: "medium", 3: "this is too much ice cream"}

@@ -9,9 +9,9 @@ folder: python-basics
 
 ## Import packages or modules
 
-Importing a package or module in *Python* makes external functions and other elements (such as objects) of modules accessible in a script. The functions and other elements are stored within another *Python* file (`.py`) in some */site_packages/* folder of the interpreter environments. Thus, in order to use a non-standard package, it needs to be downloaded and installed first. Standard packages (e.g., `os`, `math`) are always accessible and other can be added with *conda* ([read the installation instructions](hypy_install.html#install-pckg)).
+Importing a package or module in *Python* makes external functions and other elements (such as objects) of modules accessible in a script. The functions and other elements are stored within another *Python* file (`.py`) and/or in some */site_packages/* folder of the interpreter environments. Thus, in order to use a non-standard package, the package needs to be downloaded and installed first. Standard packages (e.g., `os`, `math`) are always accessible and other can be added (i.e., downloaded and installed at once) with *conda* ([read the installation instructions](https://hydro-informatics.github.io/hypy_install.html#install-pckg)) or *pip* (`pip install some-package`).
 
-{% include note.html content="There is a **difference between modules and packages**. Modules are single or multiple files that can be imported as one import (e.g., `import a_module`). Packages are a collection of modules in a directory with a defined package hierarchy, which enables the import of individual modules (e.g. `from a_package.module import a_function`). Packages are therefore also modules, but with a hierarchy definition (i.e., a `__path__` attribute and a `__init__.py` file). Sounds fuzzy? Read this page down to the bottom and come back here to re-read this note." %}
+{% include note.html content="There is a **difference between modules and packages**. Modules are single or multiple files that can be imported as one import (e.g., `import a_module`). Packages are a collection of modules in a directory with a defined package hierarchy, which enables the import of individual modules (e.g. `from a_package.module import a_function`). Packages are therefore also modules, but with a hierarchy definition (i.e., a `__path__` attribute and a `__init__.py` file).  Moreover, a ***library*** includes multiple packages. Sounds fuzzy? Read this page down to the bottom and come back here to re-read this note." %}
 
 The `os` package provides some useful system-terminal like commands, for example, to manage folder directories. So let's import this essential package.
 
@@ -55,6 +55,7 @@ for e in range(1, 10):
 
 plt.plot(x, y)
 ```
+
 
 ### What is the best way to import a package or module?
 There is no global answer to this questions. However, be aware that `from package-name import *` overwrites any existing variable or other item in the script. Thus, only use `*` when you are aware of all contents of a module.
@@ -144,7 +145,7 @@ Now we can run [`icecreamdialogue_standalone.py`](https://github.com/hydro-infor
 C:\temp\ python icecreamdialogue_standalone.py
 ```
 
-{% include note.html content="Depending on the definition of system variables used in the *Terminal* environment, the *Python* must be called with a different variable name then `python` (e.g., `python3` on many *Linux* platforms)." %}
+{% include note.html content="Depending on the definition of system variables used in the *Terminal* environment, the *Python* must be called with another variable name than `python` (e.g., `python3` on many *Linux* platforms)." %}
 
 ### Make standalone script with input parameter {#standaloneplus}
 To make the script more flexible, we can define `scoops_wanted` as an input variable of a function.
@@ -173,7 +174,7 @@ Now we can run `icecreamdialogue_standalone_withinput.py` in the terminal.
 
 
 ```python
-C:\temp\ python3 icecreamdialogue_standalone.py 2
+C:\temp\ python icecreamdialogue_standalone.py 2
 ```
 
 ### Initialization of a package (hierarchically organized module) {#make-pckg}
@@ -228,7 +229,7 @@ print(icecreamdialogue.welcome_msg)
     
 
 ### Package creation summary
-A hierachically organized package contains a `__init__.py` file with an `__all__` list to invoke relevant module scripts. The structure of a module can be more complex than the above example list (e.g., with sub-folders). When you write a package, remember to use [meaningful script and variable names](hypy_pystyle.html#libs), and to document it.
+A hierarchically organized package contains a `__init__.py` file with an `__all__` list to invoke relevant module scripts. The structure of a module can be more complex than the above example list (e.g., with sub-folders). When you write a package, remember to use [meaningful script and variable names](hypy_pystyle.html#libs), and to document precisely.
 
 {% include tip.html content="Implement a custom [logger](hypy_pyerror.html#logging) in your module with `logger = logging.getLogger(__name__)` (replace `__name__` with for example `my-module-log`)." %}
 
