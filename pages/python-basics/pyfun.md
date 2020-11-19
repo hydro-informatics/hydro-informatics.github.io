@@ -152,7 +152,7 @@ def feet_to_meter(*args, **kwargs):
     return value_list
 ```
 
-With the newly defined flexibility of the `feet_to_meter` let's test some different conversion factors:
+With the newly defined flexibility of the `feet_to_meter` let's test some different conversion factors ([download the function](https://raw.githubusercontent.com/hydro-informatics/material-py-codes/master/fun/converter.py)):
 
 
 ```python
@@ -164,8 +164,6 @@ print(feet_to_meter(3, 1, 10, conversion_factor=1/7))
 
 print("Function call with 2 values with default conversion factor: ")
 print(feet_to_meter(25, 10))
-
-
 ```
 
     Function call with 3 values and a conversion factor of 0.25: 

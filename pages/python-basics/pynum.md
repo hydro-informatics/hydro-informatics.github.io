@@ -10,7 +10,7 @@ folder: python-basics
 
 ## Load and write data files (basics)
 
-Data can be stored in many different (text) file formats such as *txt* or *csv* files. *Python* provides the `open(file)` and `write(...)` functions to read and write data from nearby every text file format, respectively. There are packages such as `csv` (for *csv* files), which simplify handling specific file types. This section illustrates the use of the `load(file)` and `write(...)` functions, and introduces the *pandas* module with its capacity to import and export numeric data along with row and column headers.
+Data can be stored in many different (text) file formats such as *txt* or *csv* files. *Python* provides the `open(file)` and `write(...)` functions to read and write data from nearby every text file format, respectively. There are packages such as `csv` (for *csv* files), which simplify handling specific file types. This section illustrates the use of the `load(file)` and `write(...)` functions. Note that the later introduced *pandas* module comes with powerful capacities to import and export numeric data along with row and column headers.
 
 ### Load (open) text file data {#open-modes}
 
@@ -38,7 +38,7 @@ where:
 
 When `"r"` or `"w"` modes are used, the file pointer (i.e, the blinking cursor that you can see for example in Word documents) is place at the beginning of the file. For `"a"` modes, the file pointer is placed at the end of the file.
 
-It is good practive to read and write data from and to a file within a `with` statement to avoid file lock issues. For example, the following code block creates a new text file within a `with` statement:
+It is good practice to read and write data from and to a file within a `with` statement to avoid file lock issues. For example, the following code block creates a new text file within a `with` statement (before running the code block, create a *data* sub-folder in the directory where this notebook lives):
 
 
 ```python
@@ -47,9 +47,10 @@ with open("data/new.csv", mode="w+") as file:
 ```
 
 ### Read-only {#read}
-Once the file object is created, we can parse the file and copy the file data content to a desired *Python* [data type](hypy_pybase.html#var) (e.g., a list, tuple or dictionary). Parsing the data uses [*for-loops*](hypy_pyloop.html#for) (other loop types will also work) to iterate on lines and line entries. The lines represent *strings*, where the data columns can be separated by using the built-in *string* function `line_as_list = str().split("SEPARATOR")`, where `"SEPARATOR"` can be `","` (comma), `";"` (semicolon), `"\t"` (tab), or any other sign. After reading all data from a file, use `file_object.close()` to avoid that the file is locked by *Python* and cannot be opened by another program.
 
-The following example opens a text file called *pure-numbers.txt* (located in a sub-folder called *data*) that contains *float* numbers between 0.0 and 10.0. The file has 17 data rows (e.g., for 17 experimental runs) and 4 data columns (e.g., for 4 measurements per experimental run), which are separated by a *TAB* (`"\t"` separator) The code snippet uses the built-in function `readlines()` to parse the file lines, splits the lines using the `"\t"` separator, and loops over the line entries to append them to the list variable `data_list`, if `entry` is numeric (verified with the `try` - `except` statement). `data_list` is a nested list that is initiated at the beginning of the script and a sub-list (nested list) is appended for every file line (row).
+Once the file object is created, we can parse the file and copy the file data content to a desired *Python* [data type](hypy_pybase.html#var) (e.g., a *list*, *tuple* or *dictionary*). Parsing the data uses [*for-loops*](hypy_pyloop.html#for) (while loops also work) to iterate on lines and line entries. The lines represent *strings*, where data columns can be separated by using the built-in *string* function `line_as_list = str().split("SEPARATOR")`, where `"SEPARATOR"` can be `","` (comma), `";"` (semicolon), `"\t"` (tab), or any other sign. After reading all data from a file, use `file_object.close()` to avoid that the file is locked by *Python* and cannot be opened by another program (if your are not using `with open(file_name):`).
+
+The following example opens a text file called *pure-numbers.txt* ([download](https://raw.githubusercontent.com/hydro-informatics/material-py-codes/master/data/pure-numbers.txt) and save it in the *data* sub-folder) that contains *float* numbers between 0.0 and 10.0. The file has 17 data rows (e.g., for 17 experimental runs) and 4 data columns (e.g., for 4 measurements per experimental run), which are separated by a *TAB* (`"\t"` separator) The code snippet uses the built-in function `readlines()` to parse the file lines, splits the lines using the `"\t"` separator, and loops over the line entries to append them to the *list* variable `data_list`, if `entry` is numeric (verified with the `try` - `except` statement). `data_list` is a nested *list* that is initiated at the beginning of the script and a sub-*list* (nested *list*) is appended for every file line (row).
 
 
 ```python
@@ -91,8 +92,8 @@ A file is created with the `"w"`... file open modes ([see above](#open-modes)) o
 
 {% include tip.html content="When `mode='w'...`, the provided file is opened with the pointer at position zero. Writing data will make the pointer overwrite any existing data at the position. That means any existing data in the opened file will be overwritten. To avoid overwriting of existing file data use `mode='w'...`." %}
 
-Imagine that the above-loaded `data_list` represents measurements in *mm* and we know that the precision of the measuring device was 1.0 *mm*. Thus, all data smaller than 1.0 are within the error margin, which we want to exclude from further analyses by overwriting such values with ***nan*** (***not-a-number***). For this purpose, we first create a new list variable `new_data_list`, where we append *nan* values if `data_list[i, j] <= 1.0` and otherwise we preserve the original numeric value of `data_list`.
-With `open("data/modified-data.csv", mode="w+")`, we create a new *csv* (comma-separated values) file in the *data* sub-folder. A *for-loop* iterates on the sub_lists of `new_data_list` and joins them with a comma-separator. In order to join the list elements of `i` (i.e., the sub-lists) with `", ".join(list_of_strings)"`, all list entries first need to be converted to *strings*, which is achieved through the expression `[str(e) for e in row]`. The `"\n"` *string* needs to be concatenated at the end of every line to create a line break (`"\n"` itself will not be visible in the file). The command `new_file.write(new_line)` write the sub-list-converted-to-string to the file `"data/modified-data.csv"`. Once again, `new_file.close()` is needed to avoid that the new *csv* file is locked by *Python*.
+Imagine that the above-loaded `data_list` represents measurements in *mm* and we know that the precision of the measuring device was 1.0 *mm*. Thus, all data smaller than 1.0 are within the error margin, which we want to exclude from further analyses by overwriting such values with ***nan*** (***not-a-number***). For this purpose, we first create a new *list* variable `new_data_list`, where we append *nan* values if `data_list[i, j] <= 1.0` and otherwise we preserve the original numeric value of `data_list`.
+With `open("data/modified-data.csv", mode="w+")`, we create a new *csv* (comma-separated values) file in the *data* sub-folder. A *for-loop* iterates on the nested sub *list*s of `new_data_list` and joins them with a comma-separator. In order to join the list elements of `i` (i.e., the sub *list*s) with `", ".join(list_of_strings)"`, all list entries first need to be converted to *strings*, which is achieved through the expression `[str(e) for e in row]`. The `"\n"` *string* needs to be concatenated at the end of every line to create a line break (`"\n"` itself will not be visible in the file). The command `new_file.write(new_line)` writes the sub-*list*-converted-to-*string* to the file `"data/modified-data.csv"`. Once again, `new_file.close()` is needed to avoid that the new *csv* file is locked by *Python*.
 
 
 ```python
@@ -121,15 +122,15 @@ new_file.close()
 
 ### Modify existing files
 
-Existing text files can be opened and modified in either `mode="r+"` (pretending that information needs to be read before it is modified) or `mode="a+"`. Recall that `"r+"` will place the pointer at the beginning of the file and `"a+"` will place the pointer at the end of the file. So if we want to modify existing lines, `"r+"` is the good choice and if we want to append data at the end of the file, `"a+"` is the good choice (`+` is not strictly needed in the case of `"a+"`). This section shows to examples: (1) modification of existing data in a file using `"r+"`, and (2) appending data to an existing file using `"a+"`.
+Existing text files can be opened and modified with either `mode="r+"` (pretending that information needs to be read before it is modified) or `mode="a+"`. Recall that `"r+"` places the read/write pointer at the beginning of the file and `"a+"` will place the read/write pointer at the end of the file. So if we want to modify existing lines, `"r+"` is the good choice and if we want to append data at the end of the file, `"a+"` is the good choice (`+` is not strictly needed in the case of `"a+"`). This section shows to examples: (1) modification of existing data in a file using `"r+"`, and (2) appending data to an existing file using `"a+"`.
 
-***First example - replace data in file:*** In the previous example, we eliminated all measurements that were smaller than 1 *mm* because of the precision of the measurement device. However, we have retained all other values with two-digit accuracy - an accuracy which is not given. Consequently, all decimal places in the measurements must also be eliminated. To achieve this we have to round all measured values with *Python*'s built-in rounding function (`round(number, n-digits`) to zero decimal places (i.e., `n-digits = 0`).
+***First example - replace data in file:*** In the above code blocks, we eliminated measurements that were smaller than 1 *mm* because of the precision of the measurement device. However, we have retained all other values with two-digit accuracy - an accuracy which is not realistic with a precision of less than 1 *mm*. Consequently, all decimal places in the measurements must also be eliminated. To achieve this, we have to round all measured values with *Python*'s built-in rounding function (`round(number, n-digits`) to zero decimal places (i.e., `n-digits=0`).
 In this example, an exception `IOError` is raised when the file `"data/modified-data.csv"` does not exist (or is locked by another software). An `if` statement ensures that rounding the data is only attempted if the file exists.
-The overwriting procedures first reads all lines of the file into the `lines` variable. After reading the lines, the pointer is at the end of the file and `file.seek(0)` puts the pointer back to position 0 (i.e., at the beginning of the file). `file.truncate()` purges the file. Yes, the original file is blank for a moment and all file contents are stored in the `lines` variable. Rounding the data happens within a *for-loop* that:
+The overwriting procedure first reads all lines of the file into a `lines` variable. After reading the lines, the pointer is at the end of the file and `file.seek(0)` puts the pointer back to position 0 (i.e., at the beginning of the file). `file.truncate()` purges the file. Purges means all is gone? Yes, the original file is blank for a moment and all file contents are stored in the `lines` variable. Rounding the data happens within a *for-loop* that:
 
 * Splits the comma-separated line *string* (produces `lines_as_list`).
-* Creates the temporary list `_numeric_line_`, where rounded, numeric value are stored (the variable is overwritten in every iteration).
-* Loops over the line entries (`line_as_list`), where an exception statement appends rounded (to zero digits), numeric values and appends `"nan"` when an entry is not numeric.
+* Creates the temporary list `_numeric_line_`, where rounded, numeric values are stored (this *list* is overwritten in every iteration).
+* Loops over the line entries (`line_as_list`), where an exception statement appends rounded (zero digits), numeric values and `"nan"` when an entry is not numeric.
 * Writes the modified line to the `"data/modified-data.csv"` *csv* file.
 
 Finally, the *csv* is closed with `modified_file.close()`.
@@ -164,10 +165,10 @@ if modified_file:
     Processed file.
     
 
-Theoretically the above code snippet can be re-written as a function to modify any data in a file. In addition, other threshold values or particular data ranges can be filtered using `if` - `else` statements.
+In theory, the above code snippet can be re-written as a function to modify any data in a file. Thus, other digit values for rounding or particular data ranges can be filtered using `if` - `else` statements.
 
 ***Second example - append data to file:*** By coincidence, you find on one of the measurement protocols that there is an 18th experimental run that is not in the electronic measurement data file due to a data transmission error. Now, we want to add the data to the above-produce *csv* file manually. Entering the data does not take much work, because only 4 measurements were performed per experimental run and we could already manually apply the above filters (`"nan"` and rounding) in a list variable called `forgotten_data`.
-This example uses the `os` module ([recall modules](hypy_pckg.html)) to verify if the data file exists with `os.path.isfile()` (the `os.getcwd()` statement is a gadget here). This example features another way of directly opening and writing to the data file using a **`with`** statement (i.e., a ***context manager***). The `with` context is particularly useful for file handling because the file object only exists in the indented `with` context block, which makes the tedious call to `file.close()` obsolete.
+This example uses the `os` module ([recall modules](hypy_pckg.html)) to verify if the data file exists with `os.path.isfile()` (the `os.getcwd()` statement is a gadget here). This example features another way of directly opening and writing the data file using a **`with`** statement (i.e., a ***context manager***). The `with` context is particularly useful for file handling because the file object only exists in the indented `with` context block, which makes the tedious call to `file.close()` obsolete.
 
 The essential part that writes the line to the data file is `file.write(line)`, where `line` corresponds to the above-introduced `", ".join(list-of-strings) + "\n"` *string*.
 
@@ -189,12 +190,12 @@ else:
     Data appended.
     
 
-{% include challenge.html content="The code block `', '.join([str(e) for e in a_list]) + '\n'` is a recurring expression in the above code snippets. How does a function look like that automatically generates this code block for lists of different data types?" %}
+{% include challenge.html content="The code block `', '.join([str(e) for e in a_list]) + '\n'` is a recurring expression in the above code blocks. How does a function look like that automatically generates this code block for *list*s of different data types?" %}
 
 
 ## NumPy {#numpy}
 
-*NumPy* provides high-level mathematical functions for linear algebra including operations on multi-dimensional arrays and matrices. The open-source *NumPy* (for *Numerical Python*) package is written in *Python* and [*C*](https://en.wikipedia.org/wiki/C_(programming_language)), and comes with comprehensive documentation ([download the latest version on the developer's web site](https://numpy.org/doc/) or [read the developer's online tutorial](https://numpy.org/devdocs/user/quickstart.html)).
+*NumPy* provides high-level mathematical functions for linear algebra including operations on multi-dimensional arrays and matrices. The open-source *NumPy* (for *Numerical Python*) library is written in *Python* and [*C*](https://en.wikipedia.org/wiki/C_(programming_language)), and comes with a comprehensive documentation ([download the latest version on the developer's web site](https://numpy.org/doc/) or [read the developer's online tutorial](https://numpy.org/devdocs/user/quickstart.html)).
 
 ### Installation
 
@@ -209,11 +210,11 @@ conda install numpy
 
 ### Usage
 
-The *NumPy* module (package) is typically imported with **`import numpy as np`**. Array handling is the baseline of linear algebra and *NumPy*, where arrays represent nested data lists. To create a *NumPy* array, use `np.array((values))`, where `values` is a sequences of values. 
+The *NumPy* module (package) is typically imported with **`import numpy as np`**. Array handling is the baseline of linear algebra and *NumPy*, where arrays represent nested data *list*s. To create a *NumPy* array, use `np.array((values))`, where `values` are a sequences of values. 
 
 {% include tip.html content="This section provides insights in some basic functions provided with *NumPy*, but does not (or cannot) cover all *NumPy* functions and data types. Generally speaking, be sure that whatever mathematical operation you want to perform, *NumPy* offers a solution. Just checkout the [*NumPy* documentation](https://numpy.org/devdocs/user/quickstart.html), [have a look at *NumPy*'s functions and methods overview](https://numpy.org/devdocs/user/quickstart.html#functions-and-methods-overview), or use your favorite search engine with the search words **numpy** ***FUNCTION***." %}
 
-The rounded parentheses indicated that the value sequence represents a tuple that may contain lists for creating multi-dimensional array. Thus, for creating an *2x3* array (with some random values), we can write:
+The rounded parentheses indicated that the value sequence represents a *tuple* that may contain *list*s for creating a multi-dimensional *array*. Thus, for creating an *2x3* *array* (with some random values), we can write:
 
 
 ```python
@@ -256,7 +257,7 @@ print(np.array([[2, 3, 1], [4, 5, 6]], dtype=complex))
      [4.+0.j 5.+0.j 6.+0.j]]
     
 
-Arrays of zeros or ones, or empty arrays can be created with *integer* or *float*. When creating such arrays, be aware of using tuples (i.e., sequences embraced with rounded parentheses) to define array dimensions:
+Arrays of zeros or ones, or empty arrays can be created as sequences of *integer* or *float* data types. When creating such arrays, be aware of using *tuple*s (i.e., sequences embraced with rounded parentheses) to define the array dimensions:
 
 
 ```python
@@ -276,9 +277,9 @@ print(np.empty((2,6), dtype=np.int16))
      [4 0 5 0 6 0]]
     
 
-{% include note.html content="*NumPy* data types have different sizes (in [bytes](https://en.wikipedia.org/wiki/Byte)) and the more digits, the larger the variable size. For example, `np.float64` has an itemsize of 8 bytes (64/8), while `np.float32` has an itemsize of 4 bytes (32/8) only. Use `ndarray.itemsize` (e.g., `an_array.itemsize`) to find out the size of an array in bytes. For analyses of large datasets, the data type become very important regarding computation speed and storage." %}
+{% include note.html content="*NumPy* data types have different sizes (in [bytes](https://en.wikipedia.org/wiki/Byte)) and the more digits, the larger the variable size. For example, `np.float64` has an itemsize of 8 bytes (64/8), while `np.float32` has an itemsize of 4 bytes (32/8) only. Use `ndarray.itemsize` (e.g., `an_array.itemsize`) to get the size of an array in bytes. For analyses of large datasets, data types become very important regarding computation speed and storage." %}
 
-*NumPy* provides the `arange(start, end, step-size)` function to create numeric sequences. Such sequences represent arrays (`ndarray`) can then be reshaped (re-organized in columns and rows). 
+*NumPy* provides the `arange(start, end, step-size)` function to create numeric sequences. Such sequences represent arrays (`ndarray`) that can then be reshaped (i.e., re-organized in columns and rows). 
 
 
 ```python
@@ -337,7 +338,12 @@ print("Maximum: " + str(an_array.max()))
     
 
 ### Color arrays {#colors}
-Arrays may also contain color information, whee colors represent a mix of the three base colors red, green, and blue. One color is defined as `[red-value, green-value, blue-value]` and a value of 0 means that a color tone is not present, while 255 is its maximum value. When all color tone values are zero, there is no color, which corresponds to *black*; when all color tones are maximum (255), the color mix corresponds to *white*. This way, array elements can be lists of color tones and plotting such arrays produces images. The following example produces an array with 5 color-list elements, which could be plotted as a very basic image with 5 pixels (one black, red, green, blue, and white, respectively):
+Arrays may also contain color information, where colors represent a mix of the three base colors red, green, and blue. Thus, a color is defined as `[red-value, green-value, blue-value]` and a value of 0 means that a color tone is not present, while 255 is its maximum value. Therefore:
+
+* when all color tone values are zero, there is no color, which corresponds to *black*,
+* when all color tones are maximum (255), the color mix corresponds to *white*. 
+
+Thus, array elements can be *list*s of color tones and plotting such arrays produces images. The following example produces an array with 5 color-list elements, which could be plotted as a very basic image with 5 pixels (one black, red, green, blue, and white, respectively):
 
 
 ```python
@@ -349,33 +355,41 @@ color_set = np.array([[0, 0, 0],         # black
 ```
 
 ### Array (matrix) operations
-Array calculations (matrix operations) follow the rules of linear algebra:
+Array calculus (matrix operations) follows the rules of linear algebra:
 
 
 ```python
 A = np.random.random((2,4))
 B = np.random.random((4,2))
+print(A)
+print(B)
 print("Subtraction: " + str(A.transpose() - B))
 print("Element-wise product: " + str(A.transpose() * B))
 print("Matrix product (option 1): " + str(A @ B))
 print("Matrix product (option 2): " + str(A.dot(B)))
 ```
 
-    Subtraction: [[ 0.47341629 -0.49767626]
-     [-0.43004557  0.82374279]
-     [ 0.32428884 -0.27884582]
-     [ 0.23571957  0.07882216]]
-    Element-wise product: [[0.30408453 0.46702309]
-     [0.08848649 0.06711223]
-     [0.48898957 0.17941811]
-     [0.27147158 0.0334852 ]]
-    Matrix product (option 1): [[1.15303217 1.43963554]
-     [0.96147814 0.74703863]]
-    Matrix product (option 2): [[1.15303217 1.43963554]
-     [0.96147814 0.74703863]]
+    [[0.38807317 0.14802592 0.49227982 0.45316995]
+     [0.99833119 0.80488276 0.44891411 0.57919789]]
+    [[0.73094424 0.47447651]
+     [0.24958916 0.42703953]
+     [0.20982354 0.41856644]
+     [0.30876332 0.42731706]]
+    Subtraction: [[-0.34287108  0.52385468]
+     [-0.10156323  0.37784323]
+     [ 0.28245628  0.03034767]
+     [ 0.14440663  0.15188084]]
+    Element-wise product: [[0.28365985 0.4736847 ]
+     [0.03694567 0.34371675]
+     [0.1032919  0.18790038]
+     [0.13992226 0.24750114]]
+    Matrix product (option 1): [[0.56381967 0.64704358]
+     [1.20364226 1.25280297]]
+    Matrix product (option 2): [[0.56381967 0.64704358]
+     [1.20364226 1.25280297]]
     
 
-Further element-wise calculations include exponential (`**`), geometric (`np.sin`, `np.cos`, `np.tan` etc.), and boolean operators:
+There are many more element-wise calculation operators implemented in *NumPy*, such as exponential (`**`), geometric (`np.sin`, `np.cos`, `np.tan` etc.), and boolean operators:Further element-wise calculations include exponential (`**`), geometric (`np.sin`, `np.cos`, `np.tan` etc.), and boolean operators:
 
 
 ```python
@@ -432,15 +446,16 @@ print("\nTranspose matrix A and append B and cast into a (4x4) array:\n" + str(n
 
 ### *NumPy* file handling and `np.nan`
 
-In the above examples on file handling, measurement data were loaded from text files, manipulated, and modified text file were written. The data manipulation involved the introduction of `"nan"` (*not-a-number*) values, which were excluded because measurements *<1 mm* were considered errors. Why didn't we use zeros here? Well, zeros are numbers, too, and have significant effect on data statistics (e.g., for calculting mean values). However, the `"nan"` *string* value caused difficulties in data handling, in particular regarding the consistency of function output. *NumPy* provides with the `np.nan` data type a powerful alternative to the tedious `"nan"` *string*.
+In the above examples on file handling, measurement data were loaded from text files, manipulated, and modified text files were written. The data manipulation involved the introduction of `"nan"` (*not-a-number*) values, which were excluded because measurements *<1 mm* were considered being in an error margin. Why didn't we use zeros here? Zeros are numbers, too, and have significant effect on data statistics (e.g., for calculating the mean). However, also the `"nan"` *string* value can cause difficulties in data handling, in particular regarding the consistency of function output (varying data types). To overcome such challenges, *NumPy* provides the `np.nan` data type.
 
-*NumPy* also has a text file load function called `np.loadtxt(file-name, *args, **kwargs)`, which imports text files as `np.array`s of *float* values. The default *float* value type can be adapted with the optional keyword `dtype`. Other optional (keyword) arguments are:
+*NumPy* also has a text file load-function called `np.loadtxt(file-name, *args, **kwargs)`, which imports text files as `np.array`s of *float* values. The default *float* value type can be modified with the optional keyword `dtype`. Other optional (keyword) arguments are:
+
 * `delimiter=STR` (e.g., `delimiter=';'`), where default is `"None"`
-* `usecols=TUPLE` (e.g., `usecols=(1, 3)` will extract the 2<sup>nd</sup> and 4<sup>th</sup> column) also one *integer* value is possible to read just on single column
-* `skiprows=INT` (e.g., `skiprows=2` skips the first two lines), where default is `0`
-* more arguments are available and listed in the [*numpy* documentation](https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html).
+* `usecols=TUPLE` (e.g., `usecols=(1, 3)` will extract the 2<sup>nd</sup> and 4<sup>th</sup> column) - and also an *integer* value can be used to read a single column
+* `skiprows=INT` (e.g., `skiprows=2` skips the first two lines), where the default is `0`
+* more arguments are available and listed in the [*NumPy* documentation](https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html).
 
-The following example loads the *csv* file *data/modified-data.csv* containing *integer* and `"nan"` *string* values, which are automatically converted to `np.nan`.
+The following example loads the above-created *csv* file *data/modified-data.csv* containing *integer* and `"nan"` *string* values, which are automatically converted to `np.nan`.
 
 
 ```python
@@ -456,7 +471,7 @@ print("The data type of the 3rd (%s) entry is: " % str(experiment_data[3, 2]) + 
 In addition, or as an alternative, the function `np.load()` picks up data from file-like `.npz`, `.npy`, or pickled (saved *Python* objects) data sources ([read more in the *Python* docs](https://numpy.org/doc/stable/reference/generated/numpy.load.html#numpy.load)). 
 
 ### Statistics
-The above examples featured some array functions to assess basic array parameters such as the minimum and maximum. *NumPy* provides many more functions for array statistics such as the mean, median, or standard deviation, including functions that account for `np.nan` values. The following example illustrates some statistic function with the experimental data from the above examples. Note the usage of `nanmean` instead of `mean` and statistics along array axis, where the optional keyword argument `axis=0` corresponds to columns and `axis=1` to statistics along rows in 2-dimensional arrays (maximum axis number corresponds to the array dimensions *n* minus 1, i.e., maximum `axis=n-1`). 
+The above examples featured some array functions to assess basic array parameters such as the minimum and maximum. *NumPy* provides many more functions for array statistics such as the mean, median, or standard deviation, including functions that account for `np.nan` values. The following example illustrates the use of some statistic *NumPy* functions with the experiment data from the above examples. Note the usage of `nanmean` instead of `mean` and statistics along array `axis`, where the optional keyword argument `axis=0` corresponds to columns and `axis=1` to statistics along rows in 2-dimensional arrays. The maximum axis number corresponds to the array dimensions *n* minus 1 )i.e., maximum `axis=n-1`). 
 
 
 ```python
@@ -474,7 +489,7 @@ print("Mean value along axis 1 (rows): " + str(np.nanmean(experiment_data, axis=
      3.         4.25       3.25       5.33333333 6.75       5.        ]
     
 
-The following sections give a tabular overview of statistical functions in *NumPy* (source: *NumPy* v.1.13 docs). The listed functions only represent fundamental statistic functions and *NumPy* provides many more options, which can be leveraged using any search engine with *NumPy*  and the desired function as search keywords.
+The following tables give an overview of statistical functions in *NumPy* (source: *NumPy* v.1.13 docs). These functions only represent fundamental statistic functions and *NumPy* provides many more options, which can be found with any search engine (tap *NumPy*  and the desired function as search keywords).
 
 ***
 
@@ -515,15 +530,15 @@ Correlating data (arrays)
 
 ***
 
-Generate and plot histrograms
+Generate and plot histograms
 
 | Function                                          | Description                                                                |
 |---------------------------------------------------|----------------------------------------------------------------------------|
 | [`histogram(a[, bins, range, normed, weights, ...])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.histogram.html#numpy.histogram) | Histogram of a set of data.                                    |
 | [`histogram2d(x, y[, bins, range, normed, weights])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.histogram2d.html#numpy.histogram2d) | Bi-dimensional histogram of two data samples.                  |
 | [`histogramdd(sample[, bins, range, normed, ...])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.histogramdd.html#numpy.histogramdd)   | Multidimensional histogram of some data.                       |
-| [`bincount(x[, weights, minlength])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.bincount.html#numpy.bincount)                 | Count number of occurrences of each value in array of non-negative ints.   |
-| [`digitize(x, bins[, right])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.digitize.html#numpy.digitize)                        | Indices of the bins to which each value in input array belongs. |
+| [`bincount(x[, weights, minlength])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.bincount.html#numpy.bincount)                 | Count number of occurrences of each value in array of non-negative `int`s.   |
+| [`digitize(x, bins[, right])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.digitize.html#numpy.digitize)                        | Indexes of the bins to which each value in an input array belongs. |
 
 ### Can *NumPy* do *MATLAB*&reg;?
 
@@ -537,11 +552,11 @@ Are you considering to switch to *Python* after starting softly into programming
 
 *MATLAB&reg; is a registered trademark of The MathWorks.*
 
-{% include exercise.html content="Practice *numpy* and *csv* file handling in the [Reservoir design](ex_sp.html) exercise." %}
+{% include exercise.html content="Practice *Numpy* and *csv* file handling in the [Reservoir design](ex_sp.html) exercise." %}
 
 ## Pandas {#pandas}
 
-*pandas* is a powerful module (package) for data analyses and manipulation with *Python*. It has can handle *NumPy* arrays, and both packages jointly represent a powerful data processing engine. The power of *pandas* lies in processing data frames, data labeling (e.g., workbook-like columns names), and flexible file handling functions (e.g., the built-in `read_csv(csv-file)`). While *NumPy* arrays enable calculations with multidimensional arrays (beyond 2-dimensional tables) and low memory consumption, *pandas* `DataFrame`s efficiently process and label tabular data with more than ~100,000 rows. Because of its labelling capacity, *pandas* also finds broad application in machine learning. In summary, *pandas*' functionality builds on top of *NumPy* and both packages are developed by the [*SciPy*](https://www.scipy.org/) (*Scientific computing tools for Python*) community that also develops `matplotlib` (see [the introduction to plotting with *Python*](hypy_pyplot.html) and *IPython* (*Jupyter*'s *Python* kernel).
+*pandas* is a powerful library for data analyses and manipulation with *Python*, which involves a couple of other libraries. For example, *pandas* can also handle *NumPy* arrays, and both packages jointly represent a powerful data processing engine. The power of *pandas* lies in processing data frames, data labeling (e.g., create workbook-like column names), and flexible file handling functions (e.g., the built-in `read_csv(csv-file)` function). While *NumPy* arrays enable calculations with multidimensional arrays (beyond 2-dimensional tables) and low memory consumption, *pandas* `DataFrame`s efficiently process and label tabular data with more than ~100,000 rows. Thus, *pandas*' builds on top of *NumPy* and both packages are developed by the [*SciPy*](https://www.scipy.org/) (*Scientific computing tools for Python*) community that also develops `matplotlib` (see [the introduction to plotting with *Python*](hypy_pyplot.html) and *IPython* (*Jupyter*'s *Python* kernel). Moreover, because of its labeling capacity, *pandas* also finds broad application in machine learning. 
 
 ### Installation
 
@@ -557,7 +572,7 @@ conda install pandas
 *pandas* standard import alias is `pd`: `import pandas as pd`. The following sections provide an overview of basic *pandas* functions and much more functionalities are documented in the [developer's docs](https://pandas.pydata.org/pandas-docs/stable/user_guide/index.html).
 
 ### Data frames & series
-The below code block illustrates the creation of *pandas* data frames, the core object of *pandas*. Note the difference between a 1-dimensional series (corresponds to a one-column data frame), and a 2-dimensional data frame with **row (=index)** and column names. The default row names number rows starting from 0 (unlike Office software that starts at row no. 1), without column names. Column names can be initially defined as a [list](hypy_pybase.html#list) and replaced with a [dictionary](hypy_pybase.html#dict) that maps the initial list entries to new names.
+The next code block illustrates the creation of *pandas* data frames, the core objects of *pandas*. Note the difference between a 1-dimensional series (corresponds to a one-column data frame), and a 2-dimensional data frame with **row (=index)** and column names. The default row names number rows starting from 0 (unlike Office software that starts at row no. 1), without column names. Column names can be initially defined as a [*list*](hypy_pybase.html#list) and replaced with a [*dictionary*](hypy_pybase.html#dict) that maps the initial *list* entries to new names.
 
 
 ```python
@@ -599,7 +614,7 @@ print("\nTranspose the data frame:\n" + str(wb_like_df.T))
     C -0.642124  1.833285  1.355425
     
 
-A *pandas* `DataFrame` object can also be created with a [dictionary](hypy_pybase.html#dict), where the dictionary keys define column names and the dictionary items constitute the data of each column:
+A *pandas* `DataFrame` object can also be created from a [dictionary](hypy_pybase.html#dict), where the *dictionary* keys define column names and the *dictionary* items constitute the data in every column:
 
 
 ```python
@@ -645,13 +660,15 @@ print("\nEnd (tail) of the dictionary-based dataframe (last row):\n" + str(df.ta
     
 
 ### Example creation of a `pandas.DataFrame` {#exp-Froude}
-In hydraulics, the [*Froude* number ***Fr***](https://en.wikipedia.org/wiki/Froude_number) characterizes the flow regime as *"fluvial"* (*Fr<1*), *"critical"* (*Fr=1*), and *"super-critical"* (*Fr>1*). The precision of measurement devices in physical flume experiments makes the exact determination of the *critical* moment a challenge and forces researchers to apply an interval around 1, rather than the exact value:
+
+In hydraulics, the [*Froude* number ***Fr***](https://en.wikipedia.org/wiki/Froude_number) characterizes the flow regime as *fluvial* (*Fr<1*), *critical* (*Fr=1*), or *super-critical* (*Fr>1*). The precision of measurement devices in physical flume experiments makes the exact determination of the *critical* moment a challenge and forces researchers to apply an interval around 1, rather than exactly using unity:
 
 | ***Fr*** | (0.00, 0.95( | (0.95, 1.00(           | (1.00)   | )1.00, 1.05)           | )1.05, inf(    |
 |----------|--------------|------------------------|----------|------------------------|----------------|
 | *Flow*   | fluvial      | nearby critical (slow) | critical | nearby critical (fast) | super-critical |
 
-`pd.DataFrame( ... )` objects are a convenient for to classify and store flume experiment data:
+`pd.DataFrame( ... )` objects are a convenient for to classify and store such flume experiment data:
+
 
 
 ```python
@@ -662,30 +679,29 @@ obs_df = pd.DataFrame({"measured": Fr_measured, "flow regime": Fr_classified})
 print(obs_df)
 ```
 
-       measured     flow regime
-    0  1.860103  super-critical
-    1  1.147524  super-critical
-    2  0.287520         fluvial
-    3  1.630355  super-critical
-    4  1.693910  super-critical
-    5  1.375499  super-critical
-    6  0.160285         fluvial
-    7  0.186754         fluvial
-    8  0.507953         fluvial
-    9  1.860051  super-critical
+       measured             flow regime
+    0  1.633049          super-critical
+    1  0.479469                 fluvial
+    2  0.960315  nearby critical (slow)
+    3  0.506127                 fluvial
+    4  1.103752          super-critical
+    5  0.419304                 fluvial
+    6  0.857698                 fluvial
+    7  1.796158          super-critical
+    8  0.436357                 fluvial
+    9  1.209589          super-critical
     
 
 ### Append data to a `pandas.DataFrame`
-The `at`, `loc`, `concat`, and `append` methods of *pandas* provide direct options for inserting rows or columns into a `pd.DataFrame`. However, all three built-in methods are approximately one order of magnitude slower than if we take the detour via a dictionary. This applies especially to data frames with more than 10,000 elements. This means that the fastest method to insert a data set is:
+The `at`, `loc`, `concat`, and `append` methods of *pandas* provide direct options for inserting rows or columns into a `pd.DataFrame`. However, these built-in methods are approximately one order of magnitude slower than if we take the detour via a *dictionary*. This applies especially to data frames with more than 10,000 elements. Thus, the fastest method to insert a dataset in a data frame is:
 
 1. Convert an existing `pd.DataFrame` object to a *dictionary* with `pd.DataFrame.to_dict()` (e.g., `dict_of_df = df.to_dict()`).
 1. Update the *dictionary* with new data
     * Append rows with `dict_of_df.update{"existing-column-name": {"new-row-name": NEW_DATA}}`
     * Append columns with `dict_of_df.update{"newcolumn-name": {"existing-row-names": NEW_DATA(size=existing-number-of-rows}}`
-1. Re-convert the *dictionary* to `pd.DataFrame` with `df = pd.DataFrame.from_dict(dict_of_df)`
+1. Re-convert the *dictionary* to a `pd.DataFrame` with `df = pd.DataFrame.from_dict(dict_of_df)`
 
-The following code blocks illustrates both adding a row and a column to an existing *pandas* data frame.
-
+The following code block illustrates both adding a row and a column to an existing *pandas* data frame.
 
 
 ```python
@@ -717,7 +733,9 @@ print(obs_df.tail(3))
 
 ### *NumPy* arrays and *pandas* data frames
  
- The major difference between a *NumPy* `array` and a *pandas* `DataFrame` is that *NumPy* array only have one single data type (`dtype`), while a *pandas* `DataFrame` can have differents data types (one `dtype` per column). This is why a *NumPy* `array` can be seamlessly converted to a *pandas* `DataFrame`, but the opposite conversion can cause high computational cost. *pandas* comes with a built-in function to convert a *pandas* `DataFrame` into a *NumPy* `array`, where numeric variables are maintained where possible. If one column of the *pandas* `DataFrame` is non-numeric, the conversion involves copying the object, which then causes high computational cost. Note that *pandas* `DataFrame` *index* and *column* labels are lost in the conversion.
+The main difference between a *NumPy* `array` and a *pandas* `DataFrame` is that a *NumPy* array only has one single data type (`dtype`), while a *pandas* `DataFrame` can have different data types (one `dtype` per column). This is why a *NumPy* `array` can be seamlessly converted to a *pandas* `DataFrame`, but the opposite conversion can cause high computational cost.
+
+*pandas* comes with a built-in function to convert a *pandas* `DataFrame` into a *NumPy* `array`, where numeric variables are maintained where possible. If one column of a *pandas* `DataFrame` object is non-numeric, the conversion involves copying the object, which then causes the high computational cost. Note that the *pandas* `DataFrame` *index* and *column* labels are lost in the conversion.
 
 
 ```python
@@ -751,7 +769,7 @@ print("Same result with integer grid location: " + str(df.iloc[2, 0]))
     
 
 ### Reshape data frames {#pd-reshape}
-Single or multiple rows (index) and columns can be extracted from and combined into new or existing `DataFrame` objects:
+Single or multiple rows (index) and columns can be extracted from and combined into new or existing `pd.DataFrame` objects:
 
 
 ```python
@@ -840,7 +858,7 @@ Read more about reshaping and pivoting data frames in the [developer's docs](htt
 
 ### File handling (*csv*, workbooks, and more) {#pd-files}
 
-*pandas* can read from and write to many data file types, which makes it extremely powerful in analyzing any data output. The following table summarizes the most important file types for numerical hydraulic, morphodynamic and fluvial landscape analyses and [more file type handlers can be found at the developer's docs](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html).
+*pandas* can read from and write to many data file types, which makes it extremely powerful in analyzing any data. The following table summarizes important file types for numerical hydraulic, morphodynamic and fluvial ecosystem analyses and [more file type handlers can be found at the developer's docs](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html).
 
 |  File type                                                                  |  *pandas* read                                                                                         |  *pandas* write                                                                                       | Usage example                                                                                           |
 |-----------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
@@ -854,7 +872,7 @@ Read more about reshaping and pivoting data frames in the [developer's docs](htt
 |  Workbooks (Excel / Open doc) |  [`read_excel`](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-excel-reader)|  [`to_excel`](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-excel-writer)| Interface with non-programmers (Open only works in read mode)|
 
 
-The following code block illustrates how the above produced *data/modified-data.csv* file can be loaded with new file names and saved to a workbook with *pandas*. *pandas* uses the [*xlsxwriter*](https://xlsxwriter.readthedocs.io/) or [*openpyxl*](https://openpyxl.readthedocs.io) packages to process workbooks, depending on which packages are available in the *Python* environment.
+The following code block illustrates how the above produced *data/modified-data.csv* file can be loaded with new column names and saved to a workbook with *pandas*. *pandas* uses the [*xlsxwriter*](https://xlsxwriter.readthedocs.io/) or [*openpyxl*](https://openpyxl.readthedocs.io) packages to process workbooks, depending on which packages are available in the *Python* environment.
 
 
 ```python
@@ -1013,7 +1031,7 @@ measurement_data.describe()
 
 Statistical *pandas* data frame methods overlap with *NumPy* methods and include:
 
-* `df.abs()` calculates asbolute values
+* `df.abs()` calculates absolute values
 * `df.cumprod()` calculates the cumulative product
 * `df.cumsum()` calculates the cumulative sum
 * `df.count()` counts the number of non-null observations
@@ -1022,10 +1040,8 @@ Statistical *pandas* data frame methods overlap with *NumPy* methods and include
 * `df.min()` calculates the minimum value
 * `df.mode()` calculates the mode
 * `df.prod()` calculates the product
-* `df.std()` calculates tthe standard deviation
+* `df.std()` calculates the standard deviation
 * `df.sum()` calculates the sum
-
-
 
 
 ```python
@@ -1057,7 +1073,7 @@ print("Standard deviation:\n" + str(measurement_data.std()))
 *pandas* has many more built-in functionalities, for example to plot histograms or any data using the `matplotlib` library, and machine learning. The following pages of the *Python* introduction on *hydro-informatics* occasionally make use of *pandas* and illustrate more functionalities.
 
 ### Apply custom (own) functions to data frames
-*pandas* data frame have a built-in `apply(fun)` method that enables applying a custom function to (parts of) a `pd.DataFrame` object. We will use here the `feet_to_meter` function from the [Functions](hypy_pyfun.html#kwargs) page, which is available at the [course repository in the `fun.converter.py`](https://github.com/hydro-informatics/material-py-codes/raw/master/fun/converter.py) directory (during lectures only).
+*pandas* data frame objects have a built-in `apply(fun)` method that enables applying a custom function to (parts of) a `pd.DataFrame` object. We will use here the `feet_to_meter` function from the [Functions](hypy_pyfun.html#kwargs) page, which is available at the [course repository in the `fun.converter.py`](https://github.com/hydro-informatics/material-py-codes/raw/master/fun/converter.py) directory (during lectures only).
 
 
 ```python
@@ -1084,7 +1100,7 @@ print(df)
 
 ## Dates and Time
 
-*pandas* involves methods for calulations and labeling with date and time values with [`pd.Timestamp`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Timestamp.html), which converts date-time-like strings into timestamps or creates timestamps from keyword arguments:
+*pandas* provides methods for calculating with and labeling date and time values with [*pd.Timestamp*](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Timestamp.html), which converts date-time-like *string*s into timestamps or creates timestamps from keyword arguments:
 
 
 ```python
@@ -1098,9 +1114,9 @@ print(pd.Timestamp(2025, 1, 1, 12))
     2025-01-01 12:00:00
     
 
-The expression `pd.Timestamp(2025, 1, 1, 12)` mimics the powerful `datetime.datetime` *API* (Application Programming Interface) of the `datetime` *Python* package, which provides sophisticated methods for handling time-dependent values. While *pandas*' built-in timestamps are convenient for creating time series within `pd.DataFrame` objects and workbook-like tables, `datetime` is one of the best solutions for time-dependent calculations in *Python*. `datetime` is available by default (i.e., it must not be *conda*-installed) and is efficiently applicable for example to data that were collected over several years including leap years. The `datetime` package comes with many attributes and methods, which are documented in detail in the [*Python* docs](https://docs.python.org/3/library/datetime.html).
+The expression `pd.Timestamp(2025, 1, 1, 12)` mimics the powerful `datetime.datetime` *API* (Application Programming Interface) of the `datetime` *Python* library, which provides sophisticated methods for handling time-dependent values. While *pandas*' built-in timestamps are convenient for creating time series within `pd.DataFrame` objects and workbook-like tables, `datetime` is the all-round solution to leverage time-dependent calculations with *Python*. `datetime` is available by default (i.e., it must not be *conda*-installed) and is efficiently applicable, for example, to data that were collected over several years including leap years. The `datetime` package comes with many attributes and methods, which are accurately documented in the [*Python* docs](https://docs.python.org/3/library/datetime.html).
 
-The standard usage is:
+A standard usage of `datetime` is:
 
 
 ```python
@@ -1137,7 +1153,6 @@ while act_time <= end_date:
     2024-03(Mar)-01, 17:30:00
     
 
+There is much more to data processing than shown on this page and the next pages feature more data analysis tools with examples.
 
-That's it for the introduction to data and file handling. There is much more to data processing than on this page and the next pages will occasionally feature more tools.
-
-{% include exercise.html content="Practice *pandas* and its *csv* file handling routines, as well as basic date-time handling in the [Flood return period calculation](ex_floods.html) exercise." %}
+{% include exercise.html content="Practice with *pandas*, its *csv* file handling routines, and basic date-time handling in the [Flood return period calculation](ex_floods.html) exercise." %}
