@@ -533,7 +533,7 @@ TELEMAC-MASCARET should startup, run the example case, and again end with the ph
 
 ## Software for Pre- and Post-processing
 
-### Blue Kenue<sup>TM</sup> {#bluekenue}
+### Blue Kenue<sup>TM</sup> (Windows or Linux+Wine) {#bluekenue}
 
 ***Estimated duration: 10 minutes.***
 
@@ -567,7 +567,31 @@ After the successful installation, launch *Blue Kenue<sup>TM</sup>* with *Wine* 
 
 The Canadian Hydrological Model Stewardship (CHyMS) provides more guidance for installing *Blue Kenue<sup>TM</sup>* on other platforms than *Windows* on their [FAQ](https://chyms.nrc.gc.ca/docs/FAQ.html) page in the troubleshooting section ([direct link to *how to run blue Kenue on another operating system*](https://chyms.nrc.gc.ca/docs/FAQ.html#troubleshooting-how-run-on-another-os)).
 
-### QGIS
+### Fudaa-PrePro (Linux and Windows) {#fudaa}
+
+***Estimated duration: 5-15 minutes (upper time limit if *java* needs to be installed).***
+
+Get ready with the pre- and post-processing software Fudaa-PrePro:
+
+* Install *java*: 
+    + `sudo apt update`
+    + `sudo apt install default-jdk`
+* Download the version from the [Fudaa-PrePro repository](https://fudaa-project.atlassian.net/wiki/spaces/PREPRO/pages/237993985/Fudaa-Prepro+Downloads)
+* Un-zip the downloaded file an proceed depending on what platform you are working with (see below)
+* Make sure that java is installed https://java.com/
+* `cd` to the directory where you un-zipped the Fudaa-PrePro program files
+* On *Linux*: tap `sh supervisor.sh`
+* On *Windows*: tap `supervisor.bat`
+
+Note that Fudaa-PrePro starts with a default random-access memory (RAM) allocation of 6 GB, which might be too small for grid files with more than 3·10<sup>6</sup> nodes, or too large if your system's RAM is small. To adapt the RAM allocation, right-click on *supervisor.sh* (or on *Windows*: *supervisor.bat*), and find the tag `-Xmx6144m`, where `6144` defines the RAM allocation. Modify this values an even-number multiple of 512. For example, set it to 4·512=2048:
+
+```
+#!/bin/bash
+cd `dirname $0`
+java -Xmx2048m -Xms512m -cp "$PWD/ Fudaa-Prepro-1.4.2-SNAPSHOT.jar" org.fudaa.fudaa.tr.TrSupervisor $1 $2 $3 $4 $5 $6 $7 $8 $9
+``` 
+
+### QGIS (Linux and Windows) {#qgis}
 
 ***Estimated duration: 5-10 minutes (depends on connection speed).***
 

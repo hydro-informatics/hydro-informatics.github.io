@@ -18,23 +18,33 @@ This tutorial uses descriptions provided in the [telemac2d_user_v8p1](http://ot-
 
 ## Input files
 
-### Mandatory
+### Overview
+
+For any TELEMAC 2D simulation, the following files are mandatory:
 
 * Steering file 
-    + File format: ``
-    + Prepare either with [Fudaa PrePro](https://fudaa-project.atlassian.net/wiki/spaces/PREPRO/pages/253165587/How+to+launch+Fudaa-Prepro) or [*BlueKenue<sup>TM</sup>](install-telemac.html#bluekenue).
+    + File format: `cas`
+    + Prepare either with [Fudaa PrePro](https://fudaa-project.atlassian.net/wiki/spaces/PREPRO/pages/253165587/How+to+launch+Fudaa-Prepro) or [*BlueKenue<sup>TM</sup>*](install-telemac.html#bluekenue).
 * Geometry file
+    + File format: `.slf` (selafin)
+    + Prepare either with
 * Boundary conditions
+    + File format: `.cli`
+    + Prepare either with
+
+The basic setup of the files is explained below.
 
 ### Optional
 
-The below listed files are not computationally mandatory for running a simulation with TELEMAC-MASCARET, but essential to yield reasonable results with a hydro-morphodynamic model.
+The below listed files are not computationally mandatory for running a simulation with TELEMAC, but essential to yield reasonable results with a hydro-morphodynamic model (i.e., coupled hydrodynamic-sediment transport solver).
 
 * Liquid boundaries file (e.g., for water surface elevation or flow rates)
     + Requires a stage-discharge relationship file 
 
 * Friction data file 
 * Reference file to enable model validation (restart)
+    + File format: `.slf`
+    + Check the TELEMAC docs
 * Restart file for setting initial conditions
 * Sections file to set control sections (e.g., verify flow rates, velocity or water surface elevation)
 * Sources (e.g., water or sediment) data file
@@ -52,7 +62,10 @@ In addition, a *FORTRAN* (`.f`) file can be created to specify special boundary 
 
 More input files can be defined to simulate oil spill, pollutant transport, wind, and tide effects.
 
+### The steering file (CAS)
+
+The steering file is the main simulation file with information about mandatory files (e.g., the *selafin* geometry or the *cli* boundary), optional files, and simulation parameters. The steering file can be created or edited either with a basic text editor or an advanced software such as [*Fudaa-PrePro*](install-telemac.html#fudaa) or *BlueKenue*](install-telemac.html#bluekenue).
 
 ***
 
-Next: [> Start the simulation>](tm-main.html)
+Next: [> Start the simulation >](tm-main.html)

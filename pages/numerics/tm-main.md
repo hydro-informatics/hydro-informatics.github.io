@@ -14,9 +14,9 @@ Thank you for your patience.
 
 {% include requirements.html content="Make sure that TELEMAC-MASCARET is correctly installed and that simulation files are prepared in line with the [pre-processing instructions](tm-pre.html)." %}
 
-## Start a simulation
+## Load environment and files
 
-
+Load the TELEMAC *Python* variables: 
 
 ```
 cd ~/telemac/v8p1/configs
@@ -27,4 +27,13 @@ config.py
 
 ***
 
-Next: [> Post-processing of results >](tm-main.html)
+## Start a 2D hydrodynamic simulation
+
+To start a simulation, `cd` to the directory where the simulation files live (see previous page) and launch the steering file (*cas*) with *telemac2d.py*: 
+
+```
+cd /go/to/dir
+telemac2d.py run_2dhydrodynamic.cas
+```
+
+Next: [> Post-processing of results >](tm-post.html)
