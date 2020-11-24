@@ -134,7 +134,7 @@ Running the script returns the `numpy.array` of daily average flows for the year
 
 The sequent peak algorithm takes monthly flow volumes, which corresponds to the sum of daily average discharge multiplied with the duration of one day (e.g, 11.0 m³/s · 24 h/d · 3600 s/h). Reading the flow data as above shown results in annual flow tables (average daily flows in m³/s) with the `numpy.array`s of the shape 31x12 arrays (matrices) for every year. We want to get the column sums and multiply the sum with 24 h/d · 3600 s/h. Because the monthly volumes are in the order of million cubic meters (CMS), dividing the monthly sums by `10**6` will simplify the representation of numbers.
 
-Write a function (e.g., `def daily2monthly(daily_flow_series)`) to perform the conversion of daily average flow series to monthly volumes in 10<sup6</sup>m³:
+Write a function (e.g., `def daily2monthly(daily_flow_series)`) to perform the conversion of daily average flow series to monthly volumes in 10<sup>6</sup>m³:
 
 1. The function should be called for every dictionary entry (year) of the data series. Therefore, the input argument `daily_flow_series` should be a `numpy.array` with the shape being `(31, 12)`. 
 1. To get column-wise (monthly) statistics, transpose the input array:<br>`daily_flow_series = np.transpose(daily_flow_series)`
@@ -224,7 +224,7 @@ The new `def sequent_peak(in_vol_series, out_vol_target):` function needs to:
     `seas_max_vol = np.take(storage_line, seas_max_index)` <br>
     `seas_min_vol = np.take(storage_line, seas_min_index)` <br>
     1. Write two functions, which consecutively find local maxima and then local minima located between the extrema (HOMEWORK!) OR use `from scipy.signal import find_peaks` to find the indices (positions) - consider to write a `find_seasonal_extrema(storage_line)` function.
-* Verify if the curves and extrema are correct by copying the provided `plot_storage_curve` curve to your script ([available in the exercise repository](https://github.com/Ecohydraulics/Exercise-SequentPeak/blob/master/plot_function.py)) and using it as follows:<br>`plot_storage_curve(storage_line, seas_min_index, seas_max_index, seas_min_vol, seas_max_vol)`
+* Verify if the curves and extrema are correct by copying the provided `plot_storage_curve` curve to your script ([available in the exercise repository](https://raw.githubusercontent.com/Ecohydraulics/Exercise-SequentPeak/master/plot_function.py)) and using it as follows:<br>`plot_storage_curve(storage_line, seas_min_index, seas_max_index, seas_min_vol, seas_max_vol)`
 
 ![SDline](https://github.com/Ecohydraulics/media/raw/master/png/storage_curve.png) 
 
