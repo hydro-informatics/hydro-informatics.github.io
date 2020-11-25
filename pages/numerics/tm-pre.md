@@ -64,7 +64,9 @@ More input files can be defined to simulate oil spill, pollutant transport, wind
 
 ### The steering file (CAS)
 
-The steering file is the main simulation file with information about mandatory files (e.g., the *selafin* geometry or the *cli* boundary), optional files, and simulation parameters. The steering file can be created or edited either with a basic text editor or an advanced software such as [*Fudaa-PrePro*](install-telemac.html#fudaa) or *BlueKenue*](install-telemac.html#bluekenue).
+The steering file is the main simulation file with information about mandatory files (e.g., the *selafin* geometry or the *cli* boundary), optional files, and simulation parameters. The steering file can be created or edited either with a basic text editor or an advanced software such as [*SALOME*](install-telemac.html#salome), [*Fudaa-PrePro*](install-telemac.html#fudaa), or [*BlueKenue*](install-telemac.html#bluekenue). In this examples, we will use *SALOME*.
+
+
 
 ***
 

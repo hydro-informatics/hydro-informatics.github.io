@@ -49,7 +49,7 @@ A `plt.figure` can be thought of as a box containing one or more axes, which rep
 1. Add legend (optionally) with `axes.legend(loc=str, facecolor=str, edgecolor=str, framealpha=float_between_0_and_1)` and many more `**kwargs` can be defined ([go the *matplotlib* docs](https://matplotlib.org/3.1.1/api/legend_api.html#matplotlib.legend.Legend)).
 1. Optional: Save figure with `plt.savefig(fname=str, dpi=int)` with many more `**kwargs` available ([go the *matplotlib* docs](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.savefig.html)).
 
-{% include tip.html content="Most of the below illustrated `matplotlib` features are embedded in a plotter script, which is available at the [course repository](https://github.com/hydro-informatics/material-py-codes/raw/master/plotting/plotter.py) (only when the lecture is active)." %}
+{% include tip.html content="Most of the below illustrated `matplotlib` features are embedded in a plotter script, which is available at the [course repository](https://github.com/hydro-informatics/material-py-codes/raw/master/plotting/plotter.py)." %}
 
 The following code block illustrates the plot recipe using [randomly drawn samples from a *Weibull* distribution](https://numpy.org/doc/stable/reference/random/generated/numpy.random.RandomState.weibull.html#numpy.random.RandomState.weibull) with a the distribution shape factor *a* (for *a*=1, the *Weibull* distribution reduces to an exponential distribution). The `seed` argument describes the source of randomness and `seed=None` makes *Python* use randomness from operating system variables.
 
@@ -100,7 +100,7 @@ plot_xy(x, y, plot_type="scatter", label="Rand. Weibull scattered")
 
 ![png](images/output_3_2.png)
     
-{% include challenge.html content="The `plot_xy` function has some weaknesses. For example if more arguments are provided or `y` data are an array that should produce multiple lines. How can you optimize the `plot_xy` function, to make it more robust and enable multi-line plotting?" %}
+{% include challenge.html content="The `plot_xy` function has some weaknesses. For example if more arguments are provided or `y` data may be a multi-dimensional array (instead of 1D), which should be plotted as multiple lines. How can you optimize the `plot_xy` function, to make it more robust and enable multi-line plotting?" %}
 
 ### Surface and contour plots
 
@@ -279,11 +279,11 @@ plt.show()
 
 ## Plotting with *pandas* {#pandas}
 
-Plotting with *matplotlib* can be daunting, not because the library is poorly documented (the complete opposite is the case), but because *matplotlib* is very extensive. *pandas* brings remedy with simplified commands for high-quality plots. The simplest way to plot a *pandas* data frame is [`pd.DataFrame.plot(x="col1", y="col2")`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html). The following example illustrates this fundamentally simple usage with a river discharge series stored in a workbook.
+Plotting with *matplotlib* can be daunting, not because the library is poorly documented (the complete opposite is the case), but because *matplotlib* is very extensive. *pandas* brings remedy with simplified commands for high-quality plots. The simplest way to plot a *pandas* data frame is [`pd.DataFrame.plot(x="col1", y="col2")`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html). The following example illustrates this fundamentally simple usage with a river discharge series stored in a workbook  ([download](https://github.com/hydro-informatics/material-py-codes/raw/master/data/example_flow_gauge.xlsx)).
 
 
 ```python
-flow_df = pd.read_excel('data/USGS_11421000_MRY_flows.xlsx', sheet_name='Mean Monthly CMS')
+flow_df = pd.read_excel('data/example_flow_gauge.xlsx', sheet_name='Mean Monthly CMS')
 print(flow_df.head(3))
 flow_df.plot(x="Date (mmm-jj)", y="Flow (CMS)", kind='line')
 ```
@@ -305,13 +305,13 @@ flow_df.plot(x="Date (mmm-jj)", y="Flow (CMS)", kind='line')
 
 ### Pandas and matplotlib
 
-Because *pandas* plot functionality roots in the *matplotlib* library, it can be easily combined, for example to create subplots:
+Because *pandas* plot functionality roots in the *matplotlib* library, it can be easily combined with other features, for example to create subplots:
 
 ```python
 import matplotlib.pyplot as plt
 from matplotlib import cm
 
-flow_ex_df = pd.read_excel('data/USGS_11421000_MRY_flows.xlsx', sheet_name='FlowDuration')
+flow_ex_df = pd.read_excel('data/example_flow_gauge.xlsx', sheet_name='FlowDuration')
 
 fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(10, 2.5), dpi=150)
 flow_ex_df.plot(x="Relative exceedance", y="Flow (CMS)", kind='area', color='DarkBlue', grid=True, title="Blue area plot", ax=axes[0])
@@ -336,8 +336,7 @@ A [box-plot](https://en.wikipedia.org/wiki/Box_plot) graphically represents the 
 * *fliers* are outlier points beyond whiskers.
 * *means* are either points or lines of dataset means.
 
-*pandas* data frames make use of [`matplotlib.pyplot.boxplot`](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.boxplot.html#matplotlib.pyplot.boxplot) to generate box-plots with [`df.boxplot()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.boxplot.html) or `df.plot.box()`. The following example features box-plots of flow depth measurements with ultrasonic probes (sensors 1, 2, 3, and 5) and manipulations of 
-
+*pandas* data frames make use of [`matplotlib.pyplot.boxplot`](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.boxplot.html#matplotlib.pyplot.boxplot) to generate box-plots with [`df.boxplot()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.boxplot.html) or `df.plot.box()`. The following example features box-plots of flow depth measurements with ultrasonic probes called sensors 1, 2, 3, and 5 ([download](https://raw.githubusercontent.com/hydro-informatics/material-py-codes/master/data/FlowDepth009.csv)).
 
 ```python
 us_sensor_df = pd.read_csv("data/FlowDepth009.csv", index_col=0, usecols=[0, 1, 2, 3, 5])
@@ -375,8 +374,7 @@ us_sensor_df.plot.box(color="tomato", vert=False, title="Hz. box-plot", flierpro
 
 ![png](images/output_19_2.png)    
 
-
-Box-plots represent the statistical assets of datasets, but box-plots can quickly become confusing when they are presented in technical reports for multiple measurement series. Yet it is state-of-the-art and good practice to present uncertainties in datasets in scientific and non-scientific publications, but somewhat more easily than, for example, with box-plots. To meet the standards of good practice, so-called [error bars](https://en.wikipedia.org/wiki/Error_bar) should be added to data bars. Error bars express the uncertainty of a data set graphically in a simple way by displaying only whiskers. Regardless of whether scatter or bar plot, error bars can easily be added to graphics with *matplotlib* ([read more in the developer's docs](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.errorbar.html)). The following example shows the application of error bars to bar plots of the above ultrasonic sensor data.
+Boxplots represent statistical assets of datasets, but boxplots can quickly become confusing when they are presented in technical reports for multiple measurement series. Yet, it is state-of-the-art and good practice to present uncertainties in datasets in science-based and technical publications, but somewhat more easily than, for example, with boxplots. To meet the standards of good practice, so-called [error bars](https://en.wikipedia.org/wiki/Error_bar) should be added to data bars. Error bars express the uncertainty of a data set graphically in a simple way by displaying only whiskers. Regardless of whether scatter or bar plot, error bars can easily be added to graphics with *matplotlib* ([read more in the developer's docs](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.errorbar.html)). The following example shows the application of error bars to bar plots of the above ultrasonic sensor data.
 
 
 ```python
@@ -404,15 +402,16 @@ More options for visualizing *pandas* data frame is provided in the [developer's
 
 ## Interactive plots with *plotly* {#plotly}
 
-The above shown *matplotlib* and *pandas* packages are great for creating static graphs or click-able graphs on a desktop environment. Although interactive plots for web presentations can be created with *matplotlib* ([read more in the docs](https://matplotlib.org/3.1.1/users/interactive.html)), *plotly* leverages many more interactive web plot options within an easy-to-use API library. *plotly* can also handle JSON-like data (hosted somewhere in the internet) to create web applications with *Dash*. However, the company behind (*Plotly*) is a business-oriented 
+The above shown *matplotlib* and *pandas* packages are great for creating static graphs or click-able graphs on a desktop environment. Although interactive plots for web presentations can be created with *matplotlib* ([read more in the docs](https://matplotlib.org/3.1.1/users/interactive.html)), *plotly* leverages many more interactive web plot options within an easy-to-use API. *plotly* can also handle JSON-like data (hosted somewhere in the web) to create web applications with *Dash*. However, *Plotly* is maintained by a business-oriented, commercial developer.
 
 
 ### Installation
+
 *plotly* is not a default package neither in the *environment.yml* (`hypy`) environment file nor in the *conda base* environment. Therefore, it must be installed manually with *conda prompt* (or *Conda Navigator* if you prefer the Desktop version). So open *conda prompt* to install *plotly* for :
 
 * *jupyter* usage type with the base environment activated: <br> `conda install plotly` (confirm installation when asked for it) <br> `jupyter labextension install jupyterlab-plotly@4.11.0` (change version `4.11.0` to latest version listed [here](https://github.com/plotly/plotly.py/releases)) <br> optional: `conda install -c plotly chart-studio` (good for other plots than featured on this page).
 * *hypy* (e.g., within *PyCharm*): <br> `conda activate hypy` <br>  `conda install plotly` (confirm installation when asked for it) <br> `conda install "notebook>=5.3" "ipywidgets>=7.2"`
-* [Read the trouble shooting info to fix problems with jupyter or *Python*](https://plotly.com/python/troubleshooting/) (there may be some...).
+* [Read the developer's troubleshooting info](https://plotly.com/python/troubleshooting/) to fix problems with jupyter or *Python* for more information.
 
 Read more about installing packages within *conda environments* on the [*Python* installation page](https://hydro-informatics.github.io/hypy_install.html#install-pckg). 
 

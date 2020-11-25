@@ -210,11 +210,11 @@ conda install numpy
 
 ### Usage
 
-The *NumPy* module (package) is typically imported with **`import numpy as np`**. Array handling is the baseline of linear algebra and *NumPy*, where arrays represent nested data *list*s. To create a *NumPy* array, use `np.array((values))`, where `values` are a sequences of values. 
+The *NumPy* module (package) is typically imported with **`import numpy as np`**. Array handling is the baseline of linear algebra and *NumPy*, where arrays represent nested data *lists*. To create a *NumPy* array, use `np.array((values))`, where `values` are a sequences of values. 
 
 {% include tip.html content="This section provides insights in some basic functions provided with *NumPy*, but does not (or cannot) cover all *NumPy* functions and data types. Generally speaking, be sure that whatever mathematical operation you want to perform, *NumPy* offers a solution. Just checkout the [*NumPy* documentation](https://numpy.org/devdocs/user/quickstart.html), [have a look at *NumPy*'s functions and methods overview](https://numpy.org/devdocs/user/quickstart.html#functions-and-methods-overview), or use your favorite search engine with the search words **numpy** ***FUNCTION***." %}
 
-The rounded parentheses indicated that the value sequence represents a *tuple* that may contain *list*s for creating a multi-dimensional *array*. Thus, for creating an *2x3* *array* (with some random values), we can write:
+The rounded parentheses indicated that the value sequence represents a *tuple* that may contain *lists* for creating a multi-dimensional *array*. Thus, for creating an *2x3* *array* (with some random values), we can write:
 
 
 ```python

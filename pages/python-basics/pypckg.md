@@ -161,7 +161,7 @@ def dialogue(scoops_wanted): #formerly in the __main__ statement
     print(welcome_msg)
     print("That makes {0} please".format(price_scoops[scoops_wanted]))
 
-if (__name__ == '__main__'):
+if __name__ == '__main__':
     # import the terminal function emulator sys
     import sys
     if len(sys.argv) > 1: # make sure input is provided

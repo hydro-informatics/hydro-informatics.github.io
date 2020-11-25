@@ -591,6 +591,97 @@ cd `dirname $0`
 java -Xmx2048m -Xms512m -cp "$PWD/ Fudaa-Prepro-1.4.2-SNAPSHOT.jar" org.fudaa.fudaa.tr.TrSupervisor $1 $2 $3 $4 $5 $6 $7 $8 $9
 ``` 
 
+### PREFERABLE: SALOME (Linux and Windows) {#salome}
+
+Download *SALOME* from [salome-platform.org](https://www.salome-platform.org/downloads/current-version) for your distribution (here: *Debian Linux*).
+
+Unpack the *SALOME* package in a convenient folder (replace the `.tar.gz` file name with the one you downloaded):
+
+```
+tar xfz SALOME-9.5.0-DB10-SRC.tar.gz 
+``` 
+
+Install dependencies:
+```
+sudo apt-get install net-tools
+sudo apt-get install libopengl0
+sudo apt-get install libtbb-dev
+```
+
+To run *SALOME*, `cd` to the directory where the unpacked packages is located and typ `salome`:
+
+```
+cd SALOME-9.5.0-DB10-SRC
+source env_launch.sh
+./salome
+```
+
+If `./salome` does not work, try to re-compile *SALOME*:
+
+```
+./sat prepare SALOME-9.5.0 
+./sat -t compile SALOME-9.5.0
+./sat environ SALOME-9.5.0
+./sat launcher SALOME-9.5.0
+./salome
+```
+
+***
+It may be necessary to install required nvidia graphics drivers:
+
+* Open `etc/apt/sources.list` and change the `buster`repository definition (example for server in Germany):
+    + original: `deb http://ftp.de.debian.org/debian/ buster main`
+    + to: `deb-src http://ftp.de.debian.org/debian/ buster main non-free`
+* In *Terminal* update repositories and install `nvidia-detect`
+
+```
+sudo apt update
+sudo apt -y install nvidia-detect
+```
+
+* Install the *nvidia* driver (or whatever the above command shows):
+
+```
+sudo apt install nvidia-driver
+```
+
+* Reboot Debian:
+
+```
+systemctl reboot
+```
+
+***
+
+If you get any error such as:
+
+```
+HyMo@HydroDebian:~/Downloads/SALOME-9.5.0-DB10-SRC$ ./salome
+runSalome running on HydroDebian
+Searching for a free port for naming service: 2811 - OK
+Searching Naming Service  +omniNames: (0) 20XX-XX-XX 10:44:47.675678: -ORBendPoint option overriding default endpoint.
+ found in 0.1 seconds 
+Searching /Kernel/Session in Naming Service  +SALOME_Session_Server: error while loading shared libraries: libtbb.so.2: cannot open shared object file: No such file or directory
+Warning, no type found for resource "localhost", using default value "single_machine"
+Traceback (most recent call last):
+  File "/home/HyMo/Downloads/SALOME-9.5.0-DB10-SR/BINARIES-DEB10/KERNEL/bin/salome/orbmodule.py", line 181, in waitNSPID
+    os.kill(thePID,0)
+ProcessLookupError: [Errno 3] No such process
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/HyMo/Downloads/SALOME-9.5.0-DB10-SR/BINARIES-DEB10/KERNEL/bin/salome/runSalome.py", line 679, in useSalome
+    clt = [...]
+  File "/home/HyMo/Downloads/SALOME-9.5.0-DB10-SR/BINARIES-DEB10/KERNEL/bin/salome/orbmodule.py", line 183, in waitNSPID
+    raise RuntimeError("Process %d for %s not found" % (thePID,theName))
+RuntimeError: Process 29241 for /Kernel/Session not found
+--- Error during Salome launch ---
+```
+
+Then look for the missing libraries indicated in the above block with `error while loading shared libraries: libtbb.so.2: cannot open shared object file`. In this case `libtbb` is missing, which can be installed with `sudo apt-get install libtbb-dev`.
+
+
 ### QGIS (Linux and Windows) {#qgis}
 
 ***Estimated duration: 5-10 minutes (depends on connection speed).***
