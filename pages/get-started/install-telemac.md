@@ -626,7 +626,7 @@ If `./salome` does not work, try to re-compile *SALOME*:
 ./salome
 ```
 
-***
+<!--
 It may be necessary to install required nvidia graphics drivers:
 
 * Open `etc/apt/sources.list` and change the `buster`repository definition (example for server in Germany):
@@ -650,8 +650,7 @@ sudo apt install nvidia-driver
 ```
 systemctl reboot
 ```
-
-***
+-->
 
 If you get any error such as:
 
@@ -692,3 +691,10 @@ Then look for the missing libraries indicated in the above block with `error whi
 sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
 sudo apt-get update && sudo apt-get install -y qgis python-qgis qgis-plugin
 ```
+
+For working with *TELEMAC*, consider installing the following *QGIS Plugins* (*Plugins* > *Manage and Install Plugins...*):
+
+*  *PostTelemac* visualizes *slf* (and others such as *res*) geometry files at different time steps.
+* *DEMto3D* enables to export *STL* geometry files for working with *SALOME* and creating 3D meshes. 
+
+Note that *DEMto3D* will be available in the *Raster* menu: *DEMto3D* > *DEM 3D printing*.
