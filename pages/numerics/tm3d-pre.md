@@ -83,7 +83,7 @@ cd SALOME-9.5.0-DB10-SRC
 
 {% include tip.html content="If you are working on a **Debian Linux VM**, **use `./mesa_salome` instead of `./salome`**. Otherwise, the *Mesh* module will fail to show render the mesh graphically (*SIGSEGV 'segmentation violation' detected* because of `error: GLSL 1.50 is not supported [...]`)." %}
 
-### Build 3D Geometry Block
+### Build 3D Geometry Compound Block
 
 Create a new study in *SALOME* and save the study (e.g., *simple_3d*). In *SALOME*, go to the **Geometry** module and create a rectangular 3D block.
 
@@ -92,17 +92,30 @@ Create a new study in *SALOME* and save the study (e.g., *simple_3d*). In *SALOM
     * Use *Global Coordinate System*  and select the third element type (rectangle &#9645;)
     * Set `Name=Sketch_1`, `X1=0` and `Y1=0`, and `X2=300` and `Y2=75`
     * Click on **Apply and Close**
-1. Build a (sur)face from the 2D sketch:
-    * Go to **New Entity** > **Build** > **Face**
-    * Select the first option (*Face creation from wires and/or edges*)
-    * Use `Name=Face_1` and select `Sketch_1` for **Objects** (click on the button next to **Objects** and select `Sketch_1` from the **Object Browser** - multiple objects can be select from the **Object Browser** by holding the `CTRL` key)
-    * Click on **Apply and Close**
+1. Explode the sketch: **New Entity** > **Explode** > set **Main Object** to `Sketch_1` and **Sub-shapes Type** to `Edge` > **Apply and Close**
+1. Create a mesh group
+    * Go to **New Entity** > **Group** > **Create Group**
+    * Select the line (edge) symbol as **Shape Type**
+    * In the **Create Group** popup window, enter `mesh_edges` in the **Name** (Group Name) field. 
+    * Select `Sketch_1` as **Main Shape** from the **Object Browser**
+    * Highlight the four `Edge_i` elements (sub-elements of `Sketch_1`) in the **Object Browser** by holding down the `CTRL` key (and only the four edge-elements), and click on the **Add** button in the **Create Group** popup window
+    * Click on the **Apply** button in the **Create Group** popup window (do not close the popup window)
+ <!--
+1. Create a boundary group
+    * In the still opened **Create Group** popup window, select the line (edge) symbol as **Shape Type**
+    * In the **Create Group** popup window, enter `boundary_edges` in the **Name** (Group Name) field. 
+    * Select `Sketch_1` as **Main Shape** from the **Object Browser**
+    * Highlight the `Edge_1` and `Edge_4` elements in the **Object Browser** by holding down the `CTRL` key, and click on the **Add** button in the **Create Group** popup window
+    * Click on the **Apply and Close** button in the **Create Group** popup window-->
 1. Extrude the (sur)face to build a 3D block:
     * Go to **New Entity** > **Generation** > **Extrusion**
     * Select the first option (*Base Shapes + Vector*)
-    * Define `Base=Face_1`, `Vector=OZ`, and `Height: 70` 
-    * *Note: To select objects, click on the button next to **Base**/**Vector** and select objects from the **Object Browser** - multiple objects can be select from the **Object Browser** by holding the `CTRL` key.*
-    * Click on **Apply and Close**
+    * Define the **Name** as `mesh_block`
+    * Set **Base** to `Face_1`, **Vector** to `OZ`, and **Height:** to `70` 
+    * *Note: To select objects, click on the button next to **Base**/**Vector** and select objects from the **Object Browser** - multiple objects can be select from the **Object Browser** by holding down the `CTRL` key.*
+    * Click on **Apply**
+1. Explode the `mesh_block` by clicking on **New Entity** > **Explode** > select `mesh_block` as **Main Object**, and `Face` as **Sub-shapes Type** >  **Apply and Close**
+1. Build a compound from the exploded `mesh_block` (**New Entity** > **Build** > **Compound** with the *Set presentation parameters and sub-shapes from arguments* checkbox enabled)
 
 Save the *SALOME* study (`CTRL` + `S` keys). As a result, the 3D block should look as illustrated below. 
 
@@ -115,10 +128,10 @@ To work with the geometry in a numerical model, the geometry needs to be defined
 1. Activate the **Mesh** module in *SALOME* (there might be an error message that can probably be ignored)
 1. Go to the **Mesh** menu (do not confuse with the *Mesh* module), and select **Create Mesh**
 1. In the **Create Mesh** popup window, set the following:
-    * `Name=Mesh_1`, `Geometry=Extrusion_1`, and `Mesh type=Tetrahedal`
+    * Set **Name** to `Mesh_1`, **Geometry** to `Compound_1`, and **Mesh type** to `Tetrahedal`
     * Leave the *Create all Groups on Geometry* box checked.
-    * In the **3D** tab, select `Agorithm=NETGEN 1D-2D-3D`, click on the **Assign a set of automatic hypotheses** button and select **3D: Tetrahedralization** -  this will call the **Hypothesis Construction**
-    * In the **Hypothesis Construction** popup window, set `Length=15` and click **OK**
+    * In the **3D** tab, click on the **Assign a set of automatic hypotheses** button (on the bottom) and select **3D: Tetrahedralization** -  this will call the **Hypothesis Construction**
+    * In the **Hypothesis Construction** popup window, set `Length=12` and click **OK**
     * Click on **Apply and Close** (**Create mesh** popup window)
 1. In the **Object Browser**, extend (un-collapse) the new `Mesh`, right-click on `Mesh_1`, and click on **Compute**
 

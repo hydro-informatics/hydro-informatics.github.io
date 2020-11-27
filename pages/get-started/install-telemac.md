@@ -583,12 +583,17 @@ Get ready with the pre- and post-processing software Fudaa-PrePro:
 * On *Linux*: tap `sh supervisor.sh`
 * On *Windows*: tap `supervisor.bat`
 
-Note that Fudaa-PrePro starts with a default random-access memory (RAM) allocation of 6 GB, which might be too small for grid files with more than 3·10<sup>6</sup> nodes, or too large if your system's RAM is small. To adapt the RAM allocation, right-click on *supervisor.sh* (or on *Windows*: *supervisor.bat*), and find the tag `-Xmx6144m`, where `6144` defines the RAM allocation. Modify this values an even-number multiple of 512. For example, set it to 4·512=2048:
+There might be an error message such as:
+```
+Error: Could not find or load main class org.fudaa.fudaa.tr.TrSupervisor
+```
+In this case, open *supervisor.sh* in a text editor and correct `$PWD Fudaa` to `$(pwd)/Fudaa`. In addition, you can edit the default random-access memory (RAM) allocation in the *supervisor.sh* (or*bat*) file. Fudaa-PrePro starts with a default RAM allocation of 6 GB, which might be too small for grid files with more than 3·10<sup>6</sup> nodes, or too large if your system's RAM is small. To adapt the RAM allocation and7or fix the above error message, right-click on *supervisor.sh* (or on *Windows*: *supervisor.bat*), and find the tag `-Xmx6144m`, where `6144` defines the RAM allocation. Modify this values an even-number multiple of 512. For example, set it to 4·512=2048 and correct `$PWD Fudaa` to `$(pwd)/Fudaa`:
 
 ```
 #!/bin/bash
 cd `dirname $0`
-java -Xmx2048m -Xms512m -cp "$PWD/ Fudaa-Prepro-1.4.2-SNAPSHOT.jar" org.fudaa.fudaa.tr.TrSupervisor $1 $2 $3 $4 $5 $6 $7 $8 $9
+java -Xmx2048m -Xms512m -cp "$(pwd)/Fudaa-Prepro-1.4.2-SNAPSHOT.jar"
+org.fudaa.fudaa.tr.TrSupervisor $1 $2 $3 $4 $5 $6 $7 $8 $9
 ``` 
 
 ### SALOME (TELEMAC 3D Mesh on Linux and Windows) {#salome}
