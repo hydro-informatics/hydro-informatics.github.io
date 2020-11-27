@@ -1,5 +1,5 @@
 ---
-title: open *TELEMAC* (Installation)
+title: open TELEMAC (Installation)
 tags: [telemac, linux, numerical, modelling, install, vm]
 keywords: Virtual, machine, *TELEMAC*
 summary: "A step-by-step workflow for installing the numerical modelling software TELEMAC on Debian Linux."
@@ -41,7 +41,7 @@ To install the three libraries, open *Terminal* and type (hit `Enter` after ever
 sudo apt-get install python3-numpy python3-scipy python3-matplotlib python3-distutils python3-dev python3-pip 
 ```
 
-{% include tip.html content="If an error occurred during the installation, install the extended dependencies (includes Qt) with the following command (after `su`): `apt-get install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6`. Then re-try to install the libraries." %}
+{% include tip.html content="If an error occurs during the installation, install the extended dependencies (includes Qt) with the following command: `sudo apt-get install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6`. Then re-try to install the libraries." %}
 
 To test if the installation was successful, type `python3` in *Terminal* and import the three libraries:
 
