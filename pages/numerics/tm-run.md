@@ -1,10 +1,10 @@
 ---
-title: Run open TELEMAC-MASCARET
+title: Run open TELEMAC
 tags: [telemac, numerical, modelling, hydraulics, morphodynamics]
 keywords: numerics
-summary: "Start a TELEMAC-MASCARET simulation."
+summary: "Start a TELEMAC simulation."
 sidebar: mydoc_sidebar
-permalink: tm-main.html
+permalink: tm-run.html
 folder: numerics
 ---
 
@@ -12,7 +12,7 @@ folder: numerics
 
 Thank you for your patience.
 
-{% include requirements.html content="Make sure that TELEMAC-MASCARET is correctly installed and that simulation files are prepared in line with the [pre-processing instructions](tm-pre.html)." %}
+{% include requirements.html content="Make sure that TELEMAC is correctly installed and that simulation files are prepared in line with the [pre-processing instructions](tm2d-pre.html)." %}
 
 ## Load environment and files
 
@@ -36,4 +36,6 @@ cd /go/to/dir
 telemac2d.py run_2dhydrodynamic.cas
 ```
 
-Next: [> Post-processing of results >](tm-post.html)
+Next:
+* [> Post-processing of results (2D) >](tm2d-post.html)
+* [> Post-processing of results (3D) >](tm3d-post.html)

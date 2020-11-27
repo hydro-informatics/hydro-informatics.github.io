@@ -1,10 +1,10 @@
 ---
-title: Pre-Processing for TELEMAC-MASCARET models
+title: Pre-Processing for TELEMAC models
 tags: [telemac, numerical, modelling, hydraulics, morphodynamics, raster, shapefile, qgis, hydraulics, tin]
 keywords: numerics
-summary: "Produce a numerical mesh with QGIS/Blue Kenue."
+summary: "Produce a numerical mesh."
 sidebar: mydoc_sidebar
-permalink: tm-pre.html
+permalink: tm2d-pre.html
 folder: numerics
 ---
 
@@ -12,7 +12,7 @@ folder: numerics
 
 Thank you for your patience.
 
-{% include requirements.html content="This tutorial refers to TELEMAC-MASCARET v8p1 (parallel with *Open MPI*) installed on Debian Linux. For the best learning experience follow the installation guides for [Debian Linux on a Virtual Machine (VM)](#vm.html) and [TELEMAC-MASCARET](install-telemac.html)." %}
+{% include requirements.html content="This tutorial refers to *TELEMAC* v8p1 (parallel with *Open MPI*) installed on Debian Linux. For the best learning experience follow the installation guides for [Debian Linux on a Virtual Machine (VM)](#vm.html) and [*TELEMAC*](install-telemac.html)." %}
 
 This tutorial uses descriptions provided in the [telemac2d_user_v8p1](http://ot-svn-public:telemac1*@svn.opentelemac.org/svn/opentelemac/tags/v8p1r1/documentation/telemac2d/user/telemac2d_user_v8p1.pdf) manual.
 
@@ -34,7 +34,7 @@ For any TELEMAC 2D simulation, the following files are mandatory:
 
 The basic setup of the files is explained below.
 
-### Optional
+### Optional {#optional}
 
 The below listed files are not computationally mandatory for running a simulation with TELEMAC, but essential to yield reasonable results with a hydro-morphodynamic model (i.e., coupled hydrodynamic-sediment transport solver).
 
@@ -42,6 +42,7 @@ The below listed files are not computationally mandatory for running a simulatio
     + Requires a stage-discharge relationship file 
 
 * Friction data file 
+    + File format: `ASCII`
 * Reference file to enable model validation (restart)
     + File format: `.slf`
     + Check the TELEMAC docs
@@ -64,7 +65,7 @@ More input files can be defined to simulate oil spill, pollutant transport, wind
 
 ### The steering file (CAS)
 
-The steering file is the main simulation file with information about mandatory files (e.g., the *selafin* geometry or the *cli* boundary), optional files, and simulation parameters. The steering file can be created or edited either with a basic text editor or an advanced software such as [*SALOME*](install-telemac.html#salome), [*Fudaa-PrePro*](install-telemac.html#fudaa), or [*BlueKenue*](install-telemac.html#bluekenue). In this examples, we will use *SALOME*.
+The steering file is the main simulation file with information about mandatory files (e.g., the *selafin* geometry or the *cli* boundary), optional files, and simulation parameters. The steering file can be created or edited either with a basic text editor or an advanced software such as [*Fudaa-PrePro*](install-telemac.html#fudaa) or [*BlueKenue*](install-telemac.html#bluekenue). In this example, we will use *BlueKenue*.
 
 ### The geometry file (SLF or MED)
 
@@ -72,11 +73,11 @@ The geometry file in *slf* (*selafin*) format contains binary data about the mes
 
 ```
 /steering.cas
-GEOMETRY FILE            : t2d_channel.slf 
+GEOMETRY FILE            : 't2d_channel.slf'
 GEOMETRY FILE FORMAT     : SLF  / or MED with SALOME verify usage
 ```
 
-### The boundary conditions file (CLI) and liquid boudnaries (QSL)
+### The boundary conditions (CLI) and liquid boundary (QSL) files
 
 The boundary file in *cli* format contains information about inflow and outflow nodes (coordinates and IDs). The *cli* file can be opened and modified with any text editor, which is not recommended to avoid inconsistencies. Preferably use [*Fudaa-PrePro*](install-telemac.html#fudaa) or [*BlueKenue*](install-telemac.html#bluekenue) for generating and/or modifying *cli* files.
 
@@ -86,8 +87,8 @@ The name format of the boundary conditions file can be modified in the steering 
 
 ```
 /steering.cas
-BOUNDARY CONDITIONS FILE : bc_channel.cli 
-LIQUID BOUNDARIES FILE   : bc_unsteady.qsl
+BOUNDARY CONDITIONS FILE : 'bc_channel.cli'
+LIQUID BOUNDARIES FILE   : 'bc_unsteady.qsl'
 ```
 
 Example (header only) for a boundary conditions file (*cli*):
@@ -109,13 +110,24 @@ s           m3/s     m
 5000.       150.     5.0
 ```
 
-### The stage-discharge (or WSE-Q) file
+### The stage-discharge (or WSE-Q) file (ASCII)
 
 Define a stage-discharge file to use a stage (water surface elevation *WSE*) - discharge relationship for boundary conditions. Such files typically apply to the downstream boundary of a model at control sections (e.g., a free overflow weir). To use a stage-discharge file, define the following keyword in the steering file:
 
 ```
 /steering.cas
 STAGE-DISCHARGE CURVES FILE : YES
+```
+
+Example for a stage-discharge file:
+```
+# wse_Q.txt
+# 
+Q(1)     Z(1)
+m3/s     m
+ 50.     0.0
+ 60.     0.9
+100.     1.5
 ```
 
 ### The friction data file
@@ -125,7 +137,7 @@ This optional file enables the definition of bottom friction regarding the rough
 ```
 /steering.cas
 FRICTION DATA            : YES
-FRICTION DATA FILE       : friction.ROUGH / verify
+FRICTION DATA FILE       : 'friction.txt' / verify
 ```
 
 
@@ -135,23 +147,12 @@ The name format of the results file can be modified in the steering file with:
 
 ```
 /steering.cas
-RESULTS FILE             : t2d_channel_output.slf 
+RESULTS FILE             : 't2d_channel_output.slf'
 ```
 
 Because this file is generated by TELEMAC when the simulation is running, it does not need to exist for starting the simulation. A good option for visualizing the results file is the [*PostTelemac* Plugin in *QGIS*](install-telemac.html#qgis)
 
-## Start SALOME
-
-Make sure to have *SALOME* installed ([see instructions](install-telemac.html#salome)) and launch *SALOME* (on *Debian*):
-
-```
-cd SALOME-9.5.0-DB10-SRC
-./sat environ SALOME-9.5.0
-./sat launcher SALOME-9.5.0
-./salome
-```
-
 
 ***
 
-Next: [> Start the simulation >](tm-main.html)
+Next: [> Start the simulation >](tm-run.html)
