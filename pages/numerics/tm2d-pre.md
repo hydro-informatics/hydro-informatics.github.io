@@ -77,6 +77,17 @@ GEOMETRY FILE            : 't2d_channel.slf'
 GEOMETRY FILE FORMAT     : SLF  / or MED with SALOME verify usage
 ```
 
+To create a geometry file, load any point *shapefile* in *BK* through:
+
+* *File* > *Import* > *ArcView Shape File* > Navigate to the directory where the point *shapefile* lives > Select the *All Files (\*.\*)* option (in lieu of *Telemac Selafin File (\*.slf)*) > Select the file (e.g., *xyz.shp*)
+* ALTERNATIVELY: Open any other point data file with *File* > *Open* > Naviagate to DIR > look for *.xyz* or *.dat* files
+
+{% include image.html file="bk-import-pts.png" alt="bkimportpts" caption="Importing a point shapefile in BK." %}
+
+* Drag the points from *Data Items* to *Views | 2D View (1)*
+ 
+ {% include image.html file="bk-imported-pts.png" alt="bkimportedpts" caption="The imported points a point shapefile in BK." %}
+
 ### The boundary conditions (CLI) and liquid boundary (QSL) files
 
 The boundary file in *cli* format contains information about inflow and outflow nodes (coordinates and IDs). The *cli* file can be opened and modified with any text editor, which is not recommended to avoid inconsistencies. Preferably use [*Fudaa-PrePro*](install-telemac.html#fudaa) or [*BlueKenue*](install-telemac.html#bluekenue) for generating and/or modifying *cli* files.

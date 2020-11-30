@@ -569,7 +569,7 @@ The Canadian Hydrological Model Stewardship (CHyMS) provides more guidance for i
 
 ### Fudaa-PrePro (Linux and Windows) {#fudaa}
 
-***Estimated duration: 5-15 minutes (upper time limit if *java* needs to be installed).***
+***Estimated duration: 5-15 minutes (upper time limit if java needs to be installed).***
 
 Get ready with the pre- and post-processing software Fudaa-PrePro:
 
