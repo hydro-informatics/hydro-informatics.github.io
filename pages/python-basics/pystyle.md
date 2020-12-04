@@ -57,7 +57,7 @@ import this
 The maximum length of a line is 79 characters and in-line comments, including [docstrings](#docstrings), should not exceed 72 characters.
 
 ### Indentation
-Indentation designates the sifting of code (blocks) to the right. Indentation is necessary for example in loops or functions to assign code blocks to a `for` or `def` statement. Multiple levels of indentation occur when nested statements are used (e.g., an `if` condition nested in a `for` loop). One level of indentation corresponds to 4 spaces.
+Indentation designates the shifting of code (blocks) to the right. Indentation is necessary for example in loops or functions to assign code blocks to a `for` or `def` statement. Multiple levels of indentation occur when nested statements are used (e.g., an `if` condition nested in a `for` loop). One level of indentation corresponds to 4 spaces.
 
 
 ```python
@@ -149,9 +149,7 @@ New, custom packages or modules should have short and all-lowercase names, where
 ### Block and inline comments
 Block comments start with a single `#` at the first place of a line, followed by a whitespace and the comment text.
 
-Inline comments follow an expression and are indented with two whitespaces. The usage of inline comments is deprecated (i.e., do not use them or be sparse on their usage)
-
-
+Inline comments follow an expression and are indented with two whitespaces. The usage of inline comments is deprecated (i.e., do not use them or be sparse on their usage).
 
 ### Docstrings {#docstrings}
 Docstrings are short text descriptions within a module, function, class or method with specifications of arguments, usage and output. When instantiating a standard object, or referencing to a class method, the `__doc__` attribute will print the object's docstring information. For example: 
@@ -168,7 +166,7 @@ print(a_list.__doc__)
     The argument must be an iterable if specified.
     
 
-When writing a *Python*, docstrings are introduced immediately after the `def ...` line with triple double-apostrophes:
+When writing a *Python* function, docstrings are introduced immediately after the `def ...` line with triple double-apostrophes:
 
 
 ```python
@@ -193,7 +191,7 @@ print(let_there_be_light.__doc__)
         
     
 
-Note that the recommendations on docstringsare provided with [*PEP* 257](https://www.python.org/dev/peps/pep-0257/) rather than *PEP* 8.
+Note that the recommendations on docstrings are provided with [*PEP* 257](https://www.python.org/dev/peps/pep-0257/) rather than *PEP* 8.
 
 ## Name conventions
 
@@ -215,7 +213,7 @@ Some variable name formats imply a particular behavior of *Python*:
 * `_single_leading_underscore` variables indicate weak internal use and will not be imported with `from module import *`
 * `__double_leading_underscore` variables invoke name mangling in classes (e.g., a method called `__dlu` within the class `MyClass` will be mangled into `_MyClass__dlu`)
 * `__double_leading_and_tailing_underscore__` variables are *magic* objects or attributes in user-controlled namespaces (e.g., `__init__` or `__call__` in classes) <br>Only use documented magic object/attributes and never invent them. Read more about magic methods on the page on *Python* [classes](hypy_classes.html#magic).
-* `single_tailing_underscore__` variables are used to avoid conflicts with *Python* keywords (e.g., `MyClass(class_='AnotherClass')`)
+* `single_tailing_underscore_` variables are used to avoid conflicts with *Python* keywords (e.g., `MyClass(class_='AnotherClass')`)
 
 
 ### Object names {#object-styles}
@@ -238,7 +236,7 @@ Use the following styles for naming
 
 ## More code style recommendations
 
-In order to ensure code compatibility and programm efficiency, the *PEP 8* style guide provides some general recommendations ([read more](https://www.python.org/dev/peps/pep-0008/#programming-recommendations)):
+In order to ensure code compatibility and program efficiency, the *PEP 8* style guide provides some general recommendations ([read more](https://www.python.org/dev/peps/pep-0008/#programming-recommendations)):
 
 * Prefer `is` or `is not` over equality operators
 * Prefer `is not` over `not ... is` expressions

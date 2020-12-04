@@ -16,6 +16,10 @@ Thank you for your patience.
 
 This tutorial uses descriptions provided in the [telemac3d_user_v8p1](http://ot-svn-public:telemac1*@svn.opentelemac.org/svn/opentelemac/tags/v8p1r2/documentation/telemac2d/user/telemac3d_user_v8p1.pdf) manual.
 
+## Introduction
+
+TELEMAC 3D solves the Navier-Stokes equations along a three-dimensional (3D) computational grid using a finite element scheme. 
+
 ## Input files
 
 A TELEMAC 3D simulation requires similar input files as described in detail on the 2D page.
@@ -24,7 +28,7 @@ A TELEMAC 3D simulation requires similar input files as described in detail on t
     + File format: `cas`
     + Prepare either with [Fudaa PrePro](https://fudaa-project.atlassian.net/wiki/spaces/PREPRO/pages/253165587/How+to+launch+Fudaa-Prepro) or [*BlueKenue<sup>TM</sup>*](install-telemac.html#bluekenue).
 * Geometry file
-    + File format: `.slf` (selafin)
+    + File format: `.slf` (serafin)
     + Prepare either with
 * Boundary conditions
     + File format: `.cli`
@@ -35,7 +39,7 @@ Optional files such as a friction data file or a liquid boundary file can also b
 
 ### The TELEMAC 3D steering file (CAS)
 
-The steering file is the main simulation file with information about mandatory files (e.g., the *selafin* geometry or the *cli* boundary), optional files, and simulation parameters. The steering file can be created or edited either with a basic text editor or an advanced software such as [*Fudaa-PrePro*](install-telemac.html#fudaa), or [*BlueKenue*](install-telemac.html#bluekenue).
+The steering file is the main simulation file with information about mandatory files (e.g., the *serafin* geometry or the *cli* boundary), optional files, and simulation parameters. The steering file can be created or edited either with a basic text editor or an advanced software such as [*Fudaa-PrePro*](install-telemac.html#fudaa), or [*BlueKenue*](install-telemac.html#bluekenue).
 
 A 3D simulation needs to make less simplifications (i.e., hypotheses about the environment) than a 2D or 1D model. TELEMAC developers recommend using the following variables for optimum results with *telemac3d*.
 
@@ -47,16 +51,17 @@ SCHEME OPTION FOR ADVECTION OF VELOCITIES = 2
 SCHEME OPTION FOR ADVECTION OF K-EPSILON = 2
 SCHEME OPTION FOR ADVECTION OF TRACERS = 2
 /
-/ Use Nikuradse roughness law (all others are not 3D compatible) with reasonable friction coefficient
+/ Roughness Use Nikuradse roughness law (all others are not 3D compatible) with reasonable friction coefficient
 LAW OF BOTTOM FRICTION = 5
 FRICTION COEFFICIENT FOR THE BOTTOM = 3 · d90  / calculate this value for your case study - in the presence of ripple or dune bedforms use van Rijn recommendations
-LAW OF FRICTION ON LATERAL BOUNDARIES = 0  / for symmetry calculations
 LAW OF FRICTION ON LATERAL BOUNDARIES = 5  / for natural banks
-FRICTION COEFFICIENT FOR LATERAL SOLID BOUNDARIES = 
+/ LAW OF FRICTION ON LATERAL BOUNDARIES = 0  / for symmetry calculations
+FRICTION COEFFICIENT FOR LATERAL SOLID BOUNDARIES = 3 · d90  / similar logics as for FRICTION COEFFICIENT FOR THE BOTTOM
 /
-/ Preferably use k-epsilon model or alternatively Spalart-Allmaras (=5)
+/ Turbulence: Preferably use k-epsilon model, alternatively Spalart-Allmaras (=5) or Smagorinsky (=4) for highly non-linear flow 
 /
 VERTICAL TURBULENCE MODEL = 3
+HORZIONTAL TURBULENCE MODEL = 3
 /
 / Reduce wiggle free surface instabilities by reducing the FREE SURFACE GRADIENT SOMPATBILITY
 /
@@ -65,6 +70,10 @@ VERTICAL TURBULENCE MODEL = 3
 / Enable MED geometry format to use SALOME Meshes
 /
 GEOMETRY FILE FORMAT = MED 
+/
+/ Disable the hydrostatic pressure hypothesis (i.e. enable vertical velocities, diffusion, and advection)
+/
+NON-HYDROSTATIC VERSION = YES
 ```
 
 

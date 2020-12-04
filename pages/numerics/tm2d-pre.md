@@ -63,12 +63,18 @@ In addition, a *FORTRAN* (`.f`) file can be created to specify special boundary 
 
 More input files can be defined to simulate oil spill, pollutant transport, wind, and tide effects.
 
-### The steering file (CAS)
+## The steering file (CAS)
 
+### File description
 The steering file is the main simulation file with information about mandatory files (e.g., the *selafin* geometry or the *cli* boundary), optional files, and simulation parameters. The steering file can be created or edited either with a basic text editor or an advanced software such as [*Fudaa-PrePro*](install-telemac.html#fudaa) or [*BlueKenue*](install-telemac.html#bluekenue). In this example, we will use *BlueKenue*.
 
-### The geometry file (SLF or MED)
+### Setup
 
+pass
+
+## The geometry file (SLF or MED)
+
+### File description and reference to CAS
 The geometry file in *slf* (*selafin*) format contains binary data about the mesh with its nodes. The name format of the geometry file can be modified in the steering file with:
 
 ```
@@ -77,18 +83,38 @@ GEOMETRY FILE            : 't2d_channel.slf'
 GEOMETRY FILE FORMAT     : SLF  / or MED with SALOME verify usage
 ```
 
-To create a geometry file, load any point *shapefile* in *BK* through:
+### Load points to create a geometry file (BK)
+
+To load any point *shapefile* start *BK* and:
 
 * *File* > *Import* > *ArcView Shape File* > Navigate to the directory where the point *shapefile* lives > Select the *All Files (\*.\*)* option (in lieu of *Telemac Selafin File (\*.slf)*) > Select the file (e.g., *xyz.shp*)
 * ALTERNATIVELY: Open any other point data file with *File* > *Open* > Naviagate to DIR > look for *.xyz* or *.dat* files
 
 {% include image.html file="bk-import-pts.png" alt="bkimportpts" caption="Importing a point shapefile in BK." %}
 
-* Drag the points from *Data Items* to *Views | 2D View (1)*
+* Right-click on **points (X)** and open the **Properties**
+* In the **Properties** window got to the **Data** tab > select **Z(float)** and **Apply**; then go to the **ColourScale** tab > **Reset** button > *+Apply** > **OK**. Now, **points (X)** should have turned into **points (Z)**
+* Drag **points (X)** from **Data Items** to **Views | 2D View (1)**
+* ALTERNATIVELY: Use a three-dimensional (3D) view of the points: Go to the **Window** menu > **New 3D View** > drag **points (X)** from **Data Items** to **Views | 3D View (1)** 
  
- {% include image.html file="bk-imported-pts.png" alt="bkimportedpts" caption="The imported points a point shapefile in BK." %}
+ {% include image.html file="bk-imported-3dpts.png" alt="bk3dpts" caption="The imported points a point shapefile in BK." %}
+ 
+### Generate a Mesh
 
-### The boundary conditions (CLI) and liquid boundary (QSL) files
+TM solves the (depth-averaged) Navier Stokes equations along a computational grid based on either a finite element or a finite volume scheme. BK provides mesh generators for creating regular or unstructured computational grids (meshes). This example features the **T3 Channel Mesher** to generate a triangular mesh. Switch to a **2D View** of the above points and walk down the following workflow.
+
+1. Define the computational domain with a **New Closed Line**
+    * Find the *New Closed Line* button approximately below the *Help* menu
+    * Draw a polygon around the region of interest by clicking on the most outside points of the point cloud
+    * When finished drawing, press the `Esc` key and enter `ClosedLine_domain` in the *Name* field > click OK and OK (in the popup window)
+    {% include image.html file="bk-domain-closedline.png" alt="bk-domain" max-width="500" %}  
+    
+1. Draw **New Open Line** objects to delineate the main (river) channel, levees, and right-left extents.
+    * Find the *New Open Line* button next to the *New Closed Line* button
+
+## The boundary conditions (CLI) and liquid boundary (QSL) files
+
+### File description and reference to CAS
 
 The boundary file in *cli* format contains information about inflow and outflow nodes (coordinates and IDs). The *cli* file can be opened and modified with any text editor, which is not recommended to avoid inconsistencies. Preferably use [*Fudaa-PrePro*](install-telemac.html#fudaa) or [*BlueKenue*](install-telemac.html#bluekenue) for generating and/or modifying *cli* files.
 
@@ -121,7 +147,7 @@ s           m3/s     m
 5000.       150.     5.0
 ```
 
-### The stage-discharge (or WSE-Q) file (ASCII)
+## The stage-discharge (or WSE-Q) file (ASCII)
 
 Define a stage-discharge file to use a stage (water surface elevation *WSE*) - discharge relationship for boundary conditions. Such files typically apply to the downstream boundary of a model at control sections (e.g., a free overflow weir). To use a stage-discharge file, define the following keyword in the steering file:
 
@@ -141,7 +167,7 @@ m3/s     m
 100.     1.5
 ```
 
-### The friction data file
+## The friction data file
 
 This optional file enables the definition of bottom friction regarding the roughness law to use and associated function coefficients. To activate and use friction data, define the following keywords in the steering file:
 
@@ -152,7 +178,7 @@ FRICTION DATA FILE       : 'friction.txt' / verify
 ```
 
 
-### The results file (SLF)
+## The results file (SLF)
 
 The name format of the results file can be modified in the steering file with:
 

@@ -18,7 +18,7 @@ Object-Oriented Programming (OOP) is a programming paradigm that aligns the arch
 
 
 ### Objects and classes
-In computer language, an **object** is an instance that contains data in the shape of fields (called *attributes* or *properties*) and code in the shape of features (*functions* or *methods*). The features of an object enable access (read) and manipulation of its data fields. Objects have a concept of `self` regarding their attributes, methods and data fields. `self` internally references attributes, properties or methods belonging to an object.
+In computer language, an **object** is an instance that contains data in the shape of fields (called *attributes* or *properties*) and code in the shape of features (*functions* or *methods*). The features of an object enable access (read) and manipulation of its data fields. Objects have a concept of `self` regarding their attributes, methods and data fields. `self` internally references attributes, properties, or methods belonging to an object.
 
 In *Python*, an object is an instance of a class. Thus, a **class** represents a blueprint for many similar objects with the same attributes and methods. A class does not use system memory and only its instance (i.e., objects) will use memory.
 
@@ -100,17 +100,16 @@ pacific_salmon.print_habitat()
 {% include tip.html content="To make initial attributes of the parent class (`Fish`) directly accessible, use `ParentClass.__init__(self)` in the `__init__` method of the child class." %}
 
 ### Polymorphism
-In computer science, polymorphism refers to the ability of presenting the same programming interface for different basic structures. Admittedly, a definition cannot be much more abstract. So it is sufficient to focus here only on the meaning of polymorphism relevant in *Python* and that is when child classes have methods of the same name as the parent class. For example, polymorphism in *Python* is when we re-define the `swim_to_position` function of the above show `Fish` parent class in the `Salmon` child class.
+In computer science, polymorphism refers to the ability of presenting the same programming interface for different basic structures. Admittedly, a definition cannot be much more abstract. So it is sufficient to focus here only on the meaning of polymorphism relevant in *Python* and that is when child classes have methods of the same name as a parent class. For example, polymorphism in *Python* is when we re-define the `swim_to_position` function of the above show `Fish` parent class in the `Salmon` child class.
 
 ### Encapsulation (public and non-public attributes)
-The concept of encapsulation combines data and functions to manipulate data, whereby both (data and functions) are protected against external interference and manipulation. Encapsulation is also the baseline of [data hiding](https://en.wikipedia.org/wiki/Information_hiding) in computer science, which segregates design decisions in software regarding objects that are likely to change. Here, the most important aspect of encapsulation is the differentiation between `private` and `public` class variables. 
+The concept of encapsulation combines data and functions to manipulate data, whereby both (data and functions) are protected against external interference and manipulation. Encapsulation is also the baseline of [data hiding](https://en.wikipedia.org/wiki/Information_hiding) in computer science, which segregates design decisions in software regarding objects that are likely to change. Here, the most important aspect of encapsulation is the differentiation between **private** and **public** class variables. 
 
-`private` attributes cannot be modified from outside (i.e., they are protected and cannot be changed for an instance of a class). In *Python*, there are no inherently `private` variables and this is why *Python* docs talk about `non-public` attributes (i.e., `_single_leading_underscore` *def*s in a class) rather than `private` attributes. While using a single underscore is rather good practice without technical support, we can use `__double_leading_underscore` attributes to emulate private behavior with a mechanism called *name mangling*. Read more about variable definition styles in the [style guide](hypy_pystyle.html#object-styles).
+**private** attributes cannot be modified from outside (i.e., they are protected and cannot be changed for an instance of a class). In *Python*, there are no inherently private variables and this is why *Python* docs talk about **non-public** attributes (i.e., `_single_leading_underscore` *defs* in a class) rather than private attributes. While using a single underscore is rather good practice without technical support, we can use `__double_leading_underscore` attributes to emulate private behavior with a mechanism called *name mangling*. Read more about variable definition styles in the [style guide](hypy_pystyle.html#object-styles).
 
-`public` attributes can be modified externally (i.e., different values can be assigned to `public` attributes of different instances of a class).
+**public** attributes can be modified externally (i.e., different values can be assigned to public attributes of different instances of a class).
 
-In the above example of the `Salmon` class, we use a public variable `self.family`. However, the family attribute of the `Salmon` class is an attribute that should not be modifiable. A similar behavior would be desirable for an `self.aggregate_state = 'frozen'` of the `IceCream` class. So let's define another child of the `Fish` class with a non-public `__family` attribute. The `__family` attribute is not directly accessible for instances of the new child class `Carp`. Still, we want the `Carp` class to have a `family` attribute and we want to be able to print its value. This is why we need a special method `def family(self)`, which has an `@property` decorator (recall [decorators on the functions page](hypy_pyfun.html#wrappers)). The below example features another special method `def family(self, value)` that is embraced with a `@property.setter` decorator that enables re-defining the non-public `__family` property (even though this is logically nonsense here because we do not want to enable renaming the `__family` property).
-
+In the above example of the `Salmon` class, we use a public variable `self.family`. However, the family attribute of the `Salmon` class is an attribute that should not be modifiable. A similar behavior would be desirable for an `self.aggregate_state = 'frozen'` of the `IceCream` class. So let's define another child of the `Fish` class with a non-public `__family` attribute. The `__family` attribute is not directly accessible for instances of the new child class `Carp`. Still, we want the `Carp` class to have a `family` attribute and we want to be able to print its value. This is why we need a special method `def family(self)`, which has an `@property` decorator (recall [decorators on the functions page](hypy_pyfun.html#wrappers)). The below example features another special method `def family(self, value)` that is embraced with a `@property.setter` decorator and that enables re-defining the non-public `__family` property (even though this is logically nonsense here because we do not want to enable renaming the `__family` property).
 
 
 ```python
@@ -152,7 +151,7 @@ In the last example, we have seen the implementation of the `@property` decorato
 
 {% include tip.html content="What are decorators and wrappers again? If you are hesitating to answer this question, refresh your memory on the [functions page](hypy_pyfun.html#wrappers)." %}
 
-Until now, we only know decorators as a nice way to simplify functions. However, decorators are an even more powerful tool in object-oriented programming of classes, where decorators can be used to wrap class methods similar to functions. Let's define another child of the `Fish` class explore the `@property` decorator with its `deleter`, `getter`, and `setter` methods.
+Until now, we only know decorators as a nice way to simplify functions. However, decorators are an even more powerful tool in object-oriented programming of classes, where decorators can be used to wrap class methods similar to functions. Let's define another child of the `Fish` class to explore the `@property` decorator with its `deleter`, `getter`, and `setter` methods.
 
 
 ```python
@@ -202,9 +201,11 @@ except AttributeError:
 
 ## Overloading and magic methods {#magic}
 
-The above examples introduced already the special, or magic, method `__init__`. We have already seen that `__init__` is nothing magical itself and there are many more of such predefined methods in *Python*. Before we get to *magic* methods, it is important to understand the concept of overloading in *Python*. So did you already wonder why the same operator can have different effects depending on the data type?
+The above examples introduced already the special, or magic, method `__init__`. We have seen that `__init__` is nothing magical itself and there are many more of such predefined methods in *Python*. Before we get to *magic* methods, it is important to understand the concept of overloading in *Python*. 
 
-For example, the `+` operator concatenates *strings*, but sums up numeric data types:
+Did you already wonder why the same operator can have different effects depending on the data type?
+
+For instance, the `+` operator concatenates *strings*, but sums up numeric data types:
 
 
 ```python
@@ -229,7 +230,7 @@ The following sections list some documented magic methods for use in classes and
 
 ### Operator (binary) and assignment methods
 
-For any new class that we want to be able to deal with an operator (e.g., to enable summing up objects with `result = object1 + object2`), we need to implements (overload) the following methods.
+For any new class that we want to be able to deal with an operator (e.g., to enable summing up objects with `result = object1 + object2`), we need to implement (overload) the following methods.
 
 |  Operator    |  Method                                        |  | Assignment   |  Method                                         |
 |--------------|------------------------------------------------|--|--------------|-------------------------------------------------|
@@ -265,7 +266,7 @@ Also unary or comparative operators can be defined in classes. Unary operators d
 
 A rather old (*Python* 2-based), but comprehensive and inclusive summary of magic methods is provided by [Rafe Kettler](https://rszalski.github.io/magicmethods/).
 
-Still, you may wonder how does a class look like that is capable of using for example the `+` operator with an `__add__` method? Let's define another child of the `Fish` class to build a swarm:
+You may wonder how a class looks like, which is capable of using for example the `+` operator with an `__add__` method. Let's define another child of the `Fish` class to build a swarm:
 
 
 ```python
@@ -295,10 +296,10 @@ print(atlantic_mackerel * 10)
 
 ## Template for a custom *Python* class {#template}
 
-This page features a couple of examples with options for implementing public and non-public properties and customizations of *magic* methods to enable the use of operators such as `+` or `<=` with custom classes. So there are many options in writing custom classes and all custom classes should at least incorporate the following methods:
+This page features a couple of examples with options for implementing public and non-public (private) properties, and customizations of *magic* methods to enable the use of operators such as `+` or `<=` with custom classes. There are many options for writing custom classes and all custom classes should at least incorporate the following methods:
 
-* `__init__(self, [...)` is the class initializer, which is called when an instance of the class is created. More precisely, it is called along with the `__new__(cls, [...)` method, which is rarely used (read more at [python.org](https://docs.python.org/3/reference/datamodel.html?highlight=__new__%20method#object.__new__)). The initializer gets the arguments passed with which the object was called. For example when `var = MyClass(1, 'vanilla' )`, the `__init__(self, [...)` method gets `1` and `'vanilla'`.
-* `__call__(self, [...)` enables to call a class instance directly, for example `var('cherry')` (corresponds to `var.__call__('cherry')`) may be used to change from `'vanilla'` to `'cherry'`.
+* `__init__(self, [...)` is the class initializer, which is called when an instance of the class is created. More precisely, it is called along with the `__new__(cls, [...)` method, which is rarely used (read more at [python.org](https://docs.python.org/3/reference/datamodel.html?highlight=__new__%20method#object.__new__)). The initializer gets the arguments passed with which the object was called. For example, when `var = MyClass(1, 'vanilla' )`, the it is the `__init__(self, [...)` method that receives the `1` and `'vanilla'` arguments.
+* `__call__(self, [...)` enables to call a class instance directly. For instance, `var('cherry')` (corresponds to `var.__call__('cherry')`) may be used to change from `'vanilla'` to `'cherry'`.
 
 As a result, a robust class skeleton to start with looks like this:
 
@@ -319,6 +320,6 @@ class NewClass:
         print(dir(self))
 ```
 
-Understanding the power and structure of classes and object orientation takes time and requires practicing. The next pages provide some more examples of classes to get more familiar with the concept.
+Understanding the power and structure of classes and object orientation takes time and requires practice. The next pages provide more examples of classes to familiarize with the concept.
 
 {% include exercise.html content="Get more familiar with object orientation in the [Sediment transport (1D)](ex_sediment.html) exercise." %}

@@ -34,7 +34,7 @@ A `plt.figure` can be thought of as a box containing one or more axes, which rep
 
 1. Import *matplolib*'s `pyplot` package with `import matplotlib.pyplot as plt`
 1. Create a figure with `plt.figure(figsize=(width_inch, height_inch), dpi=int, facecolor=str, edgecolor=str)`
-1. Add axes to the figure with `axes=fig.add_subplot(row=int, column=int, index=int, label=str)
+1. Add axes to the figure with `axes=fig.add_subplot(row=int, column=int, index=int, label=str)`
 1. Generate a [color map](http://matplotlib.org/users/colormaps.html); `plt.cm.getcmap()` generates an array of colors as explained with the [*NumPy* instructions](hypy_pynum.html#colors). For example `colormap=([255, 0, 0])` creates a color map with just one color (red).
 1. Plot the data (finally!) to plot  
     * lines with `axes.plot(x, y, linestyle=str, marker=str, color=Colormap(int), label=str)` and many more `**kwargs` can be defined ([go the *matplotlib* docs](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.lines.Line2D.html#matplotlib.lines.Line2D)).
