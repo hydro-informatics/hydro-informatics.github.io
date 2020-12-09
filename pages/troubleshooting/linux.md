@@ -101,4 +101,43 @@ sudo chmod -R 777 /directory/
  * `sudo apt install tk8.6-dev` to install the library only (this should be sufficient). 
  
  If the above comments do not work, make sure that the `tkinter` repository is available to your system: `sudo add-apt-repository ppa:deadsnakes/ppa` (the repository address may change and depends on your *Linux* and *Python* versions).
+ 
+## Wine
 
+### General wine issues
+If *wine* does not work as desired, remove the current installation via *Terminal*:
+
+```
+sudo apt remove wine wine32 wine64 libwine libwine:i386 fonts-wine
+```
+
+Then `cd` to your *Downloads* folder, then pull the latest *Wine* packages, and add the repository to your `/etc/apt/sources.list` (the following sequences of commands does all of that - consider to adapt the `cd` to your *Downloads* folder):
+
+```
+cd $HOME/Downloads
+sudo apt update
+sudo apt -y install gnupg2 software-properties-common
+wget -qO - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
+sudo apt-add-repository https://dl.winehq.org/wine-builds/debian/
+```
+
+Install *wine* *stable* and *development* (and staging) on *Debian 10.x*:
+
+```
+wget -O- -q https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_10/Release.key | sudo apt-key add -    
+echo "deb http://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_10 ./" | sudo tee /etc/apt/sources.list.d/wine-obs.list
+sudo apt update
+sudo apt install --install-recommends winehq-stable
+sudo apt install --install-recommends winehq-devel
+sudo apt install winehq-staging
+```  
+
+{% include tip.html content="Add the above commands line-by-line (do not copy-paste entire code blocks)." %}
+
+### 64-bit application not working
+
+If a 64-bit *msi* or other installer / application is not working as desired, try to adapt the `WINEPREFIX` for your user (note: this is not an elegant solution):
+
+```
+WINEARCH=win64 WINEPREFIX=/home/YOUR-USER-NAME/.wine64 wineboot -u
+```

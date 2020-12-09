@@ -18,17 +18,26 @@ For the visualization of geodata (`.shp` and `.tif` files) a GIS software is req
 ### Install QGIS on Windows
 Download and install the latest version of [*QGIS*](https://www.qgis.org/en/site/forusers/download.html) for Windows.
 
-### Install QGIS on Linux
-The *QGIS* developers provide detailed installation instructions for several *Linux* distributions, but the instructions will not satisfy all requirement for the use of *QGIS* described on *hydro-informatics.github.io*. Therefore, install *QGIS* as follows:
+### Install QGIS on Linux (via Flatpak)
 
-1. Install QGIS v3.14 either from the [*Flatpak* website](https://flathub.org/apps/details/org.qgis.qgis) or using the *Linux* *Software Manager* (open *Software Manager*, search for *QGIS* and install the *QGIS Flatpak*). If *Software Manager* cannot find *QGIS*, make sure that *Flatpak* is added as repository (*Software Source*). The good repository for many Linux distributions can be found on the [*Flatpak website*](https://flatpak.org/setup/)).
-1. The *QGIS Flatpak* installation will most likely not include the important *scipy* module. In order to fix this issue, open  *Terminal* (standard Linux application) and type: 
+The *QGIS* developers provide detailed installation instructions for several *Linux* distributions, but the instructions will not satisfy all requirement for the use of *QGIS* described on *hydro-informatics.github.io*. One of the most functional ways for installing *QGIS* on *Linux* is to use [*Flatpak*](https://flathub.org/apps/details/org.qgis.qgis), which requires some system preparation. On *Debian*-based *Linux* platforms (e.g., all sorts of *Ubuntu* such as *Lubuntu* or *Mint*) open *Terminal* and tap (the second line is only needed if you use *GNOME*):
+
+```
+sudo apt install flatpak
+sudo apt install gnome-software-plugin-flatpak
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+```  
+
+Restart the system and open the *Software Manager* app. It will update and add the flathub repo. Once the update was successful, search for *QGIS* and click *Install* (patience - the installation may take while).
+
+The *QGIS Flatpak* installation will most likely not include the important *scipy* module. In order to fix this issue, open  *Terminal* (standard Linux application) and type: 
 <br>`flatpak run --command=pip3 org.qgis.qgis install scipy --user`
 
-This solution has been tested on *Linux Ubuntu* and *Linux Mint*. It potentially also works with *Red Hat*, *openSUSE*, *Mac OS*, *Arch*, *Fedora*, *Android*, *Debian*, *Kubuntu* and [many more](https://flatpak.org/setup/). Read more about the *QGIS Flatpak* installation on the [*QGIS website*](https://qgis.org/en/site/forusers/alldownloads.html#flatpak).
+This solution has been tested on *Linux Ubuntu* and *Linux Mint*. It potentially also works with *Red Hat*, *openSUSE*, *Mac OS*, *Arch*, *Fedora*, *Android*, *Debian*, *Kubuntu* and many more (read installation guides on the [maintainer's website](https://flatpak.org/setup/)). Read more about the *QGIS Flatpak* installation on the [*QGIS website*](https://qgis.org/en/site/forusers/alldownloads.html#flatpak).
 
 
 ### Install QGIS on macOS
+
 {% include note.html content="If you plan to use BASEMENT for numerical modelling: BASEMENT will not run on macOS." %}
 
 Download and install the latest version of [*QGIS*](https://www.qgis.org/en/site/forusers/download.html) for macOS. The integrity of using macOS for the applications on *hydro-informatics.github.io* is has not yet been tested. Possible trouble-shooting with *Python* is provided by [kyngchaos.com](https://www.kyngchaos.com/software/qgis/). 

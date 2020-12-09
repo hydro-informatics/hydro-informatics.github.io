@@ -549,6 +549,9 @@ Here are the steps for installing *Blue Kenue<sup>TM</sup>* on Debian Linux with
     + Go to [https://chyms.nrc.gc.ca](https://chyms.nrc.gc.ca) and log in with
     + User name: `Public.User`
     + Password: `anonymous`
+
+{% include note.html content="The latest 64-bit version (or any 64-bit version) will not install with *wine*. **Make sure to use the 32-bit installer.**" %}
+
 * Install *Blue Kenue<sup>TM</sup>* by using the *Wine*: In *Terminal* type `wine control`.
 * After running `wine control` in *Terminal*, a windows-like window opens.
 * Click on the *Add/Remove...* button in the window, which opens up another window (*Add/Remove Programs*).

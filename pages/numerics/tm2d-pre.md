@@ -88,12 +88,12 @@ GEOMETRY FILE FORMAT     : SLF  / or MED with SALOME verify usage
 To load any point *shapefile* start *BK* and:
 
 * *File* > *Import* > *ArcView Shape File* > Navigate to the directory where the point *shapefile* lives > Select the *All Files (\*.\*)* option (in lieu of *Telemac Selafin File (\*.slf)*) > Select the file (e.g., *xyz.shp*)
-* ALTERNATIVELY: Open any other point data file with *File* > *Open* > Naviagate to DIR > look for *.xyz* or *.dat* files
+* ALTERNATIVELY: Open any other point data file with *File* > *Open* > Navigate to DIR > look for *.xyz* or *.dat* files
 
 {% include image.html file="bk-import-pts.png" alt="bkimportpts" caption="Importing a point shapefile in BK." %}
 
 * Right-click on **points (X)** and open the **Properties**
-* In the **Properties** window got to the **Data** tab > select **Z(float)** and **Apply**; then go to the **ColourScale** tab > **Reset** button > *+Apply** > **OK**. Now, **points (X)** should have turned into **points (Z)**
+* In the **Properties** window got to the **Data** tab > select **Z(float)** and **Apply**; then go to the **ColourScale** tab > **Reset** button > **Apply** > **OK**. Now, **points (X)** should have turned into **points (Z)**
 * Drag **points (X)** from **Data Items** to **Views | 2D View (1)**
 * ALTERNATIVELY: Use a three-dimensional (3D) view of the points: Go to the **Window** menu > **New 3D View** > drag **points (X)** from **Data Items** to **Views | 3D View (1)** 
  

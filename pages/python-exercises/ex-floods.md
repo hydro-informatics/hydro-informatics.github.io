@@ -98,7 +98,7 @@ In addition, we use the argument `kind=period`, because we are only interested i
 annual_max_df = df.resample(rule="A", kind="period").max()
 ```
 
-Because we use `kind="period"`, the row indices of `annual_max_df` correspond to time periods of years. For instance the row index `1826` corresponds to the period `1826-01-01` through `1826-12-31`. However, we need integer number of years rather than periods for the calculation of return periods. To get integer formats of years, we transfer the year of each period into a new column of the data frame and reset the row indices. Resetting the row indices to default integer indices through (`drop=True`) is not absolutely necessary, but serves the physical correctness of the data frame. The argument `inplace=True` replaces the indices inside `annual_max_df` (otherwise, we needed to write `annual_max_df = annual_max_df.reset_index(drop=True)`).
+Because we use `kind="period"`, the row indices of `annual_max_df` correspond to time periods of years. For instance the row index `1826` corresponds to the period `1826-01-01` through `1826-12-31`. However, we need integer numbers of years rather than periods for the calculation of return periods. To get integer formats of years, we transfer the year of each period into a new column of the data frame and reset the row indices. Resetting the row indices to default integer indices through (`drop=True`) is not absolutely necessary, but serves the physical correctness of the data frame. The argument `inplace=True` replaces the indices inside `annual_max_df` (otherwise, we needed to write `annual_max_df = annual_max_df.reset_index(drop=True)`).
 
 ```python
 annual_max_df["year"] = annual_max_df.index.year
@@ -138,7 +138,7 @@ Recall, the recurrence interval (here: return period in years) is the inverse of
 Check the resulting highest discharge and its return period:<br>
 `print(annual_max_df_sorted.tail())`<br>
 
-Plot the resulting probability and return curves with the plot functions provided in the `plot_resulty.py` *Python* script:
+Plot the resulting probability and return curves with the plot functions provided in the `plot_result.py` *Python* script:
 
 ```python
 plot_q_freq(annual_max_df_sorted)
