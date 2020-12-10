@@ -26,7 +26,7 @@ For any TELEMAC 2D simulation, the following files are mandatory:
     + File format: `cas`
     + Prepare either with [Fudaa PrePro](https://fudaa-project.atlassian.net/wiki/spaces/PREPRO/pages/253165587/How+to+launch+Fudaa-Prepro) or [*BlueKenue<sup>TM</sup>*](install-telemac.html#bluekenue).
 * Geometry file
-    + File format: `.slf` (selafin)
+    + File format: `.slf` ([selafin](https://gdal.org/drivers/vector/selafin.html))
     + Prepare either with
 * Boundary conditions
     + File format: `.cli`
@@ -66,7 +66,7 @@ More input files can be defined to simulate oil spill, pollutant transport, wind
 ## The steering file (CAS)
 
 ### File description
-The steering file is the main simulation file with information about mandatory files (e.g., the *selafin* geometry or the *cli* boundary), optional files, and simulation parameters. The steering file can be created or edited either with a basic text editor or an advanced software such as [*Fudaa-PrePro*](install-telemac.html#fudaa) or [*BlueKenue*](install-telemac.html#bluekenue). In this example, we will use *BlueKenue*.
+The steering file is the main simulation file with information about mandatory files (e.g., the [*selafin*](https://gdal.org/drivers/vector/selafin.html) geometry or the *cli* boundary), optional files, and simulation parameters. The steering file can be created or edited either with a basic text editor or an advanced software such as [*Fudaa-PrePro*](install-telemac.html#fudaa) or [*BlueKenue*](install-telemac.html#bluekenue). In this example, we will use *BlueKenue*.
 
 ### Setup
 
@@ -75,7 +75,7 @@ pass
 ## The geometry file (SLF or MED)
 
 ### File description and reference to CAS
-The geometry file in *slf* (*selafin*) format contains binary data about the mesh with its nodes. The name format of the geometry file can be modified in the steering file with:
+The geometry file in [*slf* (*selafin*)](https://gdal.org/drivers/vector/selafin.html) format contains binary data about the mesh with its nodes. The name format of the geometry file can be modified in the steering file with:
 
 ```
 /steering.cas

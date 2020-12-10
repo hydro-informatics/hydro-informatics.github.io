@@ -8,11 +8,11 @@ permalink: hypy_xml.html
 folder: python-basics
 ---
 
-This lesson starts with some background information about XML and what XML has to do with workbooks and JSON: XML is the abbreviation of [*E**x**tensible **M**arkup **L**anguage*](https://www.w3.org/TR/xml/) that defines rules for encoding documents. XML was designed for straightforward usage over the internet and we encounter XML documents all the time, on websites (e.g., *XHTML*), in the shape office documents (e.g., Office Open XML such as *docx*, *pptx*, or *xlsx*), or podcasts (e.g., *RSS*). The strength of the XML format is its characteristic of being both machine-readable (i.e., a computer can process XML files) and human-readable (i.e., we can read it like a newspaper). In simple words, entering formulas in an xlsx workbook is simultaneously machine-readable and human-readable, since humans and computers can interpret and evaluate the formulas in this XML frame. Other file formats such as [*JSON* (JavaScript Object Notation)](https://www.json.org/json-en.html) resemble XML and this is why we look at how *Python* can extract information from and export information to both formats. In water resources engineering and research, we are mainly interested in the exchange of information with office workbooks (*xlsx* files), or with JSON files, which provide boundary conditions for numerical models.
+This lesson starts with some background information about XML and what XML has to do with workbooks and JSON: XML is the abbreviation of [*E**x**tensible **M**arkup **L**anguage*](https://www.w3.org/TR/xml/) that defines rules for encoding documents. XML was designed for straightforward usage over the internet and we encounter XML documents all the time, on websites (e.g., *XHTML*), in the shape office documents (e.g., Office Open XML such as *docx*, *pptx*, or *xlsx*), or podcasts (e.g., *RSS*). The strength of the XML format is its characteristic of being both machine-readable (i.e., a computer can process XML files) and human-readable (i.e., we can read it like a newspaper). In simple words, entering formulas in an xlsx workbook is simultaneously machine-readable and human-readable, since humans and computers can interpret and evaluate the formulas in this XML frame. Other file formats such as [*JSON* (JavaScript Object Notation)](https://www.json.org/json-en.html) resemble XML and this is why we look at how *Python* can extract information from and export information to both formats. In water resources engineering and research, we are often interested in the exchange of information with office workbooks (*xlsx* files), or with JSON files, which provide boundary conditions for numerical models.
 
 ## Workbook (xlsx) handling
 
-Why do we want to communicate with workbooks at all? We have already seen that *Python* is much more powerful than office programs for the systematic analysis of data sets. However, *Python* requires the abstraction of data fields in our minds to visualize for example the structure of a nested list. For this reason, data from and for marketing, your boss, or public authorities are often required to have visually easy-to-use workbook formats, which can be overlooked quickly. Still we want to leverage the content of such workbook information efficiently with *Python* and we want to produce visually simplistic output that anyone can read without any *Python* knowledge.
+Why do we want to communicate with workbooks at all? We have already seen that *Python* is much more powerful than office programs for the systematic analysis of datasets. However, *Python* requires the abstraction of data fields in our minds, for example to visualize the structure of a nested list. For this reason, data from and for marketing, your (future) boss, or public entities are often required to have visually easy-to-use workbook formats, which can be overlooked quickly. Still, we want to leverage the content of such workbook information efficiently with *Python* and we want to produce visually simplistic output that anyone can read without any *Python* knowledge.
 
 We have already seen that *pandas* provides easy routines for importing and exporting data from and to workbooks, respectively [recall the data processing & file handling page](https://hydro-informatics.github.io/hypy_pynum.html#pd-files)). *pandas* uses [*XlsxWriter*](https://xlsxwriter.readthedocs.io/) or [*openpyxl*](https://openpyxl.readthedocs.io/en/stable/) depending on what is available in the current *Python* environment. Both packages have different behaviors, in particular when it comes to writing new or in existing workbooks. This is why the most robust approach is the direct use of one particular workbook handling library, where *openpyxl* is one of the most powerful options (note: this assertion is subjective) and this section introduces workbook handling with *openpyxl*.
 
@@ -66,10 +66,10 @@ wb.close()
 
 *openpyxl* reads existing workbooks with `openpyxl.load_workbook(filename=str())`. This function accepts optional keyword arguments, where the most important are:
 
-* `read_only=BOOLEAN` decides weather a workbook is opened in *read only* mode. A workbook can only be manipulated if `read_only=False` (this is the default option, which can be useful to handle large files or to ensure that graphical objects are not lost).
-* `write_only=BOOLEAN` decides weather a workbook is opened in *write only* mode. If `write_only=True` (the default is `False`), no data can be read from a workbook, but writing data is significantly faster (i.e., this option is useful to write large datasets).
+* `read_only=BOOLEAN` decides whether a workbook is opened in *read only* mode. A workbook can only be manipulated if `read_only=False` (this is the default option, which can be useful to handle large files or to ensure that graphical objects are not lost).
+* `write_only=BOOLEAN` decides whether a workbook is opened in *write only* mode. If `write_only=True` (the default is `False`), no data can be read from a workbook, but writing data is significantly faster (i.e., this option is useful to write large datasets).
 * `data_only=BOOLEAN` determines if cell formulae or cell data will be read. For example, when a workbook cell's content is `=PI()`, `data_only=False` (this is the default option) reads the cell value as `=PI()` and `data_only=True` reads the cell value as `3.14159265359`.
-* `keep_vba=BOOLEAN` controls whether *Visual Basic* elements (macros) are kept or not. The default is `keep_vba=False` (i.e., no preservation) and `keep_vba=True` will still not enable a modification of Visual Basic elements.
+* `keep_vba=BOOLEAN` controls whether *Visual Basic* elements (macros) are kept or not. The default is `keep_vba=False` (i.e., no preservation). Still, `keep_vba=True` will not enable a modification of Visual Basic elements.
 
 If `read_only=False`, we can manipulate cell values and also cell formats, including data formats (e.g., date, time, and [many more](https://openpyxl.readthedocs.io/en/stable/_modules/openpyxl/styles/numbers.html)), [font properties (and many more cell styles)](https://openpyxl.readthedocs.io/en/stable/styles.html), or colors in *HEX Color Code* ([find your favorite color here](https://www.colorcodehex.com/)). The following example opens the above created `python_workbook.xlsx`, adds a new worksheet, illustrates the implementation of some cell styles and fills it with randomized discharge measurements.
 
@@ -141,7 +141,7 @@ print("SQRT" in FORMULAE)
     
 
 ### (Un)merge cells
-Merging and un-merging cells is a popular office function for style purposes and *openpyxl* also provides function to perform merge operations:
+Merging and un-merging cells is a popular office function for style purposes and *openpyxl* also provides functions to perform merge operations:
 
 
 ```python
@@ -150,7 +150,7 @@ ws.unmerge_cells(start_row=1, end_row=3, start_column=1, end_column=2)
 ```
 
 ### Charts (plots)
-In the unlikely event that you want to insert plots directly into workbooks ([`matplotlib`](https://hydro-informatics.github.io/hypy_pyplot.html#matplotlib) is way more powerful), *openpyxl* offers features for this purpose as well. To illustrate the creation of a an area chart, the below code block re-uses the first column of random values in the  previously created `python_workbook.xlsx`. 
+In the unlikely event that you want to insert plots directly into workbooks ([`matplotlib`](https://hydro-informatics.github.io/hypy_pyplot.html#matplotlib) is way more powerful), *openpyxl* offers features for this purpose as well. To illustrate the creation of an area chart, the below code block re-uses the first column of random values in the previously created `python_workbook.xlsx`. 
 
 
 ```python
@@ -216,13 +216,13 @@ class Write(Read):
 
 ```
 
-An extended example script with more complex `Read` and `Write` classes can be downloaded from the [course repository](https://github.com/hydro-informatics/material-py-codes/raw/master/workbooks/xlsx.py) (please note that this script is only temporary available when the course takes place).
+An extended example script with more complex `Read` and `Write` classes can be downloaded from the [course repository](https://github.com/hydro-informatics/material-py-codes/raw/master/workbooks/xlsx.py).
 
 {% include challenge.html content="What are your favorite fonts, table colors and layouts? Write your own `Read` and `Write` classes with formatting methods to have a personal template ready to be used at any time." %}
 
 ### An example from water resources engineering and research
 
-The ecological restoration or enhancement of rivers requires, among other data, information on preferred water depths and flow velocities of target fish species. This information is established by biologists and then often provided in the shape of so-called [habitat suitability index](https://riverarchitect.github.io/RA_wiki/SHArC#hefish) (HSI) curves in workbook formats. As water resources researchers and engineers, we produce geospatially explicit data of water depth and flow velocity with numerical models. The output of two- or three-dimensional numerical models is way too large for being handled with office applications. So we need an advanced tool such as *Python* to handle the geospatially explicit data and to read and interpolate HSI curves from workbooks. How does that look like technically? The course assignments will help you to find out ...
+The ecological restoration or enhancement of rivers requires, among other data, information on preferred water depths and flow velocities of target fish species. This information is established by biologists and then often provided in the shape of so-called [habitat suitability index](https://riverarchitect.github.io/RA_wiki/SHArC#hefish) (HSI) curves in workbook formats. As water resources researchers and engineers, we produce geospatially explicit data of water depth and flow velocity with numerical models. The output of two- or three-dimensional numerical models is way too large for being handled with office applications. So we need an advanced tool such as *Python* to handle the geospatially explicit data and to read and interpolate HSI curves from workbooks. How does that look like technically? The course exercises will help you to find out ...
 
 {% include exercise.html content="Get more familiar with workbook handling in the [Sediment transport (1D)](ex_sediment.html) exercise." %}
 
@@ -232,8 +232,7 @@ JavaScript Object Notation ([JSON](https://www.json.org/json-en.html)) files hav
 
 ### *JSON* file structure
 
-A *JSON* file consists of two types of data structures, which are *dictionary* objects and *array*s in the form of *lists* of values. The *dictionary* objects in a *JSON* file correspond to the same format that we already know in *Python*: Pairs of keys (names) and values embraced by curly brackets (*braces*) `{"name": value}`. The `value` can be a *string*, *numeric*, a comm-separated *list* `[]` (*array*) of data, or another *dictionary*.
-The following example shows a *JSON* file called `river_struct.json` with a `RIVER` key that has a nested dictionary as value. The value-*dictionary* contains three keys (`NAME`, `GEOMETRY`, and `HYDRAULICS`.
+A *JSON* file consists of two types of data structures, which are *dictionary* objects and *arrays* in the form of *lists* of values. The *dictionary* objects in a *JSON* file correspond to the same format that we already know: Pairs of *keys* (names) and *values* embraced by curly brackets (*braces*) `{"name": value}`. The `value` can be a *string*, *numeric*, a comma-separated *list* `[]` (*array*) of data, or another *dictionary*. The following example shows a *JSON* file called `river_struct.json` with a `RIVER` key that has a nested dictionary as value. The value-*dictionary* contains three keys (`NAME`, `GEOMETRY`, and `HYDRAULICS`).
 
 {% include tip.html content="Take a couple of minutes to understand the elements of `river_struct.json`.<br>
 What is the purpose of the `FLOWBOUNDARIES` in `GEOMETRY`? <br>
@@ -312,7 +311,7 @@ Can you find the river on a map?" %}
 
 ### Read (decode) and write (encode) *JSON* files with the `json` library 
 
-*JSON* files can be implemented in many programming languages including *HTML* and *Python*. This is also the reason why *Jupyter* notebooks (as used in this course) can be run in *Python* and displayed as a web page. *Python* has a built-in `json` library that enables *JSON* decoding and encoding. The `json` library provides a `json.dumps(DATA)` method to "dump" (i.e., encode) data in *JSON* format. Vice versa, the `json.load()` method reads data from *JSON* files. The following example illustrates encoding and decoding an arbitrary nested dataset with the `json` library.
+*JSON* files can be implemented in many programming languages including *HTML* and *Python*. This is also the reason why *Jupyter* notebooks (as used in this course) can be run in *Python* and displayed as a web page. *Python* has a built-in `json` library that enables *JSON* decoding and encoding. The [`json`](https://anaconda.org/jmcmurray/json) library provides a `json.dumps(DATA)` method to "dump" (i.e., encode) data in *JSON* format. Vice versa, the `json.load()` method reads data from *JSON* files. The following example shows a *JSON* file called [*river_struct.json*](https://raw.githubusercontent.com/hydro-informatics/material-py-codes/master/data/river_struct.json) with a `RIVER` key that has a nested dictionary as value. The value-*dictionary* contains three keys (`NAME`, `GEOMETRY`, and `HYDRAULICS`).
 
 
 ```python
@@ -339,12 +338,12 @@ print(json.dumps(data_from_json))
     ["list_element1", {"dict_key": ["tuple_element", "text", 1.0, null]}]
     
 
-The [*Python* docs](https://docs.python.org/3/library/json.html) provide more options and descriptions on using the `json` library. However, here we will (once again) make use of the *pandas* library, which offers some powerful features for handling json data.
+The [*Python* docs](https://docs.python.org/3/library/json.html) provide more options and descriptions on using the `json` library. However, here we will (once again) make use of the *pandas* library, which offers some powerful features for handling *json* data.
 
 ### Read (decode) and write (encode) *JSON* files with *pandas* {#read-json}
 
 *pandas* (recall [data and file handling](hypy_pynum.html#pandas)) enables reading *JSON* files into its convenient table format with an embedded usage of the `json` library.
-The following code block uses the [`pandas.read_json(FILE)`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_json.html) method to read the above shown `RIVER` sample file.
+The following code block uses the [`pandas.read_json(FILE)`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_json.html) method to read the above shown [*river_struct.json*](https://raw.githubusercontent.com/hydro-informatics/material-py-codes/master/data/river_struct.json) sample file.
 
 
 ```python
@@ -359,7 +358,7 @@ print(river)
     NAME                                             Vanilla Flow
     
 
-Since a river without data is like ice cream without taste, we will add (random) data of flow characteristics to the data structure. Let us assume that we have used the data from `river_struct.json` to simulate a stationary discharge in a two-dimensional numerical model. As a result we have two regular grids (arrays) with data on flow velocity and flow depth. Now, we want to append both the flow depth and flow velocity arrays in the form of a result structure (dictionary in the `river_struct.json` and give the river a new name.
+Since a river without data is like ice cream without taste, we will add (random) data of flow characteristics to the data structure. Let us assume that we have used the data from *river_struct.json* to simulate a stationary discharge in a two-dimensional numerical model. As a result we have two regular grids (arrays) with data on flow velocity and flow depth. Now, we want to append both the flow depth and flow velocity arrays in the form of a result structure (*dictionary* in the *river_struct.json* and give the river a new name.
 
 
 ```python
