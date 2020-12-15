@@ -154,7 +154,7 @@ The below [figure](#qgis-reg-pts) shows an example for defining points within th
 A quality mesh accounts for the definitions made within the regions shapefile ([see above section](#regions)), but it does not include elevation data. Thus, after generating a quality mesh, elevation information needs to be added from the TIN ([see above section](#tin)). This section first explains the [generation of a quality mesh](qualm-gen) and then the [insertion of elevation data](#qualm-interp)).
 
 ###	Quality mesh generation<a name="qualm-gen"></a>
-In *QGIS*' `Plugins` menu, click on *BASEmesh* > QUALITY MESHING to open the Quality mesh-ing wizard. Make the following settings in the window (see also [figure](#qgis-qualm)):
+In *QGIS*' `Plugins` menu, click on *BASEmesh* > QUALITY MESHING to open the Quality meshing wizard. Make the following settings in the window (see also [figure](#qgis-qualm)):
 
 1. `Model boundary` = `boundary` ([see above section](#boundary))
 1. `breaklines` = `breaklines` ([see above section](#breaklines))
@@ -199,7 +199,7 @@ To run *BASEMENT*, the mesh needs to be exported in 2dm format. *BASEmesh*’s `
 
 In order to work with *BASEMENT* v3.x, the .2dm file requires a couple of adaptations. Open the produced finalmesh.2dm in a text editor software (right-click and, for example, edit with [*Notepad++*](hy_others.html#npp)) and:
 
-- At the top, insert the following line at line N°2: </br> `NUM_MATERIALS_PER_ELEM 1`
+- At the top, insert the following line at line N°2:  `NUM_MATERIALS_PER_ELEM 1`
     <a name="mod-2dm"></a>
     {% include image.html file="mod-2dm.png" alt="bm-x2" max-width="500" caption="Modification of the upper part of the .2dm file." %}  
 - At the bottom of the file, add the node string definitions for the inflow and outflow boundary. Enter the following 2 new lines (where *nd<sub>i</sub>* and *nd<sub>j</sub>* represent the *Inflow* and *Outflow* nodes, respectively, of [finalmesh_interpolatedNodes_elevMesh.shp](#qualm-interp)):
