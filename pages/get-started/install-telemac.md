@@ -493,9 +493,18 @@ The compilation should run for a while (can take more than 30 minutes) and succe
 
 ### Test *TELEMAC*
 
-***Estimated duration: 5 minutes.***
+***Estimated duration: 5-10 minutes.***
 
-To test if *TELEMAC* works, use a pre-defined case from the provided `examples` folder:
+Once *Terminal* was closed or any clean system start-up requires to load the *TELEMAC* source environment in *Terminal* before running *TELEMAC*:
+
+```
+cd ~/telemac/v8p1/configs
+source pysource.openmpi.sh
+config.py
+```
+
+
+To run and test if *TELEMAC* works, use a pre-defined case from the provided `examples` folder:
 
 ```
 cd ~/telemac/v8p1/examples/telemac2d/gouttedo

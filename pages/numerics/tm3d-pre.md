@@ -8,7 +8,7 @@ permalink: tm3d-pre.html
 folder: numerics
 ---
 
-## Under construction. Expected release of this tutorial: Spring 2021.
+## Under construction. Expected release of this tutorial: Fall 2021.
 
 Thank you for your patience.
 
