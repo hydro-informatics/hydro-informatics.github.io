@@ -14,6 +14,27 @@ Thank you for your patience.
 
 {% include requirements.html content="Make sure that TELEMAC is correctly installed and that simulation files are prepared in line with the [pre-processing instructions](tm2d-pre.html)." %}
 
+## Model setup with Fudaa Prepro {#prepro-fudaa}
+
+Make sure to have [Fudaa PrePro](install-telemac.html#fudaa) installed. To start *Fudaa*, open *Terminal* (*Linux*) or *Command Prompt* (*Windows*) and:
+
+* `cd` to the installation directory of *Fudaa*
+* start the GUI:
+    + *Linux*: tap `sh supervisor.sh`
+    + *Windows*: tap `supervisor.bat`
+
+### Define steady flow boundaries {#prepro-steady}
+
+Qconst
+
+### Define unsteady flow boundaries {#prepro-unsteady}
+
+Qvar
+
+### Activate morphodynamics (sediment transport with Gaia) {#prepro-gaia}
+
+Qs
+
 ## Load environment and files
 
 Load the TELEMAC *Python* variables: 
@@ -27,7 +48,7 @@ config.py
 
 ***
 
-## Start a 2D hydrodynamic simulation
+## Start a 2D hydrodynamic simulation (steady) {#steadyrun}
 
 To start a simulation, `cd` to the directory where the simulation files live (see previous page) and launch the steering file (*cas*) with *telemac2d.py*: 
 
@@ -37,5 +58,4 @@ telemac2d.py run_2dhydrodynamic.cas
 ```
 
 Next:
-* [> Post-processing of results (2D) >](tm2d-post.html)
-* [> Post-processing of results (3D) >](tm3d-post.html)
+* [> Post-processing of 2D results >](tm2d-post.html)

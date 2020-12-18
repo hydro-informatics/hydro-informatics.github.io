@@ -77,7 +77,7 @@ NON-HYDROSTATIC VERSION = YES
 ```
 
 
-## Build a geometry with SALOME
+## Build a geometry with SALOME {#prepro-salome}
 
 A 3D mesh for TELEMAC should be possibly built with tetrahedral elements. This tutorial guides through the creation of a simple block geometry and building a tetrahedral mesh for the block.
 

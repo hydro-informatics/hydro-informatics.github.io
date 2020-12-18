@@ -276,7 +276,6 @@ def main():
 
     hec_file = os.path.abspath("..") + "\\HEC-RAS\\output.xlsx"
     hec = HecSet(hec_file)
-    mpm_results = calculate_mpm(hec.hec_data, D_char)
 ```
 
 ### Create a bed load core class

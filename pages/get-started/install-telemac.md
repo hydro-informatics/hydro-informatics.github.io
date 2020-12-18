@@ -491,7 +491,7 @@ The compilation should run for a while (can take more than 30 minutes) and succe
 
 {% include tip.html content="If an error occurred in the compiling process, traceback error messages and identify the component that did not work. Revise setting up the concerned component in this workflow very thoroughly. Do not try to re-invent the wheel - the most likely problem is a tiny little detail in the files that you created on your own. Troubleshooting may be a tough task, in particular, because you need to put into question your own work." %}
 
-### Test *TELEMAC*
+### Test *TELEMAC* {#testrun}
 
 ***Estimated duration: 5-10 minutes.***
 
