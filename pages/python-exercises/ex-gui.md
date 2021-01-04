@@ -110,16 +110,16 @@ To enable the selection of grain and *HEC-RAS* output data files, we will use `t
 We will create three buttons to let the user select:
 
 1. An input `csv` file for grain size classification,
-1. An *HEC-RAS* output workbook (`xlsx`) file, and
+1. A *HEC-RAS* output workbook (`xlsx`) file, and
 1. An output directory where the resulting `bed_load_mpm.xlsx` workbook will be stored.
 
-Every button triggers a method of `SediApp`, which we will define later on. The methods to trigger are defined with the `command=self.METHOD()` keyword ([recall the instructions for creating a `tk.Button`](https://hydro-informatics.github.io/hypy_gui.html#add-a-button-to-call-a-function)).
+Every button triggers a method of `SediApp`, which we will define later on. The methods to trigger are defined with the `command=self.METHOD()` keyword ([recall the instructions for creating a *button*](https://hydro-informatics.github.io/hypy_gui.html#add-a-button-to-call-a-function)).
 
 The file and folder directories need to be initialized before we can use them in the button texts. Therefore, add to `__init__`:
 
 ```python
         self.grain_file = "SELECT"
-        self.grain_info = None  # will be a sed.GrainReader object once the use defined grains.csv
+        self.grain_info = None  # will be a sed.GrainReader object when the user defined grains.csv
         self.hec_file = "SELECT"
         self.out_folder = "SELECT"
 ```
@@ -146,8 +146,6 @@ The three buttons for selecting files and directories do not need to be modified
                                                                     sticky=tk.W)
 ```
 
-***
-
 To run the program (bed load transport calculation), we need another button, which we want to modify later on to communicate that the program ran successfully. Add the run button to `__init__`:
 
 ```python
@@ -156,7 +154,7 @@ To run the program (bed load transport calculation), we need another button, whi
         self.b_run.grid(sticky=tk.W, row=7, column=0, padx=self.padx, pady=self.pady)
 ```
 
->   **Note** the difference of the use of `.grid()` when it is attributed to a `tk.Button` instance rather than directly with `tk.Button`.
+{% include note.html content="There is a difference of the use of `.grid()` when it is attributed to a `tk.Button` instance rather than directly with `tk.Button`." %}
 
 To let the user know (approve) the selected files and directories, create `tk.Label` objects, which need to be configurable (the selected directories will change). Add the following labels to `__init__`:
 
@@ -171,7 +169,7 @@ To let the user know (approve) the selected files and directories, create `tk.La
         self.run_label.grid(column=0, columnspan=3, row=8, padx=self.padx, pady=self.pady, sticky=tk.W)
 ```
 
-Add a `ttk.Combobox` that lists grain sizes and lets the user choose which value to use as characteristic grain size. Place the combobox (with a void list) and put a label in front of the combobox (does not need to be modified) in the `__init__` method:
+Add a `ttk.Combobox` that lists grain sizes and lets the user choose which value to use for characteristic grain size. Place the combobox (with a void list) and put a label in front of the combobox (does not need to be modified) in the `__init__` method:
 
 ```python
         # Label for Combobox
@@ -199,7 +197,7 @@ The `initialdir` keyword argument defines the directory that opens up in the fil
                                parent=self)
 ```
 
-To enable the selection of a grain `csv` file, write a `set_grain_file` method as used in the above `tk.Button`. The `set_grain_file` method opens a file selection dialog and tries to open the file as a `GrainReader` object ([recall sediment transport exercise](https://github.com/Ecohydraulics/Exercise-SedimentTransport#read-grain-size-data)). If it cannot open the selected grain size `csv` file, the method falls into an `OSError` statement and opens a `showinfo` box (from `tkinter.messagebox`) that notifies the user about the error. Otherwise (if everything is OK), the method updates the grain label (`self.grain_label`) and the combobox (`self.cbx_D_char`) with the information read from the grain size `csv` file.
+To enable the selection of a grain `csv` file, write a `set_grain_file` method as used with the above `tk.Button`. The `set_grain_file` method opens a file selection dialog and tries to open the file as a `GrainReader` object ([recall sediment transport exercise](https://github.com/Ecohydraulics/Exercise-SedimentTransport#read-grain-size-data)). If it cannot open the selected grain size `csv` file, the method falls into an `OSError` statement and opens a `showinfo` box (from `tkinter.messagebox`) that notifies the user about the error. Otherwise (if everything is OK), the method updates the grain label (`self.grain_label`) and the combobox (`self.cbx_D_char`) with the information read from the grain size `csv` file.
 
 ```python
     def set_grain_file(self):
@@ -258,13 +256,13 @@ Before running the bed load computation, we need to make sure that a grain size 
         return True
 ```
 
-***
+### Define the run program method
 
 To finalize the app, add a `self.run_program` method corresponding to the `command` function of the `"Compute"` button (`self.b_run`) . The `run_program` method must ensure that the user has specified the necessary files and folders by calling the `valid_selections` method (and return `-1` otherwise). Then, the characteristic grain size selected by the user in the combobox is determined by `self.cbx_D_char.get()`. If the provided grain `csv` file has no valid numeric entry for the selected characteristic grain size, `run_program`  should fall into a `ValueError` statement and inform the user about the issue in a `showinfo` box.
 
 An `askokcancel` pop-up window (from `tkinter.messagebox`) asks the user to press *OK*/*Cancel* to run/abort the program. If the user clicks *OK*, the pop-up window returns `True` and starts the bed load computation through the `main()` function of `sed` (see above import of the `sediment_transport` module).
 
-After the successful run of the program, the `run_program` method sets the foreground (text) color of the `self.b_run` button to `"forest green"` and adds the text `"Success: Created %s" % str(self.out_folder + "/bed_load_mpm.xlsx")` to the `self.run_label` defined in the `__init__` method. The `webbrowser` module's `open` method opens the newly produced [Meyer-Peter & Müller (1948)](https://github.com/Ecohydraulics/Exercise-SedimentTransport#mpm) bed load transport workbook (result of `sed.main(...)`). 
+After the successful run of the program, the `run_program` method sets the foreground (text) color of the `self.b_run` button to `"forest green"` and adds the text `"Success: Created %s" % str(self.out_folder + "/bed_load_mpm.xlsx")` to `self.run_label` (defined in the `__init__` method). The `webbrowser` module's `open` method opens the newly produced [Meyer-Peter & Müller (1948)](https://github.com/Ecohydraulics/Exercise-SedimentTransport#mpm) bed load transport workbook (result of `sed.main(...)`). 
 
 ```python
     def run_program(self):
@@ -299,9 +297,9 @@ Using [*PyCharm*](https://hydro-informatics.github.io/hy_ide.html#pycharm), righ
 
 ![guistart](https://github.com/Ecohydraulics/Exercise-gui/raw/master/graphs/gui-start.png)
 
-Use the buttons to select a grain `csv` file (e.g., [`grains.csv`](https://github.com/Ecohydraulics/Exercise-SedimentTransport/raw/master/grains.csv) from the sediment transport exercise), a *HEC-RAS* output `xlsx` workbook (e.g., [`HEC-RAS/output.xlsx`](https://github.com/Ecohydraulics/Exercise-SedimentTransport/raw/master/HEC-RAS/output.xlsx) from the sediment transport exercise), and define an output directory (e.g., `.../Exercise-gui/`). Make sure to select a characteristic grain size in the combobox (e.g., `D84`) and click on the `Compute` button.
+Use the buttons to select a grain `csv` file (e.g., [grains.csv](https://github.com/Ecohydraulics/Exercise-SedimentTransport/raw/master/grains.csv) from the sediment transport exercise), a *HEC-RAS* output `xlsx` workbook (e.g., [HEC-RAS/output.xlsx](https://github.com/Ecohydraulics/Exercise-SedimentTransport/raw/master/HEC-RAS/output.xlsx) from the sediment transport exercise), and define an output directory (e.g., *.../Exercise-gui/*). Make sure to select a characteristic grain size in the combobox (e.g., `D84`) and click on the `Compute` button.
 
-After a successful run, the file `bed_load_mpm.xlsx` opens, the `Compute` button turns green and the label below the button confirms the successful run (otherwise traceback errors and fix them). The GUI should now look like this:
+After a successful run, the file `bed_load_mpm.xlsx` opens, the `Compute` button turns green, and the label below the button confirms the successful run (otherwise traceback errors and fix them). The GUI should now look like this:
 
 ![guiend](https://github.com/Ecohydraulics/Exercise-gui/raw/master/graphs/gui-end.png)
 
