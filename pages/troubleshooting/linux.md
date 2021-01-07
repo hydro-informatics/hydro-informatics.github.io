@@ -22,6 +22,7 @@ sudo apt-get clean
 sudo apt-get autoclean
 sudo apt-get autoremove
 sudo apt-get autoremove --purge
+sudo apt autoremove
 ```
 
 Subversion (*SVN*) repositories may also contain old and unnecessary chunks, which can be removed (e.g., from a local TELEMAC-MASCARET repository) with (the second argument is the *SVN* directory):
