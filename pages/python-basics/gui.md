@@ -21,10 +21,10 @@ python -m tkinter
 
 `tkinter` works on many popular platforms (*Linux*, *macOS*, *Windows*) and is not only available to *Python*, but also to [*Ruby*](https://www.ruby-lang.org), [*Perl*](https://www.perl.org/), [*Tcl*](https://www.tcl-lang.org/) (the origin of of `tkinter`), and many more languages. Because of its support for languages like *Ruby* or *Perl*, `tkinter` can be used for local GUIs as well as for web applications.
 
-{% include note.html content="All GUI codes on this pages can be downloaded from the [course repository](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/) (some of the scripts are only temporary available when the course takes place)." %}
+{% include note.html content="All GUI codes on this pages can be downloaded from the [course repository](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/)." %}
 
 ## The first GUI 
-The very first step is to import `tkinter`, usually using the alias `as tk`. With `tk.Tk()`, a so-called parent window (e.g., `top`) can be created, in which all further elements will be accommodated. All further elements are created as `tk` objects as child of the parent window and placed (arranged) in the parent window using the `pack()` or the `.grid()` (e.g., `tk.ELEMENT.grid(row=INT, column=INT)`) methods (more later in the [widgets](#place-widget) section). 
+The very first step is to import `tkinter`, usually using the alias `as tk`. With `tk.Tk()`, a so-called parent window (e.g., `top`) can be created, in which all further elements will be accommodated. All further elements are created as `tk` objects as child of the parent window and placed (arranged) in the parent window using the `pack()` or the `grid()` (e.g., `tk.ELEMENT.grid(row=INT, column=INT)`) methods (more later in the [widgets](#place-widget) section). 
 
 To display the GUI, the parent window `top` must be launched with `top.mainloop()` after arranging all elements. The following code block shows how to create a parent window with a label element (`tk.Label`).
 
@@ -134,7 +134,7 @@ if __name__ == "__main__":
 
 {% include image.html file="py-tk-elements.png" caption="tkinter widgets: Label, Button, Entry, Combobox, Listbox with Scrollbar, Checkbutton, and an Image." %}
 
-And this is the code that creates the `tkinter` widgets in the above figure (the [script](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/start_gui.py), [image](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/sunny_image.gif) and [icon](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/gui_icon.ico) are available at the course repository when the lecture takes place):
+And this is the code that creates the `tkinter` widgets in the above figure (the [script](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/start_gui.py), [image](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/sunny_image.gif) and [icon](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/sample_icon.ico) are available at the course repository):
 
 
 ```python
