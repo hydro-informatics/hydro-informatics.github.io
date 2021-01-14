@@ -12,13 +12,13 @@ folder: geopy
 {% include requirements.html content="Make sure to understand [gridded raster data](geospatial-data.html#raster) before reading this section. Recall that we will mostly deal with the `.tif` (*GeoTIFF*) format for grid data and hat many other raster data types exist." %}
 {% include tip.html content="While `gdal`'s `ogr` module is useful for shapefile handling, raster data are best handled by `gdal` itself." %}
 {% include tip.html content="Download sample raster datasets from [*River Architect*](https://github.com/RiverArchitect/SampleData/archive/master.zip). This page uses *GeoTIFF* raster data located in [`RiverArchitect/SampleData/01_Conditions/2100_sample/`](https://github.com/RiverArchitect/SampleData/tree/master/01_Conditions/2100_sample)." %}
-{% include tip.html content="The core functions illustrated in this e-book are implemented in the [`geo_utils`](https://geo-utils.readthedocs.io/) package." %}
+{% include tip.html content="The core functions illustrated in this e-book are implemented in the [`geo_utils`](https://github.com/hydro-informatics/geo-utils) package." %}
 
 ## Load raster
 
 ### Open existing raster data {#open}
-Raster data can be opened as a `gdal.Open("FILENAME")` object. The following code block provides a function to open any raster specified with the `file_name` input argument. One of the most important elements when dealing with raster data is the `RasterBand`, which takes on a similar data carrier role as `GetLayer` in shapefile handling.
-To create this important object, the `open_raster` function:
+
+Raster data can be opened as a `gdal.Open("FILENAME")` object. The following code block provides a function to open any raster specified with the `file_name` input argument. One of the most important elements when dealing with raster data is the `RasterBand`, which takes on a similar data carrier role as `GetLayer` in shapefile handling. To handle rasters, the following code block features the `open_raster` function that:
 
 1. Enables error and warning feedback with `gdal.UseExceptions()` (this step is absolutely vital when using raster data).
 1. Opens the provided raster `file_name` embraced by `try` - `except` statements to inform if and why an error occurred while opening the raster.
@@ -75,7 +75,7 @@ depth = None
 ### Raster band statistics and toolbox scripts {#terminal}
 Once we loaded a raster and a raster band with the above `open_raster` function, we can access statistical information (e.g., the minimum or the maximum), identify the *no-data* value (i.e., a pre-defined value that is assigned to pixels without value), or the type of units used.
 
-*Python* scripts for processing geospatial data can also be embedded as plugins in *GIS* desktop applications (e.g., as plugins in *QGIS* or *Toolbox* in *ArcGIS Pro*). To run a *Python* script in a *GIS* desktop application, it should be written as a standalone script that can receive input arguments. Creating plugins is not a primary learning goal here and the interested reader can read more about implementing plugins in *QGIS* in the [*QGIS* docs](https://docs.qgis.org/3.10/en/docs/pyqgis_developer_cookbook/plugins/index.html).
+*Python* scripts for processing geospatial data can also be embedded as plugins in *GIS* desktop applications (e.g., as plugins in *QGIS* or *Toolbox* in *ArcGIS Pro*). To run a *Python* script in a *GIS* desktop application, it should be written as a standalone script that can receive input arguments. Creating plugins is not a primary learning goal here and the interested reader can find out more about implementing plugins in the [*QGIS* docs](https://docs.qgis.org/3.16/en/docs/pyqgis_developer_cookbook/plugins/index.html).
 
 {% include note.html content="In fact, *QGIS* wraps many external functionalities, which are available through he *QGIS Processing Toolbox*. The provided algorithms belong for example to *SAGA* or *GRASS GIS*.
 " %}
@@ -142,7 +142,7 @@ if __name__ == '__main__':
     main(int(sys.argv[1]), str(sys.argv[2]))
 ```
 
-To run this script, save it as `raster_band_info.py` (e.g., in `C:\temp`) and navigate to the script directory in a terminal application (e.g., in *PyCharm*'s *Terminal*) using the `cd` command. Now run the script to get information of the water depth raster `h001000.tif` with:
+To run this script, save it as `raster_band_info.py` (e.g., in `C:\temp`) and navigate to the script directory in a terminal application (e.g., in *PyCharm*'s *Terminal*) using the `cd` command. Then, run the script to print information about the water depth raster `h001000.tif` to the console (or *Terminal*):
 
 ```
 C:\temp\ python raster_band_info.py 1 "C:\temp\geodata\river-architect\h001000.tif"
@@ -187,7 +187,7 @@ The output raster pixels can have the following data types (source: [gdal.org/do
 * `GDT_CFloat64` Complex Float64 
 
 ### Create raster (array to raster) {#create}
-With these ingredients, we can create a raster from a numeric array, because a raster is basically just a georeferenced array. In *Python* it is convenient to convert a [*numpy* array](hypy_pynum.html#array-matrix-operations) into a raster (band). The following functions features the conversion of a *numpy* array into a *GeoTIFF* rasters with the following workflow:
+Because a raster is basically just a georeferenced array, we can create a raster from a numeric (*numpy*) array. *Python* enables convenient options to convert a [*numpy* array](hypy_pynum.html#array-matrix-operations) into a raster (band). The following `create_raster` function features the conversion of a *numpy* array into a *GeoTIFF* raster with the following workflow:
 
 1. Check out the *GeoTIFF* driver (`driver = gdal.GetDriverByName('GTiff')`).
 1. Retrieve the array size and (number of rows `rows` and columns `cols`).
@@ -200,7 +200,7 @@ With these ingredients, we can create a raster from a numeric array, because a r
 1. Create a spatial reference system object  (`srs`) as a function of the `epsg` input parameter and export it to *WKT* format.
 1. Release the raster (flush from cache).
 
-{% include note.html content="The units defined with the `epsg` projection drive the pixel size, where `pixel_width` and `pixel_height` are multipliers of that unit. In the case of `epsg=3857`, the unit is `meters` and `pixel_width=10` combined with `pixel_height=20` creates 10m wide and 20m high pixels. In the case of `epsg=4326`, the unit is (geographic) `degrees` and 1 degree by 1 degree pixels can have the size of a county." %}
+{% include note.html content="The units defined with the `epsg` projection drive the pixel size, where `pixel_width` and `pixel_height` are multipliers of that unit. In the case of `epsg=3857`, the unit is `meters` and `pixel_width=10` combined with `pixel_height=20` creates 10-m wide and 20-m high pixels. In the case of `epsg=4326`, the unit is (geographic) `degrees` and 1 degree by 1 degree pixels can have the size of a county." %}
 
 
 ```python
@@ -276,10 +276,10 @@ create_raster(raster_name, unis_dem, raster_origin,  pixel_width=1,  pixel_heigh
 {% include image.html file="qgis-ras-unis.png" alt="unis-dem" caption="The newly created random_unis_dem.tif raster plotted in QGIS." %}
 
 ### Raster calculus (raster / band to array) {#createarray}
-The procedure described in the create_raster function above can be used in a similar way to create [*numpy* array](hypy_pynum.html#array-matrix-operations) from raster bands.
-This enables algebraic or other logical operations to be applied to existing raster data. Need an example? In the *RiverArchitect SampleData*, the units of the water depth raster `h001000.tif` are in U.S. customary feet and the units of the flow velocity raster `u001000.tif` are in feet per second. To calculate the *Froude* number (recall the meaning of the [*Froude* number on the data processing page](hypy_pynum.html#exp-Froude)) for each pixel based on the two rasters (water depth and flow velocity), it is convenient to convert both rasters into m and m/s, respectively.
+The procedure described in the `create_raster` function can be used in a similar way to create a [*numpy* array](https://hydro-informatics.github.io/hypy_pynum.html#array-matrix-operations) from raster bands (i.e., the other way round).
+Thus, algebraic or other logical operations can be applied to existing raster data. 
 
-First we want to write a custom function that loads a raster as an array and overwrites `NoDataValues` with `np.nan` (`raster` and `band` can be instantiated with the above `open_raster` function):
+Need an example? In the *RiverArchitect SampleData*, the units of the water depth raster `h001000.tif` are in U.S. customary feet and the units of the flow velocity raster `u001000.tif` are in feet per second. To calculate the *Froude* number (recall the meaning of the [*Froude* number on the data processing page](https://hydro-informatics.github.io/hypy_pynum.html#exp-Froude)) for each pixel based on the two rasters (water depth and flow velocity), it is convenient to convert both rasters into m and m/s, respectively. To do so, the following customized function loads a raster as an array and overwrites `NoDataValues` with `np.nan` (`raster` and `band` can be instantiated with the above `open_raster` function):
 
 
 ```python
@@ -300,14 +300,12 @@ def raster2array(file_name, band_number=1):
     return raster, band_array, raster.GetGeoTransform()
 ```
 
-{% include challenge.html content="The `raster2array` function returns a tuple, where `output[0]` corresponds to the array and `output[1]` is the geo-transformation. Can you optimize the way how these information is returned?" %}
-
 The following code block makes use of the `raster2array` function for converting a *GeoTIFF* raster into a *numpy* array, performs simple algebraic calculations, and saves the result in the shape of a *Froude* number *GeoTIFF* raster. In detail, the workflow involves to: 
 
 * Define the input raster file names with directories (`h_file` and `u_file`),
 * Load original rasters as `ndarray` with the `raster2array` function and get the original `GeoTransform` description,
-* converts all values from U.S. customary feet to S.I. metric (recall the [`feet_to_meter`](hypy_pyfun.html#kwargs) function from the *Python* basics), and
-* saves a new copy of the raster.
+* Convert all values from U.S. customary feet to S.I. metric (recall the [`feet_to_meter`](hypy_pyfun.html#kwargs) function from the *Python* basics), and
+* Save a new copy of the raster.
 
 
 ```python
@@ -333,17 +331,17 @@ create_raster(file_name= r"" + os.path.abspath("") + "/geodata/rasters/Fr1000cfs
 
 {% include image.html file="qgis-py-fr.png" alt="geopy-fr" caption="The newly created Fr1000cfs.tif raster plotted in QGIS." %}
 
-### Reproject raster {#reproject}
+### Reproject a raster {#reproject}
 
-The transformation (and reprojection) of a raster into a another coordinate system involves rotation, shifting, and shearing of pixels. If one of these operations is skipped, it can happen that the reprojected raster is squeezed, twisted, or placed somewhere else in the world. Therefore, the approach for the reprojection of a raster into another coordinate data system implies the following steps:
+The transformation (and reprojection) of a raster into a another coordinate system involves rotating, shifting, and shearing pixels. If one of these operations is skipped, it can happen that the reprojected raster is squeezed, twisted, or placed somewhere else in the world. Therefore, the approach for the reprojection of a raster into another coordinate system implies the following steps:
 
 1. Retrieve the source and target spatial reference systems (e.g., derive from a `gdal.Dataset` or an `EPSG` authority code).
-1. Read the geo tansformation of the source dataset ( `gdal.Dataset.GetGeoTransform()`).
+1. Read the geo transformation of the source dataset ( `gdal.Dataset.GetGeoTransform()`).
 1. Derive the number of pixels and the spacing between pixels in the new (reprojected) dataset.
 1. Instantiate the new (reprojected) dataset.
 1. Project an image of the source dataset onto the new (reprojected) dataset (`gdal.ReprojectImage()`).
 
-The spatial reference system can be derived from a dataset with the explanations of the [shapefile page](geo-shp.html#prj-shp) by writing a `get_srs` function. The following code block shows the `get_srs` function (uses the `osr` library from `osgeo` / `gdal` ), which is also integrated in the [*geo_utils* package](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/srs_mgmt.py) for this course.
+The spatial reference system can be derived from a dataset with the explanations of the [shapefile page](geo-shp.html#prj-shp) by writing a `get_srs` function. The following code block shows the `get_srs` function (uses the `osr` library from `osgeo` / `gdal` ), which is also integrated in the [*geo_utils* package](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/srs_mgmt.py).
 
 
 ```python
@@ -365,7 +363,7 @@ def get_srs(dataset):
     return sr
 ```
 
-With the previously defined `open_raster` and `get_srs` functions we have all the necessary ingredients to accomplish the raster reprojection workflow in a `reproject_raster` function. An additional feature of the function is to ensure correct use of the `osr.CoordinateTransformation` method, which behaves differently under `gdal` 3.0 compared to previous `gdal` versions ([read more](https://github.com/OSGeo/gdal/issues/1546)).
+With the previously defined `open_raster` and `get_srs` functions, we have all the necessary ingredients to accomplish the raster reprojection workflow in a `reproject_raster` function. An additional feature of the function is to ensure correct use of `osr.CoordinateTransformation`, which behaves differently under `gdal` 3.0 compared to previous `gdal` versions ([read more](https://github.com/OSGeo/gdal/issues/1546)).
 
 
 ```python
@@ -417,9 +415,9 @@ def reproject_raster(source_dataset, source_srs, target_srs):
     return tar_dataset
 ```
 
-Using the `reproject_raster` function in a *Python*  script requires a source dataset and another (orientation) dataset with the new coordinate system into which the source dataset will be projected. The following example shows how to project the *Froude* number raster created above into the `EPSG=3857` coordinate system for viewing it in *QGIS* on the *Google Satellite* base map ([recall base map usage in *QGIS*](geo_software.html#basemap)). As orientation data set we use `web_frame.tif`, which was created on the *Google Satellite* base map.
+Using the `reproject_raster` function in a *Python*  script requires a source dataset and another (orientation) dataset with the new coordinate system into which the source dataset will be projected. The following example shows how to project the *Froude* number raster created above into the `EPSG=3857` coordinate system for viewing it in *QGIS* on the *Google Satellite* base map ([recall base map usage in *QGIS*](geo_software.html#basemap)). For an orientation dataset, we use `web_frame.tif`, which was created on the *Google Satellite* base map.
 
-With the `get_srs` function that automatically detects the raster projection and spatial reference system we can use the `create_raster` function to reproject the above-created `Fr1000cfs.tif` raster (e.g., to `epsg=4326`).
+With the `get_srs` function that automatically detects the raster projection and spatial reference system, we can use the `create_raster` function to reproject the above-created `Fr1000cfs.tif` raster (e.g., onto `epsg=4326`).
 
 
 ```python
@@ -457,19 +455,19 @@ Plotted in *QGIS*, the reprojected *Froude* number raster looks like this:
 
 {% include image.html file="qgis-reproj-Froude.png" alt="reproject" caption="The reprojected Froude number raster plotted in QGIS on the Google Satellite base map (XYZ Tiles)." %} 
 
-The `reproject_raster` function is also available (slightly modified) in the [*geo_utils* package](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/srs_mgmt.py), where saving the new reprojected raster is embedded in the function (automatically appends the syllable `"_epsg[NO]"` to the original file name).
+The `reproject_raster` function is also available (slightly modified) in the [*geo_utils* package](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/srs_mgmt.py), where saving the new reprojected raster is also implemented (automatically appends the syllable `"_epsg[NO]"` to the original file name).
 
 {% include note.html content="To display multiple rasters with different coordinate systems on the same map in *QGIS*, the coordinate systems must be harmonized in most cases. *QGIS* has a dedicated function for adjusting raster coordinate systems: In *QGIS*, click on the `Raster` menu > `Projections` > `Warp (Reproject)...`. Select the raster(s) to reproject (i.e., the raster(s) to harmonize with project coordinate system). However, *Warp* may not perform all reprojection steps as desired and lead to wrong placements of the new raster. The *Warp* method is also available in *Python* through `gdal.Warp` ([read the docs](https://gdal.org/tutorials/warp_tut.html)): <br><br>`kwargs={'format': 'GTiff', 'geoloc': True}`<br>`gdal.Warp(TARGET_GEO_TIFF_FILE_NAME, SOURCE_GEO_TIFF_FILE_NAME, **kwargs)`" %}
 
-{% include important.html content="The coordinate transformation fails when no transformation between the indicated source and target spatial reference system can be established (i.e., `gdal` does not know the transformation). This problem occurs often when old, regional coordinate systems are transformed to coordinate systems for web applications (e.g., `EPSG=3857`). Read more in the [*gdal* docs](https://gdal.org/tutorials/osr_api_tut.html#coordinate-transformation)." %}
+{% include important.html content="The coordinate transformation fails when no transformation between the indicated source and target spatial reference system can be established (i.e., `gdal` does not know the transformation). This problem occurs often when old, regional coordinate systems are transformed to coordinate systems for web applications (e.g., `epsg=3857`). Read more in the [*gdal* docs](https://gdal.org/tutorials/osr_api_tut.html#coordinate-transformation)." %}
 
 ## An application example with zonal statistics {#zonal}
 
-In hydraulic and geospatial analyses, the question of statistical values of certain areas of one or more rasters often arises. For example, we may be interested in mean values and standard deviations in specific water body zones. *Zonal statistics* enable the delineation of an area of a raster by using a polygon shapefile.
+In hydraulic and geospatial analyses, the question of statistical values of certain areas of one or more rasters often arises. For instance, we may be interested in mean values and standard deviations in specific water body zones. *Zonal statistics* enable the delineation of an area of a raster by using a polygon shapefile.
 
 The *RiverArchitect* dataset includes a slackwater zone and zonal statistics help to identify the mean water depth and flow velocity of slackwaters, which are a so-called morphological unit. 
 
-{% include note.html content="Instream morphological units aid to describe the geospatial organization of fluvial landforms, which play and important role in ecohydraulic analyses and river restoration. For example, pool units describe deep water zones with low flow velocity, riffle are typicall characterized by shallow water depths and high velocity, and slackwaters are shallow flow zones with low flow velocity (many juvenile fish love slackwaters). [Wyrick and Pasternack (2014)](https://www.sciencedirect.com/science/article/pii/S0169555X14000099) introduce the delineation of morphological units and an open-access summary can be found in the [Appendix Sect. 5 in Schwindt et al. (2020)](https://ars.els-cdn.com/content/image/1-s2.0-S235271101930281X-mmc1.pdf)." %}
+{% include note.html content="Instream morphological units aid to describe the geospatial organization of fluvial landforms, which play and important role in ecohydraulic analyses and river restoration. For example, pool units describe deep water zones with low flow velocity, riffle are typically characterized by shallow water depths and high velocity, and slackwaters are shallow flow zones with low flow velocity (many juvenile fish love slackwaters). [Wyrick and Pasternack (2014)](https://www.sciencedirect.com/science/article/pii/S0169555X14000099) introduce the delineation of morphological units and an open-access summary can be found in the [Appendix Sect. 5 in Schwindt et al. (2020)](https://ars.els-cdn.com/content/image/1-s2.0-S235271101930281X-mmc1.pdf)." %}
 
 To analyze a visually apparent riffle unit, we need to draw a polygon within a new shapefile that delineates the slackwater. The following figures guide through the creation of a polygon shapefile and the delineation of the riffle with [*QGIS*](geo_software.html#qgis). Start with opening *QGIS* and create a new project. Import the water depth and flow velocity rasters showing the slow and shallow water zone. Then:
 
@@ -481,7 +479,7 @@ To analyze a visually apparent riffle unit, we need to draw a polygon within a n
 Finalize the drawing with a click on the Save Edits button (between Toggle Editing and Add Polygon). Just in case, the slackwater delineation polygon shapefile is also available at [the course repository](https://github.com/hydro-informatics/material-py-codes/raw/master/geo/slackwater-poly.zip) (during courses only).
 {% include important.html content="The new polygon is not saved as long as the edits are not save. That means: Regularly save edits when drawing features in *QGIS*." %}
 
-Zonal statistics can be calculated using the `gdal` and `ogr` libraries, but this is a little bit cumbersome. The [*rasterio*](https://rasterio.readthedocs.io/en/latest/) (`conda install -c conda-forge rasterio`) library provides a much more convenient method to calculate zonal statistics with its `rasterstats.zonal_stats(SHP-FILE, RASTER, STATSTICS-TYPES)` method. With `zonal_stats`, we can easily obtain many statistical values of the water depth and flow velocity raster within the just drawn slackwater polygon.
+Zonal statistics can be calculated using the `gdal` and `ogr` libraries, but this is a little bit cumbersome. The [*rasterio*](https://rasterio.readthedocs.io/en/latest/) (`conda install -c conda-forge rasterio`) library provides a much more convenient method to calculate zonal statistics with its `rasterstats.zonal_stats(SHP-FILE, RASTER, STATSTICS-TYPES)` method. With `zonal_stats`, we can easily obtain many statistical values of the water depth and flow velocity rasters within the slackwater polygon.
 
 
 ```python
@@ -504,10 +502,10 @@ print(u_stats)
     [{'min': 0.0, 'max': 5.139162540435791, 'sum': 1609.26318359375, 'median': 1.879171371459961, 'majority': 0.0}]
     
 
-Recall that both rasters are in the U.S. customary unit system (i.e., feet and feet per second). More statistics can be calculated with `zonal_stats`: <br>
+Recall that both rasters are in U.S. customary units (i.e., feet and feet per second). More statistics can be calculated with `zonal_stats`: <br>
 `min`, `max`, `mean`, `count`, `sum`, `std`, `median`, `majority`, `minority`, `unique`, `range`, `nodata`, `percentile_<q>` (where `<q>` can be any float number between 0 and 100).
 
-In addition, user-defined statistics can be added, where the [`numpy.ma`](https://numpy.org/doc/stable/reference/routines.ma.html#masked-arrays-arithmetics) module is particularly useful with its array handling capacities include transposing or specifying statistics along axis. For example, we can define a specific function to calculate standard deviation:
+In addition, user-defined statistics can be added, where the [`numpy.ma`](https://numpy.org/doc/stable/reference/routines.ma.html#masked-arrays-arithmetics) module is particularly useful with its array handling capacities including transposing or specifying statistics along axis. For instance, we can define a specific function to calculate standard deviation:
 
 
 ```python
@@ -528,7 +526,7 @@ print(u_stats)
     
 
 ## Clip raster {#clip}
-The above-introduced `rasterstats.zonal_stats` method works with *"Mini-Rasters"*, which represent clips of the input raster to the polygon shapefile used. The mini-rasters can be obtained by defining the optional keyword argument `raster_out=True`. In the case that we want to get the original raster clipped without and statistical operation, we can use a little trick by defining an additional statistics function that returns the original array:
+The above-introduced `rasterstats.zonal_stats` method works with *"Mini-Rasters"*, which represent clips of the input raster to the polygon shapefile used. The mini-rasters can be obtained by defining the optional keyword argument `raster_out=True`. In the case that we want to get the original raster clipped without any statistical operation, we can use a little trick by defining an additional statistics function that returns the original array:
 
 
 ```python
@@ -536,12 +534,13 @@ The above-introduced `rasterstats.zonal_stats` method works with *"Mini-Rasters"
         return raster_array
 ```
 
-With `raster_out=True` and the `original` function we can retrieve the clipped original raster as the following array types:
-* `mini_raster_array` - clipped and masked *numpy* array,
-* `mini_raster_affine` - transformation as an Affine object, and
-* `mini_raster_nodata` - NoData values.
+With `raster_out=True` and the `original` keywords of the `zonal_stats` function, we can retrieve the clipped original raster as the following array types:
 
-The following code block illustrates the usage:
+* `mini_raster_array` - a clipped and masked *numpy* array,
+* `mini_raster_affine` - a transformation as an affine object, or
+* `mini_raster_nodata` - a NoData array.
+
+The following code block illustrates the usage of the `"mini_raster_..."` *dictionary* key:
 
 
 ```python
@@ -565,7 +564,7 @@ print(h_stats[0]["mini_raster_array"])
      [-- -- -- ... -- -- --]]
     
 
-{% include tip.html content="Use the above shown methods to assign a projection and save the clipped array as *GeoTIFF* raster. The functions are implemented in the `geo_utils.raster_mgmt.create_raster` method ([view *geo_utils* on github](https://geo-utils.readthedocs.io/))." %}
+{% include tip.html content="Use the above-shown methods to assign a projection and save the clipped array as *GeoTIFF* raster. The functions are implemented in the `geo_utils.raster_mgmt.create_raster` method ([cf. *geo_utils* on github](https://github.com/hydro-informatics/geo-utils))." %}
 
 ## Slope / aspect maps and built-in command line scripts
 Hill slope maps are an important parameter in hydraulics, hydrology and ecology. The slope determines the flow direction of the water and it is also a criteria for delineating habitat of many species. `gdal` has a command line tool called `gdaldem` , which enables the creation of slope rasters based on a DEM (Digital Elevation Model) raster.
@@ -594,13 +593,13 @@ subprocess.call(cmd_create_slope)
 
 {% include image.html file="qgis-slope.png" alt="slope" caption="The newly created slope-percent.tif raster plotted in QGIS." %}
 
-In addition to the absolute slope (i.e., inclination in degrees), or instead of the slope, it can be important to know the slope direction (e.g., inclination toward south, west, east, or north). A raster indicating the slope direction is called *Aspect* raster, where south corresponds to 0° (and 360°), west to 90°, north to 180°, and east to 270°. The ascpect raster can also be created with `gdaldem`:
+In addition to the absolute slope (i.e., inclination in degrees), or instead of the slope, it can be important to know the slope direction (e.g., inclination toward south, west, east, or north). A raster indicating the slope direction is called *aspect* raster, where south corresponds to 0° (and 360°), west to 90°, north to 180°, and east to 270°. An aspect raster can also be created with `gdaldem`:
 
 ```python
 gdaldem aspect input_dem output_aspect_map [-trigonometric] [-zero_for_flat] [-alg ZevenbergenThorne] [-compute_edges] [-b Band (default=1)] [-of format] [-co "NAME=VALUE"]* [-q]
 ```
 
-To create an aspect raster of the *River Architect* sample data DEM run:
+To create an aspect raster of the *River Architect* sample data DEM in *Python* run:
 
 
 ```python
@@ -619,18 +618,21 @@ subprocess.call(cmd_create_aspect)
 
 ## Least cost path between pixels (and another way of reprojection) {#leastcost}
 ### Ecohydraulic background
-Least cost paths are important to plan efficient routes for navigation (e.g., in a car) and they can also be helpful in ecohydraulics. Let's take for a moment the position of a fish that after a flood with decreasing discharge wants to swim as fast as possible from the floodplain back into the main channel where there is enough water. In the figure below, point 1 shows the starting point on the floodplain and point 2 the destination in the main channel. The reddish background represents the previously produced slope raster (slope-percent.tif) and the water depth at normal runoff is colored in blue.
+Least cost paths are important to plan efficient routes for navigation (e.g., in a car) and they can also be helpful in ecohydraulics. Let's take for a moment the position of a fish that after a flood peak (i.e., when the discharge decreases) wants to swim as fast as possible from the floodplain back into the main channel where there is enough water. In the figure below, point **1** shows the fish's starting point on the floodplain and point **2** its destination in the main channel. The reddish background represents the previously produced slope raster (`slope-percent.tif`) and the water depth at normal runoff is colored in blue.
 
 {% include image.html file="qgis-slope-pts.png" alt="slope-pts" caption="Points 1 and 2 indicate start and end points, respectively of a fish traveling in a river." %}
 
-Naturally the path of least cost in this case corresponds to the path of the steepest monotonously downward facing slope and it can be assumed that a fish is able to find it.
-{% include note.html content="In many rivers fish face the daily challenge of escaping from the deadly trap of lateral depressions. The reason for this is that many hydroelectric power plants cause abrupt fluctuations in discharge due to fluctuations in energy demand and production (so-called hydro-peaking). As a result, there is a so-called stranding risk for fish in many regulated rivers. The following figure illustrates stranding risk zones as a function of discharge (in cubic feet per second) at the lower Yuba River (California, USA)." %}
+Naturally, the path of least cost in this case corresponds to the path of the steepest monotonously downward facing slope and it can be assumed that a fish is able to find it.
+
+{% include note.html content="In many rivers, fish face the daily challenge of escaping from the deadly trap of lateral depressions. The reason for this is that many hydroelectric power plants cause abrupt fluctuations in discharge due to fluctuations in energy demand and production (so-called *hydro-peaking*). As a result, there is a stranding risk for fish in many regulated rivers. The following figure illustrates stranding risk zones as a function of discharge (in cubic feet per second) at the lower Yuba River (California, USA)." %}
+
 {% include image.html file="ra-stranding.png" alt="stranding" caption="Stranding risk zones as a function of discharge (in cubic feet per second) at the lower Yuba River (California, USA)." %}
 *Image source: [The River Architect Wiki / Kenneth Larrieu](https://riverarchitect.github.io/RA_wiki/StrandingRisk)*
 
 ### Functions and libraries involved {#lc-fun}
 The `skimage` (`scikit-image`) library (see [*Other packages* on the *Open source libraries* page](geo-pckg.html#others)) provides with [`skimage.graph.route_through_array`](https://scikit-image.org/docs/0.13.x/api/skimage.graph.html) a smart method to calculate a least cost path by summing up pixel-wise connections from point 1 to point 2. 
-Here ist how it works: Assume a *numpy* array (e.g., with random slope values) that looks like this:
+
+Here is how it works. As a starting point, assume a *numpy* array (e.g., with random slope values) that looks like this:
 
 
 ```python
@@ -685,9 +687,9 @@ least_cost_path_array
 
 
 
-In practice, the slope raster is georeferenced, and therefore, we have to use some pixel coordinates, relative to the coordinate system origin. For this purpose we need two more functions:
+In practice, the slope raster is georeferenced, and therefore, we have to use some pixel coordinates relative to the coordinate system origin. For this purpose, we need two more functions:
 
-* One function to calculate the pixel-index related offset that we will name `coords2offset`: The `coords2offset` returns the x-y shift in the form of "number of pixels" (two *integer*s, one for *x* and one for *y* shift). 
+* One function to calculate the pixel-index related offset that we will name `coords2offset`, which returns the x-y shift in the form of "number of pixels" (a sequence of two *integer*s, one for *x* and one for *y* shift). 
 * The [above-defined `get_srs`](#reproject) function.
 
 The `coords2offset` function looks like this:
@@ -711,9 +713,9 @@ def coords2offset(geo_transform, x_coord, y_coord):
     return offset_x, offset_y
 ```
 
-{% include tip.html content="The `coords2offset` function is also available in the [*geo_utils*](https://geo-utils.readthedocs.io/) package in robust raise-exception notation:  [*geo_utils/dataset_mgmt.py*](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/dataset_mgmt.py)." %}
+{% include tip.html content="The `coords2offset` function is also available in the [*geo_utils*](https://github.com/hydro-informatics/geo-utils) package in robust raise-exception notation:  [*geo_utils/dataset_mgmt.py*](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/dataset_mgmt.py)." %}
 
-Now we can use `coords2offset` to convert a raster array (e.g., produced with the above-defined `raster2array` function) into an array that can be used with `route_through_array`:
+We can use `coords2offset` to convert a raster array (e.g., produced with the above-defined `raster2array` function) into an array that can be used with `route_through_array`:
 
 1. Use the raster's `geo_transform` (`gdal.Dataset.GetGeoTransform = (origin_x, pixel_width, 0, origin_y, 0, pixel_height)`) and the start and end point coordinates (i.e, `start_coord` of point A/1 and `stop_coord` of point B/2) in `coords2offset` to get their pixel indices (`start_index_x`, `start_index_y`, `stop_index_x`, and `stop_index_y`) in the raster array.
 1. Replace `np.nan` values in the raster array with values that are higher than the maximum of the array - do not use zeros, because we want to exclude these pixels from the least cost path by assigning very high costs).
@@ -743,7 +745,7 @@ def create_path_array(raster_array, geo_transform, start_coord, stop_coord):
 ```
 
 ### Application {#lc-app}
-Recall, we defined the following functions (all are available in the [*geo_utils* package](https://geo-utils.readthedocs.io/)) that we can use now for the calculation of the least cost path to get from point 1 to point 2 in the `slope-percent.tif` raster:
+Recall, we defined the following functions (all are available in the [*geo_utils* package](https://github.com/hydro-informatics/geo-utils)) that we can use now for the calculation of the least cost path to get from point 1 to point 2 in the `slope-percent.tif` raster:
 * `raster2array` 
 * `create_path_array`
 * `get_srs`
@@ -751,8 +753,8 @@ Recall, we defined the following functions (all are available in the [*geo_utils
 
 The below code block uses these functions as follows:
 
-1. Define input (`slope-percent.tif`) and output (`least_cost.tif`) raster directories.
-1. Define the coorindates of points 1 and 2 as *tuple*s (x, y) in the *EPSG:6418* projection.
+1. Define the input (`slope-percent.tif`) and the output (`least_cost.tif`) raster directories.
+1. Define the coordinates of points 1 and 2 as *tuple* (x, y) in the *EPSG:6418* projection.
 1. Load the input raster(`src_raster`), its band as array (`raster_array`), and geotransformation (`geo_transform`) with the `raster2array` function.
 1. Get the least cost path indicated with ones in a zero-s (on-off) array (`path_array`) with the `create_path_array` function.
 1. Get the `osgeo.osr.SpatialReference` of the input raster (`src_raster = osgeo.gdal.Dataset(slope-percent.tif)`).
@@ -782,6 +784,6 @@ create_raster(out_raster_name, path_array, epsg=int(src_srs.GetAuthorityCode(Non
 
 {% include image.html file="qgis-least-cost.png" alt="aspect" caption="The newly created least cost path least_cost.tif raster plotted in QGIS." %}
 
-Legitimately, you may wonder whether it was better to represent a least cost path as a line. That is correct, of course. This operation is a conversion of a raster into a line shapefile, which is explained on the [conversion page](geo-convert.html#raster2line). Curious readers can also directly use the `raster2line` function of the [*geo_utils* package](https://geo-utils.readthedocs.io/) (the function is part of the [*geo_utils/dataset_mgmt.py*](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/dataset_mgmt.py) script).
+Legitimately, you may wonder whether it was better to represent a least cost path as a line. That is correct, of course, but this operation is a conversion of a raster into a line shapefile, which is explained on the [conversion page](geo-convert.html#raster2line). Curious readers can also directly use the `raster2line` function of the [*geo_utils* package](https://github.com/hydro-informatics/geo-utils) (the function is part of the [*geo_utils/dataset_mgmt.py*](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/dataset_mgmt.py) script).
 
 {% include exercise.html content="Get more familiar with raster handling in the [geospatial ecohydraulics](ex_geco.html) exercise." %}

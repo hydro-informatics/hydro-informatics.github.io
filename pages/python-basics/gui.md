@@ -233,7 +233,7 @@ In the above example, the checkbox receives a `tk.BooleanVar()`, which takes a `
 * `tk.IntVar()` is a numeric *integer* variable
 * `tk.StringVar()` is a *string* (i.e., typically some text)
 
-Now the question is, how does *Python* know when to retrieve a user-defined value? Typically, we want to evaluate user-defined values when we call a function that receives user-defined values as input arguments. Predefined, default values in a script can be set with `VARIABLE.set()` and user settings can be retrieved with `VARIABLE.get()`. The following code block features the usage of the `get()`method (the [script](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/variable_gui.py) and the [icon](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/gui_icon.ico) are available at the course repository).
+Now the question is, how does *Python* know when to retrieve a user-defined value? Typically, we want to evaluate user-defined values when we call a function that receives user-defined values as input arguments. Predefined, default values in a script can be set with `VARIABLE.set()` and user settings can be retrieved with `VARIABLE.get()`. The following code block features the usage of the `get()`method (the [script](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/variable_gui.py) and the [icon](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/sample_icon.ico) are available at the course repository).
 
 
 ```python

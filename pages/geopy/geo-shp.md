@@ -10,10 +10,10 @@ folder: geopy
 
 
 {% include requirements.html content="Make sure to understand [shapefiles](geospatial-data.html#shp) and [vector data](geospatial-data.html#vector) before reading this section." %}
-{% include tip.html content="The core functions illustrated in this e-book are implemented in the [`geo_utils`](https://geo-utils.readthedocs.io/) package." %}
+{% include tip.html content="The core functions illustrated in this e-book are implemented in the [`geo_utils`](https://github.com/hydro-informatics/geo-utils) package." %}
 
 ## Load an existing shapefile
-`gdal`'s `ogr` module is an excellent source for handling shapefiles. To open a shapefile in *Python*, we need to instantiate the correct driver (`"ESRI Shapefile"` for shapefiles) first. With the driver object (`ogr.GetDriverByName("SHAPEFILE")`), we can then open (instantiate) a shapefile (object with `shp_driver.Open("SHAPEFILE")`), which contains layer information. It is precisely this layer information (i.e., references to shapefile attributes) that we want to work with. Therefore we have to instantiate a shapefile layer object with `shp_dataset.GetLayer()`.
+`gdal`'s `ogr` module is an excellent source for handling shapefiles. To open a shapefile in *Python*, we need to instantiate the correct driver (`"ESRI Shapefile"` for shapefiles) first. With the driver object (`ogr.GetDriverByName("SHAPEFILE")`), we can then open (instantiate) a shapefile (object with `shp_driver.Open("SHAPEFILE")`), which contains layer information. It is precisely this layer information (i.e., references to shapefile attributes) that we want to work with. Therefore, we have to instantiate a shapefile layer object with `shp_dataset.GetLayer()`.
 
 
 ```python
@@ -26,9 +26,8 @@ shp_layer = shp_dataset.GetLayer()
 {% include tip.html content="To get a full list of supported `ogr` drivers (e.g., for `DXF`, `ESRIJSON`, `GPS`, `PDF`, `SQLite`, `XLSX`, and many more), [download the script `get_ogr_drivers.py`](https://github.com/hydro-informatics/material-py-codes/raw/master/geo/get_ogr_drivers.py) from the course repository (script available during courses only)." %}
 
 ## Create a new shapefile {#create}
-The `ogr` module also enables creating a new point, line or polygon shapefile. The following code block defines a function for creating a shapefile, where the optional keyword argument `overwrite` is used to control whether an existing shapefile with the same name should be overwritten (default: `True`).
-The command `shp_driver.CreateDataSource(SHP-FILE-DIR)` creates a new shapefile and the rest of the function adds a layer to the shapefile if the optional keyword arguments `layer_name` and `layer_type` are provided. Both optional keywords must be *string*s, where `layer_name` can be any name for the new layer. `layer_type` must be either `"point"`, `"line"`, or `"polygon"` to create a point, (poly)line, or polygon shapefile respectively. The function uses the `geometry_dict` dictionary to assign the correct `ogr.SHP-TYPE` to the layer. There are more options for extending the `create_shp(...)` function listed on [*pcjerick*'s github pages](https://pcjericks.github.io/py-gdalogr-cookbook/geometry.html).
-
+The `ogr` module also enables creating a new point, line, or polygon shapefile. The following code block defines a function for creating a shapefile, where the optional keyword argument `overwrite` is used to control whether an existing shapefile with the same name should be overwritten (default: `True`).
+The command `shp_driver.CreateDataSource(SHP-FILE-DIR)` creates a new shapefile and the rest of the function adds a layer to the shapefile if the optional keyword arguments `layer_name` and `layer_type` are provided. Both optional keywords must be *strings*, where `layer_name` can be any name for the new layer. `layer_type` must be either `"point"`, `"line"`, or `"polygon"` to create a point, (poly)line, or polygon shapefile, respectively. The function uses the `geometry_dict` *dictionary* to assign the correct `ogr.SHP-TYPE` to the layer. There are more options for extending the `create_shp(...)` function listed on [*pcjerick*'s github pages](https://pcjericks.github.io/py-gdalogr-cookbook/geometry.html).
 
 
 ```python
@@ -72,7 +71,7 @@ def create_shp(shp_file_dir, overwrite=True, *args, **kwargs):
     return new_shp
 ```
 
-The `create_shp` function is also provided with the in the [*geo_utils* package](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/shp_mgmt.py) and aids to create a new shapefile (make sure to get the directory right):
+The `create_shp` function is also provided with the [*geo_utils* package](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/shp_mgmt.py) to create a new shapefile (make sure to get the directory right):
 
 
 ```python
@@ -84,9 +83,9 @@ a_new_shape_file = None
 
 {% include important.html content="A **shapefile name** may **not** have **more than 13 characters** and a **field name** may **not** have **more than 10 characters** (read more in [*Esri*'s shapefile docs](http://resources.arcgis.com/en/help/main/10.1/index.html#//005600000013000000))." %}
 
-Shapefiles can also be created and drawn in [*QGIS*](geo_software.html#qgis) and the following figures guide through the procedure of creating of a polygon shapefile. We will not need this shapefile on this page, but for the later on interaction with raster datasets. So the shapefile creation with *QGIS* is just a note here.
+Shapefiles can also be created and drawn in [*QGIS*](geo_software.html#qgis) and the following figures guide through the procedure of creating of a polygon shapefile.
 
-The first step to make a shapefile with *QGIS* is obviously to run *QGIS* and create a new project. The following example uses water depth and flow velocity raster data as background information to delineate a so-called [*morphological unit* of *slackwater*](https://www.sciencedirect.com/science/article/pii/S0169555X14000099). Both the water depth and flow velocity rasters are part of the [*River Architect* sample datasets](https://github.com/RiverArchitect/SampleData/archive/master.zip) (precisely located in  [`RiverArchitect/SampleData/01_Conditions/2100_sample/`](https://github.com/RiverArchitect/SampleData/tree/master/01_Conditions/2100_sample)). After downloading the sample data, they can be imported in *QGIS* by dragging the files from the *Browser* tab into the *Layers* tab. Then:
+The first step to make a shapefile with *QGIS* is obviously to run *QGIS* and create a new project. The following example uses water depth and flow velocity raster data as background information to delineate a so-called [*morphological unit* of *slackwater*](https://www.sciencedirect.com/science/article/pii/S0169555X14000099). Both the water depth and flow velocity rasters are part of the [*River Architect* sample datasets](https://github.com/RiverArchitect/SampleData/archive/master.zip) (precisely located at  [`RiverArchitect/SampleData/01_Conditions/2100_sample/`](https://github.com/RiverArchitect/SampleData/tree/master/01_Conditions/2100_sample)). After downloading the sample data, they can be imported in *QGIS* by dragging the files from the *Browser* tab into the *Layers* tab. Then:
 
 {% include image.html file="qgis-create-shp.png" alt="create-shp" caption="In QGIS, go the Layer menu and click on Create Layer > New Shapefile Layer ..." %}
 {% include image.html file="qgis-new-shp.png" alt="new-shp" caption="In the New Shapefile window, edit the orange-highlighted fields: (1) Define a shapefile name and directory (click on the ... symbol on the right), (2) Select Polygon for Geometry type, (3) Define EPSG:6418 as projection (click on the globe symbol on the right and look for 6418), (4) Add a new Text data field called MU for morphological unit, and (5) Click OK." %}
@@ -193,23 +192,25 @@ def get_wkt(epsg, wkt_format="esriwkt"):
     return spatial_ref.ExportToPrettyWkt()
 ```
 
-## Transform (re-project) a shapefile {#transform}
-To apply a different projection to geometric objects of a shapefile it is not enough to simply rewrite the `.prj` file. A re-projection may be needed if, we want to use a shapefile in `EPSG:4326` (e.g., created wioth *QGIS*) onto `EPSG:3857` in order to use the shapefile in a web application. The following example shows the re-projection of the `countries.shp` shapefile (source: the [Natural Earth quick start kit](http://naciscdn.org/naturalearth/packages/Natural_Earth_quick_start.zip)). For now, just look at the sequence of steps (the creation of fields an features follows in the sections below):
-* The shapefile to transform is located in the subdirectory `geodata/shapefiles/countries.shp` and opened with as above described.
+## Transform (re-project) a shapefile
+
+To apply a different projection to geometric objects of a shapefile, it is not enough to simply rewrite the `.prj` file. A re-projection may be needed if we want to use a shapefile in `EPSG:4326` (e.g., created with *QGIS*) onto `EPSG:3857` in order to use the shapefile in a web application. The following example shows the re-projection of the `countries.shp` shapefile (source: the [Natural Earth quick start kit](http://naciscdn.org/naturalearth/packages/Natural_Earth_quick_start.zip)). For now, just look at the sequence of steps (the creation of fields an features follows in the sections below):
+
+* The shapefile to transform is located in the subdirectory `geodata/shapefiles/countries.shp` and opened as described above.
 * Read and identify the spatial reference system used in the input shapefile 
     - Create a spatial reference object with `in_sr = osr.SpatialReference(str(shapefile.GetSpatialRef()))`.
     - Detect the spatial reference system in *EPSG* format with `AutoIdentifyEPSG()`.
     - Assign the *EPSG*-formatted spatial reference system to the spatial reference object of the input shapefile (`ImportFromEPSG(int(in_sr.GetAuthorityCode(None)))`).
 * Create the output spatial reference with `out_sr = osr.SpatialReference()` and apply the target *EPSG* code (`out_sr.ImportFromEPSG(3857)`).
 * Create a coordinate transformation object (`coord_trans = osr.CoordinateTransformation(in_sr, out_sr)`) that enables re-projecting geometry objects later.
-* Create the output shapefile, which will correspond to a copy of input shapefile (use the above-defined `create_shp` function with `layer_name="basemap"` and `layer_type="line"`).
+* Create the output shapefile, which will correspond to a copy of the input shapefile (use the above-defined `create_shp` function with `layer_name="basemap"` and `layer_type="line"`).
 * Copy the field names and type of the input shapefile:
     - Read the attribute layer from the input file's layer definitions with `in_lyr_def = in_shp_lyr.GetLayerDefn()`
     - Iterate through the field definitions and append them to the output shapefile layer (`out_shp_lyr`)
 * Iterate through the geometry features in the input shapefile:
     - Use the new (output) shapefile's layer definitions (`out_shp_lyr_def = out_shp_lyr.GetLayerDefn()`) to append transformed geometry objects later.
     - Define an iteration variable `in_feature` as an instance of `in_shp_lyr.GetNextFeature`.
-    - In a `while` loop, instantiate every geometry (`geometry = in_feature.GetGeometryRef()`) in the input shapefile, transform the `geometry` (`geometry.Transform(coord_trans)`), convert it to an `ogr.Feature()` with the `SetGeometry(geometry)` method, copy field definitions (nested `for`-loop), and append the new feature to the output shapefile layer (`out_shp_lyr_def.CreateFeature(out_feature)`).
+    - In a `while` loop, instantiate every geometry (`geometry = in_feature.GetGeometryRef()`) of the input shapefile, transform the `geometry` (`geometry.Transform(coord_trans)`), convert it to an `ogr.Feature()` with the `SetGeometry(geometry)` method, copy field definitions (nested `for`-loop), and append the new feature to the output shapefile layer (`out_shp_lyr_def.CreateFeature(out_feature)`).
     - At the end of the `while`-loop, look for the next feature in the input shapefile's attributes with `in_feature = in_shp_lyr.GetNextFeature()`
 * Unlock (release) all layers and shapefiles by overwriting the objects with `None` (nothing is literally written to any file as long as these variables exist!).
 * Assign the new projection *EPSG:3857* using the above-defined `get_wkt` function.
@@ -283,13 +284,13 @@ with open(r"" + os.path.abspath('') + "/geodata/shapefiles/countries-web.prj", "
 
 {% include challenge.html content="Re-write the above code block into a `re_project(shp_file, target_epsg)` function."%}
 
-The code sequence `in_sr.AutoIdentifyEPSG()` should return `0` for known `EPSG` numbers. Unfortunately, many EPSG numbers are not known to the `AutoIdentifyEPSG()` method. In the case that `AutoIdentifyEPSG()` did not function propperly, the method does not return the value `0`, but for example `7`. A workaround for the limited functionality of `srs.AutoIdentifyEPSG()` is `srs.FindMatches`. `srs.FindMatches` returns a *matching* `srs_match` from a larger database, which is somewhat nested, for example:<br>
+The code sequence `in_sr.AutoIdentifyEPSG()` should return `0` for known `EPSG` numbers. Unfortunately, many EPSG numbers are not known to `AutoIdentifyEPSG()`. In the case that `AutoIdentifyEPSG()` did not function properly, it does not return the value `0`, but for example `7`. A workaround for the limited functionality of `srs.AutoIdentifyEPSG()` is `srs.FindMatches`, which returns a *matching* `srs_match` from a larger database, which is somewhat nested, for example:<br>
 
 ```python
 matches = srs.FindMatches()
 ```
 
-Then, `matches` looks like this: `[(osgeo.osr.SpatialReference, INT)]`. Therefore, a complete workaround for `srs.AutoIdentifyEPSG()` (or `in_sr.AutoIdentifyEPSG()` in the code block above) looks like this:
+Then, `matches` looks like this: `[(osgeo.osr.SpatialReference, INT)]`. Therefore, a complete workaround for `srs.AutoIdentifyEPSG()` (or `in_sr.AutoIdentifyEPSG()` in the above code block) looks like this:
 
 
 ```python
@@ -313,18 +314,19 @@ To **create a point shapefile**, we can use the above `create_shp` function and 
 
 * The shapefile is located in the `rivers_pts` variable. Note that the `layer_type` already determines the type of geometries that can be used in the shapefile. For example, adding a line or polygon feature to a `ogr.wkbPoint` layer will result in an `ERROR 1` message.
 * The `basemap` (layer) is attributed to the variable `lyr = river_pts.GetLayer()`.
-* A *string* type field is added an appended to the attribute table:
+* Add and append a *string*-type field to the attribute table:
     - instantiate a new field with `field_gname = ogr.FieldDefn("FIELD-NAME", ogr.OFTString)` (the field name may not have more than 10 characters!)
     - append the new field to the shapefile with `lyr.CreateField(field_gname)` 
     - other field types than `OFTString` can be: `OFTInteger`, `OFTReal`, `OFTDate`, `OFTTime`, `OFTDateTime`, `OFTBinary`, `OFTIntegerList`, `OFTRealList`, or `OFTStringList`.
 * Add three points stored in `pt_names = {RIVER-NAME: (x-coordinate, y-coordinate)}` in a loop over the dictionary keys:
-    - for every new point, create a feature as a child of the layer defintions with `feature = ogr.Feature(lyr.GetLayerDefn())`
-    - set the value of the field name for each point with `feature.SetField(FIELD-NAME, FIELD-VALUE)`
+    - for every new point, create a feature as a child of the layer definitions with `feature = ogr.Feature(lyr.GetLayerDefn())`
+    - set the value of the field name for every point with `feature.SetField(FIELD-NAME, FIELD-VALUE)`
     - create a string of the new point in *WKT* format with `wkt = "POINT(X-COORDINATE Y-COORDINATE)"`
-    - convert the *WKT* formatted point into a point-type geometry with `point = ogr.CreateGeometryFromWkt(wkt)`
+    - convert the *WKT*-formatted point to a point-type geometry with `point = ogr.CreateGeometryFromWkt(wkt)`
     - set the new point as the new feature's geometry with `feature.SetGeometry(point)`
     - append the new feature to the layer with `lyr.CreateFeature(feature)`
 * Unlock (release) the shapefile by overwriting the `lyr` and `river_pts` variable with `None`.
+
 {% include important.html content="The operations are literally not written to the shapefile if the `lyr` and `river_pts` objects are not overwritten with `None`." %}
 
 
@@ -370,9 +372,12 @@ The resulting `rivers.shp` shapefile can be imported in [*QGIS*](geo_software.ht
 {% include image.html file="qgis-rivers.png" alt="qgis-rivers" caption="The newly created rivers.shp shapefile shown in QGIS." %}
 
 ## Multiline (polyline) shapefile {#line-create}
-Similar to the procedure for creating and adding points to a new point shapefile, a (multi) line (or polyline) can be added to a shapefile. The `create_shp` creates a multi-line shapefile when the layer type is defined as `"line"`. The coordinate system is created with the above-defined `get_gps_code` function.
+
+Similar to the procedure for creating and adding points to a new point shapefile, a (multi) line (or polyline) can be added to a shapefile. The `create_shp` function creates a multi-line shapefile when the layer type is defined as `"line"`. The coordinate system is created with the above-defined `get_epsg_code` function.
+
 {% include tip.html content="The term *multi-line* is used in *OGC* and `ogr`, while *polyline* is used in *Esri* GIS environments." %}
-The following code block uses the coordinates of cities along the *Rhine* stored in a *dictionary* named `station_names`. The city names are not used, and only the coordinates are appended with `line.AddPoint(X, Y)`. As before, a field is created to give the river a name. The actual line feature is again created as a child of the layer with `line_feature = ogr.Feature(lyr.GetLayerDefn())`. Running this code block produces a line that approximately follows the Rhine river between France and Germany.
+
+The following code block uses the coordinates of cities along the *Rhine* stored in a *dictionary* named `station_names`. The city names are not used, and only the coordinates are appended with `line.AddPoint(X, Y)`. As before, a field is created to give the river a name. The actual line feature is again created as a child of the layer with `line_feature = ogr.Feature(lyr.GetLayerDefn())`. Running this code block produces a line that approximately follows the *Rhine* River between France and Germany.
 
 
 ```python
@@ -419,7 +424,7 @@ The resulting `rhine_proxy.shp` shapefile can be imported in [*QGIS*](geo_softwa
 
 ## Polygon shapefile {#poly-create}
 
-Polygons are surface patches that can be created point-by-point, line-by-line, or from a `"Multipolygon"` *WKB* definition. When creating polygons from points or lines, we want to create a surface and this is why the corresponding geometry type is `wkbLinearRing` for building polygons from both point or lines (rather than `wkbPoint` or `wkbLine`, respectively). The following code block features an example for building a polygon shapefile delineating the hydraulic laboratory of the University of Stuttgart. The difference between the above example for creating a line shapefile are:
+Polygons are surface patches that can be created point-by-point, line-by-line, or from a `"Multipolygon"` *WKB* definition. When creating polygons from points or lines, we want to create a surface and this is why the corresponding geometry type is `wkbLinearRing` for building polygons from both points or lines (rather than `wkbPoint` or `wkbLine`, respectively). The following code block features an example for building a polygon shapefile delineating the hydraulic laboratory of the University of Stuttgart. The differences between this code block and the above example for creating a line shapefile are:
 
 * The projection is `EPSG:4326`.
 * The point coordinates are generated within an `ogr.wkbLinearRing` object step-by-step rather than in a loop over *dictionary* entries.
@@ -464,15 +469,16 @@ lyr = None
 va_geo = None
 ```
 
-## Build shapefile from *JSON* {#json-create}
-Loading geometry data from a in-line defined variables is cumbersome in practice, where geospatial data are often provided on public platforms (e.g., land use or cover).  The following example uses a *JSON* file generated with map service data from the [Baden-Württemberg State Institute for the Environment, Survey and Nature Conservation *LUBW*](https://udo.lubw.baden-wuerttemberg.de/), where polygon nodes are stored in *WKB* polygon geometry format  (`"MultiPolygon (((node1_x node1_y, nodej_x, nodej_y, ... ...)))"`):
+## Build a shapefile from *JSON* {#json-create}
+
+Loading geometry data from in-line defined variables is cumbersome in practice, where geospatial data are often provided on public platforms (e.g., land use or cover). The following example uses a *JSON* file generated with map service data from the [Baden-Württemberg State Institute for the Environment, Survey and Nature Conservation *LUBW*](https://udo.lubw.baden-wuerttemberg.de/), where polygon nodes are stored in *WKB* polygon geometry format (`"MultiPolygon (((node1_x node1_y, nodej_x, nodej_y, ... ...)))"`):
 
 * The *JSON* file is read with [*pandas*](hypy_pynum.html#pandas) and the shapefile is created, as before, with the `create_shp` function.
 * The projection is *EPSG:25832*.
 * Two fields are added in the form of
-    - `"tbg_name"` is the original string name of the polygons in the *LUBW* data,
-    - `"area"` is a real number field, in which the polygon area is calculated in m<sup>2</sup> using `polygon.GetArea()`.
-* The polygon geometries are derived from the *WKB*-formatted definitions in the `"wkb_geom"` field of the *pandas* data frame object `dreisam_inundation`
+    - `"tbg_name"` - the original string name of the polygons in the *LUBW* data, and
+    - `"area"` - a real number field, in which the polygon area is calculated in m<sup>2</sup> using `polygon.GetArea()`.
+* The polygon geometries are derived from the *WKB*-formatted definitions in the `"wkb_geom"` field of the *pandas* data frame object `dreisam_inundation`.
 
 
 ```python
@@ -547,7 +553,7 @@ The above code block illustrates the usage of `polygon.GetArea()` to calculate t
     `all_polygons = ogr.Geometry(ogr.wkbGeometryCollection)`<br>
     `for feature in POLYGON-SOURCE-LAYER: all_polygons.AddGeometry(feature.GetGeometryRef())`<br>
     `convexhull = all_polygons.ConvexHull()`<br>
-    Save `convexhull` to shapefile (use `create_shp` function as shown in the above examples or read more at [pcjerick's github pages](https://pcjericks.github.io/py-gdalogr-cookbook/vector_layers.html#save-the-convex-hull-of-all-geometry-from-an-input-layer-to-an-output-layer))<br>
+    Save `convexhull` to shapefile (use the `create_shp` function as shown in the above examples or read more at [pcjerick's github pages](https://pcjericks.github.io/py-gdalogr-cookbook/vector_layers.html#save-the-convex-hull-of-all-geometry-from-an-input-layer-to-an-output-layer))<br>
     Tip: To create a tight hull (e.g., of a point cloud), look for `concavehull` functions.
 * Length (of a line) <br>
     `wkt = "LINESTRING (415128.5 5320979.5, 415128.6 5320974.5, 415129.75 5320974.7)"`<br>
@@ -561,13 +567,13 @@ The above code block illustrates the usage of `polygon.GetArea()` to calculate t
 
 ## Export to other format {#export}
 
-The above examples deal with `.shp` files only, but other formats can be useful (e.g., to create web applications or export to *Google Earth*). The following sections illustrate the creation of *GeoJSON* and *KML* files. Several other conversions can be performed, not only between file formats, but also between feature types. For example, polygons can be created from point clouds (among others with the `ConvexHull` method mentioned above). The interested reader can learn more about conversions in [Michael Diener's *Python Geospatial Analysis Cookbook*](https://github.com/mdiener21/python-geospatial-analysis-cookbook).
+The above examples deal with `.shp` files only, but other vector formats can be useful (e.g., to create a web application or to export data to a *Google Earth KML* file). The following sections illustrate the creation of *GeoJSON* and *KML* files. Several other conversions can be performed, not only between file formats, but also between feature types. For example, polygons can be created from point clouds (among others with the `ConvexHull` method mentioned above). The interested reader can learn more about feature conversions in [Michael Diener's *Python Geospatial Analysis Cookbook*](https://github.com/mdiener21/python-geospatial-analysis-cookbook).
 
 
 
 
 ### GeoJSON
-*GeoJSON* files can be easily created as before, even without activating a driver:
+*GeoJSON* files can be easily created even without activating a driver:
 
 
 ```python
@@ -583,7 +589,7 @@ with open(r"" + os.path.abspath('') + "/geodata/geojson/pitillal-triangle.geojso
     gjson.write(polygon.ExportToJson())
 ```
 
-For more robust file handling and defining a projection, activate the driver `ogr.GetDriverByName("GeoJSON")`. Thus, the creation and manipulation of *GeoJSON* files works similar to the shapefile handlers shown above. 
+However, for more robust file handling and defining a projection, activate the driver `ogr.GetDriverByName("GeoJSON")`. Thus, the creation and manipulation of *GeoJSON* files works similar to the above-shown shapefile handlers. 
 
 
 ```python
@@ -612,7 +618,8 @@ gjson_lyr = None
 ```
 
 ### KML (Google Earth)
-To display point, line or polygon features in *Google Earth*, features can be plugged in to Google's [*KML*](https://developers.google.com/kml/documentation/kml_tut) (Keyhole Markup Language), similar to creation of *GeoJSON* files, with the simple function `geometry.ExportToKML`:
+
+To display point, line or polygon features in *Google Earth*, features can be written to Google's [*KML*](https://developers.google.com/kml/documentation/kml_tut) (Keyhole Markup Language), similar to the creation of a *GeoJSON* file, with `ogr`s built-in function `geometry.ExportToKML`:
 
 
 ```python
@@ -629,6 +636,6 @@ with open(r"" + os.path.abspath('') + "/geodata/pitillal-triangle.kml", "w+") as
     gjson.write(polygon.ExportToKML())
 ```
 
-Similar to *GeoJSON* files and shapefiles, *KML* files can be generated more robustly (for example with a defined projection). All you need to do is load the *KML* driver (`kml_driver = ogr.GetDriverByName("KML")`) and define a *KML* data source (`kml_file = kml_driver.CreateDataSource(FILENAME.KML)`).
+Similar to *GeoJSON* files and shapefiles, *KML* files can be generated more robustly, for instance, with a defined projection. All you need to do is to load the *KML* driver (`kml_driver = ogr.GetDriverByName("KML")`) and define a *KML* data source (`kml_file = kml_driver.CreateDataSource(FILENAME.KML)`).
 
 {% include exercise.html content="Get more familiar with shapefile handling in the [geospatial ecohydraulics](ex_geco.html) exercise." %}
