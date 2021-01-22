@@ -11,7 +11,7 @@ folder: geopy
 The goal of this page is to guide to an understanding of conversions from raster and to vector data formats and vice versa.
 
 {% include requirements.html content="Make sure to understand [gridded raster data](geo-raster.html) and [vector data](geo-shp.html) data handling before reading this section.<br>Recall the [`open_raster`](geo-raster.html#open) and [`create_shp`](geo-shp.html#create) functions.<br>Read through the creation of the [*least cost path*](geo-raster.html#leastcost) raster dataset." %}
-{% include tip.html content="The core functions used in this e-book are introduced with the raster and vector data handling explanations and additionally implemented in the [`geo_utils`](https://geo-utils.readthedocs.io/) package." %}
+{% include tip.html content="The core functions used in this e-book are introduced with the raster and vector data handling explanations and additionally implemented in the [`geo_utils`](https://github.com/hydro-informatics/geo-utils) package." %}
 {% include tip.html content="Download sample raster datasets from [*River Architect*](https://github.com/RiverArchitect/SampleData/archive/master.zip). This page uses *GeoTIFF* raster data located in [`RiverArchitect/SampleData/01_Conditions/2100_sample/`](https://github.com/RiverArchitect/SampleData/tree/master/01_Conditions/2100_sample)." %}
 
 ## Vectorize
@@ -38,20 +38,23 @@ def offset2coords(geo_transform, offset_x, offset_y):
 
 {% include note.html content="The offset is added 0.5 pixels in both x and y directions to meet the center of the pixel rather than the top left pixel corner." %}
 
-Next we can write the core function to convert a raster dataset to a line shapefile. This function named `raster2line`:
-1. Opens a `raster`, its band as `array` and `geo_transform` (geo-transformation) defined with the `raster_file_name` argument and using the [`open_raster`](geo-raster.html#open) function.
-1. Calculates the maximum distance (`max_distance`) between two pixels that are considered *connect-able*, based on the hypothesis that the pixel height *&Delta;y* and width *&Delta;x* are the same:
+
+Next, we will write a core function for converting a raster dataset to a line shapefile. This function will have the name `raster2line` and it performs the following actions:
+
+1. Open a `raster`, its band as `array`, and `geo_transform` (geo-transformation) defined with the `raster_file_name` argument with a call to the [`open_raster`](geo-raster.html#open) function.
+1. Calculate the maximum distance (`max_distance`) between two pixels that are considered *connect-able*, based on the hypothesis that the pixel height *&Delta;y* and width *&Delta;x* are the same:
     {% include image.html file="pixel2line-width-illu.png" alt="dpix" max-width="500" %}
-1. Gets the `trajectory` of pixels that have a user parameter-defined `pixel_value` (e.g., `1` to trace 1-pixels in the binary `least_cost.tif`) and throws an error if the trajectory is empty (i.e., `np.count_nonzero(trajectory) is 0`). 
-1. Uses the above define `offset2coords` function to append point coordinates to a `points` list.
-1. Creates a `multi_line` object (instance of `ogr.Geometry(ogr.wkbMultiLineString)`), which represents the (void) final least cost path.
-1. Iterates through all possible combinations of points (excluding combinations of points with themselves) with [`itertools.combinations(iterable, r=number-of-combinations=2`](https://docs.python.org/3/library/itertools.html)).
-    * Points are stored in the `points` list.
+1. Get the `trajectory` of pixels that have a user parameter-defined `pixel_value` (e.g., `1` to trace 1-pixels in the binary `least_cost.tif`) and throws an error if the trajectory is empty (i.e., `np.count_nonzero(trajectory) is 0`). 
+1. Use the above define `offset2coords` function to append point coordinates to a `points` list.
+1. Create a `multi_line` object (instance of `ogr.Geometry(ogr.wkbMultiLineString)`), which represents the (void) final least cost path.
+1. Iterate through all possible combinations of points (excluding combinations of points with themselves) with [`itertools.combinations(iterable, r=number-of-combinations=2`](https://docs.python.org/3/library/itertools.html)):
+    * Points are stored in a `points` list.
     * `point1` and `point2` are required to get the distance between pairs of points.
-    * If the `distance` between the point is smaller than `max_distance`, the function creates a line object from the two points and appends it to the `multi_line`.
-1. Creates a new shapefile (named `out_shp_fn`) using the [`create_shp`](geo-shp.html#create) function (with integrated shapefile name length verification as per the [`geo_utils`](https://geo-utils.readthedocs.io/) package).
-1. Adds the `multi_line` object as new feature to the shapefile (follows the descriptions on the [shapefile page](geo-shp.html#line-create)).
-1. Creates a `.prj` projection file (recall descriptions on the [shapefile page](geo-shp.html#prj-shp)) using the spatial reference system of the input `raster` with the [`get_srs`](geo-raster.html##lc-fun) function.
+    * If the `distance` between the points is smaller than `max_distance`, the function creates a line object from the two points and appends it to the `multi_line` list.
+1. Create a new shapefile (named `out_shp_fn`) using the [`create_shp`](geo-shp.html#create) function (with integrated shapefile name length verification of maximum 13-characters).
+1. Add the `multi_line` object as new feature to the shapefile (follows the descriptions on the [shapefile page](geo-shp.html#line-create)).
+1. Create a `.prj` projection file (recall descriptions on the [shapefile page](geo-shp.html#prj-shp)) using the spatial reference system of the input `raster` with the [`get_srs`](geo-raster.html#lc-fun) function.
+
 The `raster2line` function is also implemented in the [`geo_utils/geo_tools.py`](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/geo_tools.py) script.
 
 
@@ -135,7 +138,7 @@ raster2line(source_raster_fn, target_shp_fn, pixel_value)
 
 ### Raster to polygon {#raster2polygon}
 
-`gdal` comes with the powerful `Polygonize` functionality for the easy conversion of a raster dataset to a polygon shapefile. While `gdal.Polygonize` enables writing a simple `raster2polygon` function, it has a drawback, which is that it can only handle integer values and it merely randomly attributes `FID` values by default. Because the `FID` values are not meaningful, we can implement the following `float2int` function to preserve the original value range (uses the [`raster2array`](geo-raster.html#createarray) and [`create_raster`](geo-raster.html#create) functions explained on the raster page):
+`gdal` comes with the powerful `Polygonize` tool for the easy conversion of a raster dataset to a polygon shapefile. While `gdal.Polygonize` enables writing a simple `raster2polygon` function, it has a drawback, which is that it can only handle integer values and it merely randomly attributes `FID` values by default. Because the `FID` values are not meaningful, we can implement the following `float2int` function to preserve the original value range (uses the [`raster2array`](geo-raster.html#createarray) and [`create_raster`](geo-raster.html#create) functions explained on the raster page):
 
 
 ```python
@@ -168,13 +171,13 @@ def float2int(raster_file_name, band_number=1):
 
 The following `raster2polygon` function:
 1. Uses the `float2int` function to ensure that any raster `file_name` provided is converted to purely integer values.
-1. Creates a new shapefile (named `out_shp_fn`) using the [`create_shp`](geo-shp.html#create) function (with integrated shapefile name length verification as per the [`geo_utils`](https://geo-utils.readthedocs.io/) package).
+1. Creates a new shapefile (named `out_shp_fn`) using the [`create_shp`](geo-shp.html#create) function (with integrated shapefile name length verification of maximum 13 characters).
 1. Adds a new `ogr.OFTInteger` field (recall [the field creation](geo-shp.html#add-field)) named by the optional `field_name` input argument.
 1. Runs [`gdal.Polygonize`](https://gdal.org/api/gdal_alg.html#_CPPv414GDALPolygonize15GDALRasterBandH15GDALRasterBandH9OGRLayerHiPPc16GDALProgressFuncPv) with:
     * `hSrcBand=raster_band`
     * `hMaskBand=None` (optional raster band to define polygons)
     * `hOutLayer=dst_layer`
-    * `iPixValField=0` (if no field was be added, set to -1 in order to create `FID` field; if more field added, set to 1, 2, ... )
+    * `iPixValField=0` (if no field was be added, set to -1 in order to create `FID` field; to add more fields, set this value to 1, 2, ... )
     * `papszOptions=[]` (no effect for `ESRI Shapefile` driver type)
     * `callback=None` for not using the reporting algorithm (`GDALProgressFunc()`)
 1. Creates a `.prj` projection file (recall descriptions on the [shapefile page](geo-shp.html#prj-shp)) using the spatial reference system of the input `raster` with the [`get_srs`](geo-raster.html##lc-fun) function.   
@@ -215,7 +218,7 @@ def raster2polygon(file_name, out_shp_fn, band_number=1, field_name="values"):
 
 {% include tip.html content="Both the `float2int` and the `raster2polygon` functions are also available in the [`geo_utils` package (*geo_utils/geo_tools.py*](https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/geo_tools.py))." %}
 
-Now we can use the `raster2polygon` function to convert the flow depth raster for 1000 cfs (`h001000.cfs` from the [*River Architect* sample datasets](https://github.com/RiverArchitect/SampleData/tree/master/01_Conditions/2100_sample)) to a polygon shapefile:
+We can use the `raster2polygon` function to convert the flow depth raster for 1000 cfs (`h001000.cfs`) from the [*River Architect* sample datasets](https://github.com/RiverArchitect/SampleData/tree/master/01_Conditions/2100_sample) to a polygon shapefile:
 
 
 ```python
@@ -231,25 +234,25 @@ raster2polygon(src_raster, tar_shp)
 
 ## Rasterize (vector shapefile to raster) {#shp2raster}
 
-Similar to `gdal.Polygonize`, [`gdal.RasterizeLayer`](https://gdal.org/python/osgeo.gdal-module.html#RasterizeLayer) represents a powerful option to easily convert a shapefile into a raster. More precisely, a shapefile is not really converted but burned onto a raster. That means, values stored in a field of a shapefile feature are used (burned) as pixel values in a new raster. A little attention is required to ensure that the correct values and data types are used. So let's write a `rasterize` function that we can use robustly over and over again, avoiding potential headaches. The `rasterize` function:
-1. Open the provided input shapefile name and its layer.
-1. Reads the spatial extent of the layer.
-1. Derives the solution as a function of the spatial extent and a user-defined `pixel_size` (optional argument).
-1. Creates a new *GeoTIFF* raster using the
+Similar to `gdal.Polygonize`, [`gdal.RasterizeLayer`](https://gdal.org/python/osgeo.gdal-module.html#RasterizeLayer) represents a powerful option to easily convert a shapefile into a raster. More precisely, a shapefile is not really converted, but burned onto a raster. That means, values stored in a field of a shapefile feature are used (burned) for pixel values in a new raster. Pay attention to ensure that the correct values and data types are used. So let's write a `rasterize` function that we can use robustly over and over again. The `rasterize` function will do the following:
+1. Open the provided input shapefile name (`in_shp_file_name`) and its layer.
+1. Read the spatial extent of the layer.
+1. Derive the solution as a function of the spatial extent and a user-defined `pixel_size` (optional argument).
+1. Create a new *GeoTIFF* raster using the
     * user-defined `output_raster_file_name`,
     * calculated x and y resolution, and
     * `eType` (default is `gdal.GDT_Float32` - recall all data type options listed on the [raster page](geo-raster.html#etypes).
-1. Applies the geo-transformation defined by the source layer extents and the `pixel_size`.
-1. Creates one raster `band`, fills the `band` with the user-defined `no_data_value` (default is `-9999`), and sets the `no_data_value`.
-1. Sets the spatial reference system of the raster to the same as the source shapefile.
-1. Applies `gdal.RasterizeLayer` with 
+1. Apply the geo-transformation defined by the source layer extents and the `pixel_size`.
+1. Create one raster `band`, fills the `band` with the user-defined `no_data_value` (default is `-9999`), and sets the `no_data_value`.
+1. Set the spatial reference system of the raster to the same as the source shapefile.
+1. Apply `gdal.RasterizeLayer` with 
     * `dataset=target_ds` (target raster dataset),
-    * `bands=[1]` (*list(integer)* - increase to defined more raster bands and assign other values, e.g., from other fields of the source shapefile),
+    * `bands=[1]` (*list(integer)* - increase to define more raster bands and assign other values, e.g., from other fields of the source shapefile),
     * `layer=source_lyr` (layer with features to burn to the raster),
     * `pfnTransformer=None` ([read more in the developer's docs](https://gdal.org/python/osgeo.gdal-module.html#RasterizeLayer)),
     * `pTransformArg=None` ([read more in the developer's docs](https://gdal.org/python/osgeo.gdal-module.html#RasterizeLayer)),
     * `burn_values=[0]` (a default value that is burned to the raster),
-    * `options=["ALL_TOUCHED=TRUE"]` defines that all pixels touched by a polygon get the polygon's field value - if not set: only pixels that are entirely in the polygon get a value assigned,
+    * `options=["ALL_TOUCHED=TRUE"]` defines that all pixels touched by a polygon get the polygon's field value assigned - if not set: only pixels that are entirely in the polygon get a value assigned,
     * `options=["ATTRIBUTE=" + str(kwargs.get("field_name"))]` defines the field name with values to burn.
 
 
@@ -309,7 +312,7 @@ def rasterize(in_shp_file_name, out_raster_file_name, pixel_size=10, no_data_val
 
 {% include tip.html content="`Rasterize` can also be run as a [terminal command](geo-raster.html#terminal) with [`gdal_rasterize`](https://gdal.org/programs/gdal_rasterize.html)." %}
 
-Now we can use the `rasterize` function to convert the above polygonized flow depth polygon shapefile (`h_poly_cls.shp`) back to a raster (that is a little bit useless in practice, but an illustrative exercise). Pay attention to the data type, which is `gdal.GDT_Int32` and define the `field_name` correctly.
+We can use the `rasterize` function to convert the above polygonized flow depth polygon shapefile (`h_poly_cls.shp`) back to a raster (this is a kind of useless, but illustrative exercise). Pay attention to the data type, which is `gdal.GDT_Int32` and define the `field_name` correctly.
 
 
 ```python
