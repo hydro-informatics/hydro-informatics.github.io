@@ -668,6 +668,17 @@ least_cost_path_indices, weight
 
 
 
+The total weight of the least cost path results from multiplying move lengths with the weight of moves, where every move starts end ends at a cell center. In the above example, the least cost path starts at the center of cell `(0, 0)` with a horizontal move of length is `0.5` and weight `79` to cell `(0, 1)` with a horizontal move of length `0.5` and weight `79` (again). Then, it moves on to cell `(0, 2)` and from there to cell `(1, 3)`, where the length is two times `sqrt(2) * 0.5`. Thus, the cost for moving from cell `(0, 2)` to cell `(1, 3)` is `sqrt(2) * 0.5 * 45 + sqrt(2) * 0.5 * 7`. To verify how the total weight of the least cost path is calculated run the following code block.
+
+
+```python
+from math import sqrt
+print((0.5*79 + 0.5*79) + (0.5*79 + 0.5*45) + (0.5*sqrt(2)*45 + 0.5*sqrt(2)*7) + (0.5*sqrt(2)*7 + 0.5*sqrt(2)*94))
+```
+
+    249.1873375215418
+    
+
 To integrate the least cost path list into an array that we can *rasterize* (`create_raster`) afterwards, we can paste `least_cost_path_indices` into a *numpy* zeros array of the original slope raster (image) as a transposed list.
 
 
@@ -689,7 +700,7 @@ least_cost_path_array
 
 In practice, the slope raster is georeferenced, and therefore, we have to use some pixel coordinates relative to the coordinate system origin. For this purpose, we need two more functions:
 
-* One function to calculate the pixel-index related offset that we will name `coords2offset`, which returns the x-y shift in the form of "number of pixels" (a sequence of two *integer*s, one for *x* and one for *y* shift). 
+* One function to calculate the pixel-index related offset that we will name `coords2offset`, which returns the x-y shift in the form of "number of pixels" (a sequence of two *integer* numbers, one for *x* and one for *y* shift). 
 * The [above-defined `get_srs`](#reproject) function.
 
 The `coords2offset` function looks like this:
