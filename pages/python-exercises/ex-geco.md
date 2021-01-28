@@ -27,12 +27,12 @@ git clone https://github.com/Ecohydraulics/Exercise-geco.git
 
 Fish and other aquatic species rest, orient, and reproduce in a fluvial environment that represents their physical habitat. Throughout their different life stages, different fish have specific physical habitat preferences which are defined, for instance, as a function of water depth, flow velocity, and grain size of the riverbed. The so-called *Habitat Suitability Index **HSI*** can be calculated for hydraulic (water depth or flow velocity) and morphological (e.g., grain size or cover in the form of large wood) parameters individually to describe the quality of physical habitat for a fish and at a specific life stage. The figure below shows exemplary *HSI* curves for the fry, juvenile and adult life stages of rainbow trout as a function of water depth. The *HSI* curves look different in every river and should be established individually by an aquatic ecologist.
 <a name="hsi-image"></a>
-![hsi-curves](https://github.com/Ecohydraulics/media/raw/master/png/hsi-curves.png)
+![hsi-curves](https://github.com/Ecohydraulics/media/raw/master/png/hsi-curves.png)<br>
 *Habitat Suitability Index (HSI) curves for the fry, juvenile, and adult life stages of rainbow trout in a cobble-bed river. Take care: HSI curves look different in any river and need to be established by an aquatic ecologist.*
 
 The *HSI* concept also accounts for the so-called cover habitat in the form of the *cover HSI* (*HSI<sub>cov</sub>*). Cover habitat is the result of local turbulence caused by roughness elements such as wood, boulders, or bridge piers. However, in this exercise, we will only deal with hydraulic habitat characteristics (not cover habitat).
 
-![cover-habitat](https://github.com/Ecohydraulics/media/raw/master/jpg/neckar-fish-cover.jpg)
+![cover-habitat](https://github.com/Ecohydraulics/media/raw/master/jpg/neckar-fish-cover.jpg)<br>
 *Adult trout swimming in cover habitat created by a bridge pier in the upper Neckar River.*
 
 The combination of multiple *HSI* values (e.g., water depth-related *HSI<sub>h</sub>*, flow velocity-related *HSI<sub>u</sub>*, grain size-related *HSI<sub>d</sub>*, and/or cover *HSI<sub>cov</sub>*) results in the *combined Habitat Suitability Index **cHSI***. There are various calculation methods for combining different *HSI<sub>par</sub>* values into one *cHSI* value, where the geometric mean and the product are the most widely used deterministic combination methods: <a name="combine-methods"></a>
@@ -65,7 +65,7 @@ This exercise demonstrates the use of 2D hydrodynamic modeling results to algori
 The following flow chart illustrates the provided code and data. Functions, methods, and files to be created in this exercise are highlighted in bold, italic, *YELLOW* font.
 
 <a name="uml"></a>
-![code-structure](https://github.com/Ecohydraulics/Exercise-geco/raw/master/graphs/geo_eco_uml.png)
+![code-structure](https://github.com/Ecohydraulics/Exercise-geco/raw/master/graphs/geo_eco_uml.png)<br>
 
 The provided *QGIS* project file `visualize_with_QGIS.qgz` helps to verify input raster datasets and results.
 
