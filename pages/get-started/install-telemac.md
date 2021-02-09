@@ -69,9 +69,9 @@ Debian Linux' standard installation comes with `python` for *Python2* and `pytho
 ```
 ls /usr/bin/python*
 ```
-
+    
 ```
-    /usr/bin/python  /usr/bin/python2  /usr/bin/python2.7  /usr/bin/python3  /usr/bin/python3.7  /usr/bin/python3.7m  /usr/bin/python3m
+        $ /usr/bin/python  /usr/bin/python2  /usr/bin/python2.7  /usr/bin/python3  /usr/bin/python3.7  /usr/bin/python3.7m  /usr/bin/python3m
 ```
 
 Now set the `python` environment variable so that it points at *Python3*:
@@ -86,7 +86,7 @@ Depending on the installed subversion of *Python3*, the folder name `python3.7` 
 ```
 /usr/bin/env python --version
 ```
-    Python 3.7.3
+    $ Python 3.7.3
 
 
 ### Subversion (svn)
@@ -637,7 +637,7 @@ sudo apt-get install libopengl0
 sudo apt-get install libtbb-dev
 ```
 
-To run *SALOME*, `cd` to the directory where the unpacked packages is located and typ `salome`:
+To run *SALOME*, `cd` to the directory where the unpacked package is located and typ `salome`:
 
 ```
 cd SALOME-9.5.0-DB10-SRC

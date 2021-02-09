@@ -10,7 +10,7 @@ folder: numerics
 
 ## Pre-processing with *QGIS*
 
-To start any analysis of rivers and fluvial landscapes, a digital elevation model (**DEM**) is required. Nowadays, DEMs mostly are a compiste result of light imaging, detection, and ranging ([LiDAR](https://en.wikipedia.org/wiki/Lidar)) and bathymetric surveys. LiDAR employs lights sources and provides terrain assessments up to 2-m deep water. Deeper water requires additional bathymetric surveys with [echo sounding](https://en.wikipedia.org/wiki/Echo_sounding) methods.
+To start any analysis of rivers and fluvial landscapes, a digital elevation model (**DEM**) is required. Nowadays, DEMs mostly are a result of light imaging, detection, and ranging ([LiDAR](https://en.wikipedia.org/wiki/Lidar)) and bathymetric surveys. LiDAR employs lights sources and provides terrain assessments up to 2-m deep water. Deeper water requires additional bathymetric surveys with [echo sounding](https://en.wikipedia.org/wiki/Echo_sounding) methods.
 Merging LiDAR and bathymetric data produces point clouds that may be stored in many different file types. The first step in river modelling consist in the conversion of such point clouds into usable DEMs and computational meshes. This page guides through the conversion of a point cloud into a computational mesh with *QGIS* and the *BASEmesh* plugin. The descriptions refer to the developer's documentation files ([go to the ETH Zurich's *BASEMENT* documentation](https://basement.ethz.ch/download/documentation/docu3.html)).
 
 

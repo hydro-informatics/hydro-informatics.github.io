@@ -12,7 +12,7 @@ folder: lectures
 The majority of the courses take place in front of a screen in the form of video conferences, video streaming, wiki-like documentation, or interactive exercises. 
 During virus-free times, computers are available to students directly on campus. at the University of Stuttgart. To improve independent work capacities, however, it is highly recommended that students use an own laptop or desktop computer.
 
-{% include tip.html content="Students of the University of Stuttgart may want to explore the [TIK's GitHub account and login page](https://github.tik.uni-stuttgart.de/login) (use your institutional ID, for example, `st9009133`)) to leverage collaborative work with code." %}
+{% include tip.html content="Students of the University of Stuttgart may want to explore the [TIK's GitHub account and login page](https://github.tik.uni-stuttgart.de/login) (use your institutional ID, for example, `st9009133`) to leverage collaborative work with code." %}
 
 The codes created and provided in the lectures are mostly based on *Python3* *conda* environments. The [Get started](hy_git.html) chapter and the [install and setup](hypy_install.html) section provides more details and installation hints regarding required software (preferred open-access).
 
