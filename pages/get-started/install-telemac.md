@@ -620,9 +620,11 @@ java -Xmx2048m -Xms512m -cp "$(pwd)/Fudaa-Prepro-1.4.2-SNAPSHOT.jar"
 org.fudaa.fudaa.tr.TrSupervisor $1 $2 $3 $4 $5 $6 $7 $8 $9
 ``` 
 
-### SALOME (TELEMAC 3D Mesh on Linux and Windows) {#salome}
+### SALOME (as pre-processor) {#salome}
 
-Create *MED* geometry files with *SALOME* for 2D and 3D TELEMAC models. Download *SALOME* from [salome-platform.org](https://www.salome-platform.org/downloads/current-version) for your distribution (here: *Debian Linux*).
+{% include tip.html content="The standard installation of the latest version of SALOME enable the creation of MED (geometry/mesh) files, but cannot directly call TELEMAC. To leverage the full capacities of SALOME, consider to install [SALOME HYDRO](#salome-hydro), with integrated interface for running TELEMAC." %} 
+
+SALOME aids to create *MED* geometry files for 2D and 3D TELEMAC models. Download *SALOME* from [salome-platform.org](https://www.salome-platform.org/downloads/current-version) for your distribution (here: *Debian Linux*).
 
 Unpack the *SALOME* package in a convenient folder (replace the `.tar.gz` file name with the one you downloaded):
 
@@ -727,3 +729,40 @@ For working with *TELEMAC*, consider installing the following *QGIS Plugins* (*P
 * *DEMto3D* enables to export *STL* geometry files for working with *SALOME* and creating 3D meshes. 
 
 Note that *DEMto3D* will be available in the *Raster* menu: *DEMto3D* > *DEM 3D printing*.
+
+## ALL-IN-ONE ALTERNATIVE: SALOME-HYDRO (Linux) {#salome-hydro}
+
+SALOME HYDRO is a specific version of SALOME ([see above](#salome)) with full capacities to create and run a numerical model with TELEMAC. The program is distributed on [salome-platform.org](https://www.salome-platform.org/contributions/edf_products/downloads/) as specific EDF contribution.
+
+{% include unix.html content="SALOME HYDRO also works on *Windows* platforms, but most applications and support is provided for *Debian Linux* only." %}
+
+### Prerequisites
+
+1. Download the latest installer from the [developer's website](https://www.salome-platform.org/contributions/edf_products/downloads/) ([direct download link to Salome-Hydro V1.1](http://files.salome-platform.org/Salome/Contributions/EDF/Salome-V1_1_univ_3.run))
+1. Install necessary drivers and packages
+
+```
+sudo apt-get install openmpi-common gfortran mpi-default-dev zlib1g-dev libnuma-dev xterm net-tools
+sudo apt-get install libsrtp2-dev
+```
+
+### Install SALOME-HYDRO
+
+The SALOME-HYDRO installer requires *Python2* as opposed to *Python3*, which is used in most tutorials on this website. For this reason, it is necessary to make the following one-time definitions for using *Python2* in the *Terminal* window with which you will install SALOME-HYDRO (make sure that the folder **/usr/bin/python2.7/** exists): 
+
+```
+export PATH=/usr/bin:$PATH
+alias python=/usr/bin/python2.7
+unset PYTHONPATH
+export PYTHONHOME=/usr
+```
+
+Then `cd` into the directory where you downloaded **Salome-V1_1_univ_3.run**, tap:
+
+```
+bash Salome-V1_1_univ_3.run
+```
+
+In the installation process, define a convenient installation directory such as **/home/salome-hydro/**. The installer guides through the installation and prompts how to launch the program at the end.
+
+{% include tip.html content="If you get error messages such as `./create_appli_V1_1_univ.sh/xml: line [...]: No such file or directory.`, there is probably an issue with the version of *Python*. In this case, make sure to define the *PATH* as above stated in the prerequisites (SALOME-HYDRO) section." %}
