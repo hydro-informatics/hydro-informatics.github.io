@@ -12,13 +12,79 @@ folder: get-started
 
 ## Preface
 
-* Installing TELEMAC on a [Virtual Machine (VM)](vm.html) is useful for getting started with TELEMAC and its sample cases, but not recommended for running a real-world numerical model. 
+This page only guides through the **installation** of TELEMAC. A **tutorial pages for running hydro(-morpho)dynamic models with TELEMAC are under construction**.
+
+### Good to know 
+
+*Installing TELEMAC on a [Virtual Machine (VM)](vm.html) is useful for getting started with TELEMAC and its sample cases, but not recommended for running a real-world numerical model. 
 * Make sure to be able to use the [GNOME *Terminal*](vm.html#terminal).
 * This tutorial refers to the software package *open TELEMAC-MASCARET* as *TELEMAC* because *MASCARET* is a one-dimensional (1D) model and the numerical simulation schemes on this website focus on two-dimensional (2D) and three-dimensional (3D) modelling.
 
-{% include note.html content="This page only guides through the installation of TELEMAC. A tutorial page for running a hydro-morphodynamic model with TELEMAC is under construction." %}
+### Two Installation Options
 
-## Install mandatory Prerequisites (Part 1)
+This page describes two ways for installing *TELEMAC*:
+
+1. Option: Installation of *TELEMAC* within the *SALOME-HYDRO* software suite.
+    * All pre-processing tasks are managed with *SALOME-HYDRO*
+    * *TELEMAC* is launched through the *HYDRO-SOLVER* module
+    * Post-processing is performed with *ParaView*
+    * **Advantages**:
+        - All-in-one solution for pre-processing
+        - Integrated HPC installation of *TELEMAC* *v7p3*
+        - Efficient for MED-file handling
+    * **Disadvantages**:
+        - Not all modules are up to date (latest version of *TELEMAC* is *v8*)
+        - Common input geometry file formats such as *SLF* (serafin) require additional software
+2. Option: Modular installation of *TELEMAC*
+    * Every software and packages needed to run a *TELEMAC* model is installed manually
+    * **Advantages**:
+        - Full control over modules to be installed (high flexibility)
+        - Latest version of *TELEMAC* is installed and can be regularly updated
+    * **Disadvantages**:
+        - The variety of install options may cause errors when incompatible packages are combined
+        - Challenging installation of HPC and parallelism options for *TELEMAC*   
+
+So what option to choose? Many factors need to be considered, but as a general rule of thumb, it might be beneficial to opt as follows:
+
+* [Option 1 (*SALOME-HYDRO*)](#salome-hydro) for modelling three-dimensional (3D) geometries defined with *MED* files; and
+* [Option 2 (Modular installation)](#modular-install) for modelling two-dimensional (2D) river landscapes.
+
+## Option 1: SALOME-HYDRO (Linux) {#salome-hydro}
+
+SALOME-HYDRO is a specific version of SALOME ([see description in the modular installation](#salome)) with full capacities to create and run a numerical model with TELEMAC. The program is distributed on [salome-platform.org](https://www.salome-platform.org/contributions/edf_products/downloads/) as specific EDF contribution.
+
+{% include unix.html content="SALOME-HYDRO also works on *Windows* platforms, but most applications and support is provided for *Debian Linux*." %}
+
+### Prerequisites
+
+1. Download the latest installer from the [developer's website](https://www.salome-platform.org/contributions/edf_products/downloads/) ([direct download link to Salome-Hydro V1.1](http://files.salome-platform.org/Salome/Contributions/EDF/Salome-V1_1_univ_3.run))
+1. Install necessary drivers and packages
+
+```
+sudo apt-get install openmpi-common gfortran mpi-default-dev zlib1g-dev libnuma-dev xterm net-tools
+$$$ optional? sudo apt-get install libsrtp2-dev
+```
+
+### Install SALOME-HYDRO
+
+Open the *Terminal*, `cd` into the directory where you downloaded **Salome-V1_1_univ_3.run**,  and tap:
+
+```
+chmod 775 Salome-veV1_1_univ_3.run
+./Salome-V1_1_univ_3.run
+```
+
+During the installation process, define a convenient installation directory such as **/home/salome-hydro/**. The installer guides through the installation and prompts how to launch the program at the end.
+
+{% include tip.html content="If you get error messages such as `./create_appli_V1_1_univ.sh/xml: line [...]: No such file or directory.`, there is probably an issue with the version of *Python*. In this case, make sure to define the *PATH* as above stated in the prerequisites (SALOME-HYDRO) section." %}
+
+### Install ParaView
+
+[*ParaView*](https://www.paraview.org) serves for the visualization of model results in the SALOME-HYDRO modelling chain. The software is freely available with download and install instructions on the [*ParaView* website](https://www.paraview.org/download/). 
+
+## Option 2: Manual Installation of Modules {#modular-install}
+
+### Install mandatory Prerequisites (Part 1)
 
 Working with *TELEMAC* requires some software for downloading source files, compiling, and running the program. The mandatory software prerequisites for installing *TELEMAC* on [Debian Linux](https://www.debian.org/) are:
 
@@ -64,6 +130,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 None of the three library imports should return an `ImportError` message. To learn more about *Python* read the [*Python*<sup>basics</sup>](python.html) on this website.
 
+<!--
 Debian Linux' standard installation comes with `python` for *Python2* and `python3` for *Python3*. To avoid confusion in the installation of *TELEMAC*, make sure that whatever `python*` environment variable is used, *Python3* is called. To do so, open *Terminal* (as superuser/root `su`) and find out what versions of *Python* are installed:
 
 ```
@@ -87,7 +154,7 @@ Depending on the installed subversion of *Python3*, the folder name `python3.7` 
 /usr/bin/env python --version
 ```
     $ Python 3.7.3
-
+-->
 
 ### Subversion (svn)
 
@@ -729,40 +796,3 @@ For working with *TELEMAC*, consider installing the following *QGIS Plugins* (*P
 * *DEMto3D* enables to export *STL* geometry files for working with *SALOME* and creating 3D meshes. 
 
 Note that *DEMto3D* will be available in the *Raster* menu: *DEMto3D* > *DEM 3D printing*.
-
-## ALL-IN-ONE ALTERNATIVE: SALOME-HYDRO (Linux) {#salome-hydro}
-
-SALOME HYDRO is a specific version of SALOME ([see above](#salome)) with full capacities to create and run a numerical model with TELEMAC. The program is distributed on [salome-platform.org](https://www.salome-platform.org/contributions/edf_products/downloads/) as specific EDF contribution.
-
-{% include unix.html content="SALOME HYDRO also works on *Windows* platforms, but most applications and support is provided for *Debian Linux* only." %}
-
-### Prerequisites
-
-1. Download the latest installer from the [developer's website](https://www.salome-platform.org/contributions/edf_products/downloads/) ([direct download link to Salome-Hydro V1.1](http://files.salome-platform.org/Salome/Contributions/EDF/Salome-V1_1_univ_3.run))
-1. Install necessary drivers and packages
-
-```
-sudo apt-get install openmpi-common gfortran mpi-default-dev zlib1g-dev libnuma-dev xterm net-tools
-sudo apt-get install libsrtp2-dev
-```
-
-### Install SALOME-HYDRO
-
-The SALOME-HYDRO installer requires *Python2* as opposed to *Python3*, which is used in most tutorials on this website. For this reason, it is necessary to make the following one-time definitions for using *Python2* in the *Terminal* window with which you will install SALOME-HYDRO (make sure that the folder **/usr/bin/python2.7/** exists): 
-
-```
-export PATH=/usr/bin:$PATH
-alias python=/usr/bin/python2.7
-unset PYTHONPATH
-export PYTHONHOME=/usr
-```
-
-Then `cd` into the directory where you downloaded **Salome-V1_1_univ_3.run**, tap:
-
-```
-bash Salome-V1_1_univ_3.run
-```
-
-In the installation process, define a convenient installation directory such as **/home/salome-hydro/**. The installer guides through the installation and prompts how to launch the program at the end.
-
-{% include tip.html content="If you get error messages such as `./create_appli_V1_1_univ.sh/xml: line [...]: No such file or directory.`, there is probably an issue with the version of *Python*. In this case, make sure to define the *PATH* as above stated in the prerequisites (SALOME-HYDRO) section." %}
