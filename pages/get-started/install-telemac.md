@@ -1,8 +1,8 @@
 ---
-title: open TELEMAC (Installation)
+title: open *TELEMAC* (Installation)
 tags: [telemac, linux, numerical, modelling, install, vm]
 keywords: Virtual, machine, *TELEMAC*
-summary: "A step-by-step workflow for installing the numerical modelling software TELEMAC on Debian Linux."
+summary: "A step-by-step workflow for installing the numerical modelling software *TELEMAC* on Debian Linux."
 sidebar: mydoc_sidebar
 permalink: install-telemac.html
 folder: get-started
@@ -12,11 +12,11 @@ folder: get-started
 
 ## Preface
 
-This page only guides through the **installation** of TELEMAC. A **tutorial pages for running hydro(-morpho)dynamic models with TELEMAC are under construction**.
+This page only guides through the **installation** of *TELEMAC*. A **tutorial pages for running hydro(-morpho)dynamic models with *TELEMAC* are under construction**.
 
 ### Good to know 
 
-*Installing TELEMAC on a [Virtual Machine (VM)](vm.html) is useful for getting started with TELEMAC and its sample cases, but not recommended for running a real-world numerical model. 
+* Installing *TELEMAC* on a [Virtual Machine (VM)](vm.html) is useful for getting started with *TELEMAC* and its sample cases, but not recommended for running a real-world numerical model. 
 * Make sure to be able to use the [GNOME *Terminal*](vm.html#terminal).
 * This tutorial refers to the software package *open TELEMAC-MASCARET* as *TELEMAC* because *MASCARET* is a one-dimensional (1D) model and the numerical simulation schemes on this website focus on two-dimensional (2D) and three-dimensional (3D) modelling.
 
@@ -47,22 +47,21 @@ This page describes two ways for installing *TELEMAC*:
 So what option to choose? Many factors need to be considered, but as a general rule of thumb, it might be beneficial to opt as follows:
 
 * [Option 1 (*SALOME-HYDRO*)](#salome-hydro) for modelling three-dimensional (3D) geometries defined with *MED* files; and
-* [Option 2 (Modular installation)](#modular-install) for modelling two-dimensional (2D) river landscapes.
+* [Option 2 (Modular installation)](#modular-install) for hydro-morphodynamic, two-dimensional (2D) modelling of river landscapes.
 
 ## Option 1: SALOME-HYDRO (Linux) {#salome-hydro}
 
-SALOME-HYDRO is a specific version of SALOME ([see description in the modular installation](#salome)) with full capacities to create and run a numerical model with TELEMAC. The program is distributed on [salome-platform.org](https://www.salome-platform.org/contributions/edf_products/downloads/) as specific EDF contribution.
+SALOME-HYDRO is a specific version of SALOME ([see description in the modular installation](#salome)) with full capacities to create and run a numerical model with *TELEMAC*. The program is distributed on [salome-platform.org](https://www.salome-platform.org/contributions/edf_products/downloads/) as specific EDF contribution.
 
 {% include unix.html content="SALOME-HYDRO also works on *Windows* platforms, but most applications and support is provided for *Debian Linux*." %}
 
 ### Prerequisites
 
 1. Download the latest installer from the [developer's website](https://www.salome-platform.org/contributions/edf_products/downloads/) ([direct download link to Salome-Hydro V1.1](http://files.salome-platform.org/Salome/Contributions/EDF/Salome-V1_1_univ_3.run))
-1. Install necessary drivers and packages
+1. Install required  packages
 
 ```
 sudo apt-get install openmpi-common gfortran mpi-default-dev zlib1g-dev libnuma-dev xterm net-tools
-$$$ optional? sudo apt-get install libsrtp2-dev
 ```
 
 ### Install SALOME-HYDRO
@@ -70,19 +69,43 @@ $$$ optional? sudo apt-get install libsrtp2-dev
 Open the *Terminal*, `cd` into the directory where you downloaded **Salome-V1_1_univ_3.run**,  and tap:
 
 ```
-chmod 775 Salome-veV1_1_univ_3.run
+chmod 775 Salome-V1_1_univ_3.run
 ./Salome-V1_1_univ_3.run
 ```
 
 During the installation process, define a convenient installation directory such as **/home/salome-hydro/**. The installer guides through the installation and prompts how to launch the program at the end.
 
-{% include tip.html content="If you get error messages such as `./create_appli_V1_1_univ.sh/xml: line [...]: No such file or directory.`, there is probably an issue with the version of *Python*. In this case, make sure to define the *PATH* as above stated in the prerequisites (SALOME-HYDRO) section." %}
+{% include important.html content="If you get error messages such as `./create_appli_V1_1_univ.sh/xml: line [...]: No such file or directory.`, there is probably an issue with the version of *Python*. In this case, make sure to define the *PATH* as above stated in the prerequisites (SALOME-HYDRO) section." %}
+
+<a name="mod-profile"></a>
+With the newer versions of the *Qt platform* any menu entry in *SALOME-HYDRO* will not show up. To fix this issue, open the file `~/.profile` (e.g. with the file browser in the `Home` folder and pressing `CTRL` + `H` to toggle viewing hidden files) and add at the very end of the file: 
+
+```
+export QT_STYLE_OVERRIDE=gtk2
+```
+
+Save and close `.profile` and reboot (or just re-login). 
+
+An alternative (more robust) solution is to install `qt5-styleplugins` and `qt5ct`, then add `export QT_QPA_PLATFORMTHEME=qt5ct` in `~/.bash_profile`, reboot (or re-login), and configure `Qt` with `qt5ct` (read more at [archlinux.org](https://bbs.archlinux.org/viewtopic.php?id=214147&p=3) and in the [arch wiki](https://wiki.archlinux.org/index.php/Uniform_look_for_Qt_and_GTK_applications#QGtkStyle)).
+
+{% include tip.html content="**Set a keyboard shortcut to start SALOME-HYDRO on Debian Linux**: Go to *Activities*, tap *keyboard*, and select *Keyboard* from the list (do not click on *Tweaks*). In the *Keyboard* window, scroll to the bottom and click on the `+` sign to define a new shortcut. In the popup window use, for example, *Salome-Hydro* as *Name*, in the *Command* box tap `/home/salome-hydro/appli_V1_1_univ/salome` (or where ever *SALOME-HYDRO* is installed), and define a *Shortcut*, such as `CTRL` + `Alt` + `S`." %}
+
+{% include image.html file="sah-keyboard-shortcut.png" alt="salome-hydro shortcut" caption="Define a keyboard shortcut to start SALOME-HYDRO." %}
+
+
+To start *SALOME-HYDRO*, open *Terminal* and tap:
+
+```
+/home/salome-hydro/appli_V1_1_univ/salome
+```
+
+
 
 ### Install ParaView
 
 [*ParaView*](https://www.paraview.org) serves for the visualization of model results in the SALOME-HYDRO modelling chain. The software is freely available with download and install instructions on the [*ParaView* website](https://www.paraview.org/download/). 
 
-## Option 2: Manual Installation of Modules {#modular-install}
+## Option 2 (**O2**): Manual Installation of Modules {#modular-install}
 
 ### Install mandatory Prerequisites (Part 1)
 
@@ -212,7 +235,7 @@ sudo apt-get install -y cmake build-essential dialog vim
 ```
 
 
-## Download *TELEMAC*
+## **O2**: Download *TELEMAC*
 
 We will need more packages to enable parallelism and compiling, but before installing them, download the latest version of *TELEMAC* through subversion (`svn`). The developers (irregularly) inform about the newest public release on [their website](http://www.opentelemac.org/index.php/latest-news-development-and-distribution) and the latest absolute latest release can be read from the [*svn-tags* website](http://svn.opentelemac.org/svn/opentelemac/tags/) (use with passwords in the below command line block). To download* *TELEMAC*, open *Terminal* in the *Home* directory (either use `cd` or use the *Files* browser to navigate to the *Home* directory and right-click in the empty space to open *Terminal*) and type (enter `no` when asked for password encryption):
 
@@ -224,7 +247,7 @@ This will have downloaded *TELEMAC* *v8p2r0* to the directory `/home/USER-NAME/t
 
 
 
-## Install recommended Prerequisites (Part 2: Parallelism and Compilers)
+## **O2**: Install recommended Prerequisites (Part 2: Parallelism and Compilers)
 
 This section guides through the installation of additional packages required for parallelism. Make sure that *Terminal* recognizes `gcc`, which should be included in the *Debian* base installation (verify with `gcc --help`). This section includes installation for:
 
@@ -239,7 +262,7 @@ This section guides through the installation of additional packages required for
 
 ***Estimated duration: 5 minutes.***
 
-MPI stands for *Message Passing Interface*, which is a portable message-passing standard. MPI is implemented in many open-source C, C++, and Fortran applications ([read more](https://en.wikipedia.org/wiki/Message_Passing_Interface)). TELEMAC developers recommend installing either *MPICH* or *Open MPI*. Here, we opt for *Open MPI*, which can be installed through the *Terminal*:
+MPI stands for *Message Passing Interface*, which is a portable message-passing standard. MPI is implemented in many open-source C, C++, and Fortran applications ([read more](https://en.wikipedia.org/wiki/Message_Passing_Interface)). *TELEMAC* developers recommend installing either *MPICH* or *Open MPI*. Here, we opt for *Open MPI*, which can be installed through the *Terminal*:
 
 ```
 sudo apt-get install libopenmpi-dev openmpi-bin
@@ -259,7 +282,7 @@ The *Terminal* should prompt option flags for processing a *gfortran* file. The 
 
 ***Estimated duration: 10-15 minutes.***
 
-Metis is a software package for partitioning unstructured graphs, partitioning meshes, and computing fill-reducing orderings of sparse matrices by George Karypis. TELEMAC uses *Metis* as a part of *Partel* to split the mesh into multiple parts for parallel runs. Learn more about *Metis* and potentially newer versions than `5.1.0` (used in the following) on the [Karypis Lab website](http://glaros.dtc.umn.edu/gkhome/metis/metis/download) or reading the [PDF manual](http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/manual.pdf).
+Metis is a software package for partitioning unstructured graphs, partitioning meshes, and computing fill-reducing orderings of sparse matrices by George Karypis. *TELEMAC* uses *Metis* as a part of *Partel* to split the mesh into multiple parts for parallel runs. Learn more about *Metis* and potentially newer versions than `5.1.0` (used in the following) on the [Karypis Lab website](http://glaros.dtc.umn.edu/gkhome/metis/metis/download) or reading the [PDF manual](http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/manual.pdf).
 
 ***IF TELEMAC/OPTIONALS/METIS DOES NOT EXIST:*** Download the *Metis* archive and unpack it in a temporary (`temp`) directory. The following code block changes to the `optionals` directory (`cd`) of *TELEMAC*, creates the `temp` folder with `mkdir`, downloads, and unzips the *Metis* archive (run in *Terminal* as ***normal user*** - ***not as root***): 
 
@@ -415,7 +438,7 @@ make
 {% include note.html content="*AED2* is not needed for the tutorials on this website and the installation of this module can be skipped." %}
 
 
-## Compile *TELEMAC*
+## **O2**: Compile *TELEMAC*
 
 ### Adapt and Verify Configuration File (systel.*.cfg)
 
@@ -501,10 +524,10 @@ The *Python* source file lives in `~/telemac/v8p2/configs`, where there is also 
 * `USETELCFG`: The name of the configuration to be used (`debgfopenmpi`). Configurations enabled are defined in the `systel.*.cfg` file, in the brackets (`[debgfopenmpi]`) directly below the header of every configuration section. 
 * `SOURCEFILE`: The path to this file and its name relative to `HOMETEL`.
 
-More definitions are required to define TELEMAC's *Application Programming Interface* (*API*), (parallel) compilers to build TELEMAC with *Open MPI*, and external libraries located in the `optionals` folder. The following code block shows how the *Python* source file `pysource.openmpi.sh` should look like. Make sure to **verify every directory on your local file system**, use your *USER-NAME*, and take your time to get all directories right, without typos (critical task).
+More definitions are required to define TELEMAC's *Application Programming Interface* (*API*), (parallel) compilers to build *TELEMAC* with *Open MPI*, and external libraries located in the `optionals` folder. The following code block shows how the *Python* source file `pysource.openmpi.sh` should look like. Make sure to **verify every directory on your local file system**, use your *USER-NAME*, and take your time to get all directories right, without typos (critical task).
 
 ```
-### TELEMAC settings -----------------------------------------------
+### *TELEMAC* settings -----------------------------------------------
 ###
 # Path to Telemac s root dir
 export HOMETEL=/home/USER-NAME/telemac/v8p2
@@ -619,7 +642,7 @@ When the computation is running, observe the *CPU* charge. If the *CPU*s are all
 {% include tip.html content="If you interrupted the *Terminal* session and get an error message such as *No such file or directory*, you may need to re-define (re-load) the *Python* source file: In *Terminal* go (`cd`) to `~/telemac/v8p2/configs`, type `source pysource.openmpi.sh` > `config.py`, and then go back to the `examples` folder to re-run the example." %}
 
 
-## Software for Pre- and Post-processing
+## **O2**: Software for Pre- and Post-processing
 
 ### Blue Kenue<sup>TM</sup> (Windows or Linux+Wine) {#bluekenue}
 
@@ -689,9 +712,9 @@ org.fudaa.fudaa.tr.TrSupervisor $1 $2 $3 $4 $5 $6 $7 $8 $9
 
 ### SALOME (as pre-processor) {#salome}
 
-{% include tip.html content="The standard installation of the latest version of SALOME enable the creation of MED (geometry/mesh) files, but cannot directly call TELEMAC. To leverage the full capacities of SALOME, consider to install [SALOME HYDRO](#salome-hydro), with integrated interface for running TELEMAC." %} 
+{% include tip.html content="The standard installation of the latest version of SALOME enables the creation of *MED* (geometry/mesh) files, but cannot directly call *TELEMAC*. To leverage the full capacities of SALOME, consider to install [*SALOME-HYDRO*](#salome-hydro), with integrated interface for running *TELEMAC* (Install Option 1)." %} 
 
-SALOME aids to create *MED* geometry files for 2D and 3D TELEMAC models. Download *SALOME* from [salome-platform.org](https://www.salome-platform.org/downloads/current-version) for your distribution (here: *Debian Linux*).
+Download *SALOME* from [salome-platform.org](https://www.salome-platform.org/downloads/current-version) for your distribution (here: *Debian Linux*).
 
 Unpack the *SALOME* package in a convenient folder (replace the `.tar.gz` file name with the one you downloaded):
 
