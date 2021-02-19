@@ -57,14 +57,6 @@ export QT_STYLE_OVERRIDE=gtk2
 
 
 
-
-
-
-
-
-
-
-
 ### Build 3D Geometry Compound Block
 
 Create a new study in *SALOME* and save the study (e.g., *simple_3d*). In *SALOME*, go to the **Geometry** module and create a rectangular 3D block.

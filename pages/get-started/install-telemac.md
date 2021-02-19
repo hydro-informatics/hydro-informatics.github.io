@@ -1,8 +1,8 @@
 ---
-title: open *TELEMAC* (Installation)
+title: open TELEMAC (Installation)
 tags: [telemac, linux, numerical, modelling, install, vm]
-keywords: Virtual, machine, *TELEMAC*
-summary: "A step-by-step workflow for installing the numerical modelling software *TELEMAC* on Debian Linux."
+keywords: Virtual, machine, TELEMAC
+summary: "A step-by-step workflow for installing the numerical modelling software TELEMAC on Debian Linux."
 sidebar: mydoc_sidebar
 permalink: install-telemac.html
 folder: get-started
@@ -20,11 +20,11 @@ This page only guides through the **installation** of *TELEMAC*. A **tutorial pa
 * Make sure to be able to use the [GNOME *Terminal*](vm.html#terminal).
 * This tutorial refers to the software package *open TELEMAC-MASCARET* as *TELEMAC* because *MASCARET* is a one-dimensional (1D) model and the numerical simulation schemes on this website focus on two-dimensional (2D) and three-dimensional (3D) modelling.
 
-### Two Installation Options
+### Two Installation Options (**O1** & **O2**)
 
 This page describes two ways for installing *TELEMAC*:
 
-1. Option: Installation of *TELEMAC* within the *SALOME-HYDRO* software suite.
+1. Option (**O1**): Installation of *TELEMAC* within the *SALOME-HYDRO* software suite.
     * All pre-processing tasks are managed with *SALOME-HYDRO*
     * *TELEMAC* is launched through the *HYDRO-SOLVER* module
     * Post-processing is performed with *ParaView*
@@ -35,7 +35,7 @@ This page describes two ways for installing *TELEMAC*:
     * **Disadvantages**:
         - Not all modules are up to date (latest version of *TELEMAC* is *v8*)
         - Common input geometry file formats such as *SLF* (serafin) require additional software
-2. Option: Modular installation of *TELEMAC*
+2. Option (**O2**): Modular installation of *TELEMAC*
     * Every software and packages needed to run a *TELEMAC* model is installed manually
     * **Advantages**:
         - Full control over modules to be installed (high flexibility)
@@ -49,7 +49,7 @@ So what option to choose? Many factors need to be considered, but as a general r
 * [Option 1 (*SALOME-HYDRO*)](#salome-hydro) for modelling three-dimensional (3D) geometries defined with *MED* files; and
 * [Option 2 (Modular installation)](#modular-install) for hydro-morphodynamic, two-dimensional (2D) modelling of river landscapes.
 
-## Option 1: SALOME-HYDRO (Linux) {#salome-hydro}
+## **O1**: SALOME-HYDRO (Linux) {#salome-hydro}
 
 SALOME-HYDRO is a specific version of SALOME ([see description in the modular installation](#salome)) with full capacities to create and run a numerical model with *TELEMAC*. The program is distributed on [salome-platform.org](https://www.salome-platform.org/contributions/edf_products/downloads/) as specific EDF contribution.
 
@@ -63,6 +63,24 @@ SALOME-HYDRO is a specific version of SALOME ([see description in the modular in
 ```
 sudo apt-get install openmpi-common gfortran mpi-default-dev zlib1g-dev libnuma-dev xterm net-tools
 ```
+
+1. Update *Python* alternatives (set *Python* as alternative):
+
+```
+update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+```
+ <!--
+1. User manuals are available through *jasper*, which requires a manual installation:
+    * [Download JasPer 1.900.22](https://www.ece.uvic.ca/~frodo/jasper/software/jasper-1.900.22.tar.gz) and unpack it (e.g., in `/home/usr_libs/`).
+    * In *Terminal*, `cd` to the directory where the *JasPer* source files are (e.g., `cd /home/usr_libs/jasper-1.900.22/`)
+    * Run `autoreconf -i`
+    * Configure the compilation files either:
+        + with `./configure` or
+        + with `./configure --disable-opengl` (if you are working on a virtual machine) 
+    * Make and make install *JasPer*:
+        + `make`
+        + `sudo make install`
+-->
 
 ### Install SALOME-HYDRO
 
@@ -100,12 +118,29 @@ To start *SALOME-HYDRO*, open *Terminal* and tap:
 ```
 
 
+### Install ParaView (optional) {#paraview}
 
-### Install ParaView
+[*ParaView*](https://www.paraview.org) serves for the visualization of model results in the SALOME-HYDRO modelling chain. The built-in module *ParaViS* essentially corresponds to *ParaView*, but the separate usage of *ParaView* enables a better experience for post-processing of results. The installation of *SALOME-HYDRO* already involves an older version of *ParaView* that is able to manipulate *MED* files. To start *ParaView* through *SALOME-HYDRO*, open *Terminal*, `cd` to the directory where *SALOME-HYDRO* is installed, launch the environment, and then launch *ParaView*:
 
-[*ParaView*](https://www.paraview.org) serves for the visualization of model results in the SALOME-HYDRO modelling chain. The software is freely available with download and install instructions on the [*ParaView* website](https://www.paraview.org/download/). 
+```
+cd /home/slome-hydro/appli_V1_1_univ/
+. env.d/envProducts.sh
+./runRemote.sh paraview
+``` 
 
-## Option 2 (**O2**): Manual Installation of Modules {#modular-install}
+
+Alternatively, *ParaView* is freely available on the [developer's website](https://www.paraview.org/download/) and the latest stable release can be installed on *Debian Linux*, through the *Terminal*:
+
+```
+sudo apt install paraview
+```
+
+In this case, to run *ParaView* tap `paraview` in *Terminal*. If you are using a virtual machine, start *ParaView* with the `--mesa-llvm` flag (i.e., `paraview --mesa-llvm`).
+To enable *MED* file handling, *MED* coupling is necessary, which requires to follow the installation instructions on [docs.salome-platform.org](https://docs.salome-platform.org/7/dev/MEDCoupling/install.html).
+
+
+
+## **O2**: Manual Installation of Modules {#modular-install}
 
 ### Install mandatory Prerequisites (Part 1)
 
@@ -688,14 +723,14 @@ The Canadian Hydrological Model Stewardship (CHyMS) provides more guidance for i
 Get ready with the pre- and post-processing software Fudaa-PrePro:
 
 * Install *java*: 
-    + `sudo apt update`
-    + `sudo apt install default-jdk`
-* Download the version from the [Fudaa-PrePro repository](https://fudaa-project.atlassian.net/wiki/spaces/PREPRO/pages/237993985/Fudaa-Prepro+Downloads)
+    + On Linux: `sudo apt install default-jdk`
+    + On Windows: Get java from [java.com](https://java.com/)
+* Download the latest version from the [Fudaa-PrePro repository](https://fudaa-project.atlassian.net/wiki/spaces/PREPRO/pages/237993985/Fudaa-Prepro+Downloads)
 * Un-zip the downloaded file an proceed depending on what platform you are working with (see below)
-* Make sure that java is installed https://java.com/
 * `cd` to the directory where you un-zipped the Fudaa-PrePro program files
-* On *Linux*: tap `sh supervisor.sh`
-* On *Windows*: tap `supervisor.bat`
+* Start Fudaa-PrePro from *Terminal* or *Prompt*
+    + On *Linux*: tap `sh supervisor.sh`
+    + On *Windows*: tap `supervisor.bat`
 
 There might be an error message such as:
 ```
