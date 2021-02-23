@@ -244,6 +244,32 @@ Afterwards, **reboot the *Debian Linux VM*** and test if you can access the fold
 
 ***
 
+### Enable OpenGL
+
+*VirtualBox* experimentally enables [*OpenGL*](https://www.opengl.org), which is used by many graphical user interfaces. To make *OpenGL* work on a virtual machine, the install [*X.Org X Window System*](https://www.x.org/) (xserver): 
+
+```
+sudo apt install xorg
+```
+
+Run *Xorg* as normal user with:
+
+```
+startx
+```
+
+Or run *Xorg* as root (super user) with:
+
+```
+sudo service gdm start
+```
+
+To edit the configuration of *Xorg* run:
+
+```
+sudo editor /etc/X11/xorg.conf
+```
+
 ### Install and Update Software (optional)
 
 ***Estimated duration: Variable.***
@@ -260,7 +286,7 @@ sudo apt autoremove
 
 The last command removes files that are not needed any more and reduces  system garbage. 
 
-{% include note.html content="Being a new Linux end user, preferably use `apt` rather than `apt-get`. That means:<br><br>**Do use `sudo apt install PACKAGE`**<br>**Avoid `sudo apt-get install PACKAGE`<br><br>Still, you may need to use `apt-get` for some specific cases (e.g., if a package provider instructs you to tod so)." %}
+{% include note.html content="Being a new Linux end user, preferably use `apt` rather than `apt-get`. That means:<br>**Do use `sudo apt install PACKAGE`**<br>**Avoid `sudo apt-get install PACKAGE`**<br>Still, you may need to use `apt-get` for some specific cases (e.g., if a package provider instructs you to do so)." %}
 
 Instructions for installing particular and Debian-compatible software (e.g., QGIS) can be found directly on the website of software developers. For example, to install *Anaconda* *Python* visit [docs.anaconda.com](https://docs.anaconda.com/anaconda/install/linux/) and follow the installation instructions for Debian Linux.
 
@@ -310,7 +336,7 @@ To install a *Windows* application:
     + `wine "C:\\path\\to\\the.exe"` (use `\\` to separate sub-directories).
     + For example, `wine "C:\\Program Files (x86)\\CHC\\BlueKenue\\BlueKenue.exe"` typically starts *Blue Kenue<sup>TM</sup>*.
 
-## Re-use (transfer or copy) a VM to another Host
+## Re-use (transfer or copy) a VM on another Host
 
 Once you have created a VM on a virtual hard disk (the ***vdi*** file), you can always transfer it to another *host* system. To copy (or transport) a VM:
 

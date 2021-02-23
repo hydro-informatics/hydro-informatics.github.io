@@ -69,7 +69,9 @@ sudo apt-get install openmpi-common gfortran mpi-default-dev zlib1g-dev libnuma-
 ```
 update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
 ```
+
  <!--
+ 
 1. User manuals are available through *jasper*, which requires a manual installation:
     * [Download JasPer 1.900.22](https://www.ece.uvic.ca/~frodo/jasper/software/jasper-1.900.22.tar.gz) and unpack it (e.g., in `/home/usr_libs/`).
     * In *Terminal*, `cd` to the directory where the *JasPer* source files are (e.g., `cd /home/usr_libs/jasper-1.900.22/`)
@@ -80,6 +82,7 @@ update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
     * Make and make install *JasPer*:
         + `make`
         + `sudo make install`
+
 -->
 
 ### Install SALOME-HYDRO
