@@ -58,10 +58,16 @@ SALOME-HYDRO is a specific version of SALOME ([see description in the modular in
 ### Prerequisites
 
 1. Download the latest installer from the [developer's website](https://www.salome-platform.org/contributions/edf_products/downloads/) ([direct download link to Salome-Hydro V1.1](http://files.salome-platform.org/Salome/Contributions/EDF/Salome-V1_1_univ_3.run))
-1. Install required  packages
+1. Install required packages (`apt-get`)
 
 ```
 sudo apt-get install openmpi-common gfortran mpi-default-dev zlib1g-dev libnuma-dev xterm net-tools
+```
+
+1. Install required packages (`apt`)
+
+```
+sudo apt install swig
 ```
 
 1. Update *Python* alternatives (set *Python* as alternative):
@@ -98,27 +104,33 @@ During the installation process, define a convenient installation directory such
 
 {% include important.html content="If you get error messages such as `./create_appli_V1_1_univ.sh/xml: line [...]: No such file or directory.`, there is probably an issue with the version of *Python*. In this case, make sure to define the *PATH* as above stated in the prerequisites (SALOME-HYDRO) section." %}
 
+### Install GUI support packages
 <a name="mod-profile"></a>
-With the newer versions of the *Qt platform* any menu entry in *SALOME-HYDRO* will not show up. To fix this issue, open the file `~/.profile` (e.g. with the file browser in the `Home` folder and pressing `CTRL` + `H` to toggle viewing hidden files) and add at the very end of the file: 
+With the newer versions of the *Qt platform* any menu entry in *SALOME-HYDRO* will not show up. To fix this issue, install and configure `qt5ct` styles:
+
+1. `sudo apt install qt5-style-plugins`
+1. `sudo apt install qt5ct`
+1. Configure `qt5ct` (just tap `qt5ct` in *Terminal*)
+    * Got to the *Appearance* tab
+    * Set *Style* to `gtk2` and *Standard dialogs* to `GTK2`
+    * Click on *Apply* and *OK*
+1. Open the file `~/.profile` (e.g. use the file browser, go to the `Home` folder and pressing `CTRL` + `H` to toggle viewing hidden files) and add at the very bottom of the file: 
 
 ```
 export QT_STYLE_OVERRIDE=gtk2
+export QT_QPA_PLATFORMTHEME=qt5ct
 ```
 
-Save and close `.profile` and reboot (or just re-login). 
+1. Save and close `.profile` and reboot (or just re-login). 
 
-An alternative (more robust) solution is to install `qt5-styleplugins` and `qt5ct`, then add `export QT_QPA_PLATFORMTHEME=qt5ct` in `~/.bash_profile`, reboot (or re-login), and configure `Qt` with `qt5ct` (read more at [archlinux.org](https://bbs.archlinux.org/viewtopic.php?id=214147&p=3) and in the [arch wiki](https://wiki.archlinux.org/index.php/Uniform_look_for_Qt_and_GTK_applications#QGtkStyle)).
+
+{% include note.html content="If a file called `~/.bash_profile` (or `~/.bash_login`) exists, the above lines should be written to this `~/.bash_profile`/`~/.bash_login` because in this case, `.profile` will not be read when logging in." %}
+
+Learn about *Qt* more at [archlinux.org](https://bbs.archlinux.org/viewtopic.php?id=214147&p=3) and in the [arch wiki](https://wiki.archlinux.org/index.php/Uniform_look_for_Qt_and_GTK_applications#QGtkStyle).
 
 {% include tip.html content="**Set a keyboard shortcut to start SALOME-HYDRO on Debian Linux**: Go to *Activities*, tap *keyboard*, and select *Keyboard* from the list (do not click on *Tweaks*). In the *Keyboard* window, scroll to the bottom and click on the `+` sign to define a new shortcut. In the popup window use, for example, *Salome-Hydro* as *Name*, in the *Command* box tap `/home/salome-hydro/appli_V1_1_univ/salome` (or where ever *SALOME-HYDRO* is installed), and define a *Shortcut*, such as `CTRL` + `Alt` + `S`." %}
 
 {% include image.html file="sah-keyboard-shortcut.png" alt="salome-hydro shortcut" caption="Define a keyboard shortcut to start SALOME-HYDRO." %}
-
-
-To start *SALOME-HYDRO*, open *Terminal* and tap:
-
-```
-/home/salome-hydro/appli_V1_1_univ/salome
-```
 
 
 ### Install ParaView (optional) {#paraview}
@@ -140,6 +152,15 @@ sudo apt install paraview
 
 In this case, to run *ParaView* tap `paraview` in *Terminal*. If you are using a virtual machine, start *ParaView* with the `--mesa-llvm` flag (i.e., `paraview --mesa-llvm`).
 To enable *MED* file handling, *MED* coupling is necessary, which requires to follow the installation instructions on [docs.salome-platform.org](https://docs.salome-platform.org/7/dev/MEDCoupling/install.html).
+
+### Start SALOME-HYDRO
+
+To start *SALOME-HYDRO*, open *Terminal* and tap:
+
+```
+/home/salome-hydro/appli_V1_1_univ/salome
+```
+
 
 
 

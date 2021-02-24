@@ -12,7 +12,7 @@ folder: numerics
 
 Thank you for your patience.
 
-{% include requirements.html content="This tutorial refers to *TELEMAC* v7p31 as integral part of *SALOME-HYRO* installed on Debian Linux. For the best learning experience follow the installation guides for [*SALOME-HYDRO*](install-telemac.html#salome-hydro)." %}
+{% include requirements.html content="This tutorial refers to *TELEMAC* v7p3 as integral part of *SALOME-HYRO* installed on Debian Linux. For the best learning experience follow the installation guides for [*SALOME-HYDRO*](install-telemac.html#salome-hydro)." %}
 
 This tutorial uses descriptions provided in the [telemac3d_user_v8p1](http://ot-svn-public:telemac1*@svn.opentelemac.org/svn/opentelemac/tags/v8p1r2/documentation/telemac2d/user/telemac3d_user_v8p1.pdf) manual.
 
@@ -53,7 +53,7 @@ If no file menus show up because `export QT_STYLE_OVERRIDE=gtk2` is not added to
 export QT_STYLE_OVERRIDE=gtk2
 /home/salome-hydro/appli_V1_1_univ/salome
 ```
-
+{% include note.html content="If `QT_STYLE_OVERRIDE=gtk2` is not set, the *HydroSolver* module will not work correctly and throw a `Could not create file tree` error." %}
 
 
 
@@ -127,6 +127,16 @@ In the **Export mesh** popup window, define:
 
 Click on **Save** to save the *med* file.
 
-***
 
-Next: [> Start the simulation >](tm-run.html)
+## HydroSolver (Run)
+
+If the new PYTEL case is not showing up in the *Object Browser*, save the project (e.g., *tetrahedral_3d.hdf*), close and restart SALOME-HYDRO. Re-open the project *hdf* file and re-activate the HydroSolver module. 
+
+* In the *Object Browser*, click on *tetrahedral_steering* (highlights in blue).
+* With the steering file highlighted, find the *Edit Pytel case for execution* button in the menu bar and click on it. 
+* Enable the PYTEL radio button
+* In the *Object Browser*, right-click on HydroSolver and click *Refresh*. A *EXE* sign next to *tetrahedral steering* should show up*.
+* Right-click on the new *EXE tetrahedral steering* item in the *Object Browser*, then click on *Compute*
+
+
+
