@@ -18,30 +18,31 @@ This tutorial uses descriptions provided in the [telemac3d_user_v8p1](http://ot-
 
 ## Introduction
 
-TELEMAC 3D solves the Navier-Stokes equations along a three-dimensional (3D) computational grid using a finite element scheme. 
+Telemac3d solves the Navier-Stokes equations along a three-dimensional (3D) computational grid using a finite element scheme. Telemac3d mounts the tetrahedral 3D mesh from a triangular 2D mesh in a user-defined number of vertical layers. The number of vertical layers to use is defined in the TELEMAC steering (CAS) file. This tutorial walks through the creation of a 2D mesh with SALOME-HYDRO along with boundary and control files. The tutorial also features running a Telemac3d simulation with the files created and plotting results with the *ParaVis* plugin of SALOME-HYDRO (a tweaked version of *ParaView*).
 
 ## Input files
 
-A TELEMAC 3D simulation requires similar input files as described in detail on the 2D page.
+A Telemac3d simulation requires similar input files as a Telemac2d simulation and this tutorial uses *MED* files to define the geometry. In particular, the following files will be created:
 
 * Steering file 
     + File format: `cas`
-* Geometry file with boundary conditions
-    + File format: `.MED` (the SALOME platform's *MED*-file format)
+    + Software: SALOME-HYDRO's *HydroSolver* module (alternatively: [Fudaa PrePro](install-telemac.html#fudaa))
+* Geometry file 
+    + File format: `.MED` 
+    + Software: SALOME-HYDRO's *Geometry* and *Mesh* modules
 * Boundary conditions
-    + File format: `.cli`
-    + Prepare either with
+    + File format: `.bcd`
+    + Software: SALOME-HYDRO's *HydroSolver* module
+* Unsteady flow conditions
+    + File format: `.qsl`
+    + Prepare with any text editor
 
-Optional files such as a friction data file or a liquid boundary file can also be implemented. Read more about optional data files and their formats on the [2D pre-processing page](tm2d-pre.html#optionals).
+Optional files such as a friction data file or a liquid boundary file can also be implemented, but are not featured here. Read more about optional data files and their formats on the [Telemad2d pre-processing page](tm2d-pre.html#optionals).
 
 
+## Start SALOME-HYDRO {#prepro-salome}
 
-## Build the geometry with SALOME-HYDRO {#prepro-salome}
-
-A 3D mesh for TELEMAC should be possibly built with tetrahedral elements. This tutorial guides through the creation of a simple block geometry and building a tetrahedral mesh for the block.
-
-### Start SALOME-HYDRO
-With *SALOME-HYDRO* being installed in a directory called **/home/salome-hydro/appli_V1_1_univ/salome** (adapt according to the installation directory), launch *SALOME-HYDRO* (give it a moment to start up):
+With *SALOME-HYDRO* being installed in a directory called **/home/salome-hydro/appli_V1_1_univ/salome** (adapt according to the installation directory and version of SALOME-HYDRO), launch *SALOME-HYDRO* (give it a moment to start up):
 
 ```
 /home/salome-hydro/appli_V1_1_univ/salome
@@ -55,45 +56,70 @@ export QT_STYLE_OVERRIDE=gtk2
 ```
 {% include note.html content="If `QT_STYLE_OVERRIDE=gtk2` is not set, the *HydroSolver* module will not work correctly and throw a `Could not create file tree` error." %}
 
+## HYDRO module
 
+### Create Contours (Polyline)
 
-### Build 3D Geometry Compound Block
+After starting SALOME-HYDRO, activate the *HYDRO* module, then find the *Object Browser* on the right side of the window and the **POLYLINE** folder symbol. Right-click on the *POLYLINE* folder, select **Create polyline** and a popup window will open. In the popup window:
+
+* For **Name** enter: `Contour`
+* Click on the *Insert new section* button:
+IMG
+    + For **Name** enter: `Section1`
+    + For **Type** select **Polyline**
+    + Ensure that the **Closed** box is checked
+    + Press **Add**
+* Click on the *Addition mode* button to draw a polygon
+IMG
+* Draw a polygon in the viewport, similar as shown below (qualitative match is sufficient for now)
+IMG
+* Press **Apply and close**
+
+In the viewport, click the polyline, then right-click on it and select **Modification mode** in the context menu. In the popup window, modify the points so that a 500-m lon and 100-m wide rectangle occurs as shown below (the section *Index* numbers will change, so pay attention to not creating crossing lines).
+
+IMG
+
+{% include tip.html content="Save the project by clicking on the **File** (top menu) > **Save As...**. In the popup menu, select the simulation target folder and define a name such as *flume3d*. Press **Save** to save the project in **hdf** format and regularly press the save button (disk symbol) in the next steps to avoid loosing work. Thus, the project can be saved, closed and re-opened any time." %}
+
+### Create a Natural Object
+
+From the *HYDRO* top menu, select **Create immersible zone** to define a wetted area for the later created mesh. In the popup window, make the following settings:
+
+* **Name:** `contour_zone`
+* **Polyline:** Select the previously created rectangle.
+* **Bathymetry:** Leave empty.
+
+### Create a Calculation Case
+
+One or more calculation cases can be created to define elements for the later simulation. Here, define one calculation case, by clicking on the **HYDRO** top-menu > **Create calculation case**. A popup window opens and guides through setting up the calculation case.
+
+1. Step: Define the framework:
+    * **Name**: `steady`
+    * **Limits**: `Contour`
+    * **Mode**: Select **Manual**.
+    * Highlight `contour_zone` in the *Objects* frame and press **Include >>** to add it to the list of *Included objects*.
+    * Press **Next >** (button at the bottom)
+ 
+ IMG
+ 
+ 2. Step: **Include >>** again `contour_zone`and press **Next >**.
+ 
+ IMG
+ 
+ 3. Step: Omit the definition of a *Strickler table* and press **Finish**.
+    * Note that this step maybe useful to define zones with different roughness attributes.
+ 
+{% include tip.html content="Save the project by clicking on the disk symbol." %}
+
+## Build the Geometry 
+
+Activate the **Geometry** module, right-click on *HYDRO_steady_1*, and select **Show**.
+
+IMG
 
 Create a new study in *SALOME* and save the study (e.g., *simple_3d*). In *SALOME*, go to the **Geometry** module and create a rectangular 3D block.
 
-1. Make a 2D sketch of the block extents:
-    * Go to **New Entity** > **Basic** > **2D Sketch**
-    * Use *Global Coordinate System*  and select the third element type (rectangle &#9645;)
-    * Set `Name=Sketch_1`, `X1=0` and `Y1=0`, and `X2=300` and `Y2=75`
-    * Click on **Apply and Close**
-1. Explode the sketch: **New Entity** > **Explode** > set **Main Object** to `Sketch_1` and **Sub-shapes Type** to `Edge` > **Apply and Close**
-1. Create a mesh group
-    * Go to **New Entity** > **Group** > **Create Group**
-    * Select the line (edge) symbol as **Shape Type**
-    * In the **Create Group** popup window, enter `mesh_edges` in the **Name** (Group Name) field. 
-    * Select `Sketch_1` as **Main Shape** from the **Object Browser**
-    * Highlight the four `Edge_i` elements (sub-elements of `Sketch_1`) in the **Object Browser** by holding down the `CTRL` key (and only the four edge-elements), and click on the **Add** button in the **Create Group** popup window
-    * Click on the **Apply** button in the **Create Group** popup window (do not close the popup window)
- <!--
-1. Create a boundary group
-    * In the still opened **Create Group** popup window, select the line (edge) symbol as **Shape Type**
-    * In the **Create Group** popup window, enter `boundary_edges` in the **Name** (Group Name) field. 
-    * Select `Sketch_1` as **Main Shape** from the **Object Browser**
-    * Highlight the `Edge_1` and `Edge_4` elements in the **Object Browser** by holding down the `CTRL` key, and click on the **Add** button in the **Create Group** popup window
-    * Click on the **Apply and Close** button in the **Create Group** popup window-->
-1. Extrude the (sur)face to build a 3D block:
-    * Go to **New Entity** > **Generation** > **Extrusion**
-    * Select the first option (*Base Shapes + Vector*)
-    * Define the **Name** as `mesh_block`
-    * Set **Base** to `Face_1`, **Vector** to `OZ`, and **Height:** to `70` 
-    * *Note: To select objects, click on the button next to **Base**/**Vector** and select objects from the **Object Browser** - multiple objects can be select from the **Object Browser** by holding down the `CTRL` key.*
-    * Click on **Apply**
-1. Explode the `mesh_block` by clicking on **New Entity** > **Explode** > select `mesh_block` as **Main Object**, and `Face` as **Sub-shapes Type** >  **Apply and Close**
-1. Build a compound from the exploded `mesh_block` (**New Entity** > **Build** > **Compound** with the *Set presentation parameters and sub-shapes from arguments* checkbox enabled)
 
-Save the *SALOME* study (`CTRL` + `S` keys). As a result, the 3D block should look as illustrated below. 
-
-{% include image.html file="salome-block.png" alt="sblock" caption="The 3D block geometry built in SALOME with the New Entity menu, the Geometry module and the three created items (Sketch_1, Face_1, and Extrusion_1) highlighted." %}
 
 ### Generate a Mesh from a Geometry
 
@@ -115,20 +141,46 @@ After the successful computation of the mesh, *SALOME* informs about the mesh pr
 
 {% include image.html file="salome-mesh-only.png" alt="smeshonly" caption="The calculated mesh rendered with the Mesh module in SALOME." %}
 
-### Export MED Geometry File
 
-To export the just created mesh, go to **File** > **Export** > **MED**
+Right-click on the mesh and click on **Show** to visualize the mesh in the viewport.
+
+
+## Verify Mesh
+
+### Orientation of faces and volumes
+Go to **Modification** (top menu) > **Orientation** 
+
+In the *Object Browser*, highlight *tetrahedral_mesh* and in the pop-up window, check the **Apply to all** box. Click the **Apply and close** button. The mesh box should have changed from darker blue to a lighter tone of blue (if the inverse is the case, repeat the application of the orientation tool).
+
+### Identify and reconcile over-constraint elements
+
+In the *Object Browser*, highlight *tetrahedral_mesh* and then go to **Controls** (top menu) > **Volume Controls** > **Over-constraint volumes**. The *tetrahedral_mesh* in the *VTK scene:1* (viewport) will turn red and at the bottom of the viewport, the note *Over-constrained-volumes: 2* will appear.
+
+
+
+
+## Export MED File
+
+Exporting the mesh to a MED file requires the definition of mesh groups. To do so, highlight *tetrahedral_mesh* in the object browser and right-click on it. Select **Create Groups from Geometry** from the mesh context menu. In the popup window, select all groups and sub shapes of the *Extrusion_Reg_1* geometry and all groups of **mesh elements** and **mesh nodes**. For selecting multiple geometries, hold down the `CTRL` (`Strg`) and `Shift` keys on the keyboard and select the geometry/mesh groups. The tool will automatically add all nodes concerned. Press **Apply and close** to finalize the creation of groups.
+
+Verify the created groups by right-clicking on the top of the project tree in the *Object Browser* and selecting *Show only* with the option *Auto Color*. If the groups seems correct (see below figure), export them with **File** (top menu) > **Export** > **MED**
 
 In the **Export mesh** popup window, define:
-* *File name* `simple3Dblock` (or whatever you prefer)
-* *Files of type* `MED 3.2 files` (make sure that this is coherent with the [installed version of MED](install-telemac.html#med-hdf))
-* Choose a convenient directory (*Quick path*) for saving the *med* file
+* *File name* `tetrahedral_mesh` (or whatever you prefer)
+* *Files of type* `MED 3.2 files` (if not using *SALOME-HYDRO*, make sure that the type is coherent with the [installed version of MED](install-telemac.html#med-hdf))
+* Choose a convenient directory (*Quick path*) for saving the *MED* file
 * Leave all other default settings.
 
-Click on **Save** to save the *med* file.
+Click on **Save** to save the *MED* file.
 
 
-## HydroSolver (Run)
+## HydroSolver 
+
+### Generate Boundary Conditions
+
+### Create Simulation Case (CAS)
+
+### Run Simulation (Compute)
 
 If the new PYTEL case is not showing up in the *Object Browser*, save the project (e.g., *tetrahedral_3d.hdf*), close and restart SALOME-HYDRO. Re-open the project *hdf* file and re-activate the HydroSolver module. 
 
@@ -138,5 +190,9 @@ If the new PYTEL case is not showing up in the *Object Browser*, save the projec
 * In the *Object Browser*, right-click on HydroSolver and click *Refresh*. A *EXE* sign next to *tetrahedral steering* should show up*.
 * Right-click on the new *EXE tetrahedral steering* item in the *Object Browser*, then click on *Compute*
 
+
+## ParaVis
+
+### Load Result (MED file)
 
 

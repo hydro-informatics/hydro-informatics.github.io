@@ -57,17 +57,12 @@ SALOME-HYDRO is a specific version of SALOME ([see description in the modular in
 
 ### Prerequisites
 
-1. Download the latest installer from the [developer's website](https://www.salome-platform.org/contributions/edf_products/downloads/) ([direct download link to Salome-Hydro V1.1](http://files.salome-platform.org/Salome/Contributions/EDF/Salome-V1_1_univ_3.run))
-1. Install required packages (`apt-get`)
+1. Download the installer from the [developer's website](https://www.salome-platform.org/contributions/edf_products/downloads/) or use the newer version provided through the [TELEMAC user Forum](http://www.opentelemac.org/index.php/kunena/other/12263-hydrosalome-z-interpolation#34100) (registration required)
+<!-- [Salome-Hydro V2_2](https://drive.google.com/file/d/1Bimoy9d9dqgQDbMW_kJxilw5JEoMvZ0Q/view)) -->
+1. Install required packages
 
 ```
-sudo apt-get install openmpi-common gfortran mpi-default-dev zlib1g-dev libnuma-dev xterm net-tools
-```
-
-1. Install required packages (`apt`)
-
-```
-sudo apt install swig
+sudo apt install openmpi-common gfortran mpi-default-dev zlib1g-dev libnuma-dev xterm net-tools
 ```
 
 1. Update *Python* alternatives (set *Python* as alternative):
@@ -76,24 +71,11 @@ sudo apt install swig
 update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
 ```
 
- <!--
  
-1. User manuals are available through *jasper*, which requires a manual installation:
-    * [Download JasPer 1.900.22](https://www.ece.uvic.ca/~frodo/jasper/software/jasper-1.900.22.tar.gz) and unpack it (e.g., in `/home/usr_libs/`).
-    * In *Terminal*, `cd` to the directory where the *JasPer* source files are (e.g., `cd /home/usr_libs/jasper-1.900.22/`)
-    * Run `autoreconf -i`
-    * Configure the compilation files either:
-        + with `./configure` or
-        + with `./configure --disable-opengl` (if you are working on a virtual machine) 
-    * Make and make install *JasPer*:
-        + `make`
-        + `sudo make install`
-
--->
 
 ### Install SALOME-HYDRO
 
-Open the *Terminal*, `cd` into the directory where you downloaded **Salome-V1_1_univ_3.run**,  and tap:
+Open the *Terminal*, `cd` into the directory where you downloaded **Salome-V1_1_univ_3.run** (or **Salome-HYDRO-V2_2-s9.run**),  and tap:
 
 ```
 chmod 775 Salome-V1_1_univ_3.run
@@ -108,7 +90,7 @@ During the installation process, define a convenient installation directory such
 <a name="mod-profile"></a>
 With the newer versions of the *Qt platform* any menu entry in *SALOME-HYDRO* will not show up. To fix this issue, install and configure `qt5ct` styles:
 
-1. `sudo apt install qt5-style-plugins`
+1. `sudo apt install qt5-style-plugins libnlopt0`
 1. `sudo apt install qt5ct`
 1. Configure `qt5ct` (just tap `qt5ct` in *Terminal*)
     * Got to the *Appearance* tab

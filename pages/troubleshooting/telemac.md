@@ -43,4 +43,5 @@ This approach also works with *Telemac3d* (and other modules).
  ## Errors in steering (CAS) file
  
  * make sure to use `:` rather than `=`
+ * place all model files in the same folder and only use file names without the directories of files
  
