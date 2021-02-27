@@ -64,20 +64,20 @@ After starting SALOME-HYDRO, activate the *HYDRO* module, then find the *Object 
 
 * For **Name** enter: `Contour`
 * Click on the *Insert new section* button:
-IMG
+{% include image.html file="white.png" alt="telemac salome hydro polyline" %} 
     + For **Name** enter: `Section1`
     + For **Type** select **Polyline**
     + Ensure that the **Closed** box is checked
     + Press **Add**
 * Click on the *Addition mode* button to draw a polygon
-IMG
+{% include image.html file="white.png" alt="telemac salome hydro polygon addition" %} 
 * Draw a polygon in the viewport, similar as shown below (qualitative match is sufficient for now)
-IMG
+{% include image.html file="white.png" alt="telemac salome hydro polygon qualitative" %} 
 * Press **Apply and close**
 
 In the viewport, click the polyline, then right-click on it and select **Modification mode** in the context menu. In the popup window, modify the points so that a 500-m lon and 100-m wide rectangle occurs as shown below (the section *Index* numbers will change, so pay attention to not creating crossing lines).
 
-IMG
+{% include image.html file="white.png" alt="telemac salome hydro polygon table coordinates modification" %} 
 
 {% include tip.html content="Save the project by clicking on the **File** (top menu) > **Save As...**. In the popup menu, select the simulation target folder and define a name such as *flume3d*. Press **Save** to save the project in **hdf** format and regularly press the save button (disk symbol) in the next steps to avoid loosing work. Thus, the project can be saved, closed and re-opened any time." %}
 
@@ -100,11 +100,11 @@ One or more calculation cases can be created to define elements for the later si
     * Highlight `contour_zone` in the *Objects* frame and press **Include >>** to add it to the list of *Included objects*.
     * Press **Next >** (button at the bottom)
  
- IMG
+{% include image.html file="white.png" alt="telemac salome hydro contour create" %} 
  
  2. Step: **Include >>** again `contour_zone`and press **Next >**.
  
- IMG
+{% include image.html file="white.png" alt="telemac salome hydro contour zone" %} 
  
  3. Step: Omit the definition of a *Strickler table* and press **Finish**.
     * Note that this step maybe useful to define zones with different roughness attributes.
@@ -113,72 +113,178 @@ One or more calculation cases can be created to define elements for the later si
 
 ## Build the Geometry 
 
-Activate the **Geometry** module, right-click on *HYDRO_steady_1*, and select **Show**.
+This section guides through the creation of a rectangular geometry surface representing a flume and its boundaries defined with edges (lines). To get ready, activate the **Geometry** module, right-click on *HYDRO_steady_1*, and select **Show**.
 
-IMG
+{% include image.html file="white.png" alt="telemac salome geometry activate" %} 
 
-Create a new study in *SALOME* and save the study (e.g., *simple_3d*). In *SALOME*, go to the **Geometry** module and create a rectangular 3D block.
+### Build basic shape (2d surface) {#geo2d}
+
+Right-click on *HYDRO_steady_1* and select **Create groups** from the context menu. Make the following settings in the popup window:
+
+* **Shape Type** (radio buttons in the upper part): select *Surface*
+* **Name**: `FLUME`
+* **Main Shape**: select *HYDRO_steady_1*
+* Click on **Show all sub-shapes** > **Select All** and make sure that `1` shows up in the white frame.
+* Select `1` in the white frame and click **Add** > **Apply**.
+
+{% include image.html file="white.png" alt="telemac salome geometry group faces" %} 
+
+The popup window should still be opened and wait for the definition of the four boundaries (edges) of the rectangle.
 
 
+### Build edges (surface boundaries)
 
-### Generate a Mesh from a Geometry
+If you accidentally closed the *Create Group* window through clicking on *Apply and Close* in lieu of *Apply*, reopen the popup window as described in the previous step.
 
-To work with the geometry in a numerical model, the geometry needs to be defined as a mesh. The *Mesh* module in *SALOME* enables the creation of a mesh with just a view clicks.
+The four boundary edges of the surface will represent an upstream (inflow), a downstream (outflow), a left wall, and a right wall of the flume. To create the four boundary edges repeat the following steps for every edge:
 
-1. Activate the **Mesh** module in *SALOME* (there might be an error message that can probably be ignored)
-1. Go to the **Mesh** menu (do not confuse with the *Mesh* module), and select **Create Mesh**
-1. In the **Create Mesh** popup window, set the following:
-    * Set **Name** to `Mesh_1`, **Geometry** to `Compound_1`, and **Mesh type** to `Tetrahedal`
-    * Leave the *Create all Groups on Geometry* box checked.
-    * In the **3D** tab, click on the **Assign a set of automatic hypotheses** button (on the bottom) and select **3D: Tetrahedralization** -  this will call the **Hypothesis Construction**
-    * In the **Hypothesis Construction** popup window, set `Length=12` and click **OK**
-    * Click on **Apply and Close** (**Create mesh** popup window)
-1. In the **Object Browser**, extend (un-collapse) the new `Mesh`, right-click on `Mesh_1`, and click on **Compute**
+* **Shape Type** (radio buttons in the upper part): select *Edge* (line symbol)
+* **Name**: `upstream` (then `downstream`, `leftwall`, and `rightwall`)
+* **Main Shape**: select *HYDRO_steady_1*
+* Click on **Show all sub-shapes** > **Select All** and all edge numbers will show up in the white frame.
+* In the white frame make sure to select the good edge corresponding to the name and the following figure. **Add** the correct edge and **Remove** all others.
 
-After the successful computation of the mesh, *SALOME* informs about the mesh properties in a popup window (illustrated below). Do not forget to also **save the study** regularly.
+{% include image.html file="tm-rectangular-flume.png" alt="telemac salome rectangular flume" %} 
+
+* Click **Apply** to create the edge boundary and proceed with the next. After the last (fourth) edge, click **Apply and Close**.
+
+Ultimately, the *Geometry* block in the *Object Browser* should look as follows.
+
+{% include image.html file="white.png" alt="telemac salome geometry" %} 
+
+## Generate a Mesh
+
+To work with the geometry in a numerical model, the geometry needs to be defined as a triangular computational mesh that Telemac3d will extrapolate to a tetrahedral mesh. The *Mesh* module in *SALOME-HYDRO* enables the creation of a mesh with just a view clicks. The mesh is generated first for the surface (2d), then for every boundary edge (1d), and eventually computed and verified. To get ready, activate the **Mesh** module from the top menu.
+
+### Two-dimensional (2d) mesh of the surface 
+
+Go to the **Mesh** top menu (do not confuse with the *Mesh* module), and select **Create Mesh**. In the **Create mesh** popup window, set the following:
+
+* **Name**: `Mesh_steady_1`
+* **Geometry**: `HYDRO_steady_1`
+* Leave the **Mesh type** as *Any*
+* In the **2D** tab:
+    * Choose *Netgen 1D-2D* for **Algorithm**
+    * Find the cogwheel symbol behind the **Hypothesis** field and click on it to construct hypotheses for **Netgen 2D Parameters**.
+    * In the **Hypothesis Construction** popup window:
+        + Define **Name** as `NETGEN 2D Parameters 10_30`
+        + Set **Max. Size** to `30`
+        + Set **Min. Size** to `10`
+        + Set **Fineness** to *Very Fine*, 
+        + Leave all other field's default values and click **OK**.
+* Back in the **Create mesh** window, set the just created *NETGEN 2D Parameters 10_30* as **Hypothesis**.
+* Click on **Apply and Close** (**Create mesh** popup window)
+
+{% include image.html file="white.png" alt="telemac salome create mesh 2d hypothesis" %}
+
+### One-dimensional (1d) meshes of boundary edges
+
+The 1d meshes of the boundary edges will represent sub-meshes of the 2d mesh. To create the sub-meshes, highlight the previously created *Mesh_steady_1* in the *Object Browser* (click on it), then go to the **Mesh** top menu and select **Create Sub-Mesh**. In the **Create sub-mesh** popup window, start with creating the upstream boundary edge's mesh:
+
+* **Name**: `Upstream`
+* **Mesh**: `Mesh_steady_1`
+* Leave the **Mesh type** as *Any*
+* In the **1D** tab:
+    * Choose *Wire Descretisation* for **Algorithm**
+    * Find the cogwheel symbol behind the **Hypothesis** field and click on it to construct hypotheses for **Number of Segments**.
+    * In the **Hypothesis Construction** popup window:
+        + Define **Name** as `Segments10`
+        + Set **Number of Segments** to `10`
+        + Set **Type of distribution** to *Equidistant distribution*.
+* Back in the **Create Mesh** window, set the just created *Segments10* as **Hypothesis**.
+* Click on **Apply** in the **Create sub-mesh** popup window, which will remain open for the definition of the three other boundary edge's meshes.
+
+**Repeat** the above steps for creating sub-meshes for the downstream, left wall, and right wall edges, but with different construction hypotheses.
+
+* For the downstream sub-mesh use **Name** *Downstream* and construct the following hypothesis:
+    + Type: **Number of Segments**
+    + Define **Name** as `Segments05`
+    + Set **Number of Segments** to `5`
+    + Set **Type of distribution** to *Equidistant distribution*.
+* For the left wall sub-mesh use **Name** *LeftWall* and construct the following hypothesis:
+    + Type: **Arithmetic Progression 1D**
+    + Define **Name** as `Arithmetic1d10_30`
+    + Set **Start length** to `10`
+    + Set **End length** to `30`.
+* For the right wall sub-mesh use **Name** *RightWall* and construct the following hypothesis:
+    + Type: **Arithmetic Progression 1D**
+    + Define **Name** as `Arithmetic1d15_10`
+    + Set **Start length** to `15`
+    + Set **End length** to `10`.
+
+To this end, the *Object Browser* should include the 5 hypotheses and the non-computed meshes (warning triangles).
+
+{% include image.html file="white.png" alt="telemac salome create mesh 1d hypotheses" %}
+
+{% include tip.html content="Save the project by clicking on the disk symbol." %}
+
+{% include note.html content="If an info or warning windows pops up and asks for defining the order to apply, that means the geometry groups contain too many elements. In this case go back to the [geometry creation](#geo2d) and make sure that always only one element is added per group. For more complex models, the order of mesh hypotheses may not be an error, but in this simple case it must not appear being an issue." %}
+
+### Compute 
+
+In the **Object Browser**, extend (un-collapse) the new *Mesh* block, right-click on *Mesh_steady_1*, and click on **Compute**. This will automatically also compute all sub-meshes. 
+
+After the successful computation of the mesh, *SALOME-HYDRO* informs about the mesh properties in a popup window.
     
-{% include image.html file="salome-mesh-simple.png" alt="smeshs" caption="The setup and computation of the tetrahedral mesh in SALOME." %}
+{% include image.html file="salome-mesh-simple.png" alt="smesh compute 2d 3d" caption="The setup and computation of the triangular mesh in SALOME-HYDRO." %}
 
-{% include image.html file="salome-mesh-only.png" alt="smeshonly" caption="The calculated mesh rendered with the Mesh module in SALOME." %}
+Right-click on the mesh in the *Object Browser* and click on **Show** to visualize the mesh in the viewport.
 
+{% include image.html file="salome-mesh-only.png" alt="smesh show only" caption="The calculated mesh rendered with the Mesh module in SALOME-HYDRO's viewport." %}
 
-Right-click on the mesh and click on **Show** to visualize the mesh in the viewport.
+### Verify Mesh
 
+***Orientation of faces and volumes***
 
-## Verify Mesh
+This step will ensure that the mesh is correctly oriented for the simulation with *Telemac3d*. In the *Object Browser*, highlight *Mesh_steady_1* and then go to the **Modification** top menu > **Orientation**. In the pop-up window, check the **Apply to all** box. Click the **Apply and close** button. The mesh should have changed from darker blue to a lighter tone of blue (if the inverse is the case, repeat the application of the orientation tool).
 
-### Orientation of faces and volumes
-Go to **Modification** (top menu) > **Orientation** 
+***Identify and reconcile over-constraint elements***
 
-In the *Object Browser*, highlight *tetrahedral_mesh* and in the pop-up window, check the **Apply to all** box. Click the **Apply and close** button. The mesh box should have changed from darker blue to a lighter tone of blue (if the inverse is the case, repeat the application of the orientation tool).
+In the *Object Browser*, highlight *Mesh_steady_1*. Then go to the **Controls** top menu > **Face Controls** > **Over-constraint faces**. Over-constrained triangles in the *Mesh_steady_1* will turn red in the viewport (*VTK scene:1*) and at the bottom of the viewport, the note *Over-constrained-faces: 2* will appear. 
 
-### Identify and reconcile over-constraint elements
+To reconcile the edge cause the triangle's over-constrain, go to the **Modification** top menu > **Diagonal inversion**, and select the internal edge of the concerned triangles.
 
-In the *Object Browser*, highlight *tetrahedral_mesh* and then go to **Controls** (top menu) > **Volume Controls** > **Over-constraint volumes**. The *tetrahedral_mesh* in the *VTK scene:1* (viewport) will turn red and at the bottom of the viewport, the note *Over-constrained-volumes: 2* will appear.
-
-
-
+{% include tip.html content="Save the project by clicking on the disk symbol." %}
 
 ## Export MED File
 
-Exporting the mesh to a MED file requires the definition of mesh groups. To do so, highlight *tetrahedral_mesh* in the object browser and right-click on it. Select **Create Groups from Geometry** from the mesh context menu. In the popup window, select all groups and sub shapes of the *Extrusion_Reg_1* geometry and all groups of **mesh elements** and **mesh nodes**. For selecting multiple geometries, hold down the `CTRL` (`Strg`) and `Shift` keys on the keyboard and select the geometry/mesh groups. The tool will automatically add all nodes concerned. Press **Apply and close** to finalize the creation of groups.
+Exporting the mesh to a MED file requires the definition of mesh groups. To do so, highlight *Mesh_steady_1* in the object browser and right-click on it. Select **Create Groups from Geometry** from the mesh context menu. In the popup window, select all groups and sub shapes of the *FLUME* geometry and all groups of **mesh elements** and **mesh nodes**. For selecting multiple geometries, hold down the `CTRL` (`Strg`) and `Shift` keys on the keyboard and select the geometry/mesh groups. The tool will automatically add all nodes selected. Press **Apply and close** to finalize the creation of groups.
 
-Verify the created groups by right-clicking on the top of the project tree in the *Object Browser* and selecting *Show only* with the option *Auto Color*. If the groups seems correct (see below figure), export them with **File** (top menu) > **Export** > **MED**
+{% include image.html file="white.png" alt="telemac salome create geometry mesh groups" %}
+
+Verify the created groups by right-clicking on the top of the project tree in the *Object Browser* and selecting *Show only* with the option *Auto Color*. If the groups seems correct (see below figure), export them with **File** (top menu) > **Export** > **MED**.
+
+{% include image.html file="white.png" alt="telemac salome geometry mesh groups view show" %}
 
 In the **Export mesh** popup window, define:
-* *File name* `tetrahedral_mesh` (or whatever you prefer)
-* *Files of type* `MED 3.2 files` (if not using *SALOME-HYDRO*, make sure that the type is coherent with the [installed version of MED](install-telemac.html#med-hdf))
+
+* **File name** `flume3d` (or whatever you prefer)
+* **Files of type** `MED 3.2 files` (if not using *SALOME-HYDRO*, make sure that the type is coherent with the [installed version of MED](install-telemac.html#med-hdf))
 * Choose a convenient directory (*Quick path*) for saving the *MED* file
 * Leave all other default settings.
+* Click on **Save** to save the *MED* file.
 
-Click on **Save** to save the *MED* file.
+{% include image.html file="white.png" alt="telemac salome save med file" %}
 
+{% include tip.html content="Save the project by clicking on the disk symbol." %}
 
 ## HydroSolver 
 
+Activate the **HydroSolver** module from the top menu.
+
 ### Generate Boundary Conditions
 
+Click on the boundary condition window to create a new boundary condition file.
+
+* upstream
+* downstream
+* right wall and left wall
+
+{% include image.html file="white.png" alt="telemac salome hydro create boundary conditions" %}
+
 ### Create Simulation Case (CAS)
+
+Alternatively, use Fudaa Prepro.
 
 ### Run Simulation (Compute)
 
@@ -192,6 +298,8 @@ If the new PYTEL case is not showing up in the *Object Browser*, save the projec
 
 
 ## ParaVis
+
+Activate the **ParaVis** module from the top menu.
 
 ### Load Result (MED file)
 

@@ -71,7 +71,7 @@ The model boundary defines the calculation extent and needs to be define within 
 - In the `Concave Hull (Alpha Shapes)` wizard, select the `xyz-points` layer as `Input Layer`, set the `Threhold` to 0.300 (keep default), define an output `Concave Hull` shapefile (e.g., `boundary.shp`) by clicking on the `...` button, and click on `Run`.
 
 <a name="qgis-tbx"></a>
-{% include image.html file="qgis-tbx.png" alt="bm-5" caption="Open QGIS' Toolbox from the main menu." %} 
+{% include image.html file="qgis-tbx.png" alt="QGIS Toolbox" caption="Open QGIS' Toolbox from the main menu." %} 
 
 <a name="qgis-chull"></a>
 {% include image.html file="qgis-chull.png" alt="bm-6" caption="The Concave Hull (Alpha Shapes) wizard." %}
