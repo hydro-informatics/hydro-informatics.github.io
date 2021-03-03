@@ -55,10 +55,10 @@ Terrain survey data are mostly delivered in the shape of an x-y-z point dataset.
     * Click the `Add` button on the bottom of the wizard window. The points should now be plotted in the main *QGIS* window.
 	
 <a name="qgis-add-lyr"></a>
-{% include image.html file="qgis-add-lyr.png" alt="bm-3" caption="Open the Add Delimited Text Layer import wizard." %} 
+{% include image.html file="qgis-add-lyr.png" alt="basement qgis" caption="Open the Add Delimited Text Layer import wizard." %} 
 
 <a name="qgis-import-pts"></a>
-{% include image.html file="qgis-import-pts.png" alt="bm-4" caption="Load the xyz-points.txt file with QGIS' Add Delimited Text Layer (Data Source Manager | Delimited Text) wizard." %}
+{% include image.html file="qgis-import-pts.png" alt="basement xyz points" caption="Load the xyz-points.txt file with QGIS' Add Delimited Text Layer (Data Source Manager | Delimited Text) wizard." %}
 
 Next, export the new point layer as shapefile: In *QGIS*' `Layer`S window, right-click on XYZ-POINTS, then `Export` > `Save Features As...` . In the Format field, select `ESRI Shapefile`. Define a FILE NAME (by clicking on the … button and defining for example *C:\QGIS-projects\xyz-points.shp*), ensure that the ADD SAVED FILE TO MAP checkbox is activated (on the bottom of the `Save Vector Layer As...` window) and click `OK`. Remove the `points` text layer from the `Layers` window (only the shape file should be visible here now).
 Finally, rename the three fields (`FIELD_1`, `FIELD_2`, `FIELD_3`) to `X`, `Y`, and `Z`, respectively. The fields can be renamed with a double-click on the `xyz-points` layer (opens `Layer Properties`), then left-click on the `Fields` ribbon, activate the editing mode (click on the pen symbol) and edit the `Name` fields.
@@ -81,7 +81,7 @@ The model boundary defines the calculation extent and needs to be define within 
 - Adapt the boundary.shp polygon to a tighter fit of the shapefile nodes by clicking on the `Toggle editing` (pen) symbol and activating the `Vertex Tool` in the toolbar.
 
 <a name="qgis-mod-feat"></a>
-{% include image.html file="qgis-mod-feat.png" alt="bm-6a" caption="Toggle editing and enable the Vertex Tool." %} 
+{% include image.html file="qgis-mod-feat.png" alt="basement qgis vertex tool" caption="Toggle editing and enable the Vertex Tool." %} 
  
 - Modify the boundary edges (as shown in [figure](#qgis-mod-boundary)): click on the centre cross (creates a new point) and dragging it to the next outest boundary point of the DEM points. Note: 
     * The boundary polygon must not be a perfect fit, but it must include all xyz-points with many details in vicinity of the river inflow and outflow regions (dense point cloud in the left part of the point file). 
@@ -89,10 +89,10 @@ The model boundary defines the calculation extent and needs to be define within 
     * Regularly save edits by clicking on SAVE `Layer` (floppy disk symbol next to the editing pen symbol)
 
 <a name="qgis-mod-boundary"></a>
-{% include image.html file="qgis-mod-boundary.png" alt="bm-7" caption="Modify the boundary polygon with a click on the centre cross (creates a new point) and dragging it to the next outest boundary point of the DEM points." %} 
+{% include image.html file="qgis-mod-boundary.png" alt="basement qgis polygon" caption="Modify the boundary polygon with a click on the centre cross (creates a new point) and dragging it to the next outest boundary point of the DEM points." %} 
 
 <a name="qgis-fin-boundary"></a>
-{% include image.html file="qgis-fin-boundary.png" alt="bm-8" caption="The final boundary (hull of the point cloud)." %}
+{% include image.html file="qgis-fin-boundary.png" alt="basement qgis boundary" caption="The final boundary (hull of the point cloud)." %}
 
 
 ## Breaklines<a name="breaklines"></a>
@@ -114,7 +114,7 @@ As a result, two new layers will now show up in the Layers window:
 1.	`base_tin_elevation_elements.shp`.
 
 <a name="qgis-exp-tin"></a>
-{% include image.html file="qgis-exp-tin.png" alt="bm-9" caption="Setup BASEmesh's Elevation Meshing wizard." %}
+{% include image.html file="qgis-exp-tin.png" alt="basement qgis basemesh" caption="Setup BASEmesh's Elevation Meshing wizard." %}
 
 
 ## Region Markers for Quality Meshing<a name="regions"></a>
@@ -123,7 +123,7 @@ Region markers are placed within regions defined by breaklines and assign for in
 
 - Click on *QGIS*' `Layers` menu > `Create Layer` > `New Shapefile Layer...` (see [figure](#qgis-new-lyr))
 <a name="qgis-new-lyr"></a>
-{% include image.html file="qgis-new-lyr.png" alt="bm-10" caption="Create a new point shapefile for region definitions from QGIS' Layer menu." %}
+{% include image.html file="qgis-new-lyr.png" alt="basement qgis region points shapefile" caption="Create a new point shapefile for region definitions from QGIS' Layer menu." %}
 
 - In the newly opened `New Shapefile Layer` window, make the following definitions (see also [figure](#qgis-reg-lyr)).
     * Define the File name as region-points.shp (or similar)
@@ -135,7 +135,7 @@ Region markers are placed within regions defined by breaklines and assign for in
 - Click `OK` to create the new point shapefile.
 
 <a name="qgis-reg-lyr"></a>
-{% include image.html file="qgis-reg-lyr.png" alt="bm-11" caption="Definitions and fields to be added to the new regions point shapefile." %}
+{% include image.html file="qgis-reg-lyr.png" alt="basement qgis regions fields attribute table" caption="Definitions and fields to be added to the new regions point shapefile." %}
 
 After the successful creation, right-click on the new REGION-`points` layer and select TOGGLE EDITING. Then go to *QGIS*' EDIT menu and select ADD POINT FEATURE. Create 9 points to define all areas delineated by the `breaklines` layer. These points should include the following region types:
 
@@ -148,7 +148,7 @@ After the successful creation, right-click on the new REGION-`points` layer and 
 The below [figure](#qgis-reg-pts) shows an example for defining points within the areas delineated by the breaklines. 
 
 <a name="qgis-reg-pts"></a>
-{% include image.html file="qgis-reg-pts.png" alt="bm-12" caption="Example for distributing region points in the project boundaries (remark: the max_area value may differ and is expert assessment-driven). After the placement of all region points, Save Layer Edits (floppy disk symbol) and Toggle Editing (pencil symbol – turn off)." %}  
+{% include image.html file="qgis-reg-pts.png" alt="basement qgis region roughness attribute" caption="Example for distributing region points in the project boundaries (remark: the max_area value may differ and is expert assessment-driven). After the placement of all region points, Save Layer Edits (floppy disk symbol) and Toggle Editing (pencil symbol – turn off)." %}  
 
 ## Quality meshing<a name="qualm"></a>
 A quality mesh accounts for the definitions made within the regions shapefile ([see above section](#regions)), but it does not include elevation data. Thus, after generating a quality mesh, elevation information needs to be added from the TIN ([see above section](#tin)). This section first explains the [generation of a quality mesh](qualm-gen) and then the [insertion of elevation data](#qualm-interp)).
@@ -162,7 +162,7 @@ In *QGIS*' `Plugins` menu, click on *BASEmesh* > QUALITY MESHING to open the Qua
 1. In the `Shapefile output` canvas, click on the `browse` button to define the output mesh as (for example) `base_qualitymesh.shp`
 
 <a name="qgis-qualm"></a>
-{% include image.html file="qgis-qualm.png" alt="bm-13" caption="BASEmesh's Quality Meshing wizard." %} 
+{% include image.html file="qgis-qualm.png" alt="basement qgis basemesh quality meshing" caption="BASEmesh's Quality Meshing wizard." %} 
 
 Quality meshing may take time. After successful mesh generation the files `base_qualitymesh_qualityNodes.shp` and `base_qualitymesh_qualityElements.shp` are generated. Finally, click `Close`.
 
@@ -175,7 +175,7 @@ Quality meshing may take time. After successful mesh generation the files `base_
 After successful execution, the new layer finalmesh_Interpolated_nodes_elevMesh.shp will be created. Click Close to close the Interpolation wizard.
 
 <a name="qgis-qualm-interp"></a>
-{% include image.html file="qgis-qualm-interp.png" alt="bm-14" caption="BASEmesh's Interpolation wizard and setup." %} 
+{% include image.html file="qgis-qualm-interp.png" alt="basement qgis basemesh interpolation" caption="BASEmesh's Interpolation wizard and setup." %} 
 
 
 ###	Verify quality mesh elevation <a name="qualm-verify"></a>
@@ -183,7 +183,7 @@ After the elevation interpolation, verify that elevations were correctly assigne
 The below [figure](#qgis-verify-qualm) shows an example of interpolated mesh, with some irregularities (red points). The irregularities are caused by local imprecision of breaklines (line end points do not coincide with the [`xyz-points.shp`](#epd)). Also some points of the [boundary](#boundary) do not correspond the `xyz-points.shp`. If such irregularities occur, zoom at the red points (irregularities) and ensure that the breakline and boundary nodes all exactly coincide with those stored in `xyz-points.shp`. When all nodes are corrected, repeat all steps from the [TIN generation](#tin) onward.
 
 <a name="qgis-verify-qualm"></a>
-{% include image.html file="qgis-verify-qualm.png" alt="bm-15" caption="Verify elevation interpolation using graduated color ramps. In this example, the red colored points indicated irregularities in the mesh." %} 
+{% include image.html file="qgis-verify-qualm.png" alt="basement qgis basemesh elevation interpolation" caption="Verify elevation interpolation using graduated color ramps. In this example, the red colored points indicated irregularities in the mesh." %} 
 
 
 ##	Export to 2dm<a name="2dm"></a>
@@ -195,13 +195,13 @@ To run *BASEMENT*, the mesh needs to be exported in 2dm format. *BASEmesh*’s `
 1. Click on `Export Mesh` (may take a while) and `Close` the wizard afterwards.
 
 <a name="qgis-exp-mesh"></a>
-{% include image.html file="qgis-exp-mesh.png" alt="bm-16" caption="Export of the mesh to 2dm format with BASEmesh's Export Mesh wizard." %} 
+{% include image.html file="qgis-exp-mesh.png" alt="basement qgis basemesh export 2dm" caption="Export of the mesh to 2dm format with BASEmesh's Export Mesh wizard." %} 
 
 In order to work with *BASEMENT* v3.x, the .2dm file requires a couple of adaptations. Open the produced finalmesh.2dm in a text editor software (right-click and, for example, edit with [*Notepad++*](hy_others.html#npp)) and:
 
 - At the top, insert the following line at line N°2:  `NUM_MATERIALS_PER_ELEM 1`
     <a name="mod-2dm"></a>
-    {% include image.html file="mod-2dm.png" alt="bm-x2" max-width="500" caption="Modification of the upper part of the .2dm file." %}  
+    {% include image.html file="mod-2dm.png" alt="basement modify 2dm" max-width="500" caption="Modification of the upper part of the .2dm file." %}  
 - At the bottom of the file, add the node string definitions for the inflow and outflow boundary. Enter the following 2 new lines (where *nd<sub>i</sub>* and *nd<sub>j</sub>* represent the *Inflow* and *Outflow* nodes, respectively, of [finalmesh_interpolatedNodes_elevMesh.shp](#qualm-interp)):
     * *NS[SPACE][SPACE]nd<sub>1</sub>[SPACE]nd<sub>2</sub>[SPACE]nd<sub>i</sub>[SPACE]nd<sub>n</sub>[SPACE]Inflow*
     * *NS[SPACE][SPACE]nd<sub>1</sub>[SPACE]nd<sub>2</sub>[SPACE]nd<sub>j</sub>[SPACE]nd<sub>m</sub>[SPACE]Outflow*
@@ -218,6 +218,6 @@ In order to work with *BASEMENT* v3.x, the .2dm file requires a couple of adapta
     
 - Finally, the bottom of the finalmesh.2dm (text editor) should look like this in the text editor (node `ID`s may vary from those in the screenshot): 
     <a name="mod-2dm-bottom"></a>
-    {% include image.html file="mod-2dm-bottom.png" alt="bm-x3" max-width="700" caption="Modification of the bottom part of the .2dm file." %} 
+    {% include image.html file="mod-2dm-bottom.png" alt="basement modify 2dm file mesh" max-width="700" caption="Modification of the bottom part of the .2dm file." %} 
 
 Congratulations, you finished meshing!

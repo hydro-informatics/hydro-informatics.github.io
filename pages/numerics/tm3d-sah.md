@@ -60,34 +60,56 @@ export QT_STYLE_OVERRIDE=gtk2
 
 ### Create Contours (Polyline)
 
-After starting SALOME-HYDRO, activate the *HYDRO* module, then find the *Object Browser* on the right side of the window and the **POLYLINE** folder symbol. Right-click on the *POLYLINE* folder, select **Create polyline** and a popup window will open. In the popup window:
+After starting SALOME-HYDRO, activate the *HYDRO* module, then find the *Object Browser* on the right side of the window and the **POLYLINE** folder symbol. 
+
+{% include image.html file="salome/sah-startup.png" max-width="1000" alt="telemac3d salome hydro start" %}
+
+Right-click on the *POLYLINE* folder, select **Create polyline** and a popup window will open. In the popup window:
 
 * For **Name** enter: `Contour`
-* Click on the *Insert new section* button:
-{% include image.html file="white.png" alt="telemac salome hydro polyline" %} 
+* Click on the *Insert new section* button: {% include image.html file="salome/sah-hydro-create-polyline.png" alt="telemac salome hydro polyline" %}
+
     + For **Name** enter: `Section1`
     + For **Type** select **Polyline**
     + Ensure that the **Closed** box is checked
-    + Press **Add**
+    + Press **Add** 
+
+{% include image.html file="salome/sah-create-polyline.png" alt="telemac salome create polyline" %}
+
 * Click on the *Addition mode* button to draw a polygon
-{% include image.html file="white.png" alt="telemac salome hydro polygon addition" %} 
-* Draw a polygon in the viewport, similar as shown below (qualitative match is sufficient for now)
-{% include image.html file="white.png" alt="telemac salome hydro polygon qualitative" %} 
+{% include image.html file="salome/sah-polyline-addition.png" alt="telemac salome hydro polygon addition" %} 
+* Draw a polygon in the viewport following the direction as shown below (qualitative match is sufficient for now)
+{% include image.html file="salome/sah-polyline-draw.png" alt="telemac salome hydro polygon qualitative" %}
+{% include image.html file="salome/sah-polyline-draw-dir.png" alt="telemac salome hydro polygon qualitative" %} 
 * Press **Apply and close**
 
-In the viewport, click the polyline, then right-click on it and select **Modification mode** in the context menu. In the popup window, modify the points so that a 500-m lon and 100-m wide rectangle occurs as shown below (the section *Index* numbers will change, so pay attention to not creating crossing lines).
+In the viewport, click the polyline, then right-click on it and select **Modification mode** in the context menu.
 
-{% include image.html file="white.png" alt="telemac salome hydro polygon table coordinates modification" %} 
+{% include image.html file="salome/sah-polyline-edit.png" max-width="332" alt="telemac salome hydro edit polygon" %} 
+{% include image.html file="salome/sah-polyline-edit-popup.png" alt="telemac salome hydro edit polygon modification" %} 
+
+In the popup window, modify the points so that a 500-m long and 100-m wide rectangle occurs as shown below (the section *Index* numbers will change, so pay attention to not create crossing lines).
+
+{% include image.html file="salome/sah-polyline-edit-coords.png" alt="telemac salome hydro polygon table coordinates modification" %} 
+{% include image.html file="salome/sah-polyline-edited.png" max-width="420" alt="telemac salome hydro edit polygon" %}
 
 {% include tip.html content="Save the project by clicking on the **File** (top menu) > **Save As...**. In the popup menu, select the simulation target folder and define a name such as *flume3d*. Press **Save** to save the project in **hdf** format and regularly press the save button (disk symbol) in the next steps to avoid loosing work. Thus, the project can be saved, closed and re-opened any time." %}
 
+{% include image.html file="salome/save-study-as.png" max-width="372" alt="telemac salome hydro save study as hdf" %} {% include image.html file="salome/save-study-props.png" max-width="637" alt="telemac salome hydro save study hdf" %} 
+
+
 ### Create a Natural Object
 
-From the *HYDRO* top menu, select **Create immersible zone** to define a wetted area for the later created mesh. In the popup window, make the following settings:
+From the *HYDRO* top menu, select **Create immersible zone** to define a wetted area for the later created mesh.
+{% include image.html file="salome/sah-nat-immersible-zone.png" max-width="334" alt="telemac salome hydro create immersible zone" %} 
+ 
+In the popup window, make the following settings:
 
 * **Name:** `contour_zone`
 * **Polyline:** Select the previously created rectangle.
 * **Bathymetry:** Leave empty.
+
+{% include image.html file="salome/sah-nat-wetted-zone.png" max-width="545" alt="telemac salome hydro create wetted area zone" %} 
 
 ### Create a Calculation Case
 
@@ -220,7 +242,7 @@ To this end, the *Object Browser* should include the 5 hypotheses and the non-co
 
 {% include note.html content="If an info or warning windows pops up and asks for defining the order to apply, that means the geometry groups contain too many elements. In this case go back to the [geometry creation](#geo2d) and make sure that always only one element is added per group. For more complex models, the order of mesh hypotheses may not be an error, but in this simple case it must not appear being an issue." %}
 
-### Compute 
+### Compute Mesh
 
 In the **Object Browser**, extend (un-collapse) the new *Mesh* block, right-click on *Mesh_steady_1*, and click on **Compute**. This will automatically also compute all sub-meshes. 
 
@@ -296,6 +318,7 @@ If the new PYTEL case is not showing up in the *Object Browser*, save the projec
 * In the *Object Browser*, right-click on HydroSolver and click *Refresh*. A *EXE* sign next to *tetrahedral steering* should show up*.
 * Right-click on the new *EXE tetrahedral steering* item in the *Object Browser*, then click on *Compute*
 
+## Alternative Run Option: TELEMAC (direct)
 
 ## ParaVis
 
