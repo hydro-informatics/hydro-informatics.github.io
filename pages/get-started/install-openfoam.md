@@ -7,9 +7,13 @@ permalink: install-openfoam.html
 folder: get-started
 ---
 
-This tutorial guides through the installation of [*OpenFOAM*](http://www.openfoam.org/) on [Ubuntu Linux](https://www.ubuntu.org/). For installing *OpenFOAM* on many other platforms visit the [developer's website](https://openfoam.org). *Debian* users find installation hints on the [bottom of this page](#debian).
+This tutorial guides through the installation of [*OpenFOAM*](http://www.openfoam.org/) on [Ubuntu Linux](https://www.ubuntu.org/) and [*Debian Linux*](#debian). For installing *OpenFOAM* on many other platforms (even *Windows*) visit the [developer's website](https://openfoam.org).
 
-## Install *OpenFOAM*
+## Ubuntu (incl. Mint and Lubuntu)
+
+The installation on *Ubuntu Linux* or one of its derivatives is probably one of the easiest and most sustainable ways for working with *OpenFOAM*. 
+
+### Install *OpenFOAM* 
 
 The installation on any *Ubuntu Linux* platform is straight-forward and can be carried out as described on the [developer's website](https://openfoam.org/download/8-ubuntu/). In detail, these steps include:
 
@@ -26,7 +30,7 @@ sudo apt install gedit
 
 {% include tip.html content="Even though the developer's installation instructions suggest using `apt-get update` / `install`, preferably use `apt update` / `install`." %}
 
-## Update *OpenFOAM*
+### Update *OpenFOAM*
 
 The *OpenFOAM* developers periodically update (recompile) new versions of `openfoam8`. To get these latest versions run:
 
@@ -35,7 +39,7 @@ sudo apt update
 sudo apt install --only-upgrade openfoam8
 ``` 
 
-## Setup User Configuration
+### Setup User Configuration
 
 *OpenFOAM* uses a set of environment variables that aid calling the program and its helpers. To define environment variables, every *OpenFOAM* *Ubuntu* user needs to modify the *.bashrc* file, which lives in the */home/USER/* directory:
 
@@ -55,7 +59,7 @@ simpleFoam -help
 
 If correctly setup, *Terminal* returns a set of options for running *OpenFOAM*.
 
-## Test-run
+### Test-run
 
 With the environment variables defined, create a new directory for *OpenFOAM* projects:
 
@@ -65,7 +69,7 @@ mkdir OpenFoam8
 cd OpenFoam8
 ```
 
-Copy the *pitzDaily* *OpenFOAM* tutorial by using the `$FOAM_[...]` environment variables:
+Copy the *pitzDaily* *OpenFOAM* tutorial by using the `$FOAM_[...]` environment variables ([full list](https://openfoamwiki.net/index.php/Environment_variables)):
 
 ```
 mkdir -p $FOAM_RUN
@@ -83,6 +87,124 @@ paraFoam
 ```
 
 To get started with *OpenFoam*, refer to the *User Guide* provided by [*CFD Direct*](https://cfd.direct/openfoam/user-guide/).
+
+## Debian 10 {#debian}
+
+### Prerequisites 
+
+Debian users will need to install *curl* and *docker* for being able to install *OpenFOAM*. First, make sure to get rid of any out-dated version of *docker* (if this returns an error, that is not a problem):
+
+```
+sudo apt-get remove docker docker-engine docker.io containerd runc
+```
+
+Install *docker* dependencies:
+
+```
+sudo apt install apt-transport-https ca-certificates curl gnupg
+```
+
+Add *docker*'s *GPG* keys:
+
+```
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+```
+
+Add the stable *docker* repository:
+
+```
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+
+Update *apt* and install *docker*:
+
+```
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io
+```
+
+Verify the successful installation of *docker*:
+
+```
+sudo docker run hello-world
+```
+
+Until here, *docker* is installed for sudoers only. To enable running *docker* and *OpenFOAM* for any user, the user's *USERNAME* must be added to the system's `docker` group. Therefore, **add every *docker* and *OpenFOAM* user to the `docker` group** (required for every **USERNAME**):
+
+```
+sudo usermod -aG docker USERNAME
+```
+
+With *docker* being installed, the system is ready for the installation of *OpenFOAM* on *Debian*.
+
+On a remote desktop computer or a virtual machine, make sure to also install *X11* and *Xrdp*, for example for an *Xfce* desktop:
+
+```
+sudo apt install xorg dbus-x11 x11-xserver-utils
+sudo apt install xfce4 xfce4-goodies xrdp
+```
+
+### Install *OpenFOAM* (v8)
+ 
+Download the latest *OpenFOAM* package for *docker*:
+
+```
+sudo sh -c "wget http://dl.openfoam.org/docker/openfoam8-linux -O /usr/bin/openfoam8-linux"
+```
+
+Make the downloaded `openfoam8-linux` script executable:
+
+```
+sudo chmod 755 /usr/bin/openfoam8-linux
+```
+
+### Get Started (First-time Launch)
+
+Create a new directory (e.g., */home/OpenFoam8/*) and launch the `openfoam8-linux` environment:
+
+```
+cd ~
+mkdir OpenFoam8
+cd OpenFoam8
+openfoam8-linux
+```
+
+The *docker* environment should now be launched in *Terminal*. To test *OpenFOAM*, copy the *pitzDaily* *OpenFOAM* tutorial by using the [**FOAM** environment variables](https://openfoamwiki.net/index.php/Environment_variables):
+
+```
+mkdir -p $FOAM_RUN
+cd $FOAM_RUN
+cp -r $FOAM_TUTORIALS/incompressible/simpleFoam/pitzDaily .
+```
+
+Run the *blockMesh* (pre), the *simpleFoam* (main), and the *paraFoam* (post) processors:
+
+```
+cd pitzDaily
+blockMesh
+simpleFoam
+paraFoam
+```
+
+To quit *docker*, tap `exit`. The installation procedure is described in detail on the [developer's website](https://openfoam.org/download/8-linux/).
+
+### Usual Launch Procedure
+
+With *docker* and *OpenFOAM* being installed, every user of the `docker` group (see above instructions for adding users to the docker `group`) can launch *OpenFOAM* through *Terminal* by entering:
+
+```
+openfoam8-linux
+```
+
+To quit the program tap (in *Terminal*/*docker*):
+
+```
+exit
+```
+
+To get started with *OpenFoam*, refer to the *User Guide* provided by [*CFD Direct*](https://cfd.direct/openfoam/user-guide/).
+ 
 
 ## Pre- & Post Processors
 
@@ -146,48 +268,3 @@ RuntimeError: Process 29241 for /Kernel/Session not found
 ```
 
 Then look for the missing libraries indicated in the above block with `error while loading shared libraries: libtbb.so.2: cannot open shared object file`. In this case `libtbb` is missing, which can be installed with `sudo apt install libtbb-dev`.
-
-
-## Hints for Debian Users {#debian}
-
-Debian users will need to install *curl* and *docker* for being able to install *OpenFOAM*.
- 
-First, make sure to get rid of any out-dated version of *docker*:
-
-```
-sudo apt-get remove docker docker-engine docker.io containerd runc
-```
-
-Then install docker dependencies:
-
-```
-sudo apt install apt-transport-https ca-certificates curl gnupg
-```
-
-Add *docker*'s *GPG* keys:
-
-```
-curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-```
-
-Add the stable *docker* repository:
-
-```
-echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-```
-
-Update *apt* and install *docker*:
-
-```
-sudo apt update
-sudo apt install docker-ce docker-ce-cli containerd.io
-```
-
-Verify the successful installation:
-
-```
-sudo docker run hello-world
-```
-
-With *docker* being installed, the system is ready for the installation of *OpenFOAM* on *Debian* by following the [developer's instructions](https://openfoam.org/download/8-linux/).
