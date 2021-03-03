@@ -57,20 +57,30 @@ SALOME-HYDRO is a specific version of SALOME ([see description in the modular in
 
 ### Prerequisites
 
-1. Download the installer from the [developer's website](https://www.salome-platform.org/contributions/edf_products/downloads/) or use the newer version provided through the [TELEMAC user Forum](http://www.opentelemac.org/index.php/kunena/other/12263-hydrosalome-z-interpolation#34100) (registration required)
+* Download the installer from the [developer's website](https://www.salome-platform.org/contributions/edf_products/downloads/) or use the newer version provided through the [TELEMAC user Forum](http://www.opentelemac.org/index.php/kunena/other/12263-hydrosalome-z-interpolation#34100) (registration required)
 <!-- [Salome-Hydro V2_2](https://drive.google.com/file/d/1Bimoy9d9dqgQDbMW_kJxilw5JEoMvZ0Q/view)) -->
-1. Install required packages
+* Install required packages (verify the latest version of `libssl` and if necessary, correct version)
 
 ```
 sudo apt install openmpi-common gfortran mpi-default-dev zlib1g-dev libnuma-dev xterm net-tools
 ```
 
+<!-- sudo apt install libssl1.1 libssl-dev  -->
+
+* Install earlier versions of `libssl`:
+ 
+    * Open the list of sources <br> `sudo editor /etc/apt/sources.list`
+    * **Ubuntu users**: In *sources.list*, add *Ubuntu's Bionic* security as source with<br> `deb http://security.ubuntu.com/ubuntu bionic-security main` <br> Using *Nano* as text editor, copy the above line into *sources.list*, then press `CTRL`+`O`, confirm writing with `Enter`, then press `CTRL`+`X` to exit *Nano*.
+    * **Debian users**: In *sources.list*, add *Debian Stretch* source with<br> `deb http://deb.debian.org/debian/ stretch main contrib non-free` <br> `deb-src http://deb.debian.org/debian stretch main contrib non-free`<br> Using *Nano* as text editor, copy the above lines into *source.list*, then press `CTRL`+`O`, confirm writing with `Enter`, then press `CTRL`+`X` to exit *Nano*.
+    * Back in *Terminal* tap <br> `sudo apt update && apt-cache policy libssl1.0-dev` <br> `sudo apt-get install libssl1.0-dev libopenblas-dev libgeos-dev unixodbc-dev libnetcdf-dev libhdf4-0-alt libpq-dev qt5ct`
+       
+<!--
 1. Update *Python* alternatives (set *Python* as alternative):
 
 ```
 update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
 ```
-
+-->
  
 
 ### Install SALOME-HYDRO
@@ -85,6 +95,31 @@ chmod 775 Salome-V1_1_univ_3.run
 During the installation process, define a convenient installation directory such as **/home/salome-hydro/**. The installer guides through the installation and prompts how to launch the program at the end.
 
 {% include important.html content="If you get error messages such as `./create_appli_V1_1_univ.sh/xml: line [...]: No such file or directory.`, there is probably an issue with the version of *Python*. In this case, make sure to define the *PATH* as above stated in the prerequisites (SALOME-HYDRO) section." %}
+
+Try to launch SALOME-HYDRO:
+
+```
+cd /home/salome-hydro/appli_V2_2/
+./salome
+```
+
+If an error message is raised by `Kernel/Session` in the `Naming Service` (typically ends up in `[Errno 3] No such process` ... `RuntimeError: Process NUMBER for Kernel/Session not found`), there are multiple possible origins that partially root in potentially hard-coded library versions of the installer. To troubleshoot:
+
+* Manually create copies of newer libraries with names of older versions. For instance,
+    + In the 4th line after running `./salome`, `Kernel/Session` may prompt `error while loading [...] libSOMETHING.so.20 cannot open [...] No such file or directory` 
+    + Identify the version installed with `whereis libSOMETHING.so.20` (replace `libSOMETHING.so.20` with the missing library); for example, this may output `/usr/lib/x86_64-linux-gnu/libSOMETHING.so.40`
+    + Create a copy of the newer library and rename the copy as needed by SALOME; for example, tap  `sudo cp /usr/lib/x86_64-linux-gnu/libSOMETHING.so.40 usr/lib/x86_64-linux-gnu/libSOMETHING.so.20`
+    + Most likely, the following files need to be copied:
+```
+sudo cp /usr/lib/x86_64-linux-gnu/libmpi.so.40 /usr/lib/x86_64-linux-gnu/libmpi.so.20
+sudo cp /usr/lib/x86_64-linux-gnu/libicui18n.so.63 /usr/lib/x86_64-linux-gnu/libicui18n.so.57
+sudo cp /usr/lib/x86_64-linux-gnu/libicuuc.so.63 /usr/lib/x86_64-linux-gnu/libicuuc.so.57
+sudo cp /usr/lib/x86_64-linux-gnu/libicudata.so.63 /usr/lib/x86_64-linux-gnu/libicudata.so.57
+sudo cp /usr/lib/x86_64-linux-gnu/libnetcdf.so.13 /usr/lib/x86_64-linux-gnu/libnetcdf.so.11
+```
+* Overwrite the SALOME-HYDRO's internal version of *Qt*:
+    + Copy `/usr/lib/x86_64-linux-gnu/libQtCore.so.5`
+    + Paste in `/Salome-V2_2/prerequisites/Qt-591/lib/` - confirm replacing `libQtCore.so.5`
 
 ### Install GUI support packages
 <a name="mod-profile"></a>
