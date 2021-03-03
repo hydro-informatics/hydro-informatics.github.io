@@ -869,7 +869,7 @@ During handling of the above exception, another exception occurred:
 Traceback (most recent call last):
   File "/home/HyMo/Downloads/SALOME-9.5.0-DB10-SR/BINARIES-DEB10/KERNEL/bin/salome/runSalome.py", line 679, in useSalome
     clt = [...]
-  File "/home/HyMo/Downloads/SALOME-9.5.0-DB10-SR/BINARIES-DEB10/KERNEL/bin/salome/orbmodule.py", line 183, in waitNSPID
+  File "/home/HyMo/Downloads/SALOME-9.5.0-DB10-SRC/BINARIES-DEB10/KERNEL/bin/salome/orbmodule.py", line 183, in waitNSPID
     raise RuntimeError("Process %d for %s not found" % (thePID,theName))
 RuntimeError: Process 29241 for /Kernel/Session not found
 --- Error during Salome launch ---
