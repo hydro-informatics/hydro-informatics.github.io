@@ -206,7 +206,7 @@ exit
 To get started with *OpenFoam*, refer to the *User Guide* provided by [*CFD Direct*](https://cfd.direct/openfoam/user-guide/).
  
 
-## Pre- & Post Processors
+## External Utilities (Pre- & Post Processors)
 
 ### SALOME {#salome}
 

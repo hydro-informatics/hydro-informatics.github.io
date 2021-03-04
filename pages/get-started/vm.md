@@ -1,5 +1,5 @@
 ---
-title: Virtual machines
+title: Virtual machines and Linux
 tags: [telemac, numerical, linux, modelling, install, vm]
 keywords: Virtual, machine, TELEMAC-MASCARET
 summary: "Create a Debian Linux Virtual Machine (VM) with VirtualBox."
@@ -244,7 +244,7 @@ Afterwards, **reboot the *Debian Linux VM*** and test if you can access the fold
 
 ***
 
-### Enable OpenGL
+### Enable OpenGL {#opengl}
 
 *VirtualBox* experimentally enables [*OpenGL*](https://www.opengl.org), which is used by many graphical user interfaces. To make *OpenGL* work on a virtual machine, the install [*X.Org X Window System*](https://www.x.org/) (xserver): 
 
@@ -270,6 +270,21 @@ To edit the configuration of *Xorg* run:
 sudo editor /etc/X11/xorg.conf
 ```
 
+Add *nvidia* repositories and drivers (maybe not necessary on newer versions of *Debian*:
+
+```
+sudo apt install software properties-common
+sudo add-apt-repository contrib
+sudo add-apt-repository non-free
+sudo apt update
+```
+
+Then install *OpenGL* with:
+
+```
+sudo apt install libopengl0-glvnd-nvidia libglx0-glvnd-nvidia
+```
+
 ### Install and Update Software (optional)
 
 ***Estimated duration: Variable.***
@@ -292,6 +307,43 @@ Instructions for installing particular and Debian-compatible software (e.g., QGI
 
 {% include important.html content="If the main purpose of the VM is to run resource-intensive simulations (e.g., with TELEMAC-MASCARET), avoid installing any other software than those required for running the model. Also, as a general rule of thumb: Less is better than more." %}
 
+### Add Package Repositories
+
+For adding (trusted) software (package) repositories use *software-properties-common*, which provides the `add-apt-repository` command:
+
+```
+sudo apt install software-properties-common
+sudo add-apt-repository contrib
+sudo add-apt-repository non-free
+sudo apt update
+```
+
+### Find Packages
+
+Some software will run into errors because of missing library files (e.g., `libGLX.so.0: No such file or directory`). To find out what package needs to be installed for getting the missing library file, install *apt-file*
+
+```
+sudo apt install apt-file
+sudo apt-file update
+```
+
+To find out the package name of a missing library file (e.g., `libGLX.so.0`), tap:
+
+```
+apt-file find libGLX.so.0
+```
+
+After a couple of seconds of searching, *apt-file* will prompt something like:
+
+```
+libglx0-glvnd-nvidia: /usr/lib/x86_64-linux-gnu/libGLX.so.0
+```
+
+That means, to get the library file `libGLX.so.0`, the package `libglx0-glvnd-nvidia` must be installed; for instance:
+
+```
+sudo apt install libglx0-glvnd-nvidia
+```
 
 ### Install & Use *Windows* Applications in *Linux* (*Wine*) {#wine}
 
