@@ -46,8 +46,8 @@ This page describes two ways for installing *TELEMAC*:
 
 So what option to choose? Many factors need to be considered, but as a general rule of thumb, it might be beneficial to opt as follows:
 
-* [Option 1 (*SALOME-HYDRO*)](#salome-hydro) for modelling three-dimensional (3D) geometries defined with *MED* files; and
-* [Option 2 (Modular installation)](#modular-install) for hydro-morphodynamic, two-dimensional (2D) modelling of river landscapes.
+* [Option 1 (*SALOME-HYDRO*)](#salome-hydro) for modelling three-dimensional (3d) geometries defined with *MED* files; and
+* [Option 2 (Modular installation)](#modular-install) for hydro-morphodynamic, two-dimensional (2d) modelling of river landscapes.
 
 ## **O1**: SALOME-HYDRO (Linux) {#salome-hydro}
 
@@ -76,6 +76,30 @@ sudo apt install openmpi-common gfortran mpi-default-dev zlib1g-dev libnuma-dev 
 
 * **Debian 9 users** will need to add and install *nvidia* drivers as described on the virtual machine / *Debian Linux* installation page ([go there](vm.html#opengl)).
 
+### Debian 10 (buster) users
+
+*SALOME-HYDRO* is using some out-dated libraries, which require that newer versions (e.g., of the *openmpi* library) must be copied and the copies must be renamed to match the out-dated library names. Therefore, open *Terminal* and tap:
+
+```
+sudo cp /usr/lib/x86_64-linux-gnu/libmpi.so.40 /usr/lib/x86_64-linux-gnu/libmpi.so.20
+sudo cp /usr/lib/x86_64-linux-gnu/libicui18n.so.63 /usr/lib/x86_64-linux-gnu/libicui18n.so.57
+sudo cp /usr/lib/x86_64-linux-gnu/libicuuc.so.63 /usr/lib/x86_64-linux-gnu/libicuuc.so.57
+sudo cp /usr/lib/x86_64-linux-gnu/libicudata.so.63 /usr/lib/x86_64-linux-gnu/libicudata.so.57
+sudo cp /usr/lib/x86_64-linux-gnu/libnetcdf.so.13 /usr/lib/x86_64-linux-gnu/libnetcdf.so.11
+sudo cp /usr/lib/x86_64-linux-gnu/libmpi_usempif08.so.40 /usr/lib/x86_64-linux-gnu/libmpi_usempif08.so.20
+sudo cp /usr/lib/x86_64-linux-gnu/libmpi_java.so.40 /usr/lib/x86_64-linux-gnu/libmpi_java.so.20
+sudo cp /usr/lib/x86_64-linux-gnu/libmpi_cxx.so.40 /usr/lib/x86_64-linux-gnu/libmpi_cxx.so.20
+sudo cp /usr/lib/x86_64-linux-gnu/libmpi_mpifh.so.40 /usr/lib/x86_64-linux-gnu/libmpi_mpifh.so.20
+sudo cp /usr/lib/x86_64-linux-gnu/libmpi_usempi_ignore_tkr.so.40 /usr/lib/x86_64-linux-gnu/libmpi_usempi_ignore_tkr.so.20
+```
+
+In addition, the *Qt* library of the *SALOME-HYDRO* installer is targeting out-dated libraries on *Debian 10*. To troubleshoot this issue, open the file explorer and:
+
+* Go to the directory `/usr/lib/x86_64-linux-gnu/`
+* Find, highlight, and copy all **lib** files that contain the string **libQt5** (or even just **Qt5**).
+* Paste the copied **Qt5** library files into `/SALOME-HYDRO/Salome-V2_2/prerequisites/Qt-591/lib/` (confirm **replace existing files**).
+
+Both procedures for copying library files are anything but a coherent solution. However, it is currently the only way to get *SALOME-HYDRO* working on *Debian 10*.
 
 ### Install SALOME-HYDRO
 
@@ -112,7 +136,7 @@ If the program is not showing up properly (e.g., empty menu items), read more ab
 [*ParaView*](https://www.paraview.org) serves for the visualization of model results in the SALOME-HYDRO modelling chain. The built-in module *ParaViS* essentially corresponds to *ParaView*, but the separate usage of *ParaView* enables a better experience for post-processing of results. The installation of *SALOME-HYDRO* already involves an older version of *ParaView* that is able to manipulate *MED* files. To start *ParaView* through *SALOME-HYDRO*, open *Terminal*, `cd` to the directory where *SALOME-HYDRO* is installed, launch the environment, and then launch *ParaView*:
 
 ```
-cd /home/slome-hydro/appli_V1_1_univ/
+cd /home/slome-hydro/appli_V2_2/
 . env.d/envProducts.sh
 ./runRemote.sh paraview
 ``` 
