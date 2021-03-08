@@ -12,7 +12,7 @@ folder: numerics
 
 Thank you for your patience.
 
-{% include requirements.html content="This tutorial refers to *TELEMAC* v8p2 as integral part of *SALOME-HYRO* installed on *Debian Linux* (*buster*). For the best learning experience follow the installation guides for [*SALOME-HYDRO*](install-telemac.html#salome-hydro)." %}
+{% include requirements.html content="This tutorial was established with **[*SALOME-HYRO* v2_2](install-telemac.html#salome-hydro) and a stand-alone installation of [*TELEMAC* v8p2r0](install-telemac.html#modular-install) on *Debian Linux* (*buster*)**." %}
 
 This tutorial uses descriptions provided in the [telemac3d_user_v8p1](http://ot-svn-public:telemac1*@svn.opentelemac.org/svn/opentelemac/tags/v8p1r2/documentation/telemac2d/user/telemac3d_user_v8p1.pdf) manual. More documentation can be found on [opentelemac.org/doku](http://wiki.opentelemac.org/doku.php?id=documentation_v8p2r0).
 
@@ -111,6 +111,8 @@ In the popup window, make the following settings:
 {% include image.html file="salome/sah-nat-wetted-zone.png" max-width="545" alt="telemac salome hydro create wetted area zone" %} 
 
 * Press **Apply and close**.
+
+{% include tip.html content="A **bathymetry** file **assigns bottom elevations** to the geometry. Not providing a bathymetry file like in this tutorial will set the bottom level to zero." %} 
 
 ### Create a Calculation Case
 

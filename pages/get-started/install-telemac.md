@@ -20,149 +20,39 @@ This page only guides through the **installation** of *TELEMAC*. A **tutorial pa
 * Make sure to be able to use the [GNOME *Terminal*](vm.html#terminal).
 * This tutorial refers to the software package *open TELEMAC-MASCARET* as *TELEMAC* because *MASCARET* is a one-dimensional (1D) model and the numerical simulation schemes on this website focus on two-dimensional (2D) and three-dimensional (3D) modelling.
 
-### Two Installation Options (**O1** & **O2**)
+### Two Installation Options
 
 This page describes two ways for installing *TELEMAC*:
 
-1. Option (**O1**): Installation of *TELEMAC* within the *SALOME-HYDRO* software suite.
+1. Option: Modular installation of *TELEMAC*
+    * Every software and packages needed to run a *TELEMAC* model is installed manually
+    * **Advantages**:
+        - Full control over modules to be installed (high flexibility)
+        - Latest version of *TELEMAC* is installed and can be regularly updated
+        - Up-to-date compilers and all libraries are exactly matching the system. 
+    * **Disadvantages**:
+        - The variety of install options may cause errors when incompatible packages are combined
+        - Challenging installation of optional modules such as AED2, HPC and parallelism 
+2. Option: Installation of *TELEMAC* within the *SALOME-HYDRO* software suite.
     * All pre-processing tasks are managed with *SALOME-HYDRO*
     * *TELEMAC* is launched through the *HYDRO-SOLVER* module
     * Post-processing is performed with *ParaView*
     * **Advantages**:
         - All-in-one solution for pre-processing
-        - Integrated HPC installation of *TELEMAC* *v7p3*
+        - Integrated HPC installation of *TELEMAC* *v8p2*
         - Efficient for MED-file handling
     * **Disadvantages**:
-        - Not all modules are up to date (latest version of *TELEMAC* is *v8*)
         - Common input geometry file formats such as *SLF* (serafin) require additional software
-2. Option (**O2**): Modular installation of *TELEMAC*
-    * Every software and packages needed to run a *TELEMAC* model is installed manually
-    * **Advantages**:
-        - Full control over modules to be installed (high flexibility)
-        - Latest version of *TELEMAC* is installed and can be regularly updated
-    * **Disadvantages**:
-        - The variety of install options may cause errors when incompatible packages are combined
-        - Challenging installation of HPC and parallelism options for *TELEMAC*   
+        - Only works without errors on *Debian 9 (stretch)*
+        - The pre-compiled version of TELEMAC and other modules were built with outdated gfortran compilers that cannot run on up-to-date systems
 
 So what option to choose? Many factors need to be considered, but as a general rule of thumb, it might be beneficial to opt as follows:
 
-* [Option 1 (*SALOME-HYDRO*)](#salome-hydro) for modelling three-dimensional (3d) geometries defined with *MED* files; and
-* [Option 2 (Modular installation)](#modular-install) for hydro-morphodynamic, two-dimensional (2d) modelling of river landscapes.
-
-## **O1**: SALOME-HYDRO (Linux) {#salome-hydro}
-
-SALOME-HYDRO is a specific version of SALOME ([see description in the modular installation](#salome)) with full capacities to create and run a numerical model with *TELEMAC*. The program is distributed on [salome-platform.org](https://www.salome-platform.org/contributions/edf_products/downloads/) as specific EDF contribution.
-
-{% include unix.html content="SALOME-HYDRO also works on *Windows* platforms, but most applications and support is provided for *Debian Linux*." %}
-
-### Prerequisites
-
-* Download the installer from the [developer's website](https://www.salome-platform.org/contributions/edf_products/downloads/) or use the newer version provided through the [TELEMAC user Forum](http://www.opentelemac.org/index.php/kunena/other/12263-hydrosalome-z-interpolation#34100) (registration required)
-<!-- [Salome-Hydro V2_2](https://drive.google.com/file/d/1Bimoy9d9dqgQDbMW_kJxilw5JEoMvZ0Q/view)) -->
-* Install required packages (verify the latest version of `libssl` and if necessary, correct version)
-
-```
-sudo apt install openmpi-common gfortran mpi-default-dev zlib1g-dev libnuma-dev xterm net-tools
-```
-
-<!-- sudo apt install libssl1.1 libssl-dev  -->
-
-* Install earlier versions of `libssl`:
- 
-    * Open the list of sources <br> `sudo editor /etc/apt/sources.list`
-    * **Ubuntu users**: In *sources.list*, add *Ubuntu's Bionic* security as source with<br> `deb http://security.ubuntu.com/ubuntu bionic-security main` <br> Using *Nano* as text editor, copy the above line into *sources.list*, then press `CTRL`+`O`, confirm writing with `Enter`, then press `CTRL`+`X` to exit *Nano*.
-    * **Debian users**: In *sources.list*, add *Debian Stretch* source with<br> `deb http://deb.debian.org/debian/ stretch main contrib non-free` <br> `deb-src http://deb.debian.org/debian stretch main contrib non-free`<br> Using *Nano* as text editor, copy the above lines into *source.list*, then press `CTRL`+`O`, confirm writing with `Enter`, then press `CTRL`+`X` to exit *Nano*.
-    * Back in *Terminal* tap <br> `sudo apt update && apt-cache policy libssl1.0-dev` <br> `sudo apt install libssl1.0-dev libopenblas-dev libgeos-dev unixodbc-dev libnetcdf-dev libhdf4-0-alt libpq-dev qt5ct libgfortran3`
-
-* **Debian 9 users** will need to add and install *nvidia* drivers as described on the virtual machine / *Debian Linux* installation page ([go there](vm.html#opengl)).
-
-### Debian 10 (buster) users
-
-*SALOME-HYDRO* is using some out-dated libraries, which require that newer versions (e.g., of the *openmpi* library) must be copied and the copies must be renamed to match the out-dated library names. Therefore, open *Terminal* and tap:
-
-```
-sudo cp /usr/lib/x86_64-linux-gnu/libmpi.so.40 /usr/lib/x86_64-linux-gnu/libmpi.so.20
-sudo cp /usr/lib/x86_64-linux-gnu/libicui18n.so.63 /usr/lib/x86_64-linux-gnu/libicui18n.so.57
-sudo cp /usr/lib/x86_64-linux-gnu/libicuuc.so.63 /usr/lib/x86_64-linux-gnu/libicuuc.so.57
-sudo cp /usr/lib/x86_64-linux-gnu/libicudata.so.63 /usr/lib/x86_64-linux-gnu/libicudata.so.57
-sudo cp /usr/lib/x86_64-linux-gnu/libnetcdf.so.13 /usr/lib/x86_64-linux-gnu/libnetcdf.so.11
-sudo cp /usr/lib/x86_64-linux-gnu/libmpi_usempif08.so.40 /usr/lib/x86_64-linux-gnu/libmpi_usempif08.so.20
-sudo cp /usr/lib/x86_64-linux-gnu/libmpi_java.so.40 /usr/lib/x86_64-linux-gnu/libmpi_java.so.20
-sudo cp /usr/lib/x86_64-linux-gnu/libmpi_cxx.so.40 /usr/lib/x86_64-linux-gnu/libmpi_cxx.so.20
-sudo cp /usr/lib/x86_64-linux-gnu/libmpi_mpifh.so.40 /usr/lib/x86_64-linux-gnu/libmpi_mpifh.so.20
-sudo cp /usr/lib/x86_64-linux-gnu/libmpi_usempi_ignore_tkr.so.40 /usr/lib/x86_64-linux-gnu/libmpi_usempi_ignore_tkr.so.20
-```
-
-In addition, the *Qt* library of the *SALOME-HYDRO* installer is targeting out-dated libraries on *Debian 10*. To troubleshoot this issue, open the file explorer and:
-
-* Go to the directory `/usr/lib/x86_64-linux-gnu/`
-* Find, highlight, and copy all **lib** files that contain the string **libQt5** (or even just **Qt5**).
-* Paste the copied **Qt5** library files into `/SALOME-HYDRO/Salome-V2_2/prerequisites/Qt-591/lib/` (confirm **replace existing files**).
-
-Both procedures for copying library files are anything but a coherent solution. However, it is currently the only way to get *SALOME-HYDRO* working on *Debian 10*.
-
-### Install SALOME-HYDRO
-
-Open the *Terminal*, `cd` into the directory where you downloaded **Salome-V1_1_univ_3.run** (or **Salome-HYDRO-V2_2-s9.run**),  and tap:
-
-```
-chmod 775 Salome-HYDRO-V2_2-S9.run
-./Salome-HYDRO-V2_2-S9.run
-```
-
-During the installation process, define a convenient installation directory such as **/home/salome-hydro/**. The installer guides through the installation and prompts how to launch the program at the end.
-
-{% include important.html content="If you get error messages such as `./create_appli_V1_1_univ.sh/xml: line [...]: No such file or directory.`, there is probably an issue with the version of *Python*. In this case, run `update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1` and re-try." %}
-
-Try to launch SALOME-HYDRO:
-
-```
-cd /home/salome-hydro/appli_V2_2/
-./salome
-```
-
-If there are issues such as  `Kernel/Session` in the `Naming Service` (`[Errno 3] No such process` ... `RuntimeError: Process NUMBER for Kernel/Session not found`), go to the [troubleshooting page](dbg_tm.html#salome-dbg).
-
-If the program is not showing up properly (e.g., empty menu items), read more about [Qt GUI support on the troubleshooting page](dbg_tm.html#qt-dbg)
-
-<!--
-{% include tip.html content="**Set a keyboard shortcut to start SALOME-HYDRO on Debian Linux**: Go to *Activities*, tap *keyboard*, and select *Keyboard* from the list (do not click on *Tweaks*). In the *Keyboard* window, scroll to the bottom and click on the `+` sign to define a new shortcut. In the popup window use, for example, *Salome-Hydro* as *Name*, in the *Command* box tap `/home/salome-hydro/appli_V1_1_univ/salome` (or where ever *SALOME-HYDRO* is installed), and define a *Shortcut*, such as `CTRL` + `Alt` + `S`." %}
-
-{% include image.html file="sah-keyboard-shortcut.png" alt="salome-hydro shortcut" caption="Define a keyboard shortcut to start SALOME-HYDRO." %}
--->
-
-### Install ParaView (optional) {#paraview}
-
-[*ParaView*](https://www.paraview.org) serves for the visualization of model results in the SALOME-HYDRO modelling chain. The built-in module *ParaViS* essentially corresponds to *ParaView*, but the separate usage of *ParaView* enables a better experience for post-processing of results. The installation of *SALOME-HYDRO* already involves an older version of *ParaView* that is able to manipulate *MED* files. To start *ParaView* through *SALOME-HYDRO*, open *Terminal*, `cd` to the directory where *SALOME-HYDRO* is installed, launch the environment, and then launch *ParaView*:
-
-```
-cd /home/slome-hydro/appli_V2_2/
-. env.d/envProducts.sh
-./runRemote.sh paraview
-``` 
+* New users want to [use option 1 (Modular installation)](#modular-install) for hydro-morphodynamic, two-dimensional (2d) modelling of river landscapes.
+* More experienced user may want to use [option 2 (*SALOME-HYDRO*)](#salome-hydro) for modelling three-dimensional (3d) geometries defined with *MED* files and HPC schemes.
 
 
-Alternatively, *ParaView* is freely available on the [developer's website](https://www.paraview.org/download/) and the latest stable release can be installed on *Debian Linux*, through the *Terminal*:
-
-```
-sudo apt install paraview
-```
-
-In this case, to run *ParaView* tap `paraview` in *Terminal*. If you are using a virtual machine, start *ParaView* with the `--mesa-llvm` flag (i.e., `paraview --mesa-llvm`).
-To enable *MED* file handling, *MED* coupling is necessary, which requires to follow the installation instructions on [docs.salome-platform.org](https://docs.salome-platform.org/7/dev/MEDCoupling/install.html).
-
-### Start SALOME-HYDRO
-
-To start *SALOME-HYDRO*, open *Terminal* and tap:
-
-```
-/home/salome-hydro/appli_V1_1_univ/salome
-```
-
-
-
-
-## **O2**: Manual Installation of Modules {#modular-install}
+## Modular Installation of TELEMAC {#modular-install}
 
 ### Install mandatory Prerequisites (Part 1)
 
@@ -292,7 +182,7 @@ sudo apt-get install -y cmake build-essential dialog vim
 ```
 
 
-## **O2**: Download *TELEMAC*
+## Download *TELEMAC*
 
 We will need more packages to enable parallelism and compiling, but before installing them, download the latest version of *TELEMAC* through subversion (`svn`). The developers (irregularly) inform about the newest public release on [their website](http://www.opentelemac.org/index.php/latest-news-development-and-distribution) and the latest absolute latest release can be read from the [*svn-tags* website](http://svn.opentelemac.org/svn/opentelemac/tags/) (use with passwords in the below command line block). To download* *TELEMAC*, open *Terminal* in the *Home* directory (either use `cd` or use the *Files* browser to navigate to the *Home* directory and right-click in the empty space to open *Terminal*) and type (enter `no` when asked for password encryption):
 
@@ -304,7 +194,7 @@ This will have downloaded *TELEMAC* *v8p2r0* to the directory `/home/USER-NAME/t
 
 
 
-## **O2**: Install recommended Prerequisites (Part 2: Parallelism and Compilers)
+## Install recommended Prerequisites (Part 2: Parallelism and Compilers)
 
 This section guides through the installation of additional packages required for parallelism. Make sure that *Terminal* recognizes `gcc`, which should be included in the *Debian* base installation (verify with `gcc --help`). This section includes installation for:
 
@@ -495,7 +385,7 @@ make
 {% include note.html content="*AED2* is not needed for the tutorials on this website and the installation of this module can be skipped." %}
 
 
-## **O2**: Compile *TELEMAC*
+## Compile *TELEMAC*
 
 ### Adapt and Verify Configuration File (systel.*.cfg)
 
@@ -698,8 +588,22 @@ When the computation is running, observe the *CPU* charge. If the *CPU*s are all
 
 {% include tip.html content="If you interrupted the *Terminal* session and get an error message such as *No such file or directory*, you may need to re-define (re-load) the *Python* source file: In *Terminal* go (`cd`) to `~/telemac/v8p2/configs`, type `source pysource.openmpi.sh` > `config.py`, and then go back to the `examples` folder to re-run the example." %}
 
+### Generate Sample Cases (Examples)
 
-## **O2**: Utilities (Pre- & Post-processing)
+*TELEMAC* comes with many application examples in the sub-directory `~/telemac/v8p2/examples/`. To generate the documentation and verify the *TELEMAC* installation, load the *TELEMAC* environment and validate it:
+
+```
+cd ~/telemac/v8p2/configs/
+source pysource.openmpi.sh
+cd ..
+config.py
+validate_telemac.py
+```
+
+{% include note.html content="The `validate_telemac.py` script may fail to run when not all modules are installed (e.g., *Hermes* is missing)." %}
+
+
+## Utilities (Pre- & Post-processing)
 
 ### Blue Kenue<sup>TM</sup> (Windows or Linux+Wine) {#bluekenue}
 
@@ -767,96 +671,118 @@ java -Xmx2048m -Xms512m -cp "$(pwd)/Fudaa-Prepro-1.4.2-SNAPSHOT.jar"
 org.fudaa.fudaa.tr.TrSupervisor $1 $2 $3 $4 $5 $6 $7 $8 $9
 ``` 
 
-### SALOME (as pre-processor) {#salome}
 
-{% include tip.html content="The standard installation of the latest version of SALOME enables the creation of *MED* (geometry/mesh) files, but cannot directly call *TELEMAC*. To leverage the full capacities of SALOME, consider to install [*SALOME-HYDRO*](#salome-hydro), with integrated interface for running *TELEMAC* (Install Option 1)." %} 
+## SALOME-HYDRO (Linux Pre-&Post-processor) {#salome-hydro}
 
-Download *SALOME* from [salome-platform.org](https://www.salome-platform.org/downloads/current-version) for your distribution (here: *Debian Linux*).
+SALOME-HYDRO is a specific version of SALOME ([see description in the modular installation](#salome)) with full capacities to create and run a numerical model with *TELEMAC*. The program is distributed on [salome-platform.org](https://www.salome-platform.org/contributions/edf_products/downloads/) as specific EDF contribution.
 
-Unpack the *SALOME* package in a convenient folder (replace the `.tar.gz` file name with the one you downloaded):
+{% include unix.html content="SALOME-HYDRO also works on *Windows* platforms, but most applications and support is provided for *Debian Linux*." %}
 
-```
-tar xfz SALOME-9.5.0-DB10-SRC.tar.gz 
-``` 
+{% include note.html content="On any system that is not Debian 9 (stretch), SALOME-HYDRO can only be used as a pre-processor (Geometry & Mesh modules) and as a post-processor (ParaVis module) for med-file handling. The *HydroSolver* module that potentially enables running TELEMAC does not work properly with Debian 10 or any system that is not Debian 9." %}
 
-Install dependencies:
-```
-sudo apt-get install net-tools
-sudo apt-get install libopengl0
-sudo apt-get install libtbb-dev
-```
+### Prerequisites
 
-To run *SALOME*, `cd` to the directory where the unpacked package is located and typ `salome`:
+* Download the installer from the [developer's website](https://www.salome-platform.org/contributions/edf_products/downloads/) or use the newer version provided through the [TELEMAC user Forum](http://www.opentelemac.org/index.php/kunena/other/12263-hydrosalome-z-interpolation#34100) (registration required)
+<!-- [Salome-Hydro V2_2](https://drive.google.com/file/d/1Bimoy9d9dqgQDbMW_kJxilw5JEoMvZ0Q/view)) -->
+* Install required packages (verify the latest version of `libssl` and if necessary, correct version)
 
 ```
-cd SALOME-9.5.0-DB10-SRC
-source env_launch.sh
+sudo apt install openmpi-common gfortran mpi-default-dev zlib1g-dev libnuma-dev xterm net-tools
+```
+
+<!-- sudo apt install libssl1.1 libssl-dev  -->
+
+* Install earlier versions of `libssl`:
+ 
+    * Open the list of sources <br> `sudo editor /etc/apt/sources.list`
+    * **Ubuntu users**: In *sources.list*, add *Ubuntu's Bionic* security as source with<br> `deb http://security.ubuntu.com/ubuntu bionic-security main` <br> Using *Nano* as text editor, copy the above line into *sources.list*, then press `CTRL`+`O`, confirm writing with `Enter`, then press `CTRL`+`X` to exit *Nano*.
+    * **Debian users**: In *sources.list*, add *Debian Stretch* source with<br> `deb http://deb.debian.org/debian/ stretch main contrib non-free` <br> `deb-src http://deb.debian.org/debian stretch main contrib non-free`<br> Using *Nano* as text editor, copy the above lines into *source.list*, then press `CTRL`+`O`, confirm writing with `Enter`, then press `CTRL`+`X` to exit *Nano*.
+    * Back in *Terminal* tap <br> `sudo apt update && apt-cache policy libssl1.0-dev` <br> `sudo apt install libssl1.0-dev libopenblas-dev libgeos-dev unixodbc-dev libnetcdf-dev libhdf4-0-alt libpq-dev qt5ct libgfortran3`
+
+* **Debian 9 users** will need to add and install *nvidia* drivers as described on the virtual machine / *Debian Linux* installation page ([go there](vm.html#opengl)).
+
+### Debian 10 (buster) users
+
+*SALOME-HYDRO* is using some out-dated libraries, which require that newer versions (e.g., of the *openmpi* library) must be copied and the copies must be renamed to match the out-dated library names. Therefore, open *Terminal* and tap:
+
+```
+sudo cp /usr/lib/x86_64-linux-gnu/libmpi.so.40 /usr/lib/x86_64-linux-gnu/libmpi.so.20
+sudo cp /usr/lib/x86_64-linux-gnu/libicui18n.so.63 /usr/lib/x86_64-linux-gnu/libicui18n.so.57
+sudo cp /usr/lib/x86_64-linux-gnu/libicuuc.so.63 /usr/lib/x86_64-linux-gnu/libicuuc.so.57
+sudo cp /usr/lib/x86_64-linux-gnu/libicudata.so.63 /usr/lib/x86_64-linux-gnu/libicudata.so.57
+sudo cp /usr/lib/x86_64-linux-gnu/libnetcdf.so.13 /usr/lib/x86_64-linux-gnu/libnetcdf.so.11
+sudo cp /usr/lib/x86_64-linux-gnu/libmpi_usempif08.so.40 /usr/lib/x86_64-linux-gnu/libmpi_usempif08.so.20
+sudo cp /usr/lib/x86_64-linux-gnu/libmpi_java.so.40 /usr/lib/x86_64-linux-gnu/libmpi_java.so.20
+sudo cp /usr/lib/x86_64-linux-gnu/libmpi_cxx.so.40 /usr/lib/x86_64-linux-gnu/libmpi_cxx.so.20
+sudo cp /usr/lib/x86_64-linux-gnu/libmpi_mpifh.so.40 /usr/lib/x86_64-linux-gnu/libmpi_mpifh.so.20
+sudo cp /usr/lib/x86_64-linux-gnu/libmpi_usempi_ignore_tkr.so.40 /usr/lib/x86_64-linux-gnu/libmpi_usempi_ignore_tkr.so.20
+```
+
+In addition, the *Qt* library of the *SALOME-HYDRO* installer is targeting out-dated libraries on *Debian 10*. To troubleshoot this issue, open the file explorer and:
+
+* Go to the directory `/usr/lib/x86_64-linux-gnu/`
+* Find, highlight, and copy all **lib** files that contain the string **libQt5** (or even just **Qt5**).
+* Paste the copied **Qt5** library files into `/SALOME-HYDRO/Salome-V2_2/prerequisites/Qt-591/lib/` (confirm **replace existing files**).
+
+Both procedures for copying library files are anything but a coherent solution. However, it is currently the only way to get *SALOME-HYDRO* working on *Debian 10*.
+
+### Install SALOME-HYDRO
+
+Open the *Terminal*, `cd` into the directory where you downloaded **Salome-V1_1_univ_3.run** (or **Salome-HYDRO-V2_2-s9.run**),  and tap:
+
+```
+chmod 775 Salome-HYDRO-V2_2-S9.run
+./Salome-HYDRO-V2_2-S9.run
+```
+
+During the installation process, define a convenient installation directory such as **/home/salome-hydro/**. The installer guides through the installation and prompts how to launch the program at the end.
+
+{% include important.html content="If you get error messages such as `./create_appli_V1_1_univ.sh/xml: line [...]: No such file or directory.`, there is probably an issue with the version of *Python*. In this case, run `update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1` and re-try." %}
+
+Try to launch SALOME-HYDRO:
+
+```
+cd /home/salome-hydro/appli_V2_2/
 ./salome
 ```
 
-If `./salome` does not work, try to run `./mesa_salome` (prevents problems with *openGL* in the *Mesh* module), or re-compile *SALOME*:
+If there are issues such as  `Kernel/Session` in the `Naming Service` (`[Errno 3] No such process` ... `RuntimeError: Process NUMBER for Kernel/Session not found`), go to the [troubleshooting page](dbg_tm.html#salome-dbg).
 
-```
-./sat prepare SALOME-9.5.0 
-./sat -t compile SALOME-9.5.0
-./sat environ SALOME-9.5.0
-./sat launcher SALOME-9.5.0
-./salome
-```
+If the program is not showing up properly (e.g., empty menu items), read more about [Qt GUI support on the troubleshooting page](dbg_tm.html#qt-dbg)
 
 <!--
-It may be necessary to install required nvidia graphics drivers:
+{% include tip.html content="**Set a keyboard shortcut to start SALOME-HYDRO on Debian Linux**: Go to *Activities*, tap *keyboard*, and select *Keyboard* from the list (do not click on *Tweaks*). In the *Keyboard* window, scroll to the bottom and click on the `+` sign to define a new shortcut. In the popup window use, for example, *Salome-Hydro* as *Name*, in the *Command* box tap `/home/salome-hydro/appli_V1_1_univ/salome` (or where ever *SALOME-HYDRO* is installed), and define a *Shortcut*, such as `CTRL` + `Alt` + `S`." %}
 
-* Open `etc/apt/sources.list` and change the `buster`repository definition (example for server in Germany):
-    + original: `deb http://ftp.de.debian.org/debian/ buster main`
-    + to: `deb-src http://ftp.de.debian.org/debian/ buster main non-free`
-* In *Terminal* update repositories and install `nvidia-detect`
-
-```
-sudo apt update
-sudo apt -y install nvidia-detect
-```
-
-* Install the *nvidia* driver (or whatever the above command shows):
-
-```
-sudo apt install nvidia-driver
-```
-
-* Reboot Debian:
-
-```
-systemctl reboot
-```
+{% include image.html file="sah-keyboard-shortcut.png" alt="salome-hydro shortcut" caption="Define a keyboard shortcut to start SALOME-HYDRO." %}
 -->
 
-If you get any error such as:
+### ParaView (ParaVis) through SALOME-HYDRO {#paraview}
+
+[*ParaView*](https://www.paraview.org) serves for the visualization of model results in the SALOME-HYDRO modelling chain. The built-in module *ParaViS* essentially corresponds to *ParaView*, but the separate usage of *ParaView* enables a better experience for post-processing of results. The installation of *SALOME-HYDRO* already involves an older version of *ParaView* that is able to manipulate *MED* files. To start *ParaView* through *SALOME-HYDRO*, open *Terminal*, `cd` to the directory where *SALOME-HYDRO* is installed, launch the environment, and then launch *ParaView*:
 
 ```
-HyMo@HydroDebian:~/Downloads/SALOME-9.5.0-DB10-SRC$ ./salome
-runSalome running on HydroDebian
-Searching for a free port for naming service: 2811 - OK
-Searching Naming Service  +omniNames: (0) 20XX-XX-XX 10:44:47.675678: -ORBendPoint option overriding default endpoint.
- found in 0.1 seconds 
-Searching /Kernel/Session in Naming Service  +SALOME_Session_Server: error while loading shared libraries: libtbb.so.2: cannot open shared object file: No such file or directory
-Warning, no type found for resource "localhost", using default value "single_machine"
-Traceback (most recent call last):
-  File "/home/HyMo/Downloads/SALOME-9.5.0-DB10-SR/BINARIES-DEB10/KERNEL/bin/salome/orbmodule.py", line 181, in waitNSPID
-    os.kill(thePID,0)
-ProcessLookupError: [Errno 3] No such process
+cd /home/slome-hydro/appli_V2_2/
+. env.d/envProducts.sh
+./runRemote.sh paraview
+``` 
 
-During handling of the above exception, another exception occurred:
 
-Traceback (most recent call last):
-  File "/home/HyMo/Downloads/SALOME-9.5.0-DB10-SR/BINARIES-DEB10/KERNEL/bin/salome/runSalome.py", line 679, in useSalome
-    clt = [...]
-  File "/home/HyMo/Downloads/SALOME-9.5.0-DB10-SRC/BINARIES-DEB10/KERNEL/bin/salome/orbmodule.py", line 183, in waitNSPID
-    raise RuntimeError("Process %d for %s not found" % (thePID,theName))
-RuntimeError: Process 29241 for /Kernel/Session not found
---- Error during Salome launch ---
+Alternatively, *ParaView* is freely available on the [developer's website](https://www.paraview.org/download/) and the latest stable release can be installed on *Debian Linux*, through the *Terminal*:
+
+```
+sudo apt install paraview
 ```
 
-Then look for the missing libraries indicated in the above block with `error while loading shared libraries: libtbb.so.2: cannot open shared object file`. In this case `libtbb` is missing, which can be installed with `sudo apt-get install libtbb-dev`.
+In this case, to run *ParaView* tap `paraview` in *Terminal*. If you are using a virtual machine, start *ParaView* with the `--mesa-llvm` flag (i.e., `paraview --mesa-llvm`).
+To enable *MED* file handling, *MED* coupling is necessary, which requires to follow the installation instructions on [docs.salome-platform.org](https://docs.salome-platform.org/7/dev/MEDCoupling/install.html).
+
+### Start SALOME-HYDRO
+
+To start *SALOME-HYDRO*, open *Terminal* and tap:
+
+```
+/home/salome-hydro/appli_V1_1_univ/salome
+```
 
 
 ### QGIS (Linux and Windows) {#qgis}
