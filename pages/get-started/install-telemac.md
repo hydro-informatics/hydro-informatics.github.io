@@ -79,15 +79,15 @@ The high-level programing language *Python3* is pre-installed on Debian Linux 10
 To install the three libraries, open *Terminal* and type (hit `Enter` after every line):
 
 ```
-sudo apt-get install python3-numpy python3-scipy python3-matplotlib python3-distutils python3-dev python3-pip 
+sudo apt install python3-numpy python3-scipy python3-matplotlib python3-distutils python3-dev python3-pip 
 ```
 
-{% include tip.html content="If an error occurs during the installation, install the extended dependencies (includes Qt) with the following command: `sudo apt-get install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6`. Then re-try to install the libraries." %}
+{% include tip.html content="If an error occurs during the installation, install the extended dependencies (includes Qt) with the following command: `sudo apt install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6`. Then re-try to install the libraries." %}
 
 To test if the installation was successful, type `python3` in *Terminal* and import the three libraries:
 
 ```
-Python 3.7.7 (default, Jul  25 2020, 13:03:44) [GCC 8.3.0] on linux
+Python 3.7.7 (default, Jul  25 2030, 13:03:44) [GCC 8.3.0] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 >>> import numpy
 >>> import scipy
@@ -133,7 +133,7 @@ Depending on the installed subversion of *Python3*, the folder name `python3.7` 
 We will need the version control system [*Subversion*](https://wiki.debian.org/SVNTutorial) for downloading (and keeping up-to-date) the *TELEMAC* source files. *Subversion* is installed through the Debian *Terminal* with (read more in the [Debian Wiki](https://wiki.debian.org/Subversion)):
 
 ```
-sudo apt-get install subversion
+sudo apt install subversion
 ```
 
 After the successful installation, test if the installation went well by typing `svn --help` (should prompt an overview of `svn` commands). The Debian Wiki provides a [tutorial](https://wiki.debian.org/SVNTutorial) for working with *Subversion*.
@@ -145,7 +145,7 @@ After the successful installation, test if the installation went well by typing 
 The Fortran 95 compiler is needed to compile *TELEMAC* through a *Python3* script, which requires that `gfortran` is installed. The Debian Linux retrieves `gfortran` from the standard package repositories. Thus, to install the Fortran 95 compiler, open *Terminal* and type:
 
 ```
-sudo apt-get install gfortran
+sudo apt install gfortran
 ```
 
 ***
@@ -167,8 +167,8 @@ deb http://ftp.de.debian.org/debian buster main
 Then, save the edits with `CTRL` + `O` keys and exit *Nano* with `CTRL` + `X` keys. Next, update the repository information by typing (in *Terminal*):
 
 ```
-sudo apt-get update
-sudo apt-get install gfortran
+sudo apt update
+sudo apt install gfortran
 ```
 
 ***
@@ -178,7 +178,7 @@ sudo apt-get install gfortran
 To enable parallelism, a *C* compiler is required for recognition of the command `cmake` in *Terminal*. Moreover, we will need `build-essential` for building packages and create a comfortable environment for `dialog`ues. [VIM](https://www.vim.org/) is a text editor that we will use for bash file editing. Therefore, open *Terminal* (as root/superuser, i.e., type `su`) and type:
 
 ```
-sudo apt-get install -y cmake build-essential dialog vim
+sudo apt install -y cmake build-essential dialog vim
 ```
 
 
@@ -212,7 +212,7 @@ This section guides through the installation of additional packages required for
 MPI stands for *Message Passing Interface*, which is a portable message-passing standard. MPI is implemented in many open-source C, C++, and Fortran applications ([read more](https://en.wikipedia.org/wiki/Message_Passing_Interface)). *TELEMAC* developers recommend installing either *MPICH* or *Open MPI*. Here, we opt for *Open MPI*, which can be installed through the *Terminal*:
 
 ```
-sudo apt-get install libopenmpi-dev openmpi-bin
+sudo apt install libopenmpi-dev openmpi-bin
 ```
 
 To test if the installation was successful type:
@@ -223,7 +223,7 @@ mpif90 --help
 
 The *Terminal* should prompt option flags for processing a *gfortran* file. The installation of MPI on Linux is also documented in the [opentelemac wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_mpi).
 
-{% include important.html content="In this tutorial, we will use the configuration file `systel.cis-debian.cfg`, which includes parallelism compiling options that build on *Open MPI*. Other configuration files (e.g., `systel.cis-ubuntu.cfg`) use *MPICH* in lieu of *Open MPI*. To use those configuration files, install *MPICH* with `sudo apt-get install mpich`." %}
+{% include important.html content="In this tutorial, we will use the configuration file `systel.cis-debian.cfg`, which includes parallelism compiling options that build on *Open MPI*. Other configuration files (e.g., `systel.cis-ubuntu.cfg`) use *MPICH* in lieu of *Open MPI*. To use those configuration files, install *MPICH* with `sudo apt install mpich`." %}
 
 ### Parallelism: Install Metis {#metis}
 
@@ -244,7 +244,7 @@ tar -xvf metis-5.1.0.tar
 cd metis-5.1.0
 ```
 
-Open *Metis*' `Makefile` in the *VIM* text editor (installed earlier through `sudo apt-get install vim`):
+Open *Metis*' `Makefile` in the *VIM* text editor (installed earlier through `sudo apt install vim`):
 
 ```
 sudo vim Makefile
@@ -332,7 +332,7 @@ The installation of *hdf5* on Linux is also documented in the [opentelemac wiki]
 
 ```
 sudo apt-cache search zlib | grep -i zlib
-sudo apt-get install zlib1g zlib1g-dbg zlib1g-dev
+sudo apt install zlib1g zlib1g-dbg zlib1g-dev
 ```
 
 The following command block, switches to the above-created`temp` folder, downloads, and unzips the *med-3.2.0* archive (run in *Terminal* as ***normal user*** - ***not as root***): 
@@ -357,7 +357,7 @@ make install
 
 The flag `--prefix` sets the installation directory and `--width-hdf5` tells the med library where it can find the *hdf5* library. Thus, adapt `/home/USER-NAME/telemac/v8p2/optionals/hdf5` to your local `<install_path>` of the *hdf5* library. Both flags to not accept relative paths (`~/telemac/...`), and therefore, we need to use the absolute paths (`home/USER-NAME/telemac/...`) here.
 
-{% include note.html content="We need to disable *Python* for the *med file* library because this feature would require *SWIG* version 2.0 and it is not compatible with the current versions of *SWIG* (4.x). Because *SWIG* has no full backward compatibility, the only option we have is to disable *Python* integrity for the *med file* library. Otherwise, *Python* integrity could be implemented by installing *Python* developer kits (`sudo apt-get install python3-dev` and `sudo apt-get install python3.7-dev`) and using the configuration `./configure --with-hdf5=/home/USER-NAME/Telemac/hdf5 PYTHON_LDFLAGS='-lpython3.7m' --with-swig=yes`. To find out what version of *Python* is installed, type `python -V`." %} 
+{% include note.html content="We need to disable *Python* for the *med file* library because this feature would require *SWIG* version 2.0 and it is not compatible with the current versions of *SWIG* (4.x). Because *SWIG* has no full backward compatibility, the only option we have is to disable *Python* integrity for the *med file* library. Otherwise, *Python* integrity could be implemented by installing *Python* developer kits (`sudo apt install python3-dev` and `sudo apt install python3.7-dev`) and using the configuration `./configure --with-hdf5=/home/USER-NAME/Telemac/hdf5 PYTHON_LDFLAGS='-lpython3.7m' --with-swig=yes`. To find out what version of *Python* is installed, type `python -V`." %} 
 
 
 The installation of the *med file* library on Linux is also documented in the [opentelemac wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_med).
@@ -564,8 +564,8 @@ telemac2d.py t2d_gouttedo.cas
 To test if parallelism works, install *htop* to visualize *CPU* usage:
 
 ```
-sudo apt-get update
-sudo apt-get install htop
+sudo apt update
+sudo apt install htop
 ``` 
 
 Start *htop*'s *CPU* monitor with:
@@ -794,7 +794,7 @@ To start *SALOME-HYDRO*, open *Terminal* and tap:
 
 ```
 sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
-sudo apt-get update && sudo apt-get install -y qgis python-qgis qgis-plugin
+sudo apt update && sudo apt install -y qgis python-qgis qgis-plugin
 ```
 
 For working with *TELEMAC*, consider installing the following *QGIS Plugins* (*Plugins* > *Manage and Install Plugins...*):

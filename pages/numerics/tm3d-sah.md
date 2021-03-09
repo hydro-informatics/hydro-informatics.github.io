@@ -58,7 +58,7 @@ With *SALOME-HYDRO* being installed in a directory called **/home/salome-hydro/a
 
 After starting SALOME-HYDRO, activate the *HYDRO* module, then find the *Object Browser* on the right side of the window and the **POLYLINE** folder symbol. 
 
-{% include image.html file="salome/sah-startup.png" max-width="1000" alt="telemac3d salome hydro start" %}
+{% include image.html file="salome/sah-startup.png" alt="telemac3d salome hydro start" %}
 
 Right-click on the *POLYLINE* folder, select **Create polyline** and a popup window will open. In the popup window:
 
@@ -94,21 +94,21 @@ In the popup window, modify the points so that a 500-m long and 100-m wide recta
 
 {% include tip.html content="Save the project by clicking on the **File** (top menu) > **Save As...**. In the popup menu, select the simulation target folder and define a name such as *flume3d*. Press **Save** to save the project in **hdf** format and regularly press the save button (disk symbol) in the next steps to avoid loosing work. Thus, the project can be saved, closed and re-opened any time." %}
 
-{% include image.html file="salome/save-study-as.png" max-width="372" alt="telemac salome hydro save study as hdf" %} {% include image.html file="salome/save-study-props.png" max-width="637" alt="telemac salome hydro save study hdf" %} 
+{% include image.html file="salome/save-study-as.png" alt="telemac salome hydro save study as hdf" %} {% include image.html file="salome/save-study-props.png" max-width="637" alt="telemac salome hydro save study hdf" %} 
 
 
 ### Create a Natural Object
 
 From the *HYDRO* top menu, select **Create immersible zone** to define a wetted area for the later created mesh.
-{% include image.html file="salome/sah-nat-immersible-zone.png" max-width="334" alt="telemac salome hydro create immersible zone" %} 
+{% include image.html file="salome/sah-nat-immersible-zone.png" alt="telemac salome hydro create immersible zone" %} 
  
 In the popup window, make the following settings:
 
 * **Name:** `wetted_contour`
-* **Polyline:** Select the previously created rectangle.
+* **Polyline:** Select the previously created `Contour` rectangle (double-click in the field).
 * **Bathymetry:** Leave empty.
 
-{% include image.html file="salome/sah-nat-wetted-zone.png" max-width="545" alt="telemac salome hydro create wetted area zone" %} 
+{% include image.html file="salome/sah-nat-wetted-zone.png" alt="telemac salome hydro create wetted area zone" %} 
 
 * Press **Apply and close**.
 
@@ -119,11 +119,12 @@ In the popup window, make the following settings:
 One or more calculation cases can be created to define elements for the later simulation. Here, define one calculation case, by clicking on the **HYDRO** top-menu > **Create calculation case**. A popup window opens and guides through setting up the calculation case.
 
 **Step 1:** Define the framework:
-    * **Name**: `Hydrodynamic`
-    * **Limits**: `Contour`
-    * **Mode**: Select **Manual**.
-    * Highlight `wetted_contour` and `Contour` in the *Objects* frame and press **Include >>** to add it to the list of *Included objects*.
-    * Press **Next >** (button at the bottom)
+
+* **Name**: `Hydrodynamic`
+* **Limits**: `Contour`
+* **Mode**: Select **Manual**.
+* Highlight `wetted_contour` and `Contour` in the *Objects* frame and press **Include >>** to add it to the list of *Included objects*.
+* Press **Next >** (button at the bottom)
  
 {% include image.html file="salome/sah-create-calc-case-popup.png" alt="telemac salome hydro contour create" %} 
  
@@ -136,7 +137,7 @@ One or more calculation cases can be created to define elements for the later si
 {% include image.html file="salome/sah-create-calc-case-bc.png" alt="telemac salome hydro contour boundary" %} 
  
 **Step 4:** Omit the definition of a *Strickler table* and press **Next >**.
-    * Note that this step maybe useful to define zones with different roughness attributes.
+* Note that this step maybe useful to define zones with different roughness attributes.
 
 {% include image.html file="salome/sah-create-calc-case-strickler.png" alt="telemac salome hydro contour strickler" %} 
 
@@ -154,11 +155,10 @@ Export the calculation case by right-clicking on the **Hydrodynamic** calculatio
 
 This section guides through the creation of a rectangular geometry surface representing a flume and its boundaries defined with edges (lines). To get ready, activate the **Geometry** module, right-click on *HYDRO_Hydrodynamic_1*, and select **Show Only**.
 
-{% include image.html file="salome/sah-exported-calc-case-geometry.png" max-width="415" alt="telemac salome hydro calculation case exported geometry" %} 
+{% include image.html file="salome/sah-exported-calc-case-geometry.png" alt="telemac salome hydro calculation case exported geometry" %} 
 
+<!--
 ### Build basic shape (2d surface) {#geo2d}
-
-Right-click on *HYDRO_Hydrodynamic_1* and select **Create Group** from the context menu. Make the following settings in the popup window:
 
 * **Shape Type** (radio buttons in the upper part): select **Surface** (the rectangle)
 * **Name**: `FLUME`
@@ -166,20 +166,19 @@ Right-click on *HYDRO_Hydrodynamic_1* and select **Create Group** from the conte
 * Click on **Show all sub-shapes** > **Select All** and make sure that `1` shows up in the white frame.
 * Select `1` in the white frame and click **Add** > **Apply**.
 
-{% include image.html file="salome/geo-create-group.png" max-width="572" alt="telemac salome geometry group faces" %} 
+{% include image.html file="salome/geo-create-group.png" alt="telemac salome geometry group faces" %} 
 
 The popup window should still be opened and wait for the definition of the four boundaries (edges) of the rectangle.
+-->
 
+{% include note.html content="Earlier versions of *SALOME-HYDRO* will also require to create a surface group, which already exists in this case with `Hydrodynamic_Reg_1`." %} 
 
-### Build edges (surface boundaries)
-
-If you accidentally closed the *Create Group* window through clicking on *Apply and Close* in lieu of *Apply*, reopen the popup window as described in the previous step.
-
+Right-click on *HYDRO_Hydrodynamic_1* and select **Create Group** from the context menu. 
 The four boundary edges of the surface will represent an upstream (inflow), a downstream (outflow), a left wall, and a right wall of the flume. To create the four boundary edges repeat the following steps for every edge:
 
 * **Shape Type** (radio buttons in the upper part): select *Edge* (line symbol)
 * **Name**: `upstream` (then `downstream`, `leftwall`, and `rightwall`)
-* **Main Shape**: select *HYDRO_Hydrodynamic_1*
+* **Main Shape**: select `HYDRO_Hydrodynamic_1`
 * Click on **Show all sub-shapes** > **Select line in the viewport**. In the white frame of the *Create Group* window, make sure to select the good edge only. **Add** the correct edge and **Remove** all others.
  
 {% include image.html file="salome/geo-create-group-upstream.png" max-width="1000" alt="telemac salome geometry group faces" caption="Define the upstream edge of the surface." %}
@@ -192,7 +191,7 @@ The four boundary edges of the surface will represent an upstream (inflow), a do
 
 Ultimately, the *Geometry* block in the *Object Browser* should look as follows.
 
-{% include image.html file="salome/geo-created-groups-ob.png" max-width="390" alt="telemac salome geometry group object browser" %}
+{% include image.html file="salome/geo-created-groups-ob.png" alt="telemac salome geometry group object browser" %}
 
 ## Generate a Mesh
 
@@ -202,7 +201,7 @@ To work with the geometry in a numerical model, the geometry needs to be defined
 
 **Highlight *HYDRO_Hydrodynamic_1***  in the *Object Browser*. Then, go to the **Mesh** top menu (do not confuse with the *Mesh* module), and select **Create Mesh**.
 
-{% include image.html file="salome/mes-01-create-mesh.png" max-width="581" alt="telemac salome mesh create" %} 
+{% include image.html file="salome/mes-01-create-mesh.png" alt="telemac salome mesh create" %} 
 
 In the **Create mesh** popup window, set the following:
 
@@ -221,48 +220,48 @@ In the **Create mesh** popup window, set the following:
 * Back in the **Create mesh** window, set the just created *NETGEN 2D Parameters 10_30* as **Hypothesis**.
 * Click on **Apply and Close** (**Create mesh** popup window)
 
-{% include image.html file="salome/mes-02-create-mesh-netgen2d-hypo.png" max-width="444" alt="telemac salome mesh create netgen 2d hypothesis" %}  {% include image.html file="salome/mes-03-create-mesh-netgen2d.png" max-width="579" alt="telemac salome mesh create netgen 1d-2d" %} 
+{% include image.html file="salome/mes-02-create-mesh-netgen2d-hypo.png" max-width="444" alt="telemac salome mesh create netgen 2d hypothesis" %}  {% include image.html file="salome/mes-03-create-mesh-netgen2d.png" alt="telemac salome mesh create netgen 1d-2d" %} 
 
 
 ### One-dimensional (1d) meshes of boundary edges
 
-The 1d meshes of the boundary edges will represent sub-meshes of the 2d mesh. To create the sub-meshes, highlight the previously created *Mesh_Hn_1* in the *Object Browser* (click on it), then go to the **Mesh** top menu and select **Create Sub-Mesh**.
+The 1d meshes of the boundary edges will represent sub-meshes of the 2d mesh. To create the sub-meshes, **highlight** the previously created **Mesh_Hn_1** in the *Object Browser* (click on it), then go to the **Mesh** top menu and select **Create Sub-Mesh**.
 
 {% include image.html file="salome/mes-04-create-submesh-menu.png" max-width="582" alt="telemac salome mesh create" %} 
 
 In the **Create sub-mesh** popup window, start with creating the upstream boundary edge's mesh:
 
-* **Name**: `Upstream`
+* **Name**: `upstream`
 * **Mesh**: `Mesh_Hn_1`
 * Leave the **Mesh type** as *Any*
 * In the **1D** tab:
-    * Choose *Wire Discretisation* for **Algorithm**
+    * Choose `Wire Discretisation` for **Algorithm**
     * Find the cogwheel symbol behind the **Hypothesis** field and click on it to construct hypotheses for **Number of Segments**.
     * In the **Hypothesis Construction** popup window:
-        + Define **Name** as `Segments10`
+        + Define **Name** as `Segments_10`
         + Set **Number of Segments** to `10`
-        + Set **Type of distribution** to *Equidistant distribution*.
+        + Set **Type of distribution** to `Equidistant distribution`.
 * Back in the **Create Mesh** window, set the just created *Segments10* as **Hypothesis**.
 * Click on **Apply** in the **Create sub-mesh** popup window, which will remain open for the definition of the three other boundary edge's meshes.
 
-{% include image.html file="salome/mes-05-create-submesh-hypo.png" max-width="508" alt="telemac salome submesh create number of segments hypothesis" %}  {% include image.html file="salome/mes-06-create-submesh-seg10us.png" max-width="579" alt="telemac salome submesh create wire discretisation" %} 
+{% include image.html file="salome/mes-05-create-submesh-hypo.png" alt="telemac salome submesh create number of segments hypothesis" %}  {% include image.html file="salome/mes-06-create-submesh-seg10us.png" alt="telemac salome submesh create wire discretisation" %} 
 
 **Repeat** the above steps for creating sub-meshes for the downstream, left wall, and right wall edges, but with different construction hypotheses.
 
-* For the downstream sub-mesh use **Name** *Downstream* and construct the following hypothesis:
+* For the downstream sub-mesh use **Name** `downstream` and construct the following hypothesis:
     + Type: **Number of Segments**
-    + Define **Name** as `Segments05`
+    + Define **Name** as `Segments_05`
     + Set **Number of Segments** to `5`
-    + Set **Type of distribution** to *Equidistant distribution*.
-* For the left wall sub-mesh use **Name** *LeftWall* and construct the following hypothesis:
+    + Set **Type of distribution** to  `Equidistant distribution`.
+* For the left wall sub-mesh use **Name** `leftwall` and construct the following hypothesis:
     + Type: **Arithmetic Progression 1D**
     + Define **Name** as `Arithmetic1d10_30`
     + Set **Start length** to `10`
     + Set **End length** to `30`.
 
-{% include image.html file="salome/mes-09-create-submesh-hypoarith1030.png" max-width="575" alt="telemac salome submesh create arithmetic progression hypothesis" %}  {% include image.html file="salome/mes-10-create-submesh-arith1030lw.png" max-width="579" alt="telemac salome submesh create wire discretisation arithmetic" %} 
+{% include image.html file="salome/mes-09-create-submesh-hypoarith1030.png" alt="telemac salome submesh create arithmetic progression hypothesis" %}  {% include image.html file="salome/mes-10-create-submesh-arith1030lw.png" alt="telemac salome submesh create wire discretisation arithmetic" %} 
 
-* For the right wall sub-mesh use **Name** *RightWall* and construct the following hypothesis:
+* For the right wall sub-mesh use **Name** `rightwall` and construct the following hypothesis:
     + Type: **Arithmetic Progression 1D**
     + Define **Name** as `Arithmetic1d15_10`
     + Set **Start length** to `15`
@@ -276,9 +275,9 @@ To this end, the *Object Browser* should include the 5 hypotheses and the non-co
 
 ### Compute Mesh
 
-In the **Object Browser**, extend (un-collapse) the new *Mesh* block, right-click on *Mesh_Hn_1*, and click on **Compute**.
+In the **Object Browser**, extend (un-collapse) the new *Mesh* block, **right-click** on **Mesh_Hn_1**, and select **Compute**.
 
-{% include image.html file="salome/mes-13-start-compute.png" max-width="693" alt="telemac salome compute mesh menu" %}
+{% include image.html file="salome/mes-13-start-compute.png" alt="telemac salome compute mesh menu" %}
 
 This will automatically also compute all sub-meshes. After the successful computation of the mesh, *SALOME-HYDRO* informs about the mesh properties in a popup window.
     
@@ -294,21 +293,21 @@ In the view port (*VTK scene* tab), find the **-OZ** button to switch to plane v
 
 This step will ensure that the mesh is correctly oriented for the simulation with *Telemac3d*. In the *Object Browser*, highlight *Mesh_Hn_1* and then go to the **Modification** top menu > **Orientation**. In the pop-up window, check the **Apply to all** box. Click the **Apply and close** button. The mesh should have changed from darker blue to a lighter tone of blue (if the inverse is the case, repeat the application of the orientation tool).
 
-{% include image.html file="salome/mes-16-mod-orient.png" max-width="471" alt="mesh modification orientation" %}
+{% include image.html file="salome/mes-16-mod-orient.png" alt="mesh modification orientation" %}
 
 ***Identify and reconcile over-constraint elements***
 
-In the *Object Browser*, highlight *Mesh_Hn_1*. Then go to the **Controls** top menu > **Face Controls** > **Over-constraint faces**. Over-constrained triangles in the *Mesh_Hn_1* will turn red in the viewport (*VTK scene:1*) and at the bottom of the viewport, the note *Over-constrained faces: 3* will appear.
+In the *Object Browser*, **highlight *Mesh_Hn_1***. Then go to the **Controls** top menu > **Face Controls** > **Over-constraint faces**. Over-constrained triangles in the *Mesh_Hn_1* will turn red in the viewport (*VTK scene:1*) and at the bottom of the viewport, the note *Over-constrained faces: 3* will appear.
 
 {% include image.html file="salome/mes-17-mod-over-const.png" alt="mesh over constrained constraint faces" %}
 
 To reconcile the edge cause the triangle's over-constrain, go to the **Modification** top menu > **Diagonal inversion**, and select the internal edge of the concerned triangles.
 
-{% include image.html file="salome/mes-18-mod-over-const-edge-select.png" max-width="663" alt="mesh over-constrained diagonal inversion internal edges triangle" %}
+{% include image.html file="salome/mes-18-mod-over-const-edge-select.png" alt="mesh over-constrained diagonal inversion internal edges triangle" %}
 
 Over-constrained triangles might be hidden in by the axes arrows in the corner. Thus, pay attention to sufficiently zoom into the corner unless the *Over-constrained faces* notification in the viewport shows **0**.
 
-{% include image.html file="salome/mes-19-mod-over-const-edge-hidden.png" max-width="665" alt="mesh over-constrained diagonal inversion hidden edges faces" %}
+{% include image.html file="salome/mes-19-mod-over-const-edge-hidden.png" alt="mesh over-constrained diagonal inversion hidden edges faces" %}
 
 {% include tip.html content="Save the project by clicking on the disk symbol." %}
 
@@ -316,7 +315,7 @@ Over-constrained triangles might be hidden in by the axes arrows in the corner. 
 
 Exporting the mesh to a MED file requires the definition of mesh groups. To do so, highlight *Mesh_Hn_1* in the object browser and right-click on it. Select **Create Groups from Geometry** from the mesh context menu.
 
-{% include image.html file="salome/mes-20-create-group-menu.png" max-width="526" alt="mesh export create groups context menu" %}
+{% include image.html file="salome/mes-20-create-group-menu.png" alt="mesh export create groups context menu" %}
 
 In the popup window, select all groups and sub shapes of the *FLUME* geometry and all groups of **mesh elements** and **mesh nodes**. For selecting multiple geometries, hold down the `CTRL` (`Strg`) and `Shift` keys on the keyboard and select the geometry/mesh groups. The tool will automatically add all nodes selected. Press **Apply and close** to finalize the creation of groups.
 
@@ -324,13 +323,13 @@ In the popup window, select all groups and sub shapes of the *FLUME* geometry an
 
 Verify the created groups by right-clicking on the top of the project tree in the *Object Browser* and selecting *Show only* with the option *Auto Color*.
 
-{% include image.html file="salome/mes-21-final-groups.png" max-width="303" alt="mesh export create groups final control" %}
+{% include image.html file="salome/mes-21-final-groups.png" alt="mesh export create groups final control" %}
 
 {% include warning.html content="Make sure that every group element is unique within every group. If an element appears twice in one group, the next step (export mesh) will through a warning message about double-defined group elements, which will lead to an error later." %}
 
  If the groups seems correct (see above figure), export them with **File** (top menu) > **Export** > **MED**.
 
-{% include image.html file="salome/mes-22-export-med-menu.png" max-width="660" alt="mesh export med context menu" %}
+{% include image.html file="salome/mes-22-export-med-menu.png" alt="mesh export med context menu" %}
 
 In the **Export mesh** popup window, define:
 
@@ -340,7 +339,7 @@ In the **Export mesh** popup window, define:
 * Leave all other default settings.
 * Click on **Save** to save the *MED* file.
 
-{% include image.html file="salome/mes-23-export-med.png" max-width="675" alt="telemac salome save med file" %}
+{% include image.html file="salome/mes-23-export-med.png" alt="telemac salome save med file" %}
 
 {% include tip.html content="Save the project by clicking on the disk symbol." %}
 
@@ -348,7 +347,7 @@ In the **Export mesh** popup window, define:
 
 Activate the **HydroSolver** module from the top menu and click on the *Edit boundary conditions file* button to create a new boundary condition file.
 
-{% include image.html file="salome/hs01-edit-bc.png" max-width="400" alt="telemac salome hydrosolver create edit boundary conditions menu" %}
+{% include image.html file="salome/hs01-edit-bc.png" alt="telemac salome hydrosolver create edit boundary conditions menu" %}
 
 In the opening popup window, select the just exported **MED** file containing the mesh and leave the *Boundary conditions file* field in the *Input files* frame free. In the **Output files** frame, click on **...** and define a boundary conditions file (e.g., `flume3d_bc.bcd`).
 
@@ -361,11 +360,11 @@ Make the following definitions in the **Boundary conditions** frame (table):
 * Group **leftwall**: Set **Preset** to **Closed boundaries/walls**
 * Group **rightwall**: Set **Preset** to **Closed boundaries/walls**
 
-{% include image.html file="salome/hs02-create-bc.png" max-width="789" alt="telemac salome hydrosolver create edit boundary conditions" %}
+{% include image.html file="salome/hs02-create-bc.png" alt="telemac salome hydrosolver create edit boundary conditions" %}
 
 Then click on **Apply and Close**. Verify if the boundary condition file was correctly created by opening it in a text editor (e.g., on *Xfce* desktop use right-click > *mousepad*). The file should resemble the figure below.
 
-{% include image.html file="salome/hs03-bc-file.png" max-width="487" alt="telemac boundary conditions file bcd" %}
+{% include image.html file="salome/hs03-bc-file.png" alt="telemac boundary conditions file bcd" %}
 
 ## HydroSolver: Create Simulation Case (CAS)
 
@@ -382,16 +381,16 @@ Go to the **Hydro** top menu > **Edit cas file (English)** and a popup window al
 
 The popup window will ask for the version of *TELEMAC* (i.e., the solver) to use. Select **telemac3d** and clock **Ok**.
 
-{% include image.html file="salome/hs05-cas-choose-solver.png" max-width="472" alt="telemac create edit cas file choose solver version" %}
+{% include image.html file="salome/hs05-cas-choose-solver.png" alt="telemac create edit cas file choose solver version" %}
 
 In the new frame (*Eficas Telemac* viewport), go to **File** > **New** for creating a new *CAS* (case or *French* *cas*).
 
-{% include image.html file="salome/hs06-create-cas-new.png" max-width="659" alt="telemac create new cas file" %}
+{% include image.html file="salome/hs06-create-cas-new.png" alt="telemac create new cas file" %}
 
 A new *unnamed file1* case is created and opens up in the *Computation environment* frame. To make sure that no information will be lost, save the new case *CAS* file (e.g., as `flume3d-steady.cas`).
 
-{% include image.html file="salome/hs08-cas-save-as.png" max-width="458" alt="telemac new cas file save as" %}
-{% include image.html file="salome/hs09-cas-save-popup.png" max-width="675" alt="telemac new cas file save" %}
+{% include image.html file="salome/hs08-cas-save-as.png" alt="telemac new cas file save as" %}
+{% include image.html file="salome/hs09-cas-save-popup.png" alt="telemac new cas file save" %}
 
 ### Parameters: Computation environment
 

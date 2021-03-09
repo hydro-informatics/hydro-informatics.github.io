@@ -46,7 +46,7 @@ This habitat assessment concept was introduced by [Bovee (1986)](https://pubs.er
 
 1. Use a threshold value above which a pixel is classified as a usable habitat.
     * Typical values for the threshold value *cHSI<sub>crit</sub>* are between 0.4 (tolerant) and 0.75 (strict).
-    * The usable habitat area *UHA* results from the pixel size *px<sub>a</sub>* (e.g., in m²) multiplied by the number of pixels (*px*) where *cHSI > cHSI<sub>crit</sub>*:<br>***UHA = px<sub>a</sub> · &sum; px<sub>i<sub>|cHSI<sub>px<sub>i</sub></sub> > cHSI<sub>crit</sub>***
+    * The usable habitat area *UHA* results from the pixel size *px<sub>a</sub>* (e.g., in m²) multiplied by the number of pixels (*px*) where *cHSI > cHSI<sub>crit</sub>*:<br>***UHA = px<sub>a</sub> · &sum; px<sub>i</sub>(cHSI<sub>px<sub>i</sub></sub> > cHSI<sub>crit</sub>)***
 1. Multiply the pixel *cHSI* value with the pixel size.
     * The pixel area is weighted by its habitat quality expressed by the *cHSI* value:<br>***UHA = px<sub>a</sub> · &sum; cHSI<sub>px<sub>i</sub></sub>***
     * Caution: Some authors (e.g., [Yao et al. 2018](https://onlinelibrary.wiley.com/doi/full/10.1002/eco.1961), [Tuhtan et al.](https://doi.org/10.1007/s12205-012-0002-5)) incorrectly refer to this weighting as Weighted Usable Area (*WUA*), which conflicts with the original definition of *WUA* ([Bovee 1986](https://pubs.er.usgs.gov/publication/70121265)).

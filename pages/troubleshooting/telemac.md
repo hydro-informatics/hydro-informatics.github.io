@@ -44,7 +44,59 @@ This approach also works with *Telemac3d* (and other modules).
  
 * make sure to use `:` rather than `=`
 * place all model files in the same folder and only use file names without the directories of files
+
+## Check Mesh Files
+
+To verify if TELEMAC can read the mesh, load the TELEMAC environment, for example:
+
+```
+cd ~/telemac/v8p2/configs
+source pysource.openmpi.sh
+config.py
+```
+
+The go to the directory where the mesh to be checked lives and run `mdump`, for example:
+
+```
+cd ~/telemac/studies/test-case/
+mdump mesh-to-test.med
+```
  
+Until the time of writing this tutorial, `mdump` asks for input variables in *French*, which mean the following:
+* *Mode d'affichage de noeuds?* which means in <br>English: **Node display mode?**
+    + Option `1`: Interlaced mode
+    + Option `2`: Non-interlaced mode
+* *Connectivité des éléments?* which means in <br>English: **Element connectivity?**
+    + Option `1`: Nodal
+    + Option `2`: Descending
+* *Il y a 1 maillage(s) de type local dans ce fichier. Lequel voulez-vous lire (0 pour tous|1|2|3|...|n)?* which means in <br>English: **There is 1 local mesh(es) in this file. Which one do you want to read (0 for all or |1|2|3|...|n)?**
+    + Option `0`: Read all
+    + Option `i`: Read mesh number `i`
+    
+A standard answer combination of `1` - `1` - `0` will result in a console print of all nodes and connections between the nodes in the mesh, given that *TELEMAC* is able to read the mesh file. Starting with:
+
+```
+(**********************************************************)
+(* INFORMATIONS GENERALES SUR LE MAILLAGE DE CALCUL N°01: *)
+(**********************************************************)
+
+- Nom du maillage : <<Mesh_Hn_1>>
+- Dimension du maillage : 2
+- Type du maillage : MED_NON_STRUCTURE 
+- Description associee au maillage : 
+
+(**********************************************************************************)
+(* MAILLAGE DE CALCUL |Mesh_Hn_1| n°01 A L'ETAPE DE CALCUL (n°dt,n°it)=(-01,-01): *)
+(**********************************************************************************)
+- Nombre de noeuds : 243 
+- Nombre de mailles de type MED_SEG2 : 80 
+- Nombre de mailles de type MED_TRIA3 : 404 
+- Nombre de familles : 15 
+
+[...]
+``` 
+
+*What does this mean?* If `mdump` can read the mesh, the mesh file itself is OK and potential calculation errors stem from other files such as the steering file or the boundary conditions. Otherwise, revise the mesh file and resolve any potential issue. 
  
 ## SALOME-HYDRO 
  

@@ -56,7 +56,7 @@ LAW OF BOTTOM FRICTION = 5
 FRICTION COEFFICIENT FOR THE BOTTOM = 3 · d90  / calculate this value for your case study - in the presence of ripple or dune bedforms use van Rijn recommendations
 LAW OF FRICTION ON LATERAL BOUNDARIES = 5  / for natural banks
 / LAW OF FRICTION ON LATERAL BOUNDARIES = 0  / for symmetry calculations
-FRICTION COEFFICIENT FOR LATERAL SOLID BOUNDARIES = 3 · d90  / similar logics as for FRICTION COEFFICIENT FOR THE BOTTOM
+FRICTION COEFFI CIENT FOR LATERAL SOLID BOUNDARIES = 3 · d90  / similar logics as for FRICTION COEFFICIENT FOR THE BOTTOM
 /
 / Turbulence: Preferably use k-epsilon model, alternatively Spalart-Allmaras (=5) or Smagorinsky (=4) for highly non-linear flow 
 /
