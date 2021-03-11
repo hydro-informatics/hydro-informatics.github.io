@@ -40,12 +40,23 @@ To end *gdb* tap:
 
 This approach also works with *Telemac3d* (and other modules).
  
-## Errors in steering (CAS) files
+## Errors in Steering (CAS) Files
  
 * make sure to use `:` rather than `=`
 * place all model files in the same folder and only use file names without the directories of files
 
-## Check Mesh Files
+## Instable Simulations
+
+To increase model stability, modify the following variables or make sure that the variables are within reasonable ranges in the *CAS* file:
+
+* `FREE SURFACE GRADIENT` - default is `1.0`, but it can be reduced to `0.1` to achieve stability (nevertheless, start with going incrementally down, such as a value of `0.9`).
+* `IMPLICITATION FOR DEPTH` should be between 0.5 and 0.6.
+* `IMPLICITATION FOR VELOCITIES` should be between 0.5 and 0.6.
+* `IMPLICITATION FOR DIFFUSION` should be `1.` or smaller.
+
+## Errors in Mesh Files
+
+{% include callout.html content="A 3d simulation may crash when it is used with the parameter `CHECKING THE MESH : YES`. Thus, **in 3d, favourably use `CHECKING THE MESH : NO`**." %}
 
 To verify if TELEMAC can read the mesh, load the TELEMAC environment, for example:
 

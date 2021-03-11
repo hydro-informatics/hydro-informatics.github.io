@@ -391,7 +391,7 @@ make
 
 ***Estimated duration: 15-20 minutes.***
 
-{% include tip.html content="To facilitate setting up the `systel` file, use our template (no * by default AED2*): <br>Right-click on [this download](https://raw.githubusercontent.com/Ecohydraulics/telemac-install-helpers/master/debian/systel.cis-debian.cfg) > *Save Link As...* > `~ /telemac/v8p2/configs/systel.cis-debian.cfg` > *Replace Existing*.<br>Make sure to verify the  directories described in this section and replace the `USER-NAME` with your user name in the downloaded `systel.cis-debian.cfg` file.<br>To use *AED2*, [download systel.cis-debian-aed2.cfg](https://raw.githubusercontent.com/Ecohydraulics/telemac-install-helpers/master/debian/systel.cis-debian-aed2.cfg).<br>For **dynamic** compiling, [download systel.cis-debian-dyn.cfg](https://raw.githubusercontent.com/Ecohydraulics/telemac-install-helpers/master/debian/systel.cis-debian-dyn.cfg)." %}
+{% include tip.html content="To facilitate setting up the `systel` file, use our template (no * by default AED2*): <br>Right-click on [this download](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/master/debian/systel.cis-debian.cfg) > *Save Link As...* > `~/telemac/v8p2/configs/systel.cis-debian.cfg` > *Replace Existing*.<br>Make sure to verify the  directories described in this section and replace the `USER-NAME` with your user name in the downloaded `systel.cis-debian.cfg` file.<br>To use *AED2*, [download systel.cis-debian-aed2.cfg](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/master/debian/systel.cis-debian-aed2.cfg).<br>For **dynamic** compiling, [download systel.cis-debian-dyn.cfg](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/master/debian/systel.cis-debian-dyn.cfg)." %}
 
 The configuration file will tell the compiler how flags are defined and where optional software lives. Here, we use the configuration file `systel.cis-debian.cfg`, which lives in `~/telemac/v8p2/configs/`. In particular, we are interested in the following section of the file:
 
@@ -463,7 +463,7 @@ An additional keyword in the configurations is `options:` that accepts multiple 
 
 ***Estimated duration: 15-20 minutes.***
 
-{% include tip.html content="To facilitate setting up the `pysource` file use our template:<br>Right-click on [this download](https://raw.githubusercontent.com/Ecohydraulics/telemac-install-helpers/master/debian/pysource.openmpi.sh) > *Save Link As...* > `~ /telemac/v8p2/configs/pysource.openmpi.sh` (without *AED2*). <br>Make sure to verify all directories defined in the provided `pysource.openmpi.sh` file as described in this section, and replace the `USER-NAME`.<br>To use *AED2*, [download systel.pysource.openmpi-aed2.sh](https://raw.githubusercontent.com/Ecohydraulics/telemac-install-helpers/master/debian/pysource.openmpi-aed2.sh).<br>For **dynamic compiling**, [download systel.pysource.openmpi-dyn.sh](https://raw.githubusercontent.com/Ecohydraulics/telemac-install-helpers/master/debian/pysource.openmpi-dyn.sh)." %}
+{% include tip.html content="To facilitate setting up the `pysource` file use our template:<br>Right-click on [this download](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/master/debian/pysource.openmpi.sh) > *Save Link As...* > `~ /telemac/v8p2/configs/pysource.openmpi.sh` (without *AED2*). <br>Make sure to verify all directories defined in the provided `pysource.openmpi.sh` file as described in this section, and replace the `USER-NAME`.<br>To use *AED2*, [download systel.pysource.openmpi-aed2.sh](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/master/debian/pysource.openmpi-aed2.sh).<br>For **dynamic compiling**, [download systel.pysource.openmpi-dyn.sh](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/master/debian/pysource.openmpi-dyn.sh)." %}
 
 The *Python* source file lives in `~/telemac/v8p2/configs`, where there is also a template available called `pysource.template.sh`. Here, we will use the template to create our own *Python* source file called `pysource.openmpi.sh` tailored for compiling the parallel version of *TELEMAC* on Debian Linux with the *Open MPI* library. The *Python* source file starts with the definition of the following variables:
 
@@ -767,6 +767,7 @@ cd /home/slome-hydro/appli_V2_2/
 ./runRemote.sh paraview
 ``` 
 
+{% include tip.html content="If the *ParaVis* module continuously crashes in *SALOME-HYDRO*, consider to install the latest version of [*SALOME*](install-openfoam.html#salome) (e.g., as described with the installation of *OpenFOAM*)." %}
 
 Alternatively, *ParaView* is freely available on the [developer's website](https://www.paraview.org/download/) and the latest stable release can be installed on *Debian Linux*, through the *Terminal*:
 
