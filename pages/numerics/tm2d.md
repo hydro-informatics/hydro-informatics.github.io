@@ -4,17 +4,17 @@ tags: [telemac, numerical, modelling, hydraulics, morphodynamics, raster, shapef
 keywords: numerics
 summary: "Produce a numerical mesh."
 sidebar: mydoc_sidebar
-permalink: tm2d-pre-bk.html
+permalink: telemac2d.html
 folder: numerics
 ---
 
-## Under construction. Expected release of this tutorial: Spring 2021.
+## Under construction. Expected release of this tutorial: Fall 2021.
 
 Thank you for your patience.
 
-{% include requirements.html content="This tutorial refers to *TELEMAC* v8p1 (parallel with *Open MPI*) installed on Debian Linux. For the best learning experience follow the installation guides for [Debian Linux on a Virtual Machine (VM)](#vm.html) and [*TELEMAC*](install-telemac.html)." %}
+{% include requirements.html content="The case featured in this tutorial was established with: <br><br>**- [*BlueKenue* v3.12](install-telemac.html#sbluekenue)** (on *Windows*)<br>**- [*QGIS v3.16*](geo_software.html#qgis)** (tested on *Windows* and **Debian 10 Linux*),<br>**- [*Fudaa PrePro v1.4*](install-telemac.html#fudaa)** (tested on *Windows* and **Debian 10 Linux*), and <br>**- [*TELEMAC* v8p2r0](install-telemac.html#modular-install)** (stand-alone installation on *Debian 10 Linux*)." %}
 
-This tutorial uses descriptions provided in the [telemac2d_user_v8p1](http://ot-svn-public:telemac1*@svn.opentelemac.org/svn/opentelemac/tags/v8p1r1/documentation/telemac2d/user/telemac2d_user_v8p1.pdf) manual.
+This tutorial uses descriptions provided in the [telemac2d](http://ot-svn-public:telemac1*@svn.opentelemac.org/svn/opentelemac/tags/v8p1r1/documentation/telemac2d/user/telemac2d_user_v8p1.pdf) user manual.
 
 ## Input files
 
@@ -34,45 +34,9 @@ For any TELEMAC 2D simulation, the following files are mandatory:
 
 The basic setup of the files is explained below.
 
-### Optional {#optional}
+## Build geometry and computational mesh
 
-The below listed files are not computationally mandatory for running a simulation with TELEMAC, but essential to yield reasonable results with a hydro-morphodynamic model (i.e., coupled hydrodynamic-sediment transport solver).
-
-* Liquid boundaries file (e.g., for water surface elevation or flow rates)
-    + Requires a stage-discharge relationship file 
-
-* Friction data file 
-    + File format: `ASCII`
-* Reference file to enable model validation (restart)
-    + File format: `.slf`
-    + Check the TELEMAC docs
-* Restart file for setting initial conditions
-* Sections file to set control sections (e.g., verify flow rates, velocity or water surface elevation)
-* Sources (e.g., water or sediment) data file
-* Zones file
-    + Describes friction or other zonal properties
-
-When hydraulic structures are integrated in a model, some of the following files are required (depending on the structure type):
-
-* Culverts data file
-* Weirs data file
-
-In addition, a *FORTRAN* (`.f`) file can be created to specify special boundary conditions or the usage of either single or double precision
-
-{% include tip.html content="In hydro-morphodynamic modelling, single precision (i.e., 32-bit *floats*) rather than double precision (i.e., using 64-bit *floats*) is sufficient and much faster." %}
-
-More input files can be defined to simulate oil spill, pollutant transport, wind, and tide effects.
-
-## The steering file (CAS)
-
-### File description
-The steering file is the main simulation file with information about mandatory files (e.g., the [*selafin*](https://gdal.org/drivers/vector/selafin.html) geometry or the *cli* boundary), optional files, and simulation parameters. The steering file can be created or edited either with a basic text editor or an advanced software such as [*Fudaa-PrePro*](install-telemac.html#fudaa) or [*BlueKenue*](install-telemac.html#bluekenue). In this example, we will use *BlueKenue*.
-
-### Setup
-
-pass
-
-## The geometry file (SLF or MED)
+## Geometry File Option 1: BlueKenue
 
 ### File description and reference to CAS
 The geometry file in [*slf* (*selafin*)](https://gdal.org/drivers/vector/selafin.html) format contains binary data about the mesh with its nodes. The name format of the geometry file can be modified in the steering file with:
@@ -112,14 +76,49 @@ TM solves the (depth-averaged) Navier Stokes equations along a computational gri
     
 1. Draw **New Open Line** objects to delineate the main (river) channel, levees, and right-left extents.
     * Find the *New Open Line* button next to the *New Closed Line* button
+    
+    
+    
 
-## The boundary conditions (CLI) and liquid boundary (QSL) files
+## Geometry File Option 2: QGIS & BASEMESH
 
-### File description and reference to CAS
+Follow the instructions in the [QGIS data pre-processing](qgis-prepro.html) section for creating a .2dm file.
+
+Then...
+
+
+
+## Model setup with Fudaa Prepro {#prepro-fudaa}
+
+*Fudaa PrePro* facilitates the definition of boundaries, initial conditions, and setting up a steering file. To start *Fudaa*, open *Terminal* (*Linux*) or *Command Prompt* (*Windows*) and:
+
+* `cd` to the installation directory of *Fudaa*
+* start the GUI:
+    + *Linux*: tap `sh supervisor.sh`
+    + *Windows*: tap `supervisor.bat`
+    
+
+## Boundary Conditions
 
 The boundary file in *cli* format contains information about inflow and outflow nodes (coordinates and IDs). The *cli* file can be opened and modified with any text editor, which is not recommended to avoid inconsistencies. Preferably use [*Fudaa-PrePro*](install-telemac.html#fudaa) or [*BlueKenue*](install-telemac.html#bluekenue) for generating and/or modifying *cli* files.
 
 In addition, users can define a liquid boundary conditions file (*qsl*) to define time-dependent boundary conditions (e.g., discharge, water depth, flow velocity or tracers). 
+
+### Stage-discharge (or WSE-Q) Relationship
+
+Define a stage-discharge file (*ASCII* format) to use a stage (water surface elevation *WSE*) - discharge relationship for boundary conditions. Such files typically apply to the downstream boundary of a model at control sections (e.g., a free overflow weir). To use a stage-discharge file, define the following keyword in the steering file:
+
+```
+/steering.cas
+STAGE-DISCHARGE CURVES FILE : YES
+```
+
+
+### Define steady flow boundaries {#prepro-steady}
+
+Qconst
+
+### Define unsteady flow boundaries {#prepro-unsteady}
 
 The name format of the boundary conditions file can be modified in the steering file with:
 
@@ -127,14 +126,6 @@ The name format of the boundary conditions file can be modified in the steering 
 /steering.cas
 BOUNDARY CONDITIONS FILE : 'bc_channel.cli'
 LIQUID BOUNDARIES FILE   : 'bc_unsteady.qsl'
-```
-
-Example (header only) for a boundary conditions file (*cli*):
-```
-  2 2 2  0.000  0.000  0.000  0.000 2  0.000  0.000  0.000    101     1
-  2 2 2  0.000  0.000  0.000  0.000 2  0.000  0.000  0.000    102     2
-  2 2 2  0.000  0.000  0.000  0.000 2  0.000  0.000  0.000    103     3
-  ...
 ```
 
 Example for a liquid boundary conditions file:
@@ -148,29 +139,52 @@ s           m3/s     m
 5000.       150.     5.0
 ```
 
-## The stage-discharge (or WSE-Q) file (ASCII)
+### Activate morphodynamics (sediment transport with Gaia) {#prepro-gaia}
 
-Define a stage-discharge file to use a stage (water surface elevation *WSE*) - discharge relationship for boundary conditions. Such files typically apply to the downstream boundary of a model at control sections (e.g., a free overflow weir). To use a stage-discharge file, define the following keyword in the steering file:
+Qs
+
+
+
+## Run Telemac2d
+
+### Load environment and files
+
+Load the TELEMAC *Python* variables: 
 
 ```
-/steering.cas
-STAGE-DISCHARGE CURVES FILE : YES
-```
-
-Example for a stage-discharge file:
-```
-# wse_Q.txt
-# 
-Q(1)     Z(1)
-m3/s     m
- 50.     0.0
- 60.     0.9
-100.     1.5
+cd ~/telemac/v8p1/configs
+source pysource.openmpi.sh
+config.py
 ```
 
 
 
+### Start a 2D hydrodynamic simulation (steady) {#steadyrun}
 
-***
+To start a simulation, `cd` to the directory where the simulation files live (see previous page) and launch the steering file (*cas*) with *telemac2d.py*: 
 
-Next: [> Start the simulation >](tm-run.html)
+```
+cd /go/to/dir
+telemac2d.py run_2dhydrodynamic.cas
+```
+
+
+## Post-processing with QGIS
+
+### Install the PostTelemac plugin
+
+Open QGIS' *Plugin Manager*, go to the *All* tab and type *posttelemac* in the search field. Click on the *Install* button to install the *PostTelemac* plugin.
+
+{% include image.html file="qgis-plugin-manager.png"%}
+
+{% include image.html file="qgis-plugin-install-posttm.png"%}
+
+After the successful installation, click the *Close* button. The *PostTelemac* symbol should now be visible in the QGIS menu bar.
+
+### Open the PostTelemac plugin
+
+Find the *PostTelemac* icon in the menu bar to open the plugin. By default, the plugin window will most likely open up in the bottom-right corner of the QGIS window. For better handling, click the *detach* symbol and enlarge the detached plugin window. 
+
+{% include image.html file="posttm-display.png" caption="The detached window of the PostTelemac plugin with the Display tab opened to render simulation variables such as VELOCITY U/V, VITESSE (principal absolute U-V velocity) or DEPTH." %}
+
+{% include image.html file="posttm-tools.png" caption="The detached window of the PostTelemac plugin with the Tools tab opened (e.g., to create shapefiles or GeoTIFF rasters)." %}

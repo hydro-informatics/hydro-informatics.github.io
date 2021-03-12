@@ -13,7 +13,7 @@ Geospatial analyses (or analytics) use, manipulate and illustrate data from geog
 {% include note.html content="Geospatial data are either geographically referenced, pixel-based [rasters](https://en.wikipedia.org/wiki/Raster_graphics) data or vector-based *Esri* [shapefiles](https://en.wikipedia.org/wiki/Shapefile) (read more on the [*Python<sup>geospatial</sup>*](geospatial-data.html) pages)." %}
 
 ## QGIS {#qgis}
-For the visualization of geodata (`.shp` and `.tif` files) a GIS software is required and the analyses described on these pages refer to the usage of [*QGIS*](https://www.qgis.org). This website uses *QGIS* within the sections on [geospatial programming with *Python*](geo-python.html) and [numerical modelling with the ETH Zurich's BASEMENT](bm-pre.html) software.
+For the visualization of geodata (`.shp` and `.tif` files) a GIS software is required and the analyses described on these pages refer to the usage of [*QGIS*](https://www.qgis.org). This website uses *QGIS* within the sections on [geospatial programming with *Python*](geo-python.html) and [numerical modelling with the ETH Zurich's BASEMENT](basement.html) software.
 
 ### Install QGIS on Windows
 Download and install the latest version of [*QGIS*](https://www.qgis.org/en/site/forusers/download.html) for Windows.
@@ -47,7 +47,7 @@ Working with geospatial data editors involves complex tasks that require backgro
 On this website, *QGIS* is occasionally used for plotting and creating georeferenced data (e.g., the chapters on [geospatial programming](geo-python.html) and [numerical modelling *BASEMENT*](bm-pre.html)). These chapters illustrate the usage of *QGIS* with screenshots for specific tasks and do not cover a full tutorial for working with *QGIS*.
 
 
-### Base maps for QGIS (google, open street maps and more) {#basemap}
+### Basemaps for QGIS (google, open street maps and more) {#basemap}
 {% include note.html content="A fast internet connection is required for adding online base maps." %}
 
 To add a base map (e.g., satellite data, streets, or administrative boundaries), go to the ***Browser***, right-click on ***XYZ Tiles***, select ***New Connection...***, add a name and a URL of an online base map. Once the new connection is added, it can be added to a *QGIS* project by drag and drop just like any other geodata layer. The below figure illustrates the procedure of adding a new connection and its XYZ tiles as a layer to the project. 
@@ -68,7 +68,7 @@ The following URL can be used for retrieving online XYZ tiles (more URLs can be 
 
 {% include tip.html content="Most base maps are provided in the `EPSG:3857 -WGS84 / Pseudo Mercator` coordinate system (CRS). To use custom geodata products, make sure that all other layers have the same coordinate system. Read more about coordinate systems projections on the [geospatial data](geospatial-data.html#prj) and [shapefile projection](geo-shp.html#prj-shp) pages." %}
 
-### Install *QGIS* conda ennvironment
+### Install *QGIS* conda Environment
 
 In [*Anaconda Prompt*](hy_ide.html#anaconda), you can create a new environment to specifically use *QGIS* features (i.e., tools and scripts) including its raster calculator. The environment is featured by *Open Data Cube* ([read more](https://datacube-qgis.readthedocs.io/en/latest/installation.html)) and can be installed as follows:
 
@@ -76,6 +76,22 @@ In [*Anaconda Prompt*](hy_ide.html#anaconda), you can create a new environment t
 conda create  -c conda-forge -n qgiscube python=3.6 qgis=3 datacube
 conda activate qgiscube
 ```
+
+### Get Useful Plugins <a name="plugins"></a>
+
+The conversion between geospatial data types and numerical (computational) grids can be facilitated with plugins. To install any plugin in *QGIS*, go to the `Plugins` menu > `Manage and Install Plugins...` > `All` tab > `Search...` for a relevant plugin and install it.
+
+In the context of river analysis, the following plugins are recommended and used at multiple places on this website:
+
+* The *Crayfish* plugin, which is available in the *QGIS* toolbox after the installation.
+
+### Enable the QGIS Toolbox <a name="qgis-tbx"></a>
+
+Follow the below illustrated instructions to enable the *QGIS* *Toolbox*. 
+
+{% include image.html file="qgis-tbx.png" alt="enable QGIS toolbox" caption="Open QGIS' Toolbox window from the main menu." %}
+
+
 
 ## ArcGIS Pro {#agis}
 {% include important.html content="ArcGIS Pro is designed for Windows and will not run on macOS or Linux. In addition, a license needs to be purchased." %} 

@@ -24,7 +24,7 @@ This page only guides through the **installation** of *TELEMAC*. A **tutorial pa
 
 This page describes two ways for installing *TELEMAC*:
 
-1. Option: Modular installation of *TELEMAC*
+* Option 1: Stand-alone installation of *TELEMAC*
     * Every software and packages needed to run a *TELEMAC* model is installed manually
     * **Advantages**:
         - Full control over modules to be installed (high flexibility)
@@ -33,7 +33,7 @@ This page describes two ways for installing *TELEMAC*:
     * **Disadvantages**:
         - The variety of install options may cause errors when incompatible packages are combined
         - Challenging installation of optional modules such as AED2, HPC and parallelism 
-2. Option: Installation of *TELEMAC* within the *SALOME-HYDRO* software suite.
+* Option 2: Installation of *TELEMAC* within the *SALOME-HYDRO* software suite.
     * All pre-processing tasks are managed with *SALOME-HYDRO*
     * *TELEMAC* is launched through the *HYDRO-SOLVER* module
     * Post-processing is performed with *ParaView*
@@ -43,16 +43,13 @@ This page describes two ways for installing *TELEMAC*:
         - Efficient for MED-file handling
     * **Disadvantages**:
         - Common input geometry file formats such as *SLF* (serafin) require additional software
-        - Only works without errors on *Debian 9 (stretch)*
-        - The pre-compiled version of TELEMAC and other modules were built with outdated gfortran compilers that cannot run on up-to-date systems
+        - Only works without errors on old *Debian 9 (stretch)*
+        - The pre-compiled version of TELEMAC and other modules were built with outdated gfortran compilers that cannot run on up-to-date systems.
+        - Often problems with the GUI and high risk of simulation crashes because of invalid library links.
 
-So what option to choose? Many factors need to be considered, but as a general rule of thumb, it might be beneficial to opt as follows:
+So what option to choose? To leverage the full capacities of *TELEMAC*, use both: [*SALOME-HYDRO*](#salome-hydro) is a powerful pre-processor for preparing simulations and the [stand-alone installation of *TELEMAC*](#modular-install) enables maximum flexibility, system integrity, and computational stability.
 
-* New users want to [use option 1 (Modular installation)](#modular-install) for hydro-morphodynamic, two-dimensional (2d) modelling of river landscapes.
-* More experienced user may want to use [option 2 (*SALOME-HYDRO*)](#salome-hydro) for modelling three-dimensional (3d) geometries defined with *MED* files and HPC schemes.
-
-
-## Modular Installation of TELEMAC {#modular-install}
+## Stand-alone Installation of TELEMAC {#modular-install}
 
 ### Install mandatory Prerequisites (Part 1)
 
@@ -204,6 +201,8 @@ This section guides through the installation of additional packages required for
 * Output MED Format:
     + Hdf5
     + MEDFichier 
+
+{% include tip.html content="The newest versions of Hdf5, MEDFichier, Metis, AED2, and many more are included and compiled in the [*SALOME-HYDRO* installer](#salome-hydro). Thus, consider installing *SALOME-HYDRO* before installing TELEMAC and just copy relevant, compiled libraries from the directory `~/SALOME-HYDRO/Salome-V2_2-s9/prerequisites/` to `~/telemac/v8p2/optionals/`. In this case, it is sufficient to install *open MPI* as below described and then go directly to the [compiling section](#compile), where the optionals-folder names need to be adapted." %}
 
 ### Parallelism: Install MPI {#mpi}
 
@@ -385,7 +384,7 @@ make
 {% include note.html content="*AED2* is not needed for the tutorials on this website and the installation of this module can be skipped." %}
 
 
-## Compile *TELEMAC*
+## Compile *TELEMAC* <a name="compile"></a>
 
 ### Adapt and Verify Configuration File (systel.*.cfg)
 

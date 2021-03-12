@@ -208,7 +208,7 @@ To get started with *OpenFoam*, refer to the *User Guide* provided by [*CFD Dire
 
 ## External Utilities (Pre- & Post Processors)
 
-### SALOME {#salome}
+### SALOME <a name="salome"></a>
 
 Similar as for *TELEMAC*, the *SALOME* platform represents a powerful toolkit for generating computational meshes for *OpenFOPAM*. Download *SALOME* from [salome-platform.org](https://www.salome-platform.org/downloads/current-version) for your distribution (here: *Linux Ubuntu*).
 

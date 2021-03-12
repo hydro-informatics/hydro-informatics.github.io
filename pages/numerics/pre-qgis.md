@@ -4,7 +4,7 @@ tags: [basement, shapefile, qgis, hydraulics, tin]
 keywords: numerics
 summary: "Produce a numerical mesh with QGIS."
 sidebar: mydoc_sidebar
-permalink: pre-qgis.html
+permalink: qgis-prepro.html
 folder: numerics
 ---
 
