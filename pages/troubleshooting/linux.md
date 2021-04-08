@@ -85,7 +85,7 @@ Or for all subdirectories and files in these directories:
 sudo chmod a+rwx /directory/*/*.*
 ```
 
-And this lifts all restrictions from a directory, all its sub-folders and files contained (and sub-sub-folders and sub-sub-files contained, and so on):
+This lifts all restrictions from a directory for all users, all its sub-folders and files contained (and sub-sub-folders and sub-sub-files contained, and so on):
 
 ```
 sudo chmod -R 777 /directory/
