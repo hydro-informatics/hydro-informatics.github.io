@@ -12,7 +12,7 @@ toc: false
 
 Large datasets, such as airborne imagery and hydro-meteorological datasets collected worldwide, drive progress in many disciplines. With traditional spreadsheet analysis tools, however, the large amounts of data can hardly be analyzed, understood, or used. The courses supported with this website aid hydraulic engineers, geomorphologists, river ecologists, and any water resources related challenge with tools for efficient data analyses and presentation. The methods described rely on open-access tools to leverage international and interdisciplinary collaboration on all levels.
 
-{% include note.html content="The term hydroinformatics (or hydro-informatics) is widely used in relation to the field of hydrology. Yet, the syllable *hydro* goes back to the Greek word for *water*. In this light the term *hydro-informatics* as used on this website also refers to water, but primarily in the field of hydraulic engineering with its links to ecohydraulics, geomorphology, geo-informatics, and hydrology." %}"
+{% include note.html content="The term hydroinformatics (or hydro-informatics) is widely used in relation to the field of hydrology. Yet, the syllable *hydro* goes back to the Greek word for *water*. In this light the term *hydro-informatics* as used on this website also refers to water, but primarily in the field of hydraulic engineering with its links to ecohydraulics, geomorphology, geo-informatics, and hydrology." %}
 
 ## Contents
 
