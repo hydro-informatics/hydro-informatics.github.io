@@ -1,0 +1,1262 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Functions &#8212; Hydro-informatics</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Packages, Modules and Libraries" href="pypckg.html" />
+    <link rel="prev" title="Modularization &amp; Object Orientation" href="modularize.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/icon.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Hydro-informatics</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Home
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get Started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../lectures/classroom.html">
+   The Virtual Classroom
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/lectures.html">
+     Lectures and exercises
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/take_seat.html">
+     Take a Seat in the Virtual Classroom
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../get-started/software.html">
+   Open Access Software Resources
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/vm.html">
+     Virtual machines and Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/ide.html">
+     Anaconda and Integrated Development Environments (IDEs)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/git.html">
+     Introduction to git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/geo.html">
+     Geospatial Software
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-openfoam.html">
+     Install OpenFOAM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-telemac.html">
+     open TELEMAC (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/others.html">
+     Other Software Resources
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Python Basics
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="python.html">
+   Get Started with Python
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyinstall.html">
+     Install Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pybase.html">
+     First steps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyerror.html">
+     Errors, Logging, and Debugging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyloop.html">
+     Loops and Conditional Statements
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="modularize.html">
+   Modularization &amp; Object Orientation
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pypckg.html">
+     Packages, Modules and Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="classes.html">
+     Object Orientation and Classes
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="data-handling.html">
+   Data and File Handling
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="pynum.html">
+     Load and Write Basic Data Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pynum.html#numpy">
+     NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pynum.html#pandas">
+     Pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pynum.html#dates-and-time">
+     Dates and Time
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="xml.html">
+     Manipulation of Workbooks and JSON Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyplot.html">
+     Plotting
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pystyle.html">
+   Code Style and Conventions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gui.html">
+   Graphical User Interfaces (GUIs)
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../exercises/python-exercises.html">
+   Python Exercises
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-ms.html">
+     1d Hydraulics (Manning-Strickler Formula)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sp.html">
+     Reservoir Volume Calculation with a Sequent Peak Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-floods.html">
+     Calculate flood return periods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sediment.html">
+     One-dimensional (1d) Cross-section Averaged Sediment Transport
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-gui.html">
+     Create a
+     <strong>
+      G
+     </strong>
+     raphical
+     <strong>
+      U
+     </strong>
+     ser
+     <strong>
+      I
+     </strong>
+     nterface (GUI)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Documentation
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/documentation.html">
+   Markdown and Code Documentation
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../exercises/docs-exercises.html">
+   Exercises
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-git.html">
+     Git and markdown
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Geospatial Analysis
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/geospatial-data.html">
+   Geospatial Data
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../geopy/geo-python.html">
+   Geospatial Python
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-pckg.html">
+     Geospatial Python - Open Source Packages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-shp.html">
+     Shapefile (vector dataset) handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-raster.html">
+     Raster (Gridded) Dataset Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-convert.html">
+     Raster to Vector Conversion and Vice Versa
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-arcpy.html">
+     The Commercial arcpy Library
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../exercises/geo-exercises.html">
+   Exercises
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-geco.html">
+     Create a habitat suitability map
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Numerical Modeling
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/numerical-modeling.html">
+   Principles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/pre-qgis.html">
+   Pre-Processing with QGIS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/basement.html">
+   BASEMENT
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../numerics/telemac.html">
+   TELEMAC
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/telemac2d.html">
+     Pre-Processing for TELEMAC models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/telemac3d.html">
+     3d modeling with TELEMAC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/telemac-gaia.html">
+     Gaia Workflow
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/openfoam.html">
+   OpenFOAM
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/calibration.html">
+   Calibration and Valdiation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Troubleshoot
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
+   Programming Tools and IDEs
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
+     Debugging Anaconda
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-python.html">
+     Debugging Python Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
+     Debugging Jupyter
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
+   Numerical Models
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
+     Debugging BASEMENT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
+     Debugging TELEMAC/SALOME
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../troubleshoot/dbg-os.html">
+   Operating Systems (Linux and VMs)
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
+     Debugging Debian Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
+     Debugging Virtual Machines
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Disclaimer and License
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Authored by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/python-basics/pyfun.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/hydro-informatics/hydro-informatics.github.io"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?urlpath=tree/docs/python-basics/pyfun.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-are-functions">
+   What are functions?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-basic-example">
+   A Basic Example
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#function-calls">
+   Function Calls
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-arguments-args">
+   Optional Arguments *args
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#keyword-arguments-kwargs">
+   Keyword Arguments **kwargs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#default-keyword-arguments">
+   Default Keyword Arguments
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#function-wrappers-and-decorators">
+   Function Wrappers and Decorators
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#iterators-and-generators">
+   Iterators and Generators
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lambda-functions">
+   Lambda Functions
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="functions">
+<h1>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h1>
+<p>Summary: Leverage the power of code recycling with functions.</p>
+<div class="section" id="what-are-functions">
+<h2>What are functions?<a class="headerlink" href="#what-are-functions" title="Permalink to this headline">¶</a></h2>
+<p>Functions are a convenient way to divide code into handy, reusable and better readable blocks, which help structuring code. Blocks can accept parametric arguments and can be reused. Thus, functions are a key element for sharing code.</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">def</span></code> keyword followed by a function name with <em>arguments</em> in parentheses and a code block is what defines a function.</p></li>
+<li><p>The type of <em>arguments</em> that a functions can receive are:</p>
+<ul>
+<li><p>Required arguments: <code class="docutils literal notranslate"><span class="pre">arg</span></code></p></li>
+<li><p>Default keyword arguments (with default values): <code class="docutils literal notranslate"><span class="pre">arg=value</span></code></p></li>
+<li><p>Optional arguments: <code class="docutils literal notranslate"><span class="pre">*args</span></code></p></li>
+<li><p>Optional keyword arguments: <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code></p></li>
+</ul>
+</li>
+</ul>
+<p>Using optional (keyword) arguments makes functions more robust and flexible. The code block of a function is indented, similar to loops:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_function</span><span class="p">(</span><span class="n">argument1</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">something</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">arguments</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">something</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="a-basic-example">
+<h2>A Basic Example<a class="headerlink" href="#a-basic-example" title="Permalink to this headline">¶</a></h2>
+<p>Three countries on earth use imperial units, while most other countries use the <em>Système International</em> (<em>French: International System</em>) of units (SI units). Let’s write a simple function to help imperial unit users converting <em>feet</em> (imperial) to <em>meters</em> (SI).</p>
+<p>In the following example, the function name is <code class="docutils literal notranslate"><span class="pre">feet_to_meter</span></code> and the function accepts one argument, which is <code class="docutils literal notranslate"><span class="pre">feet</span></code>. The function returns the <code class="docutils literal notranslate"><span class="pre">feet</span></code> argument multiplied with a <code class="docutils literal notranslate"><span class="pre">conversion_factor</span></code> of 0.3048, which corresponds to the conversion factor from feet to meters. In this simple example the definition of the <code class="docutils literal notranslate"><span class="pre">conversion_factor</span></code> variable is not explicitly required.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Internal variables (i.e., variables defined within a function), such as <code class="docutils literal notranslate"><span class="pre">conversion_factor</span></code>, are not accessible outside of the function.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">feet_to_meter</span><span class="p">(</span><span class="n">feet</span><span class="p">):</span>
+    <span class="n">conversion_factor</span> <span class="o">=</span> <span class="mf">0.3048</span>
+    <span class="k">return</span> <span class="n">conversion_factor</span> <span class="o">*</span> <span class="n">feet</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="function-calls">
+<h2>Function Calls<a class="headerlink" href="#function-calls" title="Permalink to this headline">¶</a></h2>
+<p>In order to call a function, it must be defined before the call. The function may be defined in the same script or in another script, which can than be imported as module (<a class="reference internal" href="pypckg.html"><span class="doc std std-doc">read more about modules and packages</span></a>). Then we can call, for example, the above-defined <code class="docutils literal notranslate"><span class="pre">feet_to_meter</span></code> function as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feet_value</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> feet are </span><span class="si">{1}</span><span class="s2"> meters.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">feet_value</span><span class="p">,</span> <span class="n">feet_to_meter</span><span class="p">(</span><span class="n">feet_value</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10 feet are 3.048 meters.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="optional-arguments-args">
+<h2>Optional Arguments *args<a class="headerlink" href="#optional-arguments-args" title="Permalink to this headline">¶</a></h2>
+<p>Let’s replace the non-optional <code class="docutils literal notranslate"><span class="pre">feet</span></code> argument in the above function with an optional argument <code class="docutils literal notranslate"><span class="pre">*args</span></code> to enable the conversion of as many length values as the function receives. The following lines explain step by step how that works.</p>
+<ol class="simple">
+<li><p>We want to ensure that anyone understands the input and output parameters of the function. This is why we defined within a pair of triple double-apostrophes (<code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span></code>) input parameters (<code class="docutils literal notranslate"><span class="pre">:params</span> <span class="pre">parameter_name:</span> <span class="pre">definition</span></code>) and the function return (<code class="docutils literal notranslate"><span class="pre">:output:</span> <span class="pre">definition</span></code>).</p></li>
+<li><p>By default, we will assume that multiple values are provided. Therefore, a list called <code class="docutils literal notranslate"><span class="pre">value_list</span></code> in intantiated at the beginning of the function, while <code class="docutils literal notranslate"><span class="pre">conversion_factor</span></code> remains the same as before.</p></li>
+<li><p>A for-loop over <code class="docutils literal notranslate"><span class="pre">*args</span></code> identifies and processes the arguments provided. Why a for-loop? Well, <em>Python</em> recognizes <code class="docutils literal notranslate"><span class="pre">*args</span></code> automatically as a list, and therefore, we can iterate over <code class="docutils literal notranslate"><span class="pre">*args</span></code>, even though the provided range of values was not a list type.</p></li>
+<li><p>The for-loop in the <code class="docutils literal notranslate"><span class="pre">try</span></code> code block includes a <code class="docutils literal notranslate"><span class="pre">try</span></code> - <code class="docutils literal notranslate"><span class="pre">except</span></code> statement in order to verify if the provided values (arguments) are numeric and can be converted to meters. If the <code class="docutils literal notranslate"><span class="pre">try</span></code> block runs successfully, the expression <code class="docutils literal notranslate"><span class="pre">arg</span> <span class="pre">*</span> <span class="pre">conversion_factor</span></code> appends the converted argument <code class="docutils literal notranslate"><span class="pre">arg</span></code> to <code class="docutils literal notranslate"><span class="pre">value_list</span></code>.</p></li>
+<li><p>Eventually, the <code class="docutils literal notranslate"><span class="pre">return</span></code> keyword returns the value list.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">feet_to_meter</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    :param *args: numeric values in feet</span>
+<span class="sd">    :output: returns list of values in meter</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">value_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">conversion_factor</span> <span class="o">=</span> <span class="mf">0.3048</span>
+    <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">value_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arg</span> <span class="o">*</span> <span class="n">conversion_factor</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; is not a number.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">value_list</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With the newly defined and more flexible function, we can now call <code class="docutils literal notranslate"><span class="pre">feet_to_meter</span></code> with as many arguments as needed:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Function call with 3 values: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">feet_to_meter</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Function call with no value: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">feet_to_meter</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Function call with non-numeric values:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">feet_to_meter</span><span class="p">(</span><span class="s2">&quot;just&quot;</span><span class="p">,</span> <span class="s2">&quot;words&quot;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Function call with mixed numeric and non-numeric values:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">feet_to_meter</span><span class="p">(</span><span class="s2">&quot;just&quot;</span><span class="p">,</span> <span class="s2">&quot;words&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Function call with 3 values: 
+[0.9144000000000001, 0.3048, 3.048]
+Function call with no value: 
+[]
+Function call with non-numeric values:
+just is not a number.
+words is not a number.
+[]
+Function call with mixed numeric and non-numeric values:
+just is not a number.
+words is not a number.
+[0.6096]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="keyword-arguments-kwargs">
+<span id="kwargs"></span><h2>Keyword Arguments **kwargs<a class="headerlink" href="#keyword-arguments-kwargs" title="Permalink to this headline">¶</a></h2>
+<p>In the last section, we made the <code class="docutils literal notranslate"><span class="pre">feet_to_meter</span></code> more flexible so that it can now receive as many arguments as needed. Since the first definition of the function, there is this internal <code class="docutils literal notranslate"><span class="pre">conversion_factor</span></code> variable, which was essentially useless because we could have directly used the value 0.3048 instead. Until now.
+Imagine we are writing this function for a historian. So in the past imperial units were wide spread in many cultures (e.g., Greek, Roman or Chinese) with varying length definitions between 0.250 m and 0.335 m. That means our historian will need flexibility regarding the conversion factor, while we still want to use 0.3048 m as default value. This job can be done with optional keyword arguments <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> an this is how we implement them:</p>
+<ol class="simple">
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> after <code class="docutils literal notranslate"><span class="pre">*args</span></code> in the function <code class="docutils literal notranslate"><span class="pre">def</span></code> parentheses (the order of <code class="docutils literal notranslate"><span class="pre">*args,</span> <span class="pre">**kwargs</span></code> is important).</p></li>
+<li><p>Keep <code class="docutils literal notranslate"><span class="pre">conversion_factor</span> <span class="pre">=</span> <span class="pre">0.3048</span></code> as default value (we want the function to be functional also without any keyword argument provided).</p></li>
+<li><p>Similar to the <code class="docutils literal notranslate"><span class="pre">*args</span></code> statement, <em>Python</em> automatically identifies variables beginning with <code class="docutils literal notranslate"><span class="pre">**</span></code> as optional keyword arguments (actually, the name <em>args</em> and <em>kwargs</em> does not matter - the <code class="docutils literal notranslate"><span class="pre">*</span></code> sign are important). The difference to <code class="docutils literal notranslate"><span class="pre">*args</span></code> is that <em>Python</em> identifies <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> as a dictionary.</p></li>
+<li><p>A for-loop iterates over the <em>kwargs</em>-dictionary and the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement will identify any keyword argument that contains the string <code class="docutils literal notranslate"><span class="pre">&quot;conv&quot;</span></code> as conversion_factor.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">try</span></code>- <code class="docutils literal notranslate"><span class="pre">except</span></code> statement tests if the provided value for the keyword argument is numeric by attempting a conversion to <code class="docutils literal notranslate"><span class="pre">float()</span></code>.</p></li>
+</ol>
+<p>The remaining function is unchanged from above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">feet_to_meter</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    :param *args: numeric values in feet</span>
+<span class="sd">    :output: returns list of values in meter</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">value_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">conversion_factor</span> <span class="o">=</span> <span class="mf">0.3048</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="s2">&quot;conv&quot;</span> <span class="ow">in</span> <span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">conversion_factor</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Using conversion factor = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; is not a number (using default value 0.3048).&quot;</span><span class="p">)</span>  
+    
+    <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">value_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arg</span> <span class="o">*</span> <span class="n">conversion_factor</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; is not a number.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">value_list</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With the newly defined flexibility of the <code class="docutils literal notranslate"><span class="pre">feet_to_meter</span></code> let’s test some different conversion factors:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Function call with 3 values and a conversion factor of 0.25: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">feet_to_meter</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">conv_factor</span><span class="o">=</span><span class="mf">0.25</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Function call with 3 values and a conversion factor of 1/7 with slightly different name: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">feet_to_meter</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">conversion_factor</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">7</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Function call with 2 values with default conversion factor: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">feet_to_meter</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Function call with 3 values and a conversion factor of 0.25: 
+Using conversion factor = 0.25
+[0.75, 0.25, 2.5]
+Function call with 3 values and a conversion factor of 1/7 with slightly different name: 
+Using conversion factor = 0.14285714285714285
+[0.42857142857142855, 0.14285714285714285, 1.4285714285714284]
+Function call with 2 values with default conversion factor: 
+[7.62, 3.048]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="default-keyword-arguments">
+<h2>Default Keyword Arguments<a class="headerlink" href="#default-keyword-arguments" title="Permalink to this headline">¶</a></h2>
+<p>Keyword arguments can also be defined by default. The below example shows how the <code class="docutils literal notranslate"><span class="pre">conversion_factor</span></code> can be defaulted in the <code class="docutils literal notranslate"><span class="pre">def</span></code> function parentheses. Note that <code class="docutils literal notranslate"><span class="pre">conversion_factor</span></code> must be defined after any optional arguments <code class="docutils literal notranslate"><span class="pre">*args</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">feet_to_meter</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">conversion_factor</span><span class="o">=</span><span class="mf">0.3048</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    :param *args: numeric values in feet</span>
+<span class="sd">    :output: returns list of values in meter</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">value_list</span> <span class="o">=</span> <span class="p">[]</span>
+   
+    <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">value_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arg</span> <span class="o">*</span> <span class="n">conversion_factor</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; is not a number.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">value_list</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can use <code class="docutils literal notranslate"><span class="pre">feet_to_meter</span></code> with or without or with a conversion factor and after the value list:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Function call with a conversion factor of 0.313 and two values: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">feet_to_meter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">conversion_factor</span><span class="o">=</span><span class="mf">0.313</span><span class="p">))</span>
+                    
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Function call with 3 values without any conversion factor: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">feet_to_meter</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Function call with a conversion factor of 0.313 and two values: 
+[0.313, 3.13]
+Function call with 3 values without any conversion factor: 
+[0.9144000000000001, 0.3048, 3.048]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="function-wrappers-and-decorators">
+<span id="wrappers"></span><h2>Function Wrappers and Decorators<a class="headerlink" href="#function-wrappers-and-decorators" title="Permalink to this headline">¶</a></h2>
+<p>If multiple functions contain similar lines, chances are that those functions can be further factorized by using function wrappers and decorators. A typical example is for example if a license checkout is needed in order to use a commercial <em>Python</em> module/package (e.g., Esri’s <code class="docutils literal notranslate"><span class="pre">arcpy</span></code>) or if we want to use a recurring error statement with <code class="docutils literal notranslate"><span class="pre">try</span></code> - <code class="docutils literal notranslate"><span class="pre">except</span></code> statements.</p>
+<p>Consider two or more functions that should receive, process and produce numerical output from user input. These functions could look like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">multiply_arguments</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">*=</span> <span class="n">arg</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The result is: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ERROR: The calculation could not be performed failed (input arguments: </span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ERROR: The calculation could not be performed failed (input arguments: </span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="k">def</span> <span class="nf">sum_up_arguments</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="n">arg</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ERROR: The calculation could not be performed failed (input arguments: </span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ERROR: The calculation could not be performed failed (input arguments: </span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>   
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Both functions involve the statement <code class="docutils literal notranslate"><span class="pre">print(&quot;The</span> <span class="pre">result</span> <span class="pre">is:</span> <span class="pre">&quot;</span> <span class="pre">+</span> <span class="pre">str(result))</span></code> to print the results to the <em>Python</em> console (e.g., to ensure get some intermediate information) and to run only on valid (i.e., numeric) input with the help of exception (<code class="docutils literal notranslate"><span class="pre">try</span></code> - <code class="docutils literal notranslate"><span class="pre">except</span></code>) statements. However, we want our functions to focus on the calculation only and this is where a wrapper function helps.</p>
+<p>A wrapper function can be defined by first defining a normal function (e.g., <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">verify_result</span></code>) and passing a function (<code class="docutils literal notranslate"><span class="pre">func</span></code>) as argument. In that function, we can then place a nested <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">wrapper()</span></code> function that will embrace <code class="docutils literal notranslate"><span class="pre">func</span></code>. It is important to use both optional <code class="docutils literal notranslate"><span class="pre">*args</span></code> and optional keyword <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> in the wrapper and the call to <code class="docutils literal notranslate"><span class="pre">func</span></code> in order to make the wrapper as flexible as possible.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">verify_result</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Success. The result is </span><span class="si">%1.3f</span><span class="s2">.&quot;</span> <span class="o">%</span> <span class="nb">float</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">result</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ERROR: The calculation could not be performed because of at least one non-numeric input (input arguments: </span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
+            <span class="k">return</span> <span class="mf">0.0</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ERROR: The calculation could not be performed because of non-nmumeric input (input arguments: </span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
+            <span class="k">return</span> <span class="mf">0.0</span>
+    <span class="k">return</span> <span class="n">wrapper</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we can use an <code class="docutils literal notranslate"><span class="pre">&#64;</span></code>-decorator to wrap the above function in the <code class="docutils literal notranslate"><span class="pre">verify_result(fun)</span></code> function. When <em>Python</em> reads the beautiful, code-decorating <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> sign, it will look for the wrapper function defined after the <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> sign to wrap the following function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@verify_result</span>
+<span class="k">def</span> <span class="nf">multiply_arguments</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">*=</span> <span class="n">arg</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="nd">@verify_result</span>
+<span class="k">def</span> <span class="nf">sum_up_arguments</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="n">arg</span>
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The two functions (<code class="docutils literal notranslate"><span class="pre">multiply_arguments</span></code> and <code class="docutils literal notranslate"><span class="pre">sum_up_arguments</span></code>) can be called as usually, for example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">multiply_arguments</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">multiply_arguments</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;not a number&quot;</span><span class="p">)</span>
+<span class="n">sum_up_arguments</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">sum_up_arguments</span><span class="p">(</span><span class="s2">&quot;absolutely&quot;</span><span class="p">,</span> <span class="s2">&quot;no&quot;</span><span class="p">,</span> <span class="s2">&quot;valid&quot;</span><span class="p">,</span> <span class="s2">&quot;input&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Success. The result is 12.000.
+ERROR: The calculation could not be performed because of at least one non-numeric input (input arguments: (3, 4, &#39;not a number&#39;))
+Success. The result is 7.000.
+ERROR: The calculation could not be performed because of at least one non-numeric input (input arguments: (&#39;absolutely&#39;, &#39;no&#39;, &#39;valid&#39;, &#39;input&#39;))
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>The above wrapper function returns the wrapped function results, too. However, in order to use built-in function attributes (e.g., the function’s name with <code class="docutils literal notranslate"><span class="pre">__name__</span></code>, the function’s docstring with <code class="docutils literal notranslate"><span class="pre">__doc__</span></code>, or the module in which the function is defined with <code class="docutils literal notranslate"><span class="pre">__module__</span></code>) outside of the wrapper, we need the wrapper function to return the wrapped (decorated) function itself. This can be done as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">error_func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">0.0</span>
+
+<span class="k">def</span> <span class="nf">verify_result</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ERROR: The calculation could not be performed because of at least one non-numeric input (input arguments: </span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">error_func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ERROR: The calculation could not be performed because of non-nmumeric input (input arguments: </span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">error_func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wrapper</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note the difference: the <code class="docutils literal notranslate"><span class="pre">wrapper</span></code> function now returns <code class="docutils literal notranslate"><span class="pre">func(*arg,</span> <span class="pre">**kwargs)</span></code> instead of the numeric variable results. If the function can not be executed because of invalid input, the <code class="docutils literal notranslate"><span class="pre">wrapper</span></code> will return an error function (<code class="docutils literal notranslate"><span class="pre">error_func</span></code>), which ensures the consistency of the wrapper function. One may think that the error function returning 0.0 is obsolete, because the exception statements could directly return 0.0. However, 0.0 is a <em>float</em> variable, while <code class="docutils literal notranslate"><span class="pre">error_func</span></code> is a function and it is important that the function wrapper always returns the same data type, regardless of the an exception raise or successful execution. This is what makes code consistent.</p>
+<p>This page shows examples for using the decorators in the shape of an <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> sign to wrap (embrace) a function. Decorators are also a useful feature in classes, for example when a class function returns static values. Read more about decorators in classes later in the chapter about <a class="reference external" href="classes.html#dec">object orientation and classes</a>.</p>
+</div>
+<div class="section" id="iterators-and-generators">
+<h2>Iterators and Generators<a class="headerlink" href="#iterators-and-generators" title="Permalink to this headline">¶</a></h2>
+<p>A characteristic of <em>list</em>, <em>tuple</em>, and <em>dictionary</em> data types is their iterability, which is provided by their <code class="docutils literal notranslate"><span class="pre">__iter__</span></code> built-in method. For example, iterability is the for why we can write:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]:</span> <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+2
+3
+</pre></div>
+</div>
+</div>
+</div>
+<p>Besides iterations, <em>Python</em> also enables to create generators (i.e., generator functions). Instead of using a <code class="docutils literal notranslate"><span class="pre">return</span></code> statement, a generator function ends with a <code class="docutils literal notranslate"><span class="pre">yield</span></code> statement, that returns data as long as a <code class="docutils literal notranslate"><span class="pre">next()</span></code> function (inherent step in iterations) is called. An application of a generator is for example the flattening of nested lists (i.e., remove sub-lists and write all variables directly into a non-nested list):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Iterable</span>
+
+<span class="k">def</span> <span class="nf">flatten</span><span class="p">(</span><span class="n">nested_list</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">nested_list</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">flatten</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+                <span class="k">yield</span> <span class="n">x</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">e</span>
+            
+<span class="n">a_nested_list</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">]]</span>
+<span class="n">flattened_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">flatten</span><span class="p">(</span><span class="n">a_nested_list</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">flattened_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, &#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The above example uses <code class="docutils literal notranslate"><span class="pre">Iterable</span></code> from the standard module <code class="docutils literal notranslate"><span class="pre">collections.abc</span></code>. More about importing packages and modules is discussed in the <a class="reference internal" href="pypckg.html"><span class="doc std std-doc">Modules &amp; Packages</span></a> section.</p>
+</div>
+</div>
+<div class="section" id="lambda-functions">
+<span id="lambda"></span><h2>Lambda Functions<a class="headerlink" href="#lambda-functions" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Lambda_calculus">Lambda (<em>λ</em>) calculus</a> is a formal language for expressing computation-based on function abstraction and was introduced in the 1930s by Alonzo Church and Stephen Cole Kleene. Lambda functions originate from functional programming and represent short, anonymous (i.e, without name) functions. Although <em>Python</em> is not inherently a functional programming language, functional concepts were implemented early in <em>Python</em>, for example with the <code class="docutils literal notranslate"><span class="pre">map()</span></code>, <code class="docutils literal notranslate"><span class="pre">filter()</span></code>, and deprecated <code class="docutils literal notranslate"><span class="pre">reduce()</span></code> functions and also the <code class="docutils literal notranslate"><span class="pre">lambda</span></code> operator.</p>
+<p>In <em>Python</em>, an anonymous (nameless) lambda function can take any number of arguments, but can only have one expression. The list of arguments consists of a comma-separated list of variables and the expression uses these arguments. The <strong>syntax</strong> of <code class="docutils literal notranslate"><span class="pre">lambda</span></code> functions is:</p>
+<p><code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">arguments</span> <span class="pre">:</span> <span class="pre">expression</span></code></p>
+<p>The following example illustrates a <code class="docutils literal notranslate"><span class="pre">lambda</span></code> function with one argument and adds 1 to the argument:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">add_one</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">number</span> <span class="p">:</span> <span class="n">number</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">add_one</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<p>That was nice, but pretty useless. So here is an example of a lambda function that sums up two input arguments:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sum_up</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sum_up</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+</pre></div>
+</div>
+</div>
+</div>
+<p>The above-shown function for converting feet to meters can also be written as a lambda function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feet_to_meter</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">ft_value</span> <span class="p">:</span> <span class="n">ft_value</span> <span class="o">*</span> <span class="mf">0.3048</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">feet_to_meter</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.048
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using a <code class="docutils literal notranslate"><span class="pre">lambda</span></code> function made the code here shorter and more efficient. In order to evaluate the <code class="docutils literal notranslate"><span class="pre">feet_to_meter</span></code> <code class="docutils literal notranslate"><span class="pre">lambda</span></code> function for multiple values, we can use the <code class="docutils literal notranslate"><span class="pre">map()</span></code> function. The syntax of a <code class="docutils literal notranslate"><span class="pre">map()</span></code> function is:</p>
+<p><code class="docutils literal notranslate"><span class="pre">result</span> <span class="pre">=</span> <span class="pre">map(function,</span> <span class="pre">sequence)</span></code></p>
+<p>where <code class="docutils literal notranslate"><span class="pre">sequence</span></code> can be a <em>list</em> or a <em>tuple</em>. Thus, to evaluate a <em>tuple</em> of four values, we can write:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">four_ft_values</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mf">9.7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">feet_to_meter</span><span class="p">,</span> <span class="n">four_ft_values</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.2192, 2.95656, 2.1336, 0.6096]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">print</span></code> statement converts the <code class="docutils literal notranslate"><span class="pre">map()</span></code> object into a <em>list</em> to evaluate the <code class="docutils literal notranslate"><span class="pre">map()</span></code> object (otherwise, the result would be somethine like <code class="docutils literal notranslate"><span class="pre">&lt;map</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">...&gt;</span></code>).</p>
+<p>If the <code class="docutils literal notranslate"><span class="pre">feet_to_meter</span></code> function is not needed at another place in the code, one can also write:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="mf">0.3048</span><span class="p">,</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mf">9.7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.2192, 2.95656, 2.1336, 0.6096]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Another feature are <code class="docutils literal notranslate"><span class="pre">filter(function,</span> <span class="pre">list)</span></code> objects which provide an elegant solution to filter out those elements from a list for which the function returns <code class="docutils literal notranslate"><span class="pre">True</span></code>. The following code block illustrates a <code class="docutils literal notranslate"><span class="pre">filter</span></code> that eliminates all numbers from the <code class="docutils literal notranslate"><span class="pre">some_numbers</span></code> list, which can be divided by three.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">some_numbers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">3</span><span class="p">,</span> <span class="n">some_numbers</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 4, 5, 7, 8]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Formerly, the <code class="docutils literal notranslate"><span class="pre">reduce()</span></code> function to merge down list input into one value was implemented in <em>Python</em>. However, the <em>Python</em> developer <em>Guido van Rossum</em> successfully banned it from <em>Python3</em> (<a class="reference external" href="https://www.artima.com/weblogs/viewpost.jsp?thread=98196">read his post</a>), which is why it is not used here.</p>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Get familiar with functions in the <a class="reference internal" href="../exercises/ex-ms.html"><span class="doc std std-doc">Hydraulics (1d)</span></a> exercise.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./python-basics"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="modularize.html" title="previous page">Modularization &amp; Object Orientation</a>
+    <a class='right-next' id="next-link" href="pypckg.html" title="next page">Packages, Modules and Libraries</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Sebastian Schwindt<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

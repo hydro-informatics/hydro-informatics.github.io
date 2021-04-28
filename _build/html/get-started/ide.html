@@ -1,0 +1,845 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anaconda and Integrated Development Environments (IDEs) &#8212; Hydro-informatics</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Introduction to git" href="git.html" />
+    <link rel="prev" title="Virtual machines and Linux" href="vm.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/icon.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Hydro-informatics</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Home
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get Started
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../lectures/classroom.html">
+   The Virtual Classroom
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/lectures.html">
+     Lectures and exercises
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/take_seat.html">
+     Take a Seat in the Virtual Classroom
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="software.html">
+   Open Access Software Resources
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="vm.html">
+     Virtual machines and Linux
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Anaconda and Integrated Development Environments (IDEs)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="git.html">
+     Introduction to git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="geo.html">
+     Geospatial Software
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="install-openfoam.html">
+     Install OpenFOAM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="install-telemac.html">
+     open TELEMAC (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="others.html">
+     Other Software Resources
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Python Basics
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../python-basics/python.html">
+   Get Started with Python
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python-basics/pyinstall.html">
+     Install Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python-basics/pybase.html">
+     First steps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python-basics/pyerror.html">
+     Errors, Logging, and Debugging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python-basics/pyloop.html">
+     Loops and Conditional Statements
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../python-basics/modularize.html">
+   Modularization &amp; Object Orientation
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python-basics/pyfun.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python-basics/pypckg.html">
+     Packages, Modules and Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python-basics/classes.html">
+     Object Orientation and Classes
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../python-basics/data-handling.html">
+   Data and File Handling
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python-basics/pynum.html">
+     Load and Write Basic Data Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python-basics/pynum.html#numpy">
+     NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python-basics/pynum.html#pandas">
+     Pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python-basics/pynum.html#dates-and-time">
+     Dates and Time
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python-basics/xml.html">
+     Manipulation of Workbooks and JSON Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python-basics/pyplot.html">
+     Plotting
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../python-basics/pystyle.html">
+   Code Style and Conventions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../python-basics/gui.html">
+   Graphical User Interfaces (GUIs)
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../exercises/python-exercises.html">
+   Python Exercises
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-ms.html">
+     1d Hydraulics (Manning-Strickler Formula)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sp.html">
+     Reservoir Volume Calculation with a Sequent Peak Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-floods.html">
+     Calculate flood return periods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sediment.html">
+     One-dimensional (1d) Cross-section Averaged Sediment Transport
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-gui.html">
+     Create a
+     <strong>
+      G
+     </strong>
+     raphical
+     <strong>
+      U
+     </strong>
+     ser
+     <strong>
+      I
+     </strong>
+     nterface (GUI)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Documentation
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/documentation.html">
+   Markdown and Code Documentation
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../exercises/docs-exercises.html">
+   Exercises
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-git.html">
+     Git and markdown
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Geospatial Analysis
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/geospatial-data.html">
+   Geospatial Data
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../geopy/geo-python.html">
+   Geospatial Python
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-pckg.html">
+     Geospatial Python - Open Source Packages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-shp.html">
+     Shapefile (vector dataset) handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-raster.html">
+     Raster (Gridded) Dataset Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-convert.html">
+     Raster to Vector Conversion and Vice Versa
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-arcpy.html">
+     The Commercial arcpy Library
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../exercises/geo-exercises.html">
+   Exercises
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-geco.html">
+     Create a habitat suitability map
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Numerical Modeling
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/numerical-modeling.html">
+   Principles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/pre-qgis.html">
+   Pre-Processing with QGIS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/basement.html">
+   BASEMENT
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../numerics/telemac.html">
+   TELEMAC
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/telemac2d.html">
+     Pre-Processing for TELEMAC models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/telemac3d.html">
+     3d modeling with TELEMAC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/telemac-gaia.html">
+     Gaia Workflow
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/openfoam.html">
+   OpenFOAM
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/calibration.html">
+   Calibration and Valdiation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Troubleshoot
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
+   Programming Tools and IDEs
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
+     Debugging Anaconda
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-python.html">
+     Debugging Python Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
+     Debugging Jupyter
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
+   Numerical Models
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
+     Debugging BASEMENT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
+     Debugging TELEMAC/SALOME
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../troubleshoot/dbg-os.html">
+   Operating Systems (Linux and VMs)
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
+     Debugging Debian Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
+     Debugging Virtual Machines
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Disclaimer and License
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Authored by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/get-started/ide.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/hydro-informatics/hydro-informatics.github.io"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#anaconda">
+   Anaconda
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#anaconda-navigator">
+     Anaconda Navigator
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#miniconda">
+     Miniconda
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pycharm-via-anaconda-navigator">
+   PyCharm (via Anaconda Navigator)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jupyterlab">
+   JupyterLab
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#via-anaconda-navigator">
+     Via Anaconda Navigator
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#via-anaconda-prompt">
+     Via Anaconda Prompt
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extensions-and-spellchecker">
+     Extensions and Spellchecker
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="anaconda-and-integrated-development-environments-ides">
+<h1>Anaconda and Integrated Development Environments (IDEs)<a class="headerlink" href="#anaconda-and-integrated-development-environments-ides" title="Permalink to this headline">¶</a></h1>
+<p>The teaching contents on this website build on so-called <em>Application Programming Inferace</em>s (<em>API</em>s) and <em>Integrated Development Environment</em>s (<em>IDE</em>s).<br>
+An <em><strong>API</strong></em> represents a computing interface that enables interactions between multiple software intermediaries. Modular programming becomes easy with an <em>API</em>, because it systematically hides complex information that is not necessarily needed to write code according to industry standards. For instance, an <em>API</em> can define the interface between an application (such as <em>Python</em> or <em>Word</em>) and an <em>Operating System</em> (<em>OS</em>) such as <em>Windows</em>, <em>Linux</em>, or <em>macOS</em>.<br>
+An <em><strong>IDE</strong></em> enables the definition of a project to use for example a specific <a class="reference external" href="https://docs.conda.io/"><em>Python Conda Environment</em></a> and it enables robust coding by pointing out issues directly in the code, even before it was executed once. Powerful <em>IDE</em>s go even further and provide assistance in documenting code with markdown (<em>.md</em> files) and direct pipes into <em>git</em> (<a class="reference internal" href="git.html"><span class="doc std std-doc">see section on the usage of <em>git</em></span></a>).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These pages are written with the web-based <em>IDE</em> <a class="reference external" href="https://jupyter.org/"><em>JupyterLab</em></a>, which is suitable to follow the course contents. <em>IDE</em>s such as <em>PyCharm</em> or <em>Spyder</em> are more suitable to setup projects locally (e.g., for course assignments).</p>
+</div>
+<div class="section" id="anaconda">
+<span id="id1"></span><h2>Anaconda<a class="headerlink" href="#anaconda" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="anaconda-navigator">
+<h3>Anaconda Navigator<a class="headerlink" href="#anaconda-navigator" title="Permalink to this headline">¶</a></h3>
+<p><em>Anaconda</em> is basically a <em>Python</em> distribution that enables the usage of a couple of <em>IDE</em>s. Today, <em>Anaconda</em> is not limited to <em>Python</em> anymore and also comes with interfaces and environments for <a class="reference external" href="https://www.r-project.org/about.html"><em>R</em></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference external" href="https://www.anaconda.com/distribution/">Anaconda</a> represents the baseline for many applications presented on this website. It enables the built-in installation of programming language interpreters (e.g., <em>Python</em> and <em>R</em>), as well as <em>IDE</em>s such as <a class="reference external" href="https://www.jetbrains.com/pycharm/"><em>PyCharm</em></a>, <a class="reference external" href="https://www.spyder-ide.org/"><em>Spyder</em></a>, or <a class="reference external" href="https://jupyter.org/"><em>JupyterLab (Notebook)</em></a>.</p>
+</div>
+<p>The very first step to get started with <em>Anaconda</em> consists in downloading and installing <a class="reference external" href="https://www.anaconda.com/distribution/"><em>Anaconda</em></a>. On Windows, <em>Anaconda</em> (<a class="reference external" href="https://docs.anaconda.com/anaconda/install/windows/">download</a> should be installed in the <em>LOCAL</em> user folder (e.g., <em>C:\users&lt;your-user-name&gt;\AppData\Local</em>). Linux or macOS users find download and installation instructions directly at the developer’s website, tailored for their specific distribution. <a class="reference external" href="https://docs.anaconda.com/anaconda/install/linux/">Click here for <em>Linux</em> installation instructions</a> and <a class="reference external" href="https://docs.anaconda.com/anaconda/install/mac-os/">click here for <em>macOS</em> installation instructions</a>.</p>
+<p>After the successful installation of <em>Anaconda</em>, <em>IDE</em>s for <em>Python</em> programming or <em>markdown</em> editing can be directly installed by launching the <strong>Anaconda navigator</strong>. <strong><code class="docutils literal notranslate"><span class="pre">conda</span></code></strong> environments can be created later on following the <a class="reference external" href="../python-basics/pyinstall.html#conda-env">instructions in the <em>Python (fundamentals)</em> section</a>.</p>
+</div>
+<div class="section" id="miniconda">
+<h3>Miniconda<a class="headerlink" href="#miniconda" title="Permalink to this headline">¶</a></h3>
+<p><em>Anaconda</em> may create large environments that require several gigabytes of storage. To install lightweight environments, use <a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a>. <em>Miniconda</em> does not include <em>Anaconda Navigator</em> and to enable working with <em>Jupyter</em> notebooks (in <em>Windows</em>):</p>
+<ol class="simple">
+<li><p>Click on <em>Start</em>.</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">Anaconda</span> <span class="pre">Prompt</span></code> and hit enter (use <em>Miniconda3</em>). A <em>Terminal</em> window (black background) opens.</p></li>
+<li><p>In <em>Anaconda prompt</em> type <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">jupyter</span></code> and confirm with <code class="docutils literal notranslate"><span class="pre">y</span></code> when the <em>Terminal</em> asks <code class="docutils literal notranslate"><span class="pre">Proceed</span> <span class="pre">([y]/n)?</span></code>.</p></li>
+</ol>
+<p>To work with <em>Jupyter</em> notebooks (open, create or modify), type <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code> (or <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code>) in <em>Anaconda Prompt (Miniconda3)</em> and hit <em>Enter</em>. The <em>JupyterLab</em> application will open in the default webbrowser.</p>
+</div>
+</div>
+<div class="section" id="pycharm-via-anaconda-navigator">
+<span id="pycharm"></span><h2>PyCharm (via Anaconda Navigator)<a class="headerlink" href="#pycharm-via-anaconda-navigator" title="Permalink to this headline">¶</a></h2>
+<p><em>Jetbrains</em> <a class="reference external" href="https://www.jetbrains.com/pycharm/"><em>PyCharm (Community Edition)</em></a> is an open-access IDE for non-commercial use. Alternatives are <a class="reference external" href="https://www.spyder-ide.org/"><em>Spyder IDE</em></a> (for <em>Python</em>) or <a class="reference external" href="https://rstudio.com/"><em>RStudio</em></a> (<em>R</em> and <em>Python</em>). However, before launching any project in an <em>IDE</em>, the installation of an interpreter (e.g., <em>Python</em> or <em>R</em>) is necessary (we already installed an interpreter with <em>Anaconda</em>).</p>
+<p><em>PyCharm</em> is available as an <em>Anaconda Navigator</em> (i.e., <em>Anaconda</em>’s graphical user interface) module. To enable <em>PyCharm</em> in <em>Anaconda</em>, download <em>PyCharm</em> from the <a class="reference external" href="https://www.jetbrains.com/pycharm/promo/anaconda/">developer’s website</a> and install <em>PyCharm</em>. A reboot may be required after the installation.</p>
+<p>After the installation of <em>PyCharm</em> for <em>Anaconda</em>, open <em>Anaconda Navigator</em>:</p>
+<ol class="simple">
+<li><p>Open <em>Anaconda Navigator</em> and make sure to be in the <em>Home</em> tab.</p></li>
+<li><p>If the installation of <em>PyCharm</em> was successful, click on the <em>Launch</em> button to open <em>PyCharm</em>.</p></li>
+<li><p>In <em>PyCharm</em> click on <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">Create</span> <span class="pre">New</span> <span class="pre">Project</span></code></p></li>
+<li><p>Option 1 (preferred): Use the <a class="reference external" href="https://docs.anaconda.com/anaconda/user-guide/tasks/pycharm/">developer’s up-to-date documentation</a> for setting up <em>PyCharm</em> with <em>Anaconda</em>.</p></li>
+<li><p>Option 2 (quick to read, but may fail): A window will open - enter:</p>
+<ul class="simple">
+<li><p><em>Location</em> - Select a local directory for the project (e.g., <em>C:/hydro/project</em>)</p></li>
+<li><p><em>Project Interpreter</em> - Check the <code class="docutils literal notranslate"><span class="pre">Existing</span> <span class="pre">interpreter</span></code> box and select the above-installed <a class="reference external" href="../python-basics/pyinstall.html#conda-env">conda environment   <code class="docutils literal notranslate"><span class="pre">hypy</span></code>  </a> (e.g., <code class="docutils literal notranslate"><span class="pre">C:\users\&lt;your-user-name&gt;\AppData\Local\Continuum\anaonda3\envs\</span></code>)</p></li>
+<li><p>Click on the <code class="docutils literal notranslate"><span class="pre">Create</span></code> button.</p></li>
+</ul>
+</li>
+</ol>
+<p>All set - you are ready to work with <em>Python</em>, markdown (documentation), and <a class="reference internal" href="git.html"><span class="doc std std-doc">git</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong><em>Python</em> users</strong> read more about setting up <em>conda</em> environments on the <a class="reference external" href="../python-basics/pyinstall.html#ide-setup"><em>Python (basics)</em></a> page.</p>
+</div>
+</div>
+<div class="section" id="jupyterlab">
+<span id="jupyter"></span><h2>JupyterLab<a class="headerlink" href="#jupyterlab" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="via-anaconda-navigator">
+<h3>Via Anaconda Navigator<a class="headerlink" href="#via-anaconda-navigator" title="Permalink to this headline">¶</a></h3>
+<p><em>JupyterLab</em> is a product of the nonprofit organization <a class="reference external" href="https://jupyter.org/"><em>Project Jupyter</em></a>, which develops “open-source software, open-standards, and services for interactive computing across dozens of programming languages”. A <em>Jupyter</em> notebook (<em>.ipynb</em> file) enables the combination of markdown text blocks with executable code blocks. Essentially, a <em>Jupyter</em> notebook is a <em>JavaScript Object Notation</em> (<a class="reference external" href="https://www.json.org/json-en.html"><em>JSON</em></a> file. The structure of <em>JSON</em> files enables the easy export of <em>.ipynb</em>  notebooks to many other open standard output formats such as <em>HTML</em>, <a class="reference external" href="https://latex-project.org/"><em>LaTeX</em></a>, <em>markdown</em>, <em>Python</em>, <em>presentation slides</em>, or <em>PDF</em>.
+The <em>Jupyter</em> kernels support the three core programming languages <strong>Ju</strong>lia, <strong>Pyt</strong>hon and <strong>R</strong>, and many more <em>Jupyter</em> kernels (currently 49) for other programming languages exist.</p>
+<ol class="simple">
+<li><p>Open <em>Anaconda Navigator</em> and make sure to be in the <em>Home</em> tab.</p></li>
+<li><p>Look for <em>JupyterLab</em> and click on the <em>Install</em> button (if already installed, there is only a <em>Launch</em> button visible).</p></li>
+<li><p>After successful installation, open <em>JupyterLab</em>, by clicking on the <em>Launch</em> button.</p></li>
+<li><p><em>JupyterLab</em> opens in the default web browser, where <em>Jupyter</em> notebooks (<em>.ipynb</em>) or <em>Python</em> files can be created and edited.</p></li>
+</ol>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Working with Jupyter</p>
+<p>Get familiar with <em>JupyterLab</em>, by creating files, adding new <em>Markdown</em> or <em>Python</em> cells and <code class="docutils literal notranslate"><span class="pre">Run</span></code>ning cells. The essentials of <em>markdown</em> are explained on the <a class="reference external" href="../get-started/documentation.html#markdown">Markdown and Documentation</a> page (short read). Learning <em>Python</em> is more than a short read and the <a class="reference internal" href="../python-basics/python.html"><span class="doc std std-doc"><em>Python</em> (basics)</span></a> walks you through the course contents to learn <em>Python</em> (takes time).</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>Anaconda Navigator</em> alternatively provides the application <em>Jupyter Notebook</em>. However, <em>JupyterLab</em> is the <em>Project Jupyter</em>’s next-generation user interface, which is more flexible and powerful. This is why this website refers to <em>JupyterLab</em> rather than the <em>Jupyter Notebook</em> app.</p>
+</div>
+</div>
+<div class="section" id="via-anaconda-prompt">
+<h3>Via Anaconda Prompt<a class="headerlink" href="#via-anaconda-prompt" title="Permalink to this headline">¶</a></h3>
+<p>Open <em>Anaconda Prompt</em>, which represents a <em>Terminal</em> window with black background and a blinking cursor.</p>
+<p>If you are working with <em>Miniconda</em>, install the <em>Jupyter Notebook</em> app by typing <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">jupyter</span></code> and confirm with <code class="docutils literal notranslate"><span class="pre">y</span></code> when <em>Anaconda Prompt</em> asks <code class="docutils literal notranslate"><span class="pre">Proceed</span> <span class="pre">([y]/n)?</span></code>.</p>
+<p>To start the <em>JupyterLab</em> app and open, create, or modify <em>Jupyter</em> notebooks, type <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code> (<code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code> for <em>Jupyter Notebook</em>) in <em>Anaconda Prompt (Miniconda3)</em> and hit <em>Enter</em>. The <em>Jupyter Notebook</em> application will open in the default webbrowser.</p>
+</div>
+<div class="section" id="extensions-and-spellchecker">
+<h3>Extensions and Spellchecker<a class="headerlink" href="#extensions-and-spellchecker" title="Permalink to this headline">¶</a></h3>
+<p>Many additional features for <em>JupyterLab</em> are available through <a class="reference external" href="https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/install.html"><em>nbextensions</em></a>, which can be installed through <em>Anaconda Prompt</em>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">jupyter_contrib_nbextensions</span>
+</pre></div>
+</div>
+<p>When reading through the <em>Python</em> tutorials on this website, you will probably find one or another spelling mistake (please <a href="mailto:sebastian.schwindt[AT]iws.uni-stuttgart.de?subject=HYPY%20Spelling%20mistake">report mistakes!</a>). In particular, the <em>Python</em> pages are affected, because they were created with <em>Jupyter Lab</em>, where there is no spell checker pre-installed. To avoid at least the most unpleasant errors you can install a spellchecker in <em>jupyter</em>. One solution is to install <a class="reference external" href="https://github.com/ijmbarr/jupyterlab_spellchecker"><em>&#64;ijmbbarr</em></a>s spellchecker, which requires installing <em>nodejs</em> (through <em>Anaconda Prompt</em> and in addition to <em>nbextensions</em>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">nodejs</span>
+<span class="n">jupyter</span> <span class="n">labextension</span> <span class="n">install</span> <span class="nd">@ijmbarr</span><span class="o">/</span><span class="n">jupyterlab_spellchecker</span>
+</pre></div>
+</div>
+<p>The spellchecker uses <a class="reference external" href="https://github.com/cfinke/Typo.js">Typo.js</a> as dictionary and only identifies misspelled words without proposing corrections. More details on spellchecking are available at the <a class="reference external" href="https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/spellchecker/README.html">developer’s website</a>.</p>
+<p>In the case that several warning messages occur when starting <em>JupyterLab</em> (such as <code class="docutils literal notranslate"><span class="pre">[W</span> <span class="pre">18:49:22.283</span> <span class="pre">NotebookApp]</span> <span class="pre">Config</span> <span class="pre">option</span> <span class="pre">template_path</span> <span class="pre">not</span> <span class="pre">recognized</span> <span class="pre">by</span> <span class="pre">LenvsHTMLExporter.</span> <span class="pre">Did</span> <span class="pre">you</span> <span class="pre">mean</span> <span class="pre">one</span> <span class="pre">of:</span> <span class="pre">template_file,</span> <span class="pre">template_name,</span> <span class="pre">template_paths?</span></code>), downgrade <em>jupyter notebook</em> from version 6.x to 5.6.1 (there is currently an issue with the <code class="docutils literal notranslate"><span class="pre">temp_path</span></code> variable):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="s2">&quot;nbconvert=5.6.1&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./get-started"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="vm.html" title="previous page">Virtual machines and Linux</a>
+    <a class='right-next' id="next-link" href="git.html" title="next page">Introduction to git</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Sebastian Schwindt<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

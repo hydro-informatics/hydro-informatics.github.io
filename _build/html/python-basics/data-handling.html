@@ -1,0 +1,696 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data and File Handling &#8212; Hydro-informatics</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Load and Write Basic Data Files" href="pynum.html" />
+    <link rel="prev" title="Object Orientation and Classes" href="classes.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/icon.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Hydro-informatics</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Home
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get Started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../lectures/classroom.html">
+   The Virtual Classroom
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/lectures.html">
+     Lectures and exercises
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/take_seat.html">
+     Take a Seat in the Virtual Classroom
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../get-started/software.html">
+   Open Access Software Resources
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/vm.html">
+     Virtual machines and Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/ide.html">
+     Anaconda and Integrated Development Environments (IDEs)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/git.html">
+     Introduction to git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/geo.html">
+     Geospatial Software
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-openfoam.html">
+     Install OpenFOAM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-telemac.html">
+     open TELEMAC (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/others.html">
+     Other Software Resources
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Python Basics
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="python.html">
+   Get Started with Python
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyinstall.html">
+     Install Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pybase.html">
+     First steps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyerror.html">
+     Errors, Logging, and Debugging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyloop.html">
+     Loops and Conditional Statements
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="modularize.html">
+   Modularization &amp; Object Orientation
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyfun.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pypckg.html">
+     Packages, Modules and Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="classes.html">
+     Object Orientation and Classes
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="current reference internal" href="#">
+   Data and File Handling
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="pynum.html">
+     Load and Write Basic Data Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pynum.html#numpy">
+     NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pynum.html#pandas">
+     Pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pynum.html#dates-and-time">
+     Dates and Time
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="xml.html">
+     Manipulation of Workbooks and JSON Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyplot.html">
+     Plotting
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pystyle.html">
+   Code Style and Conventions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gui.html">
+   Graphical User Interfaces (GUIs)
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../exercises/python-exercises.html">
+   Python Exercises
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-ms.html">
+     1d Hydraulics (Manning-Strickler Formula)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sp.html">
+     Reservoir Volume Calculation with a Sequent Peak Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-floods.html">
+     Calculate flood return periods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sediment.html">
+     One-dimensional (1d) Cross-section Averaged Sediment Transport
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-gui.html">
+     Create a
+     <strong>
+      G
+     </strong>
+     raphical
+     <strong>
+      U
+     </strong>
+     ser
+     <strong>
+      I
+     </strong>
+     nterface (GUI)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Documentation
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/documentation.html">
+   Markdown and Code Documentation
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../exercises/docs-exercises.html">
+   Exercises
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-git.html">
+     Git and markdown
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Geospatial Analysis
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/geospatial-data.html">
+   Geospatial Data
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../geopy/geo-python.html">
+   Geospatial Python
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-pckg.html">
+     Geospatial Python - Open Source Packages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-shp.html">
+     Shapefile (vector dataset) handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-raster.html">
+     Raster (Gridded) Dataset Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-convert.html">
+     Raster to Vector Conversion and Vice Versa
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-arcpy.html">
+     The Commercial arcpy Library
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../exercises/geo-exercises.html">
+   Exercises
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-geco.html">
+     Create a habitat suitability map
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Numerical Modeling
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/numerical-modeling.html">
+   Principles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/pre-qgis.html">
+   Pre-Processing with QGIS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/basement.html">
+   BASEMENT
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../numerics/telemac.html">
+   TELEMAC
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/telemac2d.html">
+     Pre-Processing for TELEMAC models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/telemac3d.html">
+     3d modeling with TELEMAC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/telemac-gaia.html">
+     Gaia Workflow
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/openfoam.html">
+   OpenFOAM
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/calibration.html">
+   Calibration and Valdiation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Troubleshoot
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
+   Programming Tools and IDEs
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
+     Debugging Anaconda
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-python.html">
+     Debugging Python Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
+     Debugging Jupyter
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
+   Numerical Models
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
+     Debugging BASEMENT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
+     Debugging TELEMAC/SALOME
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../troubleshoot/dbg-os.html">
+   Operating Systems (Linux and VMs)
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
+     Debugging Debian Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
+     Debugging Virtual Machines
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Disclaimer and License
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Authored by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/python-basics/data-handling.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/hydro-informatics/hydro-informatics.github.io"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="data-and-file-handling">
+<h1>Data and File Handling<a class="headerlink" href="#data-and-file-handling" title="Permalink to this headline">¶</a></h1>
+<p>Import data from basic text files and write files with Python. Handle numeric, tabular and date-time formatted data with the NumPy and pandas packages.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./python-basics"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="classes.html" title="previous page">Object Orientation and Classes</a>
+    <a class='right-next' id="next-link" href="pynum.html" title="next page">Load and Write Basic Data Files</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Sebastian Schwindt<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,899 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Install Python &#8212; Hydro-informatics</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="First steps" href="pybase.html" />
+    <link rel="prev" title="Get Started with Python" href="python.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/icon.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Hydro-informatics</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Home
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get Started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../lectures/classroom.html">
+   The Virtual Classroom
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/lectures.html">
+     Lectures and exercises
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/take_seat.html">
+     Take a Seat in the Virtual Classroom
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../get-started/software.html">
+   Open Access Software Resources
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/vm.html">
+     Virtual machines and Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/ide.html">
+     Anaconda and Integrated Development Environments (IDEs)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/git.html">
+     Introduction to git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/geo.html">
+     Geospatial Software
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-openfoam.html">
+     Install OpenFOAM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-telemac.html">
+     open TELEMAC (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/others.html">
+     Other Software Resources
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Python Basics
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="python.html">
+   Get Started with Python
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Install Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pybase.html">
+     First steps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyerror.html">
+     Errors, Logging, and Debugging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyloop.html">
+     Loops and Conditional Statements
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="modularize.html">
+   Modularization &amp; Object Orientation
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyfun.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pypckg.html">
+     Packages, Modules and Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="classes.html">
+     Object Orientation and Classes
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="data-handling.html">
+   Data and File Handling
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="pynum.html">
+     Load and Write Basic Data Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pynum.html#numpy">
+     NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pynum.html#pandas">
+     Pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pynum.html#dates-and-time">
+     Dates and Time
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="xml.html">
+     Manipulation of Workbooks and JSON Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyplot.html">
+     Plotting
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pystyle.html">
+   Code Style and Conventions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gui.html">
+   Graphical User Interfaces (GUIs)
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../exercises/python-exercises.html">
+   Python Exercises
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-ms.html">
+     1d Hydraulics (Manning-Strickler Formula)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sp.html">
+     Reservoir Volume Calculation with a Sequent Peak Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-floods.html">
+     Calculate flood return periods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sediment.html">
+     One-dimensional (1d) Cross-section Averaged Sediment Transport
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-gui.html">
+     Create a
+     <strong>
+      G
+     </strong>
+     raphical
+     <strong>
+      U
+     </strong>
+     ser
+     <strong>
+      I
+     </strong>
+     nterface (GUI)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Documentation
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/documentation.html">
+   Markdown and Code Documentation
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../exercises/docs-exercises.html">
+   Exercises
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-git.html">
+     Git and markdown
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Geospatial Analysis
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/geospatial-data.html">
+   Geospatial Data
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../geopy/geo-python.html">
+   Geospatial Python
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-pckg.html">
+     Geospatial Python - Open Source Packages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-shp.html">
+     Shapefile (vector dataset) handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-raster.html">
+     Raster (Gridded) Dataset Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-convert.html">
+     Raster to Vector Conversion and Vice Versa
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-arcpy.html">
+     The Commercial arcpy Library
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../exercises/geo-exercises.html">
+   Exercises
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-geco.html">
+     Create a habitat suitability map
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Numerical Modeling
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/numerical-modeling.html">
+   Principles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/pre-qgis.html">
+   Pre-Processing with QGIS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/basement.html">
+   BASEMENT
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../numerics/telemac.html">
+   TELEMAC
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/telemac2d.html">
+     Pre-Processing for TELEMAC models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/telemac3d.html">
+     3d modeling with TELEMAC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/telemac-gaia.html">
+     Gaia Workflow
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/openfoam.html">
+   OpenFOAM
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/calibration.html">
+   Calibration and Valdiation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Troubleshoot
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
+   Programming Tools and IDEs
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
+     Debugging Anaconda
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-python.html">
+     Debugging Python Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
+     Debugging Jupyter
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
+   Numerical Models
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
+     Debugging BASEMENT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
+     Debugging TELEMAC/SALOME
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../troubleshoot/dbg-os.html">
+   Operating Systems (Linux and VMs)
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
+     Debugging Debian Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
+     Debugging Virtual Machines
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Disclaimer and License
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Authored by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/python-basics/pyinstall.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/hydro-informatics/hydro-informatics.github.io"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conda-environments">
+   Conda Environments
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-and-install">
+     Create and Install
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activate-environment">
+     Activate Environment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-additional-python-packages">
+     Install Additional
+     <em>
+      Python
+     </em>
+     Packages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#remove-delete-environment">
+     Remove (Delete) Environment
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup-interfaces-and-ides">
+   Setup Interfaces and IDEs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jupyterlab">
+     JupyterLab
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pycharm">
+     PyCharm
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="install-python">
+<span id="id1"></span><h1>Install Python<a class="headerlink" href="#install-python" title="Permalink to this headline">¶</a></h1>
+<p><em>Python</em>’s two-fold development (<em>Python2</em> and <em>Python3</em>) and other parallel versions of <em>Python</em> (e.g., ESRI’s ArcGIS or Nvidia’s cuda <em>Python</em> versions) may cause that multiple versions of <em>Python</em> are installed on your computer (even though <em>Python2</em> is about to disappear). As a consequence packages might have been unintentionally or unknowingly installed for another <em>Python</em> than used for a project. However, the parallel existence of multiple <em>Python</em> interpreters that may access packages may be beneficial (e.g., when packages are installed that are not compatible with each other). So, how to <strong>deal with the challenge of having multiple <em>Python</em> interpreters (or environments) installed?</strong></p>
+<p><strong><em>Conda</em> environments</strong> are one solution to this challenge: A <em>Conda Environment</em> is a directory on your computer that represents a virtual environment with a particular <em>Python</em> interpreter (e.g., a Python2 or Python3 executable) and packages. The directory is typically named <code class="docutils literal notranslate"><span class="pre">env</span></code> (or <code class="docutils literal notranslate"><span class="pre">venv</span></code> for virtual environment) and <em>Anaconda</em> will control automatically where the environment directories (folders) are stored on your computer. On Windows, the typical directory is <code class="docutils literal notranslate"><span class="pre">C:\users\&lt;your-user-name&gt;\AppData\Local\Continuum\anaconda3\envs\</span></code>. Note that <em>AppData</em> is a hidden folder (<a class="reference external" href="https://support.microsoft.com/en-us/help/4028316/windows-view-hidden-files-and-folders-in-windows-10">view hidden folders on Windows</a>). Only change the default directory for Conda Environment directories, if you exactly know what you are doing.</p>
+<div class="admonition-requirements admonition">
+<p class="admonition-title">Requirements</p>
+<p>Before you continue, <strong>make sure that <em>Anaconda</em> or <a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a> is installed</strong> according to the <a class="reference external" href="../get-started/ide.html#anaconda">descriptions in the <em>Get Started</em></a> section.</p>
+</div>
+<div class="section" id="conda-environments">
+<span id="conda-env"></span><h2>Conda Environments<a class="headerlink" href="#conda-environments" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="create-and-install">
+<h3>Create and Install<a class="headerlink" href="#create-and-install" title="Permalink to this headline">¶</a></h3>
+<p>To create a new <em>conda</em> environment, open <em>Anaconda Prompt</em> and type (replace <code class="docutils literal notranslate"><span class="pre">ENV-NAME</span></code> for example with <code class="docutils literal notranslate"><span class="pre">hypy</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="n">ENV</span><span class="o">-</span><span class="n">NAME</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.8</span>
+</pre></div>
+</div>
+<p>An alternative (and recommended for the tutorials on this page) option is to install an environment that suites most of the needs for codes and analyses shown on these pages through an <em>environment</em> (<em>YML</em>) file:</p>
+<ol class="simple">
+<li><p>Download the environment file <a class="reference external" href="https://github.com/hydro-informatics/materials-py-install/blob/master/environment.yml">here</a> (if needed: copy the file contents of <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> in a local text editor tool such as <a class="reference external" href="https://notepad-plus-plus.org/">Notedpad++</a> (<a class="reference external" href="hy_get-started/others.html#npp">alternatives</a> and save the file for example in a directory called <em>C:/temp/</em>).</p></li>
+<li><p>Open <em>Anaconda Prompt</em> (<code class="docutils literal notranslate"><span class="pre">Windows</span></code> key &gt; type <code class="docutils literal notranslate"><span class="pre">Anaconda</span> <span class="pre">Prompt</span></code> &gt; hit <code class="docutils literal notranslate"><span class="pre">Enter</span></code>).</p></li>
+<li><p>Navigate to the download directory where <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> is located (use   <a class="reference external" href="https://www.digitalcitizen.life/command-prompt-how-use-basic-commands"><code class="docutils literal notranslate"><span class="pre">cd</span></code></a>   to navigate for example to <em>C:/temp/</em>).</p></li>
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">environment.yml</span></code> (this creates an environment called <code class="docutils literal notranslate"><span class="pre">hypy</span></code>).</p></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The provided <a class="reference external" href="https://github.com/hydro-informatics/materials-py-install/blob/master/environment.yml">environment.yml</a> file creates a carefree environment for using <em>Python</em> as described on this website. Still, you may want to create your own environment and use this section refresh your mind for installing any missing libraries.</p>
+</div>
+</div>
+<div class="section" id="activate-environment">
+<h3>Activate Environment<a class="headerlink" href="#activate-environment" title="Permalink to this headline">¶</a></h3>
+<p>The active environment corresponds to the environment that you are working in (e.g., for installing libraries or using <em>Jupyter</em>). To activate the above-created <em>hypy</em> environment:</p>
+<ol class="simple">
+<li><p>Open <em>Anaconda Prompt</em> (<code class="docutils literal notranslate"><span class="pre">Windows</span></code> key or click on the start menu of your operating system &gt; type <code class="docutils literal notranslate"><span class="pre">Anaconda</span> <span class="pre">Prompt</span></code> &gt; hit <code class="docutils literal notranslate"><span class="pre">Enter</span></code>).</p></li>
+<li><p>Activate the <em>hypy</em> environment with <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">hypy</span></code></p></li>
+</ol>
+</div>
+<div class="section" id="install-additional-python-packages">
+<span id="install-pckg"></span><h3>Install Additional <em>Python</em> Packages<a class="headerlink" href="#install-additional-python-packages" title="Permalink to this headline">¶</a></h3>
+<p>To install more <a class="reference internal" href="pypckg.html"><span class="doc std std-doc"><em>Python</em> packages</span></a>:</p>
+<ol class="simple">
+<li><p>Activate the environment where you want to install, remove, or modify packages (e.g., <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">hypy</span></code> - see above).</p></li>
+<li><p>Install a package by typing <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">PACKAGE_NAME</span></code> (if the package cannot be found, try <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">PACKAGE_NAME</span></code>).</p></li>
+</ol>
+<p>Alternatively, press the <code class="docutils literal notranslate"><span class="pre">Windows</span></code> key (or click on the start menu of your operating system) &gt; type <code class="docutils literal notranslate"><span class="pre">Anaconda</span> <span class="pre">Navigator</span></code> &gt; got to the <code class="docutils literal notranslate"><span class="pre">Environments</span></code> tab &gt; select the <code class="docutils literal notranslate"><span class="pre">hypy</span></code> environment (or create another environment) &gt; <em>install</em> &gt; install packages.</p>
+</div>
+<div class="section" id="remove-delete-environment">
+<h3>Remove (Delete) Environment<a class="headerlink" href="#remove-delete-environment" title="Permalink to this headline">¶</a></h3>
+<p>To remove a conda environment open <em>Anaconda Prompt</em> and type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">env</span> <span class="n">remove</span> <span class="o">--</span><span class="n">name</span> <span class="n">ENVIRONMENT</span><span class="o">-</span><span class="n">TO</span><span class="o">-</span><span class="n">REMOVE</span>
+</pre></div>
+</div>
+<p>For example, to remove the <code class="docutils literal notranslate"><span class="pre">hypy</span></code> environment type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">env</span> <span class="n">remove</span> <span class="o">--</span><span class="n">name</span> <span class="n">hypy</span>
+</pre></div>
+</div>
+<p>There are many more <code class="docutils literal notranslate"><span class="pre">conda</span></code> commands and the most important ones are summarized in the developer’s <a class="reference external" href="https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf"><em>conda</em> cheat sheet</a>.</p>
+</div>
+</div>
+<div class="section" id="setup-interfaces-and-ides">
+<h2>Setup Interfaces and IDEs<a class="headerlink" href="#setup-interfaces-and-ides" title="Permalink to this headline">¶</a></h2>
+<p>To follow the course content and run code cells, it is recommended to use <a class="reference external" href="../get-started/ide.html#jupyter"><em>JupyterLab</em></a>. To create projects, develop programs, or simply to complete course assignments, it is recommended to use an Integrated Development Environment (<em>IDE</em>) such as <a class="reference external" href="../get-started/ide.html#pycharm"><em>PyCharm</em></a>.</p>
+<div class="section" id="jupyterlab">
+<h3>JupyterLab<a class="headerlink" href="#jupyterlab" title="Permalink to this headline">¶</a></h3>
+<p>The descriptions on the <em>Get started</em> for installing and launching <a class="reference external" href="../get-started/ide.html#jupyter"><em>JupyterLab</em></a>, where <em>Jupyter</em> notebooks (<em>.ipynb</em> files), <em>Python</em> scripts (<em>.py</em> files), folders and more can be created from the <em>File</em> menu.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Start <em>JupyterLab</em> by typing <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code> in <em>Anaconda Prompt</em>.</p>
+</div>
+<p>The <em>Kernel</em> menu runs the defined programming language (<em>Python 3</em> in the example below). The <em>Settings</em> menu provides options to configure styles (e.g., choose the <em>JupyterLab Dark</em> theme shown in the below figure).
+<em>JupyterLab</em> runs on a local server (typically on <code class="docutils literal notranslate"><span class="pre">localhost:XXPORTXX/lab</span></code>), which is why it is just like an interactive website in your browser. At the beginning it takes some getting used to, but one gets quickly familiar with it and there are many advantages such as the inline use of online graphics.</p>
+<div class="figure align-default" id="id2">
+<img alt="pyc-prj-setup" src="../_images/jupyter-illu.png" />
+<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">JupyterLab in Dark theme appearance with a Jupyter notebook (xml.ipynb) opened showing the combination of a markdown cell (Charts(plots) and a Python 3 cell.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p><em>Jupyter</em> is a spin-off of <a class="reference external" href="https://ipython.org/"><em>IPython</em></a>, which is “a rich architecture for interactive computing”. Therefore, when we start a <em>Python</em> kernel in <em>JupyterLab</em>, an <em>IPython</em> kernel is started, which refers to the currently activated <em>conda</em> environment. So if you need to install a package for usage in <em>JupyterLab</em>, follow the <a class="reference external" href="##install-pckg">above instructions</a> and make sure that the corresponding environment is activated.</p>
+<p><em>Python</em> cells in <em>Jupyter</em> notebooks often require certain packages, which must be reloaded for each cell after each kernel start (learn more about packages in the <a class="reference internal" href="pypckg.html#sec-pypckg"><span class="std std-ref">Packages, Modules and Libraries</span></a> section). So it can be useful to define default imports for <em>IPython</em> and this works as follows.</p>
+<ol class="simple">
+<li><p>Look for the (hidden) <code class="docutils literal notranslate"><span class="pre">.ipython</span></code> folder on your computer</p>
+<ul class="simple">
+<li><p>In <em>Windows</em>, this ist typically in your user folder (<code class="docutils literal notranslate"><span class="pre">C:\Users\your-name\.ipython\</span></code>) (<a class="reference external" href="https://support.microsoft.com/en-us/help/14201/windows-show-hidden-files">how to show hidden files in <em>Windows</em></a></p></li>
+<li><p>In <em>Linux</em> (or other <em>Unix</em>-based system such as <em>macOS</em>), files beginning with a <code class="docutils literal notranslate"><span class="pre">.</span></code> are hidden and <em>IPython</em> is typically located in <code class="docutils literal notranslate"><span class="pre">/usr/local/etc/ipython/</span></code> or <code class="docutils literal notranslate"><span class="pre">/usr/local/etc/.ipython/</span></code> (either use the terminal and type <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-a</span></code> or simultaneously hit the <code class="docutils literal notranslate"><span class="pre">CTRL</span></code>+<code class="docutils literal notranslate"><span class="pre">H</span></code> keys)</p></li>
+</ul>
+</li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">.ipython</span></code> or <code class="docutils literal notranslate"><span class="pre">ipython</span></code> folder, create a sub-directory called <code class="docutils literal notranslate"><span class="pre">/profile_default/startup/</span></code> (if not yet present).</p></li>
+<li><p>If not yet present: Create the directory <code class="docutils literal notranslate"><span class="pre">.../ipython/profile_default/startup/</span></code>, with a <em>Python</em> file called <code class="docutils literal notranslate"><span class="pre">ipython_config.py</span></code>.</p></li>
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">ipython_config.py</span></code> (right-click &gt; edit - do not run the file) and add default import packages.</p></li>
+<li><p>For the Python (basics) course it is recommended to define the following default imports in <code class="docutils literal notranslate"><span class="pre">ipython_config.py</span></code> (add modifications, then save and close the file):</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">ttk</span>
+</pre></div>
+</div>
+<p>For the geospatial <em>Python</em> section, consider to add (<a class="reference external" href="../geopy/geo-pckg.html#gdal">read <code class="docutils literal notranslate"><span class="pre">gdal</span></code> installation instructions</a> first):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gdal</span>
+<span class="kn">from</span> <span class="nn">gdal</span> <span class="kn">import</span> <span class="n">ogr</span>
+<span class="kn">from</span> <span class="nn">gdal</span> <span class="kn">import</span> <span class="n">osr</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">default_profile</span></code> is part of the default <em>Jupyter</em> installation and it is normally not necessary to create it manually. The <a class="reference external" href="https://ipython.org/ipython-doc/stable/config/intro.html"><em>IPython</em> docs</a> provide more detail about custom settings and modifying profiles on any platform.</p>
+</div>
+</div>
+<div class="section" id="pycharm">
+<span id="ide-setup"></span><h3>PyCharm<a class="headerlink" href="#pycharm" title="Permalink to this headline">¶</a></h3>
+<p>After the successful installation of <a class="reference external" href="../get-started/ide.html#ide"><em>PyCharm</em></a> within <em>Anaconda</em>, use the just created <em>conda</em> environment as interpreter. The following steps guide through the setup of <em>PyCharm</em> for using <em>conda</em> environments.</p>
+<ol>
+<li><p>Launch <em>PyCharm</em> and create a new project.</p>
+<div class="figure align-default">
+<img alt="../_images/pyc-project.png" src="../_images/pyc-project.png" />
+</div>
+</li>
+</ol>
+<p>:alt: pyc-prj” max-width=”500px</p>
+<p>Create a new project in PyCharm.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1. Define The new `hypy` environment as *Pure Python* project interpreter:
+    * Select *New environment using `Conda`
+    * In the *Location* box select the new `hypy` environment
+    * Click *Create* to create the new project.
+   ```{figure} ../img/pyc-prj-setup.png
+:alt: pyc-prj-setup
+
+Setup the hypy conda environment for the new project.
+</pre></div>
+</div>
+<ol>
+<li><p>Verify that the project interpreter is correctly defined:</p>
+<ul class="simple">
+<li><p>Click on <em>PyCharm</em>’s <code class="docutils literal notranslate"><span class="pre">File</span></code> menu and select <code class="docutils literal notranslate"><span class="pre">Settings...</span></code></p></li>
+<li><p>In the <em>Settings</em> window go to <code class="docutils literal notranslate"><span class="pre">Project:</span> <span class="pre">[NAME]</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Interpreter</span></code></p></li>
+<li><p>Make sure that the above-created <code class="docutils literal notranslate"><span class="pre">hypy</span></code> <em>conda</em> environment is defined as <em>Project Interpreter</em>.</p></li>
+</ul>
+<div class="figure align-default">
+<img alt="../_images/pyc-prj-interp.png" src="../_images/pyc-prj-interp.png" />
+</div>
+</li>
+</ol>
+<p>:alt: pyc-prj-interp</p>
+<p>Verify the correct setup of the Project Interpreter.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+```{tip}
+**Are you struggling with setting up *PyCharm* correctly?** *PyCharm* and *Anaconda* are designed for working hand-in-hand and the developers provide an [up-to-date documentation](https://docs.anaconda.com/anaconda/user-guide/tasks/pycharm/) for setting up *PyCharm* to work with *conda* environments.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./python-basics"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="python.html" title="previous page">Get Started with Python</a>
+    <a class='right-next' id="next-link" href="pybase.html" title="next page">First steps</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Sebastian Schwindt<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>
