@@ -4,8 +4,10 @@ This book is built with a template from the [Executable Book Project](https://ex
 
 ## Build info
 
-1. Make sure `ghp-import` is installed:
-    `pip install ghp-import`
+Make sure `ghp-import` is installed:   `pip install ghp-import`
+
+To update the website:
+
 1. EDIT book and make changes, then BUILD the book (from `cd /git/`)
     `jb build hydro-informatics.github.io/`
 1. Go to repo root directory (`cd /git/hydro-informatics.github.io/`)

@@ -52,6 +52,8 @@ Your software is brilliant. To make the software even more brilliant, foolproof,
 ## Markdown
 *Markdown* was created in 2004 and is a simple markup language that is intuitive and easy to learn. Markup languages structure the content of plain text documents regarding the way a document is displayed to end users (<a href="#" data-toggle="tooltip" data-original-title="{{site.data.glossary.richtext}}">rich text</a> format). Other popular markup languages are for example [*TeX*](https://en.wikipedia.org/wiki/TeX) and [*XML* (Extensible Markup Language)](https://en.wikipedia.org/wiki/XML). *Markdown* became a popular tool for writing syntactically distinguishable computer text that is then translated into <a href="#" data-toggle="tooltip" data-original-title="{{site.data.glossary.richtext}}">rich text</a>. Here is an example how *Markdown* works:
 
+
+````{tabbed} Raw Markdown
 ```markdown
 # Better than Word-like rich text editors
 *OS*-independent functionality:
@@ -60,17 +62,19 @@ Your software is brilliant. To make the software even more brilliant, foolproof,
 - Formulae handling
 - ... and many more ...
 ```
+````
 
-***
+````{tabbed} Rendered
+**Better than Word-like rich text editors**
 
-**Better than Word-like rich text editors** <br>
 *OS*-independent functionality:
 - Avoid formatting of the same kind of thing redundantly (and inconsistently)
 - Backwards compatibility
 - Formulae handling
 - ... and many more ...
 
-***
+````
+
 
 ### Markdown Editors (IDEs)
 

@@ -63,12 +63,30 @@ Data and variable types are difficult to understand if you simply try to learn t
 
 ### Text
 
+Text variables in *Python* are *strings* (`str`) that consist of multiple *characters* (`chr`):
+
+````{tabbed} Rendered table
 | Type | Example     | Description                        |
 |------|:-----------:|------------------------------------|
 | str  | `"apple"`   | String embraced with double quotes |
 |      | `'apple'`   | String embraced with single quotes |
-|      | `"""apple"""` | Literal string (multi-line text)   |
+|      | `"""apple"""` | Literal string (multi-line text) |
 | chr  | `"a"`       | Character (unit of a string)       |
+
+````
+
+````{tabbed} Source code
+```
+| Type | Example     | Description                        |
+|------|:-----------:|------------------------------------|
+| str  | `"apple"`   | String embraced with double quotes |
+|      | `'apple'`   | String embraced with single quotes |
+|      | `"""apple"""` | Literal string (multi-line text) |
+| chr  | `"a"`       | Character (unit of a string)       |
+
+```
+````
+
 
 In addition, string variables have some built-in functions that facilitate coding. To create (instantiate) a string variable, use the `=` sign as follows:
 
