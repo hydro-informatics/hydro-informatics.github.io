@@ -1,5 +1,7 @@
 # Gaia Workflow
 
+*Guest Author: [Kilian Mouris](https://github.com/KMouris)*
+
 ## Introduction
 
 GAIA is the new open-source, sediment transport and bed evolution module of the TELEMAC-MASCARET modelling system.
