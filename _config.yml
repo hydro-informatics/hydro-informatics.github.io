@@ -1,7 +1,7 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: hydro-informatics
+title: Hydro-Informatics
 author: Sebastian Schwindt
 copyright: "2021"  # Copyright year to be placed in the footer
 logo: img/icons/icon.png
@@ -56,17 +56,17 @@ bibtex_bibfiles:
 #######################################################################################
 # Launch button settings
 launch_buttons:
-  notebook_interface: classic  # The interface interactive links will activate ["classic", "jupyterlab"]
-  binderhub_url: https://mybinder.org  # The URL of the BinderHub (e.g., https://mybinder.org)
+  notebook_interface: jupyterlab  # The interface interactive links will activate ["classic", "jupyterlab"]
+  binderhub_url: https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main  # The URL of the BinderHub (e.g., https://mybinder.org)
   jupyterhub_url: ""  # The URL of the JupyterHub (e.g., https://datahub.berkeley.edu)
-  thebe: false  # Add a thebe button to pages (requires the repository to run on Binder)
+  thebe: true  # Add a thebe button to pages (requires the repository to run on Binder)
   colab_url: "" # The URL of Google Colab (https://colab.research.google.com)
 
 # Information about where the book exists on the web
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 repository:
   url: https://github.com/hydro-informatics/hydro-informatics.github.io  # Online location of your book
-  path_to_book: docs/  # Optional path to your book, relative to the repository root
+  path_to_book: .  # Optional path to your book, relative to the repository root
   branch: main  # Which branch of the repository should be used when creating links (optional)
 
 #################################################################################
@@ -75,11 +75,11 @@ html:
   use_edit_page_button: false  # Whether to add an "edit this page" button to pages. If `true`, repository information in repository: must be filled in
   use_repository_button: true  # Whether to add a link to your repository button
   use_issues_button: false  # Whether to add an "open an issue" button
-  extra_navbar: Authored by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>  # Will be displayed underneath the left navbar.
+  extra_navbar: Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>  # Will be displayed underneath the left navbar.
   extra_footer: ""  # Will be displayed underneath the footer.
   google_analytics_id: ""  # A GA id that can be used to track book views.
   home_page_in_navbar: true  # Whether to include your home page in the left Navigation Bar
-  baseurl: ""  # The base URL where your book will be hosted. Used for creating image previews and social links. e.g.: https://mypage.com/mybook/
+  baseurl: "https://hydro-informatics.github.io"  # The base URL where your book will be hosted. Used for creating image previews and social links. e.g.: https://mypage.com/mybook/
   comments:
     hypothesis: false
     utterances: false

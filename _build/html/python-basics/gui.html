@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Graphical User Interfaces (GUIs) &#8212; hydro-informatics</title>
+    <title>Graphical User Interfaces (GUIs) &#8212; Hydro-Informatics</title>
     
   <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -49,11 +49,12 @@
     <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://hydro-informatics.github.io/python-basics/gui.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -63,6 +64,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
 
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://hydro-informatics.github.io/python-basics/gui.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Graphical User Interfaces (GUIs)" />
+<meta property="og:description" content="Graphical User Interfaces (GUIs)  Summary: Make code user-friendly.  img  A Graphical User Interface (GUI) facilitates setting input variables of scripts. This " />
+<meta property="og:image"       content="https://hydro-informatics.github.io/_static/icon.png" />
+
+<meta name="twitter:card" content="summary" />
 
 
   </head>
@@ -80,7 +90,7 @@
   <img src="../_static/icon.png" class="logo" alt="logo">
   
   
-  <h1 class="site-logo" id="site-title">hydro-informatics</h1>
+  <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
   
 </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -91,7 +101,7 @@
     <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../index.html">
-   HYDRO-INFORMATICS
+   Home
   </a>
  </li>
 </ul>
@@ -122,7 +132,7 @@
  </li>
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="../get-started/software.html">
-   Open Access Software Resources
+   Software Resources
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
@@ -625,7 +635,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?urlpath=tree/docs/python-basics/gui.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main/v2/gh/hydro-informatics/hydro-informatics.github.io/main?urlpath=lab/tree/./python-basics/gui.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -633,6 +643,9 @@
         
         
         
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
@@ -1322,8 +1335,8 @@ The <code class="docutils literal notranslate"><span class="pre">padx</span></co
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "hydro-informatics/hydro-informatics.github.io",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",

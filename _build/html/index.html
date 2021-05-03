@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HYDRO-INFORMATICS &#8212; hydro-informatics</title>
+    <title>Home &#8212; Hydro-Informatics</title>
     
   <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -49,11 +49,12 @@
     <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://hydro-informatics.github.io/index.html" />
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -62,6 +63,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
 
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://hydro-informatics.github.io/index.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Home" />
+<meta property="og:description" content="Home  Data &amp; Programming, Geospatial Analysis, and Modeling Tools for Water Resources Engineering &amp; Research  hydro-informatics github sebastian schwindt  Prefa" />
+<meta property="og:image"       content="https://hydro-informatics.github.io/_static/icon.png" />
+
+<meta name="twitter:card" content="summary" />
 
 
   </head>
@@ -79,7 +89,7 @@
   <img src="_static/icon.png" class="logo" alt="logo">
   
   
-  <h1 class="site-logo" id="site-title">hydro-informatics</h1>
+  <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
   
 </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
@@ -90,7 +100,7 @@
     <ul class="nav sidenav_l1">
  <li class="toctree-l1 current active">
   <a class="reference internal" href="#">
-   HYDRO-INFORMATICS
+   Home
   </a>
  </li>
 </ul>
@@ -121,7 +131,7 @@
  </li>
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="get-started/software.html">
-   Open Access Software Resources
+   Software Resources
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
@@ -652,8 +662,8 @@
         
               <div>
                 
-  <div class="section" id="hydro-informatics">
-<h1>HYDRO-INFORMATICS<a class="headerlink" href="#hydro-informatics" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="home">
+<h1>Home<a class="headerlink" href="#home" title="Permalink to this headline">¶</a></h1>
 <p><strong>Data &amp; Programming, Geospatial Analysis, and Modeling Tools for Water Resources Engineering &amp; Research</strong></p>
 <img alt="hydro-informatics github sebastian schwindt" src="_images/banner-logo.jpg" />
 <div class="section" id="preface">
@@ -709,8 +719,8 @@
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "hydro-informatics/hydro-informatics.github.io",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",

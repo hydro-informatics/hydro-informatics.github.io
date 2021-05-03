@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Markdown and Code Documentation &#8212; hydro-informatics</title>
+    <title>Markdown and Code Documentation &#8212; Hydro-Informatics</title>
     
   <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -49,11 +49,12 @@
     <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://hydro-informatics.github.io/documentation/documentation.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -63,6 +64,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
 
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://hydro-informatics.github.io/documentation/documentation.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Markdown and Code Documentation" />
+<meta property="og:description" content="Markdown and Code Documentation  Document your work  Leonardo Da Vinci used journals to sketch, develop and eventually pass on his ideas. Alexander von Humboldt" />
+<meta property="og:image"       content="https://hydro-informatics.github.io/_static/icon.png" />
+
+<meta name="twitter:card" content="summary" />
 
 
   </head>
@@ -80,7 +90,7 @@
   <img src="../_static/icon.png" class="logo" alt="logo">
   
   
-  <h1 class="site-logo" id="site-title">hydro-informatics</h1>
+  <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
   
 </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -91,7 +101,7 @@
     <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../index.html">
-   HYDRO-INFORMATICS
+   Home
   </a>
  </li>
 </ul>
@@ -122,7 +132,7 @@
  </li>
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="../get-started/software.html">
-   Open Access Software Resources
+   Software Resources
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
@@ -805,8 +815,8 @@ So if you have made an ingenious discovery, you want to make sure you document i
 <h2>Markdown<a class="headerlink" href="#markdown" title="Permalink to this headline">¶</a></h2>
 <p><em>Markdown</em> was created in 2004 and is a simple markup language that is intuitive and easy to learn. Markup languages structure the content of plain text documents regarding the way a document is displayed to end users (<a href="#" data-toggle="tooltip" data-original-title="{{site.data.glossary.richtext}}">rich text</a> format). Other popular markup languages are for example <a class="reference external" href="https://en.wikipedia.org/wiki/TeX"><em>TeX</em></a> and <a class="reference external" href="https://en.wikipedia.org/wiki/XML"><em>XML</em> (Extensible Markup Language)</a>. <em>Markdown</em> became a popular tool for writing syntactically distinguishable computer text that is then translated into <a href="#" data-toggle="tooltip" data-original-title="{{site.data.glossary.richtext}}">rich text</a>. Here is an example how <em>Markdown</em> works:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="1283dcc0-f1ab-4e3e-8dda-7314c786e5c1" name="14813bfa-16f9-4b1b-88dd-038e8ac13edd" type="radio">
-</input><label class="tabbed-label" for="1283dcc0-f1ab-4e3e-8dda-7314c786e5c1">
+<input checked="checked" id="6b4252b9-f99b-4e82-ac6d-e1edb742e8fc" name="1767f0bb-625a-463f-a443-2d8c22593915" type="radio">
+</input><label class="tabbed-label" for="6b4252b9-f99b-4e82-ac6d-e1edb742e8fc">
 Raw Markdown</label><div class="tabbed-content docutils">
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># Better than Word-like rich text editors</span>
 <span class="ge">*OS*</span>-independent functionality:
@@ -817,8 +827,8 @@ Raw Markdown</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="f1f2eb09-b96a-498f-a857-49b038f57594" name="14813bfa-16f9-4b1b-88dd-038e8ac13edd" type="radio">
-</input><label class="tabbed-label" for="f1f2eb09-b96a-498f-a857-49b038f57594">
+<input id="5c157663-7a5f-4bee-b13c-b914ad44744c" name="1767f0bb-625a-463f-a443-2d8c22593915" type="radio">
+</input><label class="tabbed-label" for="5c157663-7a5f-4bee-b13c-b914ad44744c">
 Rendered</label><div class="tabbed-content docutils">
 <p><strong>Better than Word-like rich text editors</strong></p>
 <p><em>OS</em>-independent functionality:</p>
@@ -1474,8 +1484,8 @@ Rendered</label><div class="tabbed-content docutils">
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "hydro-informatics/hydro-informatics.github.io",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",

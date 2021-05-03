@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Open Access Software Resources &#8212; hydro-informatics</title>
+    <title>Software Resources &#8212; Hydro-Informatics</title>
     
   <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -49,11 +49,12 @@
     <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://hydro-informatics.github.io/get-started/software.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -63,6 +64,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
 
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://hydro-informatics.github.io/get-started/software.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Software Resources" />
+<meta property="og:description" content="Software Resources  This chapter guides through open access or open source software resources. The first section introduces virtual machines (VMs) and Debian Li" />
+<meta property="og:image"       content="https://hydro-informatics.github.io/_static/icon.png" />
+
+<meta name="twitter:card" content="summary" />
 
 
   </head>
@@ -80,7 +90,7 @@
   <img src="../_static/icon.png" class="logo" alt="logo">
   
   
-  <h1 class="site-logo" id="site-title">hydro-informatics</h1>
+  <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
   
 </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -91,7 +101,7 @@
     <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../index.html">
-   HYDRO-INFORMATICS
+   Home
   </a>
  </li>
 </ul>
@@ -122,7 +132,7 @@
  </li>
  <li class="toctree-l1 current active collapsible-parent">
   <a class="current reference internal" href="#">
-   Open Access Software Resources
+   Software Resources
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
@@ -632,10 +642,10 @@
         
               <div>
                 
-  <div class="section" id="open-access-software-resources">
-<h1>Open Access Software Resources<a class="headerlink" href="#open-access-software-resources" title="Permalink to this headline">¶</a></h1>
-<p>This chapter guides through open access or open source software resources. The first section introduces virtual machines (VMs) and <em>Debian Linux</em> (and spin-offs).
-Fundamentally, Linux-based operating systems (OSs) are preferable to significantly facilitate scientific and engineering tasks because of very high stability and performance. Still, the existing infrastructures of many institutions does not enable using Linux and this is where virtual machines can help: They enable running another (guest) OS on the host OS through a virtualization framework.</p>
+  <div class="section" id="software-resources">
+<h1>Software Resources<a class="headerlink" href="#software-resources" title="Permalink to this headline">¶</a></h1>
+<p>This chapter guides through open access or open source software resources. The first section introduces virtual machines (VMs) and <em>Debian Linux</em> (and spin-offs).</p>
+<p>Fundamentally, Linux-based operating systems (OSs) are preferable to significantly facilitate scientific and engineering tasks because of very high stability and performance. Still, the existing infrastructures of many institutions does not enable using Linux and this is where virtual machines can help: They enable running another (guest) OS on the host OS through a virtualization framework.</p>
 <div class="admonition-the-difference-between-open-access-and-open-source admonition">
 <p class="admonition-title">The difference between Open Access and Open Source</p>
 <p>Open access software is freely availabe under common open access licenses. In addition to being freely available, open source software builds on publicly available source code. Thus, open source software can be modified by users with freely available code on the internet. To enable sharing open access or open source software, the developer must provide a license along with the code or software. Read more about licenses on the platform of the <a class="reference external" href="https://creativecommons.org/">creative commons organization </a>.</p>
@@ -649,8 +659,8 @@ Fundamentally, Linux-based operating systems (OSs) are preferable to significant
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "hydro-informatics/hydro-informatics.github.io",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",
