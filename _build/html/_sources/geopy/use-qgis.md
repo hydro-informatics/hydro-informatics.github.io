@@ -7,8 +7,8 @@ This tutorial involves embedded videos featuring the text descriptions in every 
 
 To get ready, watch the following video and/or make sure to install {ref}`qgis-install` (detailed instructions).
 
-<iframe width="560" height="315" src="https://youtu.be/_0_NOKi-RxY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>AUTHOR<a href="https://youtu.be/_0_NOKi-RxY">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<iframe width="720" height="405" src="https://youtu.be/_0_NOKi-RxY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Sebastian Schwindt <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 
 
 
@@ -30,8 +30,8 @@ Once you installed QGIS, launch the program and walk through the following steps
     * Example: Convert 48.745, 9.103 from EPSG 3857 to EPSG 4326
 - Save the project as qgis-project.qgz in a new qgis-exercise folder
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/88Npv4Gs4xw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>AUTHOR, University of Helsinki <a href="https://youtu.be/_0_NOKi-RxY">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<iframe width="720" height="405" src="https://youtu.be/7_3QqbFonLg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 
 
 (qgis-tbx-install)=
@@ -67,6 +67,10 @@ To add a base map (e.g., satellite data, streets, or administrative boundaries),
 Add a base map to QGIS: (1) locate the Browser (2) right-click on XYZ-Tiles and select New Connection... (3) enter a Name and a URL (see below table) for the new connection, click OK (4) drag and drop the new tile (here: Google Satellite) into the Layers tab.
 ```
 
+<iframe width="720" height="405" src="https://youtu.be/GJsiEdMzCeQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+
+
 The following URL can be used for retrieving online XYZ tiles (more URLs can be found in the internet).
 
 | Provider (Layer Name) | URL                                                                                              |
@@ -89,7 +93,11 @@ This section guides through the creation of point, line, polygon shapefiles (vec
 
 ### Create a Point Shapefile
 
-Start with loading a satellite and a street basemap (see above) in the layers pane. Zoom on Central Europe, and roughly locate Stuttgart in Southwest Germany. Find the heavily impaired Neckar River and move in upstream direction, pass the cities of Esslingen and Plochingen until you get to the confluence of the Neckar and the Fils rivers. From there, follow the Fils River in upstream direction for a couple of 100 meters and locate the PEGELHAUS (i.e., a gauging station at the Fils River). To facilitate finding the gauging station in the future, we will now create a point shapefile:
+Start with loading a satellite and a street basemap (see above) in the layers pane. Zoom on Central Europe, and roughly locate Stuttgart in Southwest Germany. Find the heavily impaired Neckar River and move in upstream direction, pass the cities of Esslingen and Plochingen until you get to the confluence of the Neckar and the Fils rivers. From there, follow the Fils River in upstream direction for a couple of 100 meters and locate the PEGELHAUS (i.e., a gauging station at the Fils River). To facilitate finding the gauging station in the future, we will now create a point shapefile.
+
+
+<iframe width="720" height="405" src="https://youtu.be/k2LqPM6wicA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 
 * Go to **Layer** > **Create Layer** > **New Shapefile Layer**
   * Define a filename (e.g., **gauges.shp** - may not be longer than 13 characters), for instance, in a folder called *qgis-exercise*.
@@ -112,48 +120,87 @@ Start with loading a satellite and a street basemap (see above) in the layers pa
   * Highlight Marker and Change Opacity
   * Click Apply and OK
 * Show Attribute Table
-*
-8. Create a Line Shapefile “CenterLine.shp” to draw a Centerline of the Fils +- 200 around the Pegelhaus gauge (with one Field=RiverName), along the OpenStreetMap layer
-9. Create a Polygon Shapefile “FlowAreas.shp” to draw two Polygons of the of the Fils Floodplain with two Fields = AreaType (Text) and ManningN (Decimal Number)
-  * To Draw Polygon: click in the map (right-click finalizes Polygon)
-  * Polygon1: AreaType=“MainChannel”, ManningN = 0.028
-  * Snapping toolbar: Enable Snapping + Avoid Polygon Overlapping
-  * Polygon2: AreaType=“FloodPlainRB” , ManningN = 0.05
-  * Show how to delete a feature using the attribute Table
-  * Save edits & deactivate Editing
-  * Modify Symbology to Categorized as a Function of AreaType Field > Keep Random Colors > Click on Classify > Apply and if you like it > OK
-10. Convert Pyolgon “FlowAreas.shp” to a roughness Raster
-  * Click on View > Panels >Processing Toolbox
-  * In Toolbox > search Rasterize > select Rasterize (vector to raster)
-  * In Rasterize Window:
-    * Input layer = FlowAreas
-    * Field to use for a burn-in value = ManningN
-    * Output raster size units = Pixels
-    * Width/Horizontal resolution = 100 (the smaller, the coarser the Raster!)
-    * Height/Vertical resolution = 100 (the smaller, the coarser the Raster!)
-    * … [scroll down] …
-    * Output extent: click on … button > Calculate from Layer > FlowAreas
-    * Rasterized (FILE NAME) > click on … Button > Save to File > roughness.tif
-    * Click Run
-  * Change Symbology to Singleband pseudocolor, Interpolation=Discrete, Colorramp=Magma, Mode=Equal Interval > Apply & OK
-11. Use Raster Calculator
-  * Go to Raster > Raster Calculator
-  * In Raster Calculator Expression field type 1, then click on / Button (Operators Box), then select roughness@1 from the Raster Bands Box – Result: 1 / “roughness@1” (EXPLAIN BANDS!)
-  * Output layer = qgis-exercise/roughness-stickler.tif /preferably use GeoTIFF)
-  * Click OK to run Raster Calculator
-  * Optional: Change symbology
-12. Create PDF / JPG (or whatever) map
-  * Go to Project > New Print Layout
-  * Layout title Res100 (for resolution)
-  * In Res100 Layout:
-    * Go to Add Item > Add Map
-    * Draw a rectangle that will contain the map
-    * Add Item > Add Scale Bar
-    * Add Item > Add Legend
-    * In Items Panel, highlight <Legend> and find the Item Properties tab below
-    * In the Item Properties tab, find Legend Items > disable Auto update > remove OpenStreetMap and Google Satellite
-    * Toggle through other Items in the Add Item menu bar (e.g., Arrow) and the Items panel (e.g., <Scalebar> to change units)
-  * Save the project (Layout > Save Project)
-  * Export Image: Layout > Export as Image
-  * Export PDF: Layout > Export as PDF
-  * Optional export SVG (Vector graph): Layout > Export as SVG
+
+
+### Create a Line Shapefile
+
+Create a Line Shapefile “CenterLine.shp” to draw a Centerline of the Fils +- 200 around the Pegelhaus gauge (with one Field=RiverName), along the OpenStreetMap layer similar to the above-created point shapefile.
+
+<iframe width="720" height="405" src="https://youtu.be/yNuiIlPsguQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+
+### Create a Polygon Shapefile
+
+Create a Polygon Shapefile “FlowAreas.shp” to draw two Polygons of the of the Fils Floodplain with two Fields = AreaType (Text) and ManningN (Decimal Number).
+
+<iframe width="720" height="405" src="https://youtu.be/zTrowT0ULfo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+
+
+* To Draw a Polygon: Click in the map (right-click finalizes Polygon)
+* Polygon1: AreaType=“MainChannel”, ManningN = 0.028
+* Snapping toolbar: Enable Snapping + Avoid Polygon Overlapping
+* Polygon2: AreaType=“FloodPlainRB” , ManningN = 0.05
+* Show how to delete a feature using the attribute Table
+* Save edits & deactivate Editing
+* Modify Symbology to Categorized as a Function of AreaType Field > Keep Random Colors > Click on Classify > Apply and if you like it > OK
+
+
+## Rasterize (Polygon to Raster)
+
+Convert the above-created Pyolgon “FlowAreas.shp” to a roughness Raster.
+
+<iframe width="720" height="405" src="https://youtu.be/IRLwYSUnjcE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+
+
+* Click on View > Panels >Processing Toolbox
+* In Toolbox > search Rasterize > select Rasterize (vector to raster)
+* In Rasterize Window:
+  * Input layer = FlowAreas
+  * Field to use for a burn-in value = ManningN
+  * Output raster size units = Pixels
+  * Width/Horizontal resolution = 100 (the smaller, the coarser the Raster!)
+  * Height/Vertical resolution = 100 (the smaller, the coarser the Raster!)
+  * … [scroll down] …
+  * Output extent: click on … button > Calculate from Layer > FlowAreas
+  * Rasterized (FILE NAME) > click on … Button > Save to File > roughness.tif
+  * Click Run
+* Change Symbology to Singleband pseudocolor, Interpolation=Discrete, Colorramp=Magma, Mode=Equal Interval > Apply & OK
+
+
+## QGIS Raste Calculator (Map Algebra)
+
+Launch the QGIS Raster Calculator from Raster > Raster Calculator.
+
+<iframe width="720" height="405" src="https://youtu.be/DOkV03uij9k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+
+
+* In Raster Calculator Expression field type 1, then click on / Button (Operators Box), then select roughness@1 from the Raster Bands Box – Result: 1 / “roughness@1” (EXPLAIN BANDS!)
+* Output layer = qgis-exercise/roughness-stickler.tif /preferably use GeoTIFF)
+* Click OK to run Raster Calculator
+* Optional: Change symbology
+
+
+## Create Layout and PDF / JPG (or other) Maps
+
+Start with creating a new print layout by clicking on the **Project** drop-down menu, then select **New Print Layout**.
+
+<iframe width="720" height="405" src="https://youtu.be/hmTByzVPVF0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+
+
+* Layout title Res100 (for resolution)
+* In Res100 Layout:
+  * Go to Add Item > Add Map
+  * Draw a rectangle that will contain the map
+  * Add Item > Add Scale Bar
+  * Add Item > Add Legend
+  * In Items Panel, highlight <Legend> and find the Item Properties tab below
+  * In the Item Properties tab, find Legend Items > disable Auto update > remove OpenStreetMap and Google Satellite
+  * Toggle through other Items in the Add Item menu bar (e.g., Arrow) and the Items panel (e.g., <Scalebar> to change units)
+* Save the project (Layout > Save Project)
+* Export Image: Layout > Export as Image
+* Export PDF: Layout > Export as PDF
+* Optional export SVG (Vector graph): Layout > Export as SVG

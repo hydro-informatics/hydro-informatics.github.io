@@ -668,7 +668,32 @@
      Create a Point Shapefile
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-a-line-shapefile">
+     Create a Line Shapefile
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-a-polygon-shapefile">
+     Create a Polygon Shapefile
+    </a>
+   </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rasterize-polygon-to-raster">
+   Rasterize (Polygon to Raster)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#qgis-raste-calculator-map-algebra">
+   QGIS Raste Calculator (Map Algebra)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-layout-and-pdf-jpg-or-other-maps">
+   Create Layout and PDF / JPG (or other) Maps
+  </a>
  </li>
 </ul>
 
@@ -688,8 +713,8 @@
 <p>This tutorial involves embedded videos featuring the text descriptions in every section.</p>
 </div>
 <p>To get ready, watch the following video and/or make sure to install <a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a> (detailed instructions).</p>
-<iframe width="560" height="315" src="https://youtu.be/_0_NOKi-RxY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>AUTHOR<a href="https://youtu.be/_0_NOKi-RxY">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<iframe width="720" height="405" src="https://youtu.be/_0_NOKi-RxY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Sebastian Schwindt <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 <div class="section" id="first-project">
 <h2>First Project<a class="headerlink" href="#first-project" title="Permalink to this headline">¶</a></h2>
 <p>Once you installed QGIS, launch the program and walk through the following steps to make fundamental settings:</p>
@@ -717,8 +742,8 @@
 </li>
 <li><p>Save the project as qgis-project.qgz in a new qgis-exercise folder</p></li>
 </ul>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/88Npv4Gs4xw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>AUTHOR, University of Helsinki <a href="https://youtu.be/_0_NOKi-RxY">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<iframe width="720" height="405" src="https://youtu.be/7_3QqbFonLg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 </div>
 <div class="section" id="panes-toolbars-and-plugins">
 <span id="qgis-tbx-install"></span><h2>Panes, Toolbars, and Plugins<a class="headerlink" href="#panes-toolbars-and-plugins" title="Permalink to this headline">¶</a></h2>
@@ -744,6 +769,8 @@
 <img alt="basemap" src="../_images/qgis-basemap.png" />
 <p class="caption"><span class="caption-number">Fig. 14 </span><span class="caption-text">Add a base map to QGIS: (1) locate the Browser (2) right-click on XYZ-Tiles and select New Connection… (3) enter a Name and a URL (see below table) for the new connection, click OK (4) drag and drop the new tile (here: Google Satellite) into the Layers tab.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
+<iframe width="720" height="405" src="https://youtu.be/GJsiEdMzCeQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 <p>The following URL can be used for retrieving online XYZ tiles (more URLs can be found in the internet).</p>
 <table class="colwidths-auto table">
 <thead>
@@ -785,7 +812,9 @@
 <p>This section guides through the creation of point, line, polygon shapefiles (vector data).</p>
 <div class="section" id="create-a-point-shapefile">
 <h3>Create a Point Shapefile<a class="headerlink" href="#create-a-point-shapefile" title="Permalink to this headline">¶</a></h3>
-<p>Start with loading a satellite and a street basemap (see above) in the layers pane. Zoom on Central Europe, and roughly locate Stuttgart in Southwest Germany. Find the heavily impaired Neckar River and move in upstream direction, pass the cities of Esslingen and Plochingen until you get to the confluence of the Neckar and the Fils rivers. From there, follow the Fils River in upstream direction for a couple of 100 meters and locate the PEGELHAUS (i.e., a gauging station at the Fils River). To facilitate finding the gauging station in the future, we will now create a point shapefile:</p>
+<p>Start with loading a satellite and a street basemap (see above) in the layers pane. Zoom on Central Europe, and roughly locate Stuttgart in Southwest Germany. Find the heavily impaired Neckar River and move in upstream direction, pass the cities of Esslingen and Plochingen until you get to the confluence of the Neckar and the Fils rivers. From there, follow the Fils River in upstream direction for a couple of 100 meters and locate the PEGELHAUS (i.e., a gauging station at the Fils River). To facilitate finding the gauging station in the future, we will now create a point shapefile.</p>
+<iframe width="720" height="405" src="https://youtu.be/k2LqPM6wicA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 <ul class="simple">
 <li><p>Go to <strong>Layer</strong> &gt; <strong>Create Layer</strong> &gt; <strong>New Shapefile Layer</strong></p>
 <ul>
@@ -817,14 +846,21 @@
 </ul>
 </li>
 <li><p>Show Attribute Table</p></li>
-<li></li>
 </ul>
-<ol class="simple">
-<li><p>Create a Line Shapefile “CenterLine.shp” to draw a Centerline of the Fils ± 200 around the Pegelhaus gauge (with one Field=RiverName), along the OpenStreetMap layer</p></li>
-<li><p>Create a Polygon Shapefile “FlowAreas.shp” to draw two Polygons of the of the Fils Floodplain with two Fields = AreaType (Text) and ManningN (Decimal Number)</p></li>
-</ol>
+</div>
+<div class="section" id="create-a-line-shapefile">
+<h3>Create a Line Shapefile<a class="headerlink" href="#create-a-line-shapefile" title="Permalink to this headline">¶</a></h3>
+<p>Create a Line Shapefile “CenterLine.shp” to draw a Centerline of the Fils ± 200 around the Pegelhaus gauge (with one Field=RiverName), along the OpenStreetMap layer similar to the above-created point shapefile.</p>
+<iframe width="720" height="405" src="https://youtu.be/yNuiIlPsguQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+</div>
+<div class="section" id="create-a-polygon-shapefile">
+<h3>Create a Polygon Shapefile<a class="headerlink" href="#create-a-polygon-shapefile" title="Permalink to this headline">¶</a></h3>
+<p>Create a Polygon Shapefile “FlowAreas.shp” to draw two Polygons of the of the Fils Floodplain with two Fields = AreaType (Text) and ManningN (Decimal Number).</p>
+<iframe width="720" height="405" src="https://youtu.be/zTrowT0ULfo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 <ul class="simple">
-<li><p>To Draw Polygon: click in the map (right-click finalizes Polygon)</p></li>
+<li><p>To Draw a Polygon: Click in the map (right-click finalizes Polygon)</p></li>
 <li><p>Polygon1: AreaType=“MainChannel”, ManningN = 0.028</p></li>
 <li><p>Snapping toolbar: Enable Snapping + Avoid Polygon Overlapping</p></li>
 <li><p>Polygon2: AreaType=“FloodPlainRB” , ManningN = 0.05</p></li>
@@ -832,9 +868,13 @@
 <li><p>Save edits &amp; deactivate Editing</p></li>
 <li><p>Modify Symbology to Categorized as a Function of AreaType Field &gt; Keep Random Colors &gt; Click on Classify &gt; Apply and if you like it &gt; OK</p></li>
 </ul>
-<ol class="simple">
-<li><p>Convert Pyolgon “FlowAreas.shp” to a roughness Raster</p></li>
-</ol>
+</div>
+</div>
+<div class="section" id="rasterize-polygon-to-raster">
+<h2>Rasterize (Polygon to Raster)<a class="headerlink" href="#rasterize-polygon-to-raster" title="Permalink to this headline">¶</a></h2>
+<p>Convert the above-created Pyolgon “FlowAreas.shp” to a roughness Raster.</p>
+<iframe width="720" height="405" src="https://youtu.be/IRLwYSUnjcE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 <ul class="simple">
 <li><p>Click on View &gt; Panels &gt;Processing Toolbox</p></li>
 <li><p>In Toolbox &gt; search Rasterize &gt; select Rasterize (vector to raster)</p></li>
@@ -853,21 +893,25 @@
 </li>
 <li><p>Change Symbology to Singleband pseudocolor, Interpolation=Discrete, Colorramp=Magma, Mode=Equal Interval &gt; Apply &amp; OK</p></li>
 </ul>
-<ol class="simple">
-<li><p>Use Raster Calculator</p></li>
-</ol>
+</div>
+<div class="section" id="qgis-raste-calculator-map-algebra">
+<h2>QGIS Raste Calculator (Map Algebra)<a class="headerlink" href="#qgis-raste-calculator-map-algebra" title="Permalink to this headline">¶</a></h2>
+<p>Launch the QGIS Raster Calculator from Raster &gt; Raster Calculator.</p>
+<iframe width="720" height="405" src="https://youtu.be/DOkV03uij9k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 <ul class="simple">
-<li><p>Go to Raster &gt; Raster Calculator</p></li>
 <li><p>In Raster Calculator Expression field type 1, then click on / Button (Operators Box), then select roughness&#64;1 from the Raster Bands Box – Result: 1 / “roughness&#64;1” (EXPLAIN BANDS!)</p></li>
 <li><p>Output layer = qgis-exercise/roughness-stickler.tif /preferably use GeoTIFF)</p></li>
 <li><p>Click OK to run Raster Calculator</p></li>
 <li><p>Optional: Change symbology</p></li>
 </ul>
-<ol class="simple">
-<li><p>Create PDF / JPG (or whatever) map</p></li>
-</ol>
+</div>
+<div class="section" id="create-layout-and-pdf-jpg-or-other-maps">
+<h2>Create Layout and PDF / JPG (or other) Maps<a class="headerlink" href="#create-layout-and-pdf-jpg-or-other-maps" title="Permalink to this headline">¶</a></h2>
+<p>Start with creating a new print layout by clicking on the <strong>Project</strong> drop-down menu, then select <strong>New Print Layout</strong>.</p>
+<iframe width="720" height="405" src="https://youtu.be/hmTByzVPVF0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 <ul class="simple">
-<li><p>Go to Project &gt; New Print Layout</p></li>
 <li><p>Layout title Res100 (for resolution)</p></li>
 <li><p>In Res100 Layout:</p>
 <ul>
@@ -885,7 +929,6 @@
 <li><p>Export PDF: Layout &gt; Export as PDF</p></li>
 <li><p>Optional export SVG (Vector graph): Layout &gt; Export as SVG</p></li>
 </ul>
-</div>
 </div>
 </div>
 

@@ -40,4 +40,9 @@ The theory chapters come along with exercises that align with the learning conte
 
 The {doc}`Troubleshoot </troubleshoot/dbg-anaconda>` chapter provides solutions and information about how to debug known issues (not that issues ever existed...).
 
+# YouTube
+
+Some contents of this website are accompanied with public videos hosted on *YouTube*. Find out more by visitng the [@ Hydro-Morphodynamics channel on YouTube](https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ).
+
+
 Enjoy a successful and entertaining learning experience!
