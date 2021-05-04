@@ -3,7 +3,7 @@
 This page lists open-source packages for geospatial file manipulation with *Python*. The necessary packages are already installed if you use the provided [`hypy`](../python-basics/pyinstall.html#create-and-install-conda-environments) environment. The following sections provide explanations of relevant and optional packages for this course and how those can be installed.
 
 ```{hint}
-The proprietary license-requiring `arcpy` package is described on the [Commercial software](../geopy/geo-arcpy) page.
+The proprietary license-requiring `arcpy` package is described on the [Commercial software](../jupyter/geo-arcpy) page.
 ```
 
 (gdal)=
@@ -100,6 +100,6 @@ Besides the above mentioned packages there are other useful libraries for geospa
  * [`NetworkX`](https://networkx.github.io/documentation/stable/index.html) for network analyses such as finding a least cost / shortest path between two points - install in *Anaconda Prompt* with <br>`conda install -c anaconda networkx`
   * [`owslib`](http://geopython.github.io/OWSLib/) to connect with *Open Geospatial Consortium* (*OGC*) web services - install in *Anaconda Prompt* with <br>`conda install -c conda-forge owslib`
   * [`postgresql`](https://www.postgresqltutorial.com/postgresql-python/) for SQL database connections - install in *Anaconda Prompt* with <br>`conda install -c anaconda postgresql`
- * [`rasterio`](https://rasterio.readthedocs.io/en/latest/) for processing raster data as [`numpy`](../python-basics/pypynum.html#numpy) arrays install in *Anaconda Prompt* with <br>`conda install -c conda-forge rasterio`
+ * [`rasterio`](https://rasterio.readthedocs.io/en/latest/) for processing raster data as [`numpy`](../jupyter/pynum.html#numpy) arrays install in *Anaconda Prompt* with <br>`conda install -c conda-forge rasterio`
  * [**`rasterstats`**](https://pythonhosted.org/rasterstats/) produces zonal statistics of rasters and can interact with *GeoJSON* files - install in *Anaconda Prompt* with <br>`conda install -c conda-forge rasterstats`
  * [**`sckit-image`**](https://scikit-image.org/) for machine learning applied to georeferenced images - install in *Anaconda Prompt* with <br>`conda install -c anaconda scikit-image`

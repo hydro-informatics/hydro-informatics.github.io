@@ -5,7 +5,7 @@ Write basic script and use loops. Write a function and parse optional keyword ar
 ```
 
 ```{admonition} Requirements
-*Python* libraries: *math* (standard library). Read and understand how [loops](../python-basics/pyloop) and [functions](../python-basics/pyfun) work in *Python*.
+*Python* libraries: *math* (standard library). Read and understand how [loops](../jupyter/pyloop) and [functions](../jupyter/pyfun) work in *Python*.
 ```
 
 Get ready by cloning the exercise repository:
@@ -68,7 +68,7 @@ Use `import math as m` to calculate square roots (`m.sqrt`). Powers are calculat
 Cast the calculation into a function (e.g., `def calc_discharge(b, h, k_st, m, S): ...`) that returns the discharge *Q*.
 
 ## Flexibilize
-Make the function more flexible through the usage of optional keywords arguments ([`**kwargs`](../python-basics/pyfun.html#keyword-arguments-kwargs) so that a user can optionally either provide the *D<sub>90</sub>* (`D90`), the *Strickler* coefficient *k<sub>st</sub>* (`k_st`), or *Manning's n* (`n_m`)
+Make the function more flexible through the usage of optional keywords arguments ([`**kwargs`](../jupyter/pyfun.html#keyword-arguments-kwargs) so that a user can optionally either provide the *D<sub>90</sub>* (`D90`), the *Strickler* coefficient *k<sub>st</sub>* (`k_st`), or *Manning's n* (`n_m`)
 
 ```{tip}
 Internally, use only *Manning's n* for the calculations and parse `kwargs.items()` to find out the `kwargs` provided by a user.

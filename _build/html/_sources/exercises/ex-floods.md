@@ -5,7 +5,7 @@ Load custom modules and functions in a script. Open comma-type delimited files a
 ```
 
 ```{admonition} Requirements
-*Python* libraries: *pandas* and *matplotlib*. Understand data handling with [pandas](../python-basics/pynum).
+*Python* libraries: *pandas* and *matplotlib*. Understand data handling with [pandas](../jupyter/pynum).
 ```
 
 Get ready by cloning the exercise repository:
@@ -54,7 +54,7 @@ Flow data can be retrieved from gauging stations. In Germany, the ["Gewässerkun
 * The [Bundesanstalt für Gewässerkunde *BfG*](https://www.bafg.de) runs the [Global Runoff Data Centre *GRDC*](https://www.bafg.de/GRDC/EN/Home/homepage_node.html) for the World Meteorological Organization *WMO* to provide river discharge data worldwide. The *GRDC*'s download platform is available in the form of an [interactive web-GIS](https://portal.grdc.bafg.de/applications/public.html?publicuser=PublicUser#dataDownload/Home). To get the data, go to their [download interface](https://portal.grdc.bafg.de/applications/public.html?publicuser=PublicUser#dataDownload/Stations), select the desired station, switch to *Table* view (third row in the top left of the window), check the station, click *download*, and fill the form to send the request. You will receive an email with a download link for the requested data (wait a couple of minutes before clicking on the link - the preparation may take more time than the email).
 * Flow datasets from alpine and midland rivers are provided by the Swiss Federal Office for the Environment's [hydrological data platform](https://www.hydrodaten.admin.ch/) (for long-term observations, a form has to be filled out here, too).
 * In the United States, the National Oceanic and Atmospheric Administration *NOAA* provides discharge data from the past and forecasts for watersheds in North America. For example, the [California Nevada River Forecast Center](https://www.cnrfc.noaa.gov/) provides flow forecasts for the South-Western United States, and historic data can be accessed from the [California Data Exchange Center *CDEC*](http://cdec.water.ca.gov/).
-* A general *US*-borne interface for loading flow data and statistics comes with the [`hydrofunctions` *Python* library](https://hydrofunctions.readthedocs.io/) provided by the United States Geological Survey *USGS*. This library enables to directly get gauge data and statistics based on a stream gauge ID. For example `output = hydrofunctions.peaks("01541200")` <br>To install `hydrofunctions` in a *conda* environment, type `conda install -c conda-forge hydrofunctions` in [*Anaconda Prompt*](../python-basics/pyinstall.html#install-pckg). Example usage:<br>`import hydrofunctions as hf`<br>`hf.draw_map()` (only runs in *JupyterLab*)
+* A general *US*-borne interface for loading flow data and statistics comes with the [`hydrofunctions` *Python* library](https://hydrofunctions.readthedocs.io/) provided by the United States Geological Survey *USGS*. This library enables to directly get gauge data and statistics based on a stream gauge ID. For example `output = hydrofunctions.peaks("01541200")` <br>To install `hydrofunctions` in a *conda* environment, type `conda install -c conda-forge hydrofunctions` in [*Anaconda Prompt*](../jupyter/pyinstall.html#install-pckg). Example usage:<br>`import hydrofunctions as hf`<br>`hf.draw_map()` (only runs in *JupyterLab*)
 
 ## Load Data with *pandas*
 Create a new *Python* file (e.g., `discharge_analysis.py`) and import *pandas* as `pd` at the beginning. Read the provided flow data series file `"Wasserburg_Inn_6343100_Q_Day.csv"` with `pd.read_csv`.
@@ -76,14 +76,14 @@ Did everything work? Verify the loaded `data_series` with `print(data_series.hea
 
 ### Plot the data
 
-Plotting data is not the focus of this exercise and for this reason, there is a ready-to-use function available in the `plot_discharge.py` script. Make sure that the `plot_discharge.py` is in the same directory as the above `discharge_analysis.py` *Python* script ([recall how to load modules](../python-basics/pypckg.html#overview-of-import-options)). Use the `plot_discharge` function in `plot_discharge.py` as follows:
+Plotting data is not the focus of this exercise and for this reason, there is a ready-to-use function available in the `plot_discharge.py` script. Make sure that the `plot_discharge.py` is in the same directory as the above `discharge_analysis.py` *Python* script ([recall how to load modules](../jupyter/pypckg.html#overview-of-import-options)). Use the `plot_discharge` function in `plot_discharge.py` as follows:
 
 ```python
 from plot_discharge import plot_discharge
 plot_discharge(df.index, df["Q (CMS)"], title="Wasserburg a. Inn 1826 - 2016")
 ```
 
-On a side note, `plot_discharge` uses the [`matplotlib` library](../python-basics/pypyplot.html#matplotlib).
+On a side note, `plot_discharge` uses the [`matplotlib` library](../jupyter/pyplot.html#matplotlib).
 
 
 ## Construct series of annual maximum discharge

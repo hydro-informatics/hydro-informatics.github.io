@@ -1,0 +1,1648 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Raster (Gridded) Dataset Handling &#8212; Hydro-Informatics</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://hydro-informatics.github.io/jupyter/geo-raster.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Raster to Vector Conversion and Vice Versa" href="geo-convert.html" />
+    <link rel="prev" title="Shapefile (vector dataset) handling" href="geo-shp.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://hydro-informatics.github.io/jupyter/geo-raster.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Raster (Gridded) Dataset Handling" />
+<meta property="og:description" content="Raster (Gridded) Dataset Handling  Summary: Geospatial analysis of raster (gridded) data with gdal and rasterstats.  Make sure to understand gridded raster data" />
+<meta property="og:image"       content="https://hydro-informatics.github.io/_static/icon.jpg" />
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/icon.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get Started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../lectures/classroom.html">
+   The Virtual Classroom
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/lectures.html">
+     Lectures and exercises
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/take_seat.html">
+     Take a Seat in the Virtual Classroom
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../get-started/software.html">
+   Software Resources
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/vm.html">
+     Virtual machines and Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/ide.html">
+     Anaconda and Integrated Development Environments (IDEs)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/git.html">
+     Introduction to git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/geo.html">
+     Geospatial Software
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-openfoam.html">
+     Install OpenFOAM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-telemac.html">
+     open TELEMAC (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/others.html">
+     Other Software Resources
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Python Basics
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../python-basics/python.html">
+   Get Started with Python
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python-basics/pyinstall.html">
+     Install Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pybase.html">
+     First steps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyerror.html">
+     Errors, Logging, and Debugging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyloop.html">
+     Loops and Conditional Statements
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../python-basics/modularize.html">
+   Modularization &amp; Object Orientation
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyfun.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pypckg.html">
+     Packages, Modules and Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="classes.html">
+     Object Orientation and Classes
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../python-basics/data-handling.html">
+   Data and File Handling
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="pynum.html">
+     Load and Write Basic Data Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pynum.html#numpy">
+     NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pynum.html#pandas">
+     Pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pynum.html#dates-and-time">
+     Dates and Time
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="xml.html">
+     Manipulation of Workbooks and JSON Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyplot.html">
+     Plotting
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pystyle.html">
+   Code Style and Conventions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gui.html">
+   Graphical User Interfaces (GUIs)
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../exercises/python-exercises.html">
+   Python Exercises
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-ms.html">
+     1d Hydraulics (Manning-Strickler Formula)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sp.html">
+     Reservoir Volume Calculation with a Sequent Peak Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-floods.html">
+     Calculate flood return periods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sediment.html">
+     Cross-section Averaged Sediment Transport
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-gui.html">
+     Create a
+     <strong>
+      G
+     </strong>
+     raphical
+     <strong>
+      U
+     </strong>
+     ser
+     <strong>
+      I
+     </strong>
+     nterface (GUI)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Documentation
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/documentation.html">
+   Markdown and Code Documentation
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../exercises/docs-exercises.html">
+   Exercises
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-git.html">
+     Git and markdown
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Geospatial Analysis
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/geospatial-data.html">
+   Geospatial Data
+  </a>
+ </li>
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="../geopy/geo-python.html">
+   Geospatial Python
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-pckg.html">
+     Geospatial Python - Open Source Packages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="geo-shp.html">
+     Shapefile (vector dataset) handling
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Raster (Gridded) Dataset Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="geo-convert.html">
+     Raster to Vector Conversion and Vice Versa
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="geo-arcpy.html">
+     The Commercial arcpy Library
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../exercises/geo-exercises.html">
+   Exercises
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-geco.html">
+     Create a habitat suitability map
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Numerical Modeling
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/numerical-modeling.html">
+   Principles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/pre-qgis.html">
+   Pre-Processing with QGIS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/basement.html">
+   BASEMENT
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../numerics/telemac.html">
+   TELEMAC
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/telemac2d.html">
+     Pre-Processing for TELEMAC models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/telemac3d.html">
+     3d modeling with TELEMAC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/telemac-gaia.html">
+     Gaia Workflow
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/openfoam.html">
+   OpenFOAM
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/calibration.html">
+   Calibration and Valdiation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Troubleshoot
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
+   Programming Tools and IDEs
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
+     Debugging Anaconda
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-python.html">
+     Debugging Python Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
+     Debugging Jupyter
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
+   Numerical Models
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
+     Debugging BASEMENT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
+     Debugging TELEMAC/SALOME
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../troubleshoot/dbg-os.html">
+   Operating Systems (Linux and VMs)
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
+     Debugging Debian Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
+     Debugging Virtual Machines
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Disclaimer and License
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/jupyter/geo-raster.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/hydro-informatics/hydro-informatics.github.io"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main/jupyter/v2/gh/hydro-informatics/hydro-informatics.github.io/main?urlpath=lab/tree/./jupyter/geo-raster.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-raster">
+   Load raster
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#open-existing-raster-data">
+     Open Existing Raster Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#raster-band-statistics-and-toolbox-scripts">
+     Raster Band Statistics and Toolbox Scripts
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-and-save-a-raster-from-array">
+   Create and Save a Raster (from Array)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#raster-drivers">
+     Raster Drivers
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#raster-data-types">
+     Raster Data Types
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-raster-array-to-raster">
+     Create Raster (Array to Raster)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#raster-calculus-raster-band-to-array">
+     Raster Calculus (Raster / Band to Array)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reproject-raster">
+     Reproject Raster
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#application-example-with-zonal-statistics">
+   Application Example with Zonal Statistics
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#clip-raster">
+   Clip Raster
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#slope-aspect-maps-and-built-in-command-line-scripts">
+   Slope / Aspect Maps and Built-in Command Line Scripts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#least-cost-path-between-pixels-and-another-way-of-reprojection">
+   Least Cost Path between Pixels (and another Way of Reprojection)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ecohydraulic-background">
+     Ecohydraulic Background
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#functions-and-libraries-involved">
+     Functions and Libraries Involved
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#application">
+     Application
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="raster-gridded-dataset-handling">
+<h1>Raster (Gridded) Dataset Handling<a class="headerlink" href="#raster-gridded-dataset-handling" title="Permalink to this headline">¶</a></h1>
+<p>Summary: Geospatial analysis of raster (gridded) data with gdal and rasterstats.</p>
+<p>Make sure to understand <a class="reference external" href="geospatial-data.html#raster">gridded raster data</a> before reading this section. Recall that we will mostly deal with the <code class="docutils literal notranslate"><span class="pre">.tif</span></code> (<em>GeoTIFF</em>) format for grid data and hat many other raster data types exist.</p>
+<div class="admonition-tips admonition">
+<p class="admonition-title">Tips</p>
+<ul class="simple">
+<li><p>While <code class="docutils literal notranslate"><span class="pre">gdal</span></code>’s <code class="docutils literal notranslate"><span class="pre">ogr</span></code> module is useful for shapefile handling, raster data are best handled by <code class="docutils literal notranslate"><span class="pre">gdal</span></code> itself.</p></li>
+<li><p>Download sample raster datasets from <a class="reference external" href="https://github.com/RiverArchitect/SampleData/archive/master.zip"><em>River Architect</em></a>. This page uses <em>GeoTIFF</em> raster data located in <a class="reference external" href="https://github.com/RiverArchitect/SampleData/tree/master/01_Conditions/2100_sample"><code class="docutils literal notranslate"><span class="pre">RiverArchitect/SampleData/01_Conditions/2100_sample/</span></code></a>.</p></li>
+<li><p>The core functions used in this e-book are introduced with the raster and vector data handling explanations and additionally implemented in the <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> package.</p></li>
+</ul>
+</div>
+<div class="section" id="load-raster">
+<h2>Load raster<a class="headerlink" href="#load-raster" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="open-existing-raster-data">
+<span id="open-raster"></span><h3>Open Existing Raster Data<a class="headerlink" href="#open-existing-raster-data" title="Permalink to this headline">¶</a></h3>
+<p>Raster data can be opened as a <code class="docutils literal notranslate"><span class="pre">gdal.Open(&quot;FILENAME&quot;)</span></code> object. The following code block provides a function to open any raster specified with the <code class="docutils literal notranslate"><span class="pre">file_name</span></code> input argument. One of the most important elements when dealing with raster data is the <code class="docutils literal notranslate"><span class="pre">RasterBand</span></code>, which takes on a similar data carrier role as <code class="docutils literal notranslate"><span class="pre">GetLayer</span></code> in shapefile handling.
+To create this important object, the <code class="docutils literal notranslate"><span class="pre">open_raster</span></code> function:</p>
+<ol class="simple">
+<li><p>Enables error and warning feedback with <code class="docutils literal notranslate"><span class="pre">gdal.UseExceptions()</span></code> (this step is absolutely vital when using raster data).</p></li>
+<li><p>Opens the provided raster <code class="docutils literal notranslate"><span class="pre">file_name</span></code> embraced by <code class="docutils literal notranslate"><span class="pre">try</span></code> - <code class="docutils literal notranslate"><span class="pre">except</span></code> statements to inform if and why an error occurred while opening the raster.</p></li>
+<li><p>Opens the raster band number stated in the optional <code class="docutils literal notranslate"><span class="pre">band_number</span></code> keyword argument with <code class="docutils literal notranslate"><span class="pre">raster_band</span> <span class="pre">=</span> <span class="pre">raster.GetRasterBand(band_number)</span></code> (the default value is <code class="docutils literal notranslate"><span class="pre">1</span></code>).</p></li>
+<li><p>Returns the raster and raster band objects.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gdal</span>
+
+
+<span class="k">def</span> <span class="nf">open_raster</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">band_number</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Open a raster file and access its bands</span>
+<span class="sd">    :param file_name: STR of a raster file directory and name</span>
+<span class="sd">    :param band_number: INT of the raster band number to open (default: 1)</span>
+<span class="sd">    :output: osgeo.gdal.Dataset, osgeo.gdal.Band objects</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">gdal</span><span class="o">.</span><span class="n">UseExceptions</span><span class="p">()</span>
+    <span class="c1"># open raster file or return None if not accessible</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">raster</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ERROR: Cannot open raster.&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="c1"># open raster band or return None if corrupted</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">raster_band</span> <span class="o">=</span> <span class="n">raster</span><span class="o">.</span><span class="n">GetRasterBand</span><span class="p">(</span><span class="n">band_number</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ERROR: Cannot access raster band.&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">raster</span><span class="p">,</span> <span class="n">raster_band</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To use the <code class="docutils literal notranslate"><span class="pre">open_raster</span></code> function just call it with a file name as shown in the following code block with the <code class="docutils literal notranslate"><span class="pre">h001000.tif</span></code> raster from the <a class="reference external" href="https://github.com/RiverArchitect/SampleData/archive/master.zip"><em>River Architect</em> sample data</a>. The script immediately closes the raster again by overwriting it with <code class="docutils literal notranslate"><span class="pre">None</span></code> to avoid that the file is locked afterwards.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">file_name</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/geodata/river-architect/h001000.tif&quot;</span>
+<span class="n">src</span><span class="p">,</span> <span class="n">depth</span> <span class="o">=</span> <span class="n">open_raster</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">depth</span><span class="p">)</span>
+<span class="n">depth</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;osgeo.gdal.Dataset; proxy of &lt;Swig Object of type &#39;GDALDatasetShadow *&#39; at 0x000001D5E1E95330&gt; &gt;
+&lt;osgeo.gdal.Band; proxy of &lt;Swig Object of type &#39;GDALRasterBandShadow *&#39; at 0x000001D5E1E95300&gt; &gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="raster-band-statistics-and-toolbox-scripts">
+<h3>Raster Band Statistics and Toolbox Scripts<a class="headerlink" href="#raster-band-statistics-and-toolbox-scripts" title="Permalink to this headline">¶</a></h3>
+<p>Once we loaded a raster and a raster band with the above <code class="docutils literal notranslate"><span class="pre">open_raster</span></code> function, we can access statistical information (e.g., the minimum or the maximum), identify the <em>no-data</em> value (i.e., a pre-defined value that is assigned to pixels without value), or the type of units used.</p>
+<p><em>Python</em> scripts for processing geospatial data can also be embedded as plugins in <em>GIS</em> desktop applications (e.g., as plugins in <em>QGIS</em> or <em>Toolbox</em> in <em>ArcGIS Pro</em>). To run a <em>Python</em> script in a <em>GIS</em> desktop application, it should be written as a standalone script that can receive input arguments. Creating plugins is not a primary learning goal here and the interested reader can read more about implementing plugins in <em>QGIS</em> in the <a class="reference external" href="https://docs.qgis.org/3.10/en/docs/pyqgis_developer_cookbook/plugins/index.html"><em>QGIS</em> docs</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In fact, <em>QGIS</em> wraps many external functionalities, which are available through he <em>QGIS Processing Toolbox</em>. The provided algorithms belong for example to <em>SAGA</em> or <em>GRASS GIS</em>.</p>
+</div>
+<p>Here we will only write the next code block so that it can be run in a console/terminal application as standalone script (recall the <a class="reference external" href="../python-basics/pypckg.html#standalone">instructions to writing standalone script</a>).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># make sure to use exceptions</span>
+<span class="n">gdal</span><span class="o">.</span><span class="n">UseExceptions</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">how2use</span><span class="p">():</span>
+    <span class="c1"># provide usage instructions for the script</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    $ raster_band_info.py [ band number ] input-raster</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+    <span class="c1"># exit program if wrong input arguments provided</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    
+
+<span class="k">def</span> <span class="nf">get_color_bands</span><span class="p">(</span><span class="n">raster_band</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :param raster_band: osgeo.gdal.Band object</span>
+<span class="sd">    :output: list of color bands used in raster_band</span>
+<span class="sd">    &quot;&quot;&quot;</span> 
+    
+    <span class="c1"># get ColorTable and return False if None</span>
+    <span class="n">color_table</span> <span class="o">=</span> <span class="n">raster_band</span><span class="o">.</span><span class="n">GetColorTable</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">color_table</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Band has no ColorTable.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Found </span><span class="si">%i</span><span class="s2"> color definitions.&quot;</span> <span class="o">%</span> <span class="nb">int</span><span class="p">(</span><span class="n">color_table</span><span class="o">.</span><span class="n">GetCount</span><span class="p">()))</span>
+
+    <span class="c1"># iterate through color_table and append objects found to colors_bands list</span>
+    <span class="n">color_bands</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color_table</span><span class="o">.</span><span class="n">GetCount</span><span class="p">()</span> <span class="p">):</span>
+        <span class="n">entry</span> <span class="o">=</span> <span class="n">color_table</span><span class="o">.</span><span class="n">GetColorEntry</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">entry</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">color_bands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">color_table</span><span class="o">.</span><span class="n">GetColorEntryAsRGB</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">entry</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">color_bands</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">band_number</span><span class="p">,</span> <span class="n">input_file</span><span class="p">):</span>
+    <span class="n">src</span><span class="p">,</span> <span class="n">band</span> <span class="o">=</span> <span class="n">open_raster</span><span class="p">(</span><span class="n">input_file</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Band minimum: &quot;</span><span class="p">,</span> <span class="n">band</span><span class="o">.</span><span class="n">GetMinimum</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Band maximum: &quot;</span><span class="p">,</span> <span class="n">band</span><span class="o">.</span><span class="n">GetMaximum</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No-data value: &quot;</span><span class="p">,</span> <span class="n">band</span><span class="o">.</span><span class="n">GetNoDataValue</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Band unit type: &quot;</span><span class="p">,</span> <span class="n">band</span><span class="o">.</span><span class="n">GetUnitType</span><span class="p">())</span>    
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">get_color_bands</span><span class="p">(</span><span class="n">band</span><span class="p">)))</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ColorTable: None&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># make standalone</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span> <span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        ERROR: Provide two arguments:</span>
+<span class="s2">        1) the band number (int) and 2) input raster directory (str)</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+        <span class="n">how2use</span><span class="p">()</span>
+
+    <span class="n">main</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="nb">str</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+</pre></div>
+</div>
+<p>To run this script, save it as <code class="docutils literal notranslate"><span class="pre">raster_band_info.py</span></code> (e.g., in <code class="docutils literal notranslate"><span class="pre">C:\temp</span></code>) and navigate to the script directory in a terminal application (e.g., in <em>PyCharm</em>’s <em>Terminal</em>) using the <code class="docutils literal notranslate"><span class="pre">cd</span></code> command. Now run the script to get information of the water depth raster <code class="docutils literal notranslate"><span class="pre">h001000.tif</span></code> with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">temp</span>\ <span class="n">python</span> <span class="n">raster_band_info</span><span class="o">.</span><span class="n">py</span> <span class="mi">1</span> <span class="s2">&quot;C:</span><span class="se">\t</span><span class="s2">emp\geodata</span><span class="se">\r</span><span class="s2">iver-architect\h001000.tif&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Band</span> <span class="n">minimum</span><span class="p">:</span>  <span class="mf">0.0</span>
+<span class="n">Band</span> <span class="n">maximum</span><span class="p">:</span>  <span class="mf">7.0613012313843</span>
+<span class="n">No</span><span class="o">-</span><span class="n">data</span> <span class="n">value</span><span class="p">:</span>  <span class="o">-</span><span class="mf">3.4028234663852886e+38</span>
+<span class="n">Band</span> <span class="n">unit</span> <span class="nb">type</span><span class="p">:</span>
+<span class="n">Band</span> <span class="n">has</span> <span class="n">no</span> <span class="n">ColorTable</span><span class="o">.</span>
+<span class="n">ColorTable</span><span class="p">:</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="create-and-save-a-raster-from-array">
+<h2>Create and Save a Raster (from Array)<a class="headerlink" href="#create-and-save-a-raster-from-array" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="raster-drivers">
+<span id="id1"></span><h3>Raster Drivers<a class="headerlink" href="#raster-drivers" title="Permalink to this headline">¶</a></h3>
+<p>Just like for shapefile files, the appropriate <code class="docutils literal notranslate"><span class="pre">gdal</span></code> driver (analogous to <code class="docutils literal notranslate"><span class="pre">ogr</span></code> drivers) must be loaded to save a raster. To get a full list of <code class="docutils literal notranslate"><span class="pre">gdal</span></code> drivers run:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">driver_list</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">gdal</span><span class="o">.</span><span class="n">GetDriver</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">GetDescription</span><span class="p">())</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">gdal</span><span class="o">.</span><span class="n">GetDriverCount</span><span class="p">())]</span>
+<span class="n">driver_list</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">driver_list</span><span class="p">[:]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AAIGrid, ACE2, ADRG, AIG, ARCGEN, ARG, AVCBin, AVCE00, AeronavFAA, AirSAR, AmigoCloud, BAG, BIGGIF, BLX, BMP, BNA, BSB, BT, BYN, CAD, CALS, CEOS, COASP, COSAR, CPG, CSV, CSW, CTG, CTable2, Carto, Cloudant, CouchDB, DAAS, DB2ODBC, DERIVED, DGN, DIMAP, DIPEx, DOQ1, DOQ2, DTED, DXF, E00GRID, ECRGTOC, EDIGEO, EEDA, EEDAI, EHdr, EIR, ELAS, ENVI, ERS, ESAT, ESRI Shapefile, ESRIJSON, ElasticSearch, FAST, FIT, FITS, FujiBAS, GFF, GFT, GIF, GML, GMLAS, GMT, GNMDatabase, GNMFile, GPKG, GPSBabel, GPSTrackMaker, GPX, GRASSASCIIGrid, GRIB, GS7BG, GSAG, GSBG, GSC, GTX, GTiff, GXF, GenBin, GeoJSON, GeoJSONSeq, GeoRSS, Geoconcept, Geomedia, HDF4, HDF4Image, HDF5, HDF5Image, HF2, HFA, HTF, HTTP, IDA, IGNFHeightASCIIGrid, ILWIS, INGR, IRIS, ISCE, ISIS2, ISIS3, Idrisi, JAXAPALSAR, JDEM, JML, JP2OpenJPEG, JPEG, KEA, KML, KMLSUPEROVERLAY, KRO, L1B, LAN, LCP, LOSLAS, Leveller, MAP, MBTiles, MEM, MFF, MFF2, MRF, MSGN, MSSQLSpatial, MVT, MapInfo File, Memory, NAS, NDF, NGSGEOID, NGW, NITF, NTv1, NTv2, NWT_GRC, NWT_GRD, ODBC, ODS, OGR_GMT, OGR_PDS, OGR_SDTS, OGR_VRT, OSM, OZI, OpenAir, OpenFileGDB, PAux, PCIDSK, PCRaster, PDF, PDS, PDS4, PGDUMP, PGeo, PLMOSAIC, PLSCENES, PNG, PNM, PRF, PostGISRaster, PostgreSQL, R, RDA, REC, RIK, RMF, ROI_PAC, RPFTOC, RRASTER, RS2, RST, Rasterlite, S57, SAFE, SAGA, SAR_CEOS, SDTS, SEGUKOOA, SEGY, SENTINEL2, SGI, SIGDEM, SNODAS, SQLite, SRP, SRTMHGT, SUA, SVG, SXF, Selafin, TIGER, TIL, TSX, Terragen, TileDB, TopoJSON, UK .NTF, USGSDEM, VDV, VFK, VICAR, VRT, WAsP, WCS, WEBP, WFS, WFS3, WMS, WMTS, Walk, XLS, XLSX, XPM, XPlane, XYZ, ZMap, netCDF
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="raster-data-types">
+<span id="etypes"></span><h3>Raster Data Types<a class="headerlink" href="#raster-data-types" title="Permalink to this headline">¶</a></h3>
+<p>The output raster pixels can have the following data types (source: <a class="reference external" href="https://gdal.org/doxygen/classGDALDataset.html">gdal.org/doxygen/</a>):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">GDT_Unknown</span></code> Unknown or unspecified type</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GDT_Byte</span></code> 8 bit unsigned integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GDT_UInt16</span></code> 16 bit unsigned integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GDT_Int16</span></code> 16 bit signed integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GDT_UInt32</span></code> 32 bit unsigned integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GDT_Int32</span></code> 32 bit signed integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GDT_Float32</span></code> 32 bit floating point</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GDT_Float64</span></code> 64 bit floating point</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GDT_CInt16</span></code> Complex Int16</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GDT_CInt32</span></code> Complex Int32</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GDT_CFloat32</span></code> Complex Float32</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GDT_CFloat64</span></code> Complex Float64</p></li>
+</ul>
+</div>
+<div class="section" id="create-raster-array-to-raster">
+<span id="create-raster"></span><h3>Create Raster (Array to Raster)<a class="headerlink" href="#create-raster-array-to-raster" title="Permalink to this headline">¶</a></h3>
+<p>With these ingredients, we can create a raster from a numeric array, because a raster is basically just a georeferenced array. In <em>Python</em> it is convenient to convert a <a class="reference external" href="../python-basics/pynum.html#array-matrix-operations"><em>numpy</em> array</a> into a raster (band). The following functions features the conversion of a <em>numpy</em> array into a <em>GeoTIFF</em> rasters with the following workflow:</p>
+<ol class="simple">
+<li><p>Check out the <em>GeoTIFF</em> driver (<code class="docutils literal notranslate"><span class="pre">driver</span> <span class="pre">=</span> <span class="pre">gdal.GetDriverByName('GTiff')</span></code>).</p></li>
+<li><p>Retrieve the array size and (number of rows <code class="docutils literal notranslate"><span class="pre">rows</span></code> and columns <code class="docutils literal notranslate"><span class="pre">cols</span></code>).</p></li>
+<li><p>Create a new <em>GeoTIFF</em> raster (<code class="docutils literal notranslate"><span class="pre">new_raster</span> <span class="pre">=</span> <span class="pre">driver.Create(file_name,</span> <span class="pre">cols,</span> <span class="pre">rows,</span> <span class="pre">1,</span> <span class="pre">eType=rdtype)</span></code>), where</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">file_name</span></code> is the directory and name of the new raster file ending on <code class="docutils literal notranslate"><span class="pre">.tif</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;C:\\temp\\rasters\\new.tif&quot;</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cols</span></code>, <code class="docutils literal notranslate"><span class="pre">rows</span></code> represent the array shape, and <code class="docutils literal notranslate"><span class="pre">eType</span></code> is the geospatial data type (see above list)</p></li>
+</ul>
+</li>
+<li><p>Set the geographic origin stored in the <code class="docutils literal notranslate"><span class="pre">origin</span></code> (<em>tuple</em>) parameter and define the <code class="docutils literal notranslate"><span class="pre">pixel_width</span></code> and <code class="docutils literal notranslate"><span class="pre">pixel_height</span></code> (pixel units defined with <code class="docutils literal notranslate"><span class="pre">srs</span></code> - see below).</p></li>
+<li><p>Replace <code class="docutils literal notranslate"><span class="pre">np.nan</span></code> values in array with <code class="docutils literal notranslate"><span class="pre">nan_value</span></code>.</p></li>
+<li><p>Instantiate a <code class="docutils literal notranslate"><span class="pre">band</span></code> object, set the the <code class="docutils literal notranslate"><span class="pre">NoDataValue</span></code> to <code class="docutils literal notranslate"><span class="pre">nan_value</span></code>, and write the array to the <code class="docutils literal notranslate"><span class="pre">band</span></code>.</p></li>
+<li><p>Create a spatial reference system object  (<code class="docutils literal notranslate"><span class="pre">srs</span></code>) as a function of the <code class="docutils literal notranslate"><span class="pre">epsg</span></code> input parameter and export it to <em>WKT</em> format.</p></li>
+<li><p>Release the raster (flush from cache).</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The units defined with the <code class="docutils literal notranslate"><span class="pre">epsg</span></code> projection drive the pixel size, where <code class="docutils literal notranslate"><span class="pre">pixel_width</span></code> and <code class="docutils literal notranslate"><span class="pre">pixel_height</span></code> are multipliers of that unit. In the case of <code class="docutils literal notranslate"><span class="pre">epsg=3857</span></code>, the unit is <code class="docutils literal notranslate"><span class="pre">meters</span></code> and <code class="docutils literal notranslate"><span class="pre">pixel_width=10</span></code> combined with <code class="docutils literal notranslate"><span class="pre">pixel_height=20</span></code> creates 10m wide and 20m high pixels. In the case of <code class="docutils literal notranslate"><span class="pre">epsg=4326</span></code>, the unit is (geographic) <code class="docutils literal notranslate"><span class="pre">degrees</span></code> and 1 degree by 1 degree pixels can have the size of a county.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">osr</span>
+
+
+<span class="k">def</span> <span class="nf">create_raster</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">raster_array</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">epsg</span><span class="o">=</span><span class="mi">4326</span><span class="p">,</span> <span class="n">pixel_width</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pixel_height</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                  <span class="n">nan_value</span><span class="o">=-</span><span class="mf">9999.0</span><span class="p">,</span> <span class="n">rdtype</span><span class="o">=</span><span class="n">gdal</span><span class="o">.</span><span class="n">GDT_Float32</span><span class="p">,</span> <span class="n">geo_info</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert a numpy.array to a GeoTIFF raster with the following parameters</span>
+<span class="sd">    :param file_name: STR of target file name, including directory; must end on &quot;.tif&quot;</span>
+<span class="sd">    :param raster_array: np.array of values to rasterize</span>
+<span class="sd">    :param origin: TUPLE of (x, y) origin coordinates</span>
+<span class="sd">    :param epsg: INT of EPSG:XXXX projection to use - default=4326</span>
+<span class="sd">    :param pixel_height: INT of pixel height (multiple of unit defined with the EPSG number) - default=10m</span>
+<span class="sd">    :param pixel_width: INT of pixel width (multiple of unit defined with the EPSG number) - default=10m</span>
+<span class="sd">    :param nan_value: INT/FLOAT no-data value to be used in the raster (replaces non-numeric and np.nan in array)</span>
+<span class="sd">                        default=-9999.0</span>
+<span class="sd">    :param rdtype: gdal.GDALDataType raster data type - default=gdal.GDT_Float32 (32 bit floating point)</span>
+<span class="sd">    :param geo_info: TUPLE defining a gdal.DataSet.GetGeoTransform object (supersedes origin, pixel_width, pixel_height)</span>
+<span class="sd">                        default=False</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check out driver</span>
+    <span class="n">driver</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">GetDriverByName</span><span class="p">(</span><span class="s1">&#39;GTiff&#39;</span><span class="p">)</span>
+
+    <span class="c1"># create raster dataset with number of cols and rows of the input array</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="n">raster_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">raster_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">new_raster</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">rows</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">eType</span><span class="o">=</span><span class="n">rdtype</span><span class="p">)</span>    
+
+    <span class="c1"># apply geo-origin and pixel dimensions</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">geo_info</span><span class="p">:</span>
+        <span class="n">origin_x</span> <span class="o">=</span> <span class="n">origin</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">origin_y</span> <span class="o">=</span> <span class="n">origin</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">new_raster</span><span class="o">.</span><span class="n">SetGeoTransform</span><span class="p">((</span><span class="n">origin_x</span><span class="p">,</span> <span class="n">pixel_width</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">origin_y</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">pixel_height</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">new_raster</span><span class="o">.</span><span class="n">SetGeoTransform</span><span class="p">(</span><span class="n">geo_info</span><span class="p">)</span>
+    
+    <span class="c1"># replace np.nan values</span>
+    <span class="n">raster_array</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">raster_array</span><span class="p">)]</span> <span class="o">=</span> <span class="n">nan_value</span>
+
+    <span class="c1"># retrieve band number 1</span>
+    <span class="n">band</span> <span class="o">=</span> <span class="n">new_raster</span><span class="o">.</span><span class="n">GetRasterBand</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">band</span><span class="o">.</span><span class="n">SetNoDataValue</span><span class="p">(</span><span class="n">nan_value</span><span class="p">)</span>
+    <span class="n">band</span><span class="o">.</span><span class="n">WriteArray</span><span class="p">(</span><span class="n">raster_array</span><span class="p">)</span>
+    <span class="n">band</span><span class="o">.</span><span class="n">SetScale</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+
+    <span class="c1"># create projection and assign to raster</span>
+    <span class="n">srs</span> <span class="o">=</span> <span class="n">osr</span><span class="o">.</span><span class="n">SpatialReference</span><span class="p">()</span>
+    <span class="n">srs</span><span class="o">.</span><span class="n">ImportFromEPSG</span><span class="p">(</span><span class="n">epsg</span><span class="p">)</span>
+    <span class="n">new_raster</span><span class="o">.</span><span class="n">SetProjection</span><span class="p">(</span><span class="n">srs</span><span class="o">.</span><span class="n">ExportToWkt</span><span class="p">())</span>
+
+    <span class="c1"># release raster band</span>
+    <span class="n">band</span><span class="o">.</span><span class="n">FlushCache</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To call the function for writing a random <em>numpy</em> array, we can now use the <code class="docutils literal notranslate"><span class="pre">create_raster</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set the name of the output GeoTIFF raster</span>
+<span class="n">raster_name</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/geodata/rasters/random_unis_dem.tif&quot;</span>
+<span class="c1"># create a random numpy array (DEM-like values) - can be replaced with any other numpy.array</span>
+<span class="n">unis_dem</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span> <span class="o">+</span> <span class="mf">455.0</span>
+<span class="c1"># overwrite one pixel with np.nan</span>
+<span class="n">unis_dem</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="c1"># define a raster origin in EPSG:3857</span>
+<span class="n">raster_origin</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1013428.396233</span><span class="p">,</span> <span class="mf">6231555.006177</span><span class="p">)</span>
+<span class="c1"># call create_raster to create a 1-m-resolution raster in EPSG:4326 projection</span>
+<span class="n">create_raster</span><span class="p">(</span><span class="n">raster_name</span><span class="p">,</span> <span class="n">unis_dem</span><span class="p">,</span> <span class="n">raster_origin</span><span class="p">,</span>  <span class="n">pixel_width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="n">pixel_height</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">epsg</span><span class="o">=</span><span class="mi">3857</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-ras-unis.png" /></p>
+</div>
+<div class="section" id="raster-calculus-raster-band-to-array">
+<span id="createarray"></span><h3>Raster Calculus (Raster / Band to Array)<a class="headerlink" href="#raster-calculus-raster-band-to-array" title="Permalink to this headline">¶</a></h3>
+<p>The procedure described in the create_raster function above can be used in a similar way to create <a class="reference external" href="../python-basics/pynum.html#array-matrix-operations"><em>numpy</em> array</a> from raster bands.
+This enables algebraic or other logical operations to be applied to existing raster data. Need an example? In the <em>RiverArchitect SampleData</em>, the units of the water depth raster <code class="docutils literal notranslate"><span class="pre">h001000.tif</span></code> are in U.S. customary feet and the units of the flow velocity raster <code class="docutils literal notranslate"><span class="pre">u001000.tif</span></code> are in feet per second. To calculate the <em>Froude</em> number (recall the meaning of the <a class="reference external" href="../python-basics/pynum.html#exp-Froude"><em>Froude</em> number in the data processing section</a>) for each pixel based on the two rasters (water depth and flow velocity), it is convenient to convert both rasters into m and m/s, respectively.</p>
+<p>First we want to write a custom function that loads a raster as an array and overwrites <code class="docutils literal notranslate"><span class="pre">NoDataValues</span></code> with <code class="docutils literal notranslate"><span class="pre">np.nan</span></code> (<code class="docutils literal notranslate"><span class="pre">raster</span></code> and <code class="docutils literal notranslate"><span class="pre">band</span></code> can be instantiated with the above <code class="docutils literal notranslate"><span class="pre">open_raster</span></code> function):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">raster2array</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">band_number</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :param file_name: STR of target file name, including directory; must end on &quot;.tif&quot;</span>
+<span class="sd">    :param band_number: INT of the raster band number to open (default: 1)</span>
+<span class="sd">    :output: (1) ndarray() of the indicated raster band, where no-data values are replaced with np.nan</span>
+<span class="sd">             (2) the GeoTransformation used in the original raster</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># open the raster and band (see above)</span>
+    <span class="n">raster</span><span class="p">,</span> <span class="n">band</span> <span class="o">=</span> <span class="n">open_raster</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">band_number</span><span class="o">=</span><span class="n">band_number</span><span class="p">)</span>
+    <span class="c1"># read array data from band</span>
+    <span class="n">band_array</span> <span class="o">=</span> <span class="n">band</span><span class="o">.</span><span class="n">ReadAsArray</span><span class="p">()</span>
+    <span class="c1"># overwrite NoDataValues with np.nan</span>
+    <span class="n">band_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">band_array</span> <span class="o">==</span> <span class="n">band</span><span class="o">.</span><span class="n">GetNoDataValue</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">band_array</span><span class="p">)</span>
+    <span class="c1"># return the array and GeoTransformation used in the original raster</span>
+    <span class="k">return</span> <span class="n">raster</span><span class="p">,</span> <span class="n">band_array</span><span class="p">,</span> <span class="n">raster</span><span class="o">.</span><span class="n">GetGeoTransform</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-challenge admonition">
+<p class="admonition-title">Challenge</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">raster2array</span></code> function returns a tuple, where <code class="docutils literal notranslate"><span class="pre">output[0]</span></code> corresponds to the array and <code class="docutils literal notranslate"><span class="pre">output[1]</span></code> is the geo-transformation. Can you optimize the way how these information is returned?</p>
+</div>
+<p>The following code block makes use of the <code class="docutils literal notranslate"><span class="pre">raster2array</span></code> function for converting a <em>GeoTIFF</em> raster into a <em>numpy</em> array, performs simple algebraic calculations, and saves the result in the shape of a <em>Froude</em> number <em>GeoTIFF</em> raster. In detail, the workflow involves to:</p>
+<ul class="simple">
+<li><p>Define the input raster file names with directories (<code class="docutils literal notranslate"><span class="pre">h_file</span></code> and <code class="docutils literal notranslate"><span class="pre">u_file</span></code>),</p></li>
+<li><p>Load original rasters as <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> with the <code class="docutils literal notranslate"><span class="pre">raster2array</span></code> function and get the original <code class="docutils literal notranslate"><span class="pre">GeoTransform</span></code> description,</p></li>
+<li><p>converts all values from U.S. customary feet to S.I. metric (recall the <a class="reference external" href="../python-basics/pyfun.html#kwargs"><code class="docutils literal notranslate"><span class="pre">feet_to_meter</span></code></a> function from the <em>Python</em> basics), and</p></li>
+<li><p>saves a new copy of the raster.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h_file</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/geodata/river-architect/h001000.tif&quot;</span>
+<span class="n">u_file</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/geodata/river-architect/u001000.tif&quot;</span>
+
+<span class="c1"># load both rasters as arrays</span>
+<span class="n">h_ras</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">h_geo_info</span> <span class="o">=</span> <span class="n">raster2array</span><span class="p">(</span><span class="n">h_file</span><span class="p">)</span>
+<span class="n">u_ras</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">u_geo_info</span> <span class="o">=</span> <span class="n">raster2array</span><span class="p">(</span><span class="n">u_file</span><span class="p">)</span>
+
+<span class="c1">#convert to metric system</span>
+<span class="n">h</span> <span class="o">*=</span> <span class="mf">0.3048</span>
+<span class="n">u</span> <span class="o">*=</span> <span class="mf">0.3048</span>
+
+<span class="c1"># calculate the Froude number as array and avoid zero-division warning messages</span>
+<span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="n">divide</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">invalid</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">):</span>
+    <span class="n">Froude</span> <span class="o">=</span> <span class="n">u</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">h</span> <span class="o">*</span> <span class="mf">9.81</span><span class="p">)</span>
+
+<span class="c1"># create Froude raster from array</span>
+<span class="n">create_raster</span><span class="p">(</span><span class="n">file_name</span><span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/rasters/Fr1000cfs.tif&quot;</span><span class="p">,</span>
+              <span class="n">raster_array</span><span class="o">=</span><span class="n">Froude</span><span class="p">,</span> <span class="n">epsg</span><span class="o">=</span><span class="mi">6418</span><span class="p">,</span> <span class="n">geo_info</span><span class="o">=</span><span class="n">h_geo_info</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-py-fr.png" /></p>
+</div>
+<div class="section" id="reproject-raster">
+<span id="id2"></span><h3>Reproject Raster<a class="headerlink" href="#reproject-raster" title="Permalink to this headline">¶</a></h3>
+<p>The transformation (and reprojection) of a raster into a another coordinate system involves rotation, shifting, and shearing of pixels. If one of these operations is skipped, it can happen that the reprojected raster is squeezed, twisted, or placed somewhere else in the world. Therefore, the approach for the reprojection of a raster into another coordinate data system implies the following steps:</p>
+<ol class="simple">
+<li><p>Retrieve the source and target spatial reference systems (e.g., derive from a <code class="docutils literal notranslate"><span class="pre">gdal.Dataset</span></code> or an <code class="docutils literal notranslate"><span class="pre">EPSG</span></code> authority code).</p></li>
+<li><p>Read the geo tansformation of the source dataset ( <code class="docutils literal notranslate"><span class="pre">gdal.Dataset.GetGeoTransform()</span></code>).</p></li>
+<li><p>Derive the number of pixels and the spacing between pixels in the new (reprojected) dataset.</p></li>
+<li><p>Instantiate the new (reprojected) dataset.</p></li>
+<li><p>Project an image of the source dataset onto the new (reprojected) dataset (<code class="docutils literal notranslate"><span class="pre">gdal.ReprojectImage()</span></code>).</p></li>
+</ol>
+<p>The spatial reference system can be derived from a dataset with the explanations in the <a class="reference external" href="geo-shp.html#prj-shp">shapefile</a> section by writing a <code class="docutils literal notranslate"><span class="pre">get_srs</span></code> function. The following code block shows the <code class="docutils literal notranslate"><span class="pre">get_srs</span></code> function (uses the <code class="docutils literal notranslate"><span class="pre">osr</span></code> library from <code class="docutils literal notranslate"><span class="pre">osgeo</span></code> / <code class="docutils literal notranslate"><span class="pre">gdal</span></code> ), which is also integrated in the <a class="reference external" href="https://flusstools.readthedocs.io/en/latest/geotools.html#module-flusstools.geotools.srs_mgmt">flusstools package</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_srs</span><span class="p">(</span><span class="n">dataset</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get the spatial reference of any gdal.Dataset</span>
+<span class="sd">    :param dataset: osgeo.gdal.Dataset (raster)</span>
+<span class="sd">    :output: osr.SpatialReference</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">sr</span> <span class="o">=</span> <span class="n">osr</span><span class="o">.</span><span class="n">SpatialReference</span><span class="p">()</span>
+    <span class="n">sr</span><span class="o">.</span><span class="n">ImportFromWkt</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">GetProjection</span><span class="p">())</span>
+    <span class="c1"># auto-detect epsg</span>
+    <span class="n">auto_detect</span> <span class="o">=</span> <span class="n">sr</span><span class="o">.</span><span class="n">AutoIdentifyEPSG</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">auto_detect</span> <span class="ow">is</span> <span class="ow">not</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">sr</span> <span class="o">=</span> <span class="n">sr</span><span class="o">.</span><span class="n">FindMatches</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Find matches returns list of tuple of SpatialReferences</span>
+        <span class="n">sr</span><span class="o">.</span><span class="n">AutoIdentifyEPSG</span><span class="p">()</span>
+    <span class="c1"># assign input SpatialReference</span>
+    <span class="n">sr</span><span class="o">.</span><span class="n">ImportFromEPSG</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">sr</span><span class="o">.</span><span class="n">GetAuthorityCode</span><span class="p">(</span><span class="kc">None</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">sr</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With the previously defined <code class="docutils literal notranslate"><span class="pre">open_raster</span></code> and <code class="docutils literal notranslate"><span class="pre">get_srs</span></code> functions we have all the necessary ingredients to accomplish the raster reprojection workflow in a <code class="docutils literal notranslate"><span class="pre">reproject_raster</span></code> function. An additional feature of the function is to ensure correct use of the <code class="docutils literal notranslate"><span class="pre">osr.CoordinateTransformation</span></code> method, which behaves differently under <code class="docutils literal notranslate"><span class="pre">gdal</span></code> 3.0 compared to previous <code class="docutils literal notranslate"><span class="pre">gdal</span></code> versions (<a class="reference external" href="https://github.com/OSGeo/gdal/issues/1546">read on OSGeo’s GitHub page</a>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">reproject_raster</span><span class="p">(</span><span class="n">source_dataset</span><span class="p">,</span> <span class="n">source_srs</span><span class="p">,</span> <span class="n">target_srs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Reproject a raster dataset (preferably use through reproject function)</span>
+<span class="sd">    :param source_dataset: osgeo.ogr.DataSource (instantiate with ogr.Open(SHP-FILE))</span>
+<span class="sd">    :param source_srs: osgeo.osr.SpatialReference (instantiate with get_srs(source_dataset))</span>
+<span class="sd">    :param target_srs: osgeo.osr.SpatialReference (instantiate with get_srs(DATASET-WITH-TARGET-PROJECTION))</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># READ THE SOURCE GEO TRANSFORMATION (ORIGIN_X, PIXEL_WIDTH, 0, ORIGIN_Y, 0, PIXEL_HEIGHT)</span>
+    <span class="n">src_geo_transform</span> <span class="o">=</span> <span class="n">source_dataset</span><span class="o">.</span><span class="n">GetGeoTransform</span><span class="p">()</span>
+    
+    <span class="c1"># DERIVE PIXEL AND RASTER SIZE</span>
+    <span class="n">pixel_width</span> <span class="o">=</span> <span class="n">src_geo_transform</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">x_size</span> <span class="o">=</span> <span class="n">source_dataset</span><span class="o">.</span><span class="n">RasterXSize</span>
+    <span class="n">y_size</span> <span class="o">=</span> <span class="n">source_dataset</span><span class="o">.</span><span class="n">RasterYSize</span>
+
+    <span class="c1"># ensure that TransformPoint (later) uses (x, y) instead of (y, x) with gdal version &gt;= 3.0</span>
+    <span class="n">source_srs</span><span class="o">.</span><span class="n">SetAxisMappingStrategy</span><span class="p">(</span><span class="n">osr</span><span class="o">.</span><span class="n">OAMS_TRADITIONAL_GIS_ORDER</span><span class="p">)</span>
+    <span class="n">target_srs</span><span class="o">.</span><span class="n">SetAxisMappingStrategy</span><span class="p">(</span><span class="n">osr</span><span class="o">.</span><span class="n">OAMS_TRADITIONAL_GIS_ORDER</span><span class="p">)</span>
+
+    <span class="c1"># get CoordinateTransformation</span>
+    <span class="n">coord_trans</span> <span class="o">=</span> <span class="n">osr</span><span class="o">.</span><span class="n">CoordinateTransformation</span><span class="p">(</span><span class="n">source_srs</span><span class="p">,</span> <span class="n">target_srs</span><span class="p">)</span>
+
+    <span class="c1"># get boundaries of reprojected (new) dataset</span>
+    <span class="p">(</span><span class="n">org_x</span><span class="p">,</span> <span class="n">org_y</span><span class="p">,</span> <span class="n">org_z</span><span class="p">)</span> <span class="o">=</span> <span class="n">coord_trans</span><span class="o">.</span><span class="n">TransformPoint</span><span class="p">(</span><span class="n">src_geo_transform</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">src_geo_transform</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+    <span class="p">(</span><span class="n">max_x</span><span class="p">,</span> <span class="n">min_y</span><span class="p">,</span> <span class="n">new_z</span><span class="p">)</span> <span class="o">=</span> <span class="n">coord_trans</span><span class="o">.</span><span class="n">TransformPoint</span><span class="p">(</span><span class="n">src_geo_transform</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">src_geo_transform</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">x_size</span><span class="p">,</span>
+                                                       <span class="n">src_geo_transform</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">src_geo_transform</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">*</span> <span class="n">y_size</span><span class="p">,)</span>
+
+    <span class="c1"># INSTANTIATE NEW (REPROJECTED) IN-MEMORY DATASET AS A FUNCTION OF THE RASTER SIZE</span>
+    <span class="n">mem_driver</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">GetDriverByName</span><span class="p">(</span><span class="s1">&#39;MEM&#39;</span><span class="p">)</span>
+    <span class="n">tar_dataset</span> <span class="o">=</span> <span class="n">mem_driver</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+                                    <span class="nb">int</span><span class="p">((</span><span class="n">max_x</span> <span class="o">-</span> <span class="n">org_x</span><span class="p">)</span> <span class="o">/</span> <span class="n">pixel_width</span><span class="p">),</span>
+                                    <span class="nb">int</span><span class="p">((</span><span class="n">org_y</span> <span class="o">-</span> <span class="n">min_y</span><span class="p">)</span> <span class="o">/</span> <span class="n">pixel_width</span><span class="p">),</span>
+                                    <span class="mi">1</span><span class="p">,</span> <span class="n">gdal</span><span class="o">.</span><span class="n">GDT_Float32</span><span class="p">)</span>
+    <span class="c1"># create new GeoTransformation</span>
+    <span class="n">new_geo_transformation</span> <span class="o">=</span> <span class="p">(</span><span class="n">org_x</span><span class="p">,</span> <span class="n">pixel_width</span><span class="p">,</span> <span class="n">src_geo_transform</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                              <span class="n">org_y</span><span class="p">,</span> <span class="n">src_geo_transform</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="o">-</span><span class="n">pixel_width</span><span class="p">)</span>
+
+    <span class="c1"># assign the new GeoTransformation to the target dataset</span>
+    <span class="n">tar_dataset</span><span class="o">.</span><span class="n">SetGeoTransform</span><span class="p">(</span><span class="n">new_geo_transformation</span><span class="p">)</span>
+    <span class="n">tar_dataset</span><span class="o">.</span><span class="n">SetProjection</span><span class="p">(</span><span class="n">target_srs</span><span class="o">.</span><span class="n">ExportToWkt</span><span class="p">())</span>
+
+    <span class="c1"># PROJECT THE SOURCE RASTER ONTO THE NEW REPROJECTED RASTER</span>
+    <span class="n">rep</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">ReprojectImage</span><span class="p">(</span><span class="n">source_dataset</span><span class="p">,</span> <span class="n">tar_dataset</span><span class="p">,</span>
+                              <span class="n">source_srs</span><span class="o">.</span><span class="n">ExportToWkt</span><span class="p">(),</span> <span class="n">target_srs</span><span class="o">.</span><span class="n">ExportToWkt</span><span class="p">(),</span>
+                              <span class="n">gdal</span><span class="o">.</span><span class="n">GRA_Bilinear</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tar_dataset</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">reproject_raster</span></code> function in a <em>Python</em>  script requires a source dataset and another (orientation) dataset with the new coordinate system into which the source dataset will be projected. The following example shows how to project the <em>Froude</em> number raster created above into the <code class="docutils literal notranslate"><span class="pre">EPSG=3857</span></code> coordinate system for viewing it in <em>QGIS</em> on the <em>Google Satellite</em> base map (<a class="reference external" href="../get-started/geo.html#basemap">recall basemaps in <em>QGIS</em> from the installation section</a>). As orientation data set we use <code class="docutils literal notranslate"><span class="pre">web_frame.tif</span></code>, which was created on the <em>Google Satellite</em> base map.</p>
+<p>With the <code class="docutils literal notranslate"><span class="pre">get_srs</span></code> function that automatically detects the raster projection and spatial reference system we can use the <code class="docutils literal notranslate"><span class="pre">create_raster</span></code> function to reproject the above-created <code class="docutils literal notranslate"><span class="pre">Fr1000cfs.tif</span></code> raster (e.g., to <code class="docutils literal notranslate"><span class="pre">epsg=4326</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load original and orientation rasters</span>
+<span class="n">source_file_name</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/rasters/Fr1000cfs.tif&quot;</span>
+<span class="n">orientation_file_name</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/rasters/web_frame.tif&quot;</span>
+
+<span class="n">src_dataset</span><span class="p">,</span> <span class="n">src_band</span> <span class="o">=</span> <span class="n">open_raster</span><span class="p">(</span><span class="n">source_file_name</span><span class="p">)</span>
+<span class="n">ort_dataset</span><span class="p">,</span> <span class="n">ort_band</span> <span class="o">=</span> <span class="n">open_raster</span><span class="p">(</span><span class="n">orientation_file_name</span><span class="p">)</span>
+
+<span class="n">src_srs</span> <span class="o">=</span> <span class="n">get_srs</span><span class="p">(</span><span class="n">src_dataset</span><span class="p">)</span>
+<span class="n">new_srs</span> <span class="o">=</span> <span class="n">get_srs</span><span class="p">(</span><span class="n">ort_dataset</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Source EPSG: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">src_srs</span><span class="o">.</span><span class="n">GetAuthorityCode</span><span class="p">(</span><span class="kc">None</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Target EPSG: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">new_srs</span><span class="o">.</span><span class="n">GetAuthorityCode</span><span class="p">(</span><span class="kc">None</span><span class="p">)))</span>
+
+<span class="c1"># flush orientation dataset</span>
+<span class="n">ort_dataset</span><span class="p">,</span> <span class="n">ort_band</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+
+<span class="c1"># create re-projected raster and save as GeoTIFF</span>
+<span class="n">reproj_dataset</span> <span class="o">=</span> <span class="n">reproject_raster</span><span class="p">(</span><span class="n">src_dataset</span><span class="p">,</span> <span class="n">src_srs</span><span class="p">,</span> <span class="n">new_srs</span><span class="p">)</span>
+<span class="n">reproj_file_name</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/rasters/Fr1000cfs_reproj.tif&quot;</span>
+<span class="n">array_data</span> <span class="o">=</span> <span class="n">reproj_dataset</span><span class="o">.</span><span class="n">ReadAsArray</span><span class="p">()</span>
+<span class="n">new_epsg</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">new_srs</span><span class="o">.</span><span class="n">GetAuthorityCode</span><span class="p">(</span><span class="kc">None</span><span class="p">))</span>
+<span class="n">geo_transformation</span> <span class="o">=</span> <span class="n">reproj_dataset</span><span class="o">.</span><span class="n">GetGeoTransform</span><span class="p">()</span>
+<span class="n">create_raster</span><span class="p">(</span><span class="n">reproj_file_name</span><span class="p">,</span> <span class="n">raster_array</span><span class="o">=</span><span class="n">array_data</span><span class="p">,</span> <span class="n">epsg</span><span class="o">=</span><span class="n">new_epsg</span><span class="p">,</span> <span class="n">geo_info</span><span class="o">=</span><span class="n">geo_transformation</span><span class="p">)</span>
+<span class="n">reproj_dataset</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Source EPSG: 6418
+Target EPSG: 3857
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plotted in <em>QGIS</em>, the reprojected <em>Froude</em> number raster looks like this:</p>
+<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-reproj-Froude.png" /></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">reproject_raster</span></code> function is also available (slightly modified) in the <a class="reference external" href="https://flusstools.readthedocs.io/en/latest/geotools.html#module-flusstools.geotools.srs_mgmt">flusstools package</a>, where saving the new reprojected raster is embedded in the function (automatically appends the syllable <code class="docutils literal notranslate"><span class="pre">&quot;_epsg[NO]&quot;</span></code> to the original file name).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To display multiple rasters with different coordinate systems on the same map in <em>QGIS</em>, the coordinate systems must be harmonized in most cases. <em>QGIS</em> has a dedicated function for adjusting raster coordinate systems: In <em>QGIS</em>, click on the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> menu &gt; <code class="docutils literal notranslate"><span class="pre">Projections</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Warp</span> <span class="pre">(Reproject)...</span></code>. Select the raster(s) to reproject (i.e., the raster(s) to harmonize with project coordinate system). However, <em>Warp</em> may not perform all reprojection steps as desired and lead to wrong placements of the new raster. The <em>Warp</em> method is also available in <em>Python</em> through <code class="docutils literal notranslate"><span class="pre">gdal.Warp</span></code> (<a class="reference external" href="https://gdal.org/tutorials/warp_tut.html">read the docs</a>): <br><br><code class="docutils literal notranslate"><span class="pre">kwargs={'format':</span> <span class="pre">'GTiff',</span> <span class="pre">'geoloc':</span> <span class="pre">True}</span></code><br><code class="docutils literal notranslate"><span class="pre">gdal.Warp(TARGET_GEO_TIFF_FILE_NAME,</span> <span class="pre">SOURCE_GEO_TIFF_FILE_NAME,</span> <span class="pre">**kwargs)</span></code></p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The coordinate transformation fails when no transformation between the indicated source and target spatial reference system can be established (i.e., <code class="docutils literal notranslate"><span class="pre">gdal</span></code> does not know the transformation). This problem occurs often when old, regional coordinate systems are transformed to coordinate systems for web applications (e.g., <code class="docutils literal notranslate"><span class="pre">EPSG=3857</span></code>). Read more in the <a class="reference external" href="https://gdal.org/tutorials/osr_api_tut.html#coordinate-transformation"><em>gdal</em> docs</a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="application-example-with-zonal-statistics">
+<span id="zonal"></span><h2>Application Example with Zonal Statistics<a class="headerlink" href="#application-example-with-zonal-statistics" title="Permalink to this headline">¶</a></h2>
+<p>In hydraulic and geospatial analyses, the question of statistical values of certain areas of one or more rasters often arises. For example, we may be interested in mean values and standard deviations in specific water body zones. <em>Zonal statistics</em> enable the delineation of an area of a raster by using a polygon shapefile.</p>
+<p>The <em>RiverArchitect</em> dataset includes a slackwater zone and zonal statistics help to identify the mean water depth and flow velocity of slackwaters, which are a so-called morphological unit.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Instream morphological units aid to describe the geospatial organization of fluvial landforms, which play and important role in ecohydraulic analyses and river restoration. For example, pool units describe deep water zones with low flow velocity, riffle are typicall characterized by shallow water depths and high velocity, and slackwaters are shallow flow zones with low flow velocity (many juvenile fish love slackwaters). <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0169555X14000099">Wyrick and Pasternack (2014)</a> introduce the delineation of morphological units and an open-access summary can be found in the <a class="reference external" href="https://ars.els-cdn.com/content/image/1-s2.0-S235271101930281X-mmc1.pdf">Appendix Sect. 5 in Schwindt et al. (2020)</a>.</p>
+</div>
+<p>To analyze a visually apparent riffle unit, we need to draw a polygon within a new shapefile that delineates the slackwater. The following figures guide through the creation of a polygon shapefile and the delineation of the riffle with <a class="reference external" href="../get-started/geo.html#qgis"><em>QGIS</em></a>. Start with opening <em>QGIS</em> and create a new project. Import the water depth and flow velocity rasters showing the slow and shallow water zone. Then:</p>
+<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-create-shp.png" />
+<img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-new-shp.png" />
+<img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-toggle-editing.png" />
+<img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-draw-polygon.png" /></p>
+<p>Finalize the drawing with a click on the Save Edits button (between Toggle Editing and Add Polygon). Just in case, the slackwater delineation polygon shapefile is also available at <a class="reference external" href="https://github.com/hydro-informatics/material-py-codes/raw/master/geo/slackwater-poly.zip">the course repository</a> (during courses only).</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The new polygon is not saved as long as the edits are not save. That means: Regularly save edits when drawing features in <em>QGIS</em>.</p>
+</div>
+<p>Zonal statistics can be calculated using the <code class="docutils literal notranslate"><span class="pre">gdal</span></code> and <code class="docutils literal notranslate"><span class="pre">ogr</span></code> libraries, but this is a little bit cumbersome. The <a class="reference external" href="https://rasterio.readthedocs.io/en/latest/"><em>rasterio</em></a> (<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">rasterio</span></code>) library provides a much more convenient method to calculate zonal statistics with its <code class="docutils literal notranslate"><span class="pre">rasterstats.zonal_stats(SHP-FILE,</span> <span class="pre">RASTER,</span> <span class="pre">STATSTICS-TYPES)</span></code> method. With <code class="docutils literal notranslate"><span class="pre">zonal_stats</span></code>, we can easily obtain many statistical values of the water depth and flow velocity raster within the just drawn slackwater polygon.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rasterstats</span> <span class="k">as</span> <span class="nn">rs</span>
+<span class="c1"># make file names</span>
+<span class="n">h_file</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/geodata/river-architect/h001000.tif&quot;</span>
+<span class="n">u_file</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/geodata/river-architect/u001000.tif&quot;</span>
+<span class="n">zone</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/geodata/river-architect/slackw-poly.shp&quot;</span>
+
+<span class="c1"># get water depth stats in zone</span>
+<span class="n">h_stats</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">zonal_stats</span><span class="p">(</span><span class="n">zone</span><span class="p">,</span> <span class="n">h_file</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;min&quot;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">,</span> <span class="s2">&quot;median&quot;</span><span class="p">,</span> <span class="s2">&quot;majority&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">])</span>
+<span class="c1"># get flow velocity stats in zone - note the different stats assignment</span>
+<span class="n">u_stats</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">zonal_stats</span><span class="p">(</span><span class="n">zone</span><span class="p">,</span> <span class="n">u_file</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="s2">&quot;min max median majority sum&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">h_stats</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">u_stats</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;min&#39;: 0.0, &#39;max&#39;: 5.423915386199951, &#39;sum&#39;: 1709.34521484375, &#39;median&#39;: 1.6403688192367554, &#39;majority&#39;: 0.0}]
+[{&#39;min&#39;: 0.0, &#39;max&#39;: 5.139162540435791, &#39;sum&#39;: 1609.26318359375, &#39;median&#39;: 1.879171371459961, &#39;majority&#39;: 0.0}]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Recall that both rasters are in the U.S. customary unit system (i.e., feet and feet per second). More statistics can be calculated with <code class="docutils literal notranslate"><span class="pre">zonal_stats</span></code>: <br>
+<code class="docutils literal notranslate"><span class="pre">min</span></code>, <code class="docutils literal notranslate"><span class="pre">max</span></code>, <code class="docutils literal notranslate"><span class="pre">mean</span></code>, <code class="docutils literal notranslate"><span class="pre">count</span></code>, <code class="docutils literal notranslate"><span class="pre">sum</span></code>, <code class="docutils literal notranslate"><span class="pre">std</span></code>, <code class="docutils literal notranslate"><span class="pre">median</span></code>, <code class="docutils literal notranslate"><span class="pre">majority</span></code>, <code class="docutils literal notranslate"><span class="pre">minority</span></code>, <code class="docutils literal notranslate"><span class="pre">unique</span></code>, <code class="docutils literal notranslate"><span class="pre">range</span></code>, <code class="docutils literal notranslate"><span class="pre">nodata</span></code>, <code class="docutils literal notranslate"><span class="pre">percentile_&lt;q&gt;</span></code> (where <code class="docutils literal notranslate"><span class="pre">&lt;q&gt;</span></code> can be any float number between 0 and 100).</p>
+<p>In addition, user-defined statistics can be added, where the <a class="reference external" href="https://numpy.org/doc/stable/reference/routines.ma.html#masked-arrays-arithmetics"><code class="docutils literal notranslate"><span class="pre">numpy.ma</span></code></a> module is particularly useful with its array handling capacities include transposing or specifying statistics along axis. For example, we can define a specific function to calculate standard deviation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span> <span class="k">def</span> <span class="nf">raster_std</span><span class="p">(</span><span class="n">raster_array</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">raster_array</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we can use the <code class="docutils literal notranslate"><span class="pre">raster_std</span></code> function in <code class="docutils literal notranslate"><span class="pre">zonal_stats</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_stats</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">zonal_stats</span><span class="p">(</span><span class="n">zone</span><span class="p">,</span> <span class="n">u_file</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="s2">&quot;min max&quot;</span><span class="p">,</span>
+                         <span class="n">add_stats</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;stdev&quot;</span><span class="p">:</span> <span class="n">raster_std</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">u_stats</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;min&#39;: 0.0, &#39;max&#39;: 5.139162540435791, &#39;stdev&#39;: 1.1065991101701524}]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="clip-raster">
+<span id="clip"></span><h2>Clip Raster<a class="headerlink" href="#clip-raster" title="Permalink to this headline">¶</a></h2>
+<p>The above-introduced <code class="docutils literal notranslate"><span class="pre">rasterstats.zonal_stats</span></code> method works with <em>“Mini-Rasters”</em>, which represent clips of the input raster to the polygon shapefile used. The mini-rasters can be obtained by defining the optional keyword argument <code class="docutils literal notranslate"><span class="pre">raster_out=True</span></code>. In the case that we want to get the original raster clipped without and statistical operation, we can use a little trick by defining an additional statistics function that returns the original array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span> <span class="k">def</span> <span class="nf">original</span><span class="p">(</span><span class="n">raster_array</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">raster_array</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With <code class="docutils literal notranslate"><span class="pre">raster_out=True</span></code> and the <code class="docutils literal notranslate"><span class="pre">original</span></code> function we can retrieve the clipped original raster as the following array types:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mini_raster_array</span></code> - clipped and masked <em>numpy</em> array,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mini_raster_affine</span></code> - transformation as an Affine object, and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mini_raster_nodata</span></code> - NoData values.</p></li>
+</ul>
+<p>The following code block illustrates the usage:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rasterstats</span> <span class="k">as</span> <span class="nn">rs</span>
+
+<span class="n">h_file</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/geodata/river-architect/h001000.tif&quot;</span>
+<span class="n">h_stats</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">zonal_stats</span><span class="p">(</span><span class="n">zone</span><span class="p">,</span> <span class="n">h_file</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="s2">&quot;count&quot;</span><span class="p">,</span>
+                         <span class="n">add_stats</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;original&quot;</span><span class="p">:</span> <span class="n">original</span><span class="p">},</span>
+                         <span class="n">raster_out</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">h_stats</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">h_stats</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;mini_raster_array&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;count&#39;, &#39;original&#39;, &#39;mini_raster_array&#39;, &#39;mini_raster_affine&#39;, &#39;mini_raster_nodata&#39;])
+[[-- -- -- ... -- -- --]
+ [-- -- -- ... -- -- --]
+ [-- -- -- ... -- -- --]
+ ...
+ [-- -- -- ... -- -- --]
+ [-- -- -- ... -- -- --]
+ [-- -- -- ... -- -- --]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Use the above shown methods to assign a projection and save the clipped array as <em>GeoTIFF</em> raster. The functions are implemented in flusstools (<code class="docutils literal notranslate"><span class="pre">flusstools.geotools.raster_mgmt.create_raster</span></code>(<a class="reference external" href="https://flusstools.readthedocs.io/en/latest/geotools.html#module-flusstools.geotools.raster_mgmt">https://flusstools.readthedocs.io/en/latest/geotools.html#module-flusstools.geotools.raster_mgmt</a>)).</p>
+</div>
+</div>
+<div class="section" id="slope-aspect-maps-and-built-in-command-line-scripts">
+<span id="terminal"></span><h2>Slope / Aspect Maps and Built-in Command Line Scripts<a class="headerlink" href="#slope-aspect-maps-and-built-in-command-line-scripts" title="Permalink to this headline">¶</a></h2>
+<p>Hill slope maps are an important parameter in hydraulics, hydrology and ecology. The slope determines the flow direction of the water and it is also a criteria for delineating habitat of many species. <code class="docutils literal notranslate"><span class="pre">gdal</span></code> has a command line tool called <code class="docutils literal notranslate"><span class="pre">gdaldem</span></code> , which enables the creation of slope rasters based on a DEM (Digital Elevation Model) raster.
+The general use of the <code class="docutils literal notranslate"><span class="pre">gdaldem</span></code> in the command line is (arguments in brackets are optional):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gdaldem</span> <span class="n">slope</span> <span class="n">input_dem</span> <span class="n">output_slope_map</span>  <span class="p">[</span><span class="o">-</span><span class="n">p</span> <span class="n">use</span> <span class="n">percent</span> <span class="n">slope</span> <span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">degrees</span><span class="p">)]</span> <span class="p">[</span><span class="o">-</span><span class="n">s</span> <span class="n">scale</span><span class="o">*</span> <span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span> <span class="p">[</span><span class="o">-</span><span class="n">alg</span> <span class="n">ZevenbergenThorne</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">compute_edges</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">b</span> <span class="n">Band</span> <span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span> <span class="p">[</span><span class="o">-</span><span class="n">of</span> <span class="nb">format</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">co</span> <span class="s2">&quot;NAME=VALUE&quot;</span><span class="p">]</span><span class="o">*</span> <span class="p">[</span><span class="o">-</span><span class="n">q</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>To call the command line tool, we can use <em>Python</em>’s standard library <code class="docutils literal notranslate"><span class="pre">subprocess</span></code>. The following code block illustrates the usage of the <code class="docutils literal notranslate"><span class="pre">gdaldem</span></code> command line tool through <a class="reference external" href="https://docs.python.org/3/library/subprocess.html"><code class="docutils literal notranslate"><span class="pre">subprocess.call</span></code></a> to create a slope raster (in percent) from the <em>River Architect</em> sample data’s <code class="docutils literal notranslate"><span class="pre">dem.tif</span></code>. <code class="docutils literal notranslate"><span class="pre">subprocess.call</span></code> returns <code class="docutils literal notranslate"><span class="pre">0</span></code> if the command execution was successful. Any other return value indicates an error.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">subprocess</span><span class="o">,</span> <span class="nn">os</span>
+
+<span class="n">cmd_create_slope</span> <span class="o">=</span> <span class="s1">&#39;gdaldem slope </span><span class="si">{0}</span><span class="s1">/geodata/river-architect/dem.tif </span><span class="si">{0}</span><span class="s1">/geodata/river-architect/slope-percent.tif -p&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">))</span>
+<span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">cmd_create_slope</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-slope.png" /></p>
+<p>In addition to the absolute slope (i.e., inclination in degrees), or instead of the slope, it can be important to know the slope direction (e.g., inclination toward south, west, east, or north). A raster indicating the slope direction is called <em>Aspect</em> raster, where south corresponds to 0° (and 360°), west to 90°, north to 180°, and east to 270°. The ascpect raster can also be created with <code class="docutils literal notranslate"><span class="pre">gdaldem</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gdaldem</span> <span class="n">aspect</span> <span class="n">input_dem</span> <span class="n">output_aspect_map</span> <span class="p">[</span><span class="o">-</span><span class="n">trigonometric</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">zero_for_flat</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">alg</span> <span class="n">ZevenbergenThorne</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">compute_edges</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">b</span> <span class="n">Band</span> <span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span> <span class="p">[</span><span class="o">-</span><span class="n">of</span> <span class="nb">format</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">co</span> <span class="s2">&quot;NAME=VALUE&quot;</span><span class="p">]</span><span class="o">*</span> <span class="p">[</span><span class="o">-</span><span class="n">q</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>To create an aspect raster of the <em>River Architect</em> sample data DEM run:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cmd_create_aspect</span> <span class="o">=</span> <span class="s1">&#39;gdaldem aspect </span><span class="si">{0}</span><span class="s1">/geodata/river-architect/dem.tif </span><span class="si">{0}</span><span class="s1">/geodata/river-architect/slope-aspect.tif&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">))</span>
+<span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">cmd_create_aspect</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-aspect.png" /></p>
+</div>
+<div class="section" id="least-cost-path-between-pixels-and-another-way-of-reprojection">
+<span id="leastcost"></span><h2>Least Cost Path between Pixels (and another Way of Reprojection)<a class="headerlink" href="#least-cost-path-between-pixels-and-another-way-of-reprojection" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="ecohydraulic-background">
+<h3>Ecohydraulic Background<a class="headerlink" href="#ecohydraulic-background" title="Permalink to this headline">¶</a></h3>
+<p>Least cost paths are important to plan efficient routes for navigation (e.g., in a car) and they can also be helpful in ecohydraulics. Let’s take for a moment the position of a fish that after a flood with decreasing discharge wants to swim as fast as possible from the floodplain back into the main channel where there is enough water. In the figure below, point 1 shows the starting point on the floodplain and point 2 the destination in the main channel. The reddish background represents the previously produced slope raster (slope-percent.tif) and the water depth at normal runoff is colored in blue.</p>
+<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-slope-pts.png" /></p>
+<p>Naturally the path of least cost in this case corresponds to the path of the steepest monotonously downward facing slope and it can be assumed that a fish is able to find it.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In many rivers fish face the daily challenge of escaping from the deadly trap of lateral depressions. The reason for this is that many hydroelectric power plants cause abrupt fluctuations in discharge due to fluctuations in energy demand and production (so-called hydro-peaking). As a result, there is a so-called stranding risk for fish in many regulated rivers. The following figure illustrates stranding risk zones as a function of discharge (in cubic feet per second) at the lower Yuba River (California, USA).</p>
+</div>
+<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/ra-stranding.png" /></p>
+<p><em>Image source: <a class="reference external" href="https://riverarchitect.github.io/RA_wiki/StrandingRisk">The River Architect Wiki / Kenneth Larrieu</a></em></p>
+</div>
+<div class="section" id="functions-and-libraries-involved">
+<span id="lc-fun"></span><h3>Functions and Libraries Involved<a class="headerlink" href="#functions-and-libraries-involved" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">skimage</span></code> (<code class="docutils literal notranslate"><span class="pre">scikit-image</span></code>) library (see <a class="reference external" href="geo-pckg.html#others"><em>Other packages</em> on the <em>Open source libraries</em> page</a>) provides with <a class="reference external" href="https://scikit-image.org/docs/0.13.x/api/skimage.graph.html"><code class="docutils literal notranslate"><span class="pre">skimage.graph.route_through_array</span></code></a> a smart method to calculate a least cost path by summing up pixel-wise connections from point 1 to point 2. Here is how it works: Assume a <em>numpy</em> array (e.g., with random slope values) that looks like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slope_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">slope_image</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[58,  0, 85, 47, 46],
+       [91, 64, 79, 25, 46],
+       [88, 24,  3, 96, 31]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>To find the fastest way from array index <code class="docutils literal notranslate"><span class="pre">[0][0]</span></code> (top left point <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">=</span> <span class="pre">(0,</span> <span class="pre">0)</span></code>) to array index <code class="docutils literal notranslate"><span class="pre">[2][4]</span></code> (bottom right point <code class="docutils literal notranslate"><span class="pre">B</span> <span class="pre">=</span> <span class="pre">(2,</span> <span class="pre">4)</span></code>) we can use <code class="docutils literal notranslate"><span class="pre">route_through_array</span></code> to get a <em>list</em> (<code class="docutils literal notranslate"><span class="pre">least_cost_path_indices</span></code>) with the array coordinates of the path to go and the costs (<code class="docutils literal notranslate"><span class="pre">weight</span></code>) involved (sum of all pixels of the least cost path):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.graph</span> <span class="kn">import</span> <span class="n">route_through_array</span>
+
+<span class="n">point_A</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">point_B</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">least_cost_path_indices</span><span class="p">,</span> <span class="n">weight</span> <span class="o">=</span> <span class="n">route_through_array</span><span class="p">(</span><span class="n">slope_image</span><span class="p">,</span> <span class="n">point_A</span><span class="p">,</span> <span class="n">point_B</span><span class="p">)</span>
+<span class="n">least_cost_path_indices</span><span class="p">,</span> <span class="n">weight</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([(0, 0), (0, 1), (1, 1), (2, 2), (1, 3), (2, 4)], 167.7731239591687)
+</pre></div>
+</div>
+</div>
+</div>
+<p>To integrate the least cost path list into an array that we can <em>rasterize</em> (<code class="docutils literal notranslate"><span class="pre">create_raster</span></code>) afterwards, we can paste <code class="docutils literal notranslate"><span class="pre">least_cost_path_indices</span></code> into a <em>numpy</em> zeros array of the original slope raster (image) as a transposed list.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">least_cost_path_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">least_cost_path_indices</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">least_cost_path_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">slope_image</span><span class="p">)</span>
+<span class="n">least_cost_path_array</span><span class="p">[</span><span class="n">least_cost_path_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">least_cost_path_indices</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">least_cost_path_array</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 1, 0, 0, 0],
+       [0, 1, 0, 1, 0],
+       [0, 0, 1, 0, 1]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>In practice, the slope raster is georeferenced, and therefore, we have to use some pixel coordinates, relative to the coordinate system origin. For this purpose we need two more functions:</p>
+<ul class="simple">
+<li><p>One function to calculate the pixel-index related offset that we will name <code class="docutils literal notranslate"><span class="pre">coords2offset</span></code>: The <code class="docutils literal notranslate"><span class="pre">coords2offset</span></code> returns the x-y shift in the form of “number of pixels” (two <em>integer</em>s, one for <em>x</em> and one for <em>y</em> shift).</p></li>
+<li><p>The <a class="reference external" href="#reproject">above-defined <code class="docutils literal notranslate"><span class="pre">get_srs</span></code></a> function.</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">coords2offset</span></code> function looks like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">coords2offset</span><span class="p">(</span><span class="n">geo_transform</span><span class="p">,</span> <span class="n">x_coord</span><span class="p">,</span> <span class="n">y_coord</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns x-y pixel offset</span>
+<span class="sd">    :param geo_transform: osgeo.gdal.Dataset.GetGeoTransform() object</span>
+<span class="sd">    :param x_coord: FLOAT of x-coordinate</span>
+<span class="sd">    :param y_coord: FLOAT of y-coordinate</span>
+<span class="sd">    :return: offset_x, offset_y (both integer of pixel numbers)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">origin_x</span> <span class="o">=</span> <span class="n">geo_transform</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">origin_y</span> <span class="o">=</span> <span class="n">geo_transform</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">pixel_width</span> <span class="o">=</span> <span class="n">geo_transform</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">pixel_height</span> <span class="o">=</span> <span class="n">geo_transform</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+    <span class="n">offset_x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">x_coord</span> <span class="o">-</span> <span class="n">origin_x</span><span class="p">)</span> <span class="o">/</span> <span class="n">pixel_width</span><span class="p">)</span>
+    <span class="n">offset_y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">y_coord</span> <span class="o">-</span> <span class="n">origin_y</span><span class="p">)</span> <span class="o">/</span> <span class="n">pixel_height</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">offset_x</span><span class="p">,</span> <span class="n">offset_y</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">coords2offset</span></code> function is also available in the <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> package in robust raise-exception notation:  <a class="reference external" href="https://flusstools.readthedocs.io/en/latest/geotools.html#module-flusstools.geotools.dataset_mgmt"><em>flusstools.geotools/dataset_mgmt</em></a>.</p>
+</div>
+<p>Now we can use <code class="docutils literal notranslate"><span class="pre">coords2offset</span></code> to convert a raster array (e.g., produced with the above-defined <code class="docutils literal notranslate"><span class="pre">raster2array</span></code> function) into an array that can be used with <code class="docutils literal notranslate"><span class="pre">route_through_array</span></code>:</p>
+<ol class="simple">
+<li><p>Use the raster’s <code class="docutils literal notranslate"><span class="pre">geo_transform</span></code> (<code class="docutils literal notranslate"><span class="pre">gdal.Dataset.GetGeoTransform</span> <span class="pre">=</span> <span class="pre">(origin_x,</span> <span class="pre">pixel_width,</span> <span class="pre">0,</span> <span class="pre">origin_y,</span> <span class="pre">0,</span> <span class="pre">pixel_height)</span></code>) and the start and end point coordinates (i.e, <code class="docutils literal notranslate"><span class="pre">start_coord</span></code> of point A/1 and <code class="docutils literal notranslate"><span class="pre">stop_coord</span></code> of point B/2) in <code class="docutils literal notranslate"><span class="pre">coords2offset</span></code> to get their pixel indices (<code class="docutils literal notranslate"><span class="pre">start_index_x</span></code>, <code class="docutils literal notranslate"><span class="pre">start_index_y</span></code>, <code class="docutils literal notranslate"><span class="pre">stop_index_x</span></code>, and <code class="docutils literal notranslate"><span class="pre">stop_index_y</span></code>) in the raster array.</p></li>
+<li><p>Replace <code class="docutils literal notranslate"><span class="pre">np.nan</span></code> values in the raster array with values that are higher than the maximum of the array - do not use zeros, because we want to exclude these pixels from the least cost path by assigning very high costs).</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">route_through_array</span></code> as above explained with the optional arguments <code class="docutils literal notranslate"><span class="pre">geometric=True</span></code> (use the <a class="reference external" href="https://scikit-image.org/docs/0.13.x/api/skimage.graph.html#skimage.graph.MCP_Geometric"><em>MCP_Geometric</em> class</a> rather than <a class="reference external" href="https://scikit-image.org/docs/0.13.x/api/skimage.graph.html#skimage.graph.MCP"><em>MCP_base</em></a> to calculate costs) and <code class="docutils literal notranslate"><span class="pre">fully_connected=True</span></code> (enables using diagonal pixels as direct neighbors).</p></li>
+<li><p>Integrate the least cost path list (<code class="docutils literal notranslate"><span class="pre">index_path</span></code>) into a <em>numpy</em> zeros array (child of <code class="docutils literal notranslate"><span class="pre">raster_array</span></code>), as above explained, and return the <code class="docutils literal notranslate"><span class="pre">path_array</span></code>.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_path_array</span><span class="p">(</span><span class="n">raster_array</span><span class="p">,</span> <span class="n">geo_transform</span><span class="p">,</span> <span class="n">start_coord</span><span class="p">,</span> <span class="n">stop_coord</span><span class="p">):</span>
+    <span class="c1"># transform coordinates to array index</span>
+    <span class="n">start_index_x</span><span class="p">,</span> <span class="n">start_index_y</span> <span class="o">=</span> <span class="n">coords2offset</span><span class="p">(</span><span class="n">geo_transform</span><span class="p">,</span> <span class="n">start_coord</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">start_coord</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">stop_index_x</span><span class="p">,</span> <span class="n">stop_index_y</span> <span class="o">=</span> <span class="n">coords2offset</span><span class="p">(</span><span class="n">geo_transform</span><span class="p">,</span> <span class="n">stop_coord</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">stop_coord</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="c1"># replace np.nan with max raised by an order of magnitude to exclude pixels from least cost</span>
+    <span class="n">raster_array</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">raster_array</span><span class="p">)]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">raster_array</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
+
+    <span class="c1"># create path and costs</span>
+    <span class="n">index_path</span><span class="p">,</span> <span class="n">cost</span> <span class="o">=</span> <span class="n">route_through_array</span><span class="p">(</span><span class="n">raster_array</span><span class="p">,</span> <span class="p">(</span><span class="n">start_index_y</span><span class="p">,</span> <span class="n">start_index_x</span><span class="p">),</span>
+                                               <span class="p">(</span><span class="n">stop_index_y</span><span class="p">,</span> <span class="n">stop_index_x</span><span class="p">),</span>
+                                               <span class="n">geometric</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fully_connected</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+    <span class="n">index_path</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">index_path</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">path_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">raster_array</span><span class="p">)</span>
+    <span class="n">path_array</span><span class="p">[</span><span class="n">index_path</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">index_path</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">path_array</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="application">
+<span id="lc-app"></span><h3>Application<a class="headerlink" href="#application" title="Permalink to this headline">¶</a></h3>
+<p>Recall, we defined the following functions (all are available in the <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> package) that we can use now for the calculation of the least cost path to get from point 1 to point 2 in the <code class="docutils literal notranslate"><span class="pre">slope-percent.tif</span></code> raster:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">raster2array</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">create_path_array</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_srs</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">create_raster</span></code></p></li>
+</ul>
+<p>The below code block uses these functions as follows:</p>
+<ol class="simple">
+<li><p>Define input (<code class="docutils literal notranslate"><span class="pre">slope-percent.tif</span></code>) and output (<code class="docutils literal notranslate"><span class="pre">least_cost.tif</span></code>) raster directories.</p></li>
+<li><p>Define the coorindates of points 1 and 2 as <em>tuple</em>s (x, y) in the <em>EPSG:6418</em> projection.</p></li>
+<li><p>Load the input raster(<code class="docutils literal notranslate"><span class="pre">src_raster</span></code>), its band as array (<code class="docutils literal notranslate"><span class="pre">raster_array</span></code>), and geotransformation (<code class="docutils literal notranslate"><span class="pre">geo_transform</span></code>) with the <code class="docutils literal notranslate"><span class="pre">raster2array</span></code> function.</p></li>
+<li><p>Get the least cost path indicated with ones in a zero-s (on-off) array (<code class="docutils literal notranslate"><span class="pre">path_array</span></code>) with the <code class="docutils literal notranslate"><span class="pre">create_path_array</span></code> function.</p></li>
+<li><p>Get the <code class="docutils literal notranslate"><span class="pre">osgeo.osr.SpatialReference</span></code> of the input raster (<code class="docutils literal notranslate"><span class="pre">src_raster</span> <span class="pre">=</span> <span class="pre">osgeo.gdal.Dataset(slope-percent.tif)</span></code>).</p></li>
+<li><p>Create the least cost path raster <em>GeoTIFF</em> with the <code class="docutils literal notranslate"><span class="pre">create_raster</span></code> function as <code class="docutils literal notranslate"><span class="pre">gdal.GDT_Byte</span></code> band.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.graph</span> <span class="kn">import</span> <span class="n">route_through_array</span>
+
+<span class="c1"># define raster input and out names</span>
+<span class="n">in_raster_name</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/river-architect/slope-percent.tif&quot;</span>
+<span class="n">out_raster_name</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/river-architect/least_cost.tif&quot;</span>
+<span class="c1"># define coordinates of points 1 and 2 (in EPSG:6418)</span>
+<span class="n">point_1_coord</span> <span class="o">=</span> <span class="p">(</span><span class="mf">6749261.94092826917767525</span><span class="p">,</span> <span class="mf">2206970.35179582564160228</span><span class="p">)</span>  
+<span class="n">point_2_coord</span> <span class="o">=</span> <span class="p">(</span><span class="mf">6749016.82820663042366505</span><span class="p">,</span> <span class="mf">2207050.61491037486121058</span><span class="p">)</span>
+
+<span class="c1"># get source raster (osgeo.gdal.Dataset), the raster as nd.array, and the geotransformation tuple</span>
+<span class="n">src_raster</span><span class="p">,</span> <span class="n">raster_array</span><span class="p">,</span> <span class="n">geo_transform</span> <span class="o">=</span> <span class="n">raster2array</span><span class="p">(</span><span class="n">in_raster_name</span><span class="p">)</span>
+<span class="c1"># get the zeros-like array with least cost pixels = 1</span>
+<span class="n">path_array</span> <span class="o">=</span> <span class="n">create_path_array</span><span class="p">(</span><span class="n">raster_array</span><span class="p">,</span> <span class="n">geo_transform</span><span class="p">,</span> <span class="n">point_1_coord</span><span class="p">,</span> <span class="n">point_2_coord</span><span class="p">)</span>
+<span class="c1"># get the spatial reference system of the input raster (slope-percent.tif)</span>
+<span class="n">src_srs</span> <span class="o">=</span> <span class="n">get_srs</span><span class="p">(</span><span class="n">src_raster</span><span class="p">)</span>
+<span class="c1"># project the least cost path_array into a Byte (only zeros and ones) raster</span>
+<span class="n">create_raster</span><span class="p">(</span><span class="n">out_raster_name</span><span class="p">,</span> <span class="n">path_array</span><span class="p">,</span> <span class="n">epsg</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">src_srs</span><span class="o">.</span><span class="n">GetAuthorityCode</span><span class="p">(</span><span class="kc">None</span><span class="p">)),</span>
+              <span class="n">rdtype</span><span class="o">=</span><span class="n">gdal</span><span class="o">.</span><span class="n">GDT_Byte</span><span class="p">,</span> <span class="n">geo_info</span><span class="o">=</span><span class="n">geo_transform</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-least-cost.png" /></p>
+<p>Legitimately, you may wonder whether it was better to represent a least cost path as a line. That is correct, of course. This operation is a conversion of a raster into a line shapefile, which is explained on the <a class="reference external" href="geo-convert.html#raster2line">conversion page</a>. Curious readers can also directly use the <code class="docutils literal notranslate"><span class="pre">raster2line</span></code> function of the <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> package (the function is part of the <a class="reference external" href="https://flusstools.readthedocs.io/en/latest/geotools.html#module-flusstools.geotools.dataset_mgmt"><em>flusstools.geotools/dataset_mgmt.py</em></a> script).</p>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Get more familiar with raster handling in the <a class="reference internal" href="../exercises/ex-geco.html"><span class="doc std std-doc">geospatial ecohydraulics</span></a> exercise.</p>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "hydro-informatics/hydro-informatics.github.io",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./jupyter"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="geo-shp.html" title="previous page">Shapefile (vector dataset) handling</a>
+    <a class='right-next' id="next-link" href="geo-convert.html" title="next page">Raster to Vector Conversion and Vice Versa</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Sebastian Schwindt<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

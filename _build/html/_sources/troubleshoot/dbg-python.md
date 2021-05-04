@@ -1,4 +1,3 @@
 # Debugging Python Code
 
-
-Please refer to the comprehensive explanations on the [errors, logging, and debugging](../python-basics/pyerror) page.
+Please refer to the comprehensive explanations in the section on {ref}`sec-pyerror`.

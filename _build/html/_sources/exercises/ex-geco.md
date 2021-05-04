@@ -5,7 +5,7 @@ This exercise guides through the creation of rasters (`osgeo.gdal.Dataset`), the
 ```
 
 ```{admonition} Requirements
-*Python* libraries: *numpy*, *pandas*, *gdal*, *geopandas*, *alphashape*, *shapely*, and *json*. Understand how [object orientation](../python-basics/classes) works as well as [geospatial data and analyses with *Python*](../geopy/geo-python).
+*Python* libraries: *numpy*, *pandas*, *gdal*, *geopandas*, *alphashape*, *shapely*, and *json*. Understand how [object orientation](../jupyter/classes) works as well as [geospatial data and analyses with *Python*](../geopy/geo-python).
 ```
 
 Get ready by cloning the exercise repository:
@@ -77,7 +77,7 @@ The water depth `water_depth.tif` and flow velocity `flow_velocity.tif` rasters 
 
 ### Habitat Suitability Index *HSI* curves (folder: **habitat**) <a name="hsi-curves"></a>
 
-The `/habitat/` folder in the exercise repository contains *HSI* curves in the form of an *xlsx* workbook (`trout.xlsx`) and in the form of a [*JSON* file](python-basics/pyxml.html#json) (`trout.json`). Both files contain the same data for rainbow trout of a hypothetical cobble-bed river and this exercise only uses the *JSON* file (the workbook serves for visual verification only).
+The `/habitat/` folder in the exercise repository contains *HSI* curves in the form of an *xlsx* workbook (`trout.xlsx`) and in the form of a [*JSON* file](../jupyter/pyxml.html#json) (`trout.json`). Both files contain the same data for rainbow trout of a hypothetical cobble-bed river and this exercise only uses the *JSON* file (the workbook serves for visual verification only).
 
 ### Code
 
@@ -176,7 +176,7 @@ That is it. The `__init__` method of the `Raster` class is complete.
 
 ***
 
-To enable mathematical operations between multiple instances of the `Raster` class, implement [magic methods (recall the lecture notes)](python-basics/pyclasses.html#operator-binary-and-assignment-methods) that tell the class what to do when two `Raster` instances are for example added (`+` sign), multiplied (`*` sign), or subtracted (`-` sign). For instance, implementing the magic methods `__truediv__` (for using the `/` operator), `__mul__` (for using the `*` operator), and `__pow__` (for using the `**` operator) will enable the usage of `Raster` instances like this:
+To enable mathematical operations between multiple instances of the `Raster` class, implement [magic methods (recall the lecture notes)](../jupyter/pyclasses.html#operator-binary-and-assignment-methods) that tell the class what to do when two `Raster` instances are for example added (`+` sign), multiplied (`*` sign), or subtracted (`-` sign). For instance, implementing the magic methods `__truediv__` (for using the `/` operator), `__mul__` (for using the `*` operator), and `__pow__` (for using the `**` operator) will enable the usage of `Raster` instances like this:
 
 ```python
 # example for Raster instances, when operators are defined through magic methods
@@ -210,7 +210,7 @@ Let us take a close look at what the `__truediv__` method does:
 * The method tries to invoke the array attribute of `constant_or_raster`.
     - If `constant_or_raster` is a raster object, then invoking `contant_or_raster.array` is successful. In this case `self.array` is overwritten with the element-wise division of the array by `contant_or_raster.array`. The element-wise division builds on *numpy*'s built-in function [*np.divide*](https://numpy.org/doc/stable/reference/generated/numpy.divide.html), which is a computationally efficient wrapper of C/C++ code (much faster than a *Python* loop over array elements).
    - If `constant_or_raster` is a numeric value, then invoking `contant_or_raster.array` results in an `AttributeError` and the `__truediv__` method falls in the `except AttributeError` statement, where `self.array` is simply divided by `constant_or_raster`.
-* The method returns the result of the pseudo private method `self._make_raster("div")` ([recall *PEP 8* code style conventions on `_single_leading_underscore` methods](python-basics/pypystyle.html#name-conventions), which corresponds to a new `Raster` instance of the actual `Raster` instance divided by `constant_or_raster`. The new `Raster` instance is a temporary *GeoTIFF*  file in the *cache* folder ([recall the cache function](#funs)). This is how the pseudo-private method `_make_raster(self, file_marker)` looks like:<a name="make-raster"></a>
+* The method returns the result of the pseudo private method `self._make_raster("div")` ([recall *PEP 8* code style conventions on `_single_leading_underscore` methods](../jupyter/pystyle.html#name-conventions), which corresponds to a new `Raster` instance of the actual `Raster` instance divided by `constant_or_raster`. The new `Raster` instance is a temporary *GeoTIFF*  file in the *cache* folder ([recall the cache function](#funs)). This is how the pseudo-private method `_make_raster(self, file_marker)` looks like:<a name="make-raster"></a>
 
 ```python
     def _make_raster(self, file_marker):

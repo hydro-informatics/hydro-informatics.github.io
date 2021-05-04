@@ -39,14 +39,14 @@ To truly make your software useful to others, add a case study. Most users will 
 
 ### Troubleshooting
 
-Sure, your code is error-free and of course only the user makes mistakes. Show compassion and integrate specific *try*-*except* statements (more on the [*Python*<sup>basics</sup>](../python-basics/pyerror.html#try-except) page) in the source code, which point out possible error sources. These error (and maybe even warning) messages should all be listed in a *Troubleshooting* section of the code documentation. Any source of error (message) should be documented regarding the following aspects:
+Sure, your code is error-free and of course only the user makes mistakes. Show compassion and integrate specific *try*-*except* statements (more on the [*Python*<sup>basics</sup>](../jupyter/pyerror.html#try-except) page) in the source code, which point out possible error sources. These error (and maybe even warning) messages should all be listed in a *Troubleshooting* section of the code documentation. Any source of error (message) should be documented regarding the following aspects:
 
 * Cause: Possible reasons for why an error occurs.
 * Remedy: Steps for troubleshooting an error.
 
 ### Contributing
 
-Your software is brilliant. To make the software even more brilliant, foolproof, and powerful, it is a great idea (actually: an absolute must) to get more authors on the development team. However, it is very likely that any other author has individual preferences when it comes to code standards. So make sure to set up clear rules for other contributors from the beginning. For example, define clear code conventions as explained on the [code style](../python-basics/pystyle) page.
+Your software is brilliant. To make the software even more brilliant, foolproof, and powerful, it is a great idea (actually: an absolute must) to get more authors on the development team. However, it is very likely that any other author has individual preferences when it comes to code standards. So make sure to set up clear rules for other contributors from the beginning. For example, define clear code conventions as explained on the [code style](../jupyter/pystyle) page.
 
 
 ## Markdown
@@ -254,7 +254,7 @@ Get practice in markdown with the [markdown and git](../exercises/ex-git) exerci
 
 ## *reStructuredText*, *Sphinx* and readthedocs
 
-An alternative to markdown is [reStructuredText](https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html) that enables embedding *Python docstrings* (read more about [code style conventions](../python-basics/pystyle)) in any script or module with [*Sphinx*](https://www.sphinx-doc.org).
+An alternative to markdown is [reStructuredText](https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html) that enables embedding *Python docstrings* (read more about [code style conventions](../jupyter/pystyle)) in any script or module with [*Sphinx*](https://www.sphinx-doc.org).
 
 Without any *Python* or programming knowledge, it might be hard to get started with *Sphinx*. So make sure to understand *Python* basics and document any code with *docstrings*, at best using [*google style*](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html) formatting. Once you start documenting your first *Python* package, *google-style* *docstrings* will enable the fast generation of high-quality docs. Currently, one of the best options for partially auto-generating code documentations, for any programming language, is [*readthedocs*](https://readthedocs.org/), which builds on *Sphinx* and *reStructuredText*.
 

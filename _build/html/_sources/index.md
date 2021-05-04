@@ -1,5 +1,5 @@
 
-# HOME
+# Hydro-Informatics
 
 **Data & Programming, Geospatial Analysis, and Modeling Tools for Water Resources Engineering & Research**
 

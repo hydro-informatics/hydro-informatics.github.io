@@ -41,7 +41,7 @@ The active environment corresponds to the environment that you are working in (e
 (install-pckg)=
 ### Install Additional *Python* Packages
 
-To install more [*Python* packages](../python-basics/pypckg):
+To install more {ref}`*Python* packages <sec-pypckg>`:
 
 1. Activate the environment where you want to install, remove, or modify packages (e.g., `conda activate hypy` - see above).
 1. Install a package by typing `conda install PACKAGE_NAME` (if the package cannot be found, try `conda install -c conda-forge PACKAGE_NAME`).

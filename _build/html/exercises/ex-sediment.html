@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>One-dimensional (1d) Cross-section Averaged Sediment Transport &#8212; Hydro-Informatics</title>
+    <title>Cross-section Averaged Sediment Transport &#8212; Hydro-Informatics</title>
     
   <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -68,9 +68,9 @@
 <!-- Opengraph tags -->
 <meta property="og:url"         content="https://hydro-informatics.github.io/exercises/ex-sediment.html" />
 <meta property="og:type"        content="article" />
-<meta property="og:title"       content="One-dimensional (1d) Cross-section Averaged Sediment Transport" />
-<meta property="og:description" content="One-dimensional (1d) Cross-section Averaged Sediment Transport  Goals  This exercise features the application of the Meyer-Peter &amp; Müller (1948) bed load transp" />
-<meta property="og:image"       content="https://hydro-informatics.github.io/_static/icon.png" />
+<meta property="og:title"       content="Cross-section Averaged Sediment Transport" />
+<meta property="og:description" content="Cross-section Averaged Sediment Transport  Goals  This exercise features the application of the Meyer-Peter &amp; Müller (1948) bed load transport formulae to a val" />
+<meta property="og:image"       content="https://hydro-informatics.github.io/_static/icon.jpg" />
 
 <meta name="twitter:card" content="summary" />
 
@@ -87,7 +87,7 @@
         <div class="navbar-brand-box">
 <a class="navbar-brand text-wrap" href="../index.html">
   
-  <img src="../_static/icon.png" class="logo" alt="logo">
+  <img src="../_static/icon.jpg" class="logo" alt="logo">
   
   
   <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
@@ -98,14 +98,7 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form>
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="../index.html">
-   HOME
-  </a>
- </li>
-</ul>
-<p class="caption collapsible-parent">
+    <p class="caption collapsible-parent">
  <span class="caption-text">
   Get Started
  </span>
@@ -192,17 +185,17 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../python-basics/pybase.html">
+    <a class="reference internal" href="../jupyter/pybase.html">
      First steps
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../python-basics/pyerror.html">
+    <a class="reference internal" href="../jupyter/pyerror.html">
      Errors, Logging, and Debugging
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../python-basics/pyloop.html">
+    <a class="reference internal" href="../jupyter/pyloop.html">
      Loops and Conditional Statements
     </a>
    </li>
@@ -216,17 +209,17 @@
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
-    <a class="reference internal" href="../python-basics/pyfun.html">
+    <a class="reference internal" href="../jupyter/pyfun.html">
      Functions
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../python-basics/pypckg.html">
+    <a class="reference internal" href="../jupyter/pypckg.html">
      Packages, Modules and Libraries
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../python-basics/classes.html">
+    <a class="reference internal" href="../jupyter/classes.html">
      Object Orientation and Classes
     </a>
    </li>
@@ -240,32 +233,32 @@
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
-    <a class="reference internal" href="../python-basics/pynum.html">
+    <a class="reference internal" href="../jupyter/pynum.html">
      Load and Write Basic Data Files
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../python-basics/pynum.html#numpy">
+    <a class="reference internal" href="../jupyter/pynum.html#numpy">
      NumPy
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../python-basics/pynum.html#pandas">
+    <a class="reference internal" href="../jupyter/pynum.html#pandas">
      Pandas
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../python-basics/pynum.html#dates-and-time">
+    <a class="reference internal" href="../jupyter/pynum.html#dates-and-time">
      Dates and Time
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../python-basics/xml.html">
+    <a class="reference internal" href="../jupyter/xml.html">
      Manipulation of Workbooks and JSON Files
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../python-basics/pyplot.html">
+    <a class="reference internal" href="../jupyter/pyplot.html">
      Plotting
     </a>
    </li>
@@ -274,12 +267,12 @@
   </i>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../python-basics/pystyle.html">
+  <a class="reference internal" href="../jupyter/pystyle.html">
    Code Style and Conventions
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../python-basics/gui.html">
+  <a class="reference internal" href="../jupyter/gui.html">
    Graphical User Interfaces (GUIs)
   </a>
  </li>
@@ -305,7 +298,7 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     One-dimensional (1d) Cross-section Averaged Sediment Transport
+     Cross-section Averaged Sediment Transport
     </a>
    </li>
    <li class="toctree-l2">
@@ -378,22 +371,22 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/geo-shp.html">
+    <a class="reference internal" href="../jupyter/geo-shp.html">
      Shapefile (vector dataset) handling
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/geo-raster.html">
+    <a class="reference internal" href="../jupyter/geo-raster.html">
      Raster (Gridded) Dataset Handling
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/geo-convert.html">
+    <a class="reference internal" href="../jupyter/geo-convert.html">
      Raster to Vector Conversion and Vice Versa
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/geo-arcpy.html">
+    <a class="reference internal" href="../jupyter/geo-arcpy.html">
      The Commercial arcpy Library
     </a>
    </li>
@@ -717,15 +710,15 @@
         
               <div>
                 
-  <div class="section" id="one-dimensional-1d-cross-section-averaged-sediment-transport">
-<h1>One-dimensional (1d) Cross-section Averaged Sediment Transport<a class="headerlink" href="#one-dimensional-1d-cross-section-averaged-sediment-transport" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="cross-section-averaged-sediment-transport">
+<h1>Cross-section Averaged Sediment Transport<a class="headerlink" href="#cross-section-averaged-sediment-transport" title="Permalink to this headline">¶</a></h1>
 <div class="admonition-goals admonition">
 <p class="admonition-title">Goals</p>
 <p>This exercise features the application of the Meyer-Peter &amp; Müller (1948) bed load transport formulae to a valid application: 1D, cross-section averaged hydraulics. Write object-oriented code with custom classes for tailored interactions with <em>xlsx</em> workbooks. The homework involves using built-in methods of <em>pandas</em> data frames and plotting.</p>
 </div>
 <div class="admonition-requirements admonition">
 <p class="admonition-title">Requirements</p>
-<p><em>Python</em> libraries: <em>numpy</em> and <em>pandas</em>. Read and understand the <a class="reference internal" href="../python-basics/pynum.html"><span class="doc std std-doc">data handling with <em>numpy</em> and <em>pandas</em></span></a>, as well as <a class="reference internal" href="../python-basics/classes.html"><span class="doc std std-doc">object orientation</span></a>.</p>
+<p><em>Python</em> libraries: <em>numpy</em> and <em>pandas</em>. Read and understand the <a class="reference internal" href="../jupyter/pynum.html"><span class="doc std std-doc">data handling with <em>numpy</em> and <em>pandas</em></span></a>, as well as <a class="reference internal" href="../jupyter/classes.html"><span class="doc std std-doc">object orientation</span></a>.</p>
 </div>
 <p>Get ready by cloning the exercise repository:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ecohydraulics</span><span class="o">/</span><span class="n">Exercise</span><span class="o">-</span><span class="n">SedimentTransport</span><span class="o">.</span><span class="n">git</span>
@@ -842,7 +835,7 @@ Therefore, to add dimensions to <em>Φ</em>, it needs to be multiplied with the 
 <h3>Logging functions<a class="headerlink" href="#logging-functions" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">fun.py</span></code> script will contain two functions:</p>
 <ol class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">start_logging</span></code> to setup logging formats and a log file name as described on the <a class="reference external" href="../python-basics/pypyerror.html#logging">debugging page</a>, and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">start_logging</span></code> to setup logging formats and a log file name as described on the <a class="reference external" href="../jupyter/pypyerror.html#logging">debugging page</a>, and</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">log_actions</span></code>, which is a function wrapper for the <code class="docutils literal notranslate"><span class="pre">main()</span></code> (<code class="docutils literal notranslate"><span class="pre">main.py</span></code>) functions to log script execution messages.</p></li>
 </ol>
 <p>The <code class="docutils literal notranslate"><span class="pre">start_logging</span></code> function should look like this (change the log file name if desired):</p>
@@ -856,7 +849,7 @@ Therefore, to add dimensions to <em>Φ</em>, it needs to be multiplied with the 
 
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">log_actions</span></code> wrapper function follows the instructions from the <a class="reference external" href="../python-basics/pypyfun.html#wrappers">functions page</a>:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">log_actions</span></code> wrapper function follows the instructions from the <a class="reference external" href="../jupyter/pyfun.html#wrappers">functions page</a>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">log_actions</span><span class="p">(</span><span class="n">fun</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">start_logging</span><span class="p">()</span>
@@ -1093,7 +1086,7 @@ Therefore, to add dimensions to <em>Φ</em>, it needs to be multiplied with the 
 </div>
 <div class="section" id="write-a-meyer-peter-muller-bed-load-assessment-class">
 <h3>Write a Meyer-Peter &amp; Müller bed load assessment class<a class="headerlink" href="#write-a-meyer-peter-muller-bed-load-assessment-class" title="Permalink to this headline">¶</a></h3>
-<p>Create a new script (e.g., <code class="docutils literal notranslate"><span class="pre">mpm.py</span></code>) and implement a <code class="docutils literal notranslate"><span class="pre">MPM</span></code> class (<strong>M</strong>eyer-<strong>P</strong>eter &amp; <strong>M</strong>üller) that inherits from the <code class="docutils literal notranslate"><span class="pre">BedCore</span></code> class. The <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method of <code class="docutils literal notranslate"><span class="pre">MPM</span></code> should initialize <code class="docutils literal notranslate"><span class="pre">BedCore</span></code> and overwrite (recall <a class="reference external" href="python-basics/pyclasses.html#polymorphism">Polymorphism</a> relevant parameters to the calculation of bed load according to Meyer-Peter &amp; Müller (1948). Moreover, the initialization of an <code class="docutils literal notranslate"><span class="pre">MPM</span></code> object should go along with a check of the validity and the calculation of the dimensionless bed load transport <em>Φ</em> (<a class="reference external" href="#mpm">see above explanations</a>:</p>
+<p>Create a new script (e.g., <code class="docutils literal notranslate"><span class="pre">mpm.py</span></code>) and implement a <code class="docutils literal notranslate"><span class="pre">MPM</span></code> class (<strong>M</strong>eyer-<strong>P</strong>eter &amp; <strong>M</strong>üller) that inherits from the <code class="docutils literal notranslate"><span class="pre">BedCore</span></code> class. The <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method of <code class="docutils literal notranslate"><span class="pre">MPM</span></code> should initialize <code class="docutils literal notranslate"><span class="pre">BedCore</span></code> and overwrite (recall <a class="reference external" href="../jupyter/pyclasses.html#polymorphism">Polymorphism</a> relevant parameters to the calculation of bed load according to Meyer-Peter &amp; Müller (1948). Moreover, the initialization of an <code class="docutils literal notranslate"><span class="pre">MPM</span></code> object should go along with a check of the validity and the calculation of the dimensionless bed load transport <em>Φ</em> (<a class="reference external" href="#mpm">see above explanations</a>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bedload</span> <span class="kn">import</span> <span class="o">*</span>
 
 
@@ -1212,7 +1205,7 @@ Therefore, to add dimensions to <em>Φ</em>, it needs to be multiplied with the 
 </div>
 <div class="section" id="launch-and-debug">
 <h2>Launch and debug<a class="headerlink" href="#launch-and-debug" title="Permalink to this headline">¶</a></h2>
-<p>Using <a class="reference external" href="../get-started/ide.html#pycharm">PyCharm</a>, right-click in the <code class="docutils literal notranslate"><span class="pre">main.py</span></code> script and click <code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">Run</span> <span class="pre">'main'</span></code>. If the script crashes or raises error messages, trace them back, and fix the issues. Add <code class="docutils literal notranslate"><span class="pre">try</span></code> - <code class="docutils literal notranslate"><span class="pre">except</span></code> statements where necessary and recall the <a class="reference internal" href="../python-basics/pyerror.html"><span class="doc std std-doc">debugging instructions</span></a>.</p>
+<p>Using <a class="reference external" href="../get-started/ide.html#pycharm">PyCharm</a>, right-click in the <code class="docutils literal notranslate"><span class="pre">main.py</span></code> script and click <code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">Run</span> <span class="pre">'main'</span></code>. If the script crashes or raises error messages, trace them back, and fix the issues. Add <code class="docutils literal notranslate"><span class="pre">try</span></code> - <code class="docutils literal notranslate"><span class="pre">except</span></code> statements where necessary and recall the <a class="reference internal" href="../jupyter/pyerror.html"><span class="doc std std-doc">debugging instructions</span></a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The program intentionally produces warning messages because some of the profile characteristics do not fulfill the Meyer-Peter &amp; Müller formula’s validity range.</p>

@@ -1,11 +1,11 @@
-# One-dimensional (1d) Cross-section Averaged Sediment Transport
+# Cross-section Averaged Sediment Transport
 
 ```{admonition} Goals
 This exercise features the application of the Meyer-Peter & Müller (1948) bed load transport formulae to a valid application: 1D, cross-section averaged hydraulics. Write object-oriented code with custom classes for tailored interactions with *xlsx* workbooks. The homework involves using built-in methods of *pandas* data frames and plotting.
 ```
 
 ```{admonition} Requirements
-*Python* libraries: *numpy* and *pandas*. Read and understand the [data handling with *numpy* and *pandas*](../python-basics/pynum), as well as [object orientation](../python-basics/classes).
+*Python* libraries: *numpy* and *pandas*. Read and understand the [data handling with *numpy* and *pandas*](../jupyter/pynum), as well as [object orientation](../jupyter/classes).
 ```
 
 Get ready by cloning the exercise repository:
@@ -140,7 +140,7 @@ if __name__ == '__main__':
 ### Logging functions
 The `fun.py` script will contain two functions:
 
-1. `start_logging` to setup logging formats and a log file name as described on the [debugging page](../python-basics/pypyerror.html#logging), and
+1. `start_logging` to setup logging formats and a log file name as described on the [debugging page](../jupyter/pypyerror.html#logging), and
 1. `log_actions`, which is a function wrapper for the `main()` (`main.py`) functions to log script execution messages.
 
 The `start_logging` function should look like this (change the log file name if desired):
@@ -156,7 +156,7 @@ def start_logging():
 
 ```
 
-The `log_actions` wrapper function follows the instructions from the [functions page](../python-basics/pypyfun.html#wrappers):
+The `log_actions` wrapper function follows the instructions from the [functions page](../jupyter/pyfun.html#wrappers):
 
 ```python
 def log_actions(fun):
@@ -346,7 +346,7 @@ Many bed load transport formulae involve the dimensionless bed shear stress [*&t
 
 ### Write a Meyer-Peter & Müller bed load assessment class
 
-Create a new script (e.g., `mpm.py`) and implement a `MPM` class (**M**eyer-**P**eter & **M**üller) that inherits from the `BedCore` class. The `__init__` method of `MPM` should initialize `BedCore` and overwrite (recall [Polymorphism](python-basics/pyclasses.html#polymorphism) relevant parameters to the calculation of bed load according to Meyer-Peter & Müller (1948). Moreover, the initialization of an `MPM` object should go along with a check of the validity and the calculation of the dimensionless bed load transport *&Phi;* ([see above explanations](#mpm):
+Create a new script (e.g., `mpm.py`) and implement a `MPM` class (**M**eyer-**P**eter & **M**üller) that inherits from the `BedCore` class. The `__init__` method of `MPM` should initialize `BedCore` and overwrite (recall [Polymorphism](../jupyter/pyclasses.html#polymorphism) relevant parameters to the calculation of bed load according to Meyer-Peter & Müller (1948). Moreover, the initialization of an `MPM` object should go along with a check of the validity and the calculation of the dimensionless bed load transport *&Phi;* ([see above explanations](#mpm):
 
 ```python
 from bedload import *
@@ -474,7 +474,7 @@ def main():
 
 ## Launch and debug
 
-Using [PyCharm](../get-started/ide.html#pycharm), right-click in the `main.py` script and click `> Run 'main'`. If the script crashes or raises error messages, trace them back, and fix the issues. Add `try` - `except` statements where necessary and recall the [debugging instructions](../python-basics/pyerror).
+Using [PyCharm](../get-started/ide.html#pycharm), right-click in the `main.py` script and click `> Run 'main'`. If the script crashes or raises error messages, trace them back, and fix the issues. Add `try` - `except` statements where necessary and recall the [debugging instructions](../jupyter/pyerror).
 
 ```{note}
 The program intentionally produces warning messages because some of the profile characteristics do not fulfill the Meyer-Peter & Müller formula's validity range.

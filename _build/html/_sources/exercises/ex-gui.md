@@ -2,11 +2,11 @@
 
 
 ```{admonition} Goals
-This exercise features the creation of a Graphical User Interface based on the [course instructions](../python-basics/gui).
+This exercise features the creation of a Graphical User Interface based on the [course instructions](../jupyter/gui).
 ```
 
 ```{admonition} Requirements
-*Python* libraries: *tkinter*, *numpy*, and *pandas*. Read and understand the [creation of GUIs](../python-basics/gui). Accomplish the [sediment transport exercise](https://github.com/Ecohydraulics/Exercise-SedimentTransport).
+*Python* libraries: *tkinter*, *numpy*, and *pandas*. Read and understand the [creation of GUIs](../jupyter/gui). Accomplish the [sediment transport exercise](https://github.com/Ecohydraulics/Exercise-SedimentTransport).
 ```
 
 Get ready by cloning the exercise repository:
@@ -112,7 +112,7 @@ We will create three buttons to let the user select:
 1. A *HEC-RAS* output workbook (`xlsx`) file, and
 1. An output directory where the resulting `bed_load_mpm.xlsx` workbook will be stored.
 
-Every button triggers a method of `SediApp`, which we will define later on. The methods to trigger are defined with the `command=self.METHOD()` keyword ([recall the instructions for creating a *button*](python-basics/pygui.html#add-a-button-to-call-a-function)).
+Every button triggers a method of `SediApp`, which we will define later on. The methods to trigger are defined with the `command=self.METHOD()` keyword (recall the instructions for [creating a *button*](../jupyter/pygui.html#add-a-button-to-call-a-function)).
 
 The file and folder directories need to be initialized before we can use them in the button texts. Therefore, add to `__init__`:
 
@@ -287,7 +287,7 @@ After the successful run of the program, the `run_program` method sets the foreg
 ```
 
 ## Make the script stand-alone
-To create the window, make `gui.py` stand-alone executable by adding the following statement to the file bottom ([recall the stand-alone descriptions](python-basics/pypckg.html#standalone):
+To create the window, make `gui.py` stand-alone executable by adding the following statement to the file bottom (recall the [stand-alone descriptions](../jupyter/pypckg.html#standalone):
 
 ```python
 if __name__ == '__main__':
@@ -296,7 +296,7 @@ if __name__ == '__main__':
 
 
 ## Launch the GUI
-Using [*PyCharm*](get-started/ide.html#pycharm), right-click in the `gui.py` script and click `> Run 'gui'`. If the script crashes or raises error messages, trace them back, and fix the issues. Otherwise, a `tkinter` window opens:
+Using [*PyCharm*](../get-started/ide.html#pycharm), right-click in the `gui.py` script and click `> Run 'gui'`. If the script crashes or raises error messages, trace them back, and fix the issues. Otherwise, a `tkinter` window opens:
 
 ![guistart](https://github.com/Ecohydraulics/Exercise-gui/raw/master/graphs/gui-start.png)
 

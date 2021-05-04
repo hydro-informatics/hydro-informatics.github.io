@@ -5,7 +5,7 @@ Write custom functions, load data from comma-type delimited text files, and mani
 ```
 
 ```{admonition} Requirements
-*Python* libraries: *numpy* including *scipy* and *matplotlib*. Read and understand the [data handling with *numpy*](../python-basics/pynum) and [functions](../python-basics/pyfun).
+*Python* libraries: *numpy* including *scipy* and *matplotlib*. Read and understand the [data handling with *numpy*](../jupyter/pynum) and [functions](../jupyter/pyfun).
 ```
 
 Get ready by cloning the exercise repository:
@@ -75,7 +75,7 @@ The function will loop over the *csv* file names and append the file contents to
         - Back in the `with open(file, ...` statement (use correct indentation level!), update `file_content_dict` with the above-found `dict_key` and the `data_array` of the `file as f`: `file_content_dict.update({dict_key: data_array})`
 1. Back at the level of the function (`def read_data(...):` - pay attention to the correct indentation!), `return file_content_dict`
 
-Let us check if the function works as we want it to work by making the script stand-alone through an `if __name__ == "__main__":` statement at the end of the file (recall the [instructions](../python-basics/pypckg.html#standalone)). So the script should look like this:
+Let us check if the function works as we want it to work by making the script stand-alone through an `if __name__ == "__main__":` statement at the end of the file (recall the [instructions](../jupyter/pypckg.html#standalone)). So the script should look like this:
 
 ```python
 import glob
