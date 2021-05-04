@@ -9,6 +9,12 @@
 
 The content on the following pages is based on [*Jupyter notebooks*](https://jupyter.org/) and inspired by tutorials provided on [python.org](https://docs.python.org/3/tutorial/index.html). The descriptions aim to provide solid knowledge for the efficient use of *Python*. Keep in mind that there are always several possibilities to write code with some sophisticated gimmicks, which cannot all be covered within one course.
 
-```{tip}
-The *Jupyter notebooks* are provided along with active courses via the University of Stuttgart's [ILIAS portal](https://ilias3.uni-stuttgart.de/goto_Uni_Stuttgart_crs_2101155.html) and upon e-mail request ([contact via the IWS/LWW web site](https://www.iws.uni-stuttgart.de/institut/team/Schwindt/)).
+(inline-jupyter)=
+## Online JupyterLab
+
+This ebook builds on *jupyter* notebooks that are linked to *mybinder.org*. Thus, without the need for installing *JupyterLab*, just visit [this ebook on mybinder.org](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter).
+
+
+```{note}
+The *Jupyter notebooks* are provided along with active courses via the University of Stuttgart's [ILIAS portal](https://ilias3.uni-stuttgart.de/goto_Uni_Stuttgart_crs_2101155.html) and upon e-mail request ([contact via the IWS/LWW website](https://www.iws.uni-stuttgart.de/institut/team/Schwindt/)).
 ```

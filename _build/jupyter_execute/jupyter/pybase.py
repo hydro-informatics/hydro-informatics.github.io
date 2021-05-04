@@ -1,6 +1,8 @@
 # First steps
 
-Summary: About Python, variable types and script execution.[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main)
+Summary: About Python, variable types and script execution.
+
+For interactive reading, [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter).
 
 ## Load Python Environment
 
