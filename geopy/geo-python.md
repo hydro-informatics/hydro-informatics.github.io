@@ -1,3 +1,4 @@
+(sec-geo-python)=
 # Geospatial Python
 
 *Python* is connected with several libraries providing many open-source and commercial (proprietary) functions for the analyses of geospatial data. This section introduces both, open-source and (briefly) the commercial `arcpy` package. The goal of this section is to provide an understanding of how geospatial data can be used and manipulated with *Python* code. The file manipulation involves logical and algebraic operations, and conversion from and to other geospatial file formats.

@@ -2,7 +2,7 @@
 # Geospatial Data
 
 ```{tip}
-Use [*QGIS*](../get-started/geo.html#qgis) to display geospatial data and to create maps in *PDF* or image formats (e.g., *tif*, *png*, *jpg*).
+Use {ref}`qgis-install` to display geospatial data and to create maps in *PDF* or image formats (e.g., *tif*, *png*, *jpg*). In addition, the {ref}`qgis-tutorial` provides an easy and interactive walk through geospatial analyses.
 ```
 
 ## Geodata Sources

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Virtual machines and Linux &#8212; Hydro-Informatics</title>
+    <title>Virtual Machines and Linux &#8212; Hydro-Informatics</title>
     
   <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -68,8 +68,8 @@
 <!-- Opengraph tags -->
 <meta property="og:url"         content="https://hydro-informatics.github.io/get-started/vm.html" />
 <meta property="og:type"        content="article" />
-<meta property="og:title"       content="Virtual machines and Linux" />
-<meta property="og:description" content="Virtual machines and Linux  Your computer is one of your most important educational companions. So you want to protect the health of your computer and avoid pro" />
+<meta property="og:title"       content="Virtual Machines and Linux" />
+<meta property="og:description" content="Virtual Machines and Linux  Your computer is one of your most important educational companions. So you want to protect the health of your computer and avoid pro" />
 <meta property="og:image"       content="https://hydro-informatics.github.io/_static/icon.jpg" />
 
 <meta name="twitter:card" content="summary" />
@@ -130,7 +130,12 @@
   <ul class="current collapse-ul">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Virtual machines and Linux
+     Virtual Machines and Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#get-started-with-debian-linux">
+     Get started with (Debian) Linux
     </a>
    </li>
    <li class="toctree-l2">
@@ -358,6 +363,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../geopy/geospatial-data.html">
    Geospatial Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/use-qgis.html">
+   QGIS tutorial
   </a>
  </li>
  <li class="toctree-l1 collapsible-parent">
@@ -633,121 +643,126 @@
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#about">
-   About
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Virtual Machines and Linux
   </a>
   <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-is-a-virtual-machine-vm">
-     What is a Virtual Machine (VM)?
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#about">
+     About
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#what-is-a-virtual-machine-vm">
+       What is a Virtual Machine (VM)?
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#why-use-a-vm">
+       Why use a VM?
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#contents-and-debian-linux">
+       Contents and Debian Linux
+      </a>
+     </li>
+    </ul>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#why-use-a-vm">
-     Why use a VM?
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-a-debian-linux-vm">
+     Create a Debian Linux VM
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#get-prerequisites-required-software">
+       Get prerequisites (required software)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#create-a-vm-with-virtualbox">
+       Create a VM with
+       <em>
+        VirtualBox
+       </em>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#install-debian-linux">
+       Install Debian Linux
+      </a>
+     </li>
+    </ul>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#contents-and-debian-linux">
-     Contents and Debian Linux
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#re-use-transfer-or-copy-a-vm-on-another-host">
+     Re-use (transfer or copy) a VM on another Host
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-a-debian-linux-vm">
-   Create a Debian Linux VM
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#get-prerequisites-required-software">
-     Get prerequisites (required software)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#create-a-vm-with-virtualbox">
-     Create a VM with
-     <em>
-      VirtualBox
-     </em>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#install-debian-linux">
-     Install Debian Linux
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#get-started-with-debian-linux">
    Get started with (Debian) Linux
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#setup-linux-setup-debian">
-   Setup Linux {#setup-debian}
-  </a>
   <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#familiarize-with-debian-linux-and-terminal-terminal">
-     Familiarize with Debian Linux and Terminal {#terminal}
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setup-linux">
+     Setup Linux
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#setup-user-rights-users">
-     Setup user rights {#users}
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#enable-folder-sharing-share">
-     Enable folder sharing {#share}
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#enable-opengl-opengl">
-     Enable OpenGL {#opengl}
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#install-and-update-software-optional">
-     Install and Update Software (optional)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#add-package-repositories">
-     Add Package Repositories
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#find-packages">
-     Find Packages
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#install-use-windows-applications-in-linux-wine-wine">
-     Install &amp; Use
-     <em>
-      Windows
-     </em>
-     Applications in
-     <em>
-      Linux
-     </em>
-     (
-     <em>
-      Wine
-     </em>
-     ) {#wine}
-    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#familiarize-with-debian-linux-and-terminal">
+       Familiarize with Debian Linux and Terminal
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#setup-user-rights">
+       Setup user rights
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#enable-folder-sharing">
+       Enable folder sharing
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#enable-opengl">
+       Enable OpenGL
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#install-and-update-software-optional">
+       Install and Update Software (optional)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#add-package-repositories">
+       Add Package Repositories
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#find-packages">
+       Find Packages
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#install-use-windows-applications-wine">
+       Install &amp; Use
+       <em>
+        Windows
+       </em>
+       Applications (
+       <em>
+        Wine
+       </em>
+       )
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#re-use-transfer-or-copy-a-vm-on-another-host">
-   Re-use (transfer or copy) a VM on another Host
-  </a>
  </li>
 </ul>
 
@@ -761,7 +776,7 @@
               <div>
                 
   <div class="section" id="virtual-machines-and-linux">
-<h1>Virtual machines and Linux<a class="headerlink" href="#virtual-machines-and-linux" title="Permalink to this headline">¶</a></h1>
+<h1>Virtual Machines and Linux<a class="headerlink" href="#virtual-machines-and-linux" title="Permalink to this headline">¶</a></h1>
 <p>Your computer is one of your most important educational companions. So you want to protect the health of your computer and avoid problems caused by redundant or even malicious software. For this reason, it is recommended to install all software used on this website on a so-called Virtual Machine (VM). This page explains what VMs are, what advantages they have exactly, and how you can install <a class="reference external" href="https://www.debian.org/">Debian Linux</a>, one of the most stable and secure operating systems. It does not matter if you use Apple’s <em>mac OS</em> or Microsoft’s <em>Windows</em>, or if you already use Linux: The VM will look the same at the end.</p>
 <div class="section" id="about">
 <h2>About<a class="headerlink" href="#about" title="Permalink to this headline">¶</a></h2>
@@ -880,11 +895,22 @@
 <p>Once the VM is shutdown, re-open the VM <em>Settings</em> (from <em>VirtualBox Manager</em> window) and go to the <em>Storage</em> tab. Verify that there is again an <em>Empty</em> disk symbol in the <em>Controller: IDE</em> field.</p>
 </div>
 </div>
-<div class="section" id="get-started-with-debian-linux">
-<h2>Get started with (Debian) Linux<a class="headerlink" href="#get-started-with-debian-linux" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="re-use-transfer-or-copy-a-vm-on-another-host">
+<h2>Re-use (transfer or copy) a VM on another Host<a class="headerlink" href="#re-use-transfer-or-copy-a-vm-on-another-host" title="Permalink to this headline">¶</a></h2>
+<p>Once you have created a VM on a virtual hard disk (the <em><strong>vdi</strong></em> file), you can always transfer it to another <em>host</em> system. To copy (or transport) a VM:</p>
+<ol class="simple">
+<li><p>Copy the <em>vdi</em> file where your VM is installed (e.g., <em>Debian Linux.vdi</em>) to another system (let’s call it <em>Host-2</em>), for example by using a USB flash drive.</p></li>
+<li><p>Make sure that <em>VirtualBox</em> is installed on the <em>Host-2</em> system and open <em>VirtualBox</em> on  <em>Host-2</em>.</p></li>
+<li><p>In <em>VirtualBox</em>, create a <em>New</em> (the blue rack-wheel) <em>Virtual Machine</em>.</p></li>
+<li><p>In the process of creating a <em>New</em> VM, the wizard asks if you want to create a new hard disk image or an existing one. Select <em>Existing hard disk</em> and choose the copied <em>vdi</em> file.</p></li>
+<li><p>Finalize the <em>New</em> VM wizard and start the VM as usual.</p></li>
+</ol>
 </div>
-<div class="section" id="setup-linux-setup-debian">
-<h2>Setup Linux {#setup-debian}<a class="headerlink" href="#setup-linux-setup-debian" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="get-started-with-debian-linux">
+<h1>Get started with (Debian) Linux<a class="headerlink" href="#get-started-with-debian-linux" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="setup-linux">
+<span id="setup-debian"></span><h2>Setup Linux<a class="headerlink" href="#setup-linux" title="Permalink to this headline">¶</a></h2>
 <p><em><strong>Estimated duration: 15 minutes.</strong></em></p>
 <p>Start the <em>Debian Linux</em> VM from the <em>VirtualBox</em> manager window. Once Debian Linux has started, log on with your user credentials.</p>
 <p>To enable the full functionality of the system, open the Linux Terminal (<code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">Alt</span></code> + <code class="docutils literal notranslate"><span class="pre">T</span></code> or go to <em>Activities</em> &gt; <em>Files</em> (filing cabinet symbol), right-click in any folder and select <em>Open in Terminal</em>). In <em>Terminal</em> type:</p>
@@ -942,8 +968,8 @@ apt install build-essential dkms linux-headers-$(uname -r)
 </li>
 <li><p><em>Apply</em> the changes and close the <em>Displays</em> settings.</p></li>
 </ul>
-<div class="section" id="familiarize-with-debian-linux-and-terminal-terminal">
-<h3>Familiarize with Debian Linux and Terminal {#terminal}<a class="headerlink" href="#familiarize-with-debian-linux-and-terminal-terminal" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="familiarize-with-debian-linux-and-terminal">
+<span id="linux-terminal"></span><h3>Familiarize with Debian Linux and Terminal<a class="headerlink" href="#familiarize-with-debian-linux-and-terminal" title="Permalink to this headline">¶</a></h3>
 <p><em><strong>Estimated duration: 60 minutes.</strong></em></p>
 <p>To get familiar with Debian Linux, go to the <em>Activities</em> menu and find the applications <em>LibreOffice-Writer</em>, <em>Firefox</em>, the <em>Software</em> application (shopping bag symbol), and the <em>File</em> manager (filing container symbol).
 Find more applications by clicking on the four dots on the left of the menu bar - can you find the Text Editor?
@@ -955,8 +981,8 @@ To shutdown Debian Linux (i.e., the VM), click on the top-right corner arrow and
 </ol>
 <p><em>Terminal</em> runs many powerful native Linux (UNIX) commands, which is the most robust way to install and execute features. There are a couple of tutorials for learning to use <em>Terminal</em> and one of the most comprehensive is provided on the <em>Linux Ubuntu</em> website (Ubuntu is based on Debian Linux). It is highly recommended to go through the <a class="reference external" href="https://ubuntu.com/tutorials/command-line-for-beginners">tutorial provided by the Ubuntu community</a> (<em>estimated duration: 51 minutes</em>), for better understanding some contents presented here on <em><a class="reference external" href="http://hydro-informatics.github.io">hydro-informatics.github.io</a></em>. In particular, memorize the commands <code class="docutils literal notranslate"><span class="pre">cd</span></code> (change directory), <code class="docutils literal notranslate"><span class="pre">su</span></code>/<code class="docutils literal notranslate"><span class="pre">sudo</span></code> (superuser), <code class="docutils literal notranslate"><span class="pre">ls</span></code> (listen) and <code class="docutils literal notranslate"><span class="pre">mkdir</span></code> (make directory).</p>
 </div>
-<div class="section" id="setup-user-rights-users">
-<h3>Setup user rights {#users}<a class="headerlink" href="#setup-user-rights-users" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="setup-user-rights">
+<span id="user-rights"></span><h3>Setup user rights<a class="headerlink" href="#setup-user-rights" title="Permalink to this headline">¶</a></h3>
 <p>When installing software later, it is good practice to install it for your user account and not for <code class="docutils literal notranslate"><span class="pre">root</span></code>. Such system-relevant actions require <em>superuser</em> (<code class="docutils literal notranslate"><span class="pre">su</span></code>) rights. However, your default user name is not on the so-called <em>su-doers</em> list, which is essentially a file where all user accounts are listed that are authorized to use <code class="docutils literal notranslate"><span class="pre">sudo</span></code> in front of any command. So add your user account to the <em>su-doers</em> list by opening <em>Terminal</em> and typing:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">su</span>
     <span class="n">password</span><span class="p">:</span> <span class="o">...</span>
@@ -969,8 +995,8 @@ To shutdown Debian Linux (i.e., the VM), click on the top-right corner arrow and
 </div>
 <p>If visually nothing happens, you are good to go. Otherweise, if you get a message like <code class="docutils literal notranslate"><span class="pre">Sorry,</span> <span class="pre">user</span> <span class="pre">[username]</span> <span class="pre">may</span> <span class="pre">not</span> <span class="pre">run</span> <span class="pre">sudo</span> <span class="pre">on</span> <span class="pre">[hostname].</span></code>, verify that you correctly typed the above command and <em>YOUR-USER-NAME</em> (with correct cases).</p>
 </div>
-<div class="section" id="enable-folder-sharing-share">
-<h3>Enable folder sharing {#share}<a class="headerlink" href="#enable-folder-sharing-share" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="enable-folder-sharing">
+<span id="vm-share"></span><h3>Enable folder sharing<a class="headerlink" href="#enable-folder-sharing" title="Permalink to this headline">¶</a></h3>
 <p><em><strong>Estimated duration: 5-10 minutes.</strong></em></p>
 <div class="admonition-requirements admonition">
 <p class="admonition-title">Requirements</p>
@@ -1000,10 +1026,10 @@ To shutdown Debian Linux (i.e., the VM), click on the top-right corner arrow and
 </pre></div>
 </div>
 <p>Afterwards, <strong>reboot the <em>Debian Linux VM</em></strong> and test if you can access the folder, and create and modify files.</p>
-</div>
 <hr class="docutils" />
-<div class="section" id="enable-opengl-opengl">
-<h3>Enable OpenGL {#opengl}<a class="headerlink" href="#enable-opengl-opengl" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="enable-opengl">
+<span id="opengl"></span><h3>Enable OpenGL<a class="headerlink" href="#enable-opengl" title="Permalink to this headline">¶</a></h3>
 <p><em>VirtualBox</em> experimentally enables <a class="reference external" href="https://www.opengl.org"><em>OpenGL</em></a>, which is used by many graphical user interfaces. To make <em>OpenGL</em> work on a virtual machine, the install <a class="reference external" href="https://www.x.org/"><em>X.Org X Window System</em></a> (xserver):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">xorg</span>
 </pre></div>
@@ -1083,8 +1109,8 @@ To shutdown Debian Linux (i.e., the VM), click on the top-right corner arrow and
 </pre></div>
 </div>
 </div>
-<div class="section" id="install-use-windows-applications-in-linux-wine-wine">
-<h3>Install &amp; Use <em>Windows</em> Applications in <em>Linux</em> (<em>Wine</em>) {#wine}<a class="headerlink" href="#install-use-windows-applications-in-linux-wine-wine" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="install-use-windows-applications-wine">
+<span id="wine"></span><h3>Install &amp; Use <em>Windows</em> Applications (<em>Wine</em>)<a class="headerlink" href="#install-use-windows-applications-wine" title="Permalink to this headline">¶</a></h3>
 <p><em><strong>Estimated duration: 10-15 minutes.</strong></em></p>
 <p>If you want to emulate a <em>Windows</em> environment on any <em>Linux</em> system (for whatever reason), use the <a class="reference external" href="https://wiki.debian.org/Wine"><em>Wine</em></a> compatibility layer, which enables installing and running <em>Windows</em> applications. The above-described installation of Debian Linux creates a 64-bit VM and to enable program compatibility with 32-bit architectures, add 32-bit architectures through <em>Terminal</em>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dpkg</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">architecture</span> <span class="n">i386</span> <span class="o">&amp;&amp;</span> <span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
@@ -1133,17 +1159,6 @@ To shutdown Debian Linux (i.e., the VM), click on the top-right corner arrow and
 </li>
 </ul>
 </div>
-</div>
-<div class="section" id="re-use-transfer-or-copy-a-vm-on-another-host">
-<h2>Re-use (transfer or copy) a VM on another Host<a class="headerlink" href="#re-use-transfer-or-copy-a-vm-on-another-host" title="Permalink to this headline">¶</a></h2>
-<p>Once you have created a VM on a virtual hard disk (the <em><strong>vdi</strong></em> file), you can always transfer it to another <em>host</em> system. To copy (or transport) a VM:</p>
-<ol class="simple">
-<li><p>Copy the <em>vdi</em> file where your VM is installed (e.g., <em>Debian Linux.vdi</em>) to another system (let’s call it <em>Host-2</em>), for example by using a USB flash drive.</p></li>
-<li><p>Make sure that <em>VirtualBox</em> is installed on the <em>Host-2</em> system and open <em>VirtualBox</em> on  <em>Host-2</em>.</p></li>
-<li><p>In <em>VirtualBox</em>, create a <em>New</em> (the blue rack-wheel) <em>Virtual Machine</em>.</p></li>
-<li><p>In the process of creating a <em>New</em> VM, the wizard asks if you want to create a new hard disk image or an existing one. Select <em>Existing hard disk</em> and choose the copied <em>vdi</em> file.</p></li>
-<li><p>Finalize the <em>New</em> VM wizard and start the VM as usual.</p></li>
-</ol>
 </div>
 </div>
 

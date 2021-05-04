@@ -1,4 +1,4 @@
-# Virtual machines and Linux
+# Virtual Machines and Linux
 
 Your computer is one of your most important educational companions. So you want to protect the health of your computer and avoid problems caused by redundant or even malicious software. For this reason, it is recommended to install all software used on this website on a so-called Virtual Machine (VM). This page explains what VMs are, what advantages they have exactly, and how you can install [Debian Linux](https://www.debian.org/), one of the most stable and secure operating systems. It does not matter if you use Apple's *mac OS* or Microsoft's *Windows*, or if you already use Linux: The VM will look the same at the end.
 
@@ -103,9 +103,21 @@ To install Debian Linux to the VM, start the before created *Debian Linux VM* in
 
 Once the VM is shutdown, re-open the VM *Settings* (from *VirtualBox Manager* window) and go to the *Storage* tab. Verify that there is again an *Empty* disk symbol in the *Controller: IDE* field.
 
-## Get started with (Debian) Linux
 
-## Setup Linux {#setup-debian}
+## Re-use (transfer or copy) a VM on another Host
+
+Once you have created a VM on a virtual hard disk (the ***vdi*** file), you can always transfer it to another *host* system. To copy (or transport) a VM:
+
+1. Copy the *vdi* file where your VM is installed (e.g., *Debian Linux.vdi*) to another system (let's call it *Host-2*), for example by using a USB flash drive.
+1. Make sure that *VirtualBox* is installed on the *Host-2* system and open *VirtualBox* on  *Host-2*.
+1. In *VirtualBox*, create a *New* (the blue rack-wheel) *Virtual Machine*.
+1. In the process of creating a *New* VM, the wizard asks if you want to create a new hard disk image or an existing one. Select *Existing hard disk* and choose the copied *vdi* file.
+1. Finalize the *New* VM wizard and start the VM as usual.
+
+# Get started with (Debian) Linux
+
+(setup-debian)=
+## Setup Linux
 
 ***Estimated duration: 15 minutes.***
 
@@ -177,7 +189,8 @@ To improve the visual experience do the following:
     + Consider also to turn on *Night Light* to preserve your eye vision.
 * *Apply* the changes and close the *Displays* settings.
 
-### Familiarize with Debian Linux and Terminal {#terminal}
+(linux-terminal)=
+### Familiarize with Debian Linux and Terminal
 
 ***Estimated duration: 60 minutes.***
 
@@ -192,8 +205,8 @@ The GNOME *Terminal* is one of the most important features, event though it opti
 
 *Terminal* runs many powerful native Linux (UNIX) commands, which is the most robust way to install and execute features. There are a couple of tutorials for learning to use *Terminal* and one of the most comprehensive is provided on the *Linux Ubuntu* website (Ubuntu is based on Debian Linux). It is highly recommended to go through the [tutorial provided by the Ubuntu community](https://ubuntu.com/tutorials/command-line-for-beginners) (*estimated duration: 51 minutes*), for better understanding some contents presented here on *hydro-informatics.github.io*. In particular, memorize the commands `cd` (change directory), `su`/`sudo` (superuser), `ls` (listen) and `mkdir` (make directory).
 
-
-### Setup user rights {#users}
+(user-rights)=
+### Setup user rights
 When installing software later, it is good practice to install it for your user account and not for `root`. Such system-relevant actions require *superuser* (`su`) rights. However, your default user name is not on the so-called *su-doers* list, which is essentially a file where all user accounts are listed that are authorized to use `sudo` in front of any command. So add your user account to the *su-doers* list by opening *Terminal* and typing:
 
 ```
@@ -210,7 +223,8 @@ sudo -v
 
 If visually nothing happens, you are good to go. Otherweise, if you get a message like `Sorry, user [username] may not run sudo on [hostname].`, verify that you correctly typed the above command and *YOUR-USER-NAME* (with correct cases).
 
-### Enable folder sharing {#share}
+(vm-share)=
+### Enable folder sharing
 
 ***Estimated duration: 5-10 minutes.***
 
@@ -246,7 +260,8 @@ Afterwards, **reboot the *Debian Linux VM*** and test if you can access the fold
 
 ***
 
-### Enable OpenGL {#opengl}
+(opengl)=
+### Enable OpenGL
 
 *VirtualBox* experimentally enables [*OpenGL*](https://www.opengl.org), which is used by many graphical user interfaces. To make *OpenGL* work on a virtual machine, the install [*X.Org X Window System*](https://www.x.org/) (xserver):
 
@@ -351,7 +366,8 @@ That means, to get the library file `libGLX.so.0`, the package `libglx0-glvnd-nv
 sudo apt install libglx0-glvnd-nvidia
 ```
 
-### Install & Use *Windows* Applications in *Linux* (*Wine*) {#wine}
+(wine)=
+### Install & Use *Windows* Applications (*Wine*)
 
 ***Estimated duration: 10-15 minutes.***
 
@@ -395,13 +411,3 @@ NEVER run wine as root (sudo). If you did anyway, do `cd $HOME` and tap `sudo ch
 * With the installation path, any *Windows* application can be launched through *Terminal* with:
     + `wine "C:\\path\\to\\the.exe"` (use `\\` to separate sub-directories).
     + For example, `wine "C:\\Program Files (x86)\\CHC\\BlueKenue\\BlueKenue.exe"` typically starts *Blue Kenue<sup>TM</sup>*.
-
-## Re-use (transfer or copy) a VM on another Host
-
-Once you have created a VM on a virtual hard disk (the ***vdi*** file), you can always transfer it to another *host* system. To copy (or transport) a VM:
-
-1. Copy the *vdi* file where your VM is installed (e.g., *Debian Linux.vdi*) to another system (let's call it *Host-2*), for example by using a USB flash drive.
-1. Make sure that *VirtualBox* is installed on the *Host-2* system and open *VirtualBox* on  *Host-2*.
-1. In *VirtualBox*, create a *New* (the blue rack-wheel) *Virtual Machine*.
-1. In the process of creating a *New* VM, the wizard asks if you want to create a new hard disk image or an existing one. Select *Existing hard disk* and choose the copied *vdi* file.
-1. Finalize the *New* VM wizard and start the VM as usual.

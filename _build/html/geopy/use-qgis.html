@@ -1,0 +1,946 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QGIS tutorial &#8212; Hydro-Informatics</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://hydro-informatics.github.io/geopy/use-qgis.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Geospatial Python" href="geo-python.html" />
+    <link rel="prev" title="Geospatial Data" href="geospatial-data.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://hydro-informatics.github.io/geopy/use-qgis.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="QGIS tutorial" />
+<meta property="og:description" content="QGIS tutorial  Tip  This tutorial involves embedded videos featuring the text descriptions in every section.  To get ready, watch the following video and/or mak" />
+<meta property="og:image"       content="https://hydro-informatics.github.io/_static/icon.jpg" />
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/icon.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <p class="caption collapsible-parent">
+ <span class="caption-text">
+  Get Started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../lectures/classroom.html">
+   The Virtual Classroom
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/lectures.html">
+     Lectures and exercises
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/take_seat.html">
+     Take a Seat in the Virtual Classroom
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../get-started/software.html">
+   Software Resources
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/vm.html">
+     Virtual Machines and Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/vm.html#get-started-with-debian-linux">
+     Get started with (Debian) Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/ide.html">
+     Anaconda and Integrated Development Environments (IDEs)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/git.html">
+     Introduction to git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/geo.html">
+     Geospatial Software
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-openfoam.html">
+     Install OpenFOAM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-telemac.html">
+     open TELEMAC (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/others.html">
+     Other Software Resources
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Python Basics
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../python-basics/python.html">
+   Get Started with Python
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python-basics/pyinstall.html">
+     Install Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pybase.html">
+     First steps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyerror.html">
+     Errors, Logging, and Debugging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyloop.html">
+     Loops and Conditional Statements
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../python-basics/modularize.html">
+   Modularization &amp; Object Orientation
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyfun.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pypckg.html">
+     Packages, Modules and Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/classes.html">
+     Object Orientation and Classes
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../python-basics/data-handling.html">
+   Data and File Handling
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pynum.html">
+     Load and Write Basic Data Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pynum.html#numpy">
+     NumPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pynum.html#pandas">
+     Pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pynum.html#dates-and-time">
+     Dates and Time
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/xml.html">
+     Manipulation of Workbooks and JSON Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyplot.html">
+     Plotting
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../jupyter/pystyle.html">
+   Code Style and Conventions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../jupyter/gui.html">
+   Graphical User Interfaces (GUIs)
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../exercises/python-exercises.html">
+   Python Exercises
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-ms.html">
+     1d Hydraulics (Manning-Strickler Formula)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sp.html">
+     Reservoir Volume Calculation with a Sequent Peak Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-floods.html">
+     Calculate flood return periods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sediment.html">
+     Cross-section Averaged Sediment Transport
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-gui.html">
+     Create a
+     <strong>
+      G
+     </strong>
+     raphical
+     <strong>
+      U
+     </strong>
+     ser
+     <strong>
+      I
+     </strong>
+     nterface (GUI)
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Documentation
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/documentation.html">
+   Markdown and Code Documentation
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../exercises/docs-exercises.html">
+   Exercises
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-git.html">
+     Git and markdown
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Geospatial Analysis
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="geospatial-data.html">
+   Geospatial Data
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   QGIS tutorial
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="geo-python.html">
+   Geospatial Python
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="geo-pckg.html">
+     Geospatial Python - Open Source Packages
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-shp.html">
+     Shapefile (vector dataset) handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-raster.html">
+     Raster (Gridded) Dataset Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-convert.html">
+     Raster to Vector Conversion and Vice Versa
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-arcpy.html">
+     The Commercial arcpy Library
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../exercises/geo-exercises.html">
+   Exercises
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-geco.html">
+     Create a habitat suitability map
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Numerical Modeling
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/numerical-modeling.html">
+   Principles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/pre-qgis.html">
+   Pre-Processing with QGIS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/basement.html">
+   BASEMENT
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../numerics/telemac.html">
+   TELEMAC
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/telemac2d.html">
+     Pre-Processing for TELEMAC models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/telemac3d.html">
+     3d modeling with TELEMAC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/telemac-gaia.html">
+     Gaia Workflow
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/openfoam.html">
+   OpenFOAM
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/calibration.html">
+   Calibration and Valdiation
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Troubleshoot
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
+   Programming Tools and IDEs
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
+     Debugging Anaconda
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-python.html">
+     Debugging Python Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
+     Debugging Jupyter
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
+   Numerical Models
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
+     Debugging BASEMENT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
+     Debugging TELEMAC/SALOME
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../troubleshoot/dbg-os.html">
+   Operating Systems (Linux and VMs)
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
+     Debugging Debian Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
+     Debugging Virtual Machines
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Disclaimer and License
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/geopy/use-qgis.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/hydro-informatics/"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#first-project">
+   First Project
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#panes-toolbars-and-plugins">
+   Panes, Toolbars, and Plugins
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#basemaps-for-qgis-google-or-open-street-maps-worldmap-tiles">
+   Basemaps for QGIS (Google or Open Street Maps Worldmap Tiles)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-a-shapefile">
+   Create a Shapefile
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-a-point-shapefile">
+     Create a Point Shapefile
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="qgis-tutorial">
+<span id="id1"></span><h1>QGIS tutorial<a class="headerlink" href="#qgis-tutorial" title="Permalink to this headline">¶</a></h1>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This tutorial involves embedded videos featuring the text descriptions in every section.</p>
+</div>
+<p>To get ready, watch the following video and/or make sure to install <a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a> (detailed instructions).</p>
+<iframe width="560" height="315" src="https://youtu.be/_0_NOKi-RxY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>AUTHOR<a href="https://youtu.be/_0_NOKi-RxY">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<div class="section" id="first-project">
+<h2>First Project<a class="headerlink" href="#first-project" title="Permalink to this headline">¶</a></h2>
+<p>Once you installed QGIS, launch the program and walk through the following steps to make fundamental settings:</p>
+<ul class="simple">
+<li><p>Open GIS</p></li>
+<li><p>Create a new project (New Empty Project) with EPSG:4326, which is:</p></li>
+<li><p>Verify Project Properties:</p>
+<ul>
+<li><p>Go to Project &gt; Properties</p></li>
+<li><p>CRS: EPSG:4326:</p>
+<ul>
+<li><p>WGS84 (Coordinate Reference System) Bounds: -180.0000, -90.0000, 180.0000, 90.0000</p></li>
+<li><p>Projected Bounds: -180.0000, -90.0000, 180.0000, 90.0000</p></li>
+<li><p>Scope: Horizontal component of 3D system. Used by the GPS satellite navigation system and for NATO military geodetic surveying.</p></li>
+<li><p>Last Revised: Aug. 27, 2007</p></li>
+<li><p>Area: World</p></li>
+</ul>
+</li>
+<li><p>Learn more at <a class="reference external" href="http://epsg.io">http://epsg.io</a></p>
+<ul>
+<li><p>Example: Convert 48.745, 9.103 from EPSG 3857 to EPSG 4326</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Save the project as qgis-project.qgz in a new qgis-exercise folder</p></li>
+</ul>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/88Npv4Gs4xw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>AUTHOR, University of Helsinki <a href="https://youtu.be/_0_NOKi-RxY">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+</div>
+<div class="section" id="panes-toolbars-and-plugins">
+<span id="qgis-tbx-install"></span><h2>Panes, Toolbars, and Plugins<a class="headerlink" href="#panes-toolbars-and-plugins" title="Permalink to this headline">¶</a></h2>
+<p>Follow the below illustrated instructions to enable the <em>QGIS</em> <em>Toolbox</em>.</p>
+<div class="figure align-default" id="qgis-tbx">
+<img alt="enable QGIS toolbox" src="../_images/qgis-tbx.png" />
+<p class="caption"><span class="caption-number">Fig. 13 </span><span class="caption-text">Open QGIS’ Toolbox window from the main menu.</span><a class="headerlink" href="#qgis-tbx" title="Permalink to this image">¶</a></p>
+</div>
+<p>The conversion between geospatial data types and numerical (computational) grids can be facilitated with plugins. To install any plugin in <em>QGIS</em>, go to the <code class="docutils literal notranslate"><span class="pre">Plugins</span></code> menu &gt; <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">and</span> <span class="pre">Install</span> <span class="pre">Plugins...</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">All</span></code> tab &gt; <code class="docutils literal notranslate"><span class="pre">Search...</span></code> for a relevant plugin and install it.</p>
+<p>In the context of river analysis, the following plugins are recommended and used at multiple places on this website:</p>
+<ul class="simple">
+<li><p>The <em>Crayfish</em> plugin, which is available in the <em>QGIS</em> toolbox after the installation.</p></li>
+</ul>
+</div>
+<div class="section" id="basemaps-for-qgis-google-or-open-street-maps-worldmap-tiles">
+<span id="basemap"></span><h2>Basemaps for QGIS (Google or Open Street Maps Worldmap Tiles)<a class="headerlink" href="#basemaps-for-qgis-google-or-open-street-maps-worldmap-tiles" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A fast internet connection is required for adding online base maps.</p>
+</div>
+<p>To add a base map (e.g., satellite data, streets, or administrative boundaries), go to the <em><strong>Browser</strong></em>, right-click on <em><strong>XYZ Tiles</strong></em>, select <em><strong>New Connection…</strong></em>, add a name and a URL of an online base map. Once the new connection is added, it can be added to a <em>QGIS</em> project by drag and drop just like any other geodata layer. The below figure illustrates the procedure of adding a new connection and its XYZ tiles as a layer to the project. To overlay multiple basemaps (or any other layre), <em><strong>right-click on a layer</strong></em>, then <em><strong>Layer Properties</strong></em> &gt; <em><strong>Transparency</strong></em> &gt; modify the <em><strong>Opacity</strong></em> (e.g., to 50%).</p>
+<div class="figure align-default" id="id2">
+<img alt="basemap" src="../_images/qgis-basemap.png" />
+<p class="caption"><span class="caption-number">Fig. 14 </span><span class="caption-text">Add a base map to QGIS: (1) locate the Browser (2) right-click on XYZ-Tiles and select New Connection… (3) enter a Name and a URL (see below table) for the new connection, click OK (4) drag and drop the new tile (here: Google Satellite) into the Layers tab.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>The following URL can be used for retrieving online XYZ tiles (more URLs can be found in the internet).</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Provider (Layer Name)</p></th>
+<th class="head"><p>URL</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ESRI World Imagery</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>ESRI Street</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>ESRI Topo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Google Satellite</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">https://mt1.google.com/vt/lyrs=s&amp;x={x}&amp;y={y}&amp;z={z}</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Google Street</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">https://mt1.google.com/vt/lyrs=m&amp;x={x}&amp;y={y}&amp;z={z}</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>OpenStreetMap (OSM)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">http://tile.openstreetmap.org/{z}/{x}/{y}.png</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>OSM Black and White</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">http://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Most base maps are provided in the <code class="docutils literal notranslate"><span class="pre">EPSG:3857</span> <span class="pre">-WGS84</span> <span class="pre">/</span> <span class="pre">Pseudo</span> <span class="pre">Mercator</span></code> coordinate system (CRS). To use custom geodata products, make sure that all other layers have the same coordinate system. Read more about coordinate systems projections on the <a class="reference internal" href="geospatial-data.html#geospatial-data"><span class="std std-ref">Geospatial Data</span></a> and <a class="reference internal" href="../jupyter/geo-shp.html#prj-shp"><span class="std std-ref">shapefile projection</span></a> sections.</p>
+</div>
+</div>
+<div class="section" id="create-a-shapefile">
+<h2>Create a Shapefile<a class="headerlink" href="#create-a-shapefile" title="Permalink to this headline">¶</a></h2>
+<p>This section guides through the creation of point, line, polygon shapefiles (vector data).</p>
+<div class="section" id="create-a-point-shapefile">
+<h3>Create a Point Shapefile<a class="headerlink" href="#create-a-point-shapefile" title="Permalink to this headline">¶</a></h3>
+<p>Start with loading a satellite and a street basemap (see above) in the layers pane. Zoom on Central Europe, and roughly locate Stuttgart in Southwest Germany. Find the heavily impaired Neckar River and move in upstream direction, pass the cities of Esslingen and Plochingen until you get to the confluence of the Neckar and the Fils rivers. From there, follow the Fils River in upstream direction for a couple of 100 meters and locate the PEGELHAUS (i.e., a gauging station at the Fils River). To facilitate finding the gauging station in the future, we will now create a point shapefile:</p>
+<ul class="simple">
+<li><p>Go to <strong>Layer</strong> &gt; <strong>Create Layer</strong> &gt; <strong>New Shapefile Layer</strong></p>
+<ul>
+<li><p>Define a filename (e.g., <strong>gauges.shp</strong> - may not be longer than 13 characters), for instance, in a folder called <em>qgis-exercise</em>.</p></li>
+<li><p>Geometry type = MultiPoint</p></li>
+<li><p>Additional dimensions: Z(+M Values)</p></li>
+<li><p>Add New Fields:
+1. StnName=TextData
+2. StnID = Whole Number</p></li>
+</ul>
+</li>
+<li><p>Edit / Draw point</p>
+<ul>
+<li><p>Enable editing (yellow pen)</p></li>
+<li><p>Add Point Feature</p></li>
+<li><p>StnName = PlochingenFils</p></li>
+<li><p>StnID = 00025</p></li>
+<li><p>URL: <a class="reference external" href="https://www.hvz.baden-wuerttemberg.de/pegel.html?id=00025">https://www.hvz.baden-wuerttemberg.de/pegel.html?id=00025</a></p></li>
+<li><p>Click on the Pegelhaus to draw a Point</p></li>
+<li><p>Save Edits &amp; Stop Editing</p></li>
+</ul>
+</li>
+<li><p>Change Symbology:</p>
+<ul>
+<li><p>Double-click on gauges layer &gt; Symbology</p></li>
+<li><p>Highlight Simple Marker and change to + sign, change fill color, size</p></li>
+<li><p>Highlight Marker and Change Opacity</p></li>
+<li><p>Click Apply and OK</p></li>
+</ul>
+</li>
+<li><p>Show Attribute Table</p></li>
+<li></li>
+</ul>
+<ol class="simple">
+<li><p>Create a Line Shapefile “CenterLine.shp” to draw a Centerline of the Fils ± 200 around the Pegelhaus gauge (with one Field=RiverName), along the OpenStreetMap layer</p></li>
+<li><p>Create a Polygon Shapefile “FlowAreas.shp” to draw two Polygons of the of the Fils Floodplain with two Fields = AreaType (Text) and ManningN (Decimal Number)</p></li>
+</ol>
+<ul class="simple">
+<li><p>To Draw Polygon: click in the map (right-click finalizes Polygon)</p></li>
+<li><p>Polygon1: AreaType=“MainChannel”, ManningN = 0.028</p></li>
+<li><p>Snapping toolbar: Enable Snapping + Avoid Polygon Overlapping</p></li>
+<li><p>Polygon2: AreaType=“FloodPlainRB” , ManningN = 0.05</p></li>
+<li><p>Show how to delete a feature using the attribute Table</p></li>
+<li><p>Save edits &amp; deactivate Editing</p></li>
+<li><p>Modify Symbology to Categorized as a Function of AreaType Field &gt; Keep Random Colors &gt; Click on Classify &gt; Apply and if you like it &gt; OK</p></li>
+</ul>
+<ol class="simple">
+<li><p>Convert Pyolgon “FlowAreas.shp” to a roughness Raster</p></li>
+</ol>
+<ul class="simple">
+<li><p>Click on View &gt; Panels &gt;Processing Toolbox</p></li>
+<li><p>In Toolbox &gt; search Rasterize &gt; select Rasterize (vector to raster)</p></li>
+<li><p>In Rasterize Window:</p>
+<ul>
+<li><p>Input layer = FlowAreas</p></li>
+<li><p>Field to use for a burn-in value = ManningN</p></li>
+<li><p>Output raster size units = Pixels</p></li>
+<li><p>Width/Horizontal resolution = 100 (the smaller, the coarser the Raster!)</p></li>
+<li><p>Height/Vertical resolution = 100 (the smaller, the coarser the Raster!)</p></li>
+<li><p>… [scroll down] …</p></li>
+<li><p>Output extent: click on … button &gt; Calculate from Layer &gt; FlowAreas</p></li>
+<li><p>Rasterized (FILE NAME) &gt; click on … Button &gt; Save to File &gt; roughness.tif</p></li>
+<li><p>Click Run</p></li>
+</ul>
+</li>
+<li><p>Change Symbology to Singleband pseudocolor, Interpolation=Discrete, Colorramp=Magma, Mode=Equal Interval &gt; Apply &amp; OK</p></li>
+</ul>
+<ol class="simple">
+<li><p>Use Raster Calculator</p></li>
+</ol>
+<ul class="simple">
+<li><p>Go to Raster &gt; Raster Calculator</p></li>
+<li><p>In Raster Calculator Expression field type 1, then click on / Button (Operators Box), then select roughness&#64;1 from the Raster Bands Box – Result: 1 / “roughness&#64;1” (EXPLAIN BANDS!)</p></li>
+<li><p>Output layer = qgis-exercise/roughness-stickler.tif /preferably use GeoTIFF)</p></li>
+<li><p>Click OK to run Raster Calculator</p></li>
+<li><p>Optional: Change symbology</p></li>
+</ul>
+<ol class="simple">
+<li><p>Create PDF / JPG (or whatever) map</p></li>
+</ol>
+<ul class="simple">
+<li><p>Go to Project &gt; New Print Layout</p></li>
+<li><p>Layout title Res100 (for resolution)</p></li>
+<li><p>In Res100 Layout:</p>
+<ul>
+<li><p>Go to Add Item &gt; Add Map</p></li>
+<li><p>Draw a rectangle that will contain the map</p></li>
+<li><p>Add Item &gt; Add Scale Bar</p></li>
+<li><p>Add Item &gt; Add Legend</p></li>
+<li><p>In Items Panel, highlight <Legend> and find the Item Properties tab below</p></li>
+<li><p>In the Item Properties tab, find Legend Items &gt; disable Auto update &gt; remove OpenStreetMap and Google Satellite</p></li>
+<li><p>Toggle through other Items in the Add Item menu bar (e.g., Arrow) and the Items panel (e.g., <Scalebar> to change units)</p></li>
+</ul>
+</li>
+<li><p>Save the project (Layout &gt; Save Project)</p></li>
+<li><p>Export Image: Layout &gt; Export as Image</p></li>
+<li><p>Export PDF: Layout &gt; Export as PDF</p></li>
+<li><p>Optional export SVG (Vector graph): Layout &gt; Export as SVG</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "hydro-informatics/",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./geopy"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="geospatial-data.html" title="previous page">Geospatial Data</a>
+    <a class='right-next' id="next-link" href="geo-python.html" title="next page">Geospatial Python</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Sebastian Schwindt<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

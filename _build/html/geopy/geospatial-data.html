@@ -58,7 +58,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Geospatial Python" href="geo-python.html" />
+    <link rel="next" title="QGIS tutorial" href="use-qgis.html" />
     <link rel="prev" title="Git and markdown" href="../exercises/ex-git.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -69,7 +69,7 @@
 <meta property="og:url"         content="https://hydro-informatics.github.io/geopy/geospatial-data.html" />
 <meta property="og:type"        content="article" />
 <meta property="og:title"       content="Geospatial Data" />
-<meta property="og:description" content="Geospatial Data  Tip  Use QGIS to display geospatial data and to create maps in PDF or image formats (e.g., tif, png, jpg).  Geodata Sources  Geospatial data ca" />
+<meta property="og:description" content="Geospatial Data  Tip  Use QGIS to display geospatial data and to create maps in PDF or image formats (e.g., tif, png, jpg). In addition, the QGIS tutorial provi" />
 <meta property="og:image"       content="https://hydro-informatics.github.io/_static/icon.jpg" />
 
 <meta name="twitter:card" content="summary" />
@@ -130,7 +130,12 @@
   <ul class="collapse-ul">
    <li class="toctree-l2">
     <a class="reference internal" href="../get-started/vm.html">
-     Virtual machines and Linux
+     Virtual Machines and Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/vm.html#get-started-with-debian-linux">
+     Get started with (Debian) Linux
     </a>
    </li>
    <li class="toctree-l2">
@@ -358,6 +363,11 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Geospatial Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="use-qgis.html">
+   QGIS tutorial
   </a>
  </li>
  <li class="toctree-l1 collapsible-parent">
@@ -700,7 +710,7 @@
 <span id="id1"></span><h1>Geospatial Data<a class="headerlink" href="#geospatial-data" title="Permalink to this headline">¶</a></h1>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Use <a class="reference external" href="../get-started/geo.html#qgis"><em>QGIS</em></a> to display geospatial data and to create maps in <em>PDF</em> or image formats (e.g., <em>tif</em>, <em>png</em>, <em>jpg</em>).</p>
+<p>Use <a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a> to display geospatial data and to create maps in <em>PDF</em> or image formats (e.g., <em>tif</em>, <em>png</em>, <em>jpg</em>). In addition, the <a class="reference internal" href="use-qgis.html#qgis-tutorial"><span class="std std-ref">QGIS tutorial</span></a> provides an easy and interactive walk through geospatial analyses.</p>
 </div>
 <div class="section" id="geodata-sources">
 <h2>Geodata Sources<a class="headerlink" href="#geodata-sources" title="Permalink to this headline">¶</a></h2>
@@ -733,7 +743,7 @@
 <p>A geodatabase (also known as <em>spatial database</em>) can store, query (e.g., using <a class="reference external" href="https://en.wikibooks.org/wiki/Structured_Query_Language">Structured Query Language <em>SQL</em></a>, or modify data with geographic references (<em>geospatial data</em>). Primarily, geospatial data consist of vector data (see shapefiles), but raster data can also be implemented. A geodatabase links these data with attribute tables and geographic coordinates. The special aspect of geodatabases is that these data can be queried and manipulated by users via a (web or local) GIS (geographic information system) server. With software like <a class="reference external" href="../get-started/geo.html#qgis"><em>QGIS</em></a> (or <em>ArcGIS Pro</em>), for example, queries can be made on a kind of local server using locally stored geodata. The typical geodatabase format is <code class="docutils literal notranslate"><span class="pre">.gdb</span></code>, which works actually like a directory in <em>QGIS</em> or <em>ArcGIS</em>, and the maximum size of a <code class="docutils literal notranslate"><span class="pre">.gdb</span></code> file is 1 terabyte.</p>
 <div class="figure align-default" id="id3">
 <img alt="gdb" src="../_images/geo-database.png" />
-<p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">Functional skeleton of a geodatabase.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">Functional skeleton of a geodatabase.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="vector-data">
@@ -762,7 +772,7 @@
 <p>Shapefile vector data typically has an attribute table (just like any other geodatabase) in which each polygon, line or point object can be assigned an attribute value. Attributes are defined by columns along with their names (column headers) and can have numeric (e.g., <em>float</em>, <em>double</em>, <em>int</em>, or <em>long</em>), text (<em>string</em>), or date/time (e.g. <em>yyyymmdd</em> or <em>HH:MM:SS</em>) formats.</p>
 <div class="figure align-default" id="id4">
 <img alt="shp-illu" src="../_images/geo-shp-illu.png" />
-<p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">Illustration of point, (poly) line, and polygon shapefiles.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Illustration of point, (poly) line, and polygon shapefiles.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="shapefile-versus-geodatabase">
@@ -774,7 +784,7 @@
 <p>A triangulated irregular network (TIN) represents a surface consisting of multiple triangles. In hydraulic engineering and water resources research, one of the most important usage of TIN is the generation of computational meshes for numerical models (e.g., <a class="reference internal" href="../numerics/basement.html"><span class="doc std std-doc">in the BASEMENT tutorial</span></a>). In such models, a TIN consists of lines and nodes forming georeferenced, three-dimensionally sloped triangles of the surface, which represent a digital elevation model (DEM). TIN nodes have georeferenced coordinates and potentially more attribute information such as node IDs and elevation. The advantage of a TIN DEM over a raster DEM is that it requires less storage space. Alas, manipulating a TIN is not that easy like manipulating a raster. The below figure shows an example TIN created with <a class="reference external" href="https://matplotlib.org/3.1.1/api/tri_api.html#matplotlib.tri.TriAnalyzer"><code class="docutils literal notranslate"><span class="pre">matplotlib.tri.TriAnalyzer</span></code></a>, and based on a <a class="reference external" href="https://matplotlib.org/3.1.1/gallery/images_contours_and_fields/tricontour_smooth_delaunay.html#sphx-glr-gallery-images-contours-and-fields-tricontour-smooth-delaunay-py">showcase from the matplotlib docs</a>. The file ending of a TIN is <code class="docutils literal notranslate"><span class="pre">.TIN</span></code>.</p>
 <div class="figure align-default" id="id5">
 <img alt="tin-illu" src="../_images/geo-tin.png" />
-<p class="caption"><span class="caption-number">Fig. 13 </span><span class="caption-text">Illustration of a TIN.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">Illustration of a TIN.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="geojson">
@@ -817,7 +827,7 @@
 </div>
 <div class="figure align-default" id="id6">
 <img alt="raster-illu" src="../_images/geo-raster-illu.png" />
-<p class="caption"><span class="caption-number">Fig. 14 </span><span class="caption-text">Illustration of the Natural Earth’s NE1_50M_SR_W.tif raster zoomed on Nepal, with point and line shapefiles indicating major cities and country borders, respectively. Take note of the tile-like appearance of the grid, where each tile corresponds to a 50m-x-50m raster cell.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">Illustration of the Natural Earth’s NE1_50M_SR_W.tif raster zoomed on Nepal, with point and line shapefiles indicating major cities and country borders, respectively. Take note of the tile-like appearance of the grid, where each tile corresponds to a 50m-x-50m raster cell.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="projections-and-coordinate-systems">
@@ -869,7 +879,7 @@ The units and measures defined in the <em>WKT</em>-formatted <code class="docuti
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="../exercises/ex-git.html" title="previous page">Git and markdown</a>
-    <a class='right-next' id="next-link" href="geo-python.html" title="next page">Geospatial Python</a>
+    <a class='right-next' id="next-link" href="use-qgis.html" title="next page">QGIS tutorial</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
