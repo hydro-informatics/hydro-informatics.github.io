@@ -1,3 +1,4 @@
+(chpt-telemac)=
 # TELEMAC
 
 The numerical simulation methods described on these pages use the freely available software *open TELEMAC-MASCARET* (in the following referred to as *TELEMAC*), which was started as a commercial code by the R&D group of Électricité de France (EDF). Since 2010, the TELEMAC-MASCARET Consortium took over the development (EDF R&D is still deeply involved) and freely provides the software and its source code under a [*GPLv3* license](http://www.gnu.org/licenses/gpl-3.0.html). Visit their [website](http://www.opentelemac.org/) to learn more about *TELEMAC*.

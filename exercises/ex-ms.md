@@ -1,3 +1,4 @@
+(ex-1d-hydraulics)=
 # 1d Hydraulics (Manning-Strickler Formula)
 
 ```{admonition} Goals

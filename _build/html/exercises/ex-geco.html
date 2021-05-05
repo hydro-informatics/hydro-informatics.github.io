@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Create a habitat suitability map &#8212; Hydro-Informatics</title>
+    <title>Script-Create a Habitat Suitability Map &#8212; Hydro-Informatics</title>
     
   <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -68,8 +68,8 @@
 <!-- Opengraph tags -->
 <meta property="og:url"         content="https://hydro-informatics.github.io/exercises/ex-geco.html" />
 <meta property="og:type"        content="article" />
-<meta property="og:title"       content="Create a habitat suitability map" />
-<meta property="og:description" content="Create a habitat suitability map  Goals  This exercise guides through the creation of rasters (osgeo.gdal.Dataset), the usage of georeferences, raster array cal" />
+<meta property="og:title"       content="Script-Create a Habitat Suitability Map" />
+<meta property="og:description" content="Script-Create a Habitat Suitability Map  Goals  This exercise guides through the creation of rasters (osgeo.gdal.Dataset), the usage of georeferences, raster ar" />
 <meta property="og:image"       content="https://hydro-informatics.github.io/_static/icon.jpg" />
 
 <meta name="twitter:card" content="summary" />
@@ -411,7 +411,7 @@
   <ul class="current collapse-ul">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Create a habitat suitability map
+     Script-Create a Habitat Suitability Map
     </a>
    </li>
   </ul>
@@ -780,8 +780,8 @@
         
               <div>
                 
-  <div class="section" id="create-a-habitat-suitability-map">
-<h1>Create a habitat suitability map<a class="headerlink" href="#create-a-habitat-suitability-map" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="script-create-a-habitat-suitability-map">
+<span id="ex-geco"></span><h1>Script-Create a Habitat Suitability Map<a class="headerlink" href="#script-create-a-habitat-suitability-map" title="Permalink to this headline">¶</a></h1>
 <div class="admonition-goals admonition">
 <p class="admonition-title">Goals</p>
 <p>This exercise guides through the creation of rasters (<code class="docutils literal notranslate"><span class="pre">osgeo.gdal.Dataset</span></code>), the usage of georeferences, raster array calculations, as well as the conversion of a raster to a polygon shapefile and modifications to the shapefile’s <em>Attribute Table</em> to calculate usable (physical) habitat area. For this purpose, a <code class="docutils literal notranslate"><span class="pre">Raster</span></code> class is written, which enables mathematical operations between its instances through the implementation of magic methods. The exercise also shows how the course’s <a class="reference external" href="https://github.com/hydro-informatics/geo-utils"><em>geo_utils</em> package</a> can be used to leverage complex challenges in just a few lines of code.</p>
@@ -913,7 +913,7 @@ The two scripts <code class="docutils literal notranslate"><span class="pre">rea
 </div>
 </div>
 <div class="section" id="create-and-combine-hsi-rasters">
-<h2>Create and combine <em>HSI</em> rasters<a class="headerlink" href="#create-and-combine-hsi-rasters" title="Permalink to this headline">¶</a></h2>
+<span id="py-raster-calculator"></span><h2>Create and combine <em>HSI</em> rasters<a class="headerlink" href="#create-and-combine-hsi-rasters" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="complete-magic-methods-of-the-raster-class-raster-py-a-name-raster-a">
 <h3>Complete magic methods of the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> class (<code class="docutils literal notranslate"><span class="pre">raster.py</span></code>)<a name="raster"></a><a class="headerlink" href="#complete-magic-methods-of-the-raster-class-raster-py-a-name-raster-a" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">raster.py</span></code> script imports the functions and libraries loaded in the <code class="docutils literal notranslate"><span class="pre">fun.py</span></code> script, and therefore, also the <code class="docutils literal notranslate"><span class="pre">config.py</span></code> script. For this reason, the <em>numpy</em> and <em>pandas</em> libraries are already available (<code class="docutils literal notranslate"><span class="pre">as</span></code> <code class="docutils literal notranslate"><span class="pre">np</span></code> and <code class="docutils literal notranslate"><span class="pre">pd</span></code>, respectively), and the <em>geo_utils</em> package is already imported as <code class="docutils literal notranslate"><span class="pre">geo</span></code> (<code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">geo_utils</span> <span class="pre">as</span> <span class="pre">geo</span></code> in <code class="docutils literal notranslate"><span class="pre">config.py</span></code>).</p>

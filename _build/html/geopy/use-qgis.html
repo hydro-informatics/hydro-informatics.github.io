@@ -54,6 +54,8 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="canonical" href="https://hydro-informatics.github.io/geopy/use-qgis.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -69,7 +71,7 @@
 <meta property="og:url"         content="https://hydro-informatics.github.io/geopy/use-qgis.html" />
 <meta property="og:type"        content="article" />
 <meta property="og:title"       content="QGIS tutorial" />
-<meta property="og:description" content="QGIS tutorial  Tip  This tutorial involves embedded videos featuring the text descriptions in every section.  To get ready, watch the following video and/or mak" />
+<meta property="og:description" content="QGIS tutorial  Tip  This tutorial involves embedded videos featuring the text descriptions in every section.  Videos not showing up (Firefox Can’t Open This Pag" />
 <meta property="og:image"       content="https://hydro-informatics.github.io/_static/icon.jpg" />
 
 <meta name="twitter:card" content="summary" />
@@ -411,7 +413,7 @@
   <ul class="collapse-ul">
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-geco.html">
-     Create a habitat suitability map
+     Script-Create a Habitat Suitability Map
     </a>
    </li>
   </ul>
@@ -649,8 +651,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#panes-toolbars-and-plugins">
-   Panes, Toolbars, and Plugins
+  <a class="reference internal nav-link" href="#panels-toolbars-and-plugins">
+   Panels, Toolbars, and Plugins
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -686,8 +688,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#qgis-raste-calculator-map-algebra">
-   QGIS Raste Calculator (Map Algebra)
+  <a class="reference internal nav-link" href="#qgis-raster-calculator-map-algebra">
+   QGIS Raster Calculator (Map Algebra)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -712,23 +714,26 @@
 <p class="admonition-title">Tip</p>
 <p>This tutorial involves embedded videos featuring the text descriptions in every section.</p>
 </div>
+<div class="error dropdown admonition">
+<p class="admonition-title">Videos not showing up (<em>Firefox Can’t Open This Page</em>)</p>
+<p>If videos are not displaying, this might be caused by strict privacy settings. To resolve the issue, either open the video links by clicking on the <strong>Open Site in New Window</strong> button or by changing browser privacy settings (e.g., in <a class="reference external" href="https://support.mozilla.org/en-US/questions/1108783">Mozilla Firefox</a>).</p>
+</div>
 <p>To get ready, watch the following video and/or make sure to install <a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a> (detailed instructions).</p>
-<iframe width="720" height="405" src="https://youtu.be/_0_NOKi-RxY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Sebastian Schwindt <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/_0_NOKi-RxY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Sebastian Schwindt <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 <div class="section" id="first-project">
 <h2>First Project<a class="headerlink" href="#first-project" title="Permalink to this headline">¶</a></h2>
 <p>Once you installed QGIS, launch the program and walk through the following steps to make fundamental settings:</p>
 <ul class="simple">
-<li><p>Open GIS</p></li>
-<li><p>Create a new project (New Empty Project) with EPSG:4326, which is:</p></li>
-<li><p>Verify Project Properties:</p>
+<li><p>Open QGIS</p></li>
+<li><p>Create a new project (<strong>New Empty Project</strong>) with EPSG:4326</p></li>
+<li><p>Verify <strong>Project Properties</strong>:</p>
 <ul>
-<li><p>Go to Project &gt; Properties</p></li>
+<li><p>In the top menu go to <strong>Project</strong> &gt; <strong>Properties</strong></p></li>
 <li><p>CRS: EPSG:4326:</p>
 <ul>
 <li><p>WGS84 (Coordinate Reference System) Bounds: -180.0000, -90.0000, 180.0000, 90.0000</p></li>
 <li><p>Projected Bounds: -180.0000, -90.0000, 180.0000, 90.0000</p></li>
-<li><p>Scope: Horizontal component of 3D system. Used by the GPS satellite navigation system and for NATO military geodetic surveying.</p></li>
+<li><p>Scope: Horizontal component of a 3d system. Used by the GPS satellite navigation system and for NATO military geodetic surveying.</p></li>
 <li><p>Last Revised: Aug. 27, 2007</p></li>
 <li><p>Area: World</p></li>
 </ul>
@@ -740,13 +745,13 @@
 </li>
 </ul>
 </li>
-<li><p>Save the project as qgis-project.qgz in a new qgis-exercise folder</p></li>
+<li><p><strong>Save</strong> the project as <strong>qgis-project.qgz</strong> in a new *<strong>qgis-exercise</strong> folder</p></li>
 </ul>
-<iframe width="720" height="405" src="https://youtu.be/7_3QqbFonLg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/7_3QqbFonLg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 </div>
-<div class="section" id="panes-toolbars-and-plugins">
-<span id="qgis-tbx-install"></span><h2>Panes, Toolbars, and Plugins<a class="headerlink" href="#panes-toolbars-and-plugins" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="panels-toolbars-and-plugins">
+<span id="qgis-tbx-install"></span><h2>Panels, Toolbars, and Plugins<a class="headerlink" href="#panels-toolbars-and-plugins" title="Permalink to this headline">¶</a></h2>
 <p>Follow the below illustrated instructions to enable the <em>QGIS</em> <em>Toolbox</em>.</p>
 <div class="figure align-default" id="qgis-tbx">
 <img alt="enable QGIS toolbox" src="../_images/qgis-tbx.png" />
@@ -755,7 +760,9 @@
 <p>The conversion between geospatial data types and numerical (computational) grids can be facilitated with plugins. To install any plugin in <em>QGIS</em>, go to the <code class="docutils literal notranslate"><span class="pre">Plugins</span></code> menu &gt; <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">and</span> <span class="pre">Install</span> <span class="pre">Plugins...</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">All</span></code> tab &gt; <code class="docutils literal notranslate"><span class="pre">Search...</span></code> for a relevant plugin and install it.</p>
 <p>In the context of river analysis, the following plugins are recommended and used at multiple places on this website:</p>
 <ul class="simple">
-<li><p>The <em>Crayfish</em> plugin, which is available in the <em>QGIS</em> toolbox after the installation.</p></li>
+<li><p>The <em>Crayfish</em> plugin for post-processing of numerical model output.</p></li>
+<li><p>The <em>BASEmesh</em> plugin provides routines for creating computational meshes for numerical simulations with <a class="reference internal" href="../numerics/basement.html#chpt-basement"><span class="std std-ref">BASEMENT</span></a>.</p></li>
+<li><p>The <em>PostTelemac</em> plugin enables geospatial visualization and conversions of numerical model results produced tiwht <a class="reference internal" href="../numerics/telemac.html#chpt-telemac"><span class="std std-ref">TELEMAC</span></a>.</p></li>
 </ul>
 </div>
 <div class="section" id="basemaps-for-qgis-google-or-open-street-maps-worldmap-tiles">
@@ -764,14 +771,14 @@
 <p class="admonition-title">Note</p>
 <p>A fast internet connection is required for adding online base maps.</p>
 </div>
-<p>To add a base map (e.g., satellite data, streets, or administrative boundaries), go to the <em><strong>Browser</strong></em>, right-click on <em><strong>XYZ Tiles</strong></em>, select <em><strong>New Connection…</strong></em>, add a name and a URL of an online base map. Once the new connection is added, it can be added to a <em>QGIS</em> project by drag and drop just like any other geodata layer. The below figure illustrates the procedure of adding a new connection and its XYZ tiles as a layer to the project. To overlay multiple basemaps (or any other layre), <em><strong>right-click on a layer</strong></em>, then <em><strong>Layer Properties</strong></em> &gt; <em><strong>Transparency</strong></em> &gt; modify the <em><strong>Opacity</strong></em> (e.g., to 50%).</p>
+<p>To add a base map (e.g., satellite data, streets, or administrative boundaries), go to the <em><strong>Browser</strong></em>, right-click on <em><strong>XYZ Tiles</strong></em>, select <em><strong>New Connection…</strong></em>, add a name and a URL of an online base map. Once the new connection is added, it can be added to a <em>QGIS</em> project by drag and drop just like any other geodata layer. The below figure illustrates the procedure of adding a new connection and its XYZ tiles as a layer to the project. To overlay multiple basemaps (or any other layer), <em><strong>right-click on a layer</strong></em>, then <em><strong>Layer Properties</strong></em> &gt; <em><strong>Transparency</strong></em> &gt; modify the <em><strong>Opacity</strong></em> (e.g., to 50%).</p>
 <div class="figure align-default" id="id2">
 <img alt="basemap" src="../_images/qgis-basemap.png" />
 <p class="caption"><span class="caption-number">Fig. 14 </span><span class="caption-text">Add a base map to QGIS: (1) locate the Browser (2) right-click on XYZ-Tiles and select New Connection… (3) enter a Name and a URL (see below table) for the new connection, click OK (4) drag and drop the new tile (here: Google Satellite) into the Layers tab.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
-<iframe width="720" height="405" src="https://youtu.be/GJsiEdMzCeQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/GJsiEdMzCeQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
-<p>The following URL can be used for retrieving online XYZ tiles (more URLs can be found in the internet).</p>
+<p>The following URL can be used for retrieving online XYZ tiles (more URLs can be found on the internet).</p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Provider (Layer Name)</p></th>
@@ -804,131 +811,181 @@
 </table>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Most base maps are provided in the <code class="docutils literal notranslate"><span class="pre">EPSG:3857</span> <span class="pre">-WGS84</span> <span class="pre">/</span> <span class="pre">Pseudo</span> <span class="pre">Mercator</span></code> coordinate system (CRS). To use custom geodata products, make sure that all other layers have the same coordinate system. Read more about coordinate systems projections on the <a class="reference internal" href="geospatial-data.html#geospatial-data"><span class="std std-ref">Geospatial Data</span></a> and <a class="reference internal" href="../jupyter/geo-shp.html#prj-shp"><span class="std std-ref">shapefile projection</span></a> sections.</p>
+<p>Most basemaps are provided in the <code class="docutils literal notranslate"><span class="pre">EPSG:3857</span> <span class="pre">-WGS84</span> <span class="pre">/</span> <span class="pre">Pseudo</span> <span class="pre">Mercator</span></code> coordinate system (CRS). To use custom geodata products, make sure that all other layers have the same coordinate system. Read more about coordinate systems and projections in the <a class="reference internal" href="geospatial-data.html#geospatial-data"><span class="std std-ref">Geospatial Data</span></a> and <a class="reference internal" href="../jupyter/geo-shp.html#prj-shp"><span class="std std-ref">shapefile projection</span></a> sections.</p>
 </div>
 </div>
 <div class="section" id="create-a-shapefile">
 <h2>Create a Shapefile<a class="headerlink" href="#create-a-shapefile" title="Permalink to this headline">¶</a></h2>
-<p>This section guides through the creation of point, line, polygon shapefiles (vector data).</p>
+<p>This section guides through the creation of a point, a line, and a polygon <a class="reference internal" href="geospatial-data.html#shp"><span class="std std-ref">Shapefile</span></a> (vector data). To read more about such vector data and other spatially explicit data types, read the section on <a class="reference internal" href="geospatial-data.html#geospatial-data"><span class="std std-ref">Geospatial Data</span></a>.</p>
 <div class="section" id="create-a-point-shapefile">
 <h3>Create a Point Shapefile<a class="headerlink" href="#create-a-point-shapefile" title="Permalink to this headline">¶</a></h3>
-<p>Start with loading a satellite and a street basemap (see above) in the layers pane. Zoom on Central Europe, and roughly locate Stuttgart in Southwest Germany. Find the heavily impaired Neckar River and move in upstream direction, pass the cities of Esslingen and Plochingen until you get to the confluence of the Neckar and the Fils rivers. From there, follow the Fils River in upstream direction for a couple of 100 meters and locate the PEGELHAUS (i.e., a gauging station at the Fils River). To facilitate finding the gauging station in the future, we will now create a point shapefile.</p>
-<iframe width="720" height="405" src="https://youtu.be/k2LqPM6wicA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Start with loading a satellite imagery and a street basemap (see above) in the layers pane. Zoom on central Europe and roughly locate Stuttgart in Southwest Germany. Find the heavily impaired Neckar River in the North of Stuttgart and move in the upstream direction (i.e., Eastern direction), pass the cities of Esslingen and Plochingen until you get to the confluence of the Neckar and the Fils rivers. From there, follow the Fils River in the upstream direction for a couple of hundred meters and locate the PEGELHAUS (i.e., a gauging station at the Fils River - <a class="reference external" href="https://www.hvz.baden-wuerttemberg.de/pegel.html?id=00025">click to visit</a>). To facilitate finding the gauging station in the future, we will now create a point shapefile as explained in the following video and the analogous instructions below the video.</p>
+<iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/k2LqPM6wicA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 <ul class="simple">
-<li><p>Go to <strong>Layer</strong> &gt; <strong>Create Layer</strong> &gt; <strong>New Shapefile Layer</strong></p>
+<li><p>In the <em>QGIS</em> top menu go to <strong>Layer</strong> &gt; <strong>Create Layer</strong> &gt; <strong>New Shapefile Layer</strong></p>
 <ul>
 <li><p>Define a filename (e.g., <strong>gauges.shp</strong> - may not be longer than 13 characters), for instance, in a folder called <em>qgis-exercise</em>.</p></li>
-<li><p>Geometry type = MultiPoint</p></li>
-<li><p>Additional dimensions: Z(+M Values)</p></li>
-<li><p>Add New Fields:
-1. StnName=TextData
-2. StnID = Whole Number</p></li>
-</ul>
-</li>
-<li><p>Edit / Draw point</p>
+<li><p>Geometry type: <code class="docutils literal notranslate"><span class="pre">MultiPoint</span></code></p></li>
+<li><p>Additional dimensions: <code class="docutils literal notranslate"><span class="pre">Z(+M</span> <span class="pre">Values)</span></code></p></li>
+<li><p>Add two new fields:</p>
 <ul>
-<li><p>Enable editing (yellow pen)</p></li>
-<li><p>Add Point Feature</p></li>
-<li><p>StnName = PlochingenFils</p></li>
-<li><p>StnID = 00025</p></li>
-<li><p>URL: <a class="reference external" href="https://www.hvz.baden-wuerttemberg.de/pegel.html?id=00025">https://www.hvz.baden-wuerttemberg.de/pegel.html?id=00025</a></p></li>
-<li><p>Click on the Pegelhaus to draw a Point</p></li>
-<li><p>Save Edits &amp; Stop Editing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">StnName</span></code> (<em>Text data</em>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">StnID</span></code>  (<em>Whole number</em>)</p></li>
 </ul>
 </li>
-<li><p>Change Symbology:</p>
+</ul>
+</li>
+<li><p>Edit/draw points</p>
 <ul>
-<li><p>Double-click on gauges layer &gt; Symbology</p></li>
-<li><p>Highlight Simple Marker and change to + sign, change fill color, size</p></li>
-<li><p>Highlight Marker and Change Opacity</p></li>
-<li><p>Click Apply and OK</p></li>
+<li><p><strong>Toggle Editing</strong> (i.e., enable by clicking on the yellow pen <img alt="../_images/yellow-pen.png" src="../_images/yellow-pen.png" />) &gt; <strong>Add Point Feature</strong></p></li>
+<li><p>Click on the PEGELHAUS to draw a point and set</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">StnName</span></code>: <code class="docutils literal notranslate"><span class="pre">PlochingenFils</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">StnID</span></code>: <code class="docutils literal notranslate"><span class="pre">00025</span></code></p></li>
 </ul>
 </li>
-<li><p>Show Attribute Table</p></li>
+<li><p>Add more points if you like.</p></li>
+<li><p>Finalize the edits by clicking on <strong>Save Edits</strong> &gt; <strong>Stop Editing</strong></p></li>
+</ul>
+</li>
+<li><p>Improve the visualization by changing the symbology:</p>
+<ul>
+<li><p><strong>Double-click on</strong> the gauges <strong>layer</strong> &gt; <strong>Symbology</strong></p></li>
+<li><p>Highlight <strong>Simple Marker</strong>, change to <strong>+</strong> symbol, and change fill color and size.</p></li>
+<li><p>Highlight <strong>Marker</strong> and change the <strong>Opacity</strong></p></li>
+<li><p>Click <strong>Apply</strong> and <strong>OK</strong></p></li>
+</ul>
+</li>
+<li><p>Verify the point settings in the <strong>Attribute Table</strong> (right-click on the <em>gauges</em> layer and select <strong>Attribute Table</strong>).</p></li>
 </ul>
 </div>
 <div class="section" id="create-a-line-shapefile">
 <h3>Create a Line Shapefile<a class="headerlink" href="#create-a-line-shapefile" title="Permalink to this headline">¶</a></h3>
-<p>Create a Line Shapefile “CenterLine.shp” to draw a Centerline of the Fils ± 200 around the Pegelhaus gauge (with one Field=RiverName), along the OpenStreetMap layer similar to the above-created point shapefile.</p>
-<iframe width="720" height="405" src="https://youtu.be/yNuiIlPsguQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Create a <strong>Line Shapefile</strong> called <strong>CenterLine.shp</strong> to draw a centerline of the Fils <span class="math notranslate nohighlight">\(\pm\)</span> 200 m around the PEGELHAUS gauge, similar to the above-created point shapefile. Add one <em>text</em> field and call it <code class="docutils literal notranslate"><span class="pre">RiverName</span></code>. Then draw a line along the Fils River starting 200 m upstream and ending 200 m downstream of the PEGELHAUS by following the river on the <strong>OpenStreetMap</strong> layer. See more in the following video.</p>
+<iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/yNuiIlPsguQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 </div>
 <div class="section" id="create-a-polygon-shapefile">
 <h3>Create a Polygon Shapefile<a class="headerlink" href="#create-a-polygon-shapefile" title="Permalink to this headline">¶</a></h3>
-<p>Create a Polygon Shapefile “FlowAreas.shp” to draw two Polygons of the of the Fils Floodplain with two Fields = AreaType (Text) and ManningN (Decimal Number).</p>
-<iframe width="720" height="405" src="https://youtu.be/zTrowT0ULfo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>To delineate different zones of roughness (e.g., as needed for a two-dimensional numerical model), create a <strong>Polygon Shapefile</strong> called <strong>FlowAreas.shp</strong>. The file will contain polygons zoning the considered section of the Fils into floodplain and main channel bed. Name the first field <code class="docutils literal notranslate"><span class="pre">AreaType</span></code> (type: <em>Text</em>) and the second field <code class="docutils literal notranslate"><span class="pre">ManningN</span></code> (type: <em>Decimal Number</em>). See more in the following video and the instructions below the video.</p>
+<iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/zTrowT0ULfo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>To draw the polygons:</p>
 <ul class="simple">
-<li><p>To Draw a Polygon: Click in the map (right-click finalizes Polygon)</p></li>
-<li><p>Polygon1: AreaType=“MainChannel”, ManningN = 0.028</p></li>
-<li><p>Snapping toolbar: Enable Snapping + Avoid Polygon Overlapping</p></li>
-<li><p>Polygon2: AreaType=“FloodPlainRB” , ManningN = 0.05</p></li>
-<li><p>Show how to delete a feature using the attribute Table</p></li>
-<li><p>Save edits &amp; deactivate Editing</p></li>
-<li><p>Modify Symbology to Categorized as a Function of AreaType Field &gt; Keep Random Colors &gt; Click on Classify &gt; Apply and if you like it &gt; OK</p></li>
+<li><p>Enable snapping to avoid gaps between floodplain and main channel polygons (<strong>Snapping toolbar</strong> &gt; <strong>Enable Snapping</strong> and <strong>Avoid Polygon Overlapping</strong>)</p></li>
+<li><p>Start drawing by clicking on the map (right-click finalizes Polygon)</p></li>
+<li><p>Draw one polygon of the main channel and after finalizing set:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">AreaType</span></code>: <code class="docutils literal notranslate"><span class="pre">MainChannel</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ManningN</span></code>: <code class="docutils literal notranslate"><span class="pre">0.028</span></code></p></li>
+</ul>
+</li>
+<li><p>Draw two more polygons of the right-bank (RB) and left-bank (LB) floodplains, and set:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">AreaType</span></code>: <code class="docutils literal notranslate"><span class="pre">FloodPlainRB</span></code> and <code class="docutils literal notranslate"><span class="pre">FloodPlainLB</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ManningN</span></code>: <code class="docutils literal notranslate"><span class="pre">0.05</span></code> (both)</p></li>
+</ul>
+</li>
+<li><p>If you made a drawing error, use either the <em>Attribute Table</em> to select and delete entire polygons, or use the vertex tool <img alt="../_images/vertex-tool.png" src="../_images/vertex-tool.png" /> from the menu bar.</p></li>
+<li><p>After drawing all polygons, <strong>Save edits</strong> and <strong>Toggle Editing</strong> (deactivate).</p></li>
+<li><p>To improve the visualizatoin, modify the <strong>Symbology</strong> to <strong>Categorized</strong> as a function of the <code class="docutils literal notranslate"><span class="pre">AreaType</span></code> field: Keep <strong>Random Colors</strong> &gt; Click on <strong>Classify</strong> &gt; <strong>Apply</strong> and if you like the visualization, click <strong>OK</strong>.</p></li>
 </ul>
 </div>
 </div>
 <div class="section" id="rasterize-polygon-to-raster">
 <h2>Rasterize (Polygon to Raster)<a class="headerlink" href="#rasterize-polygon-to-raster" title="Permalink to this headline">¶</a></h2>
-<p>Convert the above-created Pyolgon “FlowAreas.shp” to a roughness Raster.</p>
-<iframe width="720" height="405" src="https://youtu.be/IRLwYSUnjcE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Many numerical models required that roughness is provided in <a class="reference internal" href="geospatial-data.html#raster"><span class="std std-ref">Gridded Cell (Raster) Data</span></a> format. To this end, this section features the conversion of the above-created polygon shapefile (<em>FlowAreas.shp</em>) to a roughness <a class="reference internal" href="geospatial-data.html#raster"><span class="std std-ref">Gridded Cell (Raster) Data</span></a>. The following video and the instructions below the video describe how the conversion works.</p>
+<iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/IRLwYSUnjcE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>To convert a geospatial vector dataset, use the <em>Rasterize</em> tool:</p>
 <ul class="simple">
-<li><p>Click on View &gt; Panels &gt;Processing Toolbox</p></li>
-<li><p>In Toolbox &gt; search Rasterize &gt; select Rasterize (vector to raster)</p></li>
-<li><p>In Rasterize Window:</p>
+<li><p>In the QGIS menu bar make sure to enable the <em>Processing Toolbox</em> panel (<strong>View</strong> &gt; <strong>Panels</strong> &gt; <strong>Processing Toolbox</strong>)</p></li>
+<li><p>In the <strong>Processing Toolbox</strong> &gt; search (tap) <strong>Rasterize</strong> &gt; select <strong>Rasterize (vector to raster)</strong></p></li>
+</ul>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>If the <em>Crayfish</em> plugin is installed, an additional <em>Rasterize</em> tool will show up, which we will not use in this tutorial (i.e., make sure to select <em>Rasterize (vector to raster)</em>).</p>
+</div>
+<ul class="simple">
+<li><p>In the <strong>Rasterize (Vector to Raster)</strong> window set:</p>
 <ul>
-<li><p>Input layer = FlowAreas</p></li>
-<li><p>Field to use for a burn-in value = ManningN</p></li>
-<li><p>Output raster size units = Pixels</p></li>
-<li><p>Width/Horizontal resolution = 100 (the smaller, the coarser the Raster!)</p></li>
-<li><p>Height/Vertical resolution = 100 (the smaller, the coarser the Raster!)</p></li>
-<li><p>… [scroll down] …</p></li>
-<li><p>Output extent: click on … button &gt; Calculate from Layer &gt; FlowAreas</p></li>
-<li><p>Rasterized (FILE NAME) &gt; click on … Button &gt; Save to File &gt; roughness.tif</p></li>
-<li><p>Click Run</p></li>
+<li><p><strong>Input layer</strong>: <code class="docutils literal notranslate"><span class="pre">FlowAreas</span></code></p></li>
+<li><p><strong>Field to use for a burn-in value</strong>: <code class="docutils literal notranslate"><span class="pre">ManningN</span></code></p></li>
+<li><p><strong>Output raster size units</strong>: <code class="docutils literal notranslate"><span class="pre">Pixels</span></code></p></li>
+<li><p><strong>Width/Horizontal resolution</strong>: <code class="docutils literal notranslate"><span class="pre">100</span></code> (the smaller, the coarser the raster)</p></li>
+<li><p><strong>Height/Vertical resolution</strong>: <code class="docutils literal notranslate"><span class="pre">100</span></code> (the smaller, the coarser the raster)</p></li>
+<li><p>… scroll down …</p></li>
+<li><p><strong>Output extent</strong>: click on the <strong>…</strong> button &gt; <strong>Calculate from Layer</strong> &gt; <code class="docutils literal notranslate"><span class="pre">FlowAreas</span></code></p></li>
+<li><p><strong>Rasterized</strong> (FILE NAME) &gt; click on the <strong>…</strong> button &gt; <strong>Save to File…</strong> &gt; <code class="docutils literal notranslate"><span class="pre">roughness.tif</span></code></p></li>
+<li><p>Click <strong>Run</strong></p></li>
 </ul>
 </li>
-<li><p>Change Symbology to Singleband pseudocolor, Interpolation=Discrete, Colorramp=Magma, Mode=Equal Interval &gt; Apply &amp; OK</p></li>
+<li><p>Set the <strong>Symbology</strong> to <strong>Singleband pseudocolor</strong> with <strong>Interpolation</strong>: <code class="docutils literal notranslate"><span class="pre">Discrete</span></code>, <strong>Colorramp</strong>: <code class="docutils literal notranslate"><span class="pre">Magma</span></code>, <strong>Mode</strong>: <code class="docutils literal notranslate"><span class="pre">Equal</span> <span class="pre">Interval</span></code> &gt; <strong>Apply</strong>. If the visualization is satisfactory, click <strong>OK</strong>.</p></li>
 </ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The conversion between geospatial data types can be facilitated by using <em>Python</em>. Read the section on <a class="reference internal" href="../jupyter/geo-convert.html#py-conversion"><span class="std std-ref">Raster to Vector Conversion and Vice Versa</span></a> to learn more.</p>
 </div>
-<div class="section" id="qgis-raste-calculator-map-algebra">
-<h2>QGIS Raste Calculator (Map Algebra)<a class="headerlink" href="#qgis-raste-calculator-map-algebra" title="Permalink to this headline">¶</a></h2>
-<p>Launch the QGIS Raster Calculator from Raster &gt; Raster Calculator.</p>
-<iframe width="720" height="405" src="https://youtu.be/DOkV03uij9k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<div class="section" id="qgis-raster-calculator-map-algebra">
+<h2>QGIS Raster Calculator (Map Algebra)<a class="headerlink" href="#qgis-raster-calculator-map-algebra" title="Permalink to this headline">¶</a></h2>
+<p>Some models preferably (default use) Manning’s <em>n</em>, others use the Strickler roughness coefficient <span class="math notranslate nohighlight">\(k_{st}\)</span>, which is the inverse of Manning’s <em>n</em> (i.e., <span class="math notranslate nohighlight">\(k_{st} = 1/n\)</span> - read more about roughness coefficients in the <a class="reference internal" href="../exercises/ex-ms.html#ex-1d-hydraulics"><span class="std std-ref">1d Hydraulics (Manning-Strickler Formula)</span></a> exercise). Thus, transforming a Strickler roughness raster into a Manning roughness raster requires performing an algebraic raster (pixel-by-pixel) operation. The next video and the instructions below the video feature the usage of the QGIS <strong>Raster Calculator</strong> to perform such algebraic operations.</p>
+<iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/DOkV03uij9k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>Start with opening <strong>Raster Calculator</strong> from QGIS menu bar (<strong>Raster</strong> &gt; <strong>Raster Calculator…</strong>). Then, convert the above-created <em>roughness.tif</em> raster of Manning’s <em>n</em> values to a Strickler roughness raster:</p>
 <ul class="simple">
-<li><p>In Raster Calculator Expression field type 1, then click on / Button (Operators Box), then select roughness&#64;1 from the Raster Bands Box – Result: 1 / “roughness&#64;1” (EXPLAIN BANDS!)</p></li>
-<li><p>Output layer = qgis-exercise/roughness-stickler.tif /preferably use GeoTIFF)</p></li>
-<li><p>Click OK to run Raster Calculator</p></li>
-<li><p>Optional: Change symbology</p></li>
+<li><p>Define an <strong>Output layer</strong> (e.g., <em>qgis-exercise/roughness-stickler.tif</em>) and keep the <strong>Output format</strong> of <strong>GeoTIFF</strong>.</p></li>
+<li><p>Optionally select a layer extent corresponding to the above-created <em>roughness.tif</em> raster.</p></li>
+<li><p>In the <strong>Raster Calculator Expression</strong> frame type <strong>1</strong>, then click on the <strong>/</strong> button (<strong>Operators</strong> frame), then select <strong>roughness&#64;1</strong> from the <strong>Raster Bands</strong> frame.</p></li>
+<li><p>The <strong>Raster Calculator Expression</strong> frame should now contain: <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">&quot;roughness&#64;1&quot;</span></code>, where the <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> sign refers to band number <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
+<li><p>Click <strong>OK</strong> to run <em>Raster Calculator</em>.</p></li>
+<li><p>After successful calculation, optionally modify the symbology of the new layer (<em>roughness-stickler</em>).</p></li>
 </ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To implement a tailored raster calculator for batch-processing of raster files with <em>Python</em> read the <a class="reference internal" href="../exercises/ex-geco.html#py-raster-calculator"><span class="std std-ref">Create and combine HSI rasters</span></a> section in the <a class="reference internal" href="../exercises/ex-geco.html#ex-geco"><span class="std std-ref">Script-Create a Habitat Suitability Map</span></a> exercise.</p>
+</div>
 </div>
 <div class="section" id="create-layout-and-pdf-jpg-or-other-maps">
 <h2>Create Layout and PDF / JPG (or other) Maps<a class="headerlink" href="#create-layout-and-pdf-jpg-or-other-maps" title="Permalink to this headline">¶</a></h2>
-<p>Start with creating a new print layout by clicking on the <strong>Project</strong> drop-down menu, then select <strong>New Print Layout</strong>.</p>
-<iframe width="720" height="405" src="https://youtu.be/hmTByzVPVF0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Georeferenced images in <em>GeoTIFF</em> or other raster formats, possibly with super-positioned shapefiles on top, are handy and flexible for use with geospatial software, such as QGIS, but not appropriate for presentations or reports. For presentation purposes, geospatial imagery or maps should preferably be exported to common formats, such as the <strong>P</strong>ortable <strong>D</strong>ocument <strong>F</strong>ormat (PDF) or <strong>JPEG/JPG</strong>. To create commonly formatted maps with QGIS, first, a new (print) layout needs to be created, which can then be exported to a common map format (e.g., along with a legend, a scale bar, and a North arrow). The following video and the descriptions below the video guide through the map creation process with QGIS.</p>
+<iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/hmTByzVPVF0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>Start with creating a new print layout by clicking on the <strong>Project</strong> drop-down menu, then select <strong>New Print Layout</strong>. In the new print layout prepare the map and export the map as follows:</p>
 <ul class="simple">
-<li><p>Layout title Res100 (for resolution)</p></li>
-<li><p>In Res100 Layout:</p>
+<li><p>Set a <strong>Layout title</strong> (e.g., <em>exercise-layout</em>).</p></li>
+<li><p>In the new (<em>exercise-layout</em>) Layout:</p>
 <ul>
-<li><p>Go to Add Item &gt; Add Map</p></li>
-<li><p>Draw a rectangle that will contain the map</p></li>
-<li><p>Add Item &gt; Add Scale Bar</p></li>
-<li><p>Add Item &gt; Add Legend</p></li>
-<li><p>In Items Panel, highlight <Legend> and find the Item Properties tab below</p></li>
-<li><p>In the Item Properties tab, find Legend Items &gt; disable Auto update &gt; remove OpenStreetMap and Google Satellite</p></li>
-<li><p>Toggle through other Items in the Add Item menu bar (e.g., Arrow) and the Items panel (e.g., <Scalebar> to change units)</p></li>
+<li><p>Go to <strong>Add Item</strong> &gt; <strong>Add Map</strong>.</p></li>
+<li><p>Draw a rectangle that will contain the map.</p></li>
+<li><p><strong>Add Item</strong> &gt; <strong>Add Scale Bar</strong></p></li>
+<li><p>To control scales and units shown in the scale bar:</p>
+<ul>
+<li><p>In <strong>Items</strong> panel, highlight <code class="docutils literal notranslate"><span class="pre">&lt;Scalebar&gt;</span></code> and find the <strong>Item Properties</strong> tab below.</p></li>
+<li><p>In the <strong>Item Properties</strong> tab modify units to your convenience.</p></li>
 </ul>
 </li>
-<li><p>Save the project (Layout &gt; Save Project)</p></li>
-<li><p>Export Image: Layout &gt; Export as Image</p></li>
-<li><p>Export PDF: Layout &gt; Export as PDF</p></li>
-<li><p>Optional export SVG (Vector graph): Layout &gt; Export as SVG</p></li>
+<li><p><strong>Add Item</strong> &gt; <strong>Add Legend</strong></p></li>
+<li><p>To control elements of the legend:</p>
+<ul>
+<li><p>In <strong>Items</strong> panel, highlight <code class="docutils literal notranslate"><span class="pre">&lt;Legend&gt;</span></code> and find the <strong>Item Properties</strong> tab below.</p></li>
+<li><p>In the <strong>Item Properties</strong> tab, find <strong>Legend Items</strong> &gt; disable <strong>Auto update</strong> &gt; <strong>remove</strong> <em>OpenStreetMap</em> and <em>Google Satellite</em>.</p></li>
 </ul>
+</li>
+<li><p>Toggle through other <strong>Items</strong> in the <strong>Add Item</strong> menu bar (e.g., <strong>Arrow</strong> for Northing).</p></li>
+</ul>
+</li>
+<li><p><strong>Save</strong> the layout project (from top menu <strong>Layout</strong> &gt; <strong>Save Project</strong>)</p></li>
+<li><p>Export the map to common formats:</p>
+<ul>
+<li><p>For JPG or PNG: <strong>Layout</strong> &gt; <strong>Export as Image</strong></p></li>
+<li><p>For PDF: <strong>Layout</strong> &gt; <strong>Export as PDF</strong></p></li>
+<li><p>Optional, for SVG-vector graphs: <strong>Layout</strong> &gt; <strong>Export as SVG</strong></p></li>
+</ul>
+</li>
+</ul>
+<p>QGIS has many other capacities, but this fundamental tutorial should have provided you with the necessary knowledge to leverage the power of QGIS for many applications.</p>
 </div>
 </div>
 

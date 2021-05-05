@@ -1,4 +1,5 @@
-# Create a habitat suitability map
+(ex-geco)=
+# Script-Create a Habitat Suitability Map
 
 ```{admonition} Goals
 This exercise guides through the creation of rasters (`osgeo.gdal.Dataset`), the usage of georeferences, raster array calculations, as well as the conversion of a raster to a polygon shapefile and modifications to the shapefile's *Attribute Table* to calculate usable (physical) habitat area. For this purpose, a `Raster` class is written, which enables mathematical operations between its instances through the implementation of magic methods. The exercise also shows how the course's [*geo_utils* package](https://github.com/hydro-informatics/geo-utils) can be used to leverage complex challenges in just a few lines of code.
@@ -143,6 +144,7 @@ The `HSIRaster` class in the `raster_hsi.py` script is a child of the `Raster` c
 ***CREATE_HSI_RASTERS.PY and CALCULATE_HABITAT_AREA.PY***<br>
 The two scripts `reate_hsi_rasters.py` and `calculate_habitat_area.py` represent the focal point of this exercise and make use of the provided data and *Python* scripts. Therefore, only the basic framework functions and imports are pre-existing in these two template scripts.
 
+(py-raster-calculator)=
 ## Create and combine *HSI* rasters
 
 ### Complete magic methods of the `Raster` class (`raster.py`)<a name="raster"></a>
