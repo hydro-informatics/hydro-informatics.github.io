@@ -38,6 +38,10 @@ Once you installed QGIS, launch the program and walk through the following steps
 <p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 
 
+```{hint}
+All files created in this tutorial can be downloaded [here](https://github.com/Ecohydraulics/qgis-tutorial).
+```
+
 (qgis-tbx-install)=
 ## Panels, Toolbars, and Plugins
 
