@@ -56,8 +56,8 @@ Solution 1: Full-stack Python Anaconda Installation
   - Either {ref}`pycharm` (external inteface) or *Spyder* (directly available in *Anaconda* )IDE.
   - Optionally {ref}`jupyter` for editing and running jupyter notebooks (alternatively, use the [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter) buttons that enable running jupyter notebooks online)
 
-Solution 2: The elegant installation of Atom
-
+Solution 2: Atom
+: At the core, *Atom* is a text editor, but i can easily extended with many capacities for alomost all popular programming languages.
 
 ### Schedule (Winter 2021/22)
 Every Wednesday and Thursday morning live in *WebEx*, starting from October/November, 2021, through February, 2022.

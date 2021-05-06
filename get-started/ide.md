@@ -156,4 +156,4 @@ The following (additional) packages are useful for working with contents of this
 * `linter-spell-rst` spell checks *reStructuredText*
 * `python-docstring` facilitates inline documentation of *Python* code
 * `python-requirements` enables to install required packages for running *Python* code
-* * `script` enables to run *Python* and many other code types ([read the docs](https://atom.io/packages/script)); running a code file will be triggered by pressing a keyboard combination such as `CTRL` + `R` (varies with platforms)
+* * `script` enables to run *Python* and many other code types ([read the docs](https://atom.io/packages/script)); after the installation, running a code (*Python*) file can be triggered by clicking on the **Packages** top menu > **Script**  > **Run Script**.
