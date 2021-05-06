@@ -2,9 +2,20 @@
 
 This book is built with a template from the [Executable Book Project](https://executablebooks.org).
 
-## Build info
+## Install Requirements
 
-Make sure `ghp-import` is installed: `pip install ghp-import`
+The Python environments for building the ebook locally are stored in ROOT/requirements.txt (for Linux) and ROOT/window_environment.yml (for Windows).
+
+On Linux install:
+ * If Python2 and Python3 are installed, install requirements with
+   * `pip3 install -r requirements.txt`
+ * If only Python3 is installed, install the requirements with
+   * `pip install -r requirements.txt`
+
+On Windows, use Anaconda Prompt to install the hywin environment that contains all required packages for building the ebook:
+ * `conda env create -f window_environment.yml`
+
+## Build eBook
 
 To update the website:
 

@@ -1,60 +1,66 @@
-# Plotting
+#!/usr/bin/env python
+# coding: utf-8
 
-Summary: Use matplotlib, pandas, and plotly to leverage Python's power of data visualization.
+# # Plotting
+# 
+# Summary: Use matplotlib, pandas, and plotly to leverage Python's power of data visualization.
+# 
+# ## Tools (Packages) for Plotting with *Python*
+# 
+# Several packages enable plotting in *Python*. The last page already introduced [*NumPy*](pynum.html#numpy) and [*pandas*](pynum.html#pandas) for plotting histograms. *pandas* plotting capacities go way beyond just plotting histograms and it relies on the powerful [*matplotlib*](https://matplotlib.org/) library. *SciPy*'s *matplotlib* is the most popular plotting library in *Python* (since its introduction in 2003) and not only *pandas*, but also other libraries (for example the abstraction layer [*Seaborn*](https://seaborn.pydata.org/)) use *matplotlib* with facilitated commands. This page introduces the following packages for data visualization:
+# 
+# * [*matplotlib*](#matplotlib) - the baseline for data visualization in *Python*
+# * [*pandas*](#pandas) - as wrapper API of *matplotlib*, with many simplified options for meaningful plots
+# * [*plotly*](#plotly) - for interactive plots, in which users can change and move plot scales 
 
-## Tools (Packages) for Plotting with *Python*
+# (matplotlib)=
+# ## Matplotlib 
+# 
+# Because of its complexity and the fact that all important functions can be used with *pandas* in a much more manageable way, we will only discuss *matplotlib* only briefly here. Yet it is important to know how *matplotlib* works in order to better understand the baseline of plotting with *Python* and to use more complex graphics or more plotting options when needed.
+# 
+# In 2003, the development of *matplotlib* was initiated in the field of neurobiology by [*John D. Hunter (&dagger;)*](https://en.wikipedia.org/wiki/John_D._Hunter) to emulate *The MathWork*'s *MATLAB&reg;* software. This early development is was constituted the `pylab` package, which is deprecated today for its bad practice of overwriting *Python* (in particular *NumPy*) `plot()` and `array()` methods/objects. Today, it is recommended to use:<br>
+# `import matplotlib.pyplot as plt`.
+# 
+# ### Some Terms and Definitions
+# A `plt.figure` can be thought of as a box containing one or more axes, which represent the actual plots. Within the axes, there are smaller objects in the hierarchy such as markers, lines, legends, and text fields. Almost every element of a plot is a manipulable attribute and the most important attributes are shown in the following figure. More attributes can be found in the showcases of [matplotlib.org](https://matplotlib.org/examples/showcase/anatomy.html).
+# 
+# ![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/pyplot-defs.png) of a pyplot figure. 
+# 
+# 
 
-Several packages enable plotting in *Python*. The last page already introduced [*NumPy*](pynum.html#numpy) and [*pandas*](pynum.html#pandas) for plotting histograms. *pandas* plotting capacities go way beyond just plotting histograms and it relies on the powerful [*matplotlib*](https://matplotlib.org/) library. *SciPy*'s *matplotlib* is the most popular plotting library in *Python* (since its introduction in 2003) and not only *pandas*, but also other libraries (for example the abstraction layer [*Seaborn*](https://seaborn.pydata.org/)) use *matplotlib* with facilitated commands. This page introduces the following packages for data visualization:
+# (plotxy)=
+# ### Step-by-step Recipe for 1d/2d (line) plots 
+# 
+# 1. Import *matplolib*'s `pyplot` package with `import matplotlib.pyplot as plt`
+# 1. Create a figure with `plt.figure(figsize=(width_inch, height_inch), dpi=int, facecolor=str, edgecolor=str)`
+# 1. Add axes to the figure with `axes=fig.add_subplot(row=int, column=int, index=int, label=str)
+# 1. Generate a [color map](http://matplotlib.org/users/colormaps.html); `plt.cm.getcmap()` generates an array of colors as explained with the [*NumPy* instructions](pynum.html#colors). For example `colormap=([255, 0, 0])` creates a color map with just one color (red).
+# 1. Plot the data (finally!) to plot  
+#     * lines with `axes.plot(x, y, linestyle=str, marker=str, color=Colormap(int), label=str)` and many more `**kwargs` can be defined ([go the *matplotlib* docs](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.lines.Line2D.html#matplotlib.lines.Line2D)).
+#     * points (markers) with `axes.scatter(x, y, MarkerStyle=str, cmap=Colormap, label=str)` and many more `**kwargs` can be defined ([go the *matplotlib* docs](https://matplotlib.org/3.2.1/api/_as_gen/matplotlib.pyplot.scatter.html))
+# 1. Manipulate the axis ticks
+#     * `plt.xticks(list)` define x-axis ticks
+#     * `plt.yticks(list)` define y-axis ticks
+#     * `axes.set_xlim(tuple(min, max))` sets the x-axis minimum and maximum
+#     * `axes.set_ylim(tuple(min, max))` sets the y-axis minimum and maximum
+#     * `axes.set_xlabel(str)` sets the x-axis label
+#     * `axes.set_ylabel(str)` sets the y-axis label
+# 1. Add legend (optionally) with `axes.legend(loc=str, facecolor=str, edgecolor=str, framealpha=float_between_0_and_1)` and many more `**kwargs` can be defined ([confer to the *matplotlib* docs](https://matplotlib.org/3.1.1/api/legend_api.html#matplotlib.legend.Legend)).
+# 1. Optional: Save figure with `plt.savefig(fname=str, dpi=int)` with many more `**kwargs` available ([confer to the *matplotlib* docs](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.savefig.html)).
+# 
+# ```{tip}
+# Most of the below illustrated `matplotlib` features are embedded in a plotter script, which is available at the [course repository](https://github.com/hydro-informatics/material-py-codes/raw/master/plotting/plotter.py) (only when the lecture is active).
+# ```
+# 
+# The following code block illustrates the plot recipe using [randomly drawn samples from a *Weibull* distribution](https://numpy.org/doc/stable/reference/random/generated/numpy.random.RandomState.weibull.html#numpy.random.RandomState.weibull) with a the distribution shape factor *a* (for *a*=1, the *Weibull* distribution reduces to an exponential distribution). The `seed` argument describes the source of randomness and `seed=None` makes *Python* use randomness from operating system variables.
+# 
+# The code block below makes use of a function called `plot_xy` that requires `x` and `y` arguments and accepts the following optional keyword arguments:
+# * `plot_type=str` defines if a line or scatter plot should be produced,
+# * `label=str` sets the legend,
+# * `save=str` defines a path where the figure should be saved (the figure is not saved if nothing provided). To activate saving a figure write for example `save='C:/temp/weibull.png'`.
 
-* [*matplotlib*](#matplotlib) - the baseline for data visualization in *Python*
-* [*pandas*](#pandas) - as wrapper API of *matplotlib*, with many simplified options for meaningful plots
-* [*plotly*](#plotly) - for interactive plots, in which users can change and move plot scales 
+# In[1]:
 
-(matplotlib)=
-## Matplotlib 
-
-Because of its complexity and the fact that all important functions can be used with *pandas* in a much more manageable way, we will only discuss *matplotlib* only briefly here. Yet it is important to know how *matplotlib* works in order to better understand the baseline of plotting with *Python* and to use more complex graphics or more plotting options when needed.
-
-In 2003, the development of *matplotlib* was initiated in the field of neurobiology by [*John D. Hunter (&dagger;)*](https://en.wikipedia.org/wiki/John_D._Hunter) to emulate *The MathWork*'s *MATLAB&reg;* software. This early development is was constituted the `pylab` package, which is deprecated today for its bad practice of overwriting *Python* (in particular *NumPy*) `plot()` and `array()` methods/objects. Today, it is recommended to use:<br>
-`import matplotlib.pyplot as plt`.
-
-### Some Terms and Definitions
-A `plt.figure` can be thought of as a box containing one or more axes, which represent the actual plots. Within the axes, there are smaller objects in the hierarchy such as markers, lines, legends, and text fields. Almost every element of a plot is a manipulable attribute and the most important attributes are shown in the following figure. More attributes can be found in the showcases of [matplotlib.org](https://matplotlib.org/examples/showcase/anatomy.html).
-
-![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/pyplot-defs.png) of a pyplot figure. 
-
-
-
-(plotxy)=
-### Step-by-step Recipe for 1d/2d (line) plots 
-
-1. Import *matplolib*'s `pyplot` package with `import matplotlib.pyplot as plt`
-1. Create a figure with `plt.figure(figsize=(width_inch, height_inch), dpi=int, facecolor=str, edgecolor=str)`
-1. Add axes to the figure with `axes=fig.add_subplot(row=int, column=int, index=int, label=str)
-1. Generate a [color map](http://matplotlib.org/users/colormaps.html); `plt.cm.getcmap()` generates an array of colors as explained with the [*NumPy* instructions](pynum.html#colors). For example `colormap=([255, 0, 0])` creates a color map with just one color (red).
-1. Plot the data (finally!) to plot  
-    * lines with `axes.plot(x, y, linestyle=str, marker=str, color=Colormap(int), label=str)` and many more `**kwargs` can be defined ([go the *matplotlib* docs](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.lines.Line2D.html#matplotlib.lines.Line2D)).
-    * points (markers) with `axes.scatter(x, y, MarkerStyle=str, cmap=Colormap, label=str)` and many more `**kwargs` can be defined ([go the *matplotlib* docs](https://matplotlib.org/3.2.1/api/_as_gen/matplotlib.pyplot.scatter.html))
-1. Manipulate the axis ticks
-    * `plt.xticks(list)` define x-axis ticks
-    * `plt.yticks(list)` define y-axis ticks
-    * `axes.set_xlim(tuple(min, max))` sets the x-axis minimum and maximum
-    * `axes.set_ylim(tuple(min, max))` sets the y-axis minimum and maximum
-    * `axes.set_xlabel(str)` sets the x-axis label
-    * `axes.set_ylabel(str)` sets the y-axis label
-1. Add legend (optionally) with `axes.legend(loc=str, facecolor=str, edgecolor=str, framealpha=float_between_0_and_1)` and many more `**kwargs` can be defined ([confer to the *matplotlib* docs](https://matplotlib.org/3.1.1/api/legend_api.html#matplotlib.legend.Legend)).
-1. Optional: Save figure with `plt.savefig(fname=str, dpi=int)` with many more `**kwargs` available ([confer to the *matplotlib* docs](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.savefig.html)).
-
-```{tip}
-Most of the below illustrated `matplotlib` features are embedded in a plotter script, which is available at the [course repository](https://github.com/hydro-informatics/material-py-codes/raw/master/plotting/plotter.py) (only when the lecture is active).
-```
-
-The following code block illustrates the plot recipe using [randomly drawn samples from a *Weibull* distribution](https://numpy.org/doc/stable/reference/random/generated/numpy.random.RandomState.weibull.html#numpy.random.RandomState.weibull) with a the distribution shape factor *a* (for *a*=1, the *Weibull* distribution reduces to an exponential distribution). The `seed` argument describes the source of randomness and `seed=None` makes *Python* use randomness from operating system variables.
-
-The code block below makes use of a function called `plot_xy` that requires `x` and `y` arguments and accepts the following optional keyword arguments:
-* `plot_type=str` defines if a line or scatter plot should be produced,
-* `label=str` sets the legend,
-* `save=str` defines a path where the figure should be saved (the figure is not saved if nothing provided). To activate saving a figure write for example `save='C:/temp/weibull.png'`.
 
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
@@ -87,29 +93,33 @@ plot_xy(x, y)
 print("Scatter plot")
 plot_xy(x, y, plot_type="scatter", label="Rand. Weibull scattered")
 
-```{admonition} Challenge
-The `plot_xy` function has some weaknesses. For example if more arguments are provided or `y` data are an array that should produce multiple lines. How can you optimize the `plot_xy` function, to make it more robust and enable multi-line plotting?
-```
 
-### Surface and Contour Plots
+# ```{admonition} Challenge
+# The `plot_xy` function has some weaknesses. For example if more arguments are provided or `y` data are an array that should produce multiple lines. How can you optimize the `plot_xy` function, to make it more robust and enable multi-line plotting?
+# ```
 
-*matplotlib* provides multiple options to plot X-Y-Z data, for example (i.e., there are more options):
+# ### Surface and Contour Plots
+# 
+# *matplotlib* provides multiple options to plot X-Y-Z data, for example (i.e., there are more options):
+# 
+# * Surface plots with color shades: [`axes.plot_surface(X, Y, Z)`](https://matplotlib.org/mpl_toolkits/mplot3d/tutorial.html#surface-plots) 
+# * Contour plots: [`axes.contour(X, Y, Z)`](https://matplotlib.org/mpl_toolkits/mplot3d/tutorial.html#contour-plots) 
+# * Contour plots with filled surfaces: [`axes.contourf(X, Y, Z)`](https://matplotlib.org/mpl_toolkits/mplot3d/tutorial.html#filled-contour-plots) 
+# * Surface plots with triangulated mesh: [`axes.plot_trisurf(X, Y, Z)`](https://matplotlib.org/mpl_toolkits/mplot3d/tutorial.html#tri-surface-plots) 
+# * Three-dimensional scatter plots: [`axes.scatter3D(X, Y, Z)`](https://matplotlib.org/3.1.1/gallery/mplot3d/scatter3d.html) 
+# * Streamplots (e.g., of velocity vectors): [`axes.streamplot(X, Y, U, V)`](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.streamplot.html) 
+# * Color-coded representation of gridded values with (annotated) heatmaps (e.g., for habitat suitability index maps): [`axes.imshow(data, **kwargs)`](https://matplotlib.org/3.1.1/gallery/images_contours_and_fields/image_annotated_heatmap.html)
+# 
+# Only streamplots are discussed here, since they are a useful tool for the visualization of velocity vectors (flow fields) in rivers. To generate a streamplot:
+# 
+# 1. Create an `X` - `Y` grid, for example with the [*NumPy*'s `mgrid` method](https://numpy.org/doc/stable/reference/generated/numpy.mgrid.html): `Y, X = np.mgrid[range, range]`
+# 1. Assign stream field data (such data can be artificially generated for example as `U` and `V`) to the grid nodes as calculate a scalar value (e.g., `velocity` as a function of the 2-directional field data).
+# 1. Generate figures as before in the `plot_xy` function example (see [above 1d/2d plot instructions](#plotxy)).
+# 
+# The below code block illustrates the generation of a streamplot (adapted from the [*matplotlib* docs](https://matplotlib.org/3.1.1/gallery/images_contours_and_fields/plot_streamplot.html#sphx-glr-gallery-images-contours-and-fields-plot-streamplot-py)) and uses `import matplotlib.gridspec` to place the subplots in the figure.
 
-* Surface plots with color shades: [`axes.plot_surface(X, Y, Z)`](https://matplotlib.org/mpl_toolkits/mplot3d/tutorial.html#surface-plots) 
-* Contour plots: [`axes.contour(X, Y, Z)`](https://matplotlib.org/mpl_toolkits/mplot3d/tutorial.html#contour-plots) 
-* Contour plots with filled surfaces: [`axes.contourf(X, Y, Z)`](https://matplotlib.org/mpl_toolkits/mplot3d/tutorial.html#filled-contour-plots) 
-* Surface plots with triangulated mesh: [`axes.plot_trisurf(X, Y, Z)`](https://matplotlib.org/mpl_toolkits/mplot3d/tutorial.html#tri-surface-plots) 
-* Three-dimensional scatter plots: [`axes.scatter3D(X, Y, Z)`](https://matplotlib.org/3.1.1/gallery/mplot3d/scatter3d.html) 
-* Streamplots (e.g., of velocity vectors): [`axes.streamplot(X, Y, U, V)`](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.streamplot.html) 
-* Color-coded representation of gridded values with (annotated) heatmaps (e.g., for habitat suitability index maps): [`axes.imshow(data, **kwargs)`](https://matplotlib.org/3.1.1/gallery/images_contours_and_fields/image_annotated_heatmap.html)
+# In[2]:
 
-Only streamplots are discussed here, since they are a useful tool for the visualization of velocity vectors (flow fields) in rivers. To generate a streamplot:
-
-1. Create an `X` - `Y` grid, for example with the [*NumPy*'s `mgrid` method](https://numpy.org/doc/stable/reference/generated/numpy.mgrid.html): `Y, X = np.mgrid[range, range]`
-1. Assign stream field data (such data can be artificially generated for example as `U` and `V`) to the grid nodes as calculate a scalar value (e.g., `velocity` as a function of the 2-directional field data).
-1. Generate figures as before in the `plot_xy` function example (see [above 1d/2d plot instructions](#plotxy)).
-
-The below code block illustrates the generation of a streamplot (adapted from the [*matplotlib* docs](https://matplotlib.org/3.1.1/gallery/images_contours_and_fields/plot_streamplot.html#sphx-glr-gallery-images-contours-and-fields-plot-streamplot-py)) and uses `import matplotlib.gridspec` to place the subplots in the figure.
 
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
@@ -140,9 +150,13 @@ axes2.set_title('Color maps', fontfamily='Tahoma', fontsize=8, fontweight='bold'
 plt.tight_layout()
 plt.show()
 
-### Fonts and Styles
 
-The previous example already featured font type adjustment for the plot titles (`axes.set_title('title', font ...)`). The font and its characteristics (e.g., size, weight, style, or family) can be defined in a more coherent manner with `matplotlib.font_manager.FontProperties` ([cf. the *matplotlib* docs](https://matplotlib.org/3.1.1/api/font_manager_api.html)), where plot font settings can be globally modified within a script.
+# ### Fonts and Styles
+# 
+# The previous example already featured font type adjustment for the plot titles (`axes.set_title('title', font ...)`). The font and its characteristics (e.g., size, weight, style, or family) can be defined in a more coherent manner with `matplotlib.font_manager.FontProperties` ([cf. the *matplotlib* docs](https://matplotlib.org/3.1.1/api/font_manager_api.html)), where plot font settings can be globally modified within a script.
+
+# In[3]:
+
 
 import matplotlib.pyplot as plt
 from matplotlib.font_manager import FontProperties
@@ -179,9 +193,13 @@ axes.set_ylabel("Oscillation (V)")
 plt.tight_layout()
 plt.show()
 
-Instead of using `rc`, font characteristics can also be updated with *matplotlib*'s `rcParams` *dictionary*. In general, all font parameters can be accessed with `rcParams` along with many more parameters of plot layout options. The parametric options are stored in the [`matplotlibrc`](https://matplotlib.org/tutorials/introductory/customizing.html#customizing-with-matplotlibrc-files) file and can be accessed with `rcParams["matplotlibrc-parameter"]`. Read more about modification options (`"matplotlibrc-parameter"`) in the [*matplotlib* docs](https://matplotlib.org/tutorials/introductory/customizing.html#customizing-with-matplotlibrc-files). In order to modify a (font) style parameter use `rcParams.update({parameter-name: parameter-value})` (which does not always work - for example in [*jupyter*](https://github.com/jupyter/notebook/issues/3385)). 
 
-In addition, many default plot styles are available through [`matplotlib.style`](https://matplotlib.org/api/style_api.html#matplotlib-style) with many [style templates](https://matplotlib.org/gallery/style_sheets/style_sheets_reference.html). The following example illustrates the application of `rcParams` and `style` to the previously generated x-y oscillation dataset.
+# Instead of using `rc`, font characteristics can also be updated with *matplotlib*'s `rcParams` *dictionary*. In general, all font parameters can be accessed with `rcParams` along with many more parameters of plot layout options. The parametric options are stored in the [`matplotlibrc`](https://matplotlib.org/tutorials/introductory/customizing.html#customizing-with-matplotlibrc-files) file and can be accessed with `rcParams["matplotlibrc-parameter"]`. Read more about modification options (`"matplotlibrc-parameter"`) in the [*matplotlib* docs](https://matplotlib.org/tutorials/introductory/customizing.html#customizing-with-matplotlibrc-files). In order to modify a (font) style parameter use `rcParams.update({parameter-name: parameter-value})` (which does not always work - for example in [*jupyter*](https://github.com/jupyter/notebook/issues/3385)). 
+# 
+# In addition, many default plot styles are available through [`matplotlib.style`](https://matplotlib.org/api/style_api.html#matplotlib-style) with many [style templates](https://matplotlib.org/gallery/style_sheets/style_sheets_reference.html). The following example illustrates the application of `rcParams` and `style` to the previously generated x-y oscillation dataset.
+
+# In[4]:
+
 
 from matplotlib import rcParams
 from matplotlib import rcParamsDefault
@@ -207,9 +225,13 @@ axes.set_ylabel("Oscillation (V)")
 plt.tight_layout()
 plt.show()
 
-### Annotations
 
-Pointing out particularities in graphs is sometimes helpful to explain observations on graphs. Here are some options illustrated with a self-explaining code block.
+# ### Annotations
+# 
+# Pointing out particularities in graphs is sometimes helpful to explain observations on graphs. Here are some options illustrated with a self-explaining code block.
+
+# In[5]:
+
 
 from matplotlib import rcParams
 from matplotlib import rcParamsDefault
@@ -234,26 +256,34 @@ axes.axis([0, 10, 0, 1])  # x_min, x_max, y_min, y_max
 
 plt.show()
 
-```{admonition} Challenge
-The above code blocks involve many repetitive statements such as `import ...` - `rcParams.update(rcParamsDefault)`, and `plot.show()` at the end. Can you write a [wrapper function](pyfun.html#wrappers) to decorate any other *matplotlib* plot function?
-```
 
-```{admonition} Exercise
-Get familiar with built-in plot functions using *matplotlib* with the template scripts provided for the [Reservoir design](../exercises/ex-sp) and [Flood return period calculation](../exercises/ex-floods) exercises.
-```
+# ```{admonition} Challenge
+# The above code blocks involve many repetitive statements such as `import ...` - `rcParams.update(rcParamsDefault)`, and `plot.show()` at the end. Can you write a [wrapper function](pyfun.html#wrappers) to decorate any other *matplotlib* plot function?
+# ```
 
-(pandas-plot)=
-## Plotting with *pandas*
+# ```{admonition} Exercise
+# Get familiar with built-in plot functions using *matplotlib* with the template scripts provided for the [Reservoir design](../exercises/ex-sp) and [Flood return period calculation](../exercises/ex-floods) exercises.
+# ```
 
-Plotting with *matplotlib* can be daunting, not because the library is poorly documented (the complete opposite is the case), but because *matplotlib* is very extensive. *pandas* brings remedy with simplified commands for high-quality plots. The simplest way to plot a *pandas* data frame is [`pd.DataFrame.plot(x="col1", y="col2")`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html). The following example illustrates this fundamentally simple usage with a river discharge series stored in a workbook.
+# (pandas-plot)=
+# ## Plotting with *pandas*
+# 
+# Plotting with *matplotlib* can be daunting, not because the library is poorly documented (the complete opposite is the case), but because *matplotlib* is very extensive. *pandas* brings remedy with simplified commands for high-quality plots. The simplest way to plot a *pandas* data frame is [`pd.DataFrame.plot(x="col1", y="col2")`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html). The following example illustrates this fundamentally simple usage with a river discharge series stored in a workbook.
+
+# In[6]:
+
 
 flow_df = pd.read_excel('data/USGS_11421000_MRY_flows.xlsx', sheet_name='Mean Monthly CMS')
 print(flow_df.head(3))
 flow_df.plot(x="Date (mmm-jj)", y="Flow (CMS)", kind='line')
 
-### *pandas* and *matplotlib*
 
-Because *pandas* plot functionality roots in the *matplotlib* library, it can be easily combined, for example to create subplots:
+# ### *pandas* and *matplotlib*
+# 
+# Because *pandas* plot functionality roots in the *matplotlib* library, it can be easily combined, for example to create subplots:
+
+# In[7]:
+
 
 import matplotlib.pyplot as plt
 from matplotlib import cm
@@ -264,18 +294,22 @@ fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(10, 2.5), dpi=150)
 flow_ex_df.plot(x="Relative exceedance", y="Flow (CMS)", kind='area', color='DarkBlue', grid=True, title="Blue area plot", ax=axes[0])
 flow_ex_df.plot(x="Relative exceedance", y="Flow (CMS)", kind='scatter', color="DarkGreen", title="Green scatter", marker="x", ax=axes[1])
 
-### Boxplots and Error Bars
 
-A [box-plot](https://en.wikipedia.org/wiki/Box_plot) graphically represents the distribution of (statistical) scatter and parameters of a data series. Why are box-plots particularly mentioned within the *pandas* plot explanations? Well, the reason is that with *pandas* data frames, we typically load data series with certain statistical properties per column. For example if we run a steady-flow experiment in a hydraulic lab flume with ultrasonic probes for deriving flow depths, we will observe signal fluctuation, even though the flow was steady. By loading the signal data into a *pandas* data frame, we can use a box plot to observe the average flow depth and the noise in the measurement among different probes. Thus, probes with unexpected noise can be identified and repaired. This small example can be applied on a broader scale to many other sensors and for many other purposes (noise does not automatically mean that a sensor is broken). A box-plot has the following attributes:
+# ### Boxplots and Error Bars
+# 
+# A [box-plot](https://en.wikipedia.org/wiki/Box_plot) graphically represents the distribution of (statistical) scatter and parameters of a data series. Why are box-plots particularly mentioned within the *pandas* plot explanations? Well, the reason is that with *pandas* data frames, we typically load data series with certain statistical properties per column. For example if we run a steady-flow experiment in a hydraulic lab flume with ultrasonic probes for deriving flow depths, we will observe signal fluctuation, even though the flow was steady. By loading the signal data into a *pandas* data frame, we can use a box plot to observe the average flow depth and the noise in the measurement among different probes. Thus, probes with unexpected noise can be identified and repaired. This small example can be applied on a broader scale to many other sensors and for many other purposes (noise does not automatically mean that a sensor is broken). A box-plot has the following attributes:
+# 
+# * *boxes* represent the main body of the data with quartiles and confidence intervals around the median (if activated).
+# * *medians* are horizontal lines at the median (visually in the middle) of each box.
+# * *whiskers* are vertical lines that extend to the most extreme, non-outlier data points.
+# * *caps* are small horizontal line endings of whiskers.
+# * *fliers* are outlier points beyond whiskers.
+# * *means* are either points or lines of dataset means.
+# 
+# *pandas* data frames make use of [`matplotlib.pyplot.boxplot`](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.boxplot.html#matplotlib.pyplot.boxplot) to generate box-plots with [`df.boxplot()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.boxplot.html) or `df.plot.box()`. The following example features box-plots of flow depth measurements with ultrasonic probes (sensors 1, 2, 3, and 5) and manipulations of 
 
-* *boxes* represent the main body of the data with quartiles and confidence intervals around the median (if activated).
-* *medians* are horizontal lines at the median (visually in the middle) of each box.
-* *whiskers* are vertical lines that extend to the most extreme, non-outlier data points.
-* *caps* are small horizontal line endings of whiskers.
-* *fliers* are outlier points beyond whiskers.
-* *means* are either points or lines of dataset means.
+# In[8]:
 
-*pandas* data frames make use of [`matplotlib.pyplot.boxplot`](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.boxplot.html#matplotlib.pyplot.boxplot) to generate box-plots with [`df.boxplot()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.boxplot.html) or `df.plot.box()`. The following example features box-plots of flow depth measurements with ultrasonic probes (sensors 1, 2, 3, and 5) and manipulations of 
 
 us_sensor_df = pd.read_csv("data/FlowDepth009.csv", index_col=0, usecols=[0, 1, 2, 3, 5])
 print(us_sensor_df.head(2))
@@ -297,7 +331,11 @@ us_sensor_df.boxplot(fontsize=fontsize, ax=axes[0], labels=labels, widths=0.25, 
 us_sensor_df.plot.box(color="tomato", vert=False, title="Hz. box-plot", flierprops=square_fliers, 
                       whis=0.75, fontsize=fontsize, meanline=True, showmeans=True, ax=axes[1], labels=labels)
 
-Box-plots represent the statistical assets of datasets, but box-plots can quickly become confusing when they are presented in technical reports for multiple measurement series. Yet it is state-of-the-art and good practice to present uncertainties in datasets in scientific and non-scientific publications, but somewhat more easily than, for example, with box-plots. To meet the standards of good practice, so-called [error bars](https://en.wikipedia.org/wiki/Error_bar) should be added to data bars. Error bars express the uncertainty of a data set graphically in a simple way by displaying only whiskers. Regardless of whether scatter or bar plot, error bars can easily be added to graphics with *matplotlib* ([more in the developer's docs](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.errorbar.html)). The following example shows the application of error bars to bar plots of the above ultrasonic sensor data.
+
+# Box-plots represent the statistical assets of datasets, but box-plots can quickly become confusing when they are presented in technical reports for multiple measurement series. Yet it is state-of-the-art and good practice to present uncertainties in datasets in scientific and non-scientific publications, but somewhat more easily than, for example, with box-plots. To meet the standards of good practice, so-called [error bars](https://en.wikipedia.org/wiki/Error_bar) should be added to data bars. Error bars express the uncertainty of a data set graphically in a simple way by displaying only whiskers. Regardless of whether scatter or bar plot, error bars can easily be added to graphics with *matplotlib* ([more in the developer's docs](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.errorbar.html)). The following example shows the application of error bars to bar plots of the above ultrasonic sensor data.
+
+# In[9]:
+
 
 fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(10, 2.5), dpi=150)
 # calculate stats
@@ -307,34 +345,38 @@ errors = us_sensor_df.std()
 means.plot.bar(yerr=errors, capsize=4, color='palegreen', title="Error bars", width=0.3, fontsize=fontsize, ax=axes[0])
 means.plot.barh(xerr=errors, capsize=5, color="lightsteelblue", title="Horizontal error bars", fontsize=fontsize, ax=axes[1])
 
-```{note}
-In scatter plots, errors are present in both *x* and *y* directions. For example, the *x*-uncertainty may result from the measurement device precision and *y*-uncertainty can be a result of signal processing. The above error measure in terms of the standard deviation is just an example of error amplitude. To measure and represent uncertainty correctly, always refer to device descriptions and assess precision effects of multiple devices or signal processing by calculating the [propagation of errors](https://en.wikipedia.org/wiki/Propagation_of_uncertainty).
-```
 
-More options for visualizing *pandas* data frame is provided in the [developer's visualization docs](https://pandas.pydata.org/pandas-docs/stable/user_guide/visualization.html) - and keep in mind that *matplotlib* can always be well nested in *pandas* plots.
+# ```{note}
+# In scatter plots, errors are present in both *x* and *y* directions. For example, the *x*-uncertainty may result from the measurement device precision and *y*-uncertainty can be a result of signal processing. The above error measure in terms of the standard deviation is just an example of error amplitude. To measure and represent uncertainty correctly, always refer to device descriptions and assess precision effects of multiple devices or signal processing by calculating the [propagation of errors](https://en.wikipedia.org/wiki/Propagation_of_uncertainty).
+# ```
+# 
+# More options for visualizing *pandas* data frame is provided in the [developer's visualization docs](https://pandas.pydata.org/pandas-docs/stable/user_guide/visualization.html) - and keep in mind that *matplotlib* can always be well nested in *pandas* plots.
 
-(plotly)=
-## Interactive Plots with *plotly* 
+# (plotly)=
+# ## Interactive Plots with *plotly* 
+# 
+# The above shown *matplotlib* and *pandas* packages are great for creating static graphs or click-able graphs on a desktop environment. Although interactive plots for web presentations can be created with *matplotlib* ([read more in the *matplotlib* docs](https://matplotlib.org/3.1.1/users/interactive.html)), *plotly* leverages many more interactive web plot options within an easy-to-use API library. *plotly* can also handle JSON-like data (hosted somewhere in the internet) to create web applications with *Dash*. However, the company behind (*Plotly*) is a business-oriented 
+# 
 
-The above shown *matplotlib* and *pandas* packages are great for creating static graphs or click-able graphs on a desktop environment. Although interactive plots for web presentations can be created with *matplotlib* ([read more in the *matplotlib* docs](https://matplotlib.org/3.1.1/users/interactive.html)), *plotly* leverages many more interactive web plot options within an easy-to-use API library. *plotly* can also handle JSON-like data (hosted somewhere in the internet) to create web applications with *Dash*. However, the company behind (*Plotly*) is a business-oriented 
+# ### Installation
+# *plotly* is not a default package neither in the *environment.yml* (`hypy`) environment file nor in the *conda base* environment. Therefore, it must be installed manually with *conda prompt* (or *Conda Navigator* if you prefer the Desktop version). So open *conda prompt* to install *plotly* for:
+# 
+# * *jupyter* usage type with the base environment activated: <br> `conda install plotly` (confirm installation when asked for it) <br> `jupyter labextension install jupyterlab-plotly@4.11.0` (change version `4.11.0` to latest version listed [here](https://github.com/plotly/plotly.py/releases)) <br> optional: `conda install -c plotly chart-studio` (good for other plots than featured on this page)
+# * *hypy* (e.g., within *PyCharm*): <br> `conda activate hypy` <br>  `conda install plotly` (confirm installation when asked for it) <br> `conda install "notebook>=5.3" "ipywidgets>=7.2"`
+# * [Read the trouble shooting info to fix problems with jupyter or *Python*](https://plotly.com/python/troubleshooting/) (there may be some...).
+# 
+# Read more about installing packages within *conda environments* on the [*Python* installation page](pyinstall.html#install-pckg). 
 
+# ### Usage (Simple Plots)
+# 
+# *plotly* comes with many datasets that can be queried online for showcases. The following example uses one of these datasets (find more at [plotly.com](https://plotly.com/python-api-reference/generated/plotly.express.data.html)).
+# 
+# ```{admonition} Recall
+# If the graph is not showing up, open *Anaconda Prompt* and make sure to install support for *Jupyter Notebook* in the active environment: `conda install "notebook>=5.3" "ipywidgets>=7.2"`
+# ```
 
-### Installation
-*plotly* is not a default package neither in the *environment.yml* (`hypy`) environment file nor in the *conda base* environment. Therefore, it must be installed manually with *conda prompt* (or *Conda Navigator* if you prefer the Desktop version). So open *conda prompt* to install *plotly* for:
+# In[3]:
 
-* *jupyter* usage type with the base environment activated: <br> `conda install plotly` (confirm installation when asked for it) <br> `jupyter labextension install jupyterlab-plotly@4.11.0` (change version `4.11.0` to latest version listed [here](https://github.com/plotly/plotly.py/releases)) <br> optional: `conda install -c plotly chart-studio` (good for other plots than featured on this page)
-* *hypy* (e.g., within *PyCharm*): <br> `conda activate hypy` <br>  `conda install plotly` (confirm installation when asked for it) <br> `conda install "notebook>=5.3" "ipywidgets>=7.2"`
-* [Read the trouble shooting info to fix problems with jupyter or *Python*](https://plotly.com/python/troubleshooting/) (there may be some...).
-
-Read more about installing packages within *conda environments* on the [*Python* installation page](pyinstall.html#install-pckg). 
-
-### Usage (Simple Plots)
-
-*plotly* comes with many datasets that can be queried online for showcases. The following example uses one of these datasets (find more at [plotly.com](https://plotly.com/python-api-reference/generated/plotly.express.data.html)).
-
-```{admonition} Recall
-If the graph is not showing up, open *Anaconda Prompt* and make sure to install support for *Jupyter Notebook* in the active environment: `conda install "notebook>=5.3" "ipywidgets>=7.2"`
-```
 
 import plotly.express as px
 import plotly.graph_objects as go
@@ -346,7 +388,11 @@ fig.show()
 pyo.iplot(fig, filename='population')
 
 
-In hydraulics, we often prefer to visualize data in locally stored text files, for example after processing data with *NumPy* or *pandas*. *plotly* works hand in hand with *pandas* and the following example features plotting *pandas* data frames, build from a *csv* file, with *ploty* (better solutions for *pandas* data frame sorting are shown in the [reshaping section](hypy_pynum.html#pd-reshape) of the data handling page). The example uses `plotly.offline` to plot the data in notebook mode (`pyo.init_notebook_mode()`) and `pyo.iplot()` can be used to write the plot functions to a local script for interactive plotting. The *csv* file comes from the *Food and Agriculture Organization of the United Nations* (FAO) data center [FAOSTAT](http://www.fao.org/faostat/en/#data/ET).
+# 
+# In hydraulics, we often prefer to visualize data in locally stored text files, for example after processing data with *NumPy* or *pandas*. *plotly* works hand in hand with *pandas* and the following example features plotting *pandas* data frames, build from a *csv* file, with *ploty* (better solutions for *pandas* data frame sorting are shown in the [reshaping section](hypy_pynum.html#pd-reshape) of the data handling page). The example uses `plotly.offline` to plot the data in notebook mode (`pyo.init_notebook_mode()`) and `pyo.iplot()` can be used to write the plot functions to a local script for interactive plotting. The *csv* file comes from the *Food and Agriculture Organization of the United Nations* (FAO) data center [FAOSTAT](http://www.fao.org/faostat/en/#data/ET).
+
+# In[11]:
+
 
 import plotly.graph_objects as go
 import plotly.offline as pyo
@@ -378,8 +424,12 @@ fig = go.Figure(data=bar_plots, layout=layout)
 #fig.show(filename='basic-line2', include_plotlyjs=False, output_type='div')
 pyo.iplot(fig, filename='temperature-evolution')
 
-### Interactive map applications
-*plotly* uses [*GeoJSON*](https://en.wikipedia.org/wiki/GeoJSON) data formats (an open standard for simple geospatial objects) to implement them into interactive maps. The developers provide many examples in their documentation and the below code block replicates a map representing unemployment rates in the United States. More examples are available at the [developer's web site](https://plotly.com/python/maps/).
+
+# ### Interactive map applications
+# *plotly* uses [*GeoJSON*](https://en.wikipedia.org/wiki/GeoJSON) data formats (an open standard for simple geospatial objects) to implement them into interactive maps. The developers provide many examples in their documentation and the below code block replicates a map representing unemployment rates in the United States. More examples are available at the [developer's web site](https://plotly.com/python/maps/).
+
+# In[12]:
+
 
 import plotly.offline as pyo
 from urllib.request import urlopen
@@ -406,4 +456,5 @@ fig = px.choropleth_mapbox(df, geojson=counties, locations='fips', color='unemp'
 fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 fig.show()
 
-Many more maps are available and some of the require a *Mapbox* account and the creation of a public token (read more at [plotly.com](https://plotly.com/python/mapbox-layers/)).
+
+# Many more maps are available and some of the require a *Mapbox* account and the creation of a public token (read more at [plotly.com](https://plotly.com/python/mapbox-layers/)).

@@ -1,20 +1,130 @@
 (install-python)=
 # Install Python
 
-*Python*'s two-fold development (*Python2* and *Python3*) and other parallel versions of *Python* (e.g., ESRI's ArcGIS or Nvidia's cuda *Python* versions) may cause that multiple versions of *Python* are installed on your computer (even though *Python2* is about to disappear). As a consequence packages might have been unintentionally or unknowingly installed for another *Python* than used for a project. However, the parallel existence of multiple *Python* interpreters that may access packages may be beneficial (e.g., when packages are installed that are not compatible with each other). So, how to **deal with the challenge of having multiple *Python* interpreters (or environments) installed?**
+*Python*'s two-fold development (*Python2* and *Python3*) and other parallel versions of *Python* (e.g., ESRI's ArcGIS or Nvidia's cuda *Python* versions) may cause that multiple versions of *Python* are installed on your computer (even though *Python2* is about to disappear). As a consequence packages might have been unintentionally or unknowingly installed for another *Python* interpreter than used in a project. However, the parallel existence of multiple *Python* interpreters is sometimes beneficial, for instance, when packages are installed that are not compatible with each other. So how to **deal with the challenge of having multiple *Python* interpreters (or environments) installed?**
 
-***Conda* environments** are one solution to this challenge: A *Conda Environment* is a directory on your computer that represents a virtual environment with a particular *Python* interpreter (e.g., a Python2 or Python3 executable) and packages. The directory is typically named `env` (or `venv` for virtual environment) and *Anaconda* will control automatically where the environment directories (folders) are stored on your computer. On Windows, the typical directory is `C:\users\<your-user-name>\AppData\Local\Continuum\anaconda3\envs\`. Note that *AppData* is a hidden folder ([view hidden folders on Windows](https://support.microsoft.com/en-us/help/4028316/windows-view-hidden-files-and-folders-in-windows-10)). Only change the default directory for Conda Environment directories, if you exactly know what you are doing.
+There are multiple answers to this question and the best option depends, to some extent, to personal preferences and the **O**perating **S**ystem (**OS**) - also referred to as **platform**. For instance, *conda* environments might be preferable with *Windows* and *pip* environments with *Linux* (e.g., *Debian*/*Ubuntu*). Nevertheless, both *pip* and *conda* work well on both platforms (and also with *macOS*). Since *Python 3.4* (and *Python 2.7.9*), *pip* is installed with the basic {{ getpy }} installation. To work with *conda* environments, the installation of {ref}`anaconda` is required (no additional installation of *Python* is necessary in this case).
 
-```{admonition} Requirements
-Before you continue, **make sure that *Anaconda* or [Miniconda](https://docs.conda.io/en/latest/miniconda.html) is installed** according to the [descriptions in the *Get Started*](../get-started/ide.html#anaconda) section.
+*Conda* environments
+: A *conda environment* is a directory on your computer that represents a virtual environment with a particular *Python* interpreter (e.g., a Python2 or Python3 executable) and packages/libraries. The directory is typically named `env` (or `venv` for a virtual environment) and *Anaconda* will control automatically where the environment directories (folders) are stored on your computer. On *Windows*, the typical installation directory is `C:\users\<your-user-name>\AppData\Local\Continuum\anaconda3\envs\`. Note that *AppData* is a hidden folder ([view hidden folders on Windows](https://support.microsoft.com/en-us/help/4028316/windows-view-hidden-files-and-folders-in-windows-10)). Only change the default directory for *conda* environment directories, if you exactly know what you are doing.
+
+pipenv / venv
+: *pipenv* or *pip* environments are *Python* environments that can be created with *Python*s default [pip](https://pip.pypa.io/en/stable/) package-management system (default since *Python 2.7.9.* / *Python 3.4*). With pip, a virtual environment can be created (typically stored in a *venv* folder in the working directory).
+
+This section guides through the installation of a computational environment that is tailored for working with contents in this ebook. The environment uses the **flusstools** pip-package, which provides many useful routines for river analyses.
+
+## Get GDAL
+
+*FlussTools* fundamentally depends on many *gdal* functions and scripts, but the installation of *gdal* involves dependencies that often break with new developments on different platforms.
+
+### GDAL on Windows
+
+Get the latest wheel (**whl**) from https://www.lfd.uci.edu/~gohlke/pythonlibs/#gdal
+
+### GDAL on Linux
+
+Before getting ready to install *gdal* on *Linux*, make sure that all fundamental libraries are installed:
+
+```
+sudo apt install python3-pip python3-tk tk8.6-dev libgeos-dev
+```
+
+Then, install *QGIS* and *GDAL* for *Linux* (this should work with any *Debian* architecture) and make sure to use the correct `pip` command at the end (i.e., it might be necessary to replace `pip3` with `pip`):
+
+```
+ sudo add-apt-repository ppa:ubuntugis/ppa && sudo apt update
+ sudo apt install gdal-bin libgdal-dev
+ export CPLUS_INCLUDE_PATH=/usr/include/gdal
+ export C_INCLUDE_PATH=/usr/include/gdal
+ pip3 install GDAL
+ ```
+
+To resolve any recent issues, check out comments about the latest *GDAL* release on the `GDAL website <https://gdal.org/download.html#current-releases>`_.
+
+(pip-env)=
+## pip and venv
+
+Consider to install, create and activate a new virtual environment before installing the *flusstools* requirements (read more at {{ getpy }}) as follows:
+
+````{tabbed} Linux
+Install *virtualenv*:
+```
+python3 -m pip install --user virtualenv
+```
+Create a new virtual environment with *venv*:
+
+```
+python3 -m venv DIR/TO/ENV
+```
+
+Then activate the new environment:
+
+```
+source DIR/TO/ENV/bin/activate
+```
+Double-check that the environment is activated:
+```
+which python
+.../DIR/TO/ENV/bin/python
+```
+````
+
+````{tabbed} Windows
+Install *virtualenv* (in the following, alternatively use `py` instead of `python`, if `python` returns errors):
+```
+python -m pip install --user virtualenv
+```
+
+Create a new virtual environment with *venv*:
+
+```
+python -m venv DIR\TO\ENV
+```
+
+
+Then activate the new environment:
+
+```
+.\DIR\TO\ENV\Scripts\activate
+```
+
+Double-check that the environment is activated:
+```
+where python
+.../DIR/TO/ENV/bin/python.exe
+```
+````
+
+Read more about virtual environments and pip at [https://packaging.python.org](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/).
+
+Next, install the *flusstools* requirements, either in a newly created and activated virtual environment (recommended) or in the system's *Python* installation:
+
+* Download {{ ft_req }} (e.g., in the user `~/Downloads/` directory)
+* Open *Terminal* and `cd` to the download directory (e.g., `~/Downloads/`)
+* Install the *flusstools* requirements: `pip install -r requirements.txt`
+* Install *flusstools*: `pip install flusstools`
+
+```{admonition} Windows GDAL Error: `Setup script exited with error: Microsoft Visual C++ 14.0 ...`
+:class: error, dropdown
+ Currently, there is an issue with installing GDAL when *Microsoft Visual C++* is missing or outdated. Thus, to enable the installation of GDAL on *Windows*, first download and install **Microsoft Visual C++** from [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/).
 ```
 
 (conda-env)=
 ## Conda Environments
 
+### Quick Guide
+
+
+1. Download the *flussenv* [environment file](https://raw.githubusercontent.com/Ecohydraulics/flusstools-pckg/main/environment.yml) (if needed: copy the file contents of `environment.yml` in a local text editor, such as {ref}`npp`, and save the file for example in a directory called *C:/temp/*).
+1. Open *Anaconda Prompt* (`Windows` key > type `Anaconda Prompt` > hit `Enter`).
+1. Navigate to the download directory where `environment.yml` is located (use [`cd`](https://www.digitalcitizen.life/command-prompt-how-use-basic-commands) to navigate, for example, to `cd C:/temp/`).
+1. Enter `conda env create -f environment.yml` (this creates an environment called `flussenv`). <br> *... takes a while ...*
+1. Activate *flussenv*: `conda activate flussenv`
+1. Install *flusstools*: `pip install flusstools`
+
 ### Create and Install
 
-To create a new *conda* environment, open *Anaconda Prompt* and type (replace `ENV-NAME` for example with `hypy`):
+To create a new *conda* environment, open *Anaconda Prompt* and type (replace `ENV-NAME` for example with `flussenv`):
 
 ```
 conda create --name ENV-NAME python=3.8
@@ -22,10 +132,7 @@ conda create --name ENV-NAME python=3.8
 
 An alternative (and recommended for the tutorials on this page) option is to install an environment that suites most of the needs for codes and analyses shown on these pages through an *environment* (*YML*) file:
 
-1. Download the environment file [here](https://github.com/hydro-informatics/materials-py-install/blob/master/environment.yml) (if needed: copy the file contents of `environment.yml` in a local text editor tool such as [Notedpad++](https://notepad-plus-plus.org/) ([alternatives](hy_get-started/others.html#npp) and save the file for example in a directory called *C:/temp/*).
-1. Open *Anaconda Prompt* (`Windows` key > type `Anaconda Prompt` > hit `Enter`).
-1. Navigate to the download directory where `environment.yml` is located (use   [`cd`](https://www.digitalcitizen.life/command-prompt-how-use-basic-commands)   to navigate for example to *C:/temp/*).
-1. Enter `conda env create -f environment.yml` (this creates an environment called `hypy`).
+
 
 ```{tip}
 The provided [environment.yml](https://github.com/hydro-informatics/materials-py-install/blob/master/environment.yml) file creates a carefree environment for using *Python* as described on this website. Still, you may want to create your own environment and use this section refresh your mind for installing any missing libraries.
@@ -33,20 +140,20 @@ The provided [environment.yml](https://github.com/hydro-informatics/materials-py
 
 ### Activate Environment
 
-The active environment corresponds to the environment that you are working in (e.g., for installing libraries or using *Jupyter*). To activate the above-created *hypy* environment:
+The active environment corresponds to the environment that you are working in (e.g., for installing libraries or using *Jupyter*). To activate the above-created *flussenv* environment:
 
 1. Open *Anaconda Prompt* (`Windows` key or click on the start menu of your operating system > type `Anaconda Prompt` > hit `Enter`).
-1. Activate the *hypy* environment with `conda activate hypy`
+1. Activate the *flussenv* environment with `conda activate flussenv`
 
 (install-pckg)=
 ### Install Additional *Python* Packages
 
 To install more {ref}`*Python* packages <sec-pypckg>`:
 
-1. Activate the environment where you want to install, remove, or modify packages (e.g., `conda activate hypy` - see above).
+1. Activate the environment where you want to install, remove, or modify packages (e.g., `conda activate flussenv` - see above).
 1. Install a package by typing `conda install PACKAGE_NAME` (if the package cannot be found, try `conda install -c conda-forge PACKAGE_NAME`).
 
-Alternatively, press the `Windows` key (or click on the start menu of your operating system) > type `Anaconda Navigator` > got to the `Environments` tab > select the `hypy` environment (or create another environment) > *install* > install packages.
+Alternatively, press the `Windows` key (or click on the start menu of your operating system) > type `Anaconda Navigator` > got to the `Environments` tab > select the `flussenv` environment (or create another environment) > *install* > install packages.
 
 ### Remove (Delete) Environment
 To remove a conda environment open *Anaconda Prompt* and type:
@@ -55,17 +162,18 @@ To remove a conda environment open *Anaconda Prompt* and type:
 conda env remove --name ENVIRONMENT-TO-REMOVE
 ```
 
-For example, to remove the `hypy` environment type:
+For example, to remove the `flussenv` environment type:
 
 ```
-conda env remove --name hypy
+conda env remove --name flussenv
 ```
 
 There are many more `conda` commands and the most important ones are summarized in the developer's [*conda* cheat sheet](https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf).
 
+(python-ide-setup)=
 ## Setup Interfaces and IDEs
 
-To follow the course content and run code cells, it is recommended to use [*JupyterLab*](../get-started/ide.html#jupyter). To create projects, develop programs, or simply to complete course assignments, it is recommended to use an Integrated Development Environment (*IDE*) such as [*PyCharm*](../get-started/ide.html#pycharm).
+To follow the course content and run code cells, it is recommended to use {ref}`jupyter`, which can be installed locally or run it remotely by clicking on [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter) - the batch is implementd at the top of all jupyter notebook-based sections. To create projects, develop programs, or simply to complete course assignments, it is recommended to use an Integrated Development Environment (*IDE*), such as {ref}`pycharm`.
 
 ### JupyterLab
 
@@ -117,8 +225,46 @@ from gdal import osr
 The `default_profile` is part of the default *Jupyter* installation and it is normally not necessary to create it manually. The [*IPython* docs](https://ipython.org/ipython-doc/stable/config/intro.html) provide more detail about custom settings and modifying profiles on any platform.
 ```
 
+(atom-setup)=
+### Atom and Python
+
+Window Users
+: Preferably use the *flusstools* conda environment because its *gdal* dependency may cause errors when used with *pip*. To setup a *Python* *Anaconda* terminal in *Atom* the following **one-time steps** are required:
+
+  * Make sure that the `platformio-ide-terminal` package is installed (see {ref}`atom-packages`).
+  * Launch `platformio-ide-terminal` (in *Atom* go to **Packages** (top menu) > **platformio-ide-terminal** > **New Terminal**)
+  * Typically, [PowerShell](https://aka.ms/pscore6) will open, where the following commands need to be entered:
+    * `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`
+    * `conda init`
+  * Close the current PowerShell.
+
+  The following steps are necessary for **regular use** of the *flusstools* package in a *conda* environment in `platformio-ide-terminal`:
+
+  * Launch `platformio-ide-terminal` (in *Atom* go to **Packages** (top menu) > **platformio-ide-terminal** > **New Terminal**)
+  * In the terminal activate the *flussenv* environment: `conda activate flusstools`
+  * In the activated environment launch python `python`
+  * If the installation of *gdal* and *flusstool* was successful, the following imports should pass silently (otherwise, start over with installing *flussenv* and *flusstools*):
+    * `import gdal`
+    * `import flusstools as ft`
+
+Linux Users
+: When *flusstools* and its requirements were installed in the system's *Python* interpreter, it is sufficient to launch `platformio-ide-terminal` (in *Atom* go to **Packages** (top menu) > **platformio-ide-terminal** > **New Terminal**). Note that this action requires that the `platformio-ide-terminal` package is installed (see {ref}`atom-packages`).
+
+  In the opening terminal start *Python* and try to import *flusstools*:
+
+  ```
+  user:~$ python
+  Python 3.X.X (default, MMM DD YYYY, hh:mm:ss)
+  [GCC 9.X.X on linux]
+  >>> import flusstools as ft
+  ```
+
+  The import of *flusstools* should pass silently. Otherwise, re-install the requirements (`pip install -r requirements.txt`) and *flusstools* ( `pip install flusstools`).
+
+
+
 (ide-setup)=
-### PyCharm
+### PyCharm Python Projects
 
 After the successful installation of [*PyCharm*](../get-started/ide.html#ide) within *Anaconda*, use the just created *conda* environment as interpreter. The following steps guide through the setup of *PyCharm* for using *conda* environments.
 
@@ -128,20 +274,21 @@ After the successful installation of [*PyCharm*](../get-started/ide.html#ide) wi
 
 Create a new project in PyCharm.
 ```
-1. Define The new `hypy` environment as *Pure Python* project interpreter:
+1. Define The new `flussenv` environment as *Pure Python* project interpreter:
     * Select *New environment using `Conda`
-    * In the *Location* box select the new `hypy` environment
+    * In the *Location* box select the new `flussenv` environment
     * Click *Create* to create the new project.
    ```{figure} ../img/pyc-prj-setup.png
 :alt: pyc-prj-setup
 
-Setup the hypy conda environment for the new project.
+Setup the flussenv conda environment for the new project.
 ```
 1. Verify that the project interpreter is correctly defined:
-    * Click on *PyCharm*'s `File` menu and select `Settings...`
-    * In the *Settings* window go to `Project: [NAME]` > `Project Interpreter`
-    * Make sure that the above-created `hypy` *conda* environment is defined as *Project Interpreter*.
-   ```{figure} ../img/pyc-prj-interp.png
+  * Click on *PyCharm*'s `File` menu and select `Settings...`
+  * In the *Settings* window go to `Project: [NAME]` > `Project Interpreter`
+  * Make sure that the above-created `flussenv` *conda* environment is defined as *Project Interpreter*.
+
+ ```{figure} ../img/pyc-prj-interp.png
 :alt: pyc-prj-interp
 
 Verify the correct setup of the Project Interpreter.

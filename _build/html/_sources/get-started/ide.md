@@ -1,4 +1,5 @@
-# Anaconda and Integrated Development Environments (IDEs)
+(sec-ide)=
+# Integrated Development Environments (IDEs)
 
 The teaching contents on this website build on so-called *Application Programming Inferace*s (*API*s) and *Integrated Development Environment*s (*IDE*s).<br>
 An ***API*** represents a computing interface that enables interactions between multiple software intermediaries. Modular programming becomes easy with an *API*, because it systematically hides complex information that is not necessarily needed to write code according to industry standards. For instance, an *API* can define the interface between an application (such as *Python* or *Word*) and an *Operating System* (*OS*) such as *Windows*, *Linux*, or *macOS*.<br>
@@ -109,3 +110,62 @@ In the case that several warning messages occur when starting *JupyterLab* (such
 ```
 conda install "nbconvert=5.6.1"
 ```
+
+(install-atom)=
+## Atom
+
+*Atom* is a hackable text editor that is compatible with almost any programming language. While its bare installation has little functionality, the omni-compatibility can be enabled by installing desired packages (e.g., for *Python*, *Markdown*, or *LaTex*). Another big advantage of *Atom* is the availability of powerful spell checker packages.
+
+### Install on Windows
+**Windows** users can download *Atom* from [atom.io](https://atom.io/) and install the executable.
+
+### Install on Linux
+**Linux** users find installers for various distributions at [atom.io](https://atom.io/). **Debian** (**Ubuntu**), **Red Hat** / **CentOS**, **Fedora**, and **SUSE** find easy installation guides at [https://flight-manual.atom.io](https://flight-manual.atom.io/getting-started/sections/installing-atom/).
+
+The short version for **Debian** (**Ubuntu**) is:
+
+* Add the *Atom* package repository to the system:
+
+```
+wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
+sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'
+sudo apt update
+```
+
+* Then install *Atom*:
+
+```
+sudo apt install atom
+```
+
+### Relevant Atom Packages
+
+To install packages:
+
+* *Windows* users go to **File** > **Settings** > **+ Install**
+* *Linux* users go to **Edit** > **Preferences** > **+ Install**
+
+The following (additional) packages are useful for working with contents of this ebook:
+
+* `ide-python` provides language support for Python code
+* `language-markdown` (optional) for writing documentations with [Markdown](https://daringfireball.net/projects/markdown/).
+* `language-restructuredtext` (optional) for writing documentations with [reStructuredText](https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html).
+* `language-tex` (optional) to write reports or presentations with [LaTex](https://www.latex-project.org/)
+* `linter` basic package for spell checkers
+* `linter-markdown` spell checks *Markdown* files
+* `linter-spell-rst` spell checks *reStructuredText*
+* `platformio-ide-terminal` adds a terminal window to *Atom*
+* `python-docstring` facilitates inline documentation of *Python* code
+* `python-requirements` enables to install required packages for running *Python* code
+* * `script` enables to run *Python* and many other code types ([read the docs](https://atom.io/packages/script)); after the installation, running a code (*Python*) file can be triggered by clicking on the **Packages** top menu > **Script**  > **Run Script**.
+
+(atom-python)=
+### Enable Python Console
+
+While the `script` package enables to run a *Python* script, it may be desireable to have a built-in *Python* console window running in *Atom*. To this end, the `platformio-ide-terminal` package tweaks into the system's default terminal (*Terminal* on *Linux* or *PowerShell* on *Windows 10*), which can run an existing installation of *Python* (i.e., *Python* must be installed on the system in some form).
+
+Windows Users
+: Preferably install {ref}`anaconda` and add the {{ ft_url }} environment and package as explained in the [FlussTools docs for Windows](https://flusstools.readthedocs.io/en/latest/getstarted.html#get-ready-on-windows).
+
+Linux Users
+: Almost all *Linux* distributions have *Python* natively installed. For the best learning experience with this eBook, install the {{ ft_url }} package by following the instructions in the [FlussTools docs for Linux](https://flusstools.readthedocs.io/en/latest/getstarted.html#get-ready-on-linux).

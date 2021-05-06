@@ -11,6 +11,10 @@ Students of the University of Stuttgart may want to explore the [TIK's GitHub ac
 
  The {ref}`software` chapter guides through the installation of relevant software for lectures.
 
+ ## Open Access Videos
+
+ Some contents of this website are accompanied with public videos hosted on *YouTube*. Find out more by visitng the [@ Hydro-Morphodynamics channel on YouTube](https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ).
+
 ## Exercises
 
 Exercises are an integral part of this ebook and additional materials are provided on external git repositories, such as:

@@ -1,6 +1,7 @@
-- file: index
-
-- part: Get Started
+format: jb-book
+root: index
+parts:
+- caption: Get Started
   chapters:
   - file: lectures/classroom
     sections:
@@ -10,17 +11,16 @@
     sections:
     - file: get-started/vm
     - file: get-started/ide
+    - file: python-basics/pyinstall
     - file: get-started/git
     - file: get-started/geo
     - file: get-started/install-openfoam
     - file: get-started/install-telemac
     - file: get-started/others
-
-- part: Python Basics
+- caption: Python Basics
   chapters:
   - file: python-basics/python
     sections:
-    - file: python-basics/pyinstall
     - file: jupyter/pybase
     - file: jupyter/pyerror
     - file: jupyter/pyloop
@@ -43,15 +43,13 @@
     - file: exercises/ex-floods
     - file: exercises/ex-sediment
     - file: exercises/ex-gui
-
-- part: Documentation
+- caption: Documentation
   chapters:
   - file: documentation/documentation
   - file: exercises/docs-exercises
     sections:
     - file: exercises/ex-git
-
-- part: Geospatial Analysis
+- caption: Geospatial Analysis
   chapters:
   - file: geopy/geospatial-data
   - file: geopy/use-qgis
@@ -65,8 +63,7 @@
   - file: exercises/geo-exercises
     sections:
     - file: exercises/ex-geco
-
-- part: Numerical Modeling
+- caption: Numerical Modeling
   chapters:
   - file: numerics/numerical-modeling
   - file: numerics/pre-qgis
@@ -78,8 +75,7 @@
     - file: numerics/telemac-gaia
   - file: numerics/openfoam
   - file: numerics/calibration
-
-- part: Troubleshoot
+- caption: Troubleshoot
   chapters:
   - file: troubleshoot/dbg-programming
     sections:
@@ -94,8 +90,7 @@
     sections:
     - file: troubleshoot/dbg-linux
     - file: troubleshoot/dbg-vm
-
-- part: Disclaimer and License
+- caption: Disclaimer and License
   chapters:
   - file: terms/license
   - file: terms/disclaimer

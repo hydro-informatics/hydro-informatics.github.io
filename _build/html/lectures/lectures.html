@@ -5,9 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lectures and exercises &#8212; Hydro-Informatics</title>
+    <title>Lectures and Eexercises &#8212; Hydro-Informatics</title>
     
-  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -35,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -46,7 +43,7 @@
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/tabs.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -60,23 +57,14 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Take a Seat in the Virtual Classroom" href="take_seat.html" />
     <link rel="prev" title="The Virtual Classroom" href="classroom.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-<!-- Opengraph tags -->
-<meta property="og:url"         content="https://hydro-informatics.github.io/lectures/lectures.html" />
-<meta property="og:type"        content="article" />
-<meta property="og:title"       content="Lectures and exercises" />
-<meta property="og:description" content="Lectures and exercises  Lectures in the virtual classroom  The majority of the courses take place in front of a screen in the form of video conferences, video s" />
-<meta property="og:image"       content="https://hydro-informatics.github.io/_static/icon.jpg" />
-
-<meta name="twitter:card" content="summary" />
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -85,33 +73,38 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/icon.jpg" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/icon.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <p class="caption collapsible-parent">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
  <span class="caption-text">
   Get Started
  </span>
 </p>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1 current active collapsible-parent">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="classroom.html">
    The Virtual Classroom
   </a>
-  <ul class="current collapse-ul">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Lectures and exercises
+     Lectures and Eexercises
     </a>
    </li>
    <li class="toctree-l2">
@@ -120,27 +113,25 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../get-started/software.html">
    Software Resources
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../get-started/vm.html">
      Virtual Machines and Linux
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/vm.html#get-started-with-debian-linux">
-     Get started with (Debian) Linux
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="../get-started/ide.html">
-     Anaconda and Integrated Development Environments (IDEs)
+     Integrated Development Environments (IDEs)
     </a>
    </li>
    <li class="toctree-l2">
@@ -169,21 +160,24 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Python Basics
  </span>
 </p>
-<ul class="nav sidenav_l1">
- <li class="toctree-l1 collapsible-parent">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../python-basics/python.html">
    Get Started with Python
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../python-basics/pyinstall.html">
      Install Python
@@ -205,14 +199,17 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../python-basics/modularize.html">
    Modularization &amp; Object Orientation
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/pyfun.html">
      Functions
@@ -229,32 +226,20 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../python-basics/data-handling.html">
    Data and File Handling
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/pynum.html">
      Load and Write Basic Data Files
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pynum.html#numpy">
-     NumPy
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pynum.html#pandas">
-     Pandas
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pynum.html#dates-and-time">
-     Dates and Time
     </a>
    </li>
    <li class="toctree-l2">
@@ -268,8 +253,6 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../jupyter/pystyle.html">
@@ -281,11 +264,16 @@
    Graphical User Interfaces (GUIs)
   </a>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../exercises/python-exercises.html">
    Python Exercises
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-ms.html">
      1d Hydraulics (Manning-Strickler Formula)
@@ -324,42 +312,43 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Documentation
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../documentation/documentation.html">
    Markdown and Code Documentation
   </a>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../exercises/docs-exercises.html">
    Exercises
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-git.html">
      Git and markdown
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Geospatial Analysis
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../geopy/geospatial-data.html">
    Geospatial Data
@@ -370,11 +359,16 @@
    QGIS tutorial
   </a>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../geopy/geo-python.html">
    Geospatial Python
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../geopy/geo-pckg.html">
      Geospatial Python - Open Source Packages
@@ -401,30 +395,31 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../exercises/geo-exercises.html">
    Exercises
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-geco.html">
      Script-Create a Habitat Suitability Map
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Numerical Modeling
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../numerics/numerical-modeling.html">
    Principles
@@ -440,11 +435,16 @@
    BASEMENT
   </a>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../numerics/telemac.html">
    TELEMAC
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../numerics/telemac2d.html">
      Pre-Processing for TELEMAC models
@@ -461,8 +461,6 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../numerics/openfoam.html">
@@ -475,17 +473,22 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Troubleshoot
  </span>
 </p>
-<ul class="nav sidenav_l1">
- <li class="toctree-l1 collapsible-parent">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../troubleshoot/dbg-programming.html">
    Programming Tools and IDEs
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
      Debugging Anaconda
@@ -502,14 +505,17 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
    Numerical Models
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../troubleshoot/dbg-basement.html">
      Debugging BASEMENT
@@ -521,14 +527,17 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../troubleshoot/dbg-os.html">
    Operating Systems (Linux and VMs)
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../troubleshoot/dbg-linux.html">
      Debugging Debian Linux
@@ -540,16 +549,14 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Disclaimer and License
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../terms/license.html">
    License
@@ -562,6 +569,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -577,21 +585,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -609,7 +617,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -624,28 +632,33 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#lectures-in-the-virtual-classroom">
-   Lectures in the virtual classroom
+  <a class="reference internal nav-link" href="#lectures">
+   Lectures
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#open-access-videos">
+   Open Access Videos
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -704,8 +717,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -713,34 +726,38 @@
         
               <div>
                 
-  <div class="section" id="lectures-and-exercises">
-<h1>Lectures and exercises<a class="headerlink" href="#lectures-and-exercises" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="lectures-in-the-virtual-classroom">
-<h2>Lectures in the virtual classroom<a class="headerlink" href="#lectures-in-the-virtual-classroom" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="lectures-and-eexercises">
+<h1>Lectures and Eexercises<a class="headerlink" href="#lectures-and-eexercises" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="lectures">
+<h2>Lectures<a class="headerlink" href="#lectures" title="Permalink to this headline">¶</a></h2>
 <p>The majority of the courses take place in front of a screen in the form of video conferences, video streaming, wiki-like documentation, or interactive exercises.
-During virus-free times, computers are available to students directly on campus. at the University of Stuttgart. To improve independent work capacities, however, it is highly recommended that students use an own laptop or desktop computer.</p>
+During pandemic-free times, computers are available to students directly on campus at the University of Stuttgart. To improve independent work capacities, however, it is highly recommended that students learn to setup an efficient work environment an own laptop or desktop computer.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Students of the University of Stuttgart may want to explore the <a class="reference external" href="https://github.tik.uni-stuttgart.de/login">TIK’s GitHub account and login page</a> (use your institutional ID, for example, <code class="docutils literal notranslate"><span class="pre">st9009133</span></code>) to leverage collaborative work with code.</p>
 </div>
-<p>The codes created and provided in the lectures are mostly based on <em>Python3</em> <em>conda</em> environments. The <a class="reference internal" href="../get-started/git.html"><span class="doc std std-doc">Get started</span></a> chapter and the <a class="reference internal" href="../python-basics/pyinstall.html"><span class="doc std std-doc">install and setup</span></a> section provides more details and installation hints regarding required software (preferred open-access).</p>
+<p>The <a class="reference internal" href="../get-started/software.html#software"><span class="std std-ref">Software Resources</span></a> chapter guides through the installation of relevant software for lectures.</p>
+</div>
+<div class="section" id="open-access-videos">
+<h2>Open Access Videos<a class="headerlink" href="#open-access-videos" title="Permalink to this headline">¶</a></h2>
+<p>Some contents of this website are accompanied with public videos hosted on <em>YouTube</em>. Find out more by visitng the <a class="reference external" href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">&#64; Hydro-Morphodynamics channel on YouTube</a>.</p>
 </div>
 <div class="section" id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
-<p>Exercises are provided as integral part of this website and as external git repositories enable cloning materials such as:</p>
+<p>Exercises are an integral part of this ebook and additional materials are provided on external git repositories, such as:</p>
 <ul class="simple">
 <li><p>Assignment instructions,</p></li>
 <li><p>Code templates, and</p></li>
-<li><p>Data files (where necessary).</p></li>
+<li><p>Data files.</p></li>
 </ul>
-<p>The link to each exercise’s git repository is provided at the top of each exercise page.</p>
+<p>The link to every exercise’s git repository is provided at the top of each exercise page.</p>
 </div>
 <div class="section" id="python-programming-for-water-resources-engineering-and-research">
 <span id="pywrm"></span><h2>Python programming for Water Resources Engineering and Research<a class="headerlink" href="#python-programming-for-water-resources-engineering-and-research" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="about">
 <h3>About<a class="headerlink" href="#about" title="Permalink to this headline">¶</a></h3>
-<p>This course introduces the version-control system git and the programming language Python 3. Students learn in to use programming methods for engineering tasks, data processing including basic statistical evaluations, and geospatial analyses. Practice-oriented exercises with small homeworks guide through the programmatic solution to typical challenges in water resources engineering and research, such as ecohydraulic and sediment transport assessments. The communication between efficient algorithms and other data types (e.g., <em>JSON</em> or <em>xlsx</em> workbooks) is also presented and part of the exercises. The second part of the course introduces geospatial programming methods and data analyses.</p>
-<p>Interactive lectures familiarize students with version control via git, markdown language for documentation and <em>Python</em> programming. The course is organized by the <a class="reference external" href="https://www.iws.uni-stuttgart.de/en/lww/">IWS-LWW department</a> at the <a class="reference external" href="https://www.uni-stuttgart.de/">University of Stuttgart</a> in the Winter semester. The course builds on in-house and external open access materials, which serve as a reference guide and support for independent studies.</p>
+<p>This course introduces the version-control system git and the programming language Python 3. Students learn to use programming methods for engineering tasks, data processing including basic statistical evaluations, and geospatial analyses. Practice-oriented exercises with small homeworks guide through the programmatic solution to typical challenges in water resources engineering and research, such as ecohydraulic and sediment transport analyses. The communication between efficient algorithms and various data types (e.g., <em>JSON</em> or <em>xlsx</em> workbooks) is also part of the lectures and the exercises. The latter part of the course introduces geospatial programming methods and data analyses.</p>
+<p>Interactive lectures familiarize students with version control via git, markdown language for documentation and <em>Python</em> programming. The course is organized by the <a class="reference external" href="https://www.iws.uni-stuttgart.de/en/lww/">IWS-LWW department</a> at the <a class="reference external" href="https://www.uni-stuttgart.de/">University of Stuttgart</a> in winter semesters for the <a class="reference external" href="https://www.warem.uni-stuttgart.de/">Water Resources Engineering and Management (WAREM)</a> program. The course builds on in-house and external open access materials, which serve as a reference guide and support for independent studies.</p>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
 <p>To ensure adequate support for every student, the number of participants is limited to 15. For this reason, register as soon as possible on <a class="reference external" href="https://ilias3.uni-stuttgart.de/goto_Uni_Stuttgart_crs_2101155.html">ILIAS</a> and <a class="reference external" href="https://campus.uni-stuttgart.de/cusonline/pl/ui/%24ctx/wbLv.wbShowLVDetail?pStpSpNr=272592">C&#64;MPUS</a> (decisive is the registration on C&#64;MPUS).</p>
@@ -748,18 +765,28 @@ During virus-free times, computers are available to students directly on campus.
 </div>
 <div class="section" id="requirements">
 <h3>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h3>
-<p>The paramount requirement is the willingness to regularly invest time in the lectures, because this course is about more than just learning a programming language.
-Previous programming experience is not necessary and the course also and explicitly addresses students who have not yet made use of programming tools.</p>
-<p>In terms of software, make sure to install (or having installed on any accessible computer) the following programs described in the <a class="reference internal" href="../get-started/ide.html"><span class="doc std std-doc">Get started</span></a> chapter:</p>
+<p>The paramount requirement is the willingness to regularly invest time in the lectures because this course is about more than just passing an exam: students will acquire new abilities.</p>
+<p>Previous programming experience is not necessary and the course also and explicitly addresses students who have not yet made use of programming tools.</p>
+<p>Different software solutions work for the course and the section on <a class="reference internal" href="../get-started/ide.html#sec-ide"><span class="std std-ref">Integrated Development Environments (IDEs)</span></a> guides through their installation:</p>
+<dl class="simple myst">
+<dt>Minimum installation</dt><dd><p>All students will need a minimum of software to participate in the course. The minimum software involves:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="../get-started/ide.html#anaconda">Anaconda</a> with its <em>Anaconda Navigator</em> and <em>Anaconda Prompt</em> interfaces.</p></li>
-<li><p><a class="reference external" href="../get-started/ide.html#pycharm">PyCharm</a>, <em>Spyder</em> or any equivalent <em>Python</em> IDE.</p></li>
-<li><p><a class="reference external" href="../get-started/ide.html#jupyter">JupyterLab</a> to edit jupyter notebooks.</p></li>
-<li><p>Ensure that <a class="reference external" href="../get-started/git.html#dl">git is installed</a>, and thus, can be understood by your system’s command line or terminal.</p></li>
-<li><p><a class="reference internal" href="../get-started/geo.html"><span class="doc std std-doc">QGIS</span></a> aids to visualize geospatial datasets used and created in the <a class="reference internal" href="../geopy/geo-python.html"><span class="doc std std-doc">Python<sup>geospatial</sup></span></a> chapter (not mandatory).</p></li>
-<li><p><a class="reference external" href="../get-started/others.html#lo">Libre Office</a> (or any other software) to edit workbooks (not mandatory).</p></li>
-<li><p><a class="reference external" href="../get-started/others.html#npp">Notepad++</a> to get a clean and quick overview of many script and text-based data file types (not mandatory).</p></li>
+<li><p><a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a></p></li>
+<li><p>A basic text editor (any solution works); <em>Windows</em> users may want to use <a class="reference internal" href="../get-started/others.html#npp"><span class="std std-ref">NotepadPlusPlus</span></a>; <em>Linux</em> users may prefer <a class="reference internal" href="../get-started/ide.html#install-atom"><span class="std std-ref">Atom</span></a>.</p></li>
+<li><p><em>Windows</em> users will also need to <a class="reference internal" href="../get-started/git.html#dl"><span class="std std-ref">Install and Use git</span></a>.</p></li>
+<li><p>A rich text office file editor, such as <a class="reference internal" href="../get-started/others.html#lo"><span class="std std-ref">Libre Office (MS Office alternative)</span></a>, will also be very useful.</p></li>
 </ul>
+</dd>
+<dt>Solution 1: Full-stack Python Anaconda Installation</dt><dd><p>The installation of Anaconda enables the usage of various IDEs that use so-called <em>conda</em> environments for Python. This is the <em>all-inclusive</em> option in terms of functionality, but it is quite heavy regarding storage and system resource consumption. This full-stack solution requires to install the following:</p>
+<ul class="simple">
+<li><p>Primarily <a class="reference internal" href="../get-started/ide.html#anaconda"><span class="std std-ref">Anaconda</span></a> with its <em>Anaconda Navigator</em> and <em>Anaconda Prompt</em> interfaces, which facilitates the installation of IDEs.</p></li>
+<li><p>Either <a class="reference internal" href="../get-started/ide.html#pycharm"><span class="std std-ref">PyCharm (via Anaconda Navigator)</span></a> (external inteface) or <em>Spyder</em> (directly available in <em>Anaconda</em> )IDE.</p></li>
+<li><p>Optionally <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a> for editing and running jupyter notebooks (alternatively, use the <a class="reference external" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> buttons that enable running jupyter notebooks online)</p></li>
+</ul>
+</dd>
+<dt>Solution 2: Atom</dt><dd><p>At the core, <em>Atom</em> is a text editor, but i can easily extended with many capacities for alomost all popular programming languages.</p>
+</dd>
+</dl>
 </div>
 <div class="section" id="schedule-winter-2021-22">
 <h3>Schedule (Winter 2021/22)<a class="headerlink" href="#schedule-winter-2021-22" title="Permalink to this headline">¶</a></h3>
@@ -831,15 +858,15 @@ Previous programming experience is not necessary and the course also and explici
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="classroom.html" title="previous page">The Virtual Classroom</a>
     <a class='right-next' id="next-link" href="take_seat.html" title="next page">Take a Seat in the Virtual Classroom</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -856,11 +883,9 @@ Previous programming experience is not necessary and the course also and explici
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
+  
   </body>
 </html>

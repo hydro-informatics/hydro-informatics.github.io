@@ -5,9 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Anaconda and Integrated Development Environments (IDEs) &#8212; Hydro-Informatics</title>
+    <title>Integrated Development Environments (IDEs) &#8212; Hydro-Informatics</title>
     
-  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -35,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -46,7 +43,7 @@
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/tabs.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -60,23 +57,14 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Introduction to git" href="git.html" />
     <link rel="prev" title="Virtual Machines and Linux" href="vm.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-<!-- Opengraph tags -->
-<meta property="og:url"         content="https://hydro-informatics.github.io/get-started/ide.html" />
-<meta property="og:type"        content="article" />
-<meta property="og:title"       content="Anaconda and Integrated Development Environments (IDEs)" />
-<meta property="og:description" content="Anaconda and Integrated Development Environments (IDEs)  The teaching contents on this website build on so-called Application Programming Inferaces (APIs) and I" />
-<meta property="og:image"       content="https://hydro-informatics.github.io/_static/icon.jpg" />
-
-<meta name="twitter:card" content="summary" />
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -85,33 +73,38 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/icon.jpg" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/icon.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <p class="caption collapsible-parent">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
  <span class="caption-text">
   Get Started
  </span>
 </p>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1 collapsible-parent">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../lectures/classroom.html">
    The Virtual Classroom
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../lectures/lectures.html">
-     Lectures and exercises
+     Lectures and Eexercises
     </a>
    </li>
    <li class="toctree-l2">
@@ -120,27 +113,25 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 current active collapsible-parent">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="software.html">
    Software Resources
   </a>
-  <ul class="current collapse-ul">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="vm.html">
      Virtual Machines and Linux
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="vm.html#get-started-with-debian-linux">
-     Get started with (Debian) Linux
-    </a>
-   </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Anaconda and Integrated Development Environments (IDEs)
+     Integrated Development Environments (IDEs)
     </a>
    </li>
    <li class="toctree-l2">
@@ -169,21 +160,24 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Python Basics
  </span>
 </p>
-<ul class="nav sidenav_l1">
- <li class="toctree-l1 collapsible-parent">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../python-basics/python.html">
    Get Started with Python
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../python-basics/pyinstall.html">
      Install Python
@@ -205,14 +199,17 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../python-basics/modularize.html">
    Modularization &amp; Object Orientation
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/pyfun.html">
      Functions
@@ -229,32 +226,20 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../python-basics/data-handling.html">
    Data and File Handling
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/pynum.html">
      Load and Write Basic Data Files
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pynum.html#numpy">
-     NumPy
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pynum.html#pandas">
-     Pandas
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pynum.html#dates-and-time">
-     Dates and Time
     </a>
    </li>
    <li class="toctree-l2">
@@ -268,8 +253,6 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../jupyter/pystyle.html">
@@ -281,11 +264,16 @@
    Graphical User Interfaces (GUIs)
   </a>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../exercises/python-exercises.html">
    Python Exercises
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-ms.html">
      1d Hydraulics (Manning-Strickler Formula)
@@ -324,42 +312,43 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Documentation
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../documentation/documentation.html">
    Markdown and Code Documentation
   </a>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../exercises/docs-exercises.html">
    Exercises
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-git.html">
      Git and markdown
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Geospatial Analysis
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../geopy/geospatial-data.html">
    Geospatial Data
@@ -370,11 +359,16 @@
    QGIS tutorial
   </a>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../geopy/geo-python.html">
    Geospatial Python
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../geopy/geo-pckg.html">
      Geospatial Python - Open Source Packages
@@ -401,30 +395,31 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../exercises/geo-exercises.html">
    Exercises
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-geco.html">
      Script-Create a Habitat Suitability Map
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Numerical Modeling
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../numerics/numerical-modeling.html">
    Principles
@@ -440,11 +435,16 @@
    BASEMENT
   </a>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../numerics/telemac.html">
    TELEMAC
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../numerics/telemac2d.html">
      Pre-Processing for TELEMAC models
@@ -461,8 +461,6 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../numerics/openfoam.html">
@@ -475,17 +473,22 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Troubleshoot
  </span>
 </p>
-<ul class="nav sidenav_l1">
- <li class="toctree-l1 collapsible-parent">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../troubleshoot/dbg-programming.html">
    Programming Tools and IDEs
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
      Debugging Anaconda
@@ -502,14 +505,17 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
    Numerical Models
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../troubleshoot/dbg-basement.html">
      Debugging BASEMENT
@@ -521,14 +527,17 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../troubleshoot/dbg-os.html">
    Operating Systems (Linux and VMs)
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../troubleshoot/dbg-linux.html">
      Debugging Debian Linux
@@ -540,16 +549,14 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Disclaimer and License
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../terms/license.html">
    License
@@ -562,6 +569,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -577,21 +585,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -609,7 +617,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -624,25 +632,25 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#anaconda">
    Anaconda
@@ -687,10 +695,37 @@
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#atom">
+   Atom
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-on-windows">
+     Install on Windows
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-on-linux">
+     Install on Linux
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#relevant-atom-packages">
+     Relevant Atom Packages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#enable-python-console">
+     Enable Python Console
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -698,8 +733,8 @@
         
               <div>
                 
-  <div class="section" id="anaconda-and-integrated-development-environments-ides">
-<h1>Anaconda and Integrated Development Environments (IDEs)<a class="headerlink" href="#anaconda-and-integrated-development-environments-ides" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="integrated-development-environments-ides">
+<span id="sec-ide"></span><h1>Integrated Development Environments (IDEs)<a class="headerlink" href="#integrated-development-environments-ides" title="Permalink to this headline">¶</a></h1>
 <p>The teaching contents on this website build on so-called <em>Application Programming Inferace</em>s (<em>API</em>s) and <em>Integrated Development Environment</em>s (<em>IDE</em>s).<br>
 An <em><strong>API</strong></em> represents a computing interface that enables interactions between multiple software intermediaries. Modular programming becomes easy with an <em>API</em>, because it systematically hides complex information that is not necessarily needed to write code according to industry standards. For instance, an <em>API</em> can define the interface between an application (such as <em>Python</em> or <em>Word</em>) and an <em>Operating System</em> (<em>OS</em>) such as <em>Windows</em>, <em>Linux</em>, or <em>macOS</em>.<br>
 An <em><strong>IDE</strong></em> enables the definition of a project to use for example a specific <a class="reference external" href="https://docs.conda.io/"><em>Python Conda Environment</em></a> and it enables robust coding by pointing out issues directly in the code, even before it was executed once. Powerful <em>IDE</em>s go even further and provide assistance in documenting code with markdown (<em>.md</em> files) and direct pipes into <em>git</em> (<a class="reference internal" href="git.html"><span class="doc std std-doc">see section on the usage of <em>git</em></span></a>).</p>
@@ -799,6 +834,68 @@ The <em>Jupyter</em> kernels support the three core programming languages <stron
 </div>
 </div>
 </div>
+<div class="section" id="atom">
+<span id="install-atom"></span><h2>Atom<a class="headerlink" href="#atom" title="Permalink to this headline">¶</a></h2>
+<p><em>Atom</em> is a hackable text editor that is compatible with almost any programming language. While its bare installation has little functionality, the omni-compatibility can be enabled by installing desired packages (e.g., for <em>Python</em>, <em>Markdown</em>, or <em>LaTex</em>). Another big advantage of <em>Atom</em> is the availability of powerful spell checker packages.</p>
+<div class="section" id="install-on-windows">
+<h3>Install on Windows<a class="headerlink" href="#install-on-windows" title="Permalink to this headline">¶</a></h3>
+<p><strong>Windows</strong> users can download <em>Atom</em> from <a class="reference external" href="https://atom.io/">atom.io</a> and install the executable.</p>
+</div>
+<div class="section" id="install-on-linux">
+<h3>Install on Linux<a class="headerlink" href="#install-on-linux" title="Permalink to this headline">¶</a></h3>
+<p><strong>Linux</strong> users find installers for various distributions at <a class="reference external" href="https://atom.io/">atom.io</a>. <strong>Debian</strong> (<strong>Ubuntu</strong>), <strong>Red Hat</strong> / <strong>CentOS</strong>, <strong>Fedora</strong>, and <strong>SUSE</strong> find easy installation guides at <a class="reference external" href="https://flight-manual.atom.io/getting-started/sections/installing-atom/">https://flight-manual.atom.io</a>.</p>
+<p>The short version for <strong>Debian</strong> (<strong>Ubuntu</strong>) is:</p>
+<ul class="simple">
+<li><p>Add the <em>Atom</em> package repository to the system:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="o">-</span><span class="n">qO</span> <span class="o">-</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">packagecloud</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">AtomEditor</span><span class="o">/</span><span class="n">atom</span><span class="o">/</span><span class="n">gpgkey</span> <span class="o">|</span> <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">key</span> <span class="n">add</span> <span class="o">-</span>
+<span class="n">sudo</span> <span class="n">sh</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;echo &quot;deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main&quot; &gt; /etc/apt/sources.list.d/atom.list&#39;</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Then install <em>Atom</em>:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">atom</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="relevant-atom-packages">
+<h3>Relevant Atom Packages<a class="headerlink" href="#relevant-atom-packages" title="Permalink to this headline">¶</a></h3>
+<p>To install packages:</p>
+<ul class="simple">
+<li><p><em>Windows</em> users go to <strong>File</strong> &gt; <strong>Settings</strong> &gt; <strong>+ Install</strong></p></li>
+<li><p><em>Linux</em> users go to <strong>Edit</strong> &gt; <strong>Preferences</strong> &gt; <strong>+ Install</strong></p></li>
+</ul>
+<p>The following (additional) packages are useful for working with contents of this ebook:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ide-python</span></code> provides language support for Python code</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">language-markdown</span></code> (optional) for writing documentations with <a class="reference external" href="https://daringfireball.net/projects/markdown/">Markdown</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">language-restructuredtext</span></code> (optional) for writing documentations with <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html">reStructuredText</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">language-tex</span></code> (optional) to write reports or presentations with <a class="reference external" href="https://www.latex-project.org/">LaTex</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">linter</span></code> basic package for spell checkers</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">linter-markdown</span></code> spell checks <em>Markdown</em> files</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">linter-spell-rst</span></code> spell checks <em>reStructuredText</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code> adds a terminal window to <em>Atom</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python-docstring</span></code> facilitates inline documentation of <em>Python</em> code</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python-requirements</span></code> enables to install required packages for running <em>Python</em> code</p></li>
+<li><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">script</span></code> enables to run <em>Python</em> and many other code types (<a class="reference external" href="https://atom.io/packages/script">read the docs</a>); after the installation, running a code (<em>Python</em>) file can be triggered by clicking on the <strong>Packages</strong> top menu &gt; <strong>Script</strong>  &gt; <strong>Run Script</strong>.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="enable-python-console">
+<span id="atom-python"></span><h3>Enable Python Console<a class="headerlink" href="#enable-python-console" title="Permalink to this headline">¶</a></h3>
+<p>While the <code class="docutils literal notranslate"><span class="pre">script</span></code> package enables to run a <em>Python</em> script, it may be desireable to have a built-in <em>Python</em> console window running in <em>Atom</em>. To this end, the <code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code> package tweaks into the system’s default terminal (<em>Terminal</em> on <em>Linux</em> or <em>PowerShell</em> on <em>Windows 10</em>), which can run an existing installation of <em>Python</em> (i.e., <em>Python</em> must be installed on the system in some form).</p>
+<dl class="simple myst">
+<dt>Windows Users</dt><dd><p>Preferably install <a class="reference internal" href="#anaconda"><span class="std std-ref">Anaconda</span></a> and add the <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> environment and package as explained in the <a class="reference external" href="https://flusstools.readthedocs.io/en/latest/getstarted.html#get-ready-on-windows">FlussTools docs for Windows</a>.</p>
+</dd>
+<dt>Linux Users</dt><dd><p>Almost all <em>Linux</em> distributions have <em>Python</em> natively installed. For the best learning experience with this eBook, install the <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> package by following the instructions in the <a class="reference external" href="https://flusstools.readthedocs.io/en/latest/getstarted.html#get-ready-on-linux">FlussTools docs for Linux</a>.</p>
+</dd>
+</dl>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -823,15 +920,15 @@ The <em>Jupyter</em> kernels support the three core programming languages <stron
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="vm.html" title="previous page">Virtual Machines and Linux</a>
     <a class='right-next' id="next-link" href="git.html" title="next page">Introduction to git</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -848,11 +945,9 @@ The <em>Jupyter</em> kernels support the three core programming languages <stron
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
+  
   </body>
 </html>

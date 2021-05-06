@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>open TELEMAC (Installation) &#8212; Hydro-Informatics</title>
     
-  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -35,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -46,7 +43,7 @@
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/tabs.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -60,23 +57,14 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Other Software Resources" href="others.html" />
     <link rel="prev" title="Install OpenFOAM" href="install-openfoam.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-<!-- Opengraph tags -->
-<meta property="og:url"         content="https://hydro-informatics.github.io/get-started/install-telemac.html" />
-<meta property="og:type"        content="article" />
-<meta property="og:title"       content="open TELEMAC (Installation)" />
-<meta property="og:description" content="open TELEMAC (Installation)  Requirements  This tutorial guides through the installation of open TELEMAC-MASCARET on Debian Linux.  Preface  This page only guid" />
-<meta property="og:image"       content="https://hydro-informatics.github.io/_static/icon.jpg" />
-
-<meta name="twitter:card" content="summary" />
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -85,33 +73,38 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/icon.jpg" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/icon.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <p class="caption collapsible-parent">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
  <span class="caption-text">
   Get Started
  </span>
 </p>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1 collapsible-parent">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../lectures/classroom.html">
    The Virtual Classroom
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../lectures/lectures.html">
-     Lectures and exercises
+     Lectures and Eexercises
     </a>
    </li>
    <li class="toctree-l2">
@@ -120,27 +113,25 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 current active collapsible-parent">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="software.html">
    Software Resources
   </a>
-  <ul class="current collapse-ul">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="vm.html">
      Virtual Machines and Linux
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="vm.html#get-started-with-debian-linux">
-     Get started with (Debian) Linux
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="ide.html">
-     Anaconda and Integrated Development Environments (IDEs)
+     Integrated Development Environments (IDEs)
     </a>
    </li>
    <li class="toctree-l2">
@@ -169,21 +160,24 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Python Basics
  </span>
 </p>
-<ul class="nav sidenav_l1">
- <li class="toctree-l1 collapsible-parent">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../python-basics/python.html">
    Get Started with Python
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../python-basics/pyinstall.html">
      Install Python
@@ -205,14 +199,17 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../python-basics/modularize.html">
    Modularization &amp; Object Orientation
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/pyfun.html">
      Functions
@@ -229,32 +226,20 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../python-basics/data-handling.html">
    Data and File Handling
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/pynum.html">
      Load and Write Basic Data Files
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pynum.html#numpy">
-     NumPy
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pynum.html#pandas">
-     Pandas
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pynum.html#dates-and-time">
-     Dates and Time
     </a>
    </li>
    <li class="toctree-l2">
@@ -268,8 +253,6 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../jupyter/pystyle.html">
@@ -281,11 +264,16 @@
    Graphical User Interfaces (GUIs)
   </a>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../exercises/python-exercises.html">
    Python Exercises
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-ms.html">
      1d Hydraulics (Manning-Strickler Formula)
@@ -324,42 +312,43 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Documentation
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../documentation/documentation.html">
    Markdown and Code Documentation
   </a>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../exercises/docs-exercises.html">
    Exercises
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-git.html">
      Git and markdown
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Geospatial Analysis
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../geopy/geospatial-data.html">
    Geospatial Data
@@ -370,11 +359,16 @@
    QGIS tutorial
   </a>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../geopy/geo-python.html">
    Geospatial Python
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../geopy/geo-pckg.html">
      Geospatial Python - Open Source Packages
@@ -401,30 +395,31 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../exercises/geo-exercises.html">
    Exercises
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-geco.html">
      Script-Create a Habitat Suitability Map
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Numerical Modeling
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../numerics/numerical-modeling.html">
    Principles
@@ -440,11 +435,16 @@
    BASEMENT
   </a>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../numerics/telemac.html">
    TELEMAC
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../numerics/telemac2d.html">
      Pre-Processing for TELEMAC models
@@ -461,8 +461,6 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../numerics/openfoam.html">
@@ -475,17 +473,22 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Troubleshoot
  </span>
 </p>
-<ul class="nav sidenav_l1">
- <li class="toctree-l1 collapsible-parent">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../troubleshoot/dbg-programming.html">
    Programming Tools and IDEs
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
      Debugging Anaconda
@@ -502,14 +505,17 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
    Numerical Models
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../troubleshoot/dbg-basement.html">
      Debugging BASEMENT
@@ -521,14 +527,17 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../troubleshoot/dbg-os.html">
    Operating Systems (Linux and VMs)
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../troubleshoot/dbg-linux.html">
      Debugging Debian Linux
@@ -540,16 +549,14 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Disclaimer and License
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../terms/license.html">
    License
@@ -562,6 +569,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -577,21 +585,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -609,7 +617,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -624,25 +632,25 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#preface">
    Preface
@@ -831,8 +839,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -939,7 +947,7 @@
 <p>If an error occurs during the installation, install the extended dependencies (includes Qt) with the following command: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">libgl1-mesa-glx</span> <span class="pre">libegl1-mesa</span> <span class="pre">libxrandr2</span> <span class="pre">libxrandr2</span> <span class="pre">libxss1</span> <span class="pre">libxcursor1</span> <span class="pre">libxcomposite1</span> <span class="pre">libasound2</span> <span class="pre">libxi6</span> <span class="pre">libxtst6</span></code>. Then re-try to install the libraries.</p>
 </div>
 <p>To test if the installation was successful, type <code class="docutils literal notranslate"><span class="pre">python3</span></code> in <em>Terminal</em> and import the three libraries:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Python</span> <span class="mf">3.7</span><span class="o">.</span><span class="mi">7</span> <span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">Jul</span>  <span class="mi">25</span> <span class="mi">2030</span><span class="p">,</span> <span class="mi">13</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">44</span><span class="p">)</span> <span class="p">[</span><span class="n">GCC</span> <span class="mf">8.3</span><span class="o">.</span><span class="mi">0</span><span class="p">]</span> <span class="n">on</span> <span class="n">linux</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Python</span> <span class="mf">3.7.7</span> <span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">Jul</span>  <span class="mi">25</span> <span class="mi">2030</span><span class="p">,</span> <span class="mi">13</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">44</span><span class="p">)</span> <span class="p">[</span><span class="n">GCC</span> <span class="mf">8.3.0</span><span class="p">]</span> <span class="n">on</span> <span class="n">linux</span>
 <span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">numpy</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">scipy</span>
@@ -1073,13 +1081,13 @@ Depending on the installed subversion of *Python3*, the folder name `python3.7` 
 <p>Metis is a software package for partitioning unstructured graphs, partitioning meshes, and computing fill-reducing orderings of sparse matrices by George Karypis. <em>TELEMAC</em> uses <em>Metis</em> as a part of <em>Partel</em> to split the mesh into multiple parts for parallel runs. Learn more about <em>Metis</em> and potentially newer versions than <code class="docutils literal notranslate"><span class="pre">5.1.0</span></code> (used in the following) on the <a class="reference external" href="http://glaros.dtc.umn.edu/gkhome/metis/metis/download">Karypis Lab website</a> or reading the <a class="reference external" href="http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/manual.pdf">PDF manual</a>.</p>
 <p><em><strong>IF TELEMAC/OPTIONALS/METIS DOES NOT EXIST:</strong></em> Download the <em>Metis</em> archive and unpack it in a temporary (<code class="docutils literal notranslate"><span class="pre">temp</span></code>) directory. The following code block changes to the <code class="docutils literal notranslate"><span class="pre">optionals</span></code> directory (<code class="docutils literal notranslate"><span class="pre">cd</span></code>) of <em>TELEMAC</em>, creates the <code class="docutils literal notranslate"><span class="pre">temp</span></code> folder with <code class="docutils literal notranslate"><span class="pre">mkdir</span></code>, downloads, and unzips the <em>Metis</em> archive (run in <em>Terminal</em> as <em><strong>normal user</strong></em> - <em><strong>not as root</strong></em>):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span>
-<span class="n">mkdir</span> <span class="n">metis</span><span class="o">-</span><span class="mf">5.1</span><span class="o">.</span><span class="mi">0</span>
+<span class="n">mkdir</span> <span class="n">metis</span><span class="o">-</span><span class="mf">5.1.0</span>
 <span class="n">mkdir</span> <span class="n">temp</span>
 <span class="n">cd</span> <span class="n">temp</span>
-<span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">glaros</span><span class="o">.</span><span class="n">dtc</span><span class="o">.</span><span class="n">umn</span><span class="o">.</span><span class="n">edu</span><span class="o">/</span><span class="n">gkhome</span><span class="o">/</span><span class="n">fetch</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="n">metis</span><span class="o">/</span><span class="n">metis</span><span class="o">-</span><span class="mf">5.1</span><span class="o">.</span><span class="mf">0.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-<span class="n">gunzip</span> <span class="n">metis</span><span class="o">-</span><span class="mf">5.1</span><span class="o">.</span><span class="mf">0.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-<span class="n">tar</span> <span class="o">-</span><span class="n">xvf</span> <span class="n">metis</span><span class="o">-</span><span class="mf">5.1</span><span class="o">.</span><span class="mf">0.</span><span class="n">tar</span>
-<span class="n">cd</span> <span class="n">metis</span><span class="o">-</span><span class="mf">5.1</span><span class="o">.</span><span class="mi">0</span>
+<span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">glaros</span><span class="o">.</span><span class="n">dtc</span><span class="o">.</span><span class="n">umn</span><span class="o">.</span><span class="n">edu</span><span class="o">/</span><span class="n">gkhome</span><span class="o">/</span><span class="n">fetch</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="n">metis</span><span class="o">/</span><span class="n">metis</span><span class="o">-</span><span class="mf">5.1.0</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">gunzip</span> <span class="n">metis</span><span class="o">-</span><span class="mf">5.1.0</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">xvf</span> <span class="n">metis</span><span class="o">-</span><span class="mf">5.1.0</span><span class="o">.</span><span class="n">tar</span>
+<span class="n">cd</span> <span class="n">metis</span><span class="o">-</span><span class="mf">5.1.0</span>
 </pre></div>
 </div>
 <p>Open <em>Metis</em>’ <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> in the <em>VIM</em> text editor (installed earlier through <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">vim</span></code>):</p>
@@ -1087,7 +1095,7 @@ Depending on the installed subversion of *Python3*, the folder name `python3.7` 
 </pre></div>
 </div>
 <p><em>VIM</em> opens in the <em>Terminal</em> window and the program may be a little bit confusing to use for someone who is used to <em>Windows</em> or <em>mac OS</em>. If <em>VIM</em>/<em>Terminal</em> asks if you want to continue <em>E</em>diting, confirm with the <code class="docutils literal notranslate"><span class="pre">E</span></code> key. Then click in the file and enable editing through pressing the <code class="docutils literal notranslate"><span class="pre">i</span></code> key. Now, <code class="docutils literal notranslate"><span class="pre">--</span> <span class="pre">INSERT</span> <span class="pre">--</span></code> should be prompted on the bottom of the window. Look for the <code class="docutils literal notranslate"><span class="pre">prefix</span>&#160; <span class="pre">=</span> <span class="pre">not-set</span></code> and the <code class="docutils literal notranslate"><span class="pre">cc</span> <span class="pre">=</span> <span class="pre">not-set</span></code> definitions. Click in the corresponding lines and press the <code class="docutils literal notranslate"><span class="pre">i</span></code> key to enable editing (recall: <code class="docutils literal notranslate"><span class="pre">--</span> <span class="pre">INSERT</span> <span class="pre">--</span></code> will appear at the bottom of the window). Then change both variables to:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prefix</span> <span class="o">=</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">metis</span><span class="o">-</span><span class="mf">5.1</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">build</span><span class="o">/</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prefix</span> <span class="o">=</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">metis</span><span class="o">-</span><span class="mf">5.1.0</span><span class="o">/</span><span class="n">build</span><span class="o">/</span>
 <span class="n">cc</span> <span class="o">=</span> <span class="n">gcc</span>
 </pre></div>
 </div>
@@ -1097,27 +1105,27 @@ Depending on the installed subversion of *Python3*, the folder name `python3.7` 
 <p>Some hints to troubleshooting typical <em>VIM</em> problems:<br><em><strong>VIM freezes</strong></em>: Did you hit the <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">S</span></code> keys, which is intuitive for <em>Windows</em> users to save a file, but in <em>Linux</em>, it has a different effect? So, you freezed the window. To unfreeze, simply hit <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">Q</span></code><br><em><strong>IS <code class="docutils literal notranslate"><span class="pre">:wq</span></code> not working?</strong></em> Maybe you enabled the <em>easy mode</em>. Disable <em>easy mode</em> by hitting the <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">O</span></code> keys.<br> <em><strong>Are you on a virtual machine or remote desktop?</strong></em> Check if another keyboard layout is installed on the VM guest / remote machine the host machine /your computer uses.</p>
 </div>
 <p>Back in <em>Terminal</em>, copy the folder contents and remove the <code class="docutils literal notranslate"><span class="pre">temp</span></code> folder with the following command sequence (if you want to keep the <code class="docutils literal notranslate"><span class="pre">temp</span></code> folder for installing <code class="docutils literal notranslate"><span class="pre">hdf5</span></code> and <code class="docutils literal notranslate"><span class="pre">med</span></code> file libraries, do not <code class="docutils literal notranslate"><span class="pre">rm</span></code> the <code class="docutils literal notranslate"><span class="pre">temp</span></code> folder):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">cp</span> <span class="o">-</span><span class="n">a</span> <span class="o">.</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">metis</span><span class="o">-</span><span class="mf">5.1</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">cp</span> <span class="o">-</span><span class="n">a</span> <span class="o">.</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">metis</span><span class="o">-</span><span class="mf">5.1.0</span><span class="o">/</span>
 <span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span>
 <span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="n">temp</span>
 </pre></div>
 </div>
 <p>Change to the final directory where <em>Metis</em> will live and compile <em>Metis</em>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">metis</span><span class="o">-</span><span class="mf">5.1</span><span class="o">.</span><span class="mi">0</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">metis</span><span class="o">-</span><span class="mf">5.1.0</span>
 <span class="n">make</span> <span class="n">config</span>
 <span class="n">make</span>
 <span class="n">make</span> <span class="n">install</span>
 </pre></div>
 </div>
 <p><em><strong>IF TELEMAC/OPTIONALS/METIS DOES NOT EXIST:</strong></em> Install <em>Metis</em> from <em>Terminal</em> directly in the <em>TELEMAC</em> directory tree downloaded with <code class="docutils literal notranslate"><span class="pre">svn</span></code>. Before compiling <em>Metis</em>, clean up the <em>Metis</em> folder (there is an existing <em>Makefile</em>, which we do not want to use):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">metis</span><span class="o">-</span><span class="mf">5.1</span><span class="o">.</span><span class="mi">0</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">metis</span><span class="o">-</span><span class="mf">5.1.0</span>
 <span class="n">make</span> <span class="n">clean</span>
 <span class="n">rm</span> <span class="o">-</span><span class="n">r</span> <span class="n">build</span>
 <span class="n">rm</span> <span class="n">Makefile</span>
 </pre></div>
 </div>
 <p>Then build <em>Metis</em> (use for example <code class="docutils literal notranslate"><span class="pre">~/telemac/v8p2/optionals/metis-5.1.0/build</span></code> as <code class="docutils literal notranslate"><span class="pre">&lt;install_path&gt;</span></code>):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmake</span> <span class="o">-</span><span class="n">D</span> <span class="n">CMAKE_INSTALL_PREFIX</span><span class="o">=~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">metis</span><span class="o">-</span><span class="mf">5.1</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">build</span> <span class="o">.</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmake</span> <span class="o">-</span><span class="n">D</span> <span class="n">CMAKE_INSTALL_PREFIX</span><span class="o">=~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">metis</span><span class="o">-</span><span class="mf">5.1.0</span><span class="o">/</span><span class="n">build</span> <span class="o">.</span>
 <span class="n">make</span>
 <span class="n">make</span> <span class="n">install</span>
 </pre></div>
@@ -1132,10 +1140,10 @@ Depending on the installed subversion of *Python3*, the folder name `python3.7` 
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span>
 <span class="n">mkdir</span> <span class="n">temp</span>
 <span class="n">cd</span> <span class="n">temp</span>
-<span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">support</span><span class="o">.</span><span class="n">hdfgroup</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">ftp</span><span class="o">/</span><span class="n">HDF5</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">hdf5</span><span class="o">-</span><span class="mf">1.8</span><span class="o">/</span><span class="n">hdf5</span><span class="o">-</span><span class="mf">1.8</span><span class="o">.</span><span class="mi">21</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">hdf5</span><span class="o">-</span><span class="mf">1.8</span><span class="o">.</span><span class="mf">21.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-<span class="n">gunzip</span> <span class="n">hdf5</span><span class="o">-</span><span class="mf">1.8</span><span class="o">.</span><span class="mf">21.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-<span class="n">tar</span> <span class="o">-</span><span class="n">xvf</span> <span class="n">hdf5</span><span class="o">-</span><span class="mf">1.8</span><span class="o">.</span><span class="mf">21.</span><span class="n">tar</span>
-<span class="n">cd</span> <span class="n">hdf5</span><span class="o">-</span><span class="mf">1.8</span><span class="o">.</span><span class="mi">21</span>
+<span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">support</span><span class="o">.</span><span class="n">hdfgroup</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">ftp</span><span class="o">/</span><span class="n">HDF5</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">hdf5</span><span class="o">-</span><span class="mf">1.8</span><span class="o">/</span><span class="n">hdf5</span><span class="o">-</span><span class="mf">1.8.21</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">hdf5</span><span class="o">-</span><span class="mf">1.8.21</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">gunzip</span> <span class="n">hdf5</span><span class="o">-</span><span class="mf">1.8.21</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">xvf</span> <span class="n">hdf5</span><span class="o">-</span><span class="mf">1.8.21</span><span class="o">.</span><span class="n">tar</span>
+<span class="n">cd</span> <span class="n">hdf5</span><span class="o">-</span><span class="mf">1.8.21</span>
 </pre></div>
 </div>
 <p>Configure and compile <em>hdf5</em> (enter every command one-by-one):</p>
@@ -1155,14 +1163,14 @@ The installation of <em>hdf5</em> on Linux is also documented in the <a class="r
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span>
 <span class="n">mkdir</span> <span class="n">temp</span>
 <span class="n">cd</span> <span class="n">temp</span>
-<span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">files</span><span class="o">.</span><span class="n">salome</span><span class="o">-</span><span class="n">platform</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">Salome</span><span class="o">/</span><span class="n">other</span><span class="o">/</span><span class="n">med</span><span class="o">-</span><span class="mf">3.2</span><span class="o">.</span><span class="mf">0.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-<span class="n">gunzip</span> <span class="n">med</span><span class="o">-</span><span class="mf">3.2</span><span class="o">.</span><span class="mf">0.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-<span class="n">tar</span> <span class="o">-</span><span class="n">xvf</span> <span class="n">med</span><span class="o">-</span><span class="mf">3.2</span><span class="o">.</span><span class="mf">0.</span><span class="n">tar</span>
-<span class="n">cd</span> <span class="n">med</span><span class="o">-</span><span class="mf">3.2</span><span class="o">.</span><span class="mi">0</span>
+<span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">files</span><span class="o">.</span><span class="n">salome</span><span class="o">-</span><span class="n">platform</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">Salome</span><span class="o">/</span><span class="n">other</span><span class="o">/</span><span class="n">med</span><span class="o">-</span><span class="mf">3.2.0</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">gunzip</span> <span class="n">med</span><span class="o">-</span><span class="mf">3.2.0</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">xvf</span> <span class="n">med</span><span class="o">-</span><span class="mf">3.2.0</span><span class="o">.</span><span class="n">tar</span>
+<span class="n">cd</span> <span class="n">med</span><span class="o">-</span><span class="mf">3.2.0</span>
 </pre></div>
 </div>
 <p>To compile the <em>med file</em> library type:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">configure</span> <span class="o">--</span><span class="n">prefix</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">USER</span><span class="o">-</span><span class="n">NAME</span><span class="o">/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">med</span><span class="o">-</span><span class="mf">3.2</span><span class="o">.</span><span class="mi">0</span> <span class="o">--</span><span class="k">with</span><span class="o">-</span><span class="n">hdf5</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">USER</span><span class="o">-</span><span class="n">NAME</span><span class="o">/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">hdf5</span> <span class="o">--</span><span class="n">disable</span><span class="o">-</span><span class="n">python</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">configure</span> <span class="o">--</span><span class="n">prefix</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">USER</span><span class="o">-</span><span class="n">NAME</span><span class="o">/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">med</span><span class="o">-</span><span class="mf">3.2.0</span> <span class="o">--</span><span class="k">with</span><span class="o">-</span><span class="n">hdf5</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">USER</span><span class="o">-</span><span class="n">NAME</span><span class="o">/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">hdf5</span> <span class="o">--</span><span class="n">disable</span><span class="o">-</span><span class="n">python</span>
 <span class="n">make</span>
 <span class="n">make</span> <span class="n">install</span>
 </pre></div>
@@ -1251,13 +1259,13 @@ The installation of <em>hdf5</em> on Linux is also documented in the <a class="r
 </ul>
 </li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">libs_all</span><span class="p">:</span>    <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">openmpi</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libmpi</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mf">40.10</span><span class="o">.</span><span class="mi">3</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">USER</span><span class="o">-</span><span class="n">NAME</span><span class="o">/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">metis</span><span class="o">-</span><span class="mf">5.1</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libmetis</span><span class="o">.</span><span class="n">a</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">USER</span><span class="o">-</span><span class="n">NAME</span><span class="o">/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">aed2</span><span class="o">/</span><span class="n">libaed2</span><span class="o">.</span><span class="n">a</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">USER</span><span class="o">-</span><span class="n">NAME</span><span class="o">/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">med</span><span class="o">-</span><span class="mf">3.2</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libmed</span><span class="o">.</span><span class="n">so</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">USER</span><span class="o">-</span><span class="n">NAME</span><span class="o">/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">hdf5</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libhdf5</span><span class="o">.</span><span class="n">so</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">libs_all</span><span class="p">:</span>    <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">openmpi</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libmpi</span><span class="o">.</span><span class="n">so</span><span class="mf">.40.10.3</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">USER</span><span class="o">-</span><span class="n">NAME</span><span class="o">/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">metis</span><span class="o">-</span><span class="mf">5.1.0</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libmetis</span><span class="o">.</span><span class="n">a</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">USER</span><span class="o">-</span><span class="n">NAME</span><span class="o">/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">aed2</span><span class="o">/</span><span class="n">libaed2</span><span class="o">.</span><span class="n">a</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">USER</span><span class="o">-</span><span class="n">NAME</span><span class="o">/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">med</span><span class="o">-</span><span class="mf">3.2.0</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libmed</span><span class="o">.</span><span class="n">so</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">USER</span><span class="o">-</span><span class="n">NAME</span><span class="o">/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">hdf5</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libhdf5</span><span class="o">.</span><span class="n">so</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>Add the <code class="docutils literal notranslate"><span class="pre">incs_all</span></code> variable to point include <em>openmpi</em>, <em>med</em>, and <em>aed2</em>:</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">incs_all</span><span class="p">:</span> <span class="o">-</span><span class="n">I</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">openmpi</span><span class="o">/</span><span class="n">include</span> <span class="o">-</span><span class="n">I</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">USER</span><span class="o">-</span><span class="n">NAME</span><span class="o">/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">aed2</span> <span class="o">-</span><span class="n">I</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">USER</span><span class="o">-</span><span class="n">NAME</span><span class="o">/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">aed2</span><span class="o">/</span><span class="n">include</span>  <span class="o">-</span><span class="n">I</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">USER</span><span class="o">-</span><span class="n">NAME</span><span class="o">/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">med</span><span class="o">-</span><span class="mf">3.2</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">include</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">incs_all</span><span class="p">:</span> <span class="o">-</span><span class="n">I</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">openmpi</span><span class="o">/</span><span class="n">include</span> <span class="o">-</span><span class="n">I</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">USER</span><span class="o">-</span><span class="n">NAME</span><span class="o">/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">aed2</span> <span class="o">-</span><span class="n">I</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">USER</span><span class="o">-</span><span class="n">NAME</span><span class="o">/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">aed2</span><span class="o">/</span><span class="n">include</span>  <span class="o">-</span><span class="n">I</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">USER</span><span class="o">-</span><span class="n">NAME</span><span class="o">/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">med</span><span class="o">-</span><span class="mf">3.2.0</span><span class="o">/</span><span class="n">include</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -1523,16 +1531,16 @@ org.fudaa.fudaa.tr.TrSupervisor $1 $2 $3 $4 $5 $6 $7 $8 $9
 <div class="section" id="debian-10-buster-users">
 <h3>Debian 10 (buster) users<a class="headerlink" href="#debian-10-buster-users" title="Permalink to this headline">¶</a></h3>
 <p><em>SALOME-HYDRO</em> is using some out-dated libraries, which require that newer versions (e.g., of the <em>openmpi</em> library) must be copied and the copies must be renamed to match the out-dated library names. Therefore, open <em>Terminal</em> and tap:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">40</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">20</span>
-<span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libicui18n</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">63</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libicui18n</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">57</span>
-<span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libicuuc</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">63</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libicuuc</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">57</span>
-<span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libicudata</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">63</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libicudata</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">57</span>
-<span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libnetcdf</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">13</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libnetcdf</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">11</span>
-<span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_usempif08</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">40</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_usempif08</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">20</span>
-<span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_java</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">40</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_java</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">20</span>
-<span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_cxx</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">40</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_cxx</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">20</span>
-<span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_mpifh</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">40</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_mpifh</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">20</span>
-<span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_usempi_ignore_tkr</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">40</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_usempi_ignore_tkr</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">20</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi</span><span class="o">.</span><span class="n">so</span><span class="mf">.40</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi</span><span class="o">.</span><span class="n">so</span><span class="mf">.20</span>
+<span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libicui18n</span><span class="o">.</span><span class="n">so</span><span class="mf">.63</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libicui18n</span><span class="o">.</span><span class="n">so</span><span class="mf">.57</span>
+<span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libicuuc</span><span class="o">.</span><span class="n">so</span><span class="mf">.63</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libicuuc</span><span class="o">.</span><span class="n">so</span><span class="mf">.57</span>
+<span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libicudata</span><span class="o">.</span><span class="n">so</span><span class="mf">.63</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libicudata</span><span class="o">.</span><span class="n">so</span><span class="mf">.57</span>
+<span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libnetcdf</span><span class="o">.</span><span class="n">so</span><span class="mf">.13</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libnetcdf</span><span class="o">.</span><span class="n">so</span><span class="mf">.11</span>
+<span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_usempif08</span><span class="o">.</span><span class="n">so</span><span class="mf">.40</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_usempif08</span><span class="o">.</span><span class="n">so</span><span class="mf">.20</span>
+<span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_java</span><span class="o">.</span><span class="n">so</span><span class="mf">.40</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_java</span><span class="o">.</span><span class="n">so</span><span class="mf">.20</span>
+<span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_cxx</span><span class="o">.</span><span class="n">so</span><span class="mf">.40</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_cxx</span><span class="o">.</span><span class="n">so</span><span class="mf">.20</span>
+<span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_mpifh</span><span class="o">.</span><span class="n">so</span><span class="mf">.40</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_mpifh</span><span class="o">.</span><span class="n">so</span><span class="mf">.20</span>
+<span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_usempi_ignore_tkr</span><span class="o">.</span><span class="n">so</span><span class="mf">.40</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_usempi_ignore_tkr</span><span class="o">.</span><span class="n">so</span><span class="mf">.20</span>
 </pre></div>
 </div>
 <p>In addition, the <em>Qt</em> library of the <em>SALOME-HYDRO</em> installer is targeting out-dated libraries on <em>Debian 10</em>. To troubleshoot this issue, open the file explorer and:</p>
@@ -1640,15 +1648,15 @@ To enable <em>MED</em> file handling, <em>MED</em> coupling is necessary, which 
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="install-openfoam.html" title="previous page">Install OpenFOAM</a>
     <a class='right-next' id="next-link" href="others.html" title="next page">Other Software Resources</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -1665,11 +1673,9 @@ To enable <em>MED</em> file handling, <em>MED</em> coupling is necessary, which 
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
+  
   </body>
 </html>

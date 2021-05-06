@@ -1,33 +1,39 @@
-# Graphical User Interfaces (GUIs)
+#!/usr/bin/env python
+# coding: utf-8
 
-Summary: Make code user-friendly.
+# # Graphical User Interfaces (GUIs)
+# 
+# Summary: Make code user-friendly.
+# 
+# ![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/hello-gui.png)
 
-![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/hello-gui.png)
+# A Graphical User Interface (GUI) facilitates setting input variables of scripts. This is particularly useful if you want to reuse a script that you have written a long time ago without having to study the whole script again in detail. Although it is arguable whether GUIs are still appropriate in times of web applications, large and in particular copyrighted data must be processed locally. And for local data processing, a GUI is a very convenient way to control self-written, custom programs.
+# 
+# Several GUI library (packages) are available for *Python* and this introduction uses the [`tkinter`](https://docs.python.org/3/library/tkinter.html) library. Alternatives are, for example, [*wxPython*](https://www.wxpython.org/) or [*Jython*](https://www.jython.org/) (a *Java* implementation of *Python 2*). `tkinter` is a standard library, which does not need to be installed additionally. For a quick example, type in the terminal (e.g., *PyCharm* or *Linux* terminal - not in the *Python* console):
 
-A Graphical User Interface (GUI) facilitates setting input variables of scripts. This is particularly useful if you want to reuse a script that you have written a long time ago without having to study the whole script again in detail. Although it is arguable whether GUIs are still appropriate in times of web applications, large and in particular copyrighted data must be processed locally. And for local data processing, a GUI is a very convenient way to control self-written, custom programs.
+# ```
+# python -m tkinter
+# ```
 
-Several GUI library (packages) are available for *Python* and this introduction uses the [`tkinter`](https://docs.python.org/3/library/tkinter.html) library. Alternatives are, for example, [*wxPython*](https://www.wxpython.org/) or [*Jython*](https://www.jython.org/) (a *Java* implementation of *Python 2*). `tkinter` is a standard library, which does not need to be installed additionally. For a quick example, type in the terminal (e.g., *PyCharm* or *Linux* terminal - not in the *Python* console):
+# ```{admonition} Linux users
+# :class: tip, dropdown
+# *** If you encounter troubles with `tkinter` on *Linux*, make sure that `tkinter` for *Python* is installed, either with <br>`sudo apt-get install python3-tk`  or <br>`sudo apt-get install python3.X-tk` (replace `X` with your *Python* version) or<br> `sudo apt install tk8.6-dev` to install the library only (this should be sufficient). <br>If the above comments do not work, make sure that the `tkinter` repository is available to your system: `sudo add-apt-repository ppa:deadsnakes/ppa` (the repository address may change and depends on your *Linux* and *Python* versions).
+# ```
 
-```
-python -m tkinter
-```
+# `tkinter` works on many popular platforms (*Linux*, *macOS*, *Windows*) and is not only available to *Python*, but also to [*Ruby*](https://www.ruby-lang.org), [*Perl*](https://www.perl.org/), [*Tcl*](https://www.tcl-lang.org/) (the origin of of `tkinter`), and many more languages. Because of its support for languages like *Ruby* or *Perl*, `tkinter` can be used for local GUIs as well as for web applications.
+# 
+# ```{note}
+# * All GUI codes on this pages can be downloaded from the [course respository](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/) (please note that this scripts are only temporary available when the course takes place).
+# 
+# 
+# * Consider using another IDE than *Jupyter* (e.g., *PyCharm* or *Spyder*) for running the code blocks provided in this notebook.
+# ```
 
-```{admonition} Linux users
-:class: tip, dropdown
-*** If you encounter troubles with `tkinter` on *Linux*, make sure that `tkinter` for *Python* is installed, either with <br>`sudo apt-get install python3-tk`  or <br>`sudo apt-get install python3.X-tk` (replace `X` with your *Python* version) or<br> `sudo apt install tk8.6-dev` to install the library only (this should be sufficient). <br>If the above comments do not work, make sure that the `tkinter` repository is available to your system: `sudo add-apt-repository ppa:deadsnakes/ppa` (the repository address may change and depends on your *Linux* and *Python* versions).
-```
+# ## The First GUI 
+# The very first step is to import `tkinter`, usually using the alias `as tk`. With `tk.Tk()`, a so-called parent window (e.g., `top`) can be created, in which all further elements will be accommodated. All futher elements are created as `tk` objects as child of the parent window and placed (arranged) in the parent window using the `pack()` or `.grid()` method. Here, we will use `pack` most of the time and `grid` will be useful to place elements at an exact position on the window (e.g., `tk.ELEMENT.grid(row=INT, column=INT)`). To display the GUI, the parent window `top` must be launched with `top.mainloop()` after arranging all elements. The following code block shows how to create a parent window with a label element (`tk.Label`).
 
-`tkinter` works on many popular platforms (*Linux*, *macOS*, *Windows*) and is not only available to *Python*, but also to [*Ruby*](https://www.ruby-lang.org), [*Perl*](https://www.perl.org/), [*Tcl*](https://www.tcl-lang.org/) (the origin of of `tkinter`), and many more languages. Because of its support for languages like *Ruby* or *Perl*, `tkinter` can be used for local GUIs as well as for web applications.
+# In[1]:
 
-```{note}
-* All GUI codes on this pages can be downloaded from the [course respository](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/) (please note that this scripts are only temporary available when the course takes place).
-
-
-* Consider using another IDE than *Jupyter* (e.g., *PyCharm* or *Spyder*) for running the code blocks provided in this notebook.
-```
-
-## The First GUI 
-The very first step is to import `tkinter`, usually using the alias `as tk`. With `tk.Tk()`, a so-called parent window (e.g., `top`) can be created, in which all further elements will be accommodated. All futher elements are created as `tk` objects as child of the parent window and placed (arranged) in the parent window using the `pack()` or `.grid()` method. Here, we will use `pack` most of the time and `grid` will be useful to place elements at an exact position on the window (e.g., `tk.ELEMENT.grid(row=INT, column=INT)`). To display the GUI, the parent window `top` must be launched with `top.mainloop()` after arranging all elements. The following code block shows how to create a parent window with a label element (`tk.Label`).
 
 import tkinter as tk
 top = tk.Tk()
@@ -35,11 +41,15 @@ a_label = tk.Label(top, text = "A label just shows some text.")
 a_label.pack()
 top.mainloop()
 
-![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-first.png)
 
-After calling the `mainloop()` method the window is in a *wait* state. That means, the window is waiting for `events` being triggered through user action action (e.g., a click on a button). This is called *event-driven programming*, where *event handlers* are called rather than a single linear flow of (*Python*) commands.
+# ![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-first.png)
 
-For now, our window uses default values, for example for the window title, size and background color. These window properties can be modified with the `title`, `minsize` or `maxsize`, and `configure` attributes of the `top` parent window:
+# After calling the `mainloop()` method the window is in a *wait* state. That means, the window is waiting for `events` being triggered through user action action (e.g., a click on a button). This is called *event-driven programming*, where *event handlers* are called rather than a single linear flow of (*Python*) commands.
+# 
+# For now, our window uses default values, for example for the window title, size and background color. These window properties can be modified with the `title`, `minsize` or `maxsize`, and `configure` attributes of the `top` parent window:
+
+# In[2]:
+
 
 top = tk.Tk()
 a_label = tk.Label(top, text="A label just shows some text.")
@@ -50,11 +60,15 @@ top.minsize(628, 382)
 top.configure(bg="sky blue")
 top.mainloop()
 
-![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-first-config.png)
 
-## Add a Button to Call a Function
- 
-So far our window only shows a (boring) label and waits for events that do not exist. With a `tk.Button` we now add an event trigger. So that the event has something to trigger, we define a `call_back` function that creates an infobox. The infobox is an object of `showinfo` from `tkinter.messagebox`.
+# ![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-first-config.png)
+
+# ## Add a Button to Call a Function
+#  
+# So far our window only shows a (boring) label and waits for events that do not exist. With a `tk.Button` we now add an event trigger. So that the event has something to trigger, we define a `call_back` function that creates an infobox. The infobox is an object of `showinfo` from `tkinter.messagebox`.
+
+# In[ ]:
+
 
 from tkinter.messagebox import showinfo
 # more message boxes: askokcancel, askyesno
@@ -71,17 +85,21 @@ a_button = tk.Button(top, text = ">> Click <<", command=lambda: call_back("Greet
 a_button.pack()
 top.mainloop()
 
-![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-button.png)
 
-```{note}
-The `command` receives a [`lambda`](pyfun.html#lambda) function that links to the `call_back` function. Why do we need this complication? The answer is that the `call_back` function will be automatically triggered with the `mainloop()` method if we were not using a `lambda` function here.
-```
+# ![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-button.png)
 
-## A Vanilla `tkinter` Program
+# ```{note}
+# The `command` receives a [`lambda`](pyfun.html#lambda) function that links to the `call_back` function. Why do we need this complication? The answer is that the `call_back` function will be automatically triggered with the `mainloop()` method if we were not using a `lambda` function here.
+# ```
 
-So far we have created single `tkinter` objects (*widgets*) in script-style. However, when we write a GUI, we most likely want to start an application (*App*) by just running a script. This is why `tkinter` widgets are usually created as objects of custom classes. Therefore, we want to recast our example as object-oriented code according to the template from the [lecture on *Python* classes](classes.html#template).
+# ## A Vanilla `tkinter` Program
+# 
+# So far we have created single `tkinter` objects (*widgets*) in script-style. However, when we write a GUI, we most likely want to start an application (*App*) by just running a script. This is why `tkinter` widgets are usually created as objects of custom classes. Therefore, we want to recast our example as object-oriented code according to the template from the [lecture on *Python* classes](classes.html#template).
+# 
+# The below example creates a `VanillaApp`, which is a child of `tk.Frame` (`tkinters` master frame). The initialization method `__init__` needs to invoke `tk.Frame` and `pack()` it to initialize the window. After that, we can place other `widget`s such as labels and buttons as before. In the `VanillaApp`, we can also directly implement the `call_back` function from above as a method. Moreover, we want the below script to run stand-alone, also it is not part of a beautiful *jupyter* notebook. For this reason, the `if __name__ == "__main__": VanillaApp().mainloop()` statement is required at the bottom of the script (read more about the `__main__` statement on the [packages page](pckg.html#standalone)).
 
-The below example creates a `VanillaApp`, which is a child of `tk.Frame` (`tkinters` master frame). The initialization method `__init__` needs to invoke `tk.Frame` and `pack()` it to initialize the window. After that, we can place other `widget`s such as labels and buttons as before. In the `VanillaApp`, we can also directly implement the `call_back` function from above as a method. Moreover, we want the below script to run stand-alone, also it is not part of a beautiful *jupyter* notebook. For this reason, the `if __name__ == "__main__": VanillaApp().mainloop()` statement is required at the bottom of the script (read more about the `__main__` statement on the [packages page](pckg.html#standalone)).
+# In[ ]:
+
 
 # define the VanillaApp class
 class VanillaApp(tk.Frame):
@@ -104,37 +122,41 @@ class VanillaApp(tk.Frame):
 if __name__ == "__main__":
     VanillaApp().mainloop()
 
-![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-vanilla.png)
 
-```{admonition} Create a Stand-alone App
-:class: tip
-The above code block with the `VanillaApp` class can be copied to any external *Python* file and saved as, for example, `vanilla_app.py`. With *Python*  being defined as a [system variable](https://docs.python.org/3/using/windows.html#excursus-setting-environment-variables) (only necessary in *Windows* - point at your *Anaconda* base environment's *Python* executable), the GUI can then be started as follows:
+# ![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-vanilla.png)
 
-1. Open Terminal (or command line `cmd` in *Windows*).
-2. Navigate to the directory where the script is located (use `cd` in [*Windows*](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/cd) or [*Linux/macOS*](http://www.linfo.org/cd.html)).
-3. Type `python vanilla_app.py` (or `python -m vanilla_app.py`) to launch the GUI.
+# ```{admonition} Create a Stand-alone App
+# :class: tip
+# The above code block with the `VanillaApp` class can be copied to any external *Python* file and saved as, for example, `vanilla_app.py`. With *Python*  being defined as a [system variable](https://docs.python.org/3/using/windows.html#excursus-setting-environment-variables) (only necessary in *Windows* - point at your *Anaconda* base environment's *Python* executable), the GUI can then be started as follows:
+# 
+# 1. Open Terminal (or command line `cmd` in *Windows*).
+# 2. Navigate to the directory where the script is located (use `cd` in [*Windows*](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/cd) or [*Linux/macOS*](http://www.linfo.org/cd.html)).
+# 3. Type `python vanilla_app.py` (or `python -m vanilla_app.py`) to launch the GUI.
+# 
+# Another tip: this sequence of commands can also be written to a batch file ([`.bat` on *Windows*](https://www.wikihow.com/Write-a-Batch-File)) or shell script ([.sh on *Linux/macOS*](https://www.linux.com/training-tutorials/writing-simple-bash-script/) - [alternative source](http://linuxcommand.org/lc3_writing_shell_scripts.php)). Then, a double click on the batch file starts the *Python*-based GUI.
+# ```
 
-Another tip: this sequence of commands can also be written to a batch file ([`.bat` on *Windows*](https://www.wikihow.com/Write-a-Batch-File)) or shell script ([.sh on *Linux/macOS*](https://www.linux.com/training-tutorials/writing-simple-bash-script/) - [alternative source](http://linuxcommand.org/lc3_writing_shell_scripts.php)). Then, a double click on the batch file starts the *Python*-based GUI.
-```
+# ## More *Widget*s
+# 
+# Are there only labels and buttons? There are many more widgets and the following illustration features some of them including a:
+# 
+# * definition of a GUI window name with `master.title("Window name")`
+# * definition of a GUI window icon (ICO) with `master.iconbitmap("directory/icon_file.ico")`
+# * `tk.Menu` with drop down cascade
+# * `tk.Label` (see above)
+# * `tk.Button` (see above)
+# * `tk.Entry` - a blank field where users can enter values or words
+# * `ttk.Combobox` - a drop down menu in the master frame ([tk-themed](https://docs.python.org/3/library/tkinter.ttk.html) `ttk` widget)
+# * `tk.Listbox` with a `tk.Scrollbar`, where the scrollbar is required to navigate to listbox entry that are not in the visible range of the listbox size
+# * `tk.Checkbutton` that can be checked (ticked) to set a `tk.BooleanVar()` object to `True` (default: not checked -> `False`)<br>Alternatively, have a look at [`tk.Radiobutton`](http://effbot.org/tkinterbook/radiobutton.htm) to enable selections from a multiple-choice frame (rather than the `False`-`True`-only frame of a checkbutton)
+# * `tk.PhotoImage` to display a sub-sampled image in the GUI
+# 
+# ![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-elements.png)
+# 
+# And this is the code that creates the `tkinter` widgets in the figure (the [script](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/start_gui.py), [image](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/sunny_image.gif) and [icon](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/gui_icon.ico) are available at the course repository when the lecture takes place):
 
-## More *Widget*s
+# In[ ]:
 
-Are there only labels and buttons? There are many more widgets and the following illustration features some of them including a:
-
-* definition of a GUI window name with `master.title("Window name")`
-* definition of a GUI window icon (ICO) with `master.iconbitmap("directory/icon_file.ico")`
-* `tk.Menu` with drop down cascade
-* `tk.Label` (see above)
-* `tk.Button` (see above)
-* `tk.Entry` - a blank field where users can enter values or words
-* `ttk.Combobox` - a drop down menu in the master frame ([tk-themed](https://docs.python.org/3/library/tkinter.ttk.html) `ttk` widget)
-* `tk.Listbox` with a `tk.Scrollbar`, where the scrollbar is required to navigate to listbox entry that are not in the visible range of the listbox size
-* `tk.Checkbutton` that can be checked (ticked) to set a `tk.BooleanVar()` object to `True` (default: not checked -> `False`)<br>Alternatively, have a look at [`tk.Radiobutton`](http://effbot.org/tkinterbook/radiobutton.htm) to enable selections from a multiple-choice frame (rather than the `False`-`True`-only frame of a checkbutton)
-* `tk.PhotoImage` to display a sub-sampled image in the GUI
-
-![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-elements.png)
-
-And this is the code that creates the `tkinter` widgets in the figure (the [script](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/start_gui.py), [image](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/sunny_image.gif) and [icon](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/gui_icon.ico) are available at the course repository when the lecture takes place):
 
 import tkinter as tk
 from tkinter.messagebox import showinfo
@@ -219,18 +241,22 @@ class MyApp(tk.Frame):
 if __name__ == '__main__':
     MyApp().mainloop()
 
-As usual in *Python*, there are many more options (widgets) available and the [effbot.org](http://effbot.org/tkinterbook/) offers a detailed overview of available `tkinter` objects.
 
-## `tkinter` Variables
+# As usual in *Python*, there are many more options (widgets) available and the [effbot.org](http://effbot.org/tkinterbook/) offers a detailed overview of available `tkinter` objects.
 
-In the above example, the checkbox receives a `tk.BooleanVar()`, which takes a `True` value when a user checks the checkbox. There are more variables that can be associated with `tkinter` widgets (e.g., an `tk.Entry`, a `tk.Listbox`, or a `ttk.Combobox`). `tkinter` variables correspond basically to [*Python* data types](pybase.html#var) with special methods that are required to set or retrieve (get) user-defined values of these data types. Here is an overview of `tkinter` variables:
+# ## `tkinter` Variables
+# 
+# In the above example, the checkbox receives a `tk.BooleanVar()`, which takes a `True` value when a user checks the checkbox. There are more variables that can be associated with `tkinter` widgets (e.g., an `tk.Entry`, a `tk.Listbox`, or a `ttk.Combobox`). `tkinter` variables correspond basically to [*Python* data types](pybase.html#var) with special methods that are required to set or retrieve (get) user-defined values of these data types. Here is an overview of `tkinter` variables:
+# 
+# * `tk.BooleanVar()` of type *boolean* can be `True` or `False`
+# * `tk.DoubleVar()` is a numeric floating point (*float*) variable
+# * `tk.IntVar()` is a numeric *integer* variable
+# * `tk.StringVar()` is a *string* (i.e., typically some text)
+# 
+# Now the question is, how does *Python* know when to retrieve a user-defined value? Typically, we want to evaluate user-defined values when we call a function that receives user-defined values as input arguments. Predefined default) values in a script can be set with `VARIABLE.set()` and the user settings can be retrieved with `VARIABLE.get()`. The following [script](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/variable_gui.py) and the [icon](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/gui_icon.ico) are available at the course repository (when the lecture takes place).
 
-* `tk.BooleanVar()` of type *boolean* can be `True` or `False`
-* `tk.DoubleVar()` is a numeric floating point (*float*) variable
-* `tk.IntVar()` is a numeric *integer* variable
-* `tk.StringVar()` is a *string* (i.e., typically some text)
+# In[ ]:
 
-Now the question is, how does *Python* know when to retrieve a user-defined value? Typically, we want to evaluate user-defined values when we call a function that receives user-defined values as input arguments. Predefined default) values in a script can be set with `VARIABLE.set()` and the user settings can be retrieved with `VARIABLE.get()`. The following [script](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/variable_gui.py) and the [icon](https://github.com/hydro-informatics/material-py-codes/raw/master/gui/gui_icon.ico) are available at the course repository (when the lecture takes place).
 
 from tkinter.messagebox import showinfo
 import random
@@ -283,31 +309,35 @@ class MyApp(tk.Frame):
 if __name__ == '__main__':
     MyApp().mainloop()
 
-![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-variables.png)
 
-(place-widget)=
-## Design, Place and Modify Widgets
+# ![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-variables.png)
 
-The above code examples use both the `OBJECT.grid()` and the `OBJECT.pack()` methods (geometry managers) to place widgets in the GUI. There is one additional geometry manager in the shape of the `place` method. Which of the geometry managers you want to use is entirely up to you - there are pros and cons for all geometry managers:
+# (place-widget)=
+# ## Design, Place and Modify Widgets
+# 
+# The above code examples use both the `OBJECT.grid()` and the `OBJECT.pack()` methods (geometry managers) to place widgets in the GUI. There is one additional geometry manager in the shape of the `place` method. Which of the geometry managers you want to use is entirely up to you - there are pros and cons for all geometry managers:
+# 
+# * `pack`
+#     - automatically places widgets within a box
+#     - works best for simple GUIs, where all widgets are in one column or row
+#     - complex layouts can be handled with complicated workarounds (tip: do not try)
+# * `place`
+#     - places widgets at absolute or relative *x*-*y* positions
+#     - works well for graphical arrangements of widgets
+# * `grid`
+#     - places widgets in columns and rows of a grid
+#     - works well with table-like apps and structured layouts
+#     
+# To enable more graphical flexibility, widgets accept many optional keywords to change their foreground (`fg`) or background (`bg`) color. In addition, widgets can be modified with the `tk.OBJECT.config(PARAMETER_TO_CONMFIGURE=NEW_CONFIG)` method.
+# 
+# The following sections provide more details on the `place` and `grid` geometry managers (the relevant functions of `pack` are already above shown: `pack()` -  that is basically all) and illustrate some keyword arguments as well as widget methods to modify widgets.
+# 
+# ### Place with `place` and Use Object Colors
+# 
+# The simplest geometry manager is the `pack` method, which works even without any keyword provided as the very first examples on this page illustrate. With the `pack` method, widgets can be placed relatively in the window (`relx` and `rely`, where both must be < 1) or with absolute positions (`x` and `y`, where both should fit into the window dimensions define with `self.config(width=INT, height=INT)`). The axis origin (zero positions of *x* and *y*) are determined with the `anchor` keyword.
+# 
 
-* `pack`
-    - automatically places widgets within a box
-    - works best for simple GUIs, where all widgets are in one column or row
-    - complex layouts can be handled with complicated workarounds (tip: do not try)
-* `place`
-    - places widgets at absolute or relative *x*-*y* positions
-    - works well for graphical arrangements of widgets
-* `grid`
-    - places widgets in columns and rows of a grid
-    - works well with table-like apps and structured layouts
-    
-To enable more graphical flexibility, widgets accept many optional keywords to change their foreground (`fg`) or background (`bg`) color. In addition, widgets can be modified with the `tk.OBJECT.config(PARAMETER_TO_CONMFIGURE=NEW_CONFIG)` method.
-
-The following sections provide more details on the `place` and `grid` geometry managers (the relevant functions of `pack` are already above shown: `pack()` -  that is basically all) and illustrate some keyword arguments as well as widget methods to modify widgets.
-
-### Place with `place` and Use Object Colors
-
-The simplest geometry manager is the `pack` method, which works even without any keyword provided as the very first examples on this page illustrate. With the `pack` method, widgets can be placed relatively in the window (`relx` and `rely`, where both must be < 1) or with absolute positions (`x` and `y`, where both should fit into the window dimensions define with `self.config(width=INT, height=INT)`). The axis origin (zero positions of *x* and *y*) are determined with the `anchor` keyword.
+# In[ ]:
 
 
 class PlacedApp(tk.Frame):
@@ -324,15 +354,19 @@ class PlacedApp(tk.Frame):
 if __name__ == '__main__':
     PlacedApp().mainloop()
 
-![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-placed.png)
 
-```{note}
-The above example does not create class objects of `tk.Labels`, which makes the labels non-modifiable. This definition of widgets is acceptable to shorten the often long GUI scripts, but only if the widgets should not be modified later.
-```
+# ![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-placed.png)
 
-### Place Objects with `grid`
-In `grid`-ed GUIs, the widget alignment can be controlled with the `sticky` argument that uses cardinal directions (e.g., `sticky=tk.W` aligns or "sticks" a widget the west, i.e., left side, of a GUI).
-The `padx` and `pady` keywords arguments enable the implementation of pixel space around widgets
+# ```{note}
+# The above example does not create class objects of `tk.Labels`, which makes the labels non-modifiable. This definition of widgets is acceptable to shorten the often long GUI scripts, but only if the widgets should not be modified later.
+# ```
+
+# ### Place Objects with `grid`
+# In `grid`-ed GUIs, the widget alignment can be controlled with the `sticky` argument that uses cardinal directions (e.g., `sticky=tk.W` aligns or "sticks" a widget the west, i.e., left side, of a GUI).
+# The `padx` and `pady` keywords arguments enable the implementation of pixel space around widgets
+
+# In[ ]:
+
 
 from tkinter.messagebox import showinfo
 
@@ -351,10 +385,14 @@ class GriddedApp(tk.Frame):
 if __name__ == '__main__':
     GriddedApp().mainloop()
 
-![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-grid.png)
 
-### Configure Widgets
-Upon user actions (events), we may want to modify previously defined widgets. For example, we may want to change the text of a label or the layout of a button to indicate successful or failed operations. For this purpose, `tkinter` objects can be modified with `tk.OBJECT.config(PARAMETER_TO_CONMFIGURE=NEW_CONFIG)`. Moreover, objects can be delete (destroyed) with `tk.OBJECT.destroy()`, even though this is not an elegant method for any other widgets that pop-up windows (child frames of the master frame).
+# ![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-grid.png)
+
+# ### Configure Widgets
+# Upon user actions (events), we may want to modify previously defined widgets. For example, we may want to change the text of a label or the layout of a button to indicate successful or failed operations. For this purpose, `tkinter` objects can be modified with `tk.OBJECT.config(PARAMETER_TO_CONMFIGURE=NEW_CONFIG)`. Moreover, objects can be delete (destroyed) with `tk.OBJECT.destroy()`, even though this is not an elegant method for any other widgets that pop-up windows (child frames of the master frame).
+# 
+
+# In[ ]:
 
 
 from tkinter.messagebox import showinfo, showerror
@@ -399,36 +437,40 @@ class ReConfigApp(tk.Frame):
 if __name__ == '__main__':
     ReConfigApp().mainloop()
 
-![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-config.png)
 
-***
+# ![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-config.png)
 
-```{admonition} Challenge
-1. The roughness value varies from case to case. Can you implement a `ttk.Combobox` to let a user choose a Strickler *k<sub>st</sub>* roughness value between 10 and 85 (integers) and define the channel slope in a `tk.Entry` or a custom pop-up window (see below)?
-2. The cross-section averaged flow velocity also depends on the cross-section geometry. Can you implement `tkinter` widgets to enable the bank slope `m` and channel base width `w` to calculate the hydraulic radius?
-```
+# ***
+# 
+# ```{admonition} Challenge
+# 1. The roughness value varies from case to case. Can you implement a `ttk.Combobox` to let a user choose a Strickler *k<sub>st</sub>* roughness value between 10 and 85 (integers) and define the channel slope in a `tk.Entry` or a custom pop-up window (see below)?
+# 2. The cross-section averaged flow velocity also depends on the cross-section geometry. Can you implement `tkinter` widgets to enable the bank slope `m` and channel base width `w` to calculate the hydraulic radius?
+# ```
+# 
+# ***
+# 
+# ![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/flowVariables_xs.png)
 
-***
+# ## Pop-up Windows
+# 
+# ### Default Messages from `tkinter.messagebox`
+# The `tkinter.messagebox` window provides some standard pop-up windows such as:
+# 
+# * `showinfo(title=STR, message=STR)` that prints some information message (see above examples).
+# * `showwarning(title=STR, message=STR)` that prints a warning message.
+# * `showerror(title=STR, message=STR)` that prints an error message (see above example).
+# * `askyesno(title=STR, message=STR)` that returns `False` or `True` depending on a user's answers to a *Yes-or-No* question.
+# * `askretrycancel(title=STR, message=STR)` that returns `False` or `True`, or re-attempts to run an event (function) depending on a user's answers to a *Yes-or-No-or-Cancel* question.
+# * `askokcancel(title=STR, message=STR)` that returns `False` or `True` depending on a user's answers to a *OK* question.
+# * `askretrycancel(title=STR, message=STR)` that returns `False` or `True`, or re-attempts to run an event (function) depending on a user's answers to a *OK-or-Cancel* question.
+# 
+# Read more about default pop-up windows in the [*Python* docs](https://docs.python.org/3.9/library/tkinter.messagebox.html).
+# 
+# ### Top-level Custom Pop-ups
+# The default windows may not meet the needs, for example to invite users to enter a custom value. In this case, a `tk.Toplevel` object aids to produce a custom window. The below example shows how a custom top-level pop-up window can be called within a method. With the `tk.Toplevel` widget and the `tk.Frame` (master) widgets, there are two frames now, where buttons, labels, or any other `tkinter` object can be placed. The very first argument of any `tkinter` object created determines whether the object is placed in the master or the top-level frame. For example, `tk.Entry(self).pack()` creates an entry in the master `tk.Frame`, and `tk.Entry(pop_up).pack()` creates an entry in the child `tk.Toplevel`.
 
-![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/flowVariables_xs.png)
+# In[ ]:
 
-## Pop-up Windows
-
-### Default Messages from `tkinter.messagebox`
-The `tkinter.messagebox` window provides some standard pop-up windows such as:
-
-* `showinfo(title=STR, message=STR)` that prints some information message (see above examples).
-* `showwarning(title=STR, message=STR)` that prints a warning message.
-* `showerror(title=STR, message=STR)` that prints an error message (see above example).
-* `askyesno(title=STR, message=STR)` that returns `False` or `True` depending on a user's answers to a *Yes-or-No* question.
-* `askretrycancel(title=STR, message=STR)` that returns `False` or `True`, or re-attempts to run an event (function) depending on a user's answers to a *Yes-or-No-or-Cancel* question.
-* `askokcancel(title=STR, message=STR)` that returns `False` or `True` depending on a user's answers to a *OK* question.
-* `askretrycancel(title=STR, message=STR)` that returns `False` or `True`, or re-attempts to run an event (function) depending on a user's answers to a *OK-or-Cancel* question.
-
-Read more about default pop-up windows in the [*Python* docs](https://docs.python.org/3.9/library/tkinter.messagebox.html).
-
-### Top-level Custom Pop-ups
-The default windows may not meet the needs, for example to invite users to enter a custom value. In this case, a `tk.Toplevel` object aids to produce a custom window. The below example shows how a custom top-level pop-up window can be called within a method. With the `tk.Toplevel` widget and the `tk.Frame` (master) widgets, there are two frames now, where buttons, labels, or any other `tkinter` object can be placed. The very first argument of any `tkinter` object created determines whether the object is placed in the master or the top-level frame. For example, `tk.Entry(self).pack()` creates an entry in the master `tk.Frame`, and `tk.Entry(pop_up).pack()` creates an entry in the child `tk.Toplevel`.
 
 from tkinter.messagebox import showwarning
 
@@ -461,10 +503,14 @@ class PopApp(tk.Frame):
 if __name__ == '__main__':
     PopApp().mainloop()
 
-![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-popup-custom.png)
 
-### File Dialog (Open ...)
-When a custom function's argument is a file or file name, we most likely want the user to be able to select the file needed. The [`tkinter.filedialog`](https://docs.python.org/3.10/library/dialog.html#module-tkinter.filedialog) module provides methods to let user choose general or specific file types. Specific file types can be defined with the `filetypes=("Name", "*.ending")` (or `filetypes=("Name", "*.ending1;*.ending2;...")` for multiple file types) keyword argument. The following example illustrates the usage of `tkinter.filedialog`'s `askopenfilename`.
+# ![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-popup-custom.png)
+
+# ### File Dialog (Open ...)
+# When a custom function's argument is a file or file name, we most likely want the user to be able to select the file needed. The [`tkinter.filedialog`](https://docs.python.org/3.10/library/dialog.html#module-tkinter.filedialog) module provides methods to let user choose general or specific file types. Specific file types can be defined with the `filetypes=("Name", "*.ending")` (or `filetypes=("Name", "*.ending1;*.ending2;...")` for multiple file types) keyword argument. The following example illustrates the usage of `tkinter.filedialog`'s `askopenfilename`.
+
+# In[ ]:
+
 
 from tkinter.filedialog import askopenfilename
 from tkinter.messagebox import showinfo
@@ -489,23 +535,24 @@ class OpenFileApp(tk.Frame):
 if __name__ == '__main__':
     OpenFileApp().mainloop()
 
-![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-filedialog.png)
 
-## Quit
-to cleanly quit a GUI, use `tk.Frame.quit()` (i.e., in a custom class `self.quit()` or `master.quit()`. The above example of the `PopApp` class also features the `destroy()` method, which helps to remove particular widgets.
+# ![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-filedialog.png)
 
-`tkinter` provides many more options such as the implementation of tabs with `ttk.Notebook()` (requires [binding](https://effbot.org/tkinterbook/tkinter-events-and-bindings.htm) of tab objects), tables (`from tkintertable import TableCanvas, TableModel`), or interactive graphic objects with
+# ## Quit
+# to cleanly quit a GUI, use `tk.Frame.quit()` (i.e., in a custom class `self.quit()` or `master.quit()`. The above example of the `PopApp` class also features the `destroy()` method, which helps to remove particular widgets.
+# 
+# `tkinter` provides many more options such as the implementation of tabs with `ttk.Notebook()` (requires [binding](https://effbot.org/tkinterbook/tkinter-events-and-bindings.htm) of tab objects), tables (`from tkintertable import TableCanvas, TableModel`), or interactive graphic objects with
+# 
+# ```python
+# import matplotlib
+# matplotlib.use('TkAgg')
+# import numpy as np
+# from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+# from matplotlib.figure import Figure
+# ```
+# 
+# Enjoy creating your custom apps!
 
-```python
-import matplotlib
-matplotlib.use('TkAgg')
-import numpy as np
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from matplotlib.figure import Figure
-```
-
-Enjoy creating your custom apps!
-
-```{admonition} Exercise
-Get familiar with creating GUIs and object orientation in the [GUI](../exercises/ex-gui) exercise.
-```
+# ```{admonition} Exercise
+# Get familiar with creating GUIs and object orientation in the [GUI](../exercises/ex-gui) exercise.
+# ```

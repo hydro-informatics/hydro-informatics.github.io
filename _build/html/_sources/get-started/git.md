@@ -10,7 +10,7 @@ The concept of git and basic vocabulary. The REMOTE frame is online (i.e., some 
 ```
 
 (dl)=
-## Install and Use
+## Install and Use git
 The materials provided on these pages is best downloaded and updated using *git*-able environments (avoid downloading materials as *zip* file).
 
 ```{admonition} Windows

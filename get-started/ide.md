@@ -48,13 +48,13 @@ After the installation of *PyCharm* for *Anaconda*, open *Anaconda Navigator*:
 1. Option 1 (preferred): Use the [developer's up-to-date documentation](https://docs.anaconda.com/anaconda/user-guide/tasks/pycharm/) for setting up *PyCharm* with *Anaconda*.
 1. Option 2 (quick to read, but may fail): A window will open - enter:
     - *Location* - Select a local directory for the project (e.g., *C:/hydro/project*)
-    - *Project Interpreter* - Check the `Existing interpreter` box and select the above-installed [conda environment   `hypy`  ](../python-basics/pyinstall.html#conda-env) (e.g., `C:\users\<your-user-name>\AppData\Local\Continuum\anaonda3\envs\`)
+    - *Project Interpreter* - Check the `Existing interpreter` box and select an existing interpreter.
     - Click on the `Create` button.
 
 All set - you are ready to work with *Python*, markdown (documentation), and [git](../get-started/git).
 
 ```{note}
-***Python* users** read more about setting up *conda* environments on the [*Python (basics)*](../python-basics/pyinstall.html#ide-setup) page.
+***PyCharm-Python* users** can read more about setting up *conda* environments in the {ref}`ide-setup` section.
 ```
 
 (jupyter)=
@@ -138,7 +138,8 @@ sudo apt update
 sudo apt install atom
 ```
 
-### Relevant Atom Packages
+(atom-packages)=
+### Useful Atom Packages
 
 To install packages:
 
@@ -154,6 +155,31 @@ The following (additional) packages are useful for working with contents of this
 * `linter` basic package for spell checkers
 * `linter-markdown` spell checks *Markdown* files
 * `linter-spell-rst` spell checks *reStructuredText*
+* `platformio-ide-terminal` adds a terminal window to *Atom*
 * `python-docstring` facilitates inline documentation of *Python* code
 * `python-requirements` enables to install required packages for running *Python* code
 * * `script` enables to run *Python* and many other code types ([read the docs](https://atom.io/packages/script)); after the installation, running a code (*Python*) file can be triggered by clicking on the **Packages** top menu > **Script**  > **Run Script**.
+
+(atom-python)=
+### Enable (Python) Console
+
+While the `script` package enables to run a *Python* script, it may be desireable to have a built-in *Python* console window running in *Atom*. To this end, the `platformio-ide-terminal` package tweaks into the system's default terminal (*Terminal* on *Linux* or *PowerShell* on *Windows 10*), which can run an existing installation of *Python* (i.e., *Python* must be installed on the system in some form).
+
+Windows Users
+: Preferably install {ref}`anaconda`, and afterward, add the {{ ft_url }} environment and package as follows:
+
+  1. Download the [FlussTools environment.yml](https://raw.githubusercontent.com/Ecohydraulics/flusstools-pckg/main/environment.yml) in an easy-to-find folder (e.g., `C:\temp`)
+  2. In *Atom* go to **Packages** (top menu) > **platformio-ide-terminal** > **New Terminal**
+  3. In the new terminal, navigate to your download directory (e.g., `cd C:\temp` or `cd Downloads/`).
+  4. Install the *flusstools* environment by typing `conda env create -f environment.yml` (this action requires that {ref}`anaconda` is installed).
+  5. Activate the *flusstools* environment: `conda activate flusstools`
+  6. Install the *FlussTools* package: `pip install flusstools`
+
+  You are now good to go. Everytime you want to launch *Python* with *flusstools*, do the following:
+
+  * In *Atom* go to **Packages** (top menu) > **platformio-ide-terminal** > **New Terminal**
+  * Tap `conda activate flusstools`
+  * Launch *Python*: `python`
+
+Linux Users
+: Almost all *Linux* distributions have *Python* natively installed. For the best learning experience with this eBook, install the {{ ft_url }} package by following the instructions in the [FlussTools docs for Linux](https://flusstools.readthedocs.io/en/latest/getstarted.html#get-ready-on-linux).
