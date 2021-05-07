@@ -55,8 +55,8 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="First steps" href="../jupyter/pybase.html" />
-    <link rel="prev" title="Get Started with Python" href="python.html" />
+    <link rel="next" title="Introduction to git" href="../get-started/git.html" />
+    <link rel="prev" title="Integrated Development Environments (IDEs)" href="../get-started/ide.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -91,7 +91,7 @@
   Get Started
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../lectures/classroom.html">
    The Virtual Classroom
@@ -114,16 +114,16 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../get-started/software.html">
    Software Resources
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="../get-started/vm.html">
      Virtual Machines and Linux
@@ -132,6 +132,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../get-started/ide.html">
      Integrated Development Environments (IDEs)
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Install Python
     </a>
    </li>
    <li class="toctree-l2">
@@ -151,7 +156,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../get-started/install-telemac.html">
-     open TELEMAC (Installation)
+     TELEMAC (Installation)
     </a>
    </li>
    <li class="toctree-l2">
@@ -167,22 +172,17 @@
   Python Basics
  </span>
 </p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active has-children">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="python.html">
    Get Started with Python
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Install Python
-    </a>
-   </li>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/pybase.html">
      First steps
@@ -652,10 +652,32 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pip-and-venv">
+   pip and venv
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#quick-guide">
+     Quick Guide
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#manage-pip-install-uninstall-or-upgrade-modules">
+     Manage pip (Install, Uninstall, or Upgrade) Modules
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#conda-environments">
    Conda Environments
   </a>
   <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Quick Guide
+    </a>
+   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#create-and-install">
      Create and Install
@@ -693,8 +715,13 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pycharm">
-     PyCharm
+    <a class="reference internal nav-link" href="#atom-and-python">
+     Atom and Python
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pycharm-python-projects">
+     PyCharm Python Projects
     </a>
    </li>
   </ul>
@@ -712,77 +739,250 @@
                 
   <div class="section" id="install-python">
 <span id="id1"></span><h1>Install Python<a class="headerlink" href="#install-python" title="Permalink to this headline">¶</a></h1>
-<p><em>Python</em>’s two-fold development (<em>Python2</em> and <em>Python3</em>) and other parallel versions of <em>Python</em> (e.g., ESRI’s ArcGIS or Nvidia’s cuda <em>Python</em> versions) may cause that multiple versions of <em>Python</em> are installed on your computer (even though <em>Python2</em> is about to disappear). As a consequence packages might have been unintentionally or unknowingly installed for another <em>Python</em> than used for a project. However, the parallel existence of multiple <em>Python</em> interpreters that may access packages may be beneficial (e.g., when packages are installed that are not compatible with each other). So, how to <strong>deal with the challenge of having multiple <em>Python</em> interpreters (or environments) installed?</strong></p>
-<p><strong><em>Conda</em> environments</strong> are one solution to this challenge: A <em>Conda Environment</em> is a directory on your computer that represents a virtual environment with a particular <em>Python</em> interpreter (e.g., a Python2 or Python3 executable) and packages. The directory is typically named <code class="docutils literal notranslate"><span class="pre">env</span></code> (or <code class="docutils literal notranslate"><span class="pre">venv</span></code> for virtual environment) and <em>Anaconda</em> will control automatically where the environment directories (folders) are stored on your computer. On Windows, the typical directory is <code class="docutils literal notranslate"><span class="pre">C:\users\&lt;your-user-name&gt;\AppData\Local\Continuum\anaconda3\envs\</span></code>. Note that <em>AppData</em> is a hidden folder (<a class="reference external" href="https://support.microsoft.com/en-us/help/4028316/windows-view-hidden-files-and-folders-in-windows-10">view hidden folders on Windows</a>). Only change the default directory for Conda Environment directories, if you exactly know what you are doing.</p>
-<div class="admonition-requirements admonition">
-<p class="admonition-title">Requirements</p>
-<p>Before you continue, <strong>make sure that <em>Anaconda</em> or <a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a> is installed</strong> according to the <a class="reference external" href="../get-started/ide.html#anaconda">descriptions in the <em>Get Started</em></a> section.</p>
+<p><em>Python</em>’s two-fold development (<em>Python2</em> and <em>Python3</em>) and other parallel versions of <em>Python</em> (e.g., ESRI’s ArcGIS or Nvidia’s cuda <em>Python</em> versions) may cause that multiple versions of <em>Python</em> are installed on your computer (even though <em>Python2</em> is about to disappear). As a consequence packages might have been unintentionally or unknowingly installed for another <em>Python</em> interpreter than used in a project. However, the parallel existence of multiple <em>Python</em> interpreters is sometimes beneficial, for instance, when packages are installed that are not compatible with each other. So how to <strong>deal with the challenge of having multiple <em>Python</em> interpreters (or environments) installed?</strong></p>
+<p>There are multiple answers to this question and the best option depends, to some extent, to personal preferences and the <strong>O</strong>perating <strong>S</strong>ystem (<strong>OS</strong>) - also referred to as <strong>platform</strong>. For instance, <em>conda</em> environments might be preferable with <em>Windows</em> and <em>pip</em> environments with <em>Linux</em> (e.g., <em>Debian</em>/<em>Ubuntu</em>). Nevertheless, both <em>pip</em> and <em>conda</em> work well on both platforms (and also with <em>macOS</em>). Since <em>Python 3.4</em> (and <em>Python 2.7.9</em>), <em>pip</em> is installed with the basic <a class="reference external" href="https://www.python.org/downloads/">Python</a> installation. To work with <em>conda</em> environments, the installation of <a class="reference internal" href="../get-started/ide.html#anaconda"><span class="std std-ref">Anaconda</span></a> is required (no additional installation of <em>Python</em> is necessary in this case).</p>
+<dl class="simple myst">
+<dt><em>Conda</em> environments</dt><dd><p>A <em>conda environment</em> is a directory on your computer that represents a virtual environment with a particular <em>Python</em> interpreter (e.g., a Python2 or Python3 executable) and packages/libraries. The directory is typically named <code class="docutils literal notranslate"><span class="pre">env</span></code> (or <code class="docutils literal notranslate"><span class="pre">venv</span></code> for a virtual environment) and <em>Anaconda</em> will control automatically where the environment directories (folders) are stored on your computer. On <em>Windows</em>, the typical installation directory is <code class="docutils literal notranslate"><span class="pre">C:\users\&lt;your-user-name&gt;\AppData\Local\Continuum\anaconda3\envs\</span></code>. Note that <em>AppData</em> is a hidden folder (<a class="reference external" href="https://support.microsoft.com/en-us/help/4028316/windows-view-hidden-files-and-folders-in-windows-10">view hidden folders on Windows</a>). Only change the default directory for <em>conda</em> environment directories, if you exactly know what you are doing.</p>
+</dd>
+<dt>pipenv / venv</dt><dd><p><em>pipenv</em> or <em>pip</em> environments are <em>Python</em> environments that can be created with <em>Python</em>s default <a class="reference external" href="https://pip.pypa.io/en/stable/">pip</a> package-management system (default since <em>Python 2.7.9.</em> / <em>Python 3.4</em>). With pip, a virtual environment can be created (typically stored in a <em>venv</em> folder in the working directory).</p>
+</dd>
+</dl>
+<p>This section guides through the installation of a computational environment that is tailored for working with contents in this ebook. The environment uses the <strong>flusstools</strong> pip-package, which provides many useful routines for river analyses.</p>
+<div class="section" id="pip-and-venv">
+<span id="pip-env"></span><h2>pip and venv<a class="headerlink" href="#pip-and-venv" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="quick-guide">
+<h3>Quick Guide<a class="headerlink" href="#quick-guide" title="Permalink to this headline">¶</a></h3>
+<p>Consider to install, create and activate a new virtual environment before installing the <em>flusstools</em> requirements (read more at <a class="reference external" href="https://www.python.org/downloads/">Python</a>) as follows:</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="949f1510-d1b9-4552-b177-a070ddd1f2a6" name="6963d679-cdf6-42b4-b8c8-48b5bdcf783a" type="radio">
+</input><label class="tabbed-label" for="949f1510-d1b9-4552-b177-a070ddd1f2a6">
+Linux</label><div class="tabbed-content docutils">
+<p>To avoid affecting the system’s Python interpreter, setup a virtual environment with <em>venv</em>. the first step is to make sure that <em>Python3</em> and <em>venv</em> are installed on the sytem:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">python3</span> <span class="n">python3</span><span class="o">-</span><span class="n">venv</span>
+</pre></div>
+</div>
+<p>Next, make sure that <code class="docutils literal notranslate"><span class="pre">pip3</span></code> and <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> are installed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">python3</span><span class="o">-</span><span class="n">pip</span> <span class="n">python3</span><span class="o">-</span><span class="n">tk</span> <span class="n">tk8</span><span class="mf">.6</span><span class="o">-</span><span class="n">dev</span>
+</pre></div>
+</div>
+<p>Then go to the home directory (or wherever you want to install the virtual environment) and create a new virtual environment (e.g., called <em>vflussenv</em>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~</span>
+<span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">vflussenv</span>
+</pre></div>
+</div>
+<p>Then activate the new environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">vflussenv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+</pre></div>
+</div>
+<p>Double-check that the environment is activated:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">which</span> <span class="n">python</span>
+</pre></div>
+</div>
+<p>Then, install <em>QGIS</em> and <em>GDAL</em> for <em>Linux</em> (this should work with any <em>Debian</em> architecture) and make sure to use the correct <code class="docutils literal notranslate"><span class="pre">pip</span></code> command at the end (i.e., it might be necessary to replace <code class="docutils literal notranslate"><span class="pre">pip3</span></code> with <code class="docutils literal notranslate"><span class="pre">pip</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable &amp;&amp; sudo apt update
+sudo apt install libgeos-dev gdal-bin libgdal-dev libgdal1h
+pip3 install GDAL==$(gdal-config --version) --global-option=build_ext --global-option=&quot;-I/usr/include/gdal/&quot;
+</pre></div>
+</div>
+<p>Now, install <em>flusstools</em> with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">flusstools</span>
+</pre></div>
+</div>
+</div>
+<input id="81c9209b-5dc1-468d-8136-b154ddfb5e8c" name="6963d679-cdf6-42b4-b8c8-48b5bdcf783a" type="radio">
+</input><label class="tabbed-label" for="81c9209b-5dc1-468d-8136-b154ddfb5e8c">
+Windows</label><div class="tabbed-content docutils">
+<p>Make sure that <a class="reference external" href="https://www.python.org/downloads/">Python</a> (&gt;= version 3.4) installed. In addition, install <em>virtualenv</em> (in the following, alternatively use <code class="docutils literal notranslate"><span class="pre">py</span></code> instead of <code class="docutils literal notranslate"><span class="pre">python</span></code>, if <code class="docutils literal notranslate"><span class="pre">python</span></code> returns errors):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="n">virtualenv</span>
+</pre></div>
+</div>
+<p>Then go to the directory wherever you want to install a new virtual environment called <em>vflussenv</em> and create the new virtual environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">DIR</span>\<span class="n">TO</span>\<span class="n">ENV</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">vflussenv</span>
+</pre></div>
+</div>
+<p>Then activate the new environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span>\<span class="n">vflussenv</span>\<span class="n">Scripts</span>\<span class="n">activate</span>
+</pre></div>
+</div>
+<p>Double-check that the environment is activated (should return something like <code class="docutils literal notranslate"><span class="pre">.../DIR/TO/ENV/bin/python.exe</span></code>) and upgrade <code class="docutils literal notranslate"><span class="pre">pip</span></code> in the environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">where</span> <span class="n">python</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
+</pre></div>
+</div>
+<p>Because of issues in the latest version of GDAL, pip-<em>Windows</em> users must use <em>conda</em> to get <em>gdal</em>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">conda</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">gdal</span>
+</pre></div>
+</div>
+<div class="error dropdown admonition">
+<p class="admonition-title">GDAL Error: Setup script exited with error: Microsoft Visual C++ 14.0 …</p>
+<p>Currently, there is an issue with installing GDAL when <em>Microsoft Visual C++</em> is missing or outdated. Thus, to enable the installation of GDAL on <em>Windows</em>, first download and install <strong>Microsoft Visual C++</strong> from <a class="reference external" href="https://visualstudio.microsoft.com/visual-cpp-build-tools/">Microsoft C++ Build Tools</a>.</p>
+</div>
+<p>Finally, install <em>flusstools</em> and its dependencies with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">flusstools</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To verify if <em>flusstools</em> is correctly installed write:</p>
+<div class="highlight-{tabbed}Linux notranslate"><div class="highlight"><pre><span></span>```
+user:~$ python3
+Python 3.X.X (default, MMM DD YYYY, hh:mm:ss)
+[GCC 9.X.X on linux]
+&gt;&gt;&gt; import flusstools as ft
+```
+Recall that newer *Linux* versions may not differentiate between *Python2* and *Python3* (i.e., use `python` rather than `python3`).
+</pre></div>
+</div>
+<div class="highlight-{tabbed}Windows notranslate"><div class="highlight"><pre><span></span>```
+(vflussenv) C:\Users\USER-NAME:~$ python
+Python 3.X.X (default, MMM DD YYYY, hh:mm:ss)
+...
+&gt;&gt;&gt; import flusstools as ft
+```
+</pre></div>
+</div>
+<p>The import of <em>flusstools</em> should not return any import error. If there is any import error, find out the toublesome package’s name and re-install it. In particular, the installation of <em>GDAL</em> may be challenging when working with <code class="docutils literal notranslate"><span class="pre">pip</span></code>, in particular on <em>Windows</em>. To learn more about the installation of <em>GDAL</em> visit the <a class="reference external" href="https://gdal.org/download.html#binaries">Download &gt; Binaries section on the developer’s website</a>.</p>
+</div>
+<div class="section" id="manage-pip-install-uninstall-or-upgrade-modules">
+<h3>Manage pip (Install, Uninstall, or Upgrade) Modules<a class="headerlink" href="#manage-pip-install-uninstall-or-upgrade-modules" title="Permalink to this headline">¶</a></h3>
+<p>More than 300,000 projects live on <a class="reference external" href="https://pypi.org/">pypi.org</a> and there are packages available for many purposes. To find suitable packages visit <a class="reference external" href="https://pypi.org/search/">https://pypi.org/search/</a>. To install (i.e., add) one of these <code class="docutils literal notranslate"><span class="pre">pip</span></code>/<code class="docutils literal notranslate"><span class="pre">pip3</span></code> packages use:</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="5ec8ef35-3b18-418e-9c84-d41c28fc5ef3" name="bbf97c80-e28f-4510-8c55-88a380bb2c8a" type="radio">
+</input><label class="tabbed-label" for="5ec8ef35-3b18-418e-9c84-d41c28fc5ef3">
+Windows Command Prompt</label><div class="tabbed-content docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="n">PACKAGE_NAME</span>
+</pre></div>
+</div>
+</div>
+<input id="0c094cbd-a406-43df-8554-bc38df5ce317" name="bbf97c80-e28f-4510-8c55-88a380bb2c8a" type="radio">
+</input><label class="tabbed-label" for="0c094cbd-a406-43df-8554-bc38df5ce317">
+Linux Terminal</label><div class="tabbed-content docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">PACKAGE_NAME</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">--user</span></code> flag is only required if you are not working in a virtual environment. Otherwise, normal users can only manage packages in the local user directory (on <em>Windows</em>: <code class="docutils literal notranslate"><span class="pre">C\Users\USER-NAME\</span></code>); system packages can only be managed by administrators (on <em>Linux</em> with the <code class="docutils literal notranslate"><span class="pre">sudo</span></code> command).</p>
+</div>
+<p>To remove (i.e., uninstall) a <code class="docutils literal notranslate"><span class="pre">pip</span></code>/<code class="docutils literal notranslate"><span class="pre">pip3</span></code>-installed package use:</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="f6818da5-89c8-4df5-9685-fe720106c98a" name="b4ff95b0-a1ef-4967-92d5-3bbd5dc65f6d" type="radio">
+</input><label class="tabbed-label" for="f6818da5-89c8-4df5-9685-fe720106c98a">
+Windows Command Prompt</label><div class="tabbed-content docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">uninstall</span> <span class="n">PACKAGE_NAME</span>
+</pre></div>
+</div>
+</div>
+<input id="9a26a614-35b8-4c21-998b-36d8edc2d027" name="b4ff95b0-a1ef-4967-92d5-3bbd5dc65f6d" type="radio">
+</input><label class="tabbed-label" for="9a26a614-35b8-4c21-998b-36d8edc2d027">
+Linux Terminal</label><div class="tabbed-content docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">uninstall</span> <span class="n">PACKAGE_NAME</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To upgrade (update) a package that lives in a local user environment use:</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="ce854b50-570e-4ec0-9009-e8840ade0178" name="ff73c19e-18f3-44e1-a660-442278b5ebd7" type="radio">
+</input><label class="tabbed-label" for="ce854b50-570e-4ec0-9009-e8840ade0178">
+Windows Command Prompt</label><div class="tabbed-content docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="o">--</span><span class="n">user</span> <span class="n">PACKAGE_NAME</span>
+</pre></div>
+</div>
+</div>
+<input id="1ef06508-06d4-4f9a-97f4-f52e70ce7faa" name="ff73c19e-18f3-44e1-a660-442278b5ebd7" type="radio">
+</input><label class="tabbed-label" for="1ef06508-06d4-4f9a-97f4-f52e70ce7faa">
+Linux Terminal</label><div class="tabbed-content docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">PACKAGE_NAME</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To leave a virtual environment on any platform tab:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">deactivate</span>
+</pre></div>
+</div>
+<p>Read more about virtual environments and pip at <a class="reference external" href="https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/">https://packaging.python.org</a>.</p>
+</div>
 </div>
 <div class="section" id="conda-environments">
 <span id="conda-env"></span><h2>Conda Environments<a class="headerlink" href="#conda-environments" title="Permalink to this headline">¶</a></h2>
+<p>This section features the quick installation of the <a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/flusstools-pckg/main/environment.yml">flusstools environment.yml</a> for <em>Anaconda</em> followed by more detailed explanations on the creation and management of <em>conda</em> environments.</p>
+<div class="section" id="id2">
+<h3>Quick Guide<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Download the <em>flussenv</em> <a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/flusstools-pckg/main/environment.yml">environment file</a> (if needed: copy the file contents of <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> in a local text editor, such as <a class="reference internal" href="../get-started/others.html#npp"><span class="std std-ref">NotepadPlusPlus</span></a>, and save the file for example in a directory called <em>C:/temp/</em>).</p></li>
+<li><p>Open a command line</p>
+<ul class="simple">
+<li><p>On <em>Windows</em>: <em>Anaconda Prompt</em> (<code class="docutils literal notranslate"><span class="pre">Windows</span></code> key &gt; type <code class="docutils literal notranslate"><span class="pre">Anaconda</span> <span class="pre">Prompt</span></code> &gt; hit <code class="docutils literal notranslate"><span class="pre">Enter</span></code>).</p></li>
+<li><p>On <em>Linux</em>:</p></li>
+</ul>
+</li>
+<li><p>Navigate to the download directory where <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> is located (use <a class="reference external" href="https://www.digitalcitizen.life/command-prompt-how-use-basic-commands"><code class="docutils literal notranslate"><span class="pre">cd</span></code></a> to navigate, for example, to <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">C:/temp/</span></code>).</p></li>
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">environment.yml</span></code> (this creates an environment called <code class="docutils literal notranslate"><span class="pre">flussenv</span></code>). <br> <em>… takes a while …</em></p></li>
+<li><p>Activate <em>flussenv</em>: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">flussenv</span></code></p></li>
+<li><p>Install <em>flusstools</em>: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">flusstools</span></code></p></li>
+</ol>
+</div>
 <div class="section" id="create-and-install">
 <h3>Create and Install<a class="headerlink" href="#create-and-install" title="Permalink to this headline">¶</a></h3>
-<p>To create a new <em>conda</em> environment, open <em>Anaconda Prompt</em> and type (replace <code class="docutils literal notranslate"><span class="pre">ENV-NAME</span></code> for example with <code class="docutils literal notranslate"><span class="pre">hypy</span></code>):</p>
+<p>To create a new <em>conda</em> environment from scratch, which differs from the <a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/flusstools-pckg/main/environment.yml">flusstools environment.yml</a>, open <em>Anaconda Prompt</em> and type (replace <code class="docutils literal notranslate"><span class="pre">ENV-NAME</span></code> for example with <code class="docutils literal notranslate"><span class="pre">flussenv</span></code>):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="n">ENV</span><span class="o">-</span><span class="n">NAME</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.8</span>
 </pre></div>
-</div>
-<p>An alternative (and recommended for the tutorials on this page) option is to install an environment that suites most of the needs for codes and analyses shown on these pages through an <em>environment</em> (<em>YML</em>) file:</p>
-<ol class="simple">
-<li><p>Download the environment file <a class="reference external" href="https://github.com/hydro-informatics/materials-py-install/blob/master/environment.yml">here</a> (if needed: copy the file contents of <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> in a local text editor tool such as <a class="reference external" href="https://notepad-plus-plus.org/">Notedpad++</a> (<a class="reference external" href="hy_get-started/others.html#npp">alternatives</a> and save the file for example in a directory called <em>C:/temp/</em>).</p></li>
-<li><p>Open <em>Anaconda Prompt</em> (<code class="docutils literal notranslate"><span class="pre">Windows</span></code> key &gt; type <code class="docutils literal notranslate"><span class="pre">Anaconda</span> <span class="pre">Prompt</span></code> &gt; hit <code class="docutils literal notranslate"><span class="pre">Enter</span></code>).</p></li>
-<li><p>Navigate to the download directory where <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> is located (use   <a class="reference external" href="https://www.digitalcitizen.life/command-prompt-how-use-basic-commands"><code class="docutils literal notranslate"><span class="pre">cd</span></code></a>   to navigate for example to <em>C:/temp/</em>).</p></li>
-<li><p>Enter <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">environment.yml</span></code> (this creates an environment called <code class="docutils literal notranslate"><span class="pre">hypy</span></code>).</p></li>
-</ol>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>The provided <a class="reference external" href="https://github.com/hydro-informatics/materials-py-install/blob/master/environment.yml">environment.yml</a> file creates a carefree environment for using <em>Python</em> as described on this website. Still, you may want to create your own environment and use this section refresh your mind for installing any missing libraries.</p>
 </div>
 </div>
 <div class="section" id="activate-environment">
 <h3>Activate Environment<a class="headerlink" href="#activate-environment" title="Permalink to this headline">¶</a></h3>
-<p>The active environment corresponds to the environment that you are working in (e.g., for installing libraries or using <em>Jupyter</em>). To activate the above-created <em>hypy</em> environment:</p>
+<p>The active environment corresponds to the environment that you are working in (e.g., for installing libraries or using <em>Jupyter</em>). To activate the above-created <em>flussenv</em> environment:</p>
 <ol class="simple">
 <li><p>Open <em>Anaconda Prompt</em> (<code class="docutils literal notranslate"><span class="pre">Windows</span></code> key or click on the start menu of your operating system &gt; type <code class="docutils literal notranslate"><span class="pre">Anaconda</span> <span class="pre">Prompt</span></code> &gt; hit <code class="docutils literal notranslate"><span class="pre">Enter</span></code>).</p></li>
-<li><p>Activate the <em>hypy</em> environment with <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">hypy</span></code></p></li>
+<li><p>Activate the desired environment with <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">ENV-NAME</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">flussenv</span></code>)</p></li>
 </ol>
 </div>
 <div class="section" id="install-additional-python-packages">
 <span id="install-pckg"></span><h3>Install Additional <em>Python</em> Packages<a class="headerlink" href="#install-additional-python-packages" title="Permalink to this headline">¶</a></h3>
-<p>To install more <a class="reference internal" href="../jupyter/pypckg.html#sec-pypckg"><span class="std std-ref">*Python* packages</span></a>:</p>
+<p>To install (more) <a class="reference internal" href="../jupyter/pypckg.html#sec-pypckg"><span class="std std-ref">*Python* packages</span></a> in a <em>conda</em> environment:</p>
 <ol class="simple">
-<li><p>Activate the environment where you want to install, remove, or modify packages (e.g., <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">hypy</span></code> - see above).</p></li>
+<li><p>Activate the environment where you want to install, remove, or modify packages (e.g., <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">flussenv</span></code> - see above).</p></li>
 <li><p>Install a package by typing <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">PACKAGE_NAME</span></code> (if the package cannot be found, try <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">PACKAGE_NAME</span></code>).</p></li>
 </ol>
-<p>Alternatively, press the <code class="docutils literal notranslate"><span class="pre">Windows</span></code> key (or click on the start menu of your operating system) &gt; type <code class="docutils literal notranslate"><span class="pre">Anaconda</span> <span class="pre">Navigator</span></code> &gt; got to the <code class="docutils literal notranslate"><span class="pre">Environments</span></code> tab &gt; select the <code class="docutils literal notranslate"><span class="pre">hypy</span></code> environment (or create another environment) &gt; <em>install</em> &gt; install packages.</p>
+<p>Alternatively, press the <code class="docutils literal notranslate"><span class="pre">Windows</span></code> key (or click on the start menu of your operating system) &gt; type <code class="docutils literal notranslate"><span class="pre">Anaconda</span> <span class="pre">Navigator</span></code> &gt; got to the <code class="docutils literal notranslate"><span class="pre">Environments</span></code> tab &gt; select the <code class="docutils literal notranslate"><span class="pre">flussenv</span></code> environment (or create another environment) &gt; <em>install</em> &gt; install packages.</p>
 </div>
 <div class="section" id="remove-delete-environment">
 <h3>Remove (Delete) Environment<a class="headerlink" href="#remove-delete-environment" title="Permalink to this headline">¶</a></h3>
 <p>To remove a conda environment open <em>Anaconda Prompt</em> and type:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">env</span> <span class="n">remove</span> <span class="o">--</span><span class="n">name</span> <span class="n">ENVIRONMENT</span><span class="o">-</span><span class="n">TO</span><span class="o">-</span><span class="n">REMOVE</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">env</span> <span class="n">remove</span> <span class="o">--</span><span class="n">name</span> <span class="n">ENV</span><span class="o">-</span><span class="n">NAME</span><span class="o">-</span><span class="n">TO</span><span class="o">-</span><span class="n">REMOVE</span>
 </pre></div>
 </div>
-<p>For example, to remove the <code class="docutils literal notranslate"><span class="pre">hypy</span></code> environment type:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">env</span> <span class="n">remove</span> <span class="o">--</span><span class="n">name</span> <span class="n">hypy</span>
+<p>For example, to remove the <code class="docutils literal notranslate"><span class="pre">flussenv</span></code> environment type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">env</span> <span class="n">remove</span> <span class="o">--</span><span class="n">name</span> <span class="n">flussenv</span>
 </pre></div>
 </div>
 <p>There are many more <code class="docutils literal notranslate"><span class="pre">conda</span></code> commands and the most important ones are summarized in the developer’s <a class="reference external" href="https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf"><em>conda</em> cheat sheet</a>.</p>
 </div>
 </div>
 <div class="section" id="setup-interfaces-and-ides">
-<h2>Setup Interfaces and IDEs<a class="headerlink" href="#setup-interfaces-and-ides" title="Permalink to this headline">¶</a></h2>
-<p>To follow the course content and run code cells, it is recommended to use <a class="reference external" href="../get-started/ide.html#jupyter"><em>JupyterLab</em></a>. To create projects, develop programs, or simply to complete course assignments, it is recommended to use an Integrated Development Environment (<em>IDE</em>) such as <a class="reference external" href="../get-started/ide.html#pycharm"><em>PyCharm</em></a>.</p>
+<span id="python-ide-setup"></span><h2>Setup Interfaces and IDEs<a class="headerlink" href="#setup-interfaces-and-ides" title="Permalink to this headline">¶</a></h2>
+<p>To follow the course content and run code cells, it is recommended to use <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a>, which can be installed locally or run it remotely by clicking on <a class="reference external" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> - the batch is implementd at the top of all jupyter notebook-based sections. To create projects, develop programs, or simply to complete course assignments, it is recommended to use an Integrated Development Environment (<em>IDE</em>), such as <a class="reference internal" href="../get-started/ide.html#pycharm"><span class="std std-ref">PyCharm with Anaconda</span></a>.</p>
 <div class="section" id="jupyterlab">
 <h3>JupyterLab<a class="headerlink" href="#jupyterlab" title="Permalink to this headline">¶</a></h3>
-<p>The descriptions on the <em>Get started</em> for installing and launching <a class="reference external" href="../get-started/ide.html#jupyter"><em>JupyterLab</em></a>, where <em>Jupyter</em> notebooks (<em>.ipynb</em> files), <em>Python</em> scripts (<em>.py</em> files), folders and more can be created from the <em>File</em> menu.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Start <em>JupyterLab</em> by typing <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code> in <em>Anaconda Prompt</em>.</p>
+<p>The following descriptions require that <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a> is installed for editing <em>Jupyter</em> notebooks (<em>.ipynb</em> files), <em>Python</em> scripts (<em>.py</em> files), folders and more can be created from the <em>File</em> menu.</p>
+<div class="highlight-{tabbed}Linux notranslate"><div class="highlight"><pre><span></span>Start *JupyterLab* by typing `jupyter-lab` in *Teminal*.
+</pre></div>
+</div>
+<div class="highlight-{tabbed}Windows notranslate"><div class="highlight"><pre><span></span>Start *JupyterLab* by typing `jupyter-lab` in *Anaconda Prompt*.
+</pre></div>
 </div>
 <p>The <em>Kernel</em> menu runs the defined programming language (<em>Python 3</em> in the example below). The <em>Settings</em> menu provides options to configure styles (e.g., choose the <em>JupyterLab Dark</em> theme shown in the below figure).
 <em>JupyterLab</em> runs on a local server (typically on <code class="docutils literal notranslate"><span class="pre">localhost:XXPORTXX/lab</span></code>), which is why it is just like an interactive website in your browser. At the beginning it takes some getting used to, but one gets quickly familiar with it and there are many advantages such as the inline use of online graphics.</p>
-<div class="figure align-default" id="id2">
+<div class="figure align-default" id="id3">
 <img alt="pyc-prj-setup" src="../_images/jupyter-illu.png" />
-<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">JupyterLab in Dark theme appearance with a Jupyter notebook (xml.ipynb) opened showing the combination of a markdown cell (Charts(plots) and a Python 3 cell.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">JupyterLab in Dark theme appearance with a Jupyter notebook (xml.ipynb) opened showing the combination of a markdown cell (Charts(plots) and a Python 3 cell.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <p><em>Jupyter</em> is a spin-off of <a class="reference external" href="https://ipython.org/"><em>IPython</em></a>, which is “a rich architecture for interactive computing”. Therefore, when we start a <em>Python</em> kernel in <em>JupyterLab</em>, an <em>IPython</em> kernel is started, which refers to the currently activated <em>conda</em> environment. So if you need to install a package for usage in <em>JupyterLab</em>, follow the <a class="reference external" href="##install-pckg">above instructions</a> and make sure that the corresponding environment is activated.</p>
 <p><em>Python</em> cells in <em>Jupyter</em> notebooks often require certain packages, which must be reloaded for each cell after each kernel start (learn more about packages in the <a class="reference internal" href="../jupyter/pypckg.html#sec-pypckg"><span class="std std-ref">Packages, Modules and Libraries</span></a> section). So it can be useful to define default imports for <em>IPython</em> and this works as follows.</p>
@@ -818,8 +1018,48 @@
 <p>The <code class="docutils literal notranslate"><span class="pre">default_profile</span></code> is part of the default <em>Jupyter</em> installation and it is normally not necessary to create it manually. The <a class="reference external" href="https://ipython.org/ipython-doc/stable/config/intro.html"><em>IPython</em> docs</a> provide more detail about custom settings and modifying profiles on any platform.</p>
 </div>
 </div>
-<div class="section" id="pycharm">
-<span id="ide-setup"></span><h3>PyCharm<a class="headerlink" href="#pycharm" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="atom-and-python">
+<span id="atom-setup"></span><h3>Atom and Python<a class="headerlink" href="#atom-and-python" title="Permalink to this headline">¶</a></h3>
+<dl class="simple myst">
+<dt>Window Users</dt><dd><p>Preferably use the <em>flusstools</em> conda environment because its <em>gdal</em> dependency may cause errors when used with <em>pip</em>. To setup a <em>Python</em> <em>Anaconda</em> terminal in <em>Atom</em> the following <strong>one-time steps</strong> are required:</p>
+<ul class="simple">
+<li><p>Make sure that the <code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code> package is installed (see <a class="reference internal" href="../get-started/ide.html#atom-packages"><span class="std std-ref">Useful Atom Packages</span></a>).</p></li>
+<li><p>Launch <code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code> (in <em>Atom</em> go to <strong>Packages</strong> (top menu) &gt; <strong>platformio-ide-terminal</strong> &gt; <strong>New Terminal</strong>)</p></li>
+<li><p>Typically, <a class="reference external" href="https://aka.ms/pscore6">PowerShell</a> will open, where the following commands need to be entered:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Set-ExecutionPolicy</span> <span class="pre">-Scope</span> <span class="pre">CurrentUser</span> <span class="pre">RemoteSigned</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">init</span></code></p></li>
+</ul>
+</li>
+<li><p>Close the current PowerShell.</p></li>
+</ul>
+<p>The following steps are necessary for <strong>regular use</strong> of the <em>flusstools</em> package in a <em>conda</em> environment in <code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code>:</p>
+<ul class="simple">
+<li><p>Launch <code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code> (in <em>Atom</em> go to <strong>Packages</strong> (top menu) &gt; <strong>platformio-ide-terminal</strong> &gt; <strong>New Terminal</strong>)</p></li>
+<li><p>In the terminal activate the <em>flussenv</em> environment: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">flusstools</span></code></p></li>
+<li><p>In the activated environment launch python <code class="docutils literal notranslate"><span class="pre">python</span></code></p></li>
+<li><p>If the installation of <em>gdal</em> and <em>flusstool</em> was successful, the following imports should pass silently (otherwise, start over with installing <em>flussenv</em> and <em>flusstools</em>):</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">gdal</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">flusstools</span> <span class="pre">as</span> <span class="pre">ft</span></code></p></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt>Linux Users</dt><dd><p>When <em>flusstools</em> and its requirements were installed in the system’s <em>Python</em> interpreter, it is sufficient to launch <code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code> (in <em>Atom</em> go to <strong>Packages</strong> (top menu) &gt; <strong>platformio-ide-terminal</strong> &gt; <strong>New Terminal</strong>). Note that this action requires that the <code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code> package is installed (see <a class="reference internal" href="../get-started/ide.html#atom-packages"><span class="std std-ref">Useful Atom Packages</span></a>).</p>
+<p>In the opening terminal start <em>Python</em> and try to import <em>flusstools</em>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>user:~$ python
+Python 3.X.X (default, MMM DD YYYY, hh:mm:ss)
+[GCC 9.X.X on linux]
+&gt;&gt;&gt; import flusstools as ft
+</pre></div>
+</div>
+<p>The import of <em>flusstools</em> should pass silently. Otherwise, re-install the requirements (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code>) and <em>flusstools</em> ( <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">flusstools</span></code>).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="pycharm-python-projects">
+<span id="ide-setup"></span><h3>PyCharm Python Projects<a class="headerlink" href="#pycharm-python-projects" title="Permalink to this headline">¶</a></h3>
 <p>After the successful installation of <a class="reference external" href="../get-started/ide.html#ide"><em>PyCharm</em></a> within <em>Anaconda</em>, use the just created <em>conda</em> environment as interpreter. The following steps guide through the setup of <em>PyCharm</em> for using <em>conda</em> environments.</p>
 <ol>
 <li><p>Launch <em>PyCharm</em> and create a new project.</p>
@@ -830,34 +1070,31 @@
 </ol>
 <p>:alt: pyc-prj” max-width=”500px</p>
 <p>Create a new project in PyCharm.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1. Define The new `hypy` environment as *Pure Python* project interpreter:
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1. Define The new `flussenv` environment as *Pure Python* project interpreter:
     * Select *New environment using `Conda`
-    * In the *Location* box select the new `hypy` environment
+    * In the *Location* box select the new `flussenv` environment
     * Click *Create* to create the new project.
    ```{figure} ../img/pyc-prj-setup.png
 :alt: pyc-prj-setup
 
-Setup the hypy conda environment for the new project.
+Setup the flussenv conda environment for the new project.
 </pre></div>
 </div>
-<ol>
-<li><p>Verify that the project interpreter is correctly defined:</p>
+<ol class="simple">
+<li><p>Verify that the project interpreter is correctly defined:</p></li>
+</ol>
 <ul class="simple">
 <li><p>Click on <em>PyCharm</em>’s <code class="docutils literal notranslate"><span class="pre">File</span></code> menu and select <code class="docutils literal notranslate"><span class="pre">Settings...</span></code></p></li>
 <li><p>In the <em>Settings</em> window go to <code class="docutils literal notranslate"><span class="pre">Project:</span> <span class="pre">[NAME]</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Interpreter</span></code></p></li>
-<li><p>Make sure that the above-created <code class="docutils literal notranslate"><span class="pre">hypy</span></code> <em>conda</em> environment is defined as <em>Project Interpreter</em>.</p></li>
+<li><p>Make sure that the above-created <code class="docutils literal notranslate"><span class="pre">flussenv</span></code> <em>conda</em> environment is defined as <em>Project Interpreter</em>.</p></li>
 </ul>
-<div class="figure align-default">
-<img alt="../_images/pyc-prj-interp.png" src="../_images/pyc-prj-interp.png" />
+<div class="figure align-default" id="id4">
+<img alt="pyc-prj-interp" src="../_images/pyc-prj-interp.png" />
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Verify the correct setup of the Project Interpreter.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
-</li>
-</ol>
-<p>:alt: pyc-prj-interp</p>
-<p>Verify the correct setup of the Project Interpreter.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-```{tip}
-**Are you struggling with setting up *PyCharm* correctly?** *PyCharm* and *Anaconda* are designed for working hand-in-hand and the developers provide an [up-to-date documentation](https://docs.anaconda.com/anaconda/user-guide/tasks/pycharm/) for setting up *PyCharm* to work with *conda* environments.
-</pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Are you struggling with setting up <em>PyCharm</em> correctly?</strong> <em>PyCharm</em> and <em>Anaconda</em> are designed for working hand-in-hand and the developers provide an <a class="reference external" href="https://docs.anaconda.com/anaconda/user-guide/tasks/pycharm/">up-to-date documentation</a> for setting up <em>PyCharm</em> to work with <em>conda</em> environments.</p>
 </div>
 </div>
 </div>
@@ -888,8 +1125,8 @@ Setup the hypy conda environment for the new project.
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="python.html" title="previous page">Get Started with Python</a>
-    <a class='right-next' id="next-link" href="../jupyter/pybase.html" title="next page">First steps</a>
+    <a class='left-prev' id="prev-link" href="../get-started/ide.html" title="previous page">Integrated Development Environments (IDEs)</a>
+    <a class='right-next' id="next-link" href="../get-started/git.html" title="next page">Introduction to git</a>
 
         </div>
         

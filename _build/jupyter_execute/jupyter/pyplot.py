@@ -5,6 +5,8 @@
 # 
 # Summary: Use matplotlib, pandas, and plotly to leverage Python's power of data visualization.
 # 
+# For interactive reading [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter).
+# 
 # ## Tools (Packages) for Plotting with *Python*
 # 
 # Several packages enable plotting in *Python*. The last page already introduced [*NumPy*](pynum.html#numpy) and [*pandas*](pynum.html#pandas) for plotting histograms. *pandas* plotting capacities go way beyond just plotting histograms and it relies on the powerful [*matplotlib*](https://matplotlib.org/) library. *SciPy*'s *matplotlib* is the most popular plotting library in *Python* (since its introduction in 2003) and not only *pandas*, but also other libraries (for example the abstraction layer [*Seaborn*](https://seaborn.pydata.org/)) use *matplotlib* with facilitated commands. This page introduces the following packages for data visualization:

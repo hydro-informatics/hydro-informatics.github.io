@@ -6,6 +6,8 @@
 # 
 # Summary: Geospatial dataset conversion with *Python*.
 # 
+# For interactive reading [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter).
+# 
 # The goal of this section is to guide to an understanding of conversions from raster and to vector data formats and vice versa.
 # 
 # ```{admonition} Requirements

@@ -1,4 +1,4 @@
-# Get Started with Python
+# First Steps
 
 <div style="text-align: center"><img src="https://www.python.org/static/img/python-logo.png"></div>
 

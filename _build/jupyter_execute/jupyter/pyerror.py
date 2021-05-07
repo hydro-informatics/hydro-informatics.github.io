@@ -6,6 +6,8 @@
 # 
 # Summary: Handle error types and troubleshoot (debug).
 # 
+# For interactive reading [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter).
+# 
 # ## Errors & Exceptions
 # 
 # ### Error Types

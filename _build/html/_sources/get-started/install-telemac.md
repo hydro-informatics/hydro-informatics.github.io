@@ -1,4 +1,4 @@
-# open TELEMAC (Installation)
+# TELEMAC (Installation)
 
 ```{admonition} Requirements
 This tutorial guides through the installation of [*open TELEMAC-MASCARET*](http://www.opentelemac.org/) on [Debian Linux](https://www.debian.org/).
@@ -43,7 +43,8 @@ This page describes two ways for installing *TELEMAC*:
 
 So what option to choose? To leverage the full capacities of *TELEMAC*, use both: [*SALOME-HYDRO*](#salome-hydro) is a powerful pre-processor for preparing simulations and the [stand-alone installation of *TELEMAC*](#modular-install) enables maximum flexibility, system integrity, and computational stability.
 
-## Stand-alone Installation of TELEMAC {#modular-install}
+(modular-install)=
+## Stand-alone Installation of TELEMAC
 
 ### Install mandatory Prerequisites (Part 1)
 

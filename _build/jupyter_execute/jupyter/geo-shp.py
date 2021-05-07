@@ -5,6 +5,8 @@
 # 
 # Summary: Geospatial analysis of shapefile with gdal, ogr and osr.
 # 
+# For interactive reading [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter).
+# 
 # ```{admonition} Requirements
 # Make sure to understand [shapefiles](geospatial-data.html#shp) and [vector data](geospatial-data.html#vector) before reading this section.
 # ```

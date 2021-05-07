@@ -5,6 +5,8 @@
 # 
 # Summary: Leverage the power of Python by writing new classes.
 # 
+# For interactive reading [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter).
+# 
 # ## The Class of Classes
 # 
 # *Python* is an inherently object-oriented language and makes the deployment of classes and objects extremely easy. Let's start with essential definitions.

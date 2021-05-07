@@ -5,6 +5,8 @@
 # 
 # Summary: About Python, variable types and script execution.
 # 
+# For interactive reading [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter).
+# 
 # For interactive reading and executing code blocks [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter) and find *pybase.ipynb*.
 # 
 # ## Load Python Environment

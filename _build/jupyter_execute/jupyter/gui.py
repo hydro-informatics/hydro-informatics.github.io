@@ -5,6 +5,8 @@
 # 
 # Summary: Make code user-friendly.
 # 
+# For interactive reading [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter).
+# 
 # ![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/hello-gui.png)
 
 # A Graphical User Interface (GUI) facilitates setting input variables of scripts. This is particularly useful if you want to reuse a script that you have written a long time ago without having to study the whole script again in detail. Although it is arguable whether GUIs are still appropriate in times of web applications, large and in particular copyrighted data must be processed locally. And for local data processing, a GUI is a very convenient way to control self-written, custom programs.
