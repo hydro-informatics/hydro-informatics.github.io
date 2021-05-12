@@ -23,7 +23,7 @@ For *Python* courses, students may want to improve their learning experience by 
 
 *Anaconda* is a *Python* and *R* distribution that enables the usage of a couple of IDEs such as [*PyCharm*](https://www.jetbrains.com/pycharm/), [*Spyder*](https://www.spyder-ide.org/), or [*JupyterLab (Notebook)*](https://jupyter.org/).
 
-The very first step to get started with *Anaconda* consists in downloading and installing [*Anaconda*](https://www.anaconda.com/products/individual) where students may use the individual license for educational training purposes (note that a commercial license needs to be purchased for profit organizations). On Windows, *Anaconda* should be installed in the *LOCAL* user folder (e.g., *C:\users\<your-user-name>\AppData\Local*). *Linux* or *macOS* users find download and installation instructions directly at the developer's website, tailored for their specific distribution, even though they might be better of with {ref}`install-atom`. 
+The very first step to get started with *Anaconda* consists in downloading and installing [*Anaconda*](https://www.anaconda.com/products/individual) where students may use the individual license for educational training purposes (note that a commercial license needs to be purchased for profit organizations). On Windows, *Anaconda* should be installed in the *LOCAL* user folder (e.g., *C:\users\<your-user-name>\AppData\Local*). *Linux* or *macOS* users find download and installation instructions directly at the developer's website, tailored for their specific distribution, even though they might be better of with {ref}`install-atom`.
 
 After the successful installation of *Anaconda*, IDEs for *Python* programming or *markdown* editing can be directly installed by launching the **Anaconda navigator**. **`conda`** environments can be created later, following the instructions in the {ref}`conda-env` section.
 
@@ -63,6 +63,8 @@ All set - you are ready to work with *Python*, markdown (documentation), and [gi
 
 (jupyter)=
 # JupyterLab
+
+*Jupyter* is a spin-off of [*IPython*](https://ipython.org/), which is "a rich architecture for interactive computing".
 
 (install-jupyter-windows)=
 ## Jupyter on Windows
@@ -145,7 +147,6 @@ The command `jupyter-lab` starts a local host server that runs *JupyterLab*, whi
 Closing *Terminal* will also terminate the local host that runs *JupyterLab*. Thus, do not close *Terminal* as long as you are working with *JupyterLab*, in particular, when there are unsaved books.
 ```
 
-
 (install-atom)=
 # Atom
 
@@ -193,37 +194,38 @@ The following (additional) packages are useful for working with contents of this
 * `language-markdown` (optional) for writing documentations with [Markdown](https://daringfireball.net/projects/markdown/).
 * `language-restructuredtext` (optional) for writing documentations with [reStructuredText](https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html).
 * `language-tex` (optional) to write reports or presentations with [LaTex](https://www.latex-project.org/)
-* `linter` basic package for spell checkers
-* `linter-markdown` spell checks *Markdown* files
-* `linter-spell-rst` spell checks *reStructuredText*
-* `platformio-ide-terminal` adds a terminal window to *Atom*
+* `platformio-ide-terminal` (*platformio-ide*) adds a terminal window to *Atom*
 * `python-docstring` facilitates inline documentation of *Python* code
 * `python-requirements` enables to install required packages for running *Python* code
 * * `script` enables to run *Python* and many other code types ([read the docs](https://atom.io/packages/script)); after the installation, running a code (*Python*) file can be triggered by clicking on the **Packages** top menu > **Script**  > **Run Script**.
 
+## Spell Checking
+
+The default-installed **spell-check** package runs a basic spellcheck for plain text, GitHub Markdown, AsciiDoc, and reStructuredText by using the system's default dictionaries.
+
+If `spell-check` is not revising the current document, click on the document in question in *Atom* and open the *Command Palette* (*Windows*:  press `CTRL` + `Shift` + `P`). In the *Command Palette* type `Editor: Log Cursor Scope`. A pop-up window will show the current scope. To make sure that the current scope is checked by `spell-check`, open the *Atom* *Settings* (on *Windows*) or *Preferences* (on *Linux*) and find the `spell-check` package. Click on **Settings** and find the **Grammars** field. Click in the *Grammars* field and add the current scope here. Restart *Atom* to make sure that the changes are implemented.
+
+*Debian Linux* users can install the *hunspell* package with support for many languages:
+
+```
+sudo apt install hunspell-en-gb
+sudo apt install myspell-en-gb
+```
+
+There are other packages that enable spell checking for particular file formats:
+
+* `linter` basic package for spell checkers
+* `linter-markdown` spell checks *Markdown* files
+* `linter-spell-rst` spell checks *reStructuredText*
+
+```{warning}
+`linter` might conflict with `spell-check`. If your files are not spell-checked any more after installing `linter *` , roll back the installation of `linter` and reset `spell-check`.
+```
+
+Read more at [atom.io](https://atom.io/packages/spell-check) for more information on other distributions and dictionaries.
+
+
 (atom-python)=
 ## Enable (Python) Console
 
-While the `script` package enables to run a *Python* script, it may be desireable to have a built-in *Python* console window running in *Atom*. To this end, the `platformio-ide-terminal` package tweaks into the system's default terminal (*Terminal* on *Linux* or *PowerShell* on *Windows 10*), which can run an existing installation of *Python* (i.e., *Python* must be installed on the system in some form).
-
-````{tabbed} Linux
-Almost all *Linux* distributions have *Python* natively installed. For the best learning experience with this eBook, install the {{ ft_url }} package by following the instructions in the [FlussTools docs for Linux](https://flusstools.readthedocs.io/en/latest/getstarted.html#get-ready-on-linux).
-````
-
-````{tabbed} Windows
-Preferably install {ref}`anaconda`, and afterward, add the {{ ft_url }} environment and package as follows:
-
-  1. Download the [FlussTools environment.yml](https://raw.githubusercontent.com/Ecohydraulics/flusstools-pckg/main/environment.yml) in an easy-to-find folder (e.g., `C:\temp`)
-  2. In *Atom* go to **Packages** (top menu) > **platformio-ide-terminal** > **New Terminal**
-  3. In the new terminal, navigate to your download directory (e.g., `cd C:\temp` or `cd Downloads/`).
-  4. Install the *flusstools* environment by typing `conda env create -f environment.yml` (this action requires that {ref}`anaconda` is installed).
-  5. Activate the *flusstools* environment: `conda activate flusstools`
-  6. Install the *FlussTools* package: `pip install flusstools`
-
-  You are now good to go. Everytime you want to launch *Python* with *flusstools*, do the following:
-
-  * In *Atom* go to **Packages** (top menu) > **platformio-ide-terminal** > **New Terminal**
-  * Tap `conda activate flusstools`
-  * Launch *Python*: `python`
-````
-
+While the `script` package enables to run a *Python* script, it may be desireable to have a built-in *Python* console window running in *Atom*. To this end, the `platformio-ide-terminal` package tweaks into the system's default terminal (*Terminal* on *Linux* or *PowerShell* on *Windows 10*), which can run an existing installation of *Python* (i.e., *Python* must be installed on the system in some form). Depending on your platform, follow the instructions in the {ref}`atom-setup` section.

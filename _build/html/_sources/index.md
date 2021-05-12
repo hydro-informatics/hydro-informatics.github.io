@@ -1,7 +1,7 @@
 
 # Welcome to the Hydro-Informatics Learning Platform
 
-**Data & Programming, Geospatial Analysis, and Modeling Tools for Water Resources Engineering & Research**
+The educational platform for Data & Programming, Geospatial Analysis, and Modeling Tools in the field of Water Resources Engineering & Research.
 
 ```{image} img//icons/banner-logo.jpg
 :alt: hydro-informatics github sebastian schwindt
@@ -11,7 +11,9 @@
 
 Large datasets, such as airborne imagery and hydro-meteorological datasets collected worldwide, drive progress in many disciplines. With traditional spreadsheet analysis tools, however, the large amounts of data can hardly be analyzed, understood, or used. The courses supported with this website aid hydraulic engineers, geomorphologists, river ecologists, and any water resources related challenge with tools for efficient data analyses and presentation. The methods described rely on open-access tools to leverage international and interdisciplinary collaboration on all levels.
 
-```{note} The term hydroinformatics (or hydro-informatics) is widely used in relation to the field of hydrology. Yet, the syllable *hydro* goes back to the Greek word for *water*. In this light the term *hydro-informatics* as used on this website also refers to water, but primarily in the field of hydraulic engineering with its links to ecohydraulics, geomorphology, geo-informatics, and hydrology.
+```{admonition} What does Hydro-informatics stand for?
+:class: tip
+The term hydroinformatics (or hydro-informatics) is widely used in relation to the field of hydrology. Yet, the syllable *hydro* goes back to the Greek word for *water*. In addition, the term *informatics* can be used as a synonym for studying computational systems. In this light the term *hydro-informatics* as used on this website also refers to computational studies of river ecosystems. Thus, the primary focus of this ebook is on computer-based applications in the field of hydraulic engineering with its links to ecohydraulics, geomorphology, geo-informatics, and hydrology.
 ```
 
 ## Contents
@@ -20,11 +22,11 @@ Find your course in the {doc}`virtual classroom </lectures/classroom>` ({doc}`le
 
 The *Get started* chapter represents a summary of provide systematic workflows to setup your computer for:
 
-- Coding with {doc}`Python </get-started/ide>`
-- Code documentation with {doc}`markdown </documentation/documentation>`
-- Version control with {doc}`git <get-started/git>`
-- Geospatial analyses with {doc}`desktop applications </get-started/geo>` such as *QGIS*
--  {doc}`Auxiliary tools and open-source/access alternatives </get-started/others>` to proprietary software such as *GNU Octave* (similar to *Matlab*) or *Libre Office* (similar to MS Office)
+- Coding with {doc}`Python </get-started/ide>`;
+- Code documentation with {doc}`markdown </documentation/documentation>`;
+- Version control with {doc}`git <get-started/git>`;
+- Geospatial analyses with {doc}`desktop applications </get-started/geo>` such as *QGIS*;
+-  {doc}`Auxiliary tools and open-source/access alternatives </get-started/others>` to proprietary software such as *GNU Octave* (similar to *Matlab*) or *Libre Office* (similar to MS Office).
 
 This ebook provides *Python* tutorials in the form of:
 

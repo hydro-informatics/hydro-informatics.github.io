@@ -1,24 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # First steps
+# # Hello Data Types
 # 
-# Summary: About Python, variable types and script execution.
-# 
-# For interactive reading [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter).
-# 
-# For interactive reading and executing code blocks [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter) and find *pybase.ipynb*.
+# About Python, variable types and script execution. For interactive reading and executing code blocks [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter) and find *pybase.ipynb* or {ref}`install-python` locally along with {ref}`jupyter`.
 # 
 # ## Load Python Environment
 # 
-# These pages are written with [*Jupyter Lab*](https://jupyter.org/) <img style="max-width:10px;" src="https://jupyter.org/assets/main-logo.svg">. *Jupyter* notebooks (`.ipynb`) are great to explore an explain *Python*, but if you want to build more complex code, other *IDE*s may be more suitable. [Anaconda](../get-started/ide.html#anaconda) provides both the pluged-in installation of [*Jupyter Lab*](https://jupyter.org/) and [*PyCharm*](../get-started/ide.html#anaconda). For the best learning experience use both environments as follows:
-# 
-# * *JupyterLab* to follow course contents, inline exercises, and to produce own online material (mix of *Python* code and *markdown* text)
-# * *PyCharm* to accomplish assignments and project work (object-oriented code mainly)
-# 
-# ```{tip}
-# The setup of the [*PyCharm IDE*](../get-started/ide.html#ide) is explained on the [*Install Python*](pyinstall.html#ide-setup) pages.
-# ```
+# These pages are written with [*JupyterLab*](https://jupyter.org/) <img style="max-width:10px;" src="https://jupyter.org/assets/main-logo.svg">. For the best learning experience make sure to read about {ref}`sec-ide` before starting this tutorial.
 # 
 # ## The First Lines of Code
 # 

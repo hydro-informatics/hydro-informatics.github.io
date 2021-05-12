@@ -3,9 +3,7 @@
 
 # # Raster (Gridded) Dataset Handling
 # 
-# Summary: Geospatial analysis of raster (gridded) data with gdal and rasterstats.
-# 
-# For interactive reading [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter).
+# Geospatial analysis of raster (gridded) data with gdal and rasterstats. For interactive reading and executing code blocks [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter) and find *geo-raster.ipynb* or {ref}`install-python` locally along with {ref}`jupyter`.
 # 
 # Make sure to understand [gridded raster data](geospatial-data.html#raster) before reading this section. Recall that we will mostly deal with the `.tif` (*GeoTIFF*) format for grid data and hat many other raster data types exist.
 # 

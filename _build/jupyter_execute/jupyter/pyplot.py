@@ -3,9 +3,7 @@
 
 # # Plotting
 # 
-# Summary: Use matplotlib, pandas, and plotly to leverage Python's power of data visualization.
-# 
-# For interactive reading [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter).
+# Use matplotlib, pandas, and plotly to leverage Python's power of data visualization. For interactive reading and executing code blocks [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter) and find *pyplot.ipynb* or {ref}`install-python` locally along with {ref}`jupyter`.
 # 
 # ## Tools (Packages) for Plotting with *Python*
 # 
@@ -61,7 +59,7 @@
 # * `label=str` sets the legend,
 # * `save=str` defines a path where the figure should be saved (the figure is not saved if nothing provided). To activate saving a figure write for example `save='C:/temp/weibull.png'`.
 
-# In[1]:
+# In[ ]:
 
 
 import matplotlib.pyplot as plt
@@ -120,7 +118,7 @@ plot_xy(x, y, plot_type="scatter", label="Rand. Weibull scattered")
 # 
 # The below code block illustrates the generation of a streamplot (adapted from the [*matplotlib* docs](https://matplotlib.org/3.1.1/gallery/images_contours_and_fields/plot_streamplot.html#sphx-glr-gallery-images-contours-and-fields-plot-streamplot-py)) and uses `import matplotlib.gridspec` to place the subplots in the figure.
 
-# In[2]:
+# In[ ]:
 
 
 import matplotlib.pyplot as plt
@@ -157,7 +155,7 @@ plt.show()
 # 
 # The previous example already featured font type adjustment for the plot titles (`axes.set_title('title', font ...)`). The font and its characteristics (e.g., size, weight, style, or family) can be defined in a more coherent manner with `matplotlib.font_manager.FontProperties` ([cf. the *matplotlib* docs](https://matplotlib.org/3.1.1/api/font_manager_api.html)), where plot font settings can be globally modified within a script.
 
-# In[3]:
+# In[ ]:
 
 
 import matplotlib.pyplot as plt
@@ -200,7 +198,7 @@ plt.show()
 # 
 # In addition, many default plot styles are available through [`matplotlib.style`](https://matplotlib.org/api/style_api.html#matplotlib-style) with many [style templates](https://matplotlib.org/gallery/style_sheets/style_sheets_reference.html). The following example illustrates the application of `rcParams` and `style` to the previously generated x-y oscillation dataset.
 
-# In[4]:
+# In[ ]:
 
 
 from matplotlib import rcParams
@@ -232,7 +230,7 @@ plt.show()
 # 
 # Pointing out particularities in graphs is sometimes helpful to explain observations on graphs. Here are some options illustrated with a self-explaining code block.
 
-# In[5]:
+# In[ ]:
 
 
 from matplotlib import rcParams
@@ -272,7 +270,7 @@ plt.show()
 # 
 # Plotting with *matplotlib* can be daunting, not because the library is poorly documented (the complete opposite is the case), but because *matplotlib* is very extensive. *pandas* brings remedy with simplified commands for high-quality plots. The simplest way to plot a *pandas* data frame is [`pd.DataFrame.plot(x="col1", y="col2")`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html). The following example illustrates this fundamentally simple usage with a river discharge series stored in a workbook.
 
-# In[6]:
+# In[ ]:
 
 
 flow_df = pd.read_excel('data/USGS_11421000_MRY_flows.xlsx', sheet_name='Mean Monthly CMS')
@@ -284,7 +282,7 @@ flow_df.plot(x="Date (mmm-jj)", y="Flow (CMS)", kind='line')
 # 
 # Because *pandas* plot functionality roots in the *matplotlib* library, it can be easily combined, for example to create subplots:
 
-# In[7]:
+# In[ ]:
 
 
 import matplotlib.pyplot as plt
@@ -310,7 +308,7 @@ flow_ex_df.plot(x="Relative exceedance", y="Flow (CMS)", kind='scatter', color="
 # 
 # *pandas* data frames make use of [`matplotlib.pyplot.boxplot`](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.boxplot.html#matplotlib.pyplot.boxplot) to generate box-plots with [`df.boxplot()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.boxplot.html) or `df.plot.box()`. The following example features box-plots of flow depth measurements with ultrasonic probes (sensors 1, 2, 3, and 5) and manipulations of 
 
-# In[8]:
+# In[ ]:
 
 
 us_sensor_df = pd.read_csv("data/FlowDepth009.csv", index_col=0, usecols=[0, 1, 2, 3, 5])
@@ -336,7 +334,7 @@ us_sensor_df.plot.box(color="tomato", vert=False, title="Hz. box-plot", flierpro
 
 # Box-plots represent the statistical assets of datasets, but box-plots can quickly become confusing when they are presented in technical reports for multiple measurement series. Yet it is state-of-the-art and good practice to present uncertainties in datasets in scientific and non-scientific publications, but somewhat more easily than, for example, with box-plots. To meet the standards of good practice, so-called [error bars](https://en.wikipedia.org/wiki/Error_bar) should be added to data bars. Error bars express the uncertainty of a data set graphically in a simple way by displaying only whiskers. Regardless of whether scatter or bar plot, error bars can easily be added to graphics with *matplotlib* ([more in the developer's docs](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.errorbar.html)). The following example shows the application of error bars to bar plots of the above ultrasonic sensor data.
 
-# In[9]:
+# In[ ]:
 
 
 fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(10, 2.5), dpi=150)
@@ -377,60 +375,60 @@ means.plot.barh(xerr=errors, capsize=5, color="lightsteelblue", title="Horizonta
 # If the graph is not showing up, open *Anaconda Prompt* and make sure to install support for *Jupyter Notebook* in the active environment: `conda install "notebook>=5.3" "ipywidgets>=7.2"`
 # ```
 
-# In[3]:
+# In[ ]:
 
 
 import plotly.express as px
 import plotly.graph_objects as go
 import plotly.offline as pyo
-pyo.init_notebook_mode() 
-df = px.data.gapminder().query("continent=='Europe'")
-fig = px.line(df, x="year", y="pop", color='country')
-fig.show()
-pyo.iplot(fig, filename='population')
+# pyo.init_notebook_mode() 
+# df = px.data.gapminder().query("continent=='Europe'")
+# fig = px.line(df, x="year", y="pop", color='country')
+# fig.show()
+# pyo.iplot(fig, filename='population')
 
 
 # 
 # In hydraulics, we often prefer to visualize data in locally stored text files, for example after processing data with *NumPy* or *pandas*. *plotly* works hand in hand with *pandas* and the following example features plotting *pandas* data frames, build from a *csv* file, with *ploty* (better solutions for *pandas* data frame sorting are shown in the [reshaping section](hypy_pynum.html#pd-reshape) of the data handling page). The example uses `plotly.offline` to plot the data in notebook mode (`pyo.init_notebook_mode()`) and `pyo.iplot()` can be used to write the plot functions to a local script for interactive plotting. The *csv* file comes from the *Food and Agriculture Organization of the United Nations* (FAO) data center [FAOSTAT](http://www.fao.org/faostat/en/#data/ET).
 
-# In[11]:
+# In[ ]:
 
 
 import plotly.graph_objects as go
 import plotly.offline as pyo
 import pandas as pd
-pyo.init_notebook_mode()  # activate to create local function script
+# pyo.init_notebook_mode()  # activate to create local function script
 
-df = pd.read_csv("data/faostat_temperature_change.csv")
+# df = pd.read_csv("data/faostat_temperature_change.csv")
 
-# filter dataframe by country and month
-country_filter = "France"  # available in the csv: Austria, Belgium, Finland, France, Germany
-month_filter1 = "January"
-month_filter2 = "July"
+# # filter dataframe by country and month
+# country_filter = "France"  # available in the csv: Austria, Belgium, Finland, France, Germany
+# month_filter1 = "January"
+# month_filter2 = "July"
 
-df_country = df[df.Area == country_filter]
-df_country_month1 = df[df.Months == month_filter1]
-df_country_month2 = df[df.Months == month_filter2]
+# df_country = df[df.Area == country_filter]
+# df_country_month1 = df[df.Months == month_filter1]
+# df_country_month2 = df[df.Months == month_filter2]
 
-# define plot type = go.Bar
-bar_plots = [go.Bar(x=df_country_month1["Year"], y=df_country_month1["Value"], name=str(month_filter1), marker=go.bar.Marker(color='#86DCEB')),
-             go.Bar(x=df_country_month2["Year"], y=df_country_month2["Value"], name=str(month_filter2), marker=go.bar.Marker(color='#EA9285'))]
+# # define plot type = go.Bar
+# bar_plots = [go.Bar(x=df_country_month1["Year"], y=df_country_month1["Value"], name=str(month_filter1), marker=go.bar.Marker(color='#86DCEB')),
+#              go.Bar(x=df_country_month2["Year"], y=df_country_month2["Value"], name=str(month_filter2), marker=go.bar.Marker(color='#EA9285'))]
 
-# set layout
-layout = go.Layout(title=go.layout.Title(text="Monthly average surface temperature deviation (ref. 1951-1980) in " + str(country_filter), x=0.5),
-                   yaxis_title="Temperature (°C)")
+# # set layout
+# layout = go.Layout(title=go.layout.Title(text="Monthly average surface temperature deviation (ref. 1951-1980) in " + str(country_filter), x=0.5),
+#                    yaxis_title="Temperature (°C)")
 
-fig = go.Figure(data=bar_plots, layout=layout)
+# fig = go.Figure(data=bar_plots, layout=layout)
 
-# In local IDE use fig.show() - use iplot(fig) to procude local script for running figure functions
-#fig.show(filename='basic-line2', include_plotlyjs=False, output_type='div')
-pyo.iplot(fig, filename='temperature-evolution')
+# # In local IDE use fig.show() - use iplot(fig) to procude local script for running figure functions
+# #fig.show(filename='basic-line2', include_plotlyjs=False, output_type='div')
+# pyo.iplot(fig, filename='temperature-evolution')
 
 
 # ### Interactive map applications
 # *plotly* uses [*GeoJSON*](https://en.wikipedia.org/wiki/GeoJSON) data formats (an open standard for simple geospatial objects) to implement them into interactive maps. The developers provide many examples in their documentation and the below code block replicates a map representing unemployment rates in the United States. More examples are available at the [developer's web site](https://plotly.com/python/maps/).
 
-# In[12]:
+# In[ ]:
 
 
 import plotly.offline as pyo
@@ -438,25 +436,25 @@ from urllib.request import urlopen
 import json
 import pandas as pd
 
-pyo.init_notebook_mode()  # only necessary in jupyter
-with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
-    counties = json.load(response)
+# pyo.init_notebook_mode()  # only necessary in jupyter
+# with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
+#     counties = json.load(response)
 
 
-df = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv", dtype={"fips": str})
+# df = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv", dtype={"fips": str})
 
-import plotly.express as px
+# import plotly.express as px
 
-fig = px.choropleth_mapbox(df, geojson=counties, locations='fips', color='unemp',
-                           color_continuous_scale="Viridis",
-                           range_color=(0, 12),
-                           mapbox_style="carto-positron",
-                           zoom=2, center = {"lat": 35.0, "lon": -90.0},
-                           opacity=0.5,
-                           labels={'unemp':'Unemployment rate (%)'}
-                          )
-fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-fig.show()
+# fig = px.choropleth_mapbox(df, geojson=counties, locations='fips', color='unemp',
+#                            color_continuous_scale="Viridis",
+#                            range_color=(0, 12),
+#                            mapbox_style="carto-positron",
+#                            zoom=2, center = {"lat": 35.0, "lon": -90.0},
+#                            opacity=0.5,
+#                            labels={'unemp':'Unemployment rate (%)'}
+#                           )
+# fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+# fig.show()
 
 
 # Many more maps are available and some of the require a *Mapbox* account and the creation of a public token (read more at [plotly.com](https://plotly.com/python/mapbox-layers/)).

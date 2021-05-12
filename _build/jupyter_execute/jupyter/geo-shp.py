@@ -3,9 +3,7 @@
 
 # # Shapefile (vector dataset) handling
 # 
-# Summary: Geospatial analysis of shapefile with gdal, ogr and osr.
-# 
-# For interactive reading [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter).
+# Geospatial analysis of shapefile with gdal, ogr and osr. For interactive reading and executing code blocks [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter) and find *pybase.ipynb* or {ref}`install-python` locally along with {ref}`jupyter`.
 # 
 # ```{admonition} Requirements
 # Make sure to understand [shapefiles](geospatial-data.html#shp) and [vector data](geospatial-data.html#vector) before reading this section.

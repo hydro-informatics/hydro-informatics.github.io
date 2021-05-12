@@ -3,9 +3,7 @@
 
 # # Object Orientation and Classes
 # 
-# Summary: Leverage the power of Python by writing new classes.
-# 
-# For interactive reading [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter).
+# Leverage the power of Python by writing new classes. For interactive reading and executing code blocks [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter) and find *classes.ipynb* or {ref}`install-python` locally along with {ref}`jupyter`.
 # 
 # ## The Class of Classes
 # 

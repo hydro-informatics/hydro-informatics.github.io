@@ -4,9 +4,7 @@
 # (sec-pyerror)=
 # # Errors, Logging, and Debugging
 # 
-# Summary: Handle error types and troubleshoot (debug).
-# 
-# For interactive reading [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter).
+# Handle error types and troubleshoot (debug). For interactive reading and executing code blocks [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter) and find *pyerror.ipynb* or {ref}`install-python` locally along with {ref}`jupyter`.
 # 
 # ## Errors & Exceptions
 # 

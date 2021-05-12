@@ -4,9 +4,7 @@
 # (sec-pypckg)=
 # # Packages, Modules and Libraries
 # 
-# Summary: Import external libraries and organize your code into functional chunks.
-# 
-# For interactive reading [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter).
+# Import external libraries and organize your code into functional chunks. For interactive reading and executing code blocks [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter) and find *pypckg.ipynb* or {ref}`install-python` locally along with {ref}`jupyter`.
 # 
 # ## Import Packages or Modules
 # 

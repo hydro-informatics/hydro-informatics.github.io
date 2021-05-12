@@ -5,36 +5,36 @@
 This tutorial involves embedded videos featuring the text descriptions in every section.
 ```
 
+To get ready, watch the following video and/or make sure to install {ref}`qgis-install` (detailed instructions).
+
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/_0_NOKi-RxY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Sebastian Schwindt <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+
 ```{admonition} Videos not showing up (*Firefox Can’t Open This Page*)
 :class: error, dropdown
 If videos are not displaying, this might be caused by strict privacy settings. To resolve the issue, either open the video links by clicking on the **Open Site in New Window** button or by changing browser privacy settings (e.g., in [Mozilla Firefox](https://support.mozilla.org/en-US/questions/1108783)).
 ```
-
-To get ready, watch the following video and/or make sure to install {ref}`qgis-install` (detailed instructions).
-
-
-<iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/_0_NOKi-RxY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Sebastian Schwindt <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 
 
 ## First Project
 
 Once you installed QGIS, launch the program and walk through the following steps to make fundamental settings:
 
-- Open QGIS
-- Create a new project (**New Empty Project**) with EPSG:4326
+- Open *QGIS*
+- Create a new project (**New Empty Project**)
 - Verify **Project Properties**:
   * In the top menu go to **Project** > **Properties**
-  * CRS: EPSG:4326:
+  * Set the Coordinate Reference System **CRS** to **EPSG:4326**:
     * WGS84 (Coordinate Reference System) Bounds: -180.0000, -90.0000, 180.0000, 90.0000
     * Projected Bounds: -180.0000, -90.0000, 180.0000, 90.0000
     * Scope: Horizontal component of a 3d system. Used by the GPS satellite navigation system and for NATO military geodetic surveying.
     * Last Revised: Aug. 27, 2007
     * Area: World
   * Learn more at http://epsg.io
-    * Example: Convert 48.745, 9.103 from EPSG 3857 to EPSG 4326
+    * Retrieve point coordinates in any CRS format
+    * Convert between different CRSs (e.g., convert 48.745, 9.103 from EPSG 3857 to EPSG 4326)
 - **Save** the project as **qgis-project.qgz** in a new ***qgis-exercise** folder
 
-<iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/7_3QqbFonLg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/7_3QqbFonLg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 
 
@@ -69,7 +69,7 @@ In the context of river analysis, the following plugins are recommended and used
 A fast internet connection is required for adding online base maps.
 ```
 
-To add a base map (e.g., satellite data, streets, or administrative boundaries), go to the ***Browser***, right-click on ***XYZ Tiles***, select ***New Connection...***, add a name and a URL of an online base map. Once the new connection is added, it can be added to a *QGIS* project by drag and drop just like any other geodata layer. The below figure illustrates the procedure of adding a new connection and its XYZ tiles as a layer to the project. To overlay multiple basemaps (or any other layer), ***right-click on a layer***, then ***Layer Properties*** > ***Transparency*** > modify the ***Opacity*** (e.g., to 50%).
+To add a base map (e.g., satellite data, streets, or administrative boundaries), go to the **Browser**, right-click on **XYZ Tiles**, select **New Connection...**, add a name and a URL of an online base map. Once the new connection is added, it can be added to a *QGIS* project by drag and drop just like any other geodata layer. The below figure illustrates the procedure of adding a new connection and its XYZ tiles as a layer to the project. To overlay multiple basemaps (or any other layer), **right-click on a layer**, then **Layer Properties** > **Transparency** > modify the **Opacity** (e.g., to 50%).
 
 ```{figure} ../img/qgis-basemap.png
 :alt: basemap
@@ -77,7 +77,7 @@ To add a base map (e.g., satellite data, streets, or administrative boundaries),
 Add a base map to QGIS: (1) locate the Browser (2) right-click on XYZ-Tiles and select New Connection... (3) enter a Name and a URL (see below table) for the new connection, click OK (4) drag and drop the new tile (here: Google Satellite) into the Layers tab.
 ```
 
-<iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/GJsiEdMzCeQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/GJsiEdMzCeQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 
 
@@ -105,7 +105,7 @@ This section guides through the creation of a point, a line, and a polygon {ref}
 
 Start with loading a satellite imagery and a street basemap (see above) in the layers pane. Zoom on central Europe and roughly locate Stuttgart in Southwest Germany. Find the heavily impaired Neckar River in the North of Stuttgart and move in the upstream direction (i.e., Eastern direction), pass the cities of Esslingen and Plochingen until you get to the confluence of the Neckar and the Fils rivers. From there, follow the Fils River in the upstream direction for a couple of hundred meters and locate the PEGELHAUS (i.e., a gauging station at the Fils River - [click to visit](https://www.hvz.baden-wuerttemberg.de/pegel.html?id=00025)). To facilitate finding the gauging station in the future, we will now create a point shapefile as explained in the following video and the analogous instructions below the video.
 
-<iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/k2LqPM6wicA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/k2LqPM6wicA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 
 * In the *QGIS* top menu go to **Layer** > **Create Layer** > **New Shapefile Layer**
@@ -134,14 +134,14 @@ Start with loading a satellite imagery and a street basemap (see above) in the l
 
 Create a **Line Shapefile** called **CenterLine.shp** to draw a centerline of the Fils $\pm$ 200 m around the PEGELHAUS gauge, similar to the above-created point shapefile. Add one *text* field and call it `RiverName`. Then draw a line along the Fils River starting 200 m upstream and ending 200 m downstream of the PEGELHAUS by following the river on the **OpenStreetMap** layer. See more in the following video.
 
-<iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/yNuiIlPsguQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/yNuiIlPsguQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 
 ### Create a Polygon Shapefile
 
 To delineate different zones of roughness (e.g., as needed for a two-dimensional numerical model), create a **Polygon Shapefile** called **FlowAreas.shp**. The file will contain polygons zoning the considered section of the Fils into floodplain and main channel bed. Name the first field `AreaType` (type: *Text*) and the second field `ManningN` (type: *Decimal Number*). See more in the following video and the instructions below the video.
 
-<iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/zTrowT0ULfo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/zTrowT0ULfo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 
 To draw the polygons:
@@ -163,7 +163,7 @@ To draw the polygons:
 
 Many numerical models required that roughness is provided in {ref}`raster` format. To this end, this section features the conversion of the above-created polygon shapefile (*FlowAreas.shp*) to a roughness {ref}`raster`. The following video and the instructions below the video describe how the conversion works.
 
-<iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/IRLwYSUnjcE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/IRLwYSUnjcE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 
 To convert a geospatial vector dataset, use the *Rasterize* tool:
@@ -195,7 +195,7 @@ The conversion between geospatial data types can be facilitated by using *Python
 
 Some models preferably (default use) Manning's *n*, others use the Strickler roughness coefficient $k_{st}$, which is the inverse of Manning's *n* (i.e., $k_{st} = 1/n$ - read more about roughness coefficients in the {ref}`ex-1d-hydraulics` exercise). Thus, transforming a Strickler roughness raster into a Manning roughness raster requires performing an algebraic raster (pixel-by-pixel) operation. The next video and the instructions below the video feature the usage of the QGIS **Raster Calculator** to perform such algebraic operations.
 
-<iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/DOkV03uij9k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/DOkV03uij9k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 
 Start with opening **Raster Calculator** from QGIS menu bar (**Raster** > **Raster Calculator...**). Then, convert the above-created *roughness.tif* raster of Manning's *n* values to a Strickler roughness raster:
@@ -216,7 +216,7 @@ To implement a tailored raster calculator for batch-processing of raster files w
 Georeferenced images in *GeoTIFF* or other raster formats, possibly with super-positioned shapefiles on top, are handy and flexible for use with geospatial software, such as QGIS, but not appropriate for presentations or reports. For presentation purposes, geospatial imagery or maps should preferably be exported to common formats, such as the **P**ortable **D**ocument **F**ormat (PDF) or **JPEG/JPG**. To create commonly formatted maps with QGIS, first, a new (print) layout needs to be created, which can then be exported to a common map format (e.g., along with a legend, a scale bar, and a North arrow). The following video and the descriptions below the video guide through the map creation process with QGIS.
 
 
-<iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/hmTByzVPVF0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/hmTByzVPVF0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 
 Start with creating a new print layout by clicking on the **Project** drop-down menu, then select **New Print Layout**. In the new print layout prepare the map and export the map as follows:

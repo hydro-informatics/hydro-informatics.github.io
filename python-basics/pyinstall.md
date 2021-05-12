@@ -17,6 +17,7 @@ This section guides through the installation of a computational environment that
 (pip-env)=
 ## pip and venv
 
+(pip-quick)=
 ### Quick Guide
 
 Consider to install, create and activate a new virtual environment for working with the contents of this ebook as explained in the following platform-dependent paragraphs.
@@ -56,7 +57,7 @@ Then, install *QGIS* and *GDAL* for *Linux* (this should work with any *Debian* 
 
 ```
 sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable && sudo apt update
-sudo apt install libgeos-dev gdal-bin libgdal-dev libgdal1h
+sudo apt install libgeos-dev gdal-bin libgdal-dev
 pip3 install GDAL==$(gdal-config --version) --global-option=build_ext --global-option="-I/usr/include/gdal/"
 ```
 
@@ -133,7 +134,7 @@ python -m pip install numpy pandas plotting matplotlib plotly openpyxl
 ```{admonition} For geospatial analyses ...
 :class: note, dropdown
 
-Try the following not cross-platform verified solution: Install {ref}`install-qgis` and use its *Python* terminal for installing *flusstools*:
+Try the following not cross-platform verified solution: Install {ref}`qgis-install` and use its *Python* terminal for installing *flusstools*:
 
 * Start *QGIS* as **Administrator** (the following steps will fail if you are not running QGIS as administrator)
 * Go to **Plugins** > **Python Console**
@@ -221,13 +222,13 @@ Read more about virtual environments and pip at [https://packaging.python.org](h
 
 This section features the quick installation of the {{ ft_env }} for *Anaconda* followed by more detailed explanations on the creation and management of *conda* environments.
 
+(conda-quick)=
 ### Quick Guide
-
 
 1. Download the *flussenv* [environment file](https://raw.githubusercontent.com/Ecohydraulics/flusstools-pckg/main/environment.yml) (right-click > *Save Link as ...* > select target directory). If needed, copy the file contents of `environment.yml` in a local text editor, such as {ref}`npp`, and save the file for example in a directory called *C:/temp/*).
 1. Open a command line
    * On *Windows*: *Anaconda Prompt* (`Windows` key > type `Anaconda Prompt` > hit `Enter`).
-   * On *Linux*:
+   * On *Linux*: Open *Terminal*
 1. Navigate to the download directory where `environment.yml` is located (use [`cd`](https://www.digitalcitizen.life/command-prompt-how-use-basic-commands) to navigate, for example, to `cd C:/temp/`).
 1. Enter `conda env create -f environment.yml` (this creates an environment called `flussenv`). <br> *... takes a while ...*
 1. Activate *flussenv*: `conda activate flussenv`
@@ -282,11 +283,11 @@ To follow the course content and run code cells, it is recommended to use {ref}`
 
 The following descriptions require that {ref}`jupyter` is installed for locally editing *Jupyter* notebooks (*.ipynb* files), *Python* scripts (*.py* files), and folders.
 
-````{tabbed}Linux
+````{tabbed} Linux
 Start *JupyterLab* by typing `jupyter-lab` in *Teminal*.
 ````
 
-````{tabbed}Windows
+````{tabbed} Windows
 Start *JupyterLab* by typing `jupyter-lab` in *Anaconda Prompt*.
 ````
 
@@ -335,29 +336,30 @@ Package Controls
 (atom-setup)=
 ### Atom and Python
 
-````{tabbed} Windows
-Preferably use the *flusstools* conda environment because its *gdal* dependency may cause errors when used with *pip*. To setup a *Python* *Anaconda* terminal in *Atom* the following **first-time start steps** are required:
+Depending on your platform make sure that all requirements are installed to configure *Atom*s `platformio-ide-terminal` package:
 
-* Make sure that the `platformio-ide-terminal` package is installed (see {ref}`atom-packages`).
-* Launch `platformio-ide-terminal` (in *Atom* go to **Packages** (top menu) > **platformio-ide-terminal** > **New Terminal**)
-* Typically, [PowerShell](https://aka.ms/pscore6) will open, where the following commands need to be entered:
-  * `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`
-  * `conda init`
-* Close the current PowerShell.
 
-The following **regular use steps** enable to use the *flusstools* package in a *conda* environment in `platformio-ide-terminal`:
+````{tabbed} Linux
 
-* Launch `platformio-ide-terminal` (in *Atom* go to **Packages** (top menu) > **platformio-ide-terminal** > **New Terminal**)
-* In the terminal activate the *flussenv* environment: `conda activate flussenv`
-* In the activated environment launch python `python`
-* If the installation of *gdal* and *flusstool* was successful, the following imports should pass silently (otherwise, start over with installing *flussenv* and *flusstools*): `import flusstools as ft`
-````
+```{admonition} Requirements
+* `platformio-ide-terminal`:
+  * In *Linux Terminal* tap: `sudo apt install clang` (optional)
+  * In *Atom* go to **File** > **Preferences** > **+ Install** and install the `platformio-ide` package (see also {ref}`atom-packages`).
+* Install *flusstools* according to the *pip* {ref}`pip-quick`, preferably in a virtual environment.
 
-````{tabbed} Linux Users
-When *flusstools* and its requirements were installed in the system's *Python* interpreter, it is sufficient to launch `platformio-ide-terminal` (in *Atom* go to **Packages** (top menu) > **platformio-ide-terminal** > **New Terminal**). Note that this action requires that the `platformio-ide-terminal` package is installed (see {ref}`atom-packages`).
+**Do not conda-install *flusstools* on *Linux*.**
+```
 
-In the opening terminal start *Python* and try to import *flusstools*:
+When *flusstools* and its requirements are correctly installed launch `platformio-ide-terminal` (in *Atom* go to **Packages** (top menu) > **platformio-ide-terminal** > **New Terminal**).
 
+In the opening *Terminal*:
+
+* Optionally activate the *vflussenv* environment (skip this step if you installed *flusstools* in your system *Python* interpreter):
+```
+cd ~/where/vflussenv-lives
+source vflussenv/bin/activate
+```
+* Start *Python* and import *flusstools*:
 ```
 user:~$ python
 Python 3.X.X (default, MMM DD YYYY, hh:mm:ss)
@@ -365,8 +367,35 @@ Python 3.X.X (default, MMM DD YYYY, hh:mm:ss)
 >>> import flusstools as ft
 ```
 
-The import of *flusstools* should pass silently. Otherwise, re-install the requirements (`pip install -r requirements.txt`) and *flusstools* ( `pip install flusstools`).
+The import of *flusstools* should pass silently. Otherwise, re-install *flusstools* according to the above {ref}`pip-quick` for installing a virtual environment.
 ````
+
+````{tabbed} Windows
+
+```{admonition} Requirements
+* `platformio-ide-terminal`: In *Atom* go to **File** > **Settings** > **+ Install** and install the `platformio-ide-terminal` package (see also {ref}`atom-packages`).
+* {ref}`anaconda` must be installed.
+* Make sure that the {{ ft_env }} (conda environment) is installed along with {{ ft_url }} (see the conda {ref}`conda-quick`).
+
+**Do not try to `pip`-install *flusstools* outside of a conda environment on *Windows*.**
+```
+
+To setup a *Python* *Anaconda* terminal in *Atom* the following **first-time-start steps** are required:
+
+* Launch `platformio-ide-terminal` (in *Atom* go to **Packages** (top menu) > **platformio-ide-terminal** > **New Terminal**)
+* Typically, [PowerShell](https://aka.ms/pscore6) will open, where the following commands need to be entered:
+  * `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`
+  * `conda init`
+* Close the current PowerShell (*platformio-ide-terminal* window).
+
+Once this is done, the *flusstools* package **can be activated and used for regular use in a *conda* environment** in `platformio-ide-terminal` as follows:
+
+* Launch `platformio-ide-terminal` (in *Atom* go to **Packages** (top menu) > **platformio-ide-terminal** > **New Terminal**)
+* In the terminal activate the *flussenv* environment: `conda activate flussenv`
+* In the activated environment launch python `python`
+* If the installation of *flusstools* is OK, the following imports should pass silently (otherwise, start over with the conda {ref}`conda-quick`): `import flusstools as ft`
+````
+
 
 (ide-setup)=
 

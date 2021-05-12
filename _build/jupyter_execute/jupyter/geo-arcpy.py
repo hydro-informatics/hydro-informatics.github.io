@@ -3,9 +3,8 @@
 
 # # The Commercial arcpy Library
 # 
-# Summary: Geospatial analyses with ESRI's commercial ArcGIS software and arcpy package.
+# Geospatial analyses with ESRI's commercial ArcGIS software and arcpy package. For interactive reading and executing code blocks [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter) and find *geo-arcpy.ipynb* or {ref}`install-python` locally along with {ref}`jupyter`.
 # 
-# For interactive reading [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter).
 # 
 # ## Introduction
 # 

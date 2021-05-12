@@ -104,7 +104,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../lectures/lectures.html">
-     Lectures and Eexercises
+     Lectures and Exercises
     </a>
    </li>
    <li class="toctree-l2">
@@ -175,7 +175,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../python-basics/python.html">
-   Get Started with Python
+   First Steps
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -185,7 +185,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/pybase.html">
-     First steps
+     Hello Data Types
     </a>
    </li>
    <li class="toctree-l2">
@@ -202,7 +202,7 @@
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../python-basics/modularize.html">
-   Modularization &amp; Object Orientation
+   Object Orientation
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -244,7 +244,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/xml.html">
-     Manipulation of Workbooks and JSON Files
+     Workbooks (xlsx) and JSON
     </a>
    </li>
    <li class="toctree-l2">
@@ -754,20 +754,20 @@ This solution has been tested on <strong><em>Linux Ubuntu</em> and <em>Linux Min
 </div>
 <p>Start <em>QGIS</em>, create a new project and save it (<code class="docutils literal notranslate"><span class="pre">Project</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">as...</span></code>). Then, set the project coordinate reference system (CRS) by clicking on <code class="docutils literal notranslate"><span class="pre">Project</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Properties</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">CRS</span></code> tab and select <code class="docutils literal notranslate"><span class="pre">GERMANY_ZONE_3</span> <span class="pre">(ESRI:31493)</span></code>. Install <em>BASEMENT</em>’s <em>BASEmesh</em> Plugin (instructions from the <em>BASEMENT</em> System Manual):</p>
 <ol class="simple">
-<li><p>Load the <em>QGIS</em> plugin manager: <code class="docutils literal notranslate"><span class="pre">Plugins</span></code> menu &gt; <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">and</span> <span class="pre">Install</span> <span class="pre">Plugins</span></code> (see details in <a class="reference internal" href="#qgis-plugins"><span class="std std-numref">Fig. 17</span></a></p></li>
-<li><p>Go to the Settings tab; now the <em>QGIS</em> plugin repository connections should be visible at the bottom of the <code class="docutils literal notranslate"><span class="pre">Plugin</span> <span class="pre">Manager</span></code> (<code class="docutils literal notranslate"><span class="pre">Plugin</span> <span class="pre">Repositories</span></code> listbox in <a class="reference internal" href="#qgis-plugins"><span class="std std-numref">Fig. 17</span></a>).</p></li>
+<li><p>Load the <em>QGIS</em> plugin manager: <code class="docutils literal notranslate"><span class="pre">Plugins</span></code> menu &gt; <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">and</span> <span class="pre">Install</span> <span class="pre">Plugins</span></code> (see details in <a class="reference internal" href="#qgis-plugins"><span class="std std-numref">Fig. 19</span></a></p></li>
+<li><p>Go to the Settings tab; now the <em>QGIS</em> plugin repository connections should be visible at the bottom of the <code class="docutils literal notranslate"><span class="pre">Plugin</span> <span class="pre">Manager</span></code> (<code class="docutils literal notranslate"><span class="pre">Plugin</span> <span class="pre">Repositories</span></code> listbox in <a class="reference internal" href="#qgis-plugins"><span class="std std-numref">Fig. 19</span></a>).</p></li>
 <li><p>Scroll to the bottom, click on Add…, and enter a name for the new repository (e.g., <em>BASEmesh</em> repository)</p></li>
 <li><p>Enter the repository address: <a class="reference external" href="http://people.ee.ethz.ch/~basement/qgis_plugins/qgis_plugins.xml">http://people.ee.ethz.ch/~basement/qgis_plugins/qgis_plugins.xml</a></p></li>
 <li><p>Click <code class="docutils literal notranslate"><span class="pre">OK</span></code>. The new repository should now be visible in the <code class="docutils literal notranslate"><span class="pre">Plugin</span> <span class="pre">Repositories</span></code> listbox. If the connection is <code class="docutils literal notranslate"><span class="pre">OK</span></code>, click on the Close button on the bottom of the window.</p></li>
-<li><p>Verify that the <em>BASEmesh</em> plugin is now available in the <em>QGIS</em>’ <code class="docutils literal notranslate"><span class="pre">Plugins</span></code> menu (see <a class="reference internal" href="#qgis-pluggedin"><span class="std std-numref">Fig. 18</span></a>).</p></li>
+<li><p>Verify that the <em>BASEmesh</em> plugin is now available in the <em>QGIS</em>’ <code class="docutils literal notranslate"><span class="pre">Plugins</span></code> menu (see <a class="reference internal" href="#qgis-pluggedin"><span class="std std-numref">Fig. 20</span></a>).</p></li>
 </ol>
 <div class="figure align-default" id="qgis-plugins">
 <img alt="qgis basement plugins" src="../_images/qgis-plugins.png" />
-<p class="caption"><span class="caption-number">Fig. 17 </span><span class="caption-text">Installation of the BASEmesh plugin.</span><a class="headerlink" href="#qgis-plugins" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 19 </span><span class="caption-text">Installation of the BASEmesh plugin.</span><a class="headerlink" href="#qgis-plugins" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-default" id="qgis-pluggedin">
 <img alt="qgis basement plugins" src="../_images/qgis-pluggedin.png" />
-<p class="caption"><span class="caption-number">Fig. 18 </span><span class="caption-text">The BASEmesh plugin is available in QGIS’ Plugins menu after successful installation.</span><a class="headerlink" href="#qgis-pluggedin" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 20 </span><span class="caption-text">The BASEmesh plugin is available in QGIS’ Plugins menu after successful installation.</span><a class="headerlink" href="#qgis-pluggedin" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="elevation-point-data">
@@ -776,7 +776,7 @@ This solution has been tested on <strong><em>Linux Ubuntu</em> and <em>Linux Min
 <ol class="simple">
 <li><p><a class="reference external" href="https://github.com/hydro-informatics/materials-bm/blob/master/points_raw/points.txt">Download</a> the point file from the repository (if necessary, copy the file contents locally into a text editor and save the file as <code class="docutils literal notranslate"><span class="pre">points.txt</span></code> in a local project directory)</p></li>
 <li><p><a class="reference external" href="https://github.com/hydro-informatics/materials-bm/raw/master/breaklines.zip">Download</a> the zipped breaklines shapefile into the project folder and unpack <code class="docutils literal notranslate"><span class="pre">breaklines.shp</span></code>.</p></li>
-<li><p>In <em>QGIS</em>, click on the <code class="docutils literal notranslate"><span class="pre">Layer</span></code> menu &gt; <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Layer</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Delimited</span> <span class="pre">Text</span> <span class="pre">Layer...</span></code> (see <a class="reference internal" href="#qgis-add-lyr"><span class="std std-numref">Fig. 19</span></a>)</p></li>
+<li><p>In <em>QGIS</em>, click on the <code class="docutils literal notranslate"><span class="pre">Layer</span></code> menu &gt; <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Layer</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Delimited</span> <span class="pre">Text</span> <span class="pre">Layer...</span></code> (see <a class="reference internal" href="#qgis-add-lyr"><span class="std std-numref">Fig. 21</span></a>)</p></li>
 <li><p>In the <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Delimited</span> <span class="pre">Text</span> <span class="pre">Layer</span></code> (<code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Source</span> <span class="pre">Manager</span> <span class="pre">|</span> <span class="pre">Delimited</span> <span class="pre">Text</span></code>) wizard (see details in Figure 4):</p>
 <ul class="simple">
 <li><p>Choose <a class="reference external" href="https://github.com/hydro-informatics/materials-bm/blob/master/points_raw/points.txt"><em>points.txt</em></a> in the <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">name</span></code> field (alternatively use <a class="reference external" href="https://github.com/hydro-informatics/materials-bm/blob/master/points_raw/points.csv"><em>points.csv</em></a></p></li>
@@ -790,11 +790,11 @@ This solution has been tested on <strong><em>Linux Ubuntu</em> and <em>Linux Min
 </ol>
 <div class="figure align-default" id="qgis-add-lyr">
 <img alt="basement qhis add layer" src="../_images/qgis-add-lyr.png" />
-<p class="caption"><span class="caption-number">Fig. 19 </span><span class="caption-text">Open the Add Delimited Text Layer import wizard.</span><a class="headerlink" href="#qgis-add-lyr" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 21 </span><span class="caption-text">Open the Add Delimited Text Layer import wizard.</span><a class="headerlink" href="#qgis-add-lyr" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-default" id="qgis-import-pts">
 <img alt="basement qgis import points" src="../_images/qgis-import-pts.png" />
-<p class="caption"><span class="caption-number">Fig. 20 </span><span class="caption-text">Load the xyz-points.txt file with QGIS’ Add Delimited Text Layer (Data Source Manager | Delimited Text) wizard.</span><a class="headerlink" href="#qgis-import-pts" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 22 </span><span class="caption-text">Load the xyz-points.txt file with QGIS’ Add Delimited Text Layer (Data Source Manager | Delimited Text) wizard.</span><a class="headerlink" href="#qgis-import-pts" title="Permalink to this image">¶</a></p>
 </div>
 <p>Next, export the new point layer as shapefile: In <em>QGIS</em>’ <code class="docutils literal notranslate"><span class="pre">Layer</span></code>S window, right-click on XYZ-POINTS, then <code class="docutils literal notranslate"><span class="pre">Export</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">Features</span> <span class="pre">As...</span></code> . In the Format field, select <code class="docutils literal notranslate"><span class="pre">ESRI</span> <span class="pre">Shapefile</span></code>. Define a FILE NAME (by clicking on the … button and defining for example <em>C:\QGIS-projects\xyz-points.shp</em>), ensure that the ADD SAVED FILE TO MAP checkbox is activated (on the bottom of the <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">Vector</span> <span class="pre">Layer</span> <span class="pre">As...</span></code> window) and click <code class="docutils literal notranslate"><span class="pre">OK</span></code>. Remove the <code class="docutils literal notranslate"><span class="pre">points</span></code> text layer from the <code class="docutils literal notranslate"><span class="pre">Layers</span></code> window (only the shape file should be visible here now).
 Finally, rename the three fields (<code class="docutils literal notranslate"><span class="pre">FIELD_1</span></code>, <code class="docutils literal notranslate"><span class="pre">FIELD_2</span></code>, <code class="docutils literal notranslate"><span class="pre">FIELD_3</span></code>) to <code class="docutils literal notranslate"><span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code>, and <code class="docutils literal notranslate"><span class="pre">Z</span></code>, respectively. The fields can be renamed with a double-click on the <code class="docutils literal notranslate"><span class="pre">xyz-points</span></code> layer (opens <code class="docutils literal notranslate"><span class="pre">Layer</span> <span class="pre">Properties</span></code>), then left-click on the <code class="docutils literal notranslate"><span class="pre">Fields</span></code> ribbon, activate the editing mode (click on the pen symbol) and edit the <code class="docutils literal notranslate"><span class="pre">Name</span></code> fields.</p>
@@ -803,17 +803,17 @@ Finally, rename the three fields (<code class="docutils literal notranslate"><sp
 <span id="boundary"></span><h2>Model Boundary<a class="headerlink" href="#model-boundary" title="Permalink to this headline">¶</a></h2>
 <p>The model boundary defines the calculation extent and needs to be define within a polygon shapefile that encloses all points in the above produced point shapefile. <em>QGIS</em> provides a Convex Hull tool that enables the automated creation of the outer boundary. This tool is used as follows:</p>
 <ul class="simple">
-<li><p>In <em>QGIS</em>’ <code class="docutils literal notranslate"><span class="pre">Processing</span></code> menu, select <code class="docutils literal notranslate"><span class="pre">Toolbox</span></code> (see <a class="reference internal" href="#qgis-tbx-fig"><span class="std std-numref">Fig. 21</span></a>) The <code class="docutils literal notranslate"><span class="pre">Toolbox</span></code> sub-window opens now.</p></li>
-<li><p>In the toolbox, click on <code class="docutils literal notranslate"><span class="pre">Vector</span> <span class="pre">Geometry</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Concave</span> <span class="pre">Hull</span> <span class="pre">(Alpha</span> <span class="pre">Shapes)</span></code>, which opens the <code class="docutils literal notranslate"><span class="pre">Concave</span> <span class="pre">Hull</span> <span class="pre">(Alpha</span> <span class="pre">Shapes)</span></code> wizard (see <a class="reference internal" href="#qgis-chull"><span class="std std-numref">Fig. 22</span></a>).</p></li>
+<li><p>In <em>QGIS</em>’ <code class="docutils literal notranslate"><span class="pre">Processing</span></code> menu, select <code class="docutils literal notranslate"><span class="pre">Toolbox</span></code> (see <a class="reference internal" href="#qgis-tbx-fig"><span class="std std-numref">Fig. 23</span></a>) The <code class="docutils literal notranslate"><span class="pre">Toolbox</span></code> sub-window opens now.</p></li>
+<li><p>In the toolbox, click on <code class="docutils literal notranslate"><span class="pre">Vector</span> <span class="pre">Geometry</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Concave</span> <span class="pre">Hull</span> <span class="pre">(Alpha</span> <span class="pre">Shapes)</span></code>, which opens the <code class="docutils literal notranslate"><span class="pre">Concave</span> <span class="pre">Hull</span> <span class="pre">(Alpha</span> <span class="pre">Shapes)</span></code> wizard (see <a class="reference internal" href="#qgis-chull"><span class="std std-numref">Fig. 24</span></a>).</p></li>
 <li><p>In the <code class="docutils literal notranslate"><span class="pre">Concave</span> <span class="pre">Hull</span> <span class="pre">(Alpha</span> <span class="pre">Shapes)</span></code> wizard, select the <code class="docutils literal notranslate"><span class="pre">xyz-points</span></code> layer as <code class="docutils literal notranslate"><span class="pre">Input</span> <span class="pre">Layer</span></code>, set the <code class="docutils literal notranslate"><span class="pre">Threhold</span></code> to 0.300 (keep default), define an output <code class="docutils literal notranslate"><span class="pre">Concave</span> <span class="pre">Hull</span></code> shapefile (e.g., <code class="docutils literal notranslate"><span class="pre">boundary.shp</span></code>) by clicking on the <code class="docutils literal notranslate"><span class="pre">...</span></code> button, and click on <code class="docutils literal notranslate"><span class="pre">Run</span></code>.</p></li>
 </ul>
 <div class="figure align-default" id="qgis-tbx-fig">
 <img alt="qgis basement toolbox" src="../_images/qgis-tbx.png" />
-<p class="caption"><span class="caption-number">Fig. 21 </span><span class="caption-text">Open QGIS’ Toolbox from the main menu.</span><a class="headerlink" href="#qgis-tbx-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 23 </span><span class="caption-text">Open QGIS’ Toolbox from the main menu.</span><a class="headerlink" href="#qgis-tbx-fig" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-default" id="qgis-chull">
 <img alt="basement qgis convex hull boundary polygon" src="../_images/qgis-chull.png" />
-<p class="caption"><span class="caption-number">Fig. 22 </span><span class="caption-text">The Concave Hull (Alpha Shapes) wizard.</span><a class="headerlink" href="#qgis-chull" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 24 </span><span class="caption-text">The Concave Hull (Alpha Shapes) wizard.</span><a class="headerlink" href="#qgis-chull" title="Permalink to this image">¶</a></p>
 </div>
 <ul class="simple">
 <li><p>Right-click on <em>QGIS</em>’ <code class="docutils literal notranslate"><span class="pre">Settings</span></code> menu, and activate the <code class="docutils literal notranslate"><span class="pre">Snapping</span></code> toolbar checkbox. In the now shown snapping toolbar, activate snapping with a click on the horseshoe icon.</p></li>
@@ -821,10 +821,10 @@ Finally, rename the three fields (<code class="docutils literal notranslate"><sp
 </ul>
 <div class="figure align-default" id="qgis-mod-feat">
 <img alt="basement qgis modify feature vertex" src="../_images/qgis-mod-feat.png" />
-<p class="caption"><span class="caption-number">Fig. 23 </span><span class="caption-text">Toggle editing and enable the Vertex Tool.</span><a class="headerlink" href="#qgis-mod-feat" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 25 </span><span class="caption-text">Toggle editing and enable the Vertex Tool.</span><a class="headerlink" href="#qgis-mod-feat" title="Permalink to this image">¶</a></p>
 </div>
 <ul class="simple">
-<li><p>Modify the boundary edges (as shown in <a class="reference internal" href="#qgis-mod-boundary"><span class="std std-numref">Fig. 24</span></a>): click on the centre cross (creates a new point) and dragging it to the next outest boundary point of the DEM points. Note:</p>
+<li><p>Modify the boundary edges (as shown in <a class="reference internal" href="#qgis-mod-boundary"><span class="std std-numref">Fig. 26</span></a>): click on the centre cross (creates a new point) and dragging it to the next outest boundary point of the DEM points. Note:</p>
 <ul>
 <li><p>The boundary polygon must not be a perfect fit, but it must include all xyz-points with many details in vicinity of the river inflow and outflow regions (dense point cloud in the left part of the point file).</p></li>
 <li><p>The more precise the boundary the better will be the quality mesh and the faster and more stable will be the simulation.</p></li>
@@ -834,11 +834,11 @@ Finally, rename the three fields (<code class="docutils literal notranslate"><sp
 </ul>
 <div class="figure align-default" id="qgis-mod-boundary">
 <img alt="basement qgis modify boundary polygon" src="../_images/qgis-mod-boundary.png" />
-<p class="caption"><span class="caption-number">Fig. 24 </span><span class="caption-text">Modify the boundary polygon with a click on the centre cross (creates a new point) and dragging it to the next outest boundary point of the DEM points.</span><a class="headerlink" href="#qgis-mod-boundary" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 26 </span><span class="caption-text">Modify the boundary polygon with a click on the centre cross (creates a new point) and dragging it to the next outest boundary point of the DEM points.</span><a class="headerlink" href="#qgis-mod-boundary" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-default" id="qgis-fin-boundary">
 <img alt="basement qgis boundary polygon" src="../_images/qgis-fin-boundary.png" />
-<p class="caption"><span class="caption-number">Fig. 25 </span><span class="caption-text">The final boundary (hull of the point cloud).</span><a class="headerlink" href="#qgis-fin-boundary" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 27 </span><span class="caption-text">The final boundary (hull of the point cloud).</span><a class="headerlink" href="#qgis-fin-boundary" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="breaklines">
@@ -850,7 +850,7 @@ Note: The default layer style <code class="docutils literal notranslate"><span c
 <span id="tin-dem"></span><h2>TIN Elevation Model<a class="headerlink" href="#tin-elevation-model" title="Permalink to this headline">¶</a></h2>
 <p>This section explains the creation of a triangulated irregular network (TIN) with the <em>QGIS</em> plugin <em>BASEmesh</em> (make sure that all steps in the <a class="reference external" href="#start-qgis">above section</a> were successful).</p>
 <ol class="simple">
-<li><p>To start, click on <em>QGIS</em>’ <code class="docutils literal notranslate"><span class="pre">Plugins</span></code> menu &gt; <em>BASEmesh</em> &gt; <code class="docutils literal notranslate"><span class="pre">Elevation</span> <span class="pre">Meshing</span></code> to open the mesh wizard. Use the following settings (see also <a class="reference internal" href="#qgis-exp-tin"><span class="std std-numref">Fig. 26</span></a>:</p></li>
+<li><p>To start, click on <em>QGIS</em>’ <code class="docutils literal notranslate"><span class="pre">Plugins</span></code> menu &gt; <em>BASEmesh</em> &gt; <code class="docutils literal notranslate"><span class="pre">Elevation</span> <span class="pre">Meshing</span></code> to open the mesh wizard. Use the following settings (see also <a class="reference internal" href="#qgis-exp-tin"><span class="std std-numref">Fig. 28</span></a>:</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Model</span> <span class="pre">boundary</span></code> = <code class="docutils literal notranslate"><span class="pre">boundary</span></code> layer (<a class="reference external" href="#boundary">see above section</a></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">elevation</span> <span class="pre">points</span></code> = <code class="docutils literal notranslate"><span class="pre">xyz-points</span></code> (<a class="reference external" href="#epd">see above section</a></p></li>
 <li><p>Enable the <code class="docutils literal notranslate"><span class="pre">breaklines</span></code> checkbox and select the <code class="docutils literal notranslate"><span class="pre">breaklines</span></code> layer (<a class="reference external" href="#breaklines">see above section</a></p></li>
@@ -864,21 +864,21 @@ Note: The default layer style <code class="docutils literal notranslate"><span c
 </ol>
 <div class="figure align-default" id="qgis-exp-tin">
 <img alt="basemesh qgis elevation mesh tin" src="../_images/qgis-exp-tin.png" />
-<p class="caption"><span class="caption-number">Fig. 26 </span><span class="caption-text">Setup BASEmesh’s Elevation Meshing wizard.</span><a class="headerlink" href="#qgis-exp-tin" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 28 </span><span class="caption-text">Setup BASEmesh’s Elevation Meshing wizard.</span><a class="headerlink" href="#qgis-exp-tin" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="region-markers-for-quality-meshing">
 <span id="regions"></span><h2>Region Markers for Quality Meshing<a class="headerlink" href="#region-markers-for-quality-meshing" title="Permalink to this headline">¶</a></h2>
 <p>Region markers are placed within regions defined by breaklines and assign for instance material identifiers (MATIDs) and maximum mesh areas to ensure high mesh quality (e.g., the mesh area should be small in the active channel bed and can be wider on floodplains). To create a new region marker file:</p>
 <ul class="simple">
-<li><p>Click on <em>QGIS</em>’ <code class="docutils literal notranslate"><span class="pre">Layers</span></code> menu &gt; <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">Layer</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">Shapefile</span> <span class="pre">Layer...</span></code> (see <a class="reference internal" href="#qgis-new-lyr"><span class="std std-numref">Fig. 27</span></a>)</p></li>
+<li><p>Click on <em>QGIS</em>’ <code class="docutils literal notranslate"><span class="pre">Layers</span></code> menu &gt; <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">Layer</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">Shapefile</span> <span class="pre">Layer...</span></code> (see <a class="reference internal" href="#qgis-new-lyr"><span class="std std-numref">Fig. 29</span></a>)</p></li>
 </ul>
 <div class="figure align-default" id="qgis-new-lyr">
 <img alt="qgis new layer basemesh" src="../_images/qgis-new-lyr.png" />
-<p class="caption"><span class="caption-number">Fig. 27 </span><span class="caption-text">Create a new point shapefile for region definitions from QGIS’ Layer menu.</span><a class="headerlink" href="#qgis-new-lyr" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 29 </span><span class="caption-text">Create a new point shapefile for region definitions from QGIS’ Layer menu.</span><a class="headerlink" href="#qgis-new-lyr" title="Permalink to this image">¶</a></p>
 </div>
 <ul class="simple">
-<li><p>In the newly opened <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">Shapefile</span> <span class="pre">Layer</span></code> window, make the following definitions (see also <a class="reference internal" href="#qgis-reg-lyr"><span class="std std-numref">Fig. 28</span></a>).</p>
+<li><p>In the newly opened <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">Shapefile</span> <span class="pre">Layer</span></code> window, make the following definitions (see also <a class="reference internal" href="#qgis-reg-lyr"><span class="std std-numref">Fig. 30</span></a>).</p>
 <ul>
 <li><p>Define the File name as region-points.shp (or similar)</p></li>
 <li><p>Ensure the Geometry type is Point and the CRS corresponds to the above definitions (<a class="reference external" href="#start-qgis">see above section</a>)</p></li>
@@ -892,7 +892,7 @@ Note: The default layer style <code class="docutils literal notranslate"><span c
 </ul>
 <div class="figure align-default" id="qgis-reg-lyr">
 <img alt="basement mesh qgis region layer points" src="../_images/qgis-reg-lyr.png" />
-<p class="caption"><span class="caption-number">Fig. 28 </span><span class="caption-text">Definitions and fields to be added to the new regions point shapefile.</span><a class="headerlink" href="#qgis-reg-lyr" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 30 </span><span class="caption-text">Definitions and fields to be added to the new regions point shapefile.</span><a class="headerlink" href="#qgis-reg-lyr" title="Permalink to this image">¶</a></p>
 </div>
 <p>After the successful creation, right-click on the new REGION-<code class="docutils literal notranslate"><span class="pre">points</span></code> layer and select TOGGLE EDITING. Then go to <em>QGIS</em>’ EDIT menu and select ADD POINT FEATURE. Create 9 points to define all areas delineated by the <code class="docutils literal notranslate"><span class="pre">breaklines</span></code> layer. These points should include the following region types:</p>
 <table class="colwidths-auto table">
@@ -922,10 +922,10 @@ Note: The default layer style <code class="docutils literal notranslate"><span c
 </tr>
 </tbody>
 </table>
-<p><a class="reference internal" href="#qgis-reg-pts"><span class="std std-numref">Figure 29</span></a> shows an example for defining points within the areas delineated by the breaklines.</p>
+<p><a class="reference internal" href="#qgis-reg-pts"><span class="std std-numref">Figure 31</span></a> shows an example for defining points within the areas delineated by the breaklines.</p>
 <div class="figure align-default" id="qgis-reg-pts">
 <img alt="basemesh region points" src="../_images/qgis-reg-pts.png" />
-<p class="caption"><span class="caption-number">Fig. 29 </span><span class="caption-text">Example for distributing region points in the project boundaries (remark: the max_area value may differ and is expert assessment-driven). After the placement of all region points, Save Layer Edits (floppy disk symbol) and Toggle Editing (pencil symbol – turn off).</span><a class="headerlink" href="#qgis-reg-pts" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 31 </span><span class="caption-text">Example for distributing region points in the project boundaries (remark: the max_area value may differ and is expert assessment-driven). After the placement of all region points, Save Layer Edits (floppy disk symbol) and Toggle Editing (pencil symbol – turn off).</span><a class="headerlink" href="#qgis-reg-pts" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="quality-meshing">
@@ -933,7 +933,7 @@ Note: The default layer style <code class="docutils literal notranslate"><span c
 <p>A quality mesh accounts for the definitions made within the regions shapefile (<a class="reference external" href="#regions">see above section</a>, but it does not include elevation data. Thus, after generating a quality mesh, elevation information needs to be added from the TIN (<a class="reference external" href="#tin-dem">see above section</a>). This section first explains the <a class="reference internal" href="#qualm-gen"><span class="std std-ref">generation of a quality mesh</span></a> and then the <a class="reference external" href="#qualm-interp">insertion of elevation data</a>).</p>
 <div class="section" id="quality-mesh-generation">
 <span id="qualm-gen"></span><h3>Quality mesh generation<a class="headerlink" href="#quality-mesh-generation" title="Permalink to this headline">¶</a></h3>
-<p>In <em>QGIS</em>’ <code class="docutils literal notranslate"><span class="pre">Plugins</span></code> menu, click on <em>BASEmesh</em> &gt; QUALITY MESHING to open the Quality meshing wizard. Make the following settings in the window (see also <a class="reference internal" href="#qgis-qualm"><span class="std std-numref">Fig. 30</span></a>):</p>
+<p>In <em>QGIS</em>’ <code class="docutils literal notranslate"><span class="pre">Plugins</span></code> menu, click on <em>BASEmesh</em> &gt; QUALITY MESHING to open the Quality meshing wizard. Make the following settings in the window (see also <a class="reference internal" href="#qgis-qualm"><span class="std std-numref">Fig. 32</span></a>):</p>
 <ol class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Model</span> <span class="pre">boundary</span></code> = <code class="docutils literal notranslate"><span class="pre">boundary</span></code> (<a class="reference external" href="#boundary">see above section</a></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">breaklines</span></code> = <code class="docutils literal notranslate"><span class="pre">breaklines</span></code> (<a class="reference external" href="#breaklines">see above section</a></p></li>
@@ -942,13 +942,13 @@ Note: The default layer style <code class="docutils literal notranslate"><span c
 </ol>
 <div class="figure align-default" id="qgis-qualm">
 <img alt="basement qgis quality mesh tin" src="../_images/qgis-qualm.png" />
-<p class="caption"><span class="caption-number">Fig. 30 </span><span class="caption-text">BASEmesh’s Quality Meshing wizard.</span><a class="headerlink" href="#qgis-qualm" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 32 </span><span class="caption-text">BASEmesh’s Quality Meshing wizard.</span><a class="headerlink" href="#qgis-qualm" title="Permalink to this image">¶</a></p>
 </div>
 <p>Quality meshing may take time. After successful mesh generation the files <code class="docutils literal notranslate"><span class="pre">base_qualitymesh_qualityNodes.shp</span></code> and <code class="docutils literal notranslate"><span class="pre">base_qualitymesh_qualityElements.shp</span></code> are generated. Finally, click <code class="docutils literal notranslate"><span class="pre">Close</span></code>.</p>
 </div>
 <div class="section" id="elevation-data-interpolation-on-a-quality-mesh-a-name-qualm-interp-a">
 <h3>Elevation data interpolation on a quality mesh<a name="qualm-interp"></a><a class="headerlink" href="#elevation-data-interpolation-on-a-quality-mesh-a-name-qualm-interp-a" title="Permalink to this headline">¶</a></h3>
-<p><em>BASEmesh</em>’s <code class="docutils literal notranslate"><span class="pre">Interpolation</span></code> wizard projects elevation data onto the quality mesh by interpolation from a TIN. Make sure to check (show) the <code class="docutils literal notranslate"><span class="pre">base_qualitymesh_qualityNodes</span></code> and <code class="docutils literal notranslate"><span class="pre">base_qualitymesh_qualityElements</span></code> from the last step, and <code class="docutils literal notranslate"><span class="pre">base_tin_elevation_nodes.shp</span></code> and <a class="reference external" href="#tin-dem"><code class="docutils literal notranslate"><span class="pre">base_tin_elevation_elements.shp</span></code></a>. Then, open <em>BASEmesh</em>’s <code class="docutils literal notranslate"><span class="pre">Interpolation</span></code> wizard (<em>QGIS</em> <code class="docutils literal notranslate"><span class="pre">Plugins</span></code> menu &gt; <em>BASEmesh</em> &gt; <code class="docutils literal notranslate"><span class="pre">Interpolation</span></code>) and (see also <a class="reference internal" href="#qgis-qualm-interp"><span class="std std-numref">Fig. 31</span></a>):</p>
+<p><em>BASEmesh</em>’s <code class="docutils literal notranslate"><span class="pre">Interpolation</span></code> wizard projects elevation data onto the quality mesh by interpolation from a TIN. Make sure to check (show) the <code class="docutils literal notranslate"><span class="pre">base_qualitymesh_qualityNodes</span></code> and <code class="docutils literal notranslate"><span class="pre">base_qualitymesh_qualityElements</span></code> from the last step, and <code class="docutils literal notranslate"><span class="pre">base_tin_elevation_nodes.shp</span></code> and <a class="reference external" href="#tin-dem"><code class="docutils literal notranslate"><span class="pre">base_tin_elevation_elements.shp</span></code></a>. Then, open <em>BASEmesh</em>’s <code class="docutils literal notranslate"><span class="pre">Interpolation</span></code> wizard (<em>QGIS</em> <code class="docutils literal notranslate"><span class="pre">Plugins</span></code> menu &gt; <em>BASEmesh</em> &gt; <code class="docutils literal notranslate"><span class="pre">Interpolation</span></code>) and (see also <a class="reference internal" href="#qgis-qualm-interp"><span class="std std-numref">Fig. 33</span></a>):</p>
 <ol class="simple">
 <li><p>In the <code class="docutils literal notranslate"><span class="pre">Quality</span> <span class="pre">Mesh</span></code> canvas, select <code class="docutils literal notranslate"><span class="pre">base_qualitymesh_qualityNodes</span></code></p></li>
 <li><p>In the <code class="docutils literal notranslate"><span class="pre">Elevation</span> <span class="pre">Data</span></code> canvas, activate the <code class="docutils literal notranslate"><span class="pre">Elevation</span> <span class="pre">Mesh</span></code> checkbox and select <code class="docutils literal notranslate"><span class="pre">base_tin_elevation_nodes.shp</span></code> and <a class="reference external" href="#tin-dem"><code class="docutils literal notranslate"><span class="pre">base_tin_elevation_elements.shp</span></code></a></p></li>
@@ -958,22 +958,22 @@ After successful execution, the new layer finalmesh_Interpolated_nodes_elevMesh.
 </ol>
 <div class="figure align-default" id="qgis-qualm-interp">
 <img alt="qgis quality mesh interpolation basement" src="../_images/qgis-qualm-interp.png" />
-<p class="caption"><span class="caption-number">Fig. 31 </span><span class="caption-text">BASEmesh’s Interpolation wizard and setup.</span><a class="headerlink" href="#qgis-qualm-interp" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 33 </span><span class="caption-text">BASEmesh’s Interpolation wizard and setup.</span><a class="headerlink" href="#qgis-qualm-interp" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="verify-quality-mesh-elevation">
 <span id="qualm-verify"></span><h3>Verify quality mesh elevation<a class="headerlink" href="#verify-quality-mesh-elevation" title="Permalink to this headline">¶</a></h3>
 <p>After the elevation interpolation, verify that elevations were correctly assigned. To identify potential outliers double-click on the new <code class="docutils literal notranslate"><span class="pre">finalmesh_interpolated_Nodes_elevMesh</span></code> and go to the <code class="docutils literal notranslate"><span class="pre">Symbology</span></code> ribbon. Select <code class="docutils literal notranslate"><span class="pre">Graduated</span></code> at the very top of the window (instead of <code class="docutils literal notranslate"><span class="pre">Single</span> <span class="pre">Symbol</span></code>), set the <code class="docutils literal notranslate"><span class="pre">Value</span></code> to Z, METHOD to COLOR, choose a color ramp, and click on the <code class="docutils literal notranslate"><span class="pre">classify</span></code> bottom (lower part of the window). Click on <code class="docutils literal notranslate"><span class="pre">Apply</span></code> and <code class="docutils literal notranslate"><span class="pre">OK</span></code> to close the <code class="docutils literal notranslate"><span class="pre">Symbology</span></code> window.
-<a class="reference internal" href="#qgis-verify-qualm"><span class="std std-numref">Fig. 32</span></a> shows an example of interpolated mesh, with some irregularities (red points). The irregularities are caused by local imprecision of breaklines (line end points do not coincide with the <a class="reference external" href="#epd"><code class="docutils literal notranslate"><span class="pre">xyz-points.shp</span></code></a>). Also some points of the <a class="reference external" href="#boundary">boundary</a> do not correspond the <code class="docutils literal notranslate"><span class="pre">xyz-points.shp</span></code>. If such irregularities occur, zoom at the red points (irregularities) and ensure that the breakline and boundary nodes all exactly coincide with those stored in <code class="docutils literal notranslate"><span class="pre">xyz-points.shp</span></code>. When all nodes are corrected, repeat all steps from the <a class="reference external" href="#tin-dem">TIN generation</a> onward.</p>
+<a class="reference internal" href="#qgis-verify-qualm"><span class="std std-numref">Fig. 34</span></a> shows an example of interpolated mesh, with some irregularities (red points). The irregularities are caused by local imprecision of breaklines (line end points do not coincide with the <a class="reference external" href="#epd"><code class="docutils literal notranslate"><span class="pre">xyz-points.shp</span></code></a>). Also some points of the <a class="reference external" href="#boundary">boundary</a> do not correspond the <code class="docutils literal notranslate"><span class="pre">xyz-points.shp</span></code>. If such irregularities occur, zoom at the red points (irregularities) and ensure that the breakline and boundary nodes all exactly coincide with those stored in <code class="docutils literal notranslate"><span class="pre">xyz-points.shp</span></code>. When all nodes are corrected, repeat all steps from the <a class="reference external" href="#tin-dem">TIN generation</a> onward.</p>
 <div class="figure align-default" id="qgis-verify-qualm">
 <img alt="basemesh verify quality mesh" src="../_images/qgis-verify-qualm.png" />
-<p class="caption"><span class="caption-number">Fig. 32 </span><span class="caption-text">Verify elevation interpolation using graduated color ramps. In this example, the red colored points indicated irregularities in the mesh.</span><a class="headerlink" href="#qgis-verify-qualm" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 34 </span><span class="caption-text">Verify elevation interpolation using graduated color ramps. In this example, the red colored points indicated irregularities in the mesh.</span><a class="headerlink" href="#qgis-verify-qualm" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
 <div class="section" id="export-to-2dm">
 <span id="dm"></span><h2>Export to 2dm<a class="headerlink" href="#export-to-2dm" title="Permalink to this headline">¶</a></h2>
-<p>To run <em>BASEMENT</em>, the mesh needs to be exported in 2dm format. <em>BASEmesh</em>’s <code class="docutils literal notranslate"><span class="pre">Export</span> <span class="pre">Mesh</span></code> wizard (<em>QGIS</em> <code class="docutils literal notranslate"><span class="pre">Plugins</span></code> menu &gt; <em>BASEmesh</em> &gt; <code class="docutils literal notranslate"><span class="pre">Export</span> <span class="pre">Mesh</span></code>) does the job with the following settings (see also <a class="reference internal" href="#qgis-exp-mesh"><span class="std std-numref">Fig. 33</span></a>): Export of the mesh to 2dm format with <em>BASEmesh</em>’s <code class="docutils literal notranslate"><span class="pre">Export</span> <span class="pre">Mesh</span></code> wizard.):</p>
+<p>To run <em>BASEMENT</em>, the mesh needs to be exported in 2dm format. <em>BASEmesh</em>’s <code class="docutils literal notranslate"><span class="pre">Export</span> <span class="pre">Mesh</span></code> wizard (<em>QGIS</em> <code class="docutils literal notranslate"><span class="pre">Plugins</span></code> menu &gt; <em>BASEmesh</em> &gt; <code class="docutils literal notranslate"><span class="pre">Export</span> <span class="pre">Mesh</span></code>) does the job with the following settings (see also <a class="reference internal" href="#qgis-exp-mesh"><span class="std std-numref">Fig. 35</span></a>): Export of the mesh to 2dm format with <em>BASEmesh</em>’s <code class="docutils literal notranslate"><span class="pre">Export</span> <span class="pre">Mesh</span></code> wizard.):</p>
 <ol class="simple">
 <li><p>Select the checkbox 2D MESH <code class="docutils literal notranslate"><span class="pre">Export</span></code></p></li>
 <li><p>Mesh elements = <code class="docutils literal notranslate"><span class="pre">base_qualitymesh_quality_elementy.shp</span></code> (<a class="reference external" href="#qualm-interp">see above</a> with <code class="docutils literal notranslate"><span class="pre">Material</span> <span class="pre">ID</span> <span class="pre">field</span></code> = <code class="docutils literal notranslate"><span class="pre">MATID</span></code></p></li>
@@ -983,7 +983,7 @@ After successful execution, the new layer finalmesh_Interpolated_nodes_elevMesh.
 </ol>
 <div class="figure align-default" id="qgis-exp-mesh">
 <img alt="basement qgis export mesh 2dm" src="../_images/qgis-exp-mesh.png" />
-<p class="caption"><span class="caption-number">Fig. 33 </span><span class="caption-text">Export of the mesh to 2dm format with BASEmesh’s Export Mesh wizard.</span><a class="headerlink" href="#qgis-exp-mesh" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 35 </span><span class="caption-text">Export of the mesh to 2dm format with BASEmesh’s Export Mesh wizard.</span><a class="headerlink" href="#qgis-exp-mesh" title="Permalink to this image">¶</a></p>
 </div>
 <p>In order to work with <em>BASEMENT</em> v3.x, the .2dm file requires a couple of adaptations. Open the produced finalmesh.2dm in a text editor software (right-click and, for example, edit with <a class="reference external" href="hy_get-started/others.html#npp"><em>Notepad++</em></a> and:</p>
 <ul class="simple">
@@ -991,7 +991,7 @@ After successful execution, the new layer finalmesh_Interpolated_nodes_elevMesh.
 </ul>
 <div class="figure align-default" id="mod-2dm">
 <img alt="modify materials basemesh basement 2dm error fix" src="../_images/mod-2dm.png" />
-<p class="caption"><span class="caption-number">Fig. 34 </span><span class="caption-text">Modification of the upper part of the .2dm file.</span><a class="headerlink" href="#mod-2dm" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 36 </span><span class="caption-text">Modification of the upper part of the .2dm file.</span><a class="headerlink" href="#mod-2dm" title="Permalink to this image">¶</a></p>
 </div>
 <ul class="simple">
 <li><p>At the bottom of the file, add the node string definitions for the inflow and outflow boundary. Enter the following 2 new lines (where <em>nd<sub>i</sub></em> and <em>nd<sub>j</sub></em> represent the <em>Inflow</em> and <em>Outflow</em> nodes, respectively, of <a class="reference external" href="#qualm-interp">finalmesh_interpolatedNodes_elevMesh.shp</a>:</p>
@@ -1013,7 +1013,7 @@ After successful execution, the new layer finalmesh_Interpolated_nodes_elevMesh.
 </div>
 <div class="figure align-default" id="bm-str-def-tool">
 <img alt="basement stringdef tool" src="../_images/qgis-stringdef.png" />
-<p class="caption"><span class="caption-number">Fig. 35 </span><span class="caption-text">BASEmesh’s Stringdef tool.</span><a class="headerlink" href="#bm-str-def-tool" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 37 </span><span class="caption-text">BASEmesh’s Stringdef tool.</span><a class="headerlink" href="#bm-str-def-tool" title="Permalink to this image">¶</a></p>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>* The *Stringdef* tool now has generated  `stringdef`s in upstream-looking right direction (note: to create new boundaries, the lines need to be drawn from the left riverbank to the right riverbank).
 * Open the resulting text file (`C:/temp/stringdef-breaklines.txt` in the above example) and copy the node list to the bottom of *finalmesh.2dm* with the above-shown format (i.e., start with *NS*, followed by two SPACEs, then the node IDs *nd&lt;sub&gt;i/j &lt;/sub&gt;* separated by on SPACE, then *Inflow* and *Outflow*, respectively). *Note: The node IDs my vary from those shown in the figure(s).*
@@ -1021,14 +1021,14 @@ After successful execution, the new layer finalmesh_Interpolated_nodes_elevMesh.
 </div>
 <div class="figure align-default" id="bm-str-def">
 <img alt="basement stringdef" src="../_images/qgis-stringdef-out.png" />
-<p class="caption"><span class="caption-number">Fig. 36 </span><span class="caption-text">The output of BASEmesh’s Stringdef tool: Node IDs of the Inflow and Outflow boundaries.</span><a class="headerlink" href="#bm-str-def" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 38 </span><span class="caption-text">The output of BASEmesh’s Stringdef tool: Node IDs of the Inflow and Outflow boundaries.</span><a class="headerlink" href="#bm-str-def" title="Permalink to this image">¶</a></p>
 </div>
 <ul class="simple">
 <li><p>Finally, the bottom of the finalmesh.2dm (text editor) should look like this in the text editor (node <code class="docutils literal notranslate"><span class="pre">ID</span></code>s may vary from those in the screenshot):</p></li>
 </ul>
 <div class="figure align-default" id="mod-2dm-bottom">
 <img alt="basement 2dm modify bottom nodes error fix" src="../_images/mod-2dm-bottom.png" />
-<p class="caption"><span class="caption-number">Fig. 37 </span><span class="caption-text">Modification of the bottom part of the .2dm file.</span><a class="headerlink" href="#mod-2dm-bottom" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 39 </span><span class="caption-text">Modification of the bottom part of the .2dm file.</span><a class="headerlink" href="#mod-2dm-bottom" title="Permalink to this image">¶</a></p>
 </div>
 <p>Congratulations, you finished meshing!</p>
 </div>

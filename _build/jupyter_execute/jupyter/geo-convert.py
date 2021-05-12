@@ -4,9 +4,7 @@
 # (py-conversion)=
 # # Raster to Vector Conversion and Vice Versa
 # 
-# Summary: Geospatial dataset conversion with *Python*.
-# 
-# For interactive reading [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter).
+# Geospatial dataset conversion with *Python*. For interactive reading and executing code blocks [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter) and find *geo-conversion.ipynb* or {ref}`install-python` locally along with {ref}`jupyter`.
 # 
 # The goal of this section is to guide to an understanding of conversions from raster and to vector data formats and vice versa.
 # 

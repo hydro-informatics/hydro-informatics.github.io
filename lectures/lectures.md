@@ -1,4 +1,4 @@
-# Lectures and Eexercises
+# Lectures and Exercises
 
 ## Lectures
 
