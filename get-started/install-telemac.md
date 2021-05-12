@@ -6,13 +6,13 @@ This tutorial guides through the installation of [*open TELEMAC-MASCARET*](http:
 
 ## Preface
 
-This page only guides through the **installation** of *TELEMAC*. A **tutorial pages for running hydro(-morpho)dynamic models with *TELEMAC* are under construction**.
+This page only guides through the **installation** of *TELEMAC*. A tutorial for running hydro(-morpho)dynamic models with *TELEMAC* is currently under construction for this ebook.
 
 ### Good to Know
 
 * Installing *TELEMAC* on a [Virtual Machine (VM)](../get-started/vm) is useful for getting started with *TELEMAC* and its sample cases, but not recommended for running a real-world numerical model.
 * Make sure to be able to use the [GNOME *Terminal*](../get-started/vm.html#terminal).
-* This tutorial refers to the software package *open TELEMAC-MASCARET* as *TELEMAC* because *MASCARET* is a one-dimensional (1D) model and the numerical simulation schemes on this website focus on two-dimensional (2D) and three-dimensional (3D) modelling.
+* This tutorial refers to the software package *open TELEMAC-MASCARET* as *TELEMAC* because *MASCARET* is a one-dimensional (1d) model and the numerical simulation schemes on this website focus on two-dimensional (2d) and three-dimensional (3d) modelling.
 
 ### Two Installation Options
 
@@ -41,7 +41,7 @@ This page describes two ways for installing *TELEMAC*:
         - The pre-compiled version of TELEMAC and other modules were built with outdated gfortran compilers that cannot run on up-to-date systems.
         - Often problems with the GUI and high risk of simulation crashes because of invalid library links.
 
-So what option to choose? To leverage the full capacities of *TELEMAC*, use both: [*SALOME-HYDRO*](#salome-hydro) is a powerful pre-processor for preparing simulations and the [stand-alone installation of *TELEMAC*](#modular-install) enables maximum flexibility, system integrity, and computational stability.
+So what option to choose? To leverage the full capacities of *TELEMAC*, use both: {ref}`salome-hydro` is a powerful pre-processor for preparing simulations and the {ref}`modular-install` enables maximum flexibility, system integrity, and computational stability.
 
 (modular-install)=
 ## Stand-alone Installation of TELEMAC
@@ -94,7 +94,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> exit()
 ```
 
-None of the three library imports should return an `ImportError` message. To learn more about *Python* read the [*Python*<sup>basics</sup>](../python-basics/python) chapter.
+None of the three library imports should return an `ImportError` message. To learn more about *Python* read the section on {ref}`sec-pypckg`.
 
 <!--
 Debian Linux' standard installation comes with `python` for *Python2* and `python3` for *Python3*. To avoid confusion in the installation of *TELEMAC*, make sure that whatever `python*` environment variable is used, *Python3* is called. To do so, open *Terminal* (as superuser/root `su`) and find out what versions of *Python* are installed:

@@ -1,8 +1,8 @@
-# Install OpenFOAM
+# OpenFOAM (Installation)
 
-This tutorial guides through the installation of [*OpenFOAM*](http://www.openfoam.org/) on [Ubuntu Linux](https://www.ubuntu.org/) and [*Debian Linux*](#debian). For installing *OpenFOAM* on many other platforms (even *Windows*) visit the [developer's website](https://openfoam.org).
+This tutorial guides through the installation of [*OpenFOAM*](http://www.openfoam.org/) on [Ubuntu Linux](https://www.ubuntu.org/) and {ref}`openfoam-debian`. For installing *OpenFOAM* on many other platforms (even *Windows*) visit the [developer's website](https://openfoam.org).
 
-## Ubuntu (incl. Mint and Lubuntu)
+## On Ubuntu (incl. Mint and Lubuntu)
 
 The installation on *Ubuntu Linux* or one of its derivatives is probably one of the easiest and most sustainable ways for working with *OpenFOAM*.
 
@@ -52,7 +52,7 @@ simpleFoam -help
     ...
 
 
-If correctly setup, *Terminal* returns a set of options for running *OpenFOAM*.
+If correctly set up, *Terminal* returns a set of options for running *OpenFOAM*.
 
 ### Test-run
 
@@ -83,11 +83,12 @@ paraFoam
 
 To get started with *OpenFoam*, refer to the *User Guide* provided by [*CFD Direct*](https://cfd.direct/openfoam/user-guide/).
 
-## Debian 10 {#debian}
+(openfoam-debian)=
+## On Debian 10
 
 ### Prerequisites
 
-Debian users will need to install *curl* and *docker* for being able to install *OpenFOAM*. First, make sure to get rid of any out-dated version of *docker* (if this returns an error, that is not a problem):
+Debian users will need to install *curl* and *docker* for being able to install *OpenFOAM*. First, make sure to get rid of any outdated version of *docker* (if this returns an error, that is not a problem):
 
 ```
 sudo apt-get remove docker docker-engine docker.io containerd runc
@@ -205,7 +206,7 @@ To get started with *OpenFoam*, refer to the *User Guide* provided by [*CFD Dire
 
 ### SALOME <a name="salome"></a>
 
-Similar as for *TELEMAC*, the *SALOME* platform represents a powerful toolkit for generating computational meshes for *OpenFOPAM*. Download *SALOME* from [salome-platform.org](https://www.salome-platform.org/downloads/current-version) for your distribution (here: *Linux Ubuntu*).
+Similar to *TELEMAC*, the *SALOME* platform represents a powerful toolkit for generating computational meshes for *OpenFOAM*. Download *SALOME* from [salome-platform.org](https://www.salome-platform.org/downloads/current-version) for your distribution (here: *Linux Ubuntu*).
 
 Unpack the *SALOME* package in a convenient folder (replace the `.tar.gz` file name with the one you downloaded):
 
@@ -236,7 +237,7 @@ If `./salome` does not work (in particular on a *Virtual Machine*), try to run `
 ./salome
 ```
 
-If there is any error such as:
+If there is an error such as:
 
 ```
 HyMo@HydroDebian:~/Downloads/SALOME-9.6.0-UB20.04-SRC$ ./salome
@@ -262,4 +263,4 @@ RuntimeError: Process 29241 for /Kernel/Session not found
 --- Error during Salome launch ---
 ```
 
-Then look for the missing libraries indicated in the above block with `error while loading shared libraries: libtbb.so.2: cannot open shared object file`. In this case `libtbb` is missing, which can be installed with `sudo apt install libtbb-dev`.
+Then look for the missing libraries indicated in the above block with `error while loading shared libraries: libtbb.so.2: cannot open shared object file`. In this case, `libtbb` is missing, which can be installed with `sudo apt install libtbb-dev`.
