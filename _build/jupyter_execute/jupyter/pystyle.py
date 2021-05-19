@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# (chpt-style)=
 # # Code Style and Conventions
 # 
 # Make your code consistent through style conventions. For interactive reading and executing code blocks [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter) and find *pystyle.ipynb* or {ref}`install-python` locally along with {ref}`jupyter`.

@@ -34,7 +34,7 @@ pkg load video
 ```
 
 ```{tip}
-*Python* provides comes with many more options for data processing and analyses. So instead of trying to tweak *Matlab*&reg; code, consider reading and using the [*Python* tutorial with its *NumPy* package](../python-basics/pypynum.html#numpy) descriptions. The tutorial also highlights the [differences between *Matlab*&reg; and *Python*'s *NumPy*](../python-basics/pypynum.html#can-numpy-do-matlab) notation.
+*Python* provides comes with many more options for data processing and analyses. So instead of trying to tweak *Matlab*&reg; code, consider reading and using the *Python* tutorial with its {ref}`numpy` library descriptions. The tutorial also highlights the {ref}`differences between *Matlab*&reg; and *Python*'s *NumPy* <numpy-matlab>`) notation.
 ```
 
 

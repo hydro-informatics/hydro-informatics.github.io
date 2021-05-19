@@ -1,9 +1,9 @@
 (install-python)=
 # Install Python
 
-*Python*'s two-fold development (*Python2* and *Python3*) and other parallel versions of *Python* (e.g., ESRI's ArcGIS or Nvidia's cuda *Python* versions) may cause that multiple versions of *Python* are installed on your computer (even though *Python2* is about to disappear). As a consequence packages might have been unintentionally or unknowingly installed for another *Python* interpreter than used in a project. However, the parallel existence of multiple *Python* interpreters is sometimes beneficial, for instance, when packages are installed that are not compatible with each other. So how to **deal with the challenge of having multiple *Python* interpreters (or environments) installed?**
+*Python*'s two-fold development (*Python2* and *Python3*) and other parallel versions of *Python* (e.g., ESRI's ArcGIS or Nvidia's cuda *Python* versions) may cause that multiple versions of *Python* are installed on your computer (even though *Python2* is about to disappear). As consequence packages might have been unintentionally or unknowingly installed for another *Python* interpreter than used in a project. However, the parallel existence of multiple *Python* interpreters is sometimes beneficial, for instance, when packages are installed that are not compatible with each other. So how to **deal with the challenge of having multiple *Python* interpreters (or environments) installed?**
 
-There are multiple answers to this question and the best option depends, to some extent, to personal preferences and the **Operating System** (**OS**) - also referred to as **platform**. For instance, *conda* environments are preferable on *Windows* and *pip* environments on *Linux* (e.g., *Debian*/*Ubuntu*) platforms. *conda* environments work well on both platforms (and also with *macOS*), but *pip* will not work smoothly on *Windows* because of an issue with the geospatial GDAL library. To work with *conda* environments, the installation of {ref}`anaconda` is required (no additional installation of *Python* is necessary in this case).
+There are multiple answers to this question and the best option depends, to some extent, on personal preferences and the **Operating System** (**OS**) - also referred to as **platform**. For instance, *conda* environments are preferable on *Windows* and *pip* environments on *Linux* (e.g., *Debian*/*Ubuntu*) platforms. *conda* environments work well on both platforms (and also with *macOS*), but *pip* will not work smoothly on *Windows* because of an issue with the geospatial GDAL library. To work with *conda* environments, the installation of {ref}`anaconda` is required (no additional installation of *Python* is necessary in this case).
 
 conda environments
 : A *conda environment* is a directory on your computer that represents a virtual environment with a particular *Python* interpreter (e.g., a Python2 or Python3 executable) and packages/libraries. The directory is typically named `env` (or `venv` for a virtual environment) and *Anaconda* will control automatically where the environment directories (folders) are stored on your computer. On *Windows*, the typical installation directory is `C:\users\<your-user-name>\AppData\Local\Continuum\anaconda3\envs\`. Note that *AppData* is a hidden folder ([view hidden folders on Windows](https://support.microsoft.com/en-us/help/4028316/windows-view-hidden-files-and-folders-in-windows-10)). Only change the default directory for *conda* environment directories, if you exactly know what you are doing.
@@ -17,13 +17,15 @@ This section guides through the installation of a computational environment that
 (pip-env)=
 ## pip and venv
 
+**pip and virtual environments are preferable with *Linux* systems for working with this ebook.**
+
 (pip-quick)=
 ### Quick Guide
 
-Consider to install, create and activate a new virtual environment for working with the contents of this ebook as explained in the following platform-dependent paragraphs.
+Consider installing, create and activate a new virtual environment for working with the contents of this ebook as explained in the following platform-dependent paragraphs.
 
 ````{tabbed} Linux
-To avoid affecting the system's Python interpreter, setup a virtual environment with *venv*. the first step is to make sure that *Python3* and *venv* are installed on the sytem:
+To avoid affecting the system's Python interpreter, set up a virtual environment with *venv*. the first step is to make sure that *Python3* and *venv* are installed on the system:
 
 ```
 sudo apt install python3 python3-venv
@@ -82,7 +84,7 @@ Recall that newer *Linux* versions may not differentiate between *Python2* and *
 ````{tabbed} Windows
 
 ```{warning}
-Because of GDAL can currently not be directly installed with `pip` on *Windows*, trying to setup the computational environment with `pip` on *Windows* will very likely fail. **Windows users preferably use {ref}`conda-env`**, but can alternatively continue with a virtual *pip* environment for learning *Python* basics. In this case, geospatial programming contents require an installation of {ref}`qgis-install`, which comes with a built-in *Python* terminal for algorithmic geospatial analyses.
+Because GDAL can currently not be directly installed with `pip` on *Windows*, trying to set up the computational environment with `pip` on *Windows* will very likely fail. **Windows users preferably use {ref}`conda-env`**, but can alternatively continue with a virtual *pip* environment for learning *Python* basics. In this case, geospatial programming contents require an installation of {ref}`qgis-install`, which comes with a built-in *Python* terminal for algorithmic geospatial analyses.
 ```
 
 Make sure that {{ getpy }} (>= version 3.4) installed. In addition, install *virtualenv* (in the following, alternatively use `py` instead of `python`, if `python` returns errors):
@@ -132,7 +134,7 @@ python -m pip install numpy pandas plotting matplotlib plotly openpyxl
 ```
 
 ```{admonition} For geospatial analyses ...
-:class: note, dropdown
+:class: note
 
 Try the following not cross-platform verified solution: Install {ref}`qgis-install` and use its *Python* terminal for installing *flusstools*:
 
@@ -148,31 +150,23 @@ Alternatively, find the *OSGeo4W* from the *Windows* start menu and type `py3_en
 ````
 
 
-````{tabbed} Windows Command Prompt
-```
-(vflussenv) C:\Users\USER-NAME:~$ python
-Python 3.X.X (default, MMM DD YYYY, hh:mm:ss)
-...
->>> import flusstools as ft
-```
-````
-
-The import of *flusstools* should not return any import error. If there is any import error, find out the toublesome package's name and re-install it. In particular, the installation of *GDAL* may be challenging when working with `pip`, in particular on *Windows*. To learn more about the installation of *GDAL* visit the [Download > Binaries section on the developer's website](https://gdal.org/download.html#binaries).
+The import of *flusstools* should not return any import error. If there is an import error, find out the troublesome package's name and re-install it. In particular, the installation of *GDAL* may be challenging when working with `pip`, in particular on *Windows*. To learn more about the installation of *GDAL* visit the [Download > Binaries section on the developer's website](https://gdal.org/download.html#binaries).
 
 
 ### Manage pip (Install, Uninstall, or Upgrade) Modules
 
 More than 300,000 projects live on [pypi.org](https://pypi.org/) and there are packages available for many purposes. To find suitable packages visit [https://pypi.org/search/](https://pypi.org/search/). To install (i.e., add) one of these `pip`/`pip3` packages use:
 
-````{tabbed} Windows Command Prompt
-```
-python -m pip install --user PACKAGE_NAME
-```
-````
 
 ````{tabbed} Linux Terminal
 ```
 pip3 install PACKAGE_NAME
+```
+````
+
+````{tabbed} Windows Command Prompt
+```
+python -m pip install --user PACKAGE_NAME
 ```
 ````
 
@@ -218,9 +212,9 @@ Read more about virtual environments and pip at [https://packaging.python.org](h
 
 
 (conda-env)=
-## Conda Environments
+## conda env
 
-This section features the quick installation of the {{ ft_env }} for *Anaconda* followed by more detailed explanations on the creation and management of *conda* environments.
+This section features the quick installation of the {{ ft_env }} for *Anaconda* followed by more detailed explanations on the creation and management of *conda* environments. **Anaconda and conda environments are preferable with *Windows* systems for working with this ebook.**
 
 (conda-quick)=
 ### Quick Guide
@@ -252,7 +246,7 @@ The active environment corresponds to the environment that you are working in (e
 (install-pckg)=
 ### Install Additional *Python* Packages
 
-To install (more) {ref}`*Python* packages <sec-pypckg>` in a *conda* environment:
+To install (more) {ref}`Python packages <sec-pypckg>` in a *conda* environment:
 
 1. Activate the environment where you want to install, remove, or modify packages (e.g., `conda activate flussenv` - see above).
 1. Install a package by typing `conda install PACKAGE_NAME` (if the package cannot be found, try `conda install -c conda-forge PACKAGE_NAME`).
@@ -277,14 +271,14 @@ There are many more `conda` commands and the most important ones are summarized 
 (python-ide-setup)=
 ## Setup Interfaces and IDEs
 
-To follow the course content and run code cells, it is recommended to use {ref}`jupyter`, which can be installed locally or run it remotely by clicking on [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter) - the batch is implementd at the top of all jupyter notebook-based sections. To create projects, develop programs, or simply to complete course assignments, it is recommended to use an Integrated Development Environment (*IDE*), such as {ref}`pycharm`.
+To follow the course content and run code cells, it is recommended to use {ref}`jupyter`, which can be installed locally or run it remotely by clicking on [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter) - the batch is implemented at the top of all jupyter notebook-based sections. To create projects, develop programs, or simply complete course assignments, it is recommended to use an Integrated Development Environment (*IDE*), such as {ref}`pycharm`.
 
 ### JupyterLab
 
 The following descriptions require that {ref}`jupyter` is installed for locally editing *Jupyter* notebooks (*.ipynb* files), *Python* scripts (*.py* files), and folders.
 
 ````{tabbed} Linux
-Start *JupyterLab* by typing `jupyter-lab` in *Teminal*.
+Start *JupyterLab* by typing `jupyter-lab` in *Terminal*.
 ````
 
 ````{tabbed} Windows
@@ -293,7 +287,7 @@ Start *JupyterLab* by typing `jupyter-lab` in *Anaconda Prompt*.
 
 Setup Styles
 : The *Kernel* menu runs the defined programming language (*Python3* in the example below). The *Settings* menu provides options to configure styles (e.g., choose the *JupyterLab Dark* theme shown in the below figure).
-  *JupyterLab* runs on a local server (typically on `localhost:XXPORTXX/lab`), which is why it is just like an interactive website in your browser. At the beginning it takes some getting used to, but one gets quickly familiar with it and there are many advantages such as the inline use of online graphics.
+  *JupyterLab* runs on a local server (typically on `localhost:XXPORTXX/lab`), which is why it is just like an interactive website in your browser. In the beginning, it takes some getting used to, but one gets quickly familiar with it and there are many advantages such as the inline use of online graphics.
 
   ```{figure} ../img/jupyter-illu.png
   :alt: pyc-prj-setup
@@ -380,7 +374,7 @@ The import of *flusstools* should pass silently. Otherwise, re-install *flusstoo
 **Do not try to `pip`-install *flusstools* outside of a conda environment on *Windows*.**
 ```
 
-To setup a *Python* *Anaconda* terminal in *Atom* the following **first-time-start steps** are required:
+To set up a *Python* *Anaconda* terminal in *Atom* the following **first-time-start steps** are required:
 
 * Launch `platformio-ide-terminal` (in *Atom* go to **Packages** (top menu) > **platformio-ide-terminal** > **New Terminal**)
 * Typically, [PowerShell](https://aka.ms/pscore6) will open, where the following commands need to be entered:

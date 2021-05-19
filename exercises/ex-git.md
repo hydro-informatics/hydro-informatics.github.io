@@ -5,6 +5,7 @@ Use *git* and get familiar with writing markdown documents.
 ```
 
 ```{admonition} Requirements
+:class: attention
 Understand [git](../get-started/git) and [markdown](../documentation/documentation).
 ```
 

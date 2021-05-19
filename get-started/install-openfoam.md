@@ -1,12 +1,12 @@
 # OpenFOAM (Installation)
 
-This tutorial guides through the installation of [*OpenFOAM*](http://www.openfoam.org/) on [Ubuntu Linux](https://www.ubuntu.org/) and {ref}`openfoam-debian`. For installing *OpenFOAM* on many other platforms (even *Windows*) visit the [developer's website](https://openfoam.org).
+This tutorial guides through the installation of [OpenFOAM](http://www.openfoam.org/) on [Ubuntu Linux](https://www.ubuntu.org/) and {ref}`openfoam-debian`. For installing *OpenFOAM* on many other platforms (even *Windows*) visit the [developer's website](https://openfoam.org).
 
-## On Ubuntu (incl. Mint and Lubuntu)
+## Ubuntu (incl. Mint and Lubuntu)
 
 The installation on *Ubuntu Linux* or one of its derivatives is probably one of the easiest and most sustainable ways for working with *OpenFOAM*.
 
-### Install *OpenFOAM*
+### Install OpenFOAM
 
 The installation on any *Ubuntu Linux* platform is straight-forward and can be carried out as described on the [developer's website](https://openfoam.org/download/8-ubuntu/). In detail, these steps include:
 
@@ -25,7 +25,7 @@ sudo apt install gedit
 Even though the developer's installation instructions suggest using `apt-get update` / `install`, preferably use `apt update` / `install`.
 ```
 
-### Update *OpenFOAM*
+### Update OpenFOAM
 
 The *OpenFOAM* developers periodically update (recompile) new versions of `openfoam8`. To get these latest versions run:
 
@@ -84,7 +84,7 @@ paraFoam
 To get started with *OpenFoam*, refer to the *User Guide* provided by [*CFD Direct*](https://cfd.direct/openfoam/user-guide/).
 
 (openfoam-debian)=
-## On Debian 10
+## Debian 10
 
 ### Prerequisites
 
@@ -141,7 +141,7 @@ sudo apt install xorg dbus-x11 x11-xserver-utils
 sudo apt install xfce4 xfce4-goodies xrdp
 ```
 
-### Install *OpenFOAM* (v8)
+### Install OpenFOAM (v8)
 
 Download the latest *OpenFOAM* package for *docker*:
 
@@ -202,7 +202,7 @@ exit
 To get started with *OpenFoam*, refer to the *User Guide* provided by [*CFD Direct*](https://cfd.direct/openfoam/user-guide/).
 
 
-## External Utilities (Pre- & Post Processors)
+## Utilities (Pre- & Post Processors)
 
 ### SALOME <a name="salome"></a>
 

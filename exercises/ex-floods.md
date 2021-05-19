@@ -1,11 +1,12 @@
 # Calculate flood return periods
 
 ```{admonition} Goals
-Load custom modules and functions in a script. Open comma-type delimited files and manipulate files with *pandas*.
+Load custom modules and functions in a script. Open comma-type delimited files and manipulate files with {ref}`pandas`.
 ```
 
 ```{admonition} Requirements
-*Python* libraries: *pandas* and *matplotlib*. Understand data handling with [pandas](../jupyter/pynum).
+:class: attention
+*Python* libraries: {ref}`pandas` and *matplotlib*. Understand data handling with {ref}`pandas`.
 ```
 
 Get ready by cloning the exercise repository:
@@ -28,21 +29,23 @@ Flood frequency analysis uses series of discharge data (e.g., from a gauging sta
 1. Ecohydraulics: In arid areas in particular, it is important to know how long certain discharges fall below certain levels, where many aquatic habitats may not be deep enough, too hot, or disconnected from the main channel. Therefore, we want to know the *exceedance probability* of a given discharge.
 
 The relationship between the exceedance probability and the recurrence interval results from the definition of both terms:
-* The **exceedance probability** is the likelihood of an event of a certain magnitude (in m³/s or cfs) or higher.
+* The **exceedance probability** is the likelihood of an event of a certain magnitude (in m$^3$/s or cfs) or higher.
 * The **recurrence interval** is the inverse of the exceedance probability and expresses the average return period of an event of a certain magnitude in units of time.
 
 The calculation concept of the return period makes two elementary assumptions. First, it is assumed that the individual flow events have a stationary peak. Second, statistical independence of individual events is assumed. The assumption of statistical independence means that this year a 100-year flood occurs with the same probability as next year, regardless of whether or not a 100-year flood actually occurred this year. Thus, for any given year, the probability of a 100-year flood occurring is 1/100 (or 1/50 for a 50-year flood and so on).
 
 ## The probability of a 100-year flood occurring in 100 years is 63%
-As engineers we often want to know how likely it is that a 100-year flood will occur within the next 2, 5, 10, ... or 100 years (i.e., what are the likely costs of flood damage associated with a 100-year flood?). The answer to that question is "the opposite likelihood of no 100-year flood occurring in the next 2, 5, or 10 years". Mathematically that means the annual occurrence probability *Pr* of an event with a recurrence interval *T*=100 years over an observation period of *a*&isin;[2, 5, 10, 100] years is:<br> *Pr(T=100, a=2, 5, 10, 100) = (1 - (1-1/T)<sup>a</sup>)*
 
-The following table shows solutions to the probability *Pr(T, a)* function for observation periods *a* of 2, 5, 10, and 100 years, as well as recurrence intervals *T* of 10, 50, and 100 years.
+As engineers we often want to know how likely it is that a 100-year flood will occur within the next 2, 5, 10, ... or 100 years (i.e., what are the likely costs of flood damage associated with a 100-year flood?). The answer to that question is "the opposite likelihood of no 100-year flood occurring in the next 2, 5, or 10 years". Mathematically that means the annual occurrence probability $Pr$ of an event with a recurrence interval $T$=100 years over an observation period of $a \in [2, 5, 10, 100]$ years is:
+<br> $Pr(T=100, a=2, 5, 10, 100) = (1 - (1-1/T)^{a})$
 
-| *Pr(T, a)*| a = 2  | a = 5  | a = 10 | a = 100 |
+The following table shows solutions to the probability $Pr(T, a)$ function for observation periods $a$ of 2, 5, 10, and 100 years, as well as recurrence intervals $T$ of 10, 50, and 100 years.
+
+| $Pr(T, a)$|$a$= 2  |$a$= 5  |$a$= 10 |$a$= 100 |
 |:----------|-------:|-------:|-------:|--------:|
-| T = 10    | 19.00% | 40.95% | 65.13% | 100.00% |
-| T = 50    | 3.96%  | 9.61%  | 18.29% | 86.74%  |
-| T = 100   | 1.99%  | 4.90%  | 9.56%  | 63.40%  |
+|$T$= 10    | 19.00% | 40.95% | 65.13% | 100.00% |
+|$T$= 50    | 3.96%  | 9.61%  | 18.29% | 86.74%  |
+|$T$= 100   | 1.99%  | 4.90%  | 9.56%  | 63.40%  |
 
 Visit the [*USGS* water science school](https://www.usgs.gov/special-topic/water-science-school/science/100-year-flood?qt-science_center_objects=0#qt-science_center_objects) to learn more about flood (and drought) recurrence interval.
 
@@ -54,7 +57,7 @@ Flow data can be retrieved from gauging stations. In Germany, the ["Gewässerkun
 * The [Bundesanstalt für Gewässerkunde *BfG*](https://www.bafg.de) runs the [Global Runoff Data Centre *GRDC*](https://www.bafg.de/GRDC/EN/Home/homepage_node.html) for the World Meteorological Organization *WMO* to provide river discharge data worldwide. The *GRDC*'s download platform is available in the form of an [interactive web-GIS](https://portal.grdc.bafg.de/applications/public.html?publicuser=PublicUser#dataDownload/Home). To get the data, go to their [download interface](https://portal.grdc.bafg.de/applications/public.html?publicuser=PublicUser#dataDownload/Stations), select the desired station, switch to *Table* view (third row in the top left of the window), check the station, click *download*, and fill the form to send the request. You will receive an email with a download link for the requested data (wait a couple of minutes before clicking on the link - the preparation may take more time than the email).
 * Flow datasets from alpine and midland rivers are provided by the Swiss Federal Office for the Environment's [hydrological data platform](https://www.hydrodaten.admin.ch/) (for long-term observations, a form has to be filled out here, too).
 * In the United States, the National Oceanic and Atmospheric Administration *NOAA* provides discharge data from the past and forecasts for watersheds in North America. For example, the [California Nevada River Forecast Center](https://www.cnrfc.noaa.gov/) provides flow forecasts for the South-Western United States, and historic data can be accessed from the [California Data Exchange Center *CDEC*](http://cdec.water.ca.gov/).
-* A general *US*-borne interface for loading flow data and statistics comes with the [`hydrofunctions` *Python* library](https://hydrofunctions.readthedocs.io/) provided by the United States Geological Survey *USGS*. This library enables to directly get gauge data and statistics based on a stream gauge ID. For example `output = hydrofunctions.peaks("01541200")` <br>To install `hydrofunctions` in a *conda* environment, type `conda install -c conda-forge hydrofunctions` in [*Anaconda Prompt*](../jupyter/pyinstall.html#install-pckg). Example usage:<br>`import hydrofunctions as hf`<br>`hf.draw_map()` (only runs in *JupyterLab*)
+* A general *US*-borne interface for loading flow data and statistics comes with the [`hydrofunctions` *Python* library](https://hydrofunctions.readthedocs.io/) provided by the United States Geological Survey *USGS*. This library enables to directly get gauge data and statistics based on a stream gauge ID. For example `output = hydrofunctions.peaks("01541200")` <br>To install `hydrofunctions` in a {ref}`conda` environment, type `conda install -c conda-forge hydrofunctions` in {ref}`Anaconda Prompt <install-pckg>`. Example usage:<br>`import hydrofunctions as hf`<br>`hf.draw_map()` (only runs in *JupyterLab*)
 
 ## Load Data with *pandas*
 Create a new *Python* file (e.g., `discharge_analysis.py`) and import *pandas* as `pd` at the beginning. Read the provided flow data series file `"Wasserburg_Inn_6343100_Q_Day.csv"` with `pd.read_csv`.
@@ -112,29 +115,42 @@ Resampling does not preserve the original date when the discharge occurred.
 
 
 ## Calculate exceedance probability and recurrence interval
-The exceedance probability *Pr* of a particular event within the observation period is:
+The exceedance probability $Pr$ of a particular event within the observation period is:
 
-*Pr(i) = (n - i + 1) / (n + 1)*<br>
+$$
+Pr(i) = (N - i + 1) / (N + 1)
+$$
+
 where
-* *n* is the total number of observation years, and
-* *i* is the *rank* of the event.
+* $N$ is the total number of observation years, and
+* $i$ is the *rank* of the event.
 
 To rank the events, we first need to sort the maximum annual discharge data frame (`annual_max_df`) by the smallest to largest discharge value (rather than in time):<br>
 `annual_max_df_sorted = annual_max_df.sort_values(by="Q (CMS)")`<br>
-Then, we derive the number of observations *n* (`n = annual_max_df_sorted.shape[0]`) and add a `"rank"` column, in which we simply enumerate the rows using the `range` method.
+Then, we derive the number of observations $N$ (`n = annual_max_df_sorted.shape[0]`) and add a `"rank"` column, in which we simply enumerate the rows using the `range` method.
 
 ```python
 n = annual_max_df_sorted.shape[0]
 annual_max_df_sorted.insert(0, "rank", range(1, 1 + n)
 ```
-Now, we have all ingredients to calculate the probability of every event with the above shown *Pr(rank=i)*-formula.<br>
-`annual_max_df_sorted["pr"] = (n - annual_max_df_sorted["rank"] + 1) / (n + 1)`<br>
 
-Recall, the recurrence interval (here: return period in years) is the inverse of the exceedance probability and we can add it to the data frame with:<br>
-`annual_max_df_sorted["return-period"] = 1 / annual_max_df_sorted["pr"]`<br>
+Now, we have all ingredients to calculate the probability of every event with the above shown $Pr(rank=i)$-formula.<br>
 
-Check the resulting highest discharge and its return period:<br>
-`print(annual_max_df_sorted.tail()`<br>
+```python
+annual_max_df_sorted["pr"] = (n - annual_max_df_sorted["rank"] + 1) / (n + 1)
+```
+
+Recall, the recurrence interval (here: return period in years) is the inverse of the exceedance probability and we can add it to the data frame with:
+
+```python
+annual_max_df_sorted["return-period"] = 1 / annual_max_df_sorted["pr"]
+```
+
+Check the resulting highest discharge and its return period:
+
+```python
+print(annual_max_df_sorted.tail()
+```
 
 Plot the resulting probability and return curves with the plot functions provided in the `plot_result.py` *Python* script:
 
@@ -142,8 +158,9 @@ Plot the resulting probability and return curves with the plot functions provide
 plot_q_freq(annual_max_df_sorted)
 plot_q_return_period(annual_max_df_sorted)
 ```
+
 ```{note}
-The plot functions only work if the probability column is named *pr*, the return period column is named *return-period*, and the discharge column is named *Q (CMS)* (otherwise, consider renaming the data frame column header names or modifying the plot functions).
+The plot functions only work if the probability column is named $Pr$, the return period column is named *return-period*, and the discharge column is named *Q (CMS)* (otherwise, consider renaming the data frame column header names or modifying the plot functions).
 ```
 
 

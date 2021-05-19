@@ -109,7 +109,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../lectures/take_seat.html">
-     Take a Seat in the Virtual Classroom
+     The Virtual Classroom
     </a>
    </li>
   </ul>
@@ -151,7 +151,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../get-started/install-openfoam.html">
-     Install OpenFOAM
+     OpenFOAM (Installation)
     </a>
    </li>
    <li class="toctree-l2">
@@ -296,19 +296,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="ex-gui.html">
-     Create a
-     <strong>
-      G
-     </strong>
-     raphical
-     <strong>
-      U
-     </strong>
-     ser
-     <strong>
-      I
-     </strong>
-     nterface (GUI)
+     Create a Graphical User Interface (GUI)
     </a>
    </li>
   </ul>
@@ -624,7 +612,7 @@
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.com/hydro-informatics/"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/hydro-informatics/hydro-informatics.github.io"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         
@@ -656,33 +644,30 @@
                 
   <div class="section" id="python-exercises">
 <h1>Python Exercises<a class="headerlink" href="#python-exercises" title="Permalink to this headline">¶</a></h1>
-<p>This chapter provides exercises that align with the <em>Python</em> basics and geospatial chapters. Code templates including <em>README</em> files with instructions for the exercises are hosted in external repositories (visit <a class="reference external" href="https://github.com/Ecohydraulics">https://github.com/Ecohydraulics</a> and look for the <em>Exercise-</em> repositories).</p>
-<p>The contents of the training include the dimensioning of reservoirs, calculation of flood return periods, simple hydraulic calculations as well as sediment transport estimates and habitat analyses. Each exercise starts with an explanation of the physical background of the applications.</p>
+<p>This section provides exercises that align with the <em>Python</em> basics presented in this ebook. Code templates including <em>README</em> markdown files with instructions for the exercises are hosted in external repositories (visit <a class="reference external" href="https://github.com/Ecohydraulics">https://github.com/Ecohydraulics</a> and look for the <em>Exercise-</em> repositories).</p>
+<p>The contents of the training include the design of reservoirs, calculation of flood return periods, simple hydraulic calculations, and sediment transport estimates. Every exercise starts with an explanation of the physical background of the applications.</p>
 <p>The following table summarizes the practice application and the coding aspects featured in the exercises on the following pages:</p>
 <table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Application goal</p></th>
-<th class="head"><p>Code exercise</p></th>
+<tr class="row-odd"><th class="head"><p>Application</p></th>
+<th class="head"><p>Training goal</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Hydraulics (1D): Manning-Strickler solver</p></td>
+<tr class="row-even"><td><p>1d Hydraulics (Manning-Strickler solver)</p></td>
 <td><p>loops, iterations, and functions</p></td>
 </tr>
 <tr class="row-odd"><td><p>Reservoir design (Sequent peak)</p></td>
-<td><p>data handling with <em>numpy</em>, communication with <em>csv</em> files</p></td>
+<td><p>data handling with <a class="reference internal" href="../jupyter/pynum.html#numpy"><span class="std std-ref">NumPy</span></a> , communication with <em>csv</em> files</p></td>
 </tr>
 <tr class="row-even"><td><p>Flood return periods calculation</p></td>
-<td><p>data and csv file handling with <em>pandas</em></p></td>
+<td><p>data and csv file handling with <a class="reference internal" href="../jupyter/pynum.html#pandas"><span class="std std-ref">Pandas</span></a></p></td>
 </tr>
-<tr class="row-odd"><td><p>Sediment transport (1D): Meyer-Peter &amp; Müller</p></td>
-<td><p>object orientation, communication with <em>xlsx</em> workbooks, and plotting</p></td>
+<tr class="row-odd"><td><p>Cross-section averaged sediment transport</p></td>
+<td><p><a class="reference internal" href="../jupyter/classes.html#ooc"><span class="std std-ref">Object Orientation and Classes</span></a>, <a class="reference internal" href="../jupyter/xml.html#sec-xlsx"><span class="std std-ref">Workbook (xlsx) Handling</span></a>, and plotting</p></td>
 </tr>
-<tr class="row-even"><td><p>Interface to sediment transport (1D) code</p></td>
-<td><p>graphical user interface (GUI) creation</p></td>
-</tr>
-<tr class="row-odd"><td><p>Geospatial ecohydraulics</p></td>
-<td><p>object orientation and geospatial data manipulation</p></td>
+<tr class="row-even"><td><p>Create a Graphical User Interface (GUI)</p></td>
+<td><p>familiarize with <a class="reference internal" href="../jupyter/gui.html#chpt-gui"><span class="std std-ref">Graphical User Interfaces (GUIs)</span></a></p></td>
 </tr>
 </tbody>
 </table>
@@ -694,8 +679,8 @@
     {
         requestKernel: true,
         binderOptions: {
-            repo: "hydro-informatics/",
-            ref: "main",
+            repo: "hydro-informatics/hydro-informatics.github.io",
+            ref: "gh-pages",
         },
         codeMirrorConfig: {
             theme: "abcdef",

@@ -55,7 +55,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Install OpenFOAM" href="install-openfoam.html" />
+    <link rel="next" title="OpenFOAM (Installation)" href="install-openfoam.html" />
     <link rel="prev" title="Introduction to git" href="git.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -109,7 +109,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../lectures/take_seat.html">
-     Take a Seat in the Virtual Classroom
+     The Virtual Classroom
     </a>
    </li>
   </ul>
@@ -151,7 +151,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="install-openfoam.html">
-     Install OpenFOAM
+     OpenFOAM (Installation)
     </a>
    </li>
    <li class="toctree-l2">
@@ -624,7 +624,7 @@
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.com/hydro-informatics/"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/hydro-informatics/hydro-informatics.github.io"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         
@@ -715,43 +715,39 @@
                 
   <div class="section" id="geospatial-software">
 <h1>Geospatial Software<a class="headerlink" href="#geospatial-software" title="Permalink to this headline">¶</a></h1>
-<p>Geospatial analyses (or analytics) use, manipulate and illustrate data from geographic information systems (GIS). GIS data contain  geographically referenced and spatially explicit information of for example gauging stations, terrain elevation, or land use. Efficient processing of geospatial data involves programming methods, where <em>Python</em> is an efficient tool. This page presents desktop software for manual geospatial analyses and the illustration of geospatial data. For geospatial programming, please refer to the section <a class="reference internal" href="../geopy/geo-python.html"><span class="doc std std-doc"><em>Python<sup>geospatial</sup></em></span></a>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Geospatial data are either geographically referenced, pixel-based <a class="reference external" href="https://en.wikipedia.org/wiki/Raster_graphics">rasters</a> data or vector-based <em>Esri</em> <a class="reference external" href="https://en.wikipedia.org/wiki/Shapefile">shapefiles</a> (read more on the <a class="reference internal" href="../geopy/geospatial-data.html"><span class="doc std std-doc"><em>Python<sup>geospatial</sup></em></span></a> pages).</p>
-</div>
+<p>Geospatial analyses (or analytics) use, manipulate, and illustrate data from geographic information systems (GIS). GIS data contain geographically referenced and spatially explicit information of for example gauging stations, terrain elevation, or land use. Efficient processing of geospatial data involves programming methods, where <em>Python</em> is an efficient tool. This page presents desktop software for manual geospatial analyses and the illustration of geospatial data. For geospatial programming, please refer to the <a class="reference internal" href="../geopy/geo-python.html#sec-geo-python"><span class="std std-ref">Geospatial Python</span></a> chapter.</p>
 <div class="section" id="qgis">
 <span id="qgis-install"></span><h2>QGIS<a class="headerlink" href="#qgis" title="Permalink to this headline">¶</a></h2>
-<p>For the visualization of geodata (<code class="docutils literal notranslate"><span class="pre">.shp</span></code> and <code class="docutils literal notranslate"><span class="pre">.tif</span></code> files) a GIS software is required and the analyses described on these pages refer to the usage of <a class="reference external" href="https://www.qgis.org"><em>QGIS</em></a>. This website uses <em>QGIS</em> within the sections on <a class="reference internal" href="../geopy/geo-python.html"><span class="doc std std-doc">geospatial programming with <em>Python</em></span></a> and <a class="reference internal" href="../numerics/basement.html"><span class="doc std std-doc">numerical modelling with the ETH Zurich’s BASEMENT</span></a> software.</p>
+<p>For the visualization of geodata (<code class="docutils literal notranslate"><span class="pre">.shp</span></code> and <code class="docutils literal notranslate"><span class="pre">.tif</span></code> files), GIS software is required and the analyses described on these pages refer to the usage of <a class="reference external" href="https://www.qgis.org"><em>QGIS</em></a>. This ebook uses <em>QGIS</em> within the sections on <a class="reference internal" href="../geopy/geo-python.html"><span class="doc std std-doc">geospatial programming with <em>Python</em></span></a> and <a class="reference internal" href="../numerics/basement.html"><span class="doc std std-doc">numerical modelling with the ETH Zurich’s BASEMENT</span></a> software.</p>
 <div class="section" id="install-qgis-on-windows">
 <h3>Install QGIS on Windows<a class="headerlink" href="#install-qgis-on-windows" title="Permalink to this headline">¶</a></h3>
 <p>Download and install the latest version of <a class="reference external" href="https://www.qgis.org/en/site/forusers/download.html"><em>QGIS</em></a> for Windows.</p>
 </div>
 <div class="section" id="install-qgis-on-linux-via-flatpak">
 <h3>Install QGIS on Linux (via Flatpak)<a class="headerlink" href="#install-qgis-on-linux-via-flatpak" title="Permalink to this headline">¶</a></h3>
-<p>The <em>QGIS</em> developers provide detailed installation instructions for several <em>Linux</em> distributions, but the instructions will not satisfy all requirement for the use of <em>QGIS</em> described on <em><a class="reference external" href="http://hydro-informatics.github.io">hydro-informatics.github.io</a></em>. One of the most functional ways for installing <em>QGIS</em> on <em>Linux</em> is to use <a class="reference external" href="https://flathub.org/apps/details/org.qgis.qgis"><em>Flatpak</em></a>, which requires some system preparation. On <em>Debian</em>-based <em>Linux</em> platforms (e.g., all sorts of <em>Ubuntu</em> such as <em>Lubuntu</em> or <em>Mint</em>) open <em>Terminal</em> and tap (the second line is only needed if you use <em>GNOME</em>):</p>
+<p>The <em>QGIS</em> developers provide detailed installation instructions for several <em>Linux</em> distributions, but the instructions will not satisfy all requirements for the use of <em>QGIS</em> described on <em><a class="reference external" href="http://hydro-informatics.github.io">hydro-informatics.github.io</a></em>. One of the most functional ways for installing <em>QGIS</em> on <em>Linux</em> is to use <a class="reference external" href="https://flathub.org/apps/details/org.qgis.qgis"><em>Flatpak</em></a>, which requires some system preparation. On <em>Debian</em>-based <em>Linux</em> platforms (e.g., all sorts of <em>Ubuntu</em> such as <em>Lubuntu</em> or <em>Mint</em>) open <em>Terminal</em> and tap (the second line is only needed if you use <em>GNOME</em>):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">flatpak</span>
 <span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">gnome</span><span class="o">-</span><span class="n">software</span><span class="o">-</span><span class="n">plugin</span><span class="o">-</span><span class="n">flatpak</span>
 <span class="n">flatpak</span> <span class="n">remote</span><span class="o">-</span><span class="n">add</span> <span class="o">--</span><span class="k">if</span><span class="o">-</span><span class="ow">not</span><span class="o">-</span><span class="n">exists</span> <span class="n">flathub</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">flathub</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">repo</span><span class="o">/</span><span class="n">flathub</span><span class="o">.</span><span class="n">flatpakrepo</span>
 </pre></div>
 </div>
-<p>Restart the system and open the <em>Software Manager</em> app. It will update and add the flathub repo. Once the update was successful, search for <em>QGIS</em> and click <em>Install</em> (patience - the installation may take while).</p>
-<p>The <em>QGIS Flatpak</em> installation will most likely not include the important <em>scipy</em> module. In order to fix this issue, open  <em>Terminal</em> (standard Linux application) and type:
+<p>Restart the system and open the <em>Software Manager</em> app. It will update and add the flathub repo. Once the update was successful, search for <em>QGIS</em> and click <em>Install</em> (patience - the installation may take a while).</p>
+<p>The <em>QGIS Flatpak</em> installation will most likely not include the important <em>scipy</em> module. To fix this issue, open  <em>Terminal</em> (standard Linux application) and type:
 <br><code class="docutils literal notranslate"><span class="pre">flatpak</span> <span class="pre">run</span> <span class="pre">--command=pip3</span> <span class="pre">org.qgis.qgis</span> <span class="pre">install</span> <span class="pre">scipy</span> <span class="pre">--user</span></code></p>
-<p>This solution has been tested on <em>Linux Ubuntu</em> and <em>Linux Mint</em>. It potentially also works with <em>Red Hat</em>, <em>openSUSE</em>, <em>Mac OS</em>, <em>Arch</em>, <em>Fedora</em>, <em>Android</em>, <em>Debian</em>, <em>Kubuntu</em> and many more (read installation guides on the <a class="reference external" href="https://flatpak.org/setup/">maintainer’s website</a>). Read more about the <em>QGIS Flatpak</em> installation on the <a class="reference external" href="https://qgis.org/en/site/forusers/alldownloads.html#flatpak"><em>QGIS website</em></a>.</p>
+<p>This solution has been tested on <em>Linux Ubuntu</em> and <em>Linux Mint</em>. It potentially also works with <em>Red Hat</em>, <em>openSUSE</em>, <em>Mac OS</em>, <em>Arch</em>, <em>Fedora</em>, <em>Android</em>, <em>Debian</em>, <em>Kubuntu</em> and many more (read installation guides on the <a class="reference external" href="https://flatpak.org/setup/">maintainer’s website</a>). Read more about the <em>QGIS Flatpak</em> installation on the <a class="reference external" href="https://qgis.org/en/site/forusers/alldownloads.html#flatpak">QGIS website</a>.</p>
 </div>
 <div class="section" id="install-qgis-on-macos">
 <h3>Install QGIS on macOS<a class="headerlink" href="#install-qgis-on-macos" title="Permalink to this headline">¶</a></h3>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you plan to use BASEMENT for numerical modelling: BASEMENT will not run on macOS.</p>
+<div class="attention admonition">
+<p class="admonition-title">macOS and BASEMENT</p>
+<p>If you plan to use BASEMENT for numerical modeling: BASEMENT will not run on macOS.</p>
 </div>
-<p>Download and install the latest version of <a class="reference external" href="https://www.qgis.org/en/site/forusers/download.html"><em>QGIS</em></a> for macOS. The integrity of using macOS for the applications on <em><a class="reference external" href="http://hydro-informatics.github.io">hydro-informatics.github.io</a></em> is has not yet been tested. Possible trouble-shooting with <em>Python</em> is provided by <a class="reference external" href="https://www.kyngchaos.com/software/qgis/">kyngchaos.com</a>.</p>
+<p>Download and install the latest version of <a class="reference external" href="https://www.qgis.org/en/site/forusers/download.html"><em>QGIS</em></a> for macOS. The integrity of using macOS for the applications in this ebook has not yet been tested. Possible troubleshooting with <em>Python</em> is provided, for instance, by <a class="reference external" href="https://www.kyngchaos.com/software/qgis/">kyngchaos.com</a>.</p>
 </div>
 <div class="section" id="learn-qgis">
 <h3>Learn QGIS<a class="headerlink" href="#learn-qgis" title="Permalink to this headline">¶</a></h3>
-<p>Working with geospatial data editors involves complex tasks that require background knowledge before intuitive comprehension is possible.  The <em>QGIS</em> developers provide compound <a class="reference external" href="https://docs.qgis.org/testing/en/docs/training_manual/index.html">tutorials on their website</a> (<a class="reference external" href="https://www.qgis.org/en/site/forusers/trainingmaterial/index.html">also available in other languages including Czech, French, German, and Portuguese</a>).
-This ebook occasionally uses <em>QGIS</em> for plotting and creating georeferenced data (e.g., the chapters on <a class="reference internal" href="../geopy/geo-python.html#sec-geo-python"><span class="std std-ref">Geospatial Python</span></a> and <a class="reference internal" href="../numerics/pre-qgis.html#qgis-prepro"><span class="std std-ref">numerical modelling</span></a>). To this end, this ebook comes along with a tutorial on geospatial analyses with <em>QGIS</em> (read and do the <a class="reference internal" href="../geopy/use-qgis.html#qgis-tutorial"><span class="std std-ref">QGIS tutorial</span></a>).</p>
+<p>Working with geospatial data editors involves complex tasks that require background knowledge before intuitive comprehension is possible. The <em>QGIS</em> developers provide compound <a class="reference external" href="https://docs.qgis.org/testing/en/docs/training_manual/index.html">tutorials on their website</a> (<a class="reference external" href="https://www.qgis.org/en/site/forusers/trainingmaterial/index.html">also available in other languages including Czech, French, German, and Portuguese</a>).
+This ebook occasionally uses <em>QGIS</em> for plotting and creating georeferenced data (e.g., the chapters on <a class="reference internal" href="../geopy/geo-python.html#sec-geo-python"><span class="std std-ref">Geospatial Python</span></a> and <a class="reference internal" href="../numerics/pre-qgis.html#qgis-prepro"><span class="std std-ref">numerical modeling</span></a>). To this end, this ebook comes along with a tutorial on geospatial analyses with <em>QGIS</em> (read and do the <a class="reference internal" href="../geopy/use-qgis.html#qgis-tutorial"><span class="std std-ref">QGIS tutorial</span></a>).</p>
 </div>
 <div class="section" id="install-qgis-conda-environment">
 <span id="qgis-conda-install"></span><h3>Install <em>QGIS</em> conda Environment<a class="headerlink" href="#install-qgis-conda-environment" title="Permalink to this headline">¶</a></h3>
@@ -768,12 +764,11 @@ This ebook occasionally uses <em>QGIS</em> for plotting and creating georeferenc
 <p class="admonition-title">Attention</p>
 <p>ArcGIS Pro is designed for Windows and will not run on macOS or Linux. In addition, a license needs to be purchased.</p>
 </div>
-<p>The proprietary software <em>ArcGIS Pro</em> represents a powerful tool for any kind of geospatial analysis including web applications. <em>ArcGIS Pro</em> is maintained by <a class="reference external" href="https://www.esri.com/">esri</a> and comes with an own <a class="reference internal" href="../python-basics/pyinstall.html"><span class="doc std std-doc"><em>Python conda Environments</em></span></a>.
-With the focus on freely available software, the usage of <em>ArcGIS Pro</em> and its <em>Python</em> environment including the <code class="docutils literal notranslate"><span class="pre">arcpy</span></code> package is just mentioned on this website.</p>
+<p>The proprietary software <em>ArcGIS Pro</em> represents a powerful tool for any kind of geospatial analysis including web applications. <em>ArcGIS Pro</em> is maintained by <a class="reference external" href="https://www.esri.com/">esri</a> and comes with an own <a class="reference internal" href="../python-basics/pyinstall.html#conda-env"><span class="std std-ref">conda env</span></a>. With this ebook’s focus on freely available software, the usage of <em>ArcGIS Pro</em> and its <em>Python</em> environment including the <code class="docutils literal notranslate"><span class="pre">arcpy</span></code> package is just mentioned on this website.</p>
 </div>
 <div class="section" id="others">
 <span id="id1"></span><h2>Others<a class="headerlink" href="#others" title="Permalink to this headline">¶</a></h2>
-<p>There are many other tools for geospatial analyses, which all deserve much more than just being mentioned here. Alas, for practical reasons, this website focuses on the usage of <em>QGIS</em>. This is why there is just a absolutely-not-complete list of other GIS tools here:</p>
+<p>There are many other tools for geospatial analyses, which all deserve much more than just being mentioned here. Alas, for practical reasons, this website focuses on the usage of <em>QGIS</em>. This is why there is just an absolutely-not-complete list of other GIS tools here:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="http://www.saga-gis.org/en/index.html">SAGA (System for Automated Geoscientific Analyses)</a></p></li>
 <li><p><a class="reference external" href="https://mapline.com/">Mapline</a></p></li>
@@ -783,7 +778,7 @@ With the focus on freely available software, the usage of <em>ArcGIS Pro</em> an
 </div>
 <div class="section" id="geospatial-analyses">
 <h2>Geospatial Analyses<a class="headerlink" href="#geospatial-analyses" title="Permalink to this headline">¶</a></h2>
-<p>Geospatial analyses involve efficient code practices (e.g., with <em>Python</em>) and this is why detailed descriptions of geospatial data handling are embedded in the <a class="reference internal" href="../geopy/geo-python.html"><span class="doc std std-doc"><em>Python<sup>geospatial</sup></em></span></a> chapter of this website.</p>
+<p>Geospatial analyses involve efficient code practices (e.g., with <em>Python</em>) and this is why detailed descriptions of geospatial data handling are embedded in the <a class="reference internal" href="../geopy/geo-python.html#sec-geo-python"><span class="std std-ref">Geospatial Python</span></a> chapter of this ebook.</p>
 </div>
 </div>
 
@@ -791,8 +786,8 @@ With the focus on freely available software, the usage of <em>ArcGIS Pro</em> an
     {
         requestKernel: true,
         binderOptions: {
-            repo: "hydro-informatics/",
-            ref: "main",
+            repo: "hydro-informatics/hydro-informatics.github.io",
+            ref: "gh-pages",
         },
         codeMirrorConfig: {
             theme: "abcdef",
@@ -813,7 +808,7 @@ With the focus on freely available software, the usage of <em>ArcGIS Pro</em> an
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="git.html" title="previous page">Introduction to git</a>
-    <a class='right-next' id="next-link" href="install-openfoam.html" title="next page">Install OpenFOAM</a>
+    <a class='right-next' id="next-link" href="install-openfoam.html" title="next page">OpenFOAM (Installation)</a>
 
         </div>
         

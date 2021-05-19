@@ -427,6 +427,7 @@ print("Mean value along axis 1 (rows): " + str(np.nanmean(experiment_data, axis=
 # | [`bincount(x[, weights, minlength])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.bincount.html#numpy.bincount)                 | Count number of occurrences of each value in array of non-negative ints.   |
 # | [`digitize(x, bins[, right])`](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.digitize.html#numpy.digitize)                        | Indices of the bins to which each value in input array belongs. |
 
+# (numpy-matlab)=
 # ## Can *NumPy* do *MATLAB*&reg;?
 # 
 # Are you considering to switch to *Python* after starting softly into programming with *MATLAB&reg;*-like software? There are many reasons for enhancing data analyses with *Python* and here are some facilitators for previous *MATLAB&reg;* users:

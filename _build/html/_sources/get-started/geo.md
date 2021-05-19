@@ -1,21 +1,17 @@
 # Geospatial Software
 
-Geospatial analyses (or analytics) use, manipulate and illustrate data from geographic information systems (GIS). GIS data contain  geographically referenced and spatially explicit information of for example gauging stations, terrain elevation, or land use. Efficient processing of geospatial data involves programming methods, where *Python* is an efficient tool. This page presents desktop software for manual geospatial analyses and the illustration of geospatial data. For geospatial programming, please refer to the section [*Python<sup>geospatial</sup>*](../geopy/geo-python).
-
-```{note}
-Geospatial data are either geographically referenced, pixel-based [rasters](https://en.wikipedia.org/wiki/Raster_graphics) data or vector-based *Esri* [shapefiles](https://en.wikipedia.org/wiki/Shapefile) (read more on the [*Python<sup>geospatial</sup>*](../geopy/geospatial-data) pages).
-```
+Geospatial analyses (or analytics) use, manipulate, and illustrate data from geographic information systems (GIS). GIS data contain geographically referenced and spatially explicit information of for example gauging stations, terrain elevation, or land use. Efficient processing of geospatial data involves programming methods, where *Python* is an efficient tool. This page presents desktop software for manual geospatial analyses and the illustration of geospatial data. For geospatial programming, please refer to the {ref}`sec-geo-python` chapter.
 
 (qgis-install)=
 ## QGIS
-For the visualization of geodata (`.shp` and `.tif` files) a GIS software is required and the analyses described on these pages refer to the usage of [*QGIS*](https://www.qgis.org). This website uses *QGIS* within the sections on [geospatial programming with *Python*](../geopy/geo-python) and [numerical modelling with the ETH Zurich's BASEMENT](../numerics/basement) software.
+For the visualization of geodata (`.shp` and `.tif` files), GIS software is required and the analyses described on these pages refer to the usage of [*QGIS*](https://www.qgis.org). This ebook uses *QGIS* within the sections on [geospatial programming with *Python*](../geopy/geo-python) and [numerical modelling with the ETH Zurich's BASEMENT](../numerics/basement) software.
 
 ### Install QGIS on Windows
 Download and install the latest version of [*QGIS*](https://www.qgis.org/en/site/forusers/download.html) for Windows.
 
 ### Install QGIS on Linux (via Flatpak)
 
-The *QGIS* developers provide detailed installation instructions for several *Linux* distributions, but the instructions will not satisfy all requirement for the use of *QGIS* described on *hydro-informatics.github.io*. One of the most functional ways for installing *QGIS* on *Linux* is to use [*Flatpak*](https://flathub.org/apps/details/org.qgis.qgis), which requires some system preparation. On *Debian*-based *Linux* platforms (e.g., all sorts of *Ubuntu* such as *Lubuntu* or *Mint*) open *Terminal* and tap (the second line is only needed if you use *GNOME*):
+The *QGIS* developers provide detailed installation instructions for several *Linux* distributions, but the instructions will not satisfy all requirements for the use of *QGIS* described on *hydro-informatics.github.io*. One of the most functional ways for installing *QGIS* on *Linux* is to use [*Flatpak*](https://flathub.org/apps/details/org.qgis.qgis), which requires some system preparation. On *Debian*-based *Linux* platforms (e.g., all sorts of *Ubuntu* such as *Lubuntu* or *Mint*) open *Terminal* and tap (the second line is only needed if you use *GNOME*):
 
 ```
 sudo apt install flatpak
@@ -23,25 +19,26 @@ sudo apt install gnome-software-plugin-flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 ```
 
-Restart the system and open the *Software Manager* app. It will update and add the flathub repo. Once the update was successful, search for *QGIS* and click *Install* (patience - the installation may take while).
+Restart the system and open the *Software Manager* app. It will update and add the flathub repo. Once the update was successful, search for *QGIS* and click *Install* (patience - the installation may take a while).
 
-The *QGIS Flatpak* installation will most likely not include the important *scipy* module. In order to fix this issue, open  *Terminal* (standard Linux application) and type:
+The *QGIS Flatpak* installation will most likely not include the important *scipy* module. To fix this issue, open  *Terminal* (standard Linux application) and type:
 <br>`flatpak run --command=pip3 org.qgis.qgis install scipy --user`
 
-This solution has been tested on *Linux Ubuntu* and *Linux Mint*. It potentially also works with *Red Hat*, *openSUSE*, *Mac OS*, *Arch*, *Fedora*, *Android*, *Debian*, *Kubuntu* and many more (read installation guides on the [maintainer's website](https://flatpak.org/setup/)). Read more about the *QGIS Flatpak* installation on the [*QGIS website*](https://qgis.org/en/site/forusers/alldownloads.html#flatpak).
+This solution has been tested on *Linux Ubuntu* and *Linux Mint*. It potentially also works with *Red Hat*, *openSUSE*, *Mac OS*, *Arch*, *Fedora*, *Android*, *Debian*, *Kubuntu* and many more (read installation guides on the [maintainer's website](https://flatpak.org/setup/)). Read more about the *QGIS Flatpak* installation on the [QGIS website](https://qgis.org/en/site/forusers/alldownloads.html#flatpak).
 
 
 ### Install QGIS on macOS
 
-```{note}
-If you plan to use BASEMENT for numerical modelling: BASEMENT will not run on macOS.
+```{admonition} macOS and BASEMENT
+:class: attention
+If you plan to use BASEMENT for numerical modeling: BASEMENT will not run on macOS.
 ```
 
-Download and install the latest version of [*QGIS*](https://www.qgis.org/en/site/forusers/download.html) for macOS. The integrity of using macOS for the applications on *hydro-informatics.github.io* is has not yet been tested. Possible trouble-shooting with *Python* is provided by [kyngchaos.com](https://www.kyngchaos.com/software/qgis/).
+Download and install the latest version of [*QGIS*](https://www.qgis.org/en/site/forusers/download.html) for macOS. The integrity of using macOS for the applications in this ebook has not yet been tested. Possible troubleshooting with *Python* is provided, for instance, by [kyngchaos.com](https://www.kyngchaos.com/software/qgis/).
 
 ### Learn QGIS
-Working with geospatial data editors involves complex tasks that require background knowledge before intuitive comprehension is possible.  The *QGIS* developers provide compound [tutorials on their website](https://docs.qgis.org/testing/en/docs/training_manual/index.html) ([also available in other languages including Czech, French, German, and Portuguese](https://www.qgis.org/en/site/forusers/trainingmaterial/index.html)).
-This ebook occasionally uses *QGIS* for plotting and creating georeferenced data (e.g., the chapters on {ref}`sec-geo-python` and {ref}`numerical modelling <qgis-prepro>`). To this end, this ebook comes along with a tutorial on geospatial analyses with *QGIS* (read and do the {ref}`qgis-tutorial`).
+Working with geospatial data editors involves complex tasks that require background knowledge before intuitive comprehension is possible. The *QGIS* developers provide compound [tutorials on their website](https://docs.qgis.org/testing/en/docs/training_manual/index.html) ([also available in other languages including Czech, French, German, and Portuguese](https://www.qgis.org/en/site/forusers/trainingmaterial/index.html)).
+This ebook occasionally uses *QGIS* for plotting and creating georeferenced data (e.g., the chapters on {ref}`sec-geo-python` and {ref}`numerical modeling <qgis-prepro>`). To this end, this ebook comes along with a tutorial on geospatial analyses with *QGIS* (read and do the {ref}`qgis-tutorial`).
 
 (qgis-conda-install)=
 ### Install *QGIS* conda Environment
@@ -60,12 +57,11 @@ conda activate qgiscube
 ArcGIS Pro is designed for Windows and will not run on macOS or Linux. In addition, a license needs to be purchased.
 ```
 
-The proprietary software *ArcGIS Pro* represents a powerful tool for any kind of geospatial analysis including web applications. *ArcGIS Pro* is maintained by [esri](https://www.esri.com/) and comes with an own [*Python conda Environments*](../python-basics/pyinstall).
-With the focus on freely available software, the usage of *ArcGIS Pro* and its *Python* environment including the `arcpy` package is just mentioned on this website.
+The proprietary software *ArcGIS Pro* represents a powerful tool for any kind of geospatial analysis including web applications. *ArcGIS Pro* is maintained by [esri](https://www.esri.com/) and comes with an own {ref}`conda-env`. With this ebook's focus on freely available software, the usage of *ArcGIS Pro* and its *Python* environment including the `arcpy` package is just mentioned on this website.
 
 (others)=
 ## Others
-There are many other tools for geospatial analyses, which all deserve much more than just being mentioned here. Alas, for practical reasons, this website focuses on the usage of *QGIS*. This is why there is just a absolutely-not-complete list of other GIS tools here:
+There are many other tools for geospatial analyses, which all deserve much more than just being mentioned here. Alas, for practical reasons, this website focuses on the usage of *QGIS*. This is why there is just an absolutely-not-complete list of other GIS tools here:
 
 * [SAGA (System for Automated Geoscientific Analyses)](http://www.saga-gis.org/en/index.html)
 * [Mapline](https://mapline.com/)
@@ -74,4 +70,4 @@ There are many other tools for geospatial analyses, which all deserve much more 
 
 ## Geospatial Analyses
 
-Geospatial analyses involve efficient code practices (e.g., with *Python*) and this is why detailed descriptions of geospatial data handling are embedded in the [*Python<sup>geospatial</sup>*](../geopy/geo-python) chapter of this website.
+Geospatial analyses involve efficient code practices (e.g., with *Python*) and this is why detailed descriptions of geospatial data handling are embedded in the {ref}`sec-geo-python` chapter of this ebook.

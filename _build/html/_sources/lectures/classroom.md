@@ -16,7 +16,7 @@ This ebook provides complementary materials for the following lectures at the [U
 All fundamental contents are open access to promote the efficient use of data and models whenever, where ever and whoever you are.
 
 Open-Access / Open-Source
-: The contents of this ebook build on open-access and open-source software only. Hints about how to work with commercial software (as used for example in many engineering offices) is sometimes provided in the form of *good-to-know* information. Students can get more information upon request in the lectures.
+: The contents of this ebook build on open-access and open-source software only. Hints about how to work with commercial software (as used for example in many engineering offices) are sometimes provided in the form of *good-to-know* information. Students can get more information upon request in the lectures.
 
 Diversity
-: The classes target an international and interdisciplinary audience to foster work in versatile teams, because diversity is not only an enrichment, but also crucial for successful economic, socio-political, and scientific collaboration. Cultural diversity comes along with different solution strategies, which together lead to robust and elaborate approaches. This is why the classes supported on with this website target all cultures and ethnic groups with their manifold backgrounds, ages, and beliefs.
+: The classes target an international and interdisciplinary audience to foster work in versatile teams because diversity is not only an enrichment, but also crucial for successful economic, socio-political, and scientific collaboration. Cultural diversity comes along with different solution strategies, which together lead to robust and elaborate approaches. This is why the classes supported by this ebook target all cultures and ethnic groups with their manifold backgrounds, ages, and beliefs.

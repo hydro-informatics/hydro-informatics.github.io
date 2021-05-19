@@ -9,11 +9,11 @@ The educational platform for Data & Programming, Geospatial Analysis, and Modeli
 
 ## Preface
 
-Large datasets, such as airborne imagery and hydro-meteorological datasets collected worldwide, drive progress in many disciplines. With traditional spreadsheet analysis tools, however, the large amounts of data can hardly be analyzed, understood, or used. The courses supported with this website aid hydraulic engineers, geomorphologists, river ecologists, and any water resources related challenge with tools for efficient data analyses and presentation. The methods described rely on open-access tools to leverage international and interdisciplinary collaboration on all levels.
+Large datasets, such as airborne imagery and hydro-meteorological datasets collected worldwide, drive progress in many disciplines. With traditional spreadsheet analysis tools, however, large amounts of data can hardly be analyzed, understood, or used. The courses supported with this website aid hydraulic engineers, geomorphologists, river ecologists, and any water resources-related challenge with tools for efficient data analyses and presentation. The methods described rely on open-access tools to leverage international and interdisciplinary collaboration on all levels.
 
 ```{admonition} What does Hydro-informatics stand for?
 :class: tip
-The term hydroinformatics (or hydro-informatics) is widely used in relation to the field of hydrology. Yet, the syllable *hydro* goes back to the Greek word for *water*. In addition, the term *informatics* can be used as a synonym for studying computational systems. In this light the term *hydro-informatics* as used on this website also refers to computational studies of river ecosystems. Thus, the primary focus of this ebook is on computer-based applications in the field of hydraulic engineering with its links to ecohydraulics, geomorphology, geo-informatics, and hydrology.
+The term hydroinformatics (or hydro-informatics) is widely used in the field of hydrology. Yet, the syllable *hydro* goes back to the Greek word for *water*. In addition, the term *informatics* can be used as a synonym for studying computational systems. In this light, the term *hydro-informatics* as used on this website also refers to computational studies of river ecosystems. Thus, the primary focus of this ebook is on computer-based applications in the field of hydraulic engineering with its links to ecohydraulics, geomorphology, geo-informatics, and hydrology.
 ```
 
 ## Contents

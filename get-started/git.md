@@ -15,7 +15,7 @@ The concept of git and basic vocabulary. The REMOTE frame is online (i.e., someo
 The materials provided with this ebook are best downloaded and updated using *git*-able environments (avoid downloading materials as *zip* file).
 
 ```{admonition} Windows
-Download and install [*Git Bash*](https://git-scm.com/downloads) and use it for example [*PyCharm*'s Community Edition](https://www.jetbrains.com/pycharm/).
+Download and install [*Git Bash*](https://git-scm.com/downloads) and use it for example [PyCharm's Community Edition](https://www.jetbrains.com/pycharm/).
 ```
 
 ```{admonition} Linux
@@ -44,7 +44,7 @@ Students of the University of Stuttgart may use *GitHub* using their institution
 Done.
 
 (update)=
-### Update a Local Repository (Re-pull)
+### Pull (Update a Local Repository)
 
 *git* (within *Git Bash*, *PyCharm*, or *Terminal*) is the only option to update local copies of a remote repository consistently. To do so, open one of the above mention *git*-able command lines and do the following:
 

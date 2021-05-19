@@ -51,6 +51,8 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="canonical" href="https://hydro-informatics.github.io/exercises/ex-geco.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -109,7 +111,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../lectures/take_seat.html">
-     Take a Seat in the Virtual Classroom
+     The Virtual Classroom
     </a>
    </li>
   </ul>
@@ -151,7 +153,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../get-started/install-openfoam.html">
-     Install OpenFOAM
+     OpenFOAM (Installation)
     </a>
    </li>
    <li class="toctree-l2">
@@ -296,19 +298,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="ex-gui.html">
-     Create a
-     <strong>
-      G
-     </strong>
-     raphical
-     <strong>
-      U
-     </strong>
-     ser
-     <strong>
-      I
-     </strong>
-     nterface (GUI)
+     Create a Graphical User Interface (GUI)
     </a>
    </li>
   </ul>
@@ -624,7 +614,7 @@
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.com/hydro-informatics/"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/hydro-informatics/hydro-informatics.github.io"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         
@@ -662,29 +652,21 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#two-dimensional-2d-hydrodynamic-modelling-folder-basement-a-name-2dm-a">
-     Two-dimensional (2D) hydrodynamic modelling (folder:
+    <a class="reference internal nav-link" href="#two-dimensional-2d-hydrodynamic-modelling-folder-basement">
+     Two-dimensional (2d) hydrodynamic modelling (folder:
      <strong>
       basement
      </strong>
      )
-     <a name="2dm">
-     </a>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#habitat-suitability-index-hsi-curves-folder-habitat-a-name-hsi-curves-a">
-     Habitat Suitability Index
-     <em>
-      HSI
-     </em>
-     curves (folder:
+    <a class="reference internal nav-link" href="#habitat-suitability-index-hsi-curves-folder-habitat">
+     Habitat Suitability Index HSI curves (folder:
      <strong>
       habitat
      </strong>
      )
-     <a name="hsi-curves">
-     </a>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -696,15 +678,11 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#create-and-combine-hsi-rasters">
-   Create and combine
-   <em>
-    HSI
-   </em>
-   rasters
+   Create and combine HSI rasters
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#complete-magic-methods-of-the-raster-class-raster-py-a-name-raster-a">
+    <a class="reference internal nav-link" href="#complete-magic-methods-of-the-raster-class-raster-py">
      Complete magic methods of the
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -718,61 +696,6 @@
       </span>
      </code>
      )
-     <a name="raster">
-     </a>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#write-hsi-and-chsi-raster-creation-script">
-     Write
-     <em>
-      HSI
-     </em>
-     and
-     <em>
-      cHSI
-     </em>
-     raster creation script
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#run-the-hsi-and-chsi-raster-creation-code">
-     Run the
-     <em>
-      HSI
-     </em>
-     and
-     <em>
-      cHSI
-     </em>
-     raster creation code
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#result-interpretation">
-     Result interpretation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#calculate-the-usable-habitat-area">
-   Calculate the usable habitat area
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#write-the-code">
-     Write the code
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#run-the-usable-habitat-area-calculation-code">
-     Run the Usable Habitat Area calculation code
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Result interpretation
     </a>
    </li>
   </ul>
@@ -792,11 +715,11 @@
 <span id="ex-geco"></span><h1>Script-Create a Habitat Suitability Map<a class="headerlink" href="#script-create-a-habitat-suitability-map" title="Permalink to this headline">¶</a></h1>
 <div class="admonition-goals admonition">
 <p class="admonition-title">Goals</p>
-<p>This exercise guides through the creation of rasters (<code class="docutils literal notranslate"><span class="pre">osgeo.gdal.Dataset</span></code>), the usage of georeferences, raster array calculations, as well as the conversion of a raster to a polygon shapefile and modifications to the shapefile’s <em>Attribute Table</em> to calculate usable (physical) habitat area. For this purpose, a <code class="docutils literal notranslate"><span class="pre">Raster</span></code> class is written, which enables mathematical operations between its instances through the implementation of magic methods. The exercise also shows how the course’s <a class="reference external" href="https://github.com/hydro-informatics/geo-utils"><em>geo_utils</em> package</a> can be used to leverage complex challenges in just a few lines of code.</p>
+<p>This exercise guides through the creation of rasters (<code class="docutils literal notranslate"><span class="pre">osgeo.gdal.Dataset</span></code>), the usage of georeferences, raster array calculations, as well as the conversion of a raster to a polygon shapefile and modifications to the shapefile’s <em>Attribute Table</em> to calculate usable (physical) habitat area. For this purpose, a <code class="docutils literal notranslate"><span class="pre">Raster</span></code> class is written, which enables mathematical operations between its instances through the implementation of magic methods. The exercise also shows how <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> can be used to leverage complex challenges with just a few lines of code.</p>
 </div>
-<div class="admonition-requirements admonition">
+<div class="attention admonition">
 <p class="admonition-title">Requirements</p>
-<p><em>Python</em> libraries: <em>numpy</em>, <em>pandas</em>, <em>gdal</em>, <em>geopandas</em>, <em>alphashape</em>, <em>shapely</em>, and <em>json</em>. Understand how <a class="reference internal" href="../jupyter/classes.html"><span class="doc std std-doc">object orientation</span></a> works as well as <a class="reference internal" href="../geopy/geo-python.html"><span class="doc std std-doc">geospatial data and analyses with <em>Python</em></span></a>.</p>
+<p><em>Python</em> libraries: <a class="reference internal" href="../jupyter/pynum.html#numpy"><span class="std std-ref">NumPy</span></a>, <a class="reference internal" href="../jupyter/pynum.html#pandas"><span class="std std-ref">Pandas</span></a>, <em>gdal</em>, <em>geopandas</em>, <em>alphashape</em>, <em>shapely</em>, and <a class="reference internal" href="../jupyter/xml.html#json"><span class="std std-ref">JSON</span></a>. Understand how <a class="reference internal" href="../jupyter/classes.html#ooc"><span class="std std-ref">Object Orientation and Classes</span></a> work as well as <a class="reference internal" href="../geopy/geo-python.html#sec-geo-python"><span class="std std-ref">Geospatial Python</span></a>.</p>
 </div>
 <p>Get ready by cloning the exercise repository:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ecohydraulics</span><span class="o">/</span><span class="n">Exercise</span><span class="o">-</span><span class="n">geco</span><span class="o">.</span><span class="n">git</span>
@@ -808,41 +731,45 @@
 </div>
 <div class="section" id="what-is-habitat-suitability">
 <h2>What is Habitat Suitability?<a class="headerlink" href="#what-is-habitat-suitability" title="Permalink to this headline">¶</a></h2>
-<p>Fish and other aquatic species rest, orient, and reproduce in a fluvial environment that represents their physical habitat. Throughout their different life stages, different fish have specific physical habitat preferences which are defined, for instance, as a function of water depth, flow velocity, and grain size of the riverbed. The so-called <em>Habitat Suitability Index <strong>HSI</strong></em> can be calculated for hydraulic (water depth or flow velocity) and morphological (e.g., grain size or cover in the form of large wood) parameters individually to describe the quality of physical habitat for a fish and at a specific life stage. The figure below shows exemplary <em>HSI</em> curves for the fry, juvenile and adult life stages of rainbow trout as a function of water depth. The <em>HSI</em> curves look different in every river and should be established individually by an aquatic ecologist.
-<a name="hsi-image"></a>
-<img alt="hsi-curves" src="https://github.com/Ecohydraulics/media/raw/master/png/hsi-curves.png" /><br>
+<p>Fish and other aquatic species rest, orient, and reproduce in a fluvial environment that represents their physical habitat. Throughout their different life stages, different fish have specific physical habitat preferences which are defined, for instance, as a function of water depth, flow velocity, and grain size of the riverbed. The so-called <em>Habitat Suitability Index <em><span class="math notranslate nohighlight">\(HSI\)</span></em></em> can be calculated for hydraulic (water depth or flow velocity) and morphological (e.g., grain size or cover in the form of large wood) parameters individually to describe the quality of physical habitat for a fish and at a specific life stage. The figure below shows exemplary <span class="math notranslate nohighlight">\(HSI\)</span> curves for the fry, juvenile and adult life stages of rainbow trout as a function of water depth. The <span class="math notranslate nohighlight">\(HSI\)</span> curves look different in every river and should be established individually by an aquatic ecologist.
+<a name="hsi-image"></a></p>
+<p><img alt="hsi-curves" src="https://github.com/Ecohydraulics/media/raw/master/png/hsi-curves.png" /><br>
 <em>Habitat Suitability Index (HSI) curves for the fry, juvenile, and adult life stages of rainbow trout in a cobble-bed river. Take care: HSI curves look different in any river and need to be established by an aquatic ecologist.</em></p>
-<p>The <em>HSI</em> concept also accounts for the so-called cover habitat in the form of the <em>cover HSI</em> (<em>HSI<sub>cov</sub></em>). Cover habitat is the result of local turbulence caused by roughness elements such as wood, boulders, or bridge piers. However, in this exercise, we will only deal with hydraulic habitat characteristics (not cover habitat).</p>
+<p>The <span class="math notranslate nohighlight">\(HSI\)</span> concept also accounts for the so-called cover habitat in the form of the <em>cover HSI</em> (<span class="math notranslate nohighlight">\(HSI_{cov}\)</span>). Cover habitat is the result of local turbulence caused by roughness elements such as wood, boulders, or bridge piers. However, in this exercise, we will only deal with hydraulic habitat characteristics (not cover habitat).</p>
 <p><img alt="cover-habitat" src="https://github.com/Ecohydraulics/media/raw/master/jpg/neckar-fish-cover.jpg" /><br>
 <em>Adult trout swimming in cover habitat created by a bridge pier in the upper Neckar River.</em></p>
-<p>The combination of multiple <em>HSI</em> values (e.g., water depth-related <em>HSI<sub>h</sub></em>, flow velocity-related <em>HSI<sub>u</sub></em>, grain size-related <em>HSI<sub>d</sub></em>, and/or cover <em>HSI<sub>cov</sub></em>) results in the <em>combined Habitat Suitability Index <strong>cHSI</strong></em>. There are various calculation methods for combining different <em>HSI<sub>par</sub></em> values into one <em>cHSI</em> value, where the geometric mean and the product are the most widely used deterministic combination methods: <a name="combine-methods"></a></p>
+<p>The combination of multiple <span class="math notranslate nohighlight">\(HSI\)</span> values (e.g., water depth-related <span class="math notranslate nohighlight">\(HSI_{h}\)</span>, flow velocity-related <span class="math notranslate nohighlight">\(HSI_{u}\)</span>, grain size-related <span class="math notranslate nohighlight">\(HSI_{d}\)</span>, and/or cover <span class="math notranslate nohighlight">\(HSI_{cov}\)</span>) results in the <strong>combined Habitat Suitability Index</strong> <span class="math notranslate nohighlight">\(cHSI\)</span>. There are various calculation methods for combining different <span class="math notranslate nohighlight">\(HSI_{par}\)</span> values into one <span class="math notranslate nohighlight">\(cHSI\)</span> value, where the geometric mean and the product are the most widely used deterministic combination methods: <a name="combine-methods"></a></p>
 <ul class="simple">
-<li><p>Geometric mean:  <em>cHSI =</em> (<em>∏<sub>par</sub> HSI<sub>par</sub></em>)<em><sup>1/n</sup></em><br>For example, the combination of the water depth-related <em>HSI<sub>h</sub></em> and flow velocity-related <em>HSI<sub>u</sub></em> with the geometric mean method is: <em>cHSI = (HSI<sub>h</sub> · HSI<sub>u</sub>)<sup>1/2</sup></em></p></li>
-<li><p>Product:  <em>cHSI = ∏<sub>par</sub> HSI<sub>par</sub></em><br>For example, the combination of the water depth-related <em>HSI<sub>h</sub></em> and flow velocity-related <em>HSI<sub>u</sub></em> with the product method is: <em>cHSI =</em> (<em>HSI<sub>h</sub> · HSI<sub>u</sub></em>)</p></li>
+<li><p>Geometric mean:  <span class="math notranslate nohighlight">\(cHSI = (\product_{par} HSI_{par})^{1/n}\)</span>
+<br>For example, the combination of the water depth-related <span class="math notranslate nohighlight">\(HSI_{h}\)</span> and flow velocity-related <span class="math notranslate nohighlight">\(HSI_{u}\)</span> with the geometric mean method is: <span class="math notranslate nohighlight">\(cHSI = (HSI_{h} \cdot HSI_{u})^{1/2}\)</span></p></li>
+<li><p>Product:  <span class="math notranslate nohighlight">\(cHSI = \product_{par} HSI_{par}\)</span>
+<br>For example, the combination of the water depth-related <span class="math notranslate nohighlight">\(HSI_{h}\)</span> and flow velocity-related <span class="math notranslate nohighlight">\(HSI_{u}\)</span> with the product method is: <span class="math notranslate nohighlight">\(cHSI = (HSI_{h} \cdot HSI_{u})\)</span></p></li>
 </ul>
-<p>Therefore, if the pixel-based <em>HSI</em> values for water depth and flow velocity are known from a two-dimensional (2d) hydrodynamic model, then for each pixel the <em>cHSI</em> value can be calculated either as the product or geometric mean of the single-parameter <em>HSI<sub>par</sub></em> rasters.</p>
-<p>This habitat assessment concept was introduced by <a class="reference external" href="https://pubs.er.usgs.gov/publication/70121265">Bovee (1986)</a> and <a class="reference external" href="https://apps.dtic.mil/sti/pdfs/ADA322762.pdf">Stalnaker (1995)</a>. However, these authors built their usable (physical) habitat assessment based on one-dimensional (1D) numerical models that were commonly used in the last millennium. Today, 2D numerical models are the state-of-the-art to determine physical habitat geospatially explicit based on pixel-based <em>cHSI</em> values. There are two different options for calculating the usable habitat area (<em>UHA</em>) based on pixel-based <em>cHSI</em> values (and even more options can be found in the scientific literature). <a name="uha-methods"></a></p>
+<p>Therefore, if the pixel-based <span class="math notranslate nohighlight">\(HSI\)</span> values for water depth and flow velocity are known from a two-dimensional (2d) hydrodynamic model, then for each pixel the <span class="math notranslate nohighlight">\(cHSI\)</span> value can be calculated either as the product or geometric mean of the single-parameter <span class="math notranslate nohighlight">\(HSI_{par}\)</span> rasters.</p>
+<p>This habitat assessment concept was introduced by <a class="reference external" href="https://pubs.er.usgs.gov/publication/70121265">Bovee (1986)</a> and <a class="reference external" href="https://apps.dtic.mil/sti/pdfs/ADA322762.pdf">Stalnaker (1995)</a>. However, these authors built their usable (physical) habitat assessment based on one-dimensional (1d) numerical models that were commonly used in the last millennium. Today, 2d numerical models are the state-of-the-art to determine physical habitat geospatially explicit based on pixel-based <span class="math notranslate nohighlight">\(cHSI\)</span> values. There are two different options for calculating the usable habitat area (<span class="math notranslate nohighlight">\(UHA\)</span>) based on pixel-based <span class="math notranslate nohighlight">\(cHSI\)</span> values (and even more options can be found in the scientific literature). <a name="uha-methods"></a></p>
 <ol class="simple">
 <li><p>Use a threshold value above which a pixel is classified as a usable habitat.</p>
 <ul class="simple">
-<li><p>Typical values for the threshold value <em>cHSI<sub>crit</sub></em> are between 0.4 (tolerant) and 0.75 (strict).</p></li>
-<li><p>The usable habitat area <em>UHA</em> results from the pixel size <em>px<sub>a</sub></em> (e.g., in m²) multiplied by the number of pixels (<em>px</em>) where <em>cHSI &gt; cHSI<sub>crit</sub></em>:<br><em><strong>UHA = px<sub>a</sub> · ∑ px<sub>i</sub>(cHSI<sub>px<sub>i</sub></sub> &gt; cHSI<sub>crit</sub>)</strong></em></p></li>
+<li><p>Typical values for the threshold value <span class="math notranslate nohighlight">\(cHSI_{crit}\)</span> are between 0.4 (tolerant) and 0.75 (strict).</p></li>
+<li><p>The usable habitat area <span class="math notranslate nohighlight">\(UHA\)</span> results from the pixel size <span class="math notranslate nohighlight">\(px_{a}\)</span> (e.g., in m<span class="math notranslate nohighlight">\(^2\)</span>) multiplied by the number of pixels (<span class="math notranslate nohighlight">\(px\)</span>) where <span class="math notranslate nohighlight">\(cHSI &gt; cHSI_{crit}\)</span>:
+<br><span class="math notranslate nohighlight">\(UHA = px_{a} \cdot \sum px_{i}(cHSI_{px_{i}} &gt; cHSI_{crit})\)</span></p></li>
 </ul>
 </li>
-<li><p>Multiply the pixel <em>cHSI</em> value with the pixel size.</p>
+<li><p>Multiply the pixel <span class="math notranslate nohighlight">\(cHSI\)</span> value with the pixel size.</p>
 <ul class="simple">
-<li><p>The pixel area is weighted by its habitat quality expressed by the <em>cHSI</em> value:<br><em><strong>UHA = px<sub>a</sub> · ∑ cHSI<sub>px<sub>i</sub></sub></strong></em></p></li>
+<li><p>The pixel area is weighted by its habitat quality expressed by the <span class="math notranslate nohighlight">\(cHSI\)</span> value:
+&lt;br<span class="math notranslate nohighlight">\(UHA = px_{a} \cdot \sum cHSI_{px_{i}}\)</span></p></li>
 <li><p>Caution: Some authors (e.g., <a class="reference external" href="https://onlinelibrary.wiley.com/doi/full/10.1002/eco.1961">Yao et al. 2018</a>, <a class="reference external" href="https://doi.org/10.1007/s12205-012-0002-5">Tuhtan et al.</a> incorrectly refer to this weighting as Weighted Usable Area (<em>WUA</em>), which conflicts with the original definition of <em>WUA</em> (<a class="reference external" href="https://pubs.er.usgs.gov/publication/70121265">Bovee 1986</a>).</p></li>
 </ul>
 </li>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The threshold method is preferable over the weighting method because the <em>HSI</em>  has the unit of <em>Index</em> and is therefore not dimensionless. As a result, unrealistic units of <em>Index</em> areas (e.g., <em>Index</em>-m²) are created in the weighting method, which is also introducing non-measurable uncertainty.</p>
+<p>The threshold method is preferable over the weighting method because the <span class="math notranslate nohighlight">\(HSI\)</span>  has the unit of <em>Index</em> and is therefore not dimensionless. As a result, unrealistic units of <em>Index</em> areas (e.g., <em>Index</em>-m<span class="math notranslate nohighlight">\(^2\)</span>) are created in the weighting method, which is also introducing non-measurable uncertainty.</p>
 </div>
-<p>An alternative to the deterministic calculation of the <em>HSI</em> and <em>cHSI</em> values of a pixel is a fuzzy logics approach (<a class="reference external" href="https://onlinelibrary.wiley.com/doi/pdf/10.1002/9781118526576">Noack et al. 2013</a>). In the fuzzy logic approach, pixels are classified, for instance, as <em>low</em>, <em>medium</em>, or <em>high</em> habitat quality as a function of the associated water depth or flow velocity using categorical (<em>low</em>, <em>medium</em>, or <em>high</em>), expert assessment-based <em>HSI</em> curves. The <em>cHSI</em> value results from the center of gravity of superimposed membership functions of considered parameters (e.g., water depth and flow velocity).</p>
+<p>An alternative to the deterministic calculation of the <span class="math notranslate nohighlight">\(HSI\)</span> and <span class="math notranslate nohighlight">\(cHSI\)</span> values of a pixel is a fuzzy logics approach (<a class="reference external" href="https://onlinelibrary.wiley.com/doi/pdf/10.1002/9781118526576">Noack et al. 2013</a>). In the fuzzy logic approach, pixels are classified, for instance, as <em>low</em>, <em>medium</em>, or <em>high</em> habitat quality as a function of the associated water depth or flow velocity using categorical (<em>low</em>, <em>medium</em>, or <em>high</em>), expert assessment-based <span class="math notranslate nohighlight">\(HSI\)</span> curves. The <span class="math notranslate nohighlight">\(cHSI\)</span> value results from the center of gravity of superimposed membership functions of considered parameters (e.g., water depth and flow velocity).</p>
 <p>Sustainable river management involves the challenge of designing aquatic habitat for target fish species at different life stages. The concept of usable physical habitat area represents a powerful tool to leverage the assessment of the ecological integrity of river management and engineering measures. For example, by calculating the usable habitat area before and after the implementation of measures, valuable conclusions can be drawn about the ecological integrity of restoration efforts.</p>
-<p>This exercise demonstrates the use of 2D hydrodynamic modeling results to algorithmically evaluate usable habitat area based on the calculation of geospatially explicit <em>cHSI</em> values.</p>
+<p>This exercise demonstrates the use of 2d hydrodynamic modeling results to algorithmically evaluate usable habitat area based on the calculation of geospatially explicit <span class="math notranslate nohighlight">\(cHSI\)</span> values.</p>
 </div>
 <div class="section" id="available-data-and-code-structure">
 <h2>Available data and code structure<a class="headerlink" href="#available-data-and-code-structure" title="Permalink to this headline">¶</a></h2>
@@ -850,20 +777,20 @@
 <p><a name="uml"></a>
 <img alt="code-structure" src="https://github.com/Ecohydraulics/Exercise-geco/raw/master/graphs/geo_eco_uml.png" /><br></p>
 <p>The provided <em>QGIS</em> project file <code class="docutils literal notranslate"><span class="pre">visualize_with_QGIS.qgz</span></code> helps to verify input raster datasets and results.</p>
-<div class="section" id="two-dimensional-2d-hydrodynamic-modelling-folder-basement-a-name-2dm-a">
-<h3>Two-dimensional (2D) hydrodynamic modelling (folder: <strong>basement</strong>) <a name="2dm"></a><a class="headerlink" href="#two-dimensional-2d-hydrodynamic-modelling-folder-basement-a-name-2dm-a" title="Permalink to this headline">¶</a></h3>
-<p>This exercise uses (hydraulic) flow velocity and water depth rasters (<em>GeoTIFF</em>s) produced with the <a class="reference external" href="https://basement.ethz.ch/"><em>ETH Zurich</em>’s <em>BASEMENT</em></a> software. Read more about hydrodynamic modeling with <em>BASEMENT</em> on <a class="reference internal" href="../numerics/basement.html"><span class="doc std std-doc">hydro-informatics.github.io</span></a>. The hydraulic rasters were produced with the <em>BASEMENT</em> developer’s <a class="reference external" href="http://people.ee.ethz.ch/~basement/baseweb/download/tutorials/Flaz_2D_v3.zip">example data from the <em>Flaz River</em></a> in Switzerland (<a class="reference external" href="https://basement.ethz.ch/download/tutorials/tutorials3.html">read more on their website</a>).
+<div class="section" id="two-dimensional-2d-hydrodynamic-modelling-folder-basement">
+<span id="dm"></span><h3>Two-dimensional (2d) hydrodynamic modelling (folder: <strong>basement</strong>)<a class="headerlink" href="#two-dimensional-2d-hydrodynamic-modelling-folder-basement" title="Permalink to this headline">¶</a></h3>
+<p>This exercise uses (hydraulic) flow velocity and water depth rasters (<em>GeoTIFF</em>s) produced with the <a class="reference external" href="https://basement.ethz.ch/"><em>ETH Zurich</em>’s <em>BASEMENT</em></a> software. Read more about hydrodynamic modeling with <em>BASEMENT</em> in the <span class="xref std std-ref">basement</span> chapter. The hydraulic rasters were produced with the <em>BASEMENT</em> developer’s <a class="reference external" href="http://people.ee.ethz.ch/~basement/baseweb/download/tutorials/Flaz_2d_v3.zip">example data from the <em>Flaz River</em></a> in Switzerland (<a class="reference external" href="https://basement.ethz.ch/download/tutorials/tutorials3.html">read more on their website</a>).
 The water depth <code class="docutils literal notranslate"><span class="pre">water_depth.tif</span></code> and flow velocity <code class="docutils literal notranslate"><span class="pre">flow_velocity.tif</span></code> rasters are provided for this exercise in the folder <code class="docutils literal notranslate"><span class="pre">/basement/</span></code>.</p>
 </div>
-<div class="section" id="habitat-suitability-index-hsi-curves-folder-habitat-a-name-hsi-curves-a">
-<h3>Habitat Suitability Index <em>HSI</em> curves (folder: <strong>habitat</strong>) <a name="hsi-curves"></a><a class="headerlink" href="#habitat-suitability-index-hsi-curves-folder-habitat-a-name-hsi-curves-a" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">/habitat/</span></code> folder in the exercise repository contains <em>HSI</em> curves in the form of an <em>xlsx</em> workbook (<code class="docutils literal notranslate"><span class="pre">trout.xlsx</span></code>) and in the form of a <a class="reference external" href="../jupyter/pyxml.html#json"><em>JSON</em> file</a> (<code class="docutils literal notranslate"><span class="pre">trout.json</span></code>). Both files contain the same data for rainbow trout of a hypothetical cobble-bed river and this exercise only uses the <em>JSON</em> file (the workbook serves for visual verification only).</p>
+<div class="section" id="habitat-suitability-index-hsi-curves-folder-habitat">
+<span id="hsi-curves"></span><h3>Habitat Suitability Index HSI curves (folder: <strong>habitat</strong>)<a class="headerlink" href="#habitat-suitability-index-hsi-curves-folder-habitat" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">/habitat/</span></code> folder in the exercise repository contains <span class="math notranslate nohighlight">\(HSI\)</span> curves in the form of an <em>xlsx</em> workbook (<code class="docutils literal notranslate"><span class="pre">trout.xlsx</span></code>) and in the form of a <a class="reference internal" href="../jupyter/xml.html#json"><span class="std std-ref">JSON</span></a> file (<code class="docutils literal notranslate"><span class="pre">trout.json</span></code>). Both files contain the same data for rainbow trout of a hypothetical cobble-bed river and this exercise only uses the <em>JSON</em> file (the workbook serves for visual verification only).</p>
 </div>
 <div class="section" id="code">
 <h3>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h3>
 <p><em><strong>GEO_UTILS (folder: geo_utils)</strong></em><br>
-A couple of <code class="docutils literal notranslate"><span class="pre">gdal</span></code>-based functions for processing rasters and shapefiles were introduced in the lecture. This exercise re-uses some of these functions, which are available in the geo-processing code repository specifically for this course.
-The name of this geoprocessing repository is <a class="reference external" href="https://github.com/hydro-informatics/geo-utils"><em>geo_utils</em></a>. Even though already provided in this exercise, make sure that the <em>geo_utils</em> repository is well implemented in the exercise directory (i.e., <em>geo_utils</em> scripts are stored in a folder tree like this: <code class="docutils literal notranslate"><span class="pre">Exercise-geco\geo_utils\</span></code>). The <code class="docutils literal notranslate"><span class="pre">\geo_utils\</span></code> folder corresponds to the <code class="docutils literal notranslate"><span class="pre">geo-utils\geo_utils\</span></code> directory when you clone the repository.</p>
+A couple of <code class="docutils literal notranslate"><span class="pre">gdal</span></code>-based functions for processing rasters and shapefiles were introduced in the lecture. This exercise re-uses some of these functions, which are available in the geo-processing code repository specifically for this ebook. The repository contains a functional block from <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a>.geotools (in the <code class="docutils literal notranslate"><span class="pre">geo_utils</span></code> folder) that enables to better understand and modify the behavior of <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a>.
+Even though already provided in this exercise, make sure that the <em>geo_utils</em> repository is well implemented in the exercise directory (i.e., <em>geo_utils</em> scripts are stored in a folder tree like this: <code class="docutils literal notranslate"><span class="pre">Exercise-geco\geo_utils\</span></code>). The <code class="docutils literal notranslate"><span class="pre">\geo_utils\</span></code> folder corresponds to the <code class="docutils literal notranslate"><span class="pre">geo-utils\geo_utils\</span></code> directory when you clone the repository.</p>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
 <p>Make sure that in the <code class="docutils literal notranslate"><span class="pre">\geo_utils\geoconfig.py</span></code> file, the <code class="docutils literal notranslate"><span class="pre">nan_value</span></code> is defined as 0.0 (<code class="docutils literal notranslate"><span class="pre">nan_value</span> <span class="pre">=</span> <span class="pre">0.0</span></code>).</p>
@@ -898,10 +825,10 @@ At this point in the course, it is assumed that students are familiar with objec
 <li><p><code class="docutils literal notranslate"><span class="pre">cache</span></code> is a wrapper for parent functions to enforce that intermediate geospatial datasets (e.g., the intermediate product of a sum of rasters) are stored in a temporary <em>cache</em> folder that is deleted after the script ran.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">check_cache</span></code> verifies if the cache folder defined in <code class="docutils literal notranslate"><span class="pre">config.py</span></code> already exists. The function is automatically called by the <code class="docutils literal notranslate"><span class="pre">cache</span></code> wrapper.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">create_random_string(length)</span></code> generates unique file names for temporary (cached) datasets, where <code class="docutils literal notranslate"><span class="pre">length</span></code> is an <em>integer</em> value that determines the number of characters of the random string to be created.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">interpolate_from_list(x_values,</span> <span class="pre">y_values,</span> <span class="pre">xi_values)</span></code> linearly interpolates <em>y<sub>i</sub></em> values from two sorted lists containing paired <em>x</em> and <em>y</em> values for a <em>list</em> of given <em>x<sub>i</sub></em> values (returns a <code class="docutils literal notranslate"><span class="pre">numpy.array</span></code> of the same length as <code class="docutils literal notranslate"><span class="pre">xi_values</span></code>). If one of the <em>x<sub>i</sub></em> values is beyond the value range of <code class="docutils literal notranslate"><span class="pre">x_values</span></code>, the function appends the <code class="docutils literal notranslate"><span class="pre">nan_value</span></code> defined in <code class="docutils literal notranslate"><span class="pre">config.py</span></code> to the results array.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">interpolate_y(x1,</span> <span class="pre">x2,</span> <span class="pre">y1,</span> <span class="pre">y2,</span> <span class="pre">xi)</span></code> is called by the <code class="docutils literal notranslate"><span class="pre">interpolate_from_list</span></code> function for paired lower and upper <code class="docutils literal notranslate"><span class="pre">x1</span></code>-<code class="docutils literal notranslate"><span class="pre">y1</span></code> and <code class="docutils literal notranslate"><span class="pre">x2</span></code>-<code class="docutils literal notranslate"><span class="pre">y2</span></code> <em>float</em>s of the <code class="docutils literal notranslate"><span class="pre">x_values</span></code> and <code class="docutils literal notranslate"><span class="pre">y_values</span></code> <em>list</em>s (returns a <em>float</em> number corresponding to the linearly interpolated <code class="docutils literal notranslate"><span class="pre">yi</span></code> value of the <code class="docutils literal notranslate"><span class="pre">xi</span></code>-<code class="docutils literal notranslate"><span class="pre">yi</span></code> pair between <code class="docutils literal notranslate"><span class="pre">x1</span></code>-<code class="docutils literal notranslate"><span class="pre">y1</span></code> and <code class="docutils literal notranslate"><span class="pre">x2</span></code>-<code class="docutils literal notranslate"><span class="pre">y2</span></code>). If <code class="docutils literal notranslate"><span class="pre">xi</span></code> is not numeric, or if the interpolation results in a <code class="docutils literal notranslate"><span class="pre">ZeroDivisionError</span></code>, the function returns the <code class="docutils literal notranslate"><span class="pre">nan_value</span></code> defined in <code class="docutils literal notranslate"><span class="pre">config.py</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">interpolate_from_list(x_values,</span> <span class="pre">y_values,</span> <span class="pre">xi_values)</span></code> linearly interpolates *y_{i}<span class="math notranslate nohighlight">\( values from two sorted lists containing paired *x* and *y* values for a {ref}`list` of given *x_{i}\)</span> values (returns a <code class="docutils literal notranslate"><span class="pre">numpy.array</span></code> of the same length as <code class="docutils literal notranslate"><span class="pre">xi_values</span></code>). If one of the *x_{i}$ values is beyond the value range of <code class="docutils literal notranslate"><span class="pre">x_values</span></code>, the function appends the <code class="docutils literal notranslate"><span class="pre">nan_value</span></code> defined in <code class="docutils literal notranslate"><span class="pre">config.py</span></code> to the results array.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">interpolate_y(x1,</span> <span class="pre">x2,</span> <span class="pre">y1,</span> <span class="pre">y2,</span> <span class="pre">xi)</span></code> is called by the <code class="docutils literal notranslate"><span class="pre">interpolate_from_list</span></code> function for paired lower and upper <code class="docutils literal notranslate"><span class="pre">x1</span></code>-<code class="docutils literal notranslate"><span class="pre">y1</span></code> and <code class="docutils literal notranslate"><span class="pre">x2</span></code>-<code class="docutils literal notranslate"><span class="pre">y2</span></code> <em>float</em>s of the <code class="docutils literal notranslate"><span class="pre">x_values</span></code> and <code class="docutils literal notranslate"><span class="pre">y_values</span></code> <a class="reference internal" href="../jupyter/pybase.html#list"><span class="std std-ref">List</span></a>s (returns a <em>float</em> number corresponding to the linearly interpolated <code class="docutils literal notranslate"><span class="pre">yi</span></code> value of the <code class="docutils literal notranslate"><span class="pre">xi</span></code>-<code class="docutils literal notranslate"><span class="pre">yi</span></code> pair between <code class="docutils literal notranslate"><span class="pre">x1</span></code>-<code class="docutils literal notranslate"><span class="pre">y1</span></code> and <code class="docutils literal notranslate"><span class="pre">x2</span></code>-<code class="docutils literal notranslate"><span class="pre">y2</span></code>). If <code class="docutils literal notranslate"><span class="pre">xi</span></code> is not numeric, or if the interpolation results in a <code class="docutils literal notranslate"><span class="pre">ZeroDivisionError</span></code>, the function returns the <code class="docutils literal notranslate"><span class="pre">nan_value</span></code> defined in <code class="docutils literal notranslate"><span class="pre">config.py</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">log_actions(fun)</span></code> wraps a function (<code class="docutils literal notranslate"><span class="pre">fun</span></code>), where actions should be written to a logfile. Logging is started with the <code class="docutils literal notranslate"><span class="pre">start_logging</span></code> function (see below) and logging is stopped with <code class="docutils literal notranslate"><span class="pre">logging.shutdown()</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">read_json</span></code> opens a <em>JSON</em> file and returns it as <em>Python</em> object. In this exercise, this function will be used to open the <code class="docutils literal notranslate"><span class="pre">/habitat/trout.json</span></code> file. The <em>HSI</em> values can then be assessed from the <em>JSON</em> object, for example:</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">read_json</span></code> opens a <em>JSON</em> file and returns it as <em>Python</em> object. In this exercise, this function will be used to open the <code class="docutils literal notranslate"><span class="pre">/habitat/trout.json</span></code> file. The <span class="math notranslate nohighlight">\(HSI\)</span> values can then be assessed from the <em>JSON</em> object, for example:</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">trout</span> <span class="o">=</span> <span class="n">read_json</span><span class="p">(</span><span class="s2">&quot;PATH/&quot;</span> <span class="o">+</span> <span class="s2">&quot;trout.json&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">trout</span><span class="p">[</span><span class="s2">&quot;velocity&quot;</span><span class="p">][</span><span class="s2">&quot;spawning&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;u&quot;</span><span class="p">])</span>
@@ -921,10 +848,10 @@ The two scripts <code class="docutils literal notranslate"><span class="pre">rea
 </div>
 </div>
 <div class="section" id="create-and-combine-hsi-rasters">
-<span id="py-raster-calculator"></span><h2>Create and combine <em>HSI</em> rasters<a class="headerlink" href="#create-and-combine-hsi-rasters" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="complete-magic-methods-of-the-raster-class-raster-py-a-name-raster-a">
-<h3>Complete magic methods of the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> class (<code class="docutils literal notranslate"><span class="pre">raster.py</span></code>)<a name="raster"></a><a class="headerlink" href="#complete-magic-methods-of-the-raster-class-raster-py-a-name-raster-a" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">raster.py</span></code> script imports the functions and libraries loaded in the <code class="docutils literal notranslate"><span class="pre">fun.py</span></code> script, and therefore, also the <code class="docutils literal notranslate"><span class="pre">config.py</span></code> script. For this reason, the <em>numpy</em> and <em>pandas</em> libraries are already available (<code class="docutils literal notranslate"><span class="pre">as</span></code> <code class="docutils literal notranslate"><span class="pre">np</span></code> and <code class="docutils literal notranslate"><span class="pre">pd</span></code>, respectively), and the <em>geo_utils</em> package is already imported as <code class="docutils literal notranslate"><span class="pre">geo</span></code> (<code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">geo_utils</span> <span class="pre">as</span> <span class="pre">geo</span></code> in <code class="docutils literal notranslate"><span class="pre">config.py</span></code>).</p>
+<span id="py-raster-calculator"></span><h2>Create and combine HSI rasters<a class="headerlink" href="#create-and-combine-hsi-rasters" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="complete-magic-methods-of-the-raster-class-raster-py">
+<span id="raster-class"></span><h3>Complete magic methods of the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> class (<code class="docutils literal notranslate"><span class="pre">raster.py</span></code>)<a class="headerlink" href="#complete-magic-methods-of-the-raster-class-raster-py" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">raster.py</span></code> script imports the functions and libraries loaded in the <code class="docutils literal notranslate"><span class="pre">fun.py</span></code> script, and therefore, also the <code class="docutils literal notranslate"><span class="pre">config.py</span></code> script. For this reason, the <a class="reference internal" href="../jupyter/pynum.html#numpy"><span class="std std-ref">NumPy</span></a> and <a class="reference internal" href="../jupyter/pynum.html#pandas"><span class="std std-ref">Pandas</span></a> libraries are already available (<code class="docutils literal notranslate"><span class="pre">as</span></code> <code class="docutils literal notranslate"><span class="pre">np</span></code> and <code class="docutils literal notranslate"><span class="pre">pd</span></code>, respectively), and the <em>geo_utils</em> package is already imported as <code class="docutils literal notranslate"><span class="pre">geo</span></code> (<code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">geo_utils</span> <span class="pre">as</span> <span class="pre">geo</span></code> in <code class="docutils literal notranslate"><span class="pre">config.py</span></code>).</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">Raster</span></code> class will load any <em>GeoTIFF</em> file name as a geo-referenced array object that can be used with mathematical operators. First, we will complement the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method by a <code class="docutils literal notranslate"><span class="pre">Raster.name</span></code> (extract from the <code class="docutils literal notranslate"><span class="pre">file_name</span></code> argument), as well as georeferences and array datasets:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># __init__(...) of Raster class in raster.py</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">file_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
@@ -944,7 +871,7 @@ Next, load the <code class="docutils literal notranslate"><span class="pre">osge
 </div>
 <p>That is it. The <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method of the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> class is complete.</p>
 <hr class="docutils" />
-<p>To enable mathematical operations between multiple instances of the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> class, implement <a class="reference external" href="../jupyter/pyclasses.html#operator-binary-and-assignment-methods">magic methods (recall the lecture notes)</a> that tell the class what to do when two <code class="docutils literal notranslate"><span class="pre">Raster</span></code> instances are for example added (<code class="docutils literal notranslate"><span class="pre">+</span></code> sign), multiplied (<code class="docutils literal notranslate"><span class="pre">*</span></code> sign), or subtracted (<code class="docutils literal notranslate"><span class="pre">-</span></code> sign). For instance, implementing the magic methods <code class="docutils literal notranslate"><span class="pre">__truediv__</span></code> (for using the <code class="docutils literal notranslate"><span class="pre">/</span></code> operator), <code class="docutils literal notranslate"><span class="pre">__mul__</span></code> (for using the <code class="docutils literal notranslate"><span class="pre">*</span></code> operator), and <code class="docutils literal notranslate"><span class="pre">__pow__</span></code> (for using the <code class="docutils literal notranslate"><span class="pre">**</span></code> operator) will enable the usage of <code class="docutils literal notranslate"><span class="pre">Raster</span></code> instances like this:</p>
+<p>To enable mathematical operations between multiple instances of the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> class, implement <a class="reference internal" href="../jupyter/classes.html#magic"><span class="std std-ref">Overloading and Magic Methods</span></a> that tell the class what to do when two <code class="docutils literal notranslate"><span class="pre">Raster</span></code> instances are for example added (<code class="docutils literal notranslate"><span class="pre">+</span></code> sign), multiplied (<code class="docutils literal notranslate"><span class="pre">*</span></code> sign), or subtracted (<code class="docutils literal notranslate"><span class="pre">-</span></code> sign). For instance, implementing the magic methods <code class="docutils literal notranslate"><span class="pre">__truediv__</span></code> (for using the <code class="docutils literal notranslate"><span class="pre">/</span></code> operator), <code class="docutils literal notranslate"><span class="pre">__mul__</span></code> (for using the <code class="docutils literal notranslate"><span class="pre">*</span></code> operator), and <code class="docutils literal notranslate"><span class="pre">__pow__</span></code> (for using the <code class="docutils literal notranslate"><span class="pre">**</span></code> operator) will enable the usage of <code class="docutils literal notranslate"><span class="pre">Raster</span></code> instances like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># example for Raster instances, when operators are defined through magic methods</span>
 
 <span class="c1"># load GeoTIFF rasters from file directory</span>
@@ -973,11 +900,11 @@ Next, load the <code class="docutils literal notranslate"><span class="pre">osge
 <li><p>The input argument <code class="docutils literal notranslate"><span class="pre">constant_or_raster</span></code> can be another <code class="docutils literal notranslate"><span class="pre">Raster</span></code> instance that has an <code class="docutils literal notranslate"><span class="pre">array</span></code> attribute or a numeric constant (e.g., 9.81).</p></li>
 <li><p>The method tries to invoke the array attribute of <code class="docutils literal notranslate"><span class="pre">constant_or_raster</span></code>.</p>
 <ul>
-<li><p>If <code class="docutils literal notranslate"><span class="pre">constant_or_raster</span></code> is a raster object, then invoking <code class="docutils literal notranslate"><span class="pre">contant_or_raster.array</span></code> is successful. In this case <code class="docutils literal notranslate"><span class="pre">self.array</span></code> is overwritten with the element-wise division of the array by <code class="docutils literal notranslate"><span class="pre">contant_or_raster.array</span></code>. The element-wise division builds on <em>numpy</em>’s built-in function <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.divide.html"><em>np.divide</em></a>, which is a computationally efficient wrapper of C/C++ code (much faster than a <em>Python</em> loop over array elements).</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">constant_or_raster</span></code> is a raster object, then invoking <code class="docutils literal notranslate"><span class="pre">contant_or_raster.array</span></code> is successful. In this case <code class="docutils literal notranslate"><span class="pre">self.array</span></code> is overwritten with the element-wise division of the array by <code class="docutils literal notranslate"><span class="pre">contant_or_raster.array</span></code>. The element-wise division builds on <a class="reference internal" href="../jupyter/pynum.html#numpy"><span class="std std-ref">NumPy</span></a>s built-in function <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.divide.html"><em>np.divide</em></a>, which is a computationally efficient wrapper of C/C++ code (much faster than a <em>Python</em> loop over array elements).</p></li>
 <li><p>If <code class="docutils literal notranslate"><span class="pre">constant_or_raster</span></code> is a numeric value, then invoking <code class="docutils literal notranslate"><span class="pre">contant_or_raster.array</span></code> results in an <code class="docutils literal notranslate"><span class="pre">AttributeError</span></code> and the <code class="docutils literal notranslate"><span class="pre">__truediv__</span></code> method falls in the <code class="docutils literal notranslate"><span class="pre">except</span> <span class="pre">AttributeError</span></code> statement, where <code class="docutils literal notranslate"><span class="pre">self.array</span></code> is simply divided by <code class="docutils literal notranslate"><span class="pre">constant_or_raster</span></code>.</p></li>
 </ul>
 </li>
-<li><p>The method returns the result of the pseudo private method <code class="docutils literal notranslate"><span class="pre">self._make_raster(&quot;div&quot;)</span></code> (<a class="reference external" href="../jupyter/pystyle.html#name-conventions">recall <em>PEP 8</em> code style conventions on <code class="docutils literal notranslate"><span class="pre">_single_leading_underscore</span></code> methods</a>, which corresponds to a new <code class="docutils literal notranslate"><span class="pre">Raster</span></code> instance of the actual <code class="docutils literal notranslate"><span class="pre">Raster</span></code> instance divided by <code class="docutils literal notranslate"><span class="pre">constant_or_raster</span></code>. The new <code class="docutils literal notranslate"><span class="pre">Raster</span></code> instance is a temporary <em>GeoTIFF</em>  file in the <em>cache</em> folder (<a class="reference external" href="#funs">recall the cache function</a>). This is how the pseudo-private method <code class="docutils literal notranslate"><span class="pre">_make_raster(self,</span> <span class="pre">file_marker)</span></code> looks like:<a name="make-raster"></a></p></li>
+<li><p>The method returns the result of the pseudo private method <code class="docutils literal notranslate"><span class="pre">self._make_raster(&quot;div&quot;)</span></code> ([recall <em>PEP 8</em> <a class="reference internal" href="../jupyter/pystyle.html#chpt-style"><span class="std std-ref">Code Style and Conventions</span></a>, which corresponds to a new <code class="docutils literal notranslate"><span class="pre">Raster</span></code> instance of the actual <code class="docutils literal notranslate"><span class="pre">Raster</span></code> instance divided by <code class="docutils literal notranslate"><span class="pre">constant_or_raster</span></code>. The new <code class="docutils literal notranslate"><span class="pre">Raster</span></code> instance is a temporary <em>GeoTIFF</em>  file in the <em>cache</em> folder (<a class="reference external" href="#funs">recall the cache function</a>). This is how the pseudo-private method <code class="docutils literal notranslate"><span class="pre">_make_raster(self,</span> <span class="pre">file_marker)</span></code> looks like:<a name="make-raster"></a></p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">_make_raster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_marker</span><span class="p">):</span>
         <span class="n">f_ending</span> <span class="o">=</span> <span class="s2">&quot;__</span><span class="si">{0}{1}</span><span class="s2">__.tif&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file_marker</span><span class="p">,</span> <span class="n">create_random_string</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
@@ -992,10 +919,8 @@ Next, load the <code class="docutils literal notranslate"><span class="pre">osge
 <li><p>From <code class="docutils literal notranslate"><span class="pre">geo_utils</span></code>, the <a class="reference external" href="geopy/geo-raster.html#create"><code class="docutils literal notranslate"><span class="pre">create_raster</span></code></a> function is used to actually write the temporary <em>GeoTIFF</em> to the <code class="docutils literal notranslate"><span class="pre">__cache__</span></code> folder using the original raster’s spatial reference system.</p></li>
 <li><p>The method <code class="docutils literal notranslate"><span class="pre">return</span></code>s a new <code class="docutils literal notranslate"><span class="pre">Raster</span></code> instance of the temporary, cached <em>GeoTIFF</em> file.</p></li>
 </ul>
-<hr class="docutils" />
-<blockquote>
-<div><p><em><strong>Digression: If you think the <code class="docutils literal notranslate"><span class="pre">_make_raster</span></code> method is confusing …</strong></em></p>
-</div></blockquote>
+<p>````{admonition} Digression: If you think the <code class="docutils literal notranslate"><span class="pre">_make_raster</span></code> method is confusing …
+:class: tip, dropdown</p>
 <p>Then you have a point. The above-described approach implements the <code class="docutils literal notranslate"><span class="pre">_make_raster</span></code> method to reuse the temporary <em>GeoTIFF</em>s later with both constants (<em>float</em>) and arrays, but there is a more elegant way to return a new <code class="docutils literal notranslate"><span class="pre">Raster</span></code> instance. However, returning a new instance of the same class requires that the input argument must be an instance of the class itself (i.e., <code class="docutils literal notranslate"><span class="pre">Raster</span></code>) and not a numeric variable. The alternative solution for returning a <code class="docutils literal notranslate"><span class="pre">Raster</span></code> instance starts with a different implementation of the magic method (e.g., <code class="docutils literal notranslate"><span class="pre">__truediv__</span></code>) and requires to import <em>Python4</em>-style <code class="docutils literal notranslate"><span class="pre">annotations</span></code>. Therefore, the first line of the script must include (only works with <em>Python 3.7</em> and higher) the following import:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 </pre></div>
@@ -1010,438 +935,468 @@ Next, load the <code class="docutils literal notranslate"><span class="pre">osge
 </pre></div>
 </div>
 <p>In this case, the <code class="docutils literal notranslate"><span class="pre">_make_raster</span></code> method is obsolete. Read more about returning instances of the same class on <a class="reference external" href="https://stackoverflow.com/questions/33533148/how-do-i-specify-that-the-return-type-of-a-method-is-the-same-as-the-class-itsel">stack overflow</a>.</p>
-<hr class="docutils" />
-<p><em><strong>Back to the exercise using the <code class="docutils literal notranslate"><span class="pre">_make_raster</span></code> method.</strong></em> Add the following magic methods to the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> class (function placeholders are already present in the  <code class="docutils literal notranslate"><span class="pre">raster.py</span></code> template):</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">__add__</span></code> (<code class="docutils literal notranslate"><span class="pre">+</span></code> operator):</p></li>
-</ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="k">try</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">array</span> <span class="o">+=</span> <span class="n">constant_or_raster</span><span class="o">.</span><span class="n">array</span>
-        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">array</span> <span class="o">+=</span> <span class="n">constant_or_raster</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_raster</span><span class="p">(</span><span class="s2">&quot;add&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+When using the `_make_raster` method, add the following magic methods to the `Raster` class (function placeholders are already present in the `raster.py` template):
+
+* `__add__` (`+` operator):
+```python
+        try:
+            self.array += constant_or_raster.array
+        except AttributeError:
+            self.array += constant_or_raster
+        return self._make_raster(&quot;add&quot;)
+```
+
+* `__mul__` (`*` operator):
+```python
+        try:
+            self.array = np.multiply(self.array, constant_or_raster.array)
+        except AttributeError:
+            self.array *= constant_or_raster
+        return self._make_raster(&quot;mul&quot;)
+```
+
+* `__pow__` (`**` operator):
+```python
+        try:
+            self.array = np.power(self.array, constant_or_raster.array)
+        except AttributeError:
+            self.array **= constant_or_raster
+        return self._make_raster(&quot;pow&quot;)
+```
+
+* `__sub__` (`-` operator):
+```python
+        try:
+            self.array -= constant_or_raster.array
+        except AttributeError:
+            self.array -= constant_or_raster
+        return self._make_raster(&quot;sub&quot;)
+```
+
+The last item to complete in the `Raster` class is the built-in `save` method that receives a `file_name` (*string*) argument defining the directory and save-as name of the `Raster` instance:
+
+```python
+        save_status = geo.create_raster(file_name, self.array, epsg=self.epsg, nan_val=0.0, geo_info=self.geo_transformation)
+        return save_status
+```
+Why do we need the `save_status` variable? First, it states if saving the raster was successful (`save_status=0`), and second, this information could be used to delete the raster from the `__cache__` folder and flush the memory (feel free to do so for speeding up the code).
+
+
+
+### Write HSI and cHSI raster creation script
+The provided `create_hsi_rasters.py` script already contains required package imports, an `if __name__ == &#39;__main__&#39;` stand-alone statement as well as the void `main`, `get_hsi_curve`, `get_hsi_raster`, and `combine_hsi_rasters` functions:&lt;a name=&quot;chsi-template&quot;&gt;&lt;/a&gt;
+
+```python
+# create_hsi_rasters.py
+from fun import *
+from raster_hsi import HSIRaster, Raster
+from time import perf_counter
+
+def combine_hsi_rasters(raster_list, method=&quot;geometric_mean&quot;):
+    &quot;&quot;&quot;...
+    &quot;&quot;&quot;
+    pass
+
+
+def get_hsi_curve(json_file, life_stage, parameters):
+    &quot;&quot;&quot;...
+    &quot;&quot;&quot;
+    pass
+
+
+def get_hsi_raster(tif_dir, hsi_curve):
+    &quot;&quot;&quot;...
+    &quot;&quot;&quot;
+    pass
+
+
+def main():
+    pass
+
+
+if __name__ == &#39;__main__&#39;:
+    # define global variables for the main() function
+    parameters = [&quot;velocity&quot;, &quot;depth&quot;]
+    life_stage = &quot;juvenile&quot;
+    fish_file = os.path.abspath(&quot;&quot;) + &quot;\\habitat\\trout.json&quot;
+    tifs = {&quot;velocity&quot;: os.path.abspath(&quot;&quot;) + &quot;\\basement\\flow_velocity.tif&quot;,
+            &quot;depth&quot;: os.path.abspath(&quot;&quot;) + &quot;\\basement\\water_depth.tif&quot;}
+    hsi_output_dir = os.path.abspath(&quot;&quot;) + &quot;\\habitat\\&quot;
+
+    # run code and evaluate performance
+    t0 = perf_counter()
+    main()
+    t1 = perf_counter()
+    print(&quot;Time elapsed: &quot; + str(t1 - t0)
+
+```
+
+The `if __name__ == &#39;__main__&#39;` statement contains a time counter (`perf_counter`) that prompts how long running the script takes (typically between 3 to 6 seconds). Make sure that
+
+* the `parameters` list contains `&quot;velocity&quot;` and `&quot;depth&quot;` (as per the `par_dict` in the `config.py` script),
+* the file paths are defined correctly, and
+* a life stage is defined (i.e., either `&quot;fry&quot;`, `&quot;juvenile&quot;`, `&quot;adult&quot;`, or `&quot;spawning&quot;` as per the */habitat/fish.xlsx*  workbook).
+
+The following paragraphs show step by step how to load the $HSI$ curves from the {ref}`json` file (`get_hsi_curve`), apply them to the `flow_velocity` and `water_depth` rasters (`get_hsi_raster`), and combine the resulting $HSI$ rasters into $cHSI$ rasters (`combine_hsi_rasters`).
+
+The `get_hsi_curve` function will load the $HSI$ curve from the {ref}`json` file (*/habitat/trout.json*) in a dictionary for the two parameters `&quot;velocity&quot;` and `&quot;depth&quot;`. Thus, the goal is to create a `curve_data` dictionary that contains one {ref}`pandas` `DataFrame` object for all parameters (i.e., velocity and depth). For example, `curve_data[&quot;velocity&quot;][&quot;u&quot;]` will be a {ref}`pandas` `Series` of velocity entries (in m/s) that corresponds to `curve_data[&quot;velocity&quot;][&quot;HSI&quot;]`, which is a {ref}`pandas` `Series` of $HSI$ values. Similarly, `curve_data[&quot;depth&quot;][&quot;h&quot;]` is a {ref}`pandas` `Series` of depth entries (in meters) that corresponds to `curve_data[&quot;depth&quot;][&quot;HSI&quot;]`, which is a {ref}`pandas` `Series` of $HSI$ values (corresponds to the curves shown in the [$HSI$ graphs](#hsi-image) above). To extract the desired information from the *JSON* file, `get_hsi_curve` takes three arguments (`json_file`, `life_stage`, and `parameters`) in order to:
+
+* Get the information stored in the *JSON* file with the `read_json` function ([see above](#funs)).
+* Instantiate a void `curve_data` {ref}`dict` that will contain the {ref}`pandas` `DataFrame`s for `&quot;velocity&quot;` and `&quot;depth&quot;`.
+* Run a loop over the (two) parameters (`&quot;velocity&quot;` and `&quot;depth&quot;`), in which it:
+    - Creates a void `par_pairs` {ref}`list` for storing pairs of parameter (`par`) - $HSI$ values as nested lists.
+    - Iterates through the length of provided curve data, where valid data pairs (e.g., `[u_value, HSI_value]`) are appended to the `par_pairs` {ref}`list`. This iteration is what actually creates the nested {ref}`list`.
+    - Converts the final `par_pairs` list to a {ref}`pandas` `DataFrame` that it adds to the `curve_data` {ref}`dict`.
+* `return` the `curve_data` {ref}`dict` with its {ref}`pandas` `DataFrame`s.
+
+```python
+# create_hsi_rasters.py
+def get_hsi_curve(json_file, life_stage, parameters):
+    # read the JSON file with fun.read_json
+    file_info = read_json(json_file)
+    # instantiate output dictionary
+    curve_data = {}
+    # iterate through parameter list (e.g., [&quot;velocity&quot;, &quot;depth&quot;])
+    for par in parameters:
+        # create a void list to store pairs of parameter-HSI values as nested lists
+        par_pairs = []
+        # iterate through the length of parameter-HSI curves in the JSON file
+        for i in range(0, file_info[par][life_stage].__len__():
+            # if the parameter is not empty (i.e., __len__ &gt; 0), append the parameter-HSI (e.g., [u_value, HSI_value]) pair as nested list
+            if str(file_info[par][life_stage][i][&quot;HSI&quot;]).__len__() &gt; 0:
+                try:
+                    # only append data pairs if both parameter and HSI are numeric (floats)
+                    par_pairs.append([float(file_info[par][life_stage][i][par_dict[par]]),
+                                      float(file_info[par][life_stage][i][&quot;HSI&quot;])])
+                except ValueError:
+                    logging.warning(&quot;Invalid HSI curve entry for {0} in parameter {1}.&quot;.format(life_stage, par)
+        # add the nested parameter pair list as pandas DataFrame to the curve_data dictionary
+        curve_data.update({par: pd.DataFrame(par_pairs, columns=[par_dict[par], &quot;HSI&quot;])})
+    return curve_data
+```
+
+In the `main` function, call `get_hsi_curves` to get the $HSI$ curves as a {ref}`dict`. In addition, implement the `cache` and the `log_actions` wrappers  ([recall the descriptions of provided functions](#funs) for the `main` function:
+
+```python
+# create_hsi_rasters.py
+
+...
+
+@log_actions
+@cache
+def main():
+    # get HSI curves as pandas DataFrames nested in a dictionary
+    hsi_curve = get_hsi_curve(fish_file, life_stage=life_stage, parameters=parameters)
+
+...
+```
+
+With the provided `HSIRaster` (`raster_hsi.py`) class, the $HSI$ rasters can be conveniently created in the `get_hsi_raster` function. Before using the `HSIRaster` class, make sure to understand how it works. The `HSIRaster` class inherits from the `Raster` class and initiates its parent class in its `__init__` method through `Raster.__init__(self, file_name=file_name, band=band, raster_array=raster_array, geo_info=geo_info)`. Then, the class calls its `make_hsi` method, which takes an $HSI$ curve (nested {ref}`list`) of two equal {ref}`list` pairs ({ref}`list` of parameters and {ref}`list` of $HSI$ values) as argument. The `make_hsi` method:
+
+* Extracts parameter values (e.g., depth or velocity) from the first element of the nested `hsi_curves` {ref}`list`, and $HSI$ values from the second element of the nested `hsi_curves` {ref}`list`.
+* Uses {ref}`numpy`s built-in `np.nditer` function, which iterates through {ref}`numpy` arrays with high computational efficiency (read more about [`nditer`](https://numpy.org/doc/stable/reference/generated/numpy.nditer.html)).
+    - The `nditer` loop passes the `par_values` as `x_values` {ref}`list` argument and the `hsi_values` as `y_values` {ref}`list` arguments to the `interpolate_from_list` function ([recall the function descriptions above](#funs)).
+    - The array values (i.e., flow velocity or water depth) correspond to the `xi_values` {ref}`list` argument of the `interpolate_from_list` function.
+    - The `interpolate_from_list` function then identifies for each element of the `xi_values` {ref}`list` the closest elements (*x_{i}$ values) in the `x_values` {ref}`list` and the corresponding positions in the `y_values` {ref}`list`.
+    - The `interpolate_from_list` function passes the identified values to the `interpolate_y` function, which then linearly interpolates the corresponding `yi` value (i.e., an $HSI$ value).
+    - Thus, the flow velocity or water depths in `self.array` are row-wise (row-by-row) replaced by $HSI$ values.
+* `return`s a `Raster` instance using the pseudo-private `_make_raster` method ([recall its contents](#make-raster)).
+
+```python
+# raster_hsi.py
+from raster import *
+
+class HSIRaster(Raster):
+    def __init__(self, file_name, hsi_curve, band=1, raster_array=None, geo_info=False):
+        Raster.__init__(self, file_name=file_name, band=band, raster_array=raster_array, geo_info=geo_info)
+        self.make_hsi(hsi_curve)
+
+    def make_hsi(self, hsi_curve):
+        par_values = hsi_curve[0]
+        hsi_values = hsi_curve[1]
+        try:
+            with np.nditer(self.array, flags=[&quot;external_loop&quot;], op_flags=[&quot;readwrite&quot;]) as it:
+                for x in it:
+                    x[...] = interpolate_from_list(par_values, hsi_values, x)
+        except AttributeError:
+            print(&quot;WARNING: np.array is one-dimensional.&quot;)
+        return self._make_raster(&quot;hsi&quot;)
+```
+
+Modify the `get_hsi_rasters` function to directly return a `HSIRaster` object:
+
+```python
+# create_hsi_rasters.py
+
+...
+
+def get_hsi_raster(tif_dir, hsi_curve):
+    return HSIRaster(tif_dir, hsi_curve)
+...
+
+```
+
+The `get_hsi_raster` function requires two arguments, which it must receive from the `main` function. For this reason, iterate over the `parameters` {ref}`list` in the `main` function and extract the corresponding raster directories from the `tifs` {ref}`dict` (recall the variable definition in the [standalone statement](#chsi-template)). In addition, save the `Raster` objects returned by the `get_hsi_raster` function in another {ref}`dict` (`eco_rasters`) to combine them in the next step into a $cHSI$ raster.
+
+```python
+# create_hsi_rasters.py
+
+...
+
+@log_actions
+@cache
+def main():
+    # get HSI curves as pandas DataFrames nested in a dictionary
+    hsi_curve = get_hsi_curve(fish_file, life_stage=life_stage, parameters=parameters)
+
+        # create HSI rasters for all parameters considered and store the Raster objects in a dictionary
+    eco_rasters = {}
+    for par in parameters:
+        hsi_par_curve = [list(hsi_curve[par][par_dict[par]]),
+                         list(hsi_curve[par][&quot;HSI&quot;])]
+        eco_rasters.update({par: get_hsi_raster(tif_dir=tifs[par], hsi_curve=hsi_par_curve)})
+        eco_rasters[par].save(hsi_output_dir + &quot;hsi_%s.tif&quot; % par)
+...
+```
+
+Of course, one can also loop over the parameters {ref}`list` directly in the `get_hsi_raster` function.
+
+```{admonition} Test if the code works
+:class: tip
+This is a good moment to test if the code works. Run `create_hsi_rasters.py` and verify that the two *GeoTIFF* files (*habitat/hsi_velocity.tif* and */habitat/hsi_depth.tif*) are created correctly. *QGIS* visualizes the *GeoTIFF*-products and the activated *Identify Features* button in *QGIS* enables to check if the linearly interpolated $HSI$ values agree with the $HSI$ curves in the provided workbook (*/habitat/trout.xlsx*). Thus, load both *GeoTIFF* pairs in *QGIS*: */habitat/hsi_velocity.tif* + */basement/flow_velocity.tif* and */habitat/hsi_depth.tif*  + */basement/water_depth.tif*.
+```
+
+Next, we come to the reason why we had to define magic methods for the `Raster` class: combine the $HSI$ rasters using both combination formulae presented above (recall the [product and geometric mean](#combine-methods) formulae), where `&quot;geometric_mean&quot;` should be used by default. The `combine_hsi_rasters` function accepts two arguments (a {ref}`list` of `Raster` objects corresponding to $HSI$ rasters and the `method` to use as *string*).
+
+If the method corresponds to the default value `&quot;geometric_mean&quot;`, then the `power` to be applied to the product of the `Raster` {ref}`list` is calculated from the *n*th root, where *n* corresponds to the number of `Raster` objects in the `raster_list`. Otherwise (e.g., `method=&quot;product&quot;`), the `power` is exactly 1.0.
+
+The `combine_hsi_rasters` function initially creates an empty $cHSI$ `Raster` in the `cache_folder`, with each cell having the value `1.0` (filled through `np.ones`). In a loop over the `Raster` elements of the `raster_list`, the function multiplies each $HSI$ raster with the $cHSI$ raster.
+
+Finally, the function returns the product of all $HSI$ rasters to the power of the previously determined `power` value.
+
+
+```python
+# create_hsi_rasters.py
+def combine_hsi_rasters(raster_list, method=&quot;geometric_mean&quot;):
+    if method is &quot;geometric_mean&quot;:
+        power = 1.0 / float(raster_list.__len__()
+    else:
+        # supposedly method is &quot;product&quot;
+        power = 1.0
+
+    chsi_raster = Raster(cache_folder + &quot;chsi_start.tif&quot;,
+                         raster_array=np.ones(raster_list[0].array.shape),
+                         epsg=raster_list[0].epsg,
+                         geo_info=raster_list[0].geo_transformation)
+    for ras in raster_list:
+        chsi_raster = chsi_raster * ras
+
+    return chsi_raster ** power
+```
+
+To finish the `create_hsi_rasters.py` script, implement the call to the `combine_hsi_rasters` function in the `main` function and save the result as $cHSI$ *GeoTIFF* raster in the `/habitat/` folder:
+
+```python
+# create_hsi_rasters.py
+
+...
+
+@log_actions
+@cache
+def main():
+    ...
+
+    for par in parameters:
+        hsi_par_curve = [list(hsi_curve[par][par_dict[par]]),
+                         list(hsi_curve[par][&quot;HSI&quot;])]
+        eco_rasters.update({par: get_hsi_raster(tif_dir=tifs[par], hsi_curve=hsi_par_curve)})
+        eco_rasters[par].save(hsi_output_dir + &quot;hsi_%s.tif&quot; % par)
+
+    # get and save chsi raster
+    chsi_raster = combine_hsi_rasters(raster_list=list(eco_rasters.values(),
+                                      method=&quot;geometric_mean&quot;)
+    chsi_raster.save(hsi_output_dir + &quot;chsi.tif&quot;)
+...
+```
+
+### Run the $HSI$ and $cHSI$ raster creation code
+
+A successful run of the script `create_hsi_rasters.py` should look like this (in *PyCharm*):
+
+![run-chsi](https://github.com/Ecohydraulics/Exercise-geco/raw/master/graphs/run_create_chsi_rasters.png)&lt;br&gt;
+
+Plotted in *QGIS*, the $cHSI$ *GeoTIFF* raster should look like this:
+
+![chsi-results](https://github.com/Ecohydraulics/Exercise-geco/raw/master/graphs/ex-chsi.png)&lt;br&gt;
+*The cHSI raster plotted in QGIS, where poor physical habitat quality (cHSI close to 0.0) is colored in red and high physical habitat quality (cHSI close to 1.0) is colored in green.*
+
+### Result interpretation
+The presentation of the $cHSI$ raster shows that preferred habitat areas for juvenile trout exist only close to the banks. Also, numerical artifacts of the triangular mesh used by *BASEMENT* are visible. Therefore, the question arises whether the calculated flow velocities and water depths, and in consequence also the $cHSI$ values, close to the banks can be considered representative.
+
+## Calculate the usable habitat area
+
+### Write the code
+The $cHSI$ rasters enable the calculation of the available usable habitat area. The previous section featured examples using the fish species *trout* and its *juvenile* life stage, for which we will determine here the usable habitat area $UHA$ (in m$^2$) using a $cHSI$ threshold value (rather than the pixel area weighting approach). So we follow the [threshold formula described above](#uha-methods), using a threshold value of $cHSI_{crit}$ = 0.4. Thus, every pixel that has a $cHSI$ value of 0.4 or greater counts as usable habitat area.
+
+From a technical point of view, this part of the exercise is about converting a raster into a polygon shapefile as well as accessing and modifying the *Attribute Table* of the shapefile.
+
+Similar to the creation of the $cHSI$ raster, there is a template script available for this part of the exercise, called `calculate_habitat_area.py`, which contains package and module imports, an `if __name__ == &#39;__main__&#39;` stand-alone statement, as well as the void `main` and `calculate_habitat_area` functions. The template script looks like this:&lt;a name=&quot;uha-template&quot;&gt;&lt;/a&gt;
+
+```python
+# this is calculate_habitat_area.py (template)
+from fun import *
+from raster import Raster
+
+
+def calculate_habitat_area(layer, epsg):
+    pass
+
+
+def main():
+    pass
+
+
+if __name__ == &#39;__main__&#39;:
+    chsi_raster_name = os.path.abspath(&quot;&quot;) + &quot;\\habitat\\chsi.tif&quot;
+    chsi_threshold = 0.4
+
+    main()
+```
+
+In the `if __name__ == &#39;__main__&#39;` statement, make sure that the global variable `chsi_raster_name` corresponds to the directory of the $cHSI$ raster created in the previous section. The other global variable (`chsi_threshold`) corresponds to the $cHSI_{crit}$ value of 0.4 that we will use with the [threshold formula](#uha-methods).
+
+In the `main` function, start with loading the $cHSI$ raster (`chsi_raster`) as a [`Raster` object](#raster-class). Then, access the {ref}`numpy` array of the $cHSI$ raster and compare it with `chsi_threshold` using {ref}`numpy`s built-in [*greater_equal*](https://numpy.org/doc/stable/reference/generated/numpy.greater_equal.html) function. `np.greater_equal` takes an array as first argument and a second argument, which is the condition that can be a numeric variable or another {ref}`numpy` array. Then, `np.greater_equal` checks if the elements of the first array are greater than or equal to the second argument. In the case of the second argument being an array, this is an element-wise $\geq$ comparison. The result of `np.greater_equal` is a {ref}`bool` array (`True` where the greater-or-equal condition is fulfilled and `False` otherwise). However, to create an `osgeo.gdal.Dataset` object from the result of `np.greater_equal`, we need a numeric array. For this reason, multiply the result of `np.greater_equal` by 1.0 and assign it as a new {ref}`numpy` array of zeros (`False`) and ones (`True`) to a variable named `habitat_pixels` (see the code block below).
+
+With the `habitat_pixels` array and the georeference of `chsi_raster`, create a new *integer* *GeoTIFF* raster with the *create_raster* function of [flusstools.geotools](https://flusstools.readthedocs.io/en/latest/geotools.html#module-flusstools.geotools.raster_mgmt) (here: `geo.create_raster`). In the following code block the new raster is saved in the */habitat/* folder of the exercise as `habitat-pixels.tif`.
+
+```python
+# calculate_habitat_area.py
+...
+
+def main():
+    # open the chsi raster
+    chsi_raster = Raster(chsi_ras_name)
+    # extract pixels where the physical habitat quality is higher than the user threshold value
+    habitat_pixels = np.greater_equal(chsi_raster.array, chsi_threshold_value) * 1
+    # write the habitat pixels to a binary array (0 -&gt; no habitat, 1 -&gt; usable habitat)
+    geo.create_raster(os.path.abspath(&quot;&quot;) + &quot;\\habitat\\habitat-pixels.tif&quot;,
+                      raster_array=habitat_pixels,
+                      epsg=chsi_raster.epsg,
+                      geo_info=chsi_raster.geo_transformation)
+...
+```
+
+In the next step, convert the habitat pixel raster into a polygon shapefile and save it in the */habitat/* folder as `habitat-area.shp`. The conversion of a raster into a polygon shapefile requires that the raster contains only *integer* values, which is the case in the habitat pixel raster (only zeros and ones - [recall the lecture notes](geopy/geo-convert.html#raster2polygon)). With the [*raster2polygon* function of *geo_utils*](https://github.com/hydro-informatics/geo-utils#convert-raster-to-polygon-shapefile), create the new polygon shapefile, specify *habitat-pixels.tif* as `raster_file_name` to be converted, and `/habitat/habitat-area.shp` as output file name.
+`geo.raster2polygon` returns an `osgeo.ogr.DataSource` object and we can pass its layer including the information of the *EPSG* authority code (from `chsi_raster`) directly to the not-yet-written `calculate_habitat_area` function:
+
+```python
+# calculate_habitat_area.py
+...
+
+def main():
+    ... (create habitat pixels raster)
+
+    # convert the raster with usable pixels to polygon (must be an integer raster!)
+    tar_shp_file_name = os.path.abspath(&quot;&quot;) + &quot;\\habitat\\habitat-area.shp&quot;
+    habitat_polygons = geo.raster2polygon(os.path.abspath(&quot;&quot;) + &quot;\\habitat\\habitat-pixels.tif&quot;,
+                                          tar_shp_file_name)
+
+    # calculate the habitat area (will be written to the attribute table)
+    calculate_habitat_area(habitat_polygons.GetLayer(), chsi_raster.epsg)
+...
+```
+
+In order for the `calculate_habitat_area` function to produce what its name promises, we need to populate this function as well. For this purpose, use the `epsg` *integer* argument to identify the unit system of the shapefile.
+
+
+```python
+# calculate_habitat_area.py
+...
+
+def calculate_habitat_area(layer, epsg):
+    # retrieve units
+    srs = geo.osr.SpatialReference()
+    srs.ImportFromEPSG(epsg)
+    area_unit = &quot;square %s&quot; % str(srs.GetLinearUnitsName()
+...
+```
+
+```{note}
+In practice, many mistakes are made due to the incorrect use of area units, which is often not obvious at first because of the size of geospatial data (several gigabytes). There are many units of length and area (meters, feet, acre, hectare, km$^2$) and a difference of an order of magnitude is sometimes only noticed when a critical reviewer or a local expert becomes suspicious. In the application shown here, we use the information of the length units only to output the total area with a correct reference to the area units (m$^2$) on the console, but in practice, this information can save a career.
+```
+
+To determine the habitat area, the area of each polygon must be calculated. For this purpose, add a new field to the `layer` in the *Attribute Table*, name it `&quot;area&quot;`, and assign a `geo.ogr.OFTReal` (numeric) data type (recall how to [create a field an data types explained in the lecture notes](geopy/geo-shp.html#add-field)).
+Then, create a void {ref}`list` called `poly_size`, in which we will write the area of all polygons that have a field value of `1`. To access the individual polygons (features) of the `layer`, iterate through all features using a `for` loop, which:
+
+* Extracts the polygon of every `feature` using `polygon = feature.GetGeometryRef()`
+* Appends the polygon&#39;s area size to the `poly_size` {ref}`list` if the field `&quot;value&quot;` of the `polygon` (at position 0: `feature.GetField(0)`) is 1 (`True`).
+* Writes the polygon&#39;s area size to the *Attribute Table*  with `feature.SetField(&quot;area&quot;, polygon.GetArea()`.
+* Saves the changes (calculated area) to the shapefile `layer` with `layer.SetFeature(feature)`.
+
+```{attention}
+Looping through an attribute table is computationally expensive in *Python*. If a shapefile has many elements (points, lines, polygons), this loop can last for hours, days, or even weeks. Therefore, it can be useful to convert a shapefile into a raster and perform calculations using {ref}`numpy`s computationally efficient built-in functions (C/C++ wrappers), which are many times faster. A particular problem is the processing of large lidar datasets (several million points), where it may be necessary to use other software (read more at [earthdatascience.org](https://www.earthdatascience.org/courses/use-data-open-source-python/data-stories/what-is-lidar-data/explore-lidar-point-clouds-plasio/)).
+```
+
+The last information needed after the `for` loop is the total area of the `&quot;value&quot;=1` polygons, which we get by writing the `sum` of the `poly_size` {ref}`list` to the console. Therefore, the second and last part of the `calculate_habitat_area` function looks like this:
+
+```python
+# calculate_habitat_area.py
+...
+def calculate_habitat_area(layer, epsg):
+
+    ... (extract unit system information)
+
+    # add area field
+    layer.CreateField(geo.ogr.FieldDefn(&quot;area&quot;, geo.ogr.OFTReal)
+
+    # create list to store polygon sizes
+    poly_size = []
+
+    # iterate through geometries (polygon features) of the layer
+    for feature in layer:
+        # retrieve polygon geometry
+        polygon = feature.GetGeometryRef()
+        # add polygon size if field &quot;value&quot; is one (determined by chsi_treshold)
+        if int(feature.GetField(0):
+            poly_size.append(polygon.GetArea()
+        # write area to area field
+        feature.SetField(&quot;area&quot;, polygon.GetArea()
+        # add the feature modifications to the layer
+        layer.SetFeature(feature)
+
+    # calculate and print habitat area
+    print(&quot;The total habitat area is {0} {1}.&quot;.format(str(sum(poly_size), area_unit)
+
+...
+```
+
+```{note}
+To calculate other geometry attributes than the polygon area (e.g., envelope extents, derive a convex hull, or get the length of lines), refer to the [functions described in the lecture notes](geopy/geo-shp.html#calc) and use those functions in lieu of `polygon.GetArea()`.
+```
+
+### Run the Usable Habitat Area calculation code
+
+A successful run of the script `calculate_habitat_area.py` should look like this (in *PyCharm*):
+![run-chsi](https://github.com/Ecohydraulics/Exercise-geco/raw/master/graphs/run_habitat_area.png) &lt;br&gt;
+
+Plotted in *QGIS*, the *habitat-area* shapefile looks like this (use *Categorized* symbology):
+
+![uha-results](https://github.com/Ecohydraulics/Exercise-geco/raw/master/graphs/ex-uha.png) &lt;br&gt;
+*The habitat-area shapefile plotted in QGIS with Categorized symbology, where the usable habitat area $UHA$ ($cHSI &gt;$ 0.4) is delineated by the hatched purple patches and their dashed outlines.*
+
+### Result interpretation
+The $UHA$ of the analyzed river section represents a very small share of the total wetted area, which can be interpreted as an ecologically poor status of the river. However, a glance at a map and the simulation files of the Flaz example of *BASEMENT* suggests that at a discharge of 50 m$^3$/s, a flood situation can be assumed. As during floods, there are generally higher flow velocities, which are out-of-favor of juvenile fish, the small usable habitat area is finally not surprising.
+
+
+```{attention}
+Remember that the here presented habitat assessment assumes that fish prefer regions with high $cHSI$ values and that rivers with a high proportion of areas with high $cHSI$ values are ecologically particularly valuable. This approach represents an assessment of the physical habitat state with limited information on the functional habitat state.
+```
+
+```{admonition} Homework
+Rewrite the magic methods of the `Raster` class by using `def __METHOD__(self, other: Raster) -&gt; Raster:` instead of `def __METHOD__(self, constant_or_raster):` and the `_make_raster` method.
+```
 </pre></div>
-</div>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">__mul__</span></code> (<code class="docutils literal notranslate"><span class="pre">*</span></code> operator):</p></li>
-</ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="k">try</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">constant_or_raster</span><span class="o">.</span><span class="n">array</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">array</span> <span class="o">*=</span> <span class="n">constant_or_raster</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_raster</span><span class="p">(</span><span class="s2">&quot;mul&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">__pow__</span></code> (<code class="docutils literal notranslate"><span class="pre">**</span></code> operator):</p></li>
-</ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="k">try</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">constant_or_raster</span><span class="o">.</span><span class="n">array</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">array</span> <span class="o">**=</span> <span class="n">constant_or_raster</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_raster</span><span class="p">(</span><span class="s2">&quot;pow&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">__sub__</span></code> (<code class="docutils literal notranslate"><span class="pre">-</span></code> operator):</p></li>
-</ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="k">try</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">array</span> <span class="o">-=</span> <span class="n">constant_or_raster</span><span class="o">.</span><span class="n">array</span>
-        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">array</span> <span class="o">-=</span> <span class="n">constant_or_raster</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_raster</span><span class="p">(</span><span class="s2">&quot;sub&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>The last item to complete in the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> class is the built-in <code class="docutils literal notranslate"><span class="pre">save</span></code> method that receives a <code class="docutils literal notranslate"><span class="pre">file_name</span></code> (<em>string</em>) argument defining the directory and save-as name of the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> instance:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">save_status</span> <span class="o">=</span> <span class="n">geo</span><span class="o">.</span><span class="n">create_raster</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">epsg</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">epsg</span><span class="p">,</span> <span class="n">nan_val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">geo_info</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">geo_transformation</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">save_status</span>
-</pre></div>
-</div>
-<p>Why do we need the <code class="docutils literal notranslate"><span class="pre">save_status</span></code> variable? First, it states if saving the raster was successful (<code class="docutils literal notranslate"><span class="pre">save_status=0</span></code>), and second, this information could be used to delete the raster from the <code class="docutils literal notranslate"><span class="pre">__cache__</span></code> folder and flush the memory (feel free to do so for speeding up the code).</p>
-</div>
-<hr class="docutils" />
-<div class="section" id="write-hsi-and-chsi-raster-creation-script">
-<h3>Write <em>HSI</em> and <em>cHSI</em> raster creation script<a class="headerlink" href="#write-hsi-and-chsi-raster-creation-script" title="Permalink to this headline">¶</a></h3>
-<p>The provided <code class="docutils literal notranslate"><span class="pre">create_hsi_rasters.py</span></code> script already contains required package imports, an <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">'__main__'</span></code> stand-alone statement as well as the void <code class="docutils literal notranslate"><span class="pre">main</span></code>, <code class="docutils literal notranslate"><span class="pre">get_hsi_curve</span></code>, <code class="docutils literal notranslate"><span class="pre">get_hsi_raster</span></code>, and <code class="docutils literal notranslate"><span class="pre">combine_hsi_rasters</span></code> functions:<a name="chsi-template"></a></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create_hsi_rasters.py</span>
-<span class="kn">from</span> <span class="nn">fun</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">raster_hsi</span> <span class="kn">import</span> <span class="n">HSIRaster</span><span class="p">,</span> <span class="n">Raster</span>
-<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">perf_counter</span>
-
-<span class="k">def</span> <span class="nf">combine_hsi_rasters</span><span class="p">(</span><span class="n">raster_list</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;geometric_mean&quot;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;...</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
-
-
-<span class="k">def</span> <span class="nf">get_hsi_curve</span><span class="p">(</span><span class="n">json_file</span><span class="p">,</span> <span class="n">life_stage</span><span class="p">,</span> <span class="n">parameters</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;...</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
-
-
-<span class="k">def</span> <span class="nf">get_hsi_raster</span><span class="p">(</span><span class="n">tif_dir</span><span class="p">,</span> <span class="n">hsi_curve</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;...</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
-
-
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="k">pass</span>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="c1"># define global variables for the main() function</span>
-    <span class="n">parameters</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;velocity&quot;</span><span class="p">,</span> <span class="s2">&quot;depth&quot;</span><span class="p">]</span>
-    <span class="n">life_stage</span> <span class="o">=</span> <span class="s2">&quot;juvenile&quot;</span>
-    <span class="n">fish_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">habitat</span><span class="se">\\</span><span class="s2">trout.json&quot;</span>
-    <span class="n">tifs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;velocity&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">basement</span><span class="se">\\</span><span class="s2">flow_velocity.tif&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;depth&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">basement</span><span class="se">\\</span><span class="s2">water_depth.tif&quot;</span><span class="p">}</span>
-    <span class="n">hsi_output_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">habitat</span><span class="se">\\</span><span class="s2">&quot;</span>
-
-    <span class="c1"># run code and evaluate performance</span>
-    <span class="n">t0</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
-    <span class="n">main</span><span class="p">()</span>
-    <span class="n">t1</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Time elapsed: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)</span>
-
-</pre></div>
-</div>
-<p>The <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">'__main__'</span></code> statement contains a time counter (<code class="docutils literal notranslate"><span class="pre">perf_counter</span></code>) that prompts how long running the script takes (typically between 3 to 6 seconds). Make sure that</p>
-<ul class="simple">
-<li><p>the <code class="docutils literal notranslate"><span class="pre">parameters</span></code> list contains <code class="docutils literal notranslate"><span class="pre">&quot;velocity&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;depth&quot;</span></code> (as per the <code class="docutils literal notranslate"><span class="pre">par_dict</span></code> in the <code class="docutils literal notranslate"><span class="pre">config.py</span></code> script),</p></li>
-<li><p>the file paths are defined correctly, and</p></li>
-<li><p>a life stage is defined (i.e., either <code class="docutils literal notranslate"><span class="pre">&quot;fry&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;juvenile&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;adult&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;spawning&quot;</span></code> as per the <em>/habitat/fish.xlsx</em>  workbook).</p></li>
-</ul>
-<p>The following paragraphs show step by step how to load the <em>HSI</em> curves from the <em>JSON</em> file (<code class="docutils literal notranslate"><span class="pre">get_hsi_curve</span></code>), apply them to the <code class="docutils literal notranslate"><span class="pre">flow_velocity</span></code> and <code class="docutils literal notranslate"><span class="pre">water_depth</span></code> rasters (<code class="docutils literal notranslate"><span class="pre">get_hsi_raster</span></code>), and combine the resulting <em>HSI</em> rasters into <em>cHSI</em> rasters (<code class="docutils literal notranslate"><span class="pre">combine_hsi_rasters</span></code>).</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">get_hsi_curve</span></code> function will load the <em>HSI</em> curve from the <em>JSON</em> file (<em>/habitat/trout.json</em>) in a dictionary for the two parameters <code class="docutils literal notranslate"><span class="pre">&quot;velocity&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;depth&quot;</span></code>. Thus, the goal is to create a <code class="docutils literal notranslate"><span class="pre">curve_data</span></code> dictionary that contains one <em>pandas</em> <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> object for all parameters (i.e., velocity and depth). For example, <code class="docutils literal notranslate"><span class="pre">curve_data[&quot;velocity&quot;][&quot;u&quot;]</span></code> will be a <em>pandas</em> <code class="docutils literal notranslate"><span class="pre">Series</span></code> of velocity entries (in m/s) that corresponds to <code class="docutils literal notranslate"><span class="pre">curve_data[&quot;velocity&quot;][&quot;HSI&quot;]</span></code>, which is a <em>pandas</em> <code class="docutils literal notranslate"><span class="pre">Series</span></code> of <em>HSI</em> values. Similarly, <code class="docutils literal notranslate"><span class="pre">curve_data[&quot;depth&quot;][&quot;h&quot;]</span></code> is a <em>pandas</em> <code class="docutils literal notranslate"><span class="pre">Series</span></code> of depth entries (in meters) that corresponds to <code class="docutils literal notranslate"><span class="pre">curve_data[&quot;depth&quot;][&quot;HSI&quot;]</span></code>, which is a <em>pandas</em> <code class="docutils literal notranslate"><span class="pre">Series</span></code> of <em>HSI</em> values (corresponds to the curves shown in the <a class="reference external" href="#hsi-image"><em>HSI</em> graphs</a> above). To extract the desired information from the <em>JSON</em> file, <code class="docutils literal notranslate"><span class="pre">get_hsi_curve</span></code> takes three arguments (<code class="docutils literal notranslate"><span class="pre">json_file</span></code>, <code class="docutils literal notranslate"><span class="pre">life_stage</span></code>, and <code class="docutils literal notranslate"><span class="pre">parameters</span></code>) in order to:</p>
-<ul class="simple">
-<li><p>Get the information stored in the <em>JSON</em> file with the <code class="docutils literal notranslate"><span class="pre">read_json</span></code> function (<a class="reference external" href="#funs">see above</a>).</p></li>
-<li><p>Instantiate a void <code class="docutils literal notranslate"><span class="pre">curve_data</span></code> <em>dictionary</em> that will contain the <em>pandas</em> <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>s for <code class="docutils literal notranslate"><span class="pre">&quot;velocity&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;depth&quot;</span></code>.</p></li>
-<li><p>Run a loop over the (two) parameters (<code class="docutils literal notranslate"><span class="pre">&quot;velocity&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;depth&quot;</span></code>), in which it:</p>
-<ul>
-<li><p>Creates a void <code class="docutils literal notranslate"><span class="pre">par_pairs</span></code> <em>list</em> for storing pairs of parameter (<code class="docutils literal notranslate"><span class="pre">par</span></code>) - * HSI* values as nested lists.</p></li>
-<li><p>Iterates through the length of provided curve data, where valid data pairs (e.g., <code class="docutils literal notranslate"><span class="pre">[u_value,</span> <span class="pre">HSI_value]</span></code>) are appended to the <code class="docutils literal notranslate"><span class="pre">par_pairs</span></code> <em>list</em>. This iteration is what actually creates the nested <em>list</em>.</p></li>
-<li><p>Converts the final <code class="docutils literal notranslate"><span class="pre">par_pairs</span></code> list to a <em>pandas</em> <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> that it adds to the <code class="docutils literal notranslate"><span class="pre">curve_data</span></code> <em>dictionary</em>.</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">return</span></code> the <code class="docutils literal notranslate"><span class="pre">curve_data</span></code> <em>dictionary</em> with its <em>pandas</em> <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>s.</p></li>
-</ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create_hsi_rasters.py</span>
-<span class="k">def</span> <span class="nf">get_hsi_curve</span><span class="p">(</span><span class="n">json_file</span><span class="p">,</span> <span class="n">life_stage</span><span class="p">,</span> <span class="n">parameters</span><span class="p">):</span>
-    <span class="c1"># read the JSON file with fun.read_json</span>
-    <span class="n">file_info</span> <span class="o">=</span> <span class="n">read_json</span><span class="p">(</span><span class="n">json_file</span><span class="p">)</span>
-    <span class="c1"># instantiate output dictionary</span>
-    <span class="n">curve_data</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="c1"># iterate through parameter list (e.g., [&quot;velocity&quot;, &quot;depth&quot;])</span>
-    <span class="k">for</span> <span class="n">par</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">:</span>
-        <span class="c1"># create a void list to store pairs of parameter-HSI values as nested lists</span>
-        <span class="n">par_pairs</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="c1"># iterate through the length of parameter-HSI curves in the JSON file</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">file_info</span><span class="p">[</span><span class="n">par</span><span class="p">][</span><span class="n">life_stage</span><span class="p">]</span><span class="o">.</span><span class="fm">__len__</span><span class="p">():</span>
-            <span class="c1"># if the parameter is not empty (i.e., __len__ &gt; 0), append the parameter-HSI (e.g., [u_value, HSI_value]) pair as nested list</span>
-            <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">file_info</span><span class="p">[</span><span class="n">par</span><span class="p">][</span><span class="n">life_stage</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;HSI&quot;</span><span class="p">])</span><span class="o">.</span><span class="fm">__len__</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">try</span><span class="p">:</span>
-                    <span class="c1"># only append data pairs if both parameter and HSI are numeric (floats)</span>
-                    <span class="n">par_pairs</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">file_info</span><span class="p">[</span><span class="n">par</span><span class="p">][</span><span class="n">life_stage</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="n">par_dict</span><span class="p">[</span><span class="n">par</span><span class="p">]]),</span>
-                                      <span class="nb">float</span><span class="p">(</span><span class="n">file_info</span><span class="p">[</span><span class="n">par</span><span class="p">][</span><span class="n">life_stage</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;HSI&quot;</span><span class="p">])])</span>
-                <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                    <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Invalid HSI curve entry for </span><span class="si">{0}</span><span class="s2"> in parameter </span><span class="si">{1}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">life_stage</span><span class="p">,</span> <span class="n">par</span><span class="p">)</span>
-        <span class="c1"># add the nested parameter pair list as pandas DataFrame to the curve_data dictionary</span>
-        <span class="n">curve_data</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">par</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">par_pairs</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">par_dict</span><span class="p">[</span><span class="n">par</span><span class="p">],</span> <span class="s2">&quot;HSI&quot;</span><span class="p">])})</span>
-    <span class="k">return</span> <span class="n">curve_data</span>
-</pre></div>
-</div>
-<p>In the <code class="docutils literal notranslate"><span class="pre">main</span></code> function, call <code class="docutils literal notranslate"><span class="pre">get_hsi_curves</span></code> to get the <em>HSI</em> curves as a <em>dictionary</em>. In addition, implement the <code class="docutils literal notranslate"><span class="pre">cache</span></code> and the <code class="docutils literal notranslate"><span class="pre">log_actions</span></code> wrappers  (<a class="reference external" href="#funs">recall the descriptions of provided functions</a> for the <code class="docutils literal notranslate"><span class="pre">main</span></code> function:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create_hsi_rasters.py</span>
-
-<span class="o">...</span>
-
-<span class="nd">@log_actions</span>
-<span class="nd">@cache</span>
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="c1"># get HSI curves as pandas DataFrames nested in a dictionary</span>
-    <span class="n">hsi_curve</span> <span class="o">=</span> <span class="n">get_hsi_curve</span><span class="p">(</span><span class="n">fish_file</span><span class="p">,</span> <span class="n">life_stage</span><span class="o">=</span><span class="n">life_stage</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">)</span>
-
-<span class="o">...</span>
-</pre></div>
-</div>
-<p>With the provided <code class="docutils literal notranslate"><span class="pre">HSIRaster</span></code> (<code class="docutils literal notranslate"><span class="pre">raster_hsi.py</span></code>) class, the <em>HSI</em> rasters can be conveniently created in the <code class="docutils literal notranslate"><span class="pre">get_hsi_raster</span></code> function. Before using the <code class="docutils literal notranslate"><span class="pre">HSIRaster</span></code> class, make sure to understand how it works. The <code class="docutils literal notranslate"><span class="pre">HSIRaster</span></code> class inherits from the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> class and initiates its parent class in its <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method through <code class="docutils literal notranslate"><span class="pre">Raster.__init__(self,</span> <span class="pre">file_name=file_name,</span> <span class="pre">band=band,</span> <span class="pre">raster_array=raster_array,</span> <span class="pre">geo_info=geo_info)</span></code>. Then, the class calls its <code class="docutils literal notranslate"><span class="pre">make_hsi</span></code> method, which takes an <em>HSI</em> curve (nested <em>list</em>) of two equal <em>list</em> pairs (<em>list</em> of parameters and <em>list</em> of <em>HSI</em> values) as argument. The <code class="docutils literal notranslate"><span class="pre">make_hsi</span></code> method:</p>
-<ul class="simple">
-<li><p>Extracts parameter values (e.g., depth or velocity) from the first element of the nested <code class="docutils literal notranslate"><span class="pre">hsi_curves</span></code> <em>list</em>, and <em>HSI</em> values from the second element of the nested <code class="docutils literal notranslate"><span class="pre">hsi_curves</span></code> <em>list</em>.</p></li>
-<li><p>Uses <em>numpy</em>’s built-in <code class="docutils literal notranslate"><span class="pre">np.nditer</span></code> function, which iterates through <em>numpy</em> arrays with high computational efficiency (read more about <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.nditer.html"><code class="docutils literal notranslate"><span class="pre">nditer</span></code></a>).</p>
-<ul>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">nditer</span></code> loop passes the <code class="docutils literal notranslate"><span class="pre">par_values</span></code> as <code class="docutils literal notranslate"><span class="pre">x_values</span></code> <em>list</em> argument and the <code class="docutils literal notranslate"><span class="pre">hsi_values</span></code> as <code class="docutils literal notranslate"><span class="pre">y_values</span></code> <em>list</em> arguments to the <code class="docutils literal notranslate"><span class="pre">interpolate_from_list</span></code> function (<a class="reference external" href="#funs">recall the function descriptions above</a>).</p></li>
-<li><p>The array values (i.e., flow velocity or water depth) correspond to the <code class="docutils literal notranslate"><span class="pre">xi_values</span></code> <em>list</em> argument of the <code class="docutils literal notranslate"><span class="pre">interpolate_from_list</span></code> function.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">interpolate_from_list</span></code> function then identifies for each element of the <code class="docutils literal notranslate"><span class="pre">xi_values</span></code> <em>list</em> the closest elements (<em>x<sub>i</sub></em> values) in the <code class="docutils literal notranslate"><span class="pre">x_values</span></code> <em>list</em> and the corresponding positions in the <code class="docutils literal notranslate"><span class="pre">y_values</span></code> <em>list</em>.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">interpolate_from_list</span></code> function passes the identified values to the <code class="docutils literal notranslate"><span class="pre">interpolate_y</span></code> function, which then linearly interpolates the corresponding <code class="docutils literal notranslate"><span class="pre">yi</span></code> value (i.e., an <em>HSI</em> value).</p></li>
-<li><p>Thus, the flow velocity or water depths in <code class="docutils literal notranslate"><span class="pre">self.array</span></code> are row-wise (row-by-row) replaced by <em>HSI</em> values.</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">return</span></code>s a <code class="docutils literal notranslate"><span class="pre">Raster</span></code> instance using the pseudo-private <code class="docutils literal notranslate"><span class="pre">_make_raster</span></code> method (<a class="reference external" href="#make-raster">recall its contents</a>).</p></li>
-</ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># raster_hsi.py</span>
-<span class="kn">from</span> <span class="nn">raster</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="k">class</span> <span class="nc">HSIRaster</span><span class="p">(</span><span class="n">Raster</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">hsi_curve</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">raster_array</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">geo_info</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="n">Raster</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="n">file_name</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="n">band</span><span class="p">,</span> <span class="n">raster_array</span><span class="o">=</span><span class="n">raster_array</span><span class="p">,</span> <span class="n">geo_info</span><span class="o">=</span><span class="n">geo_info</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">make_hsi</span><span class="p">(</span><span class="n">hsi_curve</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">make_hsi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hsi_curve</span><span class="p">):</span>
-        <span class="n">par_values</span> <span class="o">=</span> <span class="n">hsi_curve</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">hsi_values</span> <span class="o">=</span> <span class="n">hsi_curve</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">nditer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;external_loop&quot;</span><span class="p">],</span> <span class="n">op_flags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;readwrite&quot;</span><span class="p">])</span> <span class="k">as</span> <span class="n">it</span><span class="p">:</span>
-                <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">it</span><span class="p">:</span>
-                    <span class="n">x</span><span class="p">[</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">interpolate_from_list</span><span class="p">(</span><span class="n">par_values</span><span class="p">,</span> <span class="n">hsi_values</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;WARNING: np.array is one-dimensional.&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_raster</span><span class="p">(</span><span class="s2">&quot;hsi&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Modify the <code class="docutils literal notranslate"><span class="pre">get_hsi_rasters</span></code> function to directly return a <code class="docutils literal notranslate"><span class="pre">HSIRaster</span></code> object:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create_hsi_rasters.py</span>
-
-<span class="o">...</span>
-
-<span class="k">def</span> <span class="nf">get_hsi_raster</span><span class="p">(</span><span class="n">tif_dir</span><span class="p">,</span> <span class="n">hsi_curve</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">HSIRaster</span><span class="p">(</span><span class="n">tif_dir</span><span class="p">,</span> <span class="n">hsi_curve</span><span class="p">)</span>
-<span class="o">...</span>
-
-</pre></div>
-</div>
-<p>The <code class="docutils literal notranslate"><span class="pre">get_hsi_raster</span></code> function requires two arguments, which it must receive from the <code class="docutils literal notranslate"><span class="pre">main</span></code> function. For this reason, iterate over the <code class="docutils literal notranslate"><span class="pre">parameters</span></code> <em>list</em> in the <code class="docutils literal notranslate"><span class="pre">main</span></code> function and extract the corresponding raster directories from the <code class="docutils literal notranslate"><span class="pre">tifs</span></code> <em>dictionary</em> (recall the variable definition in the <a class="reference external" href="#chsi-template">standalone statement</a>). In addition, save the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> objects returned by the <code class="docutils literal notranslate"><span class="pre">get_hsi_raster</span></code> function in another <em>dictionary</em> (<code class="docutils literal notranslate"><span class="pre">eco_rasters</span></code>) to combine them in the next step into a <em>cHSI</em> raster.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create_hsi_rasters.py</span>
-
-<span class="o">...</span>
-
-<span class="nd">@log_actions</span>
-<span class="nd">@cache</span>
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="c1"># get HSI curves as pandas DataFrames nested in a dictionary</span>
-    <span class="n">hsi_curve</span> <span class="o">=</span> <span class="n">get_hsi_curve</span><span class="p">(</span><span class="n">fish_file</span><span class="p">,</span> <span class="n">life_stage</span><span class="o">=</span><span class="n">life_stage</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">)</span>
-
-        <span class="c1"># create HSI rasters for all parameters considered and store the Raster objects in a dictionary</span>
-    <span class="n">eco_rasters</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">par</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">:</span>
-        <span class="n">hsi_par_curve</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">hsi_curve</span><span class="p">[</span><span class="n">par</span><span class="p">][</span><span class="n">par_dict</span><span class="p">[</span><span class="n">par</span><span class="p">]]),</span>
-                         <span class="nb">list</span><span class="p">(</span><span class="n">hsi_curve</span><span class="p">[</span><span class="n">par</span><span class="p">][</span><span class="s2">&quot;HSI&quot;</span><span class="p">])]</span>
-        <span class="n">eco_rasters</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">par</span><span class="p">:</span> <span class="n">get_hsi_raster</span><span class="p">(</span><span class="n">tif_dir</span><span class="o">=</span><span class="n">tifs</span><span class="p">[</span><span class="n">par</span><span class="p">],</span> <span class="n">hsi_curve</span><span class="o">=</span><span class="n">hsi_par_curve</span><span class="p">)})</span>
-        <span class="n">eco_rasters</span><span class="p">[</span><span class="n">par</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">hsi_output_dir</span> <span class="o">+</span> <span class="s2">&quot;hsi_</span><span class="si">%s</span><span class="s2">.tif&quot;</span> <span class="o">%</span> <span class="n">par</span><span class="p">)</span>
-<span class="o">...</span>
-</pre></div>
-</div>
-<p>Of course, one can also loop over the parameters <em>list</em> directly in the <code class="docutils literal notranslate"><span class="pre">get_hsi_raster</span></code> function.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>This is a good moment to test if the code works. Run <code class="docutils literal notranslate"><span class="pre">create_hsi_rasters.py</span></code> and verify that the two <em>GeoTIFF</em> files (<em>habitat/hsi_velocity.tif</em> and <em>/habitat/hsi_depth.tif</em>) are created correctly. <em>QGIS</em> visualizes the <em>GeoTIFF</em>-products and the activated <em>Identify Features</em> button in <em>QGIS</em> enables to check if the linearly interpolated <em>HSI</em> values agree with the <em>HSI</em> curves in the provided workbook (<em>/habitat/trout.xlsx</em>). Thus, load both <em>GeoTIFF</em> pairs in <em>QGIS</em>: <em>/habitat/hsi_velocity.tif</em> + <em>/basement/flow_velocity.tif</em> and <em>/habitat/hsi_depth.tif</em>  + <em>/basement/water_depth.tif</em>.</p>
-</div>
-<p>Next, we come to the reason why we had to define magic methods for the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> class: combine the <em>HSI</em> rasters using both combination formulae presented above (recall the <a class="reference external" href="#combine-methods">product and geometric mean</a> formulae), where <code class="docutils literal notranslate"><span class="pre">&quot;geometric_mean&quot;</span></code> should be used by default. The <code class="docutils literal notranslate"><span class="pre">combine_hsi_rasters</span></code> function accepts two arguments (a <em>list</em> of <code class="docutils literal notranslate"><span class="pre">Raster</span></code> objects corresponding to <em>HSI</em> rasters and the <code class="docutils literal notranslate"><span class="pre">method</span></code> to use as <em>string</em>).</p>
-<p>If the method corresponds to the default value <code class="docutils literal notranslate"><span class="pre">&quot;geometric_mean&quot;</span></code>, then the <code class="docutils literal notranslate"><span class="pre">power</span></code> to be applied to the product of the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> <em>list</em> is calculated from the <em>n</em>th root, where <em>n</em> corresponds to the number of <code class="docutils literal notranslate"><span class="pre">Raster</span></code> objects in the <code class="docutils literal notranslate"><span class="pre">raster_list</span></code>. Otherwise (e.g., <code class="docutils literal notranslate"><span class="pre">method=&quot;product&quot;</span></code>), the <code class="docutils literal notranslate"><span class="pre">power</span></code> is exactly 1.0.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">combine_hsi_rasters</span></code> function initially creates an empty <em>cHSI</em> <code class="docutils literal notranslate"><span class="pre">Raster</span></code> in the <code class="docutils literal notranslate"><span class="pre">cache_folder</span></code>, with each cell having the value <code class="docutils literal notranslate"><span class="pre">1.0</span></code> (filled through <code class="docutils literal notranslate"><span class="pre">np.ones</span></code>). In a loop over the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> elements of the <code class="docutils literal notranslate"><span class="pre">raster_list</span></code>, the function multiplies each <em>HSI</em> raster with the <em>cHSI</em> raster.</p>
-<p>Finally, the function returns the product of all <em>HSI</em> rasters to the power of the previously determined <code class="docutils literal notranslate"><span class="pre">power</span></code> value.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create_hsi_rasters.py</span>
-<span class="k">def</span> <span class="nf">combine_hsi_rasters</span><span class="p">(</span><span class="n">raster_list</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;geometric_mean&quot;</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">method</span> <span class="ow">is</span> <span class="s2">&quot;geometric_mean&quot;</span><span class="p">:</span>
-        <span class="n">power</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">raster_list</span><span class="o">.</span><span class="fm">__len__</span><span class="p">()</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="c1"># supposedly method is &quot;product&quot;</span>
-        <span class="n">power</span> <span class="o">=</span> <span class="mf">1.0</span>
-
-    <span class="n">chsi_raster</span> <span class="o">=</span> <span class="n">Raster</span><span class="p">(</span><span class="n">cache_folder</span> <span class="o">+</span> <span class="s2">&quot;chsi_start.tif&quot;</span><span class="p">,</span>
-                         <span class="n">raster_array</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">raster_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span>
-                         <span class="n">epsg</span><span class="o">=</span><span class="n">raster_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">epsg</span><span class="p">,</span>
-                         <span class="n">geo_info</span><span class="o">=</span><span class="n">raster_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">geo_transformation</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">ras</span> <span class="ow">in</span> <span class="n">raster_list</span><span class="p">:</span>
-        <span class="n">chsi_raster</span> <span class="o">=</span> <span class="n">chsi_raster</span> <span class="o">*</span> <span class="n">ras</span>
-
-    <span class="k">return</span> <span class="n">chsi_raster</span> <span class="o">**</span> <span class="n">power</span>
-</pre></div>
-</div>
-<p>To finish the <code class="docutils literal notranslate"><span class="pre">create_hsi_rasters.py</span></code> script, implement the call to the <code class="docutils literal notranslate"><span class="pre">combine_hsi_rasters</span></code> function in the <code class="docutils literal notranslate"><span class="pre">main</span></code> function and save the result as <em>cHSI</em> <em>GeoTIFF</em> raster in the <code class="docutils literal notranslate"><span class="pre">/habitat/</span></code> folder:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create_hsi_rasters.py</span>
-
-<span class="o">...</span>
-
-<span class="nd">@log_actions</span>
-<span class="nd">@cache</span>
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="o">...</span>
-
-    <span class="k">for</span> <span class="n">par</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">:</span>
-        <span class="n">hsi_par_curve</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">hsi_curve</span><span class="p">[</span><span class="n">par</span><span class="p">][</span><span class="n">par_dict</span><span class="p">[</span><span class="n">par</span><span class="p">]]),</span>
-                         <span class="nb">list</span><span class="p">(</span><span class="n">hsi_curve</span><span class="p">[</span><span class="n">par</span><span class="p">][</span><span class="s2">&quot;HSI&quot;</span><span class="p">])]</span>
-        <span class="n">eco_rasters</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">par</span><span class="p">:</span> <span class="n">get_hsi_raster</span><span class="p">(</span><span class="n">tif_dir</span><span class="o">=</span><span class="n">tifs</span><span class="p">[</span><span class="n">par</span><span class="p">],</span> <span class="n">hsi_curve</span><span class="o">=</span><span class="n">hsi_par_curve</span><span class="p">)})</span>
-        <span class="n">eco_rasters</span><span class="p">[</span><span class="n">par</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">hsi_output_dir</span> <span class="o">+</span> <span class="s2">&quot;hsi_</span><span class="si">%s</span><span class="s2">.tif&quot;</span> <span class="o">%</span> <span class="n">par</span><span class="p">)</span>
-
-    <span class="c1"># get and save chsi raster</span>
-    <span class="n">chsi_raster</span> <span class="o">=</span> <span class="n">combine_hsi_rasters</span><span class="p">(</span><span class="n">raster_list</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">eco_rasters</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span>
-                                      <span class="n">method</span><span class="o">=</span><span class="s2">&quot;geometric_mean&quot;</span><span class="p">)</span>
-    <span class="n">chsi_raster</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">hsi_output_dir</span> <span class="o">+</span> <span class="s2">&quot;chsi.tif&quot;</span><span class="p">)</span>
-<span class="o">...</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="run-the-hsi-and-chsi-raster-creation-code">
-<h3>Run the <em>HSI</em> and <em>cHSI</em> raster creation code<a class="headerlink" href="#run-the-hsi-and-chsi-raster-creation-code" title="Permalink to this headline">¶</a></h3>
-<p>A successful run of the script <code class="docutils literal notranslate"><span class="pre">create_hsi_rasters.py</span></code> should look like this (in <em>PyCharm</em>):</p>
-<p><img alt="run-chsi" src="https://github.com/Ecohydraulics/Exercise-geco/raw/master/graphs/run_create_chsi_rasters.png" /><br></p>
-<p>Plotted in <em>QGIS</em>, the <em>cHSI</em> <em>GeoTIFF</em> raster should look like this:</p>
-<p><img alt="chsi-results" src="https://github.com/Ecohydraulics/Exercise-geco/raw/master/graphs/ex-chsi.png" /><br>
-<em>The cHSI raster plotted in QGIS, where poor physical habitat quality (cHSI close to 0.0) is colored in red and high physical habitat quality (cHSI close to 1.0) is colored in green.</em></p>
-</div>
-<div class="section" id="result-interpretation">
-<h3>Result interpretation<a class="headerlink" href="#result-interpretation" title="Permalink to this headline">¶</a></h3>
-<p>The presentation of the <em>cHSI</em> raster shows that preferred habitat areas for juvenile trout exist only close to the banks. Also, numerical artifacts of the triangular mesh used by <em>BASEMENT</em> are visible. Therefore, the question arises whether the calculated flow velocities and water depths, and in consequence also the <em>cHSI</em> values, close to the banks can be considered representative.</p>
-</div>
-</div>
-<div class="section" id="calculate-the-usable-habitat-area">
-<h2>Calculate the usable habitat area<a class="headerlink" href="#calculate-the-usable-habitat-area" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="write-the-code">
-<h3>Write the code<a class="headerlink" href="#write-the-code" title="Permalink to this headline">¶</a></h3>
-<p>The <em>cHSI</em> rasters enable the calculation of the available usable habitat area. The previous section featured examples using the fish species <em>trout</em> and its <em>juvenile</em> life stage, for which we will determine here the usable habitat area <em>UHA</em> (in m²) using a <em>cHSI</em> threshold value (rather than the pixel area weighting approach). So we follow the <a class="reference external" href="#uha-methods">threshold formula described above</a>, using a threshold value of <em>cHSI<sub>crit</sub></em> = 0.4. Thus, every pixel that has a <em>cHSI</em> value of 0.4 or greater counts as usable habitat area.</p>
-<p>From a technical point of view, this part of the exercise is about converting a raster into a polygon shapefile as well as accessing and modifying the <em>Attribute Table</em> of the shapefile.</p>
-<p>Similar to the creation of the <em>cHSI</em> raster, there is a template script available for this part of the exercise, called <code class="docutils literal notranslate"><span class="pre">calculate_habitat_area.py</span></code>, which contains package and module imports, an <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">'__main__'</span></code> stand-alone statement, as well as the void <code class="docutils literal notranslate"><span class="pre">main</span></code> and <code class="docutils literal notranslate"><span class="pre">calculate_habitat_area</span></code> functions. The template script looks like this:<a name="uha-template"></a></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># this is calculate_habitat_area.py (template)</span>
-<span class="kn">from</span> <span class="nn">fun</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">raster</span> <span class="kn">import</span> <span class="n">Raster</span>
-
-
-<span class="k">def</span> <span class="nf">calculate_habitat_area</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">epsg</span><span class="p">):</span>
-    <span class="k">pass</span>
-
-
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="k">pass</span>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">chsi_raster_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">habitat</span><span class="se">\\</span><span class="s2">chsi.tif&quot;</span>
-    <span class="n">chsi_threshold</span> <span class="o">=</span> <span class="mf">0.4</span>
-
-    <span class="n">main</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>In the <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">'__main__'</span></code> statement, make sure that the global variable <code class="docutils literal notranslate"><span class="pre">chsi_raster_name</span></code> corresponds to the directory of the <em>cHSI</em> raster created in the previous section. The other global variable (<code class="docutils literal notranslate"><span class="pre">chsi_threshold</span></code>) corresponds to the <em>cHSI<sub>crit</sub></em> value of 0.4 that we will use with the <a class="reference external" href="#uha-methods">threshold formula</a>.</p>
-<p>In the <code class="docutils literal notranslate"><span class="pre">main</span></code> function, start with loading the <em>cHSI</em> raster (<code class="docutils literal notranslate"><span class="pre">chsi_raster</span></code>) as a <a class="reference external" href="#raster"><code class="docutils literal notranslate"><span class="pre">Raster</span></code> object</a>. Then, access the <em>numpy</em> array of the <em>cHSI</em> raster and compare it with <code class="docutils literal notranslate"><span class="pre">chsi_threshold</span></code> using <em>numpy</em>’s built-in <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.greater_equal.html"><em>greater_equal</em></a> function. <code class="docutils literal notranslate"><span class="pre">np.greater_equal</span></code> takes an array as first argument and a second argument, which is the condition that can be a numeric variable or another <em>numpy</em> array. Then, <code class="docutils literal notranslate"><span class="pre">np.greater_equal</span></code> checks if the elements of the first array are greater than or equal to the second argument. In the case of the second argument being an array, this is an element-wise ≥ comparison. The result of <code class="docutils literal notranslate"><span class="pre">np.greater_equal</span></code> is a <em>boolean</em> array (<code class="docutils literal notranslate"><span class="pre">True</span></code> where the greater-or-equal condition is fulfilled and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise). However, to create an <code class="docutils literal notranslate"><span class="pre">osgeo.gdal.Dataset</span></code> object from the result of <code class="docutils literal notranslate"><span class="pre">np.greater_equal</span></code>, we need a numeric array. For this reason, multiply the result of <code class="docutils literal notranslate"><span class="pre">np.greater_equal</span></code> by 1.0 and assign it as a new <em>numpy</em> array of zeros (<code class="docutils literal notranslate"><span class="pre">False</span></code>) and ones (<code class="docutils literal notranslate"><span class="pre">True</span></code>) to a variable named <code class="docutils literal notranslate"><span class="pre">habitat_pixels</span></code> (see the code block below).</p>
-<p>With the <code class="docutils literal notranslate"><span class="pre">habitat_pixels</span></code> array and the georeference of <code class="docutils literal notranslate"><span class="pre">chsi_raster</span></code>, create a new <em>integer</em> <em>GeoTIFF</em> raster with the <a class="reference external" href="https://github.com/hydro-informatics/geo-utils#create-raster"><em>create_raster</em> function of <em>geo_utils</em></a> (here: <code class="docutils literal notranslate"><span class="pre">geo.create_raster</span></code>). In the following code block the new raster is saved in the <em>/habitat/</em> folder of the exercise as <code class="docutils literal notranslate"><span class="pre">habitat-pixels.tif</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate_habitat_area.py</span>
-<span class="o">...</span>
-
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="c1"># open the chsi raster</span>
-    <span class="n">chsi_raster</span> <span class="o">=</span> <span class="n">Raster</span><span class="p">(</span><span class="n">chsi_ras_name</span><span class="p">)</span>
-    <span class="c1"># extract pixels where the physical habitat quality is higher than the user threshold value</span>
-    <span class="n">habitat_pixels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">greater_equal</span><span class="p">(</span><span class="n">chsi_raster</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">chsi_threshold_value</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1</span>
-    <span class="c1"># write the habitat pixels to a binary array (0 -&gt; no habitat, 1 -&gt; usable habitat)</span>
-    <span class="n">geo</span><span class="o">.</span><span class="n">create_raster</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">habitat</span><span class="se">\\</span><span class="s2">habitat-pixels.tif&quot;</span><span class="p">,</span>
-                      <span class="n">raster_array</span><span class="o">=</span><span class="n">habitat_pixels</span><span class="p">,</span>
-                      <span class="n">epsg</span><span class="o">=</span><span class="n">chsi_raster</span><span class="o">.</span><span class="n">epsg</span><span class="p">,</span>
-                      <span class="n">geo_info</span><span class="o">=</span><span class="n">chsi_raster</span><span class="o">.</span><span class="n">geo_transformation</span><span class="p">)</span>
-<span class="o">...</span>
-</pre></div>
-</div>
-<p>In the next step, convert the habitat pixel raster into a polygon shapefile and save it in the <em>/habitat/</em> folder as <code class="docutils literal notranslate"><span class="pre">habitat-area.shp</span></code>. The conversion of a raster into a polygon shapefile requires that the raster contains only <em>integer</em> values, which is the case in the habitat pixel raster (only zeros and ones - <a class="reference external" href="geopy/geo-convert.html#raster2polygon">recall the lecture notes</a>). With the <a class="reference external" href="https://github.com/hydro-informatics/geo-utils#convert-raster-to-polygon-shapefile"><em>raster2polygon</em> function of <em>geo_utils</em></a>, create the new polygon shapefile, specify <em>habitat-pixels.tif</em> as <code class="docutils literal notranslate"><span class="pre">raster_file_name</span></code> to be converted, and <code class="docutils literal notranslate"><span class="pre">/habitat/habitat-area.shp</span></code> as output file name.
-<code class="docutils literal notranslate"><span class="pre">geo.raster2polygon</span></code> returns an <code class="docutils literal notranslate"><span class="pre">osgeo.ogr.DataSource</span></code> object and we can pass its layer including the information of the <em>EPSG</em> authority code (from <code class="docutils literal notranslate"><span class="pre">chsi_raster</span></code>) directly to the not-yet-written <code class="docutils literal notranslate"><span class="pre">calculate_habitat_area</span></code> function:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate_habitat_area.py</span>
-<span class="o">...</span>
-
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="o">...</span> <span class="p">(</span><span class="n">create</span> <span class="n">habitat</span> <span class="n">pixels</span> <span class="n">raster</span><span class="p">)</span>
-
-    <span class="c1"># convert the raster with usable pixels to polygon (must be an integer raster!)</span>
-    <span class="n">tar_shp_file_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">habitat</span><span class="se">\\</span><span class="s2">habitat-area.shp&quot;</span>
-    <span class="n">habitat_polygons</span> <span class="o">=</span> <span class="n">geo</span><span class="o">.</span><span class="n">raster2polygon</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">habitat</span><span class="se">\\</span><span class="s2">habitat-pixels.tif&quot;</span><span class="p">,</span>
-                                          <span class="n">tar_shp_file_name</span><span class="p">)</span>
-
-    <span class="c1"># calculate the habitat area (will be written to the attribute table)</span>
-    <span class="n">calculate_habitat_area</span><span class="p">(</span><span class="n">habitat_polygons</span><span class="o">.</span><span class="n">GetLayer</span><span class="p">(),</span> <span class="n">chsi_raster</span><span class="o">.</span><span class="n">epsg</span><span class="p">)</span>
-<span class="o">...</span>
-</pre></div>
-</div>
-<p>In order for the <code class="docutils literal notranslate"><span class="pre">calculate_habitat_area</span></code> function to produce what its name promises, we need to populate this function as well. For this purpose, use the <code class="docutils literal notranslate"><span class="pre">epsg</span></code> <em>integer</em> argument to identify the unit system of the shapefile.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate_habitat_area.py</span>
-<span class="o">...</span>
-
-<span class="k">def</span> <span class="nf">calculate_habitat_area</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">epsg</span><span class="p">):</span>
-    <span class="c1"># retrieve units</span>
-    <span class="n">srs</span> <span class="o">=</span> <span class="n">geo</span><span class="o">.</span><span class="n">osr</span><span class="o">.</span><span class="n">SpatialReference</span><span class="p">()</span>
-    <span class="n">srs</span><span class="o">.</span><span class="n">ImportFromEPSG</span><span class="p">(</span><span class="n">epsg</span><span class="p">)</span>
-    <span class="n">area_unit</span> <span class="o">=</span> <span class="s2">&quot;square </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">srs</span><span class="o">.</span><span class="n">GetLinearUnitsName</span><span class="p">()</span>
-<span class="o">...</span>
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>In practice, many mistakes are made due to the incorrect use of area units, which is often not obvious at first because of the size of geospatial data (several gigabytes). There are many units of length and area (meters, feet, acre, hectare, km²) and a difference of an order of magnitude is sometimes only noticed when a critical reviewer or a local expert becomes suspicious. In the application shown here, we use the information of the length units only to output the total area with a correct reference to the area units (m²) on the console, but in practice, this information can save a career.</p>
-</div>
-<p>To determine the habitat area, the area of each polygon must be calculated. For this purpose, add a new field to the <code class="docutils literal notranslate"><span class="pre">layer</span></code> in the <em>Attribute Table</em>, name it <code class="docutils literal notranslate"><span class="pre">&quot;area&quot;</span></code>, and assign a <code class="docutils literal notranslate"><span class="pre">geo.ogr.OFTReal</span></code> (numeric) data type (recall how to <a class="reference external" href="geopy/geo-shp.html#add-field">create a field an data types explained in the lecture notes</a>).
-Then, create a void <em>list</em> called <code class="docutils literal notranslate"><span class="pre">poly_size</span></code>, in which we will write the area of all polygons that have a field value of <code class="docutils literal notranslate"><span class="pre">1</span></code>. To access the individual polygons (features) of the <code class="docutils literal notranslate"><span class="pre">layer</span></code>, iterate through all features using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, which:</p>
-<ul class="simple">
-<li><p>Extracts the polygon of every <code class="docutils literal notranslate"><span class="pre">feature</span></code> using <code class="docutils literal notranslate"><span class="pre">polygon</span> <span class="pre">=</span> <span class="pre">feature.GetGeometryRef()</span></code></p></li>
-<li><p>Appends the polygon’s area size to the <code class="docutils literal notranslate"><span class="pre">poly_size</span></code> <em>list</em> if the field <code class="docutils literal notranslate"><span class="pre">&quot;value&quot;</span></code> of the <code class="docutils literal notranslate"><span class="pre">polygon</span></code> (at position 0: <code class="docutils literal notranslate"><span class="pre">feature.GetField(0)</span></code>) is 1 (<code class="docutils literal notranslate"><span class="pre">True</span></code>).</p></li>
-<li><p>Writes the polygon’s area size to the <em>Attribute Table</em>  with <code class="docutils literal notranslate"><span class="pre">feature.SetField(&quot;area&quot;,</span> <span class="pre">polygon.GetArea()</span></code>.</p></li>
-<li><p>Saves the changes (calculated area) to the shapefile <code class="docutils literal notranslate"><span class="pre">layer</span></code> with <code class="docutils literal notranslate"><span class="pre">layer.SetFeature(feature)</span></code>.</p></li>
-</ul>
-<div class="admonition attention">
-<p class="admonition-title">Attention</p>
-<p>Looping through an attribute table is computationally expensive in <em>Python</em>. If a shapefile has many elements (points, lines, polygons), this loop can last for hours, days, or even weeks. Therefore, it can be useful to convert a shapefile into a raster and perform calculations using <em>numpy</em>’s computationally efficient built-in functions (C/C++ wrappers), which are many times faster. A particular problem is the processing of large lidar datasets (several million points), where it may be necessary to use other software (read more at <a class="reference external" href="https://www.earthdatascience.org/courses/use-data-open-source-python/data-stories/what-is-lidar-data/explore-lidar-point-clouds-plasio/">earthdatascience.org</a>).</p>
-</div>
-<p>The last information needed after the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop is the total area of the <code class="docutils literal notranslate"><span class="pre">&quot;value&quot;=1</span></code> polygons, which we get by writing the <code class="docutils literal notranslate"><span class="pre">sum</span></code> of the <code class="docutils literal notranslate"><span class="pre">poly_size</span></code> <em>list</em> to the console. Therefore, the second and last part of the <code class="docutils literal notranslate"><span class="pre">calculate_habitat_area</span></code> function looks like this:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate_habitat_area.py</span>
-<span class="o">...</span>
-<span class="k">def</span> <span class="nf">calculate_habitat_area</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">epsg</span><span class="p">):</span>
-
-    <span class="o">...</span> <span class="p">(</span><span class="n">extract</span> <span class="n">unit</span> <span class="n">system</span> <span class="n">information</span><span class="p">)</span>
-
-    <span class="c1"># add area field</span>
-    <span class="n">layer</span><span class="o">.</span><span class="n">CreateField</span><span class="p">(</span><span class="n">geo</span><span class="o">.</span><span class="n">ogr</span><span class="o">.</span><span class="n">FieldDefn</span><span class="p">(</span><span class="s2">&quot;area&quot;</span><span class="p">,</span> <span class="n">geo</span><span class="o">.</span><span class="n">ogr</span><span class="o">.</span><span class="n">OFTReal</span><span class="p">)</span>
-
-    <span class="c1"># create list to store polygon sizes</span>
-    <span class="n">poly_size</span> <span class="o">=</span> <span class="p">[]</span>
-
-    <span class="c1"># iterate through geometries (polygon features) of the layer</span>
-    <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">layer</span><span class="p">:</span>
-        <span class="c1"># retrieve polygon geometry</span>
-        <span class="n">polygon</span> <span class="o">=</span> <span class="n">feature</span><span class="o">.</span><span class="n">GetGeometryRef</span><span class="p">()</span>
-        <span class="c1"># add polygon size if field &quot;value&quot; is one (determined by chsi_treshold)</span>
-        <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">feature</span><span class="o">.</span><span class="n">GetField</span><span class="p">(</span><span class="mi">0</span><span class="p">):</span>
-            <span class="n">poly_size</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">polygon</span><span class="o">.</span><span class="n">GetArea</span><span class="p">()</span>
-        <span class="c1"># write area to area field</span>
-        <span class="n">feature</span><span class="o">.</span><span class="n">SetField</span><span class="p">(</span><span class="s2">&quot;area&quot;</span><span class="p">,</span> <span class="n">polygon</span><span class="o">.</span><span class="n">GetArea</span><span class="p">()</span>
-        <span class="c1"># add the feature modifications to the layer</span>
-        <span class="n">layer</span><span class="o">.</span><span class="n">SetFeature</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
-
-    <span class="c1"># calculate and print habitat area</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The total habitat area is </span><span class="si">{0}</span><span class="s2"> </span><span class="si">{1}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">poly_size</span><span class="p">),</span> <span class="n">area_unit</span><span class="p">)</span>
-
-<span class="o">...</span>
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>To calculate other geometry attributes than the polygon area (e.g., envelope extents, derive a convex hull, or get the length of lines), refer to the <a class="reference external" href="geopy/geo-shp.html#calc">functions described in the lecture notes</a> and use those functions in lieu of <code class="docutils literal notranslate"><span class="pre">polygon.GetArea()</span></code>.</p>
-</div>
-</div>
-<div class="section" id="run-the-usable-habitat-area-calculation-code">
-<h3>Run the Usable Habitat Area calculation code<a class="headerlink" href="#run-the-usable-habitat-area-calculation-code" title="Permalink to this headline">¶</a></h3>
-<p>A successful run of the script <code class="docutils literal notranslate"><span class="pre">calculate_habitat_area.py</span></code> should look like this (in <em>PyCharm</em>):
-<img alt="run-chsi" src="https://github.com/Ecohydraulics/Exercise-geco/raw/master/graphs/run_habitat_area.png" /> <br></p>
-<p>Plotted in <em>QGIS</em>, the <em>habitat-area</em> shapefile looks like this (use <em>Categorized</em> symbology):</p>
-<p><img alt="uha-results" src="https://github.com/Ecohydraulics/Exercise-geco/raw/master/graphs/ex-uha.png" /> <br>
-<em>The habitat-area shapefile plotted in QGIS with Categorized symbology, where the usable habitat area UHA (cHSI &gt; 0.4) is delineated by the hatched purple patches and their dashed outlines.</em></p>
-</div>
-<div class="section" id="id1">
-<h3>Result interpretation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<p>The <em>UHA</em> of the analyzed river section represents a very small share of the total wetted area, which can be interpreted as an ecologically poor status of the river. However, a glance at a map and the simulation files of the Flaz example of <em>BASEMENT</em> suggests that at a discharge of 50 m³/s, a flood situation can be assumed. As during floods, there are generally higher flow velocities, which are out-of-favor of juvenile fish, the small usable habitat area is finally not surprising.</p>
-<div class="admonition attention">
-<p class="admonition-title">Attention</p>
-<p>Remember that the here presented habitat assessment assumes that fish prefer regions with high <em>cHSI</em> values and that rivers with a high proportion of areas with high <em>cHSI</em> values are ecologically particularly valuable. This approach represents an assessment of the physical habitat state with limited information on the functional habitat state.</p>
-</div>
-<div class="admonition-homework admonition">
-<p class="admonition-title">Homework</p>
-<p>Rewrite the magic methods of the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> class by using <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">__METHOD__(self,</span> <span class="pre">other:</span> <span class="pre">Raster)</span> <span class="pre">-&gt;</span> <span class="pre">Raster:</span></code> instead of <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">__METHOD__(self,</span> <span class="pre">constant_or_raster):</span></code> and the <code class="docutils literal notranslate"><span class="pre">_make_raster</span></code> method.</p>
 </div>
 </div>
 </div>
@@ -1451,8 +1406,8 @@ Then, create a void <em>list</em> called <code class="docutils literal notransla
     {
         requestKernel: true,
         binderOptions: {
-            repo: "hydro-informatics/",
-            ref: "main",
+            repo: "hydro-informatics/hydro-informatics.github.io",
+            ref: "gh-pages",
         },
         codeMirrorConfig: {
             theme: "abcdef",

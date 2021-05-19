@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# (chpt-functions)=
 # # Functions
 # 
 # Leverage the power of code recycling with functions. For interactive reading and executing code blocks [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter) and find *pyfun.ipynb* or {ref}`install-python` locally along with {ref}`jupyter`.

@@ -1,12 +1,13 @@
-# Create a **G**raphical **U**ser **I**nterface (GUI)
+# Create a Graphical User Interface (GUI)
 
 
 ```{admonition} Goals
-This exercise features the creation of a Graphical User Interface based on the [course instructions](../jupyter/gui).
+This exercise features the creation of a {ref}`chpt-gui` based on the instructions in this ebook.
 ```
 
 ```{admonition} Requirements
-*Python* libraries: *tkinter*, *numpy*, and *pandas*. Read and understand the [creation of GUIs](../jupyter/gui). Accomplish the [sediment transport exercise](https://github.com/Ecohydraulics/Exercise-SedimentTransport).
+:class: attention
+*Python* libraries: *tkinter*, {ref}`numpy`, and {ref}`pandas`. Read and understand the creation of {ref}`chpt-gui`. Accomplish the [sediment transport exercise](https://github.com/Ecohydraulics/Exercise-SedimentTransport).
 ```
 
 Get ready by cloning the exercise repository:
@@ -112,7 +113,7 @@ We will create three buttons to let the user select:
 1. A *HEC-RAS* output workbook (`xlsx`) file, and
 1. An output directory where the resulting `bed_load_mpm.xlsx` workbook will be stored.
 
-Every button triggers a method of `SediApp`, which we will define later on. The methods to trigger are defined with the `command=self.METHOD()` keyword (recall the instructions for [creating a *button*](../jupyter/pygui.html#add-a-button-to-call-a-function)).
+Every button triggers a method of `SediApp`, which we will define later on. The methods to trigger are defined with the `command=self.METHOD()` keyword (recall the instructions for creating a {ref}`button <add-button>`)).
 
 The file and folder directories need to be initialized before we can use them in the button texts. Therefore, add to `__init__`:
 

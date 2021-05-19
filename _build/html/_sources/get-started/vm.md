@@ -29,7 +29,7 @@ This page guides through the installation of a [Debian Linux](https://www.debian
 
 The guest machine will run Debian Linux, which is one of the most stable Linux distributions, and it is freely available. Because of its stability, Debian is an ideal baseline for running numerical simulations that may last for days or even weeks. Of course, there are other options, and Debian is rather one of the best options than *the best option*.
 
-There are a couple of Debian Linux spin-offs, such as [*Ubuntu*](https://ubuntu.com) with some other derivatives that are more light-weight (and faster). New Linux users will have an easy start with the *Ubuntu* variants [*Linux Mint* (*Xfce*)](https://www.linuxmint.com) or [*Lubuntu*](https://lubuntu.me/downloads/). Most versions *Ubuntu* can be used instead of the Debian Linux presented here to complete the tutorials on this website.
+There are a couple of Debian Linux spin-offs, such as [*Ubuntu*](https://ubuntu.com) with some other derivatives that are more lightweight (and faster). New Linux users will have an easy start with the *Ubuntu* variants [*Linux Mint* (*Xfce*)](https://www.linuxmint.com) or [*Lubuntu*](https://lubuntu.me/downloads/). Most versions *Ubuntu* can be used instead of the Debian Linux presented here to complete the tutorials on this website.
 
 ## Create a Debian Linux VM
 
@@ -41,13 +41,13 @@ There are a couple of Debian Linux spin-offs, such as [*Ubuntu*](https://ubuntu.
     + *Oracles*'s *VirtualBox* is a free and open-source hosted hypervisor software.
     + The installation of *VirtualBox* requires administrator rights on the host machine. So if you are working in a professional environment, talk to your IT administrator.
     + *VirtualBox* installers are available for *Windows*, *mac OS*, and *Solaris*.
-* Download the latest Debian Linux (or on of its spin-offs - see next bullet point) net installer (this is the **recommended** solution **for** working with **TELEMAC**):
+* Download the latest Debian Linux (or one of its spin-offs - see next bullet point) net installer (this is the **recommended** solution **for** working with **TELEMAC**):
     + Find the CD-section and click on the [*amd64*](https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/) version
     + Scroll to the bottom of the page and download the latest net installer (*debian-xx.x.x-amd64-netinst.iso*)
     + If the above link is not working, visit [debian.org](https://www.debian.org/), find the *Getting Debian* section (do not click on the one in the top menu), click on *CD/USB ISO images* and click on [Download CD/DVD images using HTTP](https://www.debian.org/CD/http-ftp/).
 * *ISO* images for Debian spin-offs can also be used to complete the tutorials on this website (all-round systems):
     + [*Lubuntu*](https://lubuntu.me/downloads/) is a fast and light-weight derivative of *Ubuntu*
-    + [*Linux Mint* (*Xfce*)](https://www.linuxmint.com) is another efficient *Ubuntu* spin-off that is always based the penultimate *Ubuntu* version (e.g., if the current *Ubuntu* version is 20.0, then the current *Mint* version is 19.0 and builds on *Ubuntu* 19.0)
+    + [*Linux Mint* (*Xfce*)](https://www.linuxmint.com) is another efficient *Ubuntu* spin-off that is always based on the penultimate *Ubuntu* version (e.g., if the current *Ubuntu* version is 20.0, then the current *Mint* version is 19.0 and builds on *Ubuntu* 19.0)
 
 Remember where the downloaded Linux *.ISO* file is stored.
 
@@ -69,7 +69,7 @@ In your host system (e.g., *Windows 10*), click on *Start*, type *Oracle VM Virt
     + Preferably choose *Dynamically allocated* to start with a small virtual disk size, which can take a maximum size to be defined in the next step. Click on the *Next* button.
     + Leave the default disk name as is and allocate a maximum size for the virtual disk (recommended: min. 32 GB). Click on the *Create* button.
 * Great - the basics are all set now and we are back in the *VirtualBox* main window, where a *Debian Linux* VM should be visible now on the left side of the window.
-* With the *Debian Linux* VM highlighted (i.e., just click on it), click on the yellow *Settings* wheel-button, which opens the *Settings* window:
+* With the *Debian Linux* VM highlighted (i.e., just click on it), click on the yellow *Settings* wheel button, which opens the *Settings* window:
     + In the *System/Motherboard* tab, verify the memory allocation and check the *Enable EFI (special OSes only)* box (enable).
     + In the *System/Processor* tab, select the number of processors that the VM uses. To not slowing down the host system (*Windows 10*), stay in the green range of the CPU bar. For parallel processing with TELEMAC-MASCARET, allocate at least 4 CPUs.
     + In the *Display* tab, check the *Enable 3D Acceleration* box.
@@ -101,12 +101,12 @@ To install Debian Linux to the VM, start the before created *Debian Linux VM* in
  <br>... continue enjoying your favorite beverage and wait while the installation progresses ...
 * Click *Continue* to finalize the installation and reboot (or shutdown) the VM.
 
-Once the VM is shutdown, re-open the VM *Settings* (from *VirtualBox Manager* window) and go to the *Storage* tab. Verify that there is again an *Empty* disk symbol in the *Controller: IDE* field.
+Once the VM is shut down, re-open the VM *Settings* (from *VirtualBox Manager* window) and go to the *Storage* tab. Verify that there is again an *Empty* disk symbol in the *Controller: IDE* field.
 
 
 ## Re-use (transfer or copy) a VM on another Host
 
-Once you have created a VM on a virtual hard disk (the ***vdi*** file), you can always transfer it to another *host* system. To copy (or transport) a VM:
+Once you have created a VM on a virtual hard disk (the **vdi** file), you can always transfer it to another *host* system. To copy (or transport) a VM:
 
 1. Copy the *vdi* file where your VM is installed (e.g., *Debian Linux.vdi*) to another system (let's call it *Host-2*), for example by using a USB flash drive.
 1. Make sure that *VirtualBox* is installed on the *Host-2* system and open *VirtualBox* on  *Host-2*.
@@ -132,7 +132,7 @@ su
 Enter the above-created password for the root user name (see installation section).
 
 ```{note}
-Root access (e.g., for installing software) is granted on many Linux distribution using the `sudo` command before the command to execute. In Debian Linux, `sudo` may refer to the wrong account and not work as desired. As a workaround type `su` in *Terminal*. More later on this page.
+Root access (e.g., for installing software) is granted on many Linux distribution using the `sudo` command before the command to execute. In Debian Linux, `sudo` may refer to the wrong account and not work as desired. As a workaround type `su` in *Terminal*. Read more later in this section.
 ```
 
 Install all packages required for building kernel modules:
@@ -145,8 +145,10 @@ apt install build-essential dkms linux-headers-$(uname -r)
 Find the *Devices* drop-down menu of the *VirtualBox VM* window (not in Debian Linux itself) and select *Insert Guest Additions CD image...* (depending on the version of *VirtualBox*, this menu can be on the top or the bottom of the window).
 
 ```{tip}
-The *VirtualBox VM* window does not show the menu with the *Devices* entry anywhere?<br><br>
-    + This may happen when the *View* was set to *Scaled mode*.<br><br>
+The *VirtualBox VM* window does not show the menu with the *Devices* entry anywhere?
+
+    + This may happen when the *View* was set to *Scaled mode*.
+
     + To toggle the view mode and make the menu bar visible, press the RIGHT `CTRL` (`Host`) key + the `C` on your keyboard, while being in the host system view.
 ```
 
@@ -180,7 +182,7 @@ After rebooting, make sure that the installation was successful. In *Terminal* t
 lsmod | grep vboxguest
 ```
 
-If the *Terminal*'s answer is something like `vboxguest   358395 2 vboxsf`, the installation was successful. Read more about *Guest Additions* on the [*VirtualBox* developer's website](https://www.virtualbox.org/manual/ch04.html).
+The installation was successful if the *Terminal*'s answer is something like `vboxguest   358395 2 vboxsf`. Read more about *Guest Additions* on the [*VirtualBox* developer's website](https://www.virtualbox.org/manual/ch04.html).
 
 To improve the visual experience do the following:
 * In the top-left corner of the Debian Linux Desktop, click on *Activities* and type *displays* in the search box.
@@ -198,12 +200,12 @@ To get familiar with Debian Linux, go to the *Activities* menu and find the appl
 Find more applications by clicking on the four dots on the left of the menu bar - can you find the Text Editor?
 To shutdown Debian Linux (i.e., the VM), click on the top-right corner arrow and press the Power symbol.
 
-The GNOME *Terminal* is one of the most important features, event though it optically shows only an empty window with a blinking cursor at the beginning. There are many ways to open *Terminal* and here are two options:
+The GNOME *Terminal* is one of the most important features, even though it optically shows only an empty window with a blinking cursor at the beginning. There are many ways to open *Terminal* and here are two options:
 
 1. Go to *Applications* and type *Terminal* in the search box, or
 1. Open the *File* browser (*Applications* > *Files* - the filing container symbol), navigate to the folder where you want to run *Terminal*, right-click in the free space, and left-click on *Open in Terminal*.
 
-*Terminal* runs many powerful native Linux (UNIX) commands, which is the most robust way to install and execute features. There are a couple of tutorials for learning to use *Terminal* and one of the most comprehensive is provided on the *Linux Ubuntu* website (Ubuntu is based on Debian Linux). It is highly recommended to go through the [tutorial provided by the Ubuntu community](https://ubuntu.com/tutorials/command-line-for-beginners) (*estimated duration: 51 minutes*), for better understanding some contents presented here on *hydro-informatics.github.io*. In particular, memorize the commands `cd` (change directory), `su`/`sudo` (superuser), `ls` (listen) and `mkdir` (make directory).
+*Terminal* runs many powerful native Linux (UNIX) commands, which is the most robust way to install and execute features. There are a couple of tutorials for learning to use *Terminal* and one of the most comprehensive is provided on the *Linux Ubuntu* website (Ubuntu is based on Debian Linux). It is highly recommended to go through the [tutorial provided by the Ubuntu community](https://ubuntu.com/tutorials/command-line-for-beginners) (*estimated duration: 51 minutes*), for better understanding some contents of this ebook. In particular, memorize the commands `cd` (change directory), `su`/`sudo` (superuser), `ls` (listen) and `mkdir` (make directory).
 
 (user-rights)=
 ### Setup user rights
@@ -221,7 +223,7 @@ Open a new *Terminal* tab (`Shift` + `CTRL` + `T`), which should open up in your
 sudo -v
 ```
 
-If visually nothing happens, you are good to go. Otherweise, if you get a message like `Sorry, user [username] may not run sudo on [hostname].`, verify that you correctly typed the above command and *YOUR-USER-NAME* (with correct cases).
+If visually nothing happens, you are good to go. Otherwise, if you get a message like `Sorry, user [username] may not run sudo on [hostname].`, verify that you correctly typed the above command and *YOUR-USER-NAME* (with correct cases).
 
 (vm-share)=
 ### Enable folder sharing
@@ -256,7 +258,7 @@ A ***Permission denied*** message is likely to appear when you click on `sf_shar
 sudo usermod -aG vboxsf YOUR-USER-NAME
 ```
 
-Afterwards, **reboot the *Debian Linux VM*** and test if you can access the folder, and create and modify files.
+Afterward, **reboot the *Debian Linux VM*** and test if you can access the folder, and create and modify files.
 
 ***
 
@@ -269,13 +271,13 @@ Afterwards, **reboot the *Debian Linux VM*** and test if you can access the fold
 sudo apt install xorg
 ```
 
-Run *Xorg* as normal user with:
+Run *Xorg* as a normal user with:
 
 ```
 startx
 ```
 
-Or run *Xorg* as root (super user) with:
+Or run *Xorg* as root (superuser) with:
 
 ```
 sudo service gdm start
@@ -316,7 +318,7 @@ sudo apt full-upgrade
 sudo apt autoremove
 ```
 
-The last command removes files that are not needed any more and reduces  system garbage.
+The last command removes files that are not needed anymore and reduces system garbage.
 
 ```{note}
 Being a new Linux end user, preferably use `apt` rather than `apt-get`. That means:<br>**Do use `sudo apt install PACKAGE`**<br>**Avoid `sudo apt-get install PACKAGE`**<br>Still, you may need to use `apt-get` for some specific cases (e.g., if a package provider instructs you to do so).
@@ -325,7 +327,7 @@ Being a new Linux end user, preferably use `apt` rather than `apt-get`. That mea
 Instructions for installing particular and Debian-compatible software (e.g., QGIS) can be found directly on the website of software developers. For example, to install *Anaconda* *Python* visit [docs.anaconda.com](https://docs.anaconda.com/anaconda/install/linux/) and follow the installation instructions for Debian Linux.
 
 ```{attention}
-If the main purpose of the VM is to run resource-intensive simulations (e.g., with TELEMAC-MASCARET), avoid installing any other software than those required for running the model. Also, as a general rule of thumb: Less is better than more.
+If the main purpose of the VM is to run resource-intensive simulations (e.g., with TELEMAC), avoid installing any other software than those required for running the model. Also, as a general rule of thumb: Less is better than more.
 ```
 
 ### Add Package Repositories
@@ -398,8 +400,10 @@ To install a *Windows* application:
     + Consider to add a *Desktop Icon*, or note the installation directory (e.g., `"C:\\Program Files (x86)\\CHC\\BlueKenue\\"`).
     + In the background. *Terminal* might prompt the message `err:mscoree:LoadLibraryShim error reading registry key for installroot` - you may ignore such messages ([read more](https://forum.winehq.org/viewtopic.php?t=14618)).
 
-```{warning}
-NEVER run wine as root (sudo). If you did anyway, do `cd $HOME` and tap `sudo chown -R $USER:$USER .wine`
+```{admonition} Never run wine as root (sudo).
+:class: error, dropdown
+Why? It is just not safe. So if you did run wine as root anyway, roll back with `cd $HOME` and tap `sudo chown -R $USER:$USER .wine`
+More information is available in the [wine docs](https://wiki.winehq.org/FAQ#Should_I_run_Wine_as_root.3F).
 ```
 
 **Launch a *Windows* application** by typing `wine explorer` in *Terminal*.  *Wine*'s *Windows* file system will be displayed in a *Windows*-like window. To start and application:

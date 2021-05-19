@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# (chpt-gui)=
 # # Graphical User Interfaces (GUIs)
 # 
 # Make code user-friendly. For interactive reading and executing code blocks [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter) and find *gui.ipynb* or {ref}`install-python` locally along with {ref}`jupyter`.
@@ -63,6 +64,7 @@ top.mainloop()
 
 # ![img](https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-first-config.png)
 
+# (add-button)=
 # ## Add a Button to Call a Function
 #  
 # So far our window only shows a (boring) label and waits for events that do not exist. With a `tk.Button` we now add an event trigger. So that the event has something to trigger, we define a `call_back` function that creates an infobox. The infobox is an object of `showinfo` from `tkinter.messagebox`.

@@ -5,7 +5,8 @@ Write custom functions, load data from comma-type delimited text files, and mani
 ```
 
 ```{admonition} Requirements
-*Python* libraries: *numpy* including *scipy* and *matplotlib*. Read and understand the [data handling with *numpy*](../jupyter/pynum) and [functions](../jupyter/pyfun).
+:class: attention
+*Python* libraries: {ref}`numpy` including *scipy* and *matplotlib*. Read and understand the data handling with {ref}`numpy` and [functions](../jupyter/pyfun).
 ```
 
 Get ready by cloning the exercise repository:
@@ -23,12 +24,12 @@ New Bullards Bar Dam in California, USA (source: Sebastian Schwindt 2017).
 
 
 ## Theory
-Seasonal storage reservoirs retain water during wet months (e.g., monsoon, or rainy winters in Mediterranean climates) to ensure sufficient drinking water and agricultural supply during dry months. For this purpose, enormous storage volumes are necessary, which often exceed 1,000,000 m³.
+Seasonal storage reservoirs retain water during wet months (e.g., monsoon, or rainy winters in Mediterranean climates) to ensure sufficient drinking water and agricultural supply during dry months. For this purpose, enormous storage volumes are necessary, which often exceed 1,000,000 m$^3$.
 
 The necessary storage volume is determined from historical inflow measurements and target discharge volumes (e.g., agriculture, drinking water, hydropower, or ecological residual water quantities).
-The sequent peak algorithm (e.g., [Potter 1977](https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1752-1688.1977.tb05564.x) based on [Rippl 1883](https://doi.org/10.1680/imotp.1883.21797) is a decades-old procedure for determining the necessary seasonal storage volume based on a storage volume curve (***SD curve***). The below figure shows an exemplary *SD* curve with volume peaks (local maxima) approximately every 6 months and local volume minima between the peaks. The volume between the last local maximum and the lowest following local minimum determines the required storage volume (see the bright-blue line in the figure).
+The sequent peak algorithm (e.g., [Potter 1977](https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1752-1688.1977.tb05564.x) based on [Rippl 1883](https://doi.org/10.1680/imotp.1883.21797) is a decades-old procedure for determining the necessary seasonal storage volume based on a storage volume curve (***SD curve***). The below figure shows an exemplary $SD$ curve with volume peaks (local maxima) approximately every 6 months and local volume minima between the peaks. The volume between the last local maximum and the lowest following local minimum determines the required storage volume (see the bright-blue line in the figure).
 
-```{figure} (https://github.com/Ecohydraulics/media/raw/master/png/sequent_peak.png
+```{figure} https://github.com/Ecohydraulics/media/raw/master/png/sequent_peak.png
 :alt: sequent peak algorithm
 :name: sequentpeak
 
@@ -37,7 +38,7 @@ Scheme of the sequent peak algorithm.
 
 The sequent peak algorithm repeats this calculation over multiple years and the highest volume observed determines the required volume.
 
-In this exercise, we use daily flow measurements from Vanilla River (in Vanilla-arid country with monsoon periods) and target outflow volumes to supply farmers and the population of Vanilla-arid country with sufficient water during the dry seasons. This exercise guides you through loading the daily discharge data, creating the monthly *SD* (storage) curve, and calculating the required storage volume.
+In this exercise, we use daily flow measurements from Vanilla River (in Vanilla-arid country with monsoon periods) and target outflow volumes to supply farmers and the population of Vanilla-arid country with sufficient water during the dry seasons. This exercise guides you through loading the daily discharge data, creating the monthly $SD$ (storage) curve, and calculating the required storage volume.
 
 
 ## Pre-processing of Flow Data
@@ -75,7 +76,7 @@ The function will loop over the *csv* file names and append the file contents to
         - Back in the `with open(file, ...` statement (use correct indentation level!), update `file_content_dict` with the above-found `dict_key` and the `data_array` of the `file as f`: `file_content_dict.update({dict_key: data_array})`
 1. Back at the level of the function (`def read_data(...):` - pay attention to the correct indentation!), `return file_content_dict`
 
-Let us check if the function works as we want it to work by making the script stand-alone through an `if __name__ == "__main__":` statement at the end of the file (recall the [instructions](../jupyter/pypckg.html#standalone)). So the script should look like this:
+Check if the function works as wanted and {ref}`standalone` through an `if __name__ == "__main__":` statement at the end of the file. So the script should look like this:
 
 ```python
 import glob
@@ -134,9 +135,9 @@ Running the script returns the `numpy.array` of daily average flows for the year
 
 ### Convert Daily Flows to Monthly Volumes
 
-The sequent peak algorithm takes monthly flow volumes, which corresponds to the sum of daily average discharge multiplied with the duration of one day (e.g, 11.0 m³/s · 24 h/d · 3600 s/h). Reading the flow data as above shown results in annual flow tables (average daily flows in m³/s) with the `numpy.array`s of the shape 31x12 arrays (matrices) for every year. We want to get the column sums and multiply the sum with 24 h/d · 3600 s/h. Because the monthly volumes are in the order of million cubic meters (CMS), dividing the monthly sums by `10**6` will simplify the representation of numbers.
+The sequent peak algorithm takes monthly flow volumes, which corresponds to the sum of daily average discharge multiplied with the duration of one day (e.g, 11.0 m$^3$/s $\cdot$ 24 h/d $\cdot$ 3600 s/h). Reading the flow data as above shown results in annual flow tables (average daily flows in m$^3$/s) with the `numpy.array`s of the shape 31x12 arrays (matrices) for every year. We want to get the column sums and multiply the sum with 24 h/d $\cdot$ 3600 s/h. Because the monthly volumes are in the order of million cubic meters (CMS), dividing the monthly sums by `10**6` will simplify the representation of numbers.
 
-Write a function (e.g., `def daily2monthly(daily_flow_series)`) to perform the conversion of daily average flow series to monthly volumes in 10<sup>6</sup>m³:
+Write a function (e.g., `def daily2monthly(daily_flow_series)`) to perform the conversion of daily average flow series to monthly volumes in 10$^{6}$m$^3$:
 
 1. The function should be called for every dictionary entry (year) of the data series. Therefore, the input argument `daily_flow_series` should be a `numpy.array` with the shape being `(31, 12)`.
 1. To get column-wise (monthly) statistics, transpose the input array:<br>`daily_flow_series = np.transpose(daily_flow_series)`
@@ -169,28 +170,41 @@ if __name__ == "__main__":
 
 ## Sequent Peak Algorithm
 
-With the above routines for reading the flow data, we derived monthly inflow volumes ***In<sub>m</sub>*** in million m³ (stored in `monthly_vol_dict`). For irrigation and drinking water supply, Vanilla-arid country wants to withdraw the following annual volume from the reservoir:
+With the above routines for reading the flow data, we derived monthly inflow volumes $In_{m}$ in million m$^3$ (stored in `monthly_vol_dict`). For irrigation and drinking water supply, Vanilla-arid country wants to withdraw the following annual volume from the reservoir:
 
 | ***Month***    | Jan | Feb | Mar | Apr | May | Jun | Jul | Aug | Sep | Oct | Nov | Dec |
 |----------------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
-| ***Vol.*** (10<sup>6</sup> m³) | 1.5 | 1.5 | 1.5 | 2   | 4   | 4   | 4   | 5   | 5   | 3   | 2   | 1.5 |
+| ***Vol.*** (10$^{6}$ m$^3$) | 1.5 | 1.5 | 1.5 | 2   | 4   | 4   | 4   | 5   | 5   | 3   | 2   | 1.5 |
 
-Following the scheme of inflow volumes we can create a `numpy.array` for the monthly outflow volumes ***Out<sub>m</sub>***.<br>
+Following the scheme of inflow volumes we can create a `numpy.array` for the monthly outflow volumes $Out_{m}$.<br>
+
 `monthly_supply = np.array([1.5, 1.5, 1.5, 2.0, 4.0, 4.0, 4.0, 5.0, 5.0, 3.0, 2.0, 1.5])`
 
 ### Storage Volume and Difference (SD-line) Curves
-The storage volume of the present month ***S<sub>m</sub>*** is calculated as the result of the water balance from the last month, for example:<br>
-<br>*S<sub>2</sub>* = *S<sub>1</sub>* + *In<sub>1</sub>* - *Out<sub>1</sub>*
-<br>*S<sub>3</sub>* = *S<sub>2</sub>* + *In<sub>2</sub>* - *Out<sub>2</sub>* = *S<sub>1</sub>* + *In<sub>1</sub>* + *In<sub>2</sub>* - *Out<sub>1</sub>* - *Out<sub>2</sub>* <br>
-In summation notation, we can write:<br>
-*S<sub>m+1</sub>* = *S<sub>1</sub>* + *&Sigma;<sub>i=[1:m]</sub>In<sub>i</sub>* - *&Sigma;<sub>i=[1:m]</sub>Out<sub>i</sub>*<br>
-The last two terms constitute the storage difference (***SD***) line:<br>
-*SD<sub>m</sub>* = *&Sigma;<sub>i=[1:m]</sub>(In<sub>i</sub> - Out<sub>i</sub>)*<br>
+The storage volume of the present month $S_{m}$ is calculated as the result of the water balance from the last month, for example:<br>
 
-Thus, the storage curve as a function of the *SD* line is:<br>
-*S<sub>m+1</sub>* = *S<sub>1</sub>* + *SD<sub>m</sub>*
+$S_{2}$ = $S_{1}$ + $In_{1}$ - $Out_{1}$<br>
+$S_{3}$ = $S_{2}$ + $In_{2}$ - $Out_{2}$ = $S_{1}$ + $In_{1}$ + $In_{2}$ - $Out_{1}$ - $Out_{2}$<br>
 
-The summation notation of the storage curve as a function of the *SD* line enables us to implement the calculation into a simple `def sequent_peak(in_vol_series, out_vol_target):` function.
+In summation notation, we can write:
+
+$$
+S_{m+1} = S_{1} + \Sigma_{i=[1:m]} In_{i} - \Sigma_{i=[1:m]}Out_{i}
+$$
+
+The last two terms constitute the storage difference ($SD$) line:
+
+$$
+SD_{m} = \Sigma_{i=[1:m]}(In_{i} - Out_{i})
+$$
+
+Thus, the storage curve as a function of the $SD$ line is:
+
+$$
+S_{m+1} = S_{1} + SD_{m}
+$$
+
+The summation notation of the storage curve as a function of the $SD$ line enables us to implement the calculation into a simple `def sequent_peak(in_vol_series, out_vol_target):` function.
 
 ```{note}
 The following instructions assume that `in_vol_series` corresponds to the above-defined *dictionary* of monthly inflow volumes and `out_vol_target` is the `numpy.array` of monthly outflow target volumes. Alternatively, an approach that uses `in_vol_series` as a sequence of `numpy.array`s can be used.
@@ -198,7 +212,7 @@ The following instructions assume that `in_vol_series` corresponds to the above-
 
 The new `def sequent_peak(in_vol_series, out_vol_target):` function needs to:
 
-* Calculate the monthly storage differences (*In<sub>m</sub>* - *Out<sub>m</sub>*), for example in a *for* loop over the `in_vol_series` dictionary:
+* Calculate the monthly storage differences ($In_{m}$ - $Out_{m}$), for example in a *for* loop over the `in_vol_series` dictionary:
 
 ```python
     # create storage-difference SD dictionary
@@ -211,7 +225,7 @@ The new `def sequent_peak(in_vol_series, out_vol_target):` function needs to:
             SD_dict[year].append(in_vol - out_vol_target[month_no])
 ```
 
-* Flatten the dictionary to a list (we could also have done that directly) corresponding to the above-defined *SD* line:
+* Flatten the dictionary to a list (we could also have done that directly) corresponding to the above-defined $SD$ line:
 
 ```python
     SD_line = []
@@ -230,7 +244,7 @@ The new `def sequent_peak(in_vol_series, out_vol_target):` function needs to:
     1. Write two functions, which consecutively find local maxima and then local minima located between the extrema (HOMEWORK!) OR use `from scipy.signal import find_peaks` to find the indices (positions) - consider to write a `find_seasonal_extrema(storage_line)` function.
 * Verify if the curves and extrema are correct by copying the provided `plot_storage_curve` curve to your script ([available in the exercise repository](https://raw.githubusercontent.com/Ecohydraulics/Exercise-SequentPeak/master/plot_function.py) and using it as follows:<br>`plot_storage_curve(storage_line, seas_min_index, seas_max_index, seas_min_vol, seas_max_vol)`
 
-```{figure} (https://github.com/Ecohydraulics/media/raw/master/png/storage_curve.png
+```{figure} https://github.com/Ecohydraulics/media/raw/master/png/storage_curve.png
 :alt: sequent peak storage difference sd curve
 :name: SDline
 

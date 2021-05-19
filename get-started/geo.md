@@ -2,10 +2,6 @@
 
 Geospatial analyses (or analytics) use, manipulate, and illustrate data from geographic information systems (GIS). GIS data contain geographically referenced and spatially explicit information of for example gauging stations, terrain elevation, or land use. Efficient processing of geospatial data involves programming methods, where *Python* is an efficient tool. This page presents desktop software for manual geospatial analyses and the illustration of geospatial data. For geospatial programming, please refer to the {ref}`sec-geo-python` chapter.
 
-```{note}
-Geospatial data are either geographically referenced, pixel-based [rasters](https://en.wikipedia.org/wiki/Raster_graphics) data or vector-based *Esri* [shapefiles](https://en.wikipedia.org/wiki/Shapefile) (read more on the [*Python<sup>geospatial</sup>*](../geopy/geospatial-data) pages).
-```
-
 (qgis-install)=
 ## QGIS
 For the visualization of geodata (`.shp` and `.tif` files), GIS software is required and the analyses described on these pages refer to the usage of [*QGIS*](https://www.qgis.org). This ebook uses *QGIS* within the sections on [geospatial programming with *Python*](../geopy/geo-python) and [numerical modelling with the ETH Zurich's BASEMENT](../numerics/basement) software.
@@ -28,12 +24,13 @@ Restart the system and open the *Software Manager* app. It will update and add t
 The *QGIS Flatpak* installation will most likely not include the important *scipy* module. To fix this issue, open  *Terminal* (standard Linux application) and type:
 <br>`flatpak run --command=pip3 org.qgis.qgis install scipy --user`
 
-This solution has been tested on *Linux Ubuntu* and *Linux Mint*. It potentially also works with *Red Hat*, *openSUSE*, *Mac OS*, *Arch*, *Fedora*, *Android*, *Debian*, *Kubuntu* and many more (read installation guides on the [maintainer's website](https://flatpak.org/setup/)). Read more about the *QGIS Flatpak* installation on the [*QGIS website*](https://qgis.org/en/site/forusers/alldownloads.html#flatpak).
+This solution has been tested on *Linux Ubuntu* and *Linux Mint*. It potentially also works with *Red Hat*, *openSUSE*, *Mac OS*, *Arch*, *Fedora*, *Android*, *Debian*, *Kubuntu* and many more (read installation guides on the [maintainer's website](https://flatpak.org/setup/)). Read more about the *QGIS Flatpak* installation on the [QGIS website](https://qgis.org/en/site/forusers/alldownloads.html#flatpak).
 
 
 ### Install QGIS on macOS
 
-```{note}
+```{admonition} macOS and BASEMENT
+:class: attention
 If you plan to use BASEMENT for numerical modeling: BASEMENT will not run on macOS.
 ```
 

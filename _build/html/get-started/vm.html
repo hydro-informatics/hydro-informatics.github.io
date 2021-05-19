@@ -109,7 +109,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../lectures/take_seat.html">
-     Take a Seat in the Virtual Classroom
+     The Virtual Classroom
     </a>
    </li>
   </ul>
@@ -151,7 +151,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="install-openfoam.html">
-     Install OpenFOAM
+     OpenFOAM (Installation)
     </a>
    </li>
    <li class="toctree-l2">
@@ -624,7 +624,7 @@
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.com/hydro-informatics/"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/hydro-informatics/hydro-informatics.github.io"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         
@@ -810,7 +810,7 @@
 <h3>Contents and Debian Linux<a class="headerlink" href="#contents-and-debian-linux" title="Permalink to this headline">¶</a></h3>
 <p>This page guides through the installation of a <a class="reference external" href="https://www.debian.org/">Debian Linux</a> virtual machine. The host hypervisor is assumed to be Oracle’s <a class="reference external" href="https://www.virtualbox.org/">VirtualBox</a> on <em>Windows 10</em>. If you are not using <em>Windows 10</em>, just download the <em>VirtualBox</em> installer that suits your system.</p>
 <p>The guest machine will run Debian Linux, which is one of the most stable Linux distributions, and it is freely available. Because of its stability, Debian is an ideal baseline for running numerical simulations that may last for days or even weeks. Of course, there are other options, and Debian is rather one of the best options than <em>the best option</em>.</p>
-<p>There are a couple of Debian Linux spin-offs, such as <a class="reference external" href="https://ubuntu.com"><em>Ubuntu</em></a> with some other derivatives that are more light-weight (and faster). New Linux users will have an easy start with the <em>Ubuntu</em> variants <a class="reference external" href="https://www.linuxmint.com"><em>Linux Mint</em> (<em>Xfce</em>)</a> or <a class="reference external" href="https://lubuntu.me/downloads/"><em>Lubuntu</em></a>. Most versions <em>Ubuntu</em> can be used instead of the Debian Linux presented here to complete the tutorials on this website.</p>
+<p>There are a couple of Debian Linux spin-offs, such as <a class="reference external" href="https://ubuntu.com"><em>Ubuntu</em></a> with some other derivatives that are more lightweight (and faster). New Linux users will have an easy start with the <em>Ubuntu</em> variants <a class="reference external" href="https://www.linuxmint.com"><em>Linux Mint</em> (<em>Xfce</em>)</a> or <a class="reference external" href="https://lubuntu.me/downloads/"><em>Lubuntu</em></a>. Most versions <em>Ubuntu</em> can be used instead of the Debian Linux presented here to complete the tutorials on this website.</p>
 </div>
 </div>
 <div class="section" id="create-a-debian-linux-vm">
@@ -826,7 +826,7 @@
 <li><p><em>VirtualBox</em> installers are available for <em>Windows</em>, <em>mac OS</em>, and <em>Solaris</em>.</p></li>
 </ul>
 </li>
-<li><p>Download the latest Debian Linux (or on of its spin-offs - see next bullet point) net installer (this is the <strong>recommended</strong> solution <strong>for</strong> working with <strong>TELEMAC</strong>):</p>
+<li><p>Download the latest Debian Linux (or one of its spin-offs - see next bullet point) net installer (this is the <strong>recommended</strong> solution <strong>for</strong> working with <strong>TELEMAC</strong>):</p>
 <ul>
 <li><p>Find the CD-section and click on the <a class="reference external" href="https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/"><em>amd64</em></a> version</p></li>
 <li><p>Scroll to the bottom of the page and download the latest net installer (<em>debian-xx.x.x-amd64-netinst.iso</em>)</p></li>
@@ -836,7 +836,7 @@
 <li><p><em>ISO</em> images for Debian spin-offs can also be used to complete the tutorials on this website (all-round systems):</p>
 <ul>
 <li><p><a class="reference external" href="https://lubuntu.me/downloads/"><em>Lubuntu</em></a> is a fast and light-weight derivative of <em>Ubuntu</em></p></li>
-<li><p><a class="reference external" href="https://www.linuxmint.com"><em>Linux Mint</em> (<em>Xfce</em>)</a> is another efficient <em>Ubuntu</em> spin-off that is always based the penultimate <em>Ubuntu</em> version (e.g., if the current <em>Ubuntu</em> version is 20.0, then the current <em>Mint</em> version is 19.0 and builds on <em>Ubuntu</em> 19.0)</p></li>
+<li><p><a class="reference external" href="https://www.linuxmint.com"><em>Linux Mint</em> (<em>Xfce</em>)</a> is another efficient <em>Ubuntu</em> spin-off that is always based on the penultimate <em>Ubuntu</em> version (e.g., if the current <em>Ubuntu</em> version is 20.0, then the current <em>Mint</em> version is 19.0 and builds on <em>Ubuntu</em> 19.0)</p></li>
 </ul>
 </li>
 </ul>
@@ -862,7 +862,7 @@
 </ul>
 </li>
 <li><p>Great - the basics are all set now and we are back in the <em>VirtualBox</em> main window, where a <em>Debian Linux</em> VM should be visible now on the left side of the window.</p></li>
-<li><p>With the <em>Debian Linux</em> VM highlighted (i.e., just click on it), click on the yellow <em>Settings</em> wheel-button, which opens the <em>Settings</em> window:</p>
+<li><p>With the <em>Debian Linux</em> VM highlighted (i.e., just click on it), click on the yellow <em>Settings</em> wheel button, which opens the <em>Settings</em> window:</p>
 <ul>
 <li><p>In the <em>System/Motherboard</em> tab, verify the memory allocation and check the <em>Enable EFI (special OSes only)</em> box (enable).</p></li>
 <li><p>In the <em>System/Processor</em> tab, select the number of processors that the VM uses. To not slowing down the host system (<em>Windows 10</em>), stay in the green range of the CPU bar. For parallel processing with TELEMAC-MASCARET, allocate at least 4 CPUs.</p></li>
@@ -900,12 +900,12 @@
 <br>… continue enjoying your favorite beverage and wait while the installation progresses …</p></li>
 <li><p>Click <em>Continue</em> to finalize the installation and reboot (or shutdown) the VM.</p></li>
 </ul>
-<p>Once the VM is shutdown, re-open the VM <em>Settings</em> (from <em>VirtualBox Manager</em> window) and go to the <em>Storage</em> tab. Verify that there is again an <em>Empty</em> disk symbol in the <em>Controller: IDE</em> field.</p>
+<p>Once the VM is shut down, re-open the VM <em>Settings</em> (from <em>VirtualBox Manager</em> window) and go to the <em>Storage</em> tab. Verify that there is again an <em>Empty</em> disk symbol in the <em>Controller: IDE</em> field.</p>
 </div>
 </div>
 <div class="section" id="re-use-transfer-or-copy-a-vm-on-another-host">
 <h2>Re-use (transfer or copy) a VM on another Host<a class="headerlink" href="#re-use-transfer-or-copy-a-vm-on-another-host" title="Permalink to this headline">¶</a></h2>
-<p>Once you have created a VM on a virtual hard disk (the <em><strong>vdi</strong></em> file), you can always transfer it to another <em>host</em> system. To copy (or transport) a VM:</p>
+<p>Once you have created a VM on a virtual hard disk (the <strong>vdi</strong> file), you can always transfer it to another <em>host</em> system. To copy (or transport) a VM:</p>
 <ol class="simple">
 <li><p>Copy the <em>vdi</em> file where your VM is installed (e.g., <em>Debian Linux.vdi</em>) to another system (let’s call it <em>Host-2</em>), for example by using a USB flash drive.</p></li>
 <li><p>Make sure that <em>VirtualBox</em> is installed on the <em>Host-2</em> system and open <em>VirtualBox</em> on  <em>Host-2</em>.</p></li>
@@ -928,7 +928,7 @@
 <p>Enter the above-created password for the root user name (see installation section).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Root access (e.g., for installing software) is granted on many Linux distribution using the <code class="docutils literal notranslate"><span class="pre">sudo</span></code> command before the command to execute. In Debian Linux, <code class="docutils literal notranslate"><span class="pre">sudo</span></code> may refer to the wrong account and not work as desired. As a workaround type <code class="docutils literal notranslate"><span class="pre">su</span></code> in <em>Terminal</em>. More later on this page.</p>
+<p>Root access (e.g., for installing software) is granted on many Linux distribution using the <code class="docutils literal notranslate"><span class="pre">sudo</span></code> command before the command to execute. In Debian Linux, <code class="docutils literal notranslate"><span class="pre">sudo</span></code> may refer to the wrong account and not work as desired. As a workaround type <code class="docutils literal notranslate"><span class="pre">su</span></code> in <em>Terminal</em>. Read more later in this section.</p>
 </div>
 <p>Install all packages required for building kernel modules:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>apt update
@@ -938,9 +938,12 @@ apt install build-essential dkms linux-headers-$(uname -r)
 <p>Find the <em>Devices</em> drop-down menu of the <em>VirtualBox VM</em> window (not in Debian Linux itself) and select <em>Insert Guest Additions CD image…</em> (depending on the version of <em>VirtualBox</em>, this menu can be on the top or the bottom of the window).</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>The <em>VirtualBox VM</em> window does not show the menu with the <em>Devices</em> entry anywhere?<br><br>
-+ This may happen when the <em>View</em> was set to <em>Scaled mode</em>.<br><br>
-+ To toggle the view mode and make the menu bar visible, press the RIGHT <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> (<code class="docutils literal notranslate"><span class="pre">Host</span></code>) key + the <code class="docutils literal notranslate"><span class="pre">C</span></code> on your keyboard, while being in the host system view.</p>
+<p>The <em>VirtualBox VM</em> window does not show the menu with the <em>Devices</em> entry anywhere?</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+ This may happen when the *View* was set to *Scaled mode*.
+
++ To toggle the view mode and make the menu bar visible, press the RIGHT `CTRL` (`Host`) key + the `C` on your keyboard, while being in the host system view.
+</pre></div>
+</div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -964,7 +967,7 @@ apt install build-essential dkms linux-headers-$(uname -r)
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lsmod</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">vboxguest</span>
 </pre></div>
 </div>
-<p>If the <em>Terminal</em>’s answer is something like <code class="docutils literal notranslate"><span class="pre">vboxguest</span>&#160;&#160; <span class="pre">358395</span> <span class="pre">2</span> <span class="pre">vboxsf</span></code>, the installation was successful. Read more about <em>Guest Additions</em> on the <a class="reference external" href="https://www.virtualbox.org/manual/ch04.html"><em>VirtualBox</em> developer’s website</a>.</p>
+<p>The installation was successful if the <em>Terminal</em>’s answer is something like <code class="docutils literal notranslate"><span class="pre">vboxguest</span>&#160;&#160; <span class="pre">358395</span> <span class="pre">2</span> <span class="pre">vboxsf</span></code>. Read more about <em>Guest Additions</em> on the <a class="reference external" href="https://www.virtualbox.org/manual/ch04.html"><em>VirtualBox</em> developer’s website</a>.</p>
 <p>To improve the visual experience do the following:</p>
 <ul class="simple">
 <li><p>In the top-left corner of the Debian Linux Desktop, click on <em>Activities</em> and type <em>displays</em> in the search box.</p></li>
@@ -982,12 +985,12 @@ apt install build-essential dkms linux-headers-$(uname -r)
 <p>To get familiar with Debian Linux, go to the <em>Activities</em> menu and find the applications <em>LibreOffice-Writer</em>, <em>Firefox</em>, the <em>Software</em> application (shopping bag symbol), and the <em>File</em> manager (filing container symbol).
 Find more applications by clicking on the four dots on the left of the menu bar - can you find the Text Editor?
 To shutdown Debian Linux (i.e., the VM), click on the top-right corner arrow and press the Power symbol.</p>
-<p>The GNOME <em>Terminal</em> is one of the most important features, event though it optically shows only an empty window with a blinking cursor at the beginning. There are many ways to open <em>Terminal</em> and here are two options:</p>
+<p>The GNOME <em>Terminal</em> is one of the most important features, even though it optically shows only an empty window with a blinking cursor at the beginning. There are many ways to open <em>Terminal</em> and here are two options:</p>
 <ol class="simple">
 <li><p>Go to <em>Applications</em> and type <em>Terminal</em> in the search box, or</p></li>
 <li><p>Open the <em>File</em> browser (<em>Applications</em> &gt; <em>Files</em> - the filing container symbol), navigate to the folder where you want to run <em>Terminal</em>, right-click in the free space, and left-click on <em>Open in Terminal</em>.</p></li>
 </ol>
-<p><em>Terminal</em> runs many powerful native Linux (UNIX) commands, which is the most robust way to install and execute features. There are a couple of tutorials for learning to use <em>Terminal</em> and one of the most comprehensive is provided on the <em>Linux Ubuntu</em> website (Ubuntu is based on Debian Linux). It is highly recommended to go through the <a class="reference external" href="https://ubuntu.com/tutorials/command-line-for-beginners">tutorial provided by the Ubuntu community</a> (<em>estimated duration: 51 minutes</em>), for better understanding some contents presented here on <em><a class="reference external" href="http://hydro-informatics.github.io">hydro-informatics.github.io</a></em>. In particular, memorize the commands <code class="docutils literal notranslate"><span class="pre">cd</span></code> (change directory), <code class="docutils literal notranslate"><span class="pre">su</span></code>/<code class="docutils literal notranslate"><span class="pre">sudo</span></code> (superuser), <code class="docutils literal notranslate"><span class="pre">ls</span></code> (listen) and <code class="docutils literal notranslate"><span class="pre">mkdir</span></code> (make directory).</p>
+<p><em>Terminal</em> runs many powerful native Linux (UNIX) commands, which is the most robust way to install and execute features. There are a couple of tutorials for learning to use <em>Terminal</em> and one of the most comprehensive is provided on the <em>Linux Ubuntu</em> website (Ubuntu is based on Debian Linux). It is highly recommended to go through the <a class="reference external" href="https://ubuntu.com/tutorials/command-line-for-beginners">tutorial provided by the Ubuntu community</a> (<em>estimated duration: 51 minutes</em>), for better understanding some contents of this ebook. In particular, memorize the commands <code class="docutils literal notranslate"><span class="pre">cd</span></code> (change directory), <code class="docutils literal notranslate"><span class="pre">su</span></code>/<code class="docutils literal notranslate"><span class="pre">sudo</span></code> (superuser), <code class="docutils literal notranslate"><span class="pre">ls</span></code> (listen) and <code class="docutils literal notranslate"><span class="pre">mkdir</span></code> (make directory).</p>
 </div>
 <div class="section" id="setup-user-rights">
 <span id="user-rights"></span><h3>Setup user rights<a class="headerlink" href="#setup-user-rights" title="Permalink to this headline">¶</a></h3>
@@ -1001,7 +1004,7 @@ To shutdown Debian Linux (i.e., the VM), click on the top-right corner arrow and
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">v</span>
 </pre></div>
 </div>
-<p>If visually nothing happens, you are good to go. Otherweise, if you get a message like <code class="docutils literal notranslate"><span class="pre">Sorry,</span> <span class="pre">user</span> <span class="pre">[username]</span> <span class="pre">may</span> <span class="pre">not</span> <span class="pre">run</span> <span class="pre">sudo</span> <span class="pre">on</span> <span class="pre">[hostname].</span></code>, verify that you correctly typed the above command and <em>YOUR-USER-NAME</em> (with correct cases).</p>
+<p>If visually nothing happens, you are good to go. Otherwise, if you get a message like <code class="docutils literal notranslate"><span class="pre">Sorry,</span> <span class="pre">user</span> <span class="pre">[username]</span> <span class="pre">may</span> <span class="pre">not</span> <span class="pre">run</span> <span class="pre">sudo</span> <span class="pre">on</span> <span class="pre">[hostname].</span></code>, verify that you correctly typed the above command and <em>YOUR-USER-NAME</em> (with correct cases).</p>
 </div>
 <div class="section" id="enable-folder-sharing">
 <span id="vm-share"></span><h3>Enable folder sharing<a class="headerlink" href="#enable-folder-sharing" title="Permalink to this headline">¶</a></h3>
@@ -1033,7 +1036,7 @@ To shutdown Debian Linux (i.e., the VM), click on the top-right corner arrow and
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">usermod</span> <span class="o">-</span><span class="n">aG</span> <span class="n">vboxsf</span> <span class="n">YOUR</span><span class="o">-</span><span class="n">USER</span><span class="o">-</span><span class="n">NAME</span>
 </pre></div>
 </div>
-<p>Afterwards, <strong>reboot the <em>Debian Linux VM</em></strong> and test if you can access the folder, and create and modify files.</p>
+<p>Afterward, <strong>reboot the <em>Debian Linux VM</em></strong> and test if you can access the folder, and create and modify files.</p>
 <hr class="docutils" />
 </div>
 <div class="section" id="enable-opengl">
@@ -1042,11 +1045,11 @@ To shutdown Debian Linux (i.e., the VM), click on the top-right corner arrow and
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">xorg</span>
 </pre></div>
 </div>
-<p>Run <em>Xorg</em> as normal user with:</p>
+<p>Run <em>Xorg</em> as a normal user with:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">startx</span>
 </pre></div>
 </div>
-<p>Or run <em>Xorg</em> as root (super user) with:</p>
+<p>Or run <em>Xorg</em> as root (superuser) with:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">service</span> <span class="n">gdm</span> <span class="n">start</span>
 </pre></div>
 </div>
@@ -1076,7 +1079,7 @@ To shutdown Debian Linux (i.e., the VM), click on the top-right corner arrow and
 <span class="n">sudo</span> <span class="n">apt</span> <span class="n">autoremove</span>
 </pre></div>
 </div>
-<p>The last command removes files that are not needed any more and reduces  system garbage.</p>
+<p>The last command removes files that are not needed anymore and reduces system garbage.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Being a new Linux end user, preferably use <code class="docutils literal notranslate"><span class="pre">apt</span></code> rather than <code class="docutils literal notranslate"><span class="pre">apt-get</span></code>. That means:<br><strong>Do use <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">PACKAGE</span></code></strong><br><strong>Avoid <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">PACKAGE</span></code></strong><br>Still, you may need to use <code class="docutils literal notranslate"><span class="pre">apt-get</span></code> for some specific cases (e.g., if a package provider instructs you to do so).</p>
@@ -1084,7 +1087,7 @@ To shutdown Debian Linux (i.e., the VM), click on the top-right corner arrow and
 <p>Instructions for installing particular and Debian-compatible software (e.g., QGIS) can be found directly on the website of software developers. For example, to install <em>Anaconda</em> <em>Python</em> visit <a class="reference external" href="https://docs.anaconda.com/anaconda/install/linux/">docs.anaconda.com</a> and follow the installation instructions for Debian Linux.</p>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
-<p>If the main purpose of the VM is to run resource-intensive simulations (e.g., with TELEMAC-MASCARET), avoid installing any other software than those required for running the model. Also, as a general rule of thumb: Less is better than more.</p>
+<p>If the main purpose of the VM is to run resource-intensive simulations (e.g., with TELEMAC), avoid installing any other software than those required for running the model. Also, as a general rule of thumb: Less is better than more.</p>
 </div>
 </div>
 <div class="section" id="add-package-repositories">
@@ -1146,9 +1149,10 @@ To shutdown Debian Linux (i.e., the VM), click on the top-right corner arrow and
 </ul>
 </li>
 </ol>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>NEVER run wine as root (sudo). If you did anyway, do <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">$HOME</span></code> and tap <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">chown</span> <span class="pre">-R</span> <span class="pre">$USER:$USER</span> <span class="pre">.wine</span></code></p>
+<div class="error dropdown admonition">
+<p class="admonition-title">Never run wine as root (sudo).</p>
+<p>Why? It is just not safe. So if you did run wine as root anyway, roll back with <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">$HOME</span></code> and tap <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">chown</span> <span class="pre">-R</span> <span class="pre">$USER:$USER</span> <span class="pre">.wine</span></code>
+More information is available in the <a class="reference external" href="https://wiki.winehq.org/FAQ#Should_I_run_Wine_as_root.3F">wine docs</a>.</p>
 </div>
 <p><strong>Launch a <em>Windows</em> application</strong> by typing <code class="docutils literal notranslate"><span class="pre">wine</span> <span class="pre">explorer</span></code> in <em>Terminal</em>.  <em>Wine</em>’s <em>Windows</em> file system will be displayed in a <em>Windows</em>-like window. To start and application:</p>
 <ul class="simple">
@@ -1174,8 +1178,8 @@ To shutdown Debian Linux (i.e., the VM), click on the top-right corner arrow and
     {
         requestKernel: true,
         binderOptions: {
-            repo: "hydro-informatics/",
-            ref: "main",
+            repo: "hydro-informatics/hydro-informatics.github.io",
+            ref: "gh-pages",
         },
         codeMirrorConfig: {
             theme: "abcdef",

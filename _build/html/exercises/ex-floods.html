@@ -51,6 +51,8 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="canonical" href="https://hydro-informatics.github.io/exercises/ex-floods.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -109,7 +111,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../lectures/take_seat.html">
-     Take a Seat in the Virtual Classroom
+     The Virtual Classroom
     </a>
    </li>
   </ul>
@@ -151,7 +153,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../get-started/install-openfoam.html">
-     Install OpenFOAM
+     OpenFOAM (Installation)
     </a>
    </li>
    <li class="toctree-l2">
@@ -296,19 +298,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="ex-gui.html">
-     Create a
-     <strong>
-      G
-     </strong>
-     raphical
-     <strong>
-      U
-     </strong>
-     ser
-     <strong>
-      I
-     </strong>
-     nterface (GUI)
+     Create a Graphical User Interface (GUI)
     </a>
    </li>
   </ul>
@@ -624,7 +614,7 @@
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.com/hydro-informatics/"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/hydro-informatics/hydro-informatics.github.io"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         
@@ -718,11 +708,11 @@
 <h1>Calculate flood return periods<a class="headerlink" href="#calculate-flood-return-periods" title="Permalink to this headline">¶</a></h1>
 <div class="admonition-goals admonition">
 <p class="admonition-title">Goals</p>
-<p>Load custom modules and functions in a script. Open comma-type delimited files and manipulate files with <em>pandas</em>.</p>
+<p>Load custom modules and functions in a script. Open comma-type delimited files and manipulate files with <a class="reference internal" href="../jupyter/pynum.html#pandas"><span class="std std-ref">Pandas</span></a>.</p>
 </div>
-<div class="admonition-requirements admonition">
+<div class="attention admonition">
 <p class="admonition-title">Requirements</p>
-<p><em>Python</em> libraries: <em>pandas</em> and <em>matplotlib</em>. Understand data handling with <a class="reference internal" href="../jupyter/pynum.html"><span class="doc std std-doc">pandas</span></a>.</p>
+<p><em>Python</em> libraries: <a class="reference internal" href="../jupyter/pynum.html#pandas"><span class="std std-ref">Pandas</span></a> and <em>matplotlib</em>. Understand data handling with <a class="reference internal" href="../jupyter/pynum.html#pandas"><span class="std std-ref">Pandas</span></a>.</p>
 </div>
 <p>Get ready by cloning the exercise repository:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ecohydraulics</span><span class="o">/</span><span class="n">Exercise</span><span class="o">-</span><span class="n">FloodReturn</span><span class="o">.</span><span class="n">git</span>
@@ -741,38 +731,39 @@
 </ol>
 <p>The relationship between the exceedance probability and the recurrence interval results from the definition of both terms:</p>
 <ul class="simple">
-<li><p>The <strong>exceedance probability</strong> is the likelihood of an event of a certain magnitude (in m³/s or cfs) or higher.</p></li>
+<li><p>The <strong>exceedance probability</strong> is the likelihood of an event of a certain magnitude (in m<span class="math notranslate nohighlight">\(^3\)</span>/s or cfs) or higher.</p></li>
 <li><p>The <strong>recurrence interval</strong> is the inverse of the exceedance probability and expresses the average return period of an event of a certain magnitude in units of time.</p></li>
 </ul>
 <p>The calculation concept of the return period makes two elementary assumptions. First, it is assumed that the individual flow events have a stationary peak. Second, statistical independence of individual events is assumed. The assumption of statistical independence means that this year a 100-year flood occurs with the same probability as next year, regardless of whether or not a 100-year flood actually occurred this year. Thus, for any given year, the probability of a 100-year flood occurring is 1/100 (or 1/50 for a 50-year flood and so on).</p>
 </div>
 <div class="section" id="the-probability-of-a-100-year-flood-occurring-in-100-years-is-63">
 <h2>The probability of a 100-year flood occurring in 100 years is 63%<a class="headerlink" href="#the-probability-of-a-100-year-flood-occurring-in-100-years-is-63" title="Permalink to this headline">¶</a></h2>
-<p>As engineers we often want to know how likely it is that a 100-year flood will occur within the next 2, 5, 10, … or 100 years (i.e., what are the likely costs of flood damage associated with a 100-year flood?). The answer to that question is “the opposite likelihood of no 100-year flood occurring in the next 2, 5, or 10 years”. Mathematically that means the annual occurrence probability <em>Pr</em> of an event with a recurrence interval <em>T</em>=100 years over an observation period of <em>a</em>∈[2, 5, 10, 100] years is:<br> <em>Pr(T=100, a=2, 5, 10, 100) = (1 - (1-1/T)<sup>a</sup>)</em></p>
-<p>The following table shows solutions to the probability <em>Pr(T, a)</em> function for observation periods <em>a</em> of 2, 5, 10, and 100 years, as well as recurrence intervals <em>T</em> of 10, 50, and 100 years.</p>
+<p>As engineers we often want to know how likely it is that a 100-year flood will occur within the next 2, 5, 10, … or 100 years (i.e., what are the likely costs of flood damage associated with a 100-year flood?). The answer to that question is “the opposite likelihood of no 100-year flood occurring in the next 2, 5, or 10 years”. Mathematically that means the annual occurrence probability <span class="math notranslate nohighlight">\(Pr\)</span> of an event with a recurrence interval <span class="math notranslate nohighlight">\(T\)</span>=100 years over an observation period of <span class="math notranslate nohighlight">\(a \in [2, 5, 10, 100]\)</span> years is:
+<br> <span class="math notranslate nohighlight">\(Pr(T=100, a=2, 5, 10, 100) = (1 - (1-1/T)^{a})\)</span></p>
+<p>The following table shows solutions to the probability <span class="math notranslate nohighlight">\(Pr(T, a)\)</span> function for observation periods <span class="math notranslate nohighlight">\(a\)</span> of 2, 5, 10, and 100 years, as well as recurrence intervals <span class="math notranslate nohighlight">\(T\)</span> of 10, 50, and 100 years.</p>
 <table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="text-align:left head"><p><em>Pr(T, a)</em></p></th>
-<th class="text-align:right head"><p>a = 2</p></th>
-<th class="text-align:right head"><p>a = 5</p></th>
-<th class="text-align:right head"><p>a = 10</p></th>
-<th class="text-align:right head"><p>a = 100</p></th>
+<tr class="row-odd"><th class="text-align:left head"><p><span class="math notranslate nohighlight">\(Pr(T, a)\)</span></p></th>
+<th class="text-align:right head"><p><span class="math notranslate nohighlight">\(a\)</span>= 2</p></th>
+<th class="text-align:right head"><p><span class="math notranslate nohighlight">\(a\)</span>= 5</p></th>
+<th class="text-align:right head"><p><span class="math notranslate nohighlight">\(a\)</span>= 10</p></th>
+<th class="text-align:right head"><p><span class="math notranslate nohighlight">\(a\)</span>= 100</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-align:left"><p>T = 10</p></td>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(T\)</span>= 10</p></td>
 <td class="text-align:right"><p>19.00%</p></td>
 <td class="text-align:right"><p>40.95%</p></td>
 <td class="text-align:right"><p>65.13%</p></td>
 <td class="text-align:right"><p>100.00%</p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:left"><p>T = 50</p></td>
+<tr class="row-odd"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(T\)</span>= 50</p></td>
 <td class="text-align:right"><p>3.96%</p></td>
 <td class="text-align:right"><p>9.61%</p></td>
 <td class="text-align:right"><p>18.29%</p></td>
 <td class="text-align:right"><p>86.74%</p></td>
 </tr>
-<tr class="row-even"><td class="text-align:left"><p>T = 100</p></td>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(T\)</span>= 100</p></td>
 <td class="text-align:right"><p>1.99%</p></td>
 <td class="text-align:right"><p>4.90%</p></td>
 <td class="text-align:right"><p>9.56%</p></td>
@@ -791,7 +782,7 @@
 <li><p>The <a class="reference external" href="https://www.bafg.de">Bundesanstalt für Gewässerkunde <em>BfG</em></a> runs the <a class="reference external" href="https://www.bafg.de/GRDC/EN/Home/homepage_node.html">Global Runoff Data Centre <em>GRDC</em></a> for the World Meteorological Organization <em>WMO</em> to provide river discharge data worldwide. The <em>GRDC</em>’s download platform is available in the form of an <a class="reference external" href="https://portal.grdc.bafg.de/applications/public.html?publicuser=PublicUser#dataDownload/Home">interactive web-GIS</a>. To get the data, go to their <a class="reference external" href="https://portal.grdc.bafg.de/applications/public.html?publicuser=PublicUser#dataDownload/Stations">download interface</a>, select the desired station, switch to <em>Table</em> view (third row in the top left of the window), check the station, click <em>download</em>, and fill the form to send the request. You will receive an email with a download link for the requested data (wait a couple of minutes before clicking on the link - the preparation may take more time than the email).</p></li>
 <li><p>Flow datasets from alpine and midland rivers are provided by the Swiss Federal Office for the Environment’s <a class="reference external" href="https://www.hydrodaten.admin.ch/">hydrological data platform</a> (for long-term observations, a form has to be filled out here, too).</p></li>
 <li><p>In the United States, the National Oceanic and Atmospheric Administration <em>NOAA</em> provides discharge data from the past and forecasts for watersheds in North America. For example, the <a class="reference external" href="https://www.cnrfc.noaa.gov/">California Nevada River Forecast Center</a> provides flow forecasts for the South-Western United States, and historic data can be accessed from the <a class="reference external" href="http://cdec.water.ca.gov/">California Data Exchange Center <em>CDEC</em></a>.</p></li>
-<li><p>A general <em>US</em>-borne interface for loading flow data and statistics comes with the <a class="reference external" href="https://hydrofunctions.readthedocs.io/"><code class="docutils literal notranslate"><span class="pre">hydrofunctions</span></code> <em>Python</em> library</a> provided by the United States Geological Survey <em>USGS</em>. This library enables to directly get gauge data and statistics based on a stream gauge ID. For example <code class="docutils literal notranslate"><span class="pre">output</span> <span class="pre">=</span> <span class="pre">hydrofunctions.peaks(&quot;01541200&quot;)</span></code> <br>To install <code class="docutils literal notranslate"><span class="pre">hydrofunctions</span></code> in a <em>conda</em> environment, type <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">hydrofunctions</span></code> in <a class="reference external" href="../jupyter/pyinstall.html#install-pckg"><em>Anaconda Prompt</em></a>. Example usage:<br><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">hydrofunctions</span> <span class="pre">as</span> <span class="pre">hf</span></code><br><code class="docutils literal notranslate"><span class="pre">hf.draw_map()</span></code> (only runs in <em>JupyterLab</em>)</p></li>
+<li><p>A general <em>US</em>-borne interface for loading flow data and statistics comes with the <a class="reference external" href="https://hydrofunctions.readthedocs.io/"><code class="docutils literal notranslate"><span class="pre">hydrofunctions</span></code> <em>Python</em> library</a> provided by the United States Geological Survey <em>USGS</em>. This library enables to directly get gauge data and statistics based on a stream gauge ID. For example <code class="docutils literal notranslate"><span class="pre">output</span> <span class="pre">=</span> <span class="pre">hydrofunctions.peaks(&quot;01541200&quot;)</span></code> <br>To install <code class="docutils literal notranslate"><span class="pre">hydrofunctions</span></code> in a <span class="xref std std-ref">conda</span> environment, type <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">hydrofunctions</span></code> in <a class="reference internal" href="../python-basics/pyinstall.html#install-pckg"><span class="std std-ref">Anaconda Prompt</span></a>. Example usage:<br><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">hydrofunctions</span> <span class="pre">as</span> <span class="pre">hf</span></code><br><code class="docutils literal notranslate"><span class="pre">hf.draw_map()</span></code> (only runs in <em>JupyterLab</em>)</p></li>
 </ul>
 </div>
 </div>
@@ -845,26 +836,35 @@ In addition, we use the argument <code class="docutils literal notranslate"><spa
 </div>
 <div class="section" id="calculate-exceedance-probability-and-recurrence-interval">
 <h2>Calculate exceedance probability and recurrence interval<a class="headerlink" href="#calculate-exceedance-probability-and-recurrence-interval" title="Permalink to this headline">¶</a></h2>
-<p>The exceedance probability <em>Pr</em> of a particular event within the observation period is:</p>
-<p><em>Pr(i) = (n - i + 1) / (n + 1)</em><br>
-where</p>
+<p>The exceedance probability <span class="math notranslate nohighlight">\(Pr\)</span> of a particular event within the observation period is:</p>
+<div class="math notranslate nohighlight">
+\[
+Pr(i) = (N - i + 1) / (N + 1)
+\]</div>
+<p>where</p>
 <ul class="simple">
-<li><p><em>n</em> is the total number of observation years, and</p></li>
-<li><p><em>i</em> is the <em>rank</em> of the event.</p></li>
+<li><p><span class="math notranslate nohighlight">\(N\)</span> is the total number of observation years, and</p></li>
+<li><p><span class="math notranslate nohighlight">\(i\)</span> is the <em>rank</em> of the event.</p></li>
 </ul>
 <p>To rank the events, we first need to sort the maximum annual discharge data frame (<code class="docutils literal notranslate"><span class="pre">annual_max_df</span></code>) by the smallest to largest discharge value (rather than in time):<br>
 <code class="docutils literal notranslate"><span class="pre">annual_max_df_sorted</span> <span class="pre">=</span> <span class="pre">annual_max_df.sort_values(by=&quot;Q</span> <span class="pre">(CMS)&quot;)</span></code><br>
-Then, we derive the number of observations <em>n</em> (<code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">annual_max_df_sorted.shape[0]</span></code>) and add a <code class="docutils literal notranslate"><span class="pre">&quot;rank&quot;</span></code> column, in which we simply enumerate the rows using the <code class="docutils literal notranslate"><span class="pre">range</span></code> method.</p>
+Then, we derive the number of observations <span class="math notranslate nohighlight">\(N\)</span> (<code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">annual_max_df_sorted.shape[0]</span></code>) and add a <code class="docutils literal notranslate"><span class="pre">&quot;rank&quot;</span></code> column, in which we simply enumerate the rows using the <code class="docutils literal notranslate"><span class="pre">range</span></code> method.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="n">annual_max_df_sorted</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">annual_max_df_sorted</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;rank&quot;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">n</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Now, we have all ingredients to calculate the probability of every event with the above shown <em>Pr(rank=i)</em>-formula.<br>
-<code class="docutils literal notranslate"><span class="pre">annual_max_df_sorted[&quot;pr&quot;]</span> <span class="pre">=</span> <span class="pre">(n</span> <span class="pre">-</span> <span class="pre">annual_max_df_sorted[&quot;rank&quot;]</span> <span class="pre">+</span> <span class="pre">1)</span> <span class="pre">/</span> <span class="pre">(n</span> <span class="pre">+</span> <span class="pre">1)</span></code><br></p>
-<p>Recall, the recurrence interval (here: return period in years) is the inverse of the exceedance probability and we can add it to the data frame with:<br>
-<code class="docutils literal notranslate"><span class="pre">annual_max_df_sorted[&quot;return-period&quot;]</span> <span class="pre">=</span> <span class="pre">1</span> <span class="pre">/</span> <span class="pre">annual_max_df_sorted[&quot;pr&quot;]</span></code><br></p>
-<p>Check the resulting highest discharge and its return period:<br>
-<code class="docutils literal notranslate"><span class="pre">print(annual_max_df_sorted.tail()</span></code><br></p>
+<p>Now, we have all ingredients to calculate the probability of every event with the above shown <span class="math notranslate nohighlight">\(Pr(rank=i)\)</span>-formula.<br></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">annual_max_df_sorted</span><span class="p">[</span><span class="s2">&quot;pr&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">annual_max_df_sorted</span><span class="p">[</span><span class="s2">&quot;rank&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Recall, the recurrence interval (here: return period in years) is the inverse of the exceedance probability and we can add it to the data frame with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">annual_max_df_sorted</span><span class="p">[</span><span class="s2">&quot;return-period&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">annual_max_df_sorted</span><span class="p">[</span><span class="s2">&quot;pr&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Check the resulting highest discharge and its return period:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">annual_max_df_sorted</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
 <p>Plot the resulting probability and return curves with the plot functions provided in the <code class="docutils literal notranslate"><span class="pre">plot_result.py</span></code> <em>Python</em> script:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plot_q_freq</span><span class="p">(</span><span class="n">annual_max_df_sorted</span><span class="p">)</span>
 <span class="n">plot_q_return_period</span><span class="p">(</span><span class="n">annual_max_df_sorted</span><span class="p">)</span>
@@ -872,7 +872,7 @@ Then, we derive the number of observations <em>n</em> (<code class="docutils lit
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The plot functions only work if the probability column is named <em>pr</em>, the return period column is named <em>return-period</em>, and the discharge column is named <em>Q (CMS)</em> (otherwise, consider renaming the data frame column header names or modifying the plot functions).</p>
+<p>The plot functions only work if the probability column is named <span class="math notranslate nohighlight">\(Pr\)</span>, the return period column is named <em>return-period</em>, and the discharge column is named <em>Q (CMS)</em> (otherwise, consider renaming the data frame column header names or modifying the plot functions).</p>
 </div>
 </div>
 <div class="section" id="outside-the-box">
@@ -890,8 +890,8 @@ Then, we derive the number of observations <em>n</em> (<code class="docutils lit
     {
         requestKernel: true,
         binderOptions: {
-            repo: "hydro-informatics/",
-            ref: "main",
+            repo: "hydro-informatics/hydro-informatics.github.io",
+            ref: "gh-pages",
         },
         codeMirrorConfig: {
             theme: "abcdef",

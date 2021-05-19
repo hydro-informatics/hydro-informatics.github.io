@@ -17,6 +17,8 @@ This section guides through the installation of a computational environment that
 (pip-env)=
 ## pip and venv
 
+**pip and virtual environments are preferable with *Linux* systems for working with this ebook.**
+
 (pip-quick)=
 ### Quick Guide
 
@@ -132,7 +134,7 @@ python -m pip install numpy pandas plotting matplotlib plotly openpyxl
 ```
 
 ```{admonition} For geospatial analyses ...
-:class: note, dropdown
+:class: note
 
 Try the following not cross-platform verified solution: Install {ref}`qgis-install` and use its *Python* terminal for installing *flusstools*:
 
@@ -148,15 +150,6 @@ Alternatively, find the *OSGeo4W* from the *Windows* start menu and type `py3_en
 ````
 
 
-````{tabbed} Windows Command Prompt
-```
-(vflussenv) C:\Users\USER-NAME:~$ python
-Python 3.X.X (default, MMM DD YYYY, hh:mm:ss)
-...
->>> import flusstools as ft
-```
-````
-
 The import of *flusstools* should not return any import error. If there is an import error, find out the troublesome package's name and re-install it. In particular, the installation of *GDAL* may be challenging when working with `pip`, in particular on *Windows*. To learn more about the installation of *GDAL* visit the [Download > Binaries section on the developer's website](https://gdal.org/download.html#binaries).
 
 
@@ -164,15 +157,16 @@ The import of *flusstools* should not return any import error. If there is an im
 
 More than 300,000 projects live on [pypi.org](https://pypi.org/) and there are packages available for many purposes. To find suitable packages visit [https://pypi.org/search/](https://pypi.org/search/). To install (i.e., add) one of these `pip`/`pip3` packages use:
 
-````{tabbed} Windows Command Prompt
-```
-python -m pip install --user PACKAGE_NAME
-```
-````
 
 ````{tabbed} Linux Terminal
 ```
 pip3 install PACKAGE_NAME
+```
+````
+
+````{tabbed} Windows Command Prompt
+```
+python -m pip install --user PACKAGE_NAME
 ```
 ````
 
@@ -218,9 +212,9 @@ Read more about virtual environments and pip at [https://packaging.python.org](h
 
 
 (conda-env)=
-## Conda Environments
+## conda env
 
-This section features the quick installation of the {{ ft_env }} for *Anaconda* followed by more detailed explanations on the creation and management of *conda* environments.
+This section features the quick installation of the {{ ft_env }} for *Anaconda* followed by more detailed explanations on the creation and management of *conda* environments. **Anaconda and conda environments are preferable with *Windows* systems for working with this ebook.**
 
 (conda-quick)=
 ### Quick Guide
@@ -252,7 +246,7 @@ The active environment corresponds to the environment that you are working in (e
 (install-pckg)=
 ### Install Additional *Python* Packages
 
-To install (more) {ref}`*Python* packages <sec-pypckg>` in a *conda* environment:
+To install (more) {ref}`Python packages <sec-pypckg>` in a *conda* environment:
 
 1. Activate the environment where you want to install, remove, or modify packages (e.g., `conda activate flussenv` - see above).
 1. Install a package by typing `conda install PACKAGE_NAME` (if the package cannot be found, try `conda install -c conda-forge PACKAGE_NAME`).

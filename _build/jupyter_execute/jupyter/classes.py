@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# (ooc)=
 # # Object Orientation and Classes
 # 
 # Leverage the power of Python by writing new classes. For interactive reading and executing code blocks [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter) and find *classes.ipynb* or {ref}`install-python` locally along with {ref}`jupyter`.
@@ -92,6 +93,7 @@ pacific_salmon.print_habitat()
 # To make initial attributes of the parent class (`Fish`) directly accessible, use `ParentClass.__init__(self)` in the `__init__` method of the child class.
 # ```
 
+# (polymorphism)=
 # ### Polymorphism
 # In computer science, polymorphism refers to the ability of presenting the same programming interface for different basic structures. Admittedly, a definition cannot be much more abstract. So it is sufficient to focus here only on the meaning of polymorphism relevant in *Python* and that is when child classes have methods of the same name as the parent class. For example, polymorphism in *Python* is when we re-define the `swim_to_position` function of the above show `Fish` parent class in the `Salmon` child class.
 # 

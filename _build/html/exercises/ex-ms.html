@@ -51,6 +51,8 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="canonical" href="https://hydro-informatics.github.io/exercises/ex-ms.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -109,7 +111,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../lectures/take_seat.html">
-     Take a Seat in the Virtual Classroom
+     The Virtual Classroom
     </a>
    </li>
   </ul>
@@ -151,7 +153,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../get-started/install-openfoam.html">
-     Install OpenFOAM
+     OpenFOAM (Installation)
     </a>
    </li>
    <li class="toctree-l2">
@@ -296,19 +298,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="ex-gui.html">
-     Create a
-     <strong>
-      G
-     </strong>
-     raphical
-     <strong>
-      U
-     </strong>
-     ser
-     <strong>
-      I
-     </strong>
-     nterface (GUI)
+     Create a Graphical User Interface (GUI)
     </a>
    </li>
   </ul>
@@ -624,7 +614,7 @@
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.com/hydro-informatics/"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/hydro-informatics/hydro-informatics.github.io"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         
@@ -652,8 +642,8 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#theory">
-   Theory
+  <a class="reference internal nav-link" href="#theoretical-background">
+   Theoretical background
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -693,9 +683,9 @@
 <p class="admonition-title">Goals</p>
 <p>Write basic script and use loops. Write a function and parse optional keyword arguments (<code class="docutils literal notranslate"><span class="pre">**kwargs</span></code>).</p>
 </div>
-<div class="admonition-requirements admonition">
+<div class="attention admonition">
 <p class="admonition-title">Requirements</p>
-<p><em>Python</em> libraries: <em>math</em> (standard library). Read and understand how <a class="reference internal" href="../jupyter/pyloop.html"><span class="doc std std-doc">loops</span></a> and <a class="reference internal" href="../jupyter/pyfun.html"><span class="doc std std-doc">functions</span></a> work in <em>Python</em>.</p>
+<p><em>Python</em> libraries: <em>math</em> (standard library). Read and understand how <a class="reference internal" href="../jupyter/pyloop.html"><span class="doc std std-doc">loops</span></a> and <a class="reference internal" href="../jupyter/pyfun.html#chpt-functions"><span class="std std-ref">Functions</span></a> work in <em>Python</em>.</p>
 </div>
 <p>Get ready by cloning the exercise repository:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ecohydraulics</span><span class="o">/</span><span class="n">Exercise</span><span class="o">-</span><span class="n">ManningStrickler</span><span class="o">.</span><span class="n">git</span>
@@ -705,51 +695,61 @@
 <img alt="Rhone Switzerland Pfynnwald" src="https://github.com/Ecohydraulics/media/raw/master/jpg/hydraulics-1d.jpg" />
 <p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">The Rhone River in Switzerland (source: Sebastian Schwindt 2014).</span><a class="headerlink" href="#rhone" title="Permalink to this image">¶</a></p>
 </div>
-<div class="section" id="theory">
-<h2>Theory<a class="headerlink" href="#theory" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Manning_formula"><em>Gauckler-Manning-Strickler formula</em></a> (or <em>Strickler formula</em> in Europe) relates water depth and flow velocity of open channel flow based on the assumption of one-dimensional (cross-section-averaged) flow characteristics. The <em>Strickler formula</em> results from a heavy simplification of the <a class="reference external" href="https://en.wikipedia.org/wiki/Navier-Stokes_equations"><em>Navier-Stokes</em></a> and the <a class="reference external" href="https://en.wikipedia.org/wiki/Continuity_equation"><em>continuity</em></a> equations. Even though one-dimensional (1D) approaches have largely been replaced by at least two-dimensional (2D) numerical models today, the 1D Strickler formula is still frequently used as a first approximation for boundary conditions.</p>
-<p>The basic shape of the <em>Strickler formula</em> is:<br></p>
-<p><em>u = k<sub>st</sub>· S<sup>1/2</sup> · R<sub>h</sub><sup>2/3</sup></em></p>
+<div class="section" id="theoretical-background">
+<h2>Theoretical background<a class="headerlink" href="#theoretical-background" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Manning_formula"><em>Gauckler-Manning-Strickler formula</em></a> (or <em>Strickler formula</em> in Europe) relates water depth and flow velocity of open channel flow based on the assumption of one-dimensional (cross-section-averaged) flow characteristics. The <em>Strickler formula</em> results from a heavy simplification of the <a class="reference external" href="https://en.wikipedia.org/wiki/Navier-Stokes_equations"><em>Navier-Stokes</em></a> and the <a class="reference external" href="https://en.wikipedia.org/wiki/Continuity_equation"><em>continuity</em></a> equations. Even though one-dimensional (1d) approaches have largely been replaced by at least two-dimensional (2d) numerical models today, the 1d Strickler formula is still frequently used as a first approximation for boundary conditions.</p>
+<p>The basic shape of the <em>Strickler formula</em> is:</p>
+<div class="math notranslate nohighlight">
+\[
+u = k_{st}\cdot S^{1/2} \cdot R_{h}^{2/3}
+\]</div>
 <p>where:</p>
 <ul class="simple">
 <li><p><em>u</em> is the cross-section-averaged flow velocity in (m/s)</p></li>
-<li><p><em>k<sub>st</sub></em> is the <em>Strickler</em> coefficient in <em>fictional</em> (m<sup>1/3</sup>/s) corresponding to the inverse of <a class="reference external" href="http://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm"><em>Manning’s n</em></a>.</p>
+<li><p><span class="math notranslate nohighlight">\(k_{st}\)</span> is the <em>Strickler</em> coefficient in <em>fictional</em> (m^{1/3}/s) corresponding to the inverse of <a class="reference external" href="http://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm"><em>Manning’s</em></a> <span class="math notranslate nohighlight">\(n\)</span>.</p>
 <ul>
-<li><p><em>k<sub>st</sub></em> ≈ 20 (<em>n</em>≈0.05) for rough, complex, and near-natural rivers</p></li>
-<li><p><em>k<sub>st</sub></em> ≈ 90 (<em>n</em>≈0.011) for smooth, concrete-lined channels</p></li>
-<li><p><em>k<sub>st</sub></em> ≈ 26/<em>D<sub>90</sub><sup>1/6</sup></em> (approximation based on the grain size <em>D<sub>90</sub></em>, where 90% of the surface sediment grains are smaller, according to <a class="reference external" href="http://resolver.tudelft.nl/uuid:4fda9b61-be28-4703-ab06-43cdc2a21bd7">Meyer-Peter and Müller 1948</a></p></li>
+<li><p><span class="math notranslate nohighlight">\(k_{st}\)</span> <span class="math notranslate nohighlight">\(\approx\)</span> 20 (<span class="math notranslate nohighlight">\(n\)</span><span class="math notranslate nohighlight">\(\approx\)</span>0.05) for rough, complex, and near-natural rivers</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_{st}\)</span> <span class="math notranslate nohighlight">\(\approx\)</span> 90 (<span class="math notranslate nohighlight">\(n\)</span><span class="math notranslate nohighlight">\(\approx\)</span>0.011) for smooth, concrete-lined channels</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_{st}\)</span> <span class="math notranslate nohighlight">\(\approx\)</span> 26/<span class="math notranslate nohighlight">\(D_{90}^{1/6}\)</span> (approximation based on the grain size <span class="math notranslate nohighlight">\(D_{90}\)</span>, where 90% of the surface sediment grains are smaller, according to <a class="reference external" href="http://resolver.tudelft.nl/uuid:4fda9b61-be28-4703-ab06-43cdc2a21bd7">Meyer-Peter and Müller 1948</a></p></li>
 </ul>
 </li>
-<li><p><em>S</em> is the hypothetic energy slope (m/m), which can be assumed to correspond to the channel slope for steady, uniform flow conditions.</p></li>
-<li><p><em>R<sub>h</sub></em> is the hydraulic radius in (m)</p></li>
+<li><p><span class="math notranslate nohighlight">\(S\)</span> is the hypothetic energy slope (m/m), which can be assumed to correspond to the channel slope for steady, uniform flow conditions.</p></li>
+<li><p><span class="math notranslate nohighlight">\(R_{h}\)</span> is the hydraulic radius in (m)</p></li>
 </ul>
-<p>The hydraulic radius <em>R<sub>h</sub></em> is the ratio of wetted area <em>A</em> and wetted perimeter <em>P</em>. Both <em>A</em> and <em>P</em> can be calculated as a function of the water depth <em>h</em> and the channel base width <em>b</em>. Many channel cross-sections can be approximated with a trapezoidal shape, where the water surface width <em>B</em>=<em>b+2·h·m</em> (with <em>m</em> being the bank slope as indicated in the figure below).</p>
+<p>The hydraulic radius <span class="math notranslate nohighlight">\(R_{h}\)</span> is the ratio of wetted area <span class="math notranslate nohighlight">\(A\)</span> and wetted perimeter <span class="math notranslate nohighlight">\(P\)</span>. Both <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(P\)</span> can be calculated as a function of the water depth <span class="math notranslate nohighlight">\(h\)</span> and the channel base width <span class="math notranslate nohighlight">\(b\)</span>. Many channel cross-sections can be approximated with a trapezoidal shape, where the water surface width <span class="math notranslate nohighlight">\(B=b+2\cdot h\cdot m\)</span> (with <span class="math notranslate nohighlight">\(m\)</span> being the bank slope as indicated in the figure below).</p>
 <div class="figure align-default" id="d-cross-section">
 <img alt="1d hydraulics parameters" src="https://github.com/Ecohydraulics/media/raw/master/png/flow-cs.png" />
 </div>
-<p>Thus, <em>A</em> and <em>P</em> result from the following formulas:</p>
-<ul class="simple">
-<li><p><em>A = h · 0.5·(b + B) = h · (b + h·m)</em></p></li>
-<li><p><em>P = b + 2h·(m² + 1)<sup>1/2</sup></em></p></li>
-</ul>
-<p>Finally, the discharge <em>Q</em> (m³/s) can be calculated as:<br>
-<em>Q = u · A = k<sub>st</sub> · S<sup>1/2</sup>· R<sub>h</sub><sup>2/3</sup> · A</em></p>
+<p>Thus, <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(P\)</span> result from the following formulas:</p>
+<div class="math notranslate nohighlight">
+\[
+A = h \cdot 0.5\cdot (b + B) = h \cdot (b + h\cdot m)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+P = b + 2h\cdot (m^2 + 1)^{1/2}
+\]</div>
+<p>Finally, the discharge <span class="math notranslate nohighlight">\(Q\)</span> (m³/s) can be calculated as:</p>
+<div class="math notranslate nohighlight">
+\[
+Q = u \cdot A = k_{st} \cdot S^{1/2}\cdot R_{h}^{2/3} \cdot A
+\]</div>
 </div>
 <div class="section" id="calculate-the-discharge">
 <h2>Calculate the discharge<a class="headerlink" href="#calculate-the-discharge" title="Permalink to this headline">¶</a></h2>
-<p>Write a script that prints the discharge as a function of the channel base width <em>b</em>, bank slope <em>m</em>, water depth <em>h</em>, the slope <em>S</em>, and the <em>Strickler</em> coefficient <em>k<sub>st</sub></em>.</p>
+<p>Write a script that prints the discharge as a function of the channel base width <span class="math notranslate nohighlight">\(b\)</span>, bank slope <span class="math notranslate nohighlight">\(m\)</span>, water depth <span class="math notranslate nohighlight">\(h\)</span>, the slope <span class="math notranslate nohighlight">\(S\)</span>, and the <em>Strickler</em> coefficient <span class="math notranslate nohighlight">\(k_{st}\)</span>.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Use <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">math</span> <span class="pre">as</span> <span class="pre">m</span></code> to calculate square roots (<code class="docutils literal notranslate"><span class="pre">m.sqrt</span></code>). Powers are calculated with the <code class="docutils literal notranslate"><span class="pre">**</span></code> operator (e.g., <em>m²</em>  corresponds to <code class="docutils literal notranslate"><span class="pre">m**2</span></code>).</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">math</span> <span class="pre">as</span> <span class="pre">m</span></code> to calculate square roots (<code class="docutils literal notranslate"><span class="pre">m.sqrt</span></code>). Powers are calculated with the <code class="docutils literal notranslate"><span class="pre">**</span></code> operator (e.g., <span class="math notranslate nohighlight">\(m^2\)</span>  corresponds to <code class="docutils literal notranslate"><span class="pre">m**2</span></code>).</p>
 </div>
 </div>
 <div class="section" id="functionalize">
 <h2>Functionalize<a class="headerlink" href="#functionalize" title="Permalink to this headline">¶</a></h2>
-<p>Cast the calculation into a function (e.g., <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">calc_discharge(b,</span> <span class="pre">h,</span> <span class="pre">k_st,</span> <span class="pre">m,</span> <span class="pre">S):</span> <span class="pre">...</span></code>) that returns the discharge <em>Q</em>.</p>
+<p>Cast the calculation into a function (e.g., <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">calc_discharge(b,</span> <span class="pre">h,</span> <span class="pre">k_st,</span> <span class="pre">m,</span> <span class="pre">S):</span> <span class="pre">...</span></code>) that returns the discharge <span class="math notranslate nohighlight">\(Q\)</span>.</p>
 </div>
 <div class="section" id="flexibilize">
 <h2>Flexibilize<a class="headerlink" href="#flexibilize" title="Permalink to this headline">¶</a></h2>
-<p>Make the function more flexible through the usage of optional keywords arguments (<a class="reference external" href="../jupyter/pyfun.html#keyword-arguments-kwargs"><code class="docutils literal notranslate"><span class="pre">**kwargs</span></code></a> so that a user can optionally either provide the <em>D<sub>90</sub></em> (<code class="docutils literal notranslate"><span class="pre">D90</span></code>), the <em>Strickler</em> coefficient <em>k<sub>st</sub></em> (<code class="docutils literal notranslate"><span class="pre">k_st</span></code>), or <em>Manning’s n</em> (<code class="docutils literal notranslate"><span class="pre">n_m</span></code>)</p>
+<p>Make the function more flexible through the usage of optional <a class="reference internal" href="../jupyter/pyfun.html#kwargs"><span class="std std-ref">Keyword Arguments **kwargs</span></a> so that a user can optionally either provide the <span class="math notranslate nohighlight">\(D_{90}\)</span> (<code class="docutils literal notranslate"><span class="pre">D90</span></code>), the <em>Strickler</em> coefficient <span class="math notranslate nohighlight">\(k_{st}\)</span> (<code class="docutils literal notranslate"><span class="pre">k_st</span></code>), or <em>Manning’s</em> <span class="math notranslate nohighlight">\(n\)</span> (<code class="docutils literal notranslate"><span class="pre">n_m</span></code>)</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Internally, use only <em>Manning’s n</em> for the calculations and parse <code class="docutils literal notranslate"><span class="pre">kwargs.items()</span></code> to find out the <code class="docutils literal notranslate"><span class="pre">kwargs</span></code> provided by a user.</p>
@@ -762,7 +762,7 @@
 <p class="admonition-title">Tip</p>
 <p>The absolute value of a parameter can be easily accessed through the built-in <code class="docutils literal notranslate"><span class="pre">abs()</span></code> method in <em>Python3</em>.</p>
 </div>
-<p>Use a Newton-Raphson solution scheme (<a class="reference external" href="https://doi.org/10.1061/(ASCE)0733-9437(1992)118:2(306)">Paine 1992</a> to interpolate the water depth <code class="docutils literal notranslate"><span class="pre">h</span></code> for a given discharge <em>Q</em> of a trapezoidal channel.</p>
+<p>Use a Newton-Raphson solution scheme (<a class="reference external" href="https://doi.org/10.1061/(ASCE)0733-9437(1992)118:2(306)">Paine 1992</a> to interpolate the water depth <code class="docutils literal notranslate"><span class="pre">h</span></code> for a given discharge <span class="math notranslate nohighlight">\(Q\)</span> of a trapezoidal channel.</p>
 <ul class="simple">
 <li><p>Write a new function <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">interpolate_h(Q,</span> <span class="pre">b,</span> <span class="pre">m,</span> <span class="pre">S,</span> <span class="pre">**kwargs):</span></code></p></li>
 <li><p>Define an initial guess of <code class="docutils literal notranslate"><span class="pre">h</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">h</span> <span class="pre">=</span> <span class="pre">1.0</span></code>) and an initial error margin (e.g., <code class="docutils literal notranslate"><span class="pre">eps</span> <span class="pre">=</span> <span class="pre">1.0</span></code>)</p></li>
@@ -789,8 +789,8 @@
     {
         requestKernel: true,
         binderOptions: {
-            repo: "hydro-informatics/",
-            ref: "main",
+            repo: "hydro-informatics/hydro-informatics.github.io",
+            ref: "gh-pages",
         },
         codeMirrorConfig: {
             theme: "abcdef",

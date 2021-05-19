@@ -109,7 +109,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../lectures/take_seat.html">
-     Take a Seat in the Virtual Classroom
+     The Virtual Classroom
     </a>
    </li>
   </ul>
@@ -151,7 +151,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../get-started/install-openfoam.html">
-     Install OpenFOAM
+     OpenFOAM (Installation)
     </a>
    </li>
    <li class="toctree-l2">
@@ -296,19 +296,7 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Create a
-     <strong>
-      G
-     </strong>
-     raphical
-     <strong>
-      U
-     </strong>
-     ser
-     <strong>
-      I
-     </strong>
-     nterface (GUI)
+     Create a Graphical User Interface (GUI)
     </a>
    </li>
   </ul>
@@ -624,7 +612,7 @@
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.com/hydro-informatics/"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/hydro-informatics/hydro-informatics.github.io"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         
@@ -712,14 +700,14 @@
               <div>
                 
   <div class="section" id="create-a-graphical-user-interface-gui">
-<h1>Create a <strong>G</strong>raphical <strong>U</strong>ser <strong>I</strong>nterface (GUI)<a class="headerlink" href="#create-a-graphical-user-interface-gui" title="Permalink to this headline">¶</a></h1>
+<h1>Create a Graphical User Interface (GUI)<a class="headerlink" href="#create-a-graphical-user-interface-gui" title="Permalink to this headline">¶</a></h1>
 <div class="admonition-goals admonition">
 <p class="admonition-title">Goals</p>
-<p>This exercise features the creation of a Graphical User Interface based on the <a class="reference internal" href="../jupyter/gui.html"><span class="doc std std-doc">course instructions</span></a>.</p>
+<p>This exercise features the creation of a <a class="reference internal" href="../jupyter/gui.html#chpt-gui"><span class="std std-ref">Graphical User Interfaces (GUIs)</span></a> based on the instructions in this ebook.</p>
 </div>
-<div class="admonition-requirements admonition">
+<div class="attention admonition">
 <p class="admonition-title">Requirements</p>
-<p><em>Python</em> libraries: <em>tkinter</em>, <em>numpy</em>, and <em>pandas</em>. Read and understand the <a class="reference internal" href="../jupyter/gui.html"><span class="doc std std-doc">creation of GUIs</span></a>. Accomplish the <a class="reference external" href="https://github.com/Ecohydraulics/Exercise-SedimentTransport">sediment transport exercise</a>.</p>
+<p><em>Python</em> libraries: <em>tkinter</em>, <a class="reference internal" href="../jupyter/pynum.html#numpy"><span class="std std-ref">NumPy</span></a>, and <a class="reference internal" href="../jupyter/pynum.html#pandas"><span class="std std-ref">Pandas</span></a>. Read and understand the creation of <a class="reference internal" href="../jupyter/gui.html#chpt-gui"><span class="std std-ref">Graphical User Interfaces (GUIs)</span></a>. Accomplish the <a class="reference external" href="https://github.com/Ecohydraulics/Exercise-SedimentTransport">sediment transport exercise</a>.</p>
 </div>
 <p>Get ready by cloning the exercise repository:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ecohydraulics</span><span class="o">/</span><span class="n">Exercise</span><span class="o">-</span><span class="n">gui</span><span class="o">.</span><span class="n">git</span>
@@ -806,7 +794,7 @@
 <li><p>A <em>HEC-RAS</em> output workbook (<code class="docutils literal notranslate"><span class="pre">xlsx</span></code>) file, and</p></li>
 <li><p>An output directory where the resulting <code class="docutils literal notranslate"><span class="pre">bed_load_mpm.xlsx</span></code> workbook will be stored.</p></li>
 </ol>
-<p>Every button triggers a method of <code class="docutils literal notranslate"><span class="pre">SediApp</span></code>, which we will define later on. The methods to trigger are defined with the <code class="docutils literal notranslate"><span class="pre">command=self.METHOD()</span></code> keyword (recall the instructions for <a class="reference external" href="../jupyter/pygui.html#add-a-button-to-call-a-function">creating a <em>button</em></a>).</p>
+<p>Every button triggers a method of <code class="docutils literal notranslate"><span class="pre">SediApp</span></code>, which we will define later on. The methods to trigger are defined with the <code class="docutils literal notranslate"><span class="pre">command=self.METHOD()</span></code> keyword (recall the instructions for creating a <a class="reference internal" href="../jupyter/gui.html#add-button"><span class="std std-ref">button</span></a>)).</p>
 <p>The file and folder directories need to be initialized before we can use them in the button texts. Therefore, add to <code class="docutils literal notranslate"><span class="pre">__init__</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="bp">self</span><span class="o">.</span><span class="n">grain_file</span> <span class="o">=</span> <span class="s2">&quot;SELECT&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grain_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># will be a sed.GrainReader object when the user defined grains.csv</span>
@@ -982,8 +970,8 @@
     {
         requestKernel: true,
         binderOptions: {
-            repo: "hydro-informatics/",
-            ref: "main",
+            repo: "hydro-informatics/hydro-informatics.github.io",
+            ref: "gh-pages",
         },
         codeMirrorConfig: {
             theme: "abcdef",

@@ -111,7 +111,7 @@ print("That makes {0} please".format(icd.price_scoops[scoops_wanted]))
 
 
 # (standalone)=
-# ### Make a script stand-alone 
+# ### Make Script Stand-alone 
 # 
 # As an alternative, we can append the call to items in [`icecreamdialogue.py`](https://github.com/hydro-informatics/icecream/raw/master/single-scripts/icecreamdialogue.py) in the script and run it as a stand-alone script by adding the called item in to a `if (__name__ == '__main__'):` statement:
 

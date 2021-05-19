@@ -109,7 +109,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../lectures/take_seat.html">
-     Take a Seat in the Virtual Classroom
+     The Virtual Classroom
     </a>
    </li>
   </ul>
@@ -151,7 +151,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../get-started/install-openfoam.html">
-     Install OpenFOAM
+     OpenFOAM (Installation)
     </a>
    </li>
    <li class="toctree-l2">
@@ -296,19 +296,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-gui.html">
-     Create a
-     <strong>
-      G
-     </strong>
-     raphical
-     <strong>
-      U
-     </strong>
-     ser
-     <strong>
-      I
-     </strong>
-     nterface (GUI)
+     Create a Graphical User Interface (GUI)
     </a>
    </li>
   </ul>
@@ -624,7 +612,7 @@
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.com/hydro-informatics/"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/hydro-informatics/hydro-informatics.github.io"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         
@@ -646,13 +634,18 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter/v2/gh/hydro-informatics//main?urlpath=lab/tree/hydro-informatics.github.io/tree/main/jupyter/jupyter/xml.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter/v2/gh/hydro-informatics/hydro-informatics.github.io/gh-pages?urlpath=lab/tree/_sources/jupyter/xml.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
         
         
+        
+        <a class="colab-button" href="https://colab.research.google.com//github/hydro-informatics/hydro-informatics.github.io/blob/gh-pages/_sources/jupyter/xml.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
         
         <button type="button" class="btn btn-secondary topbarbtn"
             onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
@@ -767,11 +760,11 @@
               <div>
                 
   <div class="section" id="workbooks-xlsx-and-json">
-<h1>Workbooks (xlsx) and JSON<a class="headerlink" href="#workbooks-xlsx-and-json" title="Permalink to this headline">¶</a></h1>
+<span id="chpt-xml"></span><h1>Workbooks (xlsx) and JSON<a class="headerlink" href="#workbooks-xlsx-and-json" title="Permalink to this headline">¶</a></h1>
 <p>Create, manipulate and copy xlsx-workbooks and JSON files. For interactive reading and executing code blocks <a class="reference external" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> and find <em>xml.ipynb</em> or <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Install Python</span></a> locally along with <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a>.</p>
 <p>This tutorial starts with some background information about XML and what XML has to do with workbooks and JSON: XML is the abbreviation of <a class="reference external" href="https://www.w3.org/TR/xml/"><em>E<strong>x</strong>tensible <strong>M</strong>arkup <strong>L</strong>anguage</em></a> that defines rules for encoding documents. XML was designed for straightforward usage over the internet and we encounter XML documents all the time, on websites (e.g., <em>XHTML</em>), in the shape office documents (e.g., Office Open XML such as <em>docx</em>, <em>pptx</em>, or <em>xlsx</em>), or podcasts (e.g., <em>RSS</em>). The strength of the XML format is its characteristic of being both machine-readable (i.e., a computer can process XML files) and human-readable (i.e., we can read it like a newspaper). In simple words, entering formulas in an xlsx workbook is simultaneously machine-readable and human-readable, since humans and computers can interpret and evaluate the formulas in this XML frame. Other file formats such as <a class="reference external" href="https://www.json.org/json-en.html"><em>JSON</em> (JavaScript Object Notation)</a> resemble XML and this is why we look at how <em>Python</em> can extract information from and export information to both formats. In water resources engineering and research, we are mainly interested in the exchange of information with office workbooks (<em>xlsx</em> files), or with JSON files, which provide boundary conditions for numerical models.</p>
 <div class="section" id="workbook-xlsx-handling">
-<h2>Workbook (xlsx) Handling<a class="headerlink" href="#workbook-xlsx-handling" title="Permalink to this headline">¶</a></h2>
+<span id="sec-xlsx"></span><h2>Workbook (xlsx) Handling<a class="headerlink" href="#workbook-xlsx-handling" title="Permalink to this headline">¶</a></h2>
 <p>Why do we want to communicate with workbooks at all? We have already seen that <em>Python</em> is much more powerful than office programs for the systematic analysis of data sets. However, <em>Python</em> requires the abstraction of data fields in our minds to visualize for example the structure of a nested list. For this reason, data from and for marketing, your boss, or public authorities are often required to have visually easy-to-use workbook formats, which can be overlooked quickly. Still, we want to leverage the content of such workbook information efficiently with <em>Python</em> and we want to produce visually simplistic output that anyone can read without any <em>Python</em> knowledge.</p>
 <p>We have already seen that <em>pandas</em> provides easy routines for importing and exporting data from and to workbooks, respectively (cf. <a class="reference internal" href="pynum.html#pd-files"><span class="std std-ref">File Handling (csv, Workbooks, and More)</span></a>) with <em>pandas</em>). <em>pandas</em> uses <a class="reference external" href="https://xlsxwriter.readthedocs.io/"><em>XlsxWriter</em></a> or <a class="reference external" href="https://openpyxl.readthedocs.io/en/stable/"><em>openpyxl</em></a> depending on what is available in the current <em>Python</em> environment. Both packages have different behaviors, in particular when it comes to writing new or in existing workbooks. This is why the most robust approach is the direct use of one particular workbook handling library, where <em>openpyxl</em> is one of the most powerful options (note: this assertion is subjective) and this section introduces workbook handling with <em>openpyxl</em>.</p>
 <div class="admonition tip">
@@ -1012,7 +1005,7 @@ Corresponds to np.array value: 0.3678794411714422
 </div>
 </div>
 <div class="section" id="json">
-<h2>JSON<a class="headerlink" href="#json" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2>JSON<a class="headerlink" href="#json" title="Permalink to this headline">¶</a></h2>
 <p>JavaScript Object Notation (<a class="reference external" href="https://www.json.org/json-en.html">JSON</a>) files have a similar structure to XML and enable the structured storage of (human-readable) data. For example, the numerical code <em>BASEMENT v.3.x</em> (<a class="reference internal" href="../numerics/basement.html"><span class="doc std std-doc">read more in the numerical modelling chapter</span></a>) uses a <em>model.json</em> and a <em>simulation.json</em> file to store model setup parameters such as material properties. In water resources engineering and research, we often want to automate running numerical models, which involves the optimization of model parameters stored in <em>json</em> files. This is where <em>Python</em> steps in with the <code class="docutils literal notranslate"><span class="pre">JSON</span></code> package and <code class="docutils literal notranslate"><span class="pre">pandas</span></code>’ <em>JSON</em> modules.</p>
 <div class="section" id="json-file-structure">
 <h3><em>JSON</em> file structure<a class="headerlink" href="#json-file-structure" title="Permalink to this headline">¶</a></h3>
@@ -1195,8 +1188,8 @@ RESULTS     {&#39;flow_depth&#39;: [[0.0, 0.48517059208747887, 1.0...
     {
         requestKernel: true,
         binderOptions: {
-            repo: "hydro-informatics/",
-            ref: "main",
+            repo: "hydro-informatics/hydro-informatics.github.io",
+            ref: "gh-pages",
         },
         codeMirrorConfig: {
             theme: "abcdef",

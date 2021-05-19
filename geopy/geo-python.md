@@ -8,9 +8,9 @@ Make sure you understand the basics of *Python*, especially [data types](../jupy
 ```
 
 ```{tip}
-1. Make sure to use our tailored {{ ft_url }} package to facilitate working with the tutorials.<br>
-2. Start with reading the [Geospatial data](../geopy/geospatial-data) page to understand the underpinnings of any geospatial analysis.<br>
-3. Use [QGIS](../get-started/geo.html#qgis) to display geospatial data and to create maps in *PDF* or image formats (e.g., *tif*, *png*, *jpg*).
+1. Make sure to use our tailored {{ ft_url }} package to facilitate working with the tutorials.
+2. Start with reading the [Geospatial data](../geopy/geospatial-data) page to understand the underpinnings of any geospatial analysis.
+3. Use {ref}`qgis` to display geospatial data and to create maps in *PDF* or image formats (e.g., *tif*, *png*, *jpg*).
 ```
 
 The descriptions of open source packages for geospatial data handling build on explanations from [Michael Diener's *Python Geospatial Analysis Cookbook*](https://github.com/mdiener21/python-geospatial-analysis-cookbook) (open access under MIT license). Therefore, if you want to learn more details about any here information provided, take a look at this comprehensive e-book.

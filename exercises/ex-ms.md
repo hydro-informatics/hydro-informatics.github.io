@@ -6,7 +6,8 @@ Write basic script and use loops. Write a function and parse optional keyword ar
 ```
 
 ```{admonition} Requirements
-*Python* libraries: *math* (standard library). Read and understand how [loops](../jupyter/pyloop) and [functions](../jupyter/pyfun) work in *Python*.
+:class: attention
+*Python* libraries: *math* (standard library). Read and understand how [loops](../jupyter/pyloop) and {ref}`chpt-functions` work in *Python*.
 ```
 
 Get ready by cloning the exercise repository:
@@ -23,53 +24,63 @@ The Rhone River in Switzerland (source: Sebastian Schwindt 2014).
 ```
 
 
-## Theory
-The [*Gauckler-Manning-Strickler formula*](https://en.wikipedia.org/wiki/Manning_formula) (or *Strickler formula* in Europe) relates water depth and flow velocity of open channel flow based on the assumption of one-dimensional (cross-section-averaged) flow characteristics. The *Strickler formula* results from a heavy simplification of the [*Navier-Stokes*](https://en.wikipedia.org/wiki/Navier-Stokes_equations) and the [*continuity*](https://en.wikipedia.org/wiki/Continuity_equation) equations. Even though one-dimensional (1D) approaches have largely been replaced by at least two-dimensional (2D) numerical models today, the 1D Strickler formula is still frequently used as a first approximation for boundary conditions.
+## Theoretical background
+The [*Gauckler-Manning-Strickler formula*](https://en.wikipedia.org/wiki/Manning_formula) (or *Strickler formula* in Europe) relates water depth and flow velocity of open channel flow based on the assumption of one-dimensional (cross-section-averaged) flow characteristics. The *Strickler formula* results from a heavy simplification of the [*Navier-Stokes*](https://en.wikipedia.org/wiki/Navier-Stokes_equations) and the [*continuity*](https://en.wikipedia.org/wiki/Continuity_equation) equations. Even though one-dimensional (1d) approaches have largely been replaced by at least two-dimensional (2d) numerical models today, the 1d Strickler formula is still frequently used as a first approximation for boundary conditions.
 
-The basic shape of the *Strickler formula* is:<br>
+The basic shape of the *Strickler formula* is:
 
-*u = k<sub>st</sub>· S<sup>1/2</sup> · R<sub>h</sub><sup>2/3</sup>*
+$$
+u = k_{st}\cdot S^{1/2} \cdot R_{h}^{2/3}
+$$
 
 where:
 
 * *u* is the cross-section-averaged flow velocity in (m/s)
-* *k<sub>st</sub>* is the *Strickler* coefficient in *fictional* (m<sup>1/3</sup>/s) corresponding to the inverse of [*Manning's n*](http://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm).
-	- *k<sub>st</sub>* &asymp; 20 (*n*&asymp;0.05) for rough, complex, and near-natural rivers
-	- *k<sub>st</sub>* &asymp; 90 (*n*&asymp;0.011) for smooth, concrete-lined channels
-	- *k<sub>st</sub>* &asymp; 26/*D<sub>90</sub><sup>1/6</sup>* (approximation based on the grain size *D<sub>90</sub>*, where 90% of the surface sediment grains are smaller, according to [Meyer-Peter and Müller 1948](http://resolver.tudelft.nl/uuid:4fda9b61-be28-4703-ab06-43cdc2a21bd7)
-* *S* is the hypothetic energy slope (m/m), which can be assumed to correspond to the channel slope for steady, uniform flow conditions.
-* *R<sub>h</sub>* is the hydraulic radius in (m)
+* $k_{st}$ is the *Strickler* coefficient in *fictional* (m^{1/3}/s) corresponding to the inverse of [*Manning's*](http://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm) $n$.
+	- $k_{st}$ $\approx$ 20 ($n$$\approx$0.05) for rough, complex, and near-natural rivers
+	- $k_{st}$ $\approx$ 90 ($n$$\approx$0.011) for smooth, concrete-lined channels
+	- $k_{st}$ $\approx$ 26/$D_{90}^{1/6}$ (approximation based on the grain size $D_{90}$, where 90% of the surface sediment grains are smaller, according to [Meyer-Peter and Müller 1948](http://resolver.tudelft.nl/uuid:4fda9b61-be28-4703-ab06-43cdc2a21bd7)
+* $S$ is the hypothetic energy slope (m/m), which can be assumed to correspond to the channel slope for steady, uniform flow conditions.
+* $R_{h}$ is the hydraulic radius in (m)
 
 
-The hydraulic radius *R<sub>h</sub>* is the ratio of wetted area *A* and wetted perimeter *P*. Both *A* and *P* can be calculated as a function of the water depth *h* and the channel base width *b*. Many channel cross-sections can be approximated with a trapezoidal shape, where the water surface width *B*=*b+2·h·m* (with *m* being the bank slope as indicated in the figure below).
+The hydraulic radius $R_{h}$ is the ratio of wetted area $A$ and wetted perimeter $P$. Both $A$ and $P$ can be calculated as a function of the water depth $h$ and the channel base width $b$. Many channel cross-sections can be approximated with a trapezoidal shape, where the water surface width $B=b+2\cdot h\cdot m$ (with $m$ being the bank slope as indicated in the figure below).
 
 ```{figure} https://github.com/Ecohydraulics/media/raw/master/png/flow-cs.png
 :alt: 1d hydraulics parameters
 :name: 1d-cross-section
 ```
 
-Thus, *A* and *P* result from the following formulas:
+Thus, $A$ and $P$ result from the following formulas:
 
-* *A = h · 0.5·(b + B) = h · (b + h·m)*
-* *P = b + 2h·(m² + 1)<sup>1/2</sup>*
+$$
+A = h \cdot 0.5\cdot (b + B) = h \cdot (b + h\cdot m)
+$$
 
-Finally, the discharge *Q* (m³/s) can be calculated as:<br>
-*Q = u · A = k<sub>st</sub> · S<sup>1/2</sup>· R<sub>h</sub><sup>2/3</sup> · A*
+$$
+P = b + 2h\cdot (m^2 + 1)^{1/2}
+$$
+
+Finally, the discharge $Q$ (m³/s) can be calculated as:
+
+$$
+Q = u \cdot A = k_{st} \cdot S^{1/2}\cdot R_{h}^{2/3} \cdot A
+$$
 
 
 ## Calculate the discharge
 
-Write a script that prints the discharge as a function of the channel base width *b*, bank slope *m*, water depth *h*, the slope *S*, and the *Strickler* coefficient *k<sub>st</sub>*.
+Write a script that prints the discharge as a function of the channel base width $b$, bank slope $m$, water depth $h$, the slope $S$, and the *Strickler* coefficient $k_{st}$.
 
 ```{tip}
-Use `import math as m` to calculate square roots (`m.sqrt`). Powers are calculated with the `**` operator (e.g., *m²*  corresponds to `m**2`).
+Use `import math as m` to calculate square roots (`m.sqrt`). Powers are calculated with the `**` operator (e.g., $m^2$  corresponds to `m**2`).
 ```
 
 ## Functionalize
-Cast the calculation into a function (e.g., `def calc_discharge(b, h, k_st, m, S): ...`) that returns the discharge *Q*.
+Cast the calculation into a function (e.g., `def calc_discharge(b, h, k_st, m, S): ...`) that returns the discharge $Q$.
 
 ## Flexibilize
-Make the function more flexible through the usage of optional keywords arguments ([`**kwargs`](../jupyter/pyfun.html#keyword-arguments-kwargs) so that a user can optionally either provide the *D<sub>90</sub>* (`D90`), the *Strickler* coefficient *k<sub>st</sub>* (`k_st`), or *Manning's n* (`n_m`)
+Make the function more flexible through the usage of optional {ref}`kwargs` so that a user can optionally either provide the $D_{90}$ (`D90`), the *Strickler* coefficient $k_{st}$ (`k_st`), or *Manning's* $n$ (`n_m`)
 
 ```{tip}
 Internally, use only *Manning's n* for the calculations and parse `kwargs.items()` to find out the `kwargs` provided by a user.
@@ -84,7 +95,7 @@ The backward solution to the *Manning-Strickler* formula is a non-linear problem
 The absolute value of a parameter can be easily accessed through the built-in `abs()` method in *Python3*.
 ```
 
-Use a Newton-Raphson solution scheme ([Paine 1992](https://doi.org/10.1061/(ASCE)0733-9437(1992)118:2(306)) to interpolate the water depth `h` for a given discharge *Q* of a trapezoidal channel.
+Use a Newton-Raphson solution scheme ([Paine 1992](https://doi.org/10.1061/(ASCE)0733-9437(1992)118:2(306)) to interpolate the water depth `h` for a given discharge $Q$ of a trapezoidal channel.
 
 * Write a new function `def interpolate_h(Q, b, m, S, **kwargs):`
 * Define an initial guess of `h` (e.g., `h = 1.0`) and an initial error margin (e.g., `eps = 1.0`)
