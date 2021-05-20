@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Shapefile (vector dataset) handling
+# (chpt-shp)=
+# # Shapefile (Vector Dataset) Handling
 # 
 # Geospatial analysis of shapefile with gdal, ogr and osr. For interactive reading and executing code blocks [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter) and find *pybase.ipynb* or {ref}`install-python` locally along with {ref}`jupyter`.
 # 
@@ -13,7 +14,7 @@
 # The core functions used in this e-book are introduced with the raster and vector data handling explanations and additionally implemented in the {{ ft_url }} package.
 # ```
 # 
-# ## Load an existing shapefile
+# ## Load an Existing Shapefile
 # 
 # `gdal`'s `ogr` module is an excellent source for handling shapefiles. To open a shapefile in *Python*, we need to instantiate the correct driver (`"ESRI Shapefile"` for shapefiles) first. With the driver object (`ogr.GetDriverByName("SHAPEFILE")`), we can then open (instantiate) a shapefile (object with `shp_driver.Open("SHAPEFILE")`), which contains layer information. It is precisely this layer information (i.e., references to shapefile attributes) that we want to work with. Therefore we have to instantiate a shapefile layer object with `shp_dataset.GetLayer()`.
 

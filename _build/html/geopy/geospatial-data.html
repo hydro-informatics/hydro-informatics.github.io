@@ -281,7 +281,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-sp.html">
-     Reservoir Volume Calculation with a Sequent Peak Algorithm
+     Reservoir Volume (Sequent Peak Algorithm)
     </a>
    </li>
    <li class="toctree-l2">
@@ -291,24 +291,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-sediment.html">
-     Cross-section Averaged Sediment Transport
+     1d Sediment Transport
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-gui.html">
-     Create a
-     <strong>
-      G
-     </strong>
-     raphical
-     <strong>
-      U
-     </strong>
-     ser
-     <strong>
-      I
-     </strong>
-     nterface (GUI)
+     Create a GUI
     </a>
    </li>
   </ul>
@@ -371,7 +359,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="geo-pckg.html">
-     Geospatial Python - Open Source Packages
+     Geospatial Open Source Python Libraries
     </a>
    </li>
    <li class="toctree-l2">
@@ -408,7 +396,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-geco.html">
-     Script-Create a Habitat Suitability Map
+     Script a Habitat Suitability Map
     </a>
    </li>
   </ul>
@@ -740,15 +728,15 @@
 </div>
 <div class="section" id="visualization">
 <h2>Visualization<a class="headerlink" href="#visualization" title="Permalink to this headline">¶</a></h2>
-<p>GIS software is needed to display geospatial data and many tools exist. This website primarily provides examples using <a class="reference external" href="../get-started/geo.html#qgis"><em>QGIS</em></a>. Since the use of GIS software, especially <em>QGIS</em>, is necessary in several places on the website, explanations on how to install <em>QGIS</em> are already included on the <a class="reference internal" href="../get-started/geo.html"><span class="doc std std-doc">Get Started &gt; Geospatial software</span></a> page.</p>
+<p>GIS software is needed to display geospatial data and many tools exist. This website primarily provides examples using <a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a>. Since the use of GIS software, especially <em>QGIS</em>, is necessary in several places on the website, explanations on how to install <em>QGIS</em> are already included in the <a class="reference internal" href="../get-started/geo.html#chpt-geo-software"><span class="std std-ref">Geospatial Software</span></a>.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>The <a class="reference internal" href="../numerics/basement.html"><span class="doc std std-doc"><em>BASEMENT</em> pre-processing page</span></a> features the basics of geospatial data handling with <em>QGIS</em>. Therefore, this introduction to numerical modeling is also a good introduction to <em>QGIS</em>.</p>
+<p>The <a class="reference internal" href="../numerics/basement.html#chpt-basement"><span class="std std-ref">BASEMENT</span></a> features the basics of geospatial data handling with <a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a>. Therefore, this introduction to numerical modeling is also a good introduction to <a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a>.</p>
 </div>
 </div>
 <div class="section" id="geodatabase">
 <span id="gdb"></span><h2>Geodatabase<a class="headerlink" href="#geodatabase" title="Permalink to this headline">¶</a></h2>
-<p>A geodatabase (also known as <em>spatial database</em>) can store, query (e.g., using <a class="reference external" href="https://en.wikibooks.org/wiki/Structured_Query_Language">Structured Query Language <em>SQL</em></a>, or modify data with geographic references (<em>geospatial data</em>). Primarily, geospatial data consist of vector data (see shapefiles), but raster data can also be implemented. A geodatabase links these data with attribute tables and geographic coordinates. The special aspect of geodatabases is that these data can be queried and manipulated by users via a (web or local) GIS (geographic information system) server. With software like <a class="reference external" href="../get-started/geo.html#qgis"><em>QGIS</em></a> (or <em>ArcGIS Pro</em>), for example, queries can be made on a kind of local server using locally stored geodata. The typical geodatabase format is <code class="docutils literal notranslate"><span class="pre">.gdb</span></code>, which works actually like a directory in <em>QGIS</em> or <em>ArcGIS</em>, and the maximum size of a <code class="docutils literal notranslate"><span class="pre">.gdb</span></code> file is 1 terabyte.</p>
+<p>A geodatabase (also known as <em>spatial database</em>) can store, query (e.g., using <a class="reference external" href="https://en.wikibooks.org/wiki/Structured_Query_Language">Structured Query Language SQL</a>), or modify data with geographic references (<em>geospatial data</em>). Primarily, geospatial data consist of vector data (see shapefiles), but raster data can also be implemented. A geodatabase links these data with attribute tables and geographic coordinates. The special aspect of geodatabases is that these data can be queried and manipulated by users via a (web or local) GIS (geographic information system) server. With software like <a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a> (or <em>ArcGIS Pro</em>), for example, queries can be made on a kind of local server using locally stored geodata. The typical geodatabase format is <code class="docutils literal notranslate"><span class="pre">.gdb</span></code>, which works actually like a directory in <a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a> or <em>ArcGIS</em>, and the maximum size of a <code class="docutils literal notranslate"><span class="pre">.gdb</span></code> file is 1 terabyte.</p>
 <div class="figure align-default" id="id3">
 <img alt="gdb" src="../_images/geo-database.png" />
 <p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">Functional skeleton of a geodatabase.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
@@ -757,7 +745,7 @@
 <div class="section" id="vector-data">
 <span id="vector"></span><h2>Vector Data<a class="headerlink" href="#vector-data" title="Permalink to this headline">¶</a></h2>
 <p>Vector data are visually smooth and efficient for overlay operations, especially regarding shape-driven geo-information such as roads or surface delineations. Vector data are typically less storage-intensive, easier to scale, and more compatible with relational environments. Common formats are <code class="docutils literal notranslate"><span class="pre">.shp</span></code>, <code class="docutils literal notranslate"><span class="pre">JSON</span></code> or <code class="docutils literal notranslate"><span class="pre">TIN</span></code>.</p>
-<p>The shapefile format was invented by <em>Esri</em> (<a class="reference external" href="http://www.esri.com/library/whitepapers/pdfs/shapefile.pdf">download their PDF documentation</a> and information contained in shapefiles can be:</p>
+<p>The shapefile format was invented by <em>Esri</em> (download their <a class="reference external" href="http://www.esri.com/library/whitepapers/pdfs/shapefile.pdf">whitepaper as PDF</a>) and information contained in shapefiles can be:</p>
 <ul class="simple">
 <li><p>Polygons (surface patches).</p></li>
 <li><p>Points with x-y-z coordinates and an <em>m</em> field containing point data.</p></li>
@@ -801,7 +789,7 @@
 <p class="admonition-title">Note</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">gdal.ogr</span></code> driver name for shapefile handling is <code class="docutils literal notranslate"><span class="pre">ogr.GetDriverByName('GeoJSON')</span></code>.</p>
 </div>
-<p><a class="reference external" href="https://geojson.org/"><em>GeoJSON</em></a> is an open format for representing geographic data with simple feature access standards, where <em>JSON</em> denotes <em>JavaScript Object Orientation</em> (<a class="reference external" href="../python-basics/pyxml.html#json">read more about <em>JSON</em> file manipulation in the <em>Python</em> intro on this website</a>). The <em>GeoJSON</em> file name ending is <code class="docutils literal notranslate"><span class="pre">.geojson</span></code> and a file typically has the following structure:</p>
+<p><a class="reference external" href="https://geojson.org/"><em>GeoJSON</em></a> is an open format for representing geographic data with simple feature access standards, where <em>JSON</em> denotes <em>JavaScript Object Orientation</em> (read more about <a class="reference internal" href="../jupyter/xml.html#json"><span class="std std-ref">JSON</span></a> file manipulation in the <em>Python</em> basics). The <em>GeoJSON</em> file name ending is <code class="docutils literal notranslate"><span class="pre">.geojson</span></code> and a file typically has the following structure:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;FeatureCollection&quot;</span><span class="p">,</span>
   <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">[</span>
@@ -827,7 +815,7 @@
 <p>Raster datasets store pixel values (<em>cells</em>), which require large storage space, but have a simple structure. A big advantage of rasters is the possibility to perform powerful geospatial and statistical analyses. Common Raster datasets are, among others, <code class="docutils literal notranslate"><span class="pre">.tif</span></code> (<em>GeoTIFF</em>), <em>GRID</em> (a folder with a <code class="docutils literal notranslate"><span class="pre">BND</span></code>, <code class="docutils literal notranslate"><span class="pre">HDR</span></code>, <code class="docutils literal notranslate"><span class="pre">STA</span></code>, <code class="docutils literal notranslate"><span class="pre">VAT</span></code>, and other files), <code class="docutils literal notranslate"><span class="pre">.flt</span></code> (floating points), <em>ASCII</em> (American Standard Code for Information Interchange), and many more image-like file types.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Preferably use the <a class="reference external" href="https://en.wikipedia.org/wiki/GeoTIFF"><em>GeoTIFF</em></a> format in raster analyses. A <em>GeoTIFF</em> file, typically includes a <code class="docutils literal notranslate"><span class="pre">.tif</span></code> file (with heavy data) and a <code class="docutils literal notranslate"><span class="pre">.tfw</span></code> (a six-line plain text world file containing georeference information) file.</p>
+<p>Preferably use the <a class="reference external" href="https://en.wikipedia.org/wiki/GeoTIFF">GeoTIFF</a> format in raster analyses. A <em>GeoTIFF</em> file, typically includes a <code class="docutils literal notranslate"><span class="pre">.tif</span></code> file (with heavy data) and a <code class="docutils literal notranslate"><span class="pre">.tfw</span></code> (a six-line plain text world file containing georeference information) file.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -840,7 +828,7 @@
 </div>
 <div class="section" id="projections-and-coordinate-systems">
 <span id="prj"></span><h2>Projections and Coordinate Systems<a class="headerlink" href="#projections-and-coordinate-systems" title="Permalink to this headline">¶</a></h2>
-<p>In geospatial data analyses, a projection represents an approach to flatten (a part of) the globe. In this flattening process, latitudinal (North/South) and longitudinal (West/East) coordinates of a location on the globe (three-dimensional <em>3D</em>) are projected into the coordinates of a two-dimensional (<em>2D</em>) map. When 3D coordinates are projected onto 2D coordinates, distortions occur and there is a variety of projection systems used in geospatial analyses. In practice this means that if we use geospatial data files with different projections, a distortion effect propagates in all subsequent calculations. It is absolutely crucial to avoid distortion effects by ensuring that the same projections and coordinate systems are applied to all geospatial data used. This starts with the creation of a new geospatial layer (e.g., a point vector shapefile) in <em>QGIS</em> and should be used consistently in all program codes. To specify a projection or coordinate system in <em>QGIS</em>, click on <code class="docutils literal notranslate"><span class="pre">Project</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Properties</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">CRS</span></code> tab and select a <code class="docutils literal notranslate"><span class="pre">COORDINATE_SYSTEM</span></code>. For example, an appropriate coordinate system for central Europe is <code class="docutils literal notranslate"><span class="pre">ESRI:31493</span></code> (read more in the <a class="reference external" href="https://docs.qgis.org/testing/en/docs/user_manual/working_with_projections/working_with_projections.html"><em>QGIS</em> docs</a>). Projected systems may vary with regions (<em>local coordinate systems</em>), which can, for example, be found at <a class="reference external" href="https://epsg.io/">epsg.io</a> or <a class="reference external" href="https://spatialreference.org/">spatialreference.org</a>.</p>
+<p>In geospatial data analyses, a projection represents an approach to flatten (a part of) the globe. In this flattening process, latitudinal (North/South) and longitudinal (West/East) coordinates of a location on the globe (three-dimensional - 3d) are projected into the coordinates of a two-dimensional (2d) map. When 3d coordinates are projected onto 2D coordinates, distortions occur and there is a variety of projection systems used in geospatial analyses. In practice this means that if we use geospatial data files with different projections, a distortion effect propagates in all subsequent calculations. It is absolutely crucial to avoid distortion effects by ensuring that the same projections and coordinate systems are applied to all geospatial data used. This starts with the creation of a new geospatial layer (e.g., a point vector shapefile) in <em>QGIS</em> and should be used consistently in all program codes. To specify a projection or coordinate system in <em>QGIS</em>, click on <code class="docutils literal notranslate"><span class="pre">Project</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Properties</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">CRS</span></code> tab and select a <code class="docutils literal notranslate"><span class="pre">COORDINATE_SYSTEM</span></code>. For example, an appropriate coordinate system for central Europe is <code class="docutils literal notranslate"><span class="pre">ESRI:31493</span></code> (read more in the <a class="reference external" href="https://docs.qgis.org/testing/en/docs/user_manual/working_with_projections/working_with_projections.html"><em>QGIS</em> docs</a>). Projected systems may vary with regions (<em>local coordinate systems</em>), which can, for example, be found at <a class="reference external" href="https://epsg.io/">epsg.io</a> or <a class="reference external" href="https://spatialreference.org/">spatialreference.org</a>.</p>
 <p>In <strong>shapefiles</strong>, information about the projection is stored in a <code class="docutils literal notranslate"><span class="pre">.prj</span></code> file (recall definitions in the <a class="reference external" href="#vector">geospatial data section</a>, which is a plain text file. The Open Spatial Consortium (<em>OGC</em>) and <em>Esri</em> use <a class="reference external" href="http://docs.opengeospatial.org/is/18-010r7/18-010r7.html"><em>Well-Known Text</em> (<strong>WKT</strong>)</a> files for standard descriptions of coordinate systemsa and such a <em>WKT</em>-formatted <code class="docutils literal notranslate"><span class="pre">.prj</span></code> file can look like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">PROJCS</span><span class="p">[</span><span class="s2">&quot;unknown&quot;</span><span class="p">,</span><span class="n">GEOGCS</span><span class="p">[</span><span class="s2">&quot;GCS_unknown&quot;</span><span class="p">,</span>
                         <span class="n">DATUM</span><span class="p">[</span><span class="s2">&quot;D_Unknown_based_on_GRS80_ellipsoid&quot;</span><span class="p">,</span><span class="n">SPHEROID</span><span class="p">[</span><span class="s2">&quot;GRS_1980&quot;</span><span class="p">,</span><span class="mf">6378137.0</span><span class="p">,</span><span class="mf">298.257222101</span><span class="p">]],</span>
@@ -849,7 +837,7 @@
        <span class="o">...</span><span class="p">,</span> <span class="n">UNIT</span><span class="p">[</span><span class="s2">&quot;US survey foot&quot;</span><span class="p">,</span><span class="mf">0.304800609601219</span><span class="p">]]</span>
 </pre></div>
 </div>
-<p>In <a class="reference external" href="#geojson"><em>GeoJSON</em></a> files, the standard coordinate system is <a class="reference external" href="https://www.unoosa.org/documents/pdf/icg/2018/icg13/wgd/wgd_12.pdf">WGS84</a> according to the <a class="reference external" href="https://cran.r-project.org/web/packages/geojsonio/vignettes/geojson_spec.html">developer’s specifications</a>.
+<p>In <a class="reference internal" href="#geojson"><span class="std std-ref">GeoJSON</span></a> files, the standard coordinate system is <a class="reference external" href="https://www.unoosa.org/documents/pdf/icg/2018/icg13/wgd/wgd_12.pdf">WGS84</a> according to the <a class="reference external" href="https://cran.r-project.org/web/packages/geojsonio/vignettes/geojson_spec.html">developer’s specifications</a>.
 The units and measures defined in the <em>WKT</em>-formatted <code class="docutils literal notranslate"><span class="pre">.prj</span></code> file also determine the units of <em>WK<strong>B</strong></em> (<em>Well-Known Binary</em>) definitions of geometries such as line length (e.g., in meters, feet or many more), or polygon area (square meters, square kilometers, acres, and many more).</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>

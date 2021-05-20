@@ -57,7 +57,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Reservoir Volume Calculation with a Sequent Peak Algorithm" href="ex-sp.html" />
+    <link rel="next" title="Reservoir Volume (Sequent Peak Algorithm)" href="ex-sp.html" />
     <link rel="prev" title="Python Exercises" href="python-exercises.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -283,7 +283,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="ex-sp.html">
-     Reservoir Volume Calculation with a Sequent Peak Algorithm
+     Reservoir Volume (Sequent Peak Algorithm)
     </a>
    </li>
    <li class="toctree-l2">
@@ -293,12 +293,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="ex-sediment.html">
-     Cross-section Averaged Sediment Transport
+     1d Sediment Transport
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="ex-gui.html">
-     Create a Graphical User Interface (GUI)
+     Create a GUI
     </a>
    </li>
   </ul>
@@ -398,7 +398,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="ex-geco.html">
-     Script-Create a Habitat Suitability Map
+     Script a Habitat Suitability Map
     </a>
    </li>
   </ul>
@@ -705,11 +705,11 @@ u = k_{st}\cdot S^{1/2} \cdot R_{h}^{2/3}
 \]</div>
 <p>where:</p>
 <ul class="simple">
-<li><p><em>u</em> is the cross-section-averaged flow velocity in (m/s)</p></li>
+<li><p><span class="math notranslate nohighlight">\(u\)</span> is the cross-section-averaged flow velocity in (m/s)</p></li>
 <li><p><span class="math notranslate nohighlight">\(k_{st}\)</span> is the <em>Strickler</em> coefficient in <em>fictional</em> (m^{1/3}/s) corresponding to the inverse of <a class="reference external" href="http://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm"><em>Manning’s</em></a> <span class="math notranslate nohighlight">\(n\)</span>.</p>
 <ul>
-<li><p><span class="math notranslate nohighlight">\(k_{st}\)</span> <span class="math notranslate nohighlight">\(\approx\)</span> 20 (<span class="math notranslate nohighlight">\(n\)</span><span class="math notranslate nohighlight">\(\approx\)</span>0.05) for rough, complex, and near-natural rivers</p></li>
-<li><p><span class="math notranslate nohighlight">\(k_{st}\)</span> <span class="math notranslate nohighlight">\(\approx\)</span> 90 (<span class="math notranslate nohighlight">\(n\)</span><span class="math notranslate nohighlight">\(\approx\)</span>0.011) for smooth, concrete-lined channels</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_{st}\)</span> <span class="math notranslate nohighlight">\(\approx\)</span> 20 (<span class="math notranslate nohighlight">\(n \approx\)</span> 0.05) for rough, complex, and near-natural rivers</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_{st}\)</span> <span class="math notranslate nohighlight">\(\approx\)</span> 90 (<span class="math notranslate nohighlight">\(n \approx\)</span> 0.011) for smooth, concrete-lined channels</p></li>
 <li><p><span class="math notranslate nohighlight">\(k_{st}\)</span> <span class="math notranslate nohighlight">\(\approx\)</span> 26/<span class="math notranslate nohighlight">\(D_{90}^{1/6}\)</span> (approximation based on the grain size <span class="math notranslate nohighlight">\(D_{90}\)</span>, where 90% of the surface sediment grains are smaller, according to <a class="reference external" href="http://resolver.tudelft.nl/uuid:4fda9b61-be28-4703-ab06-43cdc2a21bd7">Meyer-Peter and Müller 1948</a></p></li>
 </ul>
 </li>
@@ -752,12 +752,12 @@ Q = u \cdot A = k_{st} \cdot S^{1/2}\cdot R_{h}^{2/3} \cdot A
 <p>Make the function more flexible through the usage of optional <a class="reference internal" href="../jupyter/pyfun.html#kwargs"><span class="std std-ref">Keyword Arguments **kwargs</span></a> so that a user can optionally either provide the <span class="math notranslate nohighlight">\(D_{90}\)</span> (<code class="docutils literal notranslate"><span class="pre">D90</span></code>), the <em>Strickler</em> coefficient <span class="math notranslate nohighlight">\(k_{st}\)</span> (<code class="docutils literal notranslate"><span class="pre">k_st</span></code>), or <em>Manning’s</em> <span class="math notranslate nohighlight">\(n\)</span> (<code class="docutils literal notranslate"><span class="pre">n_m</span></code>)</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Internally, use only <em>Manning’s n</em> for the calculations and parse <code class="docutils literal notranslate"><span class="pre">kwargs.items()</span></code> to find out the <code class="docutils literal notranslate"><span class="pre">kwargs</span></code> provided by a user.</p>
+<p>In the code, only use <em>Manning’s</em> <span class="math notranslate nohighlight">\(n\)</span> and parse <code class="docutils literal notranslate"><span class="pre">kwargs.items()</span></code> to find out the <code class="docutils literal notranslate"><span class="pre">kwargs</span></code> provided by a user.</p>
 </div>
 </div>
 <div class="section" id="invert-the-function">
 <h2>Invert the function<a class="headerlink" href="#invert-the-function" title="Permalink to this headline">¶</a></h2>
-<p>The backward solution to the <em>Manning-Strickler</em> formula is a non-linear problem if the channel is not rectangular. This is why an iterative approximation is needed and here, we use the <em>Newton-Raphson</em> scheme for this purpose. More literature about the <em>Newton-Raphson</em> scheme is provided on ILIAS.</p>
+<p>The backward solution to the <em>Manning-Strickler</em> formula is a non-linear problem if the channel is not rectangular. This is why an iterative approximation is needed and here, we use the <em>Newton-Raphson</em> scheme for this purpose. More literature about the <em>Newton-Raphson</em> scheme is provided on <a class="reference external" href="https://ilias3.uni-stuttgart.de">the University of Stuttgart’s ILIAS platform</a>.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>The absolute value of a parameter can be easily accessed through the built-in <code class="docutils literal notranslate"><span class="pre">abs()</span></code> method in <em>Python3</em>.</p>
@@ -811,7 +811,7 @@ Q = u \cdot A = k_{st} \cdot S^{1/2}\cdot R_{h}^{2/3} \cdot A
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="python-exercises.html" title="previous page">Python Exercises</a>
-    <a class='right-next' id="next-link" href="ex-sp.html" title="next page">Reservoir Volume Calculation with a Sequent Peak Algorithm</a>
+    <a class='right-next' id="next-link" href="ex-sp.html" title="next page">Reservoir Volume (Sequent Peak Algorithm)</a>
 
         </div>
         

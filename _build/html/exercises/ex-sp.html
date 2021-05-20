@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Reservoir Volume Calculation with a Sequent Peak Algorithm &#8212; Hydro-Informatics</title>
+    <title>Reservoir Volume (Sequent Peak Algorithm) &#8212; Hydro-Informatics</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -283,7 +283,7 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Reservoir Volume Calculation with a Sequent Peak Algorithm
+     Reservoir Volume (Sequent Peak Algorithm)
     </a>
    </li>
    <li class="toctree-l2">
@@ -293,12 +293,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="ex-sediment.html">
-     Cross-section Averaged Sediment Transport
+     1d Sediment Transport
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="ex-gui.html">
-     Create a Graphical User Interface (GUI)
+     Create a GUI
     </a>
    </li>
   </ul>
@@ -398,7 +398,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="ex-geco.html">
-     Script-Create a Habitat Suitability Map
+     Script a Habitat Suitability Map
     </a>
    </li>
   </ul>
@@ -701,8 +701,8 @@
         
               <div>
                 
-  <div class="section" id="reservoir-volume-calculation-with-a-sequent-peak-algorithm">
-<h1>Reservoir Volume Calculation with a Sequent Peak Algorithm<a class="headerlink" href="#reservoir-volume-calculation-with-a-sequent-peak-algorithm" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="reservoir-volume-sequent-peak-algorithm">
+<h1>Reservoir Volume (Sequent Peak Algorithm)<a class="headerlink" href="#reservoir-volume-sequent-peak-algorithm" title="Permalink to this headline">¶</a></h1>
 <div class="admonition-goals admonition">
 <p class="admonition-title">Goals</p>
 <p>Write custom functions, load data from comma-type delimited text files, and manipulate data with <em>numpy</em>. Use loops and error exceptions efficiently.</p>
@@ -767,20 +767,27 @@ The sequent peak algorithm (e.g., <a class="reference external" href="https://on
 <li><p>Open the <code class="docutils literal notranslate"><span class="pre">file</span></code> (full directory) as a file: <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">open(file,</span> <span class="pre">mode=&quot;r&quot;)</span> <span class="pre">as</span> <span class="pre">f:</span></code></p>
 <ul>
 <li><p>Read the file content with <code class="docutils literal notranslate"><span class="pre">f_content</span> <span class="pre">=</span> <span class="pre">f.read()</span></code>. The <em>string</em>  variable <code class="docutils literal notranslate"><span class="pre">f_content</span></code> will look similar to something like <code class="docutils literal notranslate"><span class="pre">&quot;;0;0;0;0;0;0;0;0;0;2.1;0;0\n;0;0;0;0;0;0;0;0;0;6.4;0;0\n;0;0;0;0;9.9;0;0;0;0;0.2;0;0\n...&quot;</span></code>.</p></li>
-<li><p><em>Some explanations: The column data are delimited by a <code class="docutils literal notranslate"><span class="pre">&quot;;&quot;</span></code> and every column represents one value per month (i.e., 12 values per row). The rows denote days (i.e., there are 31 rows in each file corresponding to the maximum number of days in one month of a year). In consequence, every row should contain 11 <code class="docutils literal notranslate"><span class="pre">&quot;;&quot;</span></code> signs to separate 12 columns and the entire file (<code class="docutils literal notranslate"><span class="pre">f_content</span></code>) should contain 30 <code class="docutils literal notranslate"><span class="pre">&quot;\n&quot;</span></code> signs to separate 31 rows. However, we count 12 <code class="docutils literal notranslate"><span class="pre">&quot;;&quot;</span></code> signs per row and 32 to 33 <code class="docutils literal notranslate"><span class="pre">&quot;\n&quot;</span></code> signs in <code class="docutils literal notranslate"><span class="pre">f_content</span></code> because the data logger wrote <code class="docutils literal notranslate"><span class="pre">&quot;;&quot;</span></code> at the beginning of each row and added one to two more empty lines to the end of every file. Therefore, we need to <code class="docutils literal notranslate"><span class="pre">strip()</span></code> the bad <code class="docutils literal notranslate"><span class="pre">&quot;;&quot;</span></code> and  <code class="docutils literal notranslate"><span class="pre">&quot;\n&quot;</span></code> signs in the following.</em></p></li>
-<li><p>To get the number of (valid) rows in every file use <code class="docutils literal notranslate"><span class="pre">rows</span> <span class="pre">=</span> <span class="pre">f_content.strip(&quot;\n&quot;).split(&quot;\n&quot;).__len__()</span></code></p></li>
-<li><p>To get the number of (valid) columns in every file use <code class="docutils literal notranslate"><span class="pre">cols</span> <span class="pre">=</span> <span class="pre">f_content.strip(&quot;\n&quot;).split(&quot;\n&quot;)[0].strip(delimiter).split(delimiter).__len__()</span></code></p></li>
-<li><p>Now we can create a void <em>numpy</em> array of the size (shape) corresponding to the number of valid rows and columns in every file: <code class="docutils literal notranslate"><span class="pre">data_array</span> <span class="pre">=</span> <span class="pre">np.empty((rows,</span> <span class="pre">cols),</span> <span class="pre">dtype=np.float32)</span></code></p></li>
-<li><p><em>Why are we not using directly <code class="docutils literal notranslate"><span class="pre">np.empty((31,</span> <span class="pre">12)</span></code> even though the shape of all files is the same?<br>We want to write a generally valid function and the two lines for deriving the valid number of rows and columns do the generalization job.</em></p></li>
-<li><p>Next, we need to parse the values of every line and append them to the until now void <code class="docutils literal notranslate"><span class="pre">data_array</span></code>. Therefore, we split <code class="docutils literal notranslate"><span class="pre">f_content</span></code> into its lines with <code class="docutils literal notranslate"><span class="pre">split(&quot;\n)</span></code> and use a <em>for</em> loop: <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">iteration,</span> <span class="pre">line</span> <span class="pre">in</span> <span class="pre">enumerate(f_content.strip(&quot;\n&quot;).split(&quot;\n&quot;):</span></code>. Then,<br> Create an empty list to store line data <code class="docutils literal notranslate"><span class="pre">line_data</span> <span class="pre">=</span> <span class="pre">[]</span></code>. <br>In another <em>for</em> loop, strip and split the line by the user-defined <code class="docutils literal notranslate"><span class="pre">delimiter</span></code> (recall: we will use <code class="docutils literal notranslate"><span class="pre">delimiter=&quot;;&quot;</span></code>) <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">e</span> <span class="pre">in</span> <span class="pre">line.strip(delimiter).split(delimiter):</span></code>. In the <em>e-for</em> loop, <code class="docutils literal notranslate"><span class="pre">try:</span></code> to append <code class="docutils literal notranslate"><span class="pre">e</span></code> as a <em>float</em> number <code class="docutils literal notranslate"><span class="pre">line_data.append(np.float(e)</span></code> and use <code class="docutils literal notranslate"><span class="pre">except</span> <span class="pre">ValueError:</span></code> to <code class="docutils literal notranslate"><span class="pre">line_data.append(np.nan)</span></code> (i.e., append a not-a-number value that we will need because not all months have 31 days).<br>End the <em>e-for</em> loop by back-indenting to the <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">iteration,</span> <span class="pre">line</span> <span class="pre">in</span> <span class="pre">...</span></code> loop and appending the <code class="docutils literal notranslate"><span class="pre">line_data</span></code> <em>list</em> as a <em>numpy</em> array to <code class="docutils literal notranslate"><span class="pre">data_array</span></code>: <code class="docutils literal notranslate"><span class="pre">data_array[iteration]</span> <span class="pre">=</span> <span class="pre">np.array(line_data)</span></code></p></li>
-<li><p>Back in the <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">open(file,</span> <span class="pre">...</span></code> statement (use correct indentation level!), update <code class="docutils literal notranslate"><span class="pre">file_content_dict</span></code> with the above-found <code class="docutils literal notranslate"><span class="pre">dict_key</span></code> and the <code class="docutils literal notranslate"><span class="pre">data_array</span></code> of the <code class="docutils literal notranslate"><span class="pre">file</span> <span class="pre">as</span> <span class="pre">f</span></code>: <code class="docutils literal notranslate"><span class="pre">file_content_dict.update({dict_key:</span> <span class="pre">data_array})</span></code></p></li>
 </ul>
 </li>
 </ul>
 </li>
+</ol>
+<div class="tip admonition">
+<p class="admonition-title">Some <em>string</em> explanations</p>
+<p>The column data are delimited by a <code class="docutils literal notranslate"><span class="pre">&quot;;&quot;</span></code> and every column represents one value per month (i.e., 12 values per row). The rows denote days (i.e., there are 31 rows in each file corresponding to the maximum number of days in one month of a year). In consequence, every row should contain 11 <code class="docutils literal notranslate"><span class="pre">&quot;;&quot;</span></code> signs to separate 12 columns and the entire file (<code class="docutils literal notranslate"><span class="pre">f_content</span></code>) should contain 30 <code class="docutils literal notranslate"><span class="pre">&quot;\n&quot;</span></code> signs to separate 31 rows. However, we count 12 <code class="docutils literal notranslate"><span class="pre">&quot;;&quot;</span></code> signs per row and 32 to 33 <code class="docutils literal notranslate"><span class="pre">&quot;\n&quot;</span></code> signs in <code class="docutils literal notranslate"><span class="pre">f_content</span></code> because the data logger wrote <code class="docutils literal notranslate"><span class="pre">&quot;;&quot;</span></code> at the beginning of each row and added one to two more empty lines to the end of every file. Therefore, we need to <code class="docutils literal notranslate"><span class="pre">strip()</span></code> the bad <code class="docutils literal notranslate"><span class="pre">&quot;;&quot;</span></code> and  <code class="docutils literal notranslate"><span class="pre">&quot;\n&quot;</span></code> signs in the following.</p>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    - To get the number of (valid) rows in every file use `rows = f_content.strip(&quot;\n&quot;).split(&quot;\n&quot;).__len__()`
+    - To get the number of (valid) columns in every file use `cols = f_content.strip(&quot;\n&quot;).split(&quot;\n&quot;)[0].strip(delimiter).split(delimiter).__len__()`
+    - Now we can create a void *numpy* array of the size (shape) corresponding to the number of valid rows and columns in every file: `data_array = np.empty((rows, cols), dtype=np.float32)`
+    - *Why are we not using directly `np.empty((31, 12)` even though the shape of all files is the same?&lt;br&gt;We want to write a generally valid function and the two lines for deriving the valid number of rows and columns do the generalization job.*
+    - Next, we need to parse the values of every line and append them to the until now void `data_array`. Therefore, we split `f_content` into its lines with `split(&quot;\n)` and use a *for* loop: `for iteration, line in enumerate(f_content.strip(&quot;\n&quot;).split(&quot;\n&quot;):`. Then,&lt;br&gt; Create an empty list to store line data `line_data = []`. &lt;br&gt;In another *for* loop, strip and split the line by the user-defined `delimiter` (recall: we will use `delimiter=&quot;;&quot;`) `for e in line.strip(delimiter).split(delimiter):`. In the *e-for* loop, `try:` to append `e` as a *float* number `line_data.append(np.float(e)` and use `except ValueError:` to `line_data.append(np.nan)` (i.e., append a not-a-number value that we will need because not all months have 31 days).&lt;br&gt;End the *e-for* loop by back-indenting to the `for iteration, line in ...` loop and appending the `line_data` *list* as a *numpy* array to `data_array`: `data_array[iteration] = np.array(line_data)`
+    - Back in the `with open(file, ...` statement (use correct indentation level!), update `file_content_dict` with the above-found `dict_key` and the `data_array` of the `file as f`: `file_content_dict.update({dict_key: data_array})`
+</pre></div>
+</div>
+<ol class="simple">
 <li><p>Back at the level of the function (<code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">read_data(...):</span></code> - pay attention to the correct indentation!), <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">file_content_dict</span></code></p></li>
 </ol>
-<p>Check if the function works as wanted and <a class="reference internal" href="../jupyter/pypckg.html#standalone"><span class="std std-ref">Make Script Stand-alone</span></a> through an <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;:</span></code> statement at the end of the file. So the script should look like this:</p>
+<p>Check if the function works as wanted and follow the instruction in the <a class="reference internal" href="../jupyter/pypckg.html#standalone"><span class="std std-ref">Make Script Stand-alone</span></a> section to implement an <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;:</span></code> statement at the end of the file. Thus, the script should look similar to the following code block:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">glob</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -913,20 +920,11 @@ The sequent peak algorithm (e.g., <a class="reference external" href="https://on
 <p><span class="math notranslate nohighlight">\(S_{2}\)</span> = <span class="math notranslate nohighlight">\(S_{1}\)</span> + <span class="math notranslate nohighlight">\(In_{1}\)</span> - <span class="math notranslate nohighlight">\(Out_{1}\)</span><br>
 <span class="math notranslate nohighlight">\(S_{3}\)</span> = <span class="math notranslate nohighlight">\(S_{2}\)</span> + <span class="math notranslate nohighlight">\(In_{2}\)</span> - <span class="math notranslate nohighlight">\(Out_{2}\)</span> = <span class="math notranslate nohighlight">\(S_{1}\)</span> + <span class="math notranslate nohighlight">\(In_{1}\)</span> + <span class="math notranslate nohighlight">\(In_{2}\)</span> - <span class="math notranslate nohighlight">\(Out_{1}\)</span> - <span class="math notranslate nohighlight">\(Out_{2}\)</span><br></p>
 <p>In summation notation, we can write:</p>
-<div class="math notranslate nohighlight">
-\[
-S_{m+1} = S_{1} + \Sigma_{i=[1:m]} In_{i} - \Sigma_{i=[1:m]}Out_{i}
-\]</div>
+<p><span class="math notranslate nohighlight">\(S_{m+1} = S_{1} + \Sigma_{i=[1:m]} In_{i} - \Sigma_{i=[1:m]}Out_{i}\)</span></p>
 <p>The last two terms constitute the storage difference (<span class="math notranslate nohighlight">\(SD\)</span>) line:</p>
-<div class="math notranslate nohighlight">
-\[
-SD_{m} = \Sigma_{i=[1:m]}(In_{i} - Out_{i})
-\]</div>
+<p><span class="math notranslate nohighlight">\(SD_{m} = \Sigma_{i=[1:m]}(In_{i} - Out_{i})\)</span></p>
 <p>Thus, the storage curve as a function of the <span class="math notranslate nohighlight">\(SD\)</span> line is:</p>
-<div class="math notranslate nohighlight">
-\[
-S_{m+1} = S_{1} + SD_{m}
-\]</div>
+<p><span class="math notranslate nohighlight">\(S_{m+1} = S_{1} + SD_{m}\)</span></p>
 <p>The summation notation of the storage curve as a function of the <span class="math notranslate nohighlight">\(SD\)</span> line enables us to implement the calculation into a simple <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">sequent_peak(in_vol_series,</span> <span class="pre">out_vol_target):</span></code> function.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -967,7 +965,7 @@ S_{m+1} = S_{1} + SD_{m}
 <li><p>Write two functions, which consecutively find local maxima and then local minima located between the extrema (HOMEWORK!) OR use <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">scipy.signal</span> <span class="pre">import</span> <span class="pre">find_peaks</span></code> to find the indices (positions) - consider to write a <code class="docutils literal notranslate"><span class="pre">find_seasonal_extrema(storage_line)</span></code> function.</p></li>
 </ol>
 </li>
-<li><p>Verify if the curves and extrema are correct by copying the provided <code class="docutils literal notranslate"><span class="pre">plot_storage_curve</span></code> curve to your script (<a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/Exercise-SequentPeak/master/plot_function.py">available in the exercise repository</a> and using it as follows:<br><code class="docutils literal notranslate"><span class="pre">plot_storage_curve(storage_line,</span> <span class="pre">seas_min_index,</span> <span class="pre">seas_max_index,</span> <span class="pre">seas_min_vol,</span> <span class="pre">seas_max_vol)</span></code></p></li>
+<li><p>Make sure that the curves and extrema are correct by copying the provided <code class="docutils literal notranslate"><span class="pre">plot_storage_curve</span></code> curve to your script (<a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/Exercise-SequentPeak/master/plot_function.py">available in the exercise repository</a>) and using it as follows:<br><code class="docutils literal notranslate"><span class="pre">plot_storage_curve(storage_line,</span> <span class="pre">seas_min_index,</span> <span class="pre">seas_max_index,</span> <span class="pre">seas_min_vol,</span> <span class="pre">seas_max_vol)</span></code></p></li>
 </ul>
 <div class="figure align-default" id="sdline">
 <img alt="sequent peak storage difference sd curve" src="https://github.com/Ecohydraulics/media/raw/master/png/storage_curve.png" />

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shapefile (vector dataset) handling &#8212; Hydro-Informatics</title>
+    <title>Shapefile (Vector Dataset) Handling &#8212; Hydro-Informatics</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -56,7 +56,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Raster (Gridded) Dataset Handling" href="geo-raster.html" />
-    <link rel="prev" title="Geospatial Python - Open Source Packages" href="../geopy/geo-pckg.html" />
+    <link rel="prev" title="Geospatial Open Source Python Libraries" href="../geopy/geo-pckg.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -281,7 +281,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-sp.html">
-     Reservoir Volume Calculation with a Sequent Peak Algorithm
+     Reservoir Volume (Sequent Peak Algorithm)
     </a>
    </li>
    <li class="toctree-l2">
@@ -291,24 +291,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-sediment.html">
-     Cross-section Averaged Sediment Transport
+     1d Sediment Transport
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-gui.html">
-     Create a
-     <strong>
-      G
-     </strong>
-     raphical
-     <strong>
-      U
-     </strong>
-     ser
-     <strong>
-      I
-     </strong>
-     nterface (GUI)
+     Create a GUI
     </a>
    </li>
   </ul>
@@ -371,12 +359,12 @@
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="../geopy/geo-pckg.html">
-     Geospatial Python - Open Source Packages
+     Geospatial Open Source Python Libraries
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Shapefile (vector dataset) handling
+     Shapefile (Vector Dataset) Handling
     </a>
    </li>
    <li class="toctree-l2">
@@ -408,7 +396,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-geco.html">
-     Script-Create a Habitat Suitability Map
+     Script a Habitat Suitability Map
     </a>
    </li>
   </ul>
@@ -678,7 +666,7 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#load-an-existing-shapefile">
-   Load an existing shapefile
+   Load an Existing Shapefile
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -753,7 +741,7 @@
               <div>
                 
   <div class="section" id="shapefile-vector-dataset-handling">
-<h1>Shapefile (vector dataset) handling<a class="headerlink" href="#shapefile-vector-dataset-handling" title="Permalink to this headline">¶</a></h1>
+<span id="chpt-shp"></span><h1>Shapefile (Vector Dataset) Handling<a class="headerlink" href="#shapefile-vector-dataset-handling" title="Permalink to this headline">¶</a></h1>
 <p>Geospatial analysis of shapefile with gdal, ogr and osr. For interactive reading and executing code blocks <a class="reference external" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> and find <em>pybase.ipynb</em> or <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Install Python</span></a> locally along with <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a>.</p>
 <div class="admonition-requirements admonition">
 <p class="admonition-title">Requirements</p>
@@ -764,7 +752,7 @@
 <p>The core functions used in this e-book are introduced with the raster and vector data handling explanations and additionally implemented in the <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> package.</p>
 </div>
 <div class="section" id="load-an-existing-shapefile">
-<h2>Load an existing shapefile<a class="headerlink" href="#load-an-existing-shapefile" title="Permalink to this headline">¶</a></h2>
+<h2>Load an Existing Shapefile<a class="headerlink" href="#load-an-existing-shapefile" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">gdal</span></code>’s <code class="docutils literal notranslate"><span class="pre">ogr</span></code> module is an excellent source for handling shapefiles. To open a shapefile in <em>Python</em>, we need to instantiate the correct driver (<code class="docutils literal notranslate"><span class="pre">&quot;ESRI</span> <span class="pre">Shapefile&quot;</span></code> for shapefiles) first. With the driver object (<code class="docutils literal notranslate"><span class="pre">ogr.GetDriverByName(&quot;SHAPEFILE&quot;)</span></code>), we can then open (instantiate) a shapefile (object with <code class="docutils literal notranslate"><span class="pre">shp_driver.Open(&quot;SHAPEFILE&quot;)</span></code>), which contains layer information. It is precisely this layer information (i.e., references to shapefile attributes) that we want to work with. Therefore we have to instantiate a shapefile layer object with <code class="docutils literal notranslate"><span class="pre">shp_dataset.GetLayer()</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1479,7 +1467,7 @@ Tip: To create a tight hull (e.g., of a point cloud), look for <code class="docu
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="../geopy/geo-pckg.html" title="previous page">Geospatial Python - Open Source Packages</a>
+    <a class='left-prev' id="prev-link" href="../geopy/geo-pckg.html" title="previous page">Geospatial Open Source Python Libraries</a>
     <a class='right-next' id="next-link" href="geo-raster.html" title="next page">Raster (Gridded) Dataset Handling</a>
 
         </div>

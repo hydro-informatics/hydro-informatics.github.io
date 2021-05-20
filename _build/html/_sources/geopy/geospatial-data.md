@@ -19,15 +19,15 @@ Geospatial data can be retrieved for various purposes from different sources. He
 * Data on land use (including canopy cover), socioeconomic characteristics, and global change are available at the [FAO GeoNetwork](http://www.fao.org/geonetwork/srv/en/main.home) or the archived ISCGM Global Map portal ([go to their github archive](https://globalmaps.github.io/)).
 
 ## Visualization
-GIS software is needed to display geospatial data and many tools exist. This website primarily provides examples using [*QGIS*](../get-started/geo.html#qgis). Since the use of GIS software, especially *QGIS*, is necessary in several places on the website, explanations on how to install *QGIS* are already included on the [Get Started > Geospatial software](../get-started/geo) page.
+GIS software is needed to display geospatial data and many tools exist. This website primarily provides examples using {ref}`qgis-install`. Since the use of GIS software, especially *QGIS*, is necessary in several places on the website, explanations on how to install *QGIS* are already included in the {ref}`chpt-geo-software`.
 
 ```{tip}
-The [*BASEMENT* pre-processing page](../numerics/basement) features the basics of geospatial data handling with *QGIS*. Therefore, this introduction to numerical modeling is also a good introduction to *QGIS*.
+The {ref}`chpt-basement` features the basics of geospatial data handling with {ref}`qgis-install`. Therefore, this introduction to numerical modeling is also a good introduction to {ref}`qgis-install`.
 ```
 
 (gdb)=
 ## Geodatabase
-A geodatabase (also known as *spatial database*) can store, query (e.g., using [Structured Query Language *SQL*](https://en.wikibooks.org/wiki/Structured_Query_Language), or modify data with geographic references (*geospatial data*). Primarily, geospatial data consist of vector data (see shapefiles), but raster data can also be implemented. A geodatabase links these data with attribute tables and geographic coordinates. The special aspect of geodatabases is that these data can be queried and manipulated by users via a (web or local) GIS (geographic information system) server. With software like [*QGIS*](../get-started/geo.html#qgis) (or *ArcGIS Pro*), for example, queries can be made on a kind of local server using locally stored geodata. The typical geodatabase format is `.gdb`, which works actually like a directory in *QGIS* or *ArcGIS*, and the maximum size of a `.gdb` file is 1 terabyte.
+A geodatabase (also known as *spatial database*) can store, query (e.g., using [Structured Query Language SQL](https://en.wikibooks.org/wiki/Structured_Query_Language)), or modify data with geographic references (*geospatial data*). Primarily, geospatial data consist of vector data (see shapefiles), but raster data can also be implemented. A geodatabase links these data with attribute tables and geographic coordinates. The special aspect of geodatabases is that these data can be queried and manipulated by users via a (web or local) GIS (geographic information system) server. With software like {ref}`qgis-install` (or *ArcGIS Pro*), for example, queries can be made on a kind of local server using locally stored geodata. The typical geodatabase format is `.gdb`, which works actually like a directory in {ref}`qgis-install` or *ArcGIS*, and the maximum size of a `.gdb` file is 1 terabyte.
 
 ```{figure} ../img/geo-database.png
 :alt: gdb
@@ -40,7 +40,7 @@ Functional skeleton of a geodatabase.
 
 Vector data are visually smooth and efficient for overlay operations, especially regarding shape-driven geo-information such as roads or surface delineations. Vector data are typically less storage-intensive, easier to scale, and more compatible with relational environments. Common formats are `.shp`, `JSON` or `TIN`.
 
- The shapefile format was invented by *Esri* ([download their PDF documentation](http://www.esri.com/library/whitepapers/pdfs/shapefile.pdf) and information contained in shapefiles can be:
+ The shapefile format was invented by *Esri* (download their [whitepaper as PDF](http://www.esri.com/library/whitepapers/pdfs/shapefile.pdf)) and information contained in shapefiles can be:
 
 * Polygons (surface patches).
 * Points with x-y-z coordinates and an *m* field containing point data.
@@ -90,7 +90,7 @@ Illustration of a TIN.
 The `gdal.ogr` driver name for shapefile handling is `ogr.GetDriverByName('GeoJSON')`.
 ```
 
-[*GeoJSON*](https://geojson.org/) is an open format for representing geographic data with simple feature access standards, where *JSON* denotes *JavaScript Object Orientation* ([read more about *JSON* file manipulation in the *Python* intro on this website](../python-basics/pyxml.html#json)). The *GeoJSON* file name ending is `.geojson` and a file typically has the following structure:
+[*GeoJSON*](https://geojson.org/) is an open format for representing geographic data with simple feature access standards, where *JSON* denotes *JavaScript Object Orientation* (read more about {ref}`json` file manipulation in the *Python* basics). The *GeoJSON* file name ending is `.geojson` and a file typically has the following structure:
 
 ```json
 {
@@ -117,7 +117,7 @@ Visit [geojson.io](https://geojson.io/) to build a customized *GeoJSON* file. Wh
 Raster datasets store pixel values (*cells*), which require large storage space, but have a simple structure. A big advantage of rasters is the possibility to perform powerful geospatial and statistical analyses. Common Raster datasets are, among others, `.tif` (*GeoTIFF*), *GRID* (a folder with a `BND`, `HDR`, `STA`, `VAT`, and other files), `.flt` (floating points), *ASCII* (American Standard Code for Information Interchange), and many more image-like file types.
 
 ```{tip}
-Preferably use the [*GeoTIFF*](https://en.wikipedia.org/wiki/GeoTIFF) format in raster analyses. A *GeoTIFF* file, typically includes a `.tif` file (with heavy data) and a `.tfw` (a six-line plain text world file containing georeference information) file.
+Preferably use the [GeoTIFF](https://en.wikipedia.org/wiki/GeoTIFF) format in raster analyses. A *GeoTIFF* file, typically includes a `.tif` file (with heavy data) and a `.tfw` (a six-line plain text world file containing georeference information) file.
 ```
 
 ```{note}
@@ -132,7 +132,7 @@ Illustration of the Natural Earth's NE1_50M_SR_W.tif raster zoomed on Nepal, wit
 
 (prj)=
 ## Projections and Coordinate Systems
-In geospatial data analyses, a projection represents an approach to flatten (a part of) the globe. In this flattening process, latitudinal (North/South) and longitudinal (West/East) coordinates of a location on the globe (three-dimensional *3D*) are projected into the coordinates of a two-dimensional (*2D*) map. When 3D coordinates are projected onto 2D coordinates, distortions occur and there is a variety of projection systems used in geospatial analyses. In practice this means that if we use geospatial data files with different projections, a distortion effect propagates in all subsequent calculations. It is absolutely crucial to avoid distortion effects by ensuring that the same projections and coordinate systems are applied to all geospatial data used. This starts with the creation of a new geospatial layer (e.g., a point vector shapefile) in *QGIS* and should be used consistently in all program codes. To specify a projection or coordinate system in *QGIS*, click on `Project` > `Properties` > `CRS` tab and select a `COORDINATE_SYSTEM`. For example, an appropriate coordinate system for central Europe is `ESRI:31493` (read more in the [*QGIS* docs](https://docs.qgis.org/testing/en/docs/user_manual/working_with_projections/working_with_projections.html)). Projected systems may vary with regions (*local coordinate systems*), which can, for example, be found at [epsg.io](https://epsg.io/) or [spatialreference.org](https://spatialreference.org/).
+In geospatial data analyses, a projection represents an approach to flatten (a part of) the globe. In this flattening process, latitudinal (North/South) and longitudinal (West/East) coordinates of a location on the globe (three-dimensional - 3d) are projected into the coordinates of a two-dimensional (2d) map. When 3d coordinates are projected onto 2D coordinates, distortions occur and there is a variety of projection systems used in geospatial analyses. In practice this means that if we use geospatial data files with different projections, a distortion effect propagates in all subsequent calculations. It is absolutely crucial to avoid distortion effects by ensuring that the same projections and coordinate systems are applied to all geospatial data used. This starts with the creation of a new geospatial layer (e.g., a point vector shapefile) in *QGIS* and should be used consistently in all program codes. To specify a projection or coordinate system in *QGIS*, click on `Project` > `Properties` > `CRS` tab and select a `COORDINATE_SYSTEM`. For example, an appropriate coordinate system for central Europe is `ESRI:31493` (read more in the [*QGIS* docs](https://docs.qgis.org/testing/en/docs/user_manual/working_with_projections/working_with_projections.html)). Projected systems may vary with regions (*local coordinate systems*), which can, for example, be found at [epsg.io](https://epsg.io/) or [spatialreference.org](https://spatialreference.org/).
 
 In **shapefiles**, information about the projection is stored in a `.prj` file (recall definitions in the [geospatial data section](#vector), which is a plain text file. The Open Spatial Consortium (*OGC*) and *Esri* use [*Well-Known Text* (**WKT**)](http://docs.opengeospatial.org/is/18-010r7/18-010r7.html) files for standard descriptions of coordinate systemsa and such a *WKT*-formatted `.prj` file can look like this:
 
@@ -145,7 +145,7 @@ PROJCS["unknown",GEOGCS["GCS_unknown",
        ..., UNIT["US survey foot",0.304800609601219]]
 ```
 
-In [*GeoJSON*](#geojson) files, the standard coordinate system is [WGS84](https://www.unoosa.org/documents/pdf/icg/2018/icg13/wgd/wgd_12.pdf) according to the [developer's specifications](https://cran.r-project.org/web/packages/geojsonio/vignettes/geojson_spec.html).
+In {ref}`geojson` files, the standard coordinate system is [WGS84](https://www.unoosa.org/documents/pdf/icg/2018/icg13/wgd/wgd_12.pdf) according to the [developer's specifications](https://cran.r-project.org/web/packages/geojsonio/vignettes/geojson_spec.html).
 The units and measures defined in the *WKT*-formatted `.prj` file also determine the units of *WK**B*** (*Well-Known Binary*) definitions of geometries such as line length (e.g., in meters, feet or many more), or polygon area (square meters, square kilometers, acres, and many more).
 
 ```{tip}

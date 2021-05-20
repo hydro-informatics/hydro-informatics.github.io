@@ -7,6 +7,6 @@ The contents of the training include the dimensioning of reservoirs, calculation
 
 The following table summarizes the practice application and the coding aspects featured in the exercises on the following pages:
 
-| Application goal                              | Code exercise                                                         |
-|-----------------------------------------------|-----------------------------------------------------------------------|
-| Geospatial ecohydraulics                      | object orientation and geospatial data manipulation                   |
+| Application goal           | Code exercise                                   |
+|----------------------------|-------------------------------------------------|
+| Geospatial ecohydraulics   | {ref}`ooc` and familiarize with {ref}`sec-geo-python` |

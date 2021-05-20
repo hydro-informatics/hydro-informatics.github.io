@@ -1,4 +1,4 @@
-# Reservoir Volume Calculation with a Sequent Peak Algorithm
+# Reservoir Volume (Sequent Peak Algorithm)
 
 ```{admonition} Goals
 Write custom functions, load data from comma-type delimited text files, and manipulate data with *numpy*. Use loops and error exceptions efficiently.
@@ -67,7 +67,10 @@ The function will loop over the *csv* file names and append the file contents to
         - Use `except ValueError:` in the case that the remaining *string* cannot be converted to `int`: `dict_key = raw_file_name.strip(fn_prefix).strip(fn_suffix)` (if everything is well coded, the script will not need to jump into this exception statement later).
     * Open the `file` (full directory) as a file: `with open(file, mode="r") as f:`
         - Read the file content with `f_content = f.read()`. The *string*  variable `f_content` will look similar to something like `";0;0;0;0;0;0;0;0;0;2.1;0;0\n;0;0;0;0;0;0;0;0;0;6.4;0;0\n;0;0;0;0;9.9;0;0;0;0;0.2;0;0\n..."`.
-        - *Some explanations: The column data are delimited by a `";"` and every column represents one value per month (i.e., 12 values per row). The rows denote days (i.e., there are 31 rows in each file corresponding to the maximum number of days in one month of a year). In consequence, every row should contain 11 `";"` signs to separate 12 columns and the entire file (`f_content`) should contain 30 `"\n"` signs to separate 31 rows. However, we count 12 `";"` signs per row and 32 to 33 `"\n"` signs in `f_content` because the data logger wrote `";"` at the beginning of each row and added one to two more empty lines to the end of every file. Therefore, we need to `strip()` the bad `";"` and  `"\n"` signs in the following.*
+```{admonition} Some *string* explanations
+:class: tip
+The column data are delimited by a `";"` and every column represents one value per month (i.e., 12 values per row). The rows denote days (i.e., there are 31 rows in each file corresponding to the maximum number of days in one month of a year). In consequence, every row should contain 11 `";"` signs to separate 12 columns and the entire file (`f_content`) should contain 30 `"\n"` signs to separate 31 rows. However, we count 12 `";"` signs per row and 32 to 33 `"\n"` signs in `f_content` because the data logger wrote `";"` at the beginning of each row and added one to two more empty lines to the end of every file. Therefore, we need to `strip()` the bad `";"` and  `"\n"` signs in the following.
+```
         - To get the number of (valid) rows in every file use `rows = f_content.strip("\n").split("\n").__len__()`
         - To get the number of (valid) columns in every file use `cols = f_content.strip("\n").split("\n")[0].strip(delimiter).split(delimiter).__len__()`
         - Now we can create a void *numpy* array of the size (shape) corresponding to the number of valid rows and columns in every file: `data_array = np.empty((rows, cols), dtype=np.float32)`
@@ -76,7 +79,7 @@ The function will loop over the *csv* file names and append the file contents to
         - Back in the `with open(file, ...` statement (use correct indentation level!), update `file_content_dict` with the above-found `dict_key` and the `data_array` of the `file as f`: `file_content_dict.update({dict_key: data_array})`
 1. Back at the level of the function (`def read_data(...):` - pay attention to the correct indentation!), `return file_content_dict`
 
-Check if the function works as wanted and {ref}`standalone` through an `if __name__ == "__main__":` statement at the end of the file. So the script should look like this:
+Check if the function works as wanted and follow the instruction in the {ref}`standalone` section to implement an `if __name__ == "__main__":` statement at the end of the file. Thus, the script should look similar to the following code block:
 
 ```python
 import glob
@@ -188,21 +191,15 @@ $S_{3}$ = $S_{2}$ + $In_{2}$ - $Out_{2}$ = $S_{1}$ + $In_{1}$ + $In_{2}$ - $Out_
 
 In summation notation, we can write:
 
-$$
-S_{m+1} = S_{1} + \Sigma_{i=[1:m]} In_{i} - \Sigma_{i=[1:m]}Out_{i}
-$$
+$S_{m+1} = S_{1} + \Sigma_{i=[1:m]} In_{i} - \Sigma_{i=[1:m]}Out_{i}$
 
 The last two terms constitute the storage difference ($SD$) line:
 
-$$
-SD_{m} = \Sigma_{i=[1:m]}(In_{i} - Out_{i})
-$$
+$SD_{m} = \Sigma_{i=[1:m]}(In_{i} - Out_{i})$
 
 Thus, the storage curve as a function of the $SD$ line is:
 
-$$
-S_{m+1} = S_{1} + SD_{m}
-$$
+$S_{m+1} = S_{1} + SD_{m}$
 
 The summation notation of the storage curve as a function of the $SD$ line enables us to implement the calculation into a simple `def sequent_peak(in_vol_series, out_vol_target):` function.
 
@@ -242,7 +239,7 @@ The new `def sequent_peak(in_vol_series, out_vol_target):` function needs to:
     `seas_max_vol = np.take(storage_line, seas_max_index)` <br>
     `seas_min_vol = np.take(storage_line, seas_min_index)` <br>
     1. Write two functions, which consecutively find local maxima and then local minima located between the extrema (HOMEWORK!) OR use `from scipy.signal import find_peaks` to find the indices (positions) - consider to write a `find_seasonal_extrema(storage_line)` function.
-* Verify if the curves and extrema are correct by copying the provided `plot_storage_curve` curve to your script ([available in the exercise repository](https://raw.githubusercontent.com/Ecohydraulics/Exercise-SequentPeak/master/plot_function.py) and using it as follows:<br>`plot_storage_curve(storage_line, seas_min_index, seas_max_index, seas_min_vol, seas_max_vol)`
+* Make sure that the curves and extrema are correct by copying the provided `plot_storage_curve` curve to your script ([available in the exercise repository](https://raw.githubusercontent.com/Ecohydraulics/Exercise-SequentPeak/master/plot_function.py)) and using it as follows:<br>`plot_storage_curve(storage_line, seas_min_index, seas_max_index, seas_min_vol, seas_max_vol)`
 
 ```{figure} https://github.com/Ecohydraulics/media/raw/master/png/storage_curve.png
 :alt: sequent peak storage difference sd curve

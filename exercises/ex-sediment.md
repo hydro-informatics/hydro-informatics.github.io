@@ -1,4 +1,4 @@
-# Cross-section Averaged Sediment Transport
+# 1d Sediment Transport
 
 ```{admonition} Goals
 This exercise features the application of the Meyer-Peter & Müller (1948) bed load transport formulae to a valid application: 1d, cross-section averaged hydraulics. Write object-oriented code with custom classes for tailored interactions with *xlsx* workbooks. The homework involves using built-in methods of {ref}`pandas` data frames and plotting.
@@ -33,12 +33,12 @@ u = 1/n \cdot S_{e}^{1/2} \cdot R_{h}^{2/3}
 $$
 
 where
-* *n* is the [*Manning* coefficient](http://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm) in *fictional* units of (s/m^{1/3}).
+* $n$ is the [*Manning* coefficient](http://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm) in *fictional* units of (s/m$^{1/3}$).
 * $S_{e}$ is the hypothetical energy slope (m/m) and corresponds to the channel slope for steady, uniform flow conditions (non-existing in natural rivers).
-* the hydraulic radius $R_{h}$ = $A / P$, where (for a trapezoidal cross-section):
+* the hydraulic radius $R_{h} = A / P$, where (for a trapezoidal cross-section):
     - the wetted (trapezoidal) cross-section area is $A = h \cdot 0.5\cdot (b + B) = h \cdot (b + h\cdot m)$;
     - the wetted perimeter of a trapezoid is $P = b + 2h\cdot(m² + 1)^{1/2}$;
-    - *b* (channel base width) and $m$ (bank slope) are illustrated in the figure below to calculate the depth-dependent water surface width $B=b+2\cdot h\cdot m$.
+    - $b$ (channel base width) and $m$ (bank slope) are illustrated in the figure below to calculate the depth-dependent water surface width $B=b+2\cdot h\cdot m$.
 
 
 ```{figure} https://github.com/Ecohydraulics/media/raw/master/png/flow-cs.png
@@ -46,7 +46,7 @@ where
 :name: cs-sed
 ```
 
-This exercise uses one-dimensional (1D) cross-section averaged hydraulic data produced with the US Army Corps of Engineers' [*HEC-RAS*](https://www.hec.usace.army.mil/software/hec-ras/) software, which solves the Manning-Strickler formula numerically for any flow cross-section shape. In this exercise, *HEC-RAS* provides the hydraulic data needed to determine the sediment transport capacity of a channel cross-section, although no explanations for creating, running, and exporting data from *HEC-RAS* models are given.
+This exercise uses one-dimensional (1d) cross-section averaged hydraulic data produced with the US Army Corps of Engineers' [*HEC-RAS*](https://www.hec.usace.army.mil/software/hec-ras/) software, which solves the Manning-Strickler formula numerically for any flow cross-section shape. In this exercise, *HEC-RAS* provides the hydraulic data needed to determine the sediment transport capacity of a channel cross-section, although no explanations for creating, running, and exporting data from *HEC-RAS* models are given.
 
 ### Sediment transport
 
@@ -86,8 +86,8 @@ The *Meyer-Peter & Müller* formula applies (like any other sediment transport f
 * 0.4 $\cdot$ 10$^{-3}$ m $< D_{char}$ < 28.6 $\cdot$ 10$^{-3}$ m
 * 10$^{-4}$ m $< Fr <$ 639 ($Fr$ denotes the dimensionless [*Froude* number](https://en.wikipedia.org/wiki/Froude_number)
 * 0.0004 $< S_{e} <$ 0.02
-* 0.0002 m$^3$/(s $\cdot$ m) $< q <$ 2.0 m$^3$/(s $\cdot$ m) ($q$ is the unit discharge, i.e., $q=Q/(0. 5\cdot (b + B)$)
-* 0.25 $< s <4 3.2
+* 0.0002 m$^3$/(s $\cdot$ m) $< q <$ 2.0 m$^3$/(s $\cdot$ m) ($q$ is the unit discharge, i.e., $q=Q/[0. 5\cdot (b + B)]$)
+* 0.25 $< s <$ 3.2
 
 The dimensionless expression for bed load $\Phi$ was used to enable information transfer between different channels across scales by preserving geometric, kinematic and dynamic similarity. The set of dimensionless parameters used results from  [Buckingham's $\Pi$ theorem](https://pint.readthedocs.io/en/stable/pitheorem.html).
 Therefore, to add dimensions to $\Phi$, it needs to be multiplied with the same set of parameters used for deriving the dimensionless expression from *Meyer-Peter & Müller*. Their set of parameters involves the characteristic grain size $D_{char}$, the grain density $\rho_{s}$, and the gravitational acceleration $g$. Thus, the dimensional unit bed load is (in kg/s and meter width, i.e., kg/(s$\cdot$m): <a name="qb"></a>
@@ -202,7 +202,7 @@ Now, we can log messages at different levels (info, warning, error, or others) i
 
 Sediment grain size classes (ranging from $D_{16}$ to $D_{max}$) are provided in the file [`grains.csv`](https://github.com/Ecohydraulics/Exercise-SedimentTransport/raw/master/grains.csv) (`delimiter=","`) and can be customized.
 
-Write a `GrainReader` class that uses the `read_csv` method from {ref}`pandas`to read the grain size distribution from `grains.csv`. Write the class in a separate *Python* script (e.g., `grains.py` as indicated in the above figure):
+Write a `GrainReader` class that uses the `read_csv` method from {ref}`pandas` to read the grain size distribution from `grains.csv`. Write the class in a separate *Python* script (e.g., `grains.py` as indicated in the above figure):
 
 ```python
 class GrainReader:
@@ -250,13 +250,13 @@ def main():
 
 ### Read HEC-RAS input data
 
-The provided *HEC-RAS* dataset is stored in an *xlsx* workbook ([`HEC-RAS/output.xlsx`](https://github.com/Ecohydraulics/Exercise-SedimentTransport/raw/master/HEC-RAS/output.xlsx) and contains the following output:
+The provided *HEC-RAS* dataset is stored in the *xlsx* workbook [`HEC-RAS/output.xlsx`](https://github.com/Ecohydraulics/Exercise-SedimentTransport/raw/master/HEC-RAS/output.xlsx) and contains the following output:
 
-| **Col.No.** | **Alphabetic Col.** | **Variable** | **Type** | **Description**                                 |
-|-------------|---------------------|--------------|----------|-------------------------------------------------|
-| Col. 01     | A  | Reach          | [string]       | River (reach) name         |
+| **Col.No.** | **Alphabetic Col.** | **Variable** | **Type/Unit** |**Description** |
+|-------------|---------------------|--------------|---------------|----------------|
+| Col. 01     | A                   | Reach        | *string*      | River (reach) name         |
 | Col. 02 | B  | River Sta  | [m]  | Position on the longitudinal river axis          |
-| Col. 03 | C  | Profile    | [string]       | Name of flow scenario profile (e.g., HQ2.33)    |
+| Col. 03 | C  | Profile    |  *string*       | Name of flow scenario profile (e.g., HQ2.33)    |
 | Col. 04 | D  | Q Total    | [m³/s]  | River discharge    |
 | Col. 05 | E  | Min Ch El  | [m a.s.l.]  | Minimum elevation (level) of channel cross-section           |
 | Col. 06 | F  | W.S. Elev  | [m a.s.l.]  | Water surface elevation (level)           |
@@ -356,7 +356,7 @@ Many bed load transport formulae involve the dimensionless bed shear stress [$\t
 
 ### Write a Meyer-Peter & Müller bed load assessment class
 
-Create a new script (e.g., `mpm.py`) and implement a `MPM` class (**M**eyer-**P**eter & **M**üller) that inherits from the `BedCore` class. The `__init__` method of `MPM` should initialize `BedCore` and overwrite (recall {ref}`polymorphism`) relevant parameters to the calculation of bed load according to Meyer-Peter & Müller (1948). Moreover, the initialization of an `MPM` object should go along with a check of the validity and the calculation of the dimensionless bed load transport $\Phi$ ([see above explanations](#mpm):
+Create a new script (e.g., `mpm.py`) and implement a `MPM` class (**M**eyer-**P**eter & **M**üller) that inherits from the `BedCore` class. The `__init__` method of `MPM` should initialize `BedCore` and overwrite (recall {ref}`polymorphism`) relevant parameters to the calculation of bed load according to Meyer-Peter & Müller (1948). Moreover, the initialization of an `MPM` object should go along with a check of the validity and the calculation of the dimensionless bed load transport $\Phi$ ([see above explanations](#mpm)):
 
 ```python
 from bedload import *
@@ -415,7 +415,7 @@ To calculate dimensionless bed load transport $\Phi$ according to Meyer-Peter & 
 
 With the `MPM` class defined, we can now fill the `calculate_mpm` function in the `main.py` script. The function should create a *pandas* data frame with columns of dimensionless bed load transport $\Phi$ and dimensional bed load transport $Q_{b}$ associated with a channel profile (`"River Sta"`) and flow scenario (`"Profile" > "Scenario"`).
 
-The following code block illustrates an example for the `calculate_mpm` function that creates the *pandas* data frame from a {ref}`dict` (`mpm_dict`). The illustrative function creates the *dictionary* with void value lists, extracts hydraulic data from the *HEC-RAS* data frame, and loops over the `"River Sta"` entries. The loop checks if the `"River Sta"` entries are valid (i.e., not `"Nan"``) because empty rows that *HEC-RAS* automatically adds between output profiles should not be analyzed. If the check was successful, the loop appends the profile, scenario, and discharge directly to `mpm_dict`. The section-wise bed load transport results from `MPM` objects. After the loop, the function returns `mpm_dict` as a `pd.DataFrame` object.
+The following code block illustrates an example for the `calculate_mpm` function that creates the *pandas* data frame from a {ref}`dict` (`mpm_dict`). The illustrative function creates the *dictionary* with void value lists, extracts hydraulic data from the *HEC-RAS* data frame, and loops over the `"River Sta"` entries. The loop checks if the `"River Sta"` entries are valid (i.e., not `"Nan"`) because empty rows that *HEC-RAS* automatically adds between output profiles should not be analyzed. If the check was successful, the loop appends the profile, scenario, and discharge directly to `mpm_dict`. The section-wise bed load transport results from `MPM` objects. After the loop, the function returns `mpm_dict` as a `pd.DataFrame` object.
 
 ```python
 # main.py
@@ -536,7 +536,7 @@ There are many possible solutions to this exercise and any solution that results
 ```
 
 ```{admonition} Homework
-* HOMEWORK 1: Implement the [*Parker-Wong*](https://doi.org/10.1061/(ASCE)0733-9429(2006)132:11(1159) correction for the *Meyer-Peter & Müller* formula:$\Phi_{pw} \approx 4.93 \cdot (\tau_{x} - \tau_{x,cr})^{1.6}$. Implement the formula in the `MPM` class either use an optional keyword argument in `compute_phi` or a new method.
+* HOMEWORK 1: Implement the [Parker-Wong](https://doi.org/10.1061/(ASCE)0733-9429(2006)132:11(1159)) correction for the *Meyer-Peter & Müller* formula:$\Phi_{pw} \approx 4.93 \cdot (\tau_{x} - \tau_{x,cr})^{1.6}$. Implement the formula in the `MPM` class either use an optional keyword argument in `compute_phi` or a new method.
 
 * HOMEWORK 2: Use the `openpyxl` library to add a background color to the headers of output tables.
 

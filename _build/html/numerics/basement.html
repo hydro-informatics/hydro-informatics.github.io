@@ -281,7 +281,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-sp.html">
-     Reservoir Volume Calculation with a Sequent Peak Algorithm
+     Reservoir Volume (Sequent Peak Algorithm)
     </a>
    </li>
    <li class="toctree-l2">
@@ -291,24 +291,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-sediment.html">
-     Cross-section Averaged Sediment Transport
+     1d Sediment Transport
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-gui.html">
-     Create a
-     <strong>
-      G
-     </strong>
-     raphical
-     <strong>
-      U
-     </strong>
-     ser
-     <strong>
-      I
-     </strong>
-     nterface (GUI)
+     Create a GUI
     </a>
    </li>
   </ul>
@@ -371,12 +359,12 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../geopy/geo-pckg.html">
-     Geospatial Python - Open Source Packages
+     Geospatial Open Source Python Libraries
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/geo-shp.html">
-     Shapefile (vector dataset) handling
+     Shapefile (Vector Dataset) Handling
     </a>
    </li>
    <li class="toctree-l2">
@@ -408,7 +396,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-geco.html">
-     Script-Create a Habitat Suitability Map
+     Script a Habitat Suitability Map
     </a>
    </li>
   </ul>
@@ -854,7 +842,7 @@
 <p>The window should now look like this:</p>
 <div class="figure align-default" id="bm-mod-reg">
 <img alt="region definitions basement" src="../_images/bm-mod-reg.png" />
-<p class="caption"><span class="caption-number">Fig. 40 </span><span class="caption-text">Region definitions.</span><a class="headerlink" href="#bm-mod-reg" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 46 </span><span class="caption-text">Region definitions.</span><a class="headerlink" href="#bm-mod-reg" title="Permalink to this image">¶</a></p>
 </div>
 <ul class="simple">
 <li><p>Next, we need to define inflow and outflow boundary condition with <code class="docutils literal notranslate"><span class="pre">stringdefs</span></code>. In the <code class="docutils literal notranslate"><span class="pre">GEOMETRY</span></code> section right-click – <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">item</span></code> <code class="docutils literal notranslate"><span class="pre">STRINGDEF</span></code> – <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">item</span></code> (2 times) and define item [0] as:</p>
@@ -922,7 +910,7 @@
 </table>
 <div class="figure align-default" id="bm-mod-frc">
 <img alt="basement friction roughness" src="../_images/bm-mod-frc.png" />
-<p class="caption"><span class="caption-number">Fig. 41 </span><span class="caption-text">Assignment of friction (roughness) values to model regions.</span><a class="headerlink" href="#bm-mod-frc" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 47 </span><span class="caption-text">Assignment of friction (roughness) values to model regions.</span><a class="headerlink" href="#bm-mod-frc" title="Permalink to this image">¶</a></p>
 </div>
 <ul class="simple">
 <li><p>In the <code class="docutils literal notranslate"><span class="pre">PARAMETER</span></code> section define:</p>
@@ -939,7 +927,7 @@
 Click on the <code class="docutils literal notranslate"><span class="pre">Write</span></code> button (bottom-right corner) to save the model setup (see image below). If everything is correctly set up, the <code class="docutils literal notranslate"><span class="pre">Console</span></code> tab will automatically open and the <code class="docutils literal notranslate"><span class="pre">Error</span> <span class="pre">Output</span></code> canvas is empty.</p>
 <div class="figure align-default" id="bm-mod-sum">
 <img alt="basement model setup" src="../_images/bm-mod-sum.png" />
-<p class="caption"><span class="caption-number">Fig. 42 </span><span class="caption-text">Final model setup</span><a class="headerlink" href="#bm-mod-sum" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 48 </span><span class="caption-text">Final model setup</span><a class="headerlink" href="#bm-mod-sum" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="setup-the-simulation-file">
@@ -967,28 +955,28 @@ The <em>BASEMENT</em> window should now look like this:</p></li>
 </ul>
 <div class="figure align-default" id="bm-sim-se">
 <img alt="basement simulation setup" src="../_images/bm-sim-set.png" />
-<p class="caption"><span class="caption-number">Fig. 43 </span><span class="caption-text">The Simulation tab setup. In order to export results with <em>BASEMENT</em>’s Python scripts, the OUTPUT parameters must be defined in exactly that order.</span><a class="headerlink" href="#bm-sim-se" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 49 </span><span class="caption-text">The Simulation tab setup. In order to export results with <em>BASEMENT</em>’s Python scripts, the OUTPUT parameters must be defined in exactly that order.</span><a class="headerlink" href="#bm-sim-se" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="run-the-simulation">
 <h3>Run the simulation<a class="headerlink" href="#run-the-simulation" title="Permalink to this headline">¶</a></h3>
 <p>After the successful simulation setup, select an appropriate <code class="docutils literal notranslate"><span class="pre">Number</span> <span class="pre">of</span> <span class="pre">CPU</span> <span class="pre">cores</span></code> (bottom-right in the above figure). If a high-quality graphics card with a powerful GPU is available, the GPU (high-performance hardware) has a much faster performance. Otherwise (no powerful GPU available), do not select GPU because it may significantly slow down the simulation speed.
-For faster simulations, select <code class="docutils literal notranslate"><span class="pre">Single</span></code> precision (bottom-right in the above figure), but in this example, <code class="docutils literal notranslate"><span class="pre">Double</span></code> precision will work sufficiently fast as well. Click on the <code class="docutils literal notranslate"><span class="pre">Run</span></code> button to start the simulation and wait for approximately 2-10 minutes. <em>BASEMENT</em> will prompt the simulation progress, while the <code class="docutils literal notranslate"><span class="pre">Error</span> <span class="pre">Output</span></code> canvas should remain white (see <a class="reference internal" href="#bm-sim-end"><span class="std std-numref">Fig. 44</span></a>)). If any error occurs, go back to the above sections (or even to the mesh generation) and fix error message issues.</p>
+For faster simulations, select <code class="docutils literal notranslate"><span class="pre">Single</span></code> precision (bottom-right in the above figure), but in this example, <code class="docutils literal notranslate"><span class="pre">Double</span></code> precision will work sufficiently fast as well. Click on the <code class="docutils literal notranslate"><span class="pre">Run</span></code> button to start the simulation and wait for approximately 2-10 minutes. <em>BASEMENT</em> will prompt the simulation progress, while the <code class="docutils literal notranslate"><span class="pre">Error</span> <span class="pre">Output</span></code> canvas should remain white (see <a class="reference internal" href="#bm-sim-end"><span class="std std-numref">Fig. 50</span></a>)). If any error occurs, go back to the above sections (or even to the mesh generation) and fix error message issues.</p>
 <div class="figure align-default" id="bm-sim-end">
 <img alt="basement simulation end" src="../_images/bm-sim-end.png" />
-<p class="caption"><span class="caption-number">Fig. 44 </span><span class="caption-text"><em>BASEMENT</em> after successful simulation.</span><a class="headerlink" href="#bm-sim-end" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 50 </span><span class="caption-text"><em>BASEMENT</em> after successful simulation.</span><a class="headerlink" href="#bm-sim-end" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="export-results">
 <h3>Export results<a class="headerlink" href="#export-results" title="Permalink to this headline">¶</a></h3>
-<p>Once the simulation successfully finished, go to <em>BASEMENT</em>’s <code class="docutils literal notranslate"><span class="pre">Results</span></code> tab and make sure that the <code class="docutils literal notranslate"><span class="pre">xdmf</span></code> output format is defined. Then click on the <code class="docutils literal notranslate"><span class="pre">Export</span></code> button (see <a class="reference internal" href="#bm-res-exp"><span class="std std-numref">Fig. 45</span></a>). <em>BASEMENT</em> will inform about the export success.</p>
+<p>Once the simulation successfully finished, go to <em>BASEMENT</em>’s <code class="docutils literal notranslate"><span class="pre">Results</span></code> tab and make sure that the <code class="docutils literal notranslate"><span class="pre">xdmf</span></code> output format is defined. Then click on the <code class="docutils literal notranslate"><span class="pre">Export</span></code> button (see <a class="reference internal" href="#bm-res-exp"><span class="std std-numref">Fig. 51</span></a>). <em>BASEMENT</em> will inform about the export success.</p>
 <div class="figure align-default" id="bm-res-exp">
 <img alt="basement results export" src="../_images/bm-res-exp.png" />
-<p class="caption"><span class="caption-number">Fig. 45 </span><span class="caption-text">Export results after successful simulation.</span><a class="headerlink" href="#bm-res-exp" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 51 </span><span class="caption-text">Export results after successful simulation.</span><a class="headerlink" href="#bm-res-exp" title="Permalink to this image">¶</a></p>
 </div>
 <p><em>BASEMENT</em>’s developers at the ETH Zurich provide a suite of <a class="reference external" href="http://people.ee.ethz.ch/~basement/baseweb/download/tools/python-scripts/">Python scripts</a> for post-processing the simulation results. Here, we need the Python script <a class="reference external" href="http://people.ee.ethz.ch/~basement/baseweb/download/tools/python-scripts/BMv3NodestringResults.py">BMv3NodestringResults.py</a> (<a class="reference external" href="http://people.ee.ethz.ch/~basement/baseweb/download/tools/python-scripts/BMv3NodestringResults.py">click to download</a>).</p>
 <p>To run the Python script, a Python3 installation with the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">h5py</span></code> packages is required. To learn more about the installation and usage of Python, have a look at the instructions to <a class="reference internal" href="../python-basics/pyinstall.html"><span class="doc std std-doc">install Python</span></a>.
-Note that working with the provided Python file requires that the output variables must be exactly defined as shown in <a class="reference internal" href="#bm-sim-se"><span class="std std-numref">Fig. 43</span></a> (*<em>BASEMENT</em>’s <code class="docutils literal notranslate"><span class="pre">SIMULATION</span></code> tab).</p>
+Note that working with the provided Python file requires that the output variables must be exactly defined as shown in <a class="reference internal" href="#bm-sim-se"><span class="std std-numref">Fig. 49</span></a> (*<em>BASEMENT</em>’s <code class="docutils literal notranslate"><span class="pre">SIMULATION</span></code> tab).</p>
 </div>
 </div>
 <div class="section" id="post-processing-with-paraview">
@@ -999,15 +987,15 @@ Note that working with the provided Python file requires that the output variabl
 <p>Open <em>ParaView</em> and click on the folder icon (top left of the window) to open the simulation results file (<code class="docutils literal notranslate"><span class="pre">results.xdmf</span></code>). <em>ParaView</em> might ask to choose an appropriate XMDF read plugin. Select <code class="docutils literal notranslate"><span class="pre">XDMF</span> <span class="pre">Reader</span></code> here and click <code class="docutils literal notranslate"><span class="pre">OK</span></code>:</p>
 <p>To explore the model results:</p>
 <ul class="simple">
-<li><p>Select variables (e.g., <code class="docutils literal notranslate"><span class="pre">flow_velocity</span></code>, <code class="docutils literal notranslate"><span class="pre">water_depth</span></code>, or <code class="docutils literal notranslate"><span class="pre">water_surface</span></code>) in <em>ParaView</em>’s <code class="docutils literal notranslate"><span class="pre">Cell</span> <span class="pre">Arrays</span></code> canvas (green-highlighted circle in <a class="reference internal" href="#pv-vis"><span class="std std-numref">Fig. 46</span></a>).</p></li>
-<li><p>Click the <code class="docutils literal notranslate"><span class="pre">Apply</span></code> button (red-highlighted circle in the Properties tab in <a class="reference internal" href="#pv-vis"><span class="std std-numref">Fig. 46</span></a>). All variables are now loaded and can be plotted.</p></li>
-<li><p>To plot a variable, select one (e.g., <code class="docutils literal notranslate"><span class="pre">flow_velocity</span></code>) in the toolbar (light-blue-highlighted circle in the upper part of <a class="reference internal" href="#pv-vis"><span class="std std-numref">Fig. 46</span></a>). Then click the play button in the toolbar (dark-blue-highlighted circle around the green arrow in the upper part of  <a class="reference internal" href="#pv-vis"><span class="std std-numref">Fig. 46</span></a> to cycle through the time steps.</p></li>
+<li><p>Select variables (e.g., <code class="docutils literal notranslate"><span class="pre">flow_velocity</span></code>, <code class="docutils literal notranslate"><span class="pre">water_depth</span></code>, or <code class="docutils literal notranslate"><span class="pre">water_surface</span></code>) in <em>ParaView</em>’s <code class="docutils literal notranslate"><span class="pre">Cell</span> <span class="pre">Arrays</span></code> canvas (green-highlighted circle in <a class="reference internal" href="#pv-vis"><span class="std std-numref">Fig. 52</span></a>).</p></li>
+<li><p>Click the <code class="docutils literal notranslate"><span class="pre">Apply</span></code> button (red-highlighted circle in the Properties tab in <a class="reference internal" href="#pv-vis"><span class="std std-numref">Fig. 52</span></a>). All variables are now loaded and can be plotted.</p></li>
+<li><p>To plot a variable, select one (e.g., <code class="docutils literal notranslate"><span class="pre">flow_velocity</span></code>) in the toolbar (light-blue-highlighted circle in the upper part of <a class="reference internal" href="#pv-vis"><span class="std std-numref">Fig. 52</span></a>). Then click the play button in the toolbar (dark-blue-highlighted circle around the green arrow in the upper part of  <a class="reference internal" href="#pv-vis"><span class="std std-numref">Fig. 52</span></a> to cycle through the time steps.</p></li>
 </ul>
 <div class="figure align-default" id="pv-vis">
 <img alt="basement results paraview" src="../_images/pv-vis.png" />
-<p class="caption"><span class="caption-number">Fig. 46 </span><span class="caption-text">ParaView after successful import of the model results (results.xdmf) - see above descriptions.</span><a class="headerlink" href="#pv-vis" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 52 </span><span class="caption-text">ParaView after successful import of the model results (results.xdmf) - see above descriptions.</span><a class="headerlink" href="#pv-vis" title="Permalink to this image">¶</a></p>
 </div>
-<p>All available time steps are listed in the Blocks tab (bottom-left in Figure 1). Anything should be visible at the beginning because the initial conditions were defined as <code class="docutils literal notranslate"><span class="pre">dry</span></code> (see the setup of <a class="reference external" href="#init">inital conditions</a>). The above <a class="reference internal" href="#pv-vis"><span class="std std-numref">Fig. 46</span></a>) shows the last time step (<code class="docutils literal notranslate"><span class="pre">Timestep[25]</span></code>), with water flowing at a peak velocity of 3.7 m/s. The 25 available time steps result from the definition made in <em>BASEMENT</em>’s <code class="docutils literal notranslate"><span class="pre">SIMULATION</span></code> tab with a total duration of 5000.0 and an output step of 200.0. Note that the time units have no dimension here because they correspond to computational time steps.</p>
+<p>All available time steps are listed in the Blocks tab (bottom-left in Figure 1). Anything should be visible at the beginning because the initial conditions were defined as <code class="docutils literal notranslate"><span class="pre">dry</span></code> (see the setup of <a class="reference external" href="#init">inital conditions</a>). The above <a class="reference internal" href="#pv-vis"><span class="std std-numref">Fig. 52</span></a>) shows the last time step (<code class="docutils literal notranslate"><span class="pre">Timestep[25]</span></code>), with water flowing at a peak velocity of 3.7 m/s. The 25 available time steps result from the definition made in <em>BASEMENT</em>’s <code class="docutils literal notranslate"><span class="pre">SIMULATION</span></code> tab with a total duration of 5000.0 and an output step of 200.0. Note that the time units have no dimension here because they correspond to computational time steps.</p>
 </div>
 <div class="section" id="export-visualizations">
 <span id="exp-vis"></span><h3>Export Visualizations<a class="headerlink" href="#export-visualizations" title="Permalink to this headline">¶</a></h3>
@@ -1034,7 +1022,7 @@ The current state (variable, <code class="docutils literal notranslate"><span cl
 <p>The point data export is now complete. The next step is to import the data (here: <em>bm-steady-vanilla.csv</em>) in <em>QGIS</em> (<a class="reference external" href="#qgis-import">next section</a>).</p>
 <div class="figure align-default" id="pv-exp-steps">
 <img alt="paraview basement export data" src="../_images/pv-exp-steps.png" />
-<p class="caption"><span class="caption-number">Fig. 47 </span><span class="caption-text">The CellCenters (dark-blue circle) filter in ParaView, with the maximum Time step setting (red circle) and the Properties definitions (green circle)</span><a class="headerlink" href="#pv-exp-steps" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 53 </span><span class="caption-text">The CellCenters (dark-blue circle) filter in ParaView, with the maximum Time step setting (red circle) and the Properties definitions (green circle)</span><a class="headerlink" href="#pv-exp-steps" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
@@ -1059,7 +1047,7 @@ There are two (to three) options to import the results in <em>QGIS</em>:</p>
 </ul>
 <div class="figure align-default" id="qgis-add-lyr-bm">
 <img alt="basement qgis add layer" src="../_images/qgis-add-lyr.png" />
-<p class="caption"><span class="caption-number">Fig. 48 </span><span class="caption-text">Open the Add Delimited Text Layer import wizard.</span><a class="headerlink" href="#qgis-add-lyr-bm" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 54 </span><span class="caption-text">Open the Add Delimited Text Layer import wizard.</span><a class="headerlink" href="#qgis-add-lyr-bm" title="Permalink to this image">¶</a></p>
 </div>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Source</span> <span class="pre">Manager</span> <span class="pre">|</span> <span class="pre">Delimited</span> <span class="pre">Text</span></code> window opens (<a class="reference external" href="#qgis-import-csv">see figure below</a></p></li>
@@ -1073,7 +1061,7 @@ There are two (to three) options to import the results in <em>QGIS</em>:</p>
 </ul>
 <div class="figure align-default" id="qgis-import-csv">
 <img alt="qgis import basement results 2dm" src="../_images/qgis-import-csv.png" />
-<p class="caption"><span class="caption-number">Fig. 49 </span><span class="caption-text">The Data Source Manager | Delimited Text window with required settings highlighted with the green marker.</span><a class="headerlink" href="#qgis-import-csv" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 55 </span><span class="caption-text">The Data Source Manager | Delimited Text window with required settings highlighted with the green marker.</span><a class="headerlink" href="#qgis-import-csv" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="use-the-results-xdmf-file-directly-recommended-for-geospatial-data-conversion">
@@ -1086,7 +1074,7 @@ There are two (to three) options to import the results in <em>QGIS</em>:</p>
 </ul>
 <div class="figure align-default" id="npp-xdmf-replace">
 <img alt="find replace error import results qgis basement" src="../_images/npp-xdmf-replace.png" />
-<p class="caption"><span class="caption-number">Fig. 50 </span><span class="caption-text">Find the string results_aux.h5 in results.xdmf and remove the file directories.</span><a class="headerlink" href="#npp-xdmf-replace" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 56 </span><span class="caption-text">Find the string results_aux.h5 in results.xdmf and remove the file directories.</span><a class="headerlink" href="#npp-xdmf-replace" title="Permalink to this image">¶</a></p>
 </div>
 <ul class="simple">
 <li><p>If not yet done, load the mesh file (here: <a class="reference external" href="../numerics/pre-qgis.html#2dm"><code class="docutils literal notranslate"><span class="pre">finalmesh.2dm</span></code></a> by clicking on <em>QGIS</em>’ <code class="docutils literal notranslate"><span class="pre">Layer</span></code> menu &gt; <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Source</span> <span class="pre">Manager</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Mesh</span></code> tab and select <code class="docutils literal notranslate"><span class="pre">finalmesh.2dm</span></code>.</p></li>
@@ -1095,18 +1083,18 @@ There are two (to three) options to import the results in <em>QGIS</em>:</p>
 </ul>
 <div class="figure align-default" id="qgis-assign-meshdata">
 <img alt="basement assign qgis metadata" src="../_images/qgis-assign-meshdata.png" />
-<p class="caption"><span class="caption-number">Fig. 51 </span><span class="caption-text">Assign mesh data to the computational mesh.</span><a class="headerlink" href="#qgis-assign-meshdata" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 57 </span><span class="caption-text">Assign mesh data to the computational mesh.</span><a class="headerlink" href="#qgis-assign-meshdata" title="Permalink to this image">¶</a></p>
 </div>
 <ul class="simple">
 <li><p>After import, double-click on the new <code class="docutils literal notranslate"><span class="pre">results</span></code> layer to open the <code class="docutils literal notranslate"><span class="pre">Symbology</span></code> (<code class="docutils literal notranslate"><span class="pre">Layer</span> <span class="pre">Properties</span></code>) and select a variable to represent from the <code class="docutils literal notranslate"><span class="pre">Groups</span></code> canvas. Make sure to enable the contour plot (right side in the <a class="reference external" href="#qgis-meshdata-u">below figure</a> symbol, select the timestep to plot (for steady-state simulation, select the last timestep), optionally go to the <code class="docutils literal notranslate"><span class="pre">Contours</span></code> ribbon to change the color pattern (upper-most green circle in the <a class="reference external" href="#qgis-meshdata-u">below figure</a>, and click <code class="docutils literal notranslate"><span class="pre">Apply</span></code>.</p></li>
 </ul>
 <div class="figure align-default" id="qgis-meshdata-u">
 <img alt="basement qgis results velocity meshdata" src="../_images/qgis-meshdata-u.png" />
-<p class="caption"><span class="caption-number">Fig. 52 </span><span class="caption-text">Illustrate the flow velocity with QGIS’ Layer Properties &gt; Symbology controls. The green circles highlight settings for the last timestep of a steady-state simulation.</span><a class="headerlink" href="#qgis-meshdata-u" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 58 </span><span class="caption-text">Illustrate the flow velocity with QGIS’ Layer Properties &gt; Symbology controls. The green circles highlight settings for the last timestep of a steady-state simulation.</span><a class="headerlink" href="#qgis-meshdata-u" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-default" id="qgis-plot-metadata">
 <img alt="plotted qgis basement results" src="../_images/qgis-meshdata-u-plotted.png" />
-<p class="caption"><span class="caption-number">Fig. 53 </span><span class="caption-text">After application of the above Symbology settings: The flow velocity is illustrated in red-shades.</span><a class="headerlink" href="#qgis-plot-metadata" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 59 </span><span class="caption-text">After application of the above Symbology settings: The flow velocity is illustrated in red-shades.</span><a class="headerlink" href="#qgis-plot-metadata" title="Permalink to this image">¶</a></p>
 </div>
 <p>Thanks to Matthias Bürgler who helped with instructions in the <a class="reference external" href="http://people.ee.ethz.ch/~basement/forum/viewtopic.php?pid=6095#p6095"><em>BASEMENT</em> user forum</a>.</p>
 </div>
@@ -1126,7 +1114,7 @@ There are two (to three) options to import the results in <em>QGIS</em>:</p>
 <p>Open the <em>Crayfish</em> plugin’s <code class="docutils literal notranslate"><span class="pre">Rasterize</span></code> tool from <em>QGIS</em>’ <code class="docutils literal notranslate"><span class="pre">Processing</span></code> menu &gt; <code class="docutils literal notranslate"><span class="pre">Toolbox</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Crayfish</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Rasterize</span></code> (see figure below).</p>
 <div class="figure align-default" id="qgis-crayfish-installed">
 <img alt="rasterize crayfish qgis" src="../_images/qgis-crayfish-installed.png" />
-<p class="caption"><span class="caption-number">Fig. 54 </span><span class="caption-text">Open the Rasterize tool of the Crayfish plugin.</span><a class="headerlink" href="#qgis-crayfish-installed" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 60 </span><span class="caption-text">Open the Rasterize tool of the Crayfish plugin.</span><a class="headerlink" href="#qgis-crayfish-installed" title="Permalink to this image">¶</a></p>
 </div>
 <ul class="simple">
 <li><p>In the <code class="docutils literal notranslate"><span class="pre">Rasterize</span></code> window make the following settings (see also <a class="reference external" href="#qgis-crayfish-exp">figure below</a>:</p>
@@ -1143,12 +1131,12 @@ There are two (to three) options to import the results in <em>QGIS</em>:</p>
 </ul>
 <div class="figure align-default" id="qgis-crayfish-exp">
 <img alt="setup rasterize crayfish plugin" src="../_images/qgis-crayfish-exp.png" />
-<p class="caption"><span class="caption-number">Fig. 55 </span><span class="caption-text">Settings to be made in Crayfish’s Rasterize tool.</span><a class="headerlink" href="#qgis-crayfish-exp" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 61 </span><span class="caption-text">Settings to be made in Crayfish’s Rasterize tool.</span><a class="headerlink" href="#qgis-crayfish-exp" title="Permalink to this image">¶</a></p>
 </div>
 <p>With a <code class="docutils literal notranslate"><span class="pre">Singleband</span> <span class="pre">pseudocolor</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Spectral</span></code> <code class="docutils literal notranslate"><span class="pre">Symbology</span></code>-selection in the <code class="docutils literal notranslate"><span class="pre">Layer</span> <span class="pre">Properties</span></code>, the <em>QGIS</em> window should now look like this:</p>
 <div class="figure align-default" id="qgis-crayfish-final">
 <img alt="bm-qce" src="../_images/qgis-crayfish-final.png" />
-<p class="caption"><span class="caption-number">Fig. 56 </span><span class="caption-text">A Singleband pseudocolor (Layer Properties &gt; Symbology) selection will represent the velocity distribution in the final velocity GeoTIFF.</span><a class="headerlink" href="#qgis-crayfish-final" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 62 </span><span class="caption-text">A Singleband pseudocolor (Layer Properties &gt; Symbology) selection will represent the velocity distribution in the final velocity GeoTIFF.</span><a class="headerlink" href="#qgis-crayfish-final" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="conversion-of-paraview-exports-not-recommended-a-name-pv-conv-a">
@@ -1169,7 +1157,7 @@ There are two (to three) options to import the results in <em>QGIS</em>:</p>
 </ul>
 <div class="figure align-default" id="qgis-exp-sim-pts">
 <img alt="basement qgis export points" src="../_images/qgis-exp-sim-pts.png" />
-<p class="caption"><span class="caption-number">Fig. 57 </span><span class="caption-text">The Save Vector Layer As… window with required settings highlighted (green marker).</span><a class="headerlink" href="#qgis-exp-sim-pts" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 63 </span><span class="caption-text">The Save Vector Layer As… window with required settings highlighted (green marker).</span><a class="headerlink" href="#qgis-exp-sim-pts" title="Permalink to this image">¶</a></p>
 </div>
 <p>Next, the point shapefile needs to be converted to a <a class="reference external" href="https://en.wikipedia.org/wiki/GeoTIFF">GeoTIFF</a> raster format to enable further data analyses. Therefore:</p>
 <ul class="simple">
@@ -1190,7 +1178,7 @@ There are two (to three) options to import the results in <em>QGIS</em>:</p>
 </ul>
 <div class="figure align-default" id="qgis-make-tiff">
 <img alt="basement qgis export tiff raster" src="../_images/qgis-make-tiff.png" />
-<p class="caption"><span class="caption-number">Fig. 58 </span><span class="caption-text">The Rasterize (Vector to Raster) window with required settings highlighted (green marker).</span><a class="headerlink" href="#qgis-make-tiff" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 64 </span><span class="caption-text">The Rasterize (Vector to Raster) window with required settings highlighted (green marker).</span><a class="headerlink" href="#qgis-make-tiff" title="Permalink to this image">¶</a></p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>

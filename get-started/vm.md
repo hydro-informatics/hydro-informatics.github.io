@@ -51,7 +51,7 @@ There are a couple of Debian Linux spin-offs, such as [*Ubuntu*](https://ubuntu.
 
 Remember where the downloaded Linux *.ISO* file is stored.
 
-### Create a VM with *VirtualBox*
+### Create a VM with VirtualBox
 
 ***Estimated duration: 5-8 minutes.***
 
@@ -114,7 +114,7 @@ Once you have created a VM on a virtual hard disk (the **vdi** file), you can al
 1. In the process of creating a *New* VM, the wizard asks if you want to create a new hard disk image or an existing one. Select *Existing hard disk* and choose the copied *vdi* file.
 1. Finalize the *New* VM wizard and start the VM as usual.
 
-# Get started with (Debian) Linux
+# Get started with Debian Linux
 
 (setup-debian)=
 ## Setup Linux
@@ -192,7 +192,7 @@ To improve the visual experience do the following:
 * *Apply* the changes and close the *Displays* settings.
 
 (linux-terminal)=
-### Familiarize with Debian Linux and Terminal
+## Familiarize with Debian Linux and Terminal
 
 ***Estimated duration: 60 minutes.***
 
@@ -226,7 +226,7 @@ sudo -v
 If visually nothing happens, you are good to go. Otherwise, if you get a message like `Sorry, user [username] may not run sudo on [hostname].`, verify that you correctly typed the above command and *YOUR-USER-NAME* (with correct cases).
 
 (vm-share)=
-### Enable folder sharing
+## Enable Folder Sharing between Host and Guest
 
 ***Estimated duration: 5-10 minutes.***
 
@@ -258,12 +258,12 @@ A ***Permission denied*** message is likely to appear when you click on `sf_shar
 sudo usermod -aG vboxsf YOUR-USER-NAME
 ```
 
-Afterward, **reboot the *Debian Linux VM*** and test if you can access the folder, and create and modify files.
+Afterward, **reboot the *Debian Linux VM*** and test if you can access the folder, and create and modify files. More information on `Permission denied` errors is provided in the troubleshooting section on {ref}`dbg-permissions` in *Linux*.
 
 ***
 
 (opengl)=
-### Enable OpenGL
+## Enable OpenGL
 
 *VirtualBox* experimentally enables [*OpenGL*](https://www.opengl.org), which is used by many graphical user interfaces. To make *OpenGL* work on a virtual machine, the install [*X.Org X Window System*](https://www.x.org/) (xserver):
 
@@ -304,7 +304,7 @@ Then install *OpenGL* with:
 sudo apt install libopengl0-glvnd-nvidia libglx0-glvnd-nvidia
 ```
 
-### Install and Update Software (optional)
+## Install and Update Software
 
 ***Estimated duration: Variable.***
 
@@ -330,7 +330,7 @@ Instructions for installing particular and Debian-compatible software (e.g., QGI
 If the main purpose of the VM is to run resource-intensive simulations (e.g., with TELEMAC), avoid installing any other software than those required for running the model. Also, as a general rule of thumb: Less is better than more.
 ```
 
-### Add Package Repositories
+## Add Package Repositories
 
 For adding (trusted) software (package) repositories use *software-properties-common*, which provides the `add-apt-repository` command:
 
@@ -341,7 +341,7 @@ sudo add-apt-repository non-free
 sudo apt update
 ```
 
-### Find Packages
+## Find Packages
 
 Some software will run into errors because of missing library files (e.g., `libGLX.so.0: No such file or directory`). To find out what package needs to be installed for getting the missing library file, install *apt-file*
 
@@ -369,7 +369,7 @@ sudo apt install libglx0-glvnd-nvidia
 ```
 
 (wine)=
-### Install & Use *Windows* Applications (*Wine*)
+## Install & Use *Windows* Applications (*Wine*)
 
 ***Estimated duration: 10-15 minutes.***
 

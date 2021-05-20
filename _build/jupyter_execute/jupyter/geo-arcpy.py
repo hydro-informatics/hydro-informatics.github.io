@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# (chpt-arcpy)=
 # # The Commercial arcpy Library
 # 
 # Geospatial analyses with ESRI's commercial ArcGIS software and arcpy package. For interactive reading and executing code blocks [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter) and find *geo-arcpy.ipynb* or {ref}`install-python` locally along with {ref}`jupyter`.

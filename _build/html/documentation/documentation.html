@@ -55,8 +55,8 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Exercises" href="../exercises/docs-exercises.html" />
-    <link rel="prev" title="Create a Graphical User Interface (GUI)" href="../exercises/ex-gui.html" />
+    <link rel="next" title="Glossary" href="glossary.html" />
+    <link rel="prev" title="Create a GUI" href="../exercises/ex-gui.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -281,7 +281,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-sp.html">
-     Reservoir Volume Calculation with a Sequent Peak Algorithm
+     Reservoir Volume (Sequent Peak Algorithm)
     </a>
    </li>
    <li class="toctree-l2">
@@ -291,24 +291,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-sediment.html">
-     Cross-section Averaged Sediment Transport
+     1d Sediment Transport
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-gui.html">
-     Create a
-     <strong>
-      G
-     </strong>
-     raphical
-     <strong>
-      U
-     </strong>
-     ser
-     <strong>
-      I
-     </strong>
-     nterface (GUI)
+     Create a GUI
     </a>
    </li>
   </ul>
@@ -323,6 +311,11 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Markdown and Code Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="glossary.html">
+   Glossary
   </a>
  </li>
  <li class="toctree-l1 has-children">
@@ -371,12 +364,12 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../geopy/geo-pckg.html">
-     Geospatial Python - Open Source Packages
+     Geospatial Open Source Python Libraries
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/geo-shp.html">
-     Shapefile (vector dataset) handling
+     Shapefile (Vector Dataset) Handling
     </a>
    </li>
    <li class="toctree-l2">
@@ -408,7 +401,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-geco.html">
-     Script-Create a Habitat Suitability Map
+     Script a Habitat Suitability Map
     </a>
    </li>
   </ul>
@@ -427,7 +420,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../numerics/pre-qgis.html">
-   Pre-Processing with QGIS
+   Pre-processing with QGIS
   </a>
  </li>
  <li class="toctree-l1">
@@ -723,14 +716,16 @@
      Math Expressions: Equations
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#html-markdown">
-     Html - Markdown
-    </a>
-   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#html-markdown">
+   Html - Markdown
+  </a>
+  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#greek-letters">
-     Greek letters
+     Greek Letters
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -752,14 +747,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#restructuredtext-sphinx-and-readthedocs">
-   <em>
-    reStructuredText
-   </em>
-   ,
-   <em>
-    Sphinx
-   </em>
-   and readthedocs
+   reStructuredText, Sphinx, and readthedocs
   </a>
  </li>
 </ul>
@@ -781,7 +769,7 @@
 So if you have made an ingenious discovery, you want to make sure you document it well so that others can understand and use it. You also want to make sure that others can find your stroke of genius in digital media. You also want to make sure that others can find your stroke of genius in digital media. One of the most widespread methods for documenting and spreading ideas is the use of so-called wikis (from Hawaiian: <em>fast</em>), which can easily be written in markdown language. <em>GitHub</em> provides comprehensive, easy-to-read explanations for <a class="reference external" href="https://guides.github.com/features/wikis/">project documentation</a> with <em>Markdown</em> as core element. This page presents the basics of the markdown language to leverage wikis. Moreover, the powerful alternative of using <em>reStructuredText</em> in <em>Sphinx</em>-based documentations is introduced.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p><a class="reference external" href="https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/"><em>Write the Docs</em></a> provides comprehensive guides for code documentation - just take about 10 minutes to read how to save days.</p>
+<p><a class="reference external" href="https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/"><em>Write the Docs</em></a> provides comprehensive guides for code documentation. Take about 10 minutes to read how to save days of work.</p>
 </div>
 </div>
 <div class="section" id="what-to-document">
@@ -796,7 +784,7 @@ So if you have made an ingenious discovery, you want to make sure you document i
 <p>This section should answer the following questions:</p>
 <ul class="simple">
 <li><p>What system requirements are needed?</p></li>
-<li><p>Which dependencies does the software have (e.g., other <em>Python</em> packages such as <em>NumPy</em>)?</p></li>
+<li><p>Which dependencies does the software have (e.g., other <em>Python</em> packages such as <a class="reference internal" href="../jupyter/pynum.html#numpy"><span class="std std-ref">NumPy</span></a>)?</p></li>
 <li><p>What input data does a user need to run the software?</p></li>
 </ul>
 </div>
@@ -811,7 +799,7 @@ So if you have made an ingenious discovery, you want to make sure you document i
 </div>
 <div class="section" id="troubleshooting">
 <h3>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h3>
-<p>Sure, your code is error-free and of course only the user makes mistakes. Show compassion and integrate specific <em>try</em>-<em>except</em> statements (more on the <a class="reference external" href="../jupyter/pyerror.html#try-except"><em>Python</em><sup>basics</sup></a> page) in the source code, which point out possible error sources. These error (and maybe even warning) messages should all be listed in a <em>Troubleshooting</em> section of the code documentation. Any source of error (message) should be documented regarding the following aspects:</p>
+<p>Sure, your code is error-free and of course only the user makes mistakes. Show compassion and integrate specific <a class="reference internal" href="../jupyter/pyerror.html#try-except"><span class="std std-ref">Exception Handling with try - except</span></a> in the source code, which point out possible error sources. These error (and maybe even warning) messages should all be listed in a <em>Troubleshoot</em> section of the code documentation. Any source of error (message) should be documented regarding the following aspects:</p>
 <ul class="simple">
 <li><p>Cause: Possible reasons for why an error occurs.</p></li>
 <li><p>Remedy: Steps for troubleshooting an error.</p></li>
@@ -819,15 +807,15 @@ So if you have made an ingenious discovery, you want to make sure you document i
 </div>
 <div class="section" id="contributing">
 <h3>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h3>
-<p>Your software is brilliant. To make the software even more brilliant, foolproof, and powerful, it is a great idea (actually: an absolute must) to get more authors on the development team. However, it is very likely that any other author has individual preferences when it comes to code standards. So make sure to set up clear rules for other contributors from the beginning. For example, define clear code conventions as explained on the <a class="reference internal" href="../jupyter/pystyle.html"><span class="doc std std-doc">code style</span></a> page.</p>
+<p>Your software is brilliant. To make the software even more brilliant, foolproof, and powerful, it is a great idea (actually: an absolute must) to get more authors on the development team. However, it is very likely that any other author has individual preferences when it comes to code standards. So make sure to set up clear rules for other contributors from the beginning. For example, define clear code conventions as explained in the <a class="reference internal" href="../jupyter/pystyle.html#chpt-style"><span class="std std-ref">Code Style and Conventions</span></a> section.</p>
 </div>
 </div>
 <div class="section" id="markdown">
 <h2>Markdown<a class="headerlink" href="#markdown" title="Permalink to this headline">¶</a></h2>
-<p><em>Markdown</em> was created in 2004 and is a simple markup language that is intuitive and easy to learn. Markup languages structure the content of plain text documents regarding the way a document is displayed to end users (<a href="#" data-toggle="tooltip" data-original-title="{{site.data.glossary.richtext}}">rich text</a> format). Other popular markup languages are for example <a class="reference external" href="https://en.wikipedia.org/wiki/TeX"><em>TeX</em></a> and <a class="reference external" href="https://en.wikipedia.org/wiki/XML"><em>XML</em> (Extensible Markup Language)</a>. <em>Markdown</em> became a popular tool for writing syntactically distinguishable computer text that is then translated into <a href="#" data-toggle="tooltip" data-original-title="{{site.data.glossary.richtext}}">rich text</a>. Here is an example how <em>Markdown</em> works:</p>
+<p><em>Markdown</em> was created in 2004 and is a simple markup language that is intuitive and easy to learn. Markup languages structure the content of plain text documents regarding the way a document is displayed to end users (<a class="reference internal" href="glossary.html#term-Rich-Text-Format"><span class="xref std std-term">Rich Text Format</span></a>). Other popular markup languages are for example <a class="reference external" href="https://en.wikipedia.org/wiki/TeX">TeX</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/XML">XML (Extensible Markup Language)</a>. <em>Markdown</em> became a popular tool for writing syntactically distinguishable computer text that is then translated into <a class="reference internal" href="glossary.html#term-Rich-Text-Format"><span class="xref std std-term">Rich Text Format</span></a> flavor. Here is an example how <em>Markdown</em> works:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="64203196-75bf-49a5-986a-9b90fe615c11" name="844d6672-74ec-4a81-b628-c0a01f3c1d19" type="radio">
-</input><label class="tabbed-label" for="64203196-75bf-49a5-986a-9b90fe615c11">
+<input checked="checked" id="0626b9d8-fe01-4b65-9c65-f488d62d87cc" name="c06db21b-04b8-40ad-ac9b-df9d23064147" type="radio">
+</input><label class="tabbed-label" for="0626b9d8-fe01-4b65-9c65-f488d62d87cc">
 Raw Markdown</label><div class="tabbed-content docutils">
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># Better than Word-like rich text editors</span>
 <span class="ge">*OS*</span>-independent functionality:
@@ -838,8 +826,8 @@ Raw Markdown</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="19eeb455-d82c-456b-be35-261967e5ecaa" name="844d6672-74ec-4a81-b628-c0a01f3c1d19" type="radio">
-</input><label class="tabbed-label" for="19eeb455-d82c-456b-be35-261967e5ecaa">
+<input id="d20da9a8-ea7e-4145-8599-62ac02299336" name="c06db21b-04b8-40ad-ac9b-df9d23064147" type="radio">
+</input><label class="tabbed-label" for="d20da9a8-ea7e-4145-8599-62ac02299336">
 Rendered</label><div class="tabbed-content docutils">
 <p><strong>Better than Word-like rich text editors</strong></p>
 <p><em>OS</em>-independent functionality:</p>
@@ -854,7 +842,7 @@ Rendered</label><div class="tabbed-content docutils">
 <div class="section" id="markdown-editors-ides">
 <h3>Markdown Editors (IDEs)<a class="headerlink" href="#markdown-editors-ides" title="Permalink to this headline">¶</a></h3>
 <p>Many text editors provide <em>Markdown</em> add-ons and <em>Markdown</em>-only editors are loosing their significance more and more. Editors that simultaneously support <em>Markdown</em> and programming languages like <em>Python</em> or <em>R</em> are state of the art and therefore recommended.</p>
-<p>Basic text editors that support <em>Markdown</em> are listed <a class="reference external" href="../get-started/others.html#npp">here</a>. Popular and multi-platform <em>IDE</em>s for editing <em>Markdown</em> (<code class="docutils literal notranslate"><span class="pre">.md</span></code>) files are <a class="reference external" href="https://atom.io/"><em>ATOM</em></a> (for combination with <em>JavaScript</em>, <em>html</em>, and <em>CSS</em>), and <a class="reference external" href="https://jupyter.org"><em>JupyterLab</em></a> or <a class="reference external" href="https://www.jetbrains.com/pycharm/"><em>PyCharm</em></a> (for combination with <em>Python</em> or <em>R</em>), which both are available through <a class="reference external" href="https://docs.conda.io/"><em>Anaconda</em></a>. Read more about Anaconda and associated <em>IDE</em>s on the <a class="reference internal" href="../get-started/ide.html"><span class="doc std std-doc">previous pages</span></a>.</p>
+<p>Basic text editors that support <em>Markdown</em> are listed <a class="reference external" href="../get-started/others.html#npp">here</a>. Popular and multi-platform <em>IDE</em>s for editing <em>Markdown</em> (<code class="docutils literal notranslate"><span class="pre">.md</span></code>) files are <a class="reference internal" href="../get-started/ide.html#install-atom"><span class="std std-ref">Atom</span></a> (for combination with <em>Python</em>, <em>R</em>, <em>C/C++</em>, <em>JavaScript</em>, <em>html</em>, <em>CSS</em>, and many more), and <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a> or <a class="reference internal" href="../get-started/ide.html#pycharm"><span class="std std-ref">PyCharm with Anaconda</span></a> (for combination with <em>Python</em> or <em>R</em>).</p>
 </div>
 <div class="section" id="markdown-command-overview-and-image-implementation">
 <h3>Markdown Command Overview and Image Implementation<a class="headerlink" href="#markdown-command-overview-and-image-implementation" title="Permalink to this headline">¶</a></h3>
@@ -933,6 +921,10 @@ Rendered</label><div class="tabbed-content docutils">
 <div class="section" id="itemization-un-numbered-lists">
 <h3>Itemization (Un-numbered Lists)<a class="headerlink" href="#itemization-un-numbered-lists" title="Permalink to this headline">¶</a></h3>
 <p>Itemized list section can be produced using <code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">+</span></code>, or <code class="docutils literal notranslate"><span class="pre">-</span></code> symbols with tabs that determine the list indentation:</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="ce3af824-76d5-49d7-9760-a026777bf272" name="3f4574ce-7532-47b9-ba87-494c26c91702" type="radio">
+</input><label class="tabbed-label" for="ce3af824-76d5-49d7-9760-a026777bf272">
+Raw Markdown</label><div class="tabbed-content docutils">
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="k">*</span> level 1 item
     <span class="k">-</span> level 2 item
     <span class="k">-</span> another level 2 item
@@ -940,7 +932,10 @@ Rendered</label><div class="tabbed-content docutils">
 <span class="k">*</span> next level 1 item
 </pre></div>
 </div>
-<hr class="docutils" />
+</div>
+<input id="3e5202a2-1028-4bb7-90b6-b3eb1787546e" name="3f4574ce-7532-47b9-ba87-494c26c91702" type="radio">
+</input><label class="tabbed-label" for="3e5202a2-1028-4bb7-90b6-b3eb1787546e">
+Rendered</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p>level 1 item</p>
 <ul>
@@ -955,17 +950,25 @@ Rendered</label><div class="tabbed-content docutils">
 <li><p>next level 1 item</p></li>
 </ul>
 </div>
-<hr class="docutils" />
+</div>
+</div>
 <div class="section" id="tables">
 <h3>Tables<a class="headerlink" href="#tables" title="Permalink to this headline">¶</a></h3>
 <p>Table columns are separated by a <code class="docutils literal notranslate"><span class="pre">|</span></code> sign. The first row determines row headers and the second row the alignment through the use of <code class="docutils literal notranslate"><span class="pre">:</span></code> (see below example).</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="a2a1f366-1bdf-4058-b76a-4154918e6d6d" name="7fd53162-d463-400d-bce4-6b83da844dc5" type="radio">
+</input><label class="tabbed-label" for="a2a1f366-1bdf-4058-b76a-4154918e6d6d">
+Raw Markdown</label><div class="tabbed-content docutils">
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>| Fruit | Kingdom | Genus |
 |-------|:-------:|------:|
 |Banana | Plantae | Musa  |
 |Jackfruit|Plantae|Artocarpus|
 </pre></div>
 </div>
-<hr class="docutils" />
+</div>
+<input id="d284c705-3574-4fec-87b2-621176562a24" name="7fd53162-d463-400d-bce4-6b83da844dc5" type="radio">
+</input><label class="tabbed-label" for="d284c705-3574-4fec-87b2-621176562a24">
+Rendered</label><div class="tabbed-content docutils">
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Fruit</p></th>
@@ -984,7 +987,8 @@ Rendered</label><div class="tabbed-content docutils">
 </tr>
 </tbody>
 </table>
-<hr class="docutils" />
+</div>
+</div>
 <p>Converting complex tables from workbooks (e.g., from <em>LibreOffice Calc</em> or <em>MS Excel</em>) is possible with many online tools and here is just one example from Dave Johnson: <a class="reference external" href="https://thisdavej.com/copy-table-in-excel-and-paste-as-a-markdown-table/">https://thisDaveJ.com</a>.</p>
 </div>
 <div class="section" id="math-expressions-equations">
@@ -996,12 +1000,12 @@ Rendered</label><div class="tabbed-content docutils">
 <p>This results in <img alt="https://render.githubusercontent.com/render/math?math=sin{alpha}=sqrt{1-cos^{2}alpha}" src="https://render.githubusercontent.com/render/math?math=sin{alpha}=sqrt{1-cos^{2}alpha}" /></p>
 <p>Note that the equation starts after <code class="docutils literal notranslate"><span class="pre">math&amp;math=</span></code>. Thus for using the math snippet in a document, copy and modify the following expression <code class="docutils literal notranslate"><span class="pre">&lt;img</span> <span class="pre">src=&quot;https://render.githubusercontent.com/render/math?math=TYPE</span> <span class="pre">=</span>&#160; <span class="pre">EQUATION</span> <span class="pre">HERE&quot;&gt;</span></code>.</p>
 </div>
-<div class="section" id="html-markdown">
-<h3>Html - Markdown<a class="headerlink" href="#html-markdown" title="Permalink to this headline">¶</a></h3>
-<p><em>html</em> structures can be flawlessly used in <em>Markdown</em>, which itself is nothing else than simplified <em>html</em>. Therefore, any <em>html</em> structure can be used within markdown and the above-shown equation implementation already represents the first example for <em>html</em> usage in a <em>Markdown</em> document. The following sections provide an overview of some more or less frequently used <em>html</em> symbols that also work with <em>Markdown</em>.</p>
 </div>
+<div class="section" id="html-markdown">
+<h2>Html - Markdown<a class="headerlink" href="#html-markdown" title="Permalink to this headline">¶</a></h2>
+<p><em>html</em> structures can be flawlessly used in <em>Markdown</em>, which itself is nothing else than simplified <em>html</em>. Therefore, any <em>html</em> structure can be used within markdown and the above-shown equation implementation already represents the first example for <em>html</em> usage in a <em>Markdown</em> document. The following sections provide an overview of some more or less frequently used <em>html</em> symbols that also work with <em>Markdown</em>.</p>
 <div class="section" id="greek-letters">
-<h3>Greek letters<a class="headerlink" href="#greek-letters" title="Permalink to this headline">¶</a></h3>
+<h3>Greek Letters<a class="headerlink" href="#greek-letters" title="Permalink to this headline">¶</a></h3>
 <p>In order to use greek letters in inline text, use <em>html</em> language, where <code class="docutils literal notranslate"><span class="pre">&amp;lettername;</span></code> produces the desired <em>Greek</em> letter symbol (e.g., type <code class="docutils literal notranslate"><span class="pre">&amp;delta;</span></code> to output δ or <code class="docutils literal notranslate"><span class="pre">&amp;Delta;</span></code> to output a capital letter Δ). The following table provides an overview of Greek letter symbols.</p>
 <table class="colwidths-auto table">
 <thead>
@@ -1473,11 +1477,11 @@ Rendered</label><div class="tabbed-content docutils">
 </div>
 <div class="section" id="wikis">
 <h2>Wikis<a class="headerlink" href="#wikis" title="Permalink to this headline">¶</a></h2>
-<p>While every <a class="reference internal" href="../get-started/git.html"><span class="doc std std-doc">git</span></a> repository should at least contain a descriptive <em><a class="reference external" href="http://README.md">README.md</a></em>, <em>wiki</em> s provide much more detail and guidance. Wikis are a convenient way to guide users with permanent side bars (such as the menu bar on this web site), help users to understand methods and codes, and collaborative coding with precise descriptions of scripts. <em>GitHub</em> users find options to activate <em>wiki</em>s in the <em>Settings</em> tab of a repository and the developers continue to improve <em>wiki</em> functions (<a class="reference external" href="https://help.github.com/en/github/building-a-strong-community/about-wikis">read more about <em>GitHub</em>’s wikis</a>).</p>
-<p>More sophisticated <em>wiki</em>s are available on the <em>Jekyll</em> themes web site (e.g., the <a class="reference external" href="https://jekyll-themes.com/git-wiki/">git-wiki theme</a>). In order to use <em>Jekyll</em> themes, make sure to enable <a class="reference external" href="https://help.github.com/en/github/working-with-github-pages/creating-a-github-pages-site"><em>GitHub</em> pages</a> (in the repository <em>Settings</em> tab) for the repository where you want to establish the <em>wiki</em> (this wiki-repository is typically another repository in order to describe a code-repository). Then, install the <em>Ruby development environment</em> and <em>Jekyll</em> (see <a class="reference external" href="https://jekyllrb.com/docs/">instructions on their website</a> in order to access and build hundreds of themes for code and project documentation. Forked and locally adapted themes can then be <em>push</em>ed to a remote <em>wiki</em> repository using <a class="reference internal" href="../get-started/git.html"><span class="doc std std-doc">git</span></a>.</p>
+<p>While every <a class="reference internal" href="../get-started/git.html#chpt-git"><span class="std std-ref">git</span></a> repository should at least contain a descriptive <em><a class="reference external" href="http://README.md">README.md</a></em>, <em>wiki</em> s provide much more detail and guidance. Wikis are a convenient way to guide users with permanent side bars (such as the menu bar on this web site), help users to understand methods and codes, and collaborative coding with precise descriptions of scripts. <em>GitHub</em> users find options to activate <em>wiki</em>s in the <em>Settings</em> tab of a repository and the developers continue to improve <em>wiki</em> functions (<a class="reference external" href="https://help.github.com/en/github/building-a-strong-community/about-wikis">read more about <em>GitHub</em>’s wikis</a>).</p>
+<p>More sophisticated <em>wiki</em>s are available on the <em>Jekyll</em> themes web site (e.g., the <a class="reference external" href="https://jekyll-themes.com/git-wiki/">git-wiki theme</a>). In order to use <em>Jekyll</em> themes, make sure to enable <a class="reference external" href="https://help.github.com/en/github/working-with-github-pages/creating-a-github-pages-site"><em>GitHub</em> pages</a> (in the repository <em>Settings</em> tab) for the repository where you want to establish the <em>wiki</em> (this wiki-repository is typically another repository in order to describe a code-repository). Then, install the <em>Ruby development environment</em> and <em>Jekyll</em> (see <a class="reference external" href="https://jekyllrb.com/docs/">instructions on their website</a> in order to access and build hundreds of themes for code and project documentation. Forked and locally adapted themes can then be <em>push</em>ed to a remote <em>wiki</em> repository using <a class="reference internal" href="../get-started/git.html#chpt-git"><span class="std std-ref">git</span></a>.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>There are other git-pages and wiki host providers out there, such as <a class="reference external" href="https://gitlab.com/pages">GitLab</a> or <a class="reference external" href="https://plan.io/knowledge-management/">plan.io</a>.</p>
+<p>There are other git-services and wiki host providers out there, such as <a class="reference external" href="https://gitlab.com/pages">GitLab</a> or <a class="reference external" href="https://plan.io/knowledge-management/">plan.io</a>.</p>
 </div>
 <div class="admonition-exercise admonition">
 <p class="admonition-title">Exercise</p>
@@ -1485,8 +1489,8 @@ Rendered</label><div class="tabbed-content docutils">
 </div>
 </div>
 <div class="section" id="restructuredtext-sphinx-and-readthedocs">
-<h2><em>reStructuredText</em>, <em>Sphinx</em> and readthedocs<a class="headerlink" href="#restructuredtext-sphinx-and-readthedocs" title="Permalink to this headline">¶</a></h2>
-<p>An alternative to markdown is <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html">reStructuredText</a> that enables embedding <em>Python docstrings</em> (read more about <a class="reference internal" href="../jupyter/pystyle.html"><span class="doc std std-doc">code style conventions</span></a>) in any script or module with <a class="reference external" href="https://www.sphinx-doc.org"><em>Sphinx</em></a>.</p>
+<h2>reStructuredText, Sphinx, and readthedocs<a class="headerlink" href="#restructuredtext-sphinx-and-readthedocs" title="Permalink to this headline">¶</a></h2>
+<p>An alternative to markdown is <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html">reStructuredText</a> that enables embedding <em>Python docstrings</em> (read more about <a class="reference internal" href="../jupyter/pystyle.html#chpt-style"><span class="std std-ref">Code Style and Conventions</span></a>) in any script with <a class="reference external" href="https://www.sphinx-doc.org"><em>Sphinx</em></a>.</p>
 <p>Without any <em>Python</em> or programming knowledge, it might be hard to get started with <em>Sphinx</em>. So make sure to understand <em>Python</em> basics and document any code with <em>docstrings</em>, at best using <a class="reference external" href="https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html"><em>google style</em></a> formatting. Once you start documenting your first <em>Python</em> package, <em>google-style</em> <em>docstrings</em> will enable the fast generation of high-quality docs. Currently, one of the best options for partially auto-generating code documentations, for any programming language, is <a class="reference external" href="https://readthedocs.org/"><em>readthedocs</em></a>, which builds on <em>Sphinx</em> and <em>reStructuredText</em>.</p>
 </div>
 </div>
@@ -1516,8 +1520,8 @@ Rendered</label><div class="tabbed-content docutils">
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="../exercises/ex-gui.html" title="previous page">Create a <strong>G</strong>raphical <strong>U</strong>ser <strong>I</strong>nterface (GUI)</a>
-    <a class='right-next' id="next-link" href="../exercises/docs-exercises.html" title="next page">Exercises</a>
+    <a class='left-prev' id="prev-link" href="../exercises/ex-gui.html" title="previous page">Create a GUI</a>
+    <a class='right-next' id="next-link" href="glossary.html" title="next page">Glossary</a>
 
         </div>
         

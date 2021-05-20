@@ -1,3 +1,4 @@
+(chpt-geo-software)=
 # Geospatial Software
 
 Geospatial analyses (or analytics) use, manipulate, and illustrate data from geographic information systems (GIS). GIS data contain geographically referenced and spatially explicit information of for example gauging stations, terrain elevation, or land use. Efficient processing of geospatial data involves programming methods, where *Python* is an efficient tool. This page presents desktop software for manual geospatial analyses and the illustration of geospatial data. For geospatial programming, please refer to the {ref}`sec-geo-python` chapter.

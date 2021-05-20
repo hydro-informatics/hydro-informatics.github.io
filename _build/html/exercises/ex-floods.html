@@ -57,8 +57,8 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Cross-section Averaged Sediment Transport" href="ex-sediment.html" />
-    <link rel="prev" title="Reservoir Volume Calculation with a Sequent Peak Algorithm" href="ex-sp.html" />
+    <link rel="next" title="1d Sediment Transport" href="ex-sediment.html" />
+    <link rel="prev" title="Reservoir Volume (Sequent Peak Algorithm)" href="ex-sp.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -283,7 +283,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="ex-sp.html">
-     Reservoir Volume Calculation with a Sequent Peak Algorithm
+     Reservoir Volume (Sequent Peak Algorithm)
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -293,12 +293,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="ex-sediment.html">
-     Cross-section Averaged Sediment Transport
+     1d Sediment Transport
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="ex-gui.html">
-     Create a Graphical User Interface (GUI)
+     Create a GUI
     </a>
    </li>
   </ul>
@@ -398,7 +398,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="ex-geco.html">
-     Script-Create a Habitat Suitability Map
+     Script a Habitat Suitability Map
     </a>
    </li>
   </ul>
@@ -652,8 +652,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#get-data">
-   Get Data
+  <a class="reference internal nav-link" href="#get-discharge-data">
+   Get Discharge Data
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -719,15 +719,15 @@
 </pre></div>
 </div>
 <div class="figure align-default" id="flood-image">
-<img alt="floods Mangfall Bad Aibling Hochwasser" src="https://github.com/hydro-informatics/hydro-informatics.github.io/raw/master/images/hw-aibling.jpg" />
+<img alt="floods Mangfall Bad Aibling Hochwasser" src="https://github.com/hydro-informatics/hydro-informatics.github.io/raw/master/img/hw-aibling.jpg" />
 <p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Flood at the Mangfall River in Bavaria (source: KSS 2020).</span><a class="headerlink" href="#flood-image" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="terminology">
 <h2>Terminology<a class="headerlink" href="#terminology" title="Permalink to this headline">¶</a></h2>
 <p>Flood frequency analysis uses series of discharge data (e.g., from a gauging station) and evaluates the occurrence probability of a particular discharge. Thus, the occurrence probability defines the frequency of a discharge, which is important for two reasons:</p>
 <ol class="simple">
-<li><p>Flood safety: Many legal frames use a <em>recurrence interval</em> (i.e., a return period or frequency in units of years) to define safety levels that buildings and infrastructure must meet.</p></li>
-<li><p>Ecohydraulics: In arid areas in particular, it is important to know how long certain discharges fall below certain levels, where many aquatic habitats may not be deep enough, too hot, or disconnected from the main channel. Therefore, we want to know the <em>exceedance probability</em> of a given discharge.</p></li>
+<li><p><strong>Flood safety</strong>: Many legal frames use a <strong>recurrence interval</strong> (i.e., a return period or frequency in units of years) to define safety levels that buildings and infrastructure must meet.</p></li>
+<li><p><strong>Ecohydraulics</strong>: In arid areas in particular, it is important to know how long certain discharges are below certain levels, where many aquatic habitats may not be deep enough, too hot, or disconnected from the main channel. Therefore, we want to know the <strong>exceedance probability</strong> of a given discharge.</p></li>
 </ol>
 <p>The relationship between the exceedance probability and the recurrence interval results from the definition of both terms:</p>
 <ul class="simple">
@@ -738,32 +738,32 @@
 </div>
 <div class="section" id="the-probability-of-a-100-year-flood-occurring-in-100-years-is-63">
 <h2>The probability of a 100-year flood occurring in 100 years is 63%<a class="headerlink" href="#the-probability-of-a-100-year-flood-occurring-in-100-years-is-63" title="Permalink to this headline">¶</a></h2>
-<p>As engineers we often want to know how likely it is that a 100-year flood will occur within the next 2, 5, 10, … or 100 years (i.e., what are the likely costs of flood damage associated with a 100-year flood?). The answer to that question is “the opposite likelihood of no 100-year flood occurring in the next 2, 5, or 10 years”. Mathematically that means the annual occurrence probability <span class="math notranslate nohighlight">\(Pr\)</span> of an event with a recurrence interval <span class="math notranslate nohighlight">\(T\)</span>=100 years over an observation period of <span class="math notranslate nohighlight">\(a \in [2, 5, 10, 100]\)</span> years is:
-<br> <span class="math notranslate nohighlight">\(Pr(T=100, a=2, 5, 10, 100) = (1 - (1-1/T)^{a})\)</span></p>
+<p>As engineers we often want to know how likely it is that a 100-year flood will occur within the next 2, 5, 10, … or 100 years (i.e., what are the likely costs of flood damage associated with a 100-year flood?). The answer to that question is <em>“the opposite likelihood of no 100-year flood occurring in the next 2, 5, or 10 years”</em>. Mathematically that means the annual occurrence probability <span class="math notranslate nohighlight">\(Pr\)</span> of an event with a recurrence interval <span class="math notranslate nohighlight">\(T=100\)</span> years over an observation period of <span class="math notranslate nohighlight">\(a \in [2, 5, 10, 100]\)</span> years is:</p>
+<p><span class="math notranslate nohighlight">\(Pr(T=100, a=2, 5, 10, 100) = (1 - (1-1/T)^{a})\)</span></p>
 <p>The following table shows solutions to the probability <span class="math notranslate nohighlight">\(Pr(T, a)\)</span> function for observation periods <span class="math notranslate nohighlight">\(a\)</span> of 2, 5, 10, and 100 years, as well as recurrence intervals <span class="math notranslate nohighlight">\(T\)</span> of 10, 50, and 100 years.</p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="text-align:left head"><p><span class="math notranslate nohighlight">\(Pr(T, a)\)</span></p></th>
-<th class="text-align:right head"><p><span class="math notranslate nohighlight">\(a\)</span>= 2</p></th>
-<th class="text-align:right head"><p><span class="math notranslate nohighlight">\(a\)</span>= 5</p></th>
-<th class="text-align:right head"><p><span class="math notranslate nohighlight">\(a\)</span>= 10</p></th>
-<th class="text-align:right head"><p><span class="math notranslate nohighlight">\(a\)</span>= 100</p></th>
+<th class="text-align:right head"><p><span class="math notranslate nohighlight">\(a\)</span> = 2</p></th>
+<th class="text-align:right head"><p><span class="math notranslate nohighlight">\(a\)</span> = 5</p></th>
+<th class="text-align:right head"><p><span class="math notranslate nohighlight">\(a\)</span> = 10</p></th>
+<th class="text-align:right head"><p><span class="math notranslate nohighlight">\(a\)</span> = 100</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(T\)</span>= 10</p></td>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(T\)</span> = 10</p></td>
 <td class="text-align:right"><p>19.00%</p></td>
 <td class="text-align:right"><p>40.95%</p></td>
 <td class="text-align:right"><p>65.13%</p></td>
 <td class="text-align:right"><p>100.00%</p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(T\)</span>= 50</p></td>
+<tr class="row-odd"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(T\)</span> = 50</p></td>
 <td class="text-align:right"><p>3.96%</p></td>
 <td class="text-align:right"><p>9.61%</p></td>
 <td class="text-align:right"><p>18.29%</p></td>
 <td class="text-align:right"><p>86.74%</p></td>
 </tr>
-<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(T\)</span>= 100</p></td>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(T\)</span> = 100</p></td>
 <td class="text-align:right"><p>1.99%</p></td>
 <td class="text-align:right"><p>4.90%</p></td>
 <td class="text-align:right"><p>9.56%</p></td>
@@ -773,8 +773,8 @@
 </table>
 <p>Visit the <a class="reference external" href="https://www.usgs.gov/special-topic/water-science-school/science/100-year-flood?qt-science_center_objects=0#qt-science_center_objects"><em>USGS</em> water science school</a> to learn more about flood (and drought) recurrence interval.</p>
 </div>
-<div class="section" id="get-data">
-<h2>Get Data<a class="headerlink" href="#get-data" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="get-discharge-data">
+<h2>Get Discharge Data<a class="headerlink" href="#get-discharge-data" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="discharge-data-sources">
 <h3>Discharge data sources<a class="headerlink" href="#discharge-data-sources" title="Permalink to this headline">¶</a></h3>
 <p>Flow data can be retrieved from gauging stations. In Germany, the <a class="reference external" href="http://www.dgj.de/">“Gewässerkundliches Jahrbuch”</a> provides a compound overview of statistic data from gauging stations. Note that many gauging stations are, as in many other countries, too, managed by state authorities and only a small share of data is available from federal institutions. For example, gauge data for Baden-Württemberg are available at the State Institute for the Environment, Survey and Nature Conservation’s (LUBW) <a class="reference external" href="https://hvz.lubw.baden-wuerttemberg.de/">geo portal</a>. The following list provides more sources for discharge data around the globe.</p>
@@ -782,8 +782,12 @@
 <li><p>The <a class="reference external" href="https://www.bafg.de">Bundesanstalt für Gewässerkunde <em>BfG</em></a> runs the <a class="reference external" href="https://www.bafg.de/GRDC/EN/Home/homepage_node.html">Global Runoff Data Centre <em>GRDC</em></a> for the World Meteorological Organization <em>WMO</em> to provide river discharge data worldwide. The <em>GRDC</em>’s download platform is available in the form of an <a class="reference external" href="https://portal.grdc.bafg.de/applications/public.html?publicuser=PublicUser#dataDownload/Home">interactive web-GIS</a>. To get the data, go to their <a class="reference external" href="https://portal.grdc.bafg.de/applications/public.html?publicuser=PublicUser#dataDownload/Stations">download interface</a>, select the desired station, switch to <em>Table</em> view (third row in the top left of the window), check the station, click <em>download</em>, and fill the form to send the request. You will receive an email with a download link for the requested data (wait a couple of minutes before clicking on the link - the preparation may take more time than the email).</p></li>
 <li><p>Flow datasets from alpine and midland rivers are provided by the Swiss Federal Office for the Environment’s <a class="reference external" href="https://www.hydrodaten.admin.ch/">hydrological data platform</a> (for long-term observations, a form has to be filled out here, too).</p></li>
 <li><p>In the United States, the National Oceanic and Atmospheric Administration <em>NOAA</em> provides discharge data from the past and forecasts for watersheds in North America. For example, the <a class="reference external" href="https://www.cnrfc.noaa.gov/">California Nevada River Forecast Center</a> provides flow forecasts for the South-Western United States, and historic data can be accessed from the <a class="reference external" href="http://cdec.water.ca.gov/">California Data Exchange Center <em>CDEC</em></a>.</p></li>
-<li><p>A general <em>US</em>-borne interface for loading flow data and statistics comes with the <a class="reference external" href="https://hydrofunctions.readthedocs.io/"><code class="docutils literal notranslate"><span class="pre">hydrofunctions</span></code> <em>Python</em> library</a> provided by the United States Geological Survey <em>USGS</em>. This library enables to directly get gauge data and statistics based on a stream gauge ID. For example <code class="docutils literal notranslate"><span class="pre">output</span> <span class="pre">=</span> <span class="pre">hydrofunctions.peaks(&quot;01541200&quot;)</span></code> <br>To install <code class="docutils literal notranslate"><span class="pre">hydrofunctions</span></code> in a <span class="xref std std-ref">conda</span> environment, type <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">hydrofunctions</span></code> in <a class="reference internal" href="../python-basics/pyinstall.html#install-pckg"><span class="std std-ref">Anaconda Prompt</span></a>. Example usage:<br><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">hydrofunctions</span> <span class="pre">as</span> <span class="pre">hf</span></code><br><code class="docutils literal notranslate"><span class="pre">hf.draw_map()</span></code> (only runs in <em>JupyterLab</em>)</p></li>
+<li><p>A general <em>US</em>-borne interface for loading flow data and statistics comes with the <a class="reference external" href="https://hydrofunctions.readthedocs.io/"><code class="docutils literal notranslate"><span class="pre">hydrofunctions</span></code> <em>Python</em> library</a> provided by the United States Geological Survey <em>USGS</em>. This library enables to directly get gauge data and statistics based on a stream gauge ID. For example <code class="docutils literal notranslate"><span class="pre">output</span> <span class="pre">=</span> <span class="pre">hydrofunctions.peaks(&quot;01541200&quot;)</span></code> <br>To install <code class="docutils literal notranslate"><span class="pre">hydrofunctions</span></code> in a <span class="xref std std-ref">conda</span> environment, type <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">hydrofunctions</span></code> in <a class="reference internal" href="../python-basics/pyinstall.html#install-pckg"><span class="std std-ref">Anaconda Prompt</span></a>. Example usage:<br></p></li>
 </ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>import hydrofunctions as hf
+hf.draw_map()` # (only runs in JupyterLab)
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="load-data-with-pandas">
@@ -804,18 +808,18 @@ With <code class="docutils literal notranslate"><span class="pre">sep=&quot;;&qu
 <p>Did everything work? Verify the loaded <code class="docutils literal notranslate"><span class="pre">data_series</span></code> with <code class="docutils literal notranslate"><span class="pre">print(data_series.head()</span></code></p>
 <div class="section" id="plot-the-data">
 <h3>Plot the data<a class="headerlink" href="#plot-the-data" title="Permalink to this headline">¶</a></h3>
-<p>Plotting data is not the focus of this exercise and for this reason, there is a ready-to-use function available in the <code class="docutils literal notranslate"><span class="pre">plot_discharge.py</span></code> script. Make sure that the <code class="docutils literal notranslate"><span class="pre">plot_discharge.py</span></code> is in the same directory as the above <code class="docutils literal notranslate"><span class="pre">discharge_analysis.py</span></code> <em>Python</em> script (<a class="reference external" href="../jupyter/pypckg.html#overview-of-import-options">recall how to load modules</a>). Use the <code class="docutils literal notranslate"><span class="pre">plot_discharge</span></code> function in <code class="docutils literal notranslate"><span class="pre">plot_discharge.py</span></code> as follows:</p>
+<p>Plotting data is not the focus of this exercise and for this reason, there is a ready-to-use function available in the <code class="docutils literal notranslate"><span class="pre">plot_discharge.py</span></code> script. Make sure that the <code class="docutils literal notranslate"><span class="pre">plot_discharge.py</span></code> is in the same directory as the above <code class="docutils literal notranslate"><span class="pre">discharge_analysis.py</span></code> <em>Python</em> script (recall how to load <a class="reference internal" href="../jupyter/pypckg.html#sec-pypckg"><span class="std std-ref">Packages, Modules and Libraries</span></a>). Use the <code class="docutils literal notranslate"><span class="pre">plot_discharge</span></code> function in <code class="docutils literal notranslate"><span class="pre">plot_discharge.py</span></code> as follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">plot_discharge</span> <span class="kn">import</span> <span class="n">plot_discharge</span>
 <span class="n">plot_discharge</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Q (CMS)&quot;</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Wasserburg a. Inn 1826 - 2016&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>On a side note, <code class="docutils literal notranslate"><span class="pre">plot_discharge</span></code> uses the <a class="reference external" href="../jupyter/pyplot.html#matplotlib"><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> library</a>.</p>
+<p>On a side note, <code class="docutils literal notranslate"><span class="pre">plot_discharge</span></code> uses the <a class="reference internal" href="../jupyter/pyplot.html#matplotlib"><span class="std std-ref">Matplotlib</span></a> library.</p>
 </div>
 </div>
 <div class="section" id="construct-series-of-annual-maximum-discharge">
 <h2>Construct series of annual maximum discharge<a class="headerlink" href="#construct-series-of-annual-maximum-discharge" title="Permalink to this headline">¶</a></h2>
-<p>Flood event recurrence intervals result from statistics of the annual maximum discharge. Therefore, use <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.resample.html"><em>pandas</em>’ <code class="docutils literal notranslate"><span class="pre">resample</span></code></a> function to find annual maximum values. The resample function requires the definition of a <code class="docutils literal notranslate"><span class="pre">DateTimeIndex</span></code>, which we already implemented by using the <code class="docutils literal notranslate"><span class="pre">index_col</span></code> argument when we loaded the data. The first (and only required) argument for the <code class="docutils literal notranslate"><span class="pre">resample</span></code> function is the rule defining the length of the time frame to which re-sampling applies. Here, we use <code class="docutils literal notranslate"><span class="pre">&quot;A&quot;</span></code> for annual statistics. For using bi-annual or 5-year periods, we could use the rule <code class="docutils literal notranslate"><span class="pre">&quot;5A&quot;</span></code>. More rules can be found at the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#offset-aliases"><em>pandas</em> docs</a>.
-In addition, we use the argument <code class="docutils literal notranslate"><span class="pre">kind=period</span></code>, because we are only interested in the year in which the discharge occurred. Finally, we apply <code class="docutils literal notranslate"><span class="pre">.max()</span></code> to run <em>maximum</em> statistics on the data frame. Since the re-sampled dataframe is again a dataframe, all dataframe methods can also be applied to it. That is, instead of <code class="docutils literal notranslate"><span class="pre">max()</span></code> we can as well use <code class="docutils literal notranslate"><span class="pre">min()</span></code>, <code class="docutils literal notranslate"><span class="pre">sum()</span></code>, <code class="docutils literal notranslate"><span class="pre">median()</span></code>, <code class="docutils literal notranslate"><span class="pre">mean()</span></code> and so on (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/frame.html">review <em>pandas</em> dataframe methods</a>).</p>
+<p>Flood event recurrence intervals result from statistics of the annual maximum discharge. Therefore, use <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.resample.html"><em>pandas</em>’ resample</a> function to find annual maximum values. The resample function requires the definition of a <code class="docutils literal notranslate"><span class="pre">DateTimeIndex</span></code>, which we already implemented by using the <code class="docutils literal notranslate"><span class="pre">index_col</span></code> argument when we loaded the data. The first (and only required) argument for the <code class="docutils literal notranslate"><span class="pre">resample</span></code> function is the rule defining the length of the time frame to which re-sampling applies. Here, we use <code class="docutils literal notranslate"><span class="pre">&quot;A&quot;</span></code> for annual statistics. For using bi-annual or 5-year periods, we could use the rule <code class="docutils literal notranslate"><span class="pre">&quot;5A&quot;</span></code>. More rules can be found at the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#offset-aliases"><em>pandas</em> docs</a>.
+In addition, we use the argument <code class="docutils literal notranslate"><span class="pre">kind=period</span></code>, because we are only interested in the year in which the discharge occurred. Finally, we apply <code class="docutils literal notranslate"><span class="pre">.max()</span></code> to run <em>maximum</em> statistics on the data frame. Since the re-sampled dataframe is again a dataframe, all dataframe methods can also be applied to it. That is, instead of <code class="docutils literal notranslate"><span class="pre">max()</span></code> we can as well use <code class="docutils literal notranslate"><span class="pre">min()</span></code>, <code class="docutils literal notranslate"><span class="pre">sum()</span></code>, <code class="docutils literal notranslate"><span class="pre">median()</span></code>, <code class="docutils literal notranslate"><span class="pre">mean()</span></code> and so on (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/frame.html">see pandas dataframe methods</a>).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">annual_max_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;period&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -831,7 +835,7 @@ In addition, we use the argument <code class="docutils literal notranslate"><spa
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Resampling does not preserve the original date when the discharge occurred.</p>
+<p>Resampling does not preserve original recording dates of discharges.</p>
 </div>
 </div>
 <div class="section" id="calculate-exceedance-probability-and-recurrence-interval">
@@ -846,9 +850,11 @@ Pr(i) = (N - i + 1) / (N + 1)
 <li><p><span class="math notranslate nohighlight">\(N\)</span> is the total number of observation years, and</p></li>
 <li><p><span class="math notranslate nohighlight">\(i\)</span> is the <em>rank</em> of the event.</p></li>
 </ul>
-<p>To rank the events, we first need to sort the maximum annual discharge data frame (<code class="docutils literal notranslate"><span class="pre">annual_max_df</span></code>) by the smallest to largest discharge value (rather than in time):<br>
-<code class="docutils literal notranslate"><span class="pre">annual_max_df_sorted</span> <span class="pre">=</span> <span class="pre">annual_max_df.sort_values(by=&quot;Q</span> <span class="pre">(CMS)&quot;)</span></code><br>
-Then, we derive the number of observations <span class="math notranslate nohighlight">\(N\)</span> (<code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">annual_max_df_sorted.shape[0]</span></code>) and add a <code class="docutils literal notranslate"><span class="pre">&quot;rank&quot;</span></code> column, in which we simply enumerate the rows using the <code class="docutils literal notranslate"><span class="pre">range</span></code> method.</p>
+<p>To rank the events, we first need to sort the maximum annual discharge data frame (<code class="docutils literal notranslate"><span class="pre">annual_max_df</span></code>) by the smallest to largest discharge value (rather than in time):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">annual_max_df_sorted</span> <span class="o">=</span> <span class="n">annual_max_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;Q (CMS)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then, we derive the number of observations <span class="math notranslate nohighlight">\(N\)</span> (<code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">annual_max_df_sorted.shape[0]</span></code>) and add a <code class="docutils literal notranslate"><span class="pre">&quot;rank&quot;</span></code> column, in which we simply enumerate the rows using the <code class="docutils literal notranslate"><span class="pre">range</span></code> method.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="n">annual_max_df_sorted</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">annual_max_df_sorted</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;rank&quot;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">n</span><span class="p">)</span>
 </pre></div>
@@ -872,7 +878,7 @@ Then, we derive the number of observations <span class="math notranslate nohighl
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The plot functions only work if the probability column is named <span class="math notranslate nohighlight">\(Pr\)</span>, the return period column is named <em>return-period</em>, and the discharge column is named <em>Q (CMS)</em> (otherwise, consider renaming the data frame column header names or modifying the plot functions).</p>
+<p>The plot functions only work correctly if the probability column is named <span class="math notranslate nohighlight">\(Pr\)</span>, the return period column is named <span class="math notranslate nohighlight">\(return-period\)</span>, and the discharge column is named <span class="math notranslate nohighlight">\(Q (CMS)\)</span> (otherwise, consider renaming the data frame column header names or modifying the plot functions).</p>
 </div>
 </div>
 <div class="section" id="outside-the-box">
@@ -911,8 +917,8 @@ Then, we derive the number of observations <span class="math notranslate nohighl
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="ex-sp.html" title="previous page">Reservoir Volume Calculation with a Sequent Peak Algorithm</a>
-    <a class='right-next' id="next-link" href="ex-sediment.html" title="next page">Cross-section Averaged Sediment Transport</a>
+    <a class='left-prev' id="prev-link" href="ex-sp.html" title="previous page">Reservoir Volume (Sequent Peak Algorithm)</a>
+    <a class='right-next' id="next-link" href="ex-sediment.html" title="next page">1d Sediment Transport</a>
 
         </div>
         

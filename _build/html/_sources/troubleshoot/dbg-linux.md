@@ -1,10 +1,10 @@
 # Debugging Debian Linux
 
-Debian Linux is documented in a comprehensive [Wiki](https://wiki.debian.org/) with descriptions for setting up the system, installing software (packages), and tutorials for trouble shooting. This page provides guidance for problems that may occur in particular when Debian Linux is installed on a Virtual Machine (VM). 
+Debian Linux is documented in a comprehensive [Wiki](https://wiki.debian.org/) with descriptions for setting up the system, installing software (packages), and tutorials for trouble shooting. This page provides guidance for problems that may occur in particular when Debian Linux is installed on a Virtual Machine (VM).
 
-## Particular problems
+## Particular Problems
 
-### Root drive is running out of disk space
+### Root Drive Is Running Out of Disk Space
 
 ```{tip}
 Read this entire section before taking action. Otherwise, you risk to unnecessarily allocate disk space.
@@ -44,18 +44,19 @@ Increasing the virtual disk space alone is not sufficient, because the free disk
     + Make sure that there is no *Free space following* and that the field are coherent with the available space after the root partition.
     + Click on *Resize*.
 * Find the green check mark in the top menu of *Gparted* and click on it. This action will apply the changes. Most likely, a warning message informs about possible problems when restarting the system with the new partition configuration (click OK - increasing the root disk is not problematic if it is at the cost of any empty partition).
-* After repartitioning successful finished, right-click on the partition after the root partition (`/dev/sda3`) and make sure that it is again in *Swapoff* mode. If this is not the case (i.e., you cannot find *Swapoff* in the context menu and only *Swapon* is visible), click on *Swapon*.  
+* After repartitioning successful finished, right-click on the partition after the root partition (`/dev/sda3`) and make sure that it is again in *Swapoff* mode. If this is not the case (i.e., you cannot find *Swapoff* in the context menu and only *Swapon* is visible), click on *Swapon*.
 
 ```{tip}
 If you made undesired changes in the re-partitioning plan (before clicking on the apply-check mark), you can revert changes by clicking on the yellow return arrow next to the green apply-check mark.
 ```
 
 
-### Keep system and software up to date
+### Keep System and Software up to Date
 
 Read more on the [developer's website](https://www.debian.org/doc/manuals/debian-faq/uptodate.en.html).
 
-### Permission denied messages
+(dbg-permissions)=
+### Permission Denied Messages
 
 ***Permission denied*** messages may occur because of the fail-safe design of Debian, but denied read and write rights may quickly become annoying, in particular if you need to switch between normal and superuser accounts for installing software packages.
 
@@ -88,18 +89,18 @@ This lifts all restrictions from a directory for all users, all its sub-folders 
 sudo chmod -R 777 /directory/
 ```
 
-## Python 
+## Python
 
-### `tkinter` imports fail (no module named tkinter)
+### `tkinter` Imports Fail (No Module Named Tkinter)
 
 `tkinter` is sometimes still only installed for *Python2* on *Linux*, while we want to use it with *Python3*. To ensure that `tkinter` for *Python3* is installed, install via *Terminal:
- 
- * `sudo apt-get install python3-tk`  or 
+
+ * `sudo apt-get install python3-tk`  or
  * `sudo apt-get install python3.X-tk` (replace `X` with your *Python* version) or
- * `sudo apt install tk8.6-dev` to install the library only (this should be sufficient). 
- 
+ * `sudo apt install tk8.6-dev` to install the library only (this should be sufficient).
+
  If the above comments do not work, make sure that the `tkinter` repository is available to your system: `sudo add-apt-repository ppa:deadsnakes/ppa` (the repository address may change and depends on your *Linux* and *Python* versions).
- 
+
 ## Wine
 
 ### General wine issues
@@ -122,19 +123,19 @@ sudo apt-add-repository https://dl.winehq.org/wine-builds/debian/
 Install *wine* *stable* and *development* (and staging) on *Debian 10.x*:
 
 ```
-wget -O- -q https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_10/Release.key | sudo apt-key add -    
+wget -O- -q https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_10/Release.key | sudo apt-key add -
 echo "deb http://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_10 ./" | sudo tee /etc/apt/sources.list.d/wine-obs.list
 sudo apt update
 sudo apt install --install-recommends winehq-stable
 sudo apt install --install-recommends winehq-devel
 sudo apt install winehq-staging
-```  
+```
 
 ```{tip}
 Add the above commands line-by-line (do not copy-paste entire code blocks).
 ```
 
-### 64-bit application not working
+### 64-bit Application Not Working
 
 If a 64-bit *msi* or other installer / application is not working as desired, try to adapt the `WINEPREFIX` for your user (note: this is not an elegant solution):
 

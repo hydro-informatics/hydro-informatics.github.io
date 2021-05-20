@@ -9,7 +9,7 @@ The following table summarizes the practice application and the coding aspects f
 | Application                               | Training goal                 |
 |-------------------------------------------|-------------------------------|
 | 1d Hydraulics (Manning-Strickler solver)  | loops, iterations, and functions |
-| Reservoir design (Sequent peak)           | data handling with {ref}`numpy` , communication with *csv* files            |
+| Reservoir design (Sequent Peak)           | data handling with {ref}`numpy` , communication with *csv* files            |
 | Flood return periods calculation          | data and csv file handling with {ref}`pandas`                              |
-| Cross-section averaged sediment transport | {ref}`ooc`, {ref}`sec-xlsx`, and plotting |
+| 1d sediment transport | {ref}`ooc`, {ref}`sec-xlsx`, and plotting |
 | Create a Graphical User Interface (GUI)   | familiarize with {ref}`chpt-gui`   |
