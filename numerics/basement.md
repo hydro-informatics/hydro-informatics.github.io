@@ -14,7 +14,7 @@ To complete the tutorial, the following software is needed (all software can be 
 
 This tutorial uses *BASEMENT*'s *BASEplane* module (version 3.0.2) to perform a two-dimensional (2d) hydrodynamic numerical simulation.
 
-(prepro)=
+(bm-prepro)=
 ## Pre-processing: Mesh Generation
 
 Prepare a `2dm` mesh file as described in the [QGIS data pre-processing](../numerics/pre-qgis) section.
@@ -30,7 +30,7 @@ The defined project folder directory must not contain any dots nor special chara
 
 Make sure to place the two input files in the folder:
 
-- The 2D mesh `.2dm` file (i.e., the *finalmesh.2d* from the [pre-processing](#prepro)).
+- The 2D mesh `.2dm` file (i.e., the result of the {ref}`qgis-prepro` tutorial).
 - A discharge inflow file (flat hydrograph) for the upstream boundary condition can be downloaded [here](https://github.com/hydro-informatics/materials-bm/blob/master/flows/SteadyVanillaInflow.txt) (if necessary, copy the file contents locally into a text editor and save the file as `SteadyVanillaInflow.txt` in the local project directory).
 
 ### Setup the Model File

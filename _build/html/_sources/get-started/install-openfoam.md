@@ -204,7 +204,8 @@ To get started with *OpenFoam*, refer to the *User Guide* provided by [*CFD Dire
 
 ## Utilities (Pre- & Post Processors)
 
-### SALOME <a name="salome"></a>
+(salome-install)=
+### SALOME
 
 Similar to *TELEMAC*, the *SALOME* platform represents a powerful toolkit for generating computational meshes for *OpenFOAM*. Download *SALOME* from [salome-platform.org](https://www.salome-platform.org/downloads/current-version) for your distribution (here: *Linux Ubuntu*).
 
@@ -264,3 +265,9 @@ RuntimeError: Process 29241 for /Kernel/Session not found
 ```
 
 Then look for the missing libraries indicated in the above block with `error while loading shared libraries: libtbb.so.2: cannot open shared object file`. In this case, `libtbb` is missing, which can be installed with `sudo apt install libtbb-dev`.
+
+
+(freecad-install)=
+### FreeCAD
+
+*FreeCAD* is available for most common platforms (operating systems) including *Windows*, *Linux*, and *macOS*. Find the most recent version and installation instructions on the [developer's website](https://www.freecadweb.org/).

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pre-Processing for TELEMAC models &#8212; Hydro-Informatics</title>
+    <title>Telemac2d &#8212; Hydro-Informatics</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -313,6 +313,11 @@
    Markdown and Code Documentation
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/glossary.html">
+   Glossary
+  </a>
+ </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../exercises/docs-exercises.html">
    Exercises
@@ -415,7 +420,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="pre-qgis.html">
-   Pre-Processing with QGIS
+   Pre-processing with QGIS
   </a>
  </li>
  <li class="toctree-l1">
@@ -435,7 +440,7 @@
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Pre-Processing for TELEMAC models
+     Telemac2d
     </a>
    </li>
    <li class="toctree-l2">
@@ -684,8 +689,8 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#geometry-file-option-2-qgis-basemesh">
-   Geometry File Option 2: QGIS &amp; BASEMESH
+  <a class="reference internal nav-link" href="#serafin-geometry-with-qgis-basemesh">
+   Serafin Geometry with QGIS &amp; BASEMESH
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -765,8 +770,8 @@
         
               <div>
                 
-  <div class="section" id="pre-processing-for-telemac-models">
-<h1>Pre-Processing for TELEMAC models<a class="headerlink" href="#pre-processing-for-telemac-models" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="telemac2d">
+<span id="chpt-telemac2d"></span><h1>Telemac2d<a class="headerlink" href="#telemac2d" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="under-construction-expected-release-of-this-tutorial-fall-2021">
 <h2>Under construction. Expected release of this tutorial: Fall 2021.<a class="headerlink" href="#under-construction-expected-release-of-this-tutorial-fall-2021" title="Permalink to this headline">¶</a></h2>
 <p>Thank you for your patience.</p>
@@ -827,7 +832,7 @@
 </ul>
 <div class="figure align-default" id="id1">
 <img alt="bkimportpts" src="../_images/bk-import-pts.png" />
-<p class="caption"><span class="caption-number">Fig. 65 </span><span class="caption-text">Importing a point shapefile in BK.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 68 </span><span class="caption-text">Importing a point shapefile in BK.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <ul class="simple">
 <li><p>Right-click on <strong>points (X)</strong> and open the <strong>Properties</strong></p></li>
@@ -837,7 +842,7 @@
 </ul>
 <div class="figure align-default" id="bk3dpts">
 <img alt="bk3dpts" src="../_images/bk-imported-3dpts.png" />
-<p class="caption"><span class="caption-number">Fig. 66 </span><span class="caption-text">The imported points a point shapefile in BK.</span><a class="headerlink" href="#bk3dpts" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 69 </span><span class="caption-text">The imported points a point shapefile in BK.</span><a class="headerlink" href="#bk3dpts" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="generate-a-mesh">
@@ -864,8 +869,8 @@
 </ol>
 </div>
 </div>
-<div class="section" id="geometry-file-option-2-qgis-basemesh">
-<h2>Geometry File Option 2: QGIS &amp; BASEMESH<a class="headerlink" href="#geometry-file-option-2-qgis-basemesh" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="serafin-geometry-with-qgis-basemesh">
+<span id="slf-qgis"></span><h2>Serafin Geometry with QGIS &amp; BASEMESH<a class="headerlink" href="#serafin-geometry-with-qgis-basemesh" title="Permalink to this headline">¶</a></h2>
 <p>Follow the instructions in the <a class="reference internal" href="pre-qgis.html"><span class="doc std std-doc">QGIS data pre-processing</span></a> section for creating a .2dm file.</p>
 <p>Then…</p>
 </div>
@@ -960,11 +965,11 @@
 <p>Find the <em>PostTelemac</em> icon in the menu bar to open the plugin. By default, the plugin window will most likely open up in the bottom-right corner of the QGIS window. For better handling, click the <em>detach</em> symbol and enlarge the detached plugin window.</p>
 <div class="figure align-default" id="id2">
 <img alt="../_images/posttm-display.png" src="../_images/posttm-display.png" />
-<p class="caption"><span class="caption-number">Fig. 67 </span><span class="caption-text">The detached window of the PostTelemac plugin with the Display tab opened to render simulation variables such as VELOCITY U/V, VITESSE (principal absolute U-V velocity) or DEPTH.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 70 </span><span class="caption-text">The detached window of the PostTelemac plugin with the Display tab opened to render simulation variables such as VELOCITY U/V, VITESSE (principal absolute U-V velocity) or DEPTH.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-default" id="id3">
 <img alt="../_images/posttm-tools.png" src="../_images/posttm-tools.png" />
-<p class="caption"><span class="caption-number">Fig. 68 </span><span class="caption-text">The detached window of the PostTelemac plugin with the Tools tab opened (e.g., to create shapefiles or GeoTIFF rasters).</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 71 </span><span class="caption-text">The detached window of the PostTelemac plugin with the Tools tab opened (e.g., to create shapefiles or GeoTIFF rasters).</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>

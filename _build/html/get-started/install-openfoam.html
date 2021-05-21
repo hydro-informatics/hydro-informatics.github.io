@@ -313,6 +313,11 @@
    Markdown and Code Documentation
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/glossary.html">
+   Glossary
+  </a>
+ </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../exercises/docs-exercises.html">
    Exercises
@@ -359,12 +364,12 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../geopy/geo-pckg.html">
-     Geospatial Python - Open Source Packages
+     Geospatial Open Source Python Libraries
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/geo-shp.html">
-     Shapefile (vector dataset) handling
+     Shapefile (Vector Dataset) Handling
     </a>
    </li>
    <li class="toctree-l2">
@@ -415,7 +420,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../numerics/pre-qgis.html">
-   Pre-Processing with QGIS
+   Pre-processing with QGIS
   </a>
  </li>
  <li class="toctree-l1">
@@ -435,7 +440,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../numerics/telemac2d.html">
-     Pre-Processing for TELEMAC models
+     Telemac2d
     </a>
    </li>
    <li class="toctree-l2">
@@ -699,10 +704,13 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#salome-a-name-salome-a">
+    <a class="reference internal nav-link" href="#salome">
      SALOME
-     <a name="salome">
-     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#freecad">
+     FreeCAD
     </a>
    </li>
   </ul>
@@ -883,8 +891,8 @@ cp -r $FOAM_TUTORIALS/incompressible/simpleFoam/pitzDaily .
 </div>
 <div class="section" id="utilities-pre-post-processors">
 <h2>Utilities (Pre- &amp; Post Processors)<a class="headerlink" href="#utilities-pre-post-processors" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="salome-a-name-salome-a">
-<h3>SALOME <a name="salome"></a><a class="headerlink" href="#salome-a-name-salome-a" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="salome">
+<span id="salome-install"></span><h3>SALOME<a class="headerlink" href="#salome" title="Permalink to this headline">¶</a></h3>
 <p>Similar to <em>TELEMAC</em>, the <em>SALOME</em> platform represents a powerful toolkit for generating computational meshes for <em>OpenFOAM</em>. Download <em>SALOME</em> from <a class="reference external" href="https://www.salome-platform.org/downloads/current-version">salome-platform.org</a> for your distribution (here: <em>Linux Ubuntu</em>).</p>
 <p>Unpack the <em>SALOME</em> package in a convenient folder (replace the <code class="docutils literal notranslate"><span class="pre">.tar.gz</span></code> file name with the one you downloaded):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tar</span> <span class="n">xfz</span> <span class="n">SALOME</span><span class="o">-</span><span class="mf">9.6.0</span><span class="o">-</span><span class="n">UB20</span><span class="mf">.04</span><span class="o">-</span><span class="n">SRC</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
@@ -933,6 +941,10 @@ RuntimeError: Process 29241 for /Kernel/Session not found
 </pre></div>
 </div>
 <p>Then look for the missing libraries indicated in the above block with <code class="docutils literal notranslate"><span class="pre">error</span> <span class="pre">while</span> <span class="pre">loading</span> <span class="pre">shared</span> <span class="pre">libraries:</span> <span class="pre">libtbb.so.2:</span> <span class="pre">cannot</span> <span class="pre">open</span> <span class="pre">shared</span> <span class="pre">object</span> <span class="pre">file</span></code>. In this case, <code class="docutils literal notranslate"><span class="pre">libtbb</span></code> is missing, which can be installed with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">libtbb-dev</span></code>.</p>
+</div>
+<div class="section" id="freecad">
+<span id="freecad-install"></span><h3>FreeCAD<a class="headerlink" href="#freecad" title="Permalink to this headline">¶</a></h3>
+<p><em>FreeCAD</em> is available for most common platforms (operating systems) including <em>Windows</em>, <em>Linux</em>, and <em>macOS</em>. Find the most recent version and installation instructions on the <a class="reference external" href="https://www.freecadweb.org/">developer’s website</a>.</p>
 </div>
 </div>
 </div>

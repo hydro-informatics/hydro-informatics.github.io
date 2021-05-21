@@ -4,7 +4,7 @@ This book is built with a template from the [Executable Book Project](https://ex
 
 ## Install Requirements
 
-The Python environments for building the ebook locally are stored in ROOT/requirements.txt (for Linux) and ROOT/window_environment.yml (for Windows).
+The Python environments for building the eBook locally are stored in ROOT/requirements.txt (for Linux) and ROOT/window_environment.yml (for Windows).
 
 On Linux install:
  * If Python2 and Python3 are installed, install requirements with
@@ -15,7 +15,7 @@ On Linux install:
 On Windows, use Anaconda Prompt to install the hywin environment that contains all required packages for building the ebook:
  * `conda env create -f window_environment.yml`
 
-## Build eBook
+## Build ebook
 
 To update the website:
 

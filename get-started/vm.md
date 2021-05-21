@@ -147,9 +147,8 @@ Find the *Devices* drop-down menu of the *VirtualBox VM* window (not in Debian L
 ```{tip}
 The *VirtualBox VM* window does not show the menu with the *Devices* entry anywhere?
 
-    + This may happen when the *View* was set to *Scaled mode*.
-
-    + To toggle the view mode and make the menu bar visible, press the RIGHT `CTRL` (`Host`) key + the `C` on your keyboard, while being in the host system view.
+* This may happen when the *View* was set to *Scaled mode*.
+* To toggle the view mode and make the menu bar visible, press the RIGHT `CTRL` (`Host`) key + the `C` on your keyboard, while being in the host system view.
 ```
 
 ```{note}
@@ -187,8 +186,8 @@ The installation was successful if the *Terminal*'s answer is something like `vb
 To improve the visual experience do the following:
 * In the top-left corner of the Debian Linux Desktop, click on *Activities* and type *displays* in the search box.
 * Open the *Displays* settings to select a convenient display resolution.
-    + If you choose a too high resolution, the *VirtualBox VM* window will turn black and jump back to the original resolution after 15-30 seconds.
-    + Consider also to turn on *Night Light* to preserve your eye vision.
+  * If you choose a too high resolution, the *VirtualBox VM* window will turn black and jump back to the original resolution after 15-30 seconds.
+  * Consider also to turn on *Night Light* to preserve your eye vision.
 * *Apply* the changes and close the *Displays* settings.
 
 (linux-terminal)=
@@ -237,11 +236,11 @@ Make sure to install *Guest Additions* to enable folder sharing (see the above [
 Sharing data between the host system (e.g., *Windows 10*) and the guest system (*Debian Linux VM*) enables to transfer files to and from the VM to the host system.
 
 * At a place of your convenience, create a new folder on the host system (e.g., *Windows 10*) and call it shared (e.g., `C:\Users\USER\documents\shared\`).
-* Start *VirtualBox* and the Debian Linux VM.<br>*Make sure that the scaled view mode is off (toggle view modes with RIGHT `CTRL` (`Host`) key + the `C` on the keyboard).*
+* Start *VirtualBox* and the Debian Linux VM.<br>*Make sure that the scaled view mode is off (toggle view modes with RIGHT `CTRL` (`Host`) and `C` on the keyboard).*
 * Go to the VM *VirtualBox* window's *Devices* menu, click on *Shared Folders* > *Shared Folders Settings...* and click on the little blue *Add new shared folder* symbol on the right side of the window (see figure below). Make the following settings in the pop-up window:
-    + *Folder Path:* Select the just created `...\shared` folder
-    + Check the *Enable Auto-mount* box
-    + Check the *Make Permanent* box
+  * *Folder Path:* Select the just created `...\shared` folder
+  * Check the *Enable Auto-mount* box
+  * Check the *Make Permanent* box
 * Click OK on both pop-up windows.
 
 ![share-folder](https://github.com/Ecohydraulics/media/raw/master/png/vm-share-folder.png)
@@ -396,9 +395,9 @@ To install a *Windows* application:
 1. Open *Terminal* and type `wine control` > A *Windows*-like window opens ([read more](https://wiki.winehq.org/Control)).
 1. In that window, click on the *Add/Remove...* button, which opens up another window (*Add/Remove Programs*).
 1. Click on the *Install...* button and select the downloaded *exe* or *msi* installer.
-    + Follow the installation instructions (standard *Windows* procedure).
-    + Consider to add a *Desktop Icon*, or note the installation directory (e.g., `"C:\\Program Files (x86)\\CHC\\BlueKenue\\"`).
-    + In the background. *Terminal* might prompt the message `err:mscoree:LoadLibraryShim error reading registry key for installroot` - you may ignore such messages ([read more](https://forum.winehq.org/viewtopic.php?t=14618)).
+   * Follow the installation instructions (standard *Windows* procedure).
+   * Consider to add a *Desktop Icon*, or note the installation directory (e.g., `"C:\\Program Files (x86)\\CHC\\BlueKenue\\"`).
+   * In the background. *Terminal* might prompt the message `err:mscoree:LoadLibraryShim error reading registry key for installroot` - you may ignore such messages ([read more](https://forum.winehq.org/viewtopic.php?t=14618)).
 
 ```{admonition} Never run wine as root (sudo).
 :class: error, dropdown
@@ -410,8 +409,8 @@ More information is available in the [wine docs](https://wiki.winehq.org/FAQ#Sho
 
 * If a *Desktop Icon* was created during the installation, go to *Desktop* and double-click on the application (e.g., *BlueKenue*)
 * Otherwise, identify the installation path and the executable that launches the application.
-    + 32-bit programs are typically installed in `"C:\\Program Files (x86)\\` (e.g., `"C:\\Program Files (x86)\\CHC\\BlueKenue\\BlueKenue.exe"`).
-    + 64-bit programs are typically installed in `"C:\\Program Files\\`.
+   * 32-bit programs are typically installed in `"C:\\Program Files (x86)\\` (e.g., `"C:\\Program Files (x86)\\CHC\\BlueKenue\\BlueKenue.exe"`).
+   * 64-bit programs are typically installed in `"C:\\Program Files\\`.
 * With the installation path, any *Windows* application can be launched through *Terminal* with:
-    + `wine "C:\\path\\to\\the.exe"` (use `\\` to separate sub-directories).
-    + For example, `wine "C:\\Program Files (x86)\\CHC\\BlueKenue\\BlueKenue.exe"` typically starts *Blue Kenue<sup>TM</sup>*.
+   * `wine "C:\\path\\to\\the.exe"` (use `\\` to separate sub-directories).
+   * For example, `wine "C:\\Program Files (x86)\\CHC\\BlueKenue\\BlueKenue.exe"` typically starts *Blue Kenue<sup>TM</sup>*.

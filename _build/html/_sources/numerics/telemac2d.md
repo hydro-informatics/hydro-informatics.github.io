@@ -1,4 +1,5 @@
-# Pre-Processing for TELEMAC models
+(chpt-telemac2d)=
+# Telemac2d
 
 ## Under construction. Expected release of this tutorial: Fall 2021.
 
@@ -85,8 +86,8 @@ TM solves the (depth-averaged) Navier Stokes equations along a computational gri
 
 
 
-
-## Geometry File Option 2: QGIS & BASEMESH
+(slf-qgis)=
+## Serafin Geometry with QGIS & BASEMESH
 
 Follow the instructions in the [QGIS data pre-processing](../numerics/pre-qgis) section for creating a .2dm file.
 
