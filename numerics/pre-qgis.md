@@ -9,10 +9,20 @@ Before diving into this tutorial make sure to...
 2. Read and understand (or watch) this eBook's {ref}`qgis-tutorial`.
 ```
 
-## Essentials: Digital Elevation Models (DEMs)
+(get-dem)=
+## Digital Elevation Models (DEMs)
 To start any analysis of rivers and fluvial landscapes, a digital elevation model (**DEM**) is required. Nowadays, DEMs often stem from light imaging, detection, and ranging ([LiDAR](https://en.wikipedia.org/wiki/Lidar) combined with bathymetric surveys. Older approaches rely on manual surveying (e.g. with a total station) of cross sections between which the terrain is interpolated. The newer LiDAR employs lights sources and provides terrain assessments up to 2-m deep water. Bathymetric [echo sounding](https://en.wikipedia.org/wiki/Echo_sounding) is necessary to map the ground of deeper waters. Thus, merged LiDAR and echo-sounding datasets produces seamless point clouds of river ecosystems, which may be stored in many different file types.
 
 The first step in modelling a river consist in the conversion of a DEM into a computational mesh. This section guides through the conversion of a DEM into a computational mesh with *QGIS* and the *BASEmesh* plugin. The descriptions refer to the developer's documentation files ([go to the ETH Zurich's *BASEMENT* documentation](https://basement.ethz.ch/download/documentation/docu3.html)). At the end of this tutorial, we will have generated a computational grid in {term}`SMS 2dm` format that is compatible with the {ref}`chpt-basement` and {ref}`chpt-telemac2d` numerical models presented in the next chapters of this eBook.
+
+
+This tutorial uses an application-ready DEM in GeoTIFF {ref}`raster` format. The DEM raster will provide height (Z) information for the computational grids created in the next sections. Therefore, download the example DEM GeoTIFF [here](https://github.com/hydro-informatics/materials-bm/raw/main/rasters/inn-dem.tif) and add it as a new raster layer in *QGIS* (similar to adding {ref}`basemap`).
+
+```{admonition} From LiDAR point clouds to a Raster DEM
+:class: tip
+Terrain survey data are mostly delivered in the shape of an x-y-z point dataset. LiDAR produces massive point clouds, which quickly overcharge even powerful computers. Therefore, LiDAR data may need to be break down to smaller zones of less than approximately 106 points and special LiDAR point processing software (e.g., http://lastools.org/) may be helpful in this task. The range of possible data products and shape from terrain survey is board and this tutorial exemplary uses a set of x-y-z points stored within a text file.
+```
+
 
 ```{admonition} OpenFOAM modelers...
 For three-dimensional (3d) modeling with OpenFOAM, the creation of a 2dm file is not necessary. OpenFOAM users can export the terrain in QGIS directly as an `stl` file, as described at the bottom of this section (jump to the {ref}`dem2stl` paragraph).
@@ -69,60 +79,19 @@ Save the QGIS project (**Project** > **Save As...**), for example, under the nam
 ```
 
 (epd)=
-## Elevation Point Data
-Terrain survey data are mostly delivered in the shape of an x-y-z point dataset. LiDAR produces massive point clouds, which quickly overcharge even powerful computers. Therefore, LiDAR data may need to be break down to smaller zones of less than approximately 106 points and special LiDAR point processing software (e.g., http://lastools.org/) may be helpful in this task. The range of possible data products and shape from terrain survey is board and this tutorial exemplary uses a set of x-y-z points stored within a text file. Load the points from the provided xyz-points.txt file as follows:
+## Data
+
 
 1. [Download](https://github.com/hydro-informatics/materials-bm/blob/main/points_raw/points.txt) the point file for this tutorial (if necessary, copy the file contents locally into a text editor and save the file as **points.txt** in a local project directory)
 1. [Download](https://github.com/hydro-informatics/materials-bm/raw/main/breaklines.zip) the zipped breaklines shapefile into the project folder and unpack **breaklines.shp**.
-1. In *QGIS*, click on the **Layer** menu > **Add Layer** > **Add Delimited Text Layer...** (see {numref}`Fig. %s <qgis-add-lyr>`)
-1. In the **Add Delimited Text Layer** (**Data Source Manager | Delimited Text**) wizard (see details in {numref}`Fig. %s <qgis-import-pts>`):
-    * Choose [points.txt](https://github.com/hydro-informatics/materials-bm/blob/main/points_raw/points.txt) in the **File name** field (alternatively use [points.csv](https://github.com/hydro-informatics/materials-bm/blob/main/points_raw/points.csv)
-    * Name the new layer (e.g., points)
-    * In the **File Format** canvas, select **Custom Delimiters** and activate the **Space** checkbox
-    * In the **Record and Field Options** canvas, activate the **First record has field names** checkbox
-    * In the **Geometry Definition** canvas, define the **Point Coordinates** as **X Field** = **X**, **Y Field** = **Y** and **Z Field** = **Z**; set the **Geometry CRS** to the **Project CRS**.
-    * Click the **Add** button on the bottom of the wizard window. The points should now be plotted in the main *QGIS* window.
 
 
-```{figure} ../img/qgis-add-lyr.png
-:alt: basement qhis add layer
-:name: qgis-add-lyr
-
-Open the **Add Delimited Text Layer** import wizard.
-```
-
-```{figure} ../img/qgis-import-pts.png
-:alt: basement qgis import points
-:name: qgis-import-pts
-
-Load the xyz-points.txt file with QGIS' Add Delimited Text Layer (Data Source Manager | Delimited Text) wizard.
-```
-
-Next, export the new point layer as shapefile: In *QGIS*' **Layer**s window, right-click on XYZ-POINTS, then **Export** > **Save Features As...** . In the Format field, select **ESRI Shapefile**. Define a FILE NAME (by clicking on the … button and defining for example *C:\QGIS-projects\xyz-points.shp*), ensure that the ADD SAVED FILE TO MAP checkbox is activated (on the bottom of the **Save Vector Layer As...** window) and click **OK**. Remove the **points** text layer from the **Layers** window (only the shape file should be visible here now).
-Finally, rename the three fields (**FIELD_1**, **FIELD_2**, **FIELD_3**) to **X**, **Y**, and **Z**, respectively. The fields can be renamed with a double-click on the **xyz-points** layer (opens **Layer Properties**), then left-click on the **Fields** ribbon, activate the editing mode (click on the pen symbol) and edit the **Name** fields.
 
 (boundary)=
 ## Model Boundary
 
 The model boundary defines the calculation extent and needs to be define within a polygon shapefile that encloses all points in the above produced point shapefile. *QGIS* provides a Convex Hull tool that enables the automated creation of the outer boundary. This tool is used as follows:
 
-- In *QGIS*' **Processing** menu, select **Toolbox** (see {numref}`Fig. %s <qgis-tbx-fig>`) The **Toolbox** sub-window opens now.
-- In the toolbox, click on **Vector Geometry** > **Concave Hull (Alpha Shapes)**, which opens the **Concave Hull (Alpha Shapes)** wizard (see {numref}`Fig. %s <qgis-chull>`).
-- In the **Concave Hull (Alpha Shapes)** wizard, select the **xyz-points** layer as **Input Layer**, set the **Threshold** to 0.300 (keep default), define an output **Concave Hull** shapefile (e.g., **boundary.shp**) by clicking on the **...** button, and click on **Run**.
-
-```{figure} ../img/qgis-tbx.png
-:alt: qgis basement toolbox
-:name: qgis-tbx-fig
-
-Open QGIS' Toolbox from the main menu.
-```
-
-```{figure} ../img/qgis-chull.png
-:alt: basement qgis convex hull boundary polygon
-:name: qgis-chull
-
-The Concave Hull (Alpha Shapes) wizard.
-```
 
 
 - Right-click on *QGIS*' **Settings** menu, and activate the **Snapping** toolbar checkbox. In the now shown snapping toolbar, activate snapping with a click on the horseshoe icon.
@@ -145,7 +114,7 @@ Toggle editing and enable the Vertex Tool.
 :alt: basement qgis modify boundary polygon
 :name: qgis-mod-boundary
 
-Modify the boundary polygon with a click on the centre cross (creates a new point) and dragging it to the next outest boundary point of the DEM points.
+Modify the boundary polygon with a click on the center cross (creates a new point) and dragging it to the next outest boundary point of the DEM points.
 ```
 
 
@@ -161,28 +130,7 @@ The final boundary (hull of the point cloud).
 Breaklines indicate, for instance, channel banks and the riverbed, and need to coincide with DEM points (shapefile from [above section](#epd)). Breaklines a stored in a line (vector) shapefile, which is here already provided (**breaklines.shp**). Integrate the breaklines file into the *QGIS* project as follows with a click on *QGIS*' **Layer** menu > **Add Vector Layer...** and select the provided **breaklines.shp** file (if not yet done, [download](https://github.com/hydro-informatics/materials-bm/raw/main/breaklines.zip) and unpack the shapefile).
 Note: The default layer style **Single Symbol**. For better representation, double-click on the breaklines layer, got to the **Symbology** ribbon and select **Categorized** (or **Graduated**) instead of **Single Symbol** (at the very top of the **Layer Properties** window). In the **Value** field, select **type**, then click the **classify** button on the bottom of the **Layer Properties** window. The listbox will now show the values bank, bed, hole, and all other values. Change color pattern and/or click **OK** on the bottom-right of the **Layer Properties** window.
 
-(tin-dem)=
-## TIN Elevation Model
 
-This section explains the creation of a triangulated irregular network (TIN) with the *QGIS* plugin *BASEmesh* (make sure that all steps in the [above section](#start-qgis) were successful).
-
-1. To start, click on *QGIS*' **Plugins** menu > *BASEmesh* > **Elevation Meshing** to open the mesh wizard. Use the following settings (see also {numref}`Fig. %s <qgis-exp-tin>`:
-1. **Model boundary** = **boundary** layer ([see above section](#boundary)
-1. **elevation points** = **xyz-points** ([see above section](#epd)
-1. Enable the **breaklines** checkbox and select the **breaklines** layer ([see above section](#breaklines)
-1. In the **Shapefile output** canvas, click on the **BROWSE** button and save the new file as, for example, base_tin.shp.
-1. Click on **Generate Elevation Mesh** and **Close** the wizard after successful execution.
-
-As a result, two new layers will now show up in the Layers window:
-1.	**base_tin_elevation_nodes.shp**, and
-1.	**base_tin_elevation_elements.shp**.
-
-```{figure} ../img/qgis-exp-tin.png
-:alt: basemesh qgis elevation mesh tin
-:name: qgis-exp-tin
-
-Setup BASEmesh's Elevation Meshing wizard.
-```
 
 (regions)=
 ## Region Markers for Quality Meshing
@@ -235,126 +183,62 @@ Example for distributing region points in the project boundaries (remark: the ma
 (qualm)=
 ## Quality meshing
 
-A quality mesh accounts for the definitions made within the regions shapefile ([see above section](#regions), but it does not include elevation data. Thus, after generating a quality mesh, elevation information needs to be added from the TIN ([see above section](#tin-dem)). This section first explains the [generation of a quality mesh](qualm-gen) and then the [insertion of elevation data](#qualm-interp)).
+A quality mesh accounts for the definitions made within the regions shapefile ([see above section on {ref}`regions`), but it does not include elevation data. Thus, after generating a quality mesh, elevation information needs to be added. This section first explains the {ref}`qualm-gen` and then the {ref}`qualm-interp`.
 
 (qualm-gen)=
 ### Quality mesh generation
-In *QGIS*' **Plugins** menu, click on **BASEmesh** > **QUALITY MESHING** to open the Quality meshing wizard. Make the following settings in the window (see also {numref}`Fig. %s <qgis-qualm>`):
+In *QGIS*' **Plugins** menu, click on **BASEmesh 2** > **QUALITY MESHING** to open the Quality meshing wizard. Make the following settings in the window (see also {numref}`Fig. %s <qgis-qualm>`):
 
 1. **Model boundary** = **boundary** ([see above section](#boundary)
 1. **breaklines** = **breaklines** ([see above section](#breaklines)
 1. **Regions** = **regions-points** ([see above section](#regions) and activate all checkboxes
 1. In the **Shapefile output** canvas, click on the **browse** button to define the output mesh as (for example) **base_qualitymesh.shp**
 
-```{figure} ../img/qgis-qualm.png
+```{figure} ../img/qgis/bm-quality-meshing-success.png
 :alt: basement qgis quality mesh tin
 :name: qgis-qualm
 
 BASEmesh's Quality Meshing wizard.
 ```
 
-Quality meshing may take time. After successful mesh generation the files **base_qualitymesh_qualityNodes.shp** and **base_qualitymesh_qualityElements.shp** are generated. Finally, click **Close**.
+Quality meshing may take time. After successful mesh generation the file **prepro-tutorial_quality-mesh.2dm** will have been generated.
 
 (qualm-interp)=
-### Elevation data interpolation on a quality mesh
+### Bottom Elevation Interpolation on a Quality Mesh
 
-*BASEmesh*’s **Interpolation** wizard projects elevation data onto the quality mesh by interpolation from a TIN. Make sure to check (show) the **base_qualitymesh_qualityNodes** and **base_qualitymesh_qualityElements** from the last step, and **base_tin_elevation_nodes.shp** and [**base_tin_elevation_elements.shp**](#tin-dem). Then, open *BASEmesh*’s **Interpolation** wizard (*QGIS* **Plugins** menu > **BASEmesh** > **Interpolation**) and (see also {numref}`Fig. %s <qgis-qualm-interp>`):
+*BASEmesh*’s **Interpolation** wizard projects elevation data onto the quality mesh by interpolation from another mesh or a DEM raster. Here, we use the provided [DEM GeoTIFF](https://github.com/hydro-informatics/materials-bm/raw/main/rasters/inn-dem.tif). To run the interpolation, open *BASEmesh*’s **Interpolation** wizard (*QGIS* **Plugins** menu > **BASEmesh 2** > **Interpolation**) and (see also {numref}`Fig. %s <qgis-qualm-interp>`):
 
-1. In the **Quality Mesh** canvas, select **base_qualitymesh_qualityNodes**
-1. In the **Elevation Data** canvas, activate the **Elevation Mesh** checkbox and select **base_tin_elevation_nodes.shp** and [**base_tin_elevation_elements.shp**](#tin-dem)
-1. In the **Shapefile output** canvas, define the output file as finalmesh.shp.
-1. Click **Interpolate elevations** (may take a while)
-After successful execution, the new layer finalmesh_Interpolated_nodes_elevMesh.shp will be created. Click Close to close the Interpolation wizard.
+1. In the **Mesh layer to interpolate** canvas, select **prepro-tutorial_quality-mesh**.
+1. In the **Basic** tab find the **Elevation source** canvas and activate the **Activation via DEM (Raster)** radio button.
+1. Select the above imported **inn...** GeoTIFF as **Raster layer**.
+1. In the **Output** canvas click on the **Browse** button to define an output mesh name an directory (for example, `/Basement/prepro-tutorial/prepro-tutorial_quality-mesh-interp.2dm`)
+1. Click **Run** to create the height-interpolated mesh.
 
-```{figure} ../img/qgis-qualm-interp.png
+```{figure} ../img/qgis/bm-mesh-interpolation.png
 :alt: qgis quality mesh interpolation basement
 :name: qgis-qualm-interp
 
-BASEmesh's Interpolation wizard and setup.
+BASEmesh's Z-value (height) interpolation wizard and setup to assign a bottom elevation to the quality mesh.
 ```
 
-(qualm-verify)=
-### Verify quality mesh elevation
+After the elevation interpolation, verify that elevations were correctly assigned. To modify the layer visualization (symbology) double-click on the new **prepro-tutorial_quality-mesh-interp** and go to the **Symbology** ribbon. Select **Graduated** at the very top of the window, set the **Value** to Z, METHOD to COLOR, choose a color ramp, and click on the **classify** bottom (lower part of the window). Click on **Apply** and **OK** to close the **Symbology** window. {numref}`Fig. %s <qgis-verify-qualm>` shows an example visualization of the height-interpolated mesh.
 
-After the elevation interpolation, verify that elevations were correctly assigned. To identify potential outliers double-click on the new **finalmesh_interpolated_Nodes_elevMesh** and go to the **Symbology** ribbon. Select **Graduated** at the very top of the window (instead of **Single Symbol**), set the **Value** to Z, METHOD to COLOR, choose a color ramp, and click on the **classify** bottom (lower part of the window). Click on **Apply** and **OK** to close the **Symbology** window.
-{numref}`Fig. %s <qgis-verify-qualm>` shows an example of interpolated mesh, with some irregularities (red points). The irregularities are caused by local imprecision of breaklines (line end points do not coincide with the [**xyz-points.shp**](#epd)). Also some points of the [boundary](#boundary) do not correspond the **xyz-points.shp**. If such irregularities occur, zoom at the red points (irregularities) and ensure that the breakline and boundary nodes all exactly coincide with those stored in **xyz-points.shp**. When all nodes are corrected, repeat all steps from the [TIN generation](#tin-dem) onward.
-
-```{figure} ../img/qgis-verify-qualm.png
-:alt: basemesh verify quality mesh
+```{figure} ../img/qgis/bm-mesh-interp-success.png
+:alt: basemesh verify interpolated quality mesh
 :name: qgis-verify-qualm
 
-Verify elevation interpolation using graduated color ramps. In this example, the red colored points indicated irregularities in the mesh.
+Verify elevation interpolation using graduated color ramps.
 ```
 
-(2dm)=
-##	Export to 2dm
-
-To run *BASEMENT*, the mesh needs to be exported in 2dm format. **BASEmesh**'s **Export Mesh** wizard (*QGIS* **Plugins** menu > **BASEmesh** > **Export Mesh**) does the job with the following settings (see also {numref}`Fig. %s <qgis-exp-mesh>`): Export of the mesh to 2dm format with *BASEmesh*'s **Export Mesh** wizard.):
-
-1. Select the checkbox 2D MESH **Export**
-1. Mesh elements = **base_qualitymesh_quality_elementy.shp** ([see above](#qualm-interp) with **Material ID field** = **MATID**
-1. Mesh nodes = **finalmesh_interpolated_nodes_elevmesh.shp** ([see above](#qualm) with **Elevation field** =**Z**
-1. In the **Mesh output** canvas, click on the **Browse** button and select an export mesh directory and name (e.g., **finalmesh.2dm**).
-1. Click on **Export Mesh** (may take a while) and **Close** the wizard afterwards.
-
-```{figure} ../img/qgis-exp-mesh.png
-:alt: basement qgis export mesh 2dm
-:name: qgis-exp-mesh
-
-Export of the mesh to 2dm format with BASEmesh's Export Mesh wizard.
-```
-
-In order to work with *BASEMENT* v3.x, the .2dm file requires a couple of adaptations. Open the produced finalmesh.2dm in a text editor software (right-click and, for example, edit with {ref}`npp`) and:
-
-- At the top, insert the following line at line N°2: **NUM_MATERIALS_PER_ELEM 1**
-
-```{figure} ../img/mod-2dm.png
-:alt: modify materials basemesh basement 2dm error fix
-:name: mod-2dm
-
-Modification of the upper part of the .2dm file.
-```
 
 
 (stringdef)=
 ## String Definitions
-At the bottom of the file, add the node string definitions for the inflow and outflow boundary. Enter the following 2 new lines (where *nd<sub>i</sub>* and *nd<sub>j</sub>* represent the *Inflow* and *Outflow* nodes, respectively, of [finalmesh_interpolatedNodes_elevMesh.shp](#qualm-interp):
-  * *NS[SPACE][SPACE]nd<sub>1</sub>[SPACE]nd<sub>2</sub>[SPACE]nd<sub>i</sub>[SPACE]nd<sub>n</sub>[SPACE]Inflow*
-  * *NS[SPACE][SPACE]nd<sub>1</sub>[SPACE]nd<sub>2</sub>[SPACE]nd<sub>j</sub>[SPACE]nd<sub>m</sub>[SPACE]Outflow*
 
-```{tip}
-To **identify** the **node IDs** open *QGIS* use ***BASEmesh*'s Stringdef** wizard (from *BASEMENT* v2.8 user manual - read more below).
-```
+In order to identify the node ids on the inflow and outflow boundary lines, select the final mesh nodes in the *Mesh Nodes* dialogue, select the provided [breaklines shapefile](https://github.com/hydro-informatics/materials-bm/raw/main/breaklines.zip) in the *Breaklines* dialogue and select *stringdef* from the dropdown menu.
 
-* *Stringdef* identifies points that have a non-empty **stringdef**-field (i.e., all nodes that are located exactly on that line) and writes them into a text file (*BASEMENT*-like **stringdef** block). The content of the **stringdef**-field represents the **stringdef** name.
-* In order to identify the node ids on the inflow and outflow boundary lines, select the final mesh nodes in the *Mesh Nodes* dialogue, select the provided [breaklines shapefile](https://github.com/hydro-informatics/materials-bm/raw/main/breaklines.zip) in the *Breaklines* dialogue and select *stringdef* from the dropdown menu.
-* In the *Textfile OUTPUT* dialogue, select an output text file (e.g., **C:/temp/stringdef-breaklines.txt**) and click on ***Find node IDs***
 
-```{figure} ../img/qgis-stringdef.png
-:alt: basement stringdef tool
-:name: bm-str-def-tool
 
-BASEmesh's Stringdef tool.
-```
-
-* The *Stringdef* tool now has generated  **stringdef**s in upstream-looking right direction (note: to create new boundaries, the lines need to be drawn from the left riverbank to the right riverbank).
-* Open the resulting text file (**C:/temp/stringdef-breaklines.txt** in the above example) and copy the node list to the bottom of *finalmesh.2dm* with the above-shown format (i.e., start with *NS*, followed by two SPACEs, then the node IDs *nd<sub>i/j </sub>* separated by on SPACE, then *Inflow* and *Outflow*, respectively). *Note: The node IDs my vary from those shown in the figure(s).*
-
-```{figure} ../img/qgis-stringdef-out.png
-:alt: basement stringdef
-:name: bm-str-def
-
-The output of BASEmesh's Stringdef tool: Node IDs of the Inflow and Outflow boundaries.
-```
-
-- Finally, the bottom of the finalmesh.2dm (text editor) should look like this in the text editor (node **ID**s may vary from those in the screenshot):
-
-```{figure} ../img/mod-2dm-bottom.png
-:alt: basement 2dm modify bottom nodes error fix
-:name: mod-2dm-bottom
-
-Modification of the bottom part of the .2dm file.
-```
 
 ## Usage with Numerical Models
 
@@ -374,7 +258,7 @@ The export requires the **DEMto3D** plugin, which can be installed in *QGIS* as 
 * Click on **Install Plugin**.
 * Close the Plugin Manager after the successful installation.
 
-Download the example DEM GeoTIFF [here](https://github.com/hydro-informatics/materials-bm/raw/main/rasters/inn-dem.tif) and add it as a new raster layer in *QGIS* (similar to adding {ref}`basemap`). Then export the DEM to `stl` by opening the DEM 3D printing window from **Rasters** > **DEMto3D** > **DEM 3D printing**. In the popup window (see also {numref}`Fig. %s <qgis-dem3d>`):
+Following the instructions in the above section on {ref}`get-dem`, download the example DEM GeoTIFF [here](https://github.com/hydro-informatics/materials-bm/raw/main/rasters/inn-dem.tif) and add it as a new raster layer in *QGIS* (similar to adding {ref}`basemap`). Then export the DEM to `stl` by opening the DEM 3D printing window from **Rasters** > **DEMto3D** > **DEM 3D printing**. In the popup window (see also {numref}`Fig. %s <qgis-dem3d>`):
 
 * Select the `inn...` DEM as **Layer to print**
 * For **Print extent** find the **Select layer extent** symbol and select the `inn...` DEM layer.
