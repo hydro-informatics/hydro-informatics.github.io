@@ -9,8 +9,8 @@ To get ready, watch the following video and/or make sure to install {ref}`qgis-i
 
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/_0_NOKi-RxY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Sebastian Schwindt <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 
-```{admonition} Videos not showing up (*Firefox Can’t Open This Page*)
-:class: error, dropdown
+```{admonition} If you read: *Videos not showing up (Firefox Can’t Open This Page)*...
+:class: atttention, dropdown
 If videos are not displaying, this might be caused by strict privacy settings. To resolve the issue, either open the video links by clicking on the **Open Site in New Window** button or by changing browser privacy settings (e.g., in [Mozilla Firefox](https://support.mozilla.org/en-US/questions/1108783)).
 ```
 
