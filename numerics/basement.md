@@ -232,7 +232,7 @@ There are two (to three) options to import the results in *QGIS*:
 After data export from *ParaView*:<a name="pv-exp-steps"></a>
 - In *QGIS*, click on the `Layer` menu > `Add Layer` > `Add Delimited Text Layer...`.
 
-```{figure} ../img/qgis-add-lyr.png
+```{figure} ../img/qgis/add-txt-lyr.png
 :alt: basement qgis add layer
 :name: qgis-add-lyr-bm
 

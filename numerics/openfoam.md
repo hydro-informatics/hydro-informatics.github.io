@@ -1,3 +1,4 @@
+(chpt-openfoam)=
 # OpenFOAM
 
 
@@ -10,7 +11,6 @@ Install [*OpenFOAM*](../get-started/install-openfoam) and [*SALOME-HYDRO*](../ge
 ```
 
 This tutorial features the construction of a simple three-dimensional (3d) flume in *SALOME* and a hydrodynamic simulation with *OpenFOAM*.
-
 
 ## Input files
 
@@ -32,7 +32,13 @@ The *OpenFOAM* simulation will require the following files:
 Optional files such as a friction data file or a liquid boundary file can also be implemented, but are not featured here. Read more about optional data files and their formats on the [Telemad2d pre-processing page](tm2d-pre.html#optionals).
 
 
-## Start SALOME or SALOME-HYDRO {#prepro-salome}
+(of-mesh)=
+## Meshing (tutorial under construction)
+
+Text
+
+
+## Start SALOME or SALOME-HYDRO
 
 Launch either *SALOME-HYDRO*:
 

@@ -1,5 +1,5 @@
 (qgis-tutorial)=
-# QGIS tutorial
+# QGIS Tutorial
 
 ```{tip}
 This tutorial involves embedded videos featuring the text descriptions in every section.
@@ -14,7 +14,7 @@ To get ready, watch the following video and/or make sure to install {ref}`qgis-i
 If videos are not displaying, this might be caused by strict privacy settings. To resolve the issue, either open the video links by clicking on the **Open Site in New Window** button or by changing browser privacy settings (e.g., in [Mozilla Firefox](https://support.mozilla.org/en-US/questions/1108783)).
 ```
 
-
+(qgis-project)=
 ## First Project
 
 Once you installed QGIS, launch the program and walk through the following steps to make fundamental settings:
@@ -101,6 +101,7 @@ Most basemaps are provided in the `EPSG:3857 -WGS84 / Pseudo Mercator` coordinat
 
 This section guides through the creation of a point, a line, and a polygon {ref}`shp` (vector data). To read more about such vector data and other spatially explicit data types, read the section on {ref}`geospatial-data`.
 
+(create-point-shp)=
 ### Create a Point Shapefile
 
 Start with loading satellite imagery and a street basemap (see above) in the layers pane. Zoom on central Europe and roughly locate Stuttgart in Southwest Germany. Find the heavily impaired Neckar River in the North of Stuttgart and move in the upstream direction (i.e., Eastern direction), pass the cities of Esslingen and Plochingen until you get to the confluence of the Neckar and the Fils rivers. From there, follow the Fils River in the upstream direction for a couple of hundred meters and locate the PEGELHAUS (i.e., a gauging station at the Fils River - [click to visit](https://www.hvz.baden-wuerttemberg.de/pegel.html?id=00025)). To facilitate finding the gauging station in the future, we will now create a point shapefile as explained in the following video and the analogous instructions below the video.
@@ -129,7 +130,7 @@ Start with loading satellite imagery and a street basemap (see above) in the lay
   * Click **Apply** and **OK**
 * Verify the point settings in the **Attribute Table** (right-click on the *gauges* layer and select **Attribute Table**).
 
-
+(create-line-shp)=
 ### Create a Line Shapefile
 
 Create a **Line Shapefile** called **CenterLine.shp** to draw a centerline of the Fils $\pm$ 200 m around the PEGELHAUS gauge, similar to the above-created point shapefile. Add one *text* field and call it `RiverName`. Then draw a line along the Fils River starting 200 m upstream and ending 200 m downstream of the PEGELHAUS by following the river on the **OpenStreetMap** layer. See more in the following video.
@@ -137,6 +138,7 @@ Create a **Line Shapefile** called **CenterLine.shp** to draw a centerline of th
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/yNuiIlPsguQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 
+(create-polygon-shp)=
 ### Create a Polygon Shapefile
 
 To delineate different zones of roughness (e.g., as needed for a two-dimensional numerical model), create a **Polygon Shapefile** called **FlowAreas.shp**. The file will contain polygons zoning the considered section of the Fils into floodplain and main channel bed. Name the first field `AreaType` (type: *Text*) and the second field `ManningN` (type: *Decimal Number*). See more in the following video and the instructions below the video.
@@ -146,7 +148,9 @@ To delineate different zones of roughness (e.g., as needed for a two-dimensional
 
 To draw the polygons:
 
-* Enable snapping to avoid gaps between floodplain and main channel polygons (**Snapping toolbar** > **Enable Snapping** and **Avoid Polygon Overlapping**)
+* Enable snapping to avoid gaps between floodplain and main channel polygons
+  * Activate the **snapping toolbar**: **View** > **Toolbars** > **Snapping Toolbar** 
+  * Enable snapping from **Snapping toolbar** > **Enable Snapping** and **Avoid Polygon Overlapping**
 * Start drawing by clicking on the map (right-click finalizes Polygon)
 * Draw one polygon of the main channel and after finalizing set:
   * `AreaType`: `MainChannel`
@@ -189,6 +193,10 @@ If the *Crayfish* plugin is installed, an additional *Rasterize* tool will show 
 
 ```{tip}
 The conversion between geospatial data types can be facilitated by using *Python*. Read the section on {ref}`py-conversion` to learn more.
+```
+
+```{admonition} Raster to (polygon/line/point) Vector
+The inverse operation of *Rasterize* is called **Raster to Vector**, which is documented at [https://docs.qgis.org](https://docs.qgis.org/3.16/en/docs/training_manual/complete_analysis/raster_to_vector.html).
 ```
 
 ## QGIS Raster Calculator (Map Algebra)

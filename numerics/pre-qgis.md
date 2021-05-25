@@ -9,57 +9,13 @@ Before diving into this tutorial make sure to...
 2. Read and understand (or watch) this eBook's {ref}`qgis-tutorial`.
 ```
 
-(get-dem)=
-## Digital Elevation Models (DEMs)
-To start any analysis of rivers and fluvial landscapes, a digital elevation model (**DEM**) is required. Nowadays, DEMs often stem from light imaging, detection, and ranging ([LiDAR](https://en.wikipedia.org/wiki/Lidar) combined with bathymetric surveys. Older approaches rely on manual surveying (e.g. with a total station) of cross sections between which the terrain is interpolated. The newer LiDAR employs lights sources and provides terrain assessments up to 2-m deep water. Bathymetric [echo sounding](https://en.wikipedia.org/wiki/Echo_sounding) is necessary to map the ground of deeper waters. Thus, merged LiDAR and echo-sounding datasets produces seamless point clouds of river ecosystems, which may be stored in many different file types.
-
-The first step in modelling a river consist in the conversion of a DEM into a computational mesh. This section guides through the conversion of a DEM into a computational mesh with *QGIS* and the *BASEmesh* plugin. The descriptions refer to the developer's documentation files ([go to the ETH Zurich's *BASEMENT* documentation](https://basement.ethz.ch/download/documentation/docu3.html)). At the end of this tutorial, we will have generated a computational grid in {term}`SMS 2dm` format that is compatible with the {ref}`chpt-basement` and {ref}`chpt-telemac2d` numerical models presented in the next chapters of this eBook.
-
-
-This tutorial uses an application-ready DEM in GeoTIFF {ref}`raster` format. The DEM raster will provide height (Z) information for the computational grids created in the next sections. Therefore, download the example DEM GeoTIFF [here](https://github.com/hydro-informatics/materials-bm/raw/main/rasters/inn-dem.tif) and add it as a new raster layer in *QGIS* (similar to adding {ref}`basemap`).
-
-```{admonition} From LiDAR point clouds to a Raster DEM
-:class: tip
-Terrain survey data are mostly delivered in the shape of an x-y-z point dataset. LiDAR produces massive point clouds, which quickly overcharge even powerful computers. Therefore, LiDAR data may need to be break down to smaller zones of less than approximately 106 points and special LiDAR point processing software (e.g., http://lastools.org/) may be helpful in this task. The range of possible data products and shape from terrain survey is board and this tutorial exemplary uses a set of x-y-z points stored within a text file.
-```
-
-
-```{admonition} OpenFOAM modelers...
-For three-dimensional (3d) modeling with OpenFOAM, the creation of a 2dm file is not necessary. OpenFOAM users can export the terrain in QGIS directly as an `stl` file, as described at the bottom of this section (jump to the {ref}`dem2stl` paragraph).
-```
+The first steps in numerical modeling of a river consist in the conversion of a Digital Elevation Model (**{term}`DEM`**) into a computational mesh. This tutorial guides through the creation of a QGIS project for converting a {term}`DEM` ({term}`GeoTIFF`) into a computational mesh that can be used with various numerical modeling software featured in this eBook. At the end of this tutorial, {ref}`chpt-basement` and {ref}`chpt-telemac` users will have generated a computational grid in the {term}`SMS 2dm` format. {ref}`chpt-openfoam` modelers will have a exported the {term}`DEM` in {term}`STL` file format that still needs to be meshed as explained later in this eBook's *OpenFOAM* {ref}`of-mesh` section.
 
 (start-qgis)=
-## Install the BASEmesh Plugin
+## QGIS Project and Coordinate Reference System
 
-Install *BASEMENT*’s *BASEmesh* Plugin (instructions from the *BASEMENT* System Manual):
-
-* Load the *QGIS* plugin manager: **Plugins** menu > **Manage and Install Plugins**.
-* Go to the **Settings** tab.
-* Scroll to the bottom (**Plugin Repositories** listbox in {numref}`Fig. %s <qgis-plugins>`), click on **Add...**.
-* In the popup window enter:
-  * a name for the new repository (e.g., `BASEmesh Repository`);
-  * the repository address: [https://people.ee.ethz.ch/~basement/qgis_plugins/qgis_plugins.xml](https://people.ee.ethz.ch/~basement/qgis_plugins/qgis_plugins.xml).
-* Click **OK**. The new repository should now be visible in the **Plugin Repositories** listbox. If the connection is **OK**, click on the Close button on the bottom of the window.
-* Verify that the *BASEmesh* plugin is now available in the *QGIS*' **Plugins** menu (see {numref}`Fig. %s <qgis-pluggedin>`).
-
-```{figure} ../img/qgis/bm-plugin.png
-:alt: qgis basement plugins
-:name: qgis-plugins
-
-Add the BASEMENT repository to QGIS' Plugins Manager.
-```
-
-```{figure} ../img/qgis/bm-pluggedin.png
-:alt: qgis basement plugins
-:name: qgis-pluggedin
-
-The BASEmesh plugin is available in QGIS' Plugins menu after the successful installation.
-```
-
-(setup-crs)=
-## Coordinate Reference System
-
-As featured in the {ref}`qgis-tutorial`, a coordinate reference system (CRS) should be set for the project. This example uses data of a river in Bavaria (Germany zone 4), which requires the following CRS:
+Launch QGIS and {ref}`create a new QGIS project <qgis-project>` to get started with this tutorial.
+As featured in the {ref}`qgis-tutorial`, set up a coordinate reference system (CRS) for the project. This example uses data of a river in Bavaria (Germany zone 4), which requires the following CRS:
 
 * In the QGIS top menu go to **Project** > **Properties**.
 * Activate the **CRS** tab.
@@ -78,62 +34,133 @@ Define Germany_Zone_4 as project CRS.
 Save the QGIS project (**Project** > **Save As...**), for example, under the name **prepro-tutorial.qgz**.
 ```
 
-(epd)=
-## Data
+(get-dem)=
+## Digital Elevation Models (DEMs)
+A digital elevation model (**{term}`DEM`**) represents the baseline for any physical analysis of a river ecosystem. Nowadays, {term}`DEM`s often stem from light imaging, detection, and ranging ([LiDAR](https://en.wikipedia.org/wiki/Lidar) combined with bathymetric surveys. Older approaches rely on manual surveying (e.g., with a total station) of cross-sectional profiles and interpolating the terrain between the profiles. The newer LiDAR technique employs lights sources and provides terrain assessments up to 2-m deep water. Bathymetric [echo sounding](https://en.wikipedia.org/wiki/Echo_sounding) is often necessary to map the ground of deeper waters. Thus, merged LiDAR and echo-sounding datasets produces seamless point clouds of river ecosystems, which may be stored in many different file types.
+
+This tutorial uses an application-ready {term}`DEM` in {term}`GeoTIFF` {ref}`raster` format that stems from a LiDAR point cloud. The {term}`DEM` raster provides height (Z) information from a section of a gravel-cobble bed river in South-East Germany, which constitutes the baseline for the computational grids featured in the next sections. To get the provided DEM in the *QGIS* project:
+
+* **Download the example DEM** GeoTIFF [here](https://github.com/hydro-informatics/materials-bm/raw/main/rasters/inn-dem.tif) and save it in the same folder (or a sub-directory) as the above-create **qgz** project.
+* Add it as a new raster layer in *QGIS*:
+  * In *QGIS*' **Browser** panel find the **Project Home** directory where you downloaded the DEM *tif*.
+  * Drag the DEM *tif* from the **Project Home** folder into QGIS' **Layer** panel.
+
+```{admonition} What are QGIS panels again?
+:class: tip
+Learn more in the *QGIS* tutorial on {ref}`qgis-tbx-install`.
+```
+
+* To get a better idea of the project area, add a {ref}`satellite imagery basemap <basemap>` (XYZ tile) under the {term}`DEM` and customize the layer symbology.
 
 
-1. [Download](https://github.com/hydro-informatics/materials-bm/blob/main/points_raw/points.txt) the point file for this tutorial (if necessary, copy the file contents locally into a text editor and save the file as **points.txt** in a local project directory)
-1. [Download](https://github.com/hydro-informatics/materials-bm/raw/main/breaklines.zip) the zipped breaklines shapefile into the project folder and unpack **breaklines.shp**.
+The DEM should now be displayed on the map (if not: right-click on the DEM layer and click on **Zoom to Layer(s)** in the context menu) as shown in {numref}`Fig. %s <qgis-dem-basemap>`.
+
+```{figure} ../img/qgis/dem-basemap.png
+:alt: qgis import raster DEM basemap
+:name: qgis-dem-basemap
+
+Add the BASEMENT repository to QGIS' Plugins Manager.
+```
+
+```{admonition} From LiDAR point clouds to a Raster DEM
+:class: tip
+Terrain survey data are mostly delivered in the shape of an x-y-z point dataset. LiDAR produces massive point clouds, which quickly overcharge even powerful computers. Therefore, LiDAR data may need to be break down to smaller zones of less than approximately 106 points and special LiDAR point processing software (e.g., [LAStools](http://lastools.org/)) may be helpful in this task. The range of possible data products and shape from terrain survey is board and this tutorial exemplary uses a set of x-y-z points stored within a text file.
+```
+
+
+```{admonition} OpenFOAM modelers...
+For three-dimensional (3d) modeling with OpenFOAM, the creation of a 2dm file is not necessary. Therefore, OpenFOAM users can export the terrain in QGIS directly as an {term}`STL` file, as described at the bottom of this section (jump to the {ref}`dem2stl` paragraph).
+```
+
+(make-2dm)=
+## 2dm Mesh for BASEMENT or TELEMAC
+
+The generation of a {term}`SMS 2dm` uses the {ref}`QGIS BASEmesh plugin <get-basemesh>` and requires drawing a
+
+* {ref}`Line Shapefile <create-line-shp>` containing model boundaries and internal breaklines between model regions with different characteristics (section on {ref}`boundary`);
+* {ref}`Line Shapefile <create-line-shp>` containing model boundaries for assigning inflow and outflow conditions (section on {ref}`liquid-boundary`); and a
+* {ref}`Point Shapefile <create-point-shp>` containing markers for the definition of characteristics of model regions (section on {ref}`regions`).
+
+These two shapefiles enable to {ref}`qualm`. Ultimately, height information is {ref}`interpolated to the quality mesh <qualm-interp>` and the resulting mesh is saved as {term}`SMS 2dm` file. The next sections walk through the procedure step by step with detailed explanations. Additional materials and intermediate data products are provided in the supplemental data repository ([materials-bm](https://github.com/hydro-informatics/materials-bm)) for this tutorial.
+
+(get-basemesh)=
+### Get the BASEmesh Plugin
+
+Install *BASEMENT*'s *BASEmesh* Plugin (instructions from the *BASEMENT* System Manual):
+
+* Load the *QGIS* plugin manager: **Plugins** menu > **Manage and Install Plugins**.
+* Go to the **Settings** tab.
+* Scroll to the bottom (**Plugin Repositories** listbox in {numref}`Fig. %s <qgis-plugins>`), click on **Add...**.
+* In the popup window enter:
+  * a name for the new repository (e.g., `BASEmesh Repository`);
+  * the repository address: [https://people.ee.ethz.ch/~basement/qgis_plugins/qgis_plugins.xml](https://people.ee.ethz.ch/~basement/qgis_plugins/qgis_plugins.xml).
+* Click **OK**. The new repository should now be visible in the **Plugin Repositories** listbox. If the connection is **OK**.
+
+```{figure} ../img/qgis/bm-plugin.png
+:alt: qgis basement plugins
+:name: qgis-plugins
+
+Add the BASEMENT repository to QGIS' Plugins Manager.
+```
+
+* Still in the **Plugins** popup window go back to the **All** tab an enter `basemesh` in the search field.
+* Find the **newest BASEmesh** (i.e., **Available version** >= 2.0.0) plugin and click on **Install Plugin**.
+* After the successful installation **Close** the **Plugins** popup window.
+* Verify that the *BASEmesh 2* plugin is now available in the *QGIS*' **Plugins** menu (see {numref}`Fig. %s <qgis-pluggedin>`).
+
+```{figure} ../img/qgis/bm-pluggedin.png
+:alt: qgis basement plugins
+:name: qgis-pluggedin
+
+The BASEmesh 2 plugin is available in QGIS' Plugins menu after the successful installation.
+```
+
 
 
 
 (boundary)=
-## Model Boundary
+### Model Boundary and Breaklines
 
-The model boundary defines the calculation extent and needs to be define within a polygon shapefile that encloses all points in the above produced point shapefile. *QGIS* provides a Convex Hull tool that enables the automated creation of the outer boundary. This tool is used as follows:
+The model boundary defines the model extent and can be divided into regions with different characteristics (e.g., roughness values) through breaklines. BASEmesh requires a {ref}`Line Shapefile <create-line-shp>` that contains both model boundaries and internal breaklines between model regions. For this purpose, {ref}`create-line-shp` with **one Text Field** called **LineType** and call it **breaklines.shp** (**Layer** > **Create Layer** > **New Shapefile Layer**).
+
+It is important that the lines do not overlap to avoid ambiguous or missing definitions of regions and to ensure that all boundary lines form closed regions. Therefore, activate snapping:
+
+* Activate the *Snapping Toolbar*: **View** > **Toolbars** > **Snapping Toolbar**
+* In the **Snapping toolbar** > **Enable Snapping** <img src="../img/qgis/snapping-horseshoe.png">
+* Enable snapping for
+  * **Vertex**, **Segment**, and **Middle of Segments** <img src="../img/qgis/snapping-vertex-segments.png">.
+  * **Snapping on Intersections** <img src="../img/qgis/snapping-intersection.png">.
+
+Next, start to edit **breaklines.shp** by clicking on the yellow pen <img src="../img/qgis/yellow-pen.png">.
 
 
 
-- Right-click on *QGIS*' **Settings** menu, and activate the **Snapping** toolbar checkbox. In the now shown snapping toolbar, activate snapping with a click on the horseshoe icon.
 - Adapt the boundary.shp polygon to a tighter fit of the shapefile nodes by clicking on the **Toggle editing** (pen) symbol and activating the **Vertex Tool** in the toolbar.
 
-```{figure} ../img/qgis-mod-feat.png
-:alt: basement qgis modify feature vertex
-:name: qgis-mod-feat
-
-Toggle editing and enable the Vertex Tool.
-```
-
-- Modify the boundary edges (as shown in {numref}`Fig. %s <qgis-mod-boundary>`): click on the center cross (creates a new point) and dragging it to the next outest boundary point of the DEM points. Note:
-    * The boundary polygon must not be a perfect fit, but it must include all xyz-points with many details in vicinity of the river inflow and outflow regions (dense point cloud in the left part of the point file).
-    * The more precise the boundary the better will be the quality mesh and the faster and more stable will be the simulation.
-    * Regularly save edits by clicking on SAVE **Layer** (floppy disk symbol next to the editing pen symbol)
 
 
-```{figure} ../img/qgis-mod-boundary.png
-:alt: basement qgis modify boundary polygon
-:name: qgis-mod-boundary
 
-Modify the boundary polygon with a click on the center cross (creates a new point) and dragging it to the next outest boundary point of the DEM points.
-```
-
-
-```{figure} ../img/qgis-fin-boundary.png
-:alt: basement qgis boundary polygon
-:name: qgis-fin-boundary
-
-The final boundary (hull of the point cloud).
-```
-
-(breaklines)=
-## Breaklines
-Breaklines indicate, for instance, channel banks and the riverbed, and need to coincide with DEM points (shapefile from [above section](#epd)). Breaklines a stored in a line (vector) shapefile, which is here already provided (**breaklines.shp**). Integrate the breaklines file into the *QGIS* project as follows with a click on *QGIS*' **Layer** menu > **Add Vector Layer...** and select the provided **breaklines.shp** file (if not yet done, [download](https://github.com/hydro-informatics/materials-bm/raw/main/breaklines.zip) and unpack the shapefile).
+Breaklines indicate, for instance, channel banks and the riverbed, and need to be inside the DEM extents. Breaklines a stored in a line (vector) shapefile, which is here already provided (**breaklines.shp**). Integrate the breaklines file into the *QGIS* project as follows with a click on *QGIS*' **Layer** menu > **Add Vector Layer...** and select the provided **breaklines.shp** file (if not yet done, [download](https://github.com/hydro-informatics/materials-bm/raw/main/breaklines.zip) and unpack the shapefile).
 Note: The default layer style **Single Symbol**. For better representation, double-click on the breaklines layer, got to the **Symbology** ribbon and select **Categorized** (or **Graduated**) instead of **Single Symbol** (at the very top of the **Layer Properties** window). In the **Value** field, select **type**, then click the **classify** button on the bottom of the **Layer Properties** window. The listbox will now show the values bank, bed, hole, and all other values. Change color pattern and/or click **OK** on the bottom-right of the **Layer Properties** window.
 
+```{admonition} For complex DEMs...
+:class: tip
+Drawing boundaries manually around large {term}`DEM`s can be very time consuming, in particular if the raw data are a point cloud and not yet converted to a {ref}`raster`.
 
+If you are dealing with a point cloud, consider to use *QGIS* [Convex Hull tool](https://docs.qgis.org/3.16/en/docs/training_manual/vector_analysis/spatial_statistics.html?highlight=convex%20hull#basic-fa-create-a-test-dataset) that draws a tight bounding polygon around points.
+
+If you are dealing with a large {term}`GeoTIFF`, consider using QGIS' [Raster to Vector](https://docs.qgis.org/3.16/en/docs/training_manual/complete_analysis/raster_to_vector.html) tool.
+```
+
+Download the [zipped breaklines shapefile]](https://github.com/hydro-informatics/materials-bm/raw/main/shapefiles/breaklines.zip) the zipped breaklines shapefile into the project folder and unpack **breaklines.shp**.
+
+(liquid-boundary)=
+### Liquid (Hydraulic) Boundaries
+
+Draw **liquid-boundaries.shp**
 
 (regions)=
-## Region Markers for Quality Meshing
+### Region Markers
 
 Region markers are placed within regions defined by breaklines and assign for instance material identifiers (MATIDs) and maximum mesh areas to ensure high mesh quality (e.g., the mesh area should be small in the active channel bed and can be wider on floodplains). To create a new region marker file:
 
@@ -149,7 +176,7 @@ Create a new point shapefile for region definitions from QGIS' Layer menu.
 - In the newly opened **New Shapefile Layer** window, make the following definitions (see also {numref}`Fig. %s <qgis-reg-lyr>`).
     * Define the **File name** as **region-points.shp** (or similar)
     * Ensure the **Geometry type** is **Point**
-    * The **CRS** corresponds to Germany Zone 4 ({ref}`see project CRS <setup-crs>`)
+    * The **CRS** corresponds to Germany Zone 4 ({ref}`see project CRS <start-qgis>`)
     * Add three **New Field**s (in addition to the default **Integer** type **ID** field):
       * **max_area** = **Decimal number** (**length** = 10, **precision** = 3)
       * **MATID** = **Whole number** (**length** = 3)
@@ -180,17 +207,16 @@ After the successful creation, right-click on the new REGION-**points** layer an
 Example for distributing region points in the project boundaries (remark: the max_area value may differ and is expert assessment-driven). After the placement of all region points, Save Layer Edits (floppy disk symbol) and Toggle Editing (pencil symbol – turn off).
 ```
 
+Alternatively, download the [zipped region points shapefile]](https://github.com/hydro-informatics/materials-bm/raw/main/shapefiles/breaklines.zip) into the project folder.
+
 (qualm)=
-## Quality meshing
+### Create a Quality Mesh
 
-A quality mesh accounts for the definitions made within the regions shapefile ([see above section on {ref}`regions`), but it does not include elevation data. Thus, after generating a quality mesh, elevation information needs to be added. This section first explains the {ref}`qualm-gen` and then the {ref}`qualm-interp`.
+A quality mesh accounts for the definitions made within the regions shapefile ([see above section on {ref}`regions`), but it does not include elevation data. Thus, after generating a quality mesh, elevation information needs to be added. This section first explains the quality mesh followed by the interpolation of bottom elevations.
 
-(qualm-gen)=
-### Quality mesh generation
 In *QGIS*' **Plugins** menu, click on **BASEmesh 2** > **QUALITY MESHING** to open the Quality meshing wizard. Make the following settings in the window (see also {numref}`Fig. %s <qgis-qualm>`):
 
-1. **Model boundary** = **boundary** ([see above section](#boundary)
-1. **breaklines** = **breaklines** ([see above section](#breaklines)
+1. **Model boundary and breaklines** = **boundary** ([see above section](#boundary)
 1. **Regions** = **regions-points** ([see above section](#regions) and activate all checkboxes
 1. In the **Shapefile output** canvas, click on the **browse** button to define the output mesh as (for example) **base_qualitymesh.shp**
 
@@ -204,7 +230,7 @@ BASEmesh's Quality Meshing wizard.
 Quality meshing may take time. After successful mesh generation the file **prepro-tutorial_quality-mesh.2dm** will have been generated.
 
 (qualm-interp)=
-### Bottom Elevation Interpolation on a Quality Mesh
+### Interpolate Bottom Elevation to Quality Mesh
 
 *BASEmesh*’s **Interpolation** wizard projects elevation data onto the quality mesh by interpolation from another mesh or a DEM raster. Here, we use the provided [DEM GeoTIFF](https://github.com/hydro-informatics/materials-bm/raw/main/rasters/inn-dem.tif). To run the interpolation, open *BASEmesh*’s **Interpolation** wizard (*QGIS* **Plugins** menu > **BASEmesh 2** > **Interpolation**) and (see also {numref}`Fig. %s <qgis-qualm-interp>`):
 
@@ -239,8 +265,7 @@ In order to identify the node ids on the inflow and outflow boundary lines, sele
 
 
 
-
-## Usage with Numerical Models
+### Usage with Numerical Models
 
 The 2dm mesh file produced in this tutorial can be directly used with {ref}`chpt-basement`, where only the definition of properties of the geometric (e.g., roughness coefficients) and liquid (e.g., discharges) are required as explained later.
 
@@ -249,7 +274,7 @@ For the usage with {ref}`chpt-telemac2d`, the 2dm file requires a conversion to 
 (dem2stl)=
 ## Export DEM as STL
 
-The `stl` (standard tessellation language) file format is native to CAD software and particularly used for the representation of three-dimensional (3d) structures in the form of unstructured triangulated surfaces. `stl` files can be read by pre-processing software for OpenFOAM and this section explains how to convert a GeoTIFF DEM into an `stl` file.
+The {term}`STL` (standard tessellation language) file format is native to CAD software and particularly used for the representation of three-dimensional (3d) structures in the form of unstructured triangulated surfaces. {term}`STL` files can be read by pre-processing software for OpenFOAM and this section explains how to convert a GeoTIFF DEM into an {term}`STL` file.
 
 The export requires the **DEMto3D** plugin, which can be installed in *QGIS* as follows:
 
@@ -258,7 +283,7 @@ The export requires the **DEMto3D** plugin, which can be installed in *QGIS* as 
 * Click on **Install Plugin**.
 * Close the Plugin Manager after the successful installation.
 
-Following the instructions in the above section on {ref}`get-dem`, download the example DEM GeoTIFF [here](https://github.com/hydro-informatics/materials-bm/raw/main/rasters/inn-dem.tif) and add it as a new raster layer in *QGIS* (similar to adding {ref}`basemap`). Then export the DEM to `stl` by opening the DEM 3D printing window from **Rasters** > **DEMto3D** > **DEM 3D printing**. In the popup window (see also {numref}`Fig. %s <qgis-dem3d>`):
+Following the instructions in the above section on importing {ref}`get-dem`, add the [example DEM GeoTIFF](https://github.com/hydro-informatics/materials-bm/raw/main/rasters/inn-dem.tif) as project layer in *QGIS*. Then export the DEM to {term}`STL` by opening the DEM 3D printing window from **Rasters** > **DEMto3D** > **DEM 3D printing**. In the popup window (see also {numref}`Fig. %s <qgis-dem3d>`):
 
 * Select the `inn...` DEM as **Layer to print**
 * For **Print extent** find the **Select layer extent** symbol and select the `inn...` DEM layer.
@@ -281,9 +306,7 @@ This error message indicates that the DEM GeoTIFF is not correctly loaded or not
 Setup the DEM 3D printing properties.
 ```
 
-
 The export starts and will take approximately 1-2 minutes. The resulting **STL** file can be opened with CAD software such as {ref}`salome-install` modules or {ref}`freecad-install`. The result looks similar to {numref}`Fig. %s <qgis-stl-exported>` (depending on the **Height (m)** value used).
-
 
 ```{figure} ../img/qgis/stl-exported.png
 :alt: basement export stl
