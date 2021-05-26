@@ -1,0 +1,1550 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Markdown and Code Documentation &#8212; Hydro-Informatics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://hydro-informatics.github.io/documentation/documentation.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Glossary" href="glossary.html" />
+    <link rel="prev" title="Create a GUI" href="../exercises/ex-gui.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/icon.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  Get Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../lectures/classroom.html">
+   The Virtual Classroom
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/lectures.html">
+     Lectures and Exercises
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/take_seat.html">
+     The Virtual Classroom
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../get-started/software.html">
+   Software Resources
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/vm.html">
+     Virtual Machines and Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/ide.html">
+     Integrated Development Environments (IDEs)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python-basics/pyinstall.html">
+     Install Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/git.html">
+     Introduction to git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/geo.html">
+     Geospatial Software
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-openfoam.html">
+     OpenFOAM (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-telemac.html">
+     TELEMAC (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/others.html">
+     Other Software Resources
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Python Basics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/python.html">
+   First Steps
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pybase.html">
+     Hello Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyerror.html">
+     Errors, Logging, and Debugging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyloop.html">
+     Loops and Conditional Statements
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/modularize.html">
+   Object Orientation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyfun.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pypckg.html">
+     Packages, Modules and Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/classes.html">
+     Object Orientation and Classes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/data-handling.html">
+   Data and File Handling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pynum.html">
+     Load and Write Basic Data Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/xml.html">
+     Workbooks (xlsx) and JSON
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyplot.html">
+     Plotting
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../jupyter/pystyle.html">
+   Code Style and Conventions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../jupyter/gui.html">
+   Graphical User Interfaces (GUIs)
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/python-exercises.html">
+   Python Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-ms.html">
+     1d Hydraulics (Manning-Strickler Formula)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sp.html">
+     Reservoir Volume (Sequent Peak Algorithm)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-floods.html">
+     Calculate flood return periods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sediment.html">
+     1d Sediment Transport
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-gui.html">
+     Create a GUI
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Documentation
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Markdown and Code Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="glossary.html">
+   Glossary
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/docs-exercises.html">
+   Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-git.html">
+     Git and markdown
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Geospatial Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/geospatial-data.html">
+   Geospatial Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/use-qgis.html">
+   QGIS Tutorial
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../geopy/geo-python.html">
+   Geospatial Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-pckg.html">
+     Geospatial Open Source Python Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-shp.html">
+     Shapefile (Vector Dataset) Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-raster.html">
+     Raster (Gridded) Dataset Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-convert.html">
+     Raster to Vector Conversion and Vice Versa
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-arcpy.html">
+     The Commercial arcpy Library
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/geo-exercises.html">
+   Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-geco.html">
+     Script a Habitat Suitability Map
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Numerical Modeling
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/numerical-modeling.html">
+   Principles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/pre-qgis.html">
+   Pre-processing with QGIS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/basement.html">
+   BASEMENT
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerics/telemac.html">
+   TELEMAC
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/telemac2d.html">
+     Telemac2d
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/telemac3d.html">
+     3d modeling with TELEMAC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/telemac-gaia.html">
+     Gaia Workflow
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/openfoam.html">
+   OpenFOAM
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/calibration.html">
+   Calibration and Valdiation
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Troubleshoot
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
+   Programming Tools and IDEs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
+     Debugging Anaconda
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-python.html">
+     Debugging Python Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
+     Debugging Jupyter
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
+   Numerical Models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
+     Debugging BASEMENT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
+     Debugging TELEMAC/SALOME
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-os.html">
+   Operating Systems (Linux and VMs)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
+     Debugging Debian Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
+     Debugging Virtual Machines
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Disclaimer and License
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/documentation/documentation.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/hydro-informatics/hydro-informatics.github.io"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#document-your-work">
+   Document your work
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-to-document">
+   What to document?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#present-the-software">
+     Present the software
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#requirements">
+     Requirements
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#installation">
+     Installation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#usage">
+     Usage
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#troubleshooting">
+     Troubleshooting
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#contributing">
+     Contributing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#markdown">
+   Markdown
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#markdown-editors-ides">
+     Markdown Editors (IDEs)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#markdown-command-overview-and-image-implementation">
+     Markdown Command Overview and Image Implementation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#itemization-un-numbered-lists">
+     Itemization (Un-numbered Lists)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tables">
+     Tables
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#math-expressions-equations">
+     Math Expressions: Equations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#html-markdown">
+   Html - Markdown
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#greek-letters">
+     Greek Letters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arrows-and-operators">
+     Arrows and Operators
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#miscellaneous-symbols">
+     Miscellaneous Symbols
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wikis">
+   Wikis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#restructuredtext-sphinx-and-readthedocs">
+   reStructuredText, Sphinx, and readthedocs
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="markdown-and-code-documentation">
+<h1>Markdown and Code Documentation<a class="headerlink" href="#markdown-and-code-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="document-your-work">
+<h2>Document your work<a class="headerlink" href="#document-your-work" title="Permalink to this headline">¶</a></h2>
+<p>Leonardo Da Vinci used journals to sketch, develop and eventually pass on his ideas. Alexander von Humboldt documented many of his journeys in travel journals and Marie Skłodowska Curie wrote down the theory of “radioactivity” using pens and papers. Today,  writing media have evolved into infinite digital oceans with sophisticated tools for documenting code and ideas. Also, how we look for and retrieve information has evolved from searching for lexicon entries to using keywords in search engines.
+So if you have made an ingenious discovery, you want to make sure you document it well so that others can understand and use it. You also want to make sure that others can find your stroke of genius in digital media. You also want to make sure that others can find your stroke of genius in digital media. One of the most widespread methods for documenting and spreading ideas is the use of so-called wikis (from Hawaiian: <em>fast</em>), which can easily be written in markdown language. <em>GitHub</em> provides comprehensive, easy-to-read explanations for <a class="reference external" href="https://guides.github.com/features/wikis/">project documentation</a> with <em>Markdown</em> as core element. This page presents the basics of the markdown language to leverage wikis. Moreover, the powerful alternative of using <em>reStructuredText</em> in <em>Sphinx</em>-based documentations is introduced.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><a class="reference external" href="https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/"><em>Write the Docs</em></a> provides comprehensive guides for code documentation. Take about 10 minutes to read how to save days of work.</p>
+</div>
+</div>
+<div class="section" id="what-to-document">
+<h2>What to document?<a class="headerlink" href="#what-to-document" title="Permalink to this headline">¶</a></h2>
+<p>Good code documentation starts with a qualitative and concise description of software (e.g., a <em>Python</em> package) capacities, products, and requirements. It also provides workflows for installing and using the software, at best with illustrative examples. Finally, a good troubleshooting section enables users to find problems in their data setup or software usage. To enable future development and maintenance, a <em>Contributing</em> section provides * good-practice guidelines* for coding new software capacities.</p>
+<div class="section" id="present-the-software">
+<h3>Present the software<a class="headerlink" href="#present-the-software" title="Permalink to this headline">¶</a></h3>
+<p>This section intends to advertise the benefits and capacities of the software: Tell users briefly the purpose of the software, why it is unique and what it produces.</p>
+</div>
+<div class="section" id="requirements">
+<h3>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h3>
+<p>This section should answer the following questions:</p>
+<ul class="simple">
+<li><p>What system requirements are needed?</p></li>
+<li><p>Which dependencies does the software have (e.g., other <em>Python</em> packages such as <a class="reference internal" href="../jupyter/pynum.html#numpy"><span class="std std-ref">NumPy</span></a>)?</p></li>
+<li><p>What input data does a user need to run the software?</p></li>
+</ul>
+</div>
+<div class="section" id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
+<p>Describe step-by-step the installation of the software (e.g., how to download and access your <em>Python</em> package). Screenshots can be helpful here. At best, the <em>Requirements</em> section made it clear what users need to proceed with the installation.</p>
+</div>
+<div class="section" id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h3>
+<p>Describe how the software can be used, starting with basics such as importing the software as <em>Python</em> package. Mention possible pre- and post-processing for input and output data, respectively. If available, add more complex functionalities consecutively in a logical order.</p>
+<p>To truly make your software useful to others, add a case study. Most users will not read the detailed code documentation until they get the software to run once and see what it can do. A use case also helps to check the logic of your code and gives users the opportunity to bridge imperfect code documentation sections to their workflow. This can sometimes be necessary, even if your code is certainly perfect and the documentation is foolproof.</p>
+</div>
+<div class="section" id="troubleshooting">
+<h3>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h3>
+<p>Sure, your code is error-free and of course, only the user makes mistakes. Show compassion and integrate specific <a class="reference internal" href="../jupyter/pyerror.html#try-except"><span class="std std-ref">Exception Handling with try - except</span></a> in the source code, which point out possible error sources. These error (and maybe even warning) messages should all be listed in a <em>Troubleshoot</em> section of the code documentation. Any source of error (message) should be documented regarding the following aspects:</p>
+<ul class="simple">
+<li><p>Cause: Possible reasons for why an error occurs.</p></li>
+<li><p>Remedy: Steps for troubleshooting an error.</p></li>
+</ul>
+</div>
+<div class="section" id="contributing">
+<h3>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h3>
+<p>Your software is brilliant. To make the software even more brilliant, foolproof, and powerful, it is a great idea (actually: an absolute must) to get more authors on the development team. However, any other author likely has individual preferences when it comes to code standards. So make sure to set up clear rules for other contributors from the beginning. For example, define clear code conventions as explained in the <a class="reference internal" href="../jupyter/pystyle.html#chpt-style"><span class="std std-ref">Code Style and Conventions</span></a> section.</p>
+</div>
+</div>
+<div class="section" id="markdown">
+<h2>Markdown<a class="headerlink" href="#markdown" title="Permalink to this headline">¶</a></h2>
+<p><em>Markdown</em> was created in 2004 and is a simple markup language that is intuitive and easy to learn. Markup languages structure the content of plain text documents regarding the way a document is displayed to end-users (<a class="reference internal" href="glossary.html#term-Rich-Text-Format"><span class="xref std std-term">Rich Text Format</span></a>). Other popular markup languages are for example <a class="reference external" href="https://en.wikipedia.org/wiki/TeX">TeX</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/XML">XML (Extensible Markup Language)</a>. <em>Markdown</em> became a popular tool for writing syntactically distinguishable computer text that is then translated into <a class="reference internal" href="glossary.html#term-Rich-Text-Format"><span class="xref std std-term">Rich Text Format</span></a> flavor. Here is an example of how <em>Markdown</em> works:</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="fa4aadf3-11b3-4cb9-acda-9ed02002cac7" name="d0baeef2-5081-41d3-aa99-e9a8ed2dcee8" type="radio">
+</input><label class="tabbed-label" for="fa4aadf3-11b3-4cb9-acda-9ed02002cac7">
+Raw Markdown</label><div class="tabbed-content docutils">
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># Better than Word-like rich text editors</span>
+<span class="ge">*OS*</span>-independent functionality:
+<span class="k">-</span> Avoid formatting of the same kind of thing redundantly (and inconsistently)
+<span class="k">-</span> Backwards compatibility
+<span class="k">-</span> Formulae handling
+<span class="k">-</span> ... and many more ...
+</pre></div>
+</div>
+</div>
+<input id="2bfca2a4-11c9-479c-a933-43b830ef7515" name="d0baeef2-5081-41d3-aa99-e9a8ed2dcee8" type="radio">
+</input><label class="tabbed-label" for="2bfca2a4-11c9-479c-a933-43b830ef7515">
+Rendered</label><div class="tabbed-content docutils">
+<p><strong>Better than Word-like rich text editors</strong></p>
+<p><em>OS</em>-independent functionality:</p>
+<ul class="simple">
+<li><p>Avoid formatting of the same kind of thing redundantly (and inconsistently)</p></li>
+<li><p>Backwards compatibility</p></li>
+<li><p>Formulae handling</p></li>
+<li><p>… and many more …</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="markdown-editors-ides">
+<h3>Markdown Editors (IDEs)<a class="headerlink" href="#markdown-editors-ides" title="Permalink to this headline">¶</a></h3>
+<p>Many text editors provide <em>Markdown</em> add-ons and <em>Markdown</em>-only editors are losing their significance more and more. Editors that simultaneously support <em>Markdown</em> and programming languages like <em>Python</em> or <em>R</em> are state of the art and therefore recommended.</p>
+<p>Basic text editors that support <em>Markdown</em> are listed <a class="reference external" href="../get-started/others.html#npp">here</a>. Popular and multi-platform <em>IDE</em>s for editing <em>Markdown</em> (<code class="docutils literal notranslate"><span class="pre">.md</span></code>) files are <a class="reference internal" href="../get-started/ide.html#install-atom"><span class="std std-ref">Atom</span></a> (for combination with <em>Python</em>, <em>R</em>, <em>C/C++</em>, <em>JavaScript</em>, <em>html</em>, <em>CSS</em>, and many more), and <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a> or <a class="reference internal" href="../get-started/ide.html#pycharm"><span class="std std-ref">PyCharm with Anaconda</span></a> (for combination with <em>Python</em> or <em>R</em>).</p>
+</div>
+<div class="section" id="markdown-command-overview-and-image-implementation">
+<h3>Markdown Command Overview and Image Implementation<a class="headerlink" href="#markdown-command-overview-and-image-implementation" title="Permalink to this headline">¶</a></h3>
+<p>The following table and sections provide an overview of basic markdown commands. There are much more options out there, which you can find by using your favorite search engine with the keywords <code class="docutils literal notranslate"><span class="pre">markdown</span></code> <code class="docutils literal notranslate"><span class="pre">guide</span></code>.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Feature</p></th>
+<th class="text-align:left head"><p>Code</p></th>
+<th class="text-align:left head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>Blockquote</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">|</span>&#160;&#160;&#160;&#160; <span class="pre">A</span> <span class="pre">quote</span></code></p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">|</span></code>      A quote</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Bold text</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">**Bold**</span></code></p></td>
+<td class="text-align:left"><p><strong>Bold</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Code block (inline)</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">inline</span></code> <code class="docutils literal notranslate"><span class="pre">`code`</span> </code></p></td>
+<td class="text-align:left"><p>inline <code class="docutils literal notranslate"><span class="pre">`code`</span> </code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Heading 1</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Heading</span> <span class="pre">1</span></code></p></td>
+<td class="text-align:left"><p><strong>Heading 1</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Heading 2</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">##</span> <span class="pre">Heading</span> <span class="pre">2</span></code></p></td>
+<td class="text-align:left"><p><strong>Heading 2</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Heading 3</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">###</span> <span class="pre">Heading</span> <span class="pre">3</span></code></p></td>
+<td class="text-align:left"><p><em><strong>Heading 3</strong></em></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Horizontal rule</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">***</span></code> or <code class="docutils literal notranslate"><span class="pre">===</span></code></p></td>
+<td class="text-align:left"><p>——-</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Hyperlink</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">[Link](https://fruitsinfo.com)</span></code></p></td>
+<td class="text-align:left"><p><a class="reference external" href="https://fruitsinfo.com">Link</a></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Hyperlink to section</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">[Link](https://fruitsinfo.com)#apples</span></code></p></td>
+<td class="text-align:left"><p><a class="reference external" href="https://fruitsinfo.com">Link to apple-section</a></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Image</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">![ImgName](https://image-address/image.png)</span></code></p></td>
+<td class="text-align:left"><p><img alt="ImgName" src="https://raw.githubusercontent.com/RiverArchitect/Media/master/images/logo_small.ico" /></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Italic text</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">*italic*</span></code></p></td>
+<td class="text-align:left"><p><em>italic</em></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Numbered list item</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">1.</span> <span class="pre">numbered</span> <span class="pre">item</span></code></p></td>
+<td class="text-align:left"><p>1. Numbered item</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Reference (defined)</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">[Defined</span> <span class="pre">Reference][wiki]</span></code></p></td>
+<td class="text-align:left"><p><a class="reference external" href="https://wikipedia.org">Defined Reference</a></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Reference (definition)</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">[wiki]:</span> <span class="pre">https://wikipedia.org</span></code></p></td>
+<td class="text-align:left"><p><em>Place at file bottom</em></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Strikethrough</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">~~Strikethrough~~</span> </code></p></td>
+<td class="text-align:left"><p>~~Strikethrough~~</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="itemization-un-numbered-lists">
+<h3>Itemization (Un-numbered Lists)<a class="headerlink" href="#itemization-un-numbered-lists" title="Permalink to this headline">¶</a></h3>
+<p>Itemized list section can be produced using <code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">+</span></code>, or <code class="docutils literal notranslate"><span class="pre">-</span></code> symbols with tabs that determine the list indentation:</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="2d9639ab-b434-4236-a05d-349cd50bb12c" name="e6de650f-ab44-44f8-9466-88ed0c5e4810" type="radio">
+</input><label class="tabbed-label" for="2d9639ab-b434-4236-a05d-349cd50bb12c">
+Raw Markdown</label><div class="tabbed-content docutils">
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="k">*</span> level 1 item
+    <span class="k">-</span> level 2 item
+    <span class="k">-</span> another level 2 item
+        + level 3 item
+<span class="k">*</span> next level 1 item
+</pre></div>
+</div>
+</div>
+<input id="cfe933ce-259b-4815-84ca-630961d5ce84" name="e6de650f-ab44-44f8-9466-88ed0c5e4810" type="radio">
+</input><label class="tabbed-label" for="cfe933ce-259b-4815-84ca-630961d5ce84">
+Rendered</label><div class="tabbed-content docutils">
+<ul class="simple">
+<li><p>level 1 item</p>
+<ul>
+<li><p>level 2 item</p></li>
+<li><p>another level 2 item</p>
+<ul>
+<li><p>level 3 item</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>next level 1 item</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="tables">
+<h3>Tables<a class="headerlink" href="#tables" title="Permalink to this headline">¶</a></h3>
+<p>Table columns are separated by a <code class="docutils literal notranslate"><span class="pre">|</span></code> sign. The first row determines row headers and the second row the alignment through the use of <code class="docutils literal notranslate"><span class="pre">:</span></code> (see below example).</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="b36ff7f5-9423-4d9b-93e2-db09cb13f281" name="04256ba7-9c8e-4dac-b7e9-c99dfab017ac" type="radio">
+</input><label class="tabbed-label" for="b36ff7f5-9423-4d9b-93e2-db09cb13f281">
+Raw Markdown</label><div class="tabbed-content docutils">
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>| Fruit | Kingdom | Genus |
+|-------|:-------:|------:|
+|Banana | Plantae | Musa  |
+|Jackfruit|Plantae|Artocarpus|
+</pre></div>
+</div>
+</div>
+<input id="94af1cfd-fd7b-4a73-81f8-1fffab2b3033" name="04256ba7-9c8e-4dac-b7e9-c99dfab017ac" type="radio">
+</input><label class="tabbed-label" for="94af1cfd-fd7b-4a73-81f8-1fffab2b3033">
+Rendered</label><div class="tabbed-content docutils">
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fruit</p></th>
+<th class="text-align:center head"><p>Kingdom</p></th>
+<th class="text-align:right head"><p>Genus</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Banana</p></td>
+<td class="text-align:center"><p>Plantae</p></td>
+<td class="text-align:right"><p>Musa</p></td>
+</tr>
+<tr class="row-odd"><td><p>Jackfruit</p></td>
+<td class="text-align:center"><p>Plantae</p></td>
+<td class="text-align:right"><p>Artocarpus</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Converting complex tables from workbooks (e.g., from <em>LibreOffice Calc</em> or <em>MS Excel</em>) is possible with many online tools, and here is just one example from Dave Johnson: <a class="reference external" href="https://thisdavej.com/copy-table-in-excel-and-paste-as-a-markdown-table/">https://thisDaveJ.com</a>.</p>
+</div>
+<div class="section" id="math-expressions-equations">
+<h3>Math Expressions: Equations<a class="headerlink" href="#math-expressions-equations" title="Permalink to this headline">¶</a></h3>
+<p>Math expressions and equations must be implemented as text in standard <em>Markdown</em>. <em>GitHub</em>s markdown interpreter does not support many external <em>TeX</em>-like equation renderers for reasons of security. However, <em>GitHub</em> users can still render <em>TeX</em>-like equations with the following code:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://render.githubusercontent.com/render/math?math=sin{\alpha} = \sqrt{1-cos^{2}\alpha}&quot;</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>This results in <img alt="https://render.githubusercontent.com/render/math?math=sin{alpha}=sqrt{1-cos^{2}alpha}" src="https://render.githubusercontent.com/render/math?math=sin{alpha}=sqrt{1-cos^{2}alpha}" /></p>
+<p>Note that the equation starts after <code class="docutils literal notranslate"><span class="pre">math&amp;math=</span></code>. Thus for using the math snippet in a document, copy and modify the following expression <code class="docutils literal notranslate"><span class="pre">&lt;img</span> <span class="pre">src=&quot;https://render.githubusercontent.com/render/math?math=TYPE</span> <span class="pre">=</span>&#160; <span class="pre">EQUATION</span> <span class="pre">HERE&quot;&gt;</span></code>.</p>
+</div>
+</div>
+<div class="section" id="html-markdown">
+<h2>Html - Markdown<a class="headerlink" href="#html-markdown" title="Permalink to this headline">¶</a></h2>
+<p><em>html</em> structures can be flawlessly used in <em>Markdown</em>, which itself is nothing else than simplified <em>html</em>. Therefore, any <em>html</em> structure can be used within markdown and the above-shown equation implementation already represents the first example for <em>html</em> usage in a <em>Markdown</em> document. The following sections provide an overview of some more or less frequently used <em>html</em> symbols that also work with <em>Markdown</em>.</p>
+<div class="section" id="greek-letters">
+<h3>Greek Letters<a class="headerlink" href="#greek-letters" title="Permalink to this headline">¶</a></h3>
+<p>To use greek letters in inline text, use <em>html</em> language, where <code class="docutils literal notranslate"><span class="pre">&amp;lettername;</span></code> produces the desired <em>Greek</em> letter symbol (e.g., type <code class="docutils literal notranslate"><span class="pre">&amp;delta;</span></code> to output δ or <code class="docutils literal notranslate"><span class="pre">&amp;Delta;</span></code> to output a capital letter Δ). The following table provides an overview of Greek letter symbols.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Letter</p></th>
+<th class="head"><p>Code</p></th>
+<th class="head"><p>letter</p></th>
+<th class="head"><p>code</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Α</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;Alpha;</span></code></p></td>
+<td><p>α</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;alpha;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Β</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;Beta;</span></code></p></td>
+<td><p>β</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;beta;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Γ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;Gamma;</span></code></p></td>
+<td><p>γ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;gamma;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Δ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;Delta;</span></code></p></td>
+<td><p>δ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;delta;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Ε</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;Epsilon;</span></code></p></td>
+<td><p>ε</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;epsilon;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Ζ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;Zeta;</span></code></p></td>
+<td><p>ζ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;zeta;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Η</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;Eta;</span></code></p></td>
+<td><p>η</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;eta;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Θ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;Theta;</span></code></p></td>
+<td><p>θ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;theta;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Ι</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;Iota;</span></code></p></td>
+<td><p>ι</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;iota;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Κ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;Kappa;</span></code></p></td>
+<td><p>κ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;kappa;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Λ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;Lambda;</span></code></p></td>
+<td><p>λ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;lambda;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Μ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;Mu;</span></code></p></td>
+<td><p>μ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;mu;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Ν</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;Nu;</span></code></p></td>
+<td><p>ν</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;nu;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Ξ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;Xi;</span></code></p></td>
+<td><p>ξ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;xi;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Ο</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;Omicron;</span></code></p></td>
+<td><p>ο</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;omicron;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Π</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;Pi;</span></code></p></td>
+<td><p>π</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;pi;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Ρ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;Rho;</span></code></p></td>
+<td><p>ρ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;rho;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Σ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;Sigma;</span></code></p></td>
+<td><p>σ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;sigma;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Τ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;Tau;</span></code></p></td>
+<td><p>τ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;tau;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Υ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;Upsilon;</span></code></p></td>
+<td><p>υ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;upsilon;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Φ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;Phi;</span></code></p></td>
+<td><p>φ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;phi;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Χ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;Chi;</span></code></p></td>
+<td><p>χ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;chi;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Ψ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;Psi;</span></code></p></td>
+<td><p>ψ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;psi;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Ω</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;Omega;</span></code></p></td>
+<td><p>ω</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;omega;</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="arrows-and-operators">
+<h3>Arrows and Operators<a class="headerlink" href="#arrows-and-operators" title="Permalink to this headline">¶</a></h3>
+<p>Arrows and operators can also be implemented as <em>html</em> symbols. The following table provides an overview.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Arrows</p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p>Operators (1)</p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p>Operators (2)</p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p>Operators (3)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>←</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;larr;</span></code></p></td>
+<td><p></p></td>
+<td><p>∀</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;forall;</span></code></p></td>
+<td><p></p></td>
+<td><p>∗</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;lowast;</span></code></p></td>
+<td><p></p></td>
+<td><p>∼</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;sim;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>↑</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;uarr;</span></code></p></td>
+<td><p></p></td>
+<td><p>∂</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;part;</span></code></p></td>
+<td><p></p></td>
+<td><p>√</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;radic;</span></code></p></td>
+<td><p></p></td>
+<td><p>≅</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;cong;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>→</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;rarr;</span></code></p></td>
+<td><p></p></td>
+<td><p>∃</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;exist;</span></code></p></td>
+<td><p></p></td>
+<td><p>∝</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;prop;</span></code></p></td>
+<td><p></p></td>
+<td><p>≈</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;asymp;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>↓</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;darr;</span></code></p></td>
+<td><p></p></td>
+<td><p>∅</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;empty;</span></code></p></td>
+<td><p></p></td>
+<td><p>∞</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;infin;</span></code></p></td>
+<td><p></p></td>
+<td><p>≠</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;ne;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>↔</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;harr;</span></code></p></td>
+<td><p></p></td>
+<td><p>∇</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;nabla;</span></code></p></td>
+<td><p></p></td>
+<td><p>∠</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;ang;</span></code></p></td>
+<td><p></p></td>
+<td><p>≡</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;equiv;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>↵</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;crarr;</span></code></p></td>
+<td><p></p></td>
+<td><p>∈</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;isin;</span></code></p></td>
+<td><p></p></td>
+<td><p>∧</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;and;</span></code></p></td>
+<td><p></p></td>
+<td><p>≤</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;le;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>⇐</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;lArr;</span></code></p></td>
+<td><p></p></td>
+<td><p>∉</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;notin;</span></code></p></td>
+<td><p></p></td>
+<td><p>∨</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;or;</span></code></p></td>
+<td><p></p></td>
+<td><p>≥</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;ge;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>⇑</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;uArr;</span></code></p></td>
+<td><p></p></td>
+<td><p>∋</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;ni;</span></code></p></td>
+<td><p></p></td>
+<td><p>∩</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;cap;</span></code></p></td>
+<td><p></p></td>
+<td><p>⊂</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;sub;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>⇒</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;rArr;</span></code></p></td>
+<td><p></p></td>
+<td><p>∏</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;prod;</span></code></p></td>
+<td><p></p></td>
+<td><p>∪</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;cup;</span></code></p></td>
+<td><p></p></td>
+<td><p>⊃</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;sup;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>⇓</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;dArr;</span></code></p></td>
+<td><p></p></td>
+<td><p>∑</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;sum;</span></code></p></td>
+<td><p></p></td>
+<td><p>∫</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;int;</span></code></p></td>
+<td><p></p></td>
+<td><p>⊄</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;nsub;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>⇔</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;hArr;</span></code></p></td>
+<td><p></p></td>
+<td><p>−</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;minus;</span></code></p></td>
+<td><p></p></td>
+<td><p>⋅</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;sdot;</span></code></p></td>
+<td><p></p></td>
+<td><p>⊥</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;perp;</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="miscellaneous-symbols">
+<h3>Miscellaneous Symbols<a class="headerlink" href="#miscellaneous-symbols" title="Permalink to this headline">¶</a></h3>
+<p><em>Markdown</em> profits from many more <em>html</em> symbols that may be used in equations or other text. The following table provides an overview of such miscellaneous symbols.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Symbols (1)</p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p>Symbols (2)</p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p>Symbols (3)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>“</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;quot;</span></code></p></td>
+<td><p></p></td>
+<td><p>–</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;ndash;</span></code></p></td>
+<td><p></p></td>
+<td><p>‾</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;oline;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>&amp;</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;amp;</span></code></p></td>
+<td><p></p></td>
+<td><p>—</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;mdash;</span></code></p></td>
+<td><p></p></td>
+<td><p>⁄</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;frasl;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>&lt;</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;lt;</span></code></p></td>
+<td><p></p></td>
+<td><p>‘</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;lsquo;</span></code></p></td>
+<td><p></p></td>
+<td><p>ς</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;sigmaf;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>&gt;</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;gt;</span></code></p></td>
+<td><p></p></td>
+<td><p>’</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;rsquo;</span></code></p></td>
+<td><p></p></td>
+<td><p>ℑ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;image;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Œ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;OElig;</span></code></p></td>
+<td><p></p></td>
+<td><p>‚</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;sbquo;</span></code></p></td>
+<td><p></p></td>
+<td><p>ℜ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;real;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>œ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;oelig;</span></code></p></td>
+<td><p></p></td>
+<td><p>“</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;ldquo;</span></code></p></td>
+<td><p></p></td>
+<td><p>™</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;trade;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Š</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;Scaron;</span></code></p></td>
+<td><p></p></td>
+<td><p>”</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;rdquo;</span></code></p></td>
+<td><p></p></td>
+<td><p>ℵ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;alefsym;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>š</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;scaron;</span></code></p></td>
+<td><p></p></td>
+<td><p>„</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;bdquo;</span></code></p></td>
+<td><p></p></td>
+<td><p>⌈</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;lceil;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Ÿ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;Yuml;</span></code></p></td>
+<td><p></p></td>
+<td><p>†</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;dagger;</span></code></p></td>
+<td><p></p></td>
+<td><p>⌉</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;rceil;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>ˆ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;circ;</span></code></p></td>
+<td><p></p></td>
+<td><p>‡</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;Dagger;</span></code></p></td>
+<td><p></p></td>
+<td><p>⌊</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;lfloor;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>˜</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;tilde;</span></code></p></td>
+<td><p></p></td>
+<td><p>‰</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;permil;</span></code></p></td>
+<td><p></p></td>
+<td><p>⌋</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;rfloor;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p> </p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;ensp;</span></code></p></td>
+<td><p></p></td>
+<td><p>‹</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;lsaquo;</span></code></p></td>
+<td><p></p></td>
+<td><p>⟨</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;lang;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p> </p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;emsp;</span></code></p></td>
+<td><p></p></td>
+<td><p>›</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;rsaquo;</span></code></p></td>
+<td><p></p></td>
+<td><p>⟩</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;rang;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p> </p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;thinsp;</span></code></p></td>
+<td><p></p></td>
+<td><p>€</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;euro;</span></code></p></td>
+<td><p></p></td>
+<td><p>◊</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;loz;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>‌</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;zwnj;</span></code></p></td>
+<td><p></p></td>
+<td><p>•</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;bull;</span></code></p></td>
+<td><p></p></td>
+<td><p>♠</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;spades;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>‍</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;zwj;</span></code></p></td>
+<td><p></p></td>
+<td><p>…</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;hellip;</span></code></p></td>
+<td><p></p></td>
+<td><p>♣</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;clubs;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>‎</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;lrm;</span></code></p></td>
+<td><p></p></td>
+<td><p>′</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;prime;</span></code></p></td>
+<td><p></p></td>
+<td><p>♥</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;hearts;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>‏</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;rlm;</span></code></p></td>
+<td><p></p></td>
+<td><p>″</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;Prime;</span></code></p></td>
+<td><p></p></td>
+<td><p>♦</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;diams;</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="wikis">
+<h2>Wikis<a class="headerlink" href="#wikis" title="Permalink to this headline">¶</a></h2>
+<p>While every <a class="reference internal" href="../get-started/git.html#chpt-git"><span class="std std-ref">git</span></a> repository should at least contain a descriptive <em><a class="reference external" href="http://README.md">README.md</a></em>, <em>wiki</em> s provide much more detail and guidance. Wikis are a convenient way to guide users with permanent sidebars (such as the menu bar on this website), help users to understand methods and codes, and collaborative coding with precise descriptions of scripts. <em>GitHub</em> users find options to activate <em>wiki</em>s in the <em>Settings</em> tab of a repository and the developers continue to improve <em>wiki</em> functions (<a class="reference external" href="https://help.github.com/en/github/building-a-strong-community/about-wikis">read more about <em>GitHub</em>’s wikis</a>).</p>
+<p>More sophisticated <em>wiki</em>s are available on the <em>Jekyll</em> themes website (e.g., the <a class="reference external" href="https://jekyll-themes.com/git-wiki/">git-wiki theme</a>). To use <em>Jekyll</em> themes, make sure to enable <a class="reference external" href="https://help.github.com/en/github/working-with-github-pages/creating-a-github-pages-site"><em>GitHub</em> pages</a> (in the repository <em>Settings</em> tab) for the repository where you want to establish the <em>wiki</em> (this wiki-repository is typically another repository to describe a code-repository). Then, install the <em>Ruby development environment</em> and <em>Jekyll</em> (see <a class="reference external" href="https://jekyllrb.com/docs/">instructions on their website</a> to access and build hundreds of themes for code and project documentation. Forked and locally adapted themes can then be <em>push</em>ed to a remote <em>wiki</em> repository using <a class="reference internal" href="../get-started/git.html#chpt-git"><span class="std std-ref">git</span></a>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>There are other git-services and wiki host providers out there, such as <a class="reference external" href="https://gitlab.com/pages">GitLab</a> or <a class="reference external" href="https://plan.io/knowledge-management/">plan.io</a>.</p>
+</div>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Get practice in markdown with the <a class="reference internal" href="../exercises/ex-git.html"><span class="doc std std-doc">markdown and git</span></a> exercise.</p>
+</div>
+</div>
+<div class="section" id="restructuredtext-sphinx-and-readthedocs">
+<h2>reStructuredText, Sphinx, and readthedocs<a class="headerlink" href="#restructuredtext-sphinx-and-readthedocs" title="Permalink to this headline">¶</a></h2>
+<p>An alternative to markdown is <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html">reStructuredText</a> that enables embedding <em>Python docstrings</em> (read more about <a class="reference internal" href="../jupyter/pystyle.html#chpt-style"><span class="std std-ref">Code Style and Conventions</span></a>) in any script with <a class="reference external" href="https://www.sphinx-doc.org"><em>Sphinx</em></a>.</p>
+<p>Without any <em>Python</em> or programming knowledge, it might be hard to get started with <em>Sphinx</em>. So make sure to understand <em>Python</em> basics and document any code with <em>docstrings</em>, at best using <a class="reference external" href="https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html"><em>google style</em></a> formatting. Once you start documenting your first <em>Python</em> package, <em>Google-style</em> <em>docstrings</em> will enable the fast generation of high-quality docs. Currently, one of the best options for partially auto-generating code documentations, for any programming language, is <a class="reference external" href="https://readthedocs.org/"><em>readthedocs</em></a>, which builds on <em>Sphinx</em> and <em>reStructuredText</em>.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "hydro-informatics/hydro-informatics.github.io",
+            ref: "gh-pages",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./documentation"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../exercises/ex-gui.html" title="previous page">Create a GUI</a>
+    <a class='right-next' id="next-link" href="glossary.html" title="next page">Glossary</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Sebastian Schwindt<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

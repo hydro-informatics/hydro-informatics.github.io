@@ -26,7 +26,7 @@ Sacramento suckers in the South Yuba River (source: Sebastian Schwindt 2019).
 
 ## What is Habitat Suitability?
 
-Fish and other aquatic species rest, orient, and reproduce in a fluvial environment that represents their physical habitat. Throughout their different life stages, different fish have specific physical habitat preferences which are defined, for instance, as a function of water depth, flow velocity, and grain size of the riverbed. The so-called *Habitat Suitability Index *$HSI$** can be calculated for hydraulic (water depth or flow velocity) and morphological (e.g., grain size or cover in the form of large wood) parameters individually to describe the quality of physical habitat for a fish and at a specific life stage. The figure below shows exemplary $HSI$ curves for the fry, juvenile and adult life stages of rainbow trout as a function of water depth. The $HSI$ curves look different in every river and should be established individually by an aquatic ecologist.
+Fish and other aquatic species rest, orient, and reproduce in a fluvial environment that represents their physical habitat. Throughout their different life stages, different fish have specific physical habitat preferences which are defined, for instance, as a function of water depth, flow velocity, and grain size of the riverbed. The so-called *Habitat Suitability Index *$HSI$** can be calculated for hydraulic (water depth or flow velocity) and morphological (e.g., grain size or cover in the form of large wood) parameters individually to describe the quality of physical habitat for a fish and at a specific life stage. The figure below shows exemplary $HSI$ curves for the fry, juvenile, and adult life stages of rainbow trout as a function of water depth. The $HSI$ curves look different in every river and should be established individually by an aquatic ecologist.
 
 ```{figure} https://github.com/Ecohydraulics/media/raw/master/png/hsi-curves.png
 :alt: HSI curves examples trout
@@ -66,9 +66,9 @@ Some authors (e.g., [Yao et al. 2018](https://onlinelibrary.wiley.com/doi/full/1
  The threshold method is preferable over the weighting method because the $HSI$  has the unit of *Index* and is therefore not dimensionless. As a result, unrealistic units of *Index* areas (e.g., *Index*-m$^2$) are created in the weighting method, which is also introducing non-measurable uncertainty.
 ```
 
-An alternative to the deterministic calculation of the $HSI$ and $cHSI$ values of a pixel is a fuzzy logics approach ([Noack et al. 2013](https://onlinelibrary.wiley.com/doi/pdf/10.1002/9781118526576)). In the fuzzy logic approach, pixels are classified, for instance, as *low*, *medium*, or *high* habitat quality as a function of the associated water depth or flow velocity using categorical (*low*, *medium*, or *high*), expert assessment-based $HSI$ curves. The $cHSI$ value results from the center of gravity of superimposed membership functions of considered parameters (e.g., water depth and flow velocity).
+An alternative to the deterministic calculation of the $HSI$ and $cHSI$ values of a pixel is a fuzzy logic approach ([Noack et al. 2013](https://onlinelibrary.wiley.com/doi/pdf/10.1002/9781118526576)). In the fuzzy logic approach, pixels are classified, for instance, as *low*, *medium*, or *high* habitat quality as a function of the associated water depth or flow velocity using categorical (*low*, *medium*, or *high*), expert assessment-based $HSI$ curves. The $cHSI$ value results from the center of gravity of superimposed membership functions of considered parameters (e.g., water depth and flow velocity).
 
-Sustainable river management involves the challenge of designing aquatic habitat for target fish species at different life stages. The concept of usable physical habitat area represents a powerful tool to leverage the assessment of the ecological integrity of river management and engineering measures. For example, by calculating the usable habitat area before and after the implementation of measures, valuable conclusions can be drawn about the ecological integrity of restoration efforts.
+Sustainable river management involves the challenge of designing an aquatic habitat for target fish species at different life stages. The concept of usable physical habitat area represents a powerful tool to leverage the assessment of the ecological integrity of river management and engineering measures. For example, by calculating the usable habitat area before and after the implementation of measures, valuable conclusions can be drawn about the ecological integrity of restoration efforts.
 
 This exercise demonstrates the use of 2d hydrodynamic modeling results to algorithmically evaluate usable habitat area based on the calculation of geospatially explicit $cHSI$ values.
 
@@ -89,7 +89,7 @@ The provided *QGIS* project file `visualize_with_QGIS.qgz` helps to verify input
 (2dm)=
 ### Two-dimensional (2d) Hydrodynamic Modelling (Folder: **basement**)
 
-This exercise uses (hydraulic) flow velocity and water depth rasters (*GeoTIFF*s) produced with the [*ETH Zurich*'s *BASEMENT*](https://basement.ethz.ch/) software. Read more about hydrodynamic modeling with *BASEMENT* in the {ref}`basement` chapter. The hydraulic rasters were produced with the *BASEMENT* developer's [example data from the *Flaz River*](http://people.ee.ethz.ch/~basement/baseweb/download/tutorials/Flaz_2d_v3.zip) in Switzerland ([read more on their website](https://basement.ethz.ch/download/tutorials/tutorials3.html)).
+This exercise uses (hydraulic) flow velocity and water depth rasters (*GeoTIFF*s) produced with the [*ETH Zurich*'s *BASEMENT*](https://basement.ethz.ch/) software. Read more about hydrodynamic modeling with *BASEMENT* in the {ref}`chpt-basement` chapter. The hydraulic rasters were produced with the *BASEMENT* developer's [example data from the *Flaz River*](http://people.ee.ethz.ch/~basement/baseweb/download/tutorials/Flaz_2d_v3.zip) in Switzerland ([read more on their website](https://basement.ethz.ch/download/tutorials/tutorials3.html)).
 The water depth `water_depth.tif` and flow velocity `flow_velocity.tif` rasters are provided for this exercise in the folder `/basement/`.
 
 (hsi-curves)=
@@ -256,7 +256,7 @@ This function:
 
 ````{admonition} If you find the _make_raster method confusing...
 :class: tip, dropdown
-Then you have a point. The above-described approach implements the `_make_raster` method to reuse the temporary *GeoTIFF*s later with both constants ({ref}`float <num>`) and arrays, but there is a more elegant way to return a new `Raster` instance. However, returning a new instance of the same class requires that the input argument must be an instance of the class itself (i.e., `Raster`) and not a numeric variable. The alternative solution for returning a `Raster` instance starts with a different implementation of the magic method (e.g., `__truediv__`) and requires to import *Python4*-style `annotations`. Therefore, the first line of the script must include (only works with *Python 3.7* and higher) the following import:
+Then you have a point. The above-described approach implements the `_make_raster` method to reuse the temporary *GeoTIFF*s later with both constants ({ref}`float <num>`) and arrays, but there is a more elegant way to return a new `Raster` instance. However, returning a new instance of the same class requires that the input argument must be an instance of the class itself (i.e., `Raster`) and not a numeric variable. The alternative solution for returning a `Raster` instance starts with a different implementation of the magic method (e.g., `__truediv__`) and requires importing *Python4*-style `annotations`. Therefore, the first line of the script must include (only works with *Python 3.7* and higher) the following import:
 
 ```python
 from __future__ import annotations
@@ -371,7 +371,7 @@ if __name__ == '__main__':
 
 ```
 
-The `if __name__ == '__main__'` statement contains a time counter (`perf_counter`) that prompts how long running the script takes (typically between 3 to 6 seconds). Make sure that
+The `if __name__ == '__main__'` statement contains a time counter (`perf_counter`) that prompts how long the script takes to run (typically between 3 to 6 seconds). Make sure that
 
 * the `parameters` list contains `"velocity"` and `"depth"` (as per the `par_dict` in the `config.py` script),
 * the file paths are defined correctly, and
@@ -654,7 +654,7 @@ def main():
 ...
 ```
 
-In order for the `calculate_habitat_area()` function to produce what its name promises, we need to populate this function as well. For this purpose, use the `epsg` {ref}`integer <num>` argument to identify the unit system of the shapefile.
+For the `calculate_habitat_area()` function to produce what its name promises, we need to populate this function as well. For this purpose, use the `epsg` {ref}`integer <num>` argument to identify the unit system of the shapefile.
 
 
 ```python
@@ -729,7 +729,7 @@ A successful run of the script `calculate_habitat_area.py` should look like this
 
 ```{figure} https://github.com/Ecohydraulics/Exercise-geco/raw/master/graphs/run_habitat_area.png
 :alt: calculate usable habitat area Python gdal
-:name: run-chsi
+:name: ran-chsi
 
 Successful run of the *calculate_habitat_area.py* script.
 ```

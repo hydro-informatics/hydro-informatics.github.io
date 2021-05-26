@@ -2,7 +2,7 @@
 
 
 ```{admonition} Goals
-This exercise features the creation of a {ref}`chpt-gui` based on the instructions in this ebook.
+This exercise features the creation of a {ref}`chpt-gui` based on the instructions in this eBook.
 ```
 
 ```{admonition} Requirements
@@ -81,7 +81,7 @@ The initialization of the `tk.Frame` parent class is the first and most importan
 ```
 
 ```{note}
-Make sure to get the icon path right. Otherwise the app may crash.
+Make sure to get the icon path right. Otherwise, the app may crash.
 ```
 
 Assign a window geometry with window width and height, as well as *x* and *y* position on the screen in pixel units:
@@ -167,7 +167,7 @@ To run the program (bed load transport calculation), we need another button, whi
 ```
 
 ```{note}
-There is a difference of the use of `.grid()` when it is attributed to a `tk.Button` instance rather than directly with `tk.Button`.
+There is a difference in the use of `.grid()` when it is attributed to a `tk.Button` instance rather than directly with `tk.Button`.
 ```
 
 To let the user know (approve) the selected files and directories, create `tk.Label` objects, which need to be configurable (the selected directories will change). Add the following labels to `__init__`:

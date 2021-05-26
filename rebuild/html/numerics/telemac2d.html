@@ -1,0 +1,1030 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Telemac2d &#8212; Hydro-Informatics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://hydro-informatics.github.io/numerics/telemac2d.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3d modeling with TELEMAC" href="telemac3d.html" />
+    <link rel="prev" title="TELEMAC" href="telemac.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/icon.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  Get Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../lectures/classroom.html">
+   The Virtual Classroom
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/lectures.html">
+     Lectures and Exercises
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/take_seat.html">
+     The Virtual Classroom
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../get-started/software.html">
+   Software Resources
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/vm.html">
+     Virtual Machines and Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/ide.html">
+     Integrated Development Environments (IDEs)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python-basics/pyinstall.html">
+     Install Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/git.html">
+     Introduction to git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/geo.html">
+     Geospatial Software
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-openfoam.html">
+     OpenFOAM (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-telemac.html">
+     TELEMAC (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/others.html">
+     Other Software Resources
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Python Basics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/python.html">
+   First Steps
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pybase.html">
+     Hello Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyerror.html">
+     Errors, Logging, and Debugging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyloop.html">
+     Loops and Conditional Statements
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/modularize.html">
+   Object Orientation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyfun.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pypckg.html">
+     Packages, Modules and Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/classes.html">
+     Object Orientation and Classes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/data-handling.html">
+   Data and File Handling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pynum.html">
+     Load and Write Basic Data Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/xml.html">
+     Workbooks (xlsx) and JSON
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyplot.html">
+     Plotting
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../jupyter/pystyle.html">
+   Code Style and Conventions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../jupyter/gui.html">
+   Graphical User Interfaces (GUIs)
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/python-exercises.html">
+   Python Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-ms.html">
+     1d Hydraulics (Manning-Strickler Formula)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sp.html">
+     Reservoir Volume (Sequent Peak Algorithm)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-floods.html">
+     Calculate flood return periods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sediment.html">
+     1d Sediment Transport
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-gui.html">
+     Create a GUI
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Documentation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/documentation.html">
+   Markdown and Code Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/glossary.html">
+   Glossary
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/docs-exercises.html">
+   Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-git.html">
+     Git and markdown
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Geospatial Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/geospatial-data.html">
+   Geospatial Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/use-qgis.html">
+   QGIS Tutorial
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../geopy/geo-python.html">
+   Geospatial Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-pckg.html">
+     Geospatial Open Source Python Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-shp.html">
+     Shapefile (Vector Dataset) Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-raster.html">
+     Raster (Gridded) Dataset Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-convert.html">
+     Raster to Vector Conversion and Vice Versa
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-arcpy.html">
+     The Commercial arcpy Library
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/geo-exercises.html">
+   Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-geco.html">
+     Script a Habitat Suitability Map
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Numerical Modeling
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="numerical-modeling.html">
+   Principles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pre-qgis.html">
+   Pre-processing with QGIS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="basement.html">
+   BASEMENT
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="telemac.html">
+   TELEMAC
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Telemac2d
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="telemac3d.html">
+     3d modeling with TELEMAC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="telemac-gaia.html">
+     Gaia Workflow
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="openfoam.html">
+   OpenFOAM
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="calibration.html">
+   Calibration and Valdiation
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Troubleshoot
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
+   Programming Tools and IDEs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
+     Debugging Anaconda
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-python.html">
+     Debugging Python Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
+     Debugging Jupyter
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
+   Numerical Models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
+     Debugging BASEMENT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
+     Debugging TELEMAC/SALOME
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-os.html">
+   Operating Systems (Linux and VMs)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
+     Debugging Debian Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
+     Debugging Virtual Machines
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Disclaimer and License
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/numerics/telemac2d.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/hydro-informatics/hydro-informatics.github.io"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#under-construction-expected-release-of-this-tutorial-fall-2021">
+   Under construction. Expected release of this tutorial: Fall 2021.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#input-files">
+   Input files
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#overview">
+     Overview
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#build-geometry-and-computational-mesh">
+   Build geometry and computational mesh
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#geometry-file-option-1-bluekenue">
+   Geometry File Option 1: BlueKenue
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#file-description-and-reference-to-cas">
+     File description and reference to CAS
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-points-to-create-a-geometry-file-bk">
+     Load points to create a geometry file (BK)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#generate-a-mesh">
+     Generate a Mesh
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#serafin-geometry-with-qgis-basemesh">
+   Serafin Geometry with QGIS &amp; BASEMESH
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-setup-with-fudaa-prepro">
+   Model setup with Fudaa Prepro
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#boundary-conditions">
+   Boundary Conditions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stage-discharge-or-wse-q-relationship">
+     Stage-discharge (or WSE-Q) Relationship
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-steady-flow-boundaries-prepro-steady">
+     Define steady flow boundaries {#prepro-steady}
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-unsteady-flow-boundaries-prepro-unsteady">
+     Define unsteady flow boundaries {#prepro-unsteady}
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activate-morphodynamics-sediment-transport-with-gaia-prepro-gaia">
+     Activate morphodynamics (sediment transport with Gaia) {#prepro-gaia}
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#run-telemac2d">
+   Run Telemac2d
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-environment-and-files">
+     Load environment and files
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#start-a-2d-hydrodynamic-simulation-steady-steadyrun">
+     Start a 2D hydrodynamic simulation (steady) {#steadyrun}
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#post-processing-with-qgis">
+   Post-processing with QGIS
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-the-posttelemac-plugin">
+     Install the PostTelemac plugin
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#open-the-posttelemac-plugin">
+     Open the PostTelemac plugin
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="telemac2d">
+<span id="chpt-telemac2d"></span><h1>Telemac2d<a class="headerlink" href="#telemac2d" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="under-construction-expected-release-of-this-tutorial-fall-2021">
+<h2>Under construction. Expected release of this tutorial: Fall 2021.<a class="headerlink" href="#under-construction-expected-release-of-this-tutorial-fall-2021" title="Permalink to this headline">¶</a></h2>
+<p>Thank you for your patience.</p>
+<div class="admonition-requirements admonition">
+<p class="admonition-title">Requirements</p>
+<p>The case featured in this tutorial was established with: <br><br><strong>- <a class="reference external" href="../get-started/install-telemac.html#sbluekenue"><em>BlueKenue</em> v3.12</a></strong> (on <em>Windows</em>)<br><strong>- <a class="reference external" href="../get-started/geo.html#qgis"><em>QGIS v3.16</em></a></strong> (tested on <em>Windows</em> and <em><em>Debian 10 Linux</em>),<br></em><em>- <a class="reference external" href="../get-started/install-telemac.html#fudaa"><em>Fudaa PrePro v1.4</em></a></em>* (tested on <em>Windows</em> and <em><em>Debian 10 Linux</em>), and <br></em><em>- <a class="reference external" href="../get-started/install-telemac.html#modular-install"><em>TELEMAC</em> v8p2r0</a></em>* (stand-alone installation on <em>Debian 10 Linux</em>).</p>
+</div>
+<p>This tutorial uses descriptions provided in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p1r1/documentation/telemac2d/user/telemac2d_user_v8p1.pdf">telemac2d</a> user manual.</p>
+</div>
+<div class="section" id="input-files">
+<h2>Input files<a class="headerlink" href="#input-files" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="overview">
+<h3>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h3>
+<p>For any TELEMAC 2D simulation, the following files are mandatory:</p>
+<ul class="simple">
+<li><p>Steering file</p>
+<ul>
+<li><p>File format: <code class="docutils literal notranslate"><span class="pre">cas</span></code></p></li>
+<li><p>Prepare either with <a class="reference external" href="https://fudaa-project.atlassian.net/wiki/spaces/PREPRO/pages/253165587/How+to+launch+Fudaa-Prepro">Fudaa PrePro</a> or <a class="reference external" href="../get-started/install-telemac.html#bluekenue"><em>BlueKenue<sup>TM</sup></em></a>.</p></li>
+</ul>
+</li>
+<li><p>Geometry file</p>
+<ul>
+<li><p>File format: <code class="docutils literal notranslate"><span class="pre">.slf</span></code> (<a class="reference external" href="https://gdal.org/drivers/vector/selafin.html">selafin</a></p></li>
+<li><p>Prepare either with</p></li>
+</ul>
+</li>
+<li><p>Boundary conditions</p>
+<ul>
+<li><p>File format: <code class="docutils literal notranslate"><span class="pre">.cli</span></code></p></li>
+<li><p>Prepare either with</p></li>
+</ul>
+</li>
+</ul>
+<p>The basic setup of the files is explained below.</p>
+</div>
+</div>
+<div class="section" id="build-geometry-and-computational-mesh">
+<h2>Build geometry and computational mesh<a class="headerlink" href="#build-geometry-and-computational-mesh" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="geometry-file-option-1-bluekenue">
+<h2>Geometry File Option 1: BlueKenue<a class="headerlink" href="#geometry-file-option-1-bluekenue" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="file-description-and-reference-to-cas">
+<h3>File description and reference to CAS<a class="headerlink" href="#file-description-and-reference-to-cas" title="Permalink to this headline">¶</a></h3>
+<p>The geometry file in <a class="reference external" href="https://gdal.org/drivers/vector/selafin.html"><em>slf</em> (<em>selafin</em>)</a> format contains binary data about the mesh with its nodes. The name format of the geometry file can be modified in the steering file with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">steering</span><span class="o">.</span><span class="n">cas</span>
+<span class="n">GEOMETRY</span> <span class="n">FILE</span>            <span class="p">:</span> <span class="s1">&#39;t2d_channel.slf&#39;</span>
+<span class="n">GEOMETRY</span> <span class="n">FILE</span> <span class="n">FORMAT</span>     <span class="p">:</span> <span class="n">SLF</span>  <span class="o">/</span> <span class="ow">or</span> <span class="n">MED</span> <span class="k">with</span> <span class="n">SALOME</span> <span class="n">verify</span> <span class="n">usage</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="load-points-to-create-a-geometry-file-bk">
+<h3>Load points to create a geometry file (BK)<a class="headerlink" href="#load-points-to-create-a-geometry-file-bk" title="Permalink to this headline">¶</a></h3>
+<p>To load any point <em>shapefile</em> start <em>BK</em> and:</p>
+<ul class="simple">
+<li><p><em>File</em> &gt; <em>Import</em> &gt; <em>ArcView Shape File</em> &gt; Navigate to the directory where the point <em>shapefile</em> lives &gt; Select the <em>All Files (*.*)</em> option (in lieu of <em>Telemac Selafin File (*.slf)</em>) &gt; Select the file (e.g., <em>xyz.shp</em>)</p></li>
+<li><p>ALTERNATIVELY: Open any other point data file with <em>File</em> &gt; <em>Open</em> &gt; Navigate to DIR &gt; look for <em>.xyz</em> or <em>.dat</em> files</p></li>
+</ul>
+<div class="figure align-default" id="id1">
+<img alt="bkimportpts" src="../_images/bk-import-pts.png" />
+<p class="caption"><span class="caption-number">Fig. 59 </span><span class="caption-text">Importing a point shapefile in BK.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<ul class="simple">
+<li><p>Right-click on <strong>points (X)</strong> and open the <strong>Properties</strong></p></li>
+<li><p>In the <strong>Properties</strong> window got to the <strong>Data</strong> tab &gt; select <strong>Z(float)</strong> and <strong>Apply</strong>; then go to the <strong>ColourScale</strong> tab &gt; <strong>Reset</strong> button &gt; <strong>Apply</strong> &gt; <strong>OK</strong>. Now, <strong>points (X)</strong> should have turned into <strong>points (Z)</strong></p></li>
+<li><p>Drag <strong>points (X)</strong> from <strong>Data Items</strong> to <strong>Views | 2D View (1)</strong></p></li>
+<li><p>ALTERNATIVELY: Use a three-dimensional (3D) view of the points: Go to the <strong>Window</strong> menu &gt; <strong>New 3D View</strong> &gt; drag <strong>points (X)</strong> from <strong>Data Items</strong> to <strong>Views | 3D View (1)</strong></p></li>
+</ul>
+<div class="figure align-default" id="bk3dpts">
+<img alt="bk3dpts" src="../_images/bk-imported-3dpts.png" />
+<p class="caption"><span class="caption-number">Fig. 60 </span><span class="caption-text">The imported points a point shapefile in BK.</span><a class="headerlink" href="#bk3dpts" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="generate-a-mesh">
+<h3>Generate a Mesh<a class="headerlink" href="#generate-a-mesh" title="Permalink to this headline">¶</a></h3>
+<p>TM solves the (depth-averaged) Navier Stokes equations along a computational grid based on either a finite element or a finite volume scheme. BK provides mesh generators for creating regular or unstructured computational grids (meshes). This example features the <strong>T3 Channel Mesher</strong> to generate a triangular mesh. Switch to a <strong>2D View</strong> of the above points and walk down the following workflow.</p>
+<ol class="simple">
+<li><p>Define the computational domain with a <strong>New Closed Line</strong></p>
+<ul class="simple">
+<li><p>Find the <em>New Closed Line</em> button approximately below the <em>Help</em> menu</p></li>
+<li><p>Draw a polygon around the region of interest by clicking on the most outside points of the point cloud</p></li>
+<li><p>When finished drawing, press the <code class="docutils literal notranslate"><span class="pre">Esc</span></code> key and enter <code class="docutils literal notranslate"><span class="pre">ClosedLine_domain</span></code> in the <em>Name</em> field &gt; click OK and OK (in the popup window)</p></li>
+</ul>
+</li>
+</ol>
+<div class="figure align-default">
+<img alt="BlueKenue domain" src="../_images/bk-domain-closedline.png" />
+</div>
+<ol class="simple">
+<li><p>Draw <strong>New Open Line</strong> objects to delineate the main (river) channel, levees, and right-left extents.</p>
+<ul class="simple">
+<li><p>Find the <em>New Open Line</em> button next to the <em>New Closed Line</em> button</p></li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="serafin-geometry-with-qgis-basemesh">
+<span id="slf-qgis"></span><h2>Serafin Geometry with QGIS &amp; BASEMESH<a class="headerlink" href="#serafin-geometry-with-qgis-basemesh" title="Permalink to this headline">¶</a></h2>
+<p>Follow the instructions in the <a class="reference internal" href="pre-qgis.html"><span class="doc std std-doc">QGIS data pre-processing</span></a> section for creating a .2dm file.</p>
+<p>Then…</p>
+</div>
+<div class="section" id="model-setup-with-fudaa-prepro">
+<span id="prepro-fudaa"></span><h2>Model setup with Fudaa Prepro<a class="headerlink" href="#model-setup-with-fudaa-prepro" title="Permalink to this headline">¶</a></h2>
+<p><em>Fudaa PrePro</em> facilitates the definition of boundaries, initial conditions, and setting up a steering file. To start <em>Fudaa</em>, open <em>Terminal</em> (<em>Linux</em>) or <em>Command Prompt</em> (<em>Windows</em>) and:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span></code> to the installation directory of <em>Fudaa</em></p></li>
+<li><p>start the GUI:</p>
+<ul>
+<li><p><em>Linux</em>: tap <code class="docutils literal notranslate"><span class="pre">sh</span> <span class="pre">supervisor.sh</span></code></p></li>
+<li><p><em>Windows</em>: tap <code class="docutils literal notranslate"><span class="pre">supervisor.bat</span></code></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="boundary-conditions">
+<h2>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this headline">¶</a></h2>
+<p>The boundary file in <em>cli</em> format contains information about inflow and outflow nodes (coordinates and IDs). The <em>cli</em> file can be opened and modified with any text editor, which is not recommended to avoid inconsistencies. Preferably use <a class="reference external" href="../get-started/install-telemac.html#fudaa"><em>Fudaa-PrePro</em></a> or <a class="reference external" href="../get-started/install-telemac.html#bluekenue"><em>BlueKenue</em></a> for generating and/or modifying <em>cli</em> files.</p>
+<p>In addition, users can define a liquid boundary conditions file (<em>qsl</em>) to define time-dependent boundary conditions (e.g., discharge, water depth, flow velocity or tracers).</p>
+<div class="section" id="stage-discharge-or-wse-q-relationship">
+<h3>Stage-discharge (or WSE-Q) Relationship<a class="headerlink" href="#stage-discharge-or-wse-q-relationship" title="Permalink to this headline">¶</a></h3>
+<p>Define a stage-discharge file (<em>ASCII</em> format) to use a stage (water surface elevation <em>WSE</em>) - discharge relationship for boundary conditions. Such files typically apply to the downstream boundary of a model at control sections (e.g., a free overflow weir). To use a stage-discharge file, define the following keyword in the steering file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">steering</span><span class="o">.</span><span class="n">cas</span>
+<span class="n">STAGE</span><span class="o">-</span><span class="n">DISCHARGE</span> <span class="n">CURVES</span> <span class="n">FILE</span> <span class="p">:</span> <span class="n">YES</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="define-steady-flow-boundaries-prepro-steady">
+<h3>Define steady flow boundaries {#prepro-steady}<a class="headerlink" href="#define-steady-flow-boundaries-prepro-steady" title="Permalink to this headline">¶</a></h3>
+<p>Qconst</p>
+</div>
+<div class="section" id="define-unsteady-flow-boundaries-prepro-unsteady">
+<h3>Define unsteady flow boundaries {#prepro-unsteady}<a class="headerlink" href="#define-unsteady-flow-boundaries-prepro-unsteady" title="Permalink to this headline">¶</a></h3>
+<p>The name format of the boundary conditions file can be modified in the steering file with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">steering</span><span class="o">.</span><span class="n">cas</span>
+<span class="n">BOUNDARY</span> <span class="n">CONDITIONS</span> <span class="n">FILE</span> <span class="p">:</span> <span class="s1">&#39;bc_channel.cli&#39;</span>
+<span class="n">LIQUID</span> <span class="n">BOUNDARIES</span> <span class="n">FILE</span>   <span class="p">:</span> <span class="s1">&#39;bc_unsteady.qsl&#39;</span>
+</pre></div>
+</div>
+<p>Example for a liquid boundary conditions file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># bc_unsteady.qsl</span>
+<span class="c1"># Time-dependent inflow (discharge Q(2) and outflow (depth SL(1)</span>
+<span class="n">T</span>           <span class="n">Q</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>     <span class="n">SL</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">s</span>           <span class="n">m3</span><span class="o">/</span><span class="n">s</span>     <span class="n">m</span>
+<span class="mf">0.</span>            <span class="mf">0.</span>     <span class="mf">5.0</span>
+<span class="mf">500.</span>        <span class="mf">100.</span>     <span class="mf">5.0</span>
+<span class="mf">5000.</span>       <span class="mf">150.</span>     <span class="mf">5.0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="activate-morphodynamics-sediment-transport-with-gaia-prepro-gaia">
+<h3>Activate morphodynamics (sediment transport with Gaia) {#prepro-gaia}<a class="headerlink" href="#activate-morphodynamics-sediment-transport-with-gaia-prepro-gaia" title="Permalink to this headline">¶</a></h3>
+<p>Qs</p>
+</div>
+</div>
+<div class="section" id="run-telemac2d">
+<h2>Run Telemac2d<a class="headerlink" href="#run-telemac2d" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="load-environment-and-files">
+<h3>Load environment and files<a class="headerlink" href="#load-environment-and-files" title="Permalink to this headline">¶</a></h3>
+<p>Load the TELEMAC <em>Python</em> variables:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p1</span><span class="o">/</span><span class="n">configs</span>
+<span class="n">source</span> <span class="n">pysource</span><span class="o">.</span><span class="n">openmpi</span><span class="o">.</span><span class="n">sh</span>
+<span class="n">config</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="start-a-2d-hydrodynamic-simulation-steady-steadyrun">
+<h3>Start a 2D hydrodynamic simulation (steady) {#steadyrun}<a class="headerlink" href="#start-a-2d-hydrodynamic-simulation-steady-steadyrun" title="Permalink to this headline">¶</a></h3>
+<p>To start a simulation, <code class="docutils literal notranslate"><span class="pre">cd</span></code> to the directory where the simulation files live (see previous page) and launch the steering file (<em>cas</em>) with <em><a class="reference external" href="http://telemac2d.py">telemac2d.py</a></em>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">go</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="nb">dir</span>
+<span class="n">telemac2d</span><span class="o">.</span><span class="n">py</span> <span class="n">run_2dhydrodynamic</span><span class="o">.</span><span class="n">cas</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="post-processing-with-qgis">
+<h2>Post-processing with QGIS<a class="headerlink" href="#post-processing-with-qgis" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="install-the-posttelemac-plugin">
+<h3>Install the PostTelemac plugin<a class="headerlink" href="#install-the-posttelemac-plugin" title="Permalink to this headline">¶</a></h3>
+<p>Open QGIS’ <em>Plugin Manager</em>, go to the <em>All</em> tab and type <em>posttelemac</em> in the search field. Click on the <em>Install</em> button to install the <em>PostTelemac</em> plugin.</p>
+<div class="figure align-default">
+<img alt="../_images/qgis-plugin-manager.png" src="../_images/qgis-plugin-manager.png" />
+</div>
+<div class="figure align-default">
+<img alt="../_images/qgis-plugin-install-posttm.png" src="../_images/qgis-plugin-install-posttm.png" />
+</div>
+<p>After the successful installation, click the <em>Close</em> button. The <em>PostTelemac</em> symbol should now be visible in the QGIS menu bar.</p>
+</div>
+<div class="section" id="open-the-posttelemac-plugin">
+<h3>Open the PostTelemac plugin<a class="headerlink" href="#open-the-posttelemac-plugin" title="Permalink to this headline">¶</a></h3>
+<p>Find the <em>PostTelemac</em> icon in the menu bar to open the plugin. By default, the plugin window will most likely open up in the bottom-right corner of the QGIS window. For better handling, click the <em>detach</em> symbol and enlarge the detached plugin window.</p>
+<div class="figure align-default" id="id2">
+<img alt="../_images/posttm-display.png" src="../_images/posttm-display.png" />
+<p class="caption"><span class="caption-number">Fig. 61 </span><span class="caption-text">The detached window of the PostTelemac plugin with the Display tab opened to render simulation variables such as VELOCITY U/V, VITESSE (principal absolute U-V velocity) or DEPTH.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="id3">
+<img alt="../_images/posttm-tools.png" src="../_images/posttm-tools.png" />
+<p class="caption"><span class="caption-number">Fig. 62 </span><span class="caption-text">The detached window of the PostTelemac plugin with the Tools tab opened (e.g., to create shapefiles or GeoTIFF rasters).</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "hydro-informatics/hydro-informatics.github.io",
+            ref: "gh-pages",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./numerics"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="telemac.html" title="previous page">TELEMAC</a>
+    <a class='right-next' id="next-link" href="telemac3d.html" title="next page">3d modeling with TELEMAC</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Sebastian Schwindt<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

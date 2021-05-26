@@ -2,7 +2,7 @@
 # 1d Hydraulics (Manning-Strickler Formula)
 
 ```{admonition} Goals
-Write basic script and use loops. Write a function and parse optional keyword arguments (`**kwargs`).
+Write a basic script and use loops. Write a function and parse optional keyword arguments (`**kwargs`).
 ```
 
 ```{admonition} Requirements

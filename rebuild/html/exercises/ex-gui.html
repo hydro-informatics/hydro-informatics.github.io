@@ -1,0 +1,1030 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create a GUI &#8212; Hydro-Informatics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://hydro-informatics.github.io/exercises/ex-gui.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Markdown and Code Documentation" href="../documentation/documentation.html" />
+    <link rel="prev" title="1d Sediment Transport" href="ex-sediment.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/icon.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  Get Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../lectures/classroom.html">
+   The Virtual Classroom
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/lectures.html">
+     Lectures and Exercises
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/take_seat.html">
+     The Virtual Classroom
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../get-started/software.html">
+   Software Resources
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/vm.html">
+     Virtual Machines and Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/ide.html">
+     Integrated Development Environments (IDEs)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python-basics/pyinstall.html">
+     Install Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/git.html">
+     Introduction to git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/geo.html">
+     Geospatial Software
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-openfoam.html">
+     OpenFOAM (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-telemac.html">
+     TELEMAC (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/others.html">
+     Other Software Resources
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Python Basics
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/python.html">
+   First Steps
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pybase.html">
+     Hello Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyerror.html">
+     Errors, Logging, and Debugging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyloop.html">
+     Loops and Conditional Statements
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/modularize.html">
+   Object Orientation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyfun.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pypckg.html">
+     Packages, Modules and Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/classes.html">
+     Object Orientation and Classes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/data-handling.html">
+   Data and File Handling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pynum.html">
+     Load and Write Basic Data Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/xml.html">
+     Workbooks (xlsx) and JSON
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyplot.html">
+     Plotting
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../jupyter/pystyle.html">
+   Code Style and Conventions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../jupyter/gui.html">
+   Graphical User Interfaces (GUIs)
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="python-exercises.html">
+   Python Exercises
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="ex-ms.html">
+     1d Hydraulics (Manning-Strickler Formula)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ex-sp.html">
+     Reservoir Volume (Sequent Peak Algorithm)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ex-floods.html">
+     Calculate flood return periods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ex-sediment.html">
+     1d Sediment Transport
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Create a GUI
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Documentation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/documentation.html">
+   Markdown and Code Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/glossary.html">
+   Glossary
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="docs-exercises.html">
+   Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ex-git.html">
+     Git and markdown
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Geospatial Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/geospatial-data.html">
+   Geospatial Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/use-qgis.html">
+   QGIS Tutorial
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../geopy/geo-python.html">
+   Geospatial Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-pckg.html">
+     Geospatial Open Source Python Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-shp.html">
+     Shapefile (Vector Dataset) Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-raster.html">
+     Raster (Gridded) Dataset Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-convert.html">
+     Raster to Vector Conversion and Vice Versa
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-arcpy.html">
+     The Commercial arcpy Library
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="geo-exercises.html">
+   Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ex-geco.html">
+     Script a Habitat Suitability Map
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Numerical Modeling
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/numerical-modeling.html">
+   Principles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/pre-qgis.html">
+   Pre-processing with QGIS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/basement.html">
+   BASEMENT
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerics/telemac.html">
+   TELEMAC
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/telemac2d.html">
+     Telemac2d
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/telemac3d.html">
+     3d modeling with TELEMAC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/telemac-gaia.html">
+     Gaia Workflow
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/openfoam.html">
+   OpenFOAM
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/calibration.html">
+   Calibration and Valdiation
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Troubleshoot
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
+   Programming Tools and IDEs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
+     Debugging Anaconda
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-python.html">
+     Debugging Python Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
+     Debugging Jupyter
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
+   Numerical Models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
+     Debugging BASEMENT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
+     Debugging TELEMAC/SALOME
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-os.html">
+   Operating Systems (Linux and VMs)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
+     Debugging Debian Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
+     Debugging Virtual Machines
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Disclaimer and License
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/exercises/ex-gui.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/hydro-informatics/hydro-informatics.github.io"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#make-the-application-frame">
+   Make the application frame
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-window-geometry">
+     Set window geometry
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-child-widgets-buttons-labels-and-combobox">
+     Create child widgets (Buttons, Labels and Combobox)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#add-methods-commands-called-through-widgets">
+     Add methods (commands) called through widgets
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-the-run-program-method">
+     Define the run program method
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#make-the-script-stand-alone">
+   Make the script stand-alone
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#launch-the-gui">
+   Launch the GUI
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="create-a-gui">
+<h1>Create a GUI<a class="headerlink" href="#create-a-gui" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-goals admonition">
+<p class="admonition-title">Goals</p>
+<p>This exercise features the creation of a <a class="reference internal" href="../jupyter/gui.html#chpt-gui"><span class="std std-ref">Graphical User Interfaces (GUIs)</span></a> based on the instructions in this eBook.</p>
+</div>
+<div class="attention admonition">
+<p class="admonition-title">Requirements</p>
+<p><em>Python</em> libraries: <em>tkinter</em>, <a class="reference internal" href="../jupyter/pynum.html#numpy"><span class="std std-ref">NumPy</span></a>, and <a class="reference internal" href="../jupyter/pynum.html#pandas"><span class="std std-ref">Pandas</span></a>. Read and understand the creation of <a class="reference internal" href="../jupyter/gui.html#chpt-gui"><span class="std std-ref">Graphical User Interfaces (GUIs)</span></a>. Accomplish the <a class="reference external" href="https://github.com/Ecohydraulics/Exercise-SedimentTransport">sediment transport exercise</a>.</p>
+</div>
+<p>Get ready by cloning the exercise repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ecohydraulics</span><span class="o">/</span><span class="n">Exercise</span><span class="o">-</span><span class="n">gui</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<div class="figure align-default" id="hello-gui">
+<img alt="graphical user interface illustration" src="../_images/hello-gui.png" />
+</div>
+<p>Before getting started with the exercise, make sure to copy the code from the <a class="reference external" href="https://github.com/Ecohydraulics/Exercise-SedimentTransport">sediment transport exercise</a> into the <code class="docutils literal notranslate"><span class="pre">sediment_transport</span></code> sub-folder of the GUI exercise repository (i.e., overwrite <em><a class="reference external" href="http://bedload.py">bedload.py</a></em>, <em><a class="reference external" href="http://fun.py">fun.py</a></em>, <em><a class="reference external" href="http://grains.py">grains.py</a></em>, <em><a class="reference external" href="http://hec.py">hec.py</a></em>, <em>.py</em>, <em><a class="reference external" href="http://main.py">main.py</a></em>, and <em><a class="reference external" href="http://mpm.py">mpm.py</a></em> with your code). If the file names are different from the default names used in the sediment transport exercise, adapt the <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file in the <code class="docutils literal notranslate"><span class="pre">sediment_transport</span></code> sub-folder. Thus, we created a module called <code class="docutils literal notranslate"><span class="pre">sediment_transport</span></code>, where the <code class="docutils literal notranslate"><span class="pre">main.py</span></code> file requires some modifications.</p>
+<ul class="simple">
+<li><p>Remove the <code class="docutils literal notranslate"><span class="pre">get_char_grain_size</span></code> function (will be replaced in the GUI).</p></li>
+<li><p>Add three optional arguments to the <code class="docutils literal notranslate"><span class="pre">main()</span></code> function:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">grain_file</span></code> to enable the selection of a user-defined <em>csv</em> file for <code class="docutils literal notranslate"><span class="pre">&quot;grains.csv&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hec_file</span></code> to enable the selection of a user-defined workbook for <em>HEC-RAS</em> output.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">out_folder</span></code> to enable the definition of a user-defined output directory for the bed load results workbook.</p></li>
+</ul>
+</li>
+<li><p>Modify the calls in the <code class="docutils literal notranslate"><span class="pre">main</span></code> function:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@log_actions</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">D_char</span><span class="p">,</span> <span class="n">hec_file</span><span class="p">,</span> <span class="n">out_folder</span><span class="p">):</span>
+    <span class="n">hec</span> <span class="o">=</span> <span class="n">HecSet</span><span class="p">(</span><span class="n">hec_file</span><span class="p">)</span>
+
+    <span class="n">mpm_results</span> <span class="o">=</span> <span class="n">calculate_mpm</span><span class="p">(</span><span class="n">hec</span><span class="o">.</span><span class="n">hec_data</span><span class="p">,</span> <span class="n">D_char</span><span class="p">)</span>
+    <span class="n">mpm_results</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">out_folder</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">bed_load_mpm.xlsx&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="make-the-application-frame">
+<h2>Make the application frame<a class="headerlink" href="#make-the-application-frame" title="Permalink to this headline">¶</a></h2>
+<p>Create a new <em>Python</em> file, call it <code class="docutils literal notranslate"><span class="pre">gui.py</span></code> and import the following libraries:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>  <span class="c1"># standard widgets (Label, Button, etc.)</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">ttk</span>  <span class="c1"># for Combobox widget</span>
+<span class="kn">from</span> <span class="nn">tkinter.messagebox</span> <span class="kn">import</span> <span class="n">askokcancel</span><span class="p">,</span> <span class="n">showinfo</span>  <span class="c1"># infoboxes</span>
+<span class="kn">from</span> <span class="nn">tkinter.filedialog</span> <span class="kn">import</span> <span class="n">askopenfilename</span><span class="p">,</span> <span class="n">askdirectory</span>  <span class="c1"># select files or folders</span>
+<span class="kn">import</span> <span class="nn">webbrowser</span>  <span class="c1"># open files or URLs from string-type directories</span>
+</pre></div>
+</div>
+<p>Moreover, we need to import the sediment transport code (converted to a module through the <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file in the <code class="docutils literal notranslate"><span class="pre">sediment_transport</span></code> folder):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sediment_transport</span> <span class="k">as</span> <span class="nn">sed</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">tkinter</span></code> is tailored for object-oriented applications and this is why we create a new class called <code class="docutils literal notranslate"><span class="pre">SediApp</span></code> as a child of <code class="docutils literal notranslate"><span class="pre">tk.Frame</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SediApp</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="set-window-geometry">
+<h3>Set window geometry<a class="headerlink" href="#set-window-geometry" title="Permalink to this headline">¶</a></h3>
+<p>The initialization of the <code class="docutils literal notranslate"><span class="pre">tk.Frame</span></code> parent class is the first and most important step that we have already implemented above. Next, define a window title and a window icon (use for example the provided icon <code class="docutils literal notranslate"><span class="pre">graphs/icon.ico</span></code> in the exercise repository):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+      <span class="o">...</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Sedi App&quot;</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">iconbitmap</span><span class="p">(</span><span class="s2">&quot;graphs/icon.ico&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Make sure to get the icon path right. Otherwise, the app may crash.</p>
+</div>
+<p>Assign a window geometry with window width and height, as well as <em>x</em> and <em>y</em> position on the screen in pixel units:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+      <span class="o">...</span>
+      <span class="n">ww</span> <span class="o">=</span> <span class="mi">628</span>  <span class="c1"># width</span>
+      <span class="n">wh</span> <span class="o">=</span> <span class="mi">382</span>  <span class="c1"># height</span>
+      <span class="c1"># screen position</span>
+      <span class="n">wx</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">winfo_screenwidth</span><span class="p">()</span> <span class="o">-</span> <span class="n">ww</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+      <span class="n">wy</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">winfo_screenheight</span><span class="p">()</span> <span class="o">-</span> <span class="n">wh</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+      <span class="c1"># assign geometry</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">x</span><span class="si">%d</span><span class="s2">+</span><span class="si">%d</span><span class="s2">+</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">ww</span><span class="p">,</span> <span class="n">wh</span><span class="p">,</span> <span class="n">wx</span><span class="p">,</span> <span class="n">wy</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To relax the layout, we will use x and y pads later for the widgets (buttons, labels, and combobox). For this purpose, create two <em>integer</em> variables that define a buffer of 5 pixels around the widgets.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+      <span class="o">...</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">padx</span> <span class="o">=</span> <span class="mi">5</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">pady</span> <span class="o">=</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-child-widgets-buttons-labels-and-combobox">
+<h3>Create child widgets (Buttons, Labels and Combobox)<a class="headerlink" href="#create-child-widgets-buttons-labels-and-combobox" title="Permalink to this headline">¶</a></h3>
+<p>To enable the selection of grain and <em>HEC-RAS</em> output data files, we will use <code class="docutils literal notranslate"><span class="pre">tk.Button</span></code>s and <code class="docutils literal notranslate"><span class="pre">tk.Label</span></code>s will inform the user about selected files and directories. A <code class="docutils literal notranslate"><span class="pre">tk.WIDGET</span></code> (button, label, etc.) can be created either directly without instantiating an object (e.g., <code class="docutils literal notranslate"><span class="pre">tk.Button(...).grid(...)</span></code>) or as an object (e.g., <code class="docutils literal notranslate"><span class="pre">a_button</span> <span class="pre">=</span> <span class="pre">tk.Button(...)</span></code>) that can be configured later on (e.g., <code class="docutils literal notranslate"><span class="pre">a_button.grid(...)</span></code> or <code class="docutils literal notranslate"><span class="pre">a_button.configure(...)</span></code>).</p>
+<hr class="docutils" />
+<p>We will create three buttons to let the user select:</p>
+<ol class="simple">
+<li><p>An input <code class="docutils literal notranslate"><span class="pre">csv</span></code> file for grain size classification,</p></li>
+<li><p>A <em>HEC-RAS</em> output workbook (<code class="docutils literal notranslate"><span class="pre">xlsx</span></code>) file, and</p></li>
+<li><p>An output directory where the resulting <code class="docutils literal notranslate"><span class="pre">bed_load_mpm.xlsx</span></code> workbook will be stored.</p></li>
+</ol>
+<p>Every button triggers a method of <code class="docutils literal notranslate"><span class="pre">SediApp</span></code>, which we will define later on. The methods to trigger are defined with the <code class="docutils literal notranslate"><span class="pre">command=self.METHOD()</span></code> keyword (recall the instructions for creating a <a class="reference internal" href="../jupyter/gui.html#add-button"><span class="std std-ref">button</span></a>).</p>
+<p>The file and folder directories need to be initialized before we can use them in the button texts. Therefore, add to <code class="docutils literal notranslate"><span class="pre">__init__</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+      <span class="o">...</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">grain_file</span> <span class="o">=</span> <span class="s2">&quot;SELECT&quot;</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">grain_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># will be a sed.GrainReader object when the user defined grains.csv</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">hec_file</span> <span class="o">=</span> <span class="s2">&quot;SELECT&quot;</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">out_folder</span> <span class="o">=</span> <span class="s2">&quot;SELECT&quot;</span>
+</pre></div>
+</div>
+<p>The three buttons for selecting files and directories do not need to be modified or re-configured later and we can directly place them in the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+      <span class="o">...</span>
+      <span class="c1"># grain file button</span>
+      <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">master</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Select grain csv file&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+                <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_grain_file</span><span class="p">())</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                                            <span class="n">padx</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">padx</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pady</span><span class="p">,</span>
+                                                            <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">)</span>
+
+      <span class="c1"># hec file button</span>
+      <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">master</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Select HEC-RAS data workbook&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+                <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_hec_file</span><span class="p">())</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                                                          <span class="n">padx</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">padx</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pady</span><span class="p">,</span>
+                                                          <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">)</span>
+
+      <span class="c1"># output folder button</span>
+      <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">master</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Select output folder&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+                <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">select_out_directory</span><span class="p">())</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                                                                  <span class="n">padx</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">padx</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pady</span><span class="p">,</span>
+                                                                  <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To run the program (bed load transport calculation), we need another button, which we want to modify later on to communicate that the program ran successfully. Add the run button to <code class="docutils literal notranslate"><span class="pre">__init__</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+      <span class="o">...</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">b_run</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">master</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Compute&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+                             <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_program</span><span class="p">()</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">b_run</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">padx</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pady</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There is a difference in the use of <code class="docutils literal notranslate"><span class="pre">.grid()</span></code> when it is attributed to a <code class="docutils literal notranslate"><span class="pre">tk.Button</span></code> instance rather than directly with <code class="docutils literal notranslate"><span class="pre">tk.Button</span></code>.</p>
+</div>
+<p>To let the user know (approve) the selected files and directories, create <code class="docutils literal notranslate"><span class="pre">tk.Label</span></code> objects, which need to be configurable (the selected directories will change). Add the following labels to <code class="docutils literal notranslate"><span class="pre">__init__</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+      <span class="o">...</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">grain_label</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">master</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Grain file (csv): &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">grain_file</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">grain_label</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">padx</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pady</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">hec_label</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">master</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;HEC-RAS data file (xlsx): &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">hec_file</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">hec_label</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">padx</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pady</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">out_label</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">master</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Output folder: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_folder</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">out_label</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">padx</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pady</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">run_label</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">master</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;forest green&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">run_label</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">padx</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pady</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Add a <code class="docutils literal notranslate"><span class="pre">ttk.Combobox</span></code> that lists grain sizes and lets the user choose which value to use for characteristic grain size. Place the combobox (with a void list) and put a label in front of the combobox (does not need to be modified) in the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+      <span class="o">...</span>
+      <span class="c1"># Label for Combobox</span>
+      <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">master</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Select characteristic grain size:&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">padx</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pady</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">)</span>
+      <span class="c1"># Combobox</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">cbx_D_char</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Combobox</span><span class="p">(</span><span class="n">master</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">cbx_D_char</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">padx</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pady</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">cbx_D_char</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;disabled&#39;</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">cbx_D_char</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="add-methods-commands-called-through-widgets">
+<h3>Add methods (commands) called through widgets<a class="headerlink" href="#add-methods-commands-called-through-widgets" title="Permalink to this headline">¶</a></h3>
+<p>The above-defined buttons call methods to open file names and directories (as <em>string</em>). As file selection dialogues are required twice (grains and <em>HEC-RAS</em> data), it makes sense to have a general function for selecting files. Therefore, add a new method to <code class="docutils literal notranslate"><span class="pre">SediApp</span></code> and call it <code class="docutils literal notranslate"><span class="pre">select_file</span></code>. The method uses  <code class="docutils literal notranslate"><span class="pre">askopenfilename</span></code> from <code class="docutils literal notranslate"><span class="pre">tkinter.filedialog</span></code> and takes two input arguments. The first argument (<code class="docutils literal notranslate"><span class="pre">description</span></code>) should be a (very) short description of the file to select. The second argument (<code class="docutils literal notranslate"><span class="pre">file_type</span></code>) represents the file type (ending) that the user should look for. Both arguments are bound as a <a class="reference internal" href="../jupyter/pybase.html#tuple"><span class="std std-ref">Tuple</span></a> into a <a class="reference internal" href="../jupyter/pybase.html#list"><span class="std std-ref">List</span></a> of <code class="docutils literal notranslate"><span class="pre">filetypes</span></code> that <code class="docutils literal notranslate"><span class="pre">askopenfilename</span></code> uses to narrow down and clarify file selection options.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">select_file</span></code> function could also be extended to multiple file types (e.g., include multiple types of workbooks or text files with <code class="docutils literal notranslate"><span class="pre">filetypes=[('Workbook',</span> <span class="pre">'xlsx;</span> <span class="pre">xlsx;</span> <span class="pre">ods'),</span> <span class="pre">('Text</span> <span class="pre">file',</span> <span class="pre">'*.csv;</span> <span class="pre">*.txt')]</span></code>).</p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">initialdir</span></code> keyword argument defines the directory that opens up in the file dialogue window. The <code class="docutils literal notranslate"><span class="pre">title</span></code> keyword argument sets the dialog window’s title and <code class="docutils literal notranslate"><span class="pre">parent</span></code> defines the parent window or <code class="docutils literal notranslate"><span class="pre">tk.Frame</span></code> (important when working with multiple <code class="docutils literal notranslate"><span class="pre">tk.Frame</span></code> objects such as <a class="reference external" href="https://docs.python.org/3.1/library/tkinter.ttk.html#tkinter.ttk.Notebook"><code class="docutils literal notranslate"><span class="pre">ttk.Notebook</span></code></a> tabs).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">select_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">file_type</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">askopenfilename</span><span class="p">(</span><span class="n">filetypes</span><span class="o">=</span><span class="p">[(</span><span class="n">description</span><span class="p">,</span> <span class="n">file_type</span><span class="p">)],</span>
+                               <span class="n">initialdir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">),</span>
+                               <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Select a </span><span class="si">%s</span><span class="s2"> file&quot;</span> <span class="o">%</span> <span class="n">file_type</span><span class="p">,</span>
+                               <span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To enable the selection of a grain <code class="docutils literal notranslate"><span class="pre">csv</span></code> file, write a <code class="docutils literal notranslate"><span class="pre">set_grain_file</span></code> method as used with the above <code class="docutils literal notranslate"><span class="pre">tk.Button</span></code>. The <code class="docutils literal notranslate"><span class="pre">set_grain_file</span></code> method opens a file selection dialog and tries to open the file as a <code class="docutils literal notranslate"><span class="pre">GrainReader</span></code> object (<a class="reference external" href="https://github.com/Ecohydraulics/Exercise-SedimentTransport#read-grain-size-data">recall the sediment transport exercise</a>). If it cannot open the selected grain size <code class="docutils literal notranslate"><span class="pre">csv</span></code> file, the method falls into an <code class="docutils literal notranslate"><span class="pre">OSError</span></code> statement and opens a <code class="docutils literal notranslate"><span class="pre">showinfo</span></code> box (from <code class="docutils literal notranslate"><span class="pre">tkinter.messagebox</span></code>) that notifies the user about the error. Otherwise (if everything is OK), the method updates the grain label (<code class="docutils literal notranslate"><span class="pre">self.grain_label</span></code>) and the combobox (<code class="docutils literal notranslate"><span class="pre">self.cbx_D_char</span></code>) with the information read from the grain size <code class="docutils literal notranslate"><span class="pre">csv</span></code> file.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">set_grain_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grain_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">select_file</span><span class="p">(</span><span class="s2">&quot;grain file&quot;</span><span class="p">,</span> <span class="s2">&quot;csv&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">grain_info</span> <span class="o">=</span> <span class="n">sed</span><span class="o">.</span><span class="n">GrainReader</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grain_file</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+            <span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;ERROR&quot;</span><span class="p">,</span> <span class="s2">&quot;Could not open </span><span class="si">%s</span><span class="s2">.&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">grain_file</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">grain_file</span> <span class="o">=</span> <span class="s2">&quot;SELECT&quot;</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+
+        <span class="c1"># update grain label</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grain_label</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Grain file (csv): &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">grain_file</span><span class="p">)</span>
+
+        <span class="c1"># update and enable combobox</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cbx_D_char</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;readonly&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cbx_D_char</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grain_info</span><span class="o">.</span><span class="n">size_classes</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cbx_D_char</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;D84&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To enable the selection of an <em>HEC-RAS</em> output workbook, define a <code class="docutils literal notranslate"><span class="pre">set_hec_file</span></code> method as used in the above <code class="docutils literal notranslate"><span class="pre">tk.Button</span></code>. After the user’s file selection, the method needs to update the <em>hec</em>-label object (<code class="docutils literal notranslate"><span class="pre">self.hec_label</span></code>).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">set_hec_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hec_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">select_file</span><span class="p">(</span><span class="s2">&quot;HEC-RAS output file&quot;</span><span class="p">,</span> <span class="s2">&quot;xlsx&quot;</span><span class="p">)</span>
+        <span class="c1"># update hec label</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hec_label</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;HEC-RAS output file (xlsx): &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">hec_file</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The selection of an output directory uses <code class="docutils literal notranslate"><span class="pre">askdirectory</span></code>, which is another method from <code class="docutils literal notranslate"><span class="pre">tkinter.filedialog</span></code>. After the user’s folder selection, the method needs to update the output folder label object (<code class="docutils literal notranslate"><span class="pre">self.out_label</span></code>).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">select_out_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_folder</span> <span class="o">=</span> <span class="n">askdirectory</span><span class="p">()</span>
+        <span class="c1"># update output folder label</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_label</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Output folder: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_folder</span><span class="p">)</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p><em><strong>Are all user inputs correctly defined?</strong></em></p>
+<p>Before running the bed load computation, we need to make sure that a grain size file, <em>HEC-RAS</em> workbook, and output directory are defined because the user can press the <code class="docutils literal notranslate"><span class="pre">self.b_run</span></code> button at any time. To ensure that the necessary inputs are provided, parse <code class="docutils literal notranslate"><span class="pre">self.grain_file</span></code>, <code class="docutils literal notranslate"><span class="pre">self.hec_file</span></code>, and <code class="docutils literal notranslate"><span class="pre">self.out_folder</span></code> for the <em>string</em> <code class="docutils literal notranslate"><span class="pre">&quot;SELECT&quot;</span></code>, which is the default value of these variables (i.e., if the user did not make a choice, the variables contain the <em>string</em> <code class="docutils literal notranslate"><span class="pre">&quot;SELECT&quot;</span></code>). Implement the validity check in a method called <code class="docutils literal notranslate"><span class="pre">valid_selections</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>   <span class="k">def</span> <span class="nf">valid_selections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+       <span class="k">if</span> <span class="s2">&quot;SELECT&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">grain_file</span><span class="p">:</span>
+           <span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;ERROR&quot;</span><span class="p">,</span> <span class="s2">&quot;Select grain size file.&quot;</span><span class="p">)</span>
+           <span class="k">return</span> <span class="kc">False</span>
+       <span class="k">if</span> <span class="s2">&quot;SELECT&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">hec_file</span><span class="p">:</span>
+           <span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;ERROR&quot;</span><span class="p">,</span> <span class="s2">&quot;Select HEC-RAS output file.&quot;</span><span class="p">)</span>
+           <span class="k">return</span> <span class="kc">False</span>
+       <span class="k">if</span> <span class="s2">&quot;SELECT&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_folder</span><span class="p">:</span>
+           <span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;ERROR&quot;</span><span class="p">,</span> <span class="s2">&quot;Select output folder.&quot;</span><span class="p">)</span>
+           <span class="k">return</span> <span class="kc">False</span>
+       <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="define-the-run-program-method">
+<h3>Define the run program method<a class="headerlink" href="#define-the-run-program-method" title="Permalink to this headline">¶</a></h3>
+<p>To finalize the app, add a <code class="docutils literal notranslate"><span class="pre">self.run_program</span></code> method corresponding to the <code class="docutils literal notranslate"><span class="pre">command</span></code> function of the <code class="docutils literal notranslate"><span class="pre">&quot;Compute&quot;</span></code> button (<code class="docutils literal notranslate"><span class="pre">self.b_run</span></code>) . The <code class="docutils literal notranslate"><span class="pre">run_program</span></code> method must ensure that the user has specified the necessary files and folders by calling the <code class="docutils literal notranslate"><span class="pre">valid_selections</span></code> method (and return <code class="docutils literal notranslate"><span class="pre">-1</span></code> otherwise). Then, the characteristic grain size selected by the user in the combobox is determined by <code class="docutils literal notranslate"><span class="pre">self.cbx_D_char.get()</span></code>. If the provided grain <code class="docutils literal notranslate"><span class="pre">csv</span></code> file has no valid numeric entry for the selected characteristic grain size, <code class="docutils literal notranslate"><span class="pre">run_program</span></code>  should fall into a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> statement and inform the user about the issue in a <code class="docutils literal notranslate"><span class="pre">showinfo</span></code> box.</p>
+<p>An <code class="docutils literal notranslate"><span class="pre">askokcancel</span></code> pop-up window (from <code class="docutils literal notranslate"><span class="pre">tkinter.messagebox</span></code>) asks the user to press <em>OK</em>/<em>Cancel</em> to run/abort the program. If the user clicks <em>OK</em>, the pop-up window returns <code class="docutils literal notranslate"><span class="pre">True</span></code> and starts the bed load computation through the <code class="docutils literal notranslate"><span class="pre">main()</span></code> function of <code class="docutils literal notranslate"><span class="pre">sed</span></code> (see above import of the <code class="docutils literal notranslate"><span class="pre">sediment_transport</span></code> module).</p>
+<p>After the successful run of the program, the <code class="docutils literal notranslate"><span class="pre">run_program</span></code> method sets the foreground (text) color of the <code class="docutils literal notranslate"><span class="pre">self.b_run</span></code> button to <code class="docutils literal notranslate"><span class="pre">&quot;forest</span> <span class="pre">green&quot;</span></code> and adds the text <code class="docutils literal notranslate"><span class="pre">&quot;Success:</span> <span class="pre">Created</span> <span class="pre">%s&quot;</span> <span class="pre">%</span> <span class="pre">str(self.out_folder</span> <span class="pre">+</span> <span class="pre">&quot;/bed_load_mpm.xlsx&quot;)</span></code> to <code class="docutils literal notranslate"><span class="pre">self.run_label</span></code> (defined in the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method). The <code class="docutils literal notranslate"><span class="pre">webbrowser</span></code> module’s <code class="docutils literal notranslate"><span class="pre">open</span></code> method opens the newly produced <a class="reference external" href="https://github.com/Ecohydraulics/Exercise-SedimentTransport#mpm">Meyer-Peter &amp; Müller (1948)</a> bed load transport workbook (result of <code class="docutils literal notranslate"><span class="pre">sed.main(...)</span></code>).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">run_program</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># ensure that user selected all necessary inputs</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">valid_selections</span><span class="p">():</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+
+        <span class="c1"># get selected characteristic grain size</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">D_char</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grain_info</span><span class="o">.</span><span class="n">size_classes</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">][</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cbx_D_char</span><span class="o">.</span><span class="n">get</span><span class="p">()])</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;ERROR&quot;</span><span class="p">,</span> <span class="s2">&quot;The selected characteristic grain size is not correctly defined in the csv file (float?).&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">if</span> <span class="n">askokcancel</span><span class="p">(</span><span class="s2">&quot;Start calculation?&quot;</span><span class="p">,</span> <span class="s2">&quot;Click OK to start the calculation.&quot;</span><span class="p">):</span>
+            <span class="n">sed</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">D_char</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hec_file</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_folder</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">b_run</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">fg</span><span class="o">=</span><span class="s2">&quot;forest green&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">run_label</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Success: Created </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">out_folder</span> <span class="o">+</span> <span class="s2">&quot;/bed_load_mpm.xlsx&quot;</span><span class="p">)</span>
+            <span class="n">webbrowser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">out_folder</span> <span class="o">+</span> <span class="s2">&quot;/bed_load_mpm.xlsx&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="make-the-script-stand-alone">
+<h2>Make the script stand-alone<a class="headerlink" href="#make-the-script-stand-alone" title="Permalink to this headline">¶</a></h2>
+<p>To create the window, make <code class="docutils literal notranslate"><span class="pre">gui.py</span></code> stand-alone executable by adding the following statement to the file bottom (recall the <a class="reference external" href="../jupyter/pypckg.html#standalone">stand-alone descriptions</a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">SediApp</span><span class="p">()</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="launch-the-gui">
+<h2>Launch the GUI<a class="headerlink" href="#launch-the-gui" title="Permalink to this headline">¶</a></h2>
+<p>Run the <em><a class="reference external" href="http://gui.py">gui.py</a></em> script (e.g., in <a class="reference internal" href="../get-started/ide.html#pycharm"><span class="std std-ref">PyCharm with Anaconda</span></a>  right-click in the <code class="docutils literal notranslate"><span class="pre">gui.py</span></code> script and click <code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">Run</span> <span class="pre">'gui'</span></code>). If the script crashes or raises error messages, trace them back, and fix the issues. Otherwise, a <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> window opens:</p>
+<p><img alt="guistart" src="https://github.com/Ecohydraulics/Exercise-gui/raw/master/graphs/gui-start.png" /></p>
+<p>Use the buttons to select a grain <code class="docutils literal notranslate"><span class="pre">csv</span></code> file (e.g., <a class="reference external" href="https://github.com/Ecohydraulics/Exercise-SedimentTransport/raw/master/grains.csv">grains.csv</a> from the sediment transport exercise), a <em>HEC-RAS</em> output <code class="docutils literal notranslate"><span class="pre">xlsx</span></code> workbook (e.g., <a class="reference external" href="https://github.com/Ecohydraulics/Exercise-SedimentTransport/raw/master/HEC-RAS/output.xlsx">HEC-RAS/output.xlsx</a> from the sediment transport exercise), and define an output directory (e.g., <em>…/Exercise-gui/</em>). Make sure to select a characteristic grain size in the combobox (e.g., <code class="docutils literal notranslate"><span class="pre">D84</span></code>) and click on the <code class="docutils literal notranslate"><span class="pre">Compute</span></code> button.</p>
+<p>After a successful run, the file <code class="docutils literal notranslate"><span class="pre">bed_load_mpm.xlsx</span></code> opens, the <code class="docutils literal notranslate"><span class="pre">Compute</span></code> button turns green, and the label below the button confirms the successful run (otherwise traceback errors and fix them). The GUI should now look like this:</p>
+<p><img alt="guiend" src="https://github.com/Ecohydraulics/Exercise-gui/raw/master/graphs/gui-end.png" /></p>
+<div class="admonition-homework admonition">
+<p class="admonition-title">Homework</p>
+<p>Tweak the validity check of user inputs. Deactivate the <code class="docutils literal notranslate"><span class="pre">self.b_run</span></code> button with <code class="docutils literal notranslate"><span class="pre">self.b_run[&quot;state&quot;]</span> <span class="pre">=</span> <span class="pre">&quot;disabled&quot;</span></code> and re-activate the button (<code class="docutils literal notranslate"><span class="pre">self.b_run[&quot;state&quot;]</span> <span class="pre">=</span> <span class="pre">&quot;normal&quot;</span></code>) if the user inputs are correct (result of <code class="docutils literal notranslate"><span class="pre">valid_selections</span></code>). For this purpose, the call to <code class="docutils literal notranslate"><span class="pre">valid_selections</span></code> must be moved outside the <code class="docutils literal notranslate"><span class="pre">run_program</span></code> method.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "hydro-informatics/hydro-informatics.github.io",
+            ref: "gh-pages",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./exercises"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="ex-sediment.html" title="previous page">1d Sediment Transport</a>
+    <a class='right-next' id="next-link" href="../documentation/documentation.html" title="next page">Markdown and Code Documentation</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Sebastian Schwindt<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

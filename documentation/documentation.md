@@ -1,7 +1,7 @@
 # Markdown and Code Documentation
 
 ## Document your work
-Leonardo Da Vinci used journals to sketch, develop and eventually pass on his ideas. Alexander von Humboldt documented many of his journeys in travel journals and Marie Skłodowska Curie wrote down the theory of "radioactivity" using pens and papers. Today,  writing media have evolved into infinite digital oceans with sophisticated tools for documenting code and ideas. Also the way in which we look for and retrieve information has evolved from searching for lexicon entries to using keywords in search engines.
+Leonardo Da Vinci used journals to sketch, develop and eventually pass on his ideas. Alexander von Humboldt documented many of his journeys in travel journals and Marie Skłodowska Curie wrote down the theory of "radioactivity" using pens and papers. Today,  writing media have evolved into infinite digital oceans with sophisticated tools for documenting code and ideas. Also, how we look for and retrieve information has evolved from searching for lexicon entries to using keywords in search engines.
 So if you have made an ingenious discovery, you want to make sure you document it well so that others can understand and use it. You also want to make sure that others can find your stroke of genius in digital media. You also want to make sure that others can find your stroke of genius in digital media. One of the most widespread methods for documenting and spreading ideas is the use of so-called wikis (from Hawaiian: *fast*), which can easily be written in markdown language. *GitHub* provides comprehensive, easy-to-read explanations for [project documentation](https://guides.github.com/features/wikis/) with *Markdown* as core element. This page presents the basics of the markdown language to leverage wikis. Moreover, the powerful alternative of using *reStructuredText* in *Sphinx*-based documentations is introduced.
 
 
@@ -13,7 +13,7 @@ So if you have made an ingenious discovery, you want to make sure you document i
 
 ## What to document?
 
-A good code documentation starts with a qualitative and concise description of software (e.g., a *Python* package) capacities, products, and requirements. It also provides workflows for installing and using the software, at best with illustrative examples. Finally, a good troubleshooting section enables users to find problems in their data setup or software usage. To enable future development and maintenance, a *Contributing* section provides *good-practice-guidelines* for coding new software capacities.
+Good code documentation starts with a qualitative and concise description of software (e.g., a *Python* package) capacities, products, and requirements. It also provides workflows for installing and using the software, at best with illustrative examples. Finally, a good troubleshooting section enables users to find problems in their data setup or software usage. To enable future development and maintenance, a *Contributing* section provides * good-practice guidelines* for coding new software capacities.
 
 ### Present the software
 
@@ -39,18 +39,18 @@ To truly make your software useful to others, add a case study. Most users will 
 
 ### Troubleshooting
 
-Sure, your code is error-free and of course only the user makes mistakes. Show compassion and integrate specific {ref}`try-except` in the source code, which point out possible error sources. These error (and maybe even warning) messages should all be listed in a *Troubleshoot* section of the code documentation. Any source of error (message) should be documented regarding the following aspects:
+Sure, your code is error-free and of course, only the user makes mistakes. Show compassion and integrate specific {ref}`try-except` in the source code, which point out possible error sources. These error (and maybe even warning) messages should all be listed in a *Troubleshoot* section of the code documentation. Any source of error (message) should be documented regarding the following aspects:
 
 * Cause: Possible reasons for why an error occurs.
 * Remedy: Steps for troubleshooting an error.
 
 ### Contributing
 
-Your software is brilliant. To make the software even more brilliant, foolproof, and powerful, it is a great idea (actually: an absolute must) to get more authors on the development team. However, it is very likely that any other author has individual preferences when it comes to code standards. So make sure to set up clear rules for other contributors from the beginning. For example, define clear code conventions as explained in the {ref}`chpt-style` section.
+Your software is brilliant. To make the software even more brilliant, foolproof, and powerful, it is a great idea (actually: an absolute must) to get more authors on the development team. However, any other author likely has individual preferences when it comes to code standards. So make sure to set up clear rules for other contributors from the beginning. For example, define clear code conventions as explained in the {ref}`chpt-style` section.
 
 
 ## Markdown
-*Markdown* was created in 2004 and is a simple markup language that is intuitive and easy to learn. Markup languages structure the content of plain text documents regarding the way a document is displayed to end users ({term}`Rich Text Format`). Other popular markup languages are for example [TeX](https://en.wikipedia.org/wiki/TeX) and [XML (Extensible Markup Language)](https://en.wikipedia.org/wiki/XML). *Markdown* became a popular tool for writing syntactically distinguishable computer text that is then translated into {term}`Rich Text Format` flavor. Here is an example how *Markdown* works:
+*Markdown* was created in 2004 and is a simple markup language that is intuitive and easy to learn. Markup languages structure the content of plain text documents regarding the way a document is displayed to end-users ({term}`Rich Text Format`). Other popular markup languages are for example [TeX](https://en.wikipedia.org/wiki/TeX) and [XML (Extensible Markup Language)](https://en.wikipedia.org/wiki/XML). *Markdown* became a popular tool for writing syntactically distinguishable computer text that is then translated into {term}`Rich Text Format` flavor. Here is an example of how *Markdown* works:
 
 
 ````{tabbed} Raw Markdown
@@ -78,13 +78,13 @@ Your software is brilliant. To make the software even more brilliant, foolproof,
 
 ### Markdown Editors (IDEs)
 
-Many text editors provide *Markdown* add-ons and *Markdown*-only editors are loosing their significance more and more. Editors that simultaneously support *Markdown* and programming languages like *Python* or *R* are state of the art and therefore recommended.
+Many text editors provide *Markdown* add-ons and *Markdown*-only editors are losing their significance more and more. Editors that simultaneously support *Markdown* and programming languages like *Python* or *R* are state of the art and therefore recommended.
 
 Basic text editors that support *Markdown* are listed [here](../get-started/others.html#npp). Popular and multi-platform *IDE*s for editing *Markdown* (`.md`) files are {ref}`install-atom` (for combination with *Python*, *R*, *C/C++*, *JavaScript*, *html*, *CSS*, and many more), and {ref}`jupyter` or {ref}`pycharm` (for combination with *Python* or *R*).
 
 ### Markdown Command Overview and Image Implementation
 
-The following table and sections provide an overview of basic markdown commands. There is much more options out there, which you can find by using your favorite search engine with the keywords `markdown` `guide`.
+The following table and sections provide an overview of basic markdown commands. There are much more options out there, which you can find by using your favorite search engine with the keywords `markdown` `guide`.
 
 | Feature                | Code                            | Example          |
 |:-----------------------|:--------------------------------|:-----------------|
@@ -152,7 +152,7 @@ Table columns are separated by a `|` sign. The first row determines row headers 
 
 ````
 
-Converting complex tables from workbooks (e.g., from *LibreOffice Calc* or *MS Excel*) is possible with many online tools and here is just one example from Dave Johnson: [https://thisDaveJ.com](https://thisdavej.com/copy-table-in-excel-and-paste-as-a-markdown-table/).
+Converting complex tables from workbooks (e.g., from *LibreOffice Calc* or *MS Excel*) is possible with many online tools, and here is just one example from Dave Johnson: [https://thisDaveJ.com](https://thisdavej.com/copy-table-in-excel-and-paste-as-a-markdown-table/).
 
 ### Math Expressions: Equations
 
@@ -170,7 +170,7 @@ Note that the equation starts after `math&math=`. Thus for using the math snippe
 
 ### Greek Letters
 
-In order to use greek letters in inline text, use *html* language, where `&lettername;` produces the desired *Greek* letter symbol (e.g., type `&delta;` to output &delta; or `&Delta;` to output a capital letter &Delta;). The following table provides an overview of Greek letter symbols.
+To use greek letters in inline text, use *html* language, where `&lettername;` produces the desired *Greek* letter symbol (e.g., type `&delta;` to output &delta; or `&Delta;` to output a capital letter &Delta;). The following table provides an overview of Greek letter symbols.
 
 | Letter    | Code        | letter    | code        |
 |-----------|-------------|-----------|-------------|
@@ -220,7 +220,7 @@ Arrows and operators can also be implemented as *html* symbols. The following ta
 
 ### Miscellaneous Symbols
 
-*Markdown* profits from many more *html* symbols that may be used in equations or other text. The following table provides an overview over such miscellaneous symbols.
+*Markdown* profits from many more *html* symbols that may be used in equations or other text. The following table provides an overview of such miscellaneous symbols.
 
 |          | Symbols (1) |  |          | Symbols (2) |  |           | Symbols (3) |
 |----------|-------------|--|----------|-------------|--|-----------|-------------|
@@ -247,9 +247,9 @@ Arrows and operators can also be implemented as *html* symbols. The following ta
 
 ## Wikis
 
-While every {ref}`git <chpt-git>` repository should at least contain a descriptive *README.md*, *wiki* s provide much more detail and guidance. Wikis are a convenient way to guide users with permanent side bars (such as the menu bar on this web site), help users to understand methods and codes, and collaborative coding with precise descriptions of scripts. *GitHub* users find options to activate *wiki*s in the *Settings* tab of a repository and the developers continue to improve *wiki* functions ([read more about *GitHub*'s wikis](https://help.github.com/en/github/building-a-strong-community/about-wikis)).
+While every {ref}`git <chpt-git>` repository should at least contain a descriptive *README.md*, *wiki* s provide much more detail and guidance. Wikis are a convenient way to guide users with permanent sidebars (such as the menu bar on this website), help users to understand methods and codes, and collaborative coding with precise descriptions of scripts. *GitHub* users find options to activate *wiki*s in the *Settings* tab of a repository and the developers continue to improve *wiki* functions ([read more about *GitHub*'s wikis](https://help.github.com/en/github/building-a-strong-community/about-wikis)).
 
-More sophisticated *wiki*s are available on the *Jekyll* themes web site (e.g., the [git-wiki theme](https://jekyll-themes.com/git-wiki/)). In order to use *Jekyll* themes, make sure to enable [*GitHub* pages](https://help.github.com/en/github/working-with-github-pages/creating-a-github-pages-site) (in the repository *Settings* tab) for the repository where you want to establish the *wiki* (this wiki-repository is typically another repository in order to describe a code-repository). Then, install the *Ruby development environment* and *Jekyll* (see [instructions on their website](https://jekyllrb.com/docs/) in order to access and build hundreds of themes for code and project documentation. Forked and locally adapted themes can then be *push*ed to a remote *wiki* repository using {ref}`git <chpt-git>`.
+More sophisticated *wiki*s are available on the *Jekyll* themes website (e.g., the [git-wiki theme](https://jekyll-themes.com/git-wiki/)). To use *Jekyll* themes, make sure to enable [*GitHub* pages](https://help.github.com/en/github/working-with-github-pages/creating-a-github-pages-site) (in the repository *Settings* tab) for the repository where you want to establish the *wiki* (this wiki-repository is typically another repository to describe a code-repository). Then, install the *Ruby development environment* and *Jekyll* (see [instructions on their website](https://jekyllrb.com/docs/) to access and build hundreds of themes for code and project documentation. Forked and locally adapted themes can then be *push*ed to a remote *wiki* repository using {ref}`git <chpt-git>`.
 
 ```{tip}
 There are other git-services and wiki host providers out there, such as [GitLab](https://gitlab.com/pages) or [plan.io](https://plan.io/knowledge-management/).
@@ -263,6 +263,6 @@ Get practice in markdown with the [markdown and git](../exercises/ex-git) exerci
 
 An alternative to markdown is [reStructuredText](https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html) that enables embedding *Python docstrings* (read more about {ref}`chpt-style`) in any script with [*Sphinx*](https://www.sphinx-doc.org).
 
-Without any *Python* or programming knowledge, it might be hard to get started with *Sphinx*. So make sure to understand *Python* basics and document any code with *docstrings*, at best using [*google style*](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html) formatting. Once you start documenting your first *Python* package, *google-style* *docstrings* will enable the fast generation of high-quality docs. Currently, one of the best options for partially auto-generating code documentations, for any programming language, is [*readthedocs*](https://readthedocs.org/), which builds on *Sphinx* and *reStructuredText*.
+Without any *Python* or programming knowledge, it might be hard to get started with *Sphinx*. So make sure to understand *Python* basics and document any code with *docstrings*, at best using [*google style*](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html) formatting. Once you start documenting your first *Python* package, *Google-style* *docstrings* will enable the fast generation of high-quality docs. Currently, one of the best options for partially auto-generating code documentations, for any programming language, is [*readthedocs*](https://readthedocs.org/), which builds on *Sphinx* and *reStructuredText*.
 
 [wiki]: https://wikipedia.org

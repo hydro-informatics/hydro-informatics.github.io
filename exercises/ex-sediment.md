@@ -89,7 +89,7 @@ The *Meyer-Peter & Müller* formula applies (like any other sediment transport f
 * 0.0002 m$^3$/(s $\cdot$ m) $< q <$ 2.0 m$^3$/(s $\cdot$ m) ($q$ is the unit discharge, i.e., $q=Q/[0. 5\cdot (b + B)]$)
 * 0.25 $< s <$ 3.2
 
-The dimensionless expression for bed load $\Phi$ was used to enable information transfer between different channels across scales by preserving geometric, kinematic and dynamic similarity. The set of dimensionless parameters used results from  [Buckingham's $\Pi$ theorem](https://pint.readthedocs.io/en/stable/pitheorem.html).
+The dimensionless expression for bed load $\Phi$ was used to enable information transfer between different channels across scales by preserving geometric, kinematic, and dynamic similarity. The set of dimensionless parameters used results from  [Buckingham's $\Pi$ theorem](https://pint.readthedocs.io/en/stable/pitheorem.html).
 Therefore, to add dimensions to $\Phi$, it needs to be multiplied with the same set of parameters used for deriving the dimensionless expression from *Meyer-Peter & Müller*. Their set of parameters involves the characteristic grain size $D_{char}$, the grain density $\rho_{s}$, and the gravitational acceleration $g$. Thus, the dimensional unit bed load is (in kg/s and meter width, i.e., kg/(s$\cdot$m): <a name="qb"></a>
 
 $$

@@ -50,9 +50,9 @@ The daily flow data of the Vanilla River are available from 1979 through 2001 in
 The function will loop over the *csv* file names and append the file contents to a dictionary of *numpy* arrays. Make sure to `import numpy as np`, `import os`, and `import glob`.
 
 1. Choose a function name (e.g., `def read_data(args):`) and use the following input arguments:
-    * `directory`: *string* of path to files
-    * `fn_prefix`: *string* of file prefix to strip dict-keys from file name
-    * `fn_suffix`: *string* of file suffix to strip dict-keys from file name
+    * `directory`: *string* of a path to files
+    * `fn_prefix`: *string* of file prefix to strip dict-keys from a file name
+    * `fn_suffix`: *string* of file suffix to strip dict-keys from a file name
     * `ftype`: *string* of file endings
     * `delimiter`: *string* of column separator
 1. In the function, test if the provided directory ends on `"/"` or `"\\"` with <br> `directory.endswith("/") or directory.endswith("\\")`<br>and read all files that end with `ftype` (we will use `ftype="csv"` here) with the `glob` library:
@@ -298,8 +298,8 @@ if __name__ == "__main__":
 
 The usage of the sequent peak algorithm (also known as *Rippl's method*, owing to its original author) has evolved and was implemented in sophisticated storage volume control algorithms with predictor models (statistical and/or numerical).
 
-In the end, there are several algorithms and ways to code them. Many factors (e.g. terrain or climate zone) determine whether a seasonal storage is possible or necessary. When determining the storage volume, social and environmental aspects must not be neglected. Every grain of sediment retained is missing in downstream sections of the river, every fish that is no longer able to migrate suffers a loss in habitat, and more than anything else, every inhabitant who suffers economic losses or is even forced to resettle because of the dam must be avoided or adequately compensated.
+In the end, there are several algorithms and ways to code them. Many factors (e.g. terrain or climate zone) determine whether seasonal storage is possible or necessary. When determining the storage volume, social and environmental aspects must not be neglected. Every grain of sediment retained is missing in downstream sections of the river, every fish that is no longer able to migrate suffers a loss in habitat, and more than anything else, every inhabitant who suffers economic losses or is even forced to resettle because of the dam must be avoided or adequately compensated.
 
 ```{admonition} Homework
-Re-write the peak (extrema) analysis either with two consecutive functions, or using [`from scipy.signal import find_peaks`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.find_peaks.html).
+Re-write the peak (extrema) analysis either with two consecutive functions or using [`from scipy.signal import find_peaks`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.find_peaks.html).
 ```
