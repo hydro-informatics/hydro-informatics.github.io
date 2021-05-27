@@ -11,8 +11,13 @@ Before diving into this tutorial make sure to:
 
 The first steps in numerical modeling of a river consist in the conversion of a Digital Elevation Model (**{term}`DEM`**) into a computational mesh. This tutorial guides through the creation of a QGIS project for converting a {term}`DEM` ({term}`GeoTIFF`) into a computational mesh that can be used with various numerical modeling software featured in this eBook. At the end of this tutorial, {ref}`chpt-basement` and {ref}`chpt-telemac` users will have generated a computational grid in the {term}`SMS 2dm` format. {ref}`chpt-openfoam` modelers will have a exported the {term}`DEM` in {term}`STL` file format that still needs to be meshed as explained later in this eBook's *OpenFOAM* {ref}`of-mesh` section.
 
+```{admonition} Platform compatibility
+:class: tip
+All software applications featured in this tutorial can be run on *Linux*, *Windows*, and *macOS* (in theory - not tested) platforms. Note that some numerical models, such as {ref}`chpt-basement`, will not work on *macOS* platforms.
+```
+
 (start-qgis)=
-## QGIS Project and Coordinate Reference System
+## QGIS Project Setup
 
 Launch QGIS and {ref}`create a new QGIS project <qgis-project>` to get started with this tutorial.
 As featured in the {ref}`qgis-tutorial`, set up a coordinate reference system (CRS) for the project. This example uses data of a river in Bavaria (Germany zone 4), which requires the following CRS:
@@ -41,7 +46,7 @@ A digital elevation model (**{term}`DEM`**) represents the baseline for any phys
 
 This tutorial uses an application-ready {term}`DEM` in {term}`GeoTIFF` {ref}`raster` format that stems from a LiDAR point cloud. The {term}`DEM` raster provides height (Z) information from a section of a gravel-cobble bed river in South-East Germany, which constitutes the baseline for the computational grids featured in the next sections. To get the provided DEM in the *QGIS* project:
 
-* **Download the example DEM GeoTIFF**](https://github.com/hydro-informatics/materials-bm/raw/main/rasters/dem-tif) and save it in the same folder (`/Project Home/` or a sub-directory) as the above-create **qgz** project.
+* **Download the example DEM GeoTIFF**](https://github.com/hydro-informatics/materials-bm/raw/main/rasters/dem.tif) and save it in the same folder (`/Project Home/` or a sub-directory) as the above-create **qgz** project.
 * Add the downloaded DEM as a new raster layer in *QGIS*:
   * In *QGIS*' **Browser** panel find the **Project Home** directory where you downloaded the DEM *tif*.
   * Drag the DEM *tif* from the **Project Home** folder into QGIS' **Layer** panel.
@@ -72,7 +77,7 @@ For three-dimensional (3d) modeling with OpenFOAM, the creation of a 2dm file is
 ```
 
 (make-2dm)=
-## 2dm Mesh for BASEMENT or TELEMAC
+## BASEMENT / TELEMAC: Create 2dm Mesh
 
 The generation of a {term}`SMS 2dm` uses the {ref}`QGIS BASEmesh plugin <get-basemesh>` and requires drawing a
 
@@ -366,7 +371,7 @@ The *BASEmesh* plugin's **Interpolation** tool projects bottom elevation data on
 BASEmesh's Z-value (height) interpolation tool and setup to assign bottom elevation values to the quality mesh.
 ```
 
-After the elevation interpolation, verify that the elevations are correctly assigned (i.e., the **Bed Elevation** should have taken values between **367** and **387** m a.s.l.). To modify the layer visualization (symbology) double-click on the new **prepro-tutorial_quality-mesh-interp** and go to the **Symbology** ribbon. Select **Graduated** at the very top of the window, set the **Value** to Z, **Method** to COLOR, choose a color ramp, and click on the **classify** bottom (lower part of the window). Click on **Apply** and **OK** to close the symbology settings. {numref}`Fig. %s <qgis-verify-qualm>` shows an example visualization of the height-interpolated mesh.
+After the elevation interpolation, verify that the elevations are correctly assigned (i.e., the **Bed Elevation** should have taken values between **367** and **387** m a.s.l.). To modify the layer visualization (symbology) double-click on the new **prepro-tutorial_quality-mesh-interp** and go to the **Symbology** ribbon. Select **Graduated** at the very top of the window, set the **Value** to Z, **Method** to COLOR, choose a color ramp, and click on the **classify** bottom (lower part of the window). Click on **Apply** and **OK** to close the symbology settings. {numref}`Figure %s <qgis-verify-qualm>` shows an example visualization of the height-interpolated mesh.
 
 ```{figure} ../img/qgis/bm-mesh-interp-success.png
 :alt: basemesh verify interpolated quality mesh
@@ -383,7 +388,7 @@ The 2dm mesh file produced in this tutorial can be directly used with {ref}`chpt
 For the usage with {ref}`chpt-telemac2d` (or {ref}`chpt-telemac3d`), the 2dm file requires a conversion to the serafin/selafin (`slf`) file format that is explained in the {ref}`slf-qgis` section.
 
 (dem2stl)=
-## Export DEM to STL
+## OpenFOAM: Export DEM to STL
 
 The {term}`STL` (standard tessellation language) file format is native to CAD software and particularly used for the representation of three-dimensional (3d) structures in the form of unstructured triangulated surfaces. {term}`STL` files can be read by pre-processing software for OpenFOAM and this section explains how to convert a GeoTIFF DEM into an {term}`STL` file.
 

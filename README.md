@@ -15,7 +15,7 @@ On Linux install:
 On Windows, use Anaconda Prompt to install the hywin environment that contains all required packages for building the ebook:
  * `conda env create -f window_environment.yml`
 
-## Build ebook
+## Build eBook
 
 To update the website:
 

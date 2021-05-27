@@ -1,140 +1,262 @@
 (chpt-basement)=
 # BASEMENT
 
-Two-dimensional (2d) numerical simulation methods described on these pages use the freely available software *BASEMENT* 3.x, which is developed at the ETH Zurich in Switzerland. Visit their [website](https://basement.ethz.ch/) to download the program and documentation. The here provided online material guides through a numerical simulation exercise with *BASEMENT v3.0.2*. The guidance describes:
+This chapter guides through the setup of a two-dimensional (2d) numerical simulation with the freely available software *BASEMENT* v3.1.1 developed at the ETH Zurich (Switzerland). Visit their [website](https://basement.ethz.ch/) to download the program and documentation. This tutorial features:
 
-* Pre-process data: From point clouds to computational meshes
-* Set up and run a numerical simulation with BASEMENT v.3
-* Post-process simulation results: Visualize, understand and analyze the model output.
-* Calibration & validation is here only mentioned as an integral part of numerical studies.
+* Model setup
+* Running a steady hydrodynamic 2d numerical simulation with BASEMENT v.3
+* Post-processing of simulation results: Visualize, understand and analyze the model output.
 
 ```{admonition} Requirements
-To complete the tutorial, the following software is needed (all software can be run on *Windows* and *Linux* platforms): <br><br>**- [*BASEMENT* v3.0.2](https://basement.ethz.ch/)**<br>**- [*QGIS v3.16*](../get-started/geo.html#qgis)**, and<br>**- [*ParaView*](https://www.paraview.org/)**.
+:class: attention
+Completing this tutorial requires:
+
+* An installation of {ref}`qgis-install`.
+* An {term}`SMS 2dm` file resulting from the {ref}`qgis-prepro` tutorial.
+* An installation of [BASEMENT v3.1.1](https://basement.ethz.ch/) or newer.
+* Optional: an installation of [ParaView](https://www.paraview.org/).
 ```
 
-This tutorial uses *BASEMENT*'s *BASEplane* module (version 3.0.2) to perform a two-dimensional (2d) hydrodynamic numerical simulation.
-
-(bm-prepro)=
-## Pre-processing: Mesh Generation
-
-Prepare a `2dm` mesh file as described in the [QGIS data pre-processing](../numerics/pre-qgis) section.
+```{admonition} Platform compatibility
+:class: tip
+All software applications featured in this tutorial can be run on *Linux* and *Windows* platforms. Note that *BASEMENT* is not available for *macOS*.
+```
 
 (simulate)=
-## Steady 2d Simulation with BASEMENT
+## Steady 2d Simulation Setup
 
-In addition to the mesh (`2dm` file), the numerical engine of *BASEMENT* needs a model setup file (*model.json*) and a simulation file (*simulation.json*), which both are created automatically by *BASEMENT*. The following sections describe how to make *BASEMENT* creating the two *.json* files. Before getting there, create a new project folder of your choice (e.g., `C:/BM/irme-exercise/`).
+In addition to the {term}`SMS 2dm` file from the {ref}`qgis-prepro` tutorial, the numerical engine of *BASEMENT* needs a model setup file (**model.json**) and a simulation file (**simulation.json**), which both are created automatically by *BASEMENT*. The following sections describe how to make *BASEMENT* creating these two {ref}`json` files in a project directory such as `C:\Basement\steady2d-tutorial\` (*Windows*) or `~/Basement/steady2d-tutorial/` (*Linux*).
 
-```{tip}
-The defined project folder directory must not contain any dots nor special characters nor spaces. Only use letters, numbers, *_* (underscore) or *-* (minus) in folder names.
+```{admonition} Special characters in folder names
+:class: attention
+The defined project folder directory must **not contain** any **dots** nor **special characters** nor **spaces**. Only use letters, numbers, *_* (underscore), or *-* (minus) in folder names.
 ```
 
-Make sure to place the two input files in the folder:
+Place the following two input files in the folder:
 
-- The 2D mesh `.2dm` file (i.e., the result of the {ref}`qgis-prepro` tutorial).
-- A discharge inflow file (flat hydrograph) for the upstream boundary condition can be downloaded [here](https://github.com/hydro-informatics/materials-bm/blob/master/flows/SteadyVanillaInflow.txt) (if necessary, copy the file contents locally into a text editor and save the file as `SteadyVanillaInflow.txt` in the local project directory).
+* The {term}`SMS 2dm` file with interpolated bottom elevations from the {ref}`qgis-prepro` tutorial (**prepro-tutorial_quality-mesh-interp.2dm**).
+* A steady discharge inflow file (flat hydrograph) for the upstream boundary condition can be downloaded [here](https://github.com/hydro-informatics/materials-bm/raw/main/flows/steady-inflow.txt) (if necessary copy the file contents locally into a text editor and save the file as **steady-inflow.txt** in the project directory).
 
-### Setup the Model File
-This section walks you through the model setup of a hydrodynamic 2D *BASEMENT* simulation. The model setup is saved in a file called model.json.
+### Initiate the Model
+This section guides through the model setup, which is saved in a file called `/steady2d-tutorial/`**model.json**. Begin with launching BASEMENT and selecting the above-created folder as **Scenario Directory**. {numref}`Fig. %s <bm-setup-start>` indicates the position of the directory selection button and the **save project** button to regularly save the setup.
 
-Regularly save setting by clicking on the `Write` button (bottom-right corner).
-- Open *BASEMENT* and select the Scenario Directory. Then click on `SETUP`, right-click and `Add DOMAIN`.
-- Use the average elevation of each mesh triangle: `GEOMETRY` > `Add item` > `Interpolation` > select WEIGHTED (other options: MEDIAN, MAXIMUM, MINIMUM, MEAN).
-- `GEOMETRY` > `MESH_FILE` > select `finalmesh.2dm`.
-- `GEOMETRY` > right-click > `Add item REGIONDEF` > `Add item` (5 times) and define the items as:
+```{figure} ../img/basement/setup-start.png
+:alt: basement new project setup launch start
+:name: bm-setup-start
 
-| INDEX | 1        | 2          | 3          | 4          | 5      |
-|-------|----------|------------|------------|------------|--------|
-| NAME  | riverbed | lower_bank | upper_bank | floodplain | street |
-
-The window should now look like this:
-
-```{figure} ../img/bm-mod-reg.png
-:alt: region definitions basement
-:name: bm-mod-reg
-
-Region definitions.
+BASEMENT's welcome screen after selecting a *Scenario Directory* and with the *Save Project* button highlighted. The directory references may look different on other platforms (e.g., start with **"C:/...**).
 ```
 
-- Next, we need to define inflow and outflow boundary condition with `stringdefs`. In the `GEOMETRY` section right-click – `Add item` `STRINGDEF` – `Add item` (2 times) and define item [0] as:
-    * `name` = `Inflow`
-    * `upstream_direction` = `right`
-- Define `STRINGDEF` item [1] as:
-    * `name` = `Outflow`
-    * `upstream_direction` = `right`
+Next, **left-click** on **SETUP**, then **right-click** and select **Add item DOMAIN**. A new tab called **Define Scenario Parameters** opens, which are explained in the next sections. For the moment ignore the warning and error messages (red tags), but define a **simulation name**:
 
-```{note}
-If you used [BASEmesh’s *Stringdef* tool](../numerics/pre-qgis.html#stringdef), the upstream direction must be defined as `right`.
+* **Right-click** on **SETUP** and select **Add item 'simulation_name'**. A new entry called *simulation_name* will appear in the *Define Scenario Parameters* tab.
+* **Double-click** on **"RUNFILE"** (default value of behind **simulation_name**) and replace the name `RUNFILE` with `steady2d`.
+
+Save the project and proceed with the next sections.
+
+(bm-geometry)=
+### Geometry and Regions
+
+The **GEOMETRY** entry in the **Define Scenario Parameters** tab tells the model, which {term}`SMS 2dm` mesh file to use and enables the definition of region and liquid boundary properties. To this end, make the following settings:
+
+* **Double-click** on the **mesh_file** entry and click on the folder symbol <br> <img src="../img/basement/select-meshfile.png">
+* In the popup window select the {ref}`previously created prepro-tutorial_quality-mesh-interp.2dm <qgis-prepro>` and hit the **Enter** key.
+* Define model regions:
+  * **Right-click** on **GEOMETRY** > **Add item REGIONDEF**
+  * Add **5** region items by **right-clicking** on the new **REGIONDEF** entry > **Add item** (repeat five times). The number of regions should correspond to the regions defined in the {ref}`qgis-prepro` tutorial ({numref}`Tab. %s <region-defs>`).
+  * Define the five regions by a **right-click** on **index** > **Add item**. Every **index** item gets an integer number assigned corresponding to the **MATID** field in the region points shapefile (see the {ref}`regions` section in the {ref}`qgis-prepro` tutorial). The **name** of every region item corresponds to the **type** field of the MATID. {numref}`Tab. %s <region-defs-bm>` summarizes the required region definitions.
+
+```{list-table} REGIONDEF items and their definitions to be defined in BASEMENT's model setup.
+:header-rows: 1
+:name: region-defs-bm
+
+* - **REGIONDEF**
+  - [0]
+  - [1]
+  - [2]
+  - [3]
+  - [4]
+* - **index [0]**
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+* - **name**
+  - riverbed
+  - block_ramp
+  - gravel_bank
+  - floodplain
+  - sand_deposit
 ```
 
-- Add the initial condition in the `HYDRAULICS` section with by right-clicking > `Add item` > `INITIAL` (if not yet present) and set `type`: “DRY” (i.e., the river is dry at the beginning of the simulation).<a name="init"></a>
-- Add upstream and downstream boundary conditions with a right-click on the `HYDRAULICS` section > `Add item` > `BOUNDARY` (if not yet present), then right-click on the new `BOUNDARY` section > `Add item STANDARD` > `Add item` (2 times)
-- Define BOUNDARY item [0] as:<a name="bound"></a>
-    * `discharge_file` = `C:/.../SteadyVanillaInflow.txt` (select by clicking on the folder symbol that occurs when the field is activated)
-    * `name` = `Inflow`
-    * `slope` = 0.0056
-    * `string_name` = `Inflow`
-    * `type` = uniform_n`
-- Define BOUNDARY item [1] as:
-    * `name` = `Outflow`
-    * `type` = `zero_gradient_out` (note: this is not a good choice in practice, where a [stage-discharge relation or rating curve](https://en.wikipedia.org/wiki/Rating_curve) should be used for the downstream boundary condition)
-- Define a global [*Strickler*](https://en.wikipedia.org/wiki/Manning_formula)-based friction value of *k<sub>st</sub>*=30m<sup>1/3</sup>/s: In the `HYDRAULICS` section right-click > `Add item FRICTION` and define `FRICTION` with:
-    * `default_friction` = 30.0
-    * `type` = `strickler`
-- Assign particular [*Strickler*](https://en.wikipedia.org/wiki/Manning_formula) values with a right-click on `regions` and `Add item` (5 times). Then define the five regions items ([0] through [4]) as <a name="fric"></a>
+With the regions and the mesh file defined, the GEOMETRY section should resemble {numref}`Fig. %s <bm-regions>`.
 
-| `friction`  | 28       | 15         | 20         | 40         | 85     |
-|-------------|----------|------------|------------|------------|--------|
-|`region_name`| riverbed | lower_bank | upper_bank | floodplain | street |
+```{figure} ../img/basement/setup-geometry.png
+:alt: region mesh file definitions basement
+:name: bm-regions
 
-
-```{figure} ../img/bm-mod-frc.png
-:alt: basement friction roughness
-:name: bm-mod-frc
-
-Assignment of friction (roughness) values to model regions.
+The GEOMETRY entry with REGIONDEFs and the reference to the height-interpolated mesh file (prepro-tutorial_quality-mesh-interp.2dm).
 ```
 
-- In the `PARAMETER` section define:
-    * `CFL` = `0.95`
-    * `fluid_density` = `1000.0`
-    * `max_time_step` = `100.0`
-    * `minimum_water_depth` =` 0.01`
-- Define a `simulation_name` (e.g., `SteadyVanilla`)
-
-Note that the definitions of `PHYSICAL_PROPERTIES` and `BASEPLANE_2D` are mandatory.
-Click on the `Write` button (bottom-right corner) to save the model setup (see image below). If everything is correctly set up, the `Console` tab will automatically open and the `Error Output` canvas is empty.
-
-```{figure} ../img/bm-mod-sum.png
-:alt: basement model setup
-:name: bm-mod-sum
-
-Final model setup
+```{admonition} Save the project...
+Regularly save the model setup by clicking on the disk button (top-right corner, see {numref}`Fig. %s <bm-setup-start>`).
 ```
+
+The {ref}`liquid-boundary` from the pre-processing tutorial geographically define an inflow and an outflow line with **stringdef** attributes that are incorporated in the eight-interpolated mesh file (prepro-tutorial_quality-mesh-interp.2dm). To inform BASEMENT about types and properties of the liquid boundaries complete the GEOMETRY section.
+
+* **Right-click** on **GEOMETRY** > **Add item STRINGDEF**.
+* **Right-click** on the new **STRINGDEF** item and select **Add item** two times. Thus, two items should be available to define the upstream and downstream liquid boundaries.
+* Define STRINGDEF item **[0]** with:
+  * **name** = `Inflow`
+  * **upstream_direction** = `right`
+* Define STRINGDEF item **[1]** with:
+  * **name** = `Outflow`
+  * **upstream_direction** = `right`
+  * If you used the provided [liquid boundaries shapefile](https://github.com/hydro-informatics/materials-bm/raw/main/shapefiles/liquid-boundaries.zip) to create the mesh file the **upstream_direction** must be `left`.
+
+
+{numref}`Figure %s <bm-geo-fin>` shows the definition of the STRINGDEF items with the liquid boundaries template shapefile (i.e., *upstream_direction* is `left`).
+
+```{figure} ../img/basement/setup-geometry-final.png
+:alt: region mesh file definitions basement
+:name: bm-geo-fin
+
+The GEOMETRY entry with STRINGDEFs using the liquid boundaries template shapefile (i.e., *upstream_direction* is `left`).
+```
+
+(bm-hydraulics)=
+### Hydraulics
+
+Hydraulic model characteristics that apply to the above-defined geometry setup are defined in the **HYDRAULICS** entry of BASEMENT's model setup. This tutorial uses the default type for INITIAL conditions, which is **"dry"**. Keep also the default PARAMETERS, which are **{term}`CFL`** = `0.9`, **fluid_density** = `1000.0`, **max_time_step** = `100.0`, and **minimum_water_depth** =` 0.01`.
+
+Hydraulic values such as discharge or water depth must be assigned to the liquid boundaries defined above so that the numerical model knows how much water it must make running through the model. Therefore, add the following boundary definitions in the HYDRAULICS section.
+
+* **Right-click** on **HYDRAULICS** and select **Add item BOUNDARY**.
+* **Right-click** on the new **BOUNDARY** item and select **Add item STANDARD**.
+* **Right-click two times** on the new **STANDARD** item and select **Add item**. Thus, there should be two items **[0]** and **[1]** to define the inflow and outflow conditions, respectively.
+* Define item [0] with the following inflow conditions:
+  * **Right-click** on **[0]** and select **Add item 'discharge_file'**.
+  * Click on the folder symbol to select the above-downloaded [steady-inflow.txt](https://github.com/hydro-informatics/materials-bm/raw/main/flows/steady-inflow.txt) file.
+  * For **name** tap `Inflow`.
+  * **Right-click** on **[0]** and select **Add item 'slope'**.
+  * For the new **slope** item define a value of `0.0044`.
+  * For **string_def** select the above-defined `inflow` STRINGDEF.
+  * For **type** select `uniform_in`
+* Define item [1] with the following outflow conditions:
+  * For **name** tap `Outflow`.
+  * For **string_def** select the above-defined `outflow` STRINGDEF.
+  * For **type** select `zero_gradient_out`
+
+```{admonition} Liquid boundaries in practice
+:class: note
+In practice better use a {term}`Stage-discharge relation` for the downstream boundary condition, which in BASEMENT corresponds to **type** = `hqrelation_out`. The upstream inflow condition, however, is also often specified in practice only by discharge as a function of time, as shown in this tutorial. A critical factor of the discharge-only function of time is the **slope** field value, which corresponds to the energy slope and is often assumed to be equivalent to the channel slope. However, this assumption is only valid for steady discharges such as those in this tutorial, which almost never occur in reality. This is why, in practice, quasi-unsteady flow conditions are often used in the form of a time-dependent sequence of steady discharges, for example for modeling a flood hydrograph.
+```
+
+{numref}`Figure %s <bm-hy-standard>` shows the definition of the STANDARD BOUNDARY items for BASEMENT's HYDRAULIC model setup.
+
+```{figure} ../img/basement/setup-hydraulics-standard.png
+:alt: basement standard hydraulic boundary conditions
+:name: bm-hy-standard
+
+The HYDRAULIC entry with BOUNDARY > STANDARD definitions for the upstream (inflow) and downstream (outflow) liquid model boundaries.
+```
+
+Every surface has imperfections that cause turbulence when fluids such as water flow over it. The turbulence caused by surface imperfections results in decelerated flows near the surface. Since the water in rivers is almost always very close to the Earth's surface in the form of the riverbed relative to the imperfections of a riverbed, the influence of such friction-induced turbulence is great. In hydrodynamic models, the friction effect of the rough surface of riverbeds is accounted for by a friction coefficient, such as the Strickler $k_{st}$ coefficient or its inverse value called Manning's $n$. The exercise on {ref}`ex-1d-hydraulics` in the *Python* chapter explains both roughness coefficients in more detail. This tutorial uses only a global roughness coefficient in the form of a Strickler coefficient of $k_{st}$=30 (fictive units of m$^{1/3}$/s), which is accounts for the characteristics of a meandering gravel-cobble riverbed {cite:p}`strickler_beitrage_1923`. To this end, **right-click** on the **HYDRAULICS** entry and select **Add item FRICTION**. Define the new  **FRICTION** item with:
+
+* **default_friction** = 30.0
+* **type** = `strickler`
+
+Next, assign specific Strickler values for the five regions defined in {numref}`Tab. %s <region-defs-bm>`:
+
+* **Right-click** on **FRICTION** and **Add item regions**.
+* **Right-click** on the new **regions** item and select **Add item** (**five times** for the five regions)
+* Assign the **friction** and **region_def** values listed in {numref}`Tab. %s <region-kst>` to the **five regions items**.
+* Set the **type** of the five regions to **"strickler"**.
+
+```{list-table} Strickler values for HYDRAULIC FRICTION regions.
+:header-rows: 1
+:name: region-kst
+
+* - Region
+  - Riverbed
+  - Block ramps
+  - Gravel banks
+  - Floodplains
+  - Sand
+* - **friction**
+  - 34
+  - 18
+  - 24
+  - 14
+  - 39
+* - **region_def**
+  - riverbed
+  - block_ramp
+  - gravel_bank
+  - floodplain
+  - sand_deposit
+```
+
+
+{numref}`Figure %s <bm-hy-friction>` shows the definition of the HYDRAULIC FRICTION items in BASEMENT's model setup.
+
+```{figure} ../img/basement/setup-hydraulics-friction.png
+:alt: basement friction hydraulic boundary conditions strickler
+:name: bm-hy-friction
+
+The HYDRAULIC entry with FRICTION definitions for the model and its regions.
+```
+
+(bm-physical-props)=
+### Physical Properties
+
+The PHYSICAL_PROPERTIES are a mandatory element for BASEPLANE_2D and this tutorial uses the default physical properties (i.e., *gravity* is `9.81`).
+
+(bm-export-setup)=
+### Write Setup File
+
+Make sure that all error messages are resolved and that the model setup resembles {numref}`Fig. %s <bm-ready2export-setup>`. Before exporting the project, save the simulation setup (click on the disk symbol in the top-right corner in {numref}`Fig. %s <bm-ready2export-setup>`). Double-check that BASEMENT correctly wrote the model files **model.json**, **simulation.json**, and **results.json** in the project directory (e.g., `/Basement/steady2d-tutorial/`). Export the model setup by clicking on the **Write** button (bottom-right corner in {numref}`Fig. %s <bm-ready2export-setup>`).
+
+```{figure} ../img/basement/setup-ready2export.png
+:alt: basement export model setup h5
+:name: ready2export-setup
+
+The final model setup to export (write) to a setup (`*.h5`) file.
+```
+
+The **Console** tab becomes automatically actives and informs about the export progress. If the **Error Output** canvas is not empty, check the error messages and troubleshoot the causes.
+
 
 ### Setup the Simulation File
-The simulation file in *BASEMENT* v.3.x is called *simulation.json* (different from previous versions of BASEMENT) and located in the same folder as model.json (model setup file). To setup the simulation file:
-- In *BASEMENT* go to the `SIMULATION` Tab (situated in left window pane) and unfold the `OUTPUT` and `TIME` items.
-- Right-click on the `OUTPUT` item an `Add item` (5 times). Then define exactly in that irder (important for results export later on):
-    * [0] = `water_depth`
-    * [1] = `water_surface`
-    * [2] = `bottom_elevation`
-    * [3] = `flow_velocity`
-    * [4] = `ns_hyd_discharge`
-- Define the TIME item as:
-    * `end` = `5000.0`
-    * `out` = `200.0`
-    * `start` = `0.0`
-The *BASEMENT* window should now look like this:
+
+After the successful export of the model setup, the **Simulation** ribbon (on the left in {numref}`Fig. %s <bm-ready2export-setup>`) becomes available for setting up the **simulation.json** file in the project folder. Click on the **Simulation** ribbon to setup the *simulation.json* file:
+
+* **Right-click** on the **SIMULATION** entry in the **Define Simulation Run** tab and select **Add item 'OUTPUT'**.
+* **Right-click** on the new **OUTPUT** entry to define four output types:
+    * **[0]** = `water_depth`
+    * **[1]** = `water_surface`
+    * **[2]** = `bottom_elevation`
+    * **[3]** = `flow_velocity`
+    * Do not change the order of the output variables to enable using BASEMENT's *Python* scripts for post-processing.
+* **Right-click** on the **SIMULATION** entry and select **Add item 'TIME'**.
+* Define the TIME item with:
+    * **end** = `5000.0`
+    * **out** = `200.0`
+    * **start** = `0.0`
+
+The values defined in the TIME section refer to the same time units as defined in the above downloaded and linked *steady-inflow.txt* file. {numref}`Figure %s <bm-sim-setup>` shows BASEMENT with the definitions in the SIMULATION ribbon.
 
 
-```{figure} ../img/bm-sim-set.png
+```{figure} ../img/basement/setup-simulation.png
 :alt: basement simulation setup
-:name: bm-sim-se
+:name: bm-sim-setup
 
-The Simulation tab setup. In order to export results with *BASEMENT*’s Python scripts, the OUTPUT parameters must be defined in exactly that order.
+The setup of the Simulation ribbon. To export results with BASEMENT's Python scripts, the OUTPUT parameters must be defined in exactly that order.
 ```
 
-### Run the simulation
+## Run BASEMENT 2d Simulation
+
 After the successful simulation setup, select an appropriate `Number of CPU cores` (bottom-right in the above figure). If a high-quality graphics card with a powerful GPU is available, the GPU (high-performance hardware) has a much faster performance. Otherwise (no powerful GPU available), do not select GPU because it may significantly slow down the simulation speed.
 For faster simulations, select `Single` precision (bottom-right in the above figure), but in this example, `Double` precision will work sufficiently fast as well. Click on the `Run` button to start the simulation and wait for approximately 2-10 minutes. *BASEMENT* will prompt the simulation progress, while the `Error Output` canvas should remain white (see {numref}`Fig. %s <bm-sim-end>`)). If any error occurs, go back to the above sections (or even to the mesh generation) and fix error message issues.
 
