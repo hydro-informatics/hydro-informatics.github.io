@@ -8,7 +8,7 @@ Geospatial analyses (or analytics) use, manipulate, and illustrate data from geo
 For the visualization of geodata (`.shp` and `.tif` files), GIS software is required and the analyses described on these pages refer to the usage of [*QGIS*](https://www.qgis.org). This ebook uses *QGIS* within the sections on [geospatial programming with *Python*](../geopy/geo-python) and [numerical modelling with the ETH Zurich's BASEMENT](../numerics/basement) software.
 
 ### Install QGIS on Windows
-Download and install the latest version of [*QGIS*](https://www.qgis.org/en/site/forusers/download.html) for Windows.
+Download and install the latest version of [QGIS](https://www.qgis.org/en/site/forusers/download.html) for Windows.
 
 ### Install QGIS on Linux (via Flatpak)
 
@@ -39,7 +39,7 @@ Download and install the latest version of [*QGIS*](https://www.qgis.org/en/site
 
 ### Learn QGIS
 Working with geospatial data editors involves complex tasks that require background knowledge before intuitive comprehension is possible. The *QGIS* developers provide compound [tutorials on their website](https://docs.qgis.org/testing/en/docs/training_manual/index.html) ([also available in other languages including Czech, French, German, and Portuguese](https://www.qgis.org/en/site/forusers/trainingmaterial/index.html)).
-This ebook occasionally uses *QGIS* for plotting and creating georeferenced data (e.g., the chapters on {ref}`sec-geo-python` and {ref}`numerical modeling <qgis-prepro>`). To this end, this ebook comes along with a tutorial on geospatial analyses with *QGIS* (read and do the {ref}`qgis-tutorial`).
+This eBook occasionally uses *QGIS* for plotting and creating georeferenced data (e.g., the chapters on {ref}`sec-geo-python` and {ref}`numerical modeling <qgis-prepro>`). To this end, this eBook comes along with a tutorial on geospatial analyses with *QGIS* (read and do the {ref}`qgis-tutorial`).
 
 (qgis-conda-install)=
 ### Install *QGIS* conda Environment
@@ -54,11 +54,12 @@ conda activate qgiscube
 (agis)=
 ## ArcGIS Pro
 
-```{attention}
+```{admonition} Windows only
+:class: attention
 ArcGIS Pro is designed for Windows and will not run on macOS or Linux. In addition, a license needs to be purchased.
 ```
 
-The proprietary software *ArcGIS Pro* represents a powerful tool for any kind of geospatial analysis including web applications. *ArcGIS Pro* is maintained by [esri](https://www.esri.com/) and comes with an own {ref}`conda-env`. With this ebook's focus on freely available software, the usage of *ArcGIS Pro* and its *Python* environment including the `arcpy` package is just mentioned on this website.
+The proprietary software *ArcGIS Pro* represents a powerful tool for any kind of geospatial analysis including web applications. *ArcGIS Pro* is maintained by [esri](https://www.esri.com/) and comes with an own {ref}`conda-env`. With this eBook's focus on freely available software, the usage of *ArcGIS Pro* and its *Python* environment including the `arcpy` package is just mentioned on this website.
 
 (others)=
 ## Others
@@ -71,4 +72,4 @@ There are many other tools for geospatial analyses, which all deserve much more 
 
 ## Geospatial Analyses
 
-Geospatial analyses involve efficient code practices (e.g., with *Python*) and this is why detailed descriptions of geospatial data handling are embedded in the {ref}`sec-geo-python` chapter of this ebook.
+Geospatial analyses involve efficient code practices (e.g., with *Python*) and this is why detailed descriptions of geospatial data handling are embedded in the {ref}`sec-geo-python` chapter of this eBook.

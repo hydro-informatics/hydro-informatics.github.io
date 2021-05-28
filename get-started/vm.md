@@ -1,3 +1,4 @@
+(chpt-vm-linux)=
 # Virtual Machines and Linux
 
 Your computer is one of your most important educational companions. So you want to protect the health of your computer and avoid problems caused by redundant or even malicious software. For this reason, it is recommended to install all software used on this website on a so-called Virtual Machine (VM). This page explains what VMs are, what advantages they have exactly, and how you can install [Debian Linux](https://www.debian.org/), one of the most stable and secure operating systems. It does not matter if you use Apple's *mac OS* or Microsoft's *Windows*, or if you already use Linux: The VM will look the same at the end.
@@ -144,15 +145,17 @@ apt install build-essential dkms linux-headers-$(uname -r)
 
 Find the *Devices* drop-down menu of the *VirtualBox VM* window (not in Debian Linux itself) and select *Insert Guest Additions CD image...* (depending on the version of *VirtualBox*, this menu can be on the top or the bottom of the window).
 
-```{tip}
+```{admonition} Where is the **Devices** entry?
+:class: tip
 The *VirtualBox VM* window does not show the menu with the *Devices* entry anywhere?
 
 * This may happen when the *View* was set to *Scaled mode*.
 * To toggle the view mode and make the menu bar visible, press the RIGHT `CTRL` (`Host`) key + the `C` on your keyboard, while being in the host system view.
 ```
 
-```{note}
-If the error `The guest system has no CR-ROM ...` occurs, shutdown the VM. In the *VirtualBox* manager window, right-click on the *Debian Linux* VM > *Storage* tab > Add new Optical Drive to *Controller: IDE*. Restart the *Debian Linux* VM.
+```{admmonition} If the error `The guest system has no CR-ROM ...` occurs...
+:class: warning
+To troubleshoot the error message `The guest system has no CR-ROM ...`, shutdown the VM. In the *VirtualBox* manager window, right-click on the *Debian Linux* VM > *Storage* tab > Add new Optical Drive to *Controller: IDE*. Restart the *Debian Linux* VM.
 ```
 
 Back in the Debian Linux *Terminal*, mount the *Guest Additions* *iso* file by typing in *Terminal*:
@@ -328,6 +331,23 @@ Instructions for installing particular and Debian-compatible software (e.g., QGI
 ```{attention}
 If the main purpose of the VM is to run resource-intensive simulations (e.g., with TELEMAC), avoid installing any other software than those required for running the model. Also, as a general rule of thumb: Less is better than more.
 ```
+
+(install-htop)=
+## System Monitoring with HTOP
+
+To get an overview of the system performance install *htop*, which enables visualizing *CPU* usage:
+
+```
+sudo apt update
+sudo apt install htop
+```
+
+Start *htop*'s *CPU* monitor with:
+
+```
+htop
+```
+
 
 ## Add Package Repositories
 

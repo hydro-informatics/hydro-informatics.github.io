@@ -6,7 +6,7 @@ This tutorial guides through the installation of [open TELEMAC-MASCARET](http://
 
 ## Preface
 
-This page only guides through the **installation** of *TELEMAC*. A tutorial for running hydro(-morpho)dynamic models with *TELEMAC* is currently under construction for this ebook.
+This page only guides through the **installation** of *TELEMAC*. A tutorial for running hydro(-morpho)dynamic models with *TELEMAC* is currently under construction for this eBook.
 
 ### Good to Know
 
@@ -54,7 +54,8 @@ Working with *TELEMAC* requires some software for downloading source files, comp
 * *Subversion (svn)*
 * GNU Fortran 95 compiler (*gfortran*)
 
-```{tip}
+```{admonition} Admin (sudo) rights required
+:class: attention
 Superuser (`sudo` for **su**per **do**ers list) rights are required for many actions described in this workflow. Read more about how to set up and grant `sudo` rights for a user account on *Debian Linux* in the tutorial for setting up [Debian on a VM](../get-started/vm.html#users).
 ```
 

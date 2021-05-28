@@ -109,6 +109,7 @@ Add the BASEMENT repository to QGIS' Plugins Manager.
 
 * Still in the **Plugins** popup window go back to the **All** tab an enter `basemesh` in the search field.
 * Find the **newest BASEmesh** (i.e., **Available version** >= 2.0.0) plugin and click on **Install Plugin**.
+* **TELEMAC users** will also need the **Crayfish** plugin (find and install by typing `crayfish` in the **All** tab).
 * After the successful installation **Close** the **Plugins** popup window.
 * Verify that the *BASEmesh 2* plugin is now available in the *QGIS*' **Plugins** menu (see {numref}`Fig. %s <qgis-pluggedin>`).
 
@@ -340,7 +341,7 @@ In *QGIS*' **Plugins** menu, click on **BASEmesh 2** > **QUALITY MESHING** to op
   * Ignore all BASEMENT 2.8 options.
 * Settings frame: keep defaults.
 * Output frame:
-  * Click on the **Browse...** button and define a **2dm** file name in the `/Project Home/` directory, such as **prepro-tutorial_quality-mesh.2dm**.
+  * Click on the **Browse...** button and define a **2dm** file name in the `/Project Home/` directory, such as **prepro-tutorial_quality-mesh-interp.2dm**.
 * Click on the **Run** button to create the quality mesh.
 
 
@@ -351,7 +352,7 @@ In *QGIS*' **Plugins** menu, click on **BASEmesh 2** > **QUALITY MESHING** to op
 Definitions to be made in BASEmesh's Quality meshing tool.
 ```
 
-Quality meshing may take time. After a successful mesh generation the file **prepro-tutorial_quality-mesh.2dm** will have been generated.
+Quality meshing may take time. After a successful mesh generation the file **prepro-tutorial_quality-mesh-interp.2dm** will have been generated.
 
 (qualm-interp)=
 ### Interpolate Bottom Elevation to Quality Mesh
@@ -381,11 +382,19 @@ Verify elevation interpolation using graduated color ramps.
 ```
 
 
-### Usage with Numerical Models
+### Usage with BASEMENT
 
 The 2dm mesh file produced in this tutorial can be directly used with {ref}`chpt-basement`, where only the definition of properties of the geometric (e.g., roughness coefficients) and liquid (e.g., discharges) are required as explained later.
 
-For the usage with {ref}`chpt-telemac2d` (or {ref}`chpt-telemac3d`), the 2dm file requires a conversion to the serafin/selafin (`slf`) file format that is explained in the {ref}`slf-qgis` section.
+### Usage with TELEMAC
+For the usage with {ref}`chpt-telemac2d` (or {ref}`chpt-telemac3d`), the 2dm file requires a conversion to the serafin/selafin (`slf`) file format that can be done with the **Crayfish** plugin.
+
+```{admonition} Install the Crayfish plugin
+Install the *Crayfish** plugin from QGIS' **Plugins** menu > **Manage and Install Plugins...** enter `crayfish` and install the latest version. After the installation, the *Crayfish* plugin is available at the bottom of QGIS' **Processing Toolbox** panel.
+```
+
+Open the *Crayfish* plugin's **Rasterize** tool from QGIS' **Processing** menu > `Toolbox` > `Crayfish` > `Rasterize` (see figure below).
+
 
 (dem2stl)=
 ## OpenFOAM: Export DEM to STL
