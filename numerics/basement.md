@@ -113,16 +113,14 @@ The {ref}`liquid-boundary` from the pre-processing tutorial geographically defin
 * Define STRINGDEF item **[1]** with:
   * **name** = `Outflow`
   * **upstream_direction** = `right`
-  * If you used the provided [liquid boundaries shapefile](https://github.com/hydro-informatics/materials-bm/raw/main/shapefiles/liquid-boundaries.zip) to create the mesh file the **upstream_direction** must be `left`.
 
-
-{numref}`Figure %s <bm-geo-fin>` shows the definition of the STRINGDEF items with the liquid boundaries template shapefile (i.e., *upstream_direction* is `left`).
+If you used the provided [liquid boundaries shapefile](https://github.com/hydro-informatics/materials-bm/raw/main/shapefiles/liquid-boundaries.zip) to create the mesh file the **upstream_direction** must be `right`. {numref}`Figure %s <bm-geo-fin>` shows the definition of the STRINGDEF items using the liquid boundaries template shapefile.
 
 ```{figure} ../img/basement/setup-geometry-final.png
 :alt: region mesh file definitions basement
 :name: bm-geo-fin
 
-The GEOMETRY entry with STRINGDEFs using the liquid boundaries template shapefile (i.e., *upstream_direction* is `left`).
+The GEOMETRY entry with STRINGDEFs using the liquid boundaries template shapefile.
 ```
 
 (bm-hydraulics)=
@@ -145,8 +143,9 @@ Hydraulic values such as discharge or water depth must be assigned to the liquid
   * For **type** select `uniform_in`
 * Define item [1] with the following outflow conditions:
   * For **name** tap `Outflow`.
+  * **Right-click** on **[1]** and select **Add item 'slope'**.
   * For **string_def** select the above-defined `outflow` STRINGDEF.
-  * For **type** select `zero_gradient_out`
+  * For **type** select `uniform_out`
 
 ```{admonition} Liquid boundaries in practice
 :class: note
@@ -216,7 +215,7 @@ The PHYSICAL_PROPERTIES are a mandatory element for BASEPLANE_2D and this tutori
 (bm-export-setup)=
 ### Write Setup File
 
-Make sure that all error messages are resolved and that the model setup resembles {numref}`Fig. %s <bm-ready2export-setup>`. Before exporting the project, save the simulation setup (click on the disk symbol in the top-right corner in {numref}`Fig. %s <bm-ready2export-setup>`). Double-check that BASEMENT correctly wrote the model files **model.json**, **simulation.json**, and **results.json** in the project directory (e.g., `/Basement/steady2d-tutorial/`). Export the model setup by clicking on the **Write** button (bottom-right corner in {numref}`Fig. %s <bm-ready2export-setup>`).
+Make sure that all error messages are resolved and that the model setup resembles {numref}`Fig. %s <ready2export-setup>`. Before exporting the project, save the simulation setup (click on the disk symbol in the top-right corner in {numref}`Fig. %s <ready2export-setup>`). Double-check that BASEMENT correctly wrote the model files **model.json**, **simulation.json**, and **results.json** in the project directory (e.g., `/Basement/steady2d-tutorial/`). Export the model setup by clicking on the **Write** button (bottom-right corner in {numref}`Fig. %s <ready2export-setup>`).
 
 ```{figure} ../img/basement/setup-ready2export.png
 :alt: basement export model setup h5
@@ -227,10 +226,10 @@ The final model setup to export (write) to a setup (`*.h5`) file.
 
 The **Console** tab becomes automatically actives and informs about the export progress. If the **Error Output** canvas is not empty, check the error messages and troubleshoot the causes.
 
-
+(bm-sim-file)=
 ### Setup Simulation File
 
-After the successful export of the model setup, the **Simulation** ribbon (on the left in {numref}`Fig. %s <bm-ready2export-setup>`) becomes available for setting up the **simulation.json** file in the project folder. Click on the **Simulation** ribbon to setup the *simulation.json* file:
+After the successful export of the model setup, the **Simulation** ribbon (on the left in {numref}`Fig. %s <ready2export-setup>`) becomes available for setting up the **simulation.json** file in the project folder. Click on the **Simulation** ribbon to setup the *simulation.json* file:
 
 * **Right-click** on the **SIMULATION** entry in the **Define Simulation Run** tab and select **Add item 'OUTPUT'**.
 * **Right-click** on the new **OUTPUT** entry to define four output types:
@@ -238,12 +237,16 @@ After the successful export of the model setup, the **Simulation** ribbon (on th
     * **[1]** = `water_surface`
     * **[2]** = `bottom_elevation`
     * **[3]** = `flow_velocity`
-    * Do not change the order of the output variables to enable using BASEMENT's *Python* scripts for post-processing.
+    * **[4]** = `ns_hyd_discharge`
 * **Right-click** on the **SIMULATION** entry and select **Add item 'TIME'**.
 * Define the TIME item with:
-    * **end** = `40000.0`
+    * **end** = `15000.0`
     * **out** = `1000.0`
     * **start** = `0.0`
+
+```{admonition} Discharge controls
+The output type `ns_hyd_discharge` (*ns* denotes *nodestring*) enables the verification of discharge at inflow and outflow boundaries (STRINGDEFs), which is a **necessary requirement in practice**. Learn more about mass balance verification in the {ref}`bm-python` section.
+```
 
 The values defined in the TIME section refer to the same time units as defined in the above downloaded and linked *steady-inflow.txt* file. {numref}`Figure %s <bm-sim-setup>` shows BASEMENT with the definitions in the SIMULATION ribbon.
 
@@ -251,7 +254,7 @@ The values defined in the TIME section refer to the same time units as defined i
 :alt: basement simulation setup
 :name: bm-sim-setup
 
-The setup of the Simulation ribbon.
+The setup of the Simulation ribbon. The illustration additionally features the implementation of the `ns_hyd_discharge` output parameter.
 ```
 
 
@@ -286,9 +289,9 @@ Once the simulation successfully finished, go to BASEMENT's **Results** ribbon. 
 
 * **Right-click** on the **RESULTS** entry and select **Add item 'EXPORT'**.
 * **Right-click** on the new **EXPORT** item and select **Add item**.
-* In the **format** field of the new item **[0]** select **xdmf**.
+* In the **format** field of the new item **[0]** select {term}`xdmf`.
 
-**Save the project** (disk symbol in the top-right corner) and find the **Export** indicated in {numref}`Fig. %s <bm-res-exp>`). The export of the simulation results to **results.xdmf** will be confirmed in the **Console Output** frame.
+**Save the project** (disk symbol in the top-right corner) and find the **Export** indicated in {numref}`Fig. %s <bm-res-exp>`). The export of the simulation results to **results.{term}`xdmf`.** will be confirmed in the **Console Output** frame.
 
 ```{figure} ../img/basement/setup-results-export.png
 :alt: basement results export
@@ -296,7 +299,6 @@ Once the simulation successfully finished, go to BASEMENT's **Results** ribbon. 
 
 Export results after successful simulation.
 ```
-
 
 
 ## Post-processing with QGIS
@@ -311,16 +313,15 @@ Start QGIS and create a new project or re-use the project from the {ref}`qgis-pr
 (qgis-imp-steps)=
 ### Import results.xdmf
 
-The simulation results file (**results.xdmf**) can be loaded in QGIS as additional data source of the height-interpolated quality mesh ({ref}`prepro-tutorial_quality-mesh-interp.2dm <qualm-interp>`) from the pre-processing tutorial:
+The simulation results file (**results.{term}`xdmf`**) can be loaded in QGIS as additional data source of the height-interpolated quality mesh ({ref}`prepro-tutorial_quality-mesh-interp.2dm <qualm-interp>`) from the pre-processing tutorial:
 
 * In the **Layers** panel window, **double-click** on **prepro-tutorial_quality-mesh-interp.2dm** to open the **Layer Properties** window.
 * In the **Layer Properties**  window, go to the **Source** ribbon.
 * In the **Available Datasets** frame (see {numref}`Fig. %s <qgis-assign-meshdata>`) click on the **Assign Extra Data Set to Mesh** button <img src="../img/qgis/sym-add-meshdata.png"> and choose `results.xdmf`.
-
-* ADD SCALAR DATA GROUP AT TIMESETP
-* **Static Dataset** > **Scalar Dataset Group** > set to maximum timestep.
-
+* In the **Static Dataset** frame select a **Scalar Dataset Group** and use the maximum timestep (i.e., `625 d 00:00:00` in the case of simulation time $t$=15000 with an output interval of 1000).
 * Click on **Apply** and **OK**.
+
+{numref}`Figure %s <qgis-assign-meshdata>` shows an exemplary setup of the output data interpolation on the computational mesh. To visualize other output parameters and/or other simulation timesteps, vary the definitions in the **Static Dataset** frame.
 
 ```{figure} ../img/qgis/bm-load-results.png
 :alt: basement assign qgis metadata mesh
@@ -329,142 +330,224 @@ The simulation results file (**results.xdmf**) can be loaded in QGIS as addition
 Assign mesh data to the computational mesh.
 ```
 
-To visualize the results re-open the **Layer Properties** of the mesh layer and go to the **Symbology** ribbon. Visualize a simulation output parameter of your choice, such as **flow_velocity** as follows:
+To improve the visualization of the results re-open the **Layer Properties** of the mesh layer and go to the **Symbology** ribbon. Visualize a simulation output parameter, such as **flow_velocity**, as follows:
 
-* In the settings tab (hammer symbol highlighted in {numref}`Fig. %s <symbology4u>`) find the **Groups** listbox.
+* In the settings tab (hammer symbol in the top-left corner highlighted in {numref}`Fig. %s <symbology4u>`) find the **Groups** listbox.
 * In the **Groups** listbox find the parameter to visualize (e.g., **flow_velocity**) and enable the contours symbol.
-* Switch to the contours tab next to the settings tab (see highlighted box in {numref}`Fig. %s <symbology4u>`) and select a **Color Ramp**.
-* After defining the desired visualization click **Apply** and **OK**.
+* Switch to the contours tab next to the settings tab (highlighted box in the top-left of {numref}`Fig. %s <symbology4u>`) and select a **Color Ramp**.
+* After defining a visualization click **Apply** and **OK**.
 
 ```{figure} ../img/qgis/vis-flow-vel.png
 :alt: basement qgis results velocity meshdata
 :name: symbology4u
 
-Visualize the flow velocity parameter with the Symbology controls. The green circles highlight settings for the last timestep of a steady-state simulation.
+Visualize the flow velocity parameter with the Symbology controls. The red boxes highlight relevant tabs an entries.
 ```
 
-```{figure} ../img/qgis-meshdata-u-plotted.png
-:alt: plotted qgis basement results
+{numref}`Figure %s <qgis-plot-metadata>` illustrates a visualization of the flow velocity at the end of the simulation. The flow velocity results are also available as video sequence ([download](https://github.com/hydro-informatics/materials-bm/raw/main/exports/velocity-video-crayfish.avi)).
+
+```{figure} ../img/qgis/bm-meshdata-u-plotted.png
+:alt: plotted qgis basement results flow velocity
 :name: qgis-plot-metadata
 
 After application of the above Symbology settings: The flow velocity is illustrated in red-shades.
 ```
 
-
-
+(bm-rasterize-output)=
 ### Rasterize Outputs
 
+The {ref}`raster` format is useful for many post-processing tasks such as map algebra (e.g., for habitat analysis or the assessment of inundation area and depth). To this end, QGIS provides the **Rasterize mesh dataset** tool for converting mesh data at any simulation timestep to a {ref}`raster` (e.g., as {term}`GeoTIFF`). To open the **Rasterize mesh dataset** tool, go to either **Processing** > **Toolbox** or make sure that the **View** > **Panels** > **Processing Toolbox** is checked. In the **Processing Toolbox** click on the **Mesh** entry and double click on **Rasterize mesh dataset** (see also {numref}`Fig. %s <qgis-rasterize-mesh-menu>`).
 
 ```{figure} ../img/qgis/rasterize-mesh-menu.png
 :alt: rasterize basement velocity water depth qgis
 :name: qgis-rasterize-mesh-menu
 
-Open the Rasterize tool of QGIS' Mesh tool.
+Open the Rasterize mesh tool in QGIS' Processing Toolbox.
 ```
 
-- In the `Rasterize` window make the following settings (see also [figure below](#qgis-crayfish-exp):
-    * `Input mesh layer` =  `finalmesh`
-    * `Minimum extent to render (xmin, xmax, ymin, ymax)` =  click on the `...` button and select the `Layer` option (choose `finalmesh`)
-    * `Map units` = `0.1` (can also be larger - the larger this number, the coarser the output *tif*)
-    * `Dataset group` =  `flow_velocity` (or whatever variable should be in the final *tif*  - note that rasters can/should have only one value per pixel)
-    * `Timestep` = `208 days, 8:00:00` (last timestep in the case of steady-state simulations)
-    * `Output layer` = `C:\ ... \u.tif` (or whatever variable / raster specifier applies)
-- Click `Run`
+In the `Rasterize` window make the following settings (see also {numref}`Fig. %s <qgis-rasterize-mesh>`):
+* **Input Mesh Layer** =  `prepro-tutorial_quality-mesh-interp`
+* In the **Dataset groups** frame, click on the **...** button > **Select in Available Dataset Groups** and select **one parameter** (e.g., **flow_velocity**). Then go back by clicking on the **Go back** <img src="../img/qgis/sym-go-back.png"> button. Make sure that the **Dataset groups** canvas contains only **1** selected **option**. Otherwise, the tool will create a messy multiband {ref}`raster`.
+* In the **Dataset time** frame check the **Dataset group time step** radio button and select the last simulation timestep (i.e., `625 d 00:00:00`).
+* In the **Extent [optional]** field click on the **...** button > **Calculate from Layer** > **prepro-tutorial_quality-mesh-interp**.
+* For **Pixel size** type `2.0` meters (can also be larger - the larger this number, the coarser will be the output raster).
+* For **Output coordinate system** select `Project CRS: ESRI:31494 - Germany_Zone_4`.
+* Define an **Output raster layer** layer by clicking on the **...** button > **Save to File**. Go to the target directory (e.g., `C:/Basement/steady2-tutorial/`) and enter a raster name, such as `u-end.tif` (`u` for flow velocity, `end` for last timestep, and `.tif` for {term}`GeoTIFF`).  Click **Save**.
+* Click on the **Run** button to start rasterizing the mesh dataset.
+
+After the successful rasterization, close the **Rasterize Mesh Dataset** window with a click on the **Close** button.
 
 ```{figure} ../img/qgis/rasterize-mesh.png
-:alt: setup rasterize rasterize mesh geotiff
+:alt: setup rasterize mesh geotiff
 :name: qgis-rasterize-mesh
 
 Settings to export simulation results with QGIS's Rasterize tool.
 ```
 
-With a `Singleband pseudocolor` > `Spectral` `Symbology`-selection in the `Layer Properties`, the *QGIS* window should now look like this:
+To enhance the visualization of the new (flow velocity) raster, double-click on the new raster in the **Layers** panel and switch to the **Symbology** tab. Select **Singleband pseudocolor** for **Render type (in top region of the window) and a **Color ramp**. To suppress zero-value pixels, double-click on the **Color** of the **0**-**Value** field and in the **Select color** window reduce the **Opacity** to **0$%$**. {numref}`Figure %s <bm-exported-u-raster>` shows an example visualization of the exported flow velocity raster.
 
 
 ```{figure} ../img/qgis/bm-exported-u.png
-:alt: bm-qce
-:name: qgis-crayfish-final
+:alt: basement output rasterize mesh geotiff visualization singleband pseudocolor
+:name: bm-exported-u-raster
 
-A Singleband pseudocolor (Layer Properties > Symbology) selection represents the exported GeoTIFF raster velocity values (zero-values set to no-opacity).
-```
-
-
-```{figure} ../img/qgis-make-tiff.png
-:alt: basement qgis export tiff raster
-:name: qgis-make-tiff
-
-The Rasterize (Vector to Raster) window with required settings highlighted (green marker).
+A Singleband pseudocolor (Layer Properties > Symbology) represents the exported GeoTIFF raster velocity values (with *Reds* color ramp and zero-value pixels set to no-opacity).
 ```
 
 ```{admonition} Analyze geodata results with Python
 Facilitate the conversion and analysis of geospatial data with efficient {ref}`sec-geo-python` applications and the {{ ft_url }} package.
 ```
 
+### Mesh Visualization with Crayfish
+
+The open source [Crayfish](https://www.lutraconsulting.co.uk/projects/crayfish/) plugin enables the visualization of mesh values (e.g., change of node values over time) with many features, such as exporting video animations of model results. To create a video of, for instance, the flow velocity outputs at the 15 simulation timesteps, use the Crayfish plugin as follows.
+
+* In QGIS, Make sure the Crayfish plugin is installed.
+* In the **Layer** panel select **prepro-tutorial_quality-mesh-interp**.
+* With *prepro-tutorial_quality-mesh-interp* slected, go to **Mesh** (top dropdown menu) > **Crayfish** > **Export Animation ...* (if the layer is not highlighted, an error message pops up: *Please select a Mesh Layer for export*).
+* In the **Export Animation** window, go to the **General** tab and define an output file name by clicking on the **...** button (e.g., `velocity-video.avi`).
+* Click **OK**.
+
+The first time that a video is exported, Crayfish will require the definition of a FFmpeg video encoder and guide through the necessary installation (if required). Follow the instructions and re-start exporting the video.
+
+```{admonition} Make animations of other parameters
+:class: note
+To make videos of other simulation parameters, change the currently visualized parameter of the mesh (*prepro-tutorial_quality-mesh-interp*) as {ref}`explained above<qgis-imp-steps>`).
+```
+
+An exemplary avi-video file can be ([downloaded here](https://github.com/hydro-informatics/materials-bm/raw/main/exports/velocity-video-crayfish.avi)).
+
 (bm-paraview)=
 ## Post-processing with ParaView
 
-*ParaView* is a freely available visualization software, which enables plotting *BASEMENT* v.3.x results in the shape of `xdmf` (*eXtensible Data Model and Format*) files. Download and install the latest version of *ParaView* from their [website](https://www.paraview.org/download/), if not yet done.
+*ParaView* is a freely available visualization software, which enables plotting BASEMENT's *results.{term}`xdmf`* file. Download and install (requires **Admin** / **sudo** rights) the latest version of *ParaView* from their [website](https://www.paraview.org/download/) (if not yet done).
 
-### Load BASEMENT Results
-Open *ParaView* and click on the folder icon (top left of the window) to open the simulation results file (`results.xdmf`). *ParaView* might ask to choose an appropriate XMDF read plugin. Select `XDMF Reader` here and click `OK`:
+### Import results.xdmf
+Open *ParaView* and **click on the folder icon** (top left of the window indicated in {numref}`Fig. %s <fig-pv-import>`) to open the simulation results file (`results.xdmf`). *ParaView* might ask to choose an appropriate XMDF read plugin: **Select `XDMF Reader`** and click `OK`. Now, the `results.xdmf` should be visible in the **Pipeline Browser** and the **Apply** button has turned green.
 
-To explore the model results:
-- Select variables (e.g., `flow_velocity`, `water_depth`, or `water_surface`) in *ParaView*'s `Cell Arrays` canvas (green-highlighted circle in {numref}`Fig. %s <pv-vis>`).
-- Click the `Apply` button (red-highlighted circle in the Properties tab in {numref}`Fig. %s <pv-vis>`). All variables are now loaded and can be plotted.
-- To plot a variable, select one (e.g., `flow_velocity`) in the toolbar (light-blue-highlighted circle in the upper part of {numref}`Fig. %s <pv-vis>`). Then click the play button in the toolbar (dark-blue-highlighted circle around the green arrow in the upper part of  {numref}`Fig. %s <pv-vis>` to cycle through the time steps.
-
-```{figure} ../img/pv-vis.png
+```{figure} ../img/paraview/import-results.png
 :alt: basement results paraview
-:name: pv-vis
+:name: fig-pv-import
 
-ParaView after successful import of the model results (results.xdmf) - see above descriptions.
+ParaView after successful import of the model results (results.xdmf).
 ```
 
-All available time steps are listed in the Blocks tab (bottom-left in Figure 1). Anything should be visible at the beginning because the initial conditions were defined as `dry` (see the setup of [inital conditions](#init)). The above {numref}`Fig. %s <pv-vis>`) shows the last time step (`Timestep[25]`), with water flowing at a peak velocity of 3.7 m/s. The 25 available time steps result from the definition made in BASEMENT's SIMULATION tab with a total duration of 5000.0 and an output step of 200.0. Note that the time units have no dimension here because they correspond to computational time steps.
+(pv-vis)=
+### Visualize Parameters
+ParaView shows by default on of the result parameters at timestep 0 (i.e., bare, dry terrain). To explore other parameters, select them in the dropdown menu of the **Active Variable Controls** menu bar (red highlight box in {numref}`Fig. %s <fig-pv-vis>`). Toggle through the timesteps by using the video control buttons in the **VCR Controls** toolbar (blue highlight box in {numref}`Fig. %s <fig-pv-vis>`). The *Active Variable Controls* menu bar also contains options for manipulating the color range and legend.
 
-(exp-vis)=
-### Export Visualizations
 
-The animations can be saved as movie (e.g., `avi`) or image (e.g., `jpg`, `png`, `tiff`) files via `File` > `Save Animation...`.
-The current state (variable, `Timestep[i])` can be saved as `pvsm` file via `File` > `Save State File`. The state file can also be saved as Python script for external execution and implementation in [Python programs](../python-basics/pypckg.html#stand-alone).
+```{figure} ../img/paraview/vis-u.png
+:alt: basement results paraview
+:name: fig-pv-vis
 
-(exp-data)=
+The Active Variable Controls (red box) and VCR Controls (light blue box) in ParaView to visualize output parameters at different timesteps.
+```
+
+```{admonition} Familiarize with the Viewport
+The Viewport (default `Layout #1`) provides many tools for zooming in the model and changing perspectives between 2d and 3d. Click in the Viewport and hold the left mouse button to change perspectives. Take a couple of minutes to get along with the perspectives.
+```
+
+To **export an animation of output parameter** over time as movie (e.g., `avi`) or image (e.g., `jpg`, `png`, `tiff`) go to **File** > **Save Animation...**.
+
+
+Moreover, the current state of a dataset in *ParaView* can be saved as `pvsm` file via **File** > **Save State File** and save the current state, for instance, in the simulation folder as **pv-project.pvsm**. The state file can also be saved as Python script to leverage automated exports ({ref}`read more about Python scripting <standalone>`).
+
+```{admonition} Save Project and the PVSM format
+With its approach of sequences of programmable filter application, ParaView saves a *Current State* in PVSM format rather than a project as for example in QGIS. To load an existing ParaView state (i.e., project), go to **File** > **Load state**.
+```
+
+(pv-exp-data)=
 ### Export Data
-For geospatial calculations (e.g., calculate [habitat suitability indices for target fish species](https://riverarchitect.github.io/RA_wiki/SHArC) based on flow velocity and water depth), the simulation results must be converted to geospatial data formats. The first conversion step is to extract relevant point data in *ParaView*:
+Similar to QGIS, output parameter datasets can be extracted, manipulated or transformed in ParaView. For this purpose, programmable filters can be applied to the original dataset in ParaView to calculate (i.e., is the **Calculator** <img src="../img/paraview/sym-calc.png"> filter), for example, Froude number from the water depth and flow velocity datasets (read more in the [ParaView Wiki](https://www.paraview.org/Wiki/Python_calculator_and_programmable_filter)).
 
-1. With the `results.xdmf` file opened in *ParaView*, right-click on `results.xdmf` in the `Pipeline Browser`, then `Add Filter` > `Alphabetical` > `Cell Centers`
-1. With the `CellCenters1` filter enabled in the `Pipeline Browser` (blue-highlighted circle in the [figure below](#pv-exp-steps), set the `Time` in the menu bar to the end time step (here: `5000`, i.e., step no. `25`, see the red-highlighted circle in the [figure below](#pv-exp-steps))
-1. In the `Properties` tab (green-highlighted circle in the [figure below](#pv-exp-steps), check the `Vertex Cells` box, and click the `Apply` button.
-1. Press  `CTRL` + `S` on the keyboard > a `Save File` dialogue window opens:
-    * Navigate to the folder where you want to save the data
-    * Enter a `File name` (e.g., *bm-steady-vanilla*)
-    * In the `Files of type` drop-down field, select `Comma or Tab Delimited Files(*.csv *.tsv *.txt)`
-    * Click `OK`
-1. The `Configure Writer (CSVWriter)` window opens. Make sure that `Point Data` is selected as `Field Association`. Optionally, check the `Choose Arrays To Write` box and select relevant fields only. Press the `OK` button.
+This tutorial only features the export of mesh point data to a {term}`CSV` file with programmable filters:
 
-The point data export is now complete. The next step is to import the data (here: *bm-steady-vanilla.csv*) in *QGIS* ([next section](#qgis-import)).
+* Make sure that the **Time** in the **Current Time Controls** toolbar (blue box in {numref}`Fig. %s <fig-pv-cell-centers>`) is set to 15000 (max. timestep).
+* **Right-click** on `results.xdmf` in the **Pipeline Browser** > **Add Filter** > **Alphabetical** (i.e., a list of all available filters) > **Cell Centers**.
+* In the **CellCenters1** **Properties**, check the **Vertex Cells** box and click on the now green **Apply** button.
+* To save the currently active vertex data **press  `CTRL` + `S` on the keyboard**, which opens a **Save File:** dialogue window; in this window:
+    * Navigate to a target folder (e.g., the simulation folder `/Basement/steady2d-tutorial/`)
+    * Enter a **File name** (e.g., `flow_velocity.csv`)
+    * In the **Files of type** drop-down field, select **Comma or Tab Delimited Files(*.csv *.tsv *.txt)**
+    * Click **OK**
+* The **Configure Writer (CSVWriter)** window opens:
+  * Check the **Choose Array To Write** box.
+  * Select **flow_velocity points** only (or more/other parameters).
+  * Keep all other defaults.
+  * Press **OK**.
 
-
-```{figure} ../img/pv-exp-steps.png
+```{figure} ../img/paraview/cell-centers.png
 :alt: paraview basement export data
-:name: pv-exp-steps
+:name: fig-pv-cell-centers
 
-The CellCenters (dark-blue circle) filter in ParaView, with the maximum Time step setting (red circle) and the Properties definitions (green circle)
+Application of the CellCenters programmable filter in ParaView, with the maximum timestep set in the Current Time Controls toolbar (blue box).
 ```
 
+Now, a *flow_velocity.csv* file has been written that contains point coordinates (x, y, and z coordinates) and flow_velocity in *x* (flow_velocity:0) and *y* (flow_velocity:1) directions. The flow_velocity:2 (*z*-direction) is always zero in this 2d simulation. The {term}`CSV` file can now also be used with QGIS (e.g., **Layer** > **Add Layer** > **Add Delimited Text Layer...** > select *flow_velocity.csv*, assign the correct columns and separators > click **Add**).
 
-## Result interpretation
-In *ParaView* (renders faster) or *QGIS*, look at all variables (`flow_velocity`, `water_depth`, and `water_surface`), explore their evolution over time, different coloring and answer the following questions:
+```{admonition} Challenge: Calculate the absolute velocity
+Import *flow_velocity.csv* in QGIS and calculate the absolute flow velocity $U$ from $u_x$ (flow_velocity:0) and $u_y$ (flow_velocity:1) as $U = \sqrt{u^2_x + u^2_y}$. How do the flow fields comply with the above-created `u-end.tif` (see {ref}`bm-rasterize-output` section) raster?
+```
 
-- Are the results are in a physically reasonable and meaningful range?
-- When did the simulation become stable?<br>*To save time, the simulation duration can be shortened (*BASEMENT*'s `SIMULATION` tab), down to the time step when stability was reached.*
-- Are there particularities such as rapids that correspond (qualitatively) to field observations (are rapids on confinements and/or terrain drops)?
-- Zoom into the [final *tif* raster](#qgis-crayfish-final) and have a look at the triangulation artifacts. The artifacts are not realistic. How can the problem be addressed?
+(bm-python)=
+## Python Simulation Verification
+BASEMENT's developers at the ETH Zurich provide a suite of [Python scripts](http://people.ee.ethz.ch/~basement/baseweb/download/tools/python-scripts/) for post-processing the simulation results. For the here used BASEMENT v3 download the Python script [BMv3NodestringResults.py](http://people.ee.ethz.ch/~basement/baseweb/download/tools/python-scripts/BMv3NodestringResults.py), which exports defined output parameters at the user-defined {ref}`STRINGDEFs <bm-geo-fin>`.
 
-After post-processing, the model still needs to be [calibrated and validated](../numerics/calibration) before it can be used for scientific or engineering purposes in river ecosystem analyses.
+To run the Python script, a {ref}`install-python` for your platform along with the `numpy` and `h5py` packages. Use {{ ft_url }} in a {ref}`conda-env` or {ref}`pip-env`, which already includes all requirements for running *BMv3NodestringResults.py*. For running the *Python* script on any platform:
 
+* Optionally activate the relevant *Python* environment.
+* `cd` (change directory) into the simulation folder.
+* Run `python BMv3NodestringResults.py`.
 
-### Python Options for BASMENT (Deprecated)
-BASEMENT's developers at the ETH Zurich provide a suite of [Python scripts](http://people.ee.ethz.ch/~basement/baseweb/download/tools/python-scripts/) for post-processing the simulation results. For the here used BASEMENT v3 download the Python script [BMv3NodestringResults.py](http://people.ee.ethz.ch/~basement/baseweb/download/tools/python-scripts/BMv3NodestringResults.py).
+In detail, this looks as follows:
 
-To run the Python script, a {ref}`install-python` for your platform along with the `numpy` and `h5py` packages. Note that working with the developer's Python script requires that the output variables must be exactly defined as shown in {numref}`Fig. %s <bm-sim-setup>` (SIMULATION ribbon).
+````{tabbed} Windows and conda
+Launch *Windows* or *Anaconda Prompt* and tap (requires that the conda environment {ref}`flussenv <conda-quick>` is installed):
+```
+conda activate flussenv
+cd C:\Basement\steady2d-tutorial\
+python BMv3NodestringResults.py
+```
+````
+
+````{tabbed} Linux and pip
+Launch *Linux Terminal* and tap (requires that the pip environment {ref}`vflussenv <pip-quick>` is installed in the HOME directory):
+```
+cd ~
+source vflussenv/bin/activate
+cd /Basement/steady2d-tutorial/
+python BMv3NodestringResults.py
+```
+````
+
+{numref}`Figure %s <export-py>` illustrates running *BMv3NodestringResults.py* on *Windows* in *Anaconda Prompt*.
+
+```{figure} ../img/basement/export-ns-py.png
+:alt: export nodestring python script basement BMv3NodestringResults
+:name: export-py
+
+A Python Anaconda Prompt window running BMv3NodestringResults.py
+```
+
+Running the *Python* script generates three {term}`CSV` files that contain values at the user-defined {ref}`STRINGDEFs <bm-geo-fin>`:
+
+* **Discharge.csv** contains inflow and outflow discharges.
+* **results.csv** contains any OUTPUT parameter defined in the {ref}`simulation setup file <bm-sim-file>`.
+* **timestep.csv** lists the number of OUTPUT parameter timesteps.
+
+The primarily important file is **Discharge.csv**, from which can be read when inflow and outflow converge in a steady-state simulation. A steady-state simulation in which the sum of all inflows does not equal all outflows must be considered erroneous. For instance, if outflow in the last timestep is smaller than inflow, then the simulation time is too short. The diagram in {numref}`Fig. %s <convergence-diagram>` plots inflow and outflow for the simulation setup of this tutorial. The diagram suggests that the model reaches stability after timestep number 11 (simulation time $t \leq 11000$). Thus, the simulation time could be limited to $t = 12000$, but a simulation time of $t = 10000$ would be to short.
+
+```{figure} ../img/basement/convergence-diagram.png
+:alt: basement convergence model simulation discharge verification validation
+:name: convergence-diagram
+
+Convergence of inflow and outflow at the model boundaries.
+```
+
+```{admonition} Other discharge convergence issues
+* **Perpetually increasing discharge in a steady simulation**:<br>The definition of the  {ref}`upstream_direction <bm-geo-fin>` (e.g., wrongly defined as `"left"` or `"right"`) may cause this error.
+* **No water in the model**:<br>The discharge defined in the *steady-inflow.txt* file (see {ref}`bm-hydraulics` section) must define reasonable flows in the simulation time period. In addition, the definition of the  {ref}`upstream_direction <bm-geo-fin>` (e.g., wrongly defined as `"left"` or `"right"`) may cause this error. For defining the discharges, use the English **.** in lieu of the European **,** decimal delimiter.
+```
+
+**What next?** The verification of the model stability represents only one step on the pathway to a useable model in practice. Before the model can be used for decision making scenarios, it must be calibrated and validated with measurement data. Read more in the {doc}`calibration` section.

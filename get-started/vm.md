@@ -115,7 +115,7 @@ Once you have created a VM on a virtual hard disk (the **vdi** file), you can al
 1. In the process of creating a *New* VM, the wizard asks if you want to create a new hard disk image or an existing one. Select *Existing hard disk* and choose the copied *vdi* file.
 1. Finalize the *New* VM wizard and start the VM as usual.
 
-# Get started with Debian Linux
+# Debian Linux
 
 (setup-debian)=
 ## Setup Linux
@@ -153,7 +153,7 @@ The *VirtualBox VM* window does not show the menu with the *Devices* entry anywh
 * To toggle the view mode and make the menu bar visible, press the RIGHT `CTRL` (`Host`) key + the `C` on your keyboard, while being in the host system view.
 ```
 
-```{admmonition} If the error `The guest system has no CR-ROM ...` occurs...
+```{admonition} If the error **The guest system has no CR-ROM ...** occurs...
 :class: warning
 To troubleshoot the error message `The guest system has no CR-ROM ...`, shutdown the VM. In the *VirtualBox* manager window, right-click on the *Debian Linux* VM > *Storage* tab > Add new Optical Drive to *Controller: IDE*. Restart the *Debian Linux* VM.
 ```
@@ -194,7 +194,7 @@ To improve the visual experience do the following:
 * *Apply* the changes and close the *Displays* settings.
 
 (linux-terminal)=
-## Familiarize with Debian Linux and Terminal
+## Linux Terminal
 
 ***Estimated duration: 60 minutes.***
 
@@ -207,10 +207,10 @@ The GNOME *Terminal* is one of the most important features, even though it optic
 1. Go to *Applications* and type *Terminal* in the search box, or
 1. Open the *File* browser (*Applications* > *Files* - the filing container symbol), navigate to the folder where you want to run *Terminal*, right-click in the free space, and left-click on *Open in Terminal*.
 
-*Terminal* runs many powerful native Linux (UNIX) commands, which is the most robust way to install and execute features. There are a couple of tutorials for learning to use *Terminal* and one of the most comprehensive is provided on the *Linux Ubuntu* website (Ubuntu is based on Debian Linux). It is highly recommended to go through the [tutorial provided by the Ubuntu community](https://ubuntu.com/tutorials/command-line-for-beginners) (*estimated duration: 51 minutes*), for better understanding some contents of this ebook. In particular, memorize the commands `cd` (change directory), `su`/`sudo` (superuser), `ls` (listen) and `mkdir` (make directory).
+*Terminal* runs many powerful native Linux (UNIX) commands, which is the most robust way to install and execute features. There are a couple of tutorials for learning to use *Terminal* and one of the most comprehensive is provided on the *Linux Ubuntu* website (Ubuntu is based on Debian Linux). It is highly recommended to go through the [tutorial provided by the Ubuntu community](https://ubuntu.com/tutorials/command-line-for-beginners) (*estimated duration: 51 minutes*), for better understanding some contents of this eBook. In particular, memorize the commands `cd` (change directory), `su`/`sudo` (superuser), `ls` (listen) and `mkdir` (make directory).
 
 (user-rights)=
-### Setup user rights
+## User Rights
 When installing software later, it is good practice to install it for your user account and not for `root`. Such system-relevant actions require *superuser* (`su`) rights. However, your default user name is not on the so-called *su-doers* list, which is essentially a file where all user accounts are listed that are authorized to use `sudo` in front of any command. So add your user account to the *su-doers* list by opening *Terminal* and typing:
 
 ```
@@ -227,8 +227,11 @@ sudo -v
 
 If visually nothing happens, you are good to go. Otherwise, if you get a message like `Sorry, user [username] may not run sudo on [hostname].`, verify that you correctly typed the above command and *YOUR-USER-NAME* (with correct cases).
 
+(linux-as-vm)=
+## VM Settings
+
 (vm-share)=
-## Enable Folder Sharing between Host and Guest
+### Enable Folder Sharing between Host and Guest
 
 ***Estimated duration: 5-10 minutes.***
 
@@ -265,7 +268,7 @@ Afterward, **reboot the *Debian Linux VM*** and test if you can access the folde
 ***
 
 (opengl)=
-## Enable OpenGL
+### Enable OpenGL
 
 *VirtualBox* experimentally enables [*OpenGL*](https://www.opengl.org), which is used by many graphical user interfaces. To make *OpenGL* work on a virtual machine, the install [*X.Org X Window System*](https://www.x.org/) (xserver):
 
@@ -348,8 +351,9 @@ Start *htop*'s *CPU* monitor with:
 htop
 ```
 
+## Package & Software Management
 
-## Add Package Repositories
+### Add Package Repositories
 
 For adding (trusted) software (package) repositories use *software-properties-common*, which provides the `add-apt-repository` command:
 
@@ -360,7 +364,7 @@ sudo add-apt-repository non-free
 sudo apt update
 ```
 
-## Find Packages
+### Find Packages
 
 Some software will run into errors because of missing library files (e.g., `libGLX.so.0: No such file or directory`). To find out what package needs to be installed for getting the missing library file, install *apt-file*
 
@@ -388,7 +392,7 @@ sudo apt install libglx0-glvnd-nvidia
 ```
 
 (wine)=
-## Install & Use *Windows* Applications (*Wine*)
+### Install & Use *Windows* Applications (*Wine*)
 
 ***Estimated duration: 10-15 minutes.***
 

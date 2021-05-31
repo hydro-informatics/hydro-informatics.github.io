@@ -12,11 +12,5 @@ The `results.xdmf` contains geospatially explicit data (e.g., of flow velocity a
     * Find and replace that user path, for example: `Find` = `C:\temp\results_aux.h5` and `Replace with` = `results_aux.h5` (see [below figure](#npp-xdmf-replace)).
 1. After having removed all path occurrences in the document, save and close `results.xdmf`.
 
-    <a name="npp-xdmf-replace"></a>
-   ```{figure} ../img/npp-xdmf-replace.png
-:alt: bmy
-
-Find the string results_aux.h5 in results.xdmf and remove the file directories.
-```
 
 This issue is also discussed in the [*BASEMENT* User Forum](http://people.ee.ethz.ch/~basement/forum/viewtopic.php?id=5261)).

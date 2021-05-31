@@ -1,22 +1,26 @@
-# The Virtual Classroom
+# Take a Seat
 
-The virtual classroom involves this ebook, recorded and live lectures (video-streaming), and exercises with exciting topics on hydraulic engineering, water resources management, and ecohydraulics.
+## How do you take a seat in a virtual classroom?
 
-## Lecture Overview
-This ebook provides complementary materials for the following lectures at the [University of Stuttgart](https://www.iws.uni-stuttgart.de/en/) (Germany):
+The first thing to do is to ensure that you have access to the virtual classroom, which is granted by registering on the ILIAS and C@MPUS portals of the University of Stuttgart on time. To register for a course, go the {doc}`lectures` section and check the registration details for the course that you are interested in.
 
-- Integrated River Engineering and Sediment Management (go to [ILIAS](https://ilias3.uni-stuttgart.de/goto_Uni_Stuttgart_crs_1855964.html) or {ref}`read more here <irme>`)
+Each of the lectures requires one or more software tools, most of which are described on this website. The tools required for the courses are also described in the {doc}`lectures` section's *Requirements* paragraphs. The use of the essential software is demonstrated in the lectures and exercises. Guidance for installing software is provided in the chapter on {ref}`software`. Moreover, have a look at the {doc}`Troubleshoot <../troubleshoot/dbg-anaconda>` chapter to get help with potential (known) issues.
 
-- Python Programming for Water Resources Engineering and Research (go to [ILIAS](https://ilias3.uni-stuttgart.de/goto_Uni_Stuttgart_crs_2101155.html) or {ref}`read more here <pywrm>`)
-
-
-## Principles
+If you find errors (e.g., in this eBook) or solutions to (unknown) issues with any software, feel very welcome to report them to the lecturer(s).
 
 
-All fundamental contents are open access to promote the efficient use of data and models whenever, where ever and whoever you are.
+## Join live video conferences
 
-Open-Access / Open-Source
-: The contents of this ebook build on open-access and open-source software only. Hints about how to work with commercial software (as used for example in many engineering offices) are sometimes provided in the form of *good-to-know* information. Students can get more information upon request in the lectures.
+The University of Stuttgart uses **Cisco Webex** software for video conferencing ([read more on the school's website](https://www.tik.uni-stuttgart.de/en/support/service-manuals/webex/)). Therefore, *Cisco Webex* is used for live streaming lectures and free clients are available for students and staff ([go to the download page](https://unistuttgart.webex.com/webappng/sites/unistuttgart/dashboard?siteurl=unistuttgart)). Once installed, open *Webex* and enter you user ID (students: `stREGISTRATIONNUMBER` or staff: `acSTAFFID`).
 
-Diversity
-: The classes target an international and interdisciplinary audience to foster work in versatile teams because diversity is not only an enrichment, but also crucial for successful economic, socio-political, and scientific collaboration. Cultural diversity comes along with different solution strategies, which together lead to robust and elaborate approaches. This is why the classes supported by this ebook target all cultures and ethnic groups with their manifold backgrounds, ages, and beliefs.
+It is not necessary to download a web client, as the live events (lectures) can also be joined via a web-browser. Experience shows that Chrome-based web browsers are best suited for this (on *Linux* use for example [*Chromium*](https://www.chromium.org/)). Some students reported issues when trying to join live lectures with *Mozilla Firefox*.
+
+A *Virtual Meeting Etiquette* has been established with the rising number of live streaming video conferences. Please follow the etiquette at all time as best as possible according to the following rules (slightly modified from and originally posted by [Lindsay Crafford](https://blog.gotomeeting.com/author/lindsaycrafford/) on [gotomeeting.com](https://blog.gotomeeting.com/7-rules-virtual-meeting-etiquette-every-professional-know/)):
+
+1. **Leave the keyboard alone.** The sound of typing is distracting.
+1. **Be aware of your surroundings.** Your fellows will not take you seriously when there is a pile of dirty clothes in the corner behind you. Avoid bad lighting.
+1. **Mute your microphone when you are not talking.** Echo noises from conflicting microphones can be quite frustrating for the group.
+1. **Speak up.** Announce yourself when you join the event ("Hi!"). It is awkward for your fellows and lecturers to hear a *someone-just-joined* sound followed by silence.
+1. **No food.** Try to eat before the virtual event. No one wants to see you stuff your face with food in a video conference. Not only is it distracting to others, you will not be able to focus on tasks at hand because you will be worrying about dropping crumbs.
+1. **Stay seated and stay present.** It may be tempting to check your inbox or carry on a conversation parallel to a virtual event, but do not do it. You might miss key information at any time of the event. In small groups (less than 20 participants), using your webcam contributes to an attentive learning environment. You are very welcome to ask questions (raise your hand visible to the webcam) and speak with attentive body language (sit up straight).
+1. **Make sure you have a good internet connection.** If your housemates are playing online games, ask them to take a break for the duration of the event.

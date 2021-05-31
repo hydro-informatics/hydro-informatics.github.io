@@ -11,18 +11,18 @@ conda environments
 pipenv / venv
 : *pipenv* or *pip* environments are *Python* environments that can be created with *Python*s default [pip](https://pip.pypa.io/en/stable/) package-management system (default since *Python 2.7.9.* / *Python 3.4*). With pip, a virtual environment can be created (typically stored in a *venv* folder in the working directory).
 
-This section guides through the installation of a computational environment that is tailored for working with contents in this ebook. The environment uses the **flusstools** pip-package, which provides many useful routines for river analyses.
+This section guides through the installation of a computational environment that is tailored for working with contents in this eBook. The environment uses the **flusstools** pip-package, which provides many useful routines for river analyses.
 
 
 (pip-env)=
 ## pip and venv
 
-**pip and virtual environments are preferable with *Linux* systems for working with this ebook.**
+**pip and virtual environments are preferable with *Linux* systems for working with this eBook.**
 
 (pip-quick)=
 ### Quick Guide
 
-Consider installing, create and activate a new virtual environment for working with the contents of this ebook as explained in the following platform-dependent paragraphs.
+Consider installing, create and activate a new virtual environment for working with the contents of this eBook as explained in the following platform-dependent paragraphs.
 
 ````{tabbed} Linux
 To avoid affecting the system's Python interpreter, set up a virtual environment with *venv*. the first step is to make sure that *Python3* and *venv* are installed on the system:

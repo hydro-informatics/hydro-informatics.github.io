@@ -320,7 +320,7 @@ Download the [zipped region-points shapefile](https://github.com/hydro-informati
 (qualm)=
 ### Create a Quality Mesh
 
-*BASEmesh*'s quality mesh tool creates a computationally efficient triangular network within the above-defined model boundaries. The tools associates mesh properties with the regions shapefile ([see above section on {ref}`regions`), but it does not include elevation data. Thus, after generating a quality mesh, elevation information needs to be added. This section explains the quality mesh generation and the next section features the interpolation of bottom elevations.
+*BASEmesh*'s quality mesh tool creates a computationally efficient triangular mesh based on {cite:t}`shewchuk1996` and within the above-defined model boundaries.  The tools associates mesh properties with the regions shapefile ([see above section on {ref}`regions`), but it does not include elevation data. Thus, after generating a quality mesh, elevation information needs to be added. This section explains the quality mesh generation and the next section features the interpolation of bottom elevations.
 
 In *QGIS*' **Plugins** menu, click on **BASEmesh 2** > **QUALITY MESHING** to open the quality mesh tool. Make the following settings in the popup window (see also {numref}`Fig. %s <qgis-qualm>`):
 
@@ -381,11 +381,12 @@ After the elevation interpolation, verify that the elevations are correctly assi
 Verify elevation interpolation using graduated color ramps.
 ```
 
-
+(qgis4bm)=
 ### Usage with BASEMENT
 
 The 2dm mesh file produced in this tutorial can be directly used with {ref}`chpt-basement`, where only the definition of properties of the geometric (e.g., roughness coefficients) and liquid (e.g., discharges) are required as explained later.
 
+(qgis4tm)=
 ### Usage with TELEMAC
 For the usage with {ref}`chpt-telemac2d` (or {ref}`chpt-telemac3d`), the 2dm file requires a conversion to the serafin/selafin (`slf`) file format that can be done with the **Crayfish** plugin.
 

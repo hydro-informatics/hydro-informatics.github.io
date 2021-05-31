@@ -1,6 +1,5 @@
 (chpt-telemac3d)=
-# 3d modeling with TELEMAC
-
+# Telemac3d
 
 ```{image} ../img/salome/telemac3d-header.png
 :alt: telemac3d salome med results
