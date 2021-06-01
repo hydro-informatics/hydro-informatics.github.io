@@ -1,49 +1,49 @@
 (chpt-telemac)=
 # TELEMAC
 
-The numerical simulation methods described on these pages use the freely available software *open TELEMAC-MASCARET* (in the following referred to as *TELEMAC*), which was started as a commercial code by the R&D group of Électricité de France (EDF). Since 2010, the TELEMAC-MASCARET Consortium took over the development (EDF R&D is still deeply involved) and freely provides the software and its source code under a [*GPLv3* license](http://www.gnu.org/licenses/gpl-3.0.html). Visit their [website](http://www.opentelemac.org/) to learn more about *TELEMAC*.
+  The numerical simulation methods described on these pages use the freely available software *open TELEMAC-MASCARET* (in the following referred to as TELEMAC), which was started as a commercial code by the R&D group of Électricité de France (EDF). Since 2010, the TELEMAC-MASCARET Consortium took over the development (EDF R&D is still deeply involved) and freely provides the software and its source code under a [*GPLv3* license](http://www.gnu.org/licenses/gpl-3.0.html). Visit their [website](http://www.opentelemac.org/) to learn more about TELEMAC.
 
 
 ## Get Started
 
-It is strongly recommended to install [*Debian Linux*](https://www.debian.org/) or one of its derivatives for working with *TELEMAC* (see the [Virtual Machines (VMs)](../get-started/vm) section in the *Software* chapter). Then, proceed with the installation of [*TELEMAC*](../get-started/install-telemac). Account for approximately 2 hours to get ready with *TELEMAC*.
+It is strongly recommended to install [*Debian Linux*](https://www.debian.org/) or one of its derivatives for working with TELEMAC (see the chapter on {ref}`Virtual Machines (VMs) and Linux <chpt-vm-linux>`). Then, proceed with the {ref}`installation of TELEMAC <telemac-install>`. Account for approximately 2 hours to get ready with TELEMAC.
 
 
 ## General Introduction and Tutorial Guide
 
-Analysis of a hydro-environment with *TELEMAC* involves pre-processing for abstracting the fluvial landscape, setting up control files, running a *TELEMAC* solver, and post-processing. The first-time user faces an overwhelming number of software options for pre- and post-processing. Besides, *TELEMAC* comes with a wide range of modules for 2D and 3D calculations of hydro-morphodynamic processes of various water bodies, from mountain rivers to coastal deltas under the influence of tides. Also, various sediment transport processes can be considered coupled with steady or unsteady flow conditions.
+The analysis of hydro-environments with TELEMAC involves pre-processing for abstracting the fluvial landscape, setting up control files, running a TELEMAC solver, and post-processing. The first-time user faces an overwhelming number of software options for pre- and post-processing. Moreover, TELEMAC comes with a wide range of modules for two-dimensional (2d) and three-dimensional (3d) modeling of hydro-morphodynamic processes of various water bodies, from mountain rivers to coastal deltas under the influence of tides. Also, multiple sediment transport phenomena can be modeled and coupled with steady or unsteady flow conditions.
 
-The tutorials on this website show how to:
+The tutorials in this eBook feature:
 
-* Create a pure hydrodynamic model with steady-state runoff boundary conditions;
-* Implement unsteady boundary conditions (replace steady flow boundaries);
-* Activate modeling of sediment transport processes (morphodynamics) with *TELEMAC*'s Gaia module.
+* the usage of TELEMAC with the computational mesh created in the {ref}`pre-processing with QGIS tutorial <qgis-prepro>` (refer to the section describing the {ref}`export of the mesh to SLF <qgis4tm>`);
+* a purely hydrodynamic 2d model with steady discharge boundary conditions in the {ref}`chpt-telemac2d` section with the standard SLF geometry format;
+* a purely hydrodynamic 3d model with steady discharge boundary conditions in the {ref}`chpt-telemac3d` section with the MED geometry format.
+* Future tutorials (under development) will also feature:
+  * the implementation of unsteady boundary conditions (replace steady flow boundaries);
+  * the activation of sediment transport (morphodynamic) modeling with TELEMAC's Gaia module.
 
-Here, the focus is on modeling small to medium-sized rivers.
+The tutorials build on the user manuals provided by the TELEMAC developers at [http://wiki.opentelemac.org](http://wiki.opentelemac.org/doku.php?id=documentation_v8p2r0).
 
-```{note}
-This page builds on descriptions provided in the [telemac2d](http://ot-svn-public:telemac1*@svn.opentelemac.org/svn/opentelemac/tags/v8p1r1/documentation/telemac2d/user/telemac2d_user_v8p1.pdf) user manual.
-```
 
 ### Pre-processing
 
-Pre-processing involves abstracting the river landscape into a computational grid (mesh) with boundary conditions. Many software tools can be used for this purpose and this website features two options for mesh generation and defining geometry boundary conditions:
+Pre-processing involves abstracting the river landscape into a computational mesh (grid) with boundary conditions. Many software tools can be used for this purpose such as:
 
-1. Use [*QGIS*](../get-started/geo.html#qgis) and the [*BASEmesh* plugin](pre-qgis.html#get-ready-with-qgis). The [*QGIS* Prepro option](pre-qgis) is convenient for creating geo-referenced 2D meshes and uses the pre-processing routines of [BASEMENT](../numerics/basement). So this is not an officially recommended version by the *TELEMAC* developers, but rather a home-brewed option on this website.
-1. Use the National Research Council Canada's [*Blue Kenue<sup>TM</sup>*](../get-started/install-telemac.html#bluekenue) GUI software. The [*Blue Kenue<sup>TM</sup>* Prepro option](../numerics/telemac2d) is preferably for *Windows* users and is somewhat cumbersome for creating geo-referenced point and line datasets to delineate the mesh.
-1. Use [*SALOME-HYDRO*](../get-started/install-telemac.html#salome) for generating computational meshes in *MED* geometry files (more details in the [*Telemac3d*](../numerics/telemac3d) tutorial).
+* {ref}`qgis-install` and the BASEmesh plugin, which are illustrated in the {ref}`QGIS pre-processing tutorial <qgis-prepro`.
+* The National Research Council Canada's {ref}`Blue Kenue <bluekenue>` GUI software (primarily for *Windows*).
+* {ref}`SALOME-HYDRO <salome-hydro>` for generating computational meshes in the MED files format (here illustrated in the {ref}`chpt-telemac3d` tutorial).
 
 ### Model setup and run
 
-The centerpiece of any *TELEMAC* model is the control (steering or *CAS*) file, which can be comfortably set up with [Fudaa PrePro](../get-started/install-telemac.html#fudaa). The basic setup of a [steady](../numerics/telemac2d.html#steady) and a [unsteady](../numerics/telemac2d.html#unsteady) model are explained on the [Model Setup page](../numerics/telemac2d). In addition, explanations are provided on the use of the [Gaia module for modeling morphodynamic (sediment transport) processes](../numerics/telemac2d.html#prepro-gaia).
+The centerpiece of any TELEMAC model is the control (steering or *CAS*) file, which can be comfortably set up with [Fudaa PrePro](../get-started/install-telemac.html#fudaa). The basic setup of a [steady](../numerics/telemac2d.html#steady) and a [unsteady](../numerics/telemac2d.html#unsteady) model are explained on the [Model Setup page](../numerics/telemac2d). In addition, explanations are provided on the use of the [Gaia module for modeling morphodynamic (sediment transport) processes](../numerics/telemac2d.html#prepro-gaia).
 
 ### Post-processing
 
-*Artelia Eau et Environnement* created the [PostTelemac](https://plugins.qgis.org/plugins/PostTelemac/) plugin for *QGIS*, which is a powerful and convenient tool visualizing and post-processing *TELEMAC* simulation results. The [*Telemac2d*](../numerics/telemac2d) and [*Telemac3d*](../numerics/telemac3d) tutorials provide guidance on the usage of the *PostTelemac* plugin and [*SALOME*](../get-started/install-openfoam.html#salome) for post-processing *SLF* and *MED* results files, respectively.
+*Artelia Eau et Environnement* created the [PostTelemac](https://plugins.qgis.org/plugins/PostTelemac/) plugin for *QGIS*, which is a powerful and convenient tool visualizing and post-processing TELEMAC simulation results. The [*Telemac2d*](../numerics/telemac2d) and [*Telemac3d*](../numerics/telemac3d) tutorials provide guidance on the usage of the *PostTelemac* plugin and [*SALOME*](../get-started/install-openfoam.html#salome) for post-processing *SLF* and *MED* results files, respectively.
 
-## The *TELEMAC* file structure
+## The TELEMAC file structure
 
-For any *TELEMAC* 2D simulation, the following input files are **mandatory**:
+For any TELEMAC 2D simulation, the following input files are **mandatory**:
 
 * Steering file
     + File format: `cas`
@@ -56,7 +56,7 @@ For any *TELEMAC* 2D simulation, the following input files are **mandatory**:
     + Prepare `.cli` files with [*BlueKenue<sup>TM</sup>*](../get-started/install-telemac.html#bluekenue) and [Fudaa PrePro](../numerics/telemac2d.html#prepro-fudaa).
     + Prepare  `.bnd`/`.bcd` files either with *SALOME-HYDRO* or with a text editor (read more in the [Telemac3d tutorial](../numerics/telemac3d.html#bnd-mod)
 
-There are many more file formats, which are not computationally mandatory for running a simulation with *TELEMAC*, but essential in practice to yield reasonable results with a hydro-morphodynamic model (i.e., coupled hydrodynamic-sediment transport solver). Such **optional** files are:
+There are many more file formats, which are not computationally mandatory for running a simulation with TELEMAC, but essential in practice to yield reasonable results with a hydro-morphodynamic model (i.e., coupled hydrodynamic-sediment transport solver). Such **optional** files are:
 
 * Liquid boundaries file (e.g., for water surface elevation or flow rates)
     + Requires a stage-discharge relationship file
@@ -65,7 +65,7 @@ There are many more file formats, which are not computationally mandatory for ru
     + File format: `tbl` (`ASCII`)
 * Reference file to enable model validation (restart)
     + File format: `.slf` or `.med`
-    + Check the *TELEMAC* docs
+    + Check the TELEMAC docs
 * Restart file for setting initial conditions (`.slf` or `.med`)
 * Sections file to set control sections (e.g., verify flow rates, velocity, or water surface elevation)
 * Sources (e.g., water or sediment) data file
@@ -186,6 +186,6 @@ The name format of the results file can be modified in the steering file with:
 RESULTS FILE             : 't2d_channel_output.slf'
 ```
 
-Because this file is generated by *TELEMAC* when the simulation is running, it does not need to exist for starting the simulation. A good option for visualizing the results file is the [*PostTelemac* Plugin in *QGIS*](../get-started/install-telemac.html#qgis)
+Because this file is generated by TELEMAC when the simulation is running, it does not need to exist for starting the simulation. A good option for visualizing the results file is the [*PostTelemac* Plugin in *QGIS*](../get-started/install-telemac.html#qgis)
 
 *MED* results files are typically processed with either [*SALOME*](../get-started/install-openfoam.html#salome) or [*SALOME-HYDRO*](../get-started/install-telemac.html#salome-hydro), which are featured in the [*Telemac3d*](../numerics/telemac3d) tutorial.

@@ -1,9 +1,8 @@
-
 # Welcome to the Hydro-Informatics Learning Platform
 
 The educational platform for Data & Programming, Geospatial Analysis, and Modeling Tools in the field of Water Resources Engineering & Research.
 
-```{image} img//icons/banner-logo.jpg
+```{image} img/icons/banner-logo.jpg
 :alt: hydro-informatics github sebastian schwindt
 ```
 
@@ -11,38 +10,34 @@ The educational platform for Data & Programming, Geospatial Analysis, and Modeli
 
 Large datasets, such as airborne imagery and hydro-meteorological datasets collected worldwide, drive progress in many disciplines. With traditional spreadsheet analysis tools, however, large amounts of data can hardly be analyzed, understood, or used. The courses supported with this website aid hydraulic engineers, geomorphologists, river ecologists, and any water resources-related challenge with tools for efficient data analyses and presentation. The methods described rely on open-access tools to leverage international and interdisciplinary collaboration on all levels.
 
-```{admonition} What does Hydro-informatics stand for?
+```{admonition} What is Hydro-informatics?
 :class: tip
-The term hydroinformatics (or hydro-informatics) is widely used in the field of hydrology. Yet, the syllable *hydro* goes back to the Greek word for *water*. In addition, the term *informatics* can be used as a synonym for studying computational systems. In this light, the term *hydro-informatics* as used on this website also refers to computational studies of river ecosystems. Thus, the primary focus of this ebook is on computer-based applications in the field of hydraulic engineering with its links to ecohydraulics, geomorphology, geo-informatics, and hydrology.
+The term hydroinformatics (or hydro-informatics) refers to a sub-discipline of informatics and has its origins in computational hydraulics. Hydroinformatics involves numerical modeling as well as data science methods for the efficient and sustainable use of water resources (definition derived from the {term}`IAHR`'s and IWA [Joint Committee on Hydroinformatics](https://www.iahr.org/index/committe/15)).
+The syllable *hydro* goes back to the Greek word for *water* and the term *informatics* can be used as a synonym for studying computational systems. This eBook features the use of *hydro-informatics* to leverage studies of river ecosystems concerning hydraulic engineering, ecohydraulics, geomorphology, geo-informatics, and hydrology.
 ```
 
 ## Contents
 
-Find your course in the {doc}`virtual classroom </lectures/classroom>` ({doc}`lectures and exercises </lectures/lectures>`) and take a seat.
+This eBook features a {doc}`virtual classroom </lectures/classroom>` with open source/access materials for {doc}`lectures and exercises </lectures/lectures>`. Students at the [University of Stuttgart](https://www.uni-stuttgart.de/) can learn more about registering for courses in the {ref}`chpt-take-seat` chapter.
 
-The *Get started* chapter represents a summary of provide systematic workflows to setup your computer for:
+The eBook provides tutorials for:
 
-- Coding with {doc}`Python </get-started/ide>`;
-- Code documentation with {doc}`markdown </documentation/documentation>`;
-- Version control with {doc}`git <get-started/git>`;
-- Geospatial analyses with {doc}`desktop applications </get-started/geo>` such as *QGIS*;
--  {doc}`Auxiliary tools and open-source/access alternatives </get-started/others>` to proprietary software such as *GNU Octave* (similar to *Matlab*) or *Libre Office* (similar to MS Office).
+* Coding with {ref}`Python <install-python>` including
+  * Guidance to {ref}`install-python`
+  * A general introduction to {doc}`Python programming and object orientation </python-basics/python>`);
+  * Geospatial data analyses with Python ({doc}` Geo-Python </geopy/geo-python>`).
+* Code and project {doc}`documentation </documentation/documentation>` (e.g., with *Markdown* or *reStructuredText*)
+* Version control with {doc}`git </get-started/git>`
+* Geospatial analyses with {ref}`QGIS <qgis-tutorial>`
+* Numerical modeling with
+  * The {doc}`ETH Zurich's BASEMENT </numerics/basement>` (v3) software
+  * {doc}`TELEMAC </numerics/telemac>` (currently only Telemac3d)
 
-This ebook provides *Python* tutorials in the form of:
+All applications use open source or open access software, and the {ref}`software` chapter provides guidance on finding and installing appropriate and efficient software.
 
-- A general introduction to *Python* programming and object orientation ({doc}`basics </python-basics/python>`);
-- An overview of {doc}`geospatial data and analyses with Python </geopy/geo-python>`.
-
-The numerical modelling chapter provides complete workflows for getting started with numerical river models:
-
-- {doc}`ETH Zurich's BASEMENT </numerics/basement>` (v3)
-- {doc}`TELEMAC </numerics/telemac>` (currently only Telemac3d)
-
-The theory chapters come along with exercises that align with the learning contents of this ebook and feature applications in water resources management, hydraulic engineering, and ecohydraulics.
+The theory chapters come along with exercises that align with the learning contents of this eBook and feature applications in water resources management, hydraulic engineering, and ecohydraulics.
 
 The {doc}`Troubleshoot </troubleshoot/dbg-anaconda>` chapter provides solutions and information about how to debug known issues (not that issues ever existed...).
-
-
 
 
 Enjoy a successful and entertaining learning experience!

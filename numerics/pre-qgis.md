@@ -440,3 +440,33 @@ The export starts and will take approximately 1-2 minutes. The resulting **STL**
 
 The resulting stl file of the DEM.
 ```
+
+## Other Mesh Generator Plugins
+
+BASEmesh is only one (very well working) mesh generator for QGIS and {numref}`Tab. %s <tab-mesh-plugins>` lists of other plugins for generating computational meshes for numerical models along with target file formats and models
+
+```{list-table}
+:header-rows: 1
+:name: tab-mesh-plugins
+
+* - Mesh Plugin Name and Link
+  - Model Compatibility
+  - Output Mesh File Format
+  - Mesh Characteristics
+* - [GMSH](http://geuz.org/gmsh) ([Wiki](https://github.com/ccorail/qgis-gmsh/wiki))
+  - [Open CASCADE Technology](https://www.opencascade.com/open-cascade-technology/) / {ref}`OpenFOAM <openfoam-install>`
+  - `*.geo`, `*.stl`, `*.msh` 
+  - 3d finite elements ([Netgen](http://ngsolve.org/) and [Mmg3d](https://www.mmgtools.org/)), compatibility with {ref}`salome`
+* - [QGribDownloader](https://plugins.qgis.org/plugins/gribdownloader/)
+  - [OpenGribs / XyGrib](https://opengribs.org/)
+  - `*.GRIB`
+  - Purpose: Meteorological / atmospheric modelling
+* - [TUFLOW](https://plugins.qgis.org/plugins/tuflow/)
+  - [TUFLOW](https://tuflow.com/) (proprietary)
+  - `*.2dm` (among others), conversion to `.slf` possible with Crayfish
+  - TUFLOW automatically generates meshes (finite volumes / finite differences)
+* - [MeshTools](https://github.com/jdugge/MeshTools)
+  - {ref}`chpt-basement`, Hydro FT/AS (proprietary), indirectly: {ref}`chpt-telemac`
+  - `*.2dm` (conversion to `.slf` possible with Crayfish)
+  - Tweaks into multiple mesh algorithms (among others: {cite:t}`shewchuk1996`)
+```

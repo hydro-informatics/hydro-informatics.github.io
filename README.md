@@ -12,7 +12,7 @@ On Linux install:
  * If only Python3 is installed, install the requirements with
    * `pip install -r requirements.txt`
 
-On Windows, use Anaconda Prompt to install the hywin environment that contains all required packages for building the ebook:
+On Windows, use Anaconda Prompt to install the hywin environment that contains all required packages for building the eBook:
  * `conda env create -f window_environment.yml`
 
 ## Build eBook

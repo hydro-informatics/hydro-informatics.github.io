@@ -105,7 +105,7 @@ To install Debian Linux to the VM, start the before created *Debian Linux VM* in
 Once the VM is shut down, re-open the VM *Settings* (from *VirtualBox Manager* window) and go to the *Storage* tab. Verify that there is again an *Empty* disk symbol in the *Controller: IDE* field.
 
 
-## Re-use (transfer or copy) a VM on another Host
+## Re-use (Transfer or Copy) a VM on another Host
 
 Once you have created a VM on a virtual hard disk (the **vdi** file), you can always transfer it to another *host* system. To copy (or transport) a VM:
 
@@ -115,6 +115,7 @@ Once you have created a VM on a virtual hard disk (the **vdi** file), you can al
 1. In the process of creating a *New* VM, the wizard asks if you want to create a new hard disk image or an existing one. Select *Existing hard disk* and choose the copied *vdi* file.
 1. Finalize the *New* VM wizard and start the VM as usual.
 
+(linux-install)=
 # Debian Linux
 
 (setup-debian)=

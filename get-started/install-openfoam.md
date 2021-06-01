@@ -1,3 +1,4 @@
+(openfoam-install)=
 # OpenFOAM (Installation)
 
 This tutorial guides through the installation of [OpenFOAM](http://www.openfoam.org/) on [Ubuntu Linux](https://www.ubuntu.org/) and {ref}`openfoam-debian`. For installing *OpenFOAM* on many other platforms (even *Windows*) visit the [developer's website](https://openfoam.org).

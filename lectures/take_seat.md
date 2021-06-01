@@ -1,3 +1,4 @@
+(chpt-take-seat)=
 # Take a Seat
 
 ## How do you take a seat in a virtual classroom?

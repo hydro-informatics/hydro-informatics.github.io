@@ -1,3 +1,4 @@
+(telemac-install)=
 # TELEMAC (Installation)
 
 ```{admonition} Requirements
@@ -632,7 +633,7 @@ When the computation is running, observe the *CPU* charge. If the *CPU*s are all
 
 TELEMAC should startup, run the example case, and again end with the phrase `My work is done`. To assess the efficiency of the number of *CPU*s used, vary `ncsize`. For instance, the *donau* example (`cd ~/telemac/v8p2/examples/telemac2d/donau`) ran with `telemac2d.py t2d_donau.cas --ncsize=4` may take approximately 1.5 minutes, while `telemac2d.py t2d_donau.cas --ncsize=2` (i.e., half the number of *CPU*s) takes approximately 2.5 minutes. The computing time may differ depending on your hardware, but note that doubling the number of *CPU*s does not cut the calculation time by a factor of two. So to optimize system resources, it can be reasonable to start several simulation cases on fewer cores than one simulation on multiple cores.
 
-```{admonition} Troubleshoot `No such file or directory`
+```{admonition} Troubleshoot *No such file or directory*
 :class: attention, dropdown
 If you interrupted the *Terminal* session and get an error message such as `No such file or directory`, you may need to re-define (re-load) the *Python* source file: In *Terminal* go (`cd`) to `~/telemac/v8p2/configs`, type `source pysource.openmpi.sh` > `config.py`, and then go back to the `examples` folder to re-run the example.
 ```
