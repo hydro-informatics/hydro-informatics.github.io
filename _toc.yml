@@ -65,8 +65,15 @@ parts:
   - file: numerics/telemac
     sections:
     - file: numerics/telemac2d
+      sections:
+      - file: numerics/telemac2d-steady
+      - file: numerics/telemac2d-unsteady
+      - file: numerics/telemac-gaia
     - file: numerics/telemac3d
-    - file: numerics/telemac-gaia
+      sections:
+      - file: numerics/telemac3d-slf
+      - file: numerics/telemac3d-med
+    - file: numerics/telemac-postpro
   - file: numerics/openfoam
   - file: numerics/calibration
 - caption: Documentation

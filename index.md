@@ -24,8 +24,8 @@ The eBook provides tutorials for:
 
 * Coding with {ref}`Python <install-python>` including
   * Guidance to {ref}`install-python`
-  * A general introduction to {doc}`Python programming and object orientation </python-basics/python>`);
-  * Geospatial data analyses with Python ({doc}` Geo-Python </geopy/geo-python>`).
+  * A general introduction to {doc}`Python programming and object orientation </python-basics/python>`)
+  * Geospatial data analyses with {doc}`Python </geopy/geo-python>`
 * Code and project {doc}`documentation </documentation/documentation>` (e.g., with *Markdown* or *reStructuredText*)
 * Version control with {doc}`git </get-started/git>`
 * Geospatial analyses with {ref}`QGIS <qgis-tutorial>`

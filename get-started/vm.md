@@ -310,11 +310,11 @@ Then install *OpenGL* with:
 sudo apt install libopengl0-glvnd-nvidia libglx0-glvnd-nvidia
 ```
 
-## Install and Update Software
+## Install Software and Update
 
 ***Estimated duration: Variable.***
 
-To install other software, preferably use the built-in software manager (*Activities* > *Shopping bag* symbol). The *Software* manager uses official releases in the stable Debian repository ([read more about lists of sources](https://wiki.debian.org/SourcesList)).
+To install other software, preferably use the built-in software manager (*Activities* > *Shopping bag* symbol). The *Software* manager uses official releases in the stable Debian repository (read more about [lists of sources](https://wiki.debian.org/SourcesList)).
 
 To update repositories and upgrade installed packages, open *Terminal* and type:
 
@@ -326,13 +326,20 @@ sudo apt autoremove
 
 The last command removes files that are not needed anymore and reduces system garbage.
 
-```{note}
-Being a new Linux end user, preferably use `apt` rather than `apt-get`. That means:<br>**Do use `sudo apt install PACKAGE`**<br>**Avoid `sudo apt-get install PACKAGE`**<br>Still, you may need to use `apt-get` for some specific cases (e.g., if a package provider instructs you to do so).
+```{admonition} apt and apt-get
+:class: note
+Being a new Linux end user, preferably use `apt` rather than `apt-get`. That means:
+
+* **Do use `sudo apt install PACKAGE`**
+* **Do not use `sudo apt-get install PACKAGE`**
+
+Still, you may need to use `apt-get` for some specific cases (e.g., if a package provider instructs particularly you to do so).
 ```
 
 Instructions for installing particular and Debian-compatible software (e.g., QGIS) can be found directly on the website of software developers. For example, to install *Anaconda* *Python* visit [docs.anaconda.com](https://docs.anaconda.com/anaconda/install/linux/) and follow the installation instructions for Debian Linux.
 
-```{attention}
+```{admonition} Software minimalism
+:class: attention
 If the main purpose of the VM is to run resource-intensive simulations (e.g., with TELEMAC), avoid installing any other software than those required for running the model. Also, as a general rule of thumb: Less is better than more.
 ```
 

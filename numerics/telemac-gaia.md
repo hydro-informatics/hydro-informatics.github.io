@@ -1,6 +1,9 @@
-# Gaia Workflow
-
+# Unsteady Hydro-Morphodynamic 2d Simulation (Gaia)
 *Guest Author: [Kilian Mouris](https://github.com/KMouris)*
+
+## Under construction. Expected release in the next 12 months.
+
+Thank you for your patience.
 
 ## Introduction
 

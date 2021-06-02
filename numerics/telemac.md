@@ -1,14 +1,11 @@
 (chpt-telemac)=
 # TELEMAC
 
-  The numerical simulation methods described on these pages use the freely available software *open TELEMAC-MASCARET* (in the following referred to as TELEMAC), which was started as a commercial code by the R&D group of Électricité de France (EDF). Since 2010, the TELEMAC-MASCARET Consortium took over the development (EDF R&D is still deeply involved) and freely provides the software and its source code under a [*GPLv3* license](http://www.gnu.org/licenses/gpl-3.0.html). Visit their [website](http://www.opentelemac.org/) to learn more about TELEMAC.
+The numerical simulation methods described on these pages use the freely available software *open TELEMAC-MASCARET* (in the following referred to as TELEMAC), which was started as a commercial code by the R&D group of Électricité de France (EDF). Since 2010, the TELEMAC-MASCARET Consortium took over the development (EDF R&D is still deeply involved) and freely provides the software and its source code under a [GPLv3 license](http://www.gnu.org/licenses/gpl-3.0.html). Visit their [website](http://www.opentelemac.org/) to learn more about TELEMAC.
 
+Working on [Debian Linux](https://www.debian.org/) or one of its derivatives (see the chapter on {ref}`Virtual Machines (VMs) and Linux <chpt-vm-linux>`) facilitates handling TELEMAC, because most of its core algorithms were originally developed on Linux platforms. Using Linux follow the {ref}`TELEMAC installation <telemac-install>` chapter (account for approximately 2 hours for the installation).
 
-## Get Started
-
-It is strongly recommended to install [*Debian Linux*](https://www.debian.org/) or one of its derivatives for working with TELEMAC (see the chapter on {ref}`Virtual Machines (VMs) and Linux <chpt-vm-linux>`). Then, proceed with the {ref}`installation of TELEMAC <telemac-install>`. Account for approximately 2 hours to get ready with TELEMAC.
-
-
+(tm-tutorial-guide)=
 ## General Introduction and Tutorial Guide
 
 The analysis of hydro-environments with TELEMAC involves pre-processing for abstracting the fluvial landscape, setting up control files, running a TELEMAC solver, and post-processing. The first-time user faces an overwhelming number of software options for pre- and post-processing. Moreover, TELEMAC comes with a wide range of modules for two-dimensional (2d) and three-dimensional (3d) modeling of hydro-morphodynamic processes of various water bodies, from mountain rivers to coastal deltas under the influence of tides. Also, multiple sediment transport phenomena can be modeled and coupled with steady or unsteady flow conditions.
@@ -29,105 +26,87 @@ The tutorials build on the user manuals provided by the TELEMAC developers at [h
 
 Pre-processing involves abstracting the river landscape into a computational mesh (grid) with boundary conditions. Many software tools can be used for this purpose such as:
 
-* {ref}`qgis-install` and the BASEmesh plugin, which are illustrated in the {ref}`QGIS pre-processing tutorial <qgis-prepro`.
+* {ref}`qgis-install` and the BASEmesh plugin, which are illustrated in the {ref}`QGIS pre-processing tutorial <qgis-prepro>` (**the Author's choice**).
 * The National Research Council Canada's {ref}`Blue Kenue <bluekenue>` GUI software (primarily for *Windows*).
 * {ref}`SALOME-HYDRO <salome-hydro>` for generating computational meshes in the MED files format (here illustrated in the {ref}`chpt-telemac3d` tutorial).
 
-### Model setup and run
+### Model Setup and Run
 
-The centerpiece of any TELEMAC model is the control (steering or *CAS*) file, which can be comfortably set up with [Fudaa PrePro](../get-started/install-telemac.html#fudaa). The basic setup of a [steady](../numerics/telemac2d.html#steady) and a [unsteady](../numerics/telemac2d.html#unsteady) model are explained on the [Model Setup page](../numerics/telemac2d). In addition, explanations are provided on the use of the [Gaia module for modeling morphodynamic (sediment transport) processes](../numerics/telemac2d.html#prepro-gaia).
+The centerpiece of any TELEMAC model is the control (steering or CAS) file, which can be set up with {ref}`Fudaa PrePro <fudaa>`. The model setup is explained in the above {ref}`tutorial guide <tm-tutorial-guide>` for TELEMAC.
 
 ### Post-processing
 
-*Artelia Eau et Environnement* created the [PostTelemac](https://plugins.qgis.org/plugins/PostTelemac/) plugin for *QGIS*, which is a powerful and convenient tool visualizing and post-processing TELEMAC simulation results. The [*Telemac2d*](../numerics/telemac2d) and [*Telemac3d*](../numerics/telemac3d) tutorials provide guidance on the usage of the *PostTelemac* plugin and [*SALOME*](../get-started/install-openfoam.html#salome) for post-processing *SLF* and *MED* results files, respectively.
+*Artelia Eau et Environnement* created the [PostTelemac](https://plugins.qgis.org/plugins/PostTelemac/) plugin for {ref}`qgis-install`, which is a powerful and convenient tool for visualizing and post-processing TELEMAC simulation results. The {ref}`Telemac2d Post-processing <telemac-postpro>` illustrates the usage of the PostTelemac QGIS plugin to create {ref}`raster <raster>` maps and other useful data derivatives from TELEMAC output. In addition, the {ref}`Telemac3d (MED) <sh-postproc>` tutorial features the usage of the ParaVis module (a ParaVie derivative) in {ref}`SALOME <salome-install>`.
 
-## The TELEMAC file structure
+(tm-files)=
+## The TELEMAC File Structure
 
-For any TELEMAC 2D simulation, the following input files are **mandatory**:
+For any TELEMAC simulation, the following input files are **mandatory**:
 
 * Steering file
-    + File format: `cas`
-    + Prepare either with [Fudaa PrePro](../numerics/telemac2d.html#prepro-fudaa).
+  + File format: `*.cas`
+  + Prepare either with {ref}`Fudaa PrePro <fudaa>` or use a text editor (e.g., {ref}`npp` or {ref}`Atom <install-atom>`).
 * Geometry file
-    + File format: `.slf` ([selafin](https://gdal.org/drivers/vector/selafin.html) or `.med` (*MED* file library from the [salome-platform](https://www.salome-platform.org)
-    + Prepare either with [*BlueKenue<sup>TM</sup>*](../get-started/install-telemac.html#bluekenue) or [Fudaa PrePro](../numerics/telemac2d.html#prepro-fudaa).
+  + File formats: `*.slf` ([selafin](https://gdal.org/drivers/vector/selafin.html) or `*.med` (MED file library from the [salome-platform](https://www.salome-platform.org)
+  + Prepare `*.slf` geometries with {ref}`QGIS <qgis-tutorial>`or {ref}`Blue Kenue <bluekenue>`
+  + Prepare `*.med` geometries with {ref}`SALOME-HYDRO <salome-hydro>`.
 * Boundary conditions
-    + File format: `.cli` (with `slf`) or `.bnd`/`.bcd` (with `.med`)
-    + Prepare `.cli` files with [*BlueKenue<sup>TM</sup>*](../get-started/install-telemac.html#bluekenue) and [Fudaa PrePro](../numerics/telemac2d.html#prepro-fudaa).
-    + Prepare  `.bnd`/`.bcd` files either with *SALOME-HYDRO* or with a text editor (read more in the [Telemac3d tutorial](../numerics/telemac3d.html#bnd-mod)
+  + File format: `*.cli` (with `*.slf`) or `*.bnd`/`*.bcd` (with `*.med`)
+  + Prepare `*.cli` files with {ref}`Fudaa PrePro <fudaa>` or {ref}`Blue Kenue <bluekenue>`.
+  + Prepare `*.bnd`/`*.bcd` files either with {ref}`SALOME-HYDRO <salome-hydro>` or with a text editor (read more in the {ref}`Telemac3d (MED) tutorial <bnd-mod>`).
 
-There are many more file formats, which are not computationally mandatory for running a simulation with TELEMAC, but essential in practice to yield reasonable results with a hydro-morphodynamic model (i.e., coupled hydrodynamic-sediment transport solver). Such **optional** files are:
+There are many more files that are not computationally mandatory for every TELEMAC simulation, but essential for particular scenarios (e.g., unsteady flows) and modules (e.g., sediment transport with Gaia). Such **optional** files include:
 
 * Liquid boundaries file (e.g., for water surface elevation or flow rates)
-    + Requires a stage-discharge relationship file
-    + File format: `.qsl`
+  + Requires a stage-discharge relationship file
+  + File format: `*.qsl`
 * Friction data file
-    + File format: `tbl` (`ASCII`)
-* Reference file to enable model validation (restart)
-    + File format: `.slf` or `.med`
-    + Check the TELEMAC docs
-* Restart file for setting initial conditions (`.slf` or `.med`)
+  + File format: `*.tbl` or `*.txt` (`ASCII`)
+* Restart / reference (for model validation) file
+  + File format: `.slf` or `.med`
+  + More information in the [Telemac2d docs](http://svn.opentelemac.org/svn/opentelemac/tags/v8p2r0/documentation/telemac2d/user/telemac2d_user_v8p2.pdf) (section 4.1.3).
 * Sections file to set control sections (e.g., verify flow rates, velocity, or water surface elevation)
 * Sources (e.g., water or sediment) data file
-* Zones file
-    + Describes friction or other zonal properties
+* Stage-discharge relation file
+  + File format: `*.tbl` or `*.txt` (`ASCII`)
+* Zones files to describe reginal friction or other zonal properties
 
 When hydraulic structures are integrated into a model, some of the following files are required (depending on the structure type):
 
 * Culverts data file
 * Weirs data file
 
-In addition, a *FORTRAN* (`.f`) file can be created to specify special boundary conditions or the usage of either single or double precision
+In addition, a *FORTRAN* (`.f`) file can be created to specify special boundary conditions, custom algorithms, or the usage of either single or double precision.
 
-```{tip}
+```{admonition} Single and double precision
 In hydro-morphodynamic modeling, single precision (i.e., 32-bit *floats*) rather than double precision (i.e., using 64-bit *floats*) is sufficient and much faster.
 ```
 
 More input files can be defined to simulate oil spills, pollutant transport, wind, and tide effects.
 
-***
 
-Continue with setting up a mesh (*2dm* file) and a geometry file (*SLF*) with either
+## Detailed File Descriptions
 
-* [> *QGIS* >](pre-qgis), or
-* [> *Blue Kenue<sup>TM</sup>* >](../numerics/telemac2d)
+### The Steering File (CAS)
 
-***
-
-## Detailed file descriptions
-
-### The steering file (CAS)
-
-The steering file is the main simulation file with information about mandatory files (e.g., the [*selafin*](https://gdal.org/drivers/vector/selafin.html) geometry or the *cli* boundary), optional files, and simulation parameters. The steering file can be created or edited either with a basic text editor or advanced software such as [*Fudaa-PrePro*](../get-started/install-telemac.html#fudaa) or [*BlueKenue*](../get-started/install-telemac.html#bluekenue). In this example, we will use *BlueKenue*.
+The steering file is the main simulation file with information about mandatory files (e.g., the [*selafin*](https://gdal.org/drivers/vector/selafin.html) geometry or the boundary), optional files, and simulation parameters. The steering file can be created or edited with a basic text editor or advanced software such as {ref}`Fudaa PrePro <fudaa>` or {ref}`Blue Kenue <bluekenue>`.
 
 
-### The geometry file (SLF or MED)
+### Geometry Files (SLF or MED)
 
 The geometry file in [*slf* (*selafin* or *SERAFIN*)](https://gdal.org/drivers/vector/selafin.html) format contains binary data about the mesh with its nodes. The name format of the geometry file can be modified in the steering file with:
 
 ```
 /steering.cas
 GEOMETRY FILE            : 't2d_channel.slf'
-GEOMETRY FILE FORMAT     : SLF  / or MED with SALOME preferably for 3D
+GEOMETRY FILE FORMAT     : SLF / or MED with SALOME preferably for 3D
 ```
 
-*MED* files are typically processed with either [*SALOME*](../get-started/install-openfoam.html#salome) or [*SALOME-HYDRO*](../get-started/install-telemac.html#salome-hydro), which are featured in the [*Telemac3d*](../numerics/telemac3d) tutorial.
+*MED* files are typically processed with either {ref}`SALOME <salome-install>` or ref}`SALOME-HYDRO <salome-hydro>`, which are featured in the {ref}`Telemac3d (MED) <chpt-telemac3d-med>` tutorial.
 
-### The boundary conditions (CLI or BND/BCD) and liquid boundary (QSL) files
+### Boundary Conditions (CLI or BND/BCD) and Liquid Boundary (QSL) Files
 
-The boundary file in *cli* format contains information about inflow and outflow nodes (coordinates and IDs). The *cli* file can be opened and modified with any text editor, which is not recommended to avoid inconsistencies. Preferably use [*Fudaa-PrePro*](../get-started/install-telemac.html#fudaa) or [*BlueKenue*](../get-started/install-telemac.html#bluekenue) for generating and/or modifying *cli* files.
-
-In addition, users can define a liquid boundary conditions file (*qsl*) to define time-dependent boundary conditions (e.g., discharge, water depth, flow velocity or tracers).
-
-The name format of the boundary conditions file can be modified in the steering file with:
-
-```
-/steering.cas
-BOUNDARY CONDITIONS FILE : 'bc_channel.cli'
-LIQUID BOUNDARIES FILE   : 'bc_unsteady.qsl'
-```
-
-Example (header only) for a boundary conditions file (*cli*):
+The boundary file in `*.cli` format contains information about inflow and outflow nodes (coordinates and IDs). The `*.cli` file can be opened and modified with any text editor, which is not recommended to avoid inconsistencies. Preferably use {ref}`Fudaa PrePro <fudaa>` or {ref}`Blue Kenue <bluekenue>` for generating and/or modifying `*.cli` files. Here is an example (header only) for a `*.cli` boundary conditions file:
 ```
   2 2 2  0.000  0.000  0.000  0.000 2  0.000  0.000  0.000    101     1
   2 2 2  0.000  0.000  0.000  0.000 2  0.000  0.000  0.000    102     2
@@ -135,7 +114,19 @@ Example (header only) for a boundary conditions file (*cli*):
   ...
 ```
 
-Example for a liquid boundary conditions file:
+
+`*.bnd`/`*.bcd` files can be created and edited either with {ref}`SALOME-HYDRO <salome-hydro>` or a text editor (read more in the {ref}`Telemac3d (MED) tutorial <bnd-mod>`). The following block box shows how a `*.bnd` boundary file for a simple block geometry may look like.
+
+```
+4
+5 4 4 4 downstream
+4 5 5 4 upstream
+2 0 0 2 leftwall
+2 0 0 2 rightwall
+
+```
+
+Users can define a liquid boundary conditions file (`*.qsl`) to define time-dependent (unsteady) boundary conditions (e.g., discharge, water depth, flow velocity, or tracers). The following block shows an example for a liquid boundary conditions (`*.qsl`) file:
 ```
 # bc_unsteady.qsl
 # Time-dependent inflow (discharge Q(2) and outflow (depth SL(1)
@@ -146,16 +137,19 @@ s           m3/s     m
 5000.       150.     5.0
 ```
 
-### The stage-discharge (or WSE-Q) file (txt - ASCII)
-
-Define a stage-discharge file to use a stage (water surface elevation *WSE*) - discharge relationship for boundary conditions. Such files typically apply to the downstream boundary of a model at control sections (e.g., a free overflow weir). To use a stage-discharge file, define the following keyword in the steering file:
+The boundary conditions and liquid boundary files can be added in the steering file with:
 
 ```
 /steering.cas
-STAGE-DISCHARGE CURVES FILE : YES
+BOUNDARY CONDITIONS FILE : 'bc_channel.cli'
+LIQUID BOUNDARIES FILE   : 'bc_unsteady.qsl'
 ```
 
-Example for a stage-discharge file:
+
+### Stage-discharge (or WSE-Q) File (txt - ASCII)
+
+Define a stage-discharge file to use a stage (water surface elevation *WSE*) - discharge relationship for boundary conditions. Such files typically apply to the downstream boundary of a model at control sections (e.g., a free overflow weir). The following block shows an example for a stage-discharge (`*.txt`) file:
+
 ```
 # wse_Q.txt
 #
@@ -166,9 +160,18 @@ m3/s     m
 100.     1.5
 ```
 
-### The friction data file (tbl - ASCII)
+To use a stage-discharge file, define the following keyword in the steering file:
 
-This optional file enables the definition of bottom friction regarding the roughness law to use and associated function coefficients. To activate and use friction data, define the following keywords in the steering file:
+```
+/steering.cas
+STAGE-DISCHARGE CURVES FILE : YES
+```
+
+### Friction Data File (tbl/txt - ASCII)
+
+This optional file enables the definition of bottom friction regarding the roughness law to use and associated function coefficients.
+
+To activate and use friction data, define the following keywords in the steering file:
 
 ```
 /steering.cas
@@ -176,16 +179,16 @@ FRICTION DATA            : YES
 FRICTION DATA FILE       : 'friction.tbl'
 ```
 
+### The Results/Restart file (SLF or MED)
 
-### The results file (SLF or MED)
 
-The name format of the results file can be modified in the steering file with:
+A restart file stems from a previous TELEMAC simulation and does not need to exist at the beginning. A good option for visualizing the results file is the {ref}`PostTelemac plugin <posttm-install>` in QGIS.
+Restart files in MED format are typically processed with the ParaVis module in {ref}`SALOME <salome-install>` or ref}`SALOME-HYDRO <salome-hydro>`, which is featured in the {ref}`Telemac3d (MED) <chpt-telemac3d-med>` tutorial.
 
+The results/restart file can be define in the steering file as follows:
 ```
 /steering.cas
 RESULTS FILE             : 't2d_channel_output.slf'
 ```
 
-Because this file is generated by TELEMAC when the simulation is running, it does not need to exist for starting the simulation. A good option for visualizing the results file is the [*PostTelemac* Plugin in *QGIS*](../get-started/install-telemac.html#qgis)
-
-*MED* results files are typically processed with either [*SALOME*](../get-started/install-openfoam.html#salome) or [*SALOME-HYDRO*](../get-started/install-telemac.html#salome-hydro), which are featured in the [*Telemac3d*](../numerics/telemac3d) tutorial.
+The [Telemac2d docs](http://svn.opentelemac.org/svn/opentelemac/tags/v8p2r0/documentation/telemac2d/user/telemac2d_user_v8p2.pdf) (section 4.1.3) provide more explanations on the usage of results/restart files (e.g., for speeding up simulations).

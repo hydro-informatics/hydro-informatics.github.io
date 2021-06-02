@@ -3,6 +3,8 @@
 
 ```{admonition} Requirements
 This tutorial guides through the installation of [open TELEMAC-MASCARET](http://www.opentelemac.org/) on [Debian Linux](https://www.debian.org/).
+
+Account for approximately two hours for installing TELEMAC and make sure to have a stable internet connection.
 ```
 
 ## Preface
@@ -11,36 +13,36 @@ This page only guides through the **installation** of TELEMAC. A tutorial for ru
 
 ### Good to Know
 
-* Installing TELEMAC on a [Virtual Machine (VM)](../get-started/vm) is useful for getting started with TELEMAC and its sample cases, but not recommended for running a real-world numerical model.
-* Make sure to be able to use the [GNOME Terminal](../get-started/vm.html#terminal).
-* This tutorial refers to the software package *open TELEMAC-MASCARET* as TELEMAC because *MASCARET* is a one-dimensional (1d) model and the numerical simulation schemes on this website focus on two-dimensional (2d) and three-dimensional (3d) modelling.
+* Installing TELEMAC on a {ref}`Virtual Machine (VM) <chpt-vm-linux>` is useful for getting started with TELEMAC and its sample cases, but not recommended for running a real-world numerical model (limited performance of VMs).
+* Familiarize with the {ref}`Linux Terminal <linux-terminal>` to understand the underpinnings for compiling TELEMAC.
+* This tutorial refers to the software package *open TELEMAC-MASCARET* as TELEMAC because *MASCARET* is a one-dimensional (1d) model and the numerical simulation schemes in this eBook focus on two-dimensional (2d) and three-dimensional (3d) modelling.
 
 ### Two Installation Options
 
 This page describes two ways for installing TELEMAC:
 
-* Option 1: Stand-alone installation of TELEMAC (**recommended**)
-    * Every software and packages needed to run a TELEMAC model is installed manually
-    * **Advantages**:
-        - Full control over modules to be installed (high flexibility)
-        - Latest version of TELEMAC is installed and can be regularly updated
-        - Up-to-date compilers and all libraries are exactly matching the system.
-    * **Disadvantages**:
-        - The variety of install options may cause errors when incompatible packages are combined
-        - Challenging installation of optional modules such as AED2, HPC and parallelism
-* Option 2: Installation of TELEMAC within the *SALOME-HYDRO* software suite.
-    * All pre-processing tasks are managed with *SALOME-HYDRO*
-    * TELEMAC is launched through the *HYDRO-SOLVER* module
-    * Post-processing is performed with *ParaView*
-    * **Advantages**:
-        - All-in-one solution for pre-processing
-        - Integrated HPC installation of TELEMAC *v8p2*
-        - Efficient for MED-file handling
-    * **Disadvantages**:
-        - Common input geometry file formats such as *SLF* (selafin) require additional software
-        - Only works without errors on old *Debian 9 (stretch)*
-        - The pre-compiled version of TELEMAC and other modules were built with outdated gfortran compilers that cannot run on up-to-date systems.
-        - Often problems with the GUI and high risk of simulation crashes because of invalid library links.
+* Option 1 (**recommended**): {ref}`Stand-alone installation <modular-install>` of TELEMAC
+  * Every software and packages needed to run a TELEMAC model is installed manually
+  * **Advantages**:
+    - Full control over modules to be installed (high flexibility)
+    - Latest version of TELEMAC is installed and can be regularly updated
+    - Up-to-date compilers and all libraries are exactly matching the system.
+  * **Disadvantages**:
+    - The variety of install options may cause errors when incompatible packages are combined
+    - Challenging installation of optional modules such as AED2, HPC and parallelism
+* Option 2: {ref}`Installation of TELEMAC within the SALOME-HYDRO <salome-hydro>` software suite.
+  * All pre-processing tasks are managed with *SALOME-HYDRO*
+  * TELEMAC is launched through the *HYDRO-SOLVER* module
+  * Post-processing is performed with *ParaView*
+  * **Advantages**:
+    - All-in-one solution for pre-processing
+    - Integrated HPC installation of TELEMAC *v8p2*
+    - Efficient for MED-file handling
+  * **Disadvantages**:
+    - Common input geometry file formats such as *SLF* (selafin) require additional software
+    - Only works without errors on old *Debian 9 (stretch)*
+    - The pre-compiled version of TELEMAC and other modules were built with outdated gfortran compilers that cannot run on up-to-date systems.
+    - Often problems with the GUI and high risk of simulation crashes because of invalid library links.
 
 So what option to choose? To leverage the full capacities of TELEMAC, use both: {ref}`salome-hydro` is a powerful pre-processor for preparing simulations and the {ref}`modular-install` enables maximum flexibility, system integrity, and computational stability.
 
@@ -179,7 +181,7 @@ sudo apt install -y cmake build-essential dialog vim
 ```
 
 
-## Download TELEMAC
+### Download TELEMAC
 
 We will need more packages to enable parallelism and compiling, but before installing them, download the latest version of TELEMAC through subversion (`svn`). The developers (irregularly) inform about the newest public release on [their website](http://www.opentelemac.org/index.php/latest-news-development-and-distribution) and the latest absolute latest release can be read from the [svn-tags website](http://svn.opentelemac.org/svn/opentelemac/tags/) (use with passwords in the below command line block). To download* TELEMAC, open *Terminal* in the *Home* directory (either use `cd` or use the *Files* browser to navigate to the *Home* directory and right-click in the empty space to open *Terminal*) and type (enter `no` when asked for password encryption):
 
@@ -407,8 +409,8 @@ make
 *AED2* is not needed for the tutorials on this website and the installation of this module can be skipped.
 ```
 
-
-## Compile TELEMAC <a name="compile"></a>
+(compile-tm)=
+## Compile TELEMAC
 
 ### Adapt and Verify Configuration File (systel.*.cfg)
 
@@ -735,7 +737,7 @@ SALOME-HYDRO also works on *Windows* platforms, but most applications and suppor
 ```
 
 ```{admonition} Outdated library links of the SALOME-HYDRO installer
-:class: warning
+:class: error
 On any system that is not Debian 9 (stretch), SALOME-HYDRO can only be used as a pre-processor (Geometry & Mesh modules) and as a post-processor (ParaVis module) for med-file handling. The *HydroSolver* module that potentially enables running TELEMAC does not work properly with Debian 10 or any system that is not Debian 9. Therefore, the  {ref}`modular-install` is still required to run models developed with SALOME-HYDRO.
 ```
 
@@ -752,17 +754,17 @@ sudo apt install openmpi-common gfortran mpi-default-dev zlib1g-dev libnuma-dev 
 <!-- sudo apt install libssl1.1 libssl-dev  -->
 
 * Install earlier versions of `libssl`:
-
-    * Open the list of sources <br> `sudo editor /etc/apt/sources.list`
-    * **Ubuntu users**: In *sources.list*, add *Ubuntu's Bionic* security as source with<br> `deb http://security.ubuntu.com/ubuntu bionic-security main` <br> Using *Nano* as text editor, copy the above line into *sources.list*, then press `CTRL`+`O`, confirm writing with `Enter`, then press `CTRL`+`X` to exit *Nano*.
-    * **Debian users**: In *sources.list*, add *Debian Stretch* source with<br> `deb http://deb.debian.org/debian/ stretch main contrib non-free` <br> `deb-src http://deb.debian.org/debian stretch main contrib non-free`<br> Using *Nano* as text editor, copy the above lines into *source.list*, then press `CTRL`+`O`, confirm writing with `Enter`, then press `CTRL`+`X` to exit *Nano*.
-    * Back in *Terminal* tap <br> `sudo apt update && apt-cache policy libssl1.0-dev` <br> `sudo apt install libssl1.0-dev libopenblas-dev libgeos-dev unixodbc-dev libnetcdf-dev libhdf4-0-alt libpq-dev qt5ct libgfortran3`
+  * Open the list of sources <br> `sudo editor /etc/apt/sources.list`
+  * **Ubuntu users**: In *sources.list*, add *Ubuntu's Bionic* security as source with<br> `deb http://security.ubuntu.com/ubuntu bionic-security main` <br> Using *Nano* as text editor, copy the above line into *sources.list*, then press `CTRL`+`O`, confirm writing with `Enter`, then press `CTRL`+`X` to exit *Nano*.
+  * **Debian users**: In *sources.list*, add *Debian Stretch* source with<br> `deb http://deb.debian.org/debian/ stretch main contrib non-free` <br> `deb-src http://deb.debian.org/debian stretch main contrib non-free`<br> Using *Nano* as text editor, copy the above lines into *source.list*, then press `CTRL`+`O`, confirm writing with `Enter`, then press `CTRL`+`X` to exit *Nano*.
+  * Back in *Terminal* tap <br> `sudo apt update && apt-cache policy libssl1.0-dev` <br> `sudo apt install libssl1.0-dev libopenblas-dev libgeos-dev unixodbc-dev libnetcdf-dev libhdf4-0-alt libpq-dev qt5ct libgfortran3`
 
 * **Debian 9 users** will need to add and install *nvidia* drivers as described in the virtual machine / *Debian Linux* installation section to {ref}`opengl`.
 
 ### Debian 10 (buster) Users
 
 ```{admonition} Potentially harmful action
+:class: warning
 The following steps for renaming system libraries are potentially harmful to your system. **Only continue if you absolutely know what you are doing.** Otherwise, go back to the {ref}`modular-install` section.
 ```
 
@@ -868,7 +870,8 @@ To start *SALOME-HYDRO*, open *Terminal* and tap:
 
 For working with TELEMAC, consider installing the following **QGIS Plugins** (*Plugins* > *Manage and Install Plugins...*):
 
-*  *PostTelemac* visualizes *slf* (and others such as *res*) geometry files at different time steps.
+* {ref}`BASEmesh <get-basemesh>` enables to create a {term}`SMS 2dm` file that can be converted to a selafin geometry for TELEMAC (read more in the {ref}`QGIS pre-processing tutorial <qgis-prepro>`).
+* *PostTelemac* visualizes `*.slf` (and others such as `*.res`) geometry files at different time steps.
 * *DEMto3D* enables to export *STL* geometry files for working with *SALOME* and creating 3D meshes.
 
 Note that *DEMto3D* will be available in the *Raster* menu: *DEMto3D* > *DEM 3D printing*.

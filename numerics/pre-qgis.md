@@ -388,17 +388,29 @@ The 2dm mesh file produced in this tutorial can be directly used with {ref}`chpt
 
 (qgis4tm)=
 ### Usage with TELEMAC
-For the usage with {ref}`chpt-telemac2d` (or {ref}`chpt-telemac3d`), the 2dm file requires a conversion to the serafin/selafin (`slf`) file format that can be done with the **Crayfish** plugin.
+For the usage with {ref}`chpt-telemac2d` (or {ref}`chpt-telemac3d`), the 2dm file requires a conversion to the serafin/selafin (`*.slf`) file format that can be done with the **Crayfish** plugin.
 
 ```{admonition} Install the Crayfish plugin
-Install the *Crayfish** plugin from QGIS' **Plugins** menu > **Manage and Install Plugins...** enter `crayfish` and install the latest version. After the installation, the *Crayfish* plugin is available at the bottom of QGIS' **Processing Toolbox** panel.
+Install the *Crayfish* plugin from QGIS' **Plugins** menu > **Manage and Install Plugins...** enter `crayfish` and install the latest version. After the installation, the *Crayfish* plugin is available at the bottom of QGIS' **Processing Toolbox** panel.
 ```
 
-Open the *Crayfish* plugin's **Rasterize** tool from QGIS' **Processing** menu > `Toolbox` > `Crayfish` > `Rasterize` (see figure below).
+In QGIS' **Mesh** menu click on **Mesh calculator** to open the **Mesh calculator** window ({numref}`Fig. %s <qgis-mesh-calc>` - do not use the Crayfish plugin's Mesh Calculator from the Processing Toolbox) and make the following settings:
 
+* Define an **Exported dataset group file** (e.g., in the tutorial project folder) and type a file name such as **qgis-mesh4telemac.slf** (the file ending is important to specify the **MDAL** file type).
+
+```{figure} ../img/qgis/mesh-calculator.png
+:alt: basement export stl demto3d printing dem raster
+:name: qgis-mesh-calc
+
+Setup the Mesh Calculator to export the file in SLF format.
+```
 
 (dem2stl)=
 ## OpenFOAM: Export DEM to STL
+
+```{admonition} Temporary solution
+The export to {term}`STL` for modeling with OpenFOAM is a weak solution that will be substituted in future versions of this eBook by exporting a mesh with the [GMSH](http://geuz.org/gmsh) plugin.
+```
 
 The {term}`STL` (standard tessellation language) file format is native to CAD software and particularly used for the representation of three-dimensional (3d) structures in the form of unstructured triangulated surfaces. {term}`STL` files can be read by pre-processing software for OpenFOAM and this section explains how to convert a GeoTIFF DEM into an {term}`STL` file.
 
@@ -445,7 +457,7 @@ The resulting stl file of the DEM.
 
 BASEmesh is only one (very well working) mesh generator for QGIS and {numref}`Tab. %s <tab-mesh-plugins>` lists of other plugins for generating computational meshes for numerical models along with target file formats and models
 
-```{list-table}
+```{list-table} A list of QGIS mesh generator plugins.
 :header-rows: 1
 :name: tab-mesh-plugins
 
@@ -455,12 +467,12 @@ BASEmesh is only one (very well working) mesh generator for QGIS and {numref}`Ta
   - Mesh Characteristics
 * - [GMSH](http://geuz.org/gmsh) ([Wiki](https://github.com/ccorail/qgis-gmsh/wiki))
   - [Open CASCADE Technology](https://www.opencascade.com/open-cascade-technology/) / {ref}`OpenFOAM <openfoam-install>`
-  - `*.geo`, `*.stl`, `*.msh` 
-  - 3d finite elements ([Netgen](http://ngsolve.org/) and [Mmg3d](https://www.mmgtools.org/)), compatibility with {ref}`salome`
+  - `*.geo`, `*.stl`, `*.msh`
+  - 3d finite elements ([Netgen](http://ngsolve.org/) and [Mmg3d](https://www.mmgtools.org/)), compatibility with {ref}`salome-install`
 * - [QGribDownloader](https://plugins.qgis.org/plugins/gribdownloader/)
   - [OpenGribs / XyGrib](https://opengribs.org/)
   - `*.GRIB`
-  - Purpose: Meteorological / atmospheric modelling
+  - Purpose: Meteorological/atmospheric modelling
 * - [TUFLOW](https://plugins.qgis.org/plugins/tuflow/)
   - [TUFLOW](https://tuflow.com/) (proprietary)
   - `*.2dm` (among others), conversion to `.slf` possible with Crayfish
