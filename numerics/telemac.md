@@ -12,7 +12,7 @@ The analysis of hydro-environments with TELEMAC involves pre-processing for abst
 
 The tutorials in this eBook feature:
 
-* the usage of TELEMAC with the computational mesh created in the {ref}`pre-processing with QGIS tutorial <qgis-prepro>` (refer to the section describing the {ref}`export of the mesh to SLF <qgis4tm>`);
+* the usage of TELEMAC with the computational mesh created in the {ref}`pre-processing  tutorial <qgis-prepro-tm>`;
 * a purely hydrodynamic 2d model with steady discharge boundary conditions in the {ref}`chpt-telemac2d` section with the standard SLF geometry format;
 * a purely hydrodynamic 3d model with steady discharge boundary conditions in the {ref}`chpt-telemac3d` section with the MED geometry format.
 * Future tutorials (under development) will also feature:
@@ -26,7 +26,7 @@ The tutorials build on the user manuals provided by the TELEMAC developers at [h
 
 Pre-processing involves abstracting the river landscape into a computational mesh (grid) with boundary conditions. Many software tools can be used for this purpose such as:
 
-* {ref}`qgis-install` and the BASEmesh plugin, which are illustrated in the {ref}`QGIS pre-processing tutorial <qgis-prepro>` (**the Author's choice**).
+* {ref}`qgis-install` and the BASEmesh plugin, which are illustrated in the {ref}`QGIS pre-processing tutorial <qgis-prepro-tm>` (**the Author's choice**).
 * The National Research Council Canada's {ref}`Blue Kenue <bluekenue>` GUI software (primarily for *Windows*).
 * {ref}`SALOME-HYDRO <salome-hydro>` for generating computational meshes in the MED files format (here illustrated in the {ref}`chpt-telemac3d` tutorial).
 

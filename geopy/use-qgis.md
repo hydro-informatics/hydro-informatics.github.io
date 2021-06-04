@@ -62,6 +62,34 @@ In the context of river analysis, the following plugins are recommended and used
 * The *BASEmesh* plugin provides routines for creating computational meshes for numerical simulations with {ref}`chpt-basement`.
 * The *PostTelemac* plugin enables geospatial visualization and conversions of numerical model results produced tiwht {ref}`chpt-telemac`.
 
+BASEmesh is only one (very well working) mesh generator for QGIS and {numref}`Tab. %s <tab-mesh-plugins>` lists of other plugins for generating computational meshes for numerical models along with target file formats and models
+
+```{list-table} A list of QGIS mesh generator plugins.
+:header-rows: 1
+:name: tab-mesh-plugins
+
+* - Mesh Plugin Name and Link
+  - Model Compatibility
+  - Output Mesh File Format
+  - Mesh Characteristics
+* - [GMSH](http://geuz.org/gmsh) ([Wiki](https://github.com/ccorail/qgis-gmsh/wiki))
+  - [Open CASCADE Technology](https://www.opencascade.com/open-cascade-technology/) / {ref}`OpenFOAM <openfoam-install>`
+  - `*.geo`, `*.stl`, `*.msh`
+  - 3d finite elements ([Netgen](http://ngsolve.org/) and [Mmg3d](https://www.mmgtools.org/)), compatibility with {ref}`salome-install`
+* - [QGribDownloader](https://plugins.qgis.org/plugins/gribdownloader/)
+  - [OpenGribs / XyGrib](https://opengribs.org/)
+  - `*.GRIB`
+  - Purpose: Meteorological/atmospheric modelling
+* - [TUFLOW](https://plugins.qgis.org/plugins/tuflow/)
+  - [TUFLOW](https://tuflow.com/) (proprietary)
+  - `*.2dm` (among others), conversion to `.slf` possible with Crayfish
+  - TUFLOW automatically generates meshes (finite volumes / finite differences)
+* - [MeshTools](https://github.com/jdugge/MeshTools)
+  - {ref}`chpt-basement`, Hydro FT/AS (proprietary), indirectly: {ref}`chpt-telemac`
+  - `*.2dm` (conversion to `.slf` possible with Crayfish)
+  - Tweaks into multiple mesh algorithms (among others: {cite:t}`shewchuk1996`)
+```
+
 (basemap)=
 ## Basemaps for QGIS (Google or Open Street Maps Worldmap Tiles)
 
@@ -163,7 +191,7 @@ To draw the polygons:
 * To improve the visualization, modify the **Symbology** to **Categorized** as a function of the `AreaType` field: Keep **Random Colors** > Click on **Classify** > **Apply** and if you like the visualization, click **OK**.
 
 
-## Rasterize (Polygon to Raster)
+## Conversion: Rasterize (Polygon to Raster)
 
 Many numerical models required that roughness is provided in {ref}`raster` format. To this end, this section features the conversion of the above-created polygon shapefile (*FlowAreas.shp*) to a roughness {ref}`raster`. The following video and the instructions below the video describe how the conversion works.
 
@@ -199,7 +227,9 @@ The conversion between geospatial data types can be facilitated by using *Python
 The inverse operation of *Rasterize* is called **Raster to Vector**, which is documented at [https://docs.qgis.org](https://docs.qgis.org/3.16/en/docs/training_manual/complete_analysis/raster_to_vector.html).
 ```
 
-## QGIS Raster Calculator (Map Algebra)
+## Working with Rasters
+
+### QGIS Raster Calculator (Map Algebra)
 
 Some models preferably (default use) Manning's *n*, others use the Strickler roughness coefficient $k_{st}$, which is the inverse of Manning's *n* (i.e., $k_{st} = 1/n$ - read more about roughness coefficients in the {ref}`ex-1d-hydraulics` exercise). Thus, transforming a Strickler roughness raster into a Manning roughness raster requires performing an algebraic raster (pixel-by-pixel) operation. The next video and the instructions below the video feature the usage of the QGIS **Raster Calculator** to perform such algebraic operations.
 
@@ -208,7 +238,7 @@ Some models preferably (default use) Manning's *n*, others use the Strickler rou
 
 Start with opening **Raster Calculator** from QGIS menu bar (**Raster** > **Raster Calculator...**). Then, convert the above-created *roughness.tif* raster of Manning's *n* values to a Strickler roughness raster:
 
-* Define an **Output layer** (e.g., *qgis-exercise/roughness-stickler.tif*) and keep the **Output format** of **GeoTIFF**.
+* Define an **Output layer** (e.g., *qgis-exercise/roughness-stickler.tif*) and keep the **Output format** of **{term}`GeoTIFF`**.
 * Optionally select a layer extent corresponding to the above-created *roughness.tif* raster.
 * In the **Raster Calculator Expression** frame type **1**, then click on the **/** button (**Operators** frame), then select **roughness@1** from the **Raster Bands** frame.
 * The **Raster Calculator Expression** frame should now contain: `1 / "roughness@1"`, where the `@` sign refers to band number `1`.
@@ -219,9 +249,46 @@ Start with opening **Raster Calculator** from QGIS menu bar (**Raster** > **Rast
 To implement a tailored raster calculator for batch-processing of raster files with *Python* read the {ref}`py-raster-calculator` section in the {ref}`ex-geco` exercise.
 ```
 
+(make-xyz)=
+### Raster to XYZ
+
+Scientific data formats, such as {term}`HDF`, work best with raw geospatial datasets like `*.xyz` files. A `.*xyz` file contains s only X, Y, and Z coordinates of points (i.e., point clouds) with or without a simple header. For instance, this eBook uses `*.xyz` data for the elevation interpolation of a computational mesh for the scientific numerical modeling software {ref}?`chpt-telemac`. To generate a `*.xyz` from a {term}`GeoTIFF` raster use the following workflow:
+
+* In the **Layers** panel make sure to have raster layer imported for conversion and **identify its No-Data** value (**Layer Properties** > **Information** > **Bands** section > **No-Data** field show by default `-9999` in QGIS).
+* In QGIS top menu go to **Raster** > **Conversion** > **Translate (Convert Format)...**
+* In the **Translate (Convert Format)** window, make the following settings:
+  * **Input layer** =  the raster (e.g., a {term}`DEM`) to convert
+  * **Advanced Parameters** frame > **Output data type** > select **Float32** (corresponds to single precision in numerical models)
+  * **Converted** > **...** button (at the end of the line) > **Save to File...** > define a **File name** such as `dem-points` and select `XYZ files (*.xyz)` in the **Save as type** field.
+  * **Save** and **Run** the translation (conversion).
+
+The resulting `*.xyz` file contains also points with **No-Data** to fill void spaces in the rectangular image of the {term}`GeoTIFF` (which QGIS did recognize as no-data pixels). The no-data points may make the `*.xyz` file unnecessarily heavy, in particular, when it is a {term}`DEM` of a near-census natural river. To eliminate the unnecessary no data points, open the `*.xyz` file in spreadsheet software, such as {ref}`Calc in LibreOffice <lo>` and use the *Sort* tool (in **Calc** highlight all points go to **Data** > **Sort...**) to sort by `Z` values (largest to smallest) and then delete all rows that have the above-identified **No-Data** value (`-9999`) as `Z` value. Save the `*.xyz` file and close the spreadsheet software.
+
+```{admonition} Shapefile to XYZ
+:class: tip, dropdown
+**Shapefiles** do not have to be converted to {term}`GeoTIFF` to create an `*.xyz` file. To create a `*.xyz` file from a **shapefile**:
+
+* Right click on the shapefile in the **Layer** panel > **Export** > **Save Feature As...**.
+* Select **Comma Separated Value ({term}`CSV`)** in the **Format** field.
+* Define a **File name** on clicking on the **...** button.
+* In the **Layer Options** frame, select **AS_XYZ** in the **GEOMETRY** field and keep all other defaults.
+* Click **OK** to convert to {term}`CSV`.
+* Open the {term}`CSV` file in a {ref}`text editor <npp>` and use its *find and replace* function (usually `CTRL`+`F` or `CTRL`+`H`) to replace all COMMA `,` by a space symbol ` `. Note that this action requires that the comma has not been used as decimal separator.
+* Save the {term}`CSV` file as `*.xyz` file.
+```
+
+To finalize the `*.xyz` file, open it in a {ref}`text editor <npp>` and add a header. For instance, use the following header to work with {ref}`Blue Kenue <bluekenue>`:
+
+```
+:FileType xyz  ASCII  EnSim 1.0
+:EndHeader
+```
+
+Save the changes. The `*.xyz` file is now slim and ready to use, for instance, for the {ref}`TELEMAC pre-processing <get-dem-xyz>`.
+
 ## Create Layout and PDF / JPG (or other) Maps
 
-Georeferenced images in *GeoTIFF* or other raster formats, possibly with super-positioned shapefiles on top, are handy and flexible for use with geospatial software, such as QGIS, but not appropriate for presentations or reports. For presentation purposes, geospatial imagery or maps should preferably be exported to common formats, such as the **P**ortable **D**ocument **F**ormat (PDF) or **JPEG/JPG**. To create commonly formatted maps with QGIS, first, a new (print) layout needs to be created, which can then be exported to a common map format (e.g., along with a legend, a scale bar, and a North arrow). The following video and the descriptions below the video guide through the map creation process with QGIS.
+Georeferenced images in {term}`GeoTIFF` or other raster formats, possibly with super-positioned shapefiles on top, are handy and flexible for use with geospatial software, such as QGIS, but not appropriate for presentations or reports. For presentation purposes, geospatial imagery or maps should preferably be exported to common formats, such as the **P**ortable **D**ocument **F**ormat (PDF) or **JPEG/JPG**. To create commonly formatted maps with QGIS, first, a new (print) layout needs to be created, which can then be exported to a common map format (e.g., along with a legend, a scale bar, and a North arrow). The following video and the descriptions below the video guide through the map creation process with QGIS.
 
 
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/hmTByzVPVF0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

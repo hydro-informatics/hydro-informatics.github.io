@@ -60,10 +60,13 @@ parts:
 - caption: Numerical Modeling
   chapters:
   - file: numerics/numerical-modeling
-  - file: numerics/pre-qgis
   - file: numerics/basement
+    sections:
+    - file: numerics/pre-qgis-bm
+    - file: numerics/basement2d
   - file: numerics/telemac
     sections:
+    - file: numerics/pre-qgis-tm
     - file: numerics/telemac2d
       sections:
       - file: numerics/telemac2d-steady
@@ -75,6 +78,8 @@ parts:
       - file: numerics/telemac3d-med
     - file: numerics/telemac-postpro
   - file: numerics/openfoam
+    sections:
+    - file: numerics/pre-qgis-of
   - file: numerics/calibration
 - caption: Documentation
   chapters:
