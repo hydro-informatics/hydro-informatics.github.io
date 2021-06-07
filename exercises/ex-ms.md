@@ -25,7 +25,7 @@ The Rhone River in Switzerland (source: Sebastian Schwindt 2014).
 
 
 ## Theoretical background
-The [*Gauckler-Manning-Strickler formula*](https://en.wikipedia.org/wiki/Manning_formula) (or *Strickler formula* in Europe) relates water depth and flow velocity of open channel flow based on the assumption of one-dimensional (cross-section-averaged) flow characteristics. The *Strickler formula* results from a heavy simplification of the [*Navier-Stokes*](https://en.wikipedia.org/wiki/Navier-Stokes_equations) and the [*continuity*](https://en.wikipedia.org/wiki/Continuity_equation) equations. Even though one-dimensional (1d) approaches have largely been replaced by at least two-dimensional (2d) numerical models today, the 1d Strickler formula is still frequently used as a first approximation for boundary conditions.
+The [Gauckler-Manning-Strickler formula](https://en.wikipedia.org/wiki/Manning_formula) {cite:p}`kundu_fluid_2008` (or *Strickler formula* in Europe) relates water depth and flow velocity of open channel flow based on the assumption of one-dimensional (cross-section-averaged) flow characteristics. The *Strickler formula* results from a heavy simplification of the [*Navier-Stokes*](https://en.wikipedia.org/wiki/Navier-Stokes_equations) and the [*continuity*](https://en.wikipedia.org/wiki/Continuity_equation) equations {cite:p}`kundu_fluid_2008`. Even though one-dimensional (1d) approaches have largely been replaced by at least two-dimensional (2d) numerical models today, the 1d Strickler formula is still frequently used as a first approximation for boundary conditions.
 
 The basic shape of the *Strickler formula* is:
 
@@ -36,9 +36,9 @@ $$
 where:
 
 * $u$ is the cross-section-averaged flow velocity in (m/s)
-* $k_{st}$ is the *Strickler* coefficient in *fictional* (m^{1/3}/s) corresponding to the inverse of [*Manning's*](http://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm) $n$.
-	- $k_{st}$ $\approx$ 20 ($n \approx$ 0.05) for rough, complex, and near-natural rivers
-	- $k_{st}$ $\approx$ 90 ($n \approx$ 0.011) for smooth, concrete-lined channels
+* $k_{st}$ is the *Strickler* coefficient in *fictional* (m^{1/3}/s) corresponding to the inverse of [*Manning's*](http://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm) $n_m$.
+	- $k_{st}$ $\approx$ 20 ($n_m \approx$ 0.05) for rough, complex, and near-natural rivers
+	- $k_{st}$ $\approx$ 90 ($n_m \approx$ 0.011) for smooth, concrete-lined channels
 	- $k_{st}$ $\approx$ 26/$D_{90}^{1/6}$ (approximation based on the grain size $D_{90}$, where 90% of the surface sediment grains are smaller, according to [Meyer-Peter and Müller 1948](http://resolver.tudelft.nl/uuid:4fda9b61-be28-4703-ab06-43cdc2a21bd7)
 * $S$ is the hypothetic energy slope (m/m), which can be assumed to correspond to the channel slope for steady, uniform flow conditions.
 * $R_{h}$ is the hydraulic radius in (m)
@@ -80,22 +80,22 @@ Use `import math as m` to calculate square roots (`m.sqrt`). Powers are calculat
 Cast the calculation into a function (e.g., `def calc_discharge(b, h, k_st, m, S): ...`) that returns the discharge $Q$.
 
 ## Flexibilize
-Make the function more flexible through the usage of optional {ref}`kwargs` so that a user can optionally either provide the $D_{90}$ (`D90`), the *Strickler* coefficient $k_{st}$ (`k_st`), or *Manning's* $n$ (`n_m`)
+Make the function more flexible through the usage of optional {ref}`kwargs` so that a user can optionally either provide the $D_{90}$ (`D90`), the *Strickler* coefficient $k_{st}$ (`k_st`), or *Manning's* $n_m$ (`n_m`).
 
 ```{tip}
-In the code, only use *Manning's* $n$ and parse `kwargs.items()` to find out the `kwargs` provided by a user.
+In the code, only use *Manning's* $n_m$ and parse `kwargs.items()` to find out the `kwargs` provided by a user.
 ```
 
 ## Invert the function
 
-The backward solution to the *Manning-Strickler* formula is a non-linear problem if the channel is not rectangular. This is why an iterative approximation is needed and here, we use the *Newton-Raphson* scheme for this purpose. More literature about the *Newton-Raphson* scheme is provided on {{ uni_portal }}.
+The backward solution to the *Manning-Strickler* formula is a non-linear problem if the channel is not rectangular. This is why an iterative approximation is needed and here, we use the *Newton-Raphson* scheme {cite:p}`akanbi_model_1987` for this purpose (see also the {{ uni_portal }}).
 
 
 ```{tip}
 The absolute value of a parameter can be easily accessed through the built-in `abs()` method in *Python3*.
 ```
 
-Use a Newton-Raphson solution scheme ([Paine 1992](https://doi.org/10.1061/(ASCE)0733-9437(1992)118:2(306)) to interpolate the water depth `h` for a given discharge $Q$ of a trapezoidal channel.
+Use a Newton-Raphson solution scheme {cite:p}`paine_open-channel_1992` to interpolate the water depth `h` for a given discharge $Q$ of a trapezoidal channel.
 
 * Write a new function `def interpolate_h(Q, b, m, S, **kwargs):`
 * Define an initial guess of `h` (e.g., `h = 1.0`) and an initial error margin (e.g., `eps = 1.0`)

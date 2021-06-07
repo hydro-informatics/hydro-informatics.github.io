@@ -76,11 +76,9 @@ The BASEmesh 2 plugin is available in QGIS' Plugins menu after the successful in
 (get-dem)=
 ## Load DEM
 
-A digital elevation model (**{term}`DEM`**) represents the baseline for any physical analysis of a river ecosystem. Nowadays, {term}`DEM`s often stem from light imaging, detection, and ranging ([LiDAR](https://en.wikipedia.org/wiki/Lidar)) combined with bathymetric surveys. Older approaches rely on manual surveying (e.g., with a total station) of cross-sectional profiles and interpolating the terrain between the profiles. The newer LiDAR technique employs lights sources and provides terrain assessments up to 2-m deep water. Bathymetric [echo sounding](https://en.wikipedia.org/wiki/Echo_sounding) is often necessary to map the ground of deeper waters. Thus, merged LiDAR and echo-sounding datasets produce seamless point clouds of river ecosystems, which may be stored in many different file types.
+This tutorial uses an application-ready {term}`DEM` in {term}`GeoTIFF` {ref}`raster` format that stems from a {term}`Lidar` point cloud. The {term}`DEM` raster provides height (Z) information from a section of a gravel-cobble bed river in South-East Germany, which constitutes the baseline for the computational grids featured in the next sections. To get the provided DEM in the *QGIS* project:
 
-This tutorial uses an application-ready {term}`DEM` in {term}`GeoTIFF` {ref}`raster` format that stems from a LiDAR point cloud. The {term}`DEM` raster provides height (Z) information from a section of a gravel-cobble bed river in South-East Germany, which constitutes the baseline for the computational grids featured in the next sections. To get the provided DEM in the *QGIS* project:
-
-* **Download the example DEM GeoTIFF**](https://github.com/hydro-informatics/materials-bm/raw/main/rasters/dem.tif) and save it in the same folder (`/Project Home/` or a sub-directory) as the above-create **qgz** project.
+* [**Download the example DEM GeoTIFF**](https://github.com/hydro-informatics/materials-bm/raw/main/rasters/dem.tif) and save it in the same folder (`/Project Home/` or a sub-directory) as the above-create **qgz** project.
 * Add the downloaded DEM as a new raster layer in *QGIS*:
   * In *QGIS*' **Browser** panel find the **Project Home** directory where you downloaded the DEM *tif*.
   * Drag the DEM *tif* from the **Project Home** folder into QGIS' **Layer** panel.
@@ -98,11 +96,6 @@ The DEM should now be displayed on the map (if not: right-click on the DEM layer
 :name: qgis-dem-basemap
 
 The imported DEM on a Google Satellite imagery basemap (source: Google / GeoBasis-DEBKG 2019). The flow direction is from left to right following the **Q** arrow.
-```
-
-```{admonition} From LiDAR point clouds to a Raster DEM
-:class: tip
-Terrain survey data are mostly delivered in the shape of an x-y-z point dataset. LiDAR produces massive point clouds, which quickly overcharge even powerful computers. Therefore, LiDAR data may need to be broken down into smaller zones of less than approximately 106 points and special LiDAR point processing software (e.g., [LAStools](http://lastools.org/)) may be helpful in this task. The range of possible data products and shapes from terrain survey is board and this tutorial exemplary uses a set of x-y-z points stored within a text file.
 ```
 
 

@@ -10,8 +10,8 @@ Geospatial data can be retrieved for various purposes from different sources. He
 
 * Geographical, atlas map-like data are provided by [naturalearthdata.com](https://www.naturalearthdata.com) (e.g., with their 227-mb [Natural Earth quick start kit](http://naciscdn.org/naturalearth/packages/Natural_Earth_quick_start.zip)).
 * Satellite imagery is available at
-    - [USGS' Earth Explorer](https://earthexplorer.usgs.gov/).
-    - [eesa's copernicus open access hub](https://scihub.copernicus.eu/dhus/#/home) (Sentinel-2)
+    - the [USGS' Earth Explorer](https://earthexplorer.usgs.gov/)
+    - the [eesa's copernicus open access hub](https://scihub.copernicus.eu/dhus/#/home) (Sentinel-2)
     - [planet.com](https://www.planet.com/products/monitoring/) (commercial)
 * [LiDAR](https://oceanservice.noaa.gov/facts/lidar.html) data can be found at [opentopography.org](https://opentopography.org/).
 * Climatological data are provided by [NASA Earth Observation](https://neo.sci.gsfc.nasa.gov/).
@@ -22,7 +22,7 @@ Geospatial data can be retrieved for various purposes from different sources. He
 GIS software is needed to display geospatial data and many tools exist. This website primarily provides examples using {ref}`qgis-install`. Since the use of GIS software, especially *QGIS*, is necessary for several sections in this eBook, explanations on how to install *QGIS* are already included in the {ref}`chpt-geo-software`.
 
 ```{tip}
-The {ref}`chpt-basement` features the basics of geospatial data handling with {ref}`qgis-install`. Therefore, this introduction to numerical modeling is also a good introduction to {ref}`qgis-install`.
+The {ref}`qgis-tutorial` features the basics of geospatial data handling with {ref}`qgis-install`.
 ```
 
 (gdb)=
@@ -75,7 +75,7 @@ A shapefile can be understood as a concurring format to a geodatabase. Which fil
 (tin)=
 ### Triangulated Irregular Network (TIN)
 
-A triangulated irregular network (TIN) represents a surface consisting of multiple triangles. In hydraulic engineering and water resources research, one of the most important usages of TIN is the generation of computational meshes for numerical models (e.g., [in the BASEMENT tutorial](../numerics/basement)). In such models, a TIN consists of lines and nodes forming georeferenced, three-dimensionally sloped triangles of the surface, which represent a digital elevation model (DEM). TIN nodes have georeferenced coordinates and potentially more attribute information such as node IDs and elevation. The advantage of a TIN DEM over a raster DEM is that it requires less storage space. Alas, manipulating a TIN is not that easy like manipulating a raster. The below figure shows an example TIN created with [`matplotlib.tri.TriAnalyzer`](https://matplotlib.org/3.1.1/api/tri_api.html#matplotlib.tri.TriAnalyzer), and based on a [showcase from the matplotlib docs](https://matplotlib.org/3.1.1/gallery/images_contours_and_fields/tricontour_smooth_delaunay.html#sphx-glr-gallery-images-contours-and-fields-tricontour-smooth-delaunay-py). The file ending of a TIN is `.TIN`.
+A triangulated irregular network (TIN) represents a surface consisting of multiple triangles. In hydraulic engineering and water resources research, one of the most important usages of TIN is the generation of computational meshes for numerical models (e.g., in the {ref}`chpt-basement` tutorial). In such models, a TIN consists of lines and nodes forming georeferenced, three-dimensionally sloped triangles of the surface, which represent a digital elevation model (DEM). TIN nodes have georeferenced coordinates and potentially more attribute information such as node IDs and elevation. The advantage of a TIN DEM over a raster DEM is that it requires less storage space. Alas, manipulating a TIN is not that easy like manipulating a raster. The below figure shows an example TIN created with [`matplotlib.tri.TriAnalyzer`](https://matplotlib.org/3.1.1/api/tri_api.html#matplotlib.tri.TriAnalyzer), and based on a [showcase from the matplotlib docs](https://matplotlib.org/3.1.1/gallery/images_contours_and_fields/tricontour_smooth_delaunay.html#sphx-glr-gallery-images-contours-and-fields-tricontour-smooth-delaunay-py). The file ending of a TIN is `.TIN`.
 
 ```{figure} ../img/geo-tin.png
 :alt: tin-illu
@@ -129,6 +129,13 @@ The `gdal` driver name for *GeoTIFF* handling is `gdal.GetDriverByName('GTiff')`
 
 Illustration of the Natural Earth's NE1_50M_SR_W.tif raster zoomed on Nepal, with point and line shapefiles indicating major cities and country borders, respectively. Take note of the tile-like appearance of the grid, where each tile corresponds to a 50m-x-50m raster cell.
 ```
+
+## Lidar and Underwater Digital Elevation Models (Bathymetries)
+
+Terrain survey data are often delivered in the shape of an x-y-z point dataset along with point attribute parameters. Three-dimensional datasets of the bare Earth's topographic surface are referred to as a Digital Elevation Model (read more about the **{term}`DEM`** terminology in the glossary), which represents the baseline for any physical analysis of a river ecosystem. The underwater topography is called the **bathymetry** of a river or other water body. Nowadays, x-y-z point clouds for generating a DEM mostly stem from {term}`Lidar` combined with {term}`Echo sounder` surveys. Older approaches rely on manual surveying (e.g., with a total station) of cross-sectional river profiles and interpolating the terrain between the profiles. The newer {term}`Lidar` technique employs light (laser) sources and provides terrain data up to 2-m deep water. Deeper waters are mapped with an {term}`Echo sounder` and the merged {term}`Lidar` and echo-sounding datasets produce seamless point clouds of river ecosystems, which may be stored in different file types (e.g., `*.las` or its zipped form `*.laz`).
+
+{term}`Lidar` produces massive point clouds, which quickly overcharge even powerful computers. This is why in practice, {term}`Lidar` data may need to be broken down into smaller zones of less than 10<sup>6</sup> points each. Particular {term}`Lidar` processing software (e.g., [LAStools](http://lastools.org/)) may be helpful in this task.
+
 
 (prj)=
 ## Projections and Coordinate Systems

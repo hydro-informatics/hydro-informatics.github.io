@@ -27,7 +27,7 @@ New Bullards Bar Dam in California, USA (source: Sebastian Schwindt 2017).
 Seasonal storage reservoirs retain water during wet months (e.g., monsoon, or rainy winters in Mediterranean climates) to ensure sufficient drinking water and agricultural supply during dry months. For this purpose, enormous storage volumes are necessary, which often exceed 1,000,000 m$^3$.
 
 The necessary storage volume is determined from historical inflow measurements and target discharge volumes (e.g., agriculture, drinking water, hydropower, or ecological residual water quantities).
-The sequent peak algorithm (e.g., [Potter 1977](https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1752-1688.1977.tb05564.x) based on [Rippl 1883](https://doi.org/10.1680/imotp.1883.21797) is a decades-old procedure for determining the necessary seasonal storage volume based on a storage volume curve (***SD curve***). The below figure shows an exemplary $SD$ curve with volume peaks (local maxima) approximately every 6 months and local volume minima between the peaks. The volume between the last local maximum and the lowest following local minimum determines the required storage volume (see the bright-blue line in the figure).
+The sequent peak algorithm {cite:p}`potter1977` based on {cite:t}`rippl1883` is a decades-old procedure for determining the necessary seasonal storage volume based on a storage volume curve (***SD curve***). The below figure shows an exemplary $SD$ curve with volume peaks (local maxima) approximately every 6 months and local volume minima between the peaks. The volume between the last local maximum and the lowest following local minimum determines the required storage volume (see the bright-blue line in the figure).
 
 ```{figure} https://github.com/Ecohydraulics/media/raw/master/png/sequent_peak.png
 :alt: sequent peak algorithm
@@ -49,17 +49,17 @@ The daily flow data of the Vanilla River are available from 1979 through 2001 in
 
 The function will loop over the *csv* file names and append the file contents to a dictionary of *numpy* arrays. Make sure to `import numpy as np`, `import os`, and `import glob`.
 
-1. Choose a function name (e.g., `def read_data(args):`) and use the following input arguments:
+* Choose a function name (e.g., `def read_data(args):`) and use the following input arguments:
     * `directory`: *string* of a path to files
     * `fn_prefix`: *string* of file prefix to strip dict-keys from a file name
     * `fn_suffix`: *string* of file suffix to strip dict-keys from a file name
     * `ftype`: *string* of file endings
     * `delimiter`: *string* of column separator
-1. In the function, test if the provided directory ends on `"/"` or `"\\"` with <br> `directory.endswith("/") or directory.endswith("\\")`<br>and read all files that end with `ftype` (we will use `ftype="csv"` here) with the `glob` library:
+* In the function, test if the provided directory ends on `"/"` or `"\\"` with <br> `directory.endswith("/") or directory.endswith("\\")`<br>and read all files that end with `ftype` (we will use `ftype="csv"` here) with the `glob` library:
     * `if True:` get the the *csv* (`ftype`) file list as <br> `file_list = glob.glob(directory + "*." + ftype.strip(".")`.
     * `if False:` get the the *csv* (`ftype`) file list as <br> `file_list = glob.glob(directory + "/*." + ftype.strip(".")` (the difference is only one powerful `"/"` sign).
-1. Create the void dictionary that will contain the file contents as *numpy* arrays: `file_content_dict = {}`
-1. Loop over all files in the file list with `for file in file_list:`
+* Create the void dictionary that will contain the file contents as *numpy* arrays: `file_content_dict = {}`
+* Loop over all files in the file list with `for file in file_list:`
     * Generate a key for `file_content_dict`:
         - Detach the file name from the `file` (directory + file name + file ending `ftype`) with `raw_file_name = file.split("/")[-1].split("\\")[-1].split(".csv")[0]`
         - Strip the user-defined `fn_prefix` and `fn_suffix` *strings* from the raw file name and use a `try:` statement to convert the remaining characters to a numeric value: `int(raw_file_name.strip(fn_prefix).strip(fn_suffix)`
@@ -67,17 +67,20 @@ The function will loop over the *csv* file names and append the file contents to
         - Use `except ValueError:` in the case that the remaining *string* cannot be converted to `int`: `dict_key = raw_file_name.strip(fn_prefix).strip(fn_suffix)` (if everything is well coded, the script will not need to jump into this exception statement later).
     * Open the `file` (full directory) as a file: `with open(file, mode="r") as f:`
         - Read the file content with `f_content = f.read()`. The *string*  variable `f_content` will look similar to something like `";0;0;0;0;0;0;0;0;0;2.1;0;0\n;0;0;0;0;0;0;0;0;0;6.4;0;0\n;0;0;0;0;9.9;0;0;0;0;0.2;0;0\n..."`.
+
 ```{admonition} Some *string* explanations
 :class: tip
 The column data are delimited by a `";"` and every column represents one value per month (i.e., 12 values per row). The rows denote days (i.e., there are 31 rows in each file corresponding to the maximum number of days in one month of a year). In consequence, every row should contain 11 `";"` signs to separate 12 columns and the entire file (`f_content`) should contain 30 `"\n"` signs to separate 31 rows. However, we count 12 `";"` signs per row and 32 to 33 `"\n"` signs in `f_content` because the data logger wrote `";"` at the beginning of each row and added one to two more empty lines to the end of every file. Therefore, we need to `strip()` the bad `";"` and  `"\n"` signs in the following.
 ```
-        - To get the number of (valid) rows in every file use `rows = f_content.strip("\n").split("\n").__len__()`
-        - To get the number of (valid) columns in every file use `cols = f_content.strip("\n").split("\n")[0].strip(delimiter).split(delimiter).__len__()`
-        - Now we can create a void *numpy* array of the size (shape) corresponding to the number of valid rows and columns in every file: `data_array = np.empty((rows, cols), dtype=np.float32)`
-        - *Why are we not using directly `np.empty((31, 12)` even though the shape of all files is the same?<br>We want to write a generally valid function and the two lines for deriving the valid number of rows and columns do the generalization job.*
-        - Next, we need to parse the values of every line and append them to the until now void `data_array`. Therefore, we split `f_content` into its lines with `split("\n)` and use a *for* loop: `for iteration, line in enumerate(f_content.strip("\n").split("\n"):`. Then,<br> Create an empty list to store line data `line_data = []`. <br>In another *for* loop, strip and split the line by the user-defined `delimiter` (recall: we will use `delimiter=";"`) `for e in line.strip(delimiter).split(delimiter):`. In the *e-for* loop, `try:` to append `e` as a *float* number `line_data.append(np.float(e)` and use `except ValueError:` to `line_data.append(np.nan)` (i.e., append a not-a-number value that we will need because not all months have 31 days).<br>End the *e-for* loop by back-indenting to the `for iteration, line in ...` loop and appending the `line_data` *list* as a *numpy* array to `data_array`: `data_array[iteration] = np.array(line_data)`
-        - Back in the `with open(file, ...` statement (use correct indentation level!), update `file_content_dict` with the above-found `dict_key` and the `data_array` of the `file as f`: `file_content_dict.update({dict_key: data_array})`
-1. Back at the level of the function (`def read_data(...):` - pay attention to the correct indentation!), `return file_content_dict`
+
+  - To get the number of (valid) rows in every file use `rows = f_content.strip("\n").split("\n").__len__()`
+  - To get the number of (valid) columns in every file use `cols = f_content.strip("\n").split("\n")[0].strip(delimiter).split(delimiter).__len__()`
+  - Now we can create a void *numpy* array of the size (shape) corresponding to the number of valid rows and columns in every file: `data_array = np.empty((rows, cols), dtype=np.float32)`
+  - *Why are we not using directly `np.empty((31, 12)` even though the shape of all files is the same?<br>We want to write a generally valid function and the two lines for deriving the valid number of rows and columns do the generalization job.*
+  - Next, we need to parse the values of every line and append them to the until now void `data_array`. Therefore, we split `f_content` into its lines with `split("\n)` and use a *for* loop: `for iteration, line in enumerate(f_content.strip("\n").split("\n"):`. Then,<br> Create an empty list to store line data `line_data = []`. <br>In another *for* loop, strip and split the line by the user-defined `delimiter` (recall: we will use `delimiter=";"`) `for e in line.strip(delimiter).split(delimiter):`. In the *e-for* loop, `try:` to append `e` as a *float* number `line_data.append(np.float(e)` and use `except ValueError:` to `line_data.append(np.nan)` (i.e., append a not-a-number value that we will need because not all months have 31 days).<br>End the *e-for* loop by back-indenting to the `for iteration, line in ...` loop and appending the `line_data` *list* as a *numpy* array to `data_array`: `data_array[iteration] = np.array(line_data)`
+  - Back in the `with open(file, ...` statement (use correct indentation level!), update `file_content_dict` with the above-found `dict_key` and the `data_array` of the `file as f`: `file_content_dict.update({dict_key: data_array})`
+
+* Back at the level of the function (`def read_data(...):` - pay attention to the correct indentation!), `return file_content_dict`
 
 Check if the function works as wanted and follow the instruction in the {ref}`standalone` section to implement an `if __name__ == "__main__":` statement at the end of the file. Thus, the script should look similar to the following code block:
 

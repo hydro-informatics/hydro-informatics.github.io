@@ -49,7 +49,7 @@ The combination of multiple $HSI$ values (e.g., water depth-related $HSI_{h}$, f
 
 Therefore, if the pixel-based $HSI$ values for water depth and flow velocity are known from a two-dimensional (2d) hydrodynamic model, then for each pixel the $cHSI$ value can be calculated either as the product or geometric mean of the single-parameter $HSI_{par}$ rasters.
 
-This habitat assessment concept was introduced by [Bovee (1986)](https://pubs.er.usgs.gov/publication/70121265) and [Stalnaker (1995)](https://apps.dtic.mil/sti/pdfs/ADA322762.pdf). However, these authors built their usable (physical) habitat assessment based on one-dimensional (1d) numerical models that were commonly used in the last millennium. Today, 2d numerical models are the state-of-the-art to determine physical habitat geospatially explicit based on pixel-based $cHSI$ values. There are two different options for calculating the usable habitat area ($UHA$) based on pixel-based $cHSI$ values (and even more options can be found in the scientific literature). <a name="uha-methods"></a>
+This habitat assessment concept was introduced by {cite:t}`bovee_development_1986` and {cite:t}`stalnaker_instream_1995` ([direct download](https://apps.dtic.mil/sti/pdfs/ADA322762.pdf)). However, these authors built their usable (physical) habitat assessment based on one-dimensional (1d) numerical models that were commonly used in the last millennium. Today, 2d numerical models are the state-of-the-art to determine physical habitat geospatially explicit based on pixel-based $cHSI$ values. There are two different options for calculating the usable habitat area ($UHA$) based on pixel-based $cHSI$ values (and even more options can be found in the scientific literature). <a name="uha-methods"></a>
 
 1. Use a threshold value above which a pixel is classified as a usable habitat.
     * Typical values for the threshold value $cHSI_{crit}$ are between 0.4 (tolerant) and 0.75 (strict).
@@ -61,12 +61,12 @@ This habitat assessment concept was introduced by [Bovee (1986)](https://pubs.er
 
 ```{admonition} Weighted Usable Area (WUA) vs. UHA
 :class: attention
-Some authors (e.g., [Yao et al. 2018](https://onlinelibrary.wiley.com/doi/full/10.1002/eco.1961), [Tuhtan et al.](https://doi.org/10.1007/s12205-012-0002-5) incorrectly refer to this weighting as Weighted Usable Area (*WUA*), which conflicts with the original definition of *WUA* ([Bovee 1986](https://pubs.er.usgs.gov/publication/70121265)).
+Some authors (e.g., {cite:t}`yao_development_2018`, {cite:t}`tuhtan_estimating_2012`) incorrectly refer to this weighting as Weighted Usable Area (*WUA*), which conflicts with the original definition of *WUA* {cite:p}`bovee_development_1986`.
 
  The threshold method is preferable over the weighting method because the $HSI$  has the unit of *Index* and is therefore not dimensionless. As a result, unrealistic units of *Index* areas (e.g., *Index*-m$^2$) are created in the weighting method, which is also introducing non-measurable uncertainty.
 ```
 
-An alternative to the deterministic calculation of the $HSI$ and $cHSI$ values of a pixel is a fuzzy logic approach ([Noack et al. 2013](https://onlinelibrary.wiley.com/doi/pdf/10.1002/9781118526576)). In the fuzzy logic approach, pixels are classified, for instance, as *low*, *medium*, or *high* habitat quality as a function of the associated water depth or flow velocity using categorical (*low*, *medium*, or *high*), expert assessment-based $HSI$ curves. The $cHSI$ value results from the center of gravity of superimposed membership functions of considered parameters (e.g., water depth and flow velocity).
+An alternative to the deterministic calculation of the $HSI$ and $cHSI$ values of a pixel is a fuzzy logic approach {cite:p}`noack_ecohydraulics_2013`. In the fuzzy logic approach, pixels are classified, for instance, as *low*, *medium*, or *high* habitat quality as a function of the associated water depth or flow velocity using categorical (*low*, *medium*, or *high*), expert assessment-based $HSI$ curves. The $cHSI$ value results from the center of gravity of superimposed membership functions of considered parameters (e.g., water depth and flow velocity).
 
 Sustainable river management involves the challenge of designing an aquatic habitat for target fish species at different life stages. The concept of usable physical habitat area represents a powerful tool to leverage the assessment of the ecological integrity of river management and engineering measures. For example, by calculating the usable habitat area before and after the implementation of measures, valuable conclusions can be drawn about the ecological integrity of restoration efforts.
 
@@ -84,12 +84,12 @@ The following flow chart illustrates the provided code and data. Functions, meth
 Structure of the provided template file tree and their relations.
 ```
 
-The provided *QGIS* project file `visualize_with_QGIS.qgz` helps to verify input raster datasets and results.
+The provided QGIS project file `visualize_with_QGIS.qgz` helps to verify input raster datasets and results.
 
-(2dm)=
-### Two-dimensional (2d) Hydrodynamic Modelling (Folder: **basement**)
+(ecox-2dm)=
+### Two-dimensional (2d) Hydrodynamic Modelling (Folder: *BASEMENT*)
 
-This exercise uses (hydraulic) flow velocity and water depth rasters (*GeoTIFF*s) produced with the [*ETH Zurich*'s *BASEMENT*](https://basement.ethz.ch/) software. Read more about hydrodynamic modeling with *BASEMENT* in the {ref}`chpt-basement` chapter. The hydraulic rasters were produced with the *BASEMENT* developer's [example data from the *Flaz River*](http://people.ee.ethz.ch/~basement/baseweb/download/tutorials/Flaz_2d_v3.zip) in Switzerland ([read more on their website](https://basement.ethz.ch/download/tutorials/tutorials3.html)).
+This exercise uses (hydraulic) flow velocity and water depth rasters ({term}`GeoTIFF`s) produced with the [ETH Zurich*s BASEMENT](https://basement.ethz.ch/) software. Read more about hydrodynamic modeling with BASEMENT in the {ref}`chpt-basement` chapter. The hydraulic rasters were produced with the BASEMENT developer's [example data from the *Flaz River*](http://people.ee.ethz.ch/~basement/baseweb/download/tutorials/Flaz_2d_v3.zip) in Switzerland ([read more on their website](https://basement.ethz.ch/download/tutorials/tutorials3.html)).
 The water depth `water_depth.tif` and flow velocity `flow_velocity.tif` rasters are provided for this exercise in the folder `/basement/`.
 
 (hsi-curves)=
@@ -192,7 +192,7 @@ Next, load the `osgeo.gdal.dataset`, the `np.array`, and the `geo_transformation
         self.dataset, self.array, self.geo_transformation = geo.raster2array(file_name, band_number=band)
 ```
 
-To identify the [*EPSG* number (Authority code)](geopy/geospatial-data.html#prj) of a raster, retrieve the spatial reference system (*SRS*) of the raster. Also for this purpose we have already developed a function in the lecture with the [*get_srs* function](geopy/geo-raster.html#reproject). Load the *SRS* and the *EPSG* number using the *get_srs* function with the following two lines of code in the `__init__` method:
+To identify the [EPSG number (Authority code)](geopy/geospatial-data.html#prj) of a raster, retrieve the spatial reference system (*SRS*) of the raster. Also for this purpose we have already developed a function in the lecture with the `get_srs` form the {ref}`theory section on reprojection <reproject>`. Load the *SRS* and the *EPSG* number using the *get_srs* function with the following two lines of code in the `__init__` method:
 
 ```python
     # __init__(...) of Raster class in raster.py
@@ -503,7 +503,7 @@ Of course, one can also loop over the parameters {ref}`list` directly in the `ge
 
 ```{admonition} Test if the code works
 :class: tip
-This is a good moment to test if the code works. Run `create_hsi_rasters.py` and verify that the two *GeoTIFF* files (*habitat/hsi_velocity.tif* and */habitat/hsi_depth.tif*) are created correctly. *QGIS* visualizes the *GeoTIFF*-products and the activated *Identify Features* button in *QGIS* enables to check if the linearly interpolated $HSI$ values agree with the $HSI$ curves in the provided workbook (*/habitat/trout.xlsx*). Thus, load both *GeoTIFF* pairs in *QGIS*: */habitat/hsi_velocity.tif* + */basement/flow_velocity.tif* and */habitat/hsi_depth.tif*  + */basement/water_depth.tif*.
+This is a good moment to test if the code works. Run `create_hsi_rasters.py` and verify that the two *GeoTIFF* files (*/habitat/hsi_velocity.tif* and */habitat/hsi_depth.tif*) are created correctly. QGIS visualizes the *GeoTIFF*-products and the activated *Identify Features* button in QGIS enables to check if the linearly interpolated $HSI$ values agree with the $HSI$ curves in the provided workbook (*/habitat/trout.xlsx*). Thus, load both *GeoTIFF* pairs in QGIS: */habitat/hsi_velocity.tif* + */basement/flow_velocity.tif* and */habitat/hsi_depth.tif*  + */basement/water_depth.tif*.
 ```
 
 Next, we come to the reason why we had to define magic methods for the `Raster` class: combine the $HSI$ rasters using both combination formulae presented above (recall the [product and geometric mean](#combine-methods) formulae), where `"geometric_mean"` should be used by default. The `combine_hsi_rasters` function accepts two arguments (a {ref}`list` of `Raster` objects corresponding to $HSI$ rasters and the `method` to use as *string*).
@@ -570,7 +570,7 @@ A successful run of the script `create_hsi_rasters.py` should look like this (in
 A Windows Python console running the above-created scripts.
 ```
 
-Plotted in *QGIS*, the $cHSI$ *GeoTIFF* raster should look like this:
+Plotted in QGIS, the $cHSI$ {term}`GeoTIFF` raster should look like this:
 
 ```{figure} https://github.com/Ecohydraulics/Exercise-geco/raw/master/graphs/ex-chsi.png
 :alt: chsi calculation
@@ -635,7 +635,7 @@ def main():
 ...
 ```
 
-In the next step, convert the habitat pixel raster into a polygon shapefile and save it in the */habitat/* folder as `habitat-area.shp`. The conversion of a raster into a polygon shapefile requires that the raster contains only {ref}`integer <num>` values, which is the case in the habitat pixel raster (only zeros and ones - recall {ref}`raster2polygon`). Use the `raster2polygon` function in the *geo_utils* folder (package) to create the new polygon shapefile, specify *habitat-pixels.tif* as `raster_file_name` to be converted, and `/habitat/habitat-area.shp` as output file name. The `geo.raster2polygon` function returns an `osgeo.ogr.DataSource` object and we can pass its layer including the information of the *EPSG* authority code (from `chsi_raster`) directly to the not-yet-written `calculate_habitat_area()` function:
+In the next step, convert the habitat pixel raster into a polygon shapefile and save it in the */habitat/* folder as `habitat-area.shp`. The conversion of a raster into a polygon shapefile requires that the raster contains only {ref}`integer <num>` values, which is the case in the habitat pixel raster (only zeros and ones - recall {ref}`raster2polygon`). Use the `raster2polygon` function in the *geo_utils* folder (package) to create the new polygon shapefile, specify *habitat-pixels.tif* as `raster_file_name` to be converted, and `/habitat/habitat-area.shp` as output file name. The `geo.raster2polygon` function returns an `osgeo.ogr.DataSource` object and we can pass its layer including the information of the EPSG authority code (from `chsi_raster`) directly to the not-yet-written `calculate_habitat_area()` function:
 
 ```python
 # calculate_habitat_area.py
@@ -734,7 +734,7 @@ A successful run of the script `calculate_habitat_area.py` should look like this
 Successful run of the *calculate_habitat_area.py* script.
 ```
 
-Plotted in *QGIS*, the *habitat-area* shapefile looks like this (use *Categorized* symbology):
+Plotted in QGIS, the *habitat-area* shapefile looks like this (use *Categorized* symbology):
 
 ```{figure} https://github.com/Ecohydraulics/Exercise-geco/raw/master/graphs/ex-uha.png
 :alt: calculate usable habitat area Python gdal map raster QGIS
@@ -744,7 +744,7 @@ The habitat-area shapefile plotted in QGIS with Categorized symbology, where the
 ```
 
 ### Result interpretation
-The $UHA$ of the analyzed river section represents a very small share of the total wetted area, which can be interpreted as an ecologically poor status of the river. However, a glance at a map and the simulation files of the Flaz example of *BASEMENT* suggests that at a discharge of 50 m$^3$/s, a flood situation can be assumed. As during floods, there are generally higher flow velocities, which are out-of-favor of juvenile fish, the small usable habitat area is finally not surprising.
+The $UHA$ of the analyzed river section represents a very small share of the total wetted area, which can be interpreted as an ecologically poor status of the river. However, a glance at a map and the simulation files of the Flaz example of BASEMENT suggests that at a discharge of 50 m$^3$/s, a flood situation can be assumed. As during floods, there are generally higher flow velocities, which are out-of-favor of juvenile fish, the small usable habitat area is finally not surprising.
 
 
 ```{attention}

@@ -64,7 +64,7 @@ There are many more files that are not computationally mandatory for every TELEM
   + File format: `*.tbl` or `*.txt` (`ASCII`)
 * Restart / reference (for model validation) file
   + File format: `.slf` or `.med`
-  + More information in the [Telemac2d docs](http://svn.opentelemac.org/svn/opentelemac/tags/v8p2r0/documentation/telemac2d/user/telemac2d_user_v8p2.pdf) (section 4.1.3).
+  + More information in the [Telemac2d docs](http://svn.opentelemac.org/svn/opentelemac/tags/v8p2r0/documentation/telemac2d/user/telemac2d_user_v8p2.pdf) (section 4.1.3) (see also {cite:t}`hervouet_user_2014`).
 * Sections file to set control sections (e.g., verify flow rates, velocity, or water surface elevation)
 * Sources (e.g., water or sediment) data file
 * Stage-discharge relation file
@@ -94,7 +94,7 @@ The steering file is the main simulation file with information about mandatory f
 
 ### Geometry Files (SLF or MED)
 
-The geometry file in [*slf* (*selafin* or *SERAFIN*)](https://gdal.org/drivers/vector/selafin.html) format contains binary data about the mesh with its nodes. The name format of the geometry file can be modified in the steering file with:
+The geometry file in [`*.slf` (*selafin* or *SERAFIN*)](https://gdal.org/drivers/vector/selafin.html) format contains binary data about the mesh with its nodes. The name format of the geometry file can be modified in the steering file with:
 
 ```
 /steering.cas
@@ -107,6 +107,7 @@ GEOMETRY FILE FORMAT     : SLF / or MED with SALOME preferably for 3D
 ### Boundary Conditions (CLI or BND/BCD) and Liquid Boundary (QSL) Files
 
 The boundary file in `*.cli` format contains information about inflow and outflow nodes (coordinates and IDs). The `*.cli` file can be opened and modified with any text editor, which is not recommended to avoid inconsistencies. Preferably use {ref}`Fudaa PrePro <fudaa>` or {ref}`Blue Kenue <bluekenue>` for generating and/or modifying `*.cli` files. Here is an example (header only) for a `*.cli` boundary conditions file:
+
 ```
   2 2 2  0.000  0.000  0.000  0.000 2  0.000  0.000  0.000    101     1
   2 2 2  0.000  0.000  0.000  0.000 2  0.000  0.000  0.000    102     2

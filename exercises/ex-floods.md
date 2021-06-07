@@ -36,17 +36,40 @@ The calculation concept of the return period makes two elementary assumptions. F
 
 ## The Probability of a 100-year Flood Occurring in 100 Years is 63%
 
-As engineers we often want to know how likely it is that a 100-year flood will occur within the next 2, 5, 10, ... or 100 years (i.e., what are the likely costs of flood damage associated with a 100-year flood?). The answer to that question is *"the opposite likelihood of no 100-year flood occurring in the next 2, 5, or 10 years"*. Mathematically that means the annual occurrence probability $Pr$ of an event with a recurrence interval $T=100$ years over an observation period of $a \in [2, 5, 10, 100]$ years is:
+As engineers we often want to know how likely it is that a 100-year flood will occur within the next 2, 5, 10, ... or 100 years (i.e., what are the likely costs of flood damage associated with a 100-year flood?). The answer to that question is *"the opposite likelihood of no 100-year flood occurring in the next 2, 5, or 10 years"*. Mathematically that means the annual occurrence probability $Pr$ of an event with a recurrence interval $T=100$ years over an observation period of $\Delta t \in [2, 5, 10, 100]$ years is:
 
-$Pr(T=100, a=2, 5, 10, 100) = (1 - (1-1/T)^{a})$
+$Pr(T=100, \Delta t=2, 5, 10, 100) = (1 - (1-1/T)^{\Delta t})$
 
-The following table shows solutions to the probability $Pr(T, a)$ function for observation periods $a$ of 2, 5, 10, and 100 years, as well as recurrence intervals $T$ of 10, 50, and 100 years.
+{numref}`Table %s <tab-pr-floods>` shows solutions to the probability $Pr(T, \Delta t)$ function for observation periods $\Delta t$ of 2, 5, 10, and 100 years, as well as recurrence intervals $T$ of 10, 50, and 100 years.
 
-| $Pr(T, a)$|$a$ = 2 |$a$ = 5 |$a$ = 10|$a$ = 100|
-|:----------|-------:|-------:|-------:|--------:|
-|$T$ = 10   | 19.00% | 40.95% | 65.13% | 100.00% |
-|$T$ = 50   | 3.96%  | 9.61%  | 18.29% | 86.74%  |
-|$T$ = 100  | 1.99%  | 4.90%  | 9.56%  | 63.40%  |
+```{list-table} Solutions to the probability function $Pr(T, \Delta t)$ for selected observation periods $\Delta t$.
+:header-rows: 1
+:name: tab-pr-floods
+
+* - $Pr(T, \Delta t)$
+  - $\Delta t$ = 2
+  - $\Delta t$ = 5
+  - $\Delta t$ = 10
+  - $\Delta t$ = 100
+
+* - $T$ = 10
+  - 19.00%
+  - 40.95%
+  - 65.13%
+  - 100.00%
+
+* - $T$ = 50
+  - 3.96%
+  - 9.61%
+  - 18.29%
+  - 86.74%
+
+* - $T$ = 100
+  - 1.99%
+  - 4.90%
+  - 9.56%
+  - 63.40%
+```
 
 Visit the [*USGS* water science school](https://www.usgs.gov/special-topic/water-science-school/science/100-year-flood?qt-science_center_objects=0#qt-science_center_objects) to learn more about flood (and drought) recurrence interval.
 
@@ -174,7 +197,8 @@ plot_q_freq(annual_max_df_sorted)
 plot_q_return_period(annual_max_df_sorted)
 ```
 
-```{note}
+```{admonition} Variable name consistency
+:class: attention
 The plot functions only work correctly if the probability column is named $Pr$, the return period column is named $return-period$, and the discharge column is named $Q (CMS)$ (otherwise, consider renaming the data frame column header names or modifying the plot functions).
 ```
 
@@ -183,9 +207,9 @@ The plot functions only work correctly if the probability column is named $Pr$, 
 
 The here shown method is only an interpolation. For extrapolating return periods beyond the length of the observation period (e.g., for extreme events such as a 1000-year flood), a prediction model is necessary (e.g., Gumbel distributed-extrapolation).
 
-After all, there is already software that calculates return periods, freely available at the US Army Corps of Engineers Hydrologic Engineering Center (*HEC*): [*HEC-SPP*](https://www.hec.usace.army.mil/software/hec-ssp/). *HEC-SPP* enables the calculation of flow event frequencies and return periods according to US standards. So if you are not working in or for the United States, you still may want to have your own code ready. Moreover, *HEC-SPP* requires pre-processing of discharge data (i.e., it only works with annual maxima).
+After all, there is already software that calculates return periods, freely available at the U.S. Army Corps of Engineers Hydrologic Engineering Center (*HEC*) {cite:p}`us_army_corps_of_engineeers_hydrologic_2016`: [HEC-SPP](https://www.hec.usace.army.mil/software/hec-ssp/). HEC-SPP enables the calculation of flow event frequencies and return periods according to US standards. So if you are not working in or for the United States, you still may want to have your own code ready. Moreover, *HEC-SPP* requires pre-processing of discharge data (i.e., it only works with annual maxima).
 
 
 ```{admonition} Homework
-Use the formulae in the provided workbook (ILIAS) to implement the Gumbel distribution for extrapolating a 200, 500, and 1000-years flood.                Interpolations discharges of 2, 5, 10, 20, and 50-year flow events. *Use loops and functions!*
+Use the formulae in the provided workbook (ILIAS) to implement the Gumbel distribution for extrapolating a 200, 500, and 1000-years flood. Interpolations discharges of 2, 5, 10, 20, and 50-year flow events. *Use loops and functions!*
 ```

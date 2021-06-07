@@ -238,7 +238,7 @@ To enable the selection of a grain `csv` file, write a `set_grain_file` method a
         self.cbx_D_char.set('D84')
 ```
 
-To enable the selection of an *HEC-RAS* output workbook, define a `set_hec_file` method as used in the above `tk.Button`. After the user's file selection, the method needs to update the *hec*-label object (`self.hec_label`).
+To enable the selection of a *HEC-RAS* {cite:p}`us_army_corps_of_engineeers_hydrologic_2016` output workbook, define a `set_hec_file` method as used in the above `tk.Button`. After the user's file selection, the method needs to update the *hec*-label object (`self.hec_label`).
 
 ```python
     def set_hec_file(self):

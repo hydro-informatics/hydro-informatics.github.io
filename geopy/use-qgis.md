@@ -121,7 +121,8 @@ The following URL can be used for retrieving online XYZ tiles (more URLs can be 
 | OpenStreetMap (OSM)   | `http://tile.openstreetmap.org/{z}/{x}/{y}.png`                                                    |
 | OSM Black and White   | `http://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png`                                               |
 
-```{tip}
+```{admonition} Coordinate reference systems of basemaps
+:class:
 Most basemaps are provided in the `EPSG:3857 -WGS84 / Pseudo Mercator` coordinate system (CRS). To use custom geodata products, make sure that all other layers have the same coordinate system. Read more about coordinate systems and projections in the {ref}`geospatial-data` and {ref}`shapefile projection <prj-shp>` sections.
 ```
 
@@ -219,7 +220,8 @@ If the *Crayfish* plugin is installed, an additional *Rasterize* tool will show 
   * Click **Run**
 * Set the **Symbology** to **Singleband pseudocolor** with **Interpolation**: `Discrete`, **Colorramp**: `Magma`, **Mode**: `Equal Interval` > **Apply**. If the visualization is satisfactory, click **OK**.
 
-```{tip}
+```{admonition} File conversion with Python
+:class: tip
 The conversion between geospatial data types can be facilitated by using *Python*. Read the section on {ref}`py-conversion` to learn more.
 ```
 
@@ -245,7 +247,8 @@ Start with opening **Raster Calculator** from QGIS menu bar (**Raster** > **Rast
 * Click **OK** to run *Raster Calculator*.
 * After successful calculation, optionally modify the symbology of the new layer (*roughness-stickler*).
 
-```{tip}
+```{admonition} Batch-process geodata
+:class: tip
 To implement a tailored raster calculator for batch-processing of raster files with *Python* read the {ref}`py-raster-calculator` section in the {ref}`ex-geco` exercise.
 ```
 

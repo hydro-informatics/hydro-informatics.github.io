@@ -26,19 +26,19 @@ The Arbogne River in Switzerland (source: Sebastian Schwindt 2013).
 ## Theory
 
 ### 1d Cross-section Averaged Hydrodynamics
-From the [stage-discharge (*Manning-Strickler* formula) exercise](https://github.com/Ecohydraulics/Exercise-ManningStrickler), we recall the formula to calculate the relationship between water depth *h* (incorporated in the hydraulic radius $R_{h}$) and flow velocity $u$:
+From the [stage-discharge (*Manning-Strickler* formula) exercise](https://github.com/Ecohydraulics/Exercise-ManningStrickler), we recall the formula to calculate the relationship between water depth $h$ (incorporated in the hydraulic radius $R_{h}$) and flow velocity $u$:
 
 $$
-u = 1/n \cdot S_{e}^{1/2} \cdot R_{h}^{2/3}
+u = 1/n_m \cdot S_{e}^{1/2} \cdot R_{h}^{2/3}
 $$
 
 where
-* $n$ is the [*Manning* coefficient](http://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm) in *fictional* units of (s/m$^{1/3}$).
+* $n_m$ is the [*Manning* coefficient](http://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm) in *fictional* units of (s/m$^{1/3}$).
 * $S_{e}$ is the hypothetical energy slope (m/m) and corresponds to the channel slope for steady, uniform flow conditions (non-existing in natural rivers).
 * the hydraulic radius $R_{h} = A / P$, where (for a trapezoidal cross-section):
-    - the wetted (trapezoidal) cross-section area is $A = h \cdot 0.5\cdot (b + B) = h \cdot (b + h\cdot m)$;
-    - the wetted perimeter of a trapezoid is $P = b + 2h\cdot(m² + 1)^{1/2}$;
-    - $b$ (channel base width) and $m$ (bank slope) are illustrated in the figure below to calculate the depth-dependent water surface width $B=b+2\cdot h\cdot m$.
+  - the wetted (trapezoidal) cross-section area is $A = h \cdot 0.5\cdot (b + B) = h \cdot (b + h\cdot m)$;
+  - the wetted perimeter of a trapezoid is $P = b + 2h\cdot(m^2 + 1)^{1/2}$;
+  - $b$ (channel base width) and $m$ (bank slope) are illustrated in the figure below to calculate the depth-dependent water surface width $B=b+2\cdot h\cdot m$.
 
 
 ```{figure} https://github.com/Ecohydraulics/media/raw/master/png/flow-cs.png
@@ -46,29 +46,28 @@ where
 :name: cs-sed
 ```
 
-This exercise uses one-dimensional (1d) cross-section averaged hydraulic data produced with the US Army Corps of Engineers' [*HEC-RAS*](https://www.hec.usace.army.mil/software/hec-ras/) software, which solves the Manning-Strickler formula numerically for any flow cross-section shape. In this exercise, *HEC-RAS* provides the hydraulic data needed to determine the sediment transport capacity of a channel cross-section, although no explanations for creating, running, and exporting data from *HEC-RAS* models are given.
+This exercise uses one-dimensional (1d) cross-section averaged hydraulic data produced with the US Army Corps of Engineers' HEC-RAS software {cite:p}`us_army_corps_of_engineeers_hydrologic_2016`, which solves the Manning-Strickler formula numerically for any flow cross-section shape. In this exercise, *HEC-RAS* provides the hydraulic data needed to determine the sediment transport capacity of a channel cross-section, although no explanations for creating, running, and exporting data from *HEC-RAS* models are given.
 
 ### Sediment transport
 
-Fluvial sediment transport can be distinguished into two modes: (1) suspended load and (2) bed load (see figure below). Finer particles with a weight that can be carried by the fluid (water) are transported as suspended load. Coarser particles rolling, sliding, and jumping on the channel bed are transported as bed load. There is another type of transport, the so-called wash load, which is finer than the coarse bed load, but too heavy (large) to be transported in suspension ([Einstein 1950](http://dx.doi.org/10.22004/ag.econ.156389)).
+Fluvial sediment transport can be distinguished into two modes: (1) suspended load and (2) bed load (see figure below). Finer particles with a weight that can be carried by the fluid (water) are transported as suspended load. Coarser particles rolling, sliding, and jumping on the channel bed are transported as bed load. There is another type of transport, the so-called wash load, which is finer than the coarse bed load, but too heavy (large) to be transported in suspension {cite:p}`einstein_bed-load_1950`.
 
 ```{figure} https://github.com/Ecohydraulics/media/raw/master/png/sediment-transport.png
 :alt: 1d sediment transport
 :name: transport
 ```
 
-In the following, we will look at the bed load transport mode. In this case, a sediment particle located in or on the riverbed is mobilized by shear forces of the water as soon as they exceed a critical value (see figure below). In river hydraulics, the so-called dimensionless bed shear stress or *Shields* stress ([Shields 1936](http://resolver.tudelft.nl/uuid:61a19716-a994-4942-9906-f680eb9952d6) is often used as the threshold value for the mobilization of sediment from the riverbed. This exercise uses one of the dimensionless bed shear stress approaches and the next section provides more explanations.
+In the following, we will look at the bed load transport mode. In this case, a sediment particle located in or on the riverbed is mobilized by shear forces of the water as soon as they exceed a critical value (see figure below). In river hydraulics, the so-called dimensionless bed shear stress or *Shields* stress {cite:p}`shields_anwendung_1936` is often used as the threshold value for the mobilization of sediment from the riverbed. This exercise uses one of the dimensionless bed shear stress approaches and the next section provides more explanations.
 
 ```{figure} https://github.com/Ecohydraulics/media/raw/master/png/sediment-uptake.png
 :alt: sediment uptake mobilization
 :name: uptake
 ```
 
-
 (mpm)=
 ### The Meyer-Peter and Müller (1948) formula
 
-The [Meyer-Peter & Müller (1948)](http://resolver.tudelft.nl/uuid:4fda9b61-be28-4703-ab06-43cdc2a21bd7) formula for estimating bed load transport was published by Swiss researchers Eugen Meyer-Peter (founder of the famous [*Laboratory of Hydraulics, Hydrology and Glaciology (VAW)*](https://vaw.ethz.ch/en/) and Robert Müller. Their study began one year after the establishment of the *VAW* in 1931 when Robert Müller was appointed assistant to Eugen Meyer-Peter. The two scientists worked in collaboration with Henry Favre and Albert Einstein's son Hans Albert. In 1934, the laboratory published for the first time a formula for the calculation of bed load transport and its fundamental relationship between observed $\tau_{x}$ and critical $\tau_{x,cr}$ dimensionless bed shear stresses is used until today. The dimensionless bed load transport rate $\Phi$ according to [Meyer-Peter & Müller (1948)](http://resolver.tudelft.nl/uuid:4fda9b61-be28-4703-ab06-43cdc2a21bd7) is: <a name="phi"></a>
+The {cite:t}`meyer-peter_formulas_1948` formula for estimating bed load transport was published by Swiss researchers Eugen Meyer-Peter (founder of the [Laboratory of Hydraulics, Hydrology and Glaciology (VAW)](https://vaw.ethz.ch/en/) and Robert Müller. Their study began one year after the establishment of the VAW in 1931 when Robert Müller was appointed assistant to Eugen Meyer-Peter. The two scientists worked in collaboration with Henry Favre and Albert Einstein's son Hans Albert. In 1934, the laboratory published for the first time a formula for the calculation of bed load transport and its fundamental relationship between observed $\tau_{x}$ and critical $\tau_{x,cr}$ dimensionless bed shear stresses is used until today. The dimensionless bed load transport rate $\Phi$ according to {cite:t}`meyer-peter_formulas_1948` is: <a name="phi"></a>
 
 $$
 \Phi \approx 8 \cdot (\tau_{x} - \tau_{x,cr})^{3/2}
@@ -80,7 +79,7 @@ where <a name="taux"></a>
 
 The other parameters are:
 * $s$ $\approx$ 2.68, the dimensionless ratio of sediment grain density $\rho_{s}$ ($\approx$ 2680 kg/m³) and water density $\rho_{w}$ ($\approx$ 1000 kg/m³);
-* $D_{char}$, the characteristic grain size in (m). It can be assumed that $D_{char} \approx D_{84}$ (i.e., the grain diameter of which 84% of a sediment mixture is smaller) in line with the scientific literature (e.g., [Rickenmann and Recking 2011](https://doi.org/10.1029/2010WR009793)).
+* $D_{char}$, the characteristic grain size in (m). It can be assumed that $D_{char} \approx D_{84}$ (i.e., the grain diameter of which 84% of a sediment mixture is smaller) in line with the scientific literature (e.g., {cite:t}`rickenmann_evaluation_2011`).
 
 The *Meyer-Peter & Müller* formula applies (like any other sediment transport formula) only to certain rivers that have the following characteristics (range of validity):
 * 0.4 $\cdot$ 10$^{-3}$ m $< D_{char}$ < 28.6 $\cdot$ 10$^{-3}$ m
@@ -89,7 +88,7 @@ The *Meyer-Peter & Müller* formula applies (like any other sediment transport f
 * 0.0002 m$^3$/(s $\cdot$ m) $< q <$ 2.0 m$^3$/(s $\cdot$ m) ($q$ is the unit discharge, i.e., $q=Q/[0. 5\cdot (b + B)]$)
 * 0.25 $< s <$ 3.2
 
-The dimensionless expression for bed load $\Phi$ was used to enable information transfer between different channels across scales by preserving geometric, kinematic, and dynamic similarity. The set of dimensionless parameters used results from  [Buckingham's $\Pi$ theorem](https://pint.readthedocs.io/en/stable/pitheorem.html).
+The dimensionless expression for bed load $\Phi$ was used to enable information transfer between different channels across scales by preserving geometric, kinematic, and dynamic similarity. The set of dimensionless parameters used results from [Buckingham's $\Pi$ theorem](https://pint.readthedocs.io/en/stable/pitheorem.html) {cite:p}`buckingham_model_1915`.
 Therefore, to add dimensions to $\Phi$, it needs to be multiplied with the same set of parameters used for deriving the dimensionless expression from *Meyer-Peter & Müller*. Their set of parameters involves the characteristic grain size $D_{char}$, the grain density $\rho_{s}$, and the gravitational acceleration $g$. Thus, the dimensional unit bed load is (in kg/s and meter width, i.e., kg/(s$\cdot$m): <a name="qb"></a>
 
 $$
@@ -150,7 +149,7 @@ if __name__ == '__main__':
 ### Logging functions
 The `fun.py` script will contain two functions:
 
-1. `start_logging` to setup logging formats and a log file name as described on the [debugging page](../jupyter/pypyerror.html#logging), and
+1. `start_logging` to setup logging formats and a log file name as described on the [debugging page](../jupyter/pyerror.html#logging), and
 1. `log_actions`, which is a function wrapper for the `main()` (`main.py`) functions to log script execution messages.
 
 The `start_logging` function should look like this (change the log file name if desired):
@@ -304,7 +303,7 @@ def main():
 
 ### Create a bed load core class
 
-A `BedCore` class written in the `bedload.py` script provides variables and methods, which are relevant to many bed load and sediment transport calculation formulae (e.g., the *Parker-Wong* correction or the [Smart & Jaeggi 1983](https://ethz.ch/content/dam/ethz/special-interest/baug/vaw/vaw-dam/documents/das-institut/mitteilungen/1980-1989/064.pdf) formula). Moreover, the `BedCore` class contains constants such as the gravitational acceleration $g$ (i.e., `self.g=9.81`), the ratio of sediment grain and water density $s$ (i.e., `self.s=2.68`), and the critical dimensionless bed shear stress $\tau_{x,cr}$ (i.e., `self.tau_xcr=0.047`, which may be re-defined by users). The header of the `BedCore` class should look (similar) like this:
+A `BedCore` class written in the `bedload.py` script provides variables and methods, which are relevant to many bed load and sediment transport calculation formulae, such as the *Parker-Wong* correction {cite:p}`wong_reanalysis_2006` or the {cite:t}`smart_sedimenttransport_1983` ([direct download](https://ethz.ch/content/dam/ethz/special-interest/baug/vaw/vaw-dam/documents/das-institut/mitteilungen/1980-1989/064.pdf) ). Moreover, the `BedCore` class contains constants such as the gravitational acceleration $g$ (i.e., `self.g=9.81`), the ratio of sediment grain and water density $s$ (i.e., `self.s=2.68`), and the critical dimensionless bed shear stress $\tau_{x,cr}$ (i.e., `self.tau_xcr=0.047`, which may be re-defined by users). The header of the `BedCore` class should look (similar) like this:
 
 ```python
 from fun import *
@@ -536,7 +535,7 @@ There are many possible solutions to this exercise and any solution that results
 ```
 
 ```{admonition} Homework
-* HOMEWORK 1: Implement the [Parker-Wong](https://doi.org/10.1061/(ASCE)0733-9429(2006)132:11(1159)) correction for the *Meyer-Peter & Müller* formula:$\Phi_{pw} \approx 4.93 \cdot (\tau_{x} - \tau_{x,cr})^{1.6}$. Implement the formula in the `MPM` class either use an optional keyword argument in `compute_phi` or a new method.
+* HOMEWORK 1: Implement the Parker-Wong correction {cite:p}`wong_reanalysis_2006` for the *Meyer-Peter & Müller* formula:$\Phi_{pw} \approx 4.93 \cdot (\tau_{x} - \tau_{x,cr})^{1.6}$. Implement the formula in the `MPM` class either use an optional keyword argument in `compute_phi` or a new method.
 
 * HOMEWORK 2: Use the `openpyxl` library to add a background color to the headers of output tables.
 

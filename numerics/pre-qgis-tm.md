@@ -19,8 +19,8 @@ All software applications featured in this tutorial can be run on *Linux*, *Wind
 (tm-qgis-prepro)=
 ## QGIS
 
-Launch QGIS and {ref}`create a new QGIS project <qgis-project>` to get started with this tutorial.
-As featured in the {ref}`qgis-tutorial`, set up a coordinate reference system (CRS) for the project. This example uses data of a river in Bavaria (UTM zone 33N), which requires the following CRS:
+### Create a New Project
+Launch QGIS and {ref}`create a new QGIS project <qgis-project>` to get started with this tutorial. As featured in the {ref}`qgis-tutorial`, set up a coordinate reference system (CRS) for the project. This example uses data of a river in Bavaria (UTM zone 33N), which requires the following CRS:
 
 * In the QGIS top menu go to **Project** > **Properties**.
 * Activate the **CRS** tab.
@@ -42,23 +42,28 @@ Save the QGIS project (**Project** > **Save As...**), for example, under the nam
 ```
 
 (get-dem-xyz)=
-## Load DEM
+### Load DEM.xyz
 
-This tutorial uses height information that is stored in an `*.xyz` file derived from the {term}`GeoTIFF` {term}`DEM` used in the {ref}`pre-processing for BASEMENT <qgis-prepro-bm>`. The `*.xyz` file can be [downloaded here](https://github.com/hydro-informatics/materials-bm/raw/main/rasters/dem.xyz) and it was created using the workflow described in the {ref}`QGIS tutorial <make-xyz>`.
+This tutorial uses height information that is stored in an `*.xyz` file derived from the {term}`GeoTIFF` {term}`DEM` used in the {ref}`pre-processing for BASEMENT <qgis-prepro-bm>`. The `*.xyz` file can be [downloaded here](https://github.com/hydro-informatics/materials-bm/raw/main/rasters/dem.xyz) and it was created using the workflow described in the {ref}`QGIS tutorial <make-xyz>`. Since the underlying raster file was created in the coordinate system `Germany_Zone_4`, the DEM must be imported into QGIS as follows:
 
+* From QGIS top menu open **Layer** > **Add Layer** > **Add Delimited Text Layer...**
+* In the opening **Data Source Manager** window (see {numref}`Fig. %s <qgis-import-xyz>`) make the following definitions:
+  * Select the downloaded `dem.xyz` file in the **file name** field.
+  * In the **File Format** frame make sure to select **Custom delimiters** and check the **Space** delimiter box.
+  * In the **Record and Fields Options** frame, set the **Number of header lines to discard** to `13` and check the **First record has field names** box.
+  * In the **Geometry Definition** frame, select `:EndHeader` as **X field**, `field_2` as **Y field**, and `field_3` as **Z field**. Select `ESRI:31494 - Germany_Zone_4` as **Geometry CRS**.
+  * Click **Add** and **Close** the *Data Source Manager* window.
 
+```{figure} ../img/qgis/import-dem-xyz.png
+:alt: qgis import XYZ point cloud file dem
+:name: qgis-import-xyz
 
-A digital elevation model (**{term}`DEM`**) represents the baseline for any physical analysis of a river ecosystem. Nowadays, {term}`DEM`s often stem from light imaging, detection, and ranging ([LiDAR](https://en.wikipedia.org/wiki/Lidar)) combined with bathymetric surveys. Older approaches rely on manual surveying (e.g., with a total station) of cross-sectional profiles and interpolating the terrain between the profiles. The newer LiDAR technique employs lights sources and provides terrain assessments up to 2-m deep water. Bathymetric [echo sounding](https://en.wikipedia.org/wiki/Echo_sounding) is often necessary to map the ground of deeper waters. Thus, merged LiDAR and echo-sounding datasets produce seamless point clouds of river ecosystems, which may be stored in many different file types.
+Import the `*.xyz` point cloud as QGIS layer.
+```
 
-This tutorial uses an application-ready {term}`DEM` in {term}`GeoTIFF` {ref}`raster` format that stems from a LiDAR point cloud. The {term}`DEM` raster provides height (Z) information from a section of a gravel-cobble bed river in South-East Germany, which constitutes the baseline for the computational grids featured in the next sections. To get the provided DEM in the *QGIS* project:
+The **dem** (`*.xyz`) file should now be visible in the form of a point cloud in the viewport and be listed in the **Layers** panel. **Right-click** on the **dem** layer and select **Zoom to Layer(s)** to view the layer.
 
-* **Download the example DEM GeoTIFF**](https://github.com/hydro-informatics/materials-bm/raw/main/rasters/dem.tif) and save it in the same folder (`/Project Home/` or a sub-directory) as the above-create **qgz** project.
-* Add the downloaded DEM as a new raster layer in *QGIS*:
-  * In *QGIS*' **Browser** panel find the **Project Home** directory where you downloaded the DEM *tif*.
-  * Drag the DEM *tif* from the **Project Home** folder into QGIS' **Layer** panel.
-* To facilitate delineating specific regions of the river ecosystem later, add a {ref}`satellite imagery basemap <basemap>` (XYZ tile) under the {term}`DEM` and customize the layer symbology.
-
-```{admonition} What are QGIS panels again?
+```{admonition} What are QGIS panels and how can I order layers?
 :class: tip
 Learn more in the *QGIS* tutorial on {ref}`qgis-tbx-install`.
 ```
