@@ -183,7 +183,7 @@ FRICTION DATA FILE       : 'friction.tbl'
 ### The Results/Restart file (SLF or MED)
 
 
-A restart file stems from a previous TELEMAC simulation and does not need to exist at the beginning. A good option for visualizing the results file is the {ref}`PostTelemac plugin <posttm-install>` in QGIS.
+A restart file stems from a previous TELEMAC simulation and does not need to exist at the beginning. A good option for visualizing the results file is the {ref}`PostTelemac plugin <tm-qgis-plugins>` in QGIS.
 Restart files in MED format are typically processed with the ParaVis module in {ref}`SALOME <salome-install>` or ref}`SALOME-HYDRO <salome-hydro>`, which is featured in the {ref}`Telemac3d (MED) <chpt-telemac3d-med>` tutorial.
 
 The results/restart file can be define in the steering file as follows:

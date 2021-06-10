@@ -1,8 +1,8 @@
 (qgis-tutorial)=
 # QGIS Tutorial
 
-```{tip}
-This tutorial involves embedded videos featuring the text descriptions in every section.
+```{admonition} Requirements
+This tutorial is designed for **beginners** and has embedded videos featuring the text descriptions in every section. Before diving into this tutorial make sure to install {ref}`QGIS <qgis-install>`.
 ```
 
 To get ready, watch the following video and/or make sure to install {ref}`qgis-install` (detailed instructions).

@@ -1,5 +1,5 @@
 (chpt-telemac3d-med)=
-# Telemac3d: Salome-Hydro and MED
+# Telemac3d (Salome-Hydro and MED)
 
 ```{image} ../img/salome/telemac3d-header.png
 :alt: telemac3d salome med results
@@ -8,7 +8,7 @@
 This tutorial describes setting up and running a simple three-dimensional (3d) model of a flume based on the MED file library provided by [salome-platform.org](https://www.salome-platform.org/). The explanations build on the [telemac3d user manual (v8p1)](http://ot-svn-public:telemac1*@svn.opentelemac.org/svn/opentelemac/tags/v8p1r2/documentation/telemac2d/user/telemac3d_user_v8p1.pdf) and more documentation can be found on [opentelemac.org/doku](http://wiki.opentelemac.org/doku.php?id=documentation_v8p2r0).
 
 ```{admonition} Requirements
-The case featured in this tutorial was established on *Debian Linux* (*buster*) with:
+This tutorial is designed for **advanced beginners** and the case featured in this tutorial was established on *Debian Linux* (*buster*) with:
 
 * {ref}`SALOME-HYDRO v2_2 <salome-hydro>`
 * {ref}`SALOME 9.6.0 <salome-install>`, and

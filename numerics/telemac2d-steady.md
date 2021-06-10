@@ -1,3 +1,4 @@
+(telemac2d-steady)=
 # Steady 2d Simulation
 
 ```{admonition} Requirements
@@ -25,49 +26,10 @@ GEOMETRY FILE FORMAT     : SLF  / or MED with SALOME verify usage
 ```
 
 
-````{admonition} Meshing with Blue Kenue
-:class: note, dropdown
-
-This note features the import of points in Blue Kenue and the first steps for the creation of a mesh (`*.slf` geometry file). Refer to the Baxter tutorial from [Gifford-Miers and Leon (2013)](https://web.eng.fiu.edu/arleon/courses/Transient_flows/Tutorials/TELEMAC_2D/TELEMAC_2D_Tutorial_Baxter.pdf) to finalize the mesh and to run TELEMAC with the Blue Kenue mesh.
-
-***Load points to create a geometry file***
-To load any point *shapefile* start *BK* and:
-
-* *File* > *Import* > *ArcView Shape File* > Navigate to the directory where the point *shapefile* lives > Select the *All Files (\*.\*)* option (in lieu of *Telemac Selafin File (\*.slf)*) > Select the file (e.g., *xyz.shp*)
-* ALTERNATIVELY: Open any other point data file with *File* > *Open* > Navigate to DIR > look for *.xyz* or *.dat* files
-
-```{image} ../img/bk-import-pts.png
-```
-
-* Right-click on **points (X)** and open the **Properties**
-* In the **Properties** window got to the **Data** tab > select **Z(float)** and **Apply**; then go to the **ColourScale** tab > **Reset** button > **Apply** > **OK**. Now, **points (X)** should have turned into **points (Z)**
-* Drag **points (X)** from **Data Items** to **Views | 2D View (1)**
-* ALTERNATIVELY: Use a three-dimensional (3D) view of the points: Go to the **Window** menu > **New 3D View** > drag **points (X)** from **Data Items** to **Views | 3D View (1)**
-
-```{image} ../img/bk-imported-3dpts.png
-```
-
-***Generate a Mesh***
-
-Blue Kenue provides mesh generators for creating regular or unstructured computational grids (meshes). This example features the **T3 Channel Mesher** to generate a triangular mesh. Switch to a **2D View** of the above points and walk down the following workflow.
-
-Define the computational domain with a **New Closed Line**:
-  * Find the *New Closed Line* button approximately below the *Help* menu
-  * Draw a polygon around the region of interest by clicking on the most outside points of the point cloud
-  * When finished drawing, press the `Esc` key and enter `ClosedLine_domain` in the *Name* field > click OK and OK (in the popup window)
-
-```{image} ../img/bk-domain-closedline.png
-```
-
-Continue to draw **New Open Line** objects to delineate the main (river) channel, levees, and right-left extents. Orientate at the Baxter tutorial from [Gifford-Miers and Leon (2013)](https://web.eng.fiu.edu/arleon/courses/Transient_flows/Tutorials/TELEMAC_2D/TELEMAC_2D_Tutorial_Baxter.pdf) to finalize line objects and eventually write the mesh into a **New** **Selafin** object.
-
-
-````
 
 (slf-qgis)=
 ## Serafin Geometry with QGIS & BASEMESH
 
-Follow the instructions in the [QGIS data pre-processing](../numerics/pre-qgis) section for creating a .2dm file.
 
 Then...
 
@@ -152,4 +114,3 @@ To start a simulation, `cd` to the directory where the simulation files live (se
 cd /go/to/dir
 telemac2d.py run_2dhydrodynamic.cas
 ```
-

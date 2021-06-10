@@ -3,17 +3,17 @@
 
 ```{admonition} Requirements
 :class: attention
-Before diving into this tutorial make sure to:
+This tutorial is designed for **beginners** and before diving into this tutorial make sure to:
 
 * Follow the installation instructions for {ref}`qgis-install` in this eBook.
 * Read (or watch) and understand this eBook's {ref}`qgis-tutorial`.
 ```
 
-The first steps in numerical modeling of a river consist in the conversion of a Digital Elevation Model (**{term}`DEM`**) into a computational mesh. This tutorial guides through the creation of a QGIS project for converting a {term}`DEM` ({term}`GeoTIFF`) into a computational mesh that can be used with various numerical modeling software featured in this eBook. At the end of this tutorial, {ref}`chpt-basement` users will have generated a computational grid in the {term}`SMS 2dm` format.
+The first steps in numerical modeling of a river with BASEMENT consist in the conversion of a Digital Elevation Model (**{term}`DEM`**) into a computational mesh. This tutorial guides through the creation of a QGIS project for converting a {term}`DEM` ({term}`GeoTIFF`) into a computational mesh that can be used with various numerical modeling software featured in this eBook. At the end of this tutorial, {ref}`chpt-basement` users will have generated a computational grid in the {term}`SMS 2dm` format.
 
 ```{admonition} Platform compatibility
 :class: tip
-All software applications featured in this tutorial can be run on *Linux*, *Windows*, and *macOS* (in theory - not tested) platforms. Note that some numerical models, such as {ref}`chpt-basement`, will not work on *macOS* platforms.
+All software applications featured in this tutorial can be run on *Linux*, *Windows*, and *macOS* (in theory - not tested) platforms. Note that {ref}`chpt-basement` itself will not work on *macOS* platforms.
 ```
 
 (start-qgis)=
@@ -63,7 +63,7 @@ Add the BASEMENT repository to QGIS' Plugins Manager.
 * Still in the **Plugins** popup window go back to the **All** tab an enter `basemesh` in the search field.
 * Find the **newest BASEmesh** (i.e., **Available version** >= 2.0.0) plugin and click on **Install Plugin**.
 * After the successful installation **Close** the **Plugins** popup window.
-* Verify that the *BASEmesh 2* plugin is now available in the *QGIS*' **Plugins** menu (see {numref}`Fig. %s <qgis-pluggedin>`).
+* Verify that the *BASEmesh 2* plugin is now available in the QGIS' **Plugins** menu (see {numref}`Fig. %s <qgis-pluggedin>`).
 
 ```{figure} ../img/qgis/bm-pluggedin.png
 :alt: qgis basement plugins
@@ -108,14 +108,13 @@ The generation of a {term}`SMS 2dm` uses the {ref}`QGIS BASEmesh plugin <get-bas
 * {ref}`Line Shapefile <create-line-shp>` containing model boundaries for assigning inflow and outflow conditions (section on {ref}`liquid-boundary`); and a
 * {ref}`Point Shapefile <create-point-shp>` containing markers for the definition of characteristics of model regions (section on {ref}`regions`).
 
-These two shapefiles enable to {ref}`qualm`. Ultimately, height information is {ref}`interpolated to the quality mesh <qualm-interp>` and the resulting mesh is saved as {term}`SMS 2dm` file. The next sections walk through the procedure step by step with detailed explanations. Additional materials and intermediate data products are provided in the supplemental data repository ([materials-bm](https://github.com/hydro-informatics/materials-bm)) for this tutorial.
-
+These shapefiles enable to generate a {ref}`Quality Mesh <qualm>`. Ultimately, height information is {ref}`interpolated to the quality mesh <qualm-interp>` and the resulting mesh is saved as {term}`SMS 2dm` file. The next sections walk through the procedure step by step with detailed explanations. Additional materials and intermediate data products are provided in the supplemental data repository ([materials-bm](https://github.com/hydro-informatics/materials-bm)) for this tutorial.
 
 
 (boundary)=
 ### Model Boundary and Breaklines
 
-The model boundary defines the model extent and can be divided into regions with different characteristics (e.g., roughness values) through breaklines. Breaklines indicate, for instance, channel banks and the riverbed (main channel), and need to be inside the DEM extents. Boundary lines and breaklines a stored in a {ref}`Line Shapefile <create-line-shp>` that BASEmesh uses to find both model boundaries and internal breaklines between model regions. For this purpose, {ref}`create-line-shp` with **one Text Field** called **LineType** and call it **breaklines.shp** (**Layer** > **Create Layer** > **New Shapefile Layer**). Click on *QGIS*' **Layers** menu > **Create Layer** > **New Shapefile Layer...** (see {numref}`Fig. %s <qgis-new-lyr>`).
+The model boundary defines the model extent and can be divided into regions with different characteristics (e.g., roughness values) through breaklines. Breaklines indicate, for instance, channel banks and the riverbed (main channel), and need to be inside the DEM extents. Boundary lines and breaklines are stored in a {ref}`Line Shapefile <create-line-shp>` that BASEmesh uses to find both model boundaries and internal breaklines between model regions. For this purpose, {ref}`create-line-shp` with **one Text Field** called **LineType** and call it **breaklines.shp** (**Layer** > **Create Layer** > **New Shapefile Layer**). Click on QGIS' **Layers** menu > **Create Layer** > **New Shapefile Layer...** (see {numref}`Fig. %s <qgis-new-lyr>`). Make sure to select `ESRI: 31494 - Germany_Zone_4` as {term}`CRS` <img src="../img/qgis/sym-crs.png">.
 
 ```{figure} ../img/qgis/create-shp-layer.png
 :alt: qgis new layer basemesh
@@ -248,7 +247,7 @@ Region markers are placed inside regions defined by boundary lines and breakline
 
 * Define the **File name** as **region-points.shp** (or similar)
 * Ensure the **Geometry type** is **Point**
-* The **CRS** corresponds to Germany Zone 4 ({ref}`see project CRS <start-qgis>`)
+* The {term}`CRS` <img src="../img/qgis/sym-crs.png"> corresponds to Germany Zone 4 ({ref}`see project CRS <start-qgis>`)
 * Add three **New Field**s (in addition to the default **Integer** type **ID** field):
   * **max_area** = **Decimal number** (**length** = 10, **precision** = 3)
   * **MATID** = **Whole number** (**length** = 3)
@@ -262,7 +261,7 @@ Region markers are placed inside regions defined by boundary lines and breakline
 Definitions and fields to be added to the region-points shapefile.
 ```
 
-Consider to **deactivate snapping** for drawing the region markers. Then, **Toggle (Start) Editing** <img src="../img/qgis/yellow-pen.png"> the new **region-points.shp** file and activate **Add Point Feature** <img src="../img/qgis/sym-add-point.png">. Draw one point in every area section that is enclosed by breaklines and (liquid) boundary lines. Depending on the apparent area type from the satellite imagery basemap, assign one of the five regions listed in {numref}`Tab. %s <region-defs>` to every point.
+Consider to **deactivate snapping** for drawing the region markers to avoid that region markers coincide with any line. Then, **Toggle (Start) Editing** <img src="../img/qgis/yellow-pen.png"> the new **region-points.shp** file and activate **Add Point Feature** <img src="../img/qgis/sym-add-point.png">. Draw one point in every area section that is enclosed by breaklines and (liquid) boundary lines. Depending on the apparent area type from the satellite imagery basemap, assign one of the five regions listed in {numref}`Tab. %s <region-defs>` to every point.
 
 ```{list-table} Region names and their **max_area**, **MATID**, and **type** field values.
 :header-rows: 1
@@ -311,9 +310,9 @@ Download the [zipped region-points shapefile](https://github.com/hydro-informati
 (qualm)=
 ### Create a Quality Mesh
 
-*BASEmesh*'s quality mesh tool creates a computationally efficient triangular mesh based on {cite:t}`shewchuk1996` and within the above-defined model boundaries.  The tools associates mesh properties with the regions shapefile ([see above section on {ref}`regions`), but it does not include elevation data. Thus, after generating a quality mesh, elevation information needs to be added. This section explains the quality mesh generation and the next section features the interpolation of bottom elevations.
+*BASEmesh*'s quality mesh tool creates a computationally efficient triangular mesh based on {cite:t}`shewchuk1996` and within the above-defined model boundaries. The tool associates mesh properties with the regions shapefile ([see above section on {ref}`regions`), but it does not include elevation data. Thus, after generating a quality mesh, elevation information needs to be added. This section explains the quality mesh generation and the next section features the interpolation of bottom elevations.
 
-In *QGIS*' **Plugins** menu, click on **BASEmesh 2** > **QUALITY MESHING** to open the quality mesh tool. Make the following settings in the popup window (see also {numref}`Fig. %s <qgis-qualm>`):
+In QGIS' **Plugins** menu, click on **BASEmesh 2** > **QUALITY MESHING** to open the quality mesh tool. Make the following settings in the popup window (see also {numref}`Fig. %s <qgis-qualm>`):
 
 * Triangulation constraints frame:
   * **Breaklines** = **breaklines** (see {ref}`boundary`).
