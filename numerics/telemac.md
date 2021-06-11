@@ -12,7 +12,7 @@ The analysis of hydro-environments with TELEMAC involves pre-processing for abst
 
 The tutorials in this eBook feature:
 
-* the usage of TELEMAC with the computational mesh created in the {ref}`pre-processing  tutorial <qgis-prepro-tm>`;
+* the usage of TELEMAC with the computational mesh created in the {ref}`pre-processing  tutorial <slf-prepro-tm>`;
 * a purely hydrodynamic 2d model with steady discharge boundary conditions in the {ref}`chpt-telemac2d` section with the standard SLF geometry format;
 * a purely hydrodynamic 3d model with steady discharge boundary conditions in the {ref}`chpt-telemac3d` section with the MED geometry format.
 * Future tutorials (under development) will also feature:
@@ -26,7 +26,7 @@ The tutorials build on the user manuals provided by the TELEMAC developers at [h
 
 Pre-processing involves abstracting the river landscape into a computational mesh (grid) with boundary conditions. Many software tools can be used for this purpose such as:
 
-* {ref}`qgis-install` and the BASEmesh plugin, which are illustrated in the {ref}`QGIS pre-processing tutorial <qgis-prepro-tm>` (**the Author's choice**).
+* {ref}`qgis-install` and the BASEmesh plugin, which are illustrated in the {ref}`QGIS pre-processing tutorial <slf-prepro-tm>` (**the Author's preferred choice**).
 * The National Research Council Canada's {ref}`Blue Kenue <bluekenue>` GUI software (primarily for *Windows*).
 * {ref}`SALOME-HYDRO <salome-hydro>` for generating computational meshes in the MED files format (here illustrated in the {ref}`chpt-telemac3d` tutorial).
 
@@ -36,7 +36,7 @@ The centerpiece of any TELEMAC model is the control (steering or CAS) file, whic
 
 ### Post-processing
 
-*Artelia Eau et Environnement* created the [PostTelemac](https://plugins.qgis.org/plugins/PostTelemac/) plugin for {ref}`qgis-install`, which is a powerful and convenient tool for visualizing and post-processing TELEMAC simulation results. The {ref}`Telemac2d Post-processing <telemac-postpro>` illustrates the usage of the PostTelemac QGIS plugin to create {ref}`raster <raster>` maps and other useful data derivatives from TELEMAC output. In addition, the {ref}`Telemac3d (MED) <sh-postproc>` tutorial features the usage of the ParaVis module (a ParaVie derivative) in {ref}`SALOME <salome-install>`.
+*Artelia Eau et Environnement* created the [PostTelemac](https://plugins.qgis.org/plugins/PostTelemac/) plugin for {ref}`qgis-install`, which is a powerful and convenient tool for visualizing and post-processing TELEMAC simulation results. The {ref}`Telemac2d (steady) Post-processing <tm-steady2d-postpro>` illustrates the usage of the PostTelemac QGIS plugin (read more in the {ref}`TELEMAC pre-processing tutorial <tm-qgis-plugins>`) to create {ref}`raster <raster>` maps and other useful data derivatives from TELEMAC output. In addition, the {ref}`Telemac3d (MED) <sh-postproc>` tutorial features the usage of the ParaVis module (a ParaVie derivative) in {ref}`SALOME <salome-install>`.
 
 (tm-files)=
 ## The TELEMAC File Structure
@@ -48,23 +48,23 @@ For any TELEMAC simulation, the following input files are **mandatory**:
   + Prepare either with {ref}`Fudaa PrePro <fudaa>` or use a text editor (e.g., {ref}`npp` or {ref}`Atom <install-atom>`).
 * Geometry file
   + File formats: `*.slf` ([selafin](https://gdal.org/drivers/vector/selafin.html) or `*.med` (MED file library from the [salome-platform](https://www.salome-platform.org)
-  + Prepare `*.slf` geometries with {ref}`QGIS <qgis-tutorial>`or {ref}`Blue Kenue <bluekenue>`
+  + Prepare `*.slf` geometries with {ref}`QGIS <qgis-tutorial>`or {ref}`Blue Kenue <bluekenue>` (read more in the {ref}`TELEMAC pre-processing tutorial <bk-create-slf>`).
   + Prepare `*.med` geometries with {ref}`SALOME-HYDRO <salome-hydro>`.
 * Boundary conditions
   + File format: `*.cli` (with `*.slf`) or `*.bnd`/`*.bcd` (with `*.med`)
-  + Prepare `*.cli` files with {ref}`Fudaa PrePro <fudaa>` or {ref}`Blue Kenue <bluekenue>`.
+  + Prepare `*.cli` files with {ref}`Fudaa PrePro <fudaa>` or {ref}`Blue Kenue <bluekenue>` (read more in the {ref}`TELEMAC pre-processing tutorial <bk-bc>`).
   + Prepare `*.bnd`/`*.bcd` files either with {ref}`SALOME-HYDRO <salome-hydro>` or with a text editor (read more in the {ref}`Telemac3d (MED) tutorial <bnd-mod>`).
 
 There are many more files that are not computationally mandatory for every TELEMAC simulation, but essential for particular scenarios (e.g., unsteady flows) and modules (e.g., sediment transport with Gaia). Such **optional** files include:
 
-* Liquid boundaries file (e.g., for water surface elevation or flow rates)
+* Unsteady flow file (e.g., for water surface elevation or flow rates)
   + Requires a stage-discharge relationship file
   + File format: `*.qsl`
 * Friction data file
   + File format: `*.tbl` or `*.txt` (`ASCII`)
 * Restart / reference (for model validation) file
   + File format: `.slf` or `.med`
-  + More information in the [Telemac2d docs](http://svn.opentelemac.org/svn/opentelemac/tags/v8p2r0/documentation/telemac2d/user/telemac2d_user_v8p2.pdf) (section 4.1.3) (see also {cite:t}`hervouet_user_2014`).
+  + More information in the {{ tm2d }} (section 4.1.3) (see also {cite:t}`hervouet_user_2014`).
 * Sections file to set control sections (e.g., verify flow rates, velocity, or water surface elevation)
 * Sources (e.g., water or sediment) data file
 * Stage-discharge relation file
@@ -104,9 +104,10 @@ GEOMETRY FILE FORMAT     : SLF / or MED with SALOME preferably for 3D
 
 *MED* files are typically processed with either {ref}`SALOME <salome-install>` or ref}`SALOME-HYDRO <salome-hydro>`, which are featured in the {ref}`Telemac3d (MED) <chpt-telemac3d-med>` tutorial.
 
+
 ### Boundary Conditions (CLI or BND/BCD) and Liquid Boundary (QSL) Files
 
-The boundary file in `*.cli` format contains information about inflow and outflow nodes (coordinates and IDs). The `*.cli` file can be opened and modified with any text editor, which is not recommended to avoid inconsistencies. Preferably use {ref}`Fudaa PrePro <fudaa>` or {ref}`Blue Kenue <bluekenue>` for generating and/or modifying `*.cli` files. Here is an example (header only) for a `*.cli` boundary conditions file:
+The boundary file in `*.cli` format contains information about inflow and outflow nodes (coordinates and IDs). The `*.cli` file can be opened and modified with any text editor, which is not recommended to avoid inconsistencies. Preferably use {ref}`Fudaa PrePro <fudaa>` or {ref}`Blue Kenue <bluekenue>` for generating and/or modifying `*.cli` files (read more in the {ref}`TELEMAC pre-processing tutorial <bk-bc>`). Here is an example (header only) for a `*.cli` boundary conditions file:
 
 ```
   2 2 2  0.000  0.000  0.000  0.000 2  0.000  0.000  0.000    101     1
@@ -145,7 +146,6 @@ The boundary conditions and liquid boundary files can be added in the steering f
 BOUNDARY CONDITIONS FILE : 'bc_channel.cli'
 LIQUID BOUNDARIES FILE   : 'bc_unsteady.qsl'
 ```
-
 
 ### Stage-discharge (or WSE-Q) File (txt - ASCII)
 
@@ -192,4 +192,4 @@ The results/restart file can be define in the steering file as follows:
 RESULTS FILE             : 't2d_channel_output.slf'
 ```
 
-The [Telemac2d docs](http://svn.opentelemac.org/svn/opentelemac/tags/v8p2r0/documentation/telemac2d/user/telemac2d_user_v8p2.pdf) (section 4.1.3) provide more explanations on the usage of results/restart files (e.g., for speeding up simulations).
+The {{ tm2d }} (section 4.1.3) provide more explanations on the usage of results/restart files (e.g., for speeding up simulations).

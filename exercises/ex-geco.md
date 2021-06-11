@@ -192,7 +192,7 @@ Next, load the `osgeo.gdal.dataset`, the `np.array`, and the `geo_transformation
         self.dataset, self.array, self.geo_transformation = geo.raster2array(file_name, band_number=band)
 ```
 
-To identify the [EPSG number (Authority code)](geopy/geospatial-data.html#prj) of a raster, retrieve the spatial reference system (*SRS*) of the raster. Also for this purpose we have already developed a function in the lecture with the `get_srs` form the {ref}`theory section on reprojection <reproject>`. Load the *SRS* and the *EPSG* number using the *get_srs* function with the following two lines of code in the `__init__` method:
+To identify the {ref}`EPSG number (Authority code) <prj>` of a raster, retrieve the spatial reference system (*SRS*) of the raster. Also for this purpose we have already developed a function in the lecture with the `get_srs` form the {ref}`theory section on reprojection <re-project>`. Load the *SRS* and the *EPSG* number using the *get_srs* function with the following two lines of code in the `__init__` method:
 
 ```python
     # __init__(...) of Raster class in raster.py

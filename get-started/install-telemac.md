@@ -870,7 +870,7 @@ To start *SALOME-HYDRO*, open *Terminal* and tap:
 
 For working with TELEMAC, consider installing the following **QGIS Plugins** (*Plugins* > *Manage and Install Plugins...*):
 
-* {ref}`BASEmesh <get-basemesh>` enables to create a {term}`SMS 2dm` file that can be converted to a selafin geometry for TELEMAC (read more in the {ref}`QGIS pre-processing tutorial <qgis-prepro>`).
+* {ref}`BASEmesh <get-basemesh>` enables to create a {term}`SMS 2dm` file that can be converted to a selafin geometry for TELEMAC (read more in the {ref}`QGIS pre-processing tutorial for TELEMAC <tm-qgis-prepro>`).
 * *PostTelemac* visualizes `*.slf` (and others such as `*.res`) geometry files at different time steps.
 * *DEMto3D* enables to export *STL* geometry files for working with *SALOME* and creating 3D meshes.
 

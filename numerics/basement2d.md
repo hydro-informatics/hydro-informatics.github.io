@@ -528,14 +528,16 @@ Running the *Python* script generates three {term}`CSV` files that contain value
 * **results.csv** contains any OUTPUT parameter defined in the {ref}`simulation setup file <bm-sim-file>`.
 * **timestep.csv** lists the number of OUTPUT parameter timesteps.
 
-The primarily important file is **Discharge.csv**, from which can be read when inflow and outflow converge in a steady-state simulation (i.e., **the simulation stabilizes**). A steady simulation in which the sum of all inflows does not equal all outflows must be considered erroneous. For instance, if the sum of outflows in the last timestep is smaller than the sum of inflows, then the simulation time is too short. The diagram in {numref}`Fig. %s <convergence-diagram>` plots inflow and outflow for the simulation setup of this tutorial. The diagram suggests that the model reaches stability after timestep 11 (simulation time $t \leq 11000$). Thus, the simulation time could be limited to $t = 12000$, but a simulation time of $t = 10000$ would be too short.
+The primarily important file is **Discharge.csv**, from which can be read when inflow and outflow converge in a steady-state simulation (i.e., **the simulation stabilizes**). A steady simulation in which the sum of all inflows does not equal all outflows must be considered erroneous. For instance, if the sum of outflows in the last timestep is smaller than the sum of inflows, then the simulation time is too short. The diagram in {numref}`Fig. %s <convergence-diagram-bm>` plots inflow and outflow for the simulation setup of this tutorial. The diagram suggests that the model reaches stability after timestep 11 (simulation time $t \leq 11000$). Thus, the simulation time could be limited to $t = 12000$, but a simulation time of $t = 10000$ would be too short.
 
 ```{figure} ../img/basement/convergence-diagram.png
 :alt: basement convergence model simulation discharge verification validation
-:name: convergence-diagram
+:name: convergence-diagram-bm
 
 Convergence of inflow and outflow at the model boundaries.
 ```
+
+Note the difference between the convergence duration in this steady simulation with BASEMENT (plot in {numref}`Fig. %s <convergence-diagram-bm>`) that starts with a dry model compared to the shorter convergence duration in the Telemac2d  tutorial that starts with an initial condition of 1.0 m water depth (plot in {numref}`Fig. %s <convergence-diagram-tm2d>`). This difference mainly stems from the type of initial conditions (dry channel versus initial depth) that also reflects in a zero-outflow in the BASEMENT simulation and an outflow surplus that is visible in the Telemac2d simulation at the beginning of the simulations.
 
 ```{admonition} Discharge convergence issues
 * **Perpetually increasing discharge in a steady simulation**<br>The definition of the  {ref}`upstream_direction <bm-geo-fin>` (e.g., wrongly defined as `"left"` or `"right"`) may cause this error.

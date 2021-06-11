@@ -13,7 +13,7 @@ This chapter introduces open-access and open-source software with extensive tuto
 * **BASEMENT (open-access)**<br>The {ref}`chpt-basement` tutorial introduces 2d hydrodynamic modelling with the ETH Zurich's (Switzerland) numerical model *BASEMENT* 3.x, which was primarily developed with benchmark tests on **mountain rivers/streams**.
 * **TELEMAC (open source)**<br>Open TELEMAC-MASCARET is a powerful software suite for a large variety of **rivers, lakes, and even ocean deltas**.
   * Get an overview of files and model options in the {ref}`TELEMAC introduction <chpt-telemac>` section.
-  * The {ref}`chpt-telemac2d` tutorial introduces 2d hydrodynamic modelling with standard *SLF* (selafin) geometry files (*TUTORIAL UNDER CONSTRUCTION*).
+  * The {ref}`chpt-telemac2d` tutorial introduces 2d hydrodynamic modelling with standard *SLF* (selafin) geometry files.
   * The {ref}`chpt-telemac3d-med` tutorial introduces 3d hydrodynamic modeling based on the highly efficient *MED* file library and using the {ref}`salome-hydro` software suite.
 <!--
 * OpenFOAM8

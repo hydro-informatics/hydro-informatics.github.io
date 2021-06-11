@@ -1,10 +1,12 @@
 (chpt-telemac2d)=
 # Telemac2d
 
-## Under construction. Expected release in the next 12 months.
+```{admonition} Growing chapter
+This chapter is currently still growing and contents are in a beta-state.
+```
 
-Thank you for your patience.
+The Telemac2d tutorials build on the SELAFIN (`*.slf`) and Conlim (`*.cli`) boundary condition files that result from the {ref}`TELEMAC pre-processing tutorial <slf-prepro-tm>`.
 
+The {ref}`Steady Simulation <telemac2d-steady>` tutorial features using the `*.slf` and `*.cli` files for a steady hydrodynamic 2d simulation with the Telemac2d module.
 
-
-This tutorial uses descriptions provided in the [telemac2d](http://ot-svn-public:telemac1*@svn.opentelemac.org/svn/opentelemac/tags/v8p1r1/documentation/telemac2d/user/telemac2d_user_v8p1.pdf) user manual.
+  The tutorial descriptions refer to the {{ tm2d }}.
