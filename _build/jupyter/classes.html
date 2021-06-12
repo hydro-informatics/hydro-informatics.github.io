@@ -1,0 +1,1327 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Object Orientation and Classes &#8212; Hydro-Informatics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://hydro-informatics.github.io/jupyter/classes.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Data and File Handling" href="../python-basics/data-handling.html" />
+    <link rel="prev" title="Packages, Modules and Libraries" href="pypckg.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/icon.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  Get Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../lectures/classroom.html">
+   The Virtual Classroom
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/lectures.html">
+     Lectures and Exercises
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/take_seat.html">
+     Take a Seat
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../get-started/software.html">
+   Software Resources
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/vm.html">
+     Virtual Machines and Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/ide.html">
+     Integrated Development Environments (IDEs)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python-basics/pyinstall.html">
+     Install Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/git.html">
+     Introduction to git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/geo.html">
+     Geospatial Software
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-openfoam.html">
+     OpenFOAM (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-telemac.html">
+     TELEMAC (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/others.html">
+     Other Software Resources
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Python Basics
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/python.html">
+   First Steps
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pybase.html">
+     Hello Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyerror.html">
+     Errors, Logging, and Debugging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyloop.html">
+     Loops and Conditional Statements
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../python-basics/modularize.html">
+   Object Orientation
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyfun.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pypckg.html">
+     Packages, Modules and Libraries
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Object Orientation and Classes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/data-handling.html">
+   Data and File Handling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pynum.html">
+     Load and Write Basic Data Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="xml.html">
+     Workbooks (xlsx) and JSON
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyplot.html">
+     Plotting
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pystyle.html">
+   Code Style and Conventions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gui.html">
+   Graphical User Interfaces (GUIs)
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/python-exercises.html">
+   Python Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-ms.html">
+     1d Hydraulics (Manning-Strickler Formula)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sp.html">
+     Reservoir Volume (Sequent Peak Algorithm)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-floods.html">
+     Flood Return Periods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sediment.html">
+     1d Sediment Transport
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-gui.html">
+     Create a GUI
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Geospatial Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/geospatial-data.html">
+   Geospatial Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/use-qgis.html">
+   QGIS Tutorial
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../geopy/geo-python.html">
+   Geospatial Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-pckg.html">
+     Geospatial Open Source Python Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="geo-shp.html">
+     Shapefile (Vector Dataset) Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="geo-raster.html">
+     Raster (Gridded) Dataset Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="geo-convert.html">
+     Raster to Vector Conversion and Vice Versa
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="geo-arcpy.html">
+     The Commercial arcpy Library
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/geo-exercises.html">
+   Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-geco.html">
+     Script a Habitat Suitability Map
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Numerical Modeling
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/numerical-modeling.html">
+   Principles
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerics/basement.html">
+   BASEMENT
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/pre-qgis-bm.html">
+     Pre-processing with QGIS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/basement2d.html">
+     Simulation Setup (Steady 2d)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerics/telemac.html">
+   TELEMAC
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/pre-slf-tm.html">
+     Pre-processing
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../numerics/telemac2d.html">
+     Telemac2d
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac2d-steady.html">
+       Steady 2d Simulation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac2d-unsteady.html">
+       Unsteady 2d Simulation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac-gaia.html">
+       Unsteady Hydro-Morphodynamic 2d Simulation (Gaia)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../numerics/telemac3d.html">
+     Telemac3d
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac3d-slf.html">
+       Telemac3d (SLF)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac3d-med.html">
+       Telemac3d (Salome-Hydro and MED)
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerics/openfoam.html">
+   OpenFOAM
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/pre-qgis-of.html">
+     Pre-processing with QGIS
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/calibration.html">
+   Calibration and Validation
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Documentation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/documentation.html">
+   Markdown and Code Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/glossary.html">
+   Glossary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/notation.html">
+   Notation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/bibliography.html">
+   References
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/docs-exercises.html">
+   Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-git.html">
+     Git and markdown
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Troubleshoot
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
+   Programming Tools and IDEs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
+     Debugging Anaconda
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-python.html">
+     Debugging Python Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
+     Debugging Jupyter
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
+   Numerical Models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+  <label for="toctree-checkbox-16">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
+     Debugging BASEMENT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
+     Debugging TELEMAC/SALOME
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-os.html">
+   Operating Systems (Linux and VMs)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+  <label for="toctree-checkbox-17">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
+     Debugging Debian Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
+     Debugging Virtual Machines
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Disclaimer and License
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/jupyter/classes.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/hydro-informatics/hydro-informatics.github.io"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter/v2/gh/hydro-informatics/hydro-informatics.github.io/gh-pages?urlpath=lab/tree/_sources/jupyter/classes.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com//github/hydro-informatics/hydro-informatics.github.io/blob/gh-pages/_sources/jupyter/classes.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-class-of-classes">
+   The Class of Classes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-object-oriented-programming-oop">
+     What is Object-Oriented Programming (OOP)?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#objects-and-classes">
+     Objects and Classes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inheritance">
+     Inheritance
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#polymorphism">
+     Polymorphism
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#encapsulation-public-and-non-public-attributes">
+     Encapsulation (Public and Non-public Attributes)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decorators">
+   Decorators
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overloading-and-magic-methods">
+   Overloading and Magic Methods
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#operator-binary-and-assignment-methods">
+     Operator (binary) and assignment methods
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#operator-unary-and-comparator-methods">
+     Operator (unary) and Comparator Methods
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#custom-python-class-template">
+   Custom
+   <em>
+    Python
+   </em>
+   Class Template
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="object-orientation-and-classes">
+<span id="ooc"></span><h1>Object Orientation and Classes<a class="headerlink" href="#object-orientation-and-classes" title="Permalink to this headline">¶</a></h1>
+<p>Leverage the power of Python by writing new classes. For interactive reading and executing code blocks <a class="reference external" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> and find <em>classes.ipynb</em> or <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Install Python</span></a> locally along with <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a>.</p>
+<div class="section" id="the-class-of-classes">
+<h2>The Class of Classes<a class="headerlink" href="#the-class-of-classes" title="Permalink to this headline">¶</a></h2>
+<p><em>Python</em> is an inherently object-oriented language and makes the deployment of classes and objects extremely easy. Let’s start with essential definitions.</p>
+<div class="section" id="what-is-object-oriented-programming-oop">
+<h3>What is Object-Oriented Programming (OOP)?<a class="headerlink" href="#what-is-object-oriented-programming-oop" title="Permalink to this headline">¶</a></h3>
+<p>Object-Oriented Programming (OOP) is a programming paradigm that aligns the architecture of software with reality. Object orientation starts with the design of software, where a structured model is established. The structured model contains information about objects and their abstractions. The development and implementation of object-oriented software requires a structured way of thinking and the conceptual understanding of classes, inheritance, polymorphism and encapsulation.</p>
+</div>
+<div class="section" id="objects-and-classes">
+<h3>Objects and Classes<a class="headerlink" href="#objects-and-classes" title="Permalink to this headline">¶</a></h3>
+<p>In computer language, an <strong>object</strong> is an instance that contains data in the shape of fields (called <em>attributes</em> or <em>properties</em>) and code in the shape of features (<em>functions</em> or <em>methods</em>). The features of an object enable access (read) and manipulation of its data fields. Objects have a concept of <code class="docutils literal notranslate"><span class="pre">self</span></code> regarding their attributes, methods and data fields. <code class="docutils literal notranslate"><span class="pre">self</span></code> internally references attributes, properties or methods belonging to an object.</p>
+<p>In <em>Python</em>, an object is an instance of a class. Thus, a <strong>class</strong> represents a blueprint for many similar objects with the same attributes and methods. A class does not use system memory and only its instance (i.e., objects) will use memory.</p>
+<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/classes_objects.png" /></p>
+<p>The simplest form of a class in <em>Python</em> only includes some statements, and it is highly recommended to add an <code class="docutils literal notranslate"><span class="pre">__init__</span></code> statement where class variables are defined. We will come back to the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> statement later in the section on <em>magic</em> methods. The following example shows one of the simplest classes with an <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method. Note the usage of <code class="docutils literal notranslate"><span class="pre">self</span></code> in the class, which becomes <code class="docutils literal notranslate"><span class="pre">object_name.attribute</span></code> for instances of the class.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IceCream</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flavors</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;vanilla&quot;</span><span class="p">,</span> <span class="s2">&quot;chocolate&quot;</span><span class="p">,</span> <span class="s2">&quot;bread&quot;</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="nf">add_flavor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flavor</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flavors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">flavor</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">print_flavors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">flavors</span><span class="p">))</span>
+
+<span class="c1"># create an instance of IceCream and use the print_flavors method</span>
+<span class="n">some_scoops</span> <span class="o">=</span> <span class="n">IceCream</span><span class="p">()</span>
+<span class="n">some_scoops</span><span class="o">.</span><span class="n">add_flavor</span><span class="p">(</span><span class="s2">&quot;lemon&quot;</span><span class="p">)</span>
+
+<span class="c1"># the following statements have similar effects</span>
+<span class="n">some_scoops</span><span class="o">.</span><span class="n">print_flavors</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">some_scoops</span><span class="o">.</span><span class="n">flavors</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>vanilla, chocolate, bread, lemon
+[&#39;vanilla&#39;, &#39;chocolate&#39;, &#39;bread&#39;, &#39;lemon&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="inheritance">
+<h3>Inheritance<a class="headerlink" href="#inheritance" title="Permalink to this headline">¶</a></h3>
+<p>The <em>Cambridge Dictionary</em> defines inheritance (biology) as <em>“particular characteristics received from parents through genes”</em>. Similarly, inheritance in OOP describes the hierarchical relationship between classes with <em>is-a-type-of</em> relationships. For example, a class <code class="docutils literal notranslate"><span class="pre">Salmon</span></code> may inherit from a class <code class="docutils literal notranslate"><span class="pre">Fish</span></code>. In this case, <code class="docutils literal notranslate"><span class="pre">Fish</span></code> is the parent class (or super-class) and <code class="docutils literal notranslate"><span class="pre">Salmon</span></code> is the child class (or sub-class), where <code class="docutils literal notranslate"><span class="pre">Fish</span></code> might define attributes like <code class="docutils literal notranslate"><span class="pre">preferred_flow_depth</span></code> or <code class="docutils literal notranslate"><span class="pre">preferred_flow_velocity</span></code> and fuzzification methods to describe other habitat preferences. Such a class inheritance could look like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define the parent class Fish</span>
+<span class="k">class</span> <span class="nc">Fish</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">preferred_flow_depth</span> <span class="o">=</span> <span class="nb">float</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">preferred_flow_velocity</span> <span class="o">=</span> <span class="nb">float</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">species</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xy_position</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">print_habitat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The species </span><span class="si">{0}</span><span class="s2"> prefers </span><span class="si">{1}</span><span class="s2">m deep and </span><span class="si">{2}</span><span class="s2">m/s fast flowing waters.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">species</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">preferred_flow_depth</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">preferred_flow_velocity</span><span class="p">)))</span>
+        
+    <span class="k">def</span> <span class="nf">swim_to_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_position</span><span class="o">=</span><span class="p">()):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xy_position</span> <span class="o">=</span> <span class="n">new_position</span>
+
+
+<span class="c1"># define the child class Salmon, which inherits (is-a-type-of) from Fish</span>
+<span class="k">class</span> <span class="nc">Salmon</span><span class="p">(</span><span class="n">Fish</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">species</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">Fish</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">family</span> <span class="o">=</span> <span class="s2">&quot;salmonidae&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">species</span> <span class="o">=</span> <span class="n">species</span>
+        
+    <span class="k">def</span> <span class="nf">habitat_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">velocity</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">preferred_flow_depth</span> <span class="o">=</span> <span class="n">depth</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">preferred_flow_velocity</span> <span class="o">=</span> <span class="n">velocity</span>
+
+
+<span class="n">atlantic_salmon</span> <span class="o">=</span> <span class="n">Salmon</span><span class="p">(</span><span class="s2">&quot;Salmo salar&quot;</span><span class="p">)</span>
+<span class="n">atlantic_salmon</span><span class="o">.</span><span class="n">habitat_function</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">velocity</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">atlantic_salmon</span><span class="o">.</span><span class="n">print_habitat</span><span class="p">()</span>
+
+<span class="n">pacific_salmon</span> <span class="o">=</span> <span class="n">Salmon</span><span class="p">(</span><span class="s2">&quot;Oncorhynchus tshawytscha&quot;</span><span class="p">)</span>
+<span class="n">pacific_salmon</span><span class="o">.</span><span class="n">habitat_function</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">velocity</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">pacific_salmon</span><span class="o">.</span><span class="n">print_habitat</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The species Salmo salar prefers 0.4m deep and 0.5m/s fast flowing waters.
+The species Oncorhynchus tshawytscha prefers 0.6m deep and 0.8m/s fast flowing waters.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To make initial attributes of the parent class (<code class="docutils literal notranslate"><span class="pre">Fish</span></code>) directly accessible, use <code class="docutils literal notranslate"><span class="pre">ParentClass.__init__(self)</span></code> in the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method of the child class.</p>
+</div>
+</div>
+<div class="section" id="polymorphism">
+<span id="id1"></span><h3>Polymorphism<a class="headerlink" href="#polymorphism" title="Permalink to this headline">¶</a></h3>
+<p>In computer science, polymorphism refers to the ability of presenting the same programming interface for different basic structures. Admittedly, a definition cannot be much more abstract. So it is sufficient to focus here only on the meaning of polymorphism relevant in <em>Python</em> and that is when child classes have methods of the same name as the parent class. For example, polymorphism in <em>Python</em> is when we re-define the <code class="docutils literal notranslate"><span class="pre">swim_to_position</span></code> function of the above show <code class="docutils literal notranslate"><span class="pre">Fish</span></code> parent class in the <code class="docutils literal notranslate"><span class="pre">Salmon</span></code> child class.</p>
+</div>
+<div class="section" id="encapsulation-public-and-non-public-attributes">
+<h3>Encapsulation (Public and Non-public Attributes)<a class="headerlink" href="#encapsulation-public-and-non-public-attributes" title="Permalink to this headline">¶</a></h3>
+<p>The concept of encapsulation combines data and functions to manipulate data, whereby both (data and functions) are protected against external interference and manipulation. Encapsulation is also the baseline of <a class="reference external" href="https://en.wikipedia.org/wiki/Information_hiding">data hiding</a> in computer science, which segregates design decisions in software regarding objects that are likely to change. Here, the most important aspect of encapsulation is the differentiation between <code class="docutils literal notranslate"><span class="pre">private</span></code> and <code class="docutils literal notranslate"><span class="pre">public</span></code> class variables.</p>
+<p><code class="docutils literal notranslate"><span class="pre">private</span></code> attributes cannot be modified from outside (i.e., they are protected and cannot be changed for an instance of a class). In <em>Python</em>, there are no inherently <code class="docutils literal notranslate"><span class="pre">private</span></code> variables and this is why <em>Python</em> docs talk about <code class="docutils literal notranslate"><span class="pre">non-public</span></code> attributes (i.e., <code class="docutils literal notranslate"><span class="pre">_single_leading_underscore</span></code> <em>def</em>s in a class) rather than <code class="docutils literal notranslate"><span class="pre">private</span></code> attributes. While using a single underscore is rather good practice without technical support, we can use <code class="docutils literal notranslate"><span class="pre">__double_leading_underscore</span></code> attributes to emulate private behavior with a mechanism called <em>name mangling</em>. Read more about variable definition styles in the <a class="reference external" href="pystyle.html#object-styles">style guide</a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">public</span></code> attributes can be modified externally (i.e., different values can be assigned to <code class="docutils literal notranslate"><span class="pre">public</span></code> attributes of different instances of a class).</p>
+<p>In the above example of the <code class="docutils literal notranslate"><span class="pre">Salmon</span></code> class, we use a public variable <code class="docutils literal notranslate"><span class="pre">self.family</span></code>. However, the family attribute of the <code class="docutils literal notranslate"><span class="pre">Salmon</span></code> class is an attribute that should not be modifiable. A similar behavior would be desirable for an <code class="docutils literal notranslate"><span class="pre">self.aggregate_state</span> <span class="pre">=</span> <span class="pre">'frozen'</span></code> of the <code class="docutils literal notranslate"><span class="pre">IceCream</span></code> class. So let’s define another child of the <code class="docutils literal notranslate"><span class="pre">Fish</span></code> class with a non-public <code class="docutils literal notranslate"><span class="pre">__family</span></code> attribute. The <code class="docutils literal notranslate"><span class="pre">__family</span></code> attribute is not directly accessible for instances of the new child class <code class="docutils literal notranslate"><span class="pre">Carp</span></code>. Still, we want the <code class="docutils literal notranslate"><span class="pre">Carp</span></code> class to have a <code class="docutils literal notranslate"><span class="pre">family</span></code> attribute and we want to be able to print its value. This is why we need a special method <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">family(self)</span></code>, which has an <code class="docutils literal notranslate"><span class="pre">&#64;property</span></code> decorator (recall <a class="reference external" href="pyfun.html#wrappers">decorators on the functions page</a>). The below example features another special method <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">family(self,</span> <span class="pre">value)</span></code> that is embraced with a <code class="docutils literal notranslate"><span class="pre">&#64;property.setter</span></code> decorator that enables re-defining the non-public <code class="docutils literal notranslate"><span class="pre">__family</span></code> property (even though this is logically nonsense here because we do not want to enable renaming the <code class="docutils literal notranslate"><span class="pre">__family</span></code> property).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Carp</span><span class="p">(</span><span class="n">Fish</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">species</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">Fish</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__family</span> <span class="o">=</span> <span class="s2">&quot;cyprinidae&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">species</span> <span class="o">=</span> <span class="n">species</span>
+        
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">family</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__family</span>
+    
+    <span class="nd">@family</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">family</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__family</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;family set to </span><span class="se">\&#39;</span><span class="si">%s</span><span class="se">\&#39;</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">__family</span><span class="p">)</span>
+        
+        
+<span class="n">european_carp</span> <span class="o">=</span> <span class="n">Carp</span><span class="p">(</span><span class="s2">&quot;Cyprinus carpio carpio&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">european_carp</span><span class="o">.</span><span class="n">family</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">european_carp</span><span class="o">.</span><span class="n">__family</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;__family is not directly accessible.&quot;</span><span class="p">)</span>
+
+<span class="c1"># re-definition of __family through @family.setter method</span>
+<span class="n">european_carp</span><span class="o">.</span><span class="n">family</span><span class="o">=</span><span class="s2">&quot;lamnidae&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cyprinidae
+__family is not directly accessible.
+family set to &#39;lamnidae&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="decorators">
+<span id="dec"></span><h2>Decorators<a class="headerlink" href="#decorators" title="Permalink to this headline">¶</a></h2>
+<p>In the last example, we have seen the implementation of the <code class="docutils literal notranslate"><span class="pre">&#64;property</span></code> decorator, which tweaks a method into a non-callable attribute (property), and the <code class="docutils literal notranslate"><span class="pre">&#64;attribute.setter</span></code> decorator to re-define a non-public variable.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>What are decorators and wrappers again? If you are hesitating to answer this question, refresh your memory on the <a class="reference external" href="pyfun.html#wrappers">functions page</a>.</p>
+</div>
+<p>Until now, we only know decorators as a nice way to simplify functions. However, decorators are an even more powerful tool in object-oriented programming of classes, where decorators can be used to wrap class methods similar to functions. Let’s define another child of the <code class="docutils literal notranslate"><span class="pre">Fish</span></code> class explore the <code class="docutils literal notranslate"><span class="pre">&#64;property</span></code> decorator with its <code class="docutils literal notranslate"><span class="pre">deleter</span></code>, <code class="docutils literal notranslate"><span class="pre">getter</span></code>, and <code class="docutils literal notranslate"><span class="pre">setter</span></code> methods.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Bullhead</span><span class="p">(</span><span class="n">Fish</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">species</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">Fish</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__family</span> <span class="o">=</span> <span class="s2">&quot;cottidae&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">species</span> <span class="o">=</span> <span class="n">species</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__length</span> <span class="o">=</span> <span class="mf">7.0</span>
+        
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__length</span>
+    
+    <span class="nd">@length</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">length</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__length</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: Value is not a real number.&quot;</span><span class="p">)</span>
+            
+    <span class="nd">@length</span><span class="o">.</span><span class="n">deleter</span>
+    <span class="k">def</span> <span class="nf">length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">__length</span>
+        
+<span class="n">european_bullhead</span> <span class="o">=</span> <span class="n">Bullhead</span><span class="p">(</span><span class="s2">&quot;Cottus gobio&quot;</span><span class="p">)</span>
+
+<span class="c1"># make use of @property.getter, which directly results from the @property-embraced def length method</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">european_bullhead</span><span class="o">.</span><span class="n">length</span><span class="p">)</span>
+
+<span class="c1"># make use of @property.setter method</span>
+<span class="n">european_bullhead</span><span class="o">.</span><span class="n">length</span> <span class="o">=</span> <span class="mf">6.5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">european_bullhead</span><span class="o">.</span><span class="n">length</span><span class="p">)</span>
+
+<span class="c1"># make use of @property.delete method</span>
+<span class="k">del</span> <span class="n">european_bullhead</span><span class="o">.</span><span class="n">length</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">european_bullhead</span><span class="o">.</span><span class="n">length</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: You cannot print a nonexistent property.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.0
+6.5
+Error: You cannot print a nonexistent property.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="overloading-and-magic-methods">
+<span id="magic"></span><h2>Overloading and Magic Methods<a class="headerlink" href="#overloading-and-magic-methods" title="Permalink to this headline">¶</a></h2>
+<p>The above examples introduced already the special, or magic, method <code class="docutils literal notranslate"><span class="pre">__init__</span></code>. We have already seen that <code class="docutils literal notranslate"><span class="pre">__init__</span></code> is nothing magical itself and there are many more of such predefined methods in <em>Python</em>. Before we get to <em>magic</em> methods, it is important to understand the concept of overloading in <em>Python</em>. So did you already wonder why the same operator can have different effects depending on the data type?</p>
+<p>For example, the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator concatenates <em>strings</em>, but sums up numeric data types:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_string</span> <span class="o">=</span> <span class="s2">&quot;vanilla&quot;</span>
+<span class="n">b_string</span> <span class="o">=</span> <span class="s2">&quot;cream&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;+ operator applied to strings: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">a_string</span> <span class="o">+</span> <span class="n">b_string</span><span class="p">))</span>
+
+<span class="n">a_number</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">b_number</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;+ operator applied to integers: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">a_number</span> <span class="o">+</span> <span class="n">b_number</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+ operator applied to strings: vanillacream
++ operator applied to integers: 80
+</pre></div>
+</div>
+</div>
+</div>
+<p>This behavior is called operator (or function) overloading in <em>Python</em> and overloading is possible because of pre-defined names of <em>magic methods</em> in <em>Python</em>. Now, we are ready to get to <em>magic</em> methods.</p>
+<p>Magic methods are one of the key elements that make <em>Python</em> easy and clear to use. Because of their declaration using double underscores (<code class="docutils literal notranslate"><span class="pre">__this_is_magic__</span></code>), magic methods are also called <em>dunder</em> (<strong>d</strong>ouble <strong>under</strong>score) methods. Magic methods are special methods with fixed names and their <em>magic</em> name is because they do not need to be directly invoked. Behind the scenes, <em>Python</em> constantly uses <em>magic</em> methods, for example when a new instance of a class is assigned: When you write <code class="docutils literal notranslate"><span class="pre">var</span> <span class="pre">=</span> <span class="pre">MyClass()</span></code>, <em>Python</em> automatically calls <code class="docutils literal notranslate"><span class="pre">MyClass</span></code>’es <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> and <code class="docutils literal notranslate"><span class="pre">__new__()</span></code> <em>magic</em> methods. Magic methods also apply to any operator or (augmented) assignment. For example, the <code class="docutils literal notranslate"><span class="pre">+</span></code> binary operator makes <em>Python</em> look for the magic method <code class="docutils literal notranslate"><span class="pre">__add__</span></code>. Thus, when we type <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+</span> <span class="pre">b</span></code>, and both variables are instances of <code class="docutils literal notranslate"><span class="pre">MyClass</span></code>, <em>Python</em> will look for the <code class="docutils literal notranslate"><span class="pre">__add__</span></code> method of <code class="docutils literal notranslate"><span class="pre">MyClass</span></code> in order to apply <code class="docutils literal notranslate"><span class="pre">a.__add__(b)</span></code>. If <em>Python</em> cannot find the <code class="docutils literal notranslate"><span class="pre">__add__</span></code> method in <code class="docutils literal notranslate"><span class="pre">MyClass</span></code>, it returns a <code class="docutils literal notranslate"><span class="pre">TypeError:</span> <span class="pre">unsupported</span> <span class="pre">operand</span></code>.</p>
+<p>The following sections list some documented magic methods for use in classes and packages in tabular format. The tables provide the most common magic methods and more documented magic objects or attributes exist.</p>
+<div class="section" id="operator-binary-and-assignment-methods">
+<h3>Operator (binary) and assignment methods<a class="headerlink" href="#operator-binary-and-assignment-methods" title="Permalink to this headline">¶</a></h3>
+<p>For any new class that we want to be able to deal with an operator (e.g., to enable summing up objects with <code class="docutils literal notranslate"><span class="pre">result</span> <span class="pre">=</span> <span class="pre">object1</span> <span class="pre">+</span> <span class="pre">object2</span></code>), we need to implements (overload) the following methods.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Operator</p></th>
+<th class="head"><p>Method</p></th>
+<th class="head"><p></p></th>
+<th class="head"><p>Assignment</p></th>
+<th class="head"><p>Method</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">+</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__add__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+<td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">+=</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__iadd__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__sub__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+<td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-=</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__isub__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">*</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__mul__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+<td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">*=</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__imul__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">//</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__floordiv__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+<td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/=</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__idiv__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__truediv__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+<td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">//=</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__ifloordiv__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">%</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__mod__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+<td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%=</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__imod__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">**</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__pow__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+<td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">**=</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__ipow__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__lshift__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+<td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;&lt;=</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__ilshift__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__rshift__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+<td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&gt;&gt;=</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__irshift__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&amp;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__and__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+<td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;=</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__iand__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">^</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__xor__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+<td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">^=</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__ixor__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">|</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__or__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+<td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">|=</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__ior__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="operator-unary-and-comparator-methods">
+<h3>Operator (unary) and Comparator Methods<a class="headerlink" href="#operator-unary-and-comparator-methods" title="Permalink to this headline">¶</a></h3>
+<p>Also unary or comparative operators can be defined in classes. Unary operators deal with only one input in contrast to the above listed binary operators. Unary operators is what we typically use to increment or decrement variables with for example <code class="docutils literal notranslate"><span class="pre">++x</span></code> or <code class="docutils literal notranslate"><span class="pre">--x</span></code>. In addition, comparative operators (comparators) involve magic methods, such as <code class="docutils literal notranslate"><span class="pre">__ne__</span></code>, as synonym for <strong>n</strong>ot <strong>e</strong>qual.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Operator</p></th>
+<th class="head"><p>Method</p></th>
+<th class="head"><p></p></th>
+<th class="head"><p>Comparator</p></th>
+<th class="head"><p>Method</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__neg__(self)</span></code></p></td>
+<td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__lt__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">+</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__pos__(self)</span></code></p></td>
+<td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;=</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__le__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">abs()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__abs__(self)</span></code></p></td>
+<td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">==</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__eq__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">~</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__invert__(self)</span></code></p></td>
+<td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">!=</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__ne__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">complex()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__complex__(self)</span></code></p></td>
+<td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&gt;=</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__ge__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">int()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__int__(self)</span></code></p></td>
+<td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__gt__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">long()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__long__(self)</span></code></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">float()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__float__(self)</span></code></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>A rather old (<em>Python</em> 2-based), but comprehensive and inclusive summary of magic methods is provided by <a class="reference external" href="https://rszalski.github.io/magicmethods/">Rafe Kettler</a>.</p>
+<p>Still, you may wonder how does a class look like that is capable of using for example the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator with an <code class="docutils literal notranslate"><span class="pre">__add__</span></code> method? Let’s define another child of the <code class="docutils literal notranslate"><span class="pre">Fish</span></code> class to build a swarm:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Mackerel</span><span class="p">(</span><span class="n">Fish</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">species</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">Fish</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__family</span> <span class="o">=</span> <span class="s2">&quot;scombridae&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">species</span> <span class="o">=</span> <span class="n">species</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+        
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="n">value</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span>
+    
+    <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">multiplier</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">*=</span> <span class="n">multiplier</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span>
+        
+<span class="n">atlantic_mackerel</span> <span class="o">=</span> <span class="n">Mackerel</span><span class="p">(</span><span class="s2">&quot;Scomber scombrus&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">atlantic_mackerel</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">atlantic_mackerel</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+20
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="custom-python-class-template">
+<span id="template"></span><h2>Custom <em>Python</em> Class Template<a class="headerlink" href="#custom-python-class-template" title="Permalink to this headline">¶</a></h2>
+<p>This section features a couple of examples with options for implementing public and non-public properties and customizations of <em>magic</em> methods to enable the use of operators such as <code class="docutils literal notranslate"><span class="pre">+</span></code> or <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code> with custom classes. So there are many options in writing custom classes and all custom classes should at least incorporate the following methods:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">__init__(self,</span> <span class="pre">[...)</span></code> is the class initializer, which is called when an instance of the class is created. More precisely, it is called along with the <code class="docutils literal notranslate"><span class="pre">__new__(cls,</span> <span class="pre">[...)</span></code> method, which is rarely used (read more at <a class="reference external" href="https://docs.python.org/3/reference/datamodel.html?highlight=__new__%20method#object.__new__">python.org</a>). The initializer gets the arguments passed with which the object was called. For example when <code class="docutils literal notranslate"><span class="pre">var</span> <span class="pre">=</span> <span class="pre">MyClass(1,</span> <span class="pre">'vanilla'</span> <span class="pre">)</span></code>, the <code class="docutils literal notranslate"><span class="pre">__init__(self,</span> <span class="pre">[...)</span></code> method gets <code class="docutils literal notranslate"><span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">'vanilla'</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__call__(self,</span> <span class="pre">[...)</span></code> enables to call a class instance directly, for example <code class="docutils literal notranslate"><span class="pre">var('cherry')</span></code> (corresponds to <code class="docutils literal notranslate"><span class="pre">var.__call__('cherry')</span></code>) may be used to change from <code class="docutils literal notranslate"><span class="pre">'vanilla'</span></code> to <code class="docutils literal notranslate"><span class="pre">'cherry'</span></code>.</p></li>
+</ul>
+<p>As a result, a robust class skeleton to start with looks like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">NewClass</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c1"># initialize any class variable here (all self.attributes should be here)</span>
+        <span class="k">pass</span>
+    
+    <span class="k">def</span> <span class="nf">methods1_n</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c1"># place class methods between the __init__ and the __call__ methods</span>
+        <span class="k">pass</span>
+    
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c1"># example prints class structure information to console</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Class Info: &lt;type&gt; = NewClass (</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Understanding the power and structure of classes and object orientation takes time and requires practicing. The next pages provide some more examples of classes to get more familiar with the concept.</p>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Get more familiar with object orientation in the <a class="reference internal" href="../exercises/ex-sediment.html"><span class="doc std std-doc">Sediment transport (1D)</span></a> exercise.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "hydro-informatics/hydro-informatics.github.io",
+            ref: "gh-pages",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./jupyter"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="pypckg.html" title="previous page">Packages, Modules and Libraries</a>
+    <a class='right-next' id="next-link" href="../python-basics/data-handling.html" title="next page">Data and File Handling</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Sebastian Schwindt<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

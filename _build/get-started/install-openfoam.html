@@ -1,0 +1,1077 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenFOAM (Installation) &#8212; Hydro-Informatics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://hydro-informatics.github.io/get-started/install-openfoam.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="TELEMAC (Installation)" href="install-telemac.html" />
+    <link rel="prev" title="Geospatial Software" href="geo.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/icon.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  Get Started
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../lectures/classroom.html">
+   The Virtual Classroom
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/lectures.html">
+     Lectures and Exercises
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/take_seat.html">
+     Take a Seat
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="software.html">
+   Software Resources
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="vm.html">
+     Virtual Machines and Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ide.html">
+     Integrated Development Environments (IDEs)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python-basics/pyinstall.html">
+     Install Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="git.html">
+     Introduction to git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="geo.html">
+     Geospatial Software
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     OpenFOAM (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="install-telemac.html">
+     TELEMAC (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="others.html">
+     Other Software Resources
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Python Basics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/python.html">
+   First Steps
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pybase.html">
+     Hello Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyerror.html">
+     Errors, Logging, and Debugging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyloop.html">
+     Loops and Conditional Statements
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/modularize.html">
+   Object Orientation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyfun.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pypckg.html">
+     Packages, Modules and Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/classes.html">
+     Object Orientation and Classes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/data-handling.html">
+   Data and File Handling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pynum.html">
+     Load and Write Basic Data Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/xml.html">
+     Workbooks (xlsx) and JSON
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyplot.html">
+     Plotting
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../jupyter/pystyle.html">
+   Code Style and Conventions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../jupyter/gui.html">
+   Graphical User Interfaces (GUIs)
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/python-exercises.html">
+   Python Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-ms.html">
+     1d Hydraulics (Manning-Strickler Formula)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sp.html">
+     Reservoir Volume (Sequent Peak Algorithm)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-floods.html">
+     Flood Return Periods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sediment.html">
+     1d Sediment Transport
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-gui.html">
+     Create a GUI
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Geospatial Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/geospatial-data.html">
+   Geospatial Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/use-qgis.html">
+   QGIS Tutorial
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../geopy/geo-python.html">
+   Geospatial Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-pckg.html">
+     Geospatial Open Source Python Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-shp.html">
+     Shapefile (Vector Dataset) Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-raster.html">
+     Raster (Gridded) Dataset Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-convert.html">
+     Raster to Vector Conversion and Vice Versa
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-arcpy.html">
+     The Commercial arcpy Library
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/geo-exercises.html">
+   Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-geco.html">
+     Script a Habitat Suitability Map
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Numerical Modeling
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/numerical-modeling.html">
+   Principles
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerics/basement.html">
+   BASEMENT
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/pre-qgis-bm.html">
+     Pre-processing with QGIS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/basement2d.html">
+     Simulation Setup (Steady 2d)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerics/telemac.html">
+   TELEMAC
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/pre-slf-tm.html">
+     Pre-processing
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../numerics/telemac2d.html">
+     Telemac2d
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac2d-steady.html">
+       Steady 2d Simulation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac2d-unsteady.html">
+       Unsteady 2d Simulation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac-gaia.html">
+       Unsteady Hydro-Morphodynamic 2d Simulation (Gaia)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../numerics/telemac3d.html">
+     Telemac3d
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac3d-slf.html">
+       Telemac3d (SLF)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac3d-med.html">
+       Telemac3d (Salome-Hydro and MED)
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerics/openfoam.html">
+   OpenFOAM
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/pre-qgis-of.html">
+     Pre-processing with QGIS
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/calibration.html">
+   Calibration and Validation
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Documentation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/documentation.html">
+   Markdown and Code Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/glossary.html">
+   Glossary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/notation.html">
+   Notation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/bibliography.html">
+   References
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/docs-exercises.html">
+   Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-git.html">
+     Git and markdown
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Troubleshoot
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
+   Programming Tools and IDEs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
+     Debugging Anaconda
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-python.html">
+     Debugging Python Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
+     Debugging Jupyter
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
+   Numerical Models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+  <label for="toctree-checkbox-16">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
+     Debugging BASEMENT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
+     Debugging TELEMAC/SALOME
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-os.html">
+   Operating Systems (Linux and VMs)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+  <label for="toctree-checkbox-17">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
+     Debugging Debian Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
+     Debugging Virtual Machines
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Disclaimer and License
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/get-started/install-openfoam.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/hydro-informatics/hydro-informatics.github.io"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ubuntu-incl-mint-and-lubuntu">
+   Ubuntu (incl. Mint and Lubuntu)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-openfoam">
+     Install OpenFOAM
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#update-openfoam">
+     Update OpenFOAM
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setup-user-configuration">
+     Setup User Configuration
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#test-run">
+     Test-run
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#debian-10">
+   Debian 10
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prerequisites">
+     Prerequisites
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-openfoam-v8">
+     Install OpenFOAM (v8)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#get-started-first-time-launch">
+     Get Started (First-time Launch)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#usual-launch-procedure">
+     Usual Launch Procedure
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#utilities-pre-post-processors">
+   Utilities (Pre- &amp; Post Processors)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#salome">
+     SALOME
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#freecad">
+     FreeCAD
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="openfoam-installation">
+<span id="openfoam-install"></span><h1>OpenFOAM (Installation)<a class="headerlink" href="#openfoam-installation" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial guides through the installation of <a class="reference external" href="http://www.openfoam.org/">OpenFOAM</a> on <a class="reference external" href="https://www.ubuntu.org/">Ubuntu Linux</a> and <a class="reference internal" href="#openfoam-debian"><span class="std std-ref">Debian 10</span></a>. For installing <em>OpenFOAM</em> on many other platforms (even <em>Windows</em>) visit the <a class="reference external" href="https://openfoam.org">developer’s website</a>.</p>
+<div class="section" id="ubuntu-incl-mint-and-lubuntu">
+<h2>Ubuntu (incl. Mint and Lubuntu)<a class="headerlink" href="#ubuntu-incl-mint-and-lubuntu" title="Permalink to this headline">¶</a></h2>
+<p>The installation on <em>Ubuntu Linux</em> or one of its derivatives is probably one of the easiest and most sustainable ways for working with <em>OpenFOAM</em>.</p>
+<div class="section" id="install-openfoam">
+<h3>Install OpenFOAM<a class="headerlink" href="#install-openfoam" title="Permalink to this headline">¶</a></h3>
+<p>The installation on any <em>Ubuntu Linux</em> platform is straight-forward and can be carried out as described on the <a class="reference external" href="https://openfoam.org/download/8-ubuntu/">developer’s website</a>. In detail, these steps include:</p>
+<ol class="simple">
+<li><p>Download and add the <em>gpg key</em> <br> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">sh</span> <span class="pre">-c</span> <span class="pre">&quot;wget</span> <span class="pre">-O</span> <span class="pre">-</span> <span class="pre">https://dl.openfoam.org/gpg.key</span> <span class="pre">|</span> <span class="pre">apt-key</span> <span class="pre">add</span> <span class="pre">-&quot;</span></code></p></li>
+<li><p>Add the repository to <em>sources.list</em> <br> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">add-apt-repository</span> <span class="pre">http://dl.openfoam.org/ubuntu</span></code></p></li>
+<li><p>Update the <code class="docutils literal notranslate"><span class="pre">apt</span></code> package list <br> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">update</span></code></p></li>
+<li><p>Install <em>OpenFOAM</em> along with a tailored version of <em>ParaView</em>: <br> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">-y</span> <span class="pre">install</span> <span class="pre">openfoam8</span></code></p></li>
+</ol>
+<p>Optionally, install <em>gedit</em>, which is often used in the documentation and for instructions for setting environment variables:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">gedit</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Even though the developer’s installation instructions suggest using <code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">update</span></code> / <code class="docutils literal notranslate"><span class="pre">install</span></code>, preferably use <code class="docutils literal notranslate"><span class="pre">apt</span> <span class="pre">update</span></code> / <code class="docutils literal notranslate"><span class="pre">install</span></code>.</p>
+</div>
+</div>
+<div class="section" id="update-openfoam">
+<h3>Update OpenFOAM<a class="headerlink" href="#update-openfoam" title="Permalink to this headline">¶</a></h3>
+<p>The <em>OpenFOAM</em> developers periodically update (recompile) new versions of <code class="docutils literal notranslate"><span class="pre">openfoam8</span></code>. To get these latest versions run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="o">--</span><span class="n">only</span><span class="o">-</span><span class="n">upgrade</span> <span class="n">openfoam8</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setup-user-configuration">
+<h3>Setup User Configuration<a class="headerlink" href="#setup-user-configuration" title="Permalink to this headline">¶</a></h3>
+<p><em>OpenFOAM</em> uses a set of environment variables that aid calling the program and its helpers. To define environment variables, every <em>OpenFOAM</em> <em>Ubuntu</em> user needs to modify the <em>.bashrc</em> file, which lives in the <em>/home/USER/</em> directory:</p>
+<ul class="simple">
+<li><p>Open the user <em>.bashrc</em> file: <br> <code class="docutils literal notranslate"><span class="pre">gedit</span> <span class="pre">~/.bashrc</span></code></p></li>
+<li><p>On the bottom of the <em>.bashrc</em> file add: <br> <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/opt/openfoam8/etc/bashrc</span></code></p></li>
+<li><p>Save and close the user <em>.bashrc</em> file.</p></li>
+</ul>
+<p>Open a new <em>Terminal</em> (or, to be sure, re-login on <em>Ubuntu</em>) and test if the system recognizes the <em>OpenFOAM</em> environment variables:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">simpleFoam</span> <span class="o">-</span><span class="n">help</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Usage simpleFoam [Options]
+...
+</pre></div>
+</div>
+<p>If correctly set up, <em>Terminal</em> returns a set of options for running <em>OpenFOAM</em>.</p>
+</div>
+<div class="section" id="test-run">
+<h3>Test-run<a class="headerlink" href="#test-run" title="Permalink to this headline">¶</a></h3>
+<p>With the environment variables defined, create a new directory for <em>OpenFOAM</em> projects:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~</span>
+<span class="n">mkdir</span> <span class="n">OpenFoam8</span>
+<span class="n">cd</span> <span class="n">OpenFoam8</span>
+</pre></div>
+</div>
+<p>Copy the <em>pitzDaily</em> <em>OpenFOAM</em> tutorial by using the <code class="docutils literal notranslate"><span class="pre">$FOAM_[...]</span></code> environment variables (<a class="reference external" href="https://openfoamwiki.net/index.php/Environment_variables">full list</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mkdir -p $FOAM_RUN
+cd $FOAM_RUN
+cp -r $FOAM_TUTORIALS/incompressible/simpleFoam/pitzDaily .
+</pre></div>
+</div>
+<p>Run the <em>blockMesh</em> (pre), the <em>simpleFoam</em> (main), and the <em>paraFoam</em> (post) processors:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">pitzDaily</span>
+<span class="n">blockMesh</span>
+<span class="n">simpleFoam</span>
+<span class="n">paraFoam</span>
+</pre></div>
+</div>
+<p>To get started with <em>OpenFoam</em>, refer to the <em>User Guide</em> provided by <a class="reference external" href="https://cfd.direct/openfoam/user-guide/"><em>CFD Direct</em></a>.</p>
+</div>
+</div>
+<div class="section" id="debian-10">
+<span id="openfoam-debian"></span><h2>Debian 10<a class="headerlink" href="#debian-10" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
+<p>Debian users will need to install <em>curl</em> and <em>docker</em> for being able to install <em>OpenFOAM</em>. First, make sure to get rid of any outdated version of <em>docker</em> (if this returns an error, that is not a problem):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">remove</span> <span class="n">docker</span> <span class="n">docker</span><span class="o">-</span><span class="n">engine</span> <span class="n">docker</span><span class="o">.</span><span class="n">io</span> <span class="n">containerd</span> <span class="n">runc</span>
+</pre></div>
+</div>
+<p>Install <em>docker</em> dependencies:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">apt</span><span class="o">-</span><span class="n">transport</span><span class="o">-</span><span class="n">https</span> <span class="n">ca</span><span class="o">-</span><span class="n">certificates</span> <span class="n">curl</span> <span class="n">gnupg</span>
+</pre></div>
+</div>
+<p>Add <em>docker</em>’s <em>GPG</em> keys:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">fsSL</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">docker</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">linux</span><span class="o">/</span><span class="n">debian</span><span class="o">/</span><span class="n">gpg</span> <span class="o">|</span> <span class="n">sudo</span> <span class="n">gpg</span> <span class="o">--</span><span class="n">dearmor</span> <span class="o">-</span><span class="n">o</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">keyrings</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">archive</span><span class="o">-</span><span class="n">keyring</span><span class="o">.</span><span class="n">gpg</span>
+</pre></div>
+</div>
+<p>Add the stable <em>docker</em> repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="s2">&quot;deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian </span><span class="se">\</span>
+<span class="s2">  $(lsb_release -cs) stable&quot;</span> <span class="o">|</span> <span class="n">sudo</span> <span class="n">tee</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">sources</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">docker</span><span class="o">.</span><span class="n">list</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span>
+</pre></div>
+</div>
+<p>Update <em>apt</em> and install <em>docker</em>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">docker</span><span class="o">-</span><span class="n">ce</span> <span class="n">docker</span><span class="o">-</span><span class="n">ce</span><span class="o">-</span><span class="n">cli</span> <span class="n">containerd</span><span class="o">.</span><span class="n">io</span>
+</pre></div>
+</div>
+<p>Verify the successful installation of <em>docker</em>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">docker</span> <span class="n">run</span> <span class="n">hello</span><span class="o">-</span><span class="n">world</span>
+</pre></div>
+</div>
+<p>Until here, <em>docker</em> is installed for sudoers only. To enable running <em>docker</em> and <em>OpenFOAM</em> for any user, the user’s <em>USERNAME</em> must be added to the system’s <code class="docutils literal notranslate"><span class="pre">docker</span></code> group. Therefore, <strong>add every <em>docker</em> and <em>OpenFOAM</em> user to the <code class="docutils literal notranslate"><span class="pre">docker</span></code> group</strong> (required for every <strong>USERNAME</strong>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">usermod</span> <span class="o">-</span><span class="n">aG</span> <span class="n">docker</span> <span class="n">USERNAME</span>
+</pre></div>
+</div>
+<p>With <em>docker</em> being installed, the system is ready for the installation of <em>OpenFOAM</em> on <em>Debian</em>.</p>
+<p>On a remote desktop computer or a virtual machine, make sure to also install <em>X11</em> and <em>Xrdp</em>, for example for an <em>Xfce</em> desktop:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">xorg</span> <span class="n">dbus</span><span class="o">-</span><span class="n">x11</span> <span class="n">x11</span><span class="o">-</span><span class="n">xserver</span><span class="o">-</span><span class="n">utils</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">xfce4</span> <span class="n">xfce4</span><span class="o">-</span><span class="n">goodies</span> <span class="n">xrdp</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-openfoam-v8">
+<h3>Install OpenFOAM (v8)<a class="headerlink" href="#install-openfoam-v8" title="Permalink to this headline">¶</a></h3>
+<p>Download the latest <em>OpenFOAM</em> package for <em>docker</em>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">sh</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;wget http://dl.openfoam.org/docker/openfoam8-linux -O /usr/bin/openfoam8-linux&quot;</span>
+</pre></div>
+</div>
+<p>Make the downloaded <code class="docutils literal notranslate"><span class="pre">openfoam8-linux</span></code> script executable:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">chmod</span> <span class="mi">755</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">openfoam8</span><span class="o">-</span><span class="n">linux</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-started-first-time-launch">
+<h3>Get Started (First-time Launch)<a class="headerlink" href="#get-started-first-time-launch" title="Permalink to this headline">¶</a></h3>
+<p>Create a new directory (e.g., <em>/home/OpenFoam8/</em>) and launch the <code class="docutils literal notranslate"><span class="pre">openfoam8-linux</span></code> environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~</span>
+<span class="n">mkdir</span> <span class="n">OpenFoam8</span>
+<span class="n">cd</span> <span class="n">OpenFoam8</span>
+<span class="n">openfoam8</span><span class="o">-</span><span class="n">linux</span>
+</pre></div>
+</div>
+<p>The <em>docker</em> environment should now be launched in <em>Terminal</em>. To test <em>OpenFOAM</em>, copy the <em>pitzDaily</em> <em>OpenFOAM</em> tutorial by using the <a class="reference external" href="https://openfoamwiki.net/index.php/Environment_variables"><strong>FOAM</strong> environment variables</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mkdir -p $FOAM_RUN
+cd $FOAM_RUN
+cp -r $FOAM_TUTORIALS/incompressible/simpleFoam/pitzDaily .
+</pre></div>
+</div>
+<p>Run the <em>blockMesh</em> (pre), the <em>simpleFoam</em> (main), and the <em>paraFoam</em> (post) processors:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">pitzDaily</span>
+<span class="n">blockMesh</span>
+<span class="n">simpleFoam</span>
+<span class="n">paraFoam</span>
+</pre></div>
+</div>
+<p>To quit <em>docker</em>, tap <code class="docutils literal notranslate"><span class="pre">exit</span></code>. The installation procedure is described in detail on the <a class="reference external" href="https://openfoam.org/download/8-linux/">developer’s website</a>.</p>
+</div>
+<div class="section" id="usual-launch-procedure">
+<h3>Usual Launch Procedure<a class="headerlink" href="#usual-launch-procedure" title="Permalink to this headline">¶</a></h3>
+<p>With <em>docker</em> and <em>OpenFOAM</em> being installed, every user of the <code class="docutils literal notranslate"><span class="pre">docker</span></code> group (see above instructions for adding users to the docker <code class="docutils literal notranslate"><span class="pre">group</span></code>) can launch <em>OpenFOAM</em> through <em>Terminal</em> by entering:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">openfoam8</span><span class="o">-</span><span class="n">linux</span>
+</pre></div>
+</div>
+<p>To quit the program tap (in <em>Terminal</em>/<em>docker</em>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">exit</span>
+</pre></div>
+</div>
+<p>To get started with <em>OpenFoam</em>, refer to the <em>User Guide</em> provided by <a class="reference external" href="https://cfd.direct/openfoam/user-guide/"><em>CFD Direct</em></a>.</p>
+</div>
+</div>
+<div class="section" id="utilities-pre-post-processors">
+<h2>Utilities (Pre- &amp; Post Processors)<a class="headerlink" href="#utilities-pre-post-processors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="salome">
+<span id="salome-install"></span><h3>SALOME<a class="headerlink" href="#salome" title="Permalink to this headline">¶</a></h3>
+<p>Similar to <em>TELEMAC</em>, the <em>SALOME</em> platform represents a powerful toolkit for generating computational meshes for <em>OpenFOAM</em>. Download <em>SALOME</em> from <a class="reference external" href="https://www.salome-platform.org/downloads/current-version">salome-platform.org</a> for your distribution (here: <em>Linux Ubuntu</em>).</p>
+<p>Unpack the <em>SALOME</em> package in a convenient folder (replace the <code class="docutils literal notranslate"><span class="pre">.tar.gz</span></code> file name with the one you downloaded):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tar</span> <span class="n">xfz</span> <span class="n">SALOME</span><span class="o">-</span><span class="mf">9.6.0</span><span class="o">-</span><span class="n">UB20</span><span class="mf">.04</span><span class="o">-</span><span class="n">SRC</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+</div>
+<p>Install dependencies:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">net</span><span class="o">-</span><span class="n">tools</span> <span class="n">libopengl0</span> <span class="n">libtbb</span><span class="o">-</span><span class="n">dev</span>
+</pre></div>
+</div>
+<p>To run <em>SALOME</em>, <code class="docutils literal notranslate"><span class="pre">cd</span></code> to the directory where the unpacked package is located and typ <code class="docutils literal notranslate"><span class="pre">salome</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">SALOME</span><span class="o">-</span><span class="mf">9.6.0</span><span class="o">-</span><span class="n">UB20</span><span class="mf">.04</span><span class="o">-</span><span class="n">SRC</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">source</span> <span class="n">env_launch</span><span class="o">.</span><span class="n">sh</span>
+<span class="o">./</span><span class="n">salome</span>
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">./salome</span></code> does not work (in particular on a <em>Virtual Machine</em>), try to run <code class="docutils literal notranslate"><span class="pre">./mesa_salome</span></code> (prevents problems with <em>openGL</em> in the <em>Mesh</em> module), or re-compile <em>SALOME</em>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">sat</span> <span class="n">prepare</span> <span class="n">SALOME</span><span class="o">-</span><span class="mf">9.6.0</span>
+<span class="o">./</span><span class="n">sat</span> <span class="o">-</span><span class="n">t</span> <span class="nb">compile</span> <span class="n">SALOME</span><span class="o">-</span><span class="mf">9.6.0</span>
+<span class="o">./</span><span class="n">sat</span> <span class="n">environ</span> <span class="n">SALOME</span><span class="o">-</span><span class="mf">9.6.0</span>
+<span class="o">./</span><span class="n">sat</span> <span class="n">launcher</span> <span class="n">SALOME</span><span class="o">-</span><span class="mf">9.6.0</span>
+<span class="o">./</span><span class="n">salome</span>
+</pre></div>
+</div>
+<p>If there is an error such as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>HyMo@HydroDebian:~/Downloads/SALOME-9.6.0-UB20.04-SRC$ ./salome
+runSalome running on HydroDebian
+Searching for a free port for naming service: 2811 - OK
+Searching Naming Service  +omniNames: (0) 20XX-XX-XX 12:34:13.123745: -ORBendPoint option overriding default endpoint.
+ found in 0.1 seconds
+Searching /Kernel/Session in Naming Service  +SALOME_Session_Server: error while loading shared libraries: libtbb.so.2: cannot open shared object file: No such file or directory
+Warning, no type found for resource &quot;localhost&quot;, using default value &quot;single_machine&quot;
+Traceback (most recent call last):
+  File &quot;/home/HyMo/Downloads/SALOME-9.6.0-UB20.04-SRC/BINARIES-UB20.04/KERNEL/bin/salome/orbmodule.py&quot;, line 181, in waitNSPID
+    os.kill(thePID,0)
+ProcessLookupError: [Errno 3] No such process
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &quot;/home/HyMo/Downloads/SALOME-9.6.0-UB20.04-SRC/BINARIES-DEB10/KERNEL/bin/salome/runSalome.py&quot;, line 679, in useSalome
+    clt = [...]
+  File &quot;/home/HyMo/Downloads/SALOME-9.6.0-UB20.04-SRC/BINARIES-DEB10/KERNEL/bin/salome/orbmodule.py&quot;, line 183, in waitNSPID
+    raise RuntimeError(&quot;Process %d for %s not found&quot; % (thePID,theName)
+RuntimeError: Process 29241 for /Kernel/Session not found
+--- Error during Salome launch ---
+</pre></div>
+</div>
+<p>Then look for the missing libraries indicated in the above block with <code class="docutils literal notranslate"><span class="pre">error</span> <span class="pre">while</span> <span class="pre">loading</span> <span class="pre">shared</span> <span class="pre">libraries:</span> <span class="pre">libtbb.so.2:</span> <span class="pre">cannot</span> <span class="pre">open</span> <span class="pre">shared</span> <span class="pre">object</span> <span class="pre">file</span></code>. In this case, <code class="docutils literal notranslate"><span class="pre">libtbb</span></code> is missing, which can be installed with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">libtbb-dev</span></code>.</p>
+</div>
+<div class="section" id="freecad">
+<span id="freecad-install"></span><h3>FreeCAD<a class="headerlink" href="#freecad" title="Permalink to this headline">¶</a></h3>
+<p><em>FreeCAD</em> is available for most common platforms (operating systems) including <em>Windows</em>, <em>Linux</em>, and <em>macOS</em>. Find the most recent version and installation instructions on the <a class="reference external" href="https://www.freecadweb.org/">developer’s website</a>.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "hydro-informatics/hydro-informatics.github.io",
+            ref: "gh-pages",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./get-started"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="geo.html" title="previous page">Geospatial Software</a>
+    <a class='right-next' id="next-link" href="install-telemac.html" title="next page">TELEMAC (Installation)</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Sebastian Schwindt<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

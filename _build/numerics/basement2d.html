@@ -1,0 +1,1402 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulation Setup (Steady 2d) &#8212; Hydro-Informatics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="canonical" href="https://hydro-informatics.github.io/numerics/basement2d.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="TELEMAC" href="telemac.html" />
+    <link rel="prev" title="Pre-processing with QGIS" href="pre-qgis-bm.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/icon.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  Get Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../lectures/classroom.html">
+   The Virtual Classroom
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/lectures.html">
+     Lectures and Exercises
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/take_seat.html">
+     Take a Seat
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../get-started/software.html">
+   Software Resources
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/vm.html">
+     Virtual Machines and Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/ide.html">
+     Integrated Development Environments (IDEs)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python-basics/pyinstall.html">
+     Install Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/git.html">
+     Introduction to git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/geo.html">
+     Geospatial Software
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-openfoam.html">
+     OpenFOAM (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-telemac.html">
+     TELEMAC (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/others.html">
+     Other Software Resources
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Python Basics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/python.html">
+   First Steps
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pybase.html">
+     Hello Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyerror.html">
+     Errors, Logging, and Debugging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyloop.html">
+     Loops and Conditional Statements
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/modularize.html">
+   Object Orientation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyfun.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pypckg.html">
+     Packages, Modules and Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/classes.html">
+     Object Orientation and Classes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/data-handling.html">
+   Data and File Handling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pynum.html">
+     Load and Write Basic Data Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/xml.html">
+     Workbooks (xlsx) and JSON
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyplot.html">
+     Plotting
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../jupyter/pystyle.html">
+   Code Style and Conventions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../jupyter/gui.html">
+   Graphical User Interfaces (GUIs)
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/python-exercises.html">
+   Python Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-ms.html">
+     1d Hydraulics (Manning-Strickler Formula)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sp.html">
+     Reservoir Volume (Sequent Peak Algorithm)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-floods.html">
+     Flood Return Periods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sediment.html">
+     1d Sediment Transport
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-gui.html">
+     Create a GUI
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Geospatial Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/geospatial-data.html">
+   Geospatial Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/use-qgis.html">
+   QGIS Tutorial
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../geopy/geo-python.html">
+   Geospatial Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-pckg.html">
+     Geospatial Open Source Python Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-shp.html">
+     Shapefile (Vector Dataset) Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-raster.html">
+     Raster (Gridded) Dataset Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-convert.html">
+     Raster to Vector Conversion and Vice Versa
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-arcpy.html">
+     The Commercial arcpy Library
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/geo-exercises.html">
+   Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-geco.html">
+     Script a Habitat Suitability Map
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Numerical Modeling
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="numerical-modeling.html">
+   Principles
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="basement.html">
+   BASEMENT
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="pre-qgis-bm.html">
+     Pre-processing with QGIS
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Simulation Setup (Steady 2d)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="telemac.html">
+   TELEMAC
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pre-slf-tm.html">
+     Pre-processing
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="telemac2d.html">
+     Telemac2d
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="telemac2d-steady.html">
+       Steady 2d Simulation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="telemac2d-unsteady.html">
+       Unsteady 2d Simulation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="telemac-gaia.html">
+       Unsteady Hydro-Morphodynamic 2d Simulation (Gaia)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="telemac3d.html">
+     Telemac3d
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="telemac3d-slf.html">
+       Telemac3d (SLF)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="telemac3d-med.html">
+       Telemac3d (Salome-Hydro and MED)
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="openfoam.html">
+   OpenFOAM
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pre-qgis-of.html">
+     Pre-processing with QGIS
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="calibration.html">
+   Calibration and Validation
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Documentation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/documentation.html">
+   Markdown and Code Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/glossary.html">
+   Glossary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/notation.html">
+   Notation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/bibliography.html">
+   References
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/docs-exercises.html">
+   Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-git.html">
+     Git and markdown
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Troubleshoot
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
+   Programming Tools and IDEs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
+     Debugging Anaconda
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-python.html">
+     Debugging Python Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
+     Debugging Jupyter
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
+   Numerical Models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+  <label for="toctree-checkbox-16">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
+     Debugging BASEMENT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
+     Debugging TELEMAC/SALOME
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-os.html">
+   Operating Systems (Linux and VMs)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+  <label for="toctree-checkbox-17">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
+     Debugging Debian Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
+     Debugging Virtual Machines
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Disclaimer and License
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/numerics/basement2d.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/hydro-informatics/hydro-informatics.github.io"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Simulation Setup (Steady 2d)
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initiate-the-model">
+     Initiate the Model
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#geometry-and-regions">
+     Geometry and Regions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hydraulics">
+     Hydraulics
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#physical-properties">
+     Physical Properties
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#write-setup-file">
+     Write Setup File
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setup-simulation-file">
+     Setup Simulation File
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#run-simulation-steady-2d">
+     Run Simulation (Steady 2d)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#export-simulation-results">
+       Export Simulation Results
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#post-processing-with-qgis">
+   Post-processing with QGIS
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-results-xdmf">
+     Import results.xdmf
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rasterize-outputs">
+     Rasterize Outputs
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mesh-visualization-with-crayfish">
+     Mesh Visualization with Crayfish
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#post-processing-with-paraview">
+   Post-processing with ParaView
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Import results.xdmf
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualize-parameters">
+     Visualize Parameters
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#save-project-pipeline">
+     Save Project Pipeline
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#export-data">
+     Export Data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-simulation-verification">
+   Python Simulation Verification
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="simulation-setup-steady-2d">
+<span id="basement2d"></span><h1>Simulation Setup (Steady 2d)<a class="headerlink" href="#simulation-setup-steady-2d" title="Permalink to this headline">¶</a></h1>
+<p>In addition to the <a class="reference internal" href="../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> file from the <a class="reference internal" href="pre-qgis-bm.html#qgis-prepro-bm"><span class="std std-ref">Pre-processing with QGIS</span></a> tutorial, the numerical engine of BASEMENT needs a model setup file (<strong>model.json</strong>) and a simulation file (<strong>simulation.json</strong>), which both are created automatically by BASEMENT.</p>
+<p>The following sections describe how to make BASEMENT creating the required <a class="reference internal" href="../jupyter/xml.html#json"><span class="std std-ref">JSON</span></a> files in a project directory such as <code class="docutils literal notranslate"><span class="pre">C:\Basement\steady2d-tutorial\</span></code> (<em>Windows</em>) or <code class="docutils literal notranslate"><span class="pre">~/Basement/steady2d-tutorial/</span></code> (<em>Linux</em>). Therefore, the <strong>first step is to create a project directory (folder)</strong>.</p>
+<div class="attention admonition">
+<p class="admonition-title">Special characters in directory/folder names</p>
+<p>The defined project folder directory must <strong>not contain</strong> any <strong>dots</strong>, nor <strong>special characters</strong>, nor <strong>spaces</strong>. Only use letters, numbers, <em>_</em> (underscore), or <em>-</em> (minus) in folder names.</p>
+</div>
+<p><strong>Place</strong> the following <strong>input files in the project folder</strong>:</p>
+<ul class="simple">
+<li><p>The <a class="reference internal" href="../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> file with interpolated bottom elevations from the <a class="reference internal" href="pre-qgis-bm.html#qgis-prepro-bm"><span class="std std-ref">Pre-processing with QGIS</span></a> tutorial (<strong>prepro-tutorial_quality-mesh-interp.2dm</strong>).</p></li>
+<li><p>A steady discharge inflow file (flat hydrograph) for the upstream boundary condition can be downloaded <a class="reference external" href="https://github.com/hydro-informatics/materials-bm/raw/main/flows/steady-inflow.txt">here</a> (if necessary copy the file contents locally into a text editor and save the file as <strong>steady-inflow.txt</strong> in the project directory).</p></li>
+</ul>
+<div class="section" id="initiate-the-model">
+<h2>Initiate the Model<a class="headerlink" href="#initiate-the-model" title="Permalink to this headline">¶</a></h2>
+<p>This section guides through the model setup, which is saved in a file called <code class="docutils literal notranslate"><span class="pre">/steady2d-tutorial/</span></code><strong>model.json</strong>. <strong>Start BASEMENT</strong> and <strong>select the folder created above</strong> as the <strong>Scenario Directory</strong>. <a class="reference internal" href="#bm-setup-start"><span class="std std-numref">Fig. 38</span></a> indicates the position of the directory selection button in addition to the <strong>Save Project</strong> button to regularly save the setup.</p>
+<div class="figure align-default" id="bm-setup-start">
+<img alt="basement new project setup launch start" src="../_images/setup-start.png" />
+<p class="caption"><span class="caption-number">Fig. 38 </span><span class="caption-text">BASEMENT’s welcome screen after selecting a <em>Scenario Directory</em> and with the <em>Save Project</em> button highlighted. The directory references may look different on other platforms (e.g., start with <strong>“C:/…</strong>).</span><a class="headerlink" href="#bm-setup-start" title="Permalink to this image">¶</a></p>
+</div>
+<p>Next, <strong>left-click</strong> on <strong>SETUP</strong>, then <strong>right-click</strong> and select <strong>Add item DOMAIN</strong>. A new tab called <strong>Define Scenario Parameters</strong> opens. For the moment ignore the warning and error messages (red tags) and define a <strong>simulation_name</strong>:</p>
+<ul class="simple">
+<li><p><strong>Right-click</strong> on <strong>SETUP</strong> and select <strong>Add item ‘simulation_name’</strong>. A new entry called <em>simulation_name</em> will appear in the <em>Define Scenario Parameters</em> tab.</p></li>
+<li><p><strong>Double-click</strong> on <strong>“RUNFILE”</strong> (default value behind <strong>simulation_name</strong>) and <strong>replace</strong> <code class="docutils literal notranslate"><span class="pre">RUNFILE</span></code> with <code class="docutils literal notranslate"><span class="pre">steady2d</span></code>.</p></li>
+</ul>
+<p>Save the project and proceed with the next sections.</p>
+</div>
+<div class="section" id="geometry-and-regions">
+<span id="bm-geometry"></span><h2>Geometry and Regions<a class="headerlink" href="#geometry-and-regions" title="Permalink to this headline">¶</a></h2>
+<p>The <strong>GEOMETRY</strong> group in the <strong>Define Scenario Parameters</strong> tab tells the model, which <a class="reference internal" href="../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> mesh file to use and enables the definition of region and liquid boundary properties. To this end, make the following settings:</p>
+<ul class="simple">
+<li><p><strong>Double-click</strong> on the <strong>mesh_file</strong> entry and click on the folder symbol <br> <img alt="../_images/select-meshfile.png" src="../_images/select-meshfile.png" /></p></li>
+<li><p>In the popup window select the <a class="reference internal" href="pre-qgis-bm.html#qgis-prepro-bm"><span class="std std-ref">previously created prepro-tutorial_quality-mesh-interp.2dm</span></a> and hit <strong>Enter</strong>.</p></li>
+</ul>
+<p>The mesh contains regions, which need to be defined in the model setup:</p>
+<ul class="simple">
+<li><p><strong>Right-click</strong> on <strong>GEOMETRY</strong> &gt; <strong>Add item REGIONDEF</strong></p></li>
+<li><p><strong>Add 5 region items</strong> by <strong>right-clicking</strong> on the new <strong>REGIONDEF</strong> entry &gt; <strong>Add item</strong>. The number of regions should correspond to the regions defined in the <a class="reference internal" href="pre-qgis-bm.html#region-defs"><span class="std std-ref">pre-processing tutorial</span></a> (see also <a class="reference internal" href="#region-defs-bm"><span class="std std-numref">Tab. 4</span></a>).</p></li>
+<li><p>Define the five regions by a <strong>right-click</strong> on <strong>index</strong> &gt; <strong>Add item</strong>.</p>
+<ul>
+<li><p>Every <strong>index</strong> item gets an integer number assigned corresponding to the <strong>MATID</strong> field in the region points shapefile (see the <a class="reference internal" href="pre-qgis-bm.html#regions"><span class="std std-ref">Region Markers</span></a> section in the <a class="reference internal" href="pre-qgis-bm.html#qgis-prepro-bm"><span class="std std-ref">Pre-processing with QGIS</span></a> tutorial).</p></li>
+<li><p>The <strong>name</strong> of every region item corresponds to the <strong>type</strong> field of the MATID.</p></li>
+</ul>
+</li>
+</ul>
+<p><a class="reference internal" href="#region-defs-bm"><span class="std std-numref">Table 4</span></a> summarizes the required region definitions. With the regions and the mesh file defined, the GEOMETRY group should resemble <a class="reference internal" href="#bm-regions"><span class="std std-numref">Fig. 39</span></a>.</p>
+<table class="table" id="region-defs-bm">
+<caption><span class="caption-number">Table 4 </span><span class="caption-text">REGIONDEF items and their definitions to be defined in BASEMENT’s model setup.</span><a class="headerlink" href="#region-defs-bm" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>REGIONDEF</strong></p></th>
+<th class="head"><p>[0]</p></th>
+<th class="head"><p>[1]</p></th>
+<th class="head"><p>[2]</p></th>
+<th class="head"><p>[3]</p></th>
+<th class="head"><p>[4]</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>index [0]</strong></p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>3</p></td>
+<td><p>4</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>name</strong></p></td>
+<td><p>riverbed</p></td>
+<td><p>block_ramp</p></td>
+<td><p>gravel_bank</p></td>
+<td><p>floodplain</p></td>
+<td><p>sand_deposit</p></td>
+</tr>
+</tbody>
+</table>
+<div class="figure align-default" id="bm-regions">
+<img alt="region mesh file definitions basement" src="../_images/setup-geometry.png" />
+<p class="caption"><span class="caption-number">Fig. 39 </span><span class="caption-text">The GEOMETRY group with REGIONDEFs and the reference to the height-interpolated mesh file (prepro-tutorial_quality-mesh-interp.2dm).</span><a class="headerlink" href="#bm-regions" title="Permalink to this image">¶</a></p>
+</div>
+<div class="admonition-save-the-project admonition">
+<p class="admonition-title">Save the project…</p>
+<p>Regularly save the model setup by clicking on the disk button (top-right corner, see <a class="reference internal" href="#bm-setup-start"><span class="std std-numref">Fig. 38</span></a>).</p>
+</div>
+<p>The <a class="reference internal" href="pre-qgis-bm.html#liquid-boundary"><span class="std std-ref">Liquid (Hydraulic) Boundaries</span></a> from the pre-processing tutorial geographically define <strong>inflow and outflow</strong> lines with <strong>stringdef</strong> attributes that are incorporated in the height-interpolated mesh file (<em>prepro-tutorial_quality-mesh-interp.2dm</em>). To inform BASEMENT about the types and the properties of the liquid boundaries, complete the GEOMETRY section:</p>
+<ul class="simple">
+<li><p><strong>Right-click</strong> on <strong>GEOMETRY</strong> &gt; <strong>Add item STRINGDEF</strong>.</p></li>
+<li><p><strong>Right-click</strong> on the new <strong>STRINGDEF</strong> item and select <strong>Add item</strong> two times. Thus, two items should be available to define the upstream and downstream liquid boundaries.</p></li>
+<li><p>Define STRINGDEF item <strong>[0]</strong> with:</p>
+<ul>
+<li><p><strong>name</strong> = <code class="docutils literal notranslate"><span class="pre">Inflow</span></code></p></li>
+<li><p><strong>upstream_direction</strong> = <code class="docutils literal notranslate"><span class="pre">right</span></code></p></li>
+</ul>
+</li>
+<li><p>Define STRINGDEF item <strong>[1]</strong> with:</p>
+<ul>
+<li><p><strong>name</strong> = <code class="docutils literal notranslate"><span class="pre">Outflow</span></code></p></li>
+<li><p><strong>upstream_direction</strong> = <code class="docutils literal notranslate"><span class="pre">right</span></code></p></li>
+</ul>
+</li>
+</ul>
+<p>If you used the provided <a class="reference external" href="https://github.com/hydro-informatics/materials-bm/raw/main/shapefiles/liquid-boundaries.zip">liquid boundaries shapefile</a> to create the mesh file, the <strong>upstream_direction</strong> must be <code class="docutils literal notranslate"><span class="pre">right</span></code>. <a class="reference internal" href="#bm-geo-fin"><span class="std std-numref">Figure 40</span></a> shows the definition of the STRINGDEF items using the provided liquid boundaries shapefile.</p>
+<div class="figure align-default" id="bm-geo-fin">
+<img alt="region mesh file definitions basement" src="../_images/setup-geometry-final.png" />
+<p class="caption"><span class="caption-number">Fig. 40 </span><span class="caption-text">The GEOMETRY group with STRINGDEFs using the provided liquid boundaries shapefile in the computational mesh.</span><a class="headerlink" href="#bm-geo-fin" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="hydraulics">
+<span id="bm-hydraulics"></span><h2>Hydraulics<a class="headerlink" href="#hydraulics" title="Permalink to this headline">¶</a></h2>
+<p>Hydraulic model characteristics that apply to the above-defined geometry setup are defined in the <strong>HYDRAULICS</strong> group of BASEMENT’s model setup. This tutorial uses the <strong>default</strong> for <strong>INITIAL</strong> conditions, which is <strong>“dry”</strong>. Also <strong>keep the default PARAMETERS</strong> for <strong><a class="reference internal" href="../documentation/glossary.html#term-CFL"><span class="xref std std-term">CFL</span></a></strong> = <code class="docutils literal notranslate"><span class="pre">0.9</span></code>, <strong>fluid_density</strong> = <code class="docutils literal notranslate"><span class="pre">1000.0</span></code>, <strong>max_time_step</strong> = <code class="docutils literal notranslate"><span class="pre">100.0</span></code>, and <strong>minimum_water_depth</strong> =<code class="docutils literal notranslate"> <span class="pre">0.01</span></code>.</p>
+<p>Hydraulic values such as discharge or water depth must be assigned to the liquid boundaries defined above so that the numerical model knows how much water it must make running through the model. Therefore, <strong>add</strong> the following <strong>boundary</strong> definitions in the HYDRAULICS group:</p>
+<ul class="simple">
+<li><p><strong>Right-click</strong> on <strong>HYDRAULICS</strong> and select <strong>Add item BOUNDARY</strong>.</p></li>
+<li><p><strong>Right-click</strong> on the new <strong>BOUNDARY</strong> item and select <strong>Add item STANDARD</strong>.</p></li>
+<li><p><strong>Right-click two times</strong> on the new <strong>STANDARD</strong> item and select <strong>Add item</strong>. Thus, there should be two items <strong>[0]</strong> and <strong>[1]</strong> to define the inflow and outflow conditions, respectively.</p></li>
+<li><p><strong>Define item [0]</strong> with the following <strong>inflow</strong> conditions:</p>
+<ul>
+<li><p><strong>Right-click</strong> on <strong>[0]</strong> and select <strong>Add item ‘discharge_file’</strong>.</p></li>
+<li><p>Click on the folder symbol to select the above-downloaded <a class="reference external" href="https://github.com/hydro-informatics/materials-bm/raw/main/flows/steady-inflow.txt">steady-inflow.txt</a> file.</p></li>
+<li><p>For <strong>name</strong> tap <code class="docutils literal notranslate"><span class="pre">Inflow</span></code>.</p></li>
+<li><p><strong>Right-click</strong> on <strong>[0]</strong> and select <strong>Add item ‘slope’</strong>.</p></li>
+<li><p>For the new <strong>slope</strong> item, define a value of <code class="docutils literal notranslate"><span class="pre">0.0044</span></code>.</p></li>
+<li><p>For <strong>string_def</strong> select the above-defined <code class="docutils literal notranslate"><span class="pre">inflow</span></code> STRINGDEF.</p></li>
+<li><p>For <strong>type</strong> select <code class="docutils literal notranslate"><span class="pre">uniform_in</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>Define item [1]</strong> with the following <strong>outflow</strong> conditions:</p>
+<ul>
+<li><p>For <strong>name</strong> tap <code class="docutils literal notranslate"><span class="pre">Outflow</span></code>.</p></li>
+<li><p><strong>Right-click</strong> on <strong>[1]</strong> and select <strong>Add item ‘slope’</strong>.</p></li>
+<li><p>For the new <strong>slope</strong> item, define a value of <code class="docutils literal notranslate"><span class="pre">0.0044</span></code>.</p></li>
+<li><p>For <strong>string_def</strong> select the above-defined <code class="docutils literal notranslate"><span class="pre">outflow</span></code> STRINGDEF.</p></li>
+<li><p>For <strong>type</strong> select <code class="docutils literal notranslate"><span class="pre">uniform_out</span></code></p></li>
+</ul>
+</li>
+</ul>
+<div class="note admonition">
+<p class="admonition-title">Liquid boundaries in practice</p>
+<p>In practice, better use a <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a> for the downstream boundary condition, which in BASEMENT corresponds to <strong>type</strong> = <code class="docutils literal notranslate"><span class="pre">hqrelation_out</span></code>. The upstream inflow condition, however, is also often specified in practice only by discharge as a function of time, as shown in this tutorial. A critical factor of the discharge-only function of time is the <strong>slope</strong> field value, which corresponds to the energy slope and is often assumed to be equivalent to the channel slope. However, this assumption is <strong>only valid for steady flows</strong>, which almost never occur in reality. This is why, in practice, quasi-unsteady flow conditions are often used in the form of a time-dependent sequence of steady discharges, for example, to model a flood hydrograph.</p>
+</div>
+<p><a class="reference internal" href="#bm-hy-standard"><span class="std std-numref">Figure 41</span></a> shows the definitions of STANDARD BOUNDARY items in BASEMENT’s HYDRAULIC model setup group.</p>
+<div class="figure align-default" id="bm-hy-standard">
+<img alt="basement standard hydraulic boundary conditions" src="../_images/setup-hydraulics-standard.png" />
+<p class="caption"><span class="caption-number">Fig. 41 </span><span class="caption-text">The HYDRAULIC entry with BOUNDARY &gt; STANDARD definitions for the upstream (inflow) and downstream (outflow) liquid model boundaries.</span><a class="headerlink" href="#bm-hy-standard" title="Permalink to this image">¶</a></p>
+</div>
+<p>Every surface has imperfections that cause turbulence when fluids such as water flow over it. The turbulences caused by surface imperfections result in decelerated flows near the surface. Since the water in rivers is almost always very close to the Earth’s surface in the form of the riverbed relative to the imperfections of a riverbed, the influence of friction-induced turbulence is considerable. In hydrodynamic models, the friction-induced turbulence of the rough surface of riverbeds is accounted for by a <strong>friction coefficient</strong>, such as the <strong>Strickler <span class="math notranslate nohighlight">\(k_{st}\)</span></strong> coefficient <strong>or</strong> its <strong>inverse</strong> value called <strong>Manning’s <span class="math notranslate nohighlight">\(n\)</span></strong>. The exercise on <a class="reference internal" href="../exercises/ex-ms.html#ex-1d-hydraulics"><span class="std std-ref">1d Hydraulics (Manning-Strickler Formula)</span></a> in the <em>Python</em> chapter explains both roughness coefficients in more detail. This tutorial uses a global Strickler coefficient of <span class="math notranslate nohighlight">\(k_{st}\)</span>=30 (fictive units of m<span class="math notranslate nohighlight">\(^{1/3}\)</span>/s), which accounts for the characteristics of a meandering gravel-cobble riverbed <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id558">Str23</a>]</span>. To this end, <strong>right-click</strong> on the <strong>HYDRAULICS</strong> group and select <strong>Add item FRICTION</strong>. Define the new  <strong>FRICTION</strong> item with:</p>
+<ul class="simple">
+<li><p><strong>default_friction</strong> = 30.0</p></li>
+<li><p><strong>type</strong> = <code class="docutils literal notranslate"><span class="pre">strickler</span></code></p></li>
+</ul>
+<p>Next, assign region-specific Strickler values for the five regions defined in <a class="reference internal" href="#region-defs-bm"><span class="std std-numref">Tab. 4</span></a>:</p>
+<ul class="simple">
+<li><p><strong>Right-click</strong> on <strong>FRICTION</strong> &gt; <strong>Add item regions</strong>.</p></li>
+<li><p><strong>Right-click</strong> on the new <strong>regions</strong> item and select <strong>Add item</strong> (<strong>five times</strong> for the five regions).</p></li>
+<li><p>Assign the <strong>friction</strong> and <strong>region_def</strong> values listed in <a class="reference internal" href="#region-kst"><span class="std std-numref">Tab. 5</span></a> to the <strong>five regions items</strong>.</p></li>
+<li><p>Set the <strong>type</strong> of the five regions to <strong>“strickler”</strong>.</p></li>
+</ul>
+<table class="table" id="region-kst">
+<caption><span class="caption-number">Table 5 </span><span class="caption-text">Strickler values for HYDRAULIC FRICTION regions.</span><a class="headerlink" href="#region-kst" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Region</p></th>
+<th class="head"><p>Riverbed</p></th>
+<th class="head"><p>Block ramps</p></th>
+<th class="head"><p>Gravel banks</p></th>
+<th class="head"><p>Floodplains</p></th>
+<th class="head"><p>Sand</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>friction</strong></p></td>
+<td><p>34</p></td>
+<td><p>18</p></td>
+<td><p>24</p></td>
+<td><p>14</p></td>
+<td><p>39</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>region_def</strong></p></td>
+<td><p>riverbed</p></td>
+<td><p>block_ramp</p></td>
+<td><p>gravel_bank</p></td>
+<td><p>floodplain</p></td>
+<td><p>sand_deposit</p></td>
+</tr>
+</tbody>
+</table>
+<p><a class="reference internal" href="#bm-hy-friction"><span class="std std-numref">Figure 42</span></a> shows the definition of the hydraulic FRICTION items in BASEMENT’s model setup.</p>
+<div class="figure align-default" id="bm-hy-friction">
+<img alt="basement friction hydraulic boundary conditions strickler" src="../_images/setup-hydraulics-friction.png" />
+<p class="caption"><span class="caption-number">Fig. 42 </span><span class="caption-text">The HYDRAULICS group with FRICTION definitions for the model and its regions.</span><a class="headerlink" href="#bm-hy-friction" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="physical-properties">
+<span id="bm-physical-props"></span><h2>Physical Properties<a class="headerlink" href="#physical-properties" title="Permalink to this headline">¶</a></h2>
+<p>The definition of the <strong>PHYSICAL_PROPERTIES</strong> group is mandatory for BASEPLANE_2D. This tutorial uses the <strong>default</strong> physical properties (i.e., <em>gravity</em> is <code class="docutils literal notranslate"><span class="pre">9.81</span></code>).</p>
+</div>
+<div class="section" id="write-setup-file">
+<span id="bm-export-setup"></span><h2>Write Setup File<a class="headerlink" href="#write-setup-file" title="Permalink to this headline">¶</a></h2>
+<p>Make sure that all error messages are resolved and that the model setup resembles <a class="reference internal" href="#ready2export-setup"><span class="std std-numref">Fig. 43</span></a>. Before exporting the project, save the simulation setup (click on the disk symbol in the top-right corner in <a class="reference internal" href="#ready2export-setup"><span class="std std-numref">Fig. 43</span></a>). Double-check that BASEMENT correctly wrote the files <strong>model.json</strong>, <strong>simulation.json</strong>, and <strong>results.json</strong> in the project directory (e.g., <code class="docutils literal notranslate"><span class="pre">/Basement/steady2d-tutorial/</span></code>). Export the model setup by clicking on the <strong>Write</strong> button (bottom-right corner in <a class="reference internal" href="#ready2export-setup"><span class="std std-numref">Fig. 43</span></a>).</p>
+<div class="figure align-default" id="ready2export-setup">
+<img alt="basement export model setup h5" src="../_images/setup-ready2export.png" />
+<p class="caption"><span class="caption-number">Fig. 43 </span><span class="caption-text">The final model setup to export (write) to a setup (<code class="docutils literal notranslate"><span class="pre">*.h5</span></code> <a class="reference internal" href="../documentation/glossary.html#term-HDF"><span class="xref std std-term">HDF</span></a>) file.</span><a class="headerlink" href="#ready2export-setup" title="Permalink to this image">¶</a></p>
+</div>
+<p>The <strong>Console</strong> tab automatically activates and informs about the export progress. If the <strong>Error Output</strong> canvas is not empty, check the error messages and troubleshoot the causes.</p>
+</div>
+<div class="section" id="setup-simulation-file">
+<span id="bm-sim-file"></span><h2>Setup Simulation File<a class="headerlink" href="#setup-simulation-file" title="Permalink to this headline">¶</a></h2>
+<p>After the successful export of the model setup, the <strong>Simulation</strong> ribbon (on the left in <a class="reference internal" href="#ready2export-setup"><span class="std std-numref">Fig. 43</span></a>) becomes available for setting up the <strong>simulation.json</strong> file in the project folder. Click on the <strong>Simulation</strong> ribbon to setup the <em>simulation.json</em> file:</p>
+<ul class="simple">
+<li><p><strong>Right-click</strong> on the <strong>SIMULATION</strong> group in the <strong>Define Simulation Run</strong> tab and select <strong>Add item ‘OUTPUT’</strong>.</p></li>
+<li><p><strong>Right-click</strong> on the new <strong>OUTPUT</strong> item to define four output types:</p>
+<ul>
+<li><p><strong>[0]</strong> = <code class="docutils literal notranslate"><span class="pre">water_depth</span></code></p></li>
+<li><p><strong>[1]</strong> = <code class="docutils literal notranslate"><span class="pre">water_surface</span></code></p></li>
+<li><p><strong>[2]</strong> = <code class="docutils literal notranslate"><span class="pre">bottom_elevation</span></code></p></li>
+<li><p><strong>[3]</strong> = <code class="docutils literal notranslate"><span class="pre">flow_velocity</span></code></p></li>
+<li><p><strong>[4]</strong> = <code class="docutils literal notranslate"><span class="pre">ns_hyd_discharge</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>Right-click</strong> on the <strong>SIMULATION</strong> group and select <strong>Add item ‘TIME’</strong>.</p></li>
+<li><p><strong>Define</strong> the <strong>TIME</strong> item with:</p>
+<ul>
+<li><p><strong>end</strong> = <code class="docutils literal notranslate"><span class="pre">15000.0</span></code></p></li>
+<li><p><strong>out</strong> = <code class="docutils literal notranslate"><span class="pre">1000.0</span></code></p></li>
+<li><p><strong>start</strong> = <code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></li>
+</ul>
+</li>
+</ul>
+<div class="admonition-discharge-controls admonition">
+<p class="admonition-title">Discharge controls</p>
+<p>The output parameter <code class="docutils literal notranslate"><span class="pre">ns_hyd_discharge</span></code> (<em>ns</em> denotes <em>nodestring</em>) enables the verification of discharges at inflow and outflow boundaries (STRINGDEFs), which is a <strong>necessary requirement in practice</strong>. Learn more about mass balance verification in the <a class="reference internal" href="#bm-python"><span class="std std-ref">Python Simulation Verification</span></a> section.</p>
+</div>
+<p>The values defined in the TIME section refer to the same time units as defined in the above-downloaded and linked <em>steady-inflow.txt</em> file. <a class="reference internal" href="#bm-sim-setup"><span class="std std-numref">Figure 44</span></a> shows BASEMENT with the definitions in the Simulation ribbon.</p>
+<div class="figure align-default" id="bm-sim-setup">
+<img alt="basement simulation setup" src="../_images/setup-simulation.png" />
+<p class="caption"><span class="caption-number">Fig. 44 </span><span class="caption-text">The setup of the Simulation ribbon with the definition of five output parameters and the simulation time.</span><a class="headerlink" href="#bm-sim-setup" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="run-simulation-steady-2d">
+<span id="bm-run"></span><h2>Run Simulation (Steady 2d)<a class="headerlink" href="#run-simulation-steady-2d" title="Permalink to this headline">¶</a></h2>
+<p>The simulation can be run with different options that mainly affect the computation speed (bottom of <a class="reference internal" href="#bm-sim-setup"><span class="std std-numref">Fig. 44</span></a>).</p>
+<ul class="simple">
+<li><p>The <strong>Standard Hardware</strong> frame enables to switch between single and multi-threaded CPU usage. The default option is multi-threaded, which is strongly recommended with contemporary computers.</p></li>
+<li><p>The <strong>High-performance Hardware</strong> frame enables to use a graphical processing unit (GPU), which can be significantly faster than CPU, but only when a powerful graphics processor is available. A standard-slow GPU will not have an advantage and may even slow down the computation. If you are not sure about the GPU of your computer, keep the default options (all void).</p></li>
+<li><p>The <strong>Options</strong> frame enables to choose:</p>
+<ul>
+<li><p>The <strong>Number of CPU cores</strong>, which enables to use multiple CPUs of a computer. Contemporary computers mostly have at least 8 cores that can all be used when you are working on a server or computer that has no other purpose than running numerical models. Otherwise, keep the system functional while the simulation is running by using half the number of available cores.</p></li>
+<li><p>Numeric precision; for faster simulations, select <strong>Single precision</strong>. For this tutorial, <em>Double</em> precision will work sufficiently fast as well, but in practice and for larger models use <em>Single</em> precision.</p></li>
+</ul>
+</li>
+</ul>
+<div class="admonition-how-many-cpus-does-my-computer-have admonition">
+<p class="admonition-title">How many CPUs does my computer have?</p>
+<p><strong>Windows</strong> users can fire up <strong>Task Manager</strong> (<em>Start</em> &gt; tap <code class="docutils literal notranslate"><span class="pre">task</span> <span class="pre">manager</span></code>) and look up the number of available cores in the Task Manager’s <strong>Performance</strong> tab.</p>
+<p><strong>Linux</strong> users get an overview of system resources by installing and using <a class="reference internal" href="../get-started/vm.html#install-htop"><span class="std std-ref">htop</span></a>.</p>
+</div>
+<p>To start the simulation click on the <strong>Run</strong> button on the bottom-right of the BASEMENT window. Depending on the hardware and performance settings (e.g., number of CPUs), the simulation of the tutorial model takes approximately 2-10 minutes. BASEMENT informs about the simulation progress in the <strong>Console Output</strong> frame, where the <strong>Error Output</strong> frame should remain empty (see <a class="reference internal" href="#bm-sim-end"><span class="std std-numref">Fig. 45</span></a>). If any error occurs, go back to the above sections (or even to the <a class="reference internal" href="../geopy/use-qgis.html#qgis-tutorial"><span class="std std-ref">mesh generation tutorial</span></a>) and fix errors.</p>
+<div class="figure align-default" id="bm-sim-end">
+<img alt="basement simulation end" src="../_images/simulation-end.png" />
+<p class="caption"><span class="caption-number">Fig. 45 </span><span class="caption-text">BASEMENT after successful simulation.</span><a class="headerlink" href="#bm-sim-end" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="export-simulation-results">
+<h3>Export Simulation Results<a class="headerlink" href="#export-simulation-results" title="Permalink to this headline">¶</a></h3>
+<p>Once the simulation successfully finished, go to BASEMENT’s <strong>Results</strong> ribbon. Find the <strong>RESULTS</strong> group in the <strong>Export Simulation Results</strong> tab and:</p>
+<ul class="simple">
+<li><p><strong>Right-click</strong> on the <strong>RESULTS</strong> group and select <strong>Add item ‘EXPORT’</strong>.</p></li>
+<li><p><strong>Right-click</strong> on the new <strong>EXPORT</strong> item and select <strong>Add item</strong>.</p></li>
+<li><p>Select <a class="reference internal" href="../documentation/glossary.html#term-xdmf"><span class="xref std std-term">xdmf</span></a> in the <strong>format</strong> field of the new item <strong>[0]</strong>.</p></li>
+</ul>
+<p><strong>Save the project</strong> (disk symbol in the top-right corner) and find the <strong>Export</strong> indicated in <a class="reference internal" href="#bm-res-exp"><span class="std std-numref">Fig. 46</span></a>). The export of the simulation outputs to <strong>results.<a class="reference internal" href="../documentation/glossary.html#term-xdmf"><span class="xref std std-term">xdmf</span></a></strong> will be confirmed in the <strong>Console Output</strong> frame.</p>
+<div class="figure align-default" id="bm-res-exp">
+<img alt="basement results export" src="../_images/setup-results-export.png" />
+<p class="caption"><span class="caption-number">Fig. 46 </span><span class="caption-text">Setup of the Results ribbon after a successful simulation.</span><a class="headerlink" href="#bm-res-exp" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="post-processing-with-qgis">
+<h1>Post-processing with QGIS<a class="headerlink" href="#post-processing-with-qgis" title="Permalink to this headline">¶</a></h1>
+<p>Start QGIS and create a new project or re-use the project from the <a class="reference internal" href="pre-qgis-bm.html#qgis-prepro-bm"><span class="std std-ref">Pre-processing with QGIS</span></a> tutorial. Save the new project with (a different) meaningful filename in the BASEMENT modeling folder (e.g., <code class="docutils literal notranslate"><span class="pre">/Basement/steady2d/</span></code><strong>postpro-tutorial.qgz</strong>). Setup the project similarly as in the pre-processing:</p>
+<ul class="simple">
+<li><p>Use the coordinate reference system <strong>Germany_Zone_4</strong>  (<a class="reference internal" href="pre-qgis-bm.html#start-qgis"><span class="std std-ref">QGIS Setup</span></a> section).</p></li>
+<li><p>Add a <a class="reference internal" href="../geopy/use-qgis.html#basemap"><span class="std std-ref">satellite imagery basemap</span></a> (XYZ tile) to facilitate the interpretation of the simulation results.</p></li>
+<li><p>Import the height-interpolated quality mesh <a class="reference internal" href="pre-qgis-bm.html#qualm-interp"><span class="std std-ref">prepro-tutorial_quality-mesh-interp.2dm</span></a> (<strong>Layer</strong> &gt; <strong>Add Layer</strong> &gt; <strong>Add Mesh Layer…</strong>).</p></li>
+</ul>
+<div class="section" id="import-results-xdmf">
+<span id="qgis-imp-steps"></span><h2>Import results.xdmf<a class="headerlink" href="#import-results-xdmf" title="Permalink to this headline">¶</a></h2>
+<p>The simulation results file <strong>results.<a class="reference internal" href="../documentation/glossary.html#term-xdmf"><span class="xref std std-term">xdmf</span></a></strong> can be loaded in QGIS as an additional data source of the height-interpolated quality mesh (<a class="reference internal" href="pre-qgis-bm.html#qualm-interp"><span class="std std-ref">prepro-tutorial_quality-mesh-interp.2dm</span></a>) from the pre-processing tutorial:</p>
+<ul class="simple">
+<li><p>In the <strong>Layers</strong> panel, <strong>double-click</strong> on <strong>prepro-tutorial_quality-mesh-interp.2dm</strong> to open the <strong>Layer Properties</strong> window.</p></li>
+<li><p>In the <strong>Layer Properties</strong>  window, go to the <strong>Source</strong> ribbon.</p></li>
+<li><p>In the <strong>Available Datasets</strong> frame (see <a class="reference internal" href="#qgis-assign-meshdata"><span class="std std-numref">Fig. 47</span></a>) click on the <strong>Assign Extra Data Set to Mesh</strong> button <img alt="../_images/sym-add-meshdata.png" src="../_images/sym-add-meshdata.png" /> and choose <code class="docutils literal notranslate"><span class="pre">results.xdmf</span></code>.</p></li>
+<li><p>In the <strong>Static Dataset</strong> frame, select a <strong>Scalar Dataset Group</strong> and use the maximum timestep (i.e., <code class="docutils literal notranslate"><span class="pre">625</span> <span class="pre">d</span> <span class="pre">00:00:00</span></code> in the case of simulation time <span class="math notranslate nohighlight">\(t\)</span>=15000 with an output interval of 1000).</p></li>
+<li><p>Click on <strong>Apply</strong> and <strong>OK</strong>.</p></li>
+</ul>
+<p><a class="reference internal" href="#qgis-assign-meshdata"><span class="std std-numref">Figure 47</span></a> shows an exemplary setup of the output data interpolation on the computational mesh. To visualize other output parameters and/or other simulation timesteps, vary the definitions in the <strong>Static Dataset</strong> frame.</p>
+<div class="figure align-default" id="qgis-assign-meshdata">
+<img alt="basement assign qgis metadata mesh" src="../_images/bm-load-results.png" />
+<p class="caption"><span class="caption-number">Fig. 47 </span><span class="caption-text">Assign mesh data to the computational mesh.</span><a class="headerlink" href="#qgis-assign-meshdata" title="Permalink to this image">¶</a></p>
+</div>
+<p>To improve the visualization of the results, re-open the <strong>Layer Properties</strong> of the mesh layer and go to the <strong>Symbology</strong> ribbon. Visualize a simulation output parameter, such as <strong>flow_velocity</strong>, as follows:</p>
+<ul class="simple">
+<li><p>In the <strong>Settings tab</strong> (hammer symbol in the top-left corner highlighted in <a class="reference internal" href="#symbology4u"><span class="std std-numref">Fig. 48</span></a>) find the <strong>Groups</strong> listbox.</p></li>
+<li><p>In the <strong>Groups</strong> listbox, find the parameter to visualize (e.g., <strong>flow_velocity</strong>) and enable the contours symbol.</p></li>
+<li><p>Switch to the <strong>Contours tab</strong> next to the Settings tab (highlighted box in the top-left of <a class="reference internal" href="#symbology4u"><span class="std std-numref">Fig. 48</span></a>) and select a <strong>Color Ramp</strong>.</p></li>
+<li><p>After defining a visualization click <strong>Apply</strong> and <strong>OK</strong>.</p></li>
+</ul>
+<div class="figure align-default" id="symbology4u">
+<img alt="basement qgis results velocity meshdata" src="../_images/vis-flow-vel.png" />
+<p class="caption"><span class="caption-number">Fig. 48 </span><span class="caption-text">Visualize the flow_velocity parameter with the Symbology controls. The red boxes highlight relevant tabs and entries.</span><a class="headerlink" href="#symbology4u" title="Permalink to this image">¶</a></p>
+</div>
+<p><a class="reference internal" href="#qgis-plot-metadata"><span class="std std-numref">Figure 49</span></a> illustrates a visualization of the flow velocity at the end of the simulation. The flow velocity results are also available as a video sequence (<a class="reference external" href="https://github.com/hydro-informatics/materials-bm/raw/main/exports/velocity-video-crayfish.avi">download</a>).</p>
+<div class="figure align-default" id="qgis-plot-metadata">
+<img alt="plotted qgis basement results flow velocity" src="../_images/bm-meshdata-u-plotted.png" />
+<p class="caption"><span class="caption-number">Fig. 49 </span><span class="caption-text">After application of the above Symbology settings: The flow velocity is illustrated in red shades.</span><a class="headerlink" href="#qgis-plot-metadata" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="rasterize-outputs">
+<span id="bm-rasterize-output"></span><h2>Rasterize Outputs<a class="headerlink" href="#rasterize-outputs" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="../geopy/geospatial-data.html#raster"><span class="std std-ref">Gridded Cell (Raster) Data</span></a> format is useful for many post-processing tasks such as map algebra (e.g., for habitat analysis or the assessment of inundation area and depth). To this end, QGIS provides the <strong>Rasterize mesh dataset</strong> tool for converting mesh data at any simulation timestep to a <a class="reference internal" href="../geopy/geospatial-data.html#raster"><span class="std std-ref">Raster</span></a> (e.g., as <a class="reference internal" href="../documentation/glossary.html#term-GeoTIFF"><span class="xref std std-term">GeoTIFF</span></a>). To open the <em>Rasterize mesh dataset</em> tool, go to either <strong>Processing</strong> &gt; <strong>Toolbox</strong> or make sure that the <strong>View</strong> &gt; <strong>Panels</strong> &gt; <strong>Processing Toolbox</strong> is checked. In the <strong>Processing Toolbox</strong> click on the <strong>Mesh</strong> group and double click on <strong>Rasterize mesh dataset</strong> (see also <a class="reference internal" href="#qgis-rasterize-mesh-menu"><span class="std std-numref">Fig. 50</span></a>).</p>
+<div class="figure align-default" id="qgis-rasterize-mesh-menu">
+<img alt="rasterize basement velocity water depth qgis" src="../_images/rasterize-mesh-menu.png" />
+<p class="caption"><span class="caption-number">Fig. 50 </span><span class="caption-text">Open the Rasterize mesh tool in QGIS’ Processing Toolbox.</span><a class="headerlink" href="#qgis-rasterize-mesh-menu" title="Permalink to this image">¶</a></p>
+</div>
+<p>Make the following settings in the <code class="docutils literal notranslate"><span class="pre">Rasterize</span></code> window  (see also <a class="reference internal" href="#qgis-rasterize-mesh"><span class="std std-numref">Fig. 51</span></a>):</p>
+<ul class="simple">
+<li><p>Set the <strong>Input Mesh Layer</strong> to  <code class="docutils literal notranslate"><span class="pre">prepro-tutorial_quality-mesh-interp</span></code>.</p></li>
+<li><p>In the <strong>Dataset groups</strong> frame, click on the <strong>…</strong> button &gt; <strong>Select in Available Dataset Groups</strong> and select <strong>one parameter</strong> (e.g., <strong>flow_velocity</strong>). Then, clicking on the <strong>Go back</strong> <img alt="../_images/sym-go-back.png" src="../_images/sym-go-back.png" /> button. Make sure that the <strong>Dataset groups</strong> canvas contains only <strong>1</strong> selected <strong>option</strong>. Otherwise, the tool will create a messy multiband <a class="reference internal" href="../geopy/geospatial-data.html#raster"><span class="std std-ref">Raster</span></a>.</p></li>
+<li><p>In the <strong>Dataset time</strong> frame, check the <strong>Dataset group time step</strong> radio button and select the last simulation timestep (i.e., <code class="docutils literal notranslate"><span class="pre">625</span> <span class="pre">d</span> <span class="pre">00:00:00</span></code>).</p></li>
+<li><p>In the <strong>Extent [optional]</strong> field, click on the <strong>…</strong> button &gt; <strong>Calculate from Layer</strong> &gt; <strong>prepro-tutorial_quality-mesh-interp</strong>.</p></li>
+<li><p>For <strong>Pixel size</strong> tap <code class="docutils literal notranslate"><span class="pre">2.0</span></code> meters (the larger this number, the coarser will be the output raster).</p></li>
+<li><p>For <strong>Output coordinate system</strong> select <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">CRS:</span> <span class="pre">ESRI:31494</span> <span class="pre">-</span> <span class="pre">Germany_Zone_4</span></code>.</p></li>
+<li><p>Define an <strong>Output raster layer</strong> by clicking on the <strong>…</strong> button &gt; <strong>Save to File</strong>. Go to the target directory (e.g., <code class="docutils literal notranslate"><span class="pre">C:/Basement/steady2-tutorial/</span></code>) and enter a raster name, such as <code class="docutils literal notranslate"><span class="pre">u-end.tif</span></code> (<code class="docutils literal notranslate"><span class="pre">u</span></code> for flow velocity, <code class="docutils literal notranslate"><span class="pre">end</span></code> for last timestep, and <code class="docutils literal notranslate"><span class="pre">.tif</span></code> for <a class="reference internal" href="../documentation/glossary.html#term-GeoTIFF"><span class="xref std std-term">GeoTIFF</span></a>).  Click <strong>Save</strong>.</p></li>
+<li><p>Click on the <strong>Run</strong> button to start rasterizing the mesh dataset.</p></li>
+</ul>
+<p>After the successful rasterization, close the <strong>Rasterize Mesh Dataset</strong> window with a click on the <strong>Close</strong> button.</p>
+<div class="figure align-default" id="qgis-rasterize-mesh">
+<img alt="setup rasterize mesh geotiff" src="../_images/rasterize-mesh.png" />
+<p class="caption"><span class="caption-number">Fig. 51 </span><span class="caption-text">Settings to export simulation results with QGIS’s Rasterize tool.</span><a class="headerlink" href="#qgis-rasterize-mesh" title="Permalink to this image">¶</a></p>
+</div>
+<p>To enhance the visualization of the new (flow velocity) raster, double-click on the new raster in the <strong>Layers</strong> panel and switch to the <strong>Symbology</strong> tab. Select <strong>Singleband pseudocolor</strong> for <strong>Render type</strong> (in the top region of the window) and a <strong>Color ramp</strong>. To suppress zero-value pixels, double-click on the <strong>Color</strong> of the <strong>0</strong>-<strong>Value</strong> field, and in the <strong>Select color</strong> window reduce the <strong>Opacity</strong> to <strong>0<span class="math notranslate nohighlight">\(%\)</span></strong>. <a class="reference internal" href="#bm-exported-u-raster"><span class="std std-numref">Figure 52</span></a> shows an example visualization of the exported flow velocity raster.</p>
+<div class="figure align-default" id="bm-exported-u-raster">
+<img alt="basement output rasterize mesh geotiff visualization singleband pseudocolor" src="../_images/bm-exported-u.png" />
+<p class="caption"><span class="caption-number">Fig. 52 </span><span class="caption-text">A Singleband pseudocolor (Layer Properties &gt; Symbology) represents the exported GeoTIFF flow velocity raster with a <em>Reds</em> color ramp and zero-value pixels set to zero-opacity.</span><a class="headerlink" href="#bm-exported-u-raster" title="Permalink to this image">¶</a></p>
+</div>
+<div class="admonition-analyze-geodata-results-with-python admonition">
+<p class="admonition-title">Analyze geodata results with Python</p>
+<p>Facilitate the conversion and analysis of geospatial data with efficient <a class="reference internal" href="../geopy/geo-python.html#sec-geo-python"><span class="std std-ref">Geospatial Python</span></a> applications and the <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> package.</p>
+</div>
+</div>
+<div class="section" id="mesh-visualization-with-crayfish">
+<h2>Mesh Visualization with Crayfish<a class="headerlink" href="#mesh-visualization-with-crayfish" title="Permalink to this headline">¶</a></h2>
+<p>The open-source <a class="reference external" href="https://www.lutraconsulting.co.uk/projects/crayfish/">Crayfish</a> plugin enables the visualization of mesh values (e.g., change of node values over time) with many features, such as exporting video animations of model results. To create a video of, for instance, the flow velocity outputs at the 1+15 simulation timesteps, use the Crayfish plugin as follows:</p>
+<ul class="simple">
+<li><p>In QGIS, make sure the Crayfish plugin is installed.</p></li>
+<li><p>In the <strong>Layer</strong> panel, select <strong>prepro-tutorial_quality-mesh-interp</strong>.</p></li>
+<li><p>With <em>prepro-tutorial_quality-mesh-interp</em> selected, go to <strong>Mesh</strong> (top dropdown menu) &gt; <strong>Crayfish</strong> &gt; <strong>Export Animation …</strong> (if the layer is not highlighted, an error message pops up: <em>Please select a Mesh Layer for export</em>).</p></li>
+<li><p>In the <strong>Export Animation</strong> window, go to the <strong>General</strong> tab and define an output file name by clicking on the <strong>…</strong> button (e.g., <code class="docutils literal notranslate"><span class="pre">velocity-video.avi</span></code>).</p></li>
+<li><p>Click <strong>OK</strong>.</p></li>
+</ul>
+<p>The first time that a video is exported, Crayfish will require the definition of an <strong>FFmpeg video encoder</strong> and guide through the installation (if required). Follow the instructions and re-start exporting the video. An exemplary avi-video file of flow velocity outputs can be (<a class="reference external" href="https://github.com/hydro-informatics/materials-bm/raw/main/exports/velocity-video-crayfish.avi">downloaded here</a>).</p>
+<div class="note admonition">
+<p class="admonition-title">Make animations of other parameters</p>
+<p>To make videos of other simulation parameters, change the currently visualized parameter of the mesh (<em>prepro-tutorial_quality-mesh-interp</em>) as <a class="reference internal" href="#qgis-imp-steps"><span class="std std-ref">explained above</span></a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="post-processing-with-paraview">
+<span id="bm-paraview"></span><h1>Post-processing with ParaView<a class="headerlink" href="#post-processing-with-paraview" title="Permalink to this headline">¶</a></h1>
+<p><em>ParaView</em> is freely available visualization software, which enables plotting and processing BASEMENT’s <em>results.<a class="reference internal" href="../documentation/glossary.html#term-xdmf"><span class="xref std std-term">xdmf</span></a></em> file for scientific purposes. Download and install (requires <strong>Admin</strong>/<strong>sudo</strong> rights) the latest version of <em>ParaView</em> from their <a class="reference external" href="https://www.paraview.org/download/">website</a> (if not yet done).</p>
+<div class="section" id="id2">
+<h2>Import results.xdmf<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>Open <em>ParaView</em> and <strong>click on the folder icon</strong> (top-left of the window indicated in <a class="reference internal" href="#fig-pv-import"><span class="std std-numref">Fig. 53</span></a>) to load the simulation results file (<code class="docutils literal notranslate"><span class="pre">results.xdmf</span></code>). <em>ParaView</em> might ask to choose an appropriate XDMF read plugin: <strong>Select <code class="docutils literal notranslate"><span class="pre">XDMF</span> <span class="pre">Reader</span></code></strong> and click <code class="docutils literal notranslate"><span class="pre">OK</span></code>. Now, the <code class="docutils literal notranslate"><span class="pre">results.xdmf</span></code> should be visible in the <strong>Pipeline Browser</strong> and the <strong>Apply</strong> button has turned green (click on it).</p>
+<div class="figure align-default" id="fig-pv-import">
+<img alt="basement results paraview" src="../_images/import-results.png" />
+<p class="caption"><span class="caption-number">Fig. 53 </span><span class="caption-text">ParaView after successful import of the model results (results.xdmf).</span><a class="headerlink" href="#fig-pv-import" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="visualize-parameters">
+<span id="pv-vis"></span><h2>Visualize Parameters<a class="headerlink" href="#visualize-parameters" title="Permalink to this headline">¶</a></h2>
+<p>ParaView shows by default one of the result parameters at timestep 0 (i.e., bare, dry terrain). To explore other parameters, select them in the dropdown menu of the <strong>Active Variable Controls</strong> menu bar (red highlight box in <a class="reference internal" href="#fig-pv-vis"><span class="std std-numref">Fig. 54</span></a>). The <em>Active Variable Controls</em> menu bar also contains options for manipulating the color range and legend. Toggle through the timesteps by using the video control buttons in the <strong>VCR Controls</strong> toolbar (light blue highlight box in <a class="reference internal" href="#fig-pv-vis"><span class="std std-numref">Fig. 54</span></a>).</p>
+<div class="figure align-default" id="fig-pv-vis">
+<img alt="basement results paraview" src="../_images/vis-u.png" />
+<p class="caption"><span class="caption-number">Fig. 54 </span><span class="caption-text">The Active Variable Controls (red box) and VCR Controls (light blue box) in ParaView to visualize output parameters at different timesteps.</span><a class="headerlink" href="#fig-pv-vis" title="Permalink to this image">¶</a></p>
+</div>
+<div class="admonition-familiarize-with-the-viewport admonition">
+<p class="admonition-title">Familiarize with the Viewport</p>
+<p>The Viewport (default <code class="docutils literal notranslate"><span class="pre">Layout</span> <span class="pre">#1</span></code>) provides many tools for zooming into the model and changing perspectives between 2d and 3d. Click in the Viewport and hold the left mouse button to change perspectives. Take a couple of minutes to familiarize with the perspectives.</p>
+</div>
+<p>To <strong>export an animation of an output parameter</strong> over time as movie (e.g., <code class="docutils literal notranslate"><span class="pre">avi</span></code>) or image (e.g., <code class="docutils literal notranslate"><span class="pre">jpg</span></code>, <code class="docutils literal notranslate"><span class="pre">png</span></code>, <code class="docutils literal notranslate"><span class="pre">tiff</span></code>) go to <strong>File</strong> &gt; <strong>Save Animation…</strong>.</p>
+</div>
+<div class="section" id="save-project-pipeline">
+<h2>Save Project Pipeline<a class="headerlink" href="#save-project-pipeline" title="Permalink to this headline">¶</a></h2>
+<p>With its approach of sequences of programmable filter application, ParaView saves a <em>Current State</em> in the PVSM format rather than a project as in QGIS. The current state of a dataset in ParaView can be saved as <code class="docutils literal notranslate"><span class="pre">pvsm</span></code> file via <strong>File</strong> &gt; <strong>Save State File</strong>. <strong>Save</strong> the current state of the tutorial ParaView project, for instance, in the simulation folder as <strong>pv-project.pvsm</strong>. To load an existing ParaView state (i.e., project), go to <strong>File</strong> &gt; <strong>Load state</strong>.</p>
+<div class="admonition-automate-paraview-pipelines admonition">
+<p class="admonition-title">Automate ParaView Pipelines</p>
+<p>The state file can also be saved as a Python script to leverage automated pipelines and exports (read more in the <a class="reference internal" href="../jupyter/pypckg.html#standalone"><span class="std std-ref">Python</span></a> chapter).</p>
+</div>
+</div>
+<div class="section" id="export-data">
+<span id="pv-exp-data"></span><h2>Export Data<a class="headerlink" href="#export-data" title="Permalink to this headline">¶</a></h2>
+<p>Similar to QGIS, output parameter datasets can be extracted, manipulated, or transformed in ParaView. For this purpose, programmable filters can be applied to the original dataset in ParaView to calculate (i.e., apply the <strong>Calculator</strong> <img alt="../_images/sym-calc.png" src="../_images/sym-calc.png" /> filter), for example, the Froude number from the water depth and flow velocity datasets (read more in the <a class="reference external" href="https://www.paraview.org/Wiki/Python_calculator_and_programmable_filter">ParaView Wiki</a>). This tutorial only features the export of mesh point data to a <a class="reference internal" href="../documentation/glossary.html#term-CSV"><span class="xref std std-term">CSV</span></a> file with programmable filters:</p>
+<ul class="simple">
+<li><p>Make sure that the <strong>Time</strong> in the <strong>Current Time Controls</strong> toolbar (light blue box in <a class="reference internal" href="#fig-pv-cell-centers"><span class="std std-numref">Fig. 55</span></a>) is set to 15000 (maximum timestep).</p></li>
+<li><p>In the <strong>Pipeline Browser</strong>, <strong>right-click</strong> on <code class="docutils literal notranslate"><span class="pre">results.xdmf</span></code> &gt; <strong>Add Filter</strong> &gt; <strong>Alphabetical</strong> (i.e., a list of all available filters) &gt; <strong>Cell Centers</strong>.</p></li>
+<li><p>In the <strong>CellCenters1</strong> <strong>Properties</strong>, check the <strong>Vertex Cells</strong> box and click on the now again green <strong>Apply</strong> button (see <a class="reference internal" href="#fig-pv-cell-centers"><span class="std std-numref">Fig. 55</span></a>).</p></li>
+<li><p>To save the currently active vertex data <strong>press  <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">S</span></code> on the keyboard</strong>, which opens a <em>Save File</em> dialogue window. In the <strong>Save File</strong> window:</p>
+<ul>
+<li><p>Navigate to a target folder (e.g., the simulation folder <code class="docutils literal notranslate"><span class="pre">/Basement/steady2d-tutorial/</span></code>)</p></li>
+<li><p>Enter a <strong>File name</strong> (e.g., <code class="docutils literal notranslate"><span class="pre">flow_velocity.csv</span></code>)</p></li>
+<li><p>In the <strong>Files of type</strong> drop-down field, select <strong>Comma or Tab Delimited Files(<code class="docutils literal notranslate"><span class="pre">*.csv</span> <span class="pre">*.tsv</span> <span class="pre">*.txt</span></code>)</strong>.</p></li>
+<li><p>Click <strong>OK</strong>.</p></li>
+</ul>
+</li>
+<li><p>The <strong>Configure Writer (CSV Writer)</strong> window opens:</p>
+<ul>
+<li><p>Check the <strong>Choose Array To Write</strong> box.</p></li>
+<li><p>Select <strong>flow_velocity points</strong> only (or more/other parameters).</p></li>
+<li><p>Keep all other defaults.</p></li>
+<li><p>Click <strong>OK</strong>.</p></li>
+</ul>
+</li>
+</ul>
+<div class="figure align-default" id="fig-pv-cell-centers">
+<img alt="paraview basement export data" src="../_images/cell-centers.png" />
+<p class="caption"><span class="caption-number">Fig. 55 </span><span class="caption-text">Application of the CellCenters programmable filter in ParaView, with the maximum timestep defined in the Current Time Controls toolbar (light blue box).</span><a class="headerlink" href="#fig-pv-cell-centers" title="Permalink to this image">¶</a></p>
+</div>
+<p>Now, a <em>flow_velocity.</em><a class="reference internal" href="../documentation/glossary.html#term-CSV"><span class="xref std std-term">CSV</span></a> file has been written that contains point coordinates (x, y, and z coordinates) and flow_velocity in <em>x</em> (flow_velocity:0) and <em>y</em> (flow_velocity:1) directions. The flow_velocity:2 (<em>z</em>-direction) is always zero in this 2d simulation. The <em>flow_velocity.</em><a class="reference internal" href="../documentation/glossary.html#term-CSV"><span class="xref std std-term">CSV</span></a> file can also be used with QGIS (for instance, in QGIS go to <strong>Layer</strong> &gt; <strong>Add Layer</strong> &gt; <strong>Add Delimited Text Layer…</strong> &gt; select <em>flow_velocity.csv</em>, assign the correct columns and separators &gt; click <strong>Add</strong>).</p>
+<div class="admonition-challenge-calculate-the-absolute-velocity admonition">
+<p class="admonition-title">Challenge: Calculate the absolute velocity</p>
+<p>Import <em>flow_velocity.csv</em> in QGIS and calculate the absolute flow velocity <span class="math notranslate nohighlight">\(U\)</span> from <span class="math notranslate nohighlight">\(u_x\)</span> (flow_velocity:0) and <span class="math notranslate nohighlight">\(u_y\)</span> (flow_velocity:1) as <span class="math notranslate nohighlight">\(U = \sqrt{u^2_x + u^2_y}\)</span>. How do the flow fields comply with the above-created <code class="docutils literal notranslate"><span class="pre">u-end.tif</span></code> (see <a class="reference internal" href="#bm-rasterize-output"><span class="std std-ref">Rasterize Outputs</span></a> section) raster?</p>
+</div>
+</div>
+</div>
+<div class="section" id="python-simulation-verification">
+<span id="bm-python"></span><h1>Python Simulation Verification<a class="headerlink" href="#python-simulation-verification" title="Permalink to this headline">¶</a></h1>
+<p>BASEMENT’s developers at the ETH Zurich provide a suite of <a class="reference external" href="http://people.ee.ethz.ch/~basement/baseweb/download/tools/python-scripts/">Python scripts</a> for post-processing the simulation results. For the here used BASEMENT v3, download the Python script <a class="reference external" href="http://people.ee.ethz.ch/~basement/baseweb/download/tools/python-scripts/BMv3NodestringResults.py">BMv3NodestringResults.py</a>, which exports defined output parameters at the user-defined <a class="reference internal" href="#bm-geo-fin"><span class="std std-ref">STRINGDEFs</span></a>.</p>
+<p>To run the Python script, <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">install Python</span></a> for your platform along with the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">h5py</span></code> packages.</p>
+<div class="admonition-guidance-for-installing-python admonition">
+<p class="admonition-title">Guidance for installing Python</p>
+<p>Consider to install Python in a <a class="reference internal" href="../python-basics/pyinstall.html#conda-env"><span class="std std-ref">conda env</span></a> (<em>Windows</em>) or a <a class="reference internal" href="../python-basics/pyinstall.html#pip-env"><span class="std std-ref">venv (pip)</span></a> (<em>Linux</em>) with <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a>, which already includes all requirements for running <em><a class="reference external" href="http://BMv3NodestringResults.py">BMv3NodestringResults.py</a></em>.</p>
+</div>
+<p>For running the <em>Python</em> script on any platform:</p>
+<ul class="simple">
+<li><p>Optionally activate the relevant <em>Python</em> (conda or venv) environment.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span></code> (change directory) into the simulation folder.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">BMv3NodestringResults.py</span></code>.</p></li>
+</ul>
+<p>In detail, this looks as follows:</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="1953c380-1482-4ecf-b7d0-e294546c22a2" name="505ad49f-036b-49ca-b427-6d5ff9ef174b" type="radio">
+</input><label class="tabbed-label" for="1953c380-1482-4ecf-b7d0-e294546c22a2">
+Windows / conda</label><div class="tabbed-content docutils">
+<p>Launch <em>Windows</em> or <em>Anaconda Prompt</em> and tap (requires that the conda environment <a class="reference internal" href="../python-basics/pyinstall.html#conda-quick"><span class="std std-ref">flussenv</span></a> is installed):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">flussenv</span>
+<span class="n">cd</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Basement</span>\<span class="n">steady2d</span><span class="o">-</span><span class="n">tutorial</span>\
+<span class="n">python</span> <span class="n">BMv3NodestringResults</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</div>
+<input id="59e70804-99a6-4c80-8157-2bee37465a1e" name="505ad49f-036b-49ca-b427-6d5ff9ef174b" type="radio">
+</input><label class="tabbed-label" for="59e70804-99a6-4c80-8157-2bee37465a1e">
+Linux / pip</label><div class="tabbed-content docutils">
+<p>Launch <em>Linux Terminal</em> and tap (requires that the pip environment <a class="reference internal" href="../python-basics/pyinstall.html#pip-quick"><span class="std std-ref">vflussenv</span></a> is installed in the HOME directory):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~</span>
+<span class="n">source</span> <span class="n">vflussenv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+<span class="n">cd</span> <span class="o">/</span><span class="n">Basement</span><span class="o">/</span><span class="n">steady2d</span><span class="o">-</span><span class="n">tutorial</span><span class="o">/</span>
+<span class="n">python</span> <span class="n">BMv3NodestringResults</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>If <a class="reference internal" href="../python-basics/pyinstall.html#pip-quick"><span class="std std-ref">vflussenv</span></a> is installed in another directory than HOME, replace <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~</span></code> in the first line of the above code block with the parent installation directory of <a class="reference internal" href="../python-basics/pyinstall.html#pip-quick"><span class="std std-ref">vflussenv</span></a>.</p>
+</div>
+</div>
+<p><a class="reference internal" href="#export-py"><span class="std std-numref">Figure 56</span></a> illustrates running <em><a class="reference external" href="http://BMv3NodestringResults.py">BMv3NodestringResults.py</a></em> on <em>Windows</em> in <em>Anaconda Prompt</em>.</p>
+<div class="figure align-default" id="export-py">
+<img alt="export nodestring python script basement BMv3NodestringResults" src="../_images/export-ns-py.png" />
+<p class="caption"><span class="caption-number">Fig. 56 </span><span class="caption-text">A Python Anaconda Prompt window running <a class="reference external" href="http://BMv3NodestringResults.py">BMv3NodestringResults.py</a></span><a class="headerlink" href="#export-py" title="Permalink to this image">¶</a></p>
+</div>
+<p>Running the <em>Python</em> script generates three <a class="reference internal" href="../documentation/glossary.html#term-CSV"><span class="xref std std-term">CSV</span></a> files that contain values at the user-defined <a class="reference internal" href="#bm-geo-fin"><span class="std std-ref">STRINGDEFs</span></a>:</p>
+<ul class="simple">
+<li><p><strong>Discharge.csv</strong> contains inflow and outflow discharges.</p></li>
+<li><p><strong>results.csv</strong> contains any OUTPUT parameter defined in the <a class="reference internal" href="#bm-sim-file"><span class="std std-ref">simulation setup file</span></a>.</p></li>
+<li><p><strong>timestep.csv</strong> lists the number of OUTPUT parameter timesteps.</p></li>
+</ul>
+<p>The primarily important file is <strong>Discharge.csv</strong>, from which can be read when inflow and outflow converge in a steady-state simulation (i.e., <strong>the simulation stabilizes</strong>). A steady simulation in which the sum of all inflows does not equal all outflows must be considered erroneous. For instance, if the sum of outflows in the last timestep is smaller than the sum of inflows, then the simulation time is too short. The diagram in <a class="reference internal" href="#convergence-diagram-bm"><span class="std std-numref">Fig. 57</span></a> plots inflow and outflow for the simulation setup of this tutorial. The diagram suggests that the model reaches stability after timestep 11 (simulation time <span class="math notranslate nohighlight">\(t \leq 11000\)</span>). Thus, the simulation time could be limited to <span class="math notranslate nohighlight">\(t = 12000\)</span>, but a simulation time of <span class="math notranslate nohighlight">\(t = 10000\)</span> would be too short.</p>
+<div class="figure align-default" id="convergence-diagram-bm">
+<img alt="basement convergence model simulation discharge verification validation" src="../_images/convergence-diagram.png" />
+<p class="caption"><span class="caption-number">Fig. 57 </span><span class="caption-text">Convergence of inflow and outflow at the model boundaries.</span><a class="headerlink" href="#convergence-diagram-bm" title="Permalink to this image">¶</a></p>
+</div>
+<p>Note the difference between the convergence duration in this steady simulation with BASEMENT (plot in <a class="reference internal" href="#convergence-diagram-bm"><span class="std std-numref">Fig. 57</span></a>) that starts with a dry model compared to the shorter convergence duration in the Telemac2d  tutorial that starts with an initial condition of 1.0 m water depth (plot in <a class="reference internal" href="telemac2d-steady.html#convergence-diagram-tm2d"><span class="std std-numref">Fig. 76</span></a>). This difference mainly stems from the type of initial conditions (dry channel versus initial depth) that also reflects in a zero-outflow in the BASEMENT simulation and an outflow surplus that is visible in the Telemac2d simulation at the beginning of the simulations.</p>
+<div class="admonition-discharge-convergence-issues admonition">
+<p class="admonition-title">Discharge convergence issues</p>
+<ul class="simple">
+<li><p><strong>Perpetually increasing discharge in a steady simulation</strong><br>The definition of the  <a class="reference internal" href="#bm-geo-fin"><span class="std std-ref">upstream_direction</span></a> (e.g., wrongly defined as <code class="docutils literal notranslate"><span class="pre">&quot;left&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;right&quot;</span></code>) may cause this error.</p></li>
+<li><p><strong>Outflow smaller than inflow</strong><br>Increase the simulation time (see the <a class="reference internal" href="#bm-sim-file"><span class="std std-ref">Setup Simulation File</span></a> section).</p></li>
+<li><p><strong>No water in the model</strong><br>The discharge defined in the <em>steady-inflow.txt</em> file (see <a class="reference internal" href="#bm-hydraulics"><span class="std std-ref">Hydraulics</span></a> section) must define reasonable flows in the simulation time. In addition, the definition of the  <a class="reference internal" href="#bm-geo-fin"><span class="std std-ref">upstream_direction</span></a> (e.g., wrongly defined as <code class="docutils literal notranslate"><span class="pre">&quot;left&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;right&quot;</span></code>) may cause this error. Depending on your system’s region settings, use the English <strong><code class="docutils literal notranslate"><span class="pre">.</span></code></strong> in lieu of the European <strong><code class="docutils literal notranslate"><span class="pre">,</span></code></strong> decimal delimiter to define discharges in <em>steady-inflow.txt</em>.</p></li>
+</ul>
+</div>
+<p><strong>What next?</strong> The verification of the model stability represents only one step on the pathway to a useable model in practice. Before a numerical model can be used for simulating decision-making scenarios, it must be calibrated and validated with measurement data. Read more in the <a class="reference internal" href="calibration.html"><span class="doc">Calibration and Validation</span></a> section.</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "hydro-informatics/hydro-informatics.github.io",
+            ref: "gh-pages",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./numerics"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="pre-qgis-bm.html" title="previous page">Pre-processing with QGIS</a>
+    <a class='right-next' id="next-link" href="telemac.html" title="next page">TELEMAC</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Sebastian Schwindt<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

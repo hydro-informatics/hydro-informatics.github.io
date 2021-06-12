@@ -1,0 +1,1366 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plotting &#8212; Hydro-Informatics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://hydro-informatics.github.io/jupyter/pyplot.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Code Style and Conventions" href="pystyle.html" />
+    <link rel="prev" title="Workbooks (xlsx) and JSON" href="xml.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/icon.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  Get Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../lectures/classroom.html">
+   The Virtual Classroom
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/lectures.html">
+     Lectures and Exercises
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/take_seat.html">
+     Take a Seat
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../get-started/software.html">
+   Software Resources
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/vm.html">
+     Virtual Machines and Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/ide.html">
+     Integrated Development Environments (IDEs)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python-basics/pyinstall.html">
+     Install Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/git.html">
+     Introduction to git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/geo.html">
+     Geospatial Software
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-openfoam.html">
+     OpenFOAM (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-telemac.html">
+     TELEMAC (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/others.html">
+     Other Software Resources
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Python Basics
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/python.html">
+   First Steps
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pybase.html">
+     Hello Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyerror.html">
+     Errors, Logging, and Debugging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyloop.html">
+     Loops and Conditional Statements
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/modularize.html">
+   Object Orientation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyfun.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pypckg.html">
+     Packages, Modules and Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="classes.html">
+     Object Orientation and Classes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../python-basics/data-handling.html">
+   Data and File Handling
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="pynum.html">
+     Load and Write Basic Data Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="xml.html">
+     Workbooks (xlsx) and JSON
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Plotting
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pystyle.html">
+   Code Style and Conventions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gui.html">
+   Graphical User Interfaces (GUIs)
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/python-exercises.html">
+   Python Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-ms.html">
+     1d Hydraulics (Manning-Strickler Formula)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sp.html">
+     Reservoir Volume (Sequent Peak Algorithm)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-floods.html">
+     Flood Return Periods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sediment.html">
+     1d Sediment Transport
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-gui.html">
+     Create a GUI
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Geospatial Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/geospatial-data.html">
+   Geospatial Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/use-qgis.html">
+   QGIS Tutorial
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../geopy/geo-python.html">
+   Geospatial Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-pckg.html">
+     Geospatial Open Source Python Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="geo-shp.html">
+     Shapefile (Vector Dataset) Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="geo-raster.html">
+     Raster (Gridded) Dataset Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="geo-convert.html">
+     Raster to Vector Conversion and Vice Versa
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="geo-arcpy.html">
+     The Commercial arcpy Library
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/geo-exercises.html">
+   Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-geco.html">
+     Script a Habitat Suitability Map
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Numerical Modeling
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/numerical-modeling.html">
+   Principles
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerics/basement.html">
+   BASEMENT
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/pre-qgis-bm.html">
+     Pre-processing with QGIS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/basement2d.html">
+     Simulation Setup (Steady 2d)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerics/telemac.html">
+   TELEMAC
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/pre-slf-tm.html">
+     Pre-processing
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../numerics/telemac2d.html">
+     Telemac2d
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac2d-steady.html">
+       Steady 2d Simulation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac2d-unsteady.html">
+       Unsteady 2d Simulation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac-gaia.html">
+       Unsteady Hydro-Morphodynamic 2d Simulation (Gaia)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../numerics/telemac3d.html">
+     Telemac3d
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac3d-slf.html">
+       Telemac3d (SLF)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac3d-med.html">
+       Telemac3d (Salome-Hydro and MED)
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerics/openfoam.html">
+   OpenFOAM
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/pre-qgis-of.html">
+     Pre-processing with QGIS
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/calibration.html">
+   Calibration and Validation
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Documentation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/documentation.html">
+   Markdown and Code Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/glossary.html">
+   Glossary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/notation.html">
+   Notation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/bibliography.html">
+   References
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/docs-exercises.html">
+   Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-git.html">
+     Git and markdown
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Troubleshoot
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
+   Programming Tools and IDEs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
+     Debugging Anaconda
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-python.html">
+     Debugging Python Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
+     Debugging Jupyter
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
+   Numerical Models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+  <label for="toctree-checkbox-16">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
+     Debugging BASEMENT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
+     Debugging TELEMAC/SALOME
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-os.html">
+   Operating Systems (Linux and VMs)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+  <label for="toctree-checkbox-17">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
+     Debugging Debian Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
+     Debugging Virtual Machines
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Disclaimer and License
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/jupyter/pyplot.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/hydro-informatics/hydro-informatics.github.io"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter/v2/gh/hydro-informatics/hydro-informatics.github.io/gh-pages?urlpath=lab/tree/_sources/jupyter/pyplot.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com//github/hydro-informatics/hydro-informatics.github.io/blob/gh-pages/_sources/jupyter/pyplot.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tools-packages-for-plotting-with-python">
+   Tools (Packages) for Plotting with
+   <em>
+    Python
+   </em>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matplotlib">
+   Matplotlib
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#some-terms-and-definitions">
+     Some Terms and Definitions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-by-step-recipe-for-1d-2d-line-plots">
+     Step-by-step Recipe for 1d/2d (line) plots
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#surface-and-contour-plots">
+     Surface and Contour Plots
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fonts-and-styles">
+     Fonts and Styles
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#annotations">
+     Annotations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plotting-with-pandas">
+   Plotting with
+   <em>
+    pandas
+   </em>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pandas-and-matplotlib">
+     <em>
+      pandas
+     </em>
+     and
+     <em>
+      matplotlib
+     </em>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#boxplots-and-error-bars">
+     Boxplots and Error Bars
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interactive-plots-with-plotly">
+   Interactive Plots with
+   <em>
+    plotly
+   </em>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#installation">
+     Installation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#usage-simple-plots">
+     Usage (Simple Plots)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interactive-map-applications">
+     Interactive map applications
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="plotting">
+<h1>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h1>
+<p>Use matplotlib, pandas, and plotly to leverage Python’s power of data visualization. For interactive reading and executing code blocks <a class="reference external" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> and find <em>pyplot.ipynb</em> or <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Install Python</span></a> locally along with <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a>.</p>
+<div class="section" id="tools-packages-for-plotting-with-python">
+<h2>Tools (Packages) for Plotting with <em>Python</em><a class="headerlink" href="#tools-packages-for-plotting-with-python" title="Permalink to this headline">¶</a></h2>
+<p>Several packages enable plotting in <em>Python</em>. The last page already introduced <a class="reference external" href="pynum.html#numpy"><em>NumPy</em></a> and <a class="reference external" href="pynum.html#pandas"><em>pandas</em></a> for plotting histograms. <em>pandas</em> plotting capacities go way beyond just plotting histograms and it relies on the powerful <a class="reference external" href="https://matplotlib.org/"><em>matplotlib</em></a> library. <em>SciPy</em>’s <em>matplotlib</em> is the most popular plotting library in <em>Python</em> (since its introduction in 2003) and not only <em>pandas</em>, but also other libraries (for example the abstraction layer <a class="reference external" href="https://seaborn.pydata.org/"><em>Seaborn</em></a>) use <em>matplotlib</em> with facilitated commands. This page introduces the following packages for data visualization:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="#matplotlib"><em>matplotlib</em></a> - the baseline for data visualization in <em>Python</em></p></li>
+<li><p><a class="reference external" href="#pandas"><em>pandas</em></a> - as wrapper API of <em>matplotlib</em>, with many simplified options for meaningful plots</p></li>
+<li><p><a class="reference external" href="#plotly"><em>plotly</em></a> - for interactive plots, in which users can change and move plot scales</p></li>
+</ul>
+</div>
+<div class="section" id="matplotlib">
+<span id="id1"></span><h2>Matplotlib<a class="headerlink" href="#matplotlib" title="Permalink to this headline">¶</a></h2>
+<p>Because of its complexity and the fact that all important functions can be used with <em>pandas</em> in a much more manageable way, we will only discuss <em>matplotlib</em> only briefly here. Yet it is important to know how <em>matplotlib</em> works in order to better understand the baseline of plotting with <em>Python</em> and to use more complex graphics or more plotting options when needed.</p>
+<p>In 2003, the development of <em>matplotlib</em> was initiated in the field of neurobiology by <a class="reference external" href="https://en.wikipedia.org/wiki/John_D._Hunter"><em>John D. Hunter (†)</em></a> to emulate <em>The MathWork</em>’s <em>MATLAB®</em> software. This early development is was constituted the <code class="docutils literal notranslate"><span class="pre">pylab</span></code> package, which is deprecated today for its bad practice of overwriting <em>Python</em> (in particular <em>NumPy</em>) <code class="docutils literal notranslate"><span class="pre">plot()</span></code> and <code class="docutils literal notranslate"><span class="pre">array()</span></code> methods/objects. Today, it is recommended to use:<br>
+<code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">matplotlib.pyplot</span> <span class="pre">as</span> <span class="pre">plt</span></code>.</p>
+<div class="section" id="some-terms-and-definitions">
+<h3>Some Terms and Definitions<a class="headerlink" href="#some-terms-and-definitions" title="Permalink to this headline">¶</a></h3>
+<p>A <code class="docutils literal notranslate"><span class="pre">plt.figure</span></code> can be thought of as a box containing one or more axes, which represent the actual plots. Within the axes, there are smaller objects in the hierarchy such as markers, lines, legends, and text fields. Almost every element of a plot is a manipulable attribute and the most important attributes are shown in the following figure. More attributes can be found in the showcases of <a class="reference external" href="https://matplotlib.org/examples/showcase/anatomy.html">matplotlib.org</a>.</p>
+<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/pyplot-defs.png" /> of a pyplot figure.</p>
+</div>
+<div class="section" id="step-by-step-recipe-for-1d-2d-line-plots">
+<span id="plotxy"></span><h3>Step-by-step Recipe for 1d/2d (line) plots<a class="headerlink" href="#step-by-step-recipe-for-1d-2d-line-plots" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Import <em>matplolib</em>’s <code class="docutils literal notranslate"><span class="pre">pyplot</span></code> package with <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">matplotlib.pyplot</span> <span class="pre">as</span> <span class="pre">plt</span></code></p></li>
+<li><p>Create a figure with <code class="docutils literal notranslate"><span class="pre">plt.figure(figsize=(width_inch,</span> <span class="pre">height_inch),</span> <span class="pre">dpi=int,</span> <span class="pre">facecolor=str,</span> <span class="pre">edgecolor=str)</span></code></p></li>
+<li><p>Add axes to the figure with `axes=fig.add_subplot(row=int, column=int, index=int, label=str)</p></li>
+<li><p>Generate a <a class="reference external" href="http://matplotlib.org/users/colormaps.html">color map</a>; <code class="docutils literal notranslate"><span class="pre">plt.cm.getcmap()</span></code> generates an array of colors as explained with the <a class="reference external" href="pynum.html#colors"><em>NumPy</em> instructions</a>. For example <code class="docutils literal notranslate"><span class="pre">colormap=([255,</span> <span class="pre">0,</span> <span class="pre">0])</span></code> creates a color map with just one color (red).</p></li>
+<li><p>Plot the data (finally!) to plot</p>
+<ul class="simple">
+<li><p>lines with <code class="docutils literal notranslate"><span class="pre">axes.plot(x,</span> <span class="pre">y,</span> <span class="pre">linestyle=str,</span> <span class="pre">marker=str,</span> <span class="pre">color=Colormap(int),</span> <span class="pre">label=str)</span></code> and many more <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> can be defined (<a class="reference external" href="https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.lines.Line2D.html#matplotlib.lines.Line2D">go the <em>matplotlib</em> docs</a>).</p></li>
+<li><p>points (markers) with <code class="docutils literal notranslate"><span class="pre">axes.scatter(x,</span> <span class="pre">y,</span> <span class="pre">MarkerStyle=str,</span> <span class="pre">cmap=Colormap,</span> <span class="pre">label=str)</span></code> and many more <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> can be defined (<a class="reference external" href="https://matplotlib.org/3.2.1/api/_as_gen/matplotlib.pyplot.scatter.html">go the <em>matplotlib</em> docs</a>)</p></li>
+</ul>
+</li>
+<li><p>Manipulate the axis ticks</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">plt.xticks(list)</span></code> define x-axis ticks</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plt.yticks(list)</span></code> define y-axis ticks</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">axes.set_xlim(tuple(min,</span> <span class="pre">max))</span></code> sets the x-axis minimum and maximum</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">axes.set_ylim(tuple(min,</span> <span class="pre">max))</span></code> sets the y-axis minimum and maximum</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">axes.set_xlabel(str)</span></code> sets the x-axis label</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">axes.set_ylabel(str)</span></code> sets the y-axis label</p></li>
+</ul>
+</li>
+<li><p>Add legend (optionally) with <code class="docutils literal notranslate"><span class="pre">axes.legend(loc=str,</span> <span class="pre">facecolor=str,</span> <span class="pre">edgecolor=str,</span> <span class="pre">framealpha=float_between_0_and_1)</span></code> and many more <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> can be defined (<a class="reference external" href="https://matplotlib.org/3.1.1/api/legend_api.html#matplotlib.legend.Legend">confer to the <em>matplotlib</em> docs</a>).</p></li>
+<li><p>Optional: Save figure with <code class="docutils literal notranslate"><span class="pre">plt.savefig(fname=str,</span> <span class="pre">dpi=int)</span></code> with many more <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> available (<a class="reference external" href="https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.savefig.html">confer to the <em>matplotlib</em> docs</a>).</p></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Most of the below illustrated <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> features are embedded in a plotter script, which is available at the <a class="reference external" href="https://github.com/hydro-informatics/material-py-codes/raw/master/plotting/plotter.py">course repository</a> (only when the lecture is active).</p>
+</div>
+<p>The following code block illustrates the plot recipe using <a class="reference external" href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.RandomState.weibull.html#numpy.random.RandomState.weibull">randomly drawn samples from a <em>Weibull</em> distribution</a> with a the distribution shape factor <em>a</em> (for <em>a</em>=1, the <em>Weibull</em> distribution reduces to an exponential distribution). The <code class="docutils literal notranslate"><span class="pre">seed</span></code> argument describes the source of randomness and <code class="docutils literal notranslate"><span class="pre">seed=None</span></code> makes <em>Python</em> use randomness from operating system variables.</p>
+<p>The code block below makes use of a function called <code class="docutils literal notranslate"><span class="pre">plot_xy</span></code> that requires <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> arguments and accepts the following optional keyword arguments:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">plot_type=str</span></code> defines if a line or scatter plot should be produced,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">label=str</span></code> sets the legend,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">save=str</span></code> defines a path where the figure should be saved (the figure is not saved if nothing provided). To activate saving a figure write for example <code class="docutils literal notranslate"><span class="pre">save='C:/temp/weibull.png'</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.cm</span> <span class="k">as</span> <span class="nn">cm</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">weibull</span><span class="p">(</span><span class="mf">3.</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="fm">__len__</span><span class="p">())</span>
+
+<span class="k">def</span> <span class="nf">plot_xy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">plot_type</span><span class="o">=</span><span class="s2">&quot;1D-line&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Rnd. Weibull&quot;</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">6.18</span><span class="p">,</span> <span class="mf">3.82</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>  <span class="c1"># figsize in inches</span>
+    <span class="n">axes</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>  <span class="c1"># row, column, index, label</span>
+    <span class="n">colormap</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">plasma</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)))</span>  <span class="c1"># more colormaps: http://matplotlib.org/users/colormaps.html</span>
+    <span class="k">if</span> <span class="n">plot_type</span> <span class="o">==</span> <span class="s2">&quot;1D-line&quot;</span><span class="p">:</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>  <span class="c1"># play with the colormap index</span>
+    <span class="k">if</span> <span class="n">plot_type</span> <span class="o">==</span> <span class="s2">&quot;scatter&quot;</span><span class="p">:</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colormap</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="s2">&quot;ax&quot;</span> <span class="ow">in</span> <span class="nb">locals</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ERROR: No valid input data provided.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="fm">__len__</span><span class="p">()</span> <span class="o">+</span> <span class="mi">10</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="fm">__len__</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mf">5.</span><span class="p">)))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span> <span class="mf">0.5</span><span class="p">)))</span>
+    <span class="n">axes</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span>
+    <span class="n">axes</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">axes</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Linear x data&quot;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Scale of &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">label</span><span class="p">))</span>
+    <span class="n">axes</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">framealpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">save</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">save</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Plot lines&quot;</span><span class="p">)</span>    
+<span class="n">plot_xy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Scatter plot&quot;</span><span class="p">)</span>
+<span class="n">plot_xy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">plot_type</span><span class="o">=</span><span class="s2">&quot;scatter&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Rand. Weibull scattered&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-challenge admonition">
+<p class="admonition-title">Challenge</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">plot_xy</span></code> function has some weaknesses. For example if more arguments are provided or <code class="docutils literal notranslate"><span class="pre">y</span></code> data are an array that should produce multiple lines. How can you optimize the <code class="docutils literal notranslate"><span class="pre">plot_xy</span></code> function, to make it more robust and enable multi-line plotting?</p>
+</div>
+</div>
+<div class="section" id="surface-and-contour-plots">
+<h3>Surface and Contour Plots<a class="headerlink" href="#surface-and-contour-plots" title="Permalink to this headline">¶</a></h3>
+<p><em>matplotlib</em> provides multiple options to plot X-Y-Z data, for example (i.e., there are more options):</p>
+<ul class="simple">
+<li><p>Surface plots with color shades: <a class="reference external" href="https://matplotlib.org/mpl_toolkits/mplot3d/tutorial.html#surface-plots"><code class="docutils literal notranslate"><span class="pre">axes.plot_surface(X,</span> <span class="pre">Y,</span> <span class="pre">Z)</span></code></a></p></li>
+<li><p>Contour plots: <a class="reference external" href="https://matplotlib.org/mpl_toolkits/mplot3d/tutorial.html#contour-plots"><code class="docutils literal notranslate"><span class="pre">axes.contour(X,</span> <span class="pre">Y,</span> <span class="pre">Z)</span></code></a></p></li>
+<li><p>Contour plots with filled surfaces: <a class="reference external" href="https://matplotlib.org/mpl_toolkits/mplot3d/tutorial.html#filled-contour-plots"><code class="docutils literal notranslate"><span class="pre">axes.contourf(X,</span> <span class="pre">Y,</span> <span class="pre">Z)</span></code></a></p></li>
+<li><p>Surface plots with triangulated mesh: <a class="reference external" href="https://matplotlib.org/mpl_toolkits/mplot3d/tutorial.html#tri-surface-plots"><code class="docutils literal notranslate"><span class="pre">axes.plot_trisurf(X,</span> <span class="pre">Y,</span> <span class="pre">Z)</span></code></a></p></li>
+<li><p>Three-dimensional scatter plots: <a class="reference external" href="https://matplotlib.org/3.1.1/gallery/mplot3d/scatter3d.html"><code class="docutils literal notranslate"><span class="pre">axes.scatter3D(X,</span> <span class="pre">Y,</span> <span class="pre">Z)</span></code></a></p></li>
+<li><p>Streamplots (e.g., of velocity vectors): <a class="reference external" href="https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.streamplot.html"><code class="docutils literal notranslate"><span class="pre">axes.streamplot(X,</span> <span class="pre">Y,</span> <span class="pre">U,</span> <span class="pre">V)</span></code></a></p></li>
+<li><p>Color-coded representation of gridded values with (annotated) heatmaps (e.g., for habitat suitability index maps): <a class="reference external" href="https://matplotlib.org/3.1.1/gallery/images_contours_and_fields/image_annotated_heatmap.html"><code class="docutils literal notranslate"><span class="pre">axes.imshow(data,</span> <span class="pre">**kwargs)</span></code></a></p></li>
+</ul>
+<p>Only streamplots are discussed here, since they are a useful tool for the visualization of velocity vectors (flow fields) in rivers. To generate a streamplot:</p>
+<ol class="simple">
+<li><p>Create an <code class="docutils literal notranslate"><span class="pre">X</span></code> - <code class="docutils literal notranslate"><span class="pre">Y</span></code> grid, for example with the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.mgrid.html"><em>NumPy</em>’s <code class="docutils literal notranslate"><span class="pre">mgrid</span></code> method</a>: <code class="docutils literal notranslate"><span class="pre">Y,</span> <span class="pre">X</span> <span class="pre">=</span> <span class="pre">np.mgrid[range,</span> <span class="pre">range]</span></code></p></li>
+<li><p>Assign stream field data (such data can be artificially generated for example as <code class="docutils literal notranslate"><span class="pre">U</span></code> and <code class="docutils literal notranslate"><span class="pre">V</span></code>) to the grid nodes as calculate a scalar value (e.g., <code class="docutils literal notranslate"><span class="pre">velocity</span></code> as a function of the 2-directional field data).</p></li>
+<li><p>Generate figures as before in the <code class="docutils literal notranslate"><span class="pre">plot_xy</span></code> function example (see <a class="reference external" href="#plotxy">above 1d/2d plot instructions</a>).</p></li>
+</ol>
+<p>The below code block illustrates the generation of a streamplot (adapted from the <a class="reference external" href="https://matplotlib.org/3.1.1/gallery/images_contours_and_fields/plot_streamplot.html#sphx-glr-gallery-images-contours-and-fields-plot-streamplot-py"><em>matplotlib</em> docs</a>) and uses <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">matplotlib.gridspec</span></code> to place the subplots in the figure.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.gridspec</span> <span class="k">as</span> <span class="nn">gridspec</span>
+
+<span class="c1"># generate grid</span>
+<span class="n">w</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">Y</span><span class="p">,</span> <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mgrid</span><span class="p">[</span><span class="o">-</span><span class="n">w</span><span class="p">:</span><span class="n">w</span><span class="p">:</span><span class="mi">10</span><span class="n">j</span><span class="p">,</span> <span class="o">-</span><span class="n">w</span><span class="p">:</span><span class="n">w</span><span class="p">:</span><span class="mi">10</span><span class="n">j</span><span class="p">]</span>  <span class="c1"># j creates complex numbers</span>
+
+<span class="c1"># calculate U and V vector matrices on the grid</span>
+<span class="n">U</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span> <span class="o">-</span> <span class="n">X</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">Y</span>
+<span class="n">V</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">+</span> <span class="n">X</span> <span class="o">-</span> <span class="n">Y</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">6.</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">fig_grid</span> <span class="o">=</span> <span class="n">gridspec</span><span class="o">.</span><span class="n">GridSpec</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">velocity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">U</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">V</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># calculate velocity vector </span>
+
+<span class="c1">#  Varying line width along a streamline</span>
+<span class="n">axes1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">fig_grid</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">axes1</span><span class="o">.</span><span class="n">streamplot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="o">*</span><span class="n">velocity</span><span class="o">/</span><span class="n">velocity</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="n">axes1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Line width variation&#39;</span><span class="p">,</span> <span class="n">fontfamily</span><span class="o">=</span><span class="s1">&#39;Tahoma&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+<span class="c1"># Varying color along a streamline</span>
+<span class="n">axes2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">fig_grid</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">uv_stream</span> <span class="o">=</span> <span class="n">axes2</span><span class="o">.</span><span class="n">streamplot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">velocity</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">uv_stream</span><span class="o">.</span><span class="n">lines</span><span class="p">)</span>
+<span class="n">axes2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Color maps&#39;</span><span class="p">,</span> <span class="n">fontfamily</span><span class="o">=</span><span class="s1">&#39;Tahoma&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="fonts-and-styles">
+<h3>Fonts and Styles<a class="headerlink" href="#fonts-and-styles" title="Permalink to this headline">¶</a></h3>
+<p>The previous example already featured font type adjustment for the plot titles (<code class="docutils literal notranslate"><span class="pre">axes.set_title('title',</span> <span class="pre">font</span> <span class="pre">...)</span></code>). The font and its characteristics (e.g., size, weight, style, or family) can be defined in a more coherent manner with <code class="docutils literal notranslate"><span class="pre">matplotlib.font_manager.FontProperties</span></code> (<a class="reference external" href="https://matplotlib.org/3.1.1/api/font_manager_api.html">cf. the <em>matplotlib</em> docs</a>), where plot font settings can be globally modified within a script.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.font_manager</span> <span class="kn">import</span> <span class="n">FontProperties</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rc</span>
+
+<span class="c1"># create FontProperties object and set font characteristics</span>
+<span class="n">font</span> <span class="o">=</span> <span class="n">FontProperties</span><span class="p">()</span>
+<span class="n">font</span><span class="o">.</span><span class="n">set_family</span><span class="p">(</span><span class="s2">&quot;sans-serif&quot;</span><span class="p">)</span>
+<span class="n">font</span><span class="o">.</span><span class="n">set_name</span><span class="p">(</span><span class="s2">&quot;Times New Roman&quot;</span><span class="p">)</span>
+<span class="n">font</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;italic&quot;</span><span class="p">)</span>
+<span class="n">font</span><span class="o">.</span><span class="n">set_weight</span><span class="p">(</span><span class="s2">&quot;semibold&quot;</span><span class="p">)</span>
+<span class="n">font</span><span class="o">.</span><span class="n">set_size</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Needs to be converted to a dictionary: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">font</span><span class="p">))</span>
+
+<span class="c1"># translate FontProperties to a dictionary</span>
+<span class="n">font_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;family&quot;</span><span class="p">:</span> <span class="s2">&quot;normal&quot;</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">font</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="s2">&quot;=&quot;</span> <span class="ow">in</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">font_dict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">e</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">e</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]})</span>
+
+<span class="c1"># apply font properties to script</span>
+<span class="n">rc</span><span class="p">(</span><span class="s2">&quot;font&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">font_dict</span><span class="p">)</span>
+
+<span class="c1"># make some plot data</span>
+<span class="n">x_lin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>  <span class="c1"># evenly spaced numbers over a specific interval (start, stop, number-of-elements)</span>
+<span class="n">y_osc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x_lin</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x_lin</span><span class="p">)</span>
+
+<span class="c1"># plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">6.18</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_lin</span><span class="p">,</span> <span class="n">y_osc</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Oscillations&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time (s)&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Oscillation (V)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Instead of using <code class="docutils literal notranslate"><span class="pre">rc</span></code>, font characteristics can also be updated with <em>matplotlib</em>’s <code class="docutils literal notranslate"><span class="pre">rcParams</span></code> <em>dictionary</em>. In general, all font parameters can be accessed with <code class="docutils literal notranslate"><span class="pre">rcParams</span></code> along with many more parameters of plot layout options. The parametric options are stored in the <a class="reference external" href="https://matplotlib.org/tutorials/introductory/customizing.html#customizing-with-matplotlibrc-files"><code class="docutils literal notranslate"><span class="pre">matplotlibrc</span></code></a> file and can be accessed with <code class="docutils literal notranslate"><span class="pre">rcParams[&quot;matplotlibrc-parameter&quot;]</span></code>. Read more about modification options (<code class="docutils literal notranslate"><span class="pre">&quot;matplotlibrc-parameter&quot;</span></code>) in the <a class="reference external" href="https://matplotlib.org/tutorials/introductory/customizing.html#customizing-with-matplotlibrc-files"><em>matplotlib</em> docs</a>. In order to modify a (font) style parameter use <code class="docutils literal notranslate"><span class="pre">rcParams.update({parameter-name:</span> <span class="pre">parameter-value})</span></code> (which does not always work - for example in <a class="reference external" href="https://github.com/jupyter/notebook/issues/3385"><em>jupyter</em></a>).</p>
+<p>In addition, many default plot styles are available through <a class="reference external" href="https://matplotlib.org/api/style_api.html#matplotlib-style"><code class="docutils literal notranslate"><span class="pre">matplotlib.style</span></code></a> with many <a class="reference external" href="https://matplotlib.org/gallery/style_sheets/style_sheets_reference.html">style templates</a>. The following example illustrates the application of <code class="docutils literal notranslate"><span class="pre">rcParams</span></code> and <code class="docutils literal notranslate"><span class="pre">style</span></code> to the previously generated x-y oscillation dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rcParams</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rcParamsDefault</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">style</span>
+<span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">rcParamsDefault</span><span class="p">)</span>  <span class="c1"># reset parameters in case you run this block multiple times</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Some available serif fonts: &quot;</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.serif&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Some available sans-serif fonts: &quot;</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Some available monospace fonts: &quot;</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.monospace&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Some available fantasy fonts: &quot;</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.fantasy&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]))</span>
+
+<span class="c1"># change rcParams</span>
+<span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.fantasy&#39;</span><span class="p">:</span> <span class="s1">&#39;Impact&#39;</span><span class="p">})</span>  <span class="c1"># has no effect here!</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Some available styles: &quot;</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">style</span><span class="o">.</span><span class="n">available</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]))</span>
+<span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-darkgrid&#39;</span><span class="p">)</span>
+
+<span class="c1"># plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">6.18</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_lin</span><span class="p">,</span> <span class="n">y_osc</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Oscillations&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time (s)&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Oscillation (V)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="annotations">
+<h3>Annotations<a class="headerlink" href="#annotations" title="Permalink to this headline">¶</a></h3>
+<p>Pointing out particularities in graphs is sometimes helpful to explain observations on graphs. Here are some options illustrated with a self-explaining code block.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rcParams</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rcParamsDefault</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">style</span>
+<span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">rcParamsDefault</span><span class="p">)</span>  <span class="c1"># reset parameters in case you run this block multiple times</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>  <span class="c1">#  let s just use still another style</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;This is the figure (super) title&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;This is the axes (sub) title&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="s1">&#39;B-boxed italic text with axis coords 1, 0.8&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;italic&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;facecolor&#39;</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;pad&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">})</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;Annotation text with equation: $u=U^2 + V^2$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;Color text with axis coords (7, 0.2)&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">],</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>  <span class="c1">#plot an arbitrary point</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;Annotated point&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.05</span><span class="p">))</span>
+
+<span class="n">axes</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>  <span class="c1"># x_min, x_max, y_min, y_max</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-challenge admonition">
+<p class="admonition-title">Challenge</p>
+<p>The above code blocks involve many repetitive statements such as <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">...</span></code> - <code class="docutils literal notranslate"><span class="pre">rcParams.update(rcParamsDefault)</span></code>, and <code class="docutils literal notranslate"><span class="pre">plot.show()</span></code> at the end. Can you write a <a class="reference external" href="pyfun.html#wrappers">wrapper function</a> to decorate any other <em>matplotlib</em> plot function?</p>
+</div>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Get familiar with built-in plot functions using <em>matplotlib</em> with the template scripts provided for the <a class="reference internal" href="../exercises/ex-sp.html"><span class="doc std std-doc">Reservoir design</span></a> and <a class="reference internal" href="../exercises/ex-floods.html"><span class="doc std std-doc">Flood return period calculation</span></a> exercises.</p>
+</div>
+</div>
+</div>
+<div class="section" id="plotting-with-pandas">
+<span id="pandas-plot"></span><h2>Plotting with <em>pandas</em><a class="headerlink" href="#plotting-with-pandas" title="Permalink to this headline">¶</a></h2>
+<p>Plotting with <em>matplotlib</em> can be daunting, not because the library is poorly documented (the complete opposite is the case), but because <em>matplotlib</em> is very extensive. <em>pandas</em> brings remedy with simplified commands for high-quality plots. The simplest way to plot a <em>pandas</em> data frame is <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html"><code class="docutils literal notranslate"><span class="pre">pd.DataFrame.plot(x=&quot;col1&quot;,</span> <span class="pre">y=&quot;col2&quot;)</span></code></a>. The following example illustrates this fundamentally simple usage with a river discharge series stored in a workbook.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flow_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;data/USGS_11421000_MRY_flows.xlsx&#39;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Mean Monthly CMS&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">flow_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">flow_df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;Date (mmm-jj)&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Flow (CMS)&quot;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="pandas-and-matplotlib">
+<h3><em>pandas</em> and <em>matplotlib</em><a class="headerlink" href="#pandas-and-matplotlib" title="Permalink to this headline">¶</a></h3>
+<p>Because <em>pandas</em> plot functionality roots in the <em>matplotlib</em> library, it can be easily combined, for example to create subplots:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
+
+<span class="n">flow_ex_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;data/USGS_11421000_MRY_flows.xlsx&#39;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;FlowDuration&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">flow_ex_df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;Relative exceedance&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Flow (CMS)&quot;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;area&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;DarkBlue&#39;</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Blue area plot&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">flow_ex_df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;Relative exceedance&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Flow (CMS)&quot;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;DarkGreen&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Green scatter&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="boxplots-and-error-bars">
+<h3>Boxplots and Error Bars<a class="headerlink" href="#boxplots-and-error-bars" title="Permalink to this headline">¶</a></h3>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Box_plot">box-plot</a> graphically represents the distribution of (statistical) scatter and parameters of a data series. Why are box-plots particularly mentioned within the <em>pandas</em> plot explanations? Well, the reason is that with <em>pandas</em> data frames, we typically load data series with certain statistical properties per column. For example if we run a steady-flow experiment in a hydraulic lab flume with ultrasonic probes for deriving flow depths, we will observe signal fluctuation, even though the flow was steady. By loading the signal data into a <em>pandas</em> data frame, we can use a box plot to observe the average flow depth and the noise in the measurement among different probes. Thus, probes with unexpected noise can be identified and repaired. This small example can be applied on a broader scale to many other sensors and for many other purposes (noise does not automatically mean that a sensor is broken). A box-plot has the following attributes:</p>
+<ul class="simple">
+<li><p><em>boxes</em> represent the main body of the data with quartiles and confidence intervals around the median (if activated).</p></li>
+<li><p><em>medians</em> are horizontal lines at the median (visually in the middle) of each box.</p></li>
+<li><p><em>whiskers</em> are vertical lines that extend to the most extreme, non-outlier data points.</p></li>
+<li><p><em>caps</em> are small horizontal line endings of whiskers.</p></li>
+<li><p><em>fliers</em> are outlier points beyond whiskers.</p></li>
+<li><p><em>means</em> are either points or lines of dataset means.</p></li>
+</ul>
+<p><em>pandas</em> data frames make use of <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.boxplot.html#matplotlib.pyplot.boxplot"><code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot.boxplot</span></code></a> to generate box-plots with <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.boxplot.html"><code class="docutils literal notranslate"><span class="pre">df.boxplot()</span></code></a> or <code class="docutils literal notranslate"><span class="pre">df.plot.box()</span></code>. The following example features box-plots of flow depth measurements with ultrasonic probes (sensors 1, 2, 3, and 5) and manipulations of</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">us_sensor_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/FlowDepth009.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">us_sensor_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">fontsize</span> <span class="o">=</span> <span class="mf">8.0</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;S1&quot;</span><span class="p">,</span> <span class="s2">&quot;S2&quot;</span><span class="p">,</span> <span class="s2">&quot;S3&quot;</span><span class="p">,</span> <span class="s2">&quot;S5&quot;</span><span class="p">]</span>
+
+<span class="c1"># make plot props dicts</span>
+<span class="n">diamond_fliers</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">markerfacecolor</span><span class="o">=</span><span class="s1">&#39;thistle&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">square_fliers</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">markerfacecolor</span><span class="o">=</span><span class="s1">&#39;aquamarine&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">capprops</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;deepskyblue&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">medianprops</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="s1">&#39;linewidth&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+<span class="n">boxprops</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;palevioletred&#39;</span><span class="p">,</span> <span class="s1">&#39;linestyle&#39;</span><span class="p">:</span> <span class="s1">&#39;-&#39;</span><span class="p">}</span>
+<span class="n">whiskerprops</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;darkcyan&#39;</span><span class="p">,</span> <span class="s1">&#39;linestyle&#39;</span><span class="p">:</span> <span class="s1">&#39;:&#39;</span><span class="p">}</span>
+
+<span class="n">us_sensor_df</span> <span class="o">=</span> <span class="n">us_sensor_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">us_sensor_df</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">labels</span><span class="p">)))</span>  <span class="c1"># rename for plot conciseness</span>
+<span class="n">us_sensor_df</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">widths</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">flierprops</span><span class="o">=</span><span class="n">diamond_fliers</span><span class="p">,</span>
+                     <span class="n">capprops</span><span class="o">=</span><span class="n">capprops</span><span class="p">,</span> <span class="n">medianprops</span><span class="o">=</span><span class="n">medianprops</span><span class="p">,</span> <span class="n">boxprops</span><span class="o">=</span><span class="n">boxprops</span><span class="p">,</span> <span class="n">whiskerprops</span><span class="o">=</span><span class="n">whiskerprops</span><span class="p">)</span>
+<span class="n">us_sensor_df</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;tomato&quot;</span><span class="p">,</span> <span class="n">vert</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Hz. box-plot&quot;</span><span class="p">,</span> <span class="n">flierprops</span><span class="o">=</span><span class="n">square_fliers</span><span class="p">,</span> 
+                      <span class="n">whis</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">,</span> <span class="n">meanline</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">showmeans</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Box-plots represent the statistical assets of datasets, but box-plots can quickly become confusing when they are presented in technical reports for multiple measurement series. Yet it is state-of-the-art and good practice to present uncertainties in datasets in scientific and non-scientific publications, but somewhat more easily than, for example, with box-plots. To meet the standards of good practice, so-called <a class="reference external" href="https://en.wikipedia.org/wiki/Error_bar">error bars</a> should be added to data bars. Error bars express the uncertainty of a data set graphically in a simple way by displaying only whiskers. Regardless of whether scatter or bar plot, error bars can easily be added to graphics with <em>matplotlib</em> (<a class="reference external" href="https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.errorbar.html">more in the developer’s docs</a>). The following example shows the application of error bars to bar plots of the above ultrasonic sensor data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<span class="c1"># calculate stats</span>
+<span class="n">means</span> <span class="o">=</span> <span class="n">us_sensor_df</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">errors</span> <span class="o">=</span> <span class="n">us_sensor_df</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="c1"># make error bar bar plots</span>
+<span class="n">means</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">yerr</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;palegreen&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Error bars&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">means</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">xerr</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;lightsteelblue&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Horizontal error bars&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In scatter plots, errors are present in both <em>x</em> and <em>y</em> directions. For example, the <em>x</em>-uncertainty may result from the measurement device precision and <em>y</em>-uncertainty can be a result of signal processing. The above error measure in terms of the standard deviation is just an example of error amplitude. To measure and represent uncertainty correctly, always refer to device descriptions and assess precision effects of multiple devices or signal processing by calculating the <a class="reference external" href="https://en.wikipedia.org/wiki/Propagation_of_uncertainty">propagation of errors</a>.</p>
+</div>
+<p>More options for visualizing <em>pandas</em> data frame is provided in the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/visualization.html">developer’s visualization docs</a> - and keep in mind that <em>matplotlib</em> can always be well nested in <em>pandas</em> plots.</p>
+</div>
+</div>
+<div class="section" id="interactive-plots-with-plotly">
+<span id="plotly"></span><h2>Interactive Plots with <em>plotly</em><a class="headerlink" href="#interactive-plots-with-plotly" title="Permalink to this headline">¶</a></h2>
+<p>The above shown <em>matplotlib</em> and <em>pandas</em> packages are great for creating static graphs or click-able graphs on a desktop environment. Although interactive plots for web presentations can be created with <em>matplotlib</em> (<a class="reference external" href="https://matplotlib.org/3.1.1/users/interactive.html">read more in the <em>matplotlib</em> docs</a>), <em>plotly</em> leverages many more interactive web plot options within an easy-to-use API library. <em>plotly</em> can also handle JSON-like data (hosted somewhere in the internet) to create web applications with <em>Dash</em>. However, the company behind (<em>Plotly</em>) is a business-oriented</p>
+<div class="section" id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
+<p><em>plotly</em> is not a default package neither in the <em>environment.yml</em> (<code class="docutils literal notranslate"><span class="pre">hypy</span></code>) environment file nor in the <em>conda base</em> environment. Therefore, it must be installed manually with <em>conda prompt</em> (or <em>Conda Navigator</em> if you prefer the Desktop version). So open <em>conda prompt</em> to install <em>plotly</em> for:</p>
+<ul class="simple">
+<li><p><em>jupyter</em> usage type with the base environment activated: <br> <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">plotly</span></code> (confirm installation when asked for it) <br> <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">labextension</span> <span class="pre">install</span> <span class="pre">jupyterlab-plotly&#64;4.11.0</span></code> (change version <code class="docutils literal notranslate"><span class="pre">4.11.0</span></code> to latest version listed <a class="reference external" href="https://github.com/plotly/plotly.py/releases">here</a>) <br> optional: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">plotly</span> <span class="pre">chart-studio</span></code> (good for other plots than featured on this page)</p></li>
+<li><p><em>hypy</em> (e.g., within <em>PyCharm</em>): <br> <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">hypy</span></code> <br>  <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">plotly</span></code> (confirm installation when asked for it) <br> <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">&quot;notebook&gt;=5.3&quot;</span> <span class="pre">&quot;ipywidgets&gt;=7.2&quot;</span></code></p></li>
+<li><p><a class="reference external" href="https://plotly.com/python/troubleshooting/">Read the trouble shooting info to fix problems with jupyter or <em>Python</em></a> (there may be some…).</p></li>
+</ul>
+<p>Read more about installing packages within <em>conda environments</em> on the <a class="reference external" href="pyinstall.html#install-pckg"><em>Python</em> installation page</a>.</p>
+</div>
+<div class="section" id="usage-simple-plots">
+<h3>Usage (Simple Plots)<a class="headerlink" href="#usage-simple-plots" title="Permalink to this headline">¶</a></h3>
+<p><em>plotly</em> comes with many datasets that can be queried online for showcases. The following example uses one of these datasets (find more at <a class="reference external" href="https://plotly.com/python-api-reference/generated/plotly.express.data.html">plotly.com</a>).</p>
+<div class="admonition-recall admonition">
+<p class="admonition-title">Recall</p>
+<p>If the graph is not showing up, open <em>Anaconda Prompt</em> and make sure to install support for <em>Jupyter Notebook</em> in the active environment: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">&quot;notebook&gt;=5.3&quot;</span> <span class="pre">&quot;ipywidgets&gt;=7.2&quot;</span></code></p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">plotly.offline</span> <span class="k">as</span> <span class="nn">pyo</span>
+<span class="c1"># pyo.init_notebook_mode() </span>
+<span class="c1"># df = px.data.gapminder().query(&quot;continent==&#39;Europe&#39;&quot;)</span>
+<span class="c1"># fig = px.line(df, x=&quot;year&quot;, y=&quot;pop&quot;, color=&#39;country&#39;)</span>
+<span class="c1"># fig.show()</span>
+<span class="c1"># pyo.iplot(fig, filename=&#39;population&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In hydraulics, we often prefer to visualize data in locally stored text files, for example after processing data with <em>NumPy</em> or <em>pandas</em>. <em>plotly</em> works hand in hand with <em>pandas</em> and the following example features plotting <em>pandas</em> data frames, build from a <em>csv</em> file, with <em>ploty</em> (better solutions for <em>pandas</em> data frame sorting are shown in the <a class="reference external" href="hypy_pynum.html#pd-reshape">reshaping section</a> of the data handling page). The example uses <code class="docutils literal notranslate"><span class="pre">plotly.offline</span></code> to plot the data in notebook mode (<code class="docutils literal notranslate"><span class="pre">pyo.init_notebook_mode()</span></code>) and <code class="docutils literal notranslate"><span class="pre">pyo.iplot()</span></code> can be used to write the plot functions to a local script for interactive plotting. The <em>csv</em> file comes from the <em>Food and Agriculture Organization of the United Nations</em> (FAO) data center <a class="reference external" href="http://www.fao.org/faostat/en/#data/ET">FAOSTAT</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">plotly.offline</span> <span class="k">as</span> <span class="nn">pyo</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="c1"># pyo.init_notebook_mode()  # activate to create local function script</span>
+
+<span class="c1"># df = pd.read_csv(&quot;data/faostat_temperature_change.csv&quot;)</span>
+
+<span class="c1"># # filter dataframe by country and month</span>
+<span class="c1"># country_filter = &quot;France&quot;  # available in the csv: Austria, Belgium, Finland, France, Germany</span>
+<span class="c1"># month_filter1 = &quot;January&quot;</span>
+<span class="c1"># month_filter2 = &quot;July&quot;</span>
+
+<span class="c1"># df_country = df[df.Area == country_filter]</span>
+<span class="c1"># df_country_month1 = df[df.Months == month_filter1]</span>
+<span class="c1"># df_country_month2 = df[df.Months == month_filter2]</span>
+
+<span class="c1"># # define plot type = go.Bar</span>
+<span class="c1"># bar_plots = [go.Bar(x=df_country_month1[&quot;Year&quot;], y=df_country_month1[&quot;Value&quot;], name=str(month_filter1), marker=go.bar.Marker(color=&#39;#86DCEB&#39;)),</span>
+<span class="c1">#              go.Bar(x=df_country_month2[&quot;Year&quot;], y=df_country_month2[&quot;Value&quot;], name=str(month_filter2), marker=go.bar.Marker(color=&#39;#EA9285&#39;))]</span>
+
+<span class="c1"># # set layout</span>
+<span class="c1"># layout = go.Layout(title=go.layout.Title(text=&quot;Monthly average surface temperature deviation (ref. 1951-1980) in &quot; + str(country_filter), x=0.5),</span>
+<span class="c1">#                    yaxis_title=&quot;Temperature (°C)&quot;)</span>
+
+<span class="c1"># fig = go.Figure(data=bar_plots, layout=layout)</span>
+
+<span class="c1"># # In local IDE use fig.show() - use iplot(fig) to procude local script for running figure functions</span>
+<span class="c1"># #fig.show(filename=&#39;basic-line2&#39;, include_plotlyjs=False, output_type=&#39;div&#39;)</span>
+<span class="c1"># pyo.iplot(fig, filename=&#39;temperature-evolution&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="interactive-map-applications">
+<h3>Interactive map applications<a class="headerlink" href="#interactive-map-applications" title="Permalink to this headline">¶</a></h3>
+<p><em>plotly</em> uses <a class="reference external" href="https://en.wikipedia.org/wiki/GeoJSON"><em>GeoJSON</em></a> data formats (an open standard for simple geospatial objects) to implement them into interactive maps. The developers provide many examples in their documentation and the below code block replicates a map representing unemployment rates in the United States. More examples are available at the <a class="reference external" href="https://plotly.com/python/maps/">developer’s web site</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.offline</span> <span class="k">as</span> <span class="nn">pyo</span>
+<span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># pyo.init_notebook_mode()  # only necessary in jupyter</span>
+<span class="c1"># with urlopen(&#39;https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json&#39;) as response:</span>
+<span class="c1">#     counties = json.load(response)</span>
+
+
+<span class="c1"># df = pd.read_csv(&quot;https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv&quot;, dtype={&quot;fips&quot;: str})</span>
+
+<span class="c1"># import plotly.express as px</span>
+
+<span class="c1"># fig = px.choropleth_mapbox(df, geojson=counties, locations=&#39;fips&#39;, color=&#39;unemp&#39;,</span>
+<span class="c1">#                            color_continuous_scale=&quot;Viridis&quot;,</span>
+<span class="c1">#                            range_color=(0, 12),</span>
+<span class="c1">#                            mapbox_style=&quot;carto-positron&quot;,</span>
+<span class="c1">#                            zoom=2, center = {&quot;lat&quot;: 35.0, &quot;lon&quot;: -90.0},</span>
+<span class="c1">#                            opacity=0.5,</span>
+<span class="c1">#                            labels={&#39;unemp&#39;:&#39;Unemployment rate (%)&#39;}</span>
+<span class="c1">#                           )</span>
+<span class="c1"># fig.update_layout(margin={&quot;r&quot;:0,&quot;t&quot;:0,&quot;l&quot;:0,&quot;b&quot;:0})</span>
+<span class="c1"># fig.show()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Many more maps are available and some of the require a <em>Mapbox</em> account and the creation of a public token (read more at <a class="reference external" href="https://plotly.com/python/mapbox-layers/">plotly.com</a>).</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "hydro-informatics/hydro-informatics.github.io",
+            ref: "gh-pages",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./jupyter"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="xml.html" title="previous page">Workbooks (xlsx) and JSON</a>
+    <a class='right-next' id="next-link" href="pystyle.html" title="next page">Code Style and Conventions</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Sebastian Schwindt<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

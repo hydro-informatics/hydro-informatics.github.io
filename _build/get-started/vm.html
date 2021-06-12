@@ -1,0 +1,1331 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Virtual Machines and Linux &#8212; Hydro-Informatics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://hydro-informatics.github.io/get-started/vm.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Integrated Development Environments (IDEs)" href="ide.html" />
+    <link rel="prev" title="Software Resources" href="software.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/icon.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  Get Started
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../lectures/classroom.html">
+   The Virtual Classroom
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/lectures.html">
+     Lectures and Exercises
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/take_seat.html">
+     Take a Seat
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="software.html">
+   Software Resources
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Virtual Machines and Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ide.html">
+     Integrated Development Environments (IDEs)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python-basics/pyinstall.html">
+     Install Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="git.html">
+     Introduction to git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="geo.html">
+     Geospatial Software
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="install-openfoam.html">
+     OpenFOAM (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="install-telemac.html">
+     TELEMAC (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="others.html">
+     Other Software Resources
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Python Basics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/python.html">
+   First Steps
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pybase.html">
+     Hello Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyerror.html">
+     Errors, Logging, and Debugging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyloop.html">
+     Loops and Conditional Statements
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/modularize.html">
+   Object Orientation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyfun.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pypckg.html">
+     Packages, Modules and Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/classes.html">
+     Object Orientation and Classes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/data-handling.html">
+   Data and File Handling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pynum.html">
+     Load and Write Basic Data Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/xml.html">
+     Workbooks (xlsx) and JSON
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyplot.html">
+     Plotting
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../jupyter/pystyle.html">
+   Code Style and Conventions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../jupyter/gui.html">
+   Graphical User Interfaces (GUIs)
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/python-exercises.html">
+   Python Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-ms.html">
+     1d Hydraulics (Manning-Strickler Formula)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sp.html">
+     Reservoir Volume (Sequent Peak Algorithm)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-floods.html">
+     Flood Return Periods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sediment.html">
+     1d Sediment Transport
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-gui.html">
+     Create a GUI
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Geospatial Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/geospatial-data.html">
+   Geospatial Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/use-qgis.html">
+   QGIS Tutorial
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../geopy/geo-python.html">
+   Geospatial Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-pckg.html">
+     Geospatial Open Source Python Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-shp.html">
+     Shapefile (Vector Dataset) Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-raster.html">
+     Raster (Gridded) Dataset Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-convert.html">
+     Raster to Vector Conversion and Vice Versa
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-arcpy.html">
+     The Commercial arcpy Library
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/geo-exercises.html">
+   Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-geco.html">
+     Script a Habitat Suitability Map
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Numerical Modeling
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/numerical-modeling.html">
+   Principles
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerics/basement.html">
+   BASEMENT
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/pre-qgis-bm.html">
+     Pre-processing with QGIS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/basement2d.html">
+     Simulation Setup (Steady 2d)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerics/telemac.html">
+   TELEMAC
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/pre-slf-tm.html">
+     Pre-processing
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../numerics/telemac2d.html">
+     Telemac2d
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac2d-steady.html">
+       Steady 2d Simulation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac2d-unsteady.html">
+       Unsteady 2d Simulation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac-gaia.html">
+       Unsteady Hydro-Morphodynamic 2d Simulation (Gaia)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../numerics/telemac3d.html">
+     Telemac3d
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac3d-slf.html">
+       Telemac3d (SLF)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac3d-med.html">
+       Telemac3d (Salome-Hydro and MED)
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerics/openfoam.html">
+   OpenFOAM
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/pre-qgis-of.html">
+     Pre-processing with QGIS
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/calibration.html">
+   Calibration and Validation
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Documentation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/documentation.html">
+   Markdown and Code Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/glossary.html">
+   Glossary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/notation.html">
+   Notation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/bibliography.html">
+   References
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/docs-exercises.html">
+   Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-git.html">
+     Git and markdown
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Troubleshoot
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
+   Programming Tools and IDEs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
+     Debugging Anaconda
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-python.html">
+     Debugging Python Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
+     Debugging Jupyter
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
+   Numerical Models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+  <label for="toctree-checkbox-16">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
+     Debugging BASEMENT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
+     Debugging TELEMAC/SALOME
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-os.html">
+   Operating Systems (Linux and VMs)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+  <label for="toctree-checkbox-17">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
+     Debugging Debian Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
+     Debugging Virtual Machines
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Disclaimer and License
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/get-started/vm.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/hydro-informatics/hydro-informatics.github.io"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Virtual Machines and Linux
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#about">
+     About
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#what-is-a-virtual-machine-vm">
+       What is a Virtual Machine (VM)?
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#why-use-a-vm">
+       Why use a VM?
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#contents-and-debian-linux">
+       Contents and Debian Linux
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-a-debian-linux-vm">
+     Create a Debian Linux VM
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#get-prerequisites-required-software">
+       Get prerequisites (required software)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#create-a-vm-with-virtualbox">
+       Create a VM with VirtualBox
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#install-debian-linux">
+       Install Debian Linux
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#re-use-transfer-or-copy-a-vm-on-another-host">
+     Re-use (Transfer or Copy) a VM on another Host
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#debian-linux">
+   Debian Linux
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setup-linux">
+     Setup Linux
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linux-terminal">
+     Linux Terminal
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#user-rights">
+     User Rights
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#vm-settings">
+     VM Settings
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#enable-folder-sharing-between-host-and-guest">
+       Enable Folder Sharing between Host and Guest
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#enable-opengl">
+       Enable OpenGL
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-software-and-update">
+     Install Software and Update
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#system-monitoring-with-htop">
+     System Monitoring with HTOP
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#package-software-management">
+     Package &amp; Software Management
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#add-package-repositories">
+       Add Package Repositories
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#find-packages">
+       Find Packages
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#install-use-windows-applications-wine">
+       Install &amp; Use
+       <em>
+        Windows
+       </em>
+       Applications (
+       <em>
+        Wine
+       </em>
+       )
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="virtual-machines-and-linux">
+<span id="chpt-vm-linux"></span><h1>Virtual Machines and Linux<a class="headerlink" href="#virtual-machines-and-linux" title="Permalink to this headline">¶</a></h1>
+<p>Your computer is one of your most important educational companions. So you want to protect the health of your computer and avoid problems caused by redundant or even malicious software. For this reason, it is recommended to install all software used on this website on a so-called Virtual Machine (VM). This page explains what VMs are, what advantages they have exactly, and how you can install <a class="reference external" href="https://www.debian.org/">Debian Linux</a>, one of the most stable and secure operating systems. It does not matter if you use Apple’s <em>mac OS</em> or Microsoft’s <em>Windows</em>, or if you already use Linux: The VM will look the same at the end.</p>
+<div class="section" id="about">
+<h2>About<a class="headerlink" href="#about" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="what-is-a-virtual-machine-vm">
+<h3>What is a Virtual Machine (VM)?<a class="headerlink" href="#what-is-a-virtual-machine-vm" title="Permalink to this headline">¶</a></h3>
+<p>A Virtual Machine (VM) represents a virtual operating system (OS) running on a host system that directly runs on a physical computer. The physical computer (hardware) resources of the host system are allocated via so-called hypervisors. For this reason, the virtual machine is referred to as a <em>guest machine</em> and the hypervisor as a <em>host machine</em>. Thus, a <em>guest machine</em> is an isolated, virtualized environment that runs independently on the host operating system.</p>
+</div>
+<div class="section" id="why-use-a-vm">
+<h3>Why use a VM?<a class="headerlink" href="#why-use-a-vm" title="Permalink to this headline">¶</a></h3>
+<p>Free resources on a computer represent, from an economic point of view, dead storage space that causes costs without generating income. This is why system administrators often create multiple virtual servers to better allocate physical resources and save energy. A VM is also useful for smart end-users such as researchers and engineers. Here are some advantages of a VM:</p>
+<ul class="simple">
+<li><p>Applications and services of multiple VMs do not interfere with each other.</p></li>
+<li><p>Independence of the guest system from the operating system of the host system and the physical hardware.</p></li>
+<li><p>VMs can be moved or cloned by simply copying them to other systems.</p></li>
+<li><p>Hardware resources can be dynamically allocated via the host hypervisor.</p></li>
+<li><p>Better and more efficient use of existing hardware resources.</p></li>
+<li><p>Short deployment times for systems and applications running on a VM.</p></li>
+<li><p>VMs provide high availability and flexibility because of their independence of physical resources.</p></li>
+</ul>
+<p>In the context of hydro-informatics for water resources management, a VM can serve to execute various <em>Python</em> scripts with different dependencies or, most importantly, to set up a clean and efficient environment for the execution of numerical models such as <a class="reference external" href="http://www.opentelemac.org/">open TELEMAC-MASCARET</a>.</p>
+</div>
+<div class="section" id="contents-and-debian-linux">
+<h3>Contents and Debian Linux<a class="headerlink" href="#contents-and-debian-linux" title="Permalink to this headline">¶</a></h3>
+<p>This page guides through the installation of a <a class="reference external" href="https://www.debian.org/">Debian Linux</a> virtual machine. The host hypervisor is assumed to be Oracle’s <a class="reference external" href="https://www.virtualbox.org/">VirtualBox</a> on <em>Windows 10</em>. If you are not using <em>Windows 10</em>, just download the <em>VirtualBox</em> installer that suits your system.</p>
+<p>The guest machine will run Debian Linux, which is one of the most stable Linux distributions, and it is freely available. Because of its stability, Debian is an ideal baseline for running numerical simulations that may last for days or even weeks. Of course, there are other options, and Debian is rather one of the best options than <em>the best option</em>.</p>
+<p>There are a couple of Debian Linux spin-offs, such as <a class="reference external" href="https://ubuntu.com"><em>Ubuntu</em></a> with some other derivatives that are more lightweight (and faster). New Linux users will have an easy start with the <em>Ubuntu</em> variants <a class="reference external" href="https://www.linuxmint.com"><em>Linux Mint</em> (<em>Xfce</em>)</a> or <a class="reference external" href="https://lubuntu.me/downloads/"><em>Lubuntu</em></a>. Most versions <em>Ubuntu</em> can be used instead of the Debian Linux presented here to complete the tutorials on this website.</p>
+</div>
+</div>
+<div class="section" id="create-a-debian-linux-vm">
+<h2>Create a Debian Linux VM<a class="headerlink" href="#create-a-debian-linux-vm" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="get-prerequisites-required-software">
+<h3>Get prerequisites (required software)<a class="headerlink" href="#get-prerequisites-required-software" title="Permalink to this headline">¶</a></h3>
+<p><em><strong>Estimated duration: 5-30 minutes (depends on connection speed).</strong></em></p>
+<ul class="simple">
+<li><p>Download and install the latest version of <a class="reference external" href="https://www.virtualbox.org/">VirtualBox</a>.</p>
+<ul>
+<li><p><em>Oracles</em>’s <em>VirtualBox</em> is a free and open-source hosted hypervisor software.</p></li>
+<li><p>The installation of <em>VirtualBox</em> requires administrator rights on the host machine. So if you are working in a professional environment, talk to your IT administrator.</p></li>
+<li><p><em>VirtualBox</em> installers are available for <em>Windows</em>, <em>mac OS</em>, and <em>Solaris</em>.</p></li>
+</ul>
+</li>
+<li><p>Download the latest Debian Linux (or one of its spin-offs - see next bullet point) net installer (this is the <strong>recommended</strong> solution <strong>for</strong> working with <strong>TELEMAC</strong>):</p>
+<ul>
+<li><p>Find the CD-section and click on the <a class="reference external" href="https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/"><em>amd64</em></a> version</p></li>
+<li><p>Scroll to the bottom of the page and download the latest net installer (<em>debian-xx.x.x-amd64-netinst.iso</em>)</p></li>
+<li><p>If the above link is not working, visit <a class="reference external" href="https://www.debian.org/">debian.org</a>, find the <em>Getting Debian</em> section (do not click on the one in the top menu), click on <em>CD/USB ISO images</em> and click on <a class="reference external" href="https://www.debian.org/CD/http-ftp/">Download CD/DVD images using HTTP</a>.</p></li>
+</ul>
+</li>
+<li><p><em>ISO</em> images for Debian spin-offs can also be used to complete the tutorials on this website (all-round systems):</p>
+<ul>
+<li><p><a class="reference external" href="https://lubuntu.me/downloads/"><em>Lubuntu</em></a> is a fast and light-weight derivative of <em>Ubuntu</em></p></li>
+<li><p><a class="reference external" href="https://www.linuxmint.com"><em>Linux Mint</em> (<em>Xfce</em>)</a> is another efficient <em>Ubuntu</em> spin-off that is always based on the penultimate <em>Ubuntu</em> version (e.g., if the current <em>Ubuntu</em> version is 20.0, then the current <em>Mint</em> version is 19.0 and builds on <em>Ubuntu</em> 19.0)</p></li>
+</ul>
+</li>
+</ul>
+<p>Remember where the downloaded Linux <em>.ISO</em> file is stored.</p>
+</div>
+<div class="section" id="create-a-vm-with-virtualbox">
+<h3>Create a VM with VirtualBox<a class="headerlink" href="#create-a-vm-with-virtualbox" title="Permalink to this headline">¶</a></h3>
+<p><em><strong>Estimated duration: 5-8 minutes.</strong></em></p>
+<p>In your host system (e.g., <em>Windows 10</em>), click on <em>Start</em>, type <em>Oracle VM VirtualBox</em>, and hit enter. In the opened <em>VirtualBox</em> manager window:</p>
+<ul class="simple">
+<li><p>Click on the blue <em>New</em> button to open the VM creation wizard and enter:</p>
+<ul>
+<li><p><em>Name:</em> Debian Linux <br><em>Note: The wizard should automatically recognize the</em> Type <em>and</em>Version <em>fields.</em></p></li>
+<li><p><em>Machine Folder:</em> <code class="docutils literal notranslate"><span class="pre">C:\Users\USERNAME\VirtualBox</span> <span class="pre">VMs</span></code></p></li>
+<li><p><em>Type:</em> Linux</p></li>
+<li><p><em>Version:</em> Debian (64-bit)  <br>&gt; Click on the <em>Next</em> button</p></li>
+<li><p>Allocate memory size: the more memory is allocated to the VM, the faster will be the VM (and for example TELEMAC-MASCARET), but the slower will be the host system (<em>Windows 10</em>). Rule of thumb: stay in the green range of the bar (e.g., allocate 8192 MB)
+<br>&gt; Click on the <em>Next</em> button</p></li>
+<li><p>Select <em>Create a virtual hard disk now</em> and click on the <em>Create</em> button.</p></li>
+<li><p>Select <em>VDI</em> (native to <em>VirtualBox</em>) and click on <em>Next</em>.</p></li>
+<li><p>Preferably choose <em>Dynamically allocated</em> to start with a small virtual disk size, which can take a maximum size to be defined in the next step. Click on the <em>Next</em> button.</p></li>
+<li><p>Leave the default disk name as is and allocate a maximum size for the virtual disk (recommended: min. 32 GB). Click on the <em>Create</em> button.</p></li>
+</ul>
+</li>
+<li><p>Great - the basics are all set now and we are back in the <em>VirtualBox</em> main window, where a <em>Debian Linux</em> VM should be visible now on the left side of the window.</p></li>
+<li><p>With the <em>Debian Linux</em> VM highlighted (i.e., just click on it), click on the yellow <em>Settings</em> wheel button, which opens the <em>Settings</em> window:</p>
+<ul>
+<li><p>In the <em>System/Motherboard</em> tab, verify the memory allocation and check the <em>Enable EFI (special OSes only)</em> box (enable).</p></li>
+<li><p>In the <em>System/Processor</em> tab, select the number of processors that the VM uses. To not slowing down the host system (<em>Windows 10</em>), stay in the green range of the CPU bar. For parallel processing with TELEMAC-MASCARET, allocate at least 4 CPUs.</p></li>
+<li><p>In the <em>Display</em> tab, check the <em>Enable 3D Acceleration</em> box.</p></li>
+<li><p>In the <em>Storage</em> tab, find the <em>Controller: IDE</em>, where an <em>Empty</em> disk symbol should be located below.</p>
+<ul>
+<li><p>Click on the <em>Empty</em> disk symbol and find the <em>Attributes</em> frame on the right side of the window, where a small blue disk symbol should be visible.</p></li>
+<li><p>Click on the small blue disk symbol to <em>Choose a disk file …</em> &gt; select the Debian Linux net installer (<em>debian-xx.x.x-amd64-netinst.iso</em>) that you downloaded before.</p></li>
+</ul>
+</li>
+<li><p>Click <em>OK</em>.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="install-debian-linux">
+<h3>Install Debian Linux<a class="headerlink" href="#install-debian-linux" title="Permalink to this headline">¶</a></h3>
+<p><em><strong>Estimated duration: 30 minutes.</strong></em></p>
+<p>To install Debian Linux to the VM, start the before created <em>Debian Linux VM</em> in the <em>VirtualBox</em> manager window (click on the <em>Debian Linux</em> VM and then on the green <em>Start</em> arrow). The <em>VirtualBox VM</em> window will ask for the <em>.iso</em> file to use (confirm the selected one), and start navigating through the installation:</p>
+<ul class="simple">
+<li><p>Inside the <em>VirtualBox VM</em> window, select the <em>Graphical install</em> option.</p></li>
+<li><p>Navigate through the language options (recommended: English - English (United States)).</p></li>
+<li><p>Optionally define a hostname (e.g., debian-vm) and a domain name (e.g., debian-net).</p></li>
+<li><p>Create a root user name and password (write down the credentials somewhere) as well as a user name (no root rights) and password.</p></li>
+<li><p>Set up the clock.</p></li>
+<li><p>Disk partitioning: Choose the <em>Guided - use entire disk</em> option. Click <em>Continue</em> (2 times).</p></li>
+<li><p>Select the <em>All files in one partition (recommended for new users)</em> option. Click <em>Continue</em>.</p></li>
+<li><p>Make sure that <em>Finish partitioning and write changes to disk</em> is selected and click <em>Continue</em>.</p></li>
+<li><p>Select <em>Yes</em> in the next step (<em>Write the changes to disks?</em>). <br>… grab your favorite beverage and wait while the installation progresses …</p></li>
+<li><p>Select <em>No</em> to answer the question <em>Scan another CD or DVD?</em> and click <em>Continue</em>.</p></li>
+<li><p>Select the geographically closest mirror to access Debian archives (software repositories and updates) and click <em>Continue</em> (2 times).</p></li>
+<li><p>Skip the proxy information question (just click <em>Continue</em>).</p></li>
+<li><p>Optionally, select <em>No</em> to answer the question <em>Participate in the package usage survey?</em> and click <em>Continue</em>.</p></li>
+<li><p>Software to install: Select <em>GNOME</em> and keep the other defaults (Debian desktop, print server, and standard system utilities).
+<br>… continue enjoying your favorite beverage and wait while the installation progresses …</p></li>
+<li><p>Click <em>Continue</em> to finalize the installation and reboot (or shutdown) the VM.</p></li>
+</ul>
+<p>Once the VM is shut down, re-open the VM <em>Settings</em> (from <em>VirtualBox Manager</em> window) and go to the <em>Storage</em> tab. Verify that there is again an <em>Empty</em> disk symbol in the <em>Controller: IDE</em> field.</p>
+</div>
+</div>
+<div class="section" id="re-use-transfer-or-copy-a-vm-on-another-host">
+<h2>Re-use (Transfer or Copy) a VM on another Host<a class="headerlink" href="#re-use-transfer-or-copy-a-vm-on-another-host" title="Permalink to this headline">¶</a></h2>
+<p>Once you have created a VM on a virtual hard disk (the <strong>vdi</strong> file), you can always transfer it to another <em>host</em> system. To copy (or transport) a VM:</p>
+<ol class="simple">
+<li><p>Copy the <em>vdi</em> file where your VM is installed (e.g., <em>Debian Linux.vdi</em>) to another system (let’s call it <em>Host-2</em>), for example by using a USB flash drive.</p></li>
+<li><p>Make sure that <em>VirtualBox</em> is installed on the <em>Host-2</em> system and open <em>VirtualBox</em> on  <em>Host-2</em>.</p></li>
+<li><p>In <em>VirtualBox</em>, create a <em>New</em> (the blue rack-wheel) <em>Virtual Machine</em>.</p></li>
+<li><p>In the process of creating a <em>New</em> VM, the wizard asks if you want to create a new hard disk image or an existing one. Select <em>Existing hard disk</em> and choose the copied <em>vdi</em> file.</p></li>
+<li><p>Finalize the <em>New</em> VM wizard and start the VM as usual.</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="debian-linux">
+<span id="linux-install"></span><h1>Debian Linux<a class="headerlink" href="#debian-linux" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="setup-linux">
+<span id="setup-debian"></span><h2>Setup Linux<a class="headerlink" href="#setup-linux" title="Permalink to this headline">¶</a></h2>
+<p><em><strong>Estimated duration: 15 minutes.</strong></em></p>
+<p>Start the <em>Debian Linux</em> VM from the <em>VirtualBox</em> manager window. Once Debian Linux has started, log on with your user credentials.</p>
+<p>To enable the full functionality of the system, open the Linux Terminal (<code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">Alt</span></code> + <code class="docutils literal notranslate"><span class="pre">T</span></code> or go to <em>Activities</em> &gt; <em>Files</em> (filing cabinet symbol), right-click in any folder and select <em>Open in Terminal</em>). In <em>Terminal</em> type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">su</span>
+</pre></div>
+</div>
+<p>Enter the above-created password for the root user name (see installation section).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Root access (e.g., for installing software) is granted on many Linux distribution using the <code class="docutils literal notranslate"><span class="pre">sudo</span></code> command before the command to execute. In Debian Linux, <code class="docutils literal notranslate"><span class="pre">sudo</span></code> may refer to the wrong account and not work as desired. As a workaround type <code class="docutils literal notranslate"><span class="pre">su</span></code> in <em>Terminal</em>. Read more later in this section.</p>
+</div>
+<p>Install all packages required for building kernel modules:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>apt update
+apt install build-essential dkms linux-headers-$(uname -r)
+</pre></div>
+</div>
+<p>Find the <em>Devices</em> drop-down menu of the <em>VirtualBox VM</em> window (not in Debian Linux itself) and select <em>Insert Guest Additions CD image…</em> (depending on the version of <em>VirtualBox</em>, this menu can be on the top or the bottom of the window).</p>
+<div class="tip admonition">
+<p class="admonition-title">Where is the <strong>Devices</strong> entry?</p>
+<p>The <em>VirtualBox VM</em> window does not show the menu with the <em>Devices</em> entry anywhere?</p>
+<ul class="simple">
+<li><p>This may happen when the <em>View</em> was set to <em>Scaled mode</em>.</p></li>
+<li><p>To toggle the view mode and make the menu bar visible, press the RIGHT <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> (<code class="docutils literal notranslate"><span class="pre">Host</span></code>) key + the <code class="docutils literal notranslate"><span class="pre">C</span></code> on your keyboard, while being in the host system view.</p></li>
+</ul>
+</div>
+<div class="warning admonition">
+<p class="admonition-title">If the error <strong>The guest system has no CR-ROM …</strong> occurs…</p>
+<p>To troubleshoot the error message <code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">guest</span> <span class="pre">system</span> <span class="pre">has</span> <span class="pre">no</span> <span class="pre">CR-ROM</span> <span class="pre">...</span></code>, shutdown the VM. In the <em>VirtualBox</em> manager window, right-click on the <em>Debian Linux</em> VM &gt; <em>Storage</em> tab &gt; Add new Optical Drive to <em>Controller: IDE</em>. Restart the <em>Debian Linux</em> VM.</p>
+</div>
+<p>Back in the Debian Linux <em>Terminal</em>, mount the <em>Guest Additions</em> <em>iso</em> file by typing in <em>Terminal</em>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">cdrom</span>
+<span class="n">sudo</span> <span class="n">mount</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">cdrom</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">cdrom</span>
+</pre></div>
+</div>
+<p>Navigate to the mounted directory and execute the <em>VBoxLinuxAdditions.run</em> file with the <em>–nox11</em> flag to avoid spawning an xterm window.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">cdrom</span>
+<span class="n">sudo</span> <span class="n">sh</span> <span class="o">./</span><span class="n">VBoxLinuxAdditions</span><span class="o">.</span><span class="n">run</span> <span class="o">--</span><span class="n">nox11</span>
+</pre></div>
+</div>
+<p>The kernel modules will be installed now and <em>Terminal</em> should prompt a message that invites to reboot the system. Do so by typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">shutdown</span> <span class="o">-</span><span class="n">r</span> <span class="n">now</span>
+</pre></div>
+</div>
+<p>After rebooting, make sure that the installation was successful. In <em>Terminal</em> type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lsmod</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">vboxguest</span>
+</pre></div>
+</div>
+<p>The installation was successful if the <em>Terminal</em>’s answer is something like <code class="docutils literal notranslate"><span class="pre">vboxguest</span>&#160;&#160; <span class="pre">358395</span> <span class="pre">2</span> <span class="pre">vboxsf</span></code>. Read more about <em>Guest Additions</em> on the <a class="reference external" href="https://www.virtualbox.org/manual/ch04.html"><em>VirtualBox</em> developer’s website</a>.</p>
+<p>To improve the visual experience do the following:</p>
+<ul class="simple">
+<li><p>In the top-left corner of the Debian Linux Desktop, click on <em>Activities</em> and type <em>displays</em> in the search box.</p></li>
+<li><p>Open the <em>Displays</em> settings to select a convenient display resolution.</p>
+<ul>
+<li><p>If you choose a too high resolution, the <em>VirtualBox VM</em> window will turn black and jump back to the original resolution after 15-30 seconds.</p></li>
+<li><p>Consider also to turn on <em>Night Light</em> to preserve your eye vision.</p></li>
+</ul>
+</li>
+<li><p><em>Apply</em> the changes and close the <em>Displays</em> settings.</p></li>
+</ul>
+</div>
+<div class="section" id="linux-terminal">
+<span id="id1"></span><h2>Linux Terminal<a class="headerlink" href="#linux-terminal" title="Permalink to this headline">¶</a></h2>
+<p><em><strong>Estimated duration: 60 minutes.</strong></em></p>
+<p>To get familiar with Debian Linux, go to the <em>Activities</em> menu and find the applications <em>LibreOffice-Writer</em>, <em>Firefox</em>, the <em>Software</em> application (shopping bag symbol), and the <em>File</em> manager (filing container symbol).
+Find more applications by clicking on the four dots on the left of the menu bar - can you find the Text Editor?
+To shutdown Debian Linux (i.e., the VM), click on the top-right corner arrow and press the Power symbol.</p>
+<p>The GNOME <em>Terminal</em> is one of the most important features, even though it optically shows only an empty window with a blinking cursor at the beginning. There are many ways to open <em>Terminal</em> and here are two options:</p>
+<ol class="simple">
+<li><p>Go to <em>Applications</em> and type <em>Terminal</em> in the search box, or</p></li>
+<li><p>Open the <em>File</em> browser (<em>Applications</em> &gt; <em>Files</em> - the filing container symbol), navigate to the folder where you want to run <em>Terminal</em>, right-click in the free space, and left-click on <em>Open in Terminal</em>.</p></li>
+</ol>
+<p><em>Terminal</em> runs many powerful native Linux (UNIX) commands, which is the most robust way to install and execute features. There are a couple of tutorials for learning to use <em>Terminal</em> and one of the most comprehensive is provided on the <em>Linux Ubuntu</em> website (Ubuntu is based on Debian Linux). It is highly recommended to go through the <a class="reference external" href="https://ubuntu.com/tutorials/command-line-for-beginners">tutorial provided by the Ubuntu community</a> (<em>estimated duration: 51 minutes</em>), for better understanding some contents of this eBook. In particular, memorize the commands <code class="docutils literal notranslate"><span class="pre">cd</span></code> (change directory), <code class="docutils literal notranslate"><span class="pre">su</span></code>/<code class="docutils literal notranslate"><span class="pre">sudo</span></code> (superuser), <code class="docutils literal notranslate"><span class="pre">ls</span></code> (listen) and <code class="docutils literal notranslate"><span class="pre">mkdir</span></code> (make directory).</p>
+</div>
+<div class="section" id="user-rights">
+<span id="id2"></span><h2>User Rights<a class="headerlink" href="#user-rights" title="Permalink to this headline">¶</a></h2>
+<p>When installing software later, it is good practice to install it for your user account and not for <code class="docutils literal notranslate"><span class="pre">root</span></code>. Such system-relevant actions require <em>superuser</em> (<code class="docutils literal notranslate"><span class="pre">su</span></code>) rights. However, your default user name is not on the so-called <em>su-doers</em> list, which is essentially a file where all user accounts are listed that are authorized to use <code class="docutils literal notranslate"><span class="pre">sudo</span></code> in front of any command. So add your user account to the <em>su-doers</em> list by opening <em>Terminal</em> and typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">su</span>
+    <span class="n">password</span><span class="p">:</span> <span class="o">...</span>
+<span class="n">sudo</span> <span class="n">usermod</span> <span class="o">-</span><span class="n">aG</span> <span class="n">sudo</span> <span class="n">YOUR</span><span class="o">-</span><span class="n">USER</span><span class="o">-</span><span class="n">NAME</span>
+</pre></div>
+</div>
+<p>Open a new <em>Terminal</em> tab (<code class="docutils literal notranslate"><span class="pre">Shift</span></code> + <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">T</span></code>), which should open up in your default user space with default user rights. Check if your account is on the <em>su-doers</em> list by typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">v</span>
+</pre></div>
+</div>
+<p>If visually nothing happens, you are good to go. Otherwise, if you get a message like <code class="docutils literal notranslate"><span class="pre">Sorry,</span> <span class="pre">user</span> <span class="pre">[username]</span> <span class="pre">may</span> <span class="pre">not</span> <span class="pre">run</span> <span class="pre">sudo</span> <span class="pre">on</span> <span class="pre">[hostname].</span></code>, verify that you correctly typed the above command and <em>YOUR-USER-NAME</em> (with correct cases).</p>
+</div>
+<div class="section" id="vm-settings">
+<span id="linux-as-vm"></span><h2>VM Settings<a class="headerlink" href="#vm-settings" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="enable-folder-sharing-between-host-and-guest">
+<span id="vm-share"></span><h3>Enable Folder Sharing between Host and Guest<a class="headerlink" href="#enable-folder-sharing-between-host-and-guest" title="Permalink to this headline">¶</a></h3>
+<p><em><strong>Estimated duration: 5-10 minutes.</strong></em></p>
+<div class="admonition-requirements admonition">
+<p class="admonition-title">Requirements</p>
+<p>Make sure to install <em>Guest Additions</em> to enable folder sharing (see the above <a class="reference external" href="#setup-debian">Setup Linux</a> section).</p>
+</div>
+<p>Sharing data between the host system (e.g., <em>Windows 10</em>) and the guest system (<em>Debian Linux VM</em>) enables to transfer files to and from the VM to the host system.</p>
+<ul class="simple">
+<li><p>At a place of your convenience, create a new folder on the host system (e.g., <em>Windows 10</em>) and call it shared (e.g., <code class="docutils literal notranslate"><span class="pre">C:\Users\USER\documents\shared\</span></code>).</p></li>
+<li><p>Start <em>VirtualBox</em> and the Debian Linux VM.<br><em>Make sure that the scaled view mode is off (toggle view modes with RIGHT <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> (<code class="docutils literal notranslate"><span class="pre">Host</span></code>) and <code class="docutils literal notranslate"><span class="pre">C</span></code> on the keyboard).</em></p></li>
+<li><p>Go to the VM <em>VirtualBox</em> window’s <em>Devices</em> menu, click on <em>Shared Folders</em> &gt; <em>Shared Folders Settings…</em> and click on the little blue <em>Add new shared folder</em> symbol on the right side of the window (see figure below). Make the following settings in the pop-up window:</p>
+<ul>
+<li><p><em>Folder Path:</em> Select the just created <code class="docutils literal notranslate"><span class="pre">...\shared</span></code> folder</p></li>
+<li><p>Check the <em>Enable Auto-mount</em> box</p></li>
+<li><p>Check the <em>Make Permanent</em> box</p></li>
+</ul>
+</li>
+<li><p>Click OK on both pop-up windows.</p></li>
+</ul>
+<p><img alt="share-folder" src="https://github.com/Ecohydraulics/media/raw/master/png/vm-share-folder.png" /></p>
+<p>The shared folder will then be visible in the <em>Files</em> (<em>Activities</em> &gt; <em>Filing cabinet symbol</em>) on the left (e.g., as <em>sf_shared</em>).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>File sharing only works with the <em>Guest Additions CD image</em> installed (see above section on setting up and familiarizing with Debian Linux).</p>
+</div>
+<p>A <em><strong>Permission denied</strong></em> message is likely to appear when you click on <code class="docutils literal notranslate"><span class="pre">sf_shared</span></code>. The message may appear because your user name is not assigned to the <em>vboxsf</em> group. The <em>vboxsf</em> is the one, which is automatically assigned for accessing the shared folder. To verify the group name, go to the shared folder, right-click in the free space, and select <em>Permissions</em>. A window with group names that have access to the shared folder opens. To add your username type (in <em>Terminal</em>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">usermod</span> <span class="o">-</span><span class="n">aG</span> <span class="n">vboxsf</span> <span class="n">YOUR</span><span class="o">-</span><span class="n">USER</span><span class="o">-</span><span class="n">NAME</span>
+</pre></div>
+</div>
+<p>Afterward, <strong>reboot the <em>Debian Linux VM</em></strong> and test if you can access the folder, and create and modify files. More information on <code class="docutils literal notranslate"><span class="pre">Permission</span> <span class="pre">denied</span></code> errors is provided in the troubleshooting section on <a class="reference internal" href="../troubleshoot/dbg-linux.html#dbg-permissions"><span class="std std-ref">Permission Denied Messages</span></a> in <em>Linux</em>.</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="enable-opengl">
+<span id="opengl"></span><h3>Enable OpenGL<a class="headerlink" href="#enable-opengl" title="Permalink to this headline">¶</a></h3>
+<p><em>VirtualBox</em> experimentally enables <a class="reference external" href="https://www.opengl.org"><em>OpenGL</em></a>, which is used by many graphical user interfaces. To make <em>OpenGL</em> work on a virtual machine, the install <a class="reference external" href="https://www.x.org/"><em>X.Org X Window System</em></a> (xserver):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">xorg</span>
+</pre></div>
+</div>
+<p>Run <em>Xorg</em> as a normal user with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">startx</span>
+</pre></div>
+</div>
+<p>Or run <em>Xorg</em> as root (superuser) with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">service</span> <span class="n">gdm</span> <span class="n">start</span>
+</pre></div>
+</div>
+<p>To edit the configuration of <em>Xorg</em> run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">editor</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">X11</span><span class="o">/</span><span class="n">xorg</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<p>Add <em>nvidia</em> repositories and drivers (maybe not necessary on newer versions of <em>Debian</em>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">software</span> <span class="n">properties</span><span class="o">-</span><span class="n">common</span>
+<span class="n">sudo</span> <span class="n">add</span><span class="o">-</span><span class="n">apt</span><span class="o">-</span><span class="n">repository</span> <span class="n">contrib</span>
+<span class="n">sudo</span> <span class="n">add</span><span class="o">-</span><span class="n">apt</span><span class="o">-</span><span class="n">repository</span> <span class="n">non</span><span class="o">-</span><span class="n">free</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+</pre></div>
+</div>
+<p>Then install <em>OpenGL</em> with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">libopengl0</span><span class="o">-</span><span class="n">glvnd</span><span class="o">-</span><span class="n">nvidia</span> <span class="n">libglx0</span><span class="o">-</span><span class="n">glvnd</span><span class="o">-</span><span class="n">nvidia</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="install-software-and-update">
+<h2>Install Software and Update<a class="headerlink" href="#install-software-and-update" title="Permalink to this headline">¶</a></h2>
+<p><em><strong>Estimated duration: Variable.</strong></em></p>
+<p>To install other software, preferably use the built-in software manager (<em>Activities</em> &gt; <em>Shopping bag</em> symbol). The <em>Software</em> manager uses official releases in the stable Debian repository (read more about <a class="reference external" href="https://wiki.debian.org/SourcesList">lists of sources</a>).</p>
+<p>To update repositories and upgrade installed packages, open <em>Terminal</em> and type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">full</span><span class="o">-</span><span class="n">upgrade</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">autoremove</span>
+</pre></div>
+</div>
+<p>The last command removes files that are not needed anymore and reduces system garbage.</p>
+<div class="note admonition">
+<p class="admonition-title">apt and apt-get</p>
+<p>Being a new Linux end user, preferably use <code class="docutils literal notranslate"><span class="pre">apt</span></code> rather than <code class="docutils literal notranslate"><span class="pre">apt-get</span></code>. That means:</p>
+<ul class="simple">
+<li><p><strong>Do use <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">PACKAGE</span></code></strong></p></li>
+<li><p><strong>Do not use <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">PACKAGE</span></code></strong></p></li>
+</ul>
+<p>Still, you may need to use <code class="docutils literal notranslate"><span class="pre">apt-get</span></code> for some specific cases (e.g., if a package provider instructs particularly you to do so).</p>
+</div>
+<p>Instructions for installing particular and Debian-compatible software (e.g., QGIS) can be found directly on the website of software developers. For example, to install <em>Anaconda</em> <em>Python</em> visit <a class="reference external" href="https://docs.anaconda.com/anaconda/install/linux/">docs.anaconda.com</a> and follow the installation instructions for Debian Linux.</p>
+<div class="attention admonition">
+<p class="admonition-title">Software minimalism</p>
+<p>If the main purpose of the VM is to run resource-intensive simulations (e.g., with TELEMAC), avoid installing any other software than those required for running the model. Also, as a general rule of thumb: Less is better than more.</p>
+</div>
+</div>
+<div class="section" id="system-monitoring-with-htop">
+<span id="install-htop"></span><h2>System Monitoring with HTOP<a class="headerlink" href="#system-monitoring-with-htop" title="Permalink to this headline">¶</a></h2>
+<p>To get an overview of the system performance install <em>htop</em>, which enables visualizing <em>CPU</em> usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">htop</span>
+</pre></div>
+</div>
+<p>Start <em>htop</em>’s <em>CPU</em> monitor with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">htop</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="package-software-management">
+<h2>Package &amp; Software Management<a class="headerlink" href="#package-software-management" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="add-package-repositories">
+<h3>Add Package Repositories<a class="headerlink" href="#add-package-repositories" title="Permalink to this headline">¶</a></h3>
+<p>For adding (trusted) software (package) repositories use <em>software-properties-common</em>, which provides the <code class="docutils literal notranslate"><span class="pre">add-apt-repository</span></code> command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">software</span><span class="o">-</span><span class="n">properties</span><span class="o">-</span><span class="n">common</span>
+<span class="n">sudo</span> <span class="n">add</span><span class="o">-</span><span class="n">apt</span><span class="o">-</span><span class="n">repository</span> <span class="n">contrib</span>
+<span class="n">sudo</span> <span class="n">add</span><span class="o">-</span><span class="n">apt</span><span class="o">-</span><span class="n">repository</span> <span class="n">non</span><span class="o">-</span><span class="n">free</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="find-packages">
+<h3>Find Packages<a class="headerlink" href="#find-packages" title="Permalink to this headline">¶</a></h3>
+<p>Some software will run into errors because of missing library files (e.g., <code class="docutils literal notranslate"><span class="pre">libGLX.so.0:</span> <span class="pre">No</span> <span class="pre">such</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">directory</span></code>). To find out what package needs to be installed for getting the missing library file, install <em>apt-file</em></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">apt</span><span class="o">-</span><span class="n">file</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">file</span> <span class="n">update</span>
+</pre></div>
+</div>
+<p>To find out the package name of a missing library file (e.g., <code class="docutils literal notranslate"><span class="pre">libGLX.so.0</span></code>), tap:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">file</span> <span class="n">find</span> <span class="n">libGLX</span><span class="o">.</span><span class="n">so</span><span class="mf">.0</span>
+</pre></div>
+</div>
+<p>After a couple of seconds of searching, <em>apt-file</em> will prompt something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">libglx0</span><span class="o">-</span><span class="n">glvnd</span><span class="o">-</span><span class="n">nvidia</span><span class="p">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libGLX</span><span class="o">.</span><span class="n">so</span><span class="mf">.0</span>
+</pre></div>
+</div>
+<p>That means, to get the library file <code class="docutils literal notranslate"><span class="pre">libGLX.so.0</span></code>, the package <code class="docutils literal notranslate"><span class="pre">libglx0-glvnd-nvidia</span></code> must be installed; for instance:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">libglx0</span><span class="o">-</span><span class="n">glvnd</span><span class="o">-</span><span class="n">nvidia</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-use-windows-applications-wine">
+<span id="wine"></span><h3>Install &amp; Use <em>Windows</em> Applications (<em>Wine</em>)<a class="headerlink" href="#install-use-windows-applications-wine" title="Permalink to this headline">¶</a></h3>
+<p><em><strong>Estimated duration: 10-15 minutes.</strong></em></p>
+<p>If you want to emulate a <em>Windows</em> environment on any <em>Linux</em> system (for whatever reason), use the <a class="reference external" href="https://wiki.debian.org/Wine"><em>Wine</em></a> compatibility layer, which enables installing and running <em>Windows</em> applications. The above-described installation of Debian Linux creates a 64-bit VM and to enable program compatibility with 32-bit architectures, add 32-bit architectures through <em>Terminal</em>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dpkg</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">architecture</span> <span class="n">i386</span> <span class="o">&amp;&amp;</span> <span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+</pre></div>
+</div>
+<p>Then, install <em>Wine</em> with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">wine</span> <span class="n">wine32</span> <span class="n">wine64</span> <span class="n">libwine</span> <span class="n">libwine</span><span class="p">:</span><span class="n">i386</span> <span class="n">fonts</span><span class="o">-</span><span class="n">wine</span>
+</pre></div>
+</div>
+<p>After installing <em>Wine</em>, verify or configure folder links and compatibility environments by typing  <code class="docutils literal notranslate"><span class="pre">wine</span> <span class="pre">winecfg</span></code>, which opens the <em>Wine configuration</em> window, where:</p>
+<ul class="simple">
+<li><p>Folder links are defined in the <em>Desktop Integration</em> tab.</p></li>
+<li><p>The <em>Applications</em> tab enables to define the <em>Windows</em> compatibility layer to use (e.g., <em>Windows 10</em>) and set applications.</p></li>
+</ul>
+<p>To install a <em>Windows</em> application:</p>
+<ol class="simple">
+<li><p>Download the installer (e.g., an <em>exe</em> or <em>msi</em> file).</p></li>
+<li><p>Open <em>Terminal</em> and type <code class="docutils literal notranslate"><span class="pre">wine</span> <span class="pre">control</span></code> &gt; A <em>Windows</em>-like window opens (<a class="reference external" href="https://wiki.winehq.org/Control">read more</a>).</p></li>
+<li><p>In that window, click on the <em>Add/Remove…</em> button, which opens up another window (<em>Add/Remove Programs</em>).</p></li>
+<li><p>Click on the <em>Install…</em> button and select the downloaded <em>exe</em> or <em>msi</em> installer.</p>
+<ul class="simple">
+<li><p>Follow the installation instructions (standard <em>Windows</em> procedure).</p></li>
+<li><p>Consider to add a <em>Desktop Icon</em>, or note the installation directory (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;C:\\Program</span> <span class="pre">Files</span> <span class="pre">(x86)\\CHC\\BlueKenue\\&quot;</span></code>).</p></li>
+<li><p>In the background. <em>Terminal</em> might prompt the message <code class="docutils literal notranslate"><span class="pre">err:mscoree:LoadLibraryShim</span> <span class="pre">error</span> <span class="pre">reading</span> <span class="pre">registry</span> <span class="pre">key</span> <span class="pre">for</span> <span class="pre">installroot</span></code> - you may ignore such messages (<a class="reference external" href="https://forum.winehq.org/viewtopic.php?t=14618">read more</a>).</p></li>
+</ul>
+</li>
+</ol>
+<div class="error dropdown admonition">
+<p class="admonition-title">Never run wine as root (sudo).</p>
+<p>Why? It is just not safe. So if you did run wine as root anyway, roll back with <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">$HOME</span></code> and tap <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">chown</span> <span class="pre">-R</span> <span class="pre">$USER:$USER</span> <span class="pre">.wine</span></code>
+More information is available in the <a class="reference external" href="https://wiki.winehq.org/FAQ#Should_I_run_Wine_as_root.3F">wine docs</a>.</p>
+</div>
+<p><strong>Launch a <em>Windows</em> application</strong> by typing <code class="docutils literal notranslate"><span class="pre">wine</span> <span class="pre">explorer</span></code> in <em>Terminal</em>.  <em>Wine</em>’s <em>Windows</em> file system will be displayed in a <em>Windows</em>-like window. To start and application:</p>
+<ul class="simple">
+<li><p>If a <em>Desktop Icon</em> was created during the installation, go to <em>Desktop</em> and double-click on the application (e.g., <em>BlueKenue</em>)</p></li>
+<li><p>Otherwise, identify the installation path and the executable that launches the application.</p>
+<ul>
+<li><p>32-bit programs are typically installed in <code class="docutils literal notranslate"><span class="pre">&quot;C:\\Program</span> <span class="pre">Files</span> <span class="pre">(x86)\\</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;C:\\Program</span> <span class="pre">Files</span> <span class="pre">(x86)\\CHC\\BlueKenue\\BlueKenue.exe&quot;</span></code>).</p></li>
+<li><p>64-bit programs are typically installed in <code class="docutils literal notranslate"><span class="pre">&quot;C:\\Program</span> <span class="pre">Files\\</span></code>.</p></li>
+</ul>
+</li>
+<li><p>With the installation path, any <em>Windows</em> application can be launched through <em>Terminal</em> with:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">wine</span> <span class="pre">&quot;C:\\path\\to\\the.exe&quot;</span></code> (use <code class="docutils literal notranslate"><span class="pre">\\</span></code> to separate sub-directories).</p></li>
+<li><p>For example, <code class="docutils literal notranslate"><span class="pre">wine</span> <span class="pre">&quot;C:\\Program</span> <span class="pre">Files</span> <span class="pre">(x86)\\CHC\\BlueKenue\\BlueKenue.exe&quot;</span></code> typically starts <em>Blue Kenue<sup>TM</sup></em>.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "hydro-informatics/hydro-informatics.github.io",
+            ref: "gh-pages",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./get-started"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="software.html" title="previous page">Software Resources</a>
+    <a class='right-next' id="next-link" href="ide.html" title="next page">Integrated Development Environments (IDEs)</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Sebastian Schwindt<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
