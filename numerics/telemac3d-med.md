@@ -819,7 +819,7 @@ To get started with writing subroutines (it is no magic neither), have a look at
 
 ### Numerical Parameters
 
-This section defines internal numerical parameters for the *Advection* and *Diffusion* solvers, which are also sometimes listed in the section of [hydrodynamic parameters](#hydrodynamics) in *TELEMAC* documentations.
+This section defines internal numerical parameters for the *Advection* and *Diffusion* solvers, which are also sometimes listed in the {ref}`hydrodynamic parameters <hydrodynamics>` section in the {{ tm3d }}.
 
 In *Telemac3d*, it is recommended to use the so-called distributive predictor-corrector (PSI) scheme ([read more](https://henry.baw.de/bitstream/handle/20.500.11970/104314/13_Hervouet_2015.pdf?sequence=1&isAllowed=y) at the BAW's hydraulic engineering repository) with local implication for tidal flats (for velocity, tracers, and k-epsilon):
 
@@ -848,7 +848,7 @@ The `SUPG OPTION` (Streamline Upwind Petrov Galerkin) keyword is a list of four 
 
 The default is `SUPG OPTION : 1;0;1;1`, where the first list element refers to flow velocity (default `1`), the second to water depth (default `0`), the third to tracers (default `1`), and the last to the k-epsilon model (default `1`). Read more in section 6.2.2 of the {{ tm3d }}.
 
-An additional option for speeding up is to enable mass lumping for diffusion, depth, and/or weak characteristics. Mass lumping results in faster convergence, but it introduces artificial dispersion in the results, which is why enabling mass lumping is discouraged by the *TELEMAC* developers. The provided [*t3d_template.cas*](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/master/model-templates/t3d_template.cas) includes the keywords for mass lumping, though they are disabled.
+An additional option for speeding up is to enable mass lumping for diffusion, depth, and/or weak characteristics. Mass lumping results in faster convergence, but it introduces artificial dispersion in the results, which is why enabling mass lumping is discouraged by the *TELEMAC* developers. The provided [*t3d_template.cas*](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/master/model-templates/t3d_template.cas) includes the keywords for mass lumping, though they are disabled through the `/` at the beginning of the line.
 
 **Implication parameters** (`IMPLICITATION FOR DEPTH` and `IMPLICITATION FOR VELOCITIES`) should be set between 0.55 and 0.60 (default is 0.55 since *TELEMAC v8p1*) and can be considered as a degree of implicitation. `IMPLICITATION FOR DIFFUSION` is set to `1.0` by default. Read more in section 6.4 of the {{ tm3d }}.
 
@@ -879,7 +879,7 @@ The liquid boundary definitions for `PRESCRIBED FLOWRATES` and `PRESCRIBED ELEVA
 
 The `0.` value for the water does physically not make sense at the upstream boundary, but because they do not make sense, and because the boundary file (`flume3d_bc.bnd`) only defines (*prescribes*) a flow rate (by setting `LIUBOR` and `LIVBOR` to `5`), *TELEMAC* will ignore the zero-water depth at the upstream boundary.
 
-Instead of a list in the steering *CAS* file, the liquid boundary conditions can also be defined with a liquid boundary condition file in *ASCII* text format. For this purpose, a `LIQUID BOUNDARIES FILE` or a `STAGE-DISCHARGE CURVES FILE` (sections 4.3.8 and 4.3.10 in the {{ tm3d }}, respectively can be defined. The [*t3d_template.cas*](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/master/model-templates/t3d_template.cas) file includes these keywords in the *COMPUTATION ENVIRONMENT* section, even though they are disabled. A liquid boundary file (*QSL*) may look like this:
+Instead of a list in the steering *CAS* file, the liquid boundary conditions can also be defined with a liquid boundary condition file in *ASCII* text format. For this purpose, a `LIQUID BOUNDARIES FILE` or a `STAGE-DISCHARGE CURVES FILE` (sections 4.3.8 and 4.3.10 in the {{ tm3d }}, respectively can be defined. The [*t3d_template.cas*](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/master/model-templates/t3d_template.cas) file includes these keywords in the *COMPUTATION ENVIRONMENT* section, though they are disabled through the `/` character at the beginning of the line. A liquid boundary file (*QSL*) may look like this:
 
 ```fortran
 # t3d_canal.qsl
@@ -928,7 +928,7 @@ In 3d, *TELEMAC* developers recommend using either the *k-&epsilon;* model (`3`)
 
 If the `VERTICAL TURBULENCE MODEL` is set to `2` (`'MIXING LENGTH'`), a `MIXING LENGTH MODEL` can be assigned. The default is `1`, which is preferable for strong tidal influences and a value of `3` sets the length for computing vertical diffusivity to *Nezu and *Nakagawa*.
 
-Read more about turbulence in *TELEMAC* in section 5.2 and the mixing length in section 5.2.2 of the [Telemac3d docs](http://ot-svn-public:telemac1*@svn.opentelemac.org/svn/opentelemac/tags/v8p1r1/documentation/telemac3d/user/telemac3d_user_v8p1.pdf).
+Read more about turbulence in *TELEMAC* in section 5.2 and the mixing length in section 5.2.2 of the {{ tm3d }}.
 
 ### *HydroSolver* CAS File Setup (Unstable)
 
