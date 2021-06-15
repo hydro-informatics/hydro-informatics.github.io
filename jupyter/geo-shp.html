@@ -1,0 +1,1575 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shapefile (Vector Dataset) Handling &#8212; Hydro-Informatics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://hydro-informatics.com/jupyter/geo-shp.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Raster (Gridded) Dataset Handling" href="geo-raster.html" />
+    <link rel="prev" title="Geospatial Open Source Python Libraries" href="../geopy/geo-pckg.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/icon.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  Get Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../lectures/classroom.html">
+   The Virtual Classroom
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/lectures.html">
+     Lectures and Exercises
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/take_seat.html">
+     Take a Seat
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../get-started/software.html">
+   Software Resources
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/vm.html">
+     Virtual Machines and Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/ide.html">
+     Integrated Development Environments (IDEs)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python-basics/pyinstall.html">
+     Install Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/git.html">
+     Introduction to git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/geo.html">
+     Geospatial Software
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-openfoam.html">
+     OpenFOAM (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-telemac.html">
+     TELEMAC (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/others.html">
+     Other Software Resources
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Python Basics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/python.html">
+   First Steps
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pybase.html">
+     Hello Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyerror.html">
+     Errors, Logging, and Debugging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyloop.html">
+     Loops and Conditional Statements
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/modularize.html">
+   Object Orientation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyfun.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pypckg.html">
+     Packages, Modules and Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="classes.html">
+     Object Orientation and Classes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/data-handling.html">
+   Data and File Handling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pynum.html">
+     Load and Write Basic Data Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="xml.html">
+     Workbooks (xlsx) and JSON
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyplot.html">
+     Plotting
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pystyle.html">
+   Code Style and Conventions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gui.html">
+   Graphical User Interfaces (GUIs)
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/python-exercises.html">
+   Python Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-ms.html">
+     1d Hydraulics (Manning-Strickler Formula)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sp.html">
+     Reservoir Volume (Sequent Peak Algorithm)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-floods.html">
+     Flood Return Periods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sediment.html">
+     1d Sediment Transport
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-gui.html">
+     Create a GUI
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Geospatial Analysis
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/geospatial-data.html">
+   Geospatial Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/use-qgis.html">
+   QGIS Tutorial
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../geopy/geo-python.html">
+   Geospatial Python
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-pckg.html">
+     Geospatial Open Source Python Libraries
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Shapefile (Vector Dataset) Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="geo-raster.html">
+     Raster (Gridded) Dataset Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="geo-convert.html">
+     Raster to Vector Conversion and Vice Versa
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="geo-arcpy.html">
+     The Commercial arcpy Library
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/geo-exercises.html">
+   Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-geco.html">
+     Script a Habitat Suitability Map
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Numerical Modeling
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/numerical-modeling.html">
+   Principles
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerics/basement.html">
+   BASEMENT
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/pre-qgis-bm.html">
+     Pre-processing with QGIS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/basement2d.html">
+     Simulation Setup (Steady 2d)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerics/telemac.html">
+   TELEMAC
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/pre-slf-tm.html">
+     Pre-processing
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../numerics/telemac2d.html">
+     Telemac2d
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac2d-steady.html">
+       Steady 2d Simulation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac2d-unsteady.html">
+       Unsteady 2d Simulation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac-gaia.html">
+       Unsteady Hydro-Morphodynamic 2d Simulation (Gaia)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../numerics/telemac3d.html">
+     Telemac3d
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac3d-slf.html">
+       Telemac3d (SLF)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac3d-med.html">
+       Telemac3d (Salome-Hydro and MED)
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerics/openfoam.html">
+   OpenFOAM
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/pre-qgis-of.html">
+     Pre-processing with QGIS
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/calibration.html">
+   Calibration and Validation
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Documentation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/documentation.html">
+   Markdown and Code Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/glossary.html">
+   Glossary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/notation.html">
+   Notation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/bibliography.html">
+   References
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/docs-exercises.html">
+   Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-git.html">
+     Git and markdown
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Troubleshoot
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
+   Programming Tools and IDEs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
+     Debugging Anaconda
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-python.html">
+     Debugging Python Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
+     Debugging Jupyter
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
+   Numerical Models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+  <label for="toctree-checkbox-16">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
+     Debugging BASEMENT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
+     Debugging TELEMAC/SALOME
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-os.html">
+   Operating Systems (Linux and VMs)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+  <label for="toctree-checkbox-17">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
+     Debugging Debian Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
+     Debugging Virtual Machines
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Disclaimer and License
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/jupyter/geo-shp.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/hydro-informatics/hydro-informatics.github.io"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter/v2/gh/hydro-informatics/hydro-informatics.github.io/gh-pages?urlpath=lab/tree/_sources/jupyter/geo-shp.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com//github/hydro-informatics/hydro-informatics.github.io/blob/gh-pages/_sources/jupyter/geo-shp.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-an-existing-shapefile">
+   Load an Existing Shapefile
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-a-new-shapefile">
+   Create a New Shapefile
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-and-set-shapefile-projections">
+   Get and Set Shapefile Projections
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transform-re-project-a-shapefile">
+   Transform (Re-project) a Shapefile
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#add-fields-and-point-features-to-a-shapefile">
+   Add Fields and Point Features to a Shapefile
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multiline-polyline-shapefile">
+   Multiline (Polyline) Shapefile
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#polygon-shapefile">
+   Polygon Shapefile
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#build-shapefile-from-json">
+   Build Shapefile from
+   <em>
+    JSON
+   </em>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculate-geometric-attributes">
+   Calculate Geometric Attributes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#export-to-other-format">
+   Export to Other Format
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#geojson">
+     GeoJSON
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kml-google-earth">
+     KML (Google Earth)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="shapefile-vector-dataset-handling">
+<span id="chpt-shp"></span><h1>Shapefile (Vector Dataset) Handling<a class="headerlink" href="#shapefile-vector-dataset-handling" title="Permalink to this headline">¶</a></h1>
+<p>Geospatial analysis of shapefile with gdal, ogr and osr. For interactive reading and executing code blocks <a class="reference external" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> and find <em>pybase.ipynb</em> or <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Install Python</span></a> locally along with <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a>.</p>
+<div class="admonition-requirements admonition">
+<p class="admonition-title">Requirements</p>
+<p>Make sure to understand <a class="reference external" href="geospatial-data.html#shp">shapefiles</a> and <a class="reference external" href="geospatial-data.html#vector">vector data</a> before reading this section.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The core functions used in this e-book are introduced with the raster and vector data handling explanations and additionally implemented in the <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> package.</p>
+</div>
+<div class="section" id="load-an-existing-shapefile">
+<h2>Load an Existing Shapefile<a class="headerlink" href="#load-an-existing-shapefile" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">gdal</span></code>’s <code class="docutils literal notranslate"><span class="pre">ogr</span></code> module is an excellent source for handling shapefiles. To open a shapefile in <em>Python</em>, we need to instantiate the correct driver (<code class="docutils literal notranslate"><span class="pre">&quot;ESRI</span> <span class="pre">Shapefile&quot;</span></code> for shapefiles) first. With the driver object (<code class="docutils literal notranslate"><span class="pre">ogr.GetDriverByName(&quot;SHAPEFILE&quot;)</span></code>), we can then open (instantiate) a shapefile (object with <code class="docutils literal notranslate"><span class="pre">shp_driver.Open(&quot;SHAPEFILE&quot;)</span></code>), which contains layer information. It is precisely this layer information (i.e., references to shapefile attributes) that we want to work with. Therefore we have to instantiate a shapefile layer object with <code class="docutils literal notranslate"><span class="pre">shp_dataset.GetLayer()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gdal</span> <span class="kn">import</span> <span class="n">ogr</span>
+<span class="n">shp_driver</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">GetDriverByName</span><span class="p">(</span><span class="s2">&quot;ESRI Shapefile&quot;</span><span class="p">)</span>
+<span class="n">shp_dataset</span> <span class="o">=</span> <span class="n">shp_driver</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="s2">&quot;geodata/shapefiles/cities.shp&quot;</span><span class="p">)</span>
+<span class="n">shp_layer</span> <span class="o">=</span> <span class="n">shp_dataset</span><span class="o">.</span><span class="n">GetLayer</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To get a full list of supported <code class="docutils literal notranslate"><span class="pre">ogr</span></code> drivers (e.g., for <code class="docutils literal notranslate"><span class="pre">DXF</span></code>, <code class="docutils literal notranslate"><span class="pre">ESRIJSON</span></code>, <code class="docutils literal notranslate"><span class="pre">GPS</span></code>, <code class="docutils literal notranslate"><span class="pre">PDF</span></code>, <code class="docutils literal notranslate"><span class="pre">SQLite</span></code>, <code class="docutils literal notranslate"><span class="pre">XLSX</span></code>, and many more), <a class="reference external" href="https://github.com/hydro-informatics/material-py-codes/raw/master/geo/get_ogr_drivers.py">download the script <code class="docutils literal notranslate"><span class="pre">get_ogr_drivers.py</span></code></a> from the course repository (script available during courses only).</p>
+</div>
+</div>
+<div class="section" id="create-a-new-shapefile">
+<span id="create-shp"></span><h2>Create a New Shapefile<a class="headerlink" href="#create-a-new-shapefile" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">ogr</span></code> module also enables creating a new point, line or polygon shapefile. The following code block defines a function for creating a shapefile, where the optional keyword argument <code class="docutils literal notranslate"><span class="pre">overwrite</span></code> is used to control whether an existing shapefile with the same name should be overwritten (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>).
+The command <code class="docutils literal notranslate"><span class="pre">shp_driver.CreateDataSource(SHP-FILE-DIR)</span></code> creates a new shapefile and the rest of the function adds a layer to the shapefile if the optional keyword arguments <code class="docutils literal notranslate"><span class="pre">layer_name</span></code> and <code class="docutils literal notranslate"><span class="pre">layer_type</span></code> are provided. Both optional keywords must be <em>string</em>s, where <code class="docutils literal notranslate"><span class="pre">layer_name</span></code> can be any name for the new layer. <code class="docutils literal notranslate"><span class="pre">layer_type</span></code> must be either <code class="docutils literal notranslate"><span class="pre">&quot;point&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;line&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;polygon&quot;</span></code> to create a point, (poly)line, or polygon shapefile respectively. The function uses the <code class="docutils literal notranslate"><span class="pre">geometry_dict</span></code> dictionary to assign the correct <code class="docutils literal notranslate"><span class="pre">ogr.SHP-TYPE</span></code> to the layer. There are more options for extending the <code class="docutils literal notranslate"><span class="pre">create_shp(...)</span></code> function listed on <a class="reference external" href="https://pcjericks.github.io/py-gdalogr-cookbook/geometry.html"><em>pcjerick</em>’s github pages</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gdal</span> <span class="kn">import</span> <span class="n">ogr</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+
+<span class="k">def</span> <span class="nf">create_shp</span><span class="p">(</span><span class="n">shp_file_dir</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :param shp_file_dir: STR of the (relative shapefile directory (ends on &quot;.shp&quot;)</span>
+<span class="sd">    :param overwrite: [optional] BOOL - if True, existing files are overwritten</span>
+<span class="sd">    :kwarg layer_name: [optional] STR of the layer_name - if None: no layer will be created (max. 13 chars)</span>
+<span class="sd">    :kwarg layer_type: [optional] STR (&quot;point, &quot;line&quot;, or &quot;polygon&quot;) of the layer_name - if None: no layer will be created</span>
+<span class="sd">    :output: returns an ogr shapefile layer</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">shp_driver</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">GetDriverByName</span><span class="p">(</span><span class="s2">&quot;ESRI Shapefile&quot;</span><span class="p">)</span>
+
+    <span class="c1"># check if output file exists if yes delete it</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">shp_file_dir</span><span class="p">)</span> <span class="ow">and</span> <span class="n">overwrite</span><span class="p">:</span>
+        <span class="n">shp_driver</span><span class="o">.</span><span class="n">DeleteDataSource</span><span class="p">(</span><span class="n">shp_file_dir</span><span class="p">)</span>
+
+    <span class="c1"># create and return new shapefile object</span>
+    <span class="n">new_shp</span> <span class="o">=</span> <span class="n">shp_driver</span><span class="o">.</span><span class="n">CreateDataSource</span><span class="p">(</span><span class="n">shp_file_dir</span><span class="p">)</span>
+
+    <span class="c1"># create layer if layer_name and layer_type are provided</span>
+    <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;layer_name&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;layer_type&quot;</span><span class="p">):</span>
+        <span class="c1"># create dictionary of ogr.SHP-TYPES</span>
+        <span class="n">geometry_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;point&quot;</span><span class="p">:</span> <span class="n">ogr</span><span class="o">.</span><span class="n">wkbPoint</span><span class="p">,</span>
+                         <span class="s2">&quot;line&quot;</span><span class="p">:</span> <span class="n">ogr</span><span class="o">.</span><span class="n">wkbMultiLineString</span><span class="p">,</span>
+                         <span class="s2">&quot;polygon&quot;</span><span class="p">:</span> <span class="n">ogr</span><span class="o">.</span><span class="n">wkbMultiPolygon</span><span class="p">}</span>
+        <span class="c1"># create layer</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">new_shp</span><span class="o">.</span><span class="n">CreateLayer</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;layer_name&quot;</span><span class="p">)),</span>
+                                <span class="n">geom_type</span><span class="o">=</span><span class="n">geometry_dict</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;layer_type&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">())])</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: Invalid layer_type provided (must be &#39;point&#39;, &#39;line&#39;, or &#39;polygon&#39;).&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: layer_name and layer_type must be string.&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: Cannot access layer - opened in other program?&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">new_shp</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">create_shp</span></code> function is also provided with the in the <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> package (<a class="reference external" href="https://flusstools.readthedocs.io/en/latest/geotools.html#module-flusstools.geotools.shp_mgmt"><em>flusstools.geotools.shp_mgmt.py</em></a>) and aids to create a new shapefile (make sure to get the directory right):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_new_shp_file</span> <span class="o">=</span> <span class="n">create_shp</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/geodata/shapefiles/new_polygons.shp&quot;</span><span class="p">,</span> <span class="n">layer_name</span><span class="o">=</span><span class="s2">&quot;basemap&quot;</span><span class="p">,</span> <span class="n">layer_type</span><span class="o">=</span><span class="s2">&quot;polygon&quot;</span><span class="p">)</span>
+
+<span class="c1"># release data source</span>
+<span class="n">a_new_shape_file</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>A <strong>shapefile name</strong> may <strong>not</strong> have <strong>more than 13 characters</strong> and a <strong>field name</strong> may <strong>not</strong> have <strong>more than 10 characters</strong> (read more in <a class="reference external" href="http://resources.arcgis.com/en/help/main/10.1/index.html#//005600000013000000"><em>Esri</em>’s shapefile docs</a>).</p>
+</div>
+<p>Shapefiles can also be created and drawn in <a class="reference external" href="../get-started/geo.html#qgis"><em>QGIS</em></a> and the following figures guide through the procedure of creating of a polygon shapefile. We will not need this shapefile on this page, but for the later on interaction with raster datasets. So the shapefile creation with <em>QGIS</em> is just a note here.</p>
+<p>The first step to make a shapefile with <em>QGIS</em> is obviously to run <em>QGIS</em> and create a new project. The following example uses water depth and flow velocity raster data as background information to delineate a so-called <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0169555X14000099"><em>morphological unit</em> of <em>slackwater</em></a>. Both the water depth and flow velocity rasters are part of the <a class="reference external" href="https://github.com/RiverArchitect/SampleData/archive/master.zip"><em>River Architect</em> sample datasets</a> (precisely located in  <a class="reference external" href="https://github.com/RiverArchitect/SampleData/tree/master/01_Conditions/2100_sample"><code class="docutils literal notranslate"><span class="pre">RiverArchitect/SampleData/01_Conditions/2100_sample/</span></code></a>). After downloading the sample data, they can be imported in <em>QGIS</em> by dragging the files from the <em>Browser</em> tab into the <em>Layers</em> tab. Then:</p>
+<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-create-shp.png" />
+<img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-new-shp.png" />
+<img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-toggle-editing.png" />
+<img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-draw-polygon.png" /></p>
+<p>We will come back to these descriptions and use this shapefile on the <em>Raster handling</em> page.</p>
+</div>
+<div class="section" id="get-and-set-shapefile-projections">
+<span id="prj-shp"></span><h2>Get and Set Shapefile Projections<a class="headerlink" href="#get-and-set-shapefile-projections" title="Permalink to this headline">¶</a></h2>
+<p>The terminology used in the <code class="docutils literal notranslate"><span class="pre">.prj</span></code> files of a shapefile corresponds to the defintions in the <a class="reference external" href="geospatial-data.html#prj">geospatial data</a> section. In <em>Python</em>, information on the coordinate system is available through <code class="docutils literal notranslate"><span class="pre">shp_layer.GetSpatialRef()</span></code> of the <code class="docutils literal notranslate"><span class="pre">ogr</span></code> library:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shp_srs</span> <span class="o">=</span> <span class="n">shp_layer</span><span class="o">.</span><span class="n">GetSpatialRef</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">shp_srs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GEOGCS[&quot;WGS 84&quot;,
+    DATUM[&quot;WGS_1984&quot;,
+        SPHEROID[&quot;WGS 84&quot;,6378137,298.257223563,
+            AUTHORITY[&quot;EPSG&quot;,&quot;7030&quot;]],
+        AUTHORITY[&quot;EPSG&quot;,&quot;6326&quot;]],
+    PRIMEM[&quot;Greenwich&quot;,0,
+        AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]],
+    UNIT[&quot;degree&quot;,0.0174532925199433,
+        AUTHORITY[&quot;EPSG&quot;,&quot;9122&quot;]],
+    AXIS[&quot;Latitude&quot;,NORTH],
+    AXIS[&quot;Longitude&quot;,EAST],
+    AUTHORITY[&quot;EPSG&quot;,&quot;4326&quot;]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>This <code class="docutils literal notranslate"><span class="pre">GEOGCS</span></code> definition of the above shapefile corresponds to <em>Esri</em>’s <em>well-known</em> text. Since the shapefile format was developed by <em>Esri</em>, <em>Esri</em>’s <em>WKT</em> (<em><strong>esriwkt</strong></em>) format must be used in <code class="docutils literal notranslate"><span class="pre">.prj</span></code> files. The <em>Open Geospatial Consortium</em> (<em>OGC</em>) uses a different well-known text as in their <code class="docutils literal notranslate"><span class="pre">EPSG:XXXX</span></code> definitions (e.g., available at <a class="reference external" href="http://www.spatialreference.org">spatialreference.org</a>).</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">GEOGCS</span><span class="o">[</span><span class="s">&quot;WGS 84&quot;</span><span class="p">,</span>
+       <span class="n">DATUM</span><span class="o">[</span><span class="s">&quot;WGS_1984&quot;</span><span class="p">,</span> <span class="n">SPHEROID</span><span class="o">[</span><span class="s">&quot;WGS84&quot;</span><span class="p">,</span> <span class="mi">6378137</span><span class="p">,</span> <span class="mf">298.257223563</span><span class="p">,</span> <span class="n">AUTHORITY</span><span class="o">[</span><span class="s">&quot;EPSG&quot;</span><span class="p">,</span> <span class="s">&quot;7030&quot;</span><span class="o">]]</span><span class="p">,</span> <span class="n">AUTHORITY</span><span class="o">[</span><span class="s">&quot;EPSG&quot;</span><span class="p">,</span><span class="s">&quot;6326&quot;</span><span class="o">]]</span><span class="p">,</span>
+       <span class="n">PRIMEM</span><span class="o">[</span><span class="s">&quot;Greenwich&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">AUTHORITY</span><span class="o">[</span><span class="s">&quot;EPSG&quot;</span><span class="p">,</span> <span class="s">&quot;8901&quot;</span><span class="o">]]</span><span class="p">,</span>
+       <span class="n">UNIT</span><span class="o">[</span><span class="s">&quot;degree&quot;</span><span class="p">,</span><span class="mf">0.01745329251994328</span><span class="p">,</span> <span class="n">AUTHORITY</span><span class="o">[</span><span class="s">&quot;EPSG&quot;</span><span class="p">,</span><span class="s">&quot;9122&quot;</span><span class="o">]]</span><span class="p">,</span><span class="n">AUTHORITY</span><span class="o">[</span><span class="s">&quot;EPSG&quot;</span><span class="p">,</span><span class="s">&quot;4326&quot;</span><span class="o">]]</span>
+</pre></div>
+</div>
+<p>To redefine or newly define the coordinate system of a shapefile we can use <a class="reference external" href="http://www.spatialreference.org">spatialreference.org</a> within <em>Python</em> default <code class="docutils literal notranslate"><span class="pre">urllib</span></code> library.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following code block requires an internet connection.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib</span>
+
+<span class="c1"># function to get spatialreferences with epsg code</span>
+<span class="k">def</span> <span class="nf">get_esriwkt</span><span class="p">(</span><span class="n">epsg</span><span class="p">):</span>    
+    <span class="c1"># usage get_epsg_code(4326)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;http://spatialreference.org/ref/epsg/</span><span class="si">{0}</span><span class="s2">/esriwkt/&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epsg</span><span class="p">))</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">())</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;http://spatialreference.org/ref/sr-org/epsg</span><span class="si">{0}</span><span class="s2">-wgs84-web-mercator-auxiliary-sphere/esriwkt/&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epsg</span><span class="p">))</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">())</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">)</span>
+        <span class="c1"># sr-org codes are available at &quot;https://spatialreference.org/ref/sr-org/{0}/esriwkt/&quot;.format(epsg)</span>
+        <span class="c1"># for example EPSG:3857 = SR-ORG:6864 -&gt; https://spatialreference.org/ref/sr-org/6864/esriwkt/ = EPSG:3857</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ERROR: Could not find epsg code on spatialreference.org. Returning default WKT(epsg=4326).&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s1">&#39;GEOGCS[&quot;GCS_WGS_1984&quot;,DATUM[&quot;D_WGS_1984&quot;,SPHEROID[&quot;WGS_1984&quot;,6378137,298.257223563]],PRIMEM[&quot;Greenwich&quot;,0],UNIT[&quot;Degree&quot;,0.017453292519943295],UNIT[&quot;Meter&quot;,1]]&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This function can then be used to create a new projection file:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># open the hypy-area shapefile</span>
+<span class="n">shp_file</span> <span class="o">=</span> <span class="s2">&quot;hypy-area&quot;</span>
+
+<span class="c1"># create new .prj file for the shapefile (.shp and .prj must have the same name)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;geodata/shapefiles/</span><span class="si">{0}</span><span class="s2">.prj&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">shp_file</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">prj</span><span class="p">:</span>
+    <span class="n">epsg_code</span> <span class="o">=</span> <span class="n">get_esriwkt</span><span class="p">(</span><span class="mi">4326</span><span class="p">)</span>
+    <span class="n">prj</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">epsg_code</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Wrote projection file : &quot;</span> <span class="o">+</span> <span class="n">epsg_code</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wrote projection file : GEOGCS[&quot;GCS_WGS_1984&quot;,DATUM[&quot;D_WGS_1984&quot;,SPHEROID[&quot;WGS_1984&quot;,6378137,298.257223563]],PRIMEM[&quot;Greenwich&quot;,0],UNIT[&quot;Degree&quot;,0.017453292519943295]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>An offline alternative for generating <code class="docutils literal notranslate"><span class="pre">.prj</span></code> files is the <code class="docutils literal notranslate"><span class="pre">osr</span></code> library that comes along with <code class="docutils literal notranslate"><span class="pre">gdal</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gdal</span> <span class="kn">import</span> <span class="n">osr</span>
+
+<span class="k">def</span> <span class="nf">get_wkt</span><span class="p">(</span><span class="n">epsg</span><span class="p">,</span> <span class="n">wkt_format</span><span class="o">=</span><span class="s2">&quot;esriwkt&quot;</span><span class="p">):</span>
+    <span class="n">default</span> <span class="o">=</span> <span class="s1">&#39;GEOGCS[&quot;GCS_WGS_1984&quot;,DATUM[&quot;D_WGS_1984&quot;,SPHEROID[&quot;WGS_1984&quot;,6378137,298.257223563]],PRIMEM[&quot;Greenwich&quot;,0],UNIT[&quot;Degree&quot;,0.017453292519943295],UNIT[&quot;Meter&quot;,1]]&#39;</span>
+    <span class="n">spatial_ref</span> <span class="o">=</span> <span class="n">osr</span><span class="o">.</span><span class="n">SpatialReference</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">spatial_ref</span><span class="o">.</span><span class="n">ImportFromEPSG</span><span class="p">(</span><span class="n">epsg</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ERROR: epsg must be integer. Returning default WKT(epsg=4326).&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">default</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ERROR: epsg number does not exist. Returning default WKT(epsg=4326).&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">default</span>
+    <span class="k">if</span> <span class="n">wkt_format</span><span class="o">==</span><span class="s2">&quot;esriwkt&quot;</span><span class="p">:</span>
+        <span class="n">spatial_ref</span><span class="o">.</span><span class="n">MorphToESRI</span><span class="p">()</span>
+    <span class="c1"># return a nicely formatted WKT string (alternatives: ExportToPCI(), ExportToUSGS(), or ExportToXML())</span>
+    <span class="k">return</span> <span class="n">spatial_ref</span><span class="o">.</span><span class="n">ExportToPrettyWkt</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="transform-re-project-a-shapefile">
+<h2>Transform (Re-project) a Shapefile<a class="headerlink" href="#transform-re-project-a-shapefile" title="Permalink to this headline">¶</a></h2>
+<p>To apply a different projection to geometric objects of a shapefile it is not enough to simply rewrite the <code class="docutils literal notranslate"><span class="pre">.prj</span></code> file. A re-projection may be needed if, we want to use a shapefile in <code class="docutils literal notranslate"><span class="pre">EPSG:4326</span></code> (e.g., created wioth <em>QGIS</em>) onto <code class="docutils literal notranslate"><span class="pre">EPSG:3857</span></code> in order to use the shapefile in a web application. The following example shows the re-projection of the <code class="docutils literal notranslate"><span class="pre">countries.shp</span></code> shapefile (source: the <a class="reference external" href="http://naciscdn.org/naturalearth/packages/Natural_Earth_quick_start.zip">Natural Earth quick start kit</a>). For now, just look at the sequence of steps (the creation of fields an features follows in the sections below):</p>
+<ul class="simple">
+<li><p>The shapefile to transform is located in the subdirectory <code class="docutils literal notranslate"><span class="pre">geodata/shapefiles/countries.shp</span></code> and opened with as above described.</p></li>
+<li><p>Read and identify the spatial reference system used in the input shapefile</p>
+<ul>
+<li><p>Create a spatial reference object with <code class="docutils literal notranslate"><span class="pre">in_sr</span> <span class="pre">=</span> <span class="pre">osr.SpatialReference(str(shapefile.GetSpatialRef()))</span></code>.</p></li>
+<li><p>Detect the spatial reference system in <em>EPSG</em> format with <code class="docutils literal notranslate"><span class="pre">AutoIdentifyEPSG()</span></code>.</p></li>
+<li><p>Assign the <em>EPSG</em>-formatted spatial reference system to the spatial reference object of the input shapefile (<code class="docutils literal notranslate"><span class="pre">ImportFromEPSG(int(in_sr.GetAuthorityCode(None)))</span></code>).</p></li>
+</ul>
+</li>
+<li><p>Create the output spatial reference with <code class="docutils literal notranslate"><span class="pre">out_sr</span> <span class="pre">=</span> <span class="pre">osr.SpatialReference()</span></code> and apply the target <em>EPSG</em> code (<code class="docutils literal notranslate"><span class="pre">out_sr.ImportFromEPSG(3857)</span></code>).</p></li>
+<li><p>Create a coordinate transformation object (<code class="docutils literal notranslate"><span class="pre">coord_trans</span> <span class="pre">=</span> <span class="pre">osr.CoordinateTransformation(in_sr,</span> <span class="pre">out_sr)</span></code>) that enables re-projecting geometry objects later.</p></li>
+<li><p>Create the output shapefile, which will correspond to a copy of input shapefile (use the above-defined <code class="docutils literal notranslate"><span class="pre">create_shp</span></code> function with <code class="docutils literal notranslate"><span class="pre">layer_name=&quot;basemap&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">layer_type=&quot;line&quot;</span></code>).</p></li>
+<li><p>Copy the field names and type of the input shapefile:</p>
+<ul>
+<li><p>Read the attribute layer from the input file’s layer definitions with <code class="docutils literal notranslate"><span class="pre">in_lyr_def</span> <span class="pre">=</span> <span class="pre">in_shp_lyr.GetLayerDefn()</span></code></p></li>
+<li><p>Iterate through the field definitions and append them to the output shapefile layer (<code class="docutils literal notranslate"><span class="pre">out_shp_lyr</span></code>)</p></li>
+</ul>
+</li>
+<li><p>Iterate through the geometry features in the input shapefile:</p>
+<ul>
+<li><p>Use the new (output) shapefile’s layer definitions (<code class="docutils literal notranslate"><span class="pre">out_shp_lyr_def</span> <span class="pre">=</span> <span class="pre">out_shp_lyr.GetLayerDefn()</span></code>) to append transformed geometry objects later.</p></li>
+<li><p>Define an iteration variable <code class="docutils literal notranslate"><span class="pre">in_feature</span></code> as an instance of <code class="docutils literal notranslate"><span class="pre">in_shp_lyr.GetNextFeature</span></code>.</p></li>
+<li><p>In a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop, instantiate every geometry (<code class="docutils literal notranslate"><span class="pre">geometry</span> <span class="pre">=</span> <span class="pre">in_feature.GetGeometryRef()</span></code>) in the input shapefile, transform the <code class="docutils literal notranslate"><span class="pre">geometry</span></code> (<code class="docutils literal notranslate"><span class="pre">geometry.Transform(coord_trans)</span></code>), convert it to an <code class="docutils literal notranslate"><span class="pre">ogr.Feature()</span></code> with the <code class="docutils literal notranslate"><span class="pre">SetGeometry(geometry)</span></code> method, copy field definitions (nested <code class="docutils literal notranslate"><span class="pre">for</span></code>-loop), and append the new feature to the output shapefile layer (<code class="docutils literal notranslate"><span class="pre">out_shp_lyr_def.CreateFeature(out_feature)</span></code>).</p></li>
+<li><p>At the end of the <code class="docutils literal notranslate"><span class="pre">while</span></code>-loop, look for the next feature in the input shapefile’s attributes with <code class="docutils literal notranslate"><span class="pre">in_feature</span> <span class="pre">=</span> <span class="pre">in_shp_lyr.GetNextFeature()</span></code></p></li>
+</ul>
+</li>
+<li><p>Unlock (release) all layers and shapefiles by overwriting the objects with <code class="docutils literal notranslate"><span class="pre">None</span></code> (nothing is literally written to any file as long as these variables exist!).</p></li>
+<li><p>Assign the new projection <em>EPSG:3857</em> using the above-defined <code class="docutils literal notranslate"><span class="pre">get_wkt</span></code> function.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gdal</span> <span class="kn">import</span> <span class="n">ogr</span>
+<span class="kn">from</span> <span class="nn">gdal</span> <span class="kn">import</span> <span class="n">osr</span>
+
+<span class="n">shp_driver</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">GetDriverByName</span><span class="p">(</span><span class="s2">&quot;ESRI Shapefile&quot;</span><span class="p">)</span>
+
+<span class="c1"># open input shapefile and layer</span>
+<span class="n">in_shp</span> <span class="o">=</span> <span class="n">shp_driver</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/shapefiles/countries.shp&quot;</span><span class="p">)</span>
+<span class="n">in_shp_lyr</span> <span class="o">=</span> <span class="n">in_shp</span><span class="o">.</span><span class="n">GetLayer</span><span class="p">()</span>
+
+<span class="c1"># get input SpatialReference</span>
+<span class="n">in_sr</span> <span class="o">=</span> <span class="n">osr</span><span class="o">.</span><span class="n">SpatialReference</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">in_shp_lyr</span><span class="o">.</span><span class="n">GetSpatialRef</span><span class="p">()))</span>
+<span class="c1"># auto-detect epsg</span>
+<span class="n">in_sr</span><span class="o">.</span><span class="n">AutoIdentifyEPSG</span><span class="p">()</span>
+<span class="c1"># assign input SpatialReference</span>
+<span class="n">in_sr</span><span class="o">.</span><span class="n">ImportFromEPSG</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">in_sr</span><span class="o">.</span><span class="n">GetAuthorityCode</span><span class="p">(</span><span class="kc">None</span><span class="p">)))</span>
+
+<span class="c1"># create SpatialReference for new shapefile</span>
+<span class="n">out_sr</span> <span class="o">=</span> <span class="n">osr</span><span class="o">.</span><span class="n">SpatialReference</span><span class="p">()</span>
+<span class="n">out_sr</span><span class="o">.</span><span class="n">ImportFromEPSG</span><span class="p">(</span><span class="mi">3857</span><span class="p">)</span>
+
+<span class="c1"># create a CoordinateTransformation object</span>
+<span class="n">coord_trans</span> <span class="o">=</span> <span class="n">osr</span><span class="o">.</span><span class="n">CoordinateTransformation</span><span class="p">(</span><span class="n">in_sr</span><span class="p">,</span> <span class="n">out_sr</span><span class="p">)</span>
+
+<span class="c1"># create output shapefile and get layer</span>
+<span class="n">out_shp</span> <span class="o">=</span> <span class="n">create_shp</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/shapefiles/countries-web.shp&quot;</span><span class="p">,</span> <span class="n">layer_name</span><span class="o">=</span><span class="s2">&quot;basemap&quot;</span><span class="p">,</span> <span class="n">layer_type</span><span class="o">=</span><span class="s2">&quot;line&quot;</span><span class="p">)</span>
+<span class="n">out_shp_lyr</span> <span class="o">=</span> <span class="n">out_shp</span><span class="o">.</span><span class="n">GetLayer</span><span class="p">()</span>
+
+<span class="c1"># look up layer (features) definitions in input shapefile</span>
+<span class="n">in_lyr_def</span> <span class="o">=</span> <span class="n">in_shp_lyr</span><span class="o">.</span><span class="n">GetLayerDefn</span><span class="p">()</span>
+<span class="c1"># copy field names of input layer attribute table to output layer</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">in_lyr_def</span><span class="o">.</span><span class="n">GetFieldCount</span><span class="p">()):</span>
+    <span class="n">out_shp_lyr</span><span class="o">.</span><span class="n">CreateField</span><span class="p">(</span><span class="n">in_lyr_def</span><span class="o">.</span><span class="n">GetFieldDefn</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+
+<span class="c1"># instantiate feature definitions object for output layer (currently empty)</span>
+<span class="n">out_shp_lyr_def</span> <span class="o">=</span> <span class="n">out_shp_lyr</span><span class="o">.</span><span class="n">GetLayerDefn</span><span class="p">()</span>
+
+<span class="c1"># iteratively append all input features in new projection</span>
+<span class="n">in_feature</span> <span class="o">=</span> <span class="n">in_shp_lyr</span><span class="o">.</span><span class="n">GetNextFeature</span><span class="p">()</span>
+<span class="k">while</span> <span class="n">in_feature</span><span class="p">:</span>
+    <span class="c1"># get the input geometry</span>
+    <span class="n">geometry</span> <span class="o">=</span> <span class="n">in_feature</span><span class="o">.</span><span class="n">GetGeometryRef</span><span class="p">()</span>
+    <span class="c1"># re-project (transform) geometry to new system</span>
+    <span class="n">geometry</span><span class="o">.</span><span class="n">Transform</span><span class="p">(</span><span class="n">coord_trans</span><span class="p">)</span>
+    <span class="c1"># create new output feature</span>
+    <span class="n">out_feature</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">out_shp_lyr_def</span><span class="p">)</span>
+    <span class="c1"># assign in-geometry to output feature and copy field values</span>
+    <span class="n">out_feature</span><span class="o">.</span><span class="n">SetGeometry</span><span class="p">(</span><span class="n">geometry</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">out_shp_lyr_def</span><span class="o">.</span><span class="n">GetFieldCount</span><span class="p">()):</span>
+        <span class="n">out_feature</span><span class="o">.</span><span class="n">SetField</span><span class="p">(</span><span class="n">out_shp_lyr_def</span><span class="o">.</span><span class="n">GetFieldDefn</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">GetNameRef</span><span class="p">(),</span> <span class="n">in_feature</span><span class="o">.</span><span class="n">GetField</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="c1"># add the feature to the shapefile</span>
+    <span class="n">out_shp_lyr</span><span class="o">.</span><span class="n">CreateFeature</span><span class="p">(</span><span class="n">out_feature</span><span class="p">)</span>
+    <span class="c1"># prepare next iteration</span>
+    <span class="n">in_feature</span> <span class="o">=</span> <span class="n">in_shp_lyr</span><span class="o">.</span><span class="n">GetNextFeature</span><span class="p">()</span>
+
+<span class="c1"># release shapefiles and layers</span>
+<span class="n">in_shp</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">in_shp_lyr</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">out_shp</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">out_shp_lyr</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="c1"># create .prj file for  output shapefile for web application references</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/shapefiles/countries-web.prj&quot;</span><span class="p">,</span> <span class="s2">&quot;w+&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">prj</span><span class="p">:</span>
+    <span class="n">prj</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">get_wkt</span><span class="p">(</span><span class="mi">3857</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-challenge admonition">
+<p class="admonition-title">Challenge</p>
+<p>Re-write the above code block into a <code class="docutils literal notranslate"><span class="pre">re_project(shp_file,</span> <span class="pre">target_epsg)</span></code> function.</p>
+</div>
+<p>The code sequence <code class="docutils literal notranslate"><span class="pre">in_sr.AutoIdentifyEPSG()</span></code> should return <code class="docutils literal notranslate"><span class="pre">0</span></code> for known <code class="docutils literal notranslate"><span class="pre">EPSG</span></code> numbers. Unfortunately, many EPSG numbers are not known to the <code class="docutils literal notranslate"><span class="pre">AutoIdentifyEPSG()</span></code> method. In the case that <code class="docutils literal notranslate"><span class="pre">AutoIdentifyEPSG()</span></code> did not function propperly, the method does not return the value <code class="docutils literal notranslate"><span class="pre">0</span></code>, but for example <code class="docutils literal notranslate"><span class="pre">7</span></code>. A workaround for the limited functionality of <code class="docutils literal notranslate"><span class="pre">srs.AutoIdentifyEPSG()</span></code> is <code class="docutils literal notranslate"><span class="pre">srs.FindMatches</span></code>. <code class="docutils literal notranslate"><span class="pre">srs.FindMatches</span></code> returns a <em>matching</em> <code class="docutils literal notranslate"><span class="pre">srs_match</span></code> from a larger database, which is somewhat nested, for example:<br></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">matches</span> <span class="o">=</span> <span class="n">srs</span><span class="o">.</span><span class="n">FindMatches</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Then, <code class="docutils literal notranslate"><span class="pre">matches</span></code> looks like this: <code class="docutils literal notranslate"><span class="pre">[(osgeo.osr.SpatialReference,</span> <span class="pre">INT)]</span></code>. Therefore, a complete workaround for <code class="docutils literal notranslate"><span class="pre">srs.AutoIdentifyEPSG()</span></code> (or <code class="docutils literal notranslate"><span class="pre">in_sr.AutoIdentifyEPSG()</span></code> in the code block above) looks like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set epsg and create spatial reference object</span>
+<span class="n">epsg</span> <span class="o">=</span> <span class="mi">3857</span>
+<span class="n">srs</span> <span class="o">=</span> <span class="n">osr</span><span class="o">.</span><span class="n">SpatialReference</span><span class="p">()</span>
+<span class="n">srs</span><span class="o">.</span><span class="n">ImportFromEPSG</span><span class="p">(</span><span class="n">epsg</span><span class="p">)</span>
+
+<span class="c1"># identify spatial reference</span>
+<span class="n">auto_detect</span> <span class="o">=</span> <span class="n">srs</span><span class="o">.</span><span class="n">AutoIdentifyEPSG</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">auto_detect</span> <span class="ow">is</span> <span class="ow">not</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">srs</span> <span class="o">=</span> <span class="n">srs</span><span class="o">.</span><span class="n">FindMatches</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Find matches returns list of tuple of SpatialReferences</span>
+    <span class="n">srs</span><span class="o">.</span><span class="n">AutoIdentifyEPSG</span><span class="p">()</span>  <span class="c1"># Re-perform auto-identification</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="add-fields-and-point-features-to-a-shapefile">
+<span id="add-field"></span><h2>Add Fields and Point Features to a Shapefile<a class="headerlink" href="#add-fields-and-point-features-to-a-shapefile" title="Permalink to this headline">¶</a></h2>
+<p>A shapefile feature can be a point, a line, or a polygon, which has field attributes (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;id&quot;=1</span></code> to describe that this is polygon number 1 or associated to an <code class="docutils literal notranslate"><span class="pre">id</span></code> block 1). Field attributes can be more than just an <em>ID</em>entifier and include for example the polygon area or city labels as in the example shown above (<code class="docutils literal notranslate"><span class="pre">shp_driver.Open(&quot;geodata/shapefiles/cities.shp&quot;)</span></code>).</p>
+<p>To <strong>create a point shapefile</strong>, we can use the above <code class="docutils literal notranslate"><span class="pre">create_shp</span></code> function and set its projection with the <code class="docutils literal notranslate"><span class="pre">get_epsg_code</span></code> function. The following code block shows the usage of both functions to create a <code class="docutils literal notranslate"><span class="pre">river.shp</span></code> point shapefile that contains three points located at three rivers in central Europe. The code block also illustrates the creation of a field in the attribute table and the creation of three point features.</p>
+<ul class="simple">
+<li><p>The shapefile is located in the <code class="docutils literal notranslate"><span class="pre">rivers_pts</span></code> variable. Note that the <code class="docutils literal notranslate"><span class="pre">layer_type</span></code> already determines the type of geometries that can be used in the shapefile. For example, adding a line or polygon feature to a <code class="docutils literal notranslate"><span class="pre">ogr.wkbPoint</span></code> layer will result in an <code class="docutils literal notranslate"><span class="pre">ERROR</span> <span class="pre">1</span></code> message.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">basemap</span></code> (layer) is attributed to the variable <code class="docutils literal notranslate"><span class="pre">lyr</span> <span class="pre">=</span> <span class="pre">river_pts.GetLayer()</span></code>.</p></li>
+<li><p>A <em>string</em> type field is added an appended to the attribute table:</p>
+<ul>
+<li><p>instantiate a new field with <code class="docutils literal notranslate"><span class="pre">field_gname</span> <span class="pre">=</span> <span class="pre">ogr.FieldDefn(&quot;FIELD-NAME&quot;,</span> <span class="pre">ogr.OFTString)</span></code> (the field name may not have more than 10 characters!)</p></li>
+<li><p>append the new field to the shapefile with <code class="docutils literal notranslate"><span class="pre">lyr.CreateField(field_gname)</span></code></p></li>
+<li><p>other field types than <code class="docutils literal notranslate"><span class="pre">OFTString</span></code> can be: <code class="docutils literal notranslate"><span class="pre">OFTInteger</span></code>, <code class="docutils literal notranslate"><span class="pre">OFTReal</span></code>, <code class="docutils literal notranslate"><span class="pre">OFTDate</span></code>, <code class="docutils literal notranslate"><span class="pre">OFTTime</span></code>, <code class="docutils literal notranslate"><span class="pre">OFTDateTime</span></code>, <code class="docutils literal notranslate"><span class="pre">OFTBinary</span></code>, <code class="docutils literal notranslate"><span class="pre">OFTIntegerList</span></code>, <code class="docutils literal notranslate"><span class="pre">OFTRealList</span></code>, or <code class="docutils literal notranslate"><span class="pre">OFTStringList</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Add three points stored in <code class="docutils literal notranslate"><span class="pre">pt_names</span> <span class="pre">=</span> <span class="pre">{RIVER-NAME:</span> <span class="pre">(x-coordinate,</span> <span class="pre">y-coordinate)}</span></code> in a loop over the dictionary keys:</p>
+<ul>
+<li><p>for every new point, create a feature as a child of the layer defintions with <code class="docutils literal notranslate"><span class="pre">feature</span> <span class="pre">=</span> <span class="pre">ogr.Feature(lyr.GetLayerDefn())</span></code></p></li>
+<li><p>set the value of the field name for each point with <code class="docutils literal notranslate"><span class="pre">feature.SetField(FIELD-NAME,</span> <span class="pre">FIELD-VALUE)</span></code></p></li>
+<li><p>create a string of the new point in <em>WKT</em> format with <code class="docutils literal notranslate"><span class="pre">wkt</span> <span class="pre">=</span> <span class="pre">&quot;POINT(X-COORDINATE</span> <span class="pre">Y-COORDINATE)&quot;</span></code></p></li>
+<li><p>convert the <em>WKT</em> formatted point into a point-type geometry with <code class="docutils literal notranslate"><span class="pre">point</span> <span class="pre">=</span> <span class="pre">ogr.CreateGeometryFromWkt(wkt)</span></code></p></li>
+<li><p>set the new point as the new feature’s geometry with <code class="docutils literal notranslate"><span class="pre">feature.SetGeometry(point)</span></code></p></li>
+<li><p>append the new feature to the layer with <code class="docutils literal notranslate"><span class="pre">lyr.CreateFeature(feature)</span></code></p></li>
+</ul>
+</li>
+<li><p>Unlock (release) the shapefile by overwriting the <code class="docutils literal notranslate"><span class="pre">lyr</span></code> and <code class="docutils literal notranslate"><span class="pre">river_pts</span></code> variable with <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The operations are literally not written to the shapefile if the <code class="docutils literal notranslate"><span class="pre">lyr</span></code> and <code class="docutils literal notranslate"><span class="pre">river_pts</span></code> objects are not overwritten with <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shp_dir</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/shapefiles/rivers.shp&quot;</span>
+<span class="n">river_pts</span> <span class="o">=</span> <span class="n">create_shp</span><span class="p">(</span><span class="n">shp_dir</span><span class="p">,</span> <span class="n">layer_name</span><span class="o">=</span><span class="s2">&quot;basemap&quot;</span><span class="p">,</span> <span class="n">layer_type</span><span class="o">=</span><span class="s2">&quot;point&quot;</span><span class="p">)</span>
+
+<span class="c1"># create .prj file for the shapefile for web application references</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">shp_dir</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.shp&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.prj&quot;</span><span class="p">,</span> <span class="s2">&quot;w+&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">prj</span><span class="p">:</span>
+    <span class="n">prj</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">get_esriwkt</span><span class="p">(</span><span class="mi">3857</span><span class="p">))</span>
+
+<span class="c1"># get basemap layer</span>
+<span class="n">lyr</span> <span class="o">=</span> <span class="n">river_pts</span><span class="o">.</span><span class="n">GetLayer</span><span class="p">()</span>
+
+<span class="c1"># add string field &quot;rivername&quot;</span>
+<span class="n">field_gname</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">FieldDefn</span><span class="p">(</span><span class="s2">&quot;rivername&quot;</span><span class="p">,</span> <span class="n">ogr</span><span class="o">.</span><span class="n">OFTString</span><span class="p">)</span>
+<span class="n">lyr</span><span class="o">.</span><span class="n">CreateField</span><span class="p">(</span><span class="n">field_gname</span><span class="p">)</span>
+
+<span class="c1"># names and coordinates of central EU rivers in EPSG:3857 WG84 / Pseudo-Mercator</span>
+<span class="n">pt_names</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Aare&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mf">916136.03</span><span class="p">,</span> <span class="mf">6038687.72</span><span class="p">),</span>
+            <span class="s2">&quot;Ain&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mf">623554.12</span><span class="p">,</span> <span class="mf">5829154.69</span><span class="p">),</span>
+            <span class="s2">&quot;Inn&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mf">1494878.95</span><span class="p">,</span> <span class="mf">6183793.83</span><span class="p">)}</span>
+
+<span class="c1"># add the three rivers as points to the basemap layer</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">pt_names</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="c1"># create Feature as child of the layer</span>
+    <span class="n">pt_feature</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">lyr</span><span class="o">.</span><span class="n">GetLayerDefn</span><span class="p">())</span>
+    <span class="c1"># define value n (river) in the rivername field</span>
+    <span class="n">pt_feature</span><span class="o">.</span><span class="n">SetField</span><span class="p">(</span><span class="s2">&quot;rivername&quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="c1"># use WKT format to add a point geometry to the Feature</span>
+    <span class="n">wkt</span> <span class="o">=</span> <span class="s2">&quot;POINT(</span><span class="si">%f</span><span class="s2"> </span><span class="si">%f</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">pt_names</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">pt_names</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="n">point</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">CreateGeometryFromWkt</span><span class="p">(</span><span class="n">wkt</span><span class="p">)</span>
+    <span class="n">pt_feature</span><span class="o">.</span><span class="n">SetGeometry</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+    <span class="c1"># append the new feature to the basement layer</span>
+    <span class="n">lyr</span><span class="o">.</span><span class="n">CreateFeature</span><span class="p">(</span><span class="n">pt_feature</span><span class="p">)</span>
+    
+<span class="c1"># release files</span>
+<span class="n">lyr</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">river_pts</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The resulting <code class="docutils literal notranslate"><span class="pre">rivers.shp</span></code> shapefile can be imported in <a class="reference external" href="../get-started/geo.html#qgis"><em>QGIS</em></a> along with a DEM from the <a class="reference external" href="http://naciscdn.org/naturalearth/packages/Natural_Earth_quick_start.zip">Natural Earth quick start kit</a>.</p>
+<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-rivers.png" /></p>
+</div>
+<div class="section" id="multiline-polyline-shapefile">
+<span id="line-create"></span><h2>Multiline (Polyline) Shapefile<a class="headerlink" href="#multiline-polyline-shapefile" title="Permalink to this headline">¶</a></h2>
+<p>Similar to the procedure for creating and adding points to a new point shapefile, a (multi) line (or polyline) can be added to a shapefile. The <code class="docutils literal notranslate"><span class="pre">create_shp</span></code> creates a multi-line shapefile when the layer type is defined as <code class="docutils literal notranslate"><span class="pre">&quot;line&quot;</span></code>. The coordinate system is created with the above-defined <code class="docutils literal notranslate"><span class="pre">get_gps_code</span></code> function.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The term <em>multi-line</em> is used in <em>OGC</em> and <code class="docutils literal notranslate"><span class="pre">ogr</span></code>, while <em>polyline</em> is used in <em>Esri</em> GIS environments.
+The following code block uses the coordinates of cities along the <em>Rhine</em> stored in a <em>dictionary</em> named <code class="docutils literal notranslate"><span class="pre">station_names</span></code>. The city names are not used, and only the coordinates are appended with <code class="docutils literal notranslate"><span class="pre">line.AddPoint(X,</span> <span class="pre">Y)</span></code>. As before, a field is created to give the river a name. The actual line feature is again created as a child of the layer with <code class="docutils literal notranslate"><span class="pre">line_feature</span> <span class="pre">=</span> <span class="pre">ogr.Feature(lyr.GetLayerDefn())</span></code>. Running this code block produces a line that approximately follows the Rhine river between France and Germany.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shp_dir</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/shapefiles/rhine_proxy.shp&quot;</span>
+<span class="n">rhine_line</span> <span class="o">=</span> <span class="n">create_shp</span><span class="p">(</span><span class="n">shp_dir</span><span class="p">,</span> <span class="n">layer_name</span><span class="o">=</span><span class="s2">&quot;basemap&quot;</span><span class="p">,</span> <span class="n">layer_type</span><span class="o">=</span><span class="s2">&quot;line&quot;</span><span class="p">)</span>
+
+<span class="c1"># create .prj file for the shapefile for web application references</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">shp_dir</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.shp&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.prj&quot;</span><span class="p">,</span> <span class="s2">&quot;w+&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">prj</span><span class="p">:</span>
+    <span class="n">prj</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">get_wkt</span><span class="p">(</span><span class="mi">3857</span><span class="p">))</span>
+
+<span class="c1"># get basemap layer</span>
+<span class="n">lyr</span> <span class="o">=</span> <span class="n">rhine_line</span><span class="o">.</span><span class="n">GetLayer</span><span class="p">()</span>
+
+<span class="c1"># coordinates for EPSG:3857 WG84 / Pseudo-Mercator</span>
+<span class="n">station_names</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Basel&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mf">844361.68</span><span class="p">,</span> <span class="mf">6035047.42</span><span class="p">),</span>
+                 <span class="s2">&quot;Kembs&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mf">835724.27</span><span class="p">,</span> <span class="mf">6056449.76</span><span class="p">),</span>
+                 <span class="s2">&quot;Breisach&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mf">842565.32</span><span class="p">,</span> <span class="mf">6111140.43</span><span class="p">),</span>
+                 <span class="s2">&quot;Rhinau&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mf">857547.04</span><span class="p">,</span> <span class="mf">6158569.58</span><span class="p">),</span>
+                 <span class="s2">&quot;Strasbourg&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mf">868439.31</span><span class="p">,</span> <span class="mf">6203189.68</span><span class="p">)}</span>
+
+<span class="c1"># create line object and add points from station names</span>
+<span class="n">line</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Geometry</span><span class="p">(</span><span class="n">ogr</span><span class="o">.</span><span class="n">wkbLineString</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">stn</span> <span class="ow">in</span> <span class="n">station_names</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="n">line</span><span class="o">.</span><span class="n">AddPoint</span><span class="p">(</span><span class="n">stn</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">stn</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># create field named &quot;rives&quot;</span>
+<span class="n">field_name</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">FieldDefn</span><span class="p">(</span><span class="s2">&quot;river&quot;</span><span class="p">,</span> <span class="n">ogr</span><span class="o">.</span><span class="n">OFTString</span><span class="p">)</span>
+<span class="n">lyr</span><span class="o">.</span><span class="n">CreateField</span><span class="p">(</span><span class="n">field_name</span><span class="p">)</span>
+
+<span class="c1"># create feature, geometry, and field entry</span>
+<span class="n">line_feature</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">lyr</span><span class="o">.</span><span class="n">GetLayerDefn</span><span class="p">())</span>
+<span class="n">line_feature</span><span class="o">.</span><span class="n">SetGeometry</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<span class="n">line_feature</span><span class="o">.</span><span class="n">SetField</span><span class="p">(</span><span class="s2">&quot;river&quot;</span><span class="p">,</span> <span class="s2">&quot;Rhine&quot;</span><span class="p">)</span>
+
+<span class="c1"># add feature to layer</span>
+<span class="n">lyr</span><span class="o">.</span><span class="n">CreateFeature</span><span class="p">(</span><span class="n">line_feature</span><span class="p">)</span>
+
+<span class="n">lyr</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">rhine_line</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The resulting <code class="docutils literal notranslate"><span class="pre">rhine_proxy.shp</span></code> shapefile can be imported in <a class="reference external" href="../get-started/geo.html#qgis"><em>QGIS</em></a> along with a DEM and the cities point shapefile from the <a class="reference external" href="http://naciscdn.org/naturalearth/packages/Natural_Earth_quick_start.zip">Natural Earth quick start kit</a>.</p>
+<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-rhine.png" /></p>
+</div>
+<div class="section" id="polygon-shapefile">
+<span id="poly-create"></span><h2>Polygon Shapefile<a class="headerlink" href="#polygon-shapefile" title="Permalink to this headline">¶</a></h2>
+<p>Polygons are surface patches that can be created point-by-point, line-by-line, or from a <code class="docutils literal notranslate"><span class="pre">&quot;Multipolygon&quot;</span></code> <em>WKB</em> definition. When creating polygons from points or lines, we want to create a surface and this is why the corresponding geometry type is <code class="docutils literal notranslate"><span class="pre">wkbLinearRing</span></code> for building polygons from both point or lines (rather than <code class="docutils literal notranslate"><span class="pre">wkbPoint</span></code> or <code class="docutils literal notranslate"><span class="pre">wkbLine</span></code>, respectively). The following code block features an example for building a polygon shapefile delineating the hydraulic laboratory of the University of Stuttgart. The difference between the above example for creating a line shapefile are:</p>
+<ul class="simple">
+<li><p>The projection is <code class="docutils literal notranslate"><span class="pre">EPSG:4326</span></code>.</p></li>
+<li><p>The point coordinates are generated within an <code class="docutils literal notranslate"><span class="pre">ogr.wkbLinearRing</span></code> object step-by-step rather than in a loop over <em>dictionary</em> entries.</p></li>
+<li><p>File, variable, and field names.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shp_dir</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/shapefiles/iws_va.shp&quot;</span>
+<span class="n">va_geo</span> <span class="o">=</span> <span class="n">create_shp</span><span class="p">(</span><span class="n">shp_dir</span><span class="p">,</span> <span class="n">layer_name</span><span class="o">=</span><span class="s2">&quot;basemap&quot;</span><span class="p">,</span> <span class="n">layer_type</span><span class="o">=</span><span class="s2">&quot;polygon&quot;</span><span class="p">)</span>
+
+<span class="c1"># create .prj file for the shapefile for GIS map applications</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">shp_dir</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.shp&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.prj&quot;</span><span class="p">,</span> <span class="s2">&quot;w+&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">prj</span><span class="p">:</span>
+    <span class="n">prj</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">get_wkt</span><span class="p">(</span><span class="mi">4326</span><span class="p">))</span>
+
+<span class="c1"># get basemap layer</span>
+<span class="n">lyr</span> <span class="o">=</span> <span class="n">va_geo</span><span class="o">.</span><span class="n">GetLayer</span><span class="p">()</span>
+
+<span class="c1"># create polygon points</span>
+<span class="n">pts</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Geometry</span><span class="p">(</span><span class="n">ogr</span><span class="o">.</span><span class="n">wkbLinearRing</span><span class="p">)</span>
+<span class="n">pts</span><span class="o">.</span><span class="n">AddPoint</span><span class="p">(</span><span class="mf">9.103686</span><span class="p">,</span> <span class="mf">48.744251</span><span class="p">)</span>
+<span class="n">pts</span><span class="o">.</span><span class="n">AddPoint</span><span class="p">(</span><span class="mf">9.104689</span><span class="p">,</span> <span class="mf">48.744198</span><span class="p">)</span>
+<span class="n">pts</span><span class="o">.</span><span class="n">AddPoint</span><span class="p">(</span><span class="mf">9.104667</span><span class="p">,</span> <span class="mf">48.743960</span><span class="p">)</span>
+<span class="n">pts</span><span class="o">.</span><span class="n">AddPoint</span><span class="p">(</span><span class="mf">9.103557</span><span class="p">,</span> <span class="mf">48.744009</span><span class="p">)</span>
+
+<span class="c1"># create polygon geometry</span>
+<span class="n">poly</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Geometry</span><span class="p">(</span><span class="n">ogr</span><span class="o">.</span><span class="n">wkbPolygon</span><span class="p">)</span>
+<span class="c1"># build polygon geometry from points</span>
+<span class="n">poly</span><span class="o">.</span><span class="n">AddGeometry</span><span class="p">(</span><span class="n">pts</span><span class="p">)</span>
+
+<span class="c1"># add field to classify building type</span>
+<span class="n">field</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">FieldDefn</span><span class="p">(</span><span class="s2">&quot;building&quot;</span><span class="p">,</span> <span class="n">ogr</span><span class="o">.</span><span class="n">OFTString</span><span class="p">)</span>
+<span class="n">lyr</span><span class="o">.</span><span class="n">CreateField</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
+
+<span class="n">poly_feature_defn</span> <span class="o">=</span> <span class="n">lyr</span><span class="o">.</span><span class="n">GetLayerDefn</span><span class="p">()</span>
+<span class="n">poly_feature</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">poly_feature_defn</span><span class="p">)</span>
+<span class="n">poly_feature</span><span class="o">.</span><span class="n">SetGeometry</span><span class="p">(</span><span class="n">poly</span><span class="p">)</span>
+<span class="n">poly_feature</span><span class="o">.</span><span class="n">SetField</span><span class="p">(</span><span class="s2">&quot;building&quot;</span><span class="p">,</span> <span class="s2">&quot;Versuchsanstalt&quot;</span><span class="p">)</span>
+
+<span class="n">lyr</span><span class="o">.</span><span class="n">CreateFeature</span><span class="p">(</span><span class="n">poly_feature</span><span class="p">)</span>
+
+<span class="n">lyr</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">va_geo</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="build-shapefile-from-json">
+<span id="json-create"></span><h2>Build Shapefile from <em>JSON</em><a class="headerlink" href="#build-shapefile-from-json" title="Permalink to this headline">¶</a></h2>
+<p>Loading geometry data from a in-line defined variables is cumbersome in practice, where geospatial data are often provided on public platforms (e.g., land use or cover).  The following example uses a <em>JSON</em> file generated with map service data from the <a class="reference external" href="https://udo.lubw.baden-wuerttemberg.de/">Baden-Württemberg State Institute for the Environment, Survey and Nature Conservation <em>LUBW</em></a>, where polygon nodes are stored in <em>WKB</em> polygon geometry format  (<code class="docutils literal notranslate"><span class="pre">&quot;MultiPolygon</span> <span class="pre">(((node1_x</span> <span class="pre">node1_y,</span> <span class="pre">nodej_x,</span> <span class="pre">nodej_y,</span> <span class="pre">...</span> <span class="pre">...)))&quot;</span></code>):</p>
+<ul class="simple">
+<li><p>The <em>JSON</em> file is read with <a class="reference external" href="../python-basics/pynum.html#pandas"><em>pandas</em></a> and the shapefile is created, as before, with the <code class="docutils literal notranslate"><span class="pre">create_shp</span></code> function.</p></li>
+<li><p>The projection is <em>EPSG:25832</em>.</p></li>
+<li><p>Two fields are added in the form of</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;tbg_name&quot;</span></code> is the original string name of the polygons in the <em>LUBW</em> data,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;area&quot;</span></code> is a real number field, in which the polygon area is calculated in m<sup>2</sup> using <code class="docutils literal notranslate"><span class="pre">polygon.GetArea()</span></code>.</p></li>
+</ul>
+</li>
+<li><p>The polygon geometries are derived from the <em>WKB</em>-formatted definitions in the <code class="docutils literal notranslate"><span class="pre">&quot;wkb_geom&quot;</span></code> field of the <em>pandas</em> data frame object <code class="docutils literal notranslate"><span class="pre">dreisam_inundation</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get data from json file</span>
+<span class="n">dreisam_inundation</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/json/hq100-dreisam.json&quot;</span><span class="p">)</span>
+
+<span class="c1"># create shapefile</span>
+<span class="n">shp_dir</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/shapefiles/dreisam_hq100.shp&quot;</span>
+<span class="n">dreisam_hq100</span> <span class="o">=</span> <span class="n">create_shp</span><span class="p">(</span><span class="n">shp_dir</span><span class="p">,</span> <span class="n">layer_name</span><span class="o">=</span><span class="s2">&quot;basemap&quot;</span><span class="p">,</span> <span class="n">layer_type</span><span class="o">=</span><span class="s2">&quot;polygon&quot;</span><span class="p">)</span>
+
+<span class="c1"># create .prj file for the shapefile for GIS map applications</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">shp_dir</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.shp&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.prj&quot;</span><span class="p">,</span> <span class="s2">&quot;w+&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">prj</span><span class="p">:</span>
+    <span class="n">prj</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">get_wkt</span><span class="p">(</span><span class="mi">25832</span><span class="p">))</span>
+
+<span class="c1"># get basemap layer</span>
+<span class="n">lyr</span> <span class="o">=</span> <span class="n">dreisam_hq100</span><span class="o">.</span><span class="n">GetLayer</span><span class="p">()</span>
+
+<span class="c1"># add string field &quot;tbg_name&quot;</span>
+<span class="n">lyr</span><span class="o">.</span><span class="n">CreateField</span><span class="p">(</span><span class="n">ogr</span><span class="o">.</span><span class="n">FieldDefn</span><span class="p">(</span><span class="s2">&quot;tbg_name&quot;</span><span class="p">,</span> <span class="n">ogr</span><span class="o">.</span><span class="n">OFTString</span><span class="p">))</span>
+
+<span class="c1"># add string field &quot;area&quot;</span>
+<span class="n">lyr</span><span class="o">.</span><span class="n">CreateField</span><span class="p">(</span><span class="n">ogr</span><span class="o">.</span><span class="n">FieldDefn</span><span class="p">(</span><span class="s2">&quot;area&quot;</span><span class="p">,</span> <span class="n">ogr</span><span class="o">.</span><span class="n">OFTReal</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">wkt</span><span class="p">,</span> <span class="n">tbg</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">dreisam_inundation</span><span class="p">[</span><span class="s2">&quot;wkt_geom&quot;</span><span class="p">],</span> <span class="n">dreisam_inundation</span><span class="p">[</span><span class="s2">&quot;TBG_NAME&quot;</span><span class="p">]):</span>
+    <span class="c1"># create Feature as child of the layer</span>
+    <span class="n">feature</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">lyr</span><span class="o">.</span><span class="n">GetLayerDefn</span><span class="p">())</span>
+    <span class="c1"># assign tbg_name</span>
+    <span class="n">feature</span><span class="o">.</span><span class="n">SetField</span><span class="p">(</span><span class="s2">&quot;tbg_name&quot;</span><span class="p">,</span> <span class="n">tbg</span><span class="p">)</span>
+    <span class="c1"># use WKT format to add a polygon geometry to the Feature</span>
+    <span class="n">polygon</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">CreateGeometryFromWkt</span><span class="p">(</span><span class="n">wkt</span><span class="p">)</span>
+    <span class="c1"># define default value of 0 to the area field</span>
+    <span class="n">feature</span><span class="o">.</span><span class="n">SetField</span><span class="p">(</span><span class="s2">&quot;area&quot;</span><span class="p">,</span> <span class="n">polygon</span><span class="o">.</span><span class="n">GetArea</span><span class="p">())</span>
+
+    <span class="n">feature</span><span class="o">.</span><span class="n">SetGeometry</span><span class="p">(</span><span class="n">polygon</span><span class="p">)</span>
+    <span class="c1"># append the new feature to the basement layer</span>
+    <span class="n">lyr</span><span class="o">.</span><span class="n">CreateFeature</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
+
+<span class="n">lyr</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">dreisam_hq100</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Open the new <code class="docutils literal notranslate"><span class="pre">dreisam_hq100.shp</span></code> in <em>QGIS</em> and explore the attribute table.</p>
+</div>
+<p>Also <em>GeoJSON</em> data can be used to create an <code class="docutils literal notranslate"><span class="pre">ogr.Geometry</span></code> with <code class="docutils literal notranslate"><span class="pre">ogr.createFromGeoJson(FILENAME)</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gdal</span> <span class="kn">import</span> <span class="n">ogr</span>
+<span class="n">geojson_data</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;{&quot;type&quot;:&quot;Point&quot;,&quot;coordinates&quot;:[1013452.282805,6231540.674235]}&quot;&quot;&quot;</span>
+<span class="n">point</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">CreateGeometryFromJson</span><span class="p">(</span><span class="n">geojson_data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;X=</span><span class="si">%d</span><span class="s2">, Y=</span><span class="si">%d</span><span class="s2"> (EPSG:3857)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">GetX</span><span class="p">(),</span> <span class="n">point</span><span class="o">.</span><span class="n">GetY</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>X=1013452, Y=6231540 (EPSG:3857)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="calculate-geometric-attributes">
+<span id="calc"></span><h2>Calculate Geometric Attributes<a class="headerlink" href="#calculate-geometric-attributes" title="Permalink to this headline">¶</a></h2>
+<p>The above code block illustrates the usage of <code class="docutils literal notranslate"><span class="pre">polygon.GetArea()</span></code> to calculate the polygon area n m<sup>2</sup>. The <code class="docutils literal notranslate"><span class="pre">ogr</span></code> library provides many more functions to calculate geometric attributes of features and here is a summary:</p>
+<ul class="simple">
+<li><p>Unify multiple polygons <br>
+<code class="docutils literal notranslate"><span class="pre">wkt_...</span> <span class="pre">=</span> <span class="pre">...</span></code><br>
+<code class="docutils literal notranslate"><span class="pre">polygon_a</span> <span class="pre">=</span> <span class="pre">ogr.CreateGeometryFromWkt(wkt_1)</span></code><br>
+<code class="docutils literal notranslate"><span class="pre">polygon_b</span> <span class="pre">=</span> <span class="pre">ogr.CreateGeometryFromWkt(wkt_2)</span></code><br>
+<code class="docutils literal notranslate"><span class="pre">polygon_union</span> <span class="pre">=</span> <span class="pre">polygon_a.Union(polygon_b)</span></code></p></li>
+<li><p>Intersect two polygons <br>
+<code class="docutils literal notranslate"><span class="pre">polygon_intersection</span> <span class="pre">=</span> <span class="pre">polygon_a.Intersection(polygon_b)</span></code></p></li>
+<li><p>Envelope (minimum and maximum extents) of a polygon <br>
+<code class="docutils literal notranslate"><span class="pre">env</span> <span class="pre">=</span> <span class="pre">polygon.GetEnvelope()</span></code> <br>
+<code class="docutils literal notranslate"><span class="pre">print(&quot;minX:</span> <span class="pre">%d,</span> <span class="pre">minY:</span> <span class="pre">%d,</span> <span class="pre">maxX:</span> <span class="pre">%d,</span> <span class="pre">maxY:</span> <span class="pre">%d&quot;</span> <span class="pre">%</span> <span class="pre">(env[0],env[2],env[1],env[3])</span></code></p></li>
+<li><p>Convex hull (envelope surface) of multiple geometries (points, lines, polygons) <br>
+<code class="docutils literal notranslate"><span class="pre">all_polygons</span> <span class="pre">=</span> <span class="pre">ogr.Geometry(ogr.wkbGeometryCollection)</span></code><br>
+<code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">feature</span> <span class="pre">in</span> <span class="pre">POLYGON-SOURCE-LAYER:</span> <span class="pre">all_polygons.AddGeometry(feature.GetGeometryRef())</span></code><br>
+<code class="docutils literal notranslate"><span class="pre">convexhull</span> <span class="pre">=</span> <span class="pre">all_polygons.ConvexHull()</span></code><br>
+Save <code class="docutils literal notranslate"><span class="pre">convexhull</span></code> to shapefile (use <code class="docutils literal notranslate"><span class="pre">create_shp</span></code> function as shown in the above examples or read more at <a class="reference external" href="https://pcjericks.github.io/py-gdalogr-cookbook/vector_layers.html#save-the-convex-hull-of-all-geometry-from-an-input-layer-to-an-output-layer">pcjerick’s github pages</a>)<br>
+Tip: To create a tight hull (e.g., of a point cloud), look for <code class="docutils literal notranslate"><span class="pre">concavehull</span></code> functions.</p></li>
+<li><p>Length (of a line) <br>
+<code class="docutils literal notranslate"><span class="pre">wkt</span> <span class="pre">=</span> <span class="pre">&quot;LINESTRING</span> <span class="pre">(415128.5</span> <span class="pre">5320979.5,</span> <span class="pre">415128.6</span> <span class="pre">5320974.5,</span> <span class="pre">415129.75</span> <span class="pre">5320974.7)&quot;</span></code><br>
+<code class="docutils literal notranslate"><span class="pre">line</span> <span class="pre">=</span> <span class="pre">ogr.CreateGeometryFromWkt(wkt)</span></code><br>
+<code class="docutils literal notranslate"><span class="pre">print(&quot;Length</span> <span class="pre">=</span> <span class="pre">%d&quot;</span> <span class="pre">%</span> <span class="pre">line.Length())</span></code></p></li>
+<li><p>Area (of a polygon):  <code class="docutils literal notranslate"><span class="pre">polygon.GetArea()</span></code> (see above example)</p></li>
+<li><p>Example to calculate <a class="reference external" href="https://pcjericks.github.io/py-gdalogr-cookbook/geometry.html#quarter-polygon-and-create-centroids">centroid coordinates of polygons</a>.</p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The units of the geometric attribute (e.g., m<sup>2</sup>, U.S. feet, or others) are calculated based on the definitions in the <a class="reference internal" href="#prj-shp"><span class="std std-ref">*.prj* file</span></a> (recall also the definition of projections in <em>WKT</em> format in the <a class="reference internal" href="../geopy/geospatial-data.html#prj"><span class="std std-ref">Projections and Coordinate Systems</span></a> section).</p>
+</div>
+</div>
+<div class="section" id="export-to-other-format">
+<span id="export"></span><h2>Export to Other Format<a class="headerlink" href="#export-to-other-format" title="Permalink to this headline">¶</a></h2>
+<p>The above examples deal with <code class="docutils literal notranslate"><span class="pre">.shp</span></code> files only, but other formats can be useful (e.g., to create web applications or export to <em>Google Earth</em>). The following sections illustrate the creation of <em>GeoJSON</em> and <em>KML</em> files. Several other conversions can be performed, not only between file formats, but also between feature types. For example, polygons can be created from point clouds (among others with the <code class="docutils literal notranslate"><span class="pre">ConvexHull</span></code> method mentioned above). The interested reader can learn more about conversions in <a class="reference external" href="https://github.com/mdiener21/python-geospatial-analysis-cookbook">Michael Diener’s <em>Python Geospatial Analysis Cookbook</em></a>.</p>
+<div class="section" id="geojson">
+<h3>GeoJSON<a class="headerlink" href="#geojson" title="Permalink to this headline">¶</a></h3>
+<p><em>GeoJSON</em> files can be easily created as before, even without activating a driver:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">triangle</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Geometry</span><span class="p">(</span><span class="n">ogr</span><span class="o">.</span><span class="n">wkbLinearRing</span><span class="p">)</span>
+<span class="n">triangle</span><span class="o">.</span><span class="n">AddPoint</span><span class="p">(</span><span class="o">-</span><span class="mf">11717151.498691</span><span class="p">,</span> <span class="mf">2356192.894805</span><span class="p">)</span>
+<span class="n">triangle</span><span class="o">.</span><span class="n">AddPoint</span><span class="p">(</span><span class="o">-</span><span class="mf">11717120.446149</span><span class="p">,</span> <span class="mf">2355586.175893</span><span class="p">)</span>
+<span class="n">triangle</span><span class="o">.</span><span class="n">AddPoint</span><span class="p">(</span><span class="o">-</span><span class="mf">11719392.059083</span><span class="p">,</span> <span class="mf">2354012.050842</span><span class="p">)</span>
+
+<span class="n">polygon</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Geometry</span><span class="p">(</span><span class="n">ogr</span><span class="o">.</span><span class="n">wkbPolygon</span><span class="p">)</span>
+<span class="n">polygon</span><span class="o">.</span><span class="n">AddGeometry</span><span class="p">(</span><span class="n">triangle</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/geojson/pitillal-triangle.geojson&quot;</span><span class="p">,</span> <span class="s2">&quot;w+&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">gjson</span><span class="p">:</span>
+    <span class="n">gjson</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">polygon</span><span class="o">.</span><span class="n">ExportToJson</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For more robust file handling and defining a projection, activate the driver <code class="docutils literal notranslate"><span class="pre">ogr.GetDriverByName(&quot;GeoJSON&quot;)</span></code>. Thus, the creation and manipulation of <em>GeoJSON</em> files works similar to the shapefile handlers shown above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gjson_driver</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">GetDriverByName</span><span class="p">(</span><span class="s2">&quot;GeoJSON&quot;</span><span class="p">)</span>
+
+<span class="c1"># make spatial reference</span>
+<span class="n">sr</span> <span class="o">=</span> <span class="n">osr</span><span class="o">.</span><span class="n">SpatialReference</span><span class="p">()</span>
+<span class="n">sr</span><span class="o">.</span><span class="n">ImportFromEPSG</span><span class="p">(</span><span class="mi">3857</span><span class="p">)</span>
+
+<span class="c1"># create GeoJSON file</span>
+<span class="n">gjson</span> <span class="o">=</span> <span class="n">gjson_driver</span><span class="o">.</span><span class="n">CreateDataSource</span><span class="p">(</span><span class="s2">&quot;pitillal-full.geojson&quot;</span><span class="p">)</span>
+<span class="n">gjson_lyr</span> <span class="o">=</span> <span class="n">gjson</span><span class="o">.</span><span class="n">CreateLayer</span><span class="p">(</span><span class="s2">&quot;pitillal-full.geojson&quot;</span><span class="p">,</span> <span class="n">geom_type</span><span class="o">=</span><span class="n">ogr</span><span class="o">.</span><span class="n">wkbPolygon</span><span class="p">,</span> <span class="n">srs</span><span class="o">=</span><span class="n">sr</span><span class="p">)</span>
+
+<span class="c1"># get layer feature definitions</span>
+<span class="n">feature_def</span> <span class="o">=</span> <span class="n">gjson_lyr</span><span class="o">.</span><span class="n">GetLayerDefn</span><span class="p">()</span>
+<span class="c1"># create new feature</span>
+<span class="n">new_feature</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">feature_def</span><span class="p">)</span>
+<span class="c1"># assign the triangle from the above code block</span>
+<span class="n">new_feature</span><span class="o">.</span><span class="n">SetGeometry</span><span class="p">(</span><span class="n">polygon</span><span class="p">)</span>
+<span class="c1"># add new feature to Layer</span>
+<span class="n">gjson_lyr</span><span class="o">.</span><span class="n">CreateFeature</span><span class="p">(</span><span class="n">new_feature</span><span class="p">)</span>
+
+<span class="c1"># close links to data sources</span>
+<span class="n">gjson</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">gjson_lyr</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="kml-google-earth">
+<h3>KML (Google Earth)<a class="headerlink" href="#kml-google-earth" title="Permalink to this headline">¶</a></h3>
+<p>To display point, line or polygon features in <em>Google Earth</em>, features can be plugged in to Google’s <a class="reference external" href="https://developers.google.com/kml/documentation/kml_tut"><em>KML</em></a> (Keyhole Markup Language), similar to creation of <em>GeoJSON</em> files, with the simple function <code class="docutils literal notranslate"><span class="pre">geometry.ExportToKML</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">triangle</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Geometry</span><span class="p">(</span><span class="n">ogr</span><span class="o">.</span><span class="n">wkbLinearRing</span><span class="p">)</span>
+<span class="n">triangle</span><span class="o">.</span><span class="n">AddPoint</span><span class="p">(</span><span class="o">-</span><span class="mf">11717151.498691</span><span class="p">,</span> <span class="mf">2356192.894805</span><span class="p">)</span>
+<span class="n">triangle</span><span class="o">.</span><span class="n">AddPoint</span><span class="p">(</span><span class="o">-</span><span class="mf">11717120.446149</span><span class="p">,</span> <span class="mf">2355586.175893</span><span class="p">)</span>
+<span class="n">triangle</span><span class="o">.</span><span class="n">AddPoint</span><span class="p">(</span><span class="o">-</span><span class="mf">11719392.059083</span><span class="p">,</span> <span class="mf">2354012.050842</span><span class="p">)</span>
+
+<span class="n">polygon</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Geometry</span><span class="p">(</span><span class="n">ogr</span><span class="o">.</span><span class="n">wkbPolygon</span><span class="p">)</span>
+<span class="n">polygon</span><span class="o">.</span><span class="n">AddGeometry</span><span class="p">(</span><span class="n">triangle</span><span class="p">)</span>
+
+<span class="c1">#geojson = poly.ExportToJson()</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/pitillal-triangle.kml&quot;</span><span class="p">,</span> <span class="s2">&quot;w+&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">gjson</span><span class="p">:</span>
+    <span class="n">gjson</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">polygon</span><span class="o">.</span><span class="n">ExportToKML</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to <em>GeoJSON</em> files and shapefiles, <em>KML</em> files can be generated more robustly (for example with a defined projection). All you need to do is load the <em>KML</em> driver (<code class="docutils literal notranslate"><span class="pre">kml_driver</span> <span class="pre">=</span> <span class="pre">ogr.GetDriverByName(&quot;KML&quot;)</span></code>) and define a <em>KML</em> data source (<code class="docutils literal notranslate"><span class="pre">kml_file</span> <span class="pre">=</span> <span class="pre">kml_driver.CreateDataSource(FILENAME.KML)</span></code>).</p>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Get more familiar with shapefile handling in the <a class="reference internal" href="../exercises/ex-geco.html"><span class="doc std std-doc">geospatial ecohydraulics</span></a> exercise.</p>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "hydro-informatics/hydro-informatics.github.io",
+            ref: "gh-pages",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./jupyter"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../geopy/geo-pckg.html" title="previous page">Geospatial Open Source Python Libraries</a>
+    <a class='right-next' id="next-link" href="geo-raster.html" title="next page">Raster (Gridded) Dataset Handling</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Sebastian Schwindt<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

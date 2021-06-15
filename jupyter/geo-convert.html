@@ -1,0 +1,1204 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Raster to Vector Conversion and Vice Versa &#8212; Hydro-Informatics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://hydro-informatics.com/jupyter/geo-convert.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The Commercial arcpy Library" href="geo-arcpy.html" />
+    <link rel="prev" title="Raster (Gridded) Dataset Handling" href="geo-raster.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/icon.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  Get Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../lectures/classroom.html">
+   The Virtual Classroom
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/lectures.html">
+     Lectures and Exercises
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/take_seat.html">
+     Take a Seat
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../get-started/software.html">
+   Software Resources
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/vm.html">
+     Virtual Machines and Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/ide.html">
+     Integrated Development Environments (IDEs)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python-basics/pyinstall.html">
+     Install Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/git.html">
+     Introduction to git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/geo.html">
+     Geospatial Software
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-openfoam.html">
+     OpenFOAM (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-telemac.html">
+     TELEMAC (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/others.html">
+     Other Software Resources
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Python Basics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/python.html">
+   First Steps
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pybase.html">
+     Hello Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyerror.html">
+     Errors, Logging, and Debugging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyloop.html">
+     Loops and Conditional Statements
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/modularize.html">
+   Object Orientation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyfun.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pypckg.html">
+     Packages, Modules and Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="classes.html">
+     Object Orientation and Classes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/data-handling.html">
+   Data and File Handling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pynum.html">
+     Load and Write Basic Data Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="xml.html">
+     Workbooks (xlsx) and JSON
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pyplot.html">
+     Plotting
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pystyle.html">
+   Code Style and Conventions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gui.html">
+   Graphical User Interfaces (GUIs)
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/python-exercises.html">
+   Python Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-ms.html">
+     1d Hydraulics (Manning-Strickler Formula)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sp.html">
+     Reservoir Volume (Sequent Peak Algorithm)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-floods.html">
+     Flood Return Periods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sediment.html">
+     1d Sediment Transport
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-gui.html">
+     Create a GUI
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Geospatial Analysis
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/geospatial-data.html">
+   Geospatial Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/use-qgis.html">
+   QGIS Tutorial
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../geopy/geo-python.html">
+   Geospatial Python
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-pckg.html">
+     Geospatial Open Source Python Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="geo-shp.html">
+     Shapefile (Vector Dataset) Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="geo-raster.html">
+     Raster (Gridded) Dataset Handling
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Raster to Vector Conversion and Vice Versa
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="geo-arcpy.html">
+     The Commercial arcpy Library
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/geo-exercises.html">
+   Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-geco.html">
+     Script a Habitat Suitability Map
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Numerical Modeling
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/numerical-modeling.html">
+   Principles
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerics/basement.html">
+   BASEMENT
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/pre-qgis-bm.html">
+     Pre-processing with QGIS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/basement2d.html">
+     Simulation Setup (Steady 2d)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerics/telemac.html">
+   TELEMAC
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/pre-slf-tm.html">
+     Pre-processing
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../numerics/telemac2d.html">
+     Telemac2d
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac2d-steady.html">
+       Steady 2d Simulation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac2d-unsteady.html">
+       Unsteady 2d Simulation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac-gaia.html">
+       Unsteady Hydro-Morphodynamic 2d Simulation (Gaia)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../numerics/telemac3d.html">
+     Telemac3d
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac3d-slf.html">
+       Telemac3d (SLF)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac3d-med.html">
+       Telemac3d (Salome-Hydro and MED)
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerics/openfoam.html">
+   OpenFOAM
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/pre-qgis-of.html">
+     Pre-processing with QGIS
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/calibration.html">
+   Calibration and Validation
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Documentation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/documentation.html">
+   Markdown and Code Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/glossary.html">
+   Glossary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/notation.html">
+   Notation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/bibliography.html">
+   References
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/docs-exercises.html">
+   Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-git.html">
+     Git and markdown
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Troubleshoot
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
+   Programming Tools and IDEs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
+     Debugging Anaconda
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-python.html">
+     Debugging Python Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
+     Debugging Jupyter
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
+   Numerical Models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+  <label for="toctree-checkbox-16">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
+     Debugging BASEMENT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
+     Debugging TELEMAC/SALOME
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-os.html">
+   Operating Systems (Linux and VMs)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+  <label for="toctree-checkbox-17">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
+     Debugging Debian Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
+     Debugging Virtual Machines
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Disclaimer and License
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/jupyter/geo-convert.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/hydro-informatics/hydro-informatics.github.io"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter/v2/gh/hydro-informatics/hydro-informatics.github.io/gh-pages?urlpath=lab/tree/_sources/jupyter/geo-convert.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com//github/hydro-informatics/hydro-informatics.github.io/blob/gh-pages/_sources/jupyter/geo-convert.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vectorize">
+   Vectorize
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#raster-to-line">
+     Raster to Line
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#raster-to-polygon">
+     Raster to Polygon
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rasterize-vector-shapefile-to-raster">
+   Rasterize (Vector Shapefile to Raster)
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="raster-to-vector-conversion-and-vice-versa">
+<span id="py-conversion"></span><h1>Raster to Vector Conversion and Vice Versa<a class="headerlink" href="#raster-to-vector-conversion-and-vice-versa" title="Permalink to this headline">¶</a></h1>
+<p>Geospatial dataset conversion with <em>Python</em>. For interactive reading and executing code blocks <a class="reference external" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> and find <em>geo-conversion.ipynb</em> or <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Install Python</span></a> locally along with <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a>.</p>
+<p>The goal of this section is to guide to an understanding of conversions from raster and to vector data formats and vice versa.</p>
+<div class="admonition-requirements admonition">
+<p class="admonition-title">Requirements</p>
+<ul class="simple">
+<li><p>Make sure to understand <a class="reference internal" href="geo-raster.html"><span class="doc std std-doc">gridded raster data</span></a> and <a class="reference internal" href="geo-shp.html"><span class="doc std std-doc">vector data</span></a> data handling before reading this section.</p></li>
+<li><p>Recall the <a class="reference external" href="geo-raster.html#open"><code class="docutils literal notranslate"><span class="pre">open_raster</span></code></a> and <a class="reference external" href="geo-shp.html#create"><code class="docutils literal notranslate"><span class="pre">create_shp</span></code></a> functions.</p></li>
+<li><p>Read about the creation of the <a class="reference external" href="geo-raster.html#leastcost"><em>least cost path</em></a> raster dataset.</p></li>
+</ul>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Tips</p>
+<ol class="simple">
+<li><p>The core functions used in this e-book are introduced with the raster and vector data handling explanations and additionally implemented in the <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> package.</p></li>
+<li><p>Download sample raster datasets from <a class="reference external" href="https://github.com/RiverArchitect/SampleData/archive/master.zip"><em>River Architect</em></a>. This page uses <em>GeoTIFF</em> raster data located in <a class="reference external" href="https://github.com/RiverArchitect/SampleData/tree/master/01_Conditions/2100_sample"><code class="docutils literal notranslate"><span class="pre">RiverArchitect/SampleData/01_Conditions/2100_sample/</span></code></a>.</p></li>
+</ol>
+</div>
+<div class="section" id="vectorize">
+<h2>Vectorize<a class="headerlink" href="#vectorize" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="raster-to-line">
+<span id="raster2line"></span><h3>Raster to Line<a class="headerlink" href="#raster-to-line" title="Permalink to this headline">¶</a></h3>
+<p>In this section, we convert the <a class="reference external" href="geo-raster.html#leastcost"><em>least cost path</em></a> raster dataset (<code class="docutils literal notranslate"><span class="pre">least_cost.tif</span></code>) into a (poly) line shapefile. For this purpose we first write a function called <code class="docutils literal notranslate"><span class="pre">offset2coords</span></code>, which represents the inverse of the <a class="reference external" href="geo-raster.html#lc-fun"><code class="docutils literal notranslate"><span class="pre">coords2offset</span></code></a> function, to convert x/y offset (in pixel numbers) to coordinates of a geospatial dataset’s geo-transformation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">offset2coords</span><span class="p">(</span><span class="n">geo_transform</span><span class="p">,</span> <span class="n">offset_x</span><span class="p">,</span> <span class="n">offset_y</span><span class="p">):</span>
+    <span class="c1"># get origin and pixel dimensions from geo_transform (osgeo.gdal.Dataset.GetGeoTransform() object)</span>
+    <span class="n">origin_x</span> <span class="o">=</span> <span class="n">geo_transform</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">origin_y</span> <span class="o">=</span> <span class="n">geo_transform</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">pixel_width</span> <span class="o">=</span> <span class="n">geo_transform</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">pixel_height</span> <span class="o">=</span> <span class="n">geo_transform</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+    
+    <span class="c1"># calculate x and y coordinates</span>
+    <span class="n">coord_x</span> <span class="o">=</span> <span class="n">origin_x</span> <span class="o">+</span> <span class="n">pixel_width</span> <span class="o">*</span> <span class="p">(</span><span class="n">offset_x</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">coord_y</span> <span class="o">=</span> <span class="n">origin_y</span> <span class="o">+</span> <span class="n">pixel_height</span> <span class="o">*</span> <span class="p">(</span><span class="n">offset_y</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span>
+
+    <span class="c1"># return x and y coordinates</span>
+    <span class="k">return</span> <span class="n">coord_x</span><span class="p">,</span> <span class="n">coord_y</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The offset is added 0.5 pixels in both x and y directions to meet the center of the pixel rather than the top left pixel corner.</p>
+</div>
+<p>Next we can write the core function to convert a raster dataset to a line shapefile. This function named <code class="docutils literal notranslate"><span class="pre">raster2line</span></code>:</p>
+<ol class="simple">
+<li><p>Opens a <code class="docutils literal notranslate"><span class="pre">raster</span></code>, its band as <code class="docutils literal notranslate"><span class="pre">array</span></code> and <code class="docutils literal notranslate"><span class="pre">geo_transform</span></code> (geo-transformation) defined with the <code class="docutils literal notranslate"><span class="pre">raster_file_name</span></code> argument and using the <a class="reference external" href="geo-raster.html#open"><code class="docutils literal notranslate"><span class="pre">open_raster</span></code></a> function.</p></li>
+<li><p>Calculates the maximum distance (<code class="docutils literal notranslate"><span class="pre">max_distance</span></code>) between two pixels that are considered <em>connect-able</em>, based on the hypothesis that the pixel height <em>Δy</em> and width <em>Δx</em> are the same:
+<img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/pixel2line-width-illu.png" /></p></li>
+<li><p>Gets the <code class="docutils literal notranslate"><span class="pre">trajectory</span></code> of pixels that have a user parameter-defined <code class="docutils literal notranslate"><span class="pre">pixel_value</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">1</span></code> to trace 1-pixels in the binary <code class="docutils literal notranslate"><span class="pre">least_cost.tif</span></code>) and throws an error if the trajectory is empty (i.e., <code class="docutils literal notranslate"><span class="pre">np.count_nonzero(trajectory)</span> <span class="pre">is</span> <span class="pre">0</span></code>).</p></li>
+<li><p>Uses the above define <code class="docutils literal notranslate"><span class="pre">offset2coords</span></code> function to append point coordinates to a <code class="docutils literal notranslate"><span class="pre">points</span></code> list.</p></li>
+<li><p>Creates a <code class="docutils literal notranslate"><span class="pre">multi_line</span></code> object (instance of <code class="docutils literal notranslate"><span class="pre">ogr.Geometry(ogr.wkbMultiLineString)</span></code>), which represents the (void) final least cost path.</p></li>
+<li><p>Iterates through all possible combinations of points (excluding combinations of points with themselves) with <a class="reference external" href="https://docs.python.org/3/library/itertools.html"><code class="docutils literal notranslate"><span class="pre">itertools.combinations(iterable,</span> <span class="pre">r=number-of-combinations=2</span></code></a>).</p>
+<ul class="simple">
+<li><p>Points are stored in the <code class="docutils literal notranslate"><span class="pre">points</span></code> list.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">point1</span></code> and <code class="docutils literal notranslate"><span class="pre">point2</span></code> are required to get the distance between pairs of points.</p></li>
+<li><p>If the <code class="docutils literal notranslate"><span class="pre">distance</span></code> between the point is smaller than <code class="docutils literal notranslate"><span class="pre">max_distance</span></code>, the function creates a line object from the two points and appends it to the <code class="docutils literal notranslate"><span class="pre">multi_line</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Creates a new shapefile (named <code class="docutils literal notranslate"><span class="pre">out_shp_fn</span></code>) using the <a class="reference external" href="geo-shp.html#create"><code class="docutils literal notranslate"><span class="pre">create_shp</span></code></a> function (with integrated shapefile name length verification as per the <a class="reference external" href="https://github.com/hydro-informatics/geo-utils"><code class="docutils literal notranslate"><span class="pre">geo_utils</span></code></a> package).</p></li>
+<li><p>Adds the <code class="docutils literal notranslate"><span class="pre">multi_line</span></code> object as new feature to the shapefile (follows the descriptions on the <a class="reference external" href="geo-shp.html#line-create">shapefile page</a>).</p></li>
+<li><p>Creates a <code class="docutils literal notranslate"><span class="pre">.prj</span></code> projection file (recall descriptions in the <a class="reference external" href="geo-shp.html#prj-shp">shapefile</a> section) using the spatial reference system of the input <code class="docutils literal notranslate"><span class="pre">raster</span></code> with the <a class="reference external" href="geo-raster.html#lc-fun"><code class="docutils literal notranslate"><span class="pre">get_srs</span></code></a> function.</p></li>
+</ol>
+<p>The <code class="docutils literal notranslate"><span class="pre">raster2line</span></code> function is also implemented in the <a class="reference external" href="https://flusstools.readthedocs.io/en/latest/geotools.html#module-flusstools.geotools.geotools"><code class="docutils literal notranslate"><span class="pre">flusstools.geotools</span></code></a> script.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">raster2line</span><span class="p">(</span><span class="n">raster_file_name</span><span class="p">,</span> <span class="n">out_shp_fn</span><span class="p">,</span> <span class="n">pixel_value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert a raster to a line shapefile, where pixel_value determines line start and end points</span>
+<span class="sd">    :param raster_file_name: STR of input raster file name, including directory; must end on &quot;.tif&quot;</span>
+<span class="sd">    :param out_shp_fn: STR of target shapefile name, including directory; must end on &quot;.shp&quot;</span>
+<span class="sd">    :param pixel_value: INT/FLOAT of a pixel value</span>
+<span class="sd">    :return: None (writes new shapefile).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># calculate max. distance between points</span>
+    <span class="c1"># ensures correct neighbourhoods for start and end pts of lines</span>
+    <span class="n">raster</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">geo_transform</span> <span class="o">=</span> <span class="n">raster2array</span><span class="p">(</span><span class="n">raster_file_name</span><span class="p">)</span>
+    <span class="n">pixel_width</span> <span class="o">=</span> <span class="n">geo_transform</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">max_distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pixel_width</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+    <span class="c1"># extract pixels with the user-defined pixel value from the raster array</span>
+    <span class="n">trajectory</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">array</span> <span class="o">==</span> <span class="n">pixel_value</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">trajectory</span><span class="p">)</span> <span class="ow">is</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ERROR: The defined pixel_value (</span><span class="si">%s</span><span class="s2">) does not occur in the raster band.&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">pixel_value</span><span class="p">))</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="c1"># convert pixel offset to coordinates and append to nested list of points</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">offset_y</span> <span class="ow">in</span> <span class="n">trajectory</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="n">offset_x</span> <span class="o">=</span> <span class="n">trajectory</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">count</span><span class="p">]</span>
+        <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">offset2coords</span><span class="p">(</span><span class="n">geo_transform</span><span class="p">,</span> <span class="n">offset_x</span><span class="p">,</span> <span class="n">offset_y</span><span class="p">))</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c1"># create multiline (write points dictionary to line geometry (wkbMultiLineString)</span>
+    <span class="n">multi_line</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Geometry</span><span class="p">(</span><span class="n">ogr</span><span class="o">.</span><span class="n">wkbMultiLineString</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="n">point1</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Geometry</span><span class="p">(</span><span class="n">ogr</span><span class="o">.</span><span class="n">wkbPoint</span><span class="p">)</span>
+        <span class="n">point1</span><span class="o">.</span><span class="n">AddPoint</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">point2</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Geometry</span><span class="p">(</span><span class="n">ogr</span><span class="o">.</span><span class="n">wkbPoint</span><span class="p">)</span>
+        <span class="n">point2</span><span class="o">.</span><span class="n">AddPoint</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="n">distance</span> <span class="o">=</span> <span class="n">point1</span><span class="o">.</span><span class="n">Distance</span><span class="p">(</span><span class="n">point2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">distance</span> <span class="o">&lt;</span> <span class="n">max_distance</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Geometry</span><span class="p">(</span><span class="n">ogr</span><span class="o">.</span><span class="n">wkbLineString</span><span class="p">)</span>
+            <span class="n">line</span><span class="o">.</span><span class="n">AddPoint</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">line</span><span class="o">.</span><span class="n">AddPoint</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">multi_line</span><span class="o">.</span><span class="n">AddGeometry</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+    <span class="c1"># write multiline (wkbMultiLineString2shp) to shapefile</span>
+    <span class="n">new_shp</span> <span class="o">=</span> <span class="n">create_shp</span><span class="p">(</span><span class="n">out_shp_fn</span><span class="p">,</span> <span class="n">layer_name</span><span class="o">=</span><span class="s2">&quot;raster_pts&quot;</span><span class="p">,</span> <span class="n">layer_type</span><span class="o">=</span><span class="s2">&quot;line&quot;</span><span class="p">)</span>
+    <span class="n">lyr</span> <span class="o">=</span> <span class="n">new_shp</span><span class="o">.</span><span class="n">GetLayer</span><span class="p">()</span>
+    <span class="n">feature_def</span> <span class="o">=</span> <span class="n">lyr</span><span class="o">.</span><span class="n">GetLayerDefn</span><span class="p">()</span>
+    <span class="n">new_line_feat</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">feature_def</span><span class="p">)</span>
+    <span class="n">new_line_feat</span><span class="o">.</span><span class="n">SetGeometry</span><span class="p">(</span><span class="n">multi_line</span><span class="p">)</span>
+    <span class="n">lyr</span><span class="o">.</span><span class="n">CreateFeature</span><span class="p">(</span><span class="n">new_line_feat</span><span class="p">)</span>
+
+    <span class="c1"># create projection file</span>
+    <span class="n">srs</span> <span class="o">=</span> <span class="n">get_srs</span><span class="p">(</span><span class="n">raster</span><span class="p">)</span>
+    <span class="n">make_prj</span><span class="p">(</span><span class="n">out_shp_fn</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">srs</span><span class="o">.</span><span class="n">GetAuthorityCode</span><span class="p">(</span><span class="kc">None</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Success: Wrote </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">out_shp_fn</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can use the <code class="docutils literal notranslate"><span class="pre">raster2line</span></code> function to convert the least cost path from pixel (raster) format to line format:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">source_raster_fn</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span>  <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/river-architect/least_cost.tif&quot;</span>
+<span class="n">target_shp_fn</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/river-architect/least_cost.shp&quot;</span>
+<span class="n">pixel_value</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">raster2line</span><span class="p">(</span><span class="n">source_raster_fn</span><span class="p">,</span> <span class="n">target_shp_fn</span><span class="p">,</span> <span class="n">pixel_value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Success: Wrote C:\Users\schwindt\jupyter\nb-lectures/geodata/river-architect/least_cost.shp
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-least-cost-line.png" /></p>
+<div class="admonition-challenge admonition">
+<p class="admonition-title">Challenge</p>
+<p>There is a little error in the <code class="docutils literal notranslate"><span class="pre">least_cost</span></code> line. Can you find the error? What can be done to fix the error?</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Network routing is the core specialty of the <a class="reference external" href="geo-pckg.html#other"><code class="docutils literal notranslate"><span class="pre">NetworkX</span></code> package (see <em>Open source libraries</em>)</a>. Read more about network analyses in <a class="reference external" href="https://github.com/mdiener21/python-geospatial-analysis-cookbook/tree/master/ch08">Michael Diener’s <em>GitHub</em> pages</a>.</p>
+</div>
+</div>
+<div class="section" id="raster-to-polygon">
+<span id="raster2polygon"></span><h3>Raster to Polygon<a class="headerlink" href="#raster-to-polygon" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">gdal</span></code> comes with the powerful <code class="docutils literal notranslate"><span class="pre">Polygonize</span></code> functionality for the easy conversion of a raster dataset to a polygon shapefile. While <code class="docutils literal notranslate"><span class="pre">gdal.Polygonize</span></code> enables writing a simple <code class="docutils literal notranslate"><span class="pre">raster2polygon</span></code> function, it has a drawback, which is that it can only handle integer values and it merely randomly attributes <code class="docutils literal notranslate"><span class="pre">FID</span></code> values by default. Because the <code class="docutils literal notranslate"><span class="pre">FID</span></code> values are not meaningful, we can implement the following <code class="docutils literal notranslate"><span class="pre">float2int</span></code> function to preserve the original value range (uses the <a class="reference external" href="geo-raster.html#createarray"><code class="docutils literal notranslate"><span class="pre">raster2array</span></code></a> and <a class="reference external" href="geo-raster.html#create"><code class="docutils literal notranslate"><span class="pre">create_raster</span></code></a> functions explained in the raster section):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">float2int</span><span class="p">(</span><span class="n">raster_file_name</span><span class="p">,</span> <span class="n">band_number</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :param raster_file_name: STR of target file name, including directory; must end on &quot;.tif&quot;</span>
+<span class="sd">    :param band_number: INT of the raster band number to open (default: 1)</span>
+<span class="sd">    :output: new_raster_file_name (STR)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># use raster2array function to get raster, np.array and the geo transformation</span>
+    <span class="n">raster</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">geo_transform</span> <span class="o">=</span> <span class="n">raster2array</span><span class="p">(</span><span class="n">raster_file_name</span><span class="p">,</span> <span class="n">band_number</span><span class="o">=</span><span class="n">band_number</span><span class="p">)</span>
+    
+    <span class="c1"># convert np.array to integers</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ERROR: Invalid raster pixel values.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">raster_file_name</span>
+    
+    <span class="c1"># get spatial reference system</span>
+    <span class="n">src_srs</span> <span class="o">=</span> <span class="n">get_srs</span><span class="p">(</span><span class="n">raster</span><span class="p">)</span>
+    
+    <span class="c1"># create integer raster    </span>
+    <span class="n">new_name</span> <span class="o">=</span> <span class="n">raster_file_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.tif&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_int.tif&quot;</span>
+    <span class="n">create_raster</span><span class="p">(</span><span class="n">new_name</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">epsg</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">src_srs</span><span class="o">.</span><span class="n">GetAuthorityCode</span><span class="p">(</span><span class="kc">None</span><span class="p">)),</span>
+                  <span class="n">rdtype</span><span class="o">=</span><span class="n">gdal</span><span class="o">.</span><span class="n">GDT_Int32</span><span class="p">,</span> <span class="n">geo_info</span><span class="o">=</span><span class="n">geo_transform</span><span class="p">)</span>
+    <span class="c1"># return name of integer raster</span>
+    <span class="k">return</span> <span class="n">new_name</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The following <code class="docutils literal notranslate"><span class="pre">raster2polygon</span></code> function:</p>
+<ol class="simple">
+<li><p>Uses the <code class="docutils literal notranslate"><span class="pre">float2int</span></code> function to ensure that any raster <code class="docutils literal notranslate"><span class="pre">file_name</span></code> provided is converted to purely integer values.</p></li>
+<li><p>Creates a new shapefile (named <code class="docutils literal notranslate"><span class="pre">out_shp_fn</span></code>) using the <a class="reference external" href="geo-shp.html#create"><code class="docutils literal notranslate"><span class="pre">create_shp</span></code></a> function (with integrated shapefile name length verification as per the <a class="reference external" href="https://github.com/hydro-informatics/geo-utils"><code class="docutils literal notranslate"><span class="pre">geo_utils</span></code></a> package).</p></li>
+<li><p>Adds a new <code class="docutils literal notranslate"><span class="pre">ogr.OFTInteger</span></code> field (recall the <a class="reference external" href="geo-shp.html#add-field">field creation</a>) in the shapefile section) named by the optional <code class="docutils literal notranslate"><span class="pre">field_name</span></code> input argument.</p></li>
+<li><p>Runs <a class="reference external" href="https://gdal.org/api/gdal_alg.html#_CPPv414GDALPolygonize15GDALRasterBandH15GDALRasterBandH9OGRLayerHiPPc16GDALProgressFuncPv"><code class="docutils literal notranslate"><span class="pre">gdal.Polygonize</span></code></a> with:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">hSrcBand=raster_band</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hMaskBand=None</span></code> (optional raster band to define polygons)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hOutLayer=dst_layer</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iPixValField=0</span></code> (if no field was be added, set to -1 in order to create <code class="docutils literal notranslate"><span class="pre">FID</span></code> field; if more field added, set to 1, 2, … )</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">papszOptions=[]</span></code> (no effect for <code class="docutils literal notranslate"><span class="pre">ESRI</span> <span class="pre">Shapefile</span></code> driver type)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">callback=None</span></code> for not using the reporting algorithm (<code class="docutils literal notranslate"><span class="pre">GDALProgressFunc()</span></code>)</p></li>
+</ul>
+</li>
+<li><p>Creates a <code class="docutils literal notranslate"><span class="pre">.prj</span></code> projection file (recall descriptions in the <a class="reference external" href="geo-shp.html#prj-shp">shapefile section</a>) using the spatial reference system of the input <code class="docutils literal notranslate"><span class="pre">raster</span></code> with the <a class="reference external" href="geo-raster.html#lc-fun"><code class="docutils literal notranslate"><span class="pre">get_srs</span></code></a> function.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">raster2polygon</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">out_shp_fn</span><span class="p">,</span> <span class="n">band_number</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">field_name</span><span class="o">=</span><span class="s2">&quot;values&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert a raster to polygon</span>
+<span class="sd">    :param file_name: STR of target file name, including directory; must end on &quot;.tif&quot;</span>
+<span class="sd">    :param out_shp_fn: STR of a shapefile name (with directory e.g., &quot;C:/temp/poly.shp&quot;)</span>
+<span class="sd">    :param band_number: INT of the raster band number to open (default: 1)</span>
+<span class="sd">    :param field_name: STR of the field where raster pixel values will be stored (default: &quot;values&quot;)</span>
+<span class="sd">    :return: None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># ensure that the input raster contains integer values only and open the input raster</span>
+    <span class="n">file_name</span> <span class="o">=</span> <span class="n">float2int</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+    <span class="n">raster</span><span class="p">,</span> <span class="n">raster_band</span> <span class="o">=</span> <span class="n">open_raster</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">band_number</span><span class="o">=</span><span class="n">band_number</span><span class="p">)</span>
+
+    <span class="c1"># create new shapefile with the create_shp function</span>
+    <span class="n">new_shp</span> <span class="o">=</span> <span class="n">create_shp</span><span class="p">(</span><span class="n">out_shp_fn</span><span class="p">,</span> <span class="n">layer_name</span><span class="o">=</span><span class="s2">&quot;raster_data&quot;</span><span class="p">,</span> <span class="n">layer_type</span><span class="o">=</span><span class="s2">&quot;polygon&quot;</span><span class="p">)</span>
+    <span class="n">dst_layer</span> <span class="o">=</span> <span class="n">new_shp</span><span class="o">.</span><span class="n">GetLayer</span><span class="p">()</span>
+
+    <span class="c1"># create new field to define values</span>
+    <span class="n">new_field</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">FieldDefn</span><span class="p">(</span><span class="n">field_name</span><span class="p">,</span> <span class="n">ogr</span><span class="o">.</span><span class="n">OFTInteger</span><span class="p">)</span>
+    <span class="n">dst_layer</span><span class="o">.</span><span class="n">CreateField</span><span class="p">(</span><span class="n">new_field</span><span class="p">)</span>
+
+    <span class="c1"># Polygonize(band, hMaskBand[optional]=None, destination lyr, field ID, papszOptions=[], callback=None)</span>
+    <span class="n">gdal</span><span class="o">.</span><span class="n">Polygonize</span><span class="p">(</span><span class="n">raster_band</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dst_layer</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[],</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="c1"># create projection file</span>
+    <span class="n">srs</span> <span class="o">=</span> <span class="n">get_srs</span><span class="p">(</span><span class="n">raster</span><span class="p">)</span>
+    <span class="n">make_prj</span><span class="p">(</span><span class="n">out_shp_fn</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">srs</span><span class="o">.</span><span class="n">GetAuthorityCode</span><span class="p">(</span><span class="kc">None</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Success: Wrote </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">out_shp_fn</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Tips</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Polygonize</span></code> can also be run as a <a class="reference external" href="geo-raster.html#terminal">terminal command</a> with <a class="reference external" href="https://gdal.org/programs/gdal_polygonize.html"><code class="docutils literal notranslate"><span class="pre">gdal_polygonize</span></code></a>.</p></li>
+<li><p>Both the <code class="docutils literal notranslate"><span class="pre">float2int</span></code> and the <code class="docutils literal notranslate"><span class="pre">raster2polygon</span></code> functions are also available in the <a class="reference external" href="https://github.com/hydro-informatics/geo-utils/blob/master/geo_utils/geo_tools.py"><code class="docutils literal notranslate"><span class="pre">geo_utils</span></code> package (<em>geo_utils/geo_tools.py</em></a>).</p></li>
+</ul>
+</div>
+<p>Now we can use the <code class="docutils literal notranslate"><span class="pre">raster2polygon</span></code> function to convert the flow depth raster for 1000 cfs (<code class="docutils literal notranslate"><span class="pre">h001000.cfs</span></code> from the <a class="reference external" href="https://github.com/RiverArchitect/SampleData/tree/master/01_Conditions/2100_sample"><em>River Architect</em> sample datasets</a>) to a polygon shapefile:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">src_raster</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span>  <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/river-architect/h001000.tif&quot;</span>
+<span class="n">tar_shp</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/river-architect/h_poly_cls.shp&quot;</span>
+<span class="n">raster2polygon</span><span class="p">(</span><span class="n">src_raster</span><span class="p">,</span> <span class="n">tar_shp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Success: Wrote C:\Users\schwindt\jupyter\nb-lectures/geodata/river-architect/h_poly_cls.shp
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-h-polygonized.png" /></p>
+</div>
+</div>
+<div class="section" id="rasterize-vector-shapefile-to-raster">
+<span id="shp2raster"></span><h2>Rasterize (Vector Shapefile to Raster)<a class="headerlink" href="#rasterize-vector-shapefile-to-raster" title="Permalink to this headline">¶</a></h2>
+<p>Similar to <code class="docutils literal notranslate"><span class="pre">gdal.Polygonize</span></code>, <a class="reference external" href="https://gdal.org/python/osgeo.gdal-module.html#RasterizeLayer"><code class="docutils literal notranslate"><span class="pre">gdal.RasterizeLayer</span></code></a> represents a powerful option to easily convert a shapefile into a raster. More precisely, a shapefile is not really converted but burned onto a raster. That means, values stored in a field of a shapefile feature are used (burned) as pixel values in a new raster. A little attention is required to ensure that the correct values and data types are used. So let’s write a <code class="docutils literal notranslate"><span class="pre">rasterize</span></code> function that we can use robustly over and over again, avoiding potential headaches. The <code class="docutils literal notranslate"><span class="pre">rasterize</span></code> function:</p>
+<ol class="simple">
+<li><p>Open the provided input shapefile name and its layer.</p></li>
+<li><p>Reads the spatial extent of the layer.</p></li>
+<li><p>Derives the solution as a function of the spatial extent and a user-defined <code class="docutils literal notranslate"><span class="pre">pixel_size</span></code> (optional argument).</p></li>
+<li><p>Creates a new <em>GeoTIFF</em> raster using the</p>
+<ul class="simple">
+<li><p>user-defined <code class="docutils literal notranslate"><span class="pre">output_raster_file_name</span></code>,</p></li>
+<li><p>calculated x and y resolution, and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">eType</span></code> (default is <code class="docutils literal notranslate"><span class="pre">gdal.GDT_Float32</span></code> - recall all data type options listed in the <a class="reference external" href="geo-raster.html#etypes">raster section</a>.</p></li>
+</ul>
+</li>
+<li><p>Applies the geo-transformation defined by the source layer extents and the <code class="docutils literal notranslate"><span class="pre">pixel_size</span></code>.</p></li>
+<li><p>Creates one raster <code class="docutils literal notranslate"><span class="pre">band</span></code>, fills the <code class="docutils literal notranslate"><span class="pre">band</span></code> with the user-defined <code class="docutils literal notranslate"><span class="pre">no_data_value</span></code> (default is <code class="docutils literal notranslate"><span class="pre">-9999</span></code>), and sets the <code class="docutils literal notranslate"><span class="pre">no_data_value</span></code>.</p></li>
+<li><p>Sets the spatial reference system of the raster to the same as the source shapefile.</p></li>
+<li><p>Applies <code class="docutils literal notranslate"><span class="pre">gdal.RasterizeLayer</span></code> with</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dataset=target_ds</span></code> (target raster dataset),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bands=[1]</span></code> (<em>list(integer)</em> - increase to defined more raster bands and assign other values, e.g., from other fields of the source shapefile),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">layer=source_lyr</span></code> (layer with features to burn to the raster),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pfnTransformer=None</span></code> (<a class="reference external" href="https://gdal.org/python/osgeo.gdal-module.html#RasterizeLayer">read more in the <em>gdal</em> docs</a>),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pTransformArg=None</span></code> (<a class="reference external" href="https://gdal.org/python/osgeo.gdal-module.html#RasterizeLayer">read more in the <em>gdal</em> docs</a>),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">burn_values=[0]</span></code> (a default value that is burned to the raster),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">options=[&quot;ALL_TOUCHED=TRUE&quot;]</span></code> defines that all pixels touched by a polygon get the polygon’s field value - if not set: only pixels that are entirely in the polygon get a value assigned,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">options=[&quot;ATTRIBUTE=&quot;</span> <span class="pre">+</span> <span class="pre">str(kwargs.get(&quot;field_name&quot;))]</span></code> defines the field name with values to burn.</p></li>
+</ul>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rasterize</span><span class="p">(</span><span class="n">in_shp_file_name</span><span class="p">,</span> <span class="n">out_raster_file_name</span><span class="p">,</span> <span class="n">pixel_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">no_data_value</span><span class="o">=-</span><span class="mi">9999</span><span class="p">,</span>
+              <span class="n">rdtype</span><span class="o">=</span><span class="n">gdal</span><span class="o">.</span><span class="n">GDT_Float32</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts any shapefile to a raster</span>
+<span class="sd">    :param in_shp_file_name: STR of a shapefile name (with directory e.g., &quot;C:/temp/poly.shp&quot;)</span>
+<span class="sd">    :param out_raster_file_name: STR of target file name, including directory; must end on &quot;.tif&quot;</span>
+<span class="sd">    :param pixel_size: INT of pixel size (default: 10)</span>
+<span class="sd">    :param no_data_value: Numeric (INT/FLOAT) for no-data pixels (default: -9999)</span>
+<span class="sd">    :param rdtype: gdal.GDALDataType raster data type - default=gdal.GDT_Float32 (32 bit floating point)</span>
+<span class="sd">    :kwarg field_name: name of the shapefile&#39;s field with values to burn to the raster</span>
+<span class="sd">    :return: produces the shapefile defined with in_shp_file_name</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># open data source</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">source_ds</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="n">in_shp_file_name</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: Could not open </span><span class="si">%s</span><span class="s2">.&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">in_shp_file_name</span><span class="p">))</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="n">source_lyr</span> <span class="o">=</span> <span class="n">source_ds</span><span class="o">.</span><span class="n">GetLayer</span><span class="p">()</span>
+
+    <span class="c1"># read extent</span>
+    <span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="n">source_lyr</span><span class="o">.</span><span class="n">GetExtent</span><span class="p">()</span>
+
+    <span class="c1"># get x and y resolution</span>
+    <span class="n">x_res</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">x_max</span> <span class="o">-</span> <span class="n">x_min</span><span class="p">)</span> <span class="o">/</span> <span class="n">pixel_size</span><span class="p">)</span>
+    <span class="n">y_res</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">y_max</span> <span class="o">-</span> <span class="n">y_min</span><span class="p">)</span> <span class="o">/</span> <span class="n">pixel_size</span><span class="p">)</span>
+
+    <span class="c1"># create destination data source (GeoTIff raster)</span>
+    <span class="n">target_ds</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">GetDriverByName</span><span class="p">(</span><span class="s1">&#39;GTiff&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="n">out_raster_file_name</span><span class="p">,</span> <span class="n">x_res</span><span class="p">,</span> <span class="n">y_res</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">eType</span><span class="o">=</span><span class="n">rdtype</span><span class="p">)</span>
+    <span class="n">target_ds</span><span class="o">.</span><span class="n">SetGeoTransform</span><span class="p">((</span><span class="n">x_min</span><span class="p">,</span> <span class="n">pixel_size</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">pixel_size</span><span class="p">))</span>
+    <span class="n">band</span> <span class="o">=</span> <span class="n">target_ds</span><span class="o">.</span><span class="n">GetRasterBand</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">band</span><span class="o">.</span><span class="n">Fill</span><span class="p">(</span><span class="n">no_data_value</span><span class="p">)</span>
+    <span class="n">band</span><span class="o">.</span><span class="n">SetNoDataValue</span><span class="p">(</span><span class="n">no_data_value</span><span class="p">)</span>
+
+    <span class="c1"># get spatial reference system and assign to raster</span>
+    <span class="n">srs</span> <span class="o">=</span> <span class="n">get_srs</span><span class="p">(</span><span class="n">source_ds</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">srs</span><span class="o">.</span><span class="n">ImportFromEPSG</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">srs</span><span class="o">.</span><span class="n">GetAuthorityCode</span><span class="p">(</span><span class="kc">None</span><span class="p">)))</span>
+    <span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="n">target_ds</span><span class="o">.</span><span class="n">SetProjection</span><span class="p">(</span><span class="n">srs</span><span class="o">.</span><span class="n">ExportToWkt</span><span class="p">())</span>
+
+    <span class="c1"># RasterizeLayer(Dataset dataset, int bands, Layer layer, pfnTransformer=None, pTransformArg=None,</span>
+    <span class="c1"># int burn_values=0, options=None, GDALProgressFunc callback=0, callback_data=None)</span>
+    <span class="n">gdal</span><span class="o">.</span><span class="n">RasterizeLayer</span><span class="p">(</span><span class="n">target_ds</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">source_lyr</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">burn_values</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ALL_TOUCHED=TRUE&quot;</span><span class="p">,</span> <span class="s2">&quot;ATTRIBUTE=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;field_name&quot;</span><span class="p">))])</span>
+
+    <span class="c1"># release raster band</span>
+    <span class="n">band</span><span class="o">.</span><span class="n">FlushCache</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><code class="docutils literal notranslate"><span class="pre">Rasterize</span></code> can also be run as a <a class="reference external" href="geo-raster.html#terminal">terminal command</a> with <a class="reference external" href="https://gdal.org/programs/gdal_rasterize.html"><code class="docutils literal notranslate"><span class="pre">gdal_rasterize</span></code></a>.</p>
+</div>
+<p>Now we can use the <code class="docutils literal notranslate"><span class="pre">rasterize</span></code> function to convert the above polygonized flow depth polygon shapefile (<code class="docutils literal notranslate"><span class="pre">h_poly_cls.shp</span></code>) back to a raster (that is a little bit useless in practice, but an illustrative exercise). Pay attention to the data type, which is <code class="docutils literal notranslate"><span class="pre">gdal.GDT_Int32</span></code> and define the <code class="docutils literal notranslate"><span class="pre">field_name</span></code> correctly.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">src_shp</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/river-architect/h_poly_cls.shp&quot;</span>
+<span class="n">tar_ras</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span>  <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/river-architect/h_re_rastered.tif&quot;</span>
+<span class="n">rasterize</span><span class="p">(</span><span class="n">src_shp</span><span class="p">,</span> <span class="n">tar_ras</span><span class="p">,</span> <span class="n">pixel_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">rdtype</span><span class="o">=</span><span class="n">gdal</span><span class="o">.</span><span class="n">GDT_Int32</span><span class="p">,</span> <span class="n">field_name</span><span class="o">=</span><span class="s2">&quot;values&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-h-rasterized.png" /></p>
+<div class="admonition-exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Get more familiar with the conversion of rasters and shapefiles in the <a class="reference internal" href="../exercises/ex-geco.html"><span class="doc std std-doc">geospatial ecohydraulics</span></a> exercise.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "hydro-informatics/hydro-informatics.github.io",
+            ref: "gh-pages",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./jupyter"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="geo-raster.html" title="previous page">Raster (Gridded) Dataset Handling</a>
+    <a class='right-next' id="next-link" href="geo-arcpy.html" title="next page">The Commercial arcpy Library</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Sebastian Schwindt<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

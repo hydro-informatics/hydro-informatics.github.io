@@ -1,0 +1,1161 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reservoir Volume (Sequent Peak Algorithm) &#8212; Hydro-Informatics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="canonical" href="https://hydro-informatics.com/exercises/ex-sp.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Flood Return Periods" href="ex-floods.html" />
+    <link rel="prev" title="1d Hydraulics (Manning-Strickler Formula)" href="ex-ms.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/icon.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  Get Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../lectures/classroom.html">
+   The Virtual Classroom
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/lectures.html">
+     Lectures and Exercises
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/take_seat.html">
+     Take a Seat
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../get-started/software.html">
+   Software Resources
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/vm.html">
+     Virtual Machines and Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/ide.html">
+     Integrated Development Environments (IDEs)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python-basics/pyinstall.html">
+     Install Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/git.html">
+     Introduction to git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/geo.html">
+     Geospatial Software
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-openfoam.html">
+     OpenFOAM (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-telemac.html">
+     TELEMAC (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/others.html">
+     Other Software Resources
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Python Basics
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/python.html">
+   First Steps
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pybase.html">
+     Hello Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyerror.html">
+     Errors, Logging, and Debugging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyloop.html">
+     Loops and Conditional Statements
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/modularize.html">
+   Object Orientation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyfun.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pypckg.html">
+     Packages, Modules and Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/classes.html">
+     Object Orientation and Classes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/data-handling.html">
+   Data and File Handling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pynum.html">
+     Load and Write Basic Data Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/xml.html">
+     Workbooks (xlsx) and JSON
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyplot.html">
+     Plotting
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../jupyter/pystyle.html">
+   Code Style and Conventions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../jupyter/gui.html">
+   Graphical User Interfaces (GUIs)
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="python-exercises.html">
+   Python Exercises
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="ex-ms.html">
+     1d Hydraulics (Manning-Strickler Formula)
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Reservoir Volume (Sequent Peak Algorithm)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ex-floods.html">
+     Flood Return Periods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ex-sediment.html">
+     1d Sediment Transport
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ex-gui.html">
+     Create a GUI
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Geospatial Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/geospatial-data.html">
+   Geospatial Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/use-qgis.html">
+   QGIS Tutorial
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../geopy/geo-python.html">
+   Geospatial Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-pckg.html">
+     Geospatial Open Source Python Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-shp.html">
+     Shapefile (Vector Dataset) Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-raster.html">
+     Raster (Gridded) Dataset Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-convert.html">
+     Raster to Vector Conversion and Vice Versa
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-arcpy.html">
+     The Commercial arcpy Library
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="geo-exercises.html">
+   Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ex-geco.html">
+     Script a Habitat Suitability Map
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Numerical Modeling
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/numerical-modeling.html">
+   Principles
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerics/basement.html">
+   BASEMENT
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/pre-qgis-bm.html">
+     Pre-processing with QGIS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/basement2d.html">
+     Simulation Setup (Steady 2d)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerics/telemac.html">
+   TELEMAC
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/pre-slf-tm.html">
+     Pre-processing
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../numerics/telemac2d.html">
+     Telemac2d
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac2d-steady.html">
+       Steady 2d Simulation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac2d-unsteady.html">
+       Unsteady 2d Simulation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac-gaia.html">
+       Unsteady Hydro-Morphodynamic 2d Simulation (Gaia)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../numerics/telemac3d.html">
+     Telemac3d
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac3d-slf.html">
+       Telemac3d (SLF)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac3d-med.html">
+       Telemac3d (Salome-Hydro and MED)
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerics/openfoam.html">
+   OpenFOAM
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/pre-qgis-of.html">
+     Pre-processing with QGIS
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/calibration.html">
+   Calibration and Validation
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Documentation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/documentation.html">
+   Markdown and Code Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/glossary.html">
+   Glossary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/notation.html">
+   Notation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/bibliography.html">
+   References
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="docs-exercises.html">
+   Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ex-git.html">
+     Git and markdown
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Troubleshoot
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
+   Programming Tools and IDEs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
+     Debugging Anaconda
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-python.html">
+     Debugging Python Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
+     Debugging Jupyter
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
+   Numerical Models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+  <label for="toctree-checkbox-16">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
+     Debugging BASEMENT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
+     Debugging TELEMAC/SALOME
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-os.html">
+   Operating Systems (Linux and VMs)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+  <label for="toctree-checkbox-17">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
+     Debugging Debian Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
+     Debugging Virtual Machines
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Disclaimer and License
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/exercises/ex-sp.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/hydro-informatics/hydro-informatics.github.io"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#theory">
+   Theory
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pre-processing-of-flow-data">
+   Pre-processing of Flow Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#write-a-function-to-read-flow-data">
+     Write a Function to Read Flow Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convert-daily-flows-to-monthly-volumes">
+     Convert Daily Flows to Monthly Volumes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sequent-peak-algorithm">
+   Sequent Peak Algorithm
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#storage-volume-and-difference-sd-line-curves">
+     Storage Volume and Difference (SD-line) Curves
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculate-required-storage-volume">
+     Calculate Required Storage Volume
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#call-sequent-peak-algorithm">
+     Call Sequent Peak Algorithm
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#closing-remarks">
+   Closing Remarks
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="reservoir-volume-sequent-peak-algorithm">
+<h1>Reservoir Volume (Sequent Peak Algorithm)<a class="headerlink" href="#reservoir-volume-sequent-peak-algorithm" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-goals admonition">
+<p class="admonition-title">Goals</p>
+<p>Write custom functions, load data from comma-type delimited text files, and manipulate data with <em>numpy</em>. Use loops and error exceptions efficiently.</p>
+</div>
+<div class="attention admonition">
+<p class="admonition-title">Requirements</p>
+<p><em>Python</em> libraries: <a class="reference internal" href="../jupyter/pynum.html#numpy"><span class="std std-ref">NumPy</span></a> including <em>scipy</em> and <em>matplotlib</em>. Read and understand the data handling with <a class="reference internal" href="../jupyter/pynum.html#numpy"><span class="std std-ref">NumPy</span></a> and <a class="reference internal" href="../jupyter/pyfun.html"><span class="doc std std-doc">functions</span></a>.</p>
+</div>
+<p>Get ready by cloning the exercise repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ecohydraulics</span><span class="o">/</span><span class="n">Exercise</span><span class="o">-</span><span class="n">SequentPeak</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<div class="figure align-default" id="new-bullards">
+<img alt="New Bullards Bar Dam California USA Yuba River" src="https://github.com/Ecohydraulics/media/raw/master/jpg/new_bullards_bar.jpg" />
+<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">New Bullards Bar Dam in California, USA (source: Sebastian Schwindt 2017).</span><a class="headerlink" href="#new-bullards" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="theory">
+<h2>Theory<a class="headerlink" href="#theory" title="Permalink to this headline">¶</a></h2>
+<p>Seasonal storage reservoirs retain water during wet months (e.g., monsoon, or rainy winters in Mediterranean climates) to ensure sufficient drinking water and agricultural supply during dry months. For this purpose, enormous storage volumes are necessary, which often exceed 1,000,000 m<span class="math notranslate nohighlight">\(^3\)</span>.</p>
+<p>The necessary storage volume is determined from historical inflow measurements and target discharge volumes (e.g., agriculture, drinking water, hydropower, or ecological residual water quantities).
+The sequent peak algorithm <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id1339">Pot77</a>]</span> based on <span id="id2">Rippl [<a class="reference internal" href="../documentation/bibliography.html#id1340">Rip83</a>]</span> is a decades-old procedure for determining the necessary seasonal storage volume based on a storage volume curve (<em><strong>SD curve</strong></em>). The below figure shows an exemplary <span class="math notranslate nohighlight">\(SD\)</span> curve with volume peaks (local maxima) approximately every 6 months and local volume minima between the peaks. The volume between the last local maximum and the lowest following local minimum determines the required storage volume (see the bright-blue line in the figure).</p>
+<div class="figure align-default" id="sequentpeak">
+<img alt="sequent peak algorithm" src="https://github.com/Ecohydraulics/media/raw/master/png/sequent_peak.png" />
+<p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">Scheme of the sequent peak algorithm.</span><a class="headerlink" href="#sequentpeak" title="Permalink to this image">¶</a></p>
+</div>
+<p>The sequent peak algorithm repeats this calculation over multiple years and the highest volume observed determines the required volume.</p>
+<p>In this exercise, we use daily flow measurements from Vanilla River (in Vanilla-arid country with monsoon periods) and target outflow volumes to supply farmers and the population of Vanilla-arid country with sufficient water during the dry seasons. This exercise guides you through loading the daily discharge data, creating the monthly <span class="math notranslate nohighlight">\(SD\)</span> (storage) curve, and calculating the required storage volume.</p>
+</div>
+<div class="section" id="pre-processing-of-flow-data">
+<h2>Pre-processing of Flow Data<a class="headerlink" href="#pre-processing-of-flow-data" title="Permalink to this headline">¶</a></h2>
+<p>The daily flow data of the Vanilla River are available from 1979 through 2001 in the form of <code class="docutils literal notranslate"><span class="pre">.csv</span></code> files (<a class="reference external" href="https://github.com/Ecohydraulics/Exercise-SequentPeak/tree/master/flows"><code class="docutils literal notranslate"><span class="pre">flows</span></code> folder</a>).</p>
+<div class="section" id="write-a-function-to-read-flow-data">
+<h3>Write a Function to Read Flow Data<a class="headerlink" href="#write-a-function-to-read-flow-data" title="Permalink to this headline">¶</a></h3>
+<p>The function will loop over the <em>csv</em> file names and append the file contents to a dictionary of <em>numpy</em> arrays. Make sure to <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">numpy</span> <span class="pre">as</span> <span class="pre">np</span></code>, <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">os</span></code>, and <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">glob</span></code>.</p>
+<ul class="simple">
+<li><p>Choose a function name (e.g., <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">read_data(args):</span></code>) and use the following input arguments:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">directory</span></code>: <em>string</em> of a path to files</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fn_prefix</span></code>: <em>string</em> of file prefix to strip dict-keys from a file name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fn_suffix</span></code>: <em>string</em> of file suffix to strip dict-keys from a file name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ftype</span></code>: <em>string</em> of file endings</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">delimiter</span></code>: <em>string</em> of column separator</p></li>
+</ul>
+</li>
+<li><p>In the function, test if the provided directory ends on <code class="docutils literal notranslate"><span class="pre">&quot;/&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;\\&quot;</span></code> with <br> <code class="docutils literal notranslate"><span class="pre">directory.endswith(&quot;/&quot;)</span> <span class="pre">or</span> <span class="pre">directory.endswith(&quot;\\&quot;)</span></code><br>and read all files that end with <code class="docutils literal notranslate"><span class="pre">ftype</span></code> (we will use <code class="docutils literal notranslate"><span class="pre">ftype=&quot;csv&quot;</span></code> here) with the <code class="docutils literal notranslate"><span class="pre">glob</span></code> library:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">True:</span></code> get the the <em>csv</em> (<code class="docutils literal notranslate"><span class="pre">ftype</span></code>) file list as <br> <code class="docutils literal notranslate"><span class="pre">file_list</span> <span class="pre">=</span> <span class="pre">glob.glob(directory</span> <span class="pre">+</span> <span class="pre">&quot;*.&quot;</span> <span class="pre">+</span> <span class="pre">ftype.strip(&quot;.&quot;)</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">False:</span></code> get the the <em>csv</em> (<code class="docutils literal notranslate"><span class="pre">ftype</span></code>) file list as <br> <code class="docutils literal notranslate"><span class="pre">file_list</span> <span class="pre">=</span> <span class="pre">glob.glob(directory</span> <span class="pre">+</span> <span class="pre">&quot;/*.&quot;</span> <span class="pre">+</span> <span class="pre">ftype.strip(&quot;.&quot;)</span></code> (the difference is only one powerful <code class="docutils literal notranslate"><span class="pre">&quot;/&quot;</span></code> sign).</p></li>
+</ul>
+</li>
+<li><p>Create the void dictionary that will contain the file contents as <em>numpy</em> arrays: <code class="docutils literal notranslate"><span class="pre">file_content_dict</span> <span class="pre">=</span> <span class="pre">{}</span></code></p></li>
+<li><p>Loop over all files in the file list with <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">file</span> <span class="pre">in</span> <span class="pre">file_list:</span></code></p>
+<ul>
+<li><p>Generate a key for <code class="docutils literal notranslate"><span class="pre">file_content_dict</span></code>:</p>
+<ul>
+<li><p>Detach the file name from the <code class="docutils literal notranslate"><span class="pre">file</span></code> (directory + file name + file ending <code class="docutils literal notranslate"><span class="pre">ftype</span></code>) with <code class="docutils literal notranslate"><span class="pre">raw_file_name</span> <span class="pre">=</span> <span class="pre">file.split(&quot;/&quot;)[-1].split(&quot;\\&quot;)[-1].split(&quot;.csv&quot;)[0]</span></code></p></li>
+<li><p>Strip the user-defined <code class="docutils literal notranslate"><span class="pre">fn_prefix</span></code> and <code class="docutils literal notranslate"><span class="pre">fn_suffix</span></code> <em>strings</em> from the raw file name and use a <code class="docutils literal notranslate"><span class="pre">try:</span></code> statement to convert the remaining characters to a numeric value: <code class="docutils literal notranslate"><span class="pre">int(raw_file_name.strip(fn_prefix).strip(fn_suffix)</span></code></p></li>
+<li><p>*Note: We will use later on <code class="docutils literal notranslate"><span class="pre">fn_prefix=&quot;daily_flows_</span></code> and <code class="docutils literal notranslate"><span class="pre">fn_suffix=&quot;&quot;</span></code> to turn the year contained in the <em>csv</em> file names to the key in <code class="docutils literal notranslate"><span class="pre">file_content_dict</span></code>.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">except</span> <span class="pre">ValueError:</span></code> in the case that the remaining <em>string</em> cannot be converted to <code class="docutils literal notranslate"><span class="pre">int</span></code>: <code class="docutils literal notranslate"><span class="pre">dict_key</span> <span class="pre">=</span> <span class="pre">raw_file_name.strip(fn_prefix).strip(fn_suffix)</span></code> (if everything is well coded, the script will not need to jump into this exception statement later).</p></li>
+</ul>
+</li>
+<li><p>Open the <code class="docutils literal notranslate"><span class="pre">file</span></code> (full directory) as a file: <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">open(file,</span> <span class="pre">mode=&quot;r&quot;)</span> <span class="pre">as</span> <span class="pre">f:</span></code></p>
+<ul>
+<li><p>Read the file content with <code class="docutils literal notranslate"><span class="pre">f_content</span> <span class="pre">=</span> <span class="pre">f.read()</span></code>. The <em>string</em>  variable <code class="docutils literal notranslate"><span class="pre">f_content</span></code> will look similar to something like <code class="docutils literal notranslate"><span class="pre">&quot;;0;0;0;0;0;0;0;0;0;2.1;0;0\n;0;0;0;0;0;0;0;0;0;6.4;0;0\n;0;0;0;0;9.9;0;0;0;0;0.2;0;0\n...&quot;</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Some <em>string</em> explanations</p>
+<p>The column data are delimited by a <code class="docutils literal notranslate"><span class="pre">&quot;;&quot;</span></code> and every column represents one value per month (i.e., 12 values per row). The rows denote days (i.e., there are 31 rows in each file corresponding to the maximum number of days in one month of a year). In consequence, every row should contain 11 <code class="docutils literal notranslate"><span class="pre">&quot;;&quot;</span></code> signs to separate 12 columns and the entire file (<code class="docutils literal notranslate"><span class="pre">f_content</span></code>) should contain 30 <code class="docutils literal notranslate"><span class="pre">&quot;\n&quot;</span></code> signs to separate 31 rows. However, we count 12 <code class="docutils literal notranslate"><span class="pre">&quot;;&quot;</span></code> signs per row and 32 to 33 <code class="docutils literal notranslate"><span class="pre">&quot;\n&quot;</span></code> signs in <code class="docutils literal notranslate"><span class="pre">f_content</span></code> because the data logger wrote <code class="docutils literal notranslate"><span class="pre">&quot;;&quot;</span></code> at the beginning of each row and added one to two more empty lines to the end of every file. Therefore, we need to <code class="docutils literal notranslate"><span class="pre">strip()</span></code> the bad <code class="docutils literal notranslate"><span class="pre">&quot;;&quot;</span></code> and  <code class="docutils literal notranslate"><span class="pre">&quot;\n&quot;</span></code> signs in the following.</p>
+</div>
+<ul class="simple">
+<li><p>To get the number of (valid) rows in every file use <code class="docutils literal notranslate"><span class="pre">rows</span> <span class="pre">=</span> <span class="pre">f_content.strip(&quot;\n&quot;).split(&quot;\n&quot;).__len__()</span></code></p></li>
+<li><p>To get the number of (valid) columns in every file use <code class="docutils literal notranslate"><span class="pre">cols</span> <span class="pre">=</span> <span class="pre">f_content.strip(&quot;\n&quot;).split(&quot;\n&quot;)[0].strip(delimiter).split(delimiter).__len__()</span></code></p></li>
+<li><p>Now we can create a void <em>numpy</em> array of the size (shape) corresponding to the number of valid rows and columns in every file: <code class="docutils literal notranslate"><span class="pre">data_array</span> <span class="pre">=</span> <span class="pre">np.empty((rows,</span> <span class="pre">cols),</span> <span class="pre">dtype=np.float32)</span></code></p></li>
+<li><p><em>Why are we not using directly <code class="docutils literal notranslate"><span class="pre">np.empty((31,</span> <span class="pre">12)</span></code> even though the shape of all files is the same?<br>We want to write a generally valid function and the two lines for deriving the valid number of rows and columns do the generalization job.</em></p></li>
+<li><p>Next, we need to parse the values of every line and append them to the until now void <code class="docutils literal notranslate"><span class="pre">data_array</span></code>. Therefore, we split <code class="docutils literal notranslate"><span class="pre">f_content</span></code> into its lines with <code class="docutils literal notranslate"><span class="pre">split(&quot;\n)</span></code> and use a <em>for</em> loop: <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">iteration,</span> <span class="pre">line</span> <span class="pre">in</span> <span class="pre">enumerate(f_content.strip(&quot;\n&quot;).split(&quot;\n&quot;):</span></code>. Then,<br> Create an empty list to store line data <code class="docutils literal notranslate"><span class="pre">line_data</span> <span class="pre">=</span> <span class="pre">[]</span></code>. <br>In another <em>for</em> loop, strip and split the line by the user-defined <code class="docutils literal notranslate"><span class="pre">delimiter</span></code> (recall: we will use <code class="docutils literal notranslate"><span class="pre">delimiter=&quot;;&quot;</span></code>) <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">e</span> <span class="pre">in</span> <span class="pre">line.strip(delimiter).split(delimiter):</span></code>. In the <em>e-for</em> loop, <code class="docutils literal notranslate"><span class="pre">try:</span></code> to append <code class="docutils literal notranslate"><span class="pre">e</span></code> as a <em>float</em> number <code class="docutils literal notranslate"><span class="pre">line_data.append(np.float(e)</span></code> and use <code class="docutils literal notranslate"><span class="pre">except</span> <span class="pre">ValueError:</span></code> to <code class="docutils literal notranslate"><span class="pre">line_data.append(np.nan)</span></code> (i.e., append a not-a-number value that we will need because not all months have 31 days).<br>End the <em>e-for</em> loop by back-indenting to the <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">iteration,</span> <span class="pre">line</span> <span class="pre">in</span> <span class="pre">...</span></code> loop and appending the <code class="docutils literal notranslate"><span class="pre">line_data</span></code> <em>list</em> as a <em>numpy</em> array to <code class="docutils literal notranslate"><span class="pre">data_array</span></code>: <code class="docutils literal notranslate"><span class="pre">data_array[iteration]</span> <span class="pre">=</span> <span class="pre">np.array(line_data)</span></code></p></li>
+<li><p>Back in the <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">open(file,</span> <span class="pre">...</span></code> statement (use correct indentation level!), update <code class="docutils literal notranslate"><span class="pre">file_content_dict</span></code> with the above-found <code class="docutils literal notranslate"><span class="pre">dict_key</span></code> and the <code class="docutils literal notranslate"><span class="pre">data_array</span></code> of the <code class="docutils literal notranslate"><span class="pre">file</span> <span class="pre">as</span> <span class="pre">f</span></code>: <code class="docutils literal notranslate"><span class="pre">file_content_dict.update({dict_key:</span> <span class="pre">data_array})</span></code></p></li>
+</ul>
+<ul class="simple">
+<li><p>Back at the level of the function (<code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">read_data(...):</span></code> - pay attention to the correct indentation!), <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">file_content_dict</span></code></p></li>
+</ul>
+<p>Check if the function works as wanted and follow the instruction in the <a class="reference internal" href="../jupyter/pypckg.html#standalone"><span class="std std-ref">Make Script Stand-alone</span></a> section to implement an <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;:</span></code> statement at the end of the file. Thus, the script should look similar to the following code block:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="k">def</span> <span class="nf">read_data</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">fn_prefix</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">fn_suffix</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">ftype</span><span class="o">=</span><span class="s2">&quot;csv&quot;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">):</span>
+    <span class="c1"># see above</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># LOAD DATA</span>
+    <span class="n">file_directory</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">flows</span><span class="se">\\</span><span class="s2">&quot;</span>
+    <span class="n">daily_flow_dict</span> <span class="o">=</span> <span class="n">read_data</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="n">file_directory</span><span class="p">,</span> <span class="n">ftype</span><span class="o">=</span><span class="s2">&quot;csv&quot;</span><span class="p">,</span>
+                                <span class="n">fn_prefix</span><span class="o">=</span><span class="s2">&quot;daily_flows_&quot;</span><span class="p">,</span> <span class="n">fn_suffix</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+                                <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">daily_flow_dict</span><span class="p">[</span><span class="mi">1995</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Running the script returns the <code class="docutils literal notranslate"><span class="pre">numpy.array</span></code> of daily average flows for the year 1995:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="p">[[</span>  <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="mf">4.</span>    <span class="mf">0.</span>   <span class="mf">14.2</span>   <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>   <span class="mf">81.7</span>   <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>   <span class="mf">19.7</span>   <span class="mf">0.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="mf">0.</span>   <span class="mf">19.8</span>   <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">4.8</span>   <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>   <span class="mf">77.2</span>   <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>   <span class="mf">10.2</span>   <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>   <span class="mf">12.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>  <span class="mf">671.8</span><span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">4.6</span>   <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>   <span class="mf">34.2</span>   <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">6.3</span>   <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>   <span class="mf">25.3</span>   <span class="mf">0.</span>    <span class="mf">0.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">5.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>   <span class="mf">98.7</span>   <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>   <span class="mf">22.1</span>   <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="n">nan</span>   <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="n">nan</span>   <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="mf">0.</span> <span class="p">]</span>
+     <span class="p">[</span>  <span class="mf">0.</span>    <span class="n">nan</span>   <span class="mf">0.</span>    <span class="n">nan</span>   <span class="mf">0.</span>    <span class="n">nan</span>   <span class="mf">0.</span>    <span class="mf">0.</span>    <span class="n">nan</span>   <span class="mf">0.</span>    <span class="n">nan</span>   <span class="mf">0.</span> <span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="convert-daily-flows-to-monthly-volumes">
+<h3>Convert Daily Flows to Monthly Volumes<a class="headerlink" href="#convert-daily-flows-to-monthly-volumes" title="Permalink to this headline">¶</a></h3>
+<p>The sequent peak algorithm takes monthly flow volumes, which corresponds to the sum of daily average discharge multiplied with the duration of one day (e.g, 11.0 m<span class="math notranslate nohighlight">\(^3\)</span>/s <span class="math notranslate nohighlight">\(\cdot\)</span> 24 h/d <span class="math notranslate nohighlight">\(\cdot\)</span> 3600 s/h). Reading the flow data as above shown results in annual flow tables (average daily flows in m<span class="math notranslate nohighlight">\(^3\)</span>/s) with the <code class="docutils literal notranslate"><span class="pre">numpy.array</span></code>s of the shape 31x12 arrays (matrices) for every year. We want to get the column sums and multiply the sum with 24 h/d <span class="math notranslate nohighlight">\(\cdot\)</span> 3600 s/h. Because the monthly volumes are in the order of million cubic meters (CMS), dividing the monthly sums by <code class="docutils literal notranslate"><span class="pre">10**6</span></code> will simplify the representation of numbers.</p>
+<p>Write a function (e.g., <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">daily2monthly(daily_flow_series)</span></code>) to perform the conversion of daily average flow series to monthly volumes in 10<span class="math notranslate nohighlight">\(^{6}\)</span>m<span class="math notranslate nohighlight">\(^3\)</span>:</p>
+<ol class="simple">
+<li><p>The function should be called for every dictionary entry (year) of the data series. Therefore, the input argument <code class="docutils literal notranslate"><span class="pre">daily_flow_series</span></code> should be a <code class="docutils literal notranslate"><span class="pre">numpy.array</span></code> with the shape being <code class="docutils literal notranslate"><span class="pre">(31,</span> <span class="pre">12)</span></code>.</p></li>
+<li><p>To get column-wise (monthly) statistics, transpose the input array:<br><code class="docutils literal notranslate"><span class="pre">daily_flow_series</span> <span class="pre">=</span> <span class="pre">np.transpose(daily_flow_series)</span></code></p></li>
+<li><p>Create a void list to store monthly flow values:<br><code class="docutils literal notranslate"><span class="pre">monthly_stats</span> <span class="pre">=</span> <span class="pre">[]</span></code></p></li>
+<li><p>Loop over the row of the (transposed) <code class="docutils literal notranslate"><span class="pre">daily_flow_series</span></code> and append the sum multiplied by <code class="docutils literal notranslate"><span class="pre">24</span> <span class="pre">*</span> <span class="pre">3600</span> <span class="pre">/</span> <span class="pre">10**6</span></code> to <code class="docutils literal notranslate"><span class="pre">monthly_stats</span></code>:<br><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">daily_flows_per_month</span> <span class="pre">in</span> <span class="pre">daily_flow_series:</span></code><br><code class="docutils literal notranslate">&#160;&#160;&#160; <span class="pre">monthly_stats.append(np.nansum(daily_flows_per_month</span> <span class="pre">*</span> <span class="pre">24</span> <span class="pre">*</span> <span class="pre">3600)</span> <span class="pre">/</span> <span class="pre">10**6)</span></code></p></li>
+<li><p>Return <code class="docutils literal notranslate"><span class="pre">monthly_stats</span></code> as <code class="docutils literal notranslate"><span class="pre">numpy.array</span></code>:<br><code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">np.array(monthly_stats)</span></code></p></li>
+</ol>
+<p>Using a for loop, we can now write the monthly volumes similar to the daily flows into a dictionary, which we extend by one year at a time within the <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;</span></code> statement:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">...</span>
+
+
+<span class="k">def</span> <span class="nf">read_data</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">fn_prefix</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">fn_suffix</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">ftype</span><span class="o">=</span><span class="s2">&quot;csv&quot;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">):</span>
+    <span class="c1"># see above section</span>
+
+
+<span class="k">def</span> <span class="nf">daily2monthly</span><span class="p">(</span><span class="n">daily_flow_series</span><span class="p">):</span>
+    <span class="c1"># see above descriptions</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># LOAD DATA</span>
+    <span class="o">...</span>
+    <span class="c1"># CONVERT DAILY TO MONTHLY DATA</span>
+    <span class="n">monthly_vol_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">year</span><span class="p">,</span> <span class="n">flow_array</span> <span class="ow">in</span> <span class="n">daily_flow_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">monthly_vol_dict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">year</span><span class="p">:</span> <span class="n">daily2monthly</span><span class="p">(</span><span class="n">flow_array</span><span class="p">)})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="sequent-peak-algorithm">
+<h2>Sequent Peak Algorithm<a class="headerlink" href="#sequent-peak-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>With the above routines for reading the flow data, we derived monthly inflow volumes <span class="math notranslate nohighlight">\(In_{m}\)</span> in million m<span class="math notranslate nohighlight">\(^3\)</span> (stored in <code class="docutils literal notranslate"><span class="pre">monthly_vol_dict</span></code>). For irrigation and drinking water supply, Vanilla-arid country wants to withdraw the following annual volume from the reservoir:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><em><strong>Month</strong></em></p></th>
+<th class="head"><p>Jan</p></th>
+<th class="head"><p>Feb</p></th>
+<th class="head"><p>Mar</p></th>
+<th class="head"><p>Apr</p></th>
+<th class="head"><p>May</p></th>
+<th class="head"><p>Jun</p></th>
+<th class="head"><p>Jul</p></th>
+<th class="head"><p>Aug</p></th>
+<th class="head"><p>Sep</p></th>
+<th class="head"><p>Oct</p></th>
+<th class="head"><p>Nov</p></th>
+<th class="head"><p>Dec</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><em><strong>Vol.</strong></em> (10<span class="math notranslate nohighlight">\(^{6}\)</span> m<span class="math notranslate nohighlight">\(^3\)</span>)</p></td>
+<td><p>1.5</p></td>
+<td><p>1.5</p></td>
+<td><p>1.5</p></td>
+<td><p>2</p></td>
+<td><p>4</p></td>
+<td><p>4</p></td>
+<td><p>4</p></td>
+<td><p>5</p></td>
+<td><p>5</p></td>
+<td><p>3</p></td>
+<td><p>2</p></td>
+<td><p>1.5</p></td>
+</tr>
+</tbody>
+</table>
+<p>Following the scheme of inflow volumes we can create a <code class="docutils literal notranslate"><span class="pre">numpy.array</span></code> for the monthly outflow volumes <span class="math notranslate nohighlight">\(Out_{m}\)</span>.<br></p>
+<p><code class="docutils literal notranslate"><span class="pre">monthly_supply</span> <span class="pre">=</span> <span class="pre">np.array([1.5,</span> <span class="pre">1.5,</span> <span class="pre">1.5,</span> <span class="pre">2.0,</span> <span class="pre">4.0,</span> <span class="pre">4.0,</span> <span class="pre">4.0,</span> <span class="pre">5.0,</span> <span class="pre">5.0,</span> <span class="pre">3.0,</span> <span class="pre">2.0,</span> <span class="pre">1.5])</span></code></p>
+<div class="section" id="storage-volume-and-difference-sd-line-curves">
+<h3>Storage Volume and Difference (SD-line) Curves<a class="headerlink" href="#storage-volume-and-difference-sd-line-curves" title="Permalink to this headline">¶</a></h3>
+<p>The storage volume of the present month <span class="math notranslate nohighlight">\(S_{m}\)</span> is calculated as the result of the water balance from the last month, for example:<br></p>
+<p><span class="math notranslate nohighlight">\(S_{2}\)</span> = <span class="math notranslate nohighlight">\(S_{1}\)</span> + <span class="math notranslate nohighlight">\(In_{1}\)</span> - <span class="math notranslate nohighlight">\(Out_{1}\)</span><br>
+<span class="math notranslate nohighlight">\(S_{3}\)</span> = <span class="math notranslate nohighlight">\(S_{2}\)</span> + <span class="math notranslate nohighlight">\(In_{2}\)</span> - <span class="math notranslate nohighlight">\(Out_{2}\)</span> = <span class="math notranslate nohighlight">\(S_{1}\)</span> + <span class="math notranslate nohighlight">\(In_{1}\)</span> + <span class="math notranslate nohighlight">\(In_{2}\)</span> - <span class="math notranslate nohighlight">\(Out_{1}\)</span> - <span class="math notranslate nohighlight">\(Out_{2}\)</span><br></p>
+<p>In summation notation, we can write:</p>
+<p><span class="math notranslate nohighlight">\(S_{m+1} = S_{1} + \Sigma_{i=[1:m]} In_{i} - \Sigma_{i=[1:m]}Out_{i}\)</span></p>
+<p>The last two terms constitute the storage difference (<span class="math notranslate nohighlight">\(SD\)</span>) line:</p>
+<p><span class="math notranslate nohighlight">\(SD_{m} = \Sigma_{i=[1:m]}(In_{i} - Out_{i})\)</span></p>
+<p>Thus, the storage curve as a function of the <span class="math notranslate nohighlight">\(SD\)</span> line is:</p>
+<p><span class="math notranslate nohighlight">\(S_{m+1} = S_{1} + SD_{m}\)</span></p>
+<p>The summation notation of the storage curve as a function of the <span class="math notranslate nohighlight">\(SD\)</span> line enables us to implement the calculation into a simple <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">sequent_peak(in_vol_series,</span> <span class="pre">out_vol_target):</span></code> function.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following instructions assume that <code class="docutils literal notranslate"><span class="pre">in_vol_series</span></code> corresponds to the above-defined <em>dictionary</em> of monthly inflow volumes and <code class="docutils literal notranslate"><span class="pre">out_vol_target</span></code> is the <code class="docutils literal notranslate"><span class="pre">numpy.array</span></code> of monthly outflow target volumes. Alternatively, an approach that uses <code class="docutils literal notranslate"><span class="pre">in_vol_series</span></code> as a sequence of <code class="docutils literal notranslate"><span class="pre">numpy.array</span></code>s can be used.</p>
+</div>
+<p>The new <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">sequent_peak(in_vol_series,</span> <span class="pre">out_vol_target):</span></code> function needs to:</p>
+<ul class="simple">
+<li><p>Calculate the monthly storage differences (<span class="math notranslate nohighlight">\(In_{m}\)</span> - <span class="math notranslate nohighlight">\(Out_{m}\)</span>), for example in a <em>for</em> loop over the <code class="docutils literal notranslate"><span class="pre">in_vol_series</span></code> dictionary:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># create storage-difference SD dictionary</span>
+    <span class="n">SD_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">year</span><span class="p">,</span> <span class="n">monthly_volume</span> <span class="ow">in</span> <span class="n">in_vol_series</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="c1"># add a new dictionary entry for every year</span>
+        <span class="n">SD_dict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">year</span><span class="p">:</span> <span class="p">[]})</span>
+        <span class="k">for</span> <span class="n">month_no</span><span class="p">,</span> <span class="n">in_vol</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">monthly_volume</span><span class="p">):</span>
+            <span class="c1"># append one list entry per month (i.e., In_m - Out_m)</span>
+            <span class="n">SD_dict</span><span class="p">[</span><span class="n">year</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">in_vol</span> <span class="o">-</span> <span class="n">out_vol_target</span><span class="p">[</span><span class="n">month_no</span><span class="p">])</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Flatten the dictionary to a list (we could also have done that directly) corresponding to the above-defined <span class="math notranslate nohighlight">\(SD\)</span> line:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">SD_line</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">SD_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">vol</span> <span class="ow">in</span> <span class="n">SD_dict</span><span class="p">[</span><span class="n">year</span><span class="p">]:</span>
+            <span class="n">SD_line</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vol</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Calculate the storage line with <code class="docutils literal notranslate"><span class="pre">storage_line</span> <span class="pre">=</span> <span class="pre">np.cumsum(SD_line)</span></code></p></li>
+<li><p>Find local extrema and there are two (and more) options:</p>
+<ol class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">scipy.signal</span> <span class="pre">import</span> <span class="pre">argrelextrema</span></code> and get the indices (positions of) local extrema and their value from the <code class="docutils literal notranslate"><span class="pre">storage_line</span></code>:<br>
+<code class="docutils literal notranslate"><span class="pre">seas_max_index</span> <span class="pre">=</span> <span class="pre">np.array(argrelextrema(storage_line,</span> <span class="pre">np.greater,</span> <span class="pre">order=12)[0])</span></code> <br>
+<code class="docutils literal notranslate"><span class="pre">seas_min_index</span> <span class="pre">=</span> <span class="pre">np.array(argrelextrema(storage_line,</span> <span class="pre">np.less,</span> <span class="pre">order=12)[0])</span></code> <br>
+<code class="docutils literal notranslate"><span class="pre">seas_max_vol</span> <span class="pre">=</span> <span class="pre">np.take(storage_line,</span> <span class="pre">seas_max_index)</span></code> <br>
+<code class="docutils literal notranslate"><span class="pre">seas_min_vol</span> <span class="pre">=</span> <span class="pre">np.take(storage_line,</span> <span class="pre">seas_min_index)</span></code> <br></p></li>
+<li><p>Write two functions, which consecutively find local maxima and then local minima located between the extrema (HOMEWORK!) OR use <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">scipy.signal</span> <span class="pre">import</span> <span class="pre">find_peaks</span></code> to find the indices (positions) - consider to write a <code class="docutils literal notranslate"><span class="pre">find_seasonal_extrema(storage_line)</span></code> function.</p></li>
+</ol>
+</li>
+<li><p>Make sure that the curves and extrema are correct by copying the provided <code class="docutils literal notranslate"><span class="pre">plot_storage_curve</span></code> curve to your script (<a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/Exercise-SequentPeak/master/plot_function.py">available in the exercise repository</a>) and using it as follows:<br><code class="docutils literal notranslate"><span class="pre">plot_storage_curve(storage_line,</span> <span class="pre">seas_min_index,</span> <span class="pre">seas_max_index,</span> <span class="pre">seas_min_vol,</span> <span class="pre">seas_max_vol)</span></code></p></li>
+</ul>
+<div class="figure align-default" id="sdline">
+<img alt="sequent peak storage difference sd curve" src="https://github.com/Ecohydraulics/media/raw/master/png/storage_curve.png" />
+<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">Storage Difference (SD) curve.</span><a class="headerlink" href="#sdline" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="calculate-required-storage-volume">
+<h3>Calculate Required Storage Volume<a class="headerlink" href="#calculate-required-storage-volume" title="Permalink to this headline">¶</a></h3>
+<p>The required storage volume corresponds to the largest difference between a local maximum and its consecutive lowest local minimum. Therefore, add the following lines to the <code class="docutils literal notranslate"><span class="pre">sequent_peak</span></code> function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">required_volume</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">vol</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">seas_max_vol</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">vol</span> <span class="o">-</span> <span class="n">seas_min_vol</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&gt;</span> <span class="n">required_volume</span><span class="p">:</span>
+                <span class="n">required_volume</span> <span class="o">=</span> <span class="n">vol</span> <span class="o">-</span> <span class="n">seas_min_vol</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reached end of storage line.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Close the <code class="docutils literal notranslate"><span class="pre">sequent_peak</span></code> function with <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">required_volume</span></code></p>
+</div>
+<div class="section" id="call-sequent-peak-algorithm">
+<h3>Call Sequent Peak Algorithm<a class="headerlink" href="#call-sequent-peak-algorithm" title="Permalink to this headline">¶</a></h3>
+<p>With all required functions written, the last task is to call the functions in the <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;</span></code> statement:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">...</span>
+
+
+<span class="k">def</span> <span class="nf">read_data</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">fn_prefix</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">fn_suffix</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">ftype</span><span class="o">=</span><span class="s2">&quot;csv&quot;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">):</span>
+    <span class="c1"># see above section</span>
+
+
+<span class="k">def</span> <span class="nf">daily2monthly</span><span class="p">(</span><span class="n">daily_flow_series</span><span class="p">):</span>
+    <span class="c1"># see above section</span>
+
+
+<span class="k">def</span> <span class="nf">sequent_peak</span><span class="p">(</span><span class="n">in_vol_series</span><span class="p">,</span> <span class="n">out_vol_target</span><span class="p">):</span>
+    <span class="c1"># see above descriptions</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># LOAD DATA</span>
+    <span class="o">...</span>
+    <span class="c1"># CONVERT DAILY TO MONTHLY DATA</span>
+    <span class="o">...</span>
+    <span class="c1"># MAKE ARRAY OF MONTHLY SUPPLY VOLUMES (IN MILLION CMS)</span>
+    <span class="n">monthly_supply</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">])</span>
+    <span class="c1"># GET REQUIRED STORAGE VOLUME FROM SEQUENT PEAK ALGORITHM</span>
+    <span class="n">required_storage</span> <span class="o">=</span> <span class="n">sequent_peak</span><span class="p">(</span><span class="n">in_vol_series</span><span class="o">=</span><span class="n">monthly_vol_dict</span><span class="p">,</span> <span class="n">out_vol_target</span><span class="o">=</span><span class="n">monthly_supply</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The required storage volume is </span><span class="si">%0.2f</span><span class="s2"> million CMS.&quot;</span> <span class="o">%</span> <span class="n">required_storage</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="closing-remarks">
+<h2>Closing Remarks<a class="headerlink" href="#closing-remarks" title="Permalink to this headline">¶</a></h2>
+<p>The usage of the sequent peak algorithm (also known as <em>Rippl’s method</em>, owing to its original author) has evolved and was implemented in sophisticated storage volume control algorithms with predictor models (statistical and/or numerical).</p>
+<p>In the end, there are several algorithms and ways to code them. Many factors (e.g. terrain or climate zone) determine whether seasonal storage is possible or necessary. When determining the storage volume, social and environmental aspects must not be neglected. Every grain of sediment retained is missing in downstream sections of the river, every fish that is no longer able to migrate suffers a loss in habitat, and more than anything else, every inhabitant who suffers economic losses or is even forced to resettle because of the dam must be avoided or adequately compensated.</p>
+<div class="admonition-homework admonition">
+<p class="admonition-title">Homework</p>
+<p>Re-write the peak (extrema) analysis either with two consecutive functions or using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.find_peaks.html"><code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">scipy.signal</span> <span class="pre">import</span> <span class="pre">find_peaks</span></code></a>.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "hydro-informatics/hydro-informatics.github.io",
+            ref: "gh-pages",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./exercises"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="ex-ms.html" title="previous page">1d Hydraulics (Manning-Strickler Formula)</a>
+    <a class='right-next' id="next-link" href="ex-floods.html" title="next page">Flood Return Periods</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Sebastian Schwindt<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
