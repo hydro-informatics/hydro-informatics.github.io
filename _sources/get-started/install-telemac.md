@@ -180,7 +180,7 @@ sudo apt install gfortran
 ````
 
 ### Compilers and Other Essentials
-
+***Estimated duration: 2-5 minutes.***
 To enable parallelism, a *C* compiler is required for recognition of the command `cmake` in *Terminal*. Moreover, we will need `build-essential` for building packages and create a comfortable environment for `dialog`ues. [VIM](https://www.vim.org/) is a text editor that we will use for bash file editing. Therefore, open *Terminal* (as root/superuser, i.e., type `su`) and type:
 
 ```
@@ -189,7 +189,7 @@ sudo apt install -y cmake build-essential dialog vim
 
 
 ### Download TELEMAC
-
+***Estimated duration: 15-30 minutes.***
 We will need more packages to enable parallelism and compiling, but before installing them, download the latest version of TELEMAC through subversion (`svn`). The developers (irregularly) inform about the newest public release on [their website](http://www.opentelemac.org/index.php/latest-news-development-and-distribution) and the latest absolute latest release can be read from the [svn-tags website](http://svn.opentelemac.org/svn/opentelemac/tags/) (use with passwords in the below command line block). To download* TELEMAC, open *Terminal* in the *Home* directory (either use `cd` or use the *Files* browser to navigate to the *Home* directory and right-click in the empty space to open *Terminal*) and type (enter `no` when asked for password encryption):
 
 ```
@@ -210,8 +210,9 @@ This section guides through the installation of additional packages required for
     + Hdf5
     + MEDFichier
 
-```{tip}
-The newest versions of Hdf5, MEDFichier, Metis, AED2, and many more are included and compiled in the [SALOME-HYDRO](#salome-hydro) installer. Thus, consider installing *SALOME-HYDRO* before installing TELEMAC and just copy relevant, compiled libraries from the directory `~/SALOME-HYDRO/Salome-V2_2-s9/prerequisites/` to `~/telemac/v8p2/optionals/`. In this case, it is sufficient to install *open MPI* as below described and then go directly to the [compiling section](#compile), where the optionals-folder names need to be adapted.
+```{admonition} Use SALOME-HYDRO's MED, Metis, and AED2 libraries
+:class: tip
+The newest versions of Hdf5, MEDFichier, Metis, AED2, and many more are included and compiled in the [SALOME-HYDRO](#salome-hydro) installer. Thus, consider installing *SALOME-HYDRO* before installing TELEMAC and just copy relevant, compiled libraries from the directory `~/SALOME-HYDRO/Salome-V2_2-s9/prerequisites/` to `~/telemac/v8p2/optionals/`. In this case, it is sufficient to install *open MPI* as below described and then go directly to the {ref}`compile-tm` section, where the optionals-folder names need to be adapted.
 ```
 
 (mpi)=
@@ -245,8 +246,7 @@ This tutorial uses the configuration file `systel.cis-debian.cfg`, which include
 
 Metis is a software package for partitioning unstructured graphs, partitioning meshes, and computing fill-reducing orderings of sparse matrices by George Karypis. TELEMAC uses *Metis* as a part of *Partel* to split the mesh into multiple parts for parallel runs. Learn more about *Metis* and potentially newer versions than `5.1.0` (used in the following) on the [Karypis Lab website](http://glaros.dtc.umn.edu/gkhome/metis/metis/download) or reading the [PDF manual](http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/manual.pdf).
 
-````{admonition} If TELEMAC/OPTIONALS/METIS does not exist...
-:class: attention, dropdown
+
 Download the *Metis* archive and unpack it in a temporary (`temp`) directory. The following code block changes to the `optionals` directory (`cd`) of TELEMAC, creates the `temp` folder with `mkdir`, downloads, and unzips the *Metis* archive (run in *Terminal* as ***normal user*** - ***not as root***):
 
 ```
@@ -298,29 +298,10 @@ make config
 make
 make install
 ```
-````
 
-````{admonition} If TELEMAC/OPTIONALS/METIS does not exist...
-:class: attention, dropdown
-Install *Metis* from *Terminal* directly in the TELEMAC directory tree downloaded with `svn`. Before compiling *Metis*, clean up the *Metis* folder (there is an existing *Makefile*, which we do not want to use):
-
-```
-cd ~/telemac/v8p2/optionals/metis-5.1.0
-make clean
-rm -r build
-rm Makefile
-```
-
-Then build *Metis* (use for example `~/telemac/v8p2/optionals/metis-5.1.0/build` as `<install_path>`):
-
-```
-cmake -D CMAKE_INSTALL_PREFIX=~/telemac/v8p2/optionals/metis-5.1.0/build .
-make
-make install
-```
 
 To verify the successful installation, make sure that the file `~/telemac/v8p2/optionals/metis-5.1.0/build/lib/libmetis.a` exists (i.e., `<install_path>/lib/libmetis.a`). The installation of *Metis* on Linux is also documented in the [opentelemac wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_metis).
-````
+
 
 (med-hdf)=
 ### Hdf5 and MED Format Handlers
@@ -350,7 +331,7 @@ make install
 ```
 
 The flag `--prefix=/home/USER-NAME/telemac/v8p2/optionals/hdf5` determines the installation directory for the *hdf5* library, which we will need in the next step for installing the *med file* library. The absolute path `/home/USER-NAME/` is required because `--prefix` does not accept a relative path.
-The installation of *hdf5* on Linux is also documented in the [opentelemac wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_hdf5).
+The installation of *hdf5* on Linux is also documented in the [Telemac wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_hdf5).
 
 ***MED FILE LIBRARY:*** The *med file* library is provided by [salome-platform.org](https://salome-platform.org/) and we need to use the file ([med-3.2.0.tar.gz](http://files.salome-platform.org/Salome/other/med-3.2.0.tar.gz) to ensure compatibility with *hdf5*. So do not try to use any other *med file* library version because those will not work properly with the *hdf5* file library. Moreover, the *med file* library requires that *zlib* is installed. To install *zlib* open *Terminal* and type:
 
@@ -381,7 +362,7 @@ make install
 
 The flag `--prefix` sets the installation directory and `--width-hdf5` tells the med library where it can find the *hdf5* library. Thus, adapt `/home/USER-NAME/telemac/v8p2/optionals/hdf5` to your local `<install_path>` of the *hdf5* library. Both flags to not accept relative paths (`~/telemac/...`), and therefore, we need to use the absolute paths (`home/USER-NAME/telemac/...`) here.
 
-```{admonition} Why `--disable-python`?
+```{admonition} Why *--disable-python*?
 :class: note, dropdown
 We need to disable *Python* for the *med file* library because this feature would require *SWIG* version 2.0 and it is not compatible with the current versions of *SWIG* (4.x). Because *SWIG* has no full backward compatibility, the only option we have is to disable *Python* integrity for the *med file* library. Otherwise, *Python* integrity could be implemented by installing *Python* developer kits (`sudo apt install python3-dev` and `sudo apt install python3.7-dev`) and using the configuration `./configure --with-hdf5=/home/USER-NAME/Telemac/hdf5 PYTHON_LDFLAGS='-lpython3.7m' --with-swig=yes`. To find out what version of *Python* is installed, type `python -V`.
 ```
