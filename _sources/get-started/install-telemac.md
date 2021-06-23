@@ -275,12 +275,12 @@ cc = gcc
 
 Press `Esc` to leave the *INSERT* mode and then type `:wq` (the letters are visible on the bottom of the window) to save (write-quit) the file. Hit `Enter` to return to the *Terminal*.
 
-**Troubleshoot typical VIM problems**:
+```{admonition} Troubleshoot typical VIM problems
 
 * **VIM freezes**: Did you hit the `CTRL` + `S` keys, which is intuitive for *Windows* users to save a file, but in *Linux*, it has a different effect? So, you freezed the window. To unfreeze, simply hit `CTRL` + `Q`
 * **IS `:wq` not working?** Maybe you enabled the *easy mode*. Disable *easy mode* by hitting the `CTRL` + `O` keys.
 * **Are you on a virtual machine or remote desktop?** Check if another keyboard layout is installed on the VM guest / remote machine the host machine /your computer uses.
-
+```
 
 Back in *Terminal*, copy the folder contents and remove the `temp` folder with the following command sequence (if you want to keep the `temp` folder for installing `hdf5` and `med` file libraries, do not `rm` the `temp` folder):
 

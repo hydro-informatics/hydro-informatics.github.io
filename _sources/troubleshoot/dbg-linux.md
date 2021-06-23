@@ -60,6 +60,10 @@ Read more on the [developer's website](https://www.debian.org/doc/manuals/debian
 
 ***Permission denied*** messages may occur because of the fail-safe design of Debian, but denied read and write rights may quickly become annoying, in particular if you need to switch between normal and superuser accounts for installing software packages.
 
+```{admonition} Potentially harmful operation
+Never modify the access rights for folders in the `ROOT/` directory. Modifying permissions for folders such as `ROOT/etc/` or `ROOT/root/` may cause unrepairable system damage.
+```
+
 This is how you can unlock all read and write rights for a directory:
 
 ```

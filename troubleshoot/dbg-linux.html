@@ -844,6 +844,10 @@
 <div class="section" id="permission-denied-messages">
 <span id="dbg-permissions"></span><h3>Permission Denied Messages<a class="headerlink" href="#permission-denied-messages" title="Permalink to this headline">¶</a></h3>
 <p><em><strong>Permission denied</strong></em> messages may occur because of the fail-safe design of Debian, but denied read and write rights may quickly become annoying, in particular if you need to switch between normal and superuser accounts for installing software packages.</p>
+<div class="admonition-potentially-harmful-operation admonition">
+<p class="admonition-title">Potentially harmful operation</p>
+<p>Never modify the access rights for folders in the <code class="docutils literal notranslate"><span class="pre">ROOT/</span></code> directory. Modifying permissions for folders such as <code class="docutils literal notranslate"><span class="pre">ROOT/etc/</span></code> or <code class="docutils literal notranslate"><span class="pre">ROOT/root/</span></code> may cause unrepairable system damage.</p>
+</div>
 <p>This is how you can unlock all read and write rights for a directory:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">chmod</span> <span class="n">a</span><span class="o">+</span><span class="n">rwx</span> <span class="o">/</span><span class="n">directory</span>
 </pre></div>
