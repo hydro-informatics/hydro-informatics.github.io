@@ -61,6 +61,7 @@ Read more on the [developer's website](https://www.debian.org/doc/manuals/debian
 ***Permission denied*** messages may occur because of the fail-safe design of Debian, but denied read and write rights may quickly become annoying, in particular if you need to switch between normal and superuser accounts for installing software packages.
 
 ```{admonition} Potentially harmful operation
+:class: warning
 Never modify the access rights for folders in the `ROOT/` directory. Modifying permissions for folders such as `ROOT/etc/` or `ROOT/root/` may cause unrepairable system damage.
 ```
 
@@ -146,3 +147,23 @@ If a 64-bit *msi* or other installer / application is not working as desired, tr
 ```
 WINEARCH=win64 WINEPREFIX=/home/YOUR-USER-NAME/.wine64 wineboot -u
 ```
+
+## QGIS and LAStools
+
+To get LAStools working in QGIS on Ubuntu (make sure to have {ref}`wine` installed):
+
+* Download the LAStools (ZIP) from http://rapidlasso.com/LAStools and extract the ZIP file
+* In QGIS, edit the processing options (Providers > Tools for LiDAR data):
+  * LasTools folder: enter here the path to the folder that where the extracted ZIP files live (`/dir/to/LAStools/`)
+  * Wine folder: enter the path to the {ref}`wine` binary (typically ``/usr/bin/``). Alternatively, find where Wine lives with the `whereis wine` command
+* If required: edit `LidarToolsAlgorithmProvider.py` (two files exist), for instance:
+  * `/usr/share/qgis/python/plugins/processing/algs/lidar/LidarToolsAlgorithmProvider.py` and
+  * `/home/[user]/.qgis3/python/plugins/processing/algs/lidar/LidarToolsAlgorithmProvider.py`
+  * Edit the second file:
+    line 145:         if (True):
+    line 168:         if (True):
+    line 188:         if (True):
+
+To troubleshoot LAStools installation in QGIS read [this proposition on rapidlasso.com](https://rapidlasso.com/2013/09/29/how-to-install-lastools-toolbox-in-qgis/).
+
+Read more about running [LAStools on Ubuntu](https://gis.stackexchange.com/questions/138149/wine-lastools-in-qgis-2-8-1-ubuntu-14-04).

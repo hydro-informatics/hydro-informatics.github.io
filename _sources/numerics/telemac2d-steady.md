@@ -56,7 +56,7 @@ The below box shows the provided [steady2d.cas](https://github.com/hydro-informa
 /------------------------------------------------------------------/
 /			COMPUTATION ENVIRONMENT
 /------------------------------------------------------------------/
-TITLE : 'TELEMAC 3D FLUME'
+TITLE : '2d steady flow'
 /
 BOUNDARY CONDITIONS FILE : boundaries.cli
 GEOMETRY FILE            : qgismesh.slf
@@ -156,7 +156,7 @@ The time variables (`TIME STEP` and `NUMBER OF TIME STEPS`) define the simulatio
 /------------------------------------------------------------------/
 /			GENERAL PARAMETERS
 /------------------------------------------------------------------/
-TITLE : 'TELEMAC 3D FLUME'
+TITLE : '2d steady flow'
 /
 BOUNDARY CONDITIONS FILE : boundaries.cli
 GEOMETRY FILE            : qgismesh.slf
@@ -171,58 +171,180 @@ LISTING PRINTOUT PERIOD : 100
 ```
 ````
 
-### Numerical Parameters
+### General Numerical Parameters
 
-The `SUPG OPTION` (Streamline Upwind Petrov Galerkin) keyword is a list of four integers that define if upwinding applies and what type of upwinding applies. The integers may take the following values:
+**The following descriptions refer to section 7.1 in the {{ tm2d }}.**
+
+Telemac2d comes with three solvers for approximating the depth-averaged {term}`Navier-Stokes Equation` (shallow water) {cite:p}`p. 262 in <kundu_fluid_2008>` that can be chosen by adding an **EQUATIONS** keyword:
+
+* `EQUATIONS : SAINT-VENANT FE` is the **default** that make Telemac2d use a Saint-Venant finite element method,
+* `EQUATIONS : SAINT-VENANT FV` makes Telemac2d use a Saint-Venant finite volume method, and
+* `EQUATIONS : BOUSSINESQ` makes Telemac2d use the {term}`Boussinesq` approximations (constant density except in the vertical momentum equation).
+
+In addition, a type of discretization has to be specified with the **DISCRETIZATIONS IN SPACE** keyword, which is a list of five integer values. The five list elements define spatial discretization scheme for (1) velocity, (2) depth, (3) tracers, (4) $k-\epsilon$ turbulence, and (5) $\tilde{\nu}$ advection (Spalart-Allmaras). The minimum length of the keyword list is 2 (for velocity and depth) and all other elements are optional. The list elements may take the following values defining spatial discretization:
+
+* `11` (default) activates triangular discretization in space (i.e., 3-node triangles),
+* `12` activates quasi-bubble discretization with 4-node triangles, and
+* `13` activates quadratic discretization with 6-node triangles.
+
+The {{ tm2d }} recommend using the default value of `DISCRETIZATIONS IN SPACE : 11;11` that assign a linear discretization for velocity and water depth (computationally fastest). The option `12;11` may be used to reduce free surface instabilities or oscillations (e.g., along with steep bathymetry gradients). The option `13;11` increase the accuracy of results, the computation time, memory usage, and it is currently not available in Telemac2d.
+
+In addition, the **FREE SURFACE GRADIENT** keyword can be defined for increasing the stability of a model. Its default value is `1.0`, but it can be reduced close to zero to achieve stability. The developers propose a minimum value of `0.`, but this would lead to non-meaningful results and this is why this eBook recommends a value slightly higher than zero. For instance, the following keyword combination may reduce surface instabilities (also referred to as *wiggles* or *oscillations*):
+
+```
+DISCRETIZATIONS IN SPACE : 12;11
+FREE SURFACE GRADIENT : 0.03
+```
+
+By default {term}`Advection` is activated through the keyword `ADVECTION : YES` and it can be deactivated for particular terms only:
+
+```
+ADVECTION OF H : NO / deactivates depth advection
+ADVECTION OF U AND V : NO / deactivates velocity advection
+ADVECTION OF K AND EPSILON : NO / deactivates turbulent energy and dissipation (k-e model) or the Spalart-Allmaras advection
+ADVECTION OF TRACERS : NO / deactivates tracer advection
+```
+
+The **PROPAGATION** keyword (default: `YES`) affects the modelling of propagation and related phenomena. For instance, disabling propagation (`PROPAGATION : NO`) will also disable {term}`Diffusion`. The other way round, when propagation is enabled, {term}`Diffusion` can be disabled separately. Read more about {term}`Diffusion` in Telemac2d in the {ref}`turbulence <tm2d-turbulence>` section.
+
+### Numerical Parameters for Finite Elements
+
+**The following descriptions refer to section 7.2.1 in the {{ tm2d }}.**
+
+Telemac2d uses finite elements for iterative solutions to the {term}`Navier-Stokes Equation`. To this end, a **TREATMENT OF THE LINEAR SYSTEM** keyword enables replacing the original set of equations (option `1`) involved in TELEMAC's finite element solver with a generalized wave equation (option `2`). The replacement (i.e., the use of the **generalized wave equation**) is set to **default since v8p2** and decreases computation time, but smoothens the results. The default (`TREATMENT OF THE LINEAR SYSTEM : 2`) automatically activates mass lumping for depth and velocity, and implies explicit velocity diffusion.
+
+```{admonition} Use SCHEME FOR ADVECTION in lieu of TYPE OF ADVECTION
+:class: note, dropdown
+The **TYPE OF ADVECTION** keyword is a list of four integers that define the advection schemes for (1) velocities (both $u$ and $v$), (2) water depth $h$, (3) tracers, and (4) turbulence ($k-\epsilon$ or $\tilde{\nu}$). The value provided for (2) depth is ignored since v6p0 and a list of two values is sufficient in the absence of (3) tracers and a specific (4) turbulence model. Thus, in lieu of `TYPE OF ADVECTION`, the `SCHEME FOR ADVECTION OF VELOCITIES` keyword may be used. The default is `TYPE OF ADVECTION : 1;5;1;1` (where the `5` for depth refers to an older Telemac2d version and does not trigger the PSI scheme). **The {{ tm2d }} state that the TYPE OF ADVECTION keyword will be deprecated in future releases.**
+```
+
+The {{ tm2d }} state that the following scalar **SCHEME FOR ADVECTION** keywords apply instead of the soon deprecated TYPE OF ADVECTION list:
+
+```
+SCHEME FOR ADVECTION OF VELOCITIES : 1 / default
+SCHEME FOR ADVECTION OF TRACERS : 1 / default
+SCHEME FOR ADVECTION OF K-EPSILON : 1 / default
+```
+
+The three `SCHEME FOR ADVECTION` scalar keywords values may take the following values:
+
+* `1` sets a not mass-conservative method of characteristics (default for all);
+* `2` sets a semi-implicit scheme and activates the Streamline Upwind Petrov Galerkin (SUPG - see below);
+* `3`, `4`, `13`, and `14` activate the so-called NERD scheme (these numbers activate different schemes in 3d only);
+* `5` sets a mass-conservative PSI distributive scheme; and
+* `15` sets the mass-conservative ERIA scheme that works with tidal flats.
+
+Options `4` and `5` require that the {term}`CFL` condition is smaller than 1.
+
+````{admonition} Recommended SCHEME OF ADVECTION ... keywords
+:class: tip
+The {{ tm2d }} recommend specific combinations depending on the simulation scenario.
+
+For models **without any dry zones** use:
+```
+SCHEME FOR ADVECTION OF VELOCITIES : 4 / alternatively keep 1
+SCHEME FOR ADVECTION OF TRACERS : 5
+SCHEME FOR ADVECTION OF K-EPSILON : 4
+```
+
+For models with **tidal flats** use:
+```
+SCHEME FOR ADVECTION OF VELOCITIES : 14 / alternatively keep 1
+SCHEME FOR ADVECTION OF TRACERS : 5
+SCHEME FOR ADVECTION OF K-EPSILON : 14
+```
+````
+
+**Without any SCHEME FOR ADVECTION ...** keyword, the **SUPG OPTION** (Streamline Upwind Petrov Galerkin) keyword can be used to define if upwinding applies and what type of upwinding applies. The `SUPG OPTION` is a list of four integers that may take the following values:
 
 * `0` disables upwinding,
-* `1` enables upwinding with a classical SUPG scheme (recommended when the [Courant number](https://en.wikipedia.org/wiki/Courant-Friedrichs-Lewy_condition) is unknown), and
-* `2` enables upwinding with a modified SUPG scheme, where upwinding corresponds to the Courant number.
+* `1` enables upwinding with a classical SUPG scheme (recommended when the {term}`CFL` condition is unknown), and
+* `2` enables upwinding with a modified SUPG scheme, where upwinding equals the {term}`CFL` condition (recommended when the {term}`CFL` condition is small).
 
-The default is `SUPG OPTION : 1;0;1;1`, where the first list element refers to flow velocity (default `1`), the second to water depth (default `0`), the third to tracers (default `1`), and the last to the k-epsilon model (default `1`). Read more in section ??? of the {{ tm2d }}.
+The default is `SUPG OPTION : 2;2;2;2`, where
 
-**Implication parameters** (`IMPLICITATION FOR DEPTH` and `IMPLICITATION FOR VELOCITIES`) should be set between 0.55 and 0.60 (default is 0.55 since *TELEMAC v8p1*) and can be considered as a degree of implicitation. `IMPLICITATION FOR DIFFUSION` is set to `1.0` by default. Read more in section ??? of the {{ tm2d }}.
+* the first list element refers to flow velocity (default `2`),
+* the second to water depth (default `2` - set to `0` when `MATRIX STORAGE : 3`),
+* the third to tracers (default `2`), and
+* the last (forth) to the k-epsilon model (default `2`).
 
-The parameter `FREE SURFACE GRADIENT` can be used for increasing the stability of a model. Its default value is `1.0`, but it can be reduced to `0.1` to achieve stability.
+**Implicitation parameters** (`IMPLICITATION FOR DEPTH`, `IMPLICITATION FOR VELOCITIES`, and `IMPLICITATION FOR DIFFUSION OF VELOCITY`) apply to the semi-implicit time discretization used in Telemac2d. To enable cross-version compatibility, implicitation parameters should be defined in the `*.cas` file. For `DEPTH` and `VELOCITIES` use values between `0.55` and `0.60` (**default is `0.55` since v8p1**); for `IMPLICITATION FOR DIFFUSION OF VELOCITY` set the v8p2 default of `1.0`.
+
+The default `TREATMENT OF THE LINEAR SYSTEM : 2` involves so-called **mass lumping**, which leads to a smoothening of results. Specific mass lumping keywords and values are required for the flux control option of the `TREATMENT OF NEGATIVE DEPTHS` keyword and the default value for the treatment of tidal flats. To this end, the mass lumping keywords should be defined as:
+
+```
+MASS-LUMPING ON H : 1.
+MASS-LUMPING ON VECLOCITY : 1.
+MASS-LUMPING ON TRACERS : 1.
+```
+
+In addition, `MASS-LUMPING FOR WEAK CHARACTERISTICS : 1.` may be defined, which will make Telemac2d using weak characteristics (see below). The default value of any `MASS-LUMPING ...` keyword is `0.` and the maximum value is `1.`, which makes mass matrices diagonal.
+
+The **OPTION OF CHARACTERISTICS** keyword defines the method of characteristics that can take a **strong (default of `1`)** or a **weak (`2`)** form. A weak form decreases {term}`Diffusion`, is more conservative, and increases computation time. Telemac2d automatically switches from the default strong (`1`) to the weak (`2`) form when
+
+* the `TYPE OF ADVECTION` is set to `1`,
+* any `SCHEME FOR ADVECTION ...` is set to `1`, or
+* any `SCHEME OPTION FOR ADVECTION OF ...` is set to `2`.
+
+None of these options should be used with tracers because they are not mass-conservative.
+
+### Numerical Parameters for Finite Volumes
+
+The finite volume method is mentioned here for completeness and detailed descriptions are available in section 7.2.2 of the {{ tm2d }}.
+
+The finite volume method involves the definition of a scheme through the **FINITE VOLUME SCHEME** keyword that can take integer values:
+
+* `0` enables the Roe scheme {cite:p}`roe1981ars`,
+* `1` is the **default** and enables the kinetic scheme {cite:p}`audusse2000`,
+* `3` enables the Zokagoa scheme {cite:p}`zokagoa2010` that is incompatible with tidal flats,
+* `4` enables the Tchamen scheme,
+* `5` enables the frequently use Harten Lax Leer-Contact (HLLC) scheme {cite:p}`toro2009a`, and
+* `6` enables the Weighted Average Flux (WAF) {cite:p}`ata2012` scheme where parallelism is currently not implemented.
+
+All finite volume schemes are explicit and potentially subjected to instability. For this reason, a desired {term}`CFL` condition and a variable timestep should be defined through:
+
+```
+DESIRED COURANT NUMBER : 0.9
+VARIABLE TIME-STEP : YES / default is NO
+```
+
+The variable timestep will cause irregular listing outputs, while the graphic output frequency stems from the above-defined `TIME STEP`.
+
+The **FINITE VOLUME SCHEME TIME ORDER** keyword defines the second order time scheme, which is by default set to *Euler explicit* (`1`). Setting the time scheme order to `2` makes Telemac2d using the Newmark scheme where an integration coefficient may be used to change the integration parameter (`NEWMARK TIME INTEGRATION COEFFICIENT : 1` corresponds to *Euler explicit*). To implement these options in the steering file, use the following settings:
+
+```
+FINITE VOLUME SCHEME TIME ORDER : 2 / default is 1 - Euler explicit
+NEWMARK TIME INTEGRATION COEFFICIENT : 0.5 / default is 0.5
+```
+
 
 * The `MASS-BALANCE : YES` setting will printout the mass fluxes and errors in the computation region, which is an important parameter for verifying the plausibility of the model.
 
 Depending on the type of analysis, the solver-related parameters of `SOLVER`, `SOLVER OPTIONS`, `MAXIMUM NUMBER OF ITERATION FOR SOLVER`, and `TIDAL FLATS` may be modified.
 
-````{admonition} Expand to recall NUMERICAL PARAMETERS in the cas file
-:class: note, dropdown
+### Numerical Solver Parameters
+
+**The following descriptions refer to section 7.3 in the {{ tm2d }}.**
+
+The solver can be selected and specified with the **SOLVER**, **SOLVER FOR DIFFUSION OF TRACERS**, and **SOLVER FOR K-EPSILON MODEL** keywords that have the following default values:
+
 ```
-/------------------------------------------------------------------/
-/			NUMERICAL PARAMETERS
-/------------------------------------------------------------------/
-/
-/ CONVECTION-DIFFUSION
-/------------------------------------------------------------------
-DISCRETIZATIONS IN SPACE : 11;11
-TYPE OF ADVECTION : 1;5;1;1
-ADVECTION : YES
-/
-SUPG OPTION : 0;0;2;2  / classic supg for U and V  see docs sec 6.2.2
-/
-/ PROPAGATION HEIGHT AND STABILITY
-/ ------------------------------------------------------------------
-IMPLICITATION FOR DEPTH : 0.55 / should be between 0.55 and 0.6
-IMPLICITATION FOR VELOCITY : 0.55 / should be between 0.55 and 0.6
-FREE SURFACE GRADIENT COMPATIBILITY : 0.1  / default 1.
-CONTINUITY CORRECTION : YES
-TREATMENT OF THE LINEAR SYSTEM : 2
-MASS-BALANCE : YES
-MASS-LUMPING ON H : 1
-/ MATRIX STORAGE : 3
-/
-/ HYDRODYNAMIC SOLVER
-/------------------------------------------------------------------
-INFORMATION ABOUT SOLVER : YES
-SOLVER : 1
-MAXIMUM NUMBER OF ITERATIONS FOR SOLVER = 200
-TIDAL FLATS : YES
+SOLVER : 3
+SOLVER FOR DIFFUSION OF TRACERS : 1
+SOLVER FOR K-EPSILON MODEL : 1
 ```
-````
+
+Every solver keyword can take an integer value between `1` and `8`, where `1`-`6` use conjugate gradient methods:
+
+* `1` sets the conjugate gradient method for symmetric matrices,
+* `2` sets the conjugate residual method,
+* `3` sets the conjugate gradient on normal equation method,
+* `4` sets the minimum error method,
+* `5` sets the squared conjugate gradient method,
+* `6` sets the stabilized biconjugate gradient (BICGSTAB) method,
+* `7` sets the Generalised Minimum RESidual (**GMRES**) method, and
+* `8` set the Yale university direct solver (YSMP) that does not work with parallelism.
+
 
 ### Boundary and Initial Conditions
 
@@ -290,18 +412,21 @@ VELOCITY PROFILES : 4;1
 ```
 ````
 
+(tm2d-turbulence)=
 ### Turbulence
+
+**The following descriptions refer to section 6.2 in the {{ tm2d }}.**
 
 Turbulence describes a seemingly random and chaotic state of fluid motion in the form of three-dimensional vortices (eddies). True turbulence is only present in 3d vorticity and when it occurs, it mostly dominates all other flow phenomena through increases in energy dissipation, drag, heat transfer, and mixing. The phenomenon of turbulence has been a mystery to science for a long time, since turbulent flows have been observed, but could not be directly explained by the systems of linear equations. Today, turbulence is considered a random phenomenon that can be accounted for in linear equations, for instance, by introducing statistical parameters. Not surprisingly, there are a variety of options for implementing turbulence in numerical models. The horizontal and vertical dimensions of turbulent eddies can vary greatly, especially in rivers and transitions to backwater zones (tidal flats), with large flow widths (horizontal dimension) compared to small water depths (vertical dimension). For these reasons, *TELEMAC* provides multiple turbulence models that can be applied in the vertical and horizontal dimensions.
 
-In 2d, *TELEMAC* developers recommend using either the *k-&epsilon;* model (`3`) or the *Spalart-Allmaras* model (`5`) in lieu of the mixing length model (`2`):
+In 2d, *TELEMAC* developers recommend using either the $k-\epsilon$ model (`3`) or the *Spalart-Allmaras* model (`5`) in lieu of the mixing length model (`2`):
 
-* `HORIZONTAL TURBULENCE MODEL`: `3`
-* `VERTICAL TURBULENCE MODEL`: `3`
+```
+DIFFUSION OF VELOCITY : YES / enabled by default
+TURBULENCE MODEL : 3
+```
 
-If the `VERTICAL TURBULENCE MODEL` is set to `2` (`'MIXING LENGTH'`), a `MIXING LENGTH MODEL` can be assigned. The default is `1`, which is preferable for strong tidal influences and a value of `3` sets the length for computing vertical diffusivity to *Nezu and *Nakagawa*.
 
-Read more about turbulence in *TELEMAC* in section ??? and the mixing length in section ??? of the {{ tm2d }}.
 
 ````{admonition} Expand to recall TURBULENCE in the cas file
 :class: note, dropdown

@@ -718,8 +718,8 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pip-and-venv">
-   pip and venv
+  <a class="reference internal nav-link" href="#pip-and-venv-linux-preference">
+   pip and venv (Linux Preference)
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -735,8 +735,8 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#conda-env">
-   conda env
+  <a class="reference internal nav-link" href="#conda-env-windows-preference">
+   conda env (Windows Preference)
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -814,15 +814,18 @@
 </dd>
 </dl>
 <p>This section guides through the installation of a computational environment that is tailored for working with contents in this eBook. The environment uses the <strong>flusstools</strong> pip-package, which provides many useful routines for river analyses.</p>
-<div class="section" id="pip-and-venv">
-<span id="pip-env"></span><h2>pip and venv<a class="headerlink" href="#pip-and-venv" title="Permalink to this headline">¶</a></h2>
-<p><strong>pip and virtual environments are preferable with <em>Linux</em> systems for working with this eBook.</strong></p>
+<div class="section" id="pip-and-venv-linux-preference">
+<span id="pip-env"></span><h2>pip and venv (Linux Preference)<a class="headerlink" href="#pip-and-venv-linux-preference" title="Permalink to this headline">¶</a></h2>
+<div class="hint admonition">
+<p class="admonition-title">Use pip and venv on Linux</p>
+<p>pip and virtual environments are preferable with <em>Linux</em> systems for working with this eBook and the <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> library.</p>
+</div>
 <div class="section" id="quick-guide">
 <span id="pip-quick"></span><h3>Quick Guide<a class="headerlink" href="#quick-guide" title="Permalink to this headline">¶</a></h3>
 <p>Consider installing, create and activate a new virtual environment for working with the contents of this eBook as explained in the following platform-dependent paragraphs.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="5e795a56-edb9-4823-adc5-de69b5857a43" name="ed585a38-7924-4efc-908c-a9668fe7a516" type="radio">
-</input><label class="tabbed-label" for="5e795a56-edb9-4823-adc5-de69b5857a43">
+<input checked="checked" id="e0f4b84b-6cd4-41da-80a5-3e294e392430" name="bc8f16a5-3b80-4136-a53d-5a6fc567025f" type="radio">
+</input><label class="tabbed-label" for="e0f4b84b-6cd4-41da-80a5-3e294e392430">
 Linux</label><div class="tabbed-content docutils">
 <p>To avoid affecting the system’s Python interpreter, set up a virtual environment with <em>venv</em>. the first step is to make sure that <em>Python3</em> and <em>venv</em> are installed on the system:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">python3</span> <span class="n">python3</span><span class="o">-</span><span class="n">venv</span>
@@ -864,12 +867,12 @@ Python 3.X.X (default, MMM DD YYYY, hh:mm:ss)
 </div>
 <p>Recall that newer <em>Linux</em> versions may not differentiate between <em>Python2</em> and <em>Python3</em> (i.e., use <code class="docutils literal notranslate"><span class="pre">python</span></code> rather than <code class="docutils literal notranslate"><span class="pre">python3</span></code>).</p>
 </div>
-<input id="2fd0d0ba-76c2-404d-9737-51c69f3a3958" name="ed585a38-7924-4efc-908c-a9668fe7a516" type="radio">
-</input><label class="tabbed-label" for="2fd0d0ba-76c2-404d-9737-51c69f3a3958">
+<input id="e5e47ee3-bf13-49a3-93e0-68145141d24d" name="bc8f16a5-3b80-4136-a53d-5a6fc567025f" type="radio">
+</input><label class="tabbed-label" for="e5e47ee3-bf13-49a3-93e0-68145141d24d">
 Windows</label><div class="tabbed-content docutils">
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Because GDAL can currently not be directly installed with <code class="docutils literal notranslate"><span class="pre">pip</span></code> on <em>Windows</em>, trying to set up the computational environment with <code class="docutils literal notranslate"><span class="pre">pip</span></code> on <em>Windows</em> will very likely fail. <strong>Windows users preferably use <a class="reference internal" href="#conda-env"><span class="std std-ref">conda env</span></a></strong>, but can alternatively continue with a virtual <em>pip</em> environment for learning <em>Python</em> basics. In this case, geospatial programming contents require an installation of <a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a>, which comes with a built-in <em>Python</em> terminal for algorithmic geospatial analyses.</p>
+<p>Because GDAL can currently not be directly installed with <code class="docutils literal notranslate"><span class="pre">pip</span></code> on <em>Windows</em>, trying to set up the computational environment with <code class="docutils literal notranslate"><span class="pre">pip</span></code> on <em>Windows</em> will very likely fail. <strong>Windows users preferably use <a class="reference internal" href="#conda-env"><span class="std std-ref">conda env (Windows Preference)</span></a></strong>, but can alternatively continue with a virtual <em>pip</em> environment for learning <em>Python</em> basics. In this case, geospatial programming contents require an installation of <a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a>, which comes with a built-in <em>Python</em> terminal for algorithmic geospatial analyses.</p>
 </div>
 <p>Make sure that <a class="reference external" href="https://www.python.org/downloads/">Python</a> (&gt;= version 3.4) installed. In addition, install <em>virtualenv</em> (in the following, alternatively use <code class="docutils literal notranslate"><span class="pre">py</span></code> instead of <code class="docutils literal notranslate"><span class="pre">python</span></code>, if <code class="docutils literal notranslate"><span class="pre">python</span></code> returns errors):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
@@ -916,7 +919,7 @@ Windows</label><div class="tabbed-content docutils">
 </ul>
 </li>
 </ul>
-<p>Alternatively, find the <em>OSGeo4W</em> from the <em>Windows</em> start menu and type <code class="docutils literal notranslate"><span class="pre">py3_env</span></code> followed by <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">flusstools</span></code>. <strong>Preferably use a <a class="reference internal" href="#conda-env"><span class="std std-ref">conda env</span></a>.</strong></p>
+<p>Alternatively, find the <em>OSGeo4W</em> from the <em>Windows</em> start menu and type <code class="docutils literal notranslate"><span class="pre">py3_env</span></code> followed by <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">flusstools</span></code>. <strong>Preferably use a <a class="reference internal" href="#conda-env"><span class="std std-ref">conda env (Windows Preference)</span></a>.</strong></p>
 </div>
 </div>
 </div>
@@ -926,15 +929,15 @@ Windows</label><div class="tabbed-content docutils">
 <h3>Manage pip (Install, Uninstall, or Upgrade) Modules<a class="headerlink" href="#manage-pip-install-uninstall-or-upgrade-modules" title="Permalink to this headline">¶</a></h3>
 <p>More than 300,000 projects live on <a class="reference external" href="https://pypi.org/">pypi.org</a> and there are packages available for many purposes. To find suitable packages visit <a class="reference external" href="https://pypi.org/search/">https://pypi.org/search/</a>. To install (i.e., add) one of these <code class="docutils literal notranslate"><span class="pre">pip</span></code>/<code class="docutils literal notranslate"><span class="pre">pip3</span></code> packages use:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="dc8e4841-0da7-4203-9db0-ad91d297cd3f" name="606a8832-c63b-4fd3-8d96-d0a90e524fab" type="radio">
-</input><label class="tabbed-label" for="dc8e4841-0da7-4203-9db0-ad91d297cd3f">
+<input checked="checked" id="28b60314-8b7c-41f6-acaa-769f6d02bc2f" name="ef607e3a-7776-4101-b4f1-3f095313702a" type="radio">
+</input><label class="tabbed-label" for="28b60314-8b7c-41f6-acaa-769f6d02bc2f">
 Linux Terminal</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
 </div>
 </div>
-<input id="47bad68e-ff75-4c49-adcc-87eb385b498e" name="606a8832-c63b-4fd3-8d96-d0a90e524fab" type="radio">
-</input><label class="tabbed-label" for="47bad68e-ff75-4c49-adcc-87eb385b498e">
+<input id="20524c9e-50ab-4de9-90be-abea5e4c5f32" name="ef607e3a-7776-4101-b4f1-3f095313702a" type="radio">
+</input><label class="tabbed-label" for="20524c9e-50ab-4de9-90be-abea5e4c5f32">
 Windows Command Prompt</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
@@ -947,15 +950,15 @@ Windows Command Prompt</label><div class="tabbed-content docutils">
 </div>
 <p>To remove (i.e., uninstall) a <code class="docutils literal notranslate"><span class="pre">pip</span></code>/<code class="docutils literal notranslate"><span class="pre">pip3</span></code>-installed package use:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="b1c46e6c-7362-4197-9611-c05767b5e9df" name="5a70947c-77ff-4082-969c-01f2dcdfea9a" type="radio">
-</input><label class="tabbed-label" for="b1c46e6c-7362-4197-9611-c05767b5e9df">
+<input checked="checked" id="4313497b-86fe-4018-bd0f-070d359f95b9" name="877a5435-e92d-440a-87b8-dd503e3c4730" type="radio">
+</input><label class="tabbed-label" for="4313497b-86fe-4018-bd0f-070d359f95b9">
 Linux Terminal</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">uninstall</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
 </div>
 </div>
-<input id="5c870013-7213-4a66-80d0-8b4286294e86" name="5a70947c-77ff-4082-969c-01f2dcdfea9a" type="radio">
-</input><label class="tabbed-label" for="5c870013-7213-4a66-80d0-8b4286294e86">
+<input id="6eab596d-f50b-4ccd-b90d-32b17847e444" name="877a5435-e92d-440a-87b8-dd503e3c4730" type="radio">
+</input><label class="tabbed-label" for="6eab596d-f50b-4ccd-b90d-32b17847e444">
 Windows Command Prompt</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">uninstall</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
@@ -964,15 +967,15 @@ Windows Command Prompt</label><div class="tabbed-content docutils">
 </div>
 <p>To upgrade (update) a package that lives in a local user environment use:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="28e38afe-b2a0-4d5c-8355-0b5797930ed6" name="3a74a586-5108-4b91-9722-83d61bd05daa" type="radio">
-</input><label class="tabbed-label" for="28e38afe-b2a0-4d5c-8355-0b5797930ed6">
+<input checked="checked" id="9dbecce5-97c0-4e2a-8984-58defd60438d" name="aed69a36-daae-4d8f-b1c5-047aea2dc8b2" type="radio">
+</input><label class="tabbed-label" for="9dbecce5-97c0-4e2a-8984-58defd60438d">
 Linux Terminal</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
 </div>
 </div>
-<input id="ef82f70c-0745-491b-97f3-4064b7826e59" name="3a74a586-5108-4b91-9722-83d61bd05daa" type="radio">
-</input><label class="tabbed-label" for="ef82f70c-0745-491b-97f3-4064b7826e59">
+<input id="f49cba7f-4190-4ecf-b0ef-a1346bb42d64" name="aed69a36-daae-4d8f-b1c5-047aea2dc8b2" type="radio">
+</input><label class="tabbed-label" for="f49cba7f-4190-4ecf-b0ef-a1346bb42d64">
 Windows Command Prompt</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="o">--</span><span class="n">user</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
@@ -986,11 +989,15 @@ Windows Command Prompt</label><div class="tabbed-content docutils">
 <p>Read more about virtual environments and pip at <a class="reference external" href="https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/">https://packaging.python.org</a>.</p>
 </div>
 </div>
-<div class="section" id="conda-env">
-<span id="id2"></span><h2>conda env<a class="headerlink" href="#conda-env" title="Permalink to this headline">¶</a></h2>
-<p>This section features the quick installation of the <a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/flusstools-pckg/main/environment.yml">flussenv environment.yml</a> for <em>Anaconda</em> followed by more detailed explanations on the creation and management of <em>conda</em> environments. <strong>Anaconda and conda environments are preferable with <em>Windows</em> systems for working with this ebook.</strong></p>
+<div class="section" id="conda-env-windows-preference">
+<span id="conda-env"></span><h2>conda env (Windows Preference)<a class="headerlink" href="#conda-env-windows-preference" title="Permalink to this headline">¶</a></h2>
+<p>This section features the quick installation of the <a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/flusstools-pckg/main/environment.yml">flussenv environment.yml</a> for <em>Anaconda</em> followed by more detailed explanations on the creation and management of <em>conda</em> environments.</p>
+<div class="hint admonition">
+<p class="admonition-title">Use conda on Windows</p>
+<p>Anaconda and conda environments are preferable with <em>Windows</em> systems for working with this eBook and the <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> library.</p>
+</div>
 <div class="section" id="conda-quick">
-<span id="id3"></span><h3>Quick Guide<a class="headerlink" href="#conda-quick" title="Permalink to this headline">¶</a></h3>
+<span id="id2"></span><h3>Quick Guide<a class="headerlink" href="#conda-quick" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
 <li><p>Download the <em>flussenv</em> <a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/flusstools-pckg/main/environment.yml">environment file</a> (right-click &gt; <em>Save Link as …</em> &gt; select target directory). If needed, copy the file contents of <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> in a local text editor, such as <a class="reference internal" href="../get-started/others.html#npp"><span class="std std-ref">NotepadPlusPlus</span></a>, and save the file for example in a directory called <em>C:/temp/</em>).</p></li>
 <li><p>Open a command line</p>
@@ -1049,13 +1056,13 @@ Windows Command Prompt</label><div class="tabbed-content docutils">
 <h3>JupyterLab<a class="headerlink" href="#jupyterlab" title="Permalink to this headline">¶</a></h3>
 <p>The following descriptions require that <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a> is installed for locally editing <em>Jupyter</em> notebooks (<em>.ipynb</em> files), <em>Python</em> scripts (<em>.py</em> files), and folders.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="8d280799-aa71-4783-9c63-acaf0ff3662a" name="dfb8f27d-a385-40ac-a857-bb506e6e6d32" type="radio">
-</input><label class="tabbed-label" for="8d280799-aa71-4783-9c63-acaf0ff3662a">
+<input checked="checked" id="99f126f4-8bed-49e2-9359-d9aeb9271728" name="99015390-d157-4b33-8969-20199d7f1a31" type="radio">
+</input><label class="tabbed-label" for="99f126f4-8bed-49e2-9359-d9aeb9271728">
 Linux</label><div class="tabbed-content docutils">
 <p>Start <em>JupyterLab</em> by typing <code class="docutils literal notranslate"><span class="pre">jupyter-lab</span></code> in <em>Terminal</em>.</p>
 </div>
-<input id="0eb2d452-d462-41d4-a6c9-88e76a1b981a" name="dfb8f27d-a385-40ac-a857-bb506e6e6d32" type="radio">
-</input><label class="tabbed-label" for="0eb2d452-d462-41d4-a6c9-88e76a1b981a">
+<input id="c9066864-97c0-47f6-92c7-e6d5c4fae0c5" name="99015390-d157-4b33-8969-20199d7f1a31" type="radio">
+</input><label class="tabbed-label" for="c9066864-97c0-47f6-92c7-e6d5c4fae0c5">
 Windows</label><div class="tabbed-content docutils">
 <p>Start <em>JupyterLab</em> by typing <code class="docutils literal notranslate"><span class="pre">jupyter-lab</span></code> in <em>Anaconda Prompt</em>.</p>
 </div>
@@ -1063,9 +1070,9 @@ Windows</label><div class="tabbed-content docutils">
 <dl class="simple myst">
 <dt>Setup Styles</dt><dd><p>The <em>Kernel</em> menu runs the defined programming language (<em>Python3</em> in the example below). The <em>Settings</em> menu provides options to configure styles (e.g., choose the <em>JupyterLab Dark</em> theme shown in the below figure).
 <em>JupyterLab</em> runs on a local server (typically on <code class="docutils literal notranslate"><span class="pre">localhost:XXPORTXX/lab</span></code>), which is why it is just like an interactive website in your browser. In the beginning, it takes some getting used to, but one gets quickly familiar with it and there are many advantages such as the inline use of online graphics.</p>
-<div class="figure align-default" id="id4">
+<div class="figure align-default" id="id3">
 <img alt="pyc-prj-setup" src="../_images/jupyter-illu.png" />
-<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">JupyterLab in Dark theme appearance with a Jupyter notebook (xml.ipynb) opened showing the combination of a markdown cell (Charts(plots) and a Python3 cell.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">JupyterLab in Dark theme appearance with a Jupyter notebook (xml.ipynb) opened showing the combination of a markdown cell (Charts(plots) and a Python3 cell.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </dd>
 <dt>Package Controls</dt><dd><p><em>JupyterLab</em> runs an <a class="reference external" href="https://ipython.org/"><em>IPython</em></a> kernel, which refers to the currently activated <em>conda</em> environment. Thus, for installing a package for usage in <em>JupyterLab</em>, follow the above instructions for the chosen environment (learn more about packages in the <a class="reference internal" href="../jupyter/pypckg.html#sec-pypckg"><span class="std std-ref">Packages, Modules and Libraries</span></a> section). It might be useful to define <strong>default imports</strong> for <em>IPython</em> and this works as follows:</p>
@@ -1107,8 +1114,8 @@ Windows</label><div class="tabbed-content docutils">
 <span id="atom-setup"></span><h3>Atom and Python<a class="headerlink" href="#atom-and-python" title="Permalink to this headline">¶</a></h3>
 <p>Depending on your platform make sure that all requirements are installed to configure <em>Atom</em>s <code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code> package:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="6ce10e8a-0355-4bf8-a3e8-338c6835b37a" name="450f5d6c-2de2-4375-ad97-be2698d552a8" type="radio">
-</input><label class="tabbed-label" for="6ce10e8a-0355-4bf8-a3e8-338c6835b37a">
+<input checked="checked" id="a706ae97-016b-4bde-a284-a2c68d17c80b" name="64fec4fa-758d-418a-a12c-2b6b3e32ee70" type="radio">
+</input><label class="tabbed-label" for="a706ae97-016b-4bde-a284-a2c68d17c80b">
 Linux</label><div class="tabbed-content docutils">
 <div class="admonition-requirements admonition">
 <p class="admonition-title">Requirements</p>
@@ -1143,8 +1150,8 @@ Python 3.X.X (default, MMM DD YYYY, hh:mm:ss)
 </div>
 <p>The import of <em>flusstools</em> should pass silently. Otherwise, re-install <em>flusstools</em> according to the above <a class="reference internal" href="#pip-quick"><span class="std std-ref">Quick Guide</span></a> for installing a virtual environment.</p>
 </div>
-<input id="482fba97-af28-47d8-8474-481f0586b8e5" name="450f5d6c-2de2-4375-ad97-be2698d552a8" type="radio">
-</input><label class="tabbed-label" for="482fba97-af28-47d8-8474-481f0586b8e5">
+<input id="9a072b33-131c-4106-898c-c4b74360dbba" name="64fec4fa-758d-418a-a12c-2b6b3e32ee70" type="radio">
+</input><label class="tabbed-label" for="9a072b33-131c-4106-898c-c4b74360dbba">
 Windows</label><div class="tabbed-content docutils">
 <div class="admonition-requirements admonition">
 <p class="admonition-title">Requirements</p>
@@ -1182,9 +1189,9 @@ Windows</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p>Launch <em>PyCharm</em> and create a new project.</p></li>
 </ul>
-<div class="figure align-default" id="id5">
+<div class="figure align-default" id="id4">
 <img alt="pyc-prj&quot; max-width=&quot;500px" src="../_images/pyc-project.png" />
-<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Create a new project in PyCharm.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Create a new project in PyCharm.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 <ul class="simple">
 <li><p>Define The new <code class="docutils literal notranslate"><span class="pre">flussenv</span></code> environment as <em>Pure Python</em> project interpreter:</p>
@@ -1195,9 +1202,9 @@ Windows</label><div class="tabbed-content docutils">
 </ul>
 </li>
 </ul>
-<div class="figure align-default" id="id6">
+<div class="figure align-default" id="id5">
 <img alt="pyc-prj-setup" src="../_images/pyc-prj-setup.png" />
-<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Setup the <code class="docutils literal notranslate"><span class="pre">flussenv</span></code> conda environment for the new project.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Setup the <code class="docutils literal notranslate"><span class="pre">flussenv</span></code> conda environment for the new project.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 <ul class="simple">
 <li><p>Verify that the project interpreter is correctly defined:</p>
@@ -1208,9 +1215,9 @@ Windows</label><div class="tabbed-content docutils">
 </ul>
 </li>
 </ul>
-<div class="figure align-default" id="id7">
+<div class="figure align-default" id="id6">
 <img alt="pyc-prj-interp" src="../_images/pyc-prj-interp.png" />
-<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Verify the correct setup of the Project Interpreter.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Verify the correct setup of the Project Interpreter.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 <div class="tip dropdown admonition">
 <p class="admonition-title">Struggling with setting up PyCharm?</p>

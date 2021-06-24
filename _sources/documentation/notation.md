@@ -35,6 +35,10 @@ The consistent use of parameters and symbols for parameters is summarized in a n
   - index
   - combined habitat suitability index
 
+* - $D$
+  - m$^2$/s
+  - diffusion coefficient (or diffusivity)
+
 * - $D_{m}$
   - m
   - mean grain diameter of a sediment mixture
@@ -43,9 +47,9 @@ The consistent use of parameters and symbols for parameters is summarized in a n
   - m
   - grain diameter of which $pq$~$\%$ of the mixture are finer
 
-* - $Fr$ 
+* - $Fr$
   - $-$
-  - Froude number 
+  - Froude number
 
 * - $g$
   - m s$^{-2}$
@@ -121,19 +125,19 @@ The consistent use of parameters and symbols for parameters is summarized in a n
 
 * - $Re$
   - $-$
-  - Reynolds number 
+  - Reynolds number
 
 * - $R_h$
   - m
-  - hydraulic radius 
+  - hydraulic radius
 
 * - $S$
   - $-$
-  - slope 
+  - slope
 
 * - $S_0$
   - $-$
-  - channel slope 
+  - channel slope
 
 * - $S_{e}$
   - $-$
@@ -155,6 +159,10 @@ The consistent use of parameters and symbols for parameters is summarized in a n
   - m s$^{-1}$
   - flow velocity in $x$-direction
 
+* - $\mathbf{u}$ (bold)
+  - m s$^{-1}$
+  - flow velocity vector (multidimensional)
+
 * -  $x$
   - m
   - streamwise coordinate pointing in the upstream direction, or Easting of geodata
@@ -165,7 +173,7 @@ The consistent use of parameters and symbols for parameters is summarized in a n
 
 * - $z$
   - m
-  - vertical coordinate pointing against the gravity acceleration vector 
+  - vertical coordinate pointing against the gravity acceleration vector
 ```
 
 
@@ -179,7 +187,7 @@ The consistent use of parameters and symbols for parameters is summarized in a n
 
 * - $\Delta {t}$
   - s or years
-  - time period (duration) or timestep length 
+  - time period (duration) or timestep length
 
 * - $\Delta {x}$
   - m
@@ -200,6 +208,10 @@ The consistent use of parameters and symbols for parameters is summarized in a n
 * - $\Phi$
   - $-$
   - dimensionless bedload transport
+
+* - $\psi$
+  - variable
+  - constant of a transported particle (substance)
 
 * - $\rho_s$
   - kg m$^{-3}$

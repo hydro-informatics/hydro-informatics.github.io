@@ -27,15 +27,15 @@ In *gdb* tap:
 ```
 
 To end *gdb* tap:
- 
+
 ```
 (gdb) quit
 ```
 
 This approach also works with *Telemac3d* (and other modules).
- 
+
 ## Errors in Steering (CAS) Files
- 
+
 * make sure to use `:` rather than `=`
 * place all model files in the same folder and only use file names without the directories of files
 
@@ -43,10 +43,14 @@ This approach also works with *Telemac3d* (and other modules).
 
 To increase model stability, modify the following variables or make sure that the variables are within reasonable ranges in the *CAS* file:
 
-* `FREE SURFACE GRADIENT` - default is `1.0`, but it can be reduced to `0.1` to achieve stability (nevertheless, start with going incrementally down, such as a value of `0.9`).
 * `IMPLICITATION FOR DEPTH` should be between 0.5 and 0.6.
 * `IMPLICITATION FOR VELOCITIES` should be between 0.5 and 0.6.
 * `IMPLICITATION FOR DIFFUSION` should be `1.` or smaller.
+
+When physically non-meaningful gradients or oscillations occur at the water surface or the bathymetry has steep slopes, the following keyword settings may help:
+
+* `FREE SURFACE GRADIENT` - default is `1.0`, but it can be reduced to `0.1` to achieve stability (nevertheless, start with going incrementally down, such as a value of `0.9`).
+* `DISCRETIZATIONS IN SPACE : 12;11` - uses quasi-bubble spatial discretization with 4-node triangles for velocity.
 
 ## Errors in Mesh Files
 
@@ -68,7 +72,7 @@ The go to the directory where the mesh to be checked lives and run `mdump`, for 
 cd ~/telemac/studies/test-case/
 mdump mesh-to-test.med
 ```
- 
+
 Until the time of writing this tutorial, `mdump` asks for input variables in *French*, which mean the following:
 * *Mode d'affichage de noeuds?* which means in <br>English: **Node display mode?**
     + Option `1`: Interlaced mode
@@ -79,7 +83,7 @@ Until the time of writing this tutorial, `mdump` asks for input variables in *Fr
 * *Il y a 1 maillage(s) de type local dans ce fichier. Lequel voulez-vous lire (0 pour tous|1|2|3|...|n)?* which means in <br>English: **There is 1 local mesh(es) in this file. Which one do you want to read (0 for all or |1|2|3|...|n)?**
     + Option `0`: Read all
     + Option `i`: Read mesh number `i`
-    
+
 A standard answer combination of `1` - `1` - `0` will result in a console print of all nodes and connections between the nodes in the mesh, given that *TELEMAC* is able to read the mesh file. Starting with:
 
 ```
@@ -89,30 +93,30 @@ A standard answer combination of `1` - `1` - `0` will result in a console print 
 
 - Nom du maillage : <<Mesh_Hn_1>>
 - Dimension du maillage : 2
-- Type du maillage : MED_NON_STRUCTURE 
-- Description associee au maillage : 
+- Type du maillage : MED_NON_STRUCTURE
+- Description associee au maillage :
 
 (**********************************************************************************)
 (* MAILLAGE DE CALCUL |Mesh_Hn_1| n°01 A L'ETAPE DE CALCUL (n°dt,n°it)=(-01,-01): *)
 (**********************************************************************************)
-- Nombre de noeuds : 243 
-- Nombre de mailles de type MED_SEG2 : 80 
-- Nombre de mailles de type MED_TRIA3 : 404 
-- Nombre de familles : 15 
+- Nombre de noeuds : 243
+- Nombre de mailles de type MED_SEG2 : 80
+- Nombre de mailles de type MED_TRIA3 : 404
+- Nombre de familles : 15
 
 [...]
-``` 
+```
 
-*What does this mean?* If `mdump` can read the mesh, the mesh file itself is OK and potential calculation errors stem from other files such as the steering file or the boundary conditions. Otherwise, revise the mesh file and resolve any potential issue. 
- 
-## SALOME-HYDRO 
- 
+*What does this mean?* If `mdump` can read the mesh, the mesh file itself is OK and potential calculation errors stem from other files such as the steering file or the boundary conditions. Otherwise, revise the mesh file and resolve any potential issue.
+
+## SALOME-HYDRO
+
 ### SALOME-HYDRO not starting  (**Kernel/Session**) {#salome-dbg}
 
 If an error message is raised by `Kernel/Session` in the `Naming Service` (typically ends up in `[Errno 3] No such process` ... `RuntimeError: Process NUMBER for Kernel/Session not found`), there are multiple possible origins that partially root in potentially hard-coded library versions of the installer. To troubleshoot:
 
 * Manually create copies of newer libraries with names of older versions. For instance,
-    + In the 4th line after running `./salome`, `Kernel/Session` may prompt `error while loading [...] libSOMETHING.so.20 cannot open [...] No such file or directory` 
+    + In the 4th line after running `./salome`, `Kernel/Session` may prompt `error while loading [...] libSOMETHING.so.20 cannot open [...] No such file or directory`
     + Identify the version installed with `whereis libSOMETHING.so.20` (replace `libSOMETHING.so.20` with the missing library); for example, this may output `/usr/lib/x86_64-linux-gnu/libSOMETHING.so.40`
     + Create a copy of the newer library and rename the copy as needed by SALOME; for example, tap  `sudo cp /usr/lib/x86_64-linux-gnu/libSOMETHING.so.40 usr/lib/x86_64-linux-gnu/libSOMETHING.so.20`
     + Most likely, the following files need to be copied:
@@ -144,14 +148,14 @@ With the newer versions of the *Qt platform* any menu entry in *SALOME-HYDRO* wi
     + Go to the *Appearance* tab
     + Set *Style* to `gtk2` and *Standard dialogs* to `GTK2`
     + Click on *Apply* and *OK*
-* Open the file `~/.profile` (e.g. use the file browser, go to the `Home` folder and pressing `CTRL` + `H` to toggle viewing hidden files) and add at the very bottom of the file: 
+* Open the file `~/.profile` (e.g. use the file browser, go to the `Home` folder and pressing `CTRL` + `H` to toggle viewing hidden files) and add at the very bottom of the file:
 
 ```
 export QT_STYLE_OVERRIDE=gtk2
 export QT_QPA_PLATFORMTHEME=qt5ct
 ```
 
-* Save and close `.profile` and reboot (or just re-login). 
+* Save and close `.profile` and reboot (or just re-login).
 
 
 ```{note}

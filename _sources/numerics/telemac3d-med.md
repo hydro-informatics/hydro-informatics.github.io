@@ -836,8 +836,9 @@ These values (`5` for the scheme and `4` for the scheme option) are default valu
 
 Similar to advection, the above keywords can be used to define diffusion steps (replace `ADVECTION` with `DIFFUSION` in the keywords), where a value of `0` can be used to override the default value of `1` and disable diffusion.
 
-```{hint}
-**Recall**: **Advection** represents the motion of particles along with the bulk flow. **Diffusion** is the result of random motion of particles, driven by differences in concentration (e.g., dissipation of highly concentrated particles towards regions of low concentration). **Convection** encompassed both time-dependent phenomena.
+```{admonition} Advection, diffusion, and convection
+:class: tip
+**Recall**: {term}`Advection` represents the motion of particles along with the bulk flow . {term}`Diffusion` is the result of random motion of particles, driven by differences in concentration (e.g., dissipation of highly concentrated particles towards regions of low concentration). {term}`Convection` encompassed both time-dependent phenomena.
 ```
 
 The `SUPG OPTION` (Streamline Upwind Petrov Galerkin) keyword is a list of four integers that define if upwinding applies and what type of upwinding applies. The integers may take the following values:

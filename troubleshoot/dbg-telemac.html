@@ -806,10 +806,14 @@
 <h2>Instable Simulations<a class="headerlink" href="#instable-simulations" title="Permalink to this headline">¶</a></h2>
 <p>To increase model stability, modify the following variables or make sure that the variables are within reasonable ranges in the <em>CAS</em> file:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">FREE</span> <span class="pre">SURFACE</span> <span class="pre">GRADIENT</span></code> - default is <code class="docutils literal notranslate"><span class="pre">1.0</span></code>, but it can be reduced to <code class="docutils literal notranslate"><span class="pre">0.1</span></code> to achieve stability (nevertheless, start with going incrementally down, such as a value of <code class="docutils literal notranslate"><span class="pre">0.9</span></code>).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">IMPLICITATION</span> <span class="pre">FOR</span> <span class="pre">DEPTH</span></code> should be between 0.5 and 0.6.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">IMPLICITATION</span> <span class="pre">FOR</span> <span class="pre">VELOCITIES</span></code> should be between 0.5 and 0.6.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">IMPLICITATION</span> <span class="pre">FOR</span> <span class="pre">DIFFUSION</span></code> should be <code class="docutils literal notranslate"><span class="pre">1.</span></code> or smaller.</p></li>
+</ul>
+<p>When physically non-meaningful gradients or oscillations occur at the water surface or the bathymetry has steep slopes, the following keyword settings may help:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FREE</span> <span class="pre">SURFACE</span> <span class="pre">GRADIENT</span></code> - default is <code class="docutils literal notranslate"><span class="pre">1.0</span></code>, but it can be reduced to <code class="docutils literal notranslate"><span class="pre">0.1</span></code> to achieve stability (nevertheless, start with going incrementally down, such as a value of <code class="docutils literal notranslate"><span class="pre">0.9</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DISCRETIZATIONS</span> <span class="pre">IN</span> <span class="pre">SPACE</span> <span class="pre">:</span> <span class="pre">12;11</span></code> - uses quasi-bubble spatial discretization with 4-node triangles for velocity.</p></li>
 </ul>
 </div>
 <div class="section" id="errors-in-mesh-files">
@@ -857,16 +861,16 @@
 
 - Nom du maillage : &lt;&lt;Mesh_Hn_1&gt;&gt;
 - Dimension du maillage : 2
-- Type du maillage : MED_NON_STRUCTURE 
-- Description associee au maillage : 
+- Type du maillage : MED_NON_STRUCTURE
+- Description associee au maillage :
 
 (**********************************************************************************)
 (* MAILLAGE DE CALCUL |Mesh_Hn_1| n°01 A L&#39;ETAPE DE CALCUL (n°dt,n°it)=(-01,-01): *)
 (**********************************************************************************)
-- Nombre de noeuds : 243 
-- Nombre de mailles de type MED_SEG2 : 80 
-- Nombre de mailles de type MED_TRIA3 : 404 
-- Nombre de familles : 15 
+- Nombre de noeuds : 243
+- Nombre de mailles de type MED_SEG2 : 80
+- Nombre de mailles de type MED_TRIA3 : 404
+- Nombre de familles : 15
 
 [...]
 </pre></div>

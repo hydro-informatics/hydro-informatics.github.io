@@ -3,8 +3,21 @@
 Using common and consistent vocabulary is vital for working in teams. This section exemplifies a glossary with technical terms recurring in this eBook.
 
 ```{glossary}
+Advection
+  Advection is the motion of particles along with the bulk flow. The properties (e.g., heat) of an advected particle or substance are conserved. Mathematically, advection of incompressible fluids (e.g., water) is described by $\frac{\partial \psi}{\partial t}+\mathbf{u} \cdot \nabla \psi = 0$ where $\psi$ is a constant of the particle/substance in consideration and $\mathbf{u}$ is the fluid velocity vector. The $\nabla$ operator is literally a vector of partial differential operators $\frac{\partial}{\partial x_i}$ where $x_i$ refers to the dimensions of the flow field. In the case of steady flow (no variability in time) the advection equation becomes $\mathbf{u} \cdot \nabla \psi = 0$ {cite:p}`kundu_fluid_2008`.
+
+  *French: Advection (f) <br>German: Advektion (w)*
+
+Boussinesq
+  The Boussinesq approximation assumes that density variations can be neglected except for the gravity term (i.e., in the vertical momentum equations). In addition, the Boussinesq approximation assumes that a fluid is incompressible and that wave motion is inviscid {cite:p}`spiegel1960`.
+
 CFL
   In the field of hydrodynamics, the abbreviation CFL commonly refers to the **Courant-Friedrichs-Lewy** condition, which represents a convergence criterion for the numerical solution to the *Navier-Stokes* partial differential equations. The CFL applies to explicit time integration schemes that may become unstable for large time steps as a function of the size of mesh cells. Today, most numerical software uses an internal value for the CFL to adaptively calculate the maximum time step that is required for the stability of explicit solvers. In 2d modelling, the CFL condition is defined as $c_{cfl}={u_x + \Delta t}/\delta x + {u_y + \Delta t}/\delta y$, where $\Delta t$ is the time step, $\Delta x$ and $\Delta y$ are grid cell sizes in $x$ and $y$ directions of the coordinate reference system, and $u_x$ and $u_y$ are the flow velocities in the $x$ and $y$ directions. An explicit solver is assumed to be stable when $c_{cfl} \leq c_{cfl, crit}$, where the critical value $c_{cfl, crit}$ for the CFL condition must be smaller than 1.0. To this end, numerical modelling software, such as BASEMENT, uses a default value of $c_{cfl, crit} = 0.9$.
+
+Convection
+  Convection encompasses {term}`Advection` and {term}`Diffusion` {cite:p}`kundu_fluid_2008`. Thus, convection is fluid motion because of bulk transport (water flowing in a river with reference to {term}`Advection`) and dispersion of a fluid component from high-density to low-density regions ({term}`Diffusion`) in the flow field (e.g., an ink drop dispersing in a river).
+
+  *French: Convection (f) <br>German: Konvektion (w)*
 
 CRS
   A Coordinate Reference System (CRS), also referred to as Spatial Reference System (**SRS**), is an orientation unit system to geographically locate objects in a map. The CRS involves an origin ($x$=0.0 and $y$=0.0) and a projection. Objects of one map can be put into another map through the transformation of their CRS with respect to the coordinates and the projection. Read more about CRS in the section on {ref}`Projections and Coordinate Systems <prj>`.
@@ -25,6 +38,11 @@ DEM
 
   Ultimately, there are many options for *correct* DEM-terminology depending on the region where you are. Now, what is the correct term in which language? There is no universal answer to this question and a good choice is to be patient with the communication partner.
 
+Diffusion
+  Diffusion is the result of random motion of particles, driven by differences in concentration (e.g., dissipation of highly concentrated particles towards regions of low concentration). Mathematically, diffusion is described by $\frac{\partial \psi}{\partial t} = \nabla \cdot (D \nabla \psi)$ where $\psi$ is a constant of the particle/substance in consideration; $D$ is a diffusion coefficient (or diffusivity) in m$^2$/s, which is a proportionality constant between molecular flux and the gradient of a substance (or species). The $\nabla$ operator is a vector of partial differential operators $\frac{\partial}{\partial x_i}$ where $x_i$ refers to the dimensions of the flow field {cite:p}`kundu_fluid_2008`.
+
+  *French: Diffusion (f) <br>German: Diffusion (w)*
+
 Echo sounder
   An echo sounder emits an acoustic signal under water, which is reflected by the objects of the underwater landscape. Echo sounding is an active {term}`Sonar` technique and enables the creation of an underwater DEM, which is also referred to as bathymetry. To perform echo sounding a probe must be installed on a boat that requires a minimum navigable water depth. In addition, the use of the echo sounder (probe) itself also requires a minimum water depth to operate with little noise inference. Therefore, by experience, a minimum water depth of 1-2 m is necessary to survey the bathymetry of a river by echo sounding.
 
@@ -44,6 +62,9 @@ Lidar
 
 MPI
   In computing, MPI stands for *Message Passing Interface*, which is a portable message passing standard. MPI is implemented in many open-source C, C++, and Fortran applications to enable parallel computing.
+
+Navier-Stokes Equation
+  The general form of the Navier-Stokes Equation describes the motion of a Newtonian fluid {cite:p}`batchelor_2000_chpt3`. The equation simplifies with the assumption of incompressible fluids and further reduces to the *Euler equation* when viscous effects are negligible, which in generally the case in far distance from the boundaries {cite:p}`kundu_fluid_2008`. A theoritical, exact solution of the Navier-Stokes equation would yield a perfect description of many natural processes. However, the underlying system equations involves more unknown parameters than equations. For this reason, rigorous simplifications and numerical approximations with considerably larger computational effort than for an analytical solution are necessary for the solution of the Navier-Stokes Equation. Simplification hypotheses are, for example, a hydrostatic pressure distribution (leading to the shallow water equations) or the assumption that a fluid is incompressible.
 
 Operating System
   An Operating System (OS) manages the hardware of a computer, software (resources), and services for any program you want to install.

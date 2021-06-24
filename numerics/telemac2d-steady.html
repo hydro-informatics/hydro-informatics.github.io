@@ -745,8 +745,23 @@
       </a>
      </li>
      <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#numerical-parameters">
-       Numerical Parameters
+      <a class="reference internal nav-link" href="#general-numerical-parameters">
+       General Numerical Parameters
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#numerical-parameters-for-finite-elements">
+       Numerical Parameters for Finite Elements
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#numerical-parameters-for-finite-volumes">
+       Numerical Parameters for Finite Volumes
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#numerical-solver-parameters">
+       Numerical Solver Parameters
       </a>
      </li>
      <li class="toc-h3 nav-item toc-entry">
@@ -855,7 +870,7 @@
 <span class="o">/------------------------------------------------------------------/</span>
 <span class="o">/</span>			<span class="n">COMPUTATION</span> <span class="n">ENVIRONMENT</span>
 <span class="o">/------------------------------------------------------------------/</span>
-<span class="n">TITLE</span> <span class="p">:</span> <span class="s1">&#39;TELEMAC 3D FLUME&#39;</span>
+<span class="n">TITLE</span> <span class="p">:</span> <span class="s1">&#39;2d steady flow&#39;</span>
 <span class="o">/</span>
 <span class="n">BOUNDARY</span> <span class="n">CONDITIONS</span> <span class="n">FILE</span> <span class="p">:</span> <span class="n">boundaries</span><span class="o">.</span><span class="n">cli</span>
 <span class="n">GEOMETRY</span> <span class="n">FILE</span>            <span class="p">:</span> <span class="n">qgismesh</span><span class="o">.</span><span class="n">slf</span>
@@ -953,7 +968,7 @@
 <span class="o">/------------------------------------------------------------------/</span>
 <span class="o">/</span>			<span class="n">GENERAL</span> <span class="n">PARAMETERS</span>
 <span class="o">/------------------------------------------------------------------/</span>
-<span class="n">TITLE</span> <span class="p">:</span> <span class="s1">&#39;TELEMAC 3D FLUME&#39;</span>
+<span class="n">TITLE</span> <span class="p">:</span> <span class="s1">&#39;2d steady flow&#39;</span>
 <span class="o">/</span>
 <span class="n">BOUNDARY</span> <span class="n">CONDITIONS</span> <span class="n">FILE</span> <span class="p">:</span> <span class="n">boundaries</span><span class="o">.</span><span class="n">cli</span>
 <span class="n">GEOMETRY</span> <span class="n">FILE</span>            <span class="p">:</span> <span class="n">qgismesh</span><span class="o">.</span><span class="n">slf</span>
@@ -969,55 +984,152 @@
 </div>
 </div>
 </div>
-<div class="section" id="numerical-parameters">
-<h3>Numerical Parameters<a class="headerlink" href="#numerical-parameters" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">SUPG</span> <span class="pre">OPTION</span></code> (Streamline Upwind Petrov Galerkin) keyword is a list of four integers that define if upwinding applies and what type of upwinding applies. The integers may take the following values:</p>
+<div class="section" id="general-numerical-parameters">
+<h3>General Numerical Parameters<a class="headerlink" href="#general-numerical-parameters" title="Permalink to this headline">¶</a></h3>
+<p><strong>The following descriptions refer to section 7.1 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p1r1/documentation/telemac2d/user/telemac2d_user_v8p1.pdf">Telemac2d manual</a>.</strong></p>
+<p>Telemac2d comes with three solvers for approximating the depth-averaged <a class="reference internal" href="../documentation/glossary.html#term-Navier-Stokes-Equation"><span class="xref std std-term">Navier-Stokes Equation</span></a> (shallow water) <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id330">KC08</a>]</span> that can be chosen by adding an <strong>EQUATIONS</strong> keyword:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">EQUATIONS</span> <span class="pre">:</span> <span class="pre">SAINT-VENANT</span> <span class="pre">FE</span></code> is the <strong>default</strong> that make Telemac2d use a Saint-Venant finite element method,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EQUATIONS</span> <span class="pre">:</span> <span class="pre">SAINT-VENANT</span> <span class="pre">FV</span></code> makes Telemac2d use a Saint-Venant finite volume method, and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EQUATIONS</span> <span class="pre">:</span> <span class="pre">BOUSSINESQ</span></code> makes Telemac2d use the <a class="reference internal" href="../documentation/glossary.html#term-Boussinesq"><span class="xref std std-term">Boussinesq</span></a> approximations (constant density except in the vertical momentum equation).</p></li>
+</ul>
+<p>In addition, a type of discretization has to be specified with the <strong>DISCRETIZATIONS IN SPACE</strong> keyword, which is a list of five integer values. The five list elements define spatial discretization scheme for (1) velocity, (2) depth, (3) tracers, (4) <span class="math notranslate nohighlight">\(k-\epsilon\)</span> turbulence, and (5) <span class="math notranslate nohighlight">\(\tilde{\nu}\)</span> advection (Spalart-Allmaras). The minimum length of the keyword list is 2 (for velocity and depth) and all other elements are optional. The list elements may take the following values defining spatial discretization:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">11</span></code> (default) activates triangular discretization in space (i.e., 3-node triangles),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">12</span></code> activates quasi-bubble discretization with 4-node triangles, and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">13</span></code> activates quadratic discretization with 6-node triangles.</p></li>
+</ul>
+<p>The <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p1r1/documentation/telemac2d/user/telemac2d_user_v8p1.pdf">Telemac2d manual</a> recommend using the default value of <code class="docutils literal notranslate"><span class="pre">DISCRETIZATIONS</span> <span class="pre">IN</span> <span class="pre">SPACE</span> <span class="pre">:</span> <span class="pre">11;11</span></code> that assign a linear discretization for velocity and water depth (computationally fastest). The option <code class="docutils literal notranslate"><span class="pre">12;11</span></code> may be used to reduce free surface instabilities or oscillations (e.g., along with steep bathymetry gradients). The option <code class="docutils literal notranslate"><span class="pre">13;11</span></code> increase the accuracy of results, the computation time, memory usage, and it is currently not available in Telemac2d.</p>
+<p>In addition, the <strong>FREE SURFACE GRADIENT</strong> keyword can be defined for increasing the stability of a model. Its default value is <code class="docutils literal notranslate"><span class="pre">1.0</span></code>, but it can be reduced close to zero to achieve stability. The developers propose a minimum value of <code class="docutils literal notranslate"><span class="pre">0.</span></code>, but this would lead to non-meaningful results and this is why this eBook recommends a value slightly higher than zero. For instance, the following keyword combination may reduce surface instabilities (also referred to as <em>wiggles</em> or <em>oscillations</em>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DISCRETIZATIONS</span> <span class="n">IN</span> <span class="n">SPACE</span> <span class="p">:</span> <span class="mi">12</span><span class="p">;</span><span class="mi">11</span>
+<span class="n">FREE</span> <span class="n">SURFACE</span> <span class="n">GRADIENT</span> <span class="p">:</span> <span class="mf">0.03</span>
+</pre></div>
+</div>
+<p>By default <a class="reference internal" href="../documentation/glossary.html#term-Advection"><span class="xref std std-term">Advection</span></a> is activated through the keyword <code class="docutils literal notranslate"><span class="pre">ADVECTION</span> <span class="pre">:</span> <span class="pre">YES</span></code> and it can be deactivated for particular terms only:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">H</span> <span class="p">:</span> <span class="n">NO</span> <span class="o">/</span> <span class="n">deactivates</span> <span class="n">depth</span> <span class="n">advection</span>
+<span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">U</span> <span class="n">AND</span> <span class="n">V</span> <span class="p">:</span> <span class="n">NO</span> <span class="o">/</span> <span class="n">deactivates</span> <span class="n">velocity</span> <span class="n">advection</span>
+<span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">K</span> <span class="n">AND</span> <span class="n">EPSILON</span> <span class="p">:</span> <span class="n">NO</span> <span class="o">/</span> <span class="n">deactivates</span> <span class="n">turbulent</span> <span class="n">energy</span> <span class="ow">and</span> <span class="n">dissipation</span> <span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="n">e</span> <span class="n">model</span><span class="p">)</span> <span class="ow">or</span> <span class="n">the</span> <span class="n">Spalart</span><span class="o">-</span><span class="n">Allmaras</span> <span class="n">advection</span>
+<span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">TRACERS</span> <span class="p">:</span> <span class="n">NO</span> <span class="o">/</span> <span class="n">deactivates</span> <span class="n">tracer</span> <span class="n">advection</span>
+</pre></div>
+</div>
+<p>The <strong>PROPAGATION</strong> keyword (default: <code class="docutils literal notranslate"><span class="pre">YES</span></code>) affects the modelling of propagation and related phenomena. For instance, disabling propagation (<code class="docutils literal notranslate"><span class="pre">PROPAGATION</span> <span class="pre">:</span> <span class="pre">NO</span></code>) will also disable <a class="reference internal" href="../documentation/glossary.html#term-Diffusion"><span class="xref std std-term">Diffusion</span></a>. The other way round, when propagation is enabled, <a class="reference internal" href="../documentation/glossary.html#term-Diffusion"><span class="xref std std-term">Diffusion</span></a> can be disabled separately. Read more about <a class="reference internal" href="../documentation/glossary.html#term-Diffusion"><span class="xref std std-term">Diffusion</span></a> in Telemac2d in the <a class="reference internal" href="#tm2d-turbulence"><span class="std std-ref">turbulence</span></a> section.</p>
+</div>
+<div class="section" id="numerical-parameters-for-finite-elements">
+<h3>Numerical Parameters for Finite Elements<a class="headerlink" href="#numerical-parameters-for-finite-elements" title="Permalink to this headline">¶</a></h3>
+<p><strong>The following descriptions refer to section 7.2.1 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p1r1/documentation/telemac2d/user/telemac2d_user_v8p1.pdf">Telemac2d manual</a>.</strong></p>
+<p>Telemac2d uses finite elements for iterative solutions to the <a class="reference internal" href="../documentation/glossary.html#term-Navier-Stokes-Equation"><span class="xref std std-term">Navier-Stokes Equation</span></a>. To this end, a <strong>TREATMENT OF THE LINEAR SYSTEM</strong> keyword enables replacing the original set of equations (option <code class="docutils literal notranslate"><span class="pre">1</span></code>) involved in TELEMAC’s finite element solver with a generalized wave equation (option <code class="docutils literal notranslate"><span class="pre">2</span></code>). The replacement (i.e., the use of the <strong>generalized wave equation</strong>) is set to <strong>default since v8p2</strong> and decreases computation time, but smoothens the results. The default (<code class="docutils literal notranslate"><span class="pre">TREATMENT</span> <span class="pre">OF</span> <span class="pre">THE</span> <span class="pre">LINEAR</span> <span class="pre">SYSTEM</span> <span class="pre">:</span> <span class="pre">2</span></code>) automatically activates mass lumping for depth and velocity, and implies explicit velocity diffusion.</p>
+<div class="note dropdown admonition">
+<p class="admonition-title">Use SCHEME FOR ADVECTION in lieu of TYPE OF ADVECTION</p>
+<p>The <strong>TYPE OF ADVECTION</strong> keyword is a list of four integers that define the advection schemes for (1) velocities (both <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span>), (2) water depth <span class="math notranslate nohighlight">\(h\)</span>, (3) tracers, and (4) turbulence (<span class="math notranslate nohighlight">\(k-\epsilon\)</span> or <span class="math notranslate nohighlight">\(\tilde{\nu}\)</span>). The value provided for (2) depth is ignored since v6p0 and a list of two values is sufficient in the absence of (3) tracers and a specific (4) turbulence model. Thus, in lieu of <code class="docutils literal notranslate"><span class="pre">TYPE</span> <span class="pre">OF</span> <span class="pre">ADVECTION</span></code>, the <code class="docutils literal notranslate"><span class="pre">SCHEME</span> <span class="pre">FOR</span> <span class="pre">ADVECTION</span> <span class="pre">OF</span> <span class="pre">VELOCITIES</span></code> keyword may be used. The default is <code class="docutils literal notranslate"><span class="pre">TYPE</span> <span class="pre">OF</span> <span class="pre">ADVECTION</span> <span class="pre">:</span> <span class="pre">1;5;1;1</span></code> (where the <code class="docutils literal notranslate"><span class="pre">5</span></code> for depth refers to an older Telemac2d version and does not trigger the PSI scheme). <strong>The <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p1r1/documentation/telemac2d/user/telemac2d_user_v8p1.pdf">Telemac2d manual</a> state that the TYPE OF ADVECTION keyword will be deprecated in future releases.</strong></p>
+</div>
+<p>The <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p1r1/documentation/telemac2d/user/telemac2d_user_v8p1.pdf">Telemac2d manual</a> state that the following scalar <strong>SCHEME FOR ADVECTION</strong> keywords apply instead of the soon deprecated TYPE OF ADVECTION list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SCHEME</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">VELOCITIES</span> <span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">default</span>
+<span class="n">SCHEME</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">TRACERS</span> <span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">default</span>
+<span class="n">SCHEME</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">K</span><span class="o">-</span><span class="n">EPSILON</span> <span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">default</span>
+</pre></div>
+</div>
+<p>The three <code class="docutils literal notranslate"><span class="pre">SCHEME</span> <span class="pre">FOR</span> <span class="pre">ADVECTION</span></code> scalar keywords values may take the following values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> sets a not mass-conservative method of characteristics (default for all);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> sets a semi-implicit scheme and activates the Streamline Upwind Petrov Galerkin (SUPG - see below);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">3</span></code>, <code class="docutils literal notranslate"><span class="pre">4</span></code>, <code class="docutils literal notranslate"><span class="pre">13</span></code>, and <code class="docutils literal notranslate"><span class="pre">14</span></code> activate the so-called NERD scheme (these numbers activate different schemes in 3d only);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">5</span></code> sets a mass-conservative PSI distributive scheme; and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">15</span></code> sets the mass-conservative ERIA scheme that works with tidal flats.</p></li>
+</ul>
+<p>Options <code class="docutils literal notranslate"><span class="pre">4</span></code> and <code class="docutils literal notranslate"><span class="pre">5</span></code> require that the <a class="reference internal" href="../documentation/glossary.html#term-CFL"><span class="xref std std-term">CFL</span></a> condition is smaller than 1.</p>
+<div class="tip admonition">
+<p class="admonition-title">Recommended SCHEME OF ADVECTION … keywords</p>
+<p>The <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p1r1/documentation/telemac2d/user/telemac2d_user_v8p1.pdf">Telemac2d manual</a> recommend specific combinations depending on the simulation scenario.</p>
+<p>For models <strong>without any dry zones</strong> use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SCHEME</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">VELOCITIES</span> <span class="p">:</span> <span class="mi">4</span> <span class="o">/</span> <span class="n">alternatively</span> <span class="n">keep</span> <span class="mi">1</span>
+<span class="n">SCHEME</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">TRACERS</span> <span class="p">:</span> <span class="mi">5</span>
+<span class="n">SCHEME</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">K</span><span class="o">-</span><span class="n">EPSILON</span> <span class="p">:</span> <span class="mi">4</span>
+</pre></div>
+</div>
+<p>For models with <strong>tidal flats</strong> use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SCHEME</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">VELOCITIES</span> <span class="p">:</span> <span class="mi">14</span> <span class="o">/</span> <span class="n">alternatively</span> <span class="n">keep</span> <span class="mi">1</span>
+<span class="n">SCHEME</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">TRACERS</span> <span class="p">:</span> <span class="mi">5</span>
+<span class="n">SCHEME</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">K</span><span class="o">-</span><span class="n">EPSILON</span> <span class="p">:</span> <span class="mi">14</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Without any SCHEME FOR ADVECTION …</strong> keyword, the <strong>SUPG OPTION</strong> (Streamline Upwind Petrov Galerkin) keyword can be used to define if upwinding applies and what type of upwinding applies. The <code class="docutils literal notranslate"><span class="pre">SUPG</span> <span class="pre">OPTION</span></code> is a list of four integers that may take the following values:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> disables upwinding,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> enables upwinding with a classical SUPG scheme (recommended when the <a class="reference external" href="https://en.wikipedia.org/wiki/Courant-Friedrichs-Lewy_condition">Courant number</a> is unknown), and</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> enables upwinding with a modified SUPG scheme, where upwinding corresponds to the Courant number.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> enables upwinding with a classical SUPG scheme (recommended when the <a class="reference internal" href="../documentation/glossary.html#term-CFL"><span class="xref std std-term">CFL</span></a> condition is unknown), and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> enables upwinding with a modified SUPG scheme, where upwinding equals the <a class="reference internal" href="../documentation/glossary.html#term-CFL"><span class="xref std std-term">CFL</span></a> condition (recommended when the <a class="reference internal" href="../documentation/glossary.html#term-CFL"><span class="xref std std-term">CFL</span></a> condition is small).</p></li>
 </ul>
-<p>The default is <code class="docutils literal notranslate"><span class="pre">SUPG</span> <span class="pre">OPTION</span> <span class="pre">:</span> <span class="pre">1;0;1;1</span></code>, where the first list element refers to flow velocity (default <code class="docutils literal notranslate"><span class="pre">1</span></code>), the second to water depth (default <code class="docutils literal notranslate"><span class="pre">0</span></code>), the third to tracers (default <code class="docutils literal notranslate"><span class="pre">1</span></code>), and the last to the k-epsilon model (default <code class="docutils literal notranslate"><span class="pre">1</span></code>). Read more in section ??? of the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p1r1/documentation/telemac2d/user/telemac2d_user_v8p1.pdf">Telemac2d manual</a>.</p>
-<p><strong>Implication parameters</strong> (<code class="docutils literal notranslate"><span class="pre">IMPLICITATION</span> <span class="pre">FOR</span> <span class="pre">DEPTH</span></code> and <code class="docutils literal notranslate"><span class="pre">IMPLICITATION</span> <span class="pre">FOR</span> <span class="pre">VELOCITIES</span></code>) should be set between 0.55 and 0.60 (default is 0.55 since <em>TELEMAC v8p1</em>) and can be considered as a degree of implicitation. <code class="docutils literal notranslate"><span class="pre">IMPLICITATION</span> <span class="pre">FOR</span> <span class="pre">DIFFUSION</span></code> is set to <code class="docutils literal notranslate"><span class="pre">1.0</span></code> by default. Read more in section ??? of the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p1r1/documentation/telemac2d/user/telemac2d_user_v8p1.pdf">Telemac2d manual</a>.</p>
-<p>The parameter <code class="docutils literal notranslate"><span class="pre">FREE</span> <span class="pre">SURFACE</span> <span class="pre">GRADIENT</span></code> can be used for increasing the stability of a model. Its default value is <code class="docutils literal notranslate"><span class="pre">1.0</span></code>, but it can be reduced to <code class="docutils literal notranslate"><span class="pre">0.1</span></code> to achieve stability.</p>
+<p>The default is <code class="docutils literal notranslate"><span class="pre">SUPG</span> <span class="pre">OPTION</span> <span class="pre">:</span> <span class="pre">2;2;2;2</span></code>, where</p>
+<ul class="simple">
+<li><p>the first list element refers to flow velocity (default <code class="docutils literal notranslate"><span class="pre">2</span></code>),</p></li>
+<li><p>the second to water depth (default <code class="docutils literal notranslate"><span class="pre">2</span></code> - set to <code class="docutils literal notranslate"><span class="pre">0</span></code> when <code class="docutils literal notranslate"><span class="pre">MATRIX</span> <span class="pre">STORAGE</span> <span class="pre">:</span> <span class="pre">3</span></code>),</p></li>
+<li><p>the third to tracers (default <code class="docutils literal notranslate"><span class="pre">2</span></code>), and</p></li>
+<li><p>the last (forth) to the k-epsilon model (default <code class="docutils literal notranslate"><span class="pre">2</span></code>).</p></li>
+</ul>
+<p><strong>Implicitation parameters</strong> (<code class="docutils literal notranslate"><span class="pre">IMPLICITATION</span> <span class="pre">FOR</span> <span class="pre">DEPTH</span></code>, <code class="docutils literal notranslate"><span class="pre">IMPLICITATION</span> <span class="pre">FOR</span> <span class="pre">VELOCITIES</span></code>, and <code class="docutils literal notranslate"><span class="pre">IMPLICITATION</span> <span class="pre">FOR</span> <span class="pre">DIFFUSION</span> <span class="pre">OF</span> <span class="pre">VELOCITY</span></code>) apply to the semi-implicit time discretization used in Telemac2d. To enable cross-version compatibility, implicitation parameters should be defined in the <code class="docutils literal notranslate"><span class="pre">*.cas</span></code> file. For <code class="docutils literal notranslate"><span class="pre">DEPTH</span></code> and <code class="docutils literal notranslate"><span class="pre">VELOCITIES</span></code> use values between <code class="docutils literal notranslate"><span class="pre">0.55</span></code> and <code class="docutils literal notranslate"><span class="pre">0.60</span></code> (<strong>default is <code class="docutils literal notranslate"><span class="pre">0.55</span></code> since v8p1</strong>); for <code class="docutils literal notranslate"><span class="pre">IMPLICITATION</span> <span class="pre">FOR</span> <span class="pre">DIFFUSION</span> <span class="pre">OF</span> <span class="pre">VELOCITY</span></code> set the v8p2 default of <code class="docutils literal notranslate"><span class="pre">1.0</span></code>.</p>
+<p>The default <code class="docutils literal notranslate"><span class="pre">TREATMENT</span> <span class="pre">OF</span> <span class="pre">THE</span> <span class="pre">LINEAR</span> <span class="pre">SYSTEM</span> <span class="pre">:</span> <span class="pre">2</span></code> involves so-called <strong>mass lumping</strong>, which leads to a smoothening of results. Specific mass lumping keywords and values are required for the flux control option of the <code class="docutils literal notranslate"><span class="pre">TREATMENT</span> <span class="pre">OF</span> <span class="pre">NEGATIVE</span> <span class="pre">DEPTHS</span></code> keyword and the default value for the treatment of tidal flats. To this end, the mass lumping keywords should be defined as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MASS</span><span class="o">-</span><span class="n">LUMPING</span> <span class="n">ON</span> <span class="n">H</span> <span class="p">:</span> <span class="mf">1.</span>
+<span class="n">MASS</span><span class="o">-</span><span class="n">LUMPING</span> <span class="n">ON</span> <span class="n">VECLOCITY</span> <span class="p">:</span> <span class="mf">1.</span>
+<span class="n">MASS</span><span class="o">-</span><span class="n">LUMPING</span> <span class="n">ON</span> <span class="n">TRACERS</span> <span class="p">:</span> <span class="mf">1.</span>
+</pre></div>
+</div>
+<p>In addition, <code class="docutils literal notranslate"><span class="pre">MASS-LUMPING</span> <span class="pre">FOR</span> <span class="pre">WEAK</span> <span class="pre">CHARACTERISTICS</span> <span class="pre">:</span> <span class="pre">1.</span></code> may be defined, which will make Telemac2d using weak characteristics (see below). The default value of any <code class="docutils literal notranslate"><span class="pre">MASS-LUMPING</span> <span class="pre">...</span></code> keyword is <code class="docutils literal notranslate"><span class="pre">0.</span></code> and the maximum value is <code class="docutils literal notranslate"><span class="pre">1.</span></code>, which makes mass matrices diagonal.</p>
+<p>The <strong>OPTION OF CHARACTERISTICS</strong> keyword defines the method of characteristics that can take a <strong>strong (default of <code class="docutils literal notranslate"><span class="pre">1</span></code>)</strong> or a <strong>weak (<code class="docutils literal notranslate"><span class="pre">2</span></code>)</strong> form. A weak form decreases <a class="reference internal" href="../documentation/glossary.html#term-Diffusion"><span class="xref std std-term">Diffusion</span></a>, is more conservative, and increases computation time. Telemac2d automatically switches from the default strong (<code class="docutils literal notranslate"><span class="pre">1</span></code>) to the weak (<code class="docutils literal notranslate"><span class="pre">2</span></code>) form when</p>
+<ul class="simple">
+<li><p>the <code class="docutils literal notranslate"><span class="pre">TYPE</span> <span class="pre">OF</span> <span class="pre">ADVECTION</span></code> is set to <code class="docutils literal notranslate"><span class="pre">1</span></code>,</p></li>
+<li><p>any <code class="docutils literal notranslate"><span class="pre">SCHEME</span> <span class="pre">FOR</span> <span class="pre">ADVECTION</span> <span class="pre">...</span></code> is set to <code class="docutils literal notranslate"><span class="pre">1</span></code>, or</p></li>
+<li><p>any <code class="docutils literal notranslate"><span class="pre">SCHEME</span> <span class="pre">OPTION</span> <span class="pre">FOR</span> <span class="pre">ADVECTION</span> <span class="pre">OF</span> <span class="pre">...</span></code> is set to <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p></li>
+</ul>
+<p>None of these options should be used with tracers because they are not mass-conservative.</p>
+</div>
+<div class="section" id="numerical-parameters-for-finite-volumes">
+<h3>Numerical Parameters for Finite Volumes<a class="headerlink" href="#numerical-parameters-for-finite-volumes" title="Permalink to this headline">¶</a></h3>
+<p>The finite volume method is mentioned here for completeness and detailed descriptions are available in section 7.2.2 of the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p1r1/documentation/telemac2d/user/telemac2d_user_v8p1.pdf">Telemac2d manual</a>.</p>
+<p>The finite volume method involves the definition of a scheme through the <strong>FINITE VOLUME SCHEME</strong> keyword that can take integer values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> enables the Roe scheme <span id="id2">[<a class="reference internal" href="../documentation/bibliography.html#id1348">Roe81</a>]</span>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> is the <strong>default</strong> and enables the kinetic scheme <span id="id3">[<a class="reference internal" href="../documentation/bibliography.html#id1347">ABP00</a>]</span>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">3</span></code> enables the Zokagoa scheme <span id="id4">[<a class="reference internal" href="../documentation/bibliography.html#id1350">ZS10</a>]</span> that is incompatible with tidal flats,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">4</span></code> enables the Tchamen scheme,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">5</span></code> enables the frequently use Harten Lax Leer-Contact (HLLC) scheme <span id="id5">[<a class="reference internal" href="../documentation/bibliography.html#id1349">Tor09</a>]</span>, and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">6</span></code> enables the Weighted Average Flux (WAF) <span id="id6">[<a class="reference internal" href="../documentation/bibliography.html#id1346">Ata12</a>]</span> scheme where parallelism is currently not implemented.</p></li>
+</ul>
+<p>All finite volume schemes are explicit and potentially subjected to instability. For this reason, a desired <a class="reference internal" href="../documentation/glossary.html#term-CFL"><span class="xref std std-term">CFL</span></a> condition and a variable timestep should be defined through:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DESIRED</span> <span class="n">COURANT</span> <span class="n">NUMBER</span> <span class="p">:</span> <span class="mf">0.9</span>
+<span class="n">VARIABLE</span> <span class="n">TIME</span><span class="o">-</span><span class="n">STEP</span> <span class="p">:</span> <span class="n">YES</span> <span class="o">/</span> <span class="n">default</span> <span class="ow">is</span> <span class="n">NO</span>
+</pre></div>
+</div>
+<p>The variable timestep will cause irregular listing outputs, while the graphic output frequency stems from the above-defined <code class="docutils literal notranslate"><span class="pre">TIME</span> <span class="pre">STEP</span></code>.</p>
+<p>The <strong>FINITE VOLUME SCHEME TIME ORDER</strong> keyword defines the second order time scheme, which is by default set to <em>Euler explicit</em> (<code class="docutils literal notranslate"><span class="pre">1</span></code>). Setting the time scheme order to <code class="docutils literal notranslate"><span class="pre">2</span></code> makes Telemac2d using the Newmark scheme where an integration coefficient may be used to change the integration parameter (<code class="docutils literal notranslate"><span class="pre">NEWMARK</span> <span class="pre">TIME</span> <span class="pre">INTEGRATION</span> <span class="pre">COEFFICIENT</span> <span class="pre">:</span> <span class="pre">1</span></code> corresponds to <em>Euler explicit</em>). To implement these options in the steering file, use the following settings:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FINITE</span> <span class="n">VOLUME</span> <span class="n">SCHEME</span> <span class="n">TIME</span> <span class="n">ORDER</span> <span class="p">:</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">default</span> <span class="ow">is</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">Euler</span> <span class="n">explicit</span>
+<span class="n">NEWMARK</span> <span class="n">TIME</span> <span class="n">INTEGRATION</span> <span class="n">COEFFICIENT</span> <span class="p">:</span> <span class="mf">0.5</span> <span class="o">/</span> <span class="n">default</span> <span class="ow">is</span> <span class="mf">0.5</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">MASS-BALANCE</span> <span class="pre">:</span> <span class="pre">YES</span></code> setting will printout the mass fluxes and errors in the computation region, which is an important parameter for verifying the plausibility of the model.</p></li>
 </ul>
 <p>Depending on the type of analysis, the solver-related parameters of <code class="docutils literal notranslate"><span class="pre">SOLVER</span></code>, <code class="docutils literal notranslate"><span class="pre">SOLVER</span> <span class="pre">OPTIONS</span></code>, <code class="docutils literal notranslate"><span class="pre">MAXIMUM</span> <span class="pre">NUMBER</span> <span class="pre">OF</span> <span class="pre">ITERATION</span> <span class="pre">FOR</span> <span class="pre">SOLVER</span></code>, and <code class="docutils literal notranslate"><span class="pre">TIDAL</span> <span class="pre">FLATS</span></code> may be modified.</p>
-<div class="note dropdown admonition">
-<p class="admonition-title">Expand to recall NUMERICAL PARAMETERS in the cas file</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/------------------------------------------------------------------/</span>
-<span class="o">/</span>			<span class="n">NUMERICAL</span> <span class="n">PARAMETERS</span>
-<span class="o">/------------------------------------------------------------------/</span>
-<span class="o">/</span>
-<span class="o">/</span> <span class="n">CONVECTION</span><span class="o">-</span><span class="n">DIFFUSION</span>
-<span class="o">/------------------------------------------------------------------</span>
-<span class="n">DISCRETIZATIONS</span> <span class="n">IN</span> <span class="n">SPACE</span> <span class="p">:</span> <span class="mi">11</span><span class="p">;</span><span class="mi">11</span>
-<span class="n">TYPE</span> <span class="n">OF</span> <span class="n">ADVECTION</span> <span class="p">:</span> <span class="mi">1</span><span class="p">;</span><span class="mi">5</span><span class="p">;</span><span class="mi">1</span><span class="p">;</span><span class="mi">1</span>
-<span class="n">ADVECTION</span> <span class="p">:</span> <span class="n">YES</span>
-<span class="o">/</span>
-<span class="n">SUPG</span> <span class="n">OPTION</span> <span class="p">:</span> <span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">2</span>  <span class="o">/</span> <span class="n">classic</span> <span class="n">supg</span> <span class="k">for</span> <span class="n">U</span> <span class="ow">and</span> <span class="n">V</span>  <span class="n">see</span> <span class="n">docs</span> <span class="n">sec</span> <span class="mf">6.2.2</span>
-<span class="o">/</span>
-<span class="o">/</span> <span class="n">PROPAGATION</span> <span class="n">HEIGHT</span> <span class="n">AND</span> <span class="n">STABILITY</span>
-<span class="o">/</span> <span class="o">------------------------------------------------------------------</span>
-<span class="n">IMPLICITATION</span> <span class="n">FOR</span> <span class="n">DEPTH</span> <span class="p">:</span> <span class="mf">0.55</span> <span class="o">/</span> <span class="n">should</span> <span class="n">be</span> <span class="n">between</span> <span class="mf">0.55</span> <span class="ow">and</span> <span class="mf">0.6</span>
-<span class="n">IMPLICITATION</span> <span class="n">FOR</span> <span class="n">VELOCITY</span> <span class="p">:</span> <span class="mf">0.55</span> <span class="o">/</span> <span class="n">should</span> <span class="n">be</span> <span class="n">between</span> <span class="mf">0.55</span> <span class="ow">and</span> <span class="mf">0.6</span>
-<span class="n">FREE</span> <span class="n">SURFACE</span> <span class="n">GRADIENT</span> <span class="n">COMPATIBILITY</span> <span class="p">:</span> <span class="mf">0.1</span>  <span class="o">/</span> <span class="n">default</span> <span class="mf">1.</span>
-<span class="n">CONTINUITY</span> <span class="n">CORRECTION</span> <span class="p">:</span> <span class="n">YES</span>
-<span class="n">TREATMENT</span> <span class="n">OF</span> <span class="n">THE</span> <span class="n">LINEAR</span> <span class="n">SYSTEM</span> <span class="p">:</span> <span class="mi">2</span>
-<span class="n">MASS</span><span class="o">-</span><span class="n">BALANCE</span> <span class="p">:</span> <span class="n">YES</span>
-<span class="n">MASS</span><span class="o">-</span><span class="n">LUMPING</span> <span class="n">ON</span> <span class="n">H</span> <span class="p">:</span> <span class="mi">1</span>
-<span class="o">/</span> <span class="n">MATRIX</span> <span class="n">STORAGE</span> <span class="p">:</span> <span class="mi">3</span>
-<span class="o">/</span>
-<span class="o">/</span> <span class="n">HYDRODYNAMIC</span> <span class="n">SOLVER</span>
-<span class="o">/------------------------------------------------------------------</span>
-<span class="n">INFORMATION</span> <span class="n">ABOUT</span> <span class="n">SOLVER</span> <span class="p">:</span> <span class="n">YES</span>
-<span class="n">SOLVER</span> <span class="p">:</span> <span class="mi">1</span>
-<span class="n">MAXIMUM</span> <span class="n">NUMBER</span> <span class="n">OF</span> <span class="n">ITERATIONS</span> <span class="n">FOR</span> <span class="n">SOLVER</span> <span class="o">=</span> <span class="mi">200</span>
-<span class="n">TIDAL</span> <span class="n">FLATS</span> <span class="p">:</span> <span class="n">YES</span>
+</div>
+<div class="section" id="numerical-solver-parameters">
+<h3>Numerical Solver Parameters<a class="headerlink" href="#numerical-solver-parameters" title="Permalink to this headline">¶</a></h3>
+<p><strong>The following descriptions refer to section 7.3 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p1r1/documentation/telemac2d/user/telemac2d_user_v8p1.pdf">Telemac2d manual</a>.</strong></p>
+<p>The solver can be selected and specified with the <strong>SOLVER</strong>, <strong>SOLVER FOR DIFFUSION OF TRACERS</strong>, and <strong>SOLVER FOR K-EPSILON MODEL</strong> keywords that have the following default values:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SOLVER</span> <span class="p">:</span> <span class="mi">3</span>
+<span class="n">SOLVER</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">TRACERS</span> <span class="p">:</span> <span class="mi">1</span>
+<span class="n">SOLVER</span> <span class="n">FOR</span> <span class="n">K</span><span class="o">-</span><span class="n">EPSILON</span> <span class="n">MODEL</span> <span class="p">:</span> <span class="mi">1</span>
 </pre></div>
 </div>
-</div>
+<p>Every solver keyword can take an integer value between <code class="docutils literal notranslate"><span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">8</span></code>, where <code class="docutils literal notranslate"><span class="pre">1</span></code>-<code class="docutils literal notranslate"><span class="pre">6</span></code> use conjugate gradient methods:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> sets the conjugate gradient method for symmetric matrices,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> sets the conjugate residual method,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">3</span></code> sets the conjugate gradient on normal equation method,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">4</span></code> sets the minimum error method,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">5</span></code> sets the squared conjugate gradient method,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">6</span></code> sets the stabilized biconjugate gradient (BICGSTAB) method,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">7</span></code> sets the Generalised Minimum RESidual (<strong>GMRES</strong>) method, and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">8</span></code> set the Yale university direct solver (YSMP) that does not work with parallelism.</p></li>
+</ul>
 </div>
 <div class="section" id="boundary-and-initial-conditions">
 <h3>Boundary and Initial Conditions<a class="headerlink" href="#boundary-and-initial-conditions" title="Permalink to this headline">¶</a></h3>
@@ -1080,15 +1192,14 @@
 </div>
 </div>
 <div class="section" id="turbulence">
-<h3>Turbulence<a class="headerlink" href="#turbulence" title="Permalink to this headline">¶</a></h3>
+<span id="tm2d-turbulence"></span><h3>Turbulence<a class="headerlink" href="#turbulence" title="Permalink to this headline">¶</a></h3>
+<p><strong>The following descriptions refer to section 6.2 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p1r1/documentation/telemac2d/user/telemac2d_user_v8p1.pdf">Telemac2d manual</a>.</strong></p>
 <p>Turbulence describes a seemingly random and chaotic state of fluid motion in the form of three-dimensional vortices (eddies). True turbulence is only present in 3d vorticity and when it occurs, it mostly dominates all other flow phenomena through increases in energy dissipation, drag, heat transfer, and mixing. The phenomenon of turbulence has been a mystery to science for a long time, since turbulent flows have been observed, but could not be directly explained by the systems of linear equations. Today, turbulence is considered a random phenomenon that can be accounted for in linear equations, for instance, by introducing statistical parameters. Not surprisingly, there are a variety of options for implementing turbulence in numerical models. The horizontal and vertical dimensions of turbulent eddies can vary greatly, especially in rivers and transitions to backwater zones (tidal flats), with large flow widths (horizontal dimension) compared to small water depths (vertical dimension). For these reasons, <em>TELEMAC</em> provides multiple turbulence models that can be applied in the vertical and horizontal dimensions.</p>
-<p>In 2d, <em>TELEMAC</em> developers recommend using either the <em>k-ε</em> model (<code class="docutils literal notranslate"><span class="pre">3</span></code>) or the <em>Spalart-Allmaras</em> model (<code class="docutils literal notranslate"><span class="pre">5</span></code>) in lieu of the mixing length model (<code class="docutils literal notranslate"><span class="pre">2</span></code>):</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">HORIZONTAL</span> <span class="pre">TURBULENCE</span> <span class="pre">MODEL</span></code>: <code class="docutils literal notranslate"><span class="pre">3</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">VERTICAL</span> <span class="pre">TURBULENCE</span> <span class="pre">MODEL</span></code>: <code class="docutils literal notranslate"><span class="pre">3</span></code></p></li>
-</ul>
-<p>If the <code class="docutils literal notranslate"><span class="pre">VERTICAL</span> <span class="pre">TURBULENCE</span> <span class="pre">MODEL</span></code> is set to <code class="docutils literal notranslate"><span class="pre">2</span></code> (<code class="docutils literal notranslate"><span class="pre">'MIXING</span> <span class="pre">LENGTH'</span></code>), a <code class="docutils literal notranslate"><span class="pre">MIXING</span> <span class="pre">LENGTH</span> <span class="pre">MODEL</span></code> can be assigned. The default is <code class="docutils literal notranslate"><span class="pre">1</span></code>, which is preferable for strong tidal influences and a value of <code class="docutils literal notranslate"><span class="pre">3</span></code> sets the length for computing vertical diffusivity to *Nezu and <em>Nakagawa</em>.</p>
-<p>Read more about turbulence in <em>TELEMAC</em> in section ??? and the mixing length in section ??? of the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p1r1/documentation/telemac2d/user/telemac2d_user_v8p1.pdf">Telemac2d manual</a>.</p>
+<p>In 2d, <em>TELEMAC</em> developers recommend using either the <span class="math notranslate nohighlight">\(k-\epsilon\)</span> model (<code class="docutils literal notranslate"><span class="pre">3</span></code>) or the <em>Spalart-Allmaras</em> model (<code class="docutils literal notranslate"><span class="pre">5</span></code>) in lieu of the mixing length model (<code class="docutils literal notranslate"><span class="pre">2</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">VELOCITY</span> <span class="p">:</span> <span class="n">YES</span> <span class="o">/</span> <span class="n">enabled</span> <span class="n">by</span> <span class="n">default</span>
+<span class="n">TURBULENCE</span> <span class="n">MODEL</span> <span class="p">:</span> <span class="mi">3</span>
+</pre></div>
+</div>
 <div class="note dropdown admonition">
 <p class="admonition-title">Expand to recall TURBULENCE in the cas file</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/------------------------------------------------------------------/</span>

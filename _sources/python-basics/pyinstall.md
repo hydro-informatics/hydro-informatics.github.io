@@ -15,9 +15,12 @@ This section guides through the installation of a computational environment that
 
 
 (pip-env)=
-## pip and venv
+## pip and venv (Linux Preference)
 
-**pip and virtual environments are preferable with *Linux* systems for working with this eBook.**
+```{admonition} Use pip and venv on Linux
+:class: hint
+pip and virtual environments are preferable with *Linux* systems for working with this eBook and the {{ ft_url }} library.
+```
 
 (pip-quick)=
 ### Quick Guide
@@ -149,7 +152,6 @@ Alternatively, find the *OSGeo4W* from the *Windows* start menu and type `py3_en
 
 ````
 
-
 The import of *flusstools* should not return any import error. If there is an import error, find out the troublesome package's name and re-install it. In particular, the installation of *GDAL* may be challenging when working with `pip`, in particular on *Windows*. To learn more about the installation of *GDAL* visit the [Download > Binaries section on the developer's website](https://gdal.org/download.html#binaries).
 
 
@@ -212,9 +214,16 @@ Read more about virtual environments and pip at [https://packaging.python.org](h
 
 
 (conda-env)=
-## conda env
+## conda env (Windows Preference)
 
-This section features the quick installation of the {{ ft_env }} for *Anaconda* followed by more detailed explanations on the creation and management of *conda* environments. **Anaconda and conda environments are preferable with *Windows* systems for working with this ebook.**
+
+This section features the quick installation of the {{ ft_env }} for *Anaconda* followed by more detailed explanations on the creation and management of *conda* environments.
+
+```{admonition} Use conda on Windows
+:class: hint
+Anaconda and conda environments are preferable with *Windows* systems for working with this eBook and the {{ ft_url }} library.
+```
+
 
 (conda-quick)=
 ### Quick Guide

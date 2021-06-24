@@ -773,6 +773,11 @@
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#qgis-and-lastools">
+   QGIS and LAStools
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -844,7 +849,7 @@
 <div class="section" id="permission-denied-messages">
 <span id="dbg-permissions"></span><h3>Permission Denied Messages<a class="headerlink" href="#permission-denied-messages" title="Permalink to this headline">¶</a></h3>
 <p><em><strong>Permission denied</strong></em> messages may occur because of the fail-safe design of Debian, but denied read and write rights may quickly become annoying, in particular if you need to switch between normal and superuser accounts for installing software packages.</p>
-<div class="admonition-potentially-harmful-operation admonition">
+<div class="warning admonition">
 <p class="admonition-title">Potentially harmful operation</p>
 <p>Never modify the access rights for folders in the <code class="docutils literal notranslate"><span class="pre">ROOT/</span></code> directory. Modifying permissions for folders such as <code class="docutils literal notranslate"><span class="pre">ROOT/etc/</span></code> or <code class="docutils literal notranslate"><span class="pre">ROOT/root/</span></code> may cause unrepairable system damage.</p>
 </div>
@@ -920,6 +925,31 @@ sudo apt-add-repository https://dl.winehq.org/wine-builds/debian/
 </pre></div>
 </div>
 </div>
+</div>
+<div class="section" id="qgis-and-lastools">
+<h2>QGIS and LAStools<a class="headerlink" href="#qgis-and-lastools" title="Permalink to this headline">¶</a></h2>
+<p>To get LAStools working in QGIS on Ubuntu (make sure to have <a class="reference internal" href="../get-started/vm.html#wine"><span class="std std-ref">Install &amp; Use Windows Applications (Wine)</span></a> installed):</p>
+<ul class="simple">
+<li><p>Download the LAStools (ZIP) from <a class="reference external" href="http://rapidlasso.com/LAStools">http://rapidlasso.com/LAStools</a> and extract the ZIP file</p></li>
+<li><p>In QGIS, edit the processing options (Providers &gt; Tools for LiDAR data):</p>
+<ul>
+<li><p>LasTools folder: enter here the path to the folder that where the extracted ZIP files live (<code class="docutils literal notranslate"><span class="pre">/dir/to/LAStools/</span></code>)</p></li>
+<li><p>Wine folder: enter the path to the <a class="reference internal" href="../get-started/vm.html#wine"><span class="std std-ref">Install &amp; Use Windows Applications (Wine)</span></a> binary (typically <code class="docutils literal notranslate"><span class="pre">/usr/bin/</span></code>). Alternatively, find where Wine lives with the <code class="docutils literal notranslate"><span class="pre">whereis</span> <span class="pre">wine</span></code> command</p></li>
+</ul>
+</li>
+<li><p>If required: edit <code class="docutils literal notranslate"><span class="pre">LidarToolsAlgorithmProvider.py</span></code> (two files exist), for instance:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">/usr/share/qgis/python/plugins/processing/algs/lidar/LidarToolsAlgorithmProvider.py</span></code> and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/home/[user]/.qgis3/python/plugins/processing/algs/lidar/LidarToolsAlgorithmProvider.py</span></code></p></li>
+<li><p>Edit the second file:
+line 145:         if (True):
+line 168:         if (True):
+line 188:         if (True):</p></li>
+</ul>
+</li>
+</ul>
+<p>To troubleshoot LAStools installation in QGIS read <a class="reference external" href="https://rapidlasso.com/2013/09/29/how-to-install-lastools-toolbox-in-qgis/">this proposition on rapidlasso.com</a>.</p>
+<p>Read more about running <a class="reference external" href="https://gis.stackexchange.com/questions/138149/wine-lastools-in-qgis-2-8-1-ubuntu-14-04">LAStools on Ubuntu</a>.</p>
 </div>
 </div>
 
