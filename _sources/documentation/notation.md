@@ -51,6 +51,10 @@ The consistent use of parameters and symbols for parameters is summarized in a n
   - $-$
   - Froude number
 
+* - $f_D$
+  - $-$
+  - Darcy-Weisbach friction factor
+
 * - $g$
   - m s$^{-2}$
   - gravitational acceleration

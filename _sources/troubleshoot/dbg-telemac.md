@@ -41,21 +41,39 @@ This approach also works with *Telemac3d* (and other modules).
 
 ## Instable Simulations
 
+### Implicitation
 To increase model stability, modify the following variables or make sure that the variables are within reasonable ranges in the *CAS* file:
 
-* `IMPLICITATION FOR DEPTH` should be between 0.5 and 0.6.
-* `IMPLICITATION FOR VELOCITIES` should be between 0.5 and 0.6.
+* `IMPLICITATION FOR DEPTH` should be between `0.5` and `0.6`.
+* `IMPLICITATION FOR VELOCITIES` should be between `0.5` and `0.6`.
 * `IMPLICITATION FOR DIFFUSION` should be `1.` or smaller.
 
+### Surface Oscillations (Wiggles)
 When physically non-meaningful gradients or oscillations occur at the water surface or the bathymetry has steep slopes, the following keyword settings may help:
 
 * `FREE SURFACE GRADIENT` - default is `1.0`, but it can be reduced to `0.1` to achieve stability (nevertheless, start with going incrementally down, such as a value of `0.9`).
 * `DISCRETIZATIONS IN SPACE : 12;11` - uses quasi-bubble spatial discretization with 4-node triangles for velocity.
 
+### Residual Mass Errors
+To reduce residual mass errors use in the steering file:
+
+```fortran
+CONTINUITY CORRECTION : YES
+```
+
+## Computation Speed
+
+Some of the keywords in TELEMAC's steering (`*.cas`) file affect computation speed.
+
+* Use the {ref}`ACCURACY and MAXIMUM ITERATION <tm2d-accuracy>` keywords to yield faster convergence.
+* Deactivate `TIDAL FLATS`, even though deactivating {ref}`tidal flats <tm2d-tidal>` can not be recommended to yield physically meaningful and stable models.
+* When using the GMRES solver (`SOLVER : 7`), varying the {ref}`solver options <tm2d-solver-pars>` may aid to reduce the total calculation time.
+* Make sure to use the default `MATRIX STORAGE : 3` keyword.
+
 ## Errors in Mesh Files
 
 ```{hint}
-A 3d simulation may crash when it is used with the parameter `CHECKING THE MESH : YES`. Thus, **in 3d, favourably use `CHECKING THE MESH : NO`**.
+A 3d simulation may crash when it is used with the parameter `CHECKING THE MESH : YES`. Thus, **in 3d, favorably use `CHECKING THE MESH : NO`**.
 ```
 
 To verify if TELEMAC can read the mesh, load the TELEMAC environment, for example:
@@ -134,11 +152,12 @@ sudo cp /usr/lib/x86_64-linux-gnu/libmpi_usempi_ignore_tkr.so.40 /usr/lib/x86_64
 ```
 
 * Overwrite the SALOME-HYDRO's internal version of *Qt*:
-    + Copy `/usr/lib/x86_64-linux-gnu/libQtCore.so.5`
-    + Paste in `/Salome-V2_2/prerequisites/Qt-591/lib/` - confirm replacing `libQtCore.so.5`
+  + Copy `/usr/lib/x86_64-linux-gnu/libQtCore.so.5`
+  + Paste in `/Salome-V2_2/prerequisites/Qt-591/lib/` - confirm replacing `libQtCore.so.5`
 
 
-### GUI/Qt5 support (GTK version compatibility) {#qt-dbg}
+(qt-dbg)=
+### GUI/Qt5 support (GTK version compatibility)
 
 With the newer versions of the *Qt platform* any menu entry in *SALOME-HYDRO* will not show up. To fix this issue, install and configure `qt5ct` styles:
 

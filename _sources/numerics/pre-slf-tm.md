@@ -528,6 +528,7 @@ Ignore any warning message regarding the projection, but make sure that Blue Ken
 The imported mesh in the 2D View (1).
 ```
 
+(bk-create-slf)=
 ### Create SELAFIN Object
 
 With the open *dem.xyz* and the imported (or opened) mesh, all ingredients required by a Blue Kenue SELAFIN object are available. Now, create a new SELAFIN object:
@@ -546,6 +547,7 @@ With the open *dem.xyz* and the imported (or opened) mesh, all ingredients requi
   * Keep all other defaults and click **OK**.
 * Save the new Selafin object by highlighting it in the **Data Item** tree of the WorkSpace and clicking the disk <img src="../img/telemac/bk-sym-save.png"> symbol. Give the mesh a meaningful and short name, such as `qgismesh.slf`.
 
+(bk-2dinterp)=
 ### Create 2D Interpolator
 
 A 2D Interpolator object is required to map elevation information onto the Selafin mesh. to this end, create a new 2D Interpolator object and map the elevations onto the BOTTOM mesh:

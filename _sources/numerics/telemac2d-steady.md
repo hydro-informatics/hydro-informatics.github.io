@@ -46,9 +46,9 @@ The below box shows the provided [steady2d.cas](https://github.com/hydro-informa
 ````{admonition} Expand to view the complete .CAS file
 :class: note, dropdown
 
-```
+```fortran
 /---------------------------------------------------------------------
-/ TELEMAC2D Version v8p2 Dec 18, 2022
+/ TELEMAC2D Version v8p2
 / STEADY HYDRODYNAMICS TRAINING
 /---------------------------------------------------------------------
 
@@ -149,9 +149,11 @@ The velocities (`U` and `V`), the water depth (`H`), and the discharge (`Q`) are
 
 The time variables (`TIME STEP` and `NUMBER OF TIME STEPS`) define the simulation length and the printout periods (`GRAPHIC PRINTOUT PERIOD` and `LISTING PRINTOUT PERIOD`) define the result output frequency. The **smaller the printout period**, **the longer will take the simulation** because writing results is one of the most time consuming processes in numerical modeling. The printout periods (frequencies) refer to a multiple of the `TIME STEPS` parameter and need to be a smaller number than the `NUMBER OF TIME STEPS`. Read more about time step parameters in the {{ tm2d }} in the sections 5 and 12.4.2.
 
+In addition, the `MASS-BALANCE : YES` setting will printout the mass fluxes and errors in the computation region, which is an important parameter for verifying the plausibility of the model. Note that this keyword only enables mass balance printouts and does not imply mass balance of the model, which must be achieved through a consistent model setup following this tutorial and the {{ tm2d }}.
+
 ````{admonition} Expand to recall GENERAL PARAMETERS in the cas file
 :class: note, dropdown
-```
+```fortran
 / steady2d.cas
 /------------------------------------------------------------------/
 /			GENERAL PARAMETERS
@@ -159,10 +161,11 @@ The time variables (`TIME STEP` and `NUMBER OF TIME STEPS`) define the simulatio
 TITLE : '2d steady flow'
 /
 BOUNDARY CONDITIONS FILE : boundaries.cli
-GEOMETRY FILE            : qgismesh.slf
-RESULTS FILE           : r2dsteady.slf
+GEOMETRY FILE : qgismesh.slf
+RESULTS FILE : r2dsteady.slf
 /
-VARIABLES FOR GRAPHIC PRINTOUTS : U,V,H,S,Q,F
+MASS-BALANCE : YES / activates mass balance printouts - does not enforce mass balance
+VARIABLES FOR GRAPHIC PRINTOUTS : U,V,H,S,Q,F / Q enables boundary flux equilibrium controls
 /
 TIME STEP : 1.
 NUMBER OF TIME STEPS : 8000
@@ -171,6 +174,7 @@ LISTING PRINTOUT PERIOD : 100
 ```
 ````
 
+(tm2d-numerical)=
 ### General Numerical Parameters
 
 **The following descriptions refer to section 7.1 in the {{ tm2d }}.**
@@ -191,14 +195,14 @@ The {{ tm2d }} recommend using the default value of `DISCRETIZATIONS IN SPACE : 
 
 In addition, the **FREE SURFACE GRADIENT** keyword can be defined for increasing the stability of a model. Its default value is `1.0`, but it can be reduced close to zero to achieve stability. The developers propose a minimum value of `0.`, but this would lead to non-meaningful results and this is why this eBook recommends a value slightly higher than zero. For instance, the following keyword combination may reduce surface instabilities (also referred to as *wiggles* or *oscillations*):
 
-```
+```fortran
 DISCRETIZATIONS IN SPACE : 12;11
 FREE SURFACE GRADIENT : 0.03
 ```
 
 By default {term}`Advection` is activated through the keyword `ADVECTION : YES` and it can be deactivated for particular terms only:
 
-```
+```fortran
 ADVECTION OF H : NO / deactivates depth advection
 ADVECTION OF U AND V : NO / deactivates velocity advection
 ADVECTION OF K AND EPSILON : NO / deactivates turbulent energy and dissipation (k-e model) or the Spalart-Allmaras advection
@@ -207,6 +211,7 @@ ADVECTION OF TRACERS : NO / deactivates tracer advection
 
 The **PROPAGATION** keyword (default: `YES`) affects the modelling of propagation and related phenomena. For instance, disabling propagation (`PROPAGATION : NO`) will also disable {term}`Diffusion`. The other way round, when propagation is enabled, {term}`Diffusion` can be disabled separately. Read more about {term}`Diffusion` in Telemac2d in the {ref}`turbulence <tm2d-turbulence>` section.
 
+(tm2d-fe)=
 ### Numerical Parameters for Finite Elements
 
 **The following descriptions refer to section 7.2.1 in the {{ tm2d }}.**
@@ -220,7 +225,7 @@ The **TYPE OF ADVECTION** keyword is a list of four integers that define the adv
 
 The {{ tm2d }} state that the following scalar **SCHEME FOR ADVECTION** keywords apply instead of the soon deprecated TYPE OF ADVECTION list:
 
-```
+```fortran
 SCHEME FOR ADVECTION OF VELOCITIES : 1 / default
 SCHEME FOR ADVECTION OF TRACERS : 1 / default
 SCHEME FOR ADVECTION OF K-EPSILON : 1 / default
@@ -241,14 +246,14 @@ Options `4` and `5` require that the {term}`CFL` condition is smaller than 1.
 The {{ tm2d }} recommend specific combinations depending on the simulation scenario.
 
 For models **without any dry zones** use:
-```
+```fortran
 SCHEME FOR ADVECTION OF VELOCITIES : 4 / alternatively keep 1
 SCHEME FOR ADVECTION OF TRACERS : 5
 SCHEME FOR ADVECTION OF K-EPSILON : 4
 ```
 
-For models with **tidal flats** use:
-```
+For models with **tidal flats** use (like in this tutorial):
+```fortran
 SCHEME FOR ADVECTION OF VELOCITIES : 14 / alternatively keep 1
 SCHEME FOR ADVECTION OF TRACERS : 5
 SCHEME FOR ADVECTION OF K-EPSILON : 14
@@ -272,7 +277,7 @@ The default is `SUPG OPTION : 2;2;2;2`, where
 
 The default `TREATMENT OF THE LINEAR SYSTEM : 2` involves so-called **mass lumping**, which leads to a smoothening of results. Specific mass lumping keywords and values are required for the flux control option of the `TREATMENT OF NEGATIVE DEPTHS` keyword and the default value for the treatment of tidal flats. To this end, the mass lumping keywords should be defined as:
 
-```
+```fortran
 MASS-LUMPING ON H : 1.
 MASS-LUMPING ON VECLOCITY : 1.
 MASS-LUMPING ON TRACERS : 1.
@@ -294,16 +299,16 @@ The finite volume method is mentioned here for completeness and detailed descrip
 
 The finite volume method involves the definition of a scheme through the **FINITE VOLUME SCHEME** keyword that can take integer values:
 
-* `0` enables the Roe scheme {cite:p}`roe1981ars`,
+* `0` enables the {cite:t}`roe1981ars` scheme ,
 * `1` is the **default** and enables the kinetic scheme {cite:p}`audusse2000`,
-* `3` enables the Zokagoa scheme {cite:p}`zokagoa2010` that is incompatible with tidal flats,
-* `4` enables the Tchamen scheme,
+* `3` enables the {cite:t}`zokagoa2010` scheme that is incompatible with tidal flats,
+* `4` enables the {cite:t}`tchamen1998` scheme for modelling wetting and drying of a complex bathymetry,
 * `5` enables the frequently use Harten Lax Leer-Contact (HLLC) scheme {cite:p}`toro2009a`, and
 * `6` enables the Weighted Average Flux (WAF) {cite:p}`ata2012` scheme where parallelism is currently not implemented.
 
 All finite volume schemes are explicit and potentially subjected to instability. For this reason, a desired {term}`CFL` condition and a variable timestep should be defined through:
 
-```
+```fortran
 DESIRED COURANT NUMBER : 0.9
 VARIABLE TIME-STEP : YES / default is NO
 ```
@@ -312,27 +317,27 @@ The variable timestep will cause irregular listing outputs, while the graphic ou
 
 The **FINITE VOLUME SCHEME TIME ORDER** keyword defines the second order time scheme, which is by default set to *Euler explicit* (`1`). Setting the time scheme order to `2` makes Telemac2d using the Newmark scheme where an integration coefficient may be used to change the integration parameter (`NEWMARK TIME INTEGRATION COEFFICIENT : 1` corresponds to *Euler explicit*). To implement these options in the steering file, use the following settings:
 
-```
+```fortran
 FINITE VOLUME SCHEME TIME ORDER : 2 / default is 1 - Euler explicit
 NEWMARK TIME INTEGRATION COEFFICIENT : 0.5 / default is 0.5
 ```
 
-
-* The `MASS-BALANCE : YES` setting will printout the mass fluxes and errors in the computation region, which is an important parameter for verifying the plausibility of the model.
-
 Depending on the type of analysis, the solver-related parameters of `SOLVER`, `SOLVER OPTIONS`, `MAXIMUM NUMBER OF ITERATION FOR SOLVER`, and `TIDAL FLATS` may be modified.
 
+(tm2d-solver-pars)=
 ### Numerical Solver Parameters
 
-**The following descriptions refer to section 7.3 in the {{ tm2d }}.**
+**The following descriptions refer to section 7.3.1 in the {{ tm2d }}.**
 
-The solver can be selected and specified with the **SOLVER**, **SOLVER FOR DIFFUSION OF TRACERS**, and **SOLVER FOR K-EPSILON MODEL** keywords that have the following default values:
+The solver can be selected and specified with the **SOLVER**, **SOLVER FOR DIFFUSION OF TRACERS**, and **SOLVER FOR K-EPSILON MODEL** keywords where the following settings are recommended values:
 
-```
-SOLVER : 3
+```fortran
+SOLVER : 1 / default is 3
 SOLVER FOR DIFFUSION OF TRACERS : 1
 SOLVER FOR K-EPSILON MODEL : 1
 ```
+
+Setting the `SOLVER` to `1` instead of the default value of `3` is recommended with `TREATMENT OF THE LINEAR SYSTEM : 2` (i.e., the default since v8p2) to write consistent and backward-compatible steering files.
 
 Every solver keyword can take an integer value between `1` and `8`, where `1`-`6` use conjugate gradient methods:
 
@@ -345,17 +350,194 @@ Every solver keyword can take an integer value between `1` and `8`, where `1`-`6
 * `7` sets the Generalised Minimum RESidual (**GMRES**) method, and
 * `8` set the Yale university direct solver (YSMP) that does not work with parallelism.
 
+The **GMRES method may be enabled with the finite element scheme**, where the following solver options for the {term}`Krylov space`:
 
-### Boundary and Initial Conditions
+```fortran
+SOLVER OPTION : 2 / hydrodynamic propagation
+SOLVER OPTION FOR TRACERS DIFFUSION : 2 / tracer diffusion
+OPTION FOR THE SOLVER FOR K-EPSILON MODEL : 2 /  k-e or Spalart-Allmaras
+```
+
+The solver options vary between values of **`2` for a small mesh** and **`5` for a large mesh**. Integers between `2` and `5` can be used for medium-sized meshes. The {{ tm2d }} recommends to run simulations multiple times for finding an optimum value, where higher values (close to `5`) increase the time required for an iteration, but leads to faster convergence.
+
+(tm2d-accuracy)=
+### Numerical Accuracy
+
+**The following descriptions refer to section 7.3.2 in the {{ tm2d }}.**
+
+The accuracy keywords make Telemac2d stop an iteration when two consecutive solutions for the same element vary by less than an **ACCURACY** threshold. To this end, the following default accuracy thresholds may be varied (Telemac2d ignores non-relevant parameters):
+
+```fortran
+SOLVER ACCURACY : 1.E-4 / propagation steps
+ACCURACY FOR DIFFUSION OF TRACERS : 1.E-6 / tracer diffusion
+ACCURACY OF K : 1.E-9 / diffusion and source terms of turbulent energy transport
+ACCURACY OF EPSILON : 1.E-9 / diffusion and source terms of turbulent dissipation transport
+ACCURACY OF SPALART-ALLMARAS : 1.E-9 / diffusion and source terms of the Spalart-Allmaras equation
+```
+
+In experience, the solver accuracy should not be larger than `1.E-3` (10$^{-3}$). In contrast, very small accuracies will lead to longer computation times. In addition or alternatively to the accuracy keywords, the following default numbers of iterations can be modified to speed up calculations:
+
+```fortran
+MAXIMUM NUMBER OF ITERATIONS FOR SOLVER : 100 / maximum number of iterations when solving the propagation step
+MAXIMUM NUMBER OF ITERATIONS FOR DIFFUSION OF TRACERS : 60 / tracer diffusion
+MAXIMUM NUMBER OF ITERATIONS FOR K AND EPSILON : 50 / diffusion and source terms of k-e or Spalart-Allmaras
+```
+
+Telemac2d will printout warning messages when convergence could not be reached with the defined combination of accuracy and maximum iteration number keywords. The warning message printouts can be deactivated with the `INFORMATION ABOUT SOLVER` keyword, but deactivating convergence warnings is not recommended.
+
+(tm2d-tidal)=
+### Tidal Flats
+
+**The following descriptions refer to section 7.5 in the {{ tm2d }}.**
+
+The **TIDAL FLATS (default: YES)** keyword applies to the **finite elements scheme only ({ref}`EQUATIONS keyword <tm2d-numerical>`)** and can be ignored with finite volumes. The term *tidal* may be slightly confusing because tidal flats can occur beyond coastal regions. Tidal flats occur wherever there are flow transitions, such as when fast-flowing water enters a backwater zone. Flow transitions occur in almost all environments more complex than a square-like flume, and therefore, the activation of tidal flats in Telemac2d models is highly recommended. Though activating tidal flats leads to longer computation times, in most cases only with tidal flats physically reasonable results and stable models can be achieved.
+
+The `TIDAL FLATS` keyword is linked with a couple of other Telemac2d keywords driving model stability and physical meaningfulness. The following keyword setups may be generally applied to (quasi) steady, real-world rivers and channels (as opposed to lab flumes):
+
+```fortran
+TIDAL FLATS : YES
+CONTINUITY CORRECTION : YES / default is NO
+OPTION FOR THE TREATMENT OF TIDAL FLATS : 1
+TREATMENT OF NEGATIVE DEPTHS : 2 / value 2 or 3 is required with tidal flats
+```
+
+The **OPTION FOR THE TREATMENT OF TIDAL FLATS** accepts integer values between `1` and `3` to select one of the following schemes:
+
+* `1` detects tidal flats and corrects the free surface gradient.
+* `2` removes tidal flat elements by using a masking table that eliminates any contribution of concerned mesh elements. This option may affect the mass conservation of the model.
+* `3` resembles `1` and adds a porosity term to half-dry mesh elements. This affects the amount of water in the model, which here equals the depth integral multiplied by the porosity. A user Fortran file may be used to modify the porosity term in the `USER_CORPOR` subroutine.
+
+The **TREATMENT OF NEGATIVE DEPTHS (default: 1)** keyword defines an approach for eliminating negative water depth values where the following integer numbers can be used:
+
+* `0` disables any treatment of negative water depths.
+* `1` conservatively smoothens negative water depths (**default**).
+  * A float number keyword `THRESHOLD FOR NEGATIVE DEPTHS` (default `0.`) is available ony for this option.
+  * Setting the threshold to, for instance, `-0.1` makes that negative water depths larger than -0.1 meters remain unchanged.
+* `2` imposes a flux limitation that strictly ensures positive water depths.
+* `3` acts similarly as `2` but for the ERIA {term}`Advection` scheme (set `SCHEME FOR ADVECTION OF TRACERS` to `4` or `5`). This option is appropriate for modelling conservative tracers.
+
+````{admonition} TIDAL FLATS options require particular keyword combinations
+:class: tip
+The `SCHEME FOR ADVECTION ...` keywords (see the {ref}`finite element parameters <tm2d-fe>` section) must be set for `TRACERS` to LIPS (either `4` or `5`) and for all others either to a NERD (`13` or `14`) or ERIA (`15`) scheme.
+
+When using LIPS (`4` or `5`) with NERD (`13` or `14`) use the following combination (**used in this tutorial**):
+```fortran
+TIDAL FLATS : YES
+OPTION FOR THE TREATMENT OF TIDAL FLATS : 1
+TREATMENT OF NEGATIVE DEPTHS : 2
+```
+
+When using LIPS (`4` or `5`) with ERIA (`15`) use the following combination:
+```fortran
+TIDAL FLATS : YES
+OPTION FOR THE TREATMENT OF TIDAL FLATS : 1
+TREATMENT OF NEGATIVE DEPTHS : 3
+```
+````
+
+### Matrix Handling
+
+**The following descriptions refer to section 7.6 in the {{ tm2d }}.**
+
+Telemac2d provides multiple options for matrix handling that need to be set up for particular solver schemes.
+
+The **MATRIX STORAGE** keyword may be set to:
+
+* `1` for using classic element-by-element matrix storage, or
+* `3` for using edge-based matrix storage (default). This default is required when any `SCHEME FOR ADVECTION ...` keyword is set to `3`, `4`, `5`, `13`, `14`, or `15`, and when any direct `SOLVER` is set to `8`.
+
+The additional **MATRIX-VECTOR PRODUCT** keyword may be used to switch between multiplication methods for the finite element scheme. However, the default value of `1` (vector multiplication by a non-assembled matrix) should currently **not be changed** because the only alternative (`2` for frontal assembled matrix multiplication) is not implemented for parallelism and quasi-bubble discretization.
+
+### Friction Boundary Conditions
 
 Parameters for **Boundary Conditions** enable the definition of roughness laws and properties of liquid boundaries.
 
- To apply the *Manning* roughness coefficient to the bottom and the boundaries use:
+**The following descriptions of friction parameters refer to section 6.1 in the {{ tm2d }}.**
+The **LAW OF BOTTOM FRICTION** keyword defines a friction law for topographic boundaries, which can be set to:
 
-* `LAW OF BOTTOM FRICTION`: `4`
-* `LAW OF FRICTION ON LATERAL BOUNDARIES`: `4`, which can well be applied to model natural banks, or set to `0` (no-slip) for symmetry.<br>*Note that the friction on lateral boundaries in not defined in the provided *steady2d.cas* file.
-* `FRICTION COEFFICIENT FOR THE BOTTOM`: `0.1` corresponds to 3 times a hypothetical *d90* (grain diameter of which 90% of the surface grain mixture are finer) according to [van Rijn](https://www.leovanrijn-sediment.com/).
+* `0` for no friction.
+* `1` for the {cite:t}`haaland1983` equation, which is an implicit form of the {cite:t}`colebrook1937` equation that builds on the Darcy-Weisbach friction factor $f_D$. This law involves a high degree of uncertainty that stems from the underlying experimental dataset.
+* `2` for the {cite:t}`chezy_formula_1776` roughness, that can be similarly used as `3` and `4`.
+* `3` for {cite:t}`strickler_beitrage_1923` roughness $k_{st}$ (read more in the {ref}` 1d hydraulics exercise <ex-1d-hydraulics>`), which is the inverse of $n_m$ (`4`).
+* `4` for {cite:t}`manning_transactions_1891` roughness $n_m$ (read more in the {ref}` 1d hydraulics exercise <ex-1d-hydraulics>`), which is the inverse of $k_{st}$ (`3`).
+* `5` for the {cite:t}`nikuradse_stromungsgesetze_1933` roughness law, which should correspond to 3 $\cdot D_{90}$ according to {cite:t}`vanrijn2019`.
+* `6` for the logarithmic law of the wall for turbulent flows assuming that the average flow velocity is a logarithmic function of the distance from the wall beyond the viscous and buffer layers. The thickness of these layers is a function of wall roughness length {cite:p}`von_karman_mechanische_1930`.
+* `7` for the {cite:t}`colebrook1937` equation that calculates the Darcy-Weisbach friction factor $f_D$ for turbulent flows in smooth pipes.
 
+With respect to the 2d applications in this eBook, the most relevant bottom friction laws are `3` {cite:p}`strickler_beitrage_1923`, `4` {cite:p}`manning_transactions_1891`, and `6` (log law). The {cite:t}`nikuradse_stromungsgesetze_1933` roughness law (`5`) is recommended for 3d simulations (see the {ref}`Telemac3d tutorial <tm3d-hydrodynamics>`).
+
+The **FRICTION COEFFICIENT FOR THE BOTTOM** keyword sets the value for a characteristic roughness coefficient. For instance, when the friction law keyword is set to `3` {cite:p}`strickler_beitrage_1923`, the friction corresponds to the Strickler roughness coefficient $k_{st}$ (in fictive units of m$^{1/3}$ s$^{-1}$). For rough channels (e.g., mountain rivers) $k_{st} \approx 20$ m$^{1/3}$ s$^{-1}$ and for smooth concrete-lined channels $k_{st} \approx 75$ m$^{1/3}$ s$^{-1}$. In fully turbulent flows, the Strickler roughness can be approximated as $k_{st} \approx \frac{26}{D_{90}^{1/6}}$ {cite:p}`meyer-peter_formulas_1948` where $D_{90}$ is the grain diameter of which 90% of the surface grain mixture are finer.
+This tutorial features the application of the *Manning* roughness coefficient $n_m$, which is the inverse of $k_{st}$ and implemented with:
+
+```fortran
+LAW OF BOTTOM FRICTION : 4 / 4-Manning
+FRICTION COEFFICIENT : 0.03 / Roughness coefficient
+```
+
+````{admonition} Expand to see exemplary values for Manning roughness
+:class: tip, dropdown
+
+{numref}`Table %s <tab-mannings-n>` lists exemplary values for the Manning roughness coefficient $n_m$ based on {cite:t}`usgs1973_n` and {cite:t}`usgs1989_n`.
+
+```{list-table} Exemplary values for Manning roughness for straight uniform channels.
+:header-rows: 1
+:name: tab-mannings-n
+
+* - Surface type
+  - Material diameter (10$^{-3}$m)
+  - $n_m$ (m$^{-1/3}$s)
+
+* - Concrete
+  - $-$
+  - 0.012-0.018
+
+* - Firm soil
+  - $-$
+  - 0.025-0.032
+
+* - Coarse sand
+  - 1-2
+  - 0.026-0.035
+
+* - Gravel
+  - 2-64
+  - 0.028-0.035
+
+* - Cobble
+  - 64-256
+  - 0.030-0.050
+
+* - Boulder
+  - $>$ 256
+  - 0.040-0.070
+```
+
+````
+
+```{admonition} Friction zones (regional friction values)
+:class: tip, dropdown
+Similar to the assignment of multiple friction coefficient values to multiple model regions featured in the {ref}`BASEMENT tutorial <bm-geometry>`, Telemac2d provides routines for domain-wise (or zonal) friction definitions. The Appendix E of the {{ tm2d }} provide detailed explanations for the implementation of such zonal friction values. The following tips may help to better understand the instructions in Appendix E:
+
+* The proposed modification of the **FRICTION_USER** Fortran function (subroutine) is not mandatory. If the FRICTION_USER subroutines must be enabled anyway (e.g., to implement a new roughness law such as the {cite:t}`ferguson_flow_2007` equation):
+  * The FICTION_USER subroutine can be found in `/telemac/v8p2/sources/telemac2d/friction_user.f`.
+  * To use a modified version, copy `friction_user.f` to a new subfolder called `/user_fortran/` in your simulation case folder.
+  * Modify and save edits in `/your/simulation/case/user_fortran/friction_user.f`.
+  * Tell the steering (`*.cas`) file to use the modified FRICTION_USER Fortran file by adding the keyword `FORTRAN FILE : 'user_fortran'` (makes Telemac2d looking up Fortran files in the `/user_fortran/` subfolder).
+* Useful examples are:
+  * The BAW's Donau case study that lives in `/telemac/v8p2/examples/telemac2d/donau/` and features the usage of a `*.bfr` `ZONES FILE` and a `roughness.tbl` `FRICTION DATA FILE`, which are enabled through the `FRICTION DATA : YES` keyword in the `t2d_donau.cas` file. The donau examples was presented at the XXth Telemac-Mascaret user conference and the conference proceedings are available at the BAW's [HENRY portal](https://hdl.handle.net/20.500.11970/100418).
+  * The [Baxter tutorial](http://www.opentelemac.org/index.php/component/jdownloads/summary/4-training-and-tutorials/185-telemac-2d-tutorial?Itemid=55) (look for the contribution *Reverse engineering of initial & boundary conditions with TELEMAC and algorithmic differentiation*).
+* To assign zonal roughness values, use QGIS, Blue Kenue and a text editor:
+  * Delineate zones with different roughness coefficients draw polygons (e.g., following landscapes characteristics on a basemap) in separate shapefiles with QGIS (see also the {ref}`pre-processing tutorial on QGIS <tm-qgis-prepro>`).
+  * Import the separate polygons as closed lines in Blue Kenue (see also the {ref}`pre-processing tutorial on Blue Kenue <bk-tutorial>`).
+  * Assign elevations to the polygons (closed lines) in Blue Kenue (requires {ref}`elevation information <bk-xyz>`).
+  * Add a new variable to the {ref}`selafin <bk-create-slf>` geometry and call it BOTTOM FRICTION (this can be another `*.slf` file than the one where the computational mesh lives).
+  * Use the {ref}`Map Object <bk-2dinterp>` function (*Tools* > *Map Object...*) to add the polygons (closed lines) to the BOTTOM FRICTION mesh variable.
+  * Define zone numbers in Blue Kenue and save them (export) as `*.xyz` or `*.bfr` zones file (conversion to zones file may required opening the `*.xyz` file in a text editor and saving it form there as `*.bfr` file).
+* In the `*.cas` file, make sure set a value for the FRICTION parameter according to the above descriptions and to set the `*.slf` file with the BOTTOM FRICTION variable for the `ZONES FILE` keyword.
+
+```
+
+### Liquid Boundary and Initial Conditions
 The liquid boundary definitions for `PRESCRIBED FLOWRATES` and `PRESCRIBED ELEVATIONS` correspond to the definitions of the **downstream** boundary edge in line 2 and the **upstream** boundary edge in line 3 (see [boundary definitions section](#bnd-mod)). From the boundary file, *TELEMAC* will understand the **downstream** boundary as edge number **1** (first list element) and the **upstream** boundary as edge number **2** (second list element). Hence:
 
 * The list parameter `PRESCRIBED FLOWRATES : 50.;50.` assigns a flow rate of 50 m<sup>3</sup>/s to the **downstream** and the **upstream** boundary edges.

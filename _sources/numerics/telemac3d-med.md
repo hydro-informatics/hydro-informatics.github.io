@@ -819,7 +819,7 @@ To get started with writing subroutines (it is no magic neither), have a look at
 
 ### Numerical Parameters
 
-This section defines internal numerical parameters for the *Advection* and *Diffusion* solvers, which are also sometimes listed in the {ref}`hydrodynamic parameters <hydrodynamics>` section in the {{ tm3d }}.
+This section defines internal numerical parameters for the *Advection* and *Diffusion* solvers, which are also sometimes listed in the {ref}`hydrodynamic parameters <tm3d-hydrodynamics>` section in the {{ tm3d }}.
 
 In *Telemac3d*, it is recommended to use the so-called distributive predictor-corrector (PSI) scheme ([read more](https://henry.baw.de/bitstream/handle/20.500.11970/104314/13_Hervouet_2015.pdf?sequence=1&isAllowed=y) at the BAW's hydraulic engineering repository) with local implication for tidal flats (for velocity, tracers, and k-epsilon):
 
@@ -855,21 +855,20 @@ An additional option for speeding up is to enable mass lumping for diffusion, de
 
 The parameter `FREE SURFACE GRADIENT` can be used for increasing the stability of a model. Its default value is `1.0`, but it can be reduced to `0.1` to achieve stability.
 
-(hydrodynamics)=
+(tm3d-hydrodynamics)=
 ### Hydrodynamic Parameters
 
 In river analyses, the non-hydrostatic version of *TELEMAC* should be used through the following keyword: `NON-HYDROSTATIC VERSION : YES``.
 
 Depending on the type of analysis, the solver-related parameters of `SOLVER`, `SOLVER OPTIONS`, `MAXIMUM NUMBER OF ITERATION`, `ACCURACY`, and `PRECONDITIONING` may be modified. The provided [*t3d_template.cas*](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/master/model-templates/t3d_template.cas) includes solver keywords and comments for modifications, but the default options already provide a coherent a stable setup. Read more about solver parameters in section 6.5 of the {{ tm3d }}.
 
-
 Parameters for **Boundary Conditions** enable the definition of roughness laws and properties of liquid boundaries.
 
-With respect to roughness, *TELEMAC* developers recommend using the [*Nikuradse*](https://en.wikipedia.org/wiki/Johann_Nikuradse) roughness law in 3d (number `5`), because all others are not meaningful or not integrally implemented in the 3d version. To apply the *Nikuradse* roughness law to the bottom and the boundaries use:
+With respect to roughness, *TELEMAC* developers recommend using the {cite:t}`nikuradse_stromungsgesetze_1933` roughness law in 3d (number `5`), because all others are not meaningful or not integrally implemented in the 3d version. To apply the {cite:t}`nikuradse_stromungsgesetze_1933` roughness law to the bottom and the boundaries use:
 
 * `LAW OF BOTTOM FRICTION`: `5`
 * `LAW OF FRICTION ON LATERAL BOUNDARIES`: `5`, which can well be applied to model natural banks, or set to `0` (no-slip) for symmetry.<br>*Note that the [boundary conditions file](#bnd-mod) sets the `LIUBOR` and `LIVBOR` for the `leftwall` and `rightwall` boundary edges to zero, to enable friction.
-* `FRICTION COEFFICIENT FOR THE BOTTOM`: `0.1` corresponds to 3 times a hypothetical *d90* (grain diameter of which 90% of the surface grain mixture are finer) according to [van Rijn](https://www.leovanrijn-sediment.com/).
+* `FRICTION COEFFICIENT FOR THE BOTTOM`: `0.1` corresponds to 3 times a hypothetical *d90* (grain diameter of which 90% of the surface grain mixture are finer) according to {cite:p}`vanrijn2019`.
 * `FRICTION COEFFICIENT FOR LATERAL SOLID BOUNDARIES`: `0.1` corresponds to 3 times a hypothetical *d90*, similar as for the bottom.
 
 The liquid boundary definitions for `PRESCRIBED FLOWRATES` and `PRESCRIBED ELEVATIONS` correspond to the definitions of the **downstream** boundary edge in line 2 and the **upstream** boundary edge in line 3 (see [boundary definitions section](#bnd-mod)). From the boundary file, *TELEMAC* will understand the **downstream** boundary as edge number **1** (first list element) and the **upstream** boundary as edge number **2** (second list element). Hence:

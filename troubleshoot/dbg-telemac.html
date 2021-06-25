@@ -731,6 +731,28 @@
   <a class="reference internal nav-link" href="#instable-simulations">
    Instable Simulations
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#implicitation">
+     Implicitation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#surface-oscillations-wiggles">
+     Surface Oscillations (Wiggles)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#residual-mass-errors">
+     Residual Mass Errors
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computation-speed">
+   Computation Speed
+  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#errors-in-mesh-files">
@@ -752,8 +774,8 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gui-qt5-support-gtk-version-compatibility-qt-dbg">
-     GUI/Qt5 support (GTK version compatibility) {#qt-dbg}
+    <a class="reference internal nav-link" href="#gui-qt5-support-gtk-version-compatibility">
+     GUI/Qt5 support (GTK version compatibility)
     </a>
    </li>
   </ul>
@@ -804,23 +826,46 @@
 </div>
 <div class="section" id="instable-simulations">
 <h2>Instable Simulations<a class="headerlink" href="#instable-simulations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="implicitation">
+<h3>Implicitation<a class="headerlink" href="#implicitation" title="Permalink to this headline">¶</a></h3>
 <p>To increase model stability, modify the following variables or make sure that the variables are within reasonable ranges in the <em>CAS</em> file:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">IMPLICITATION</span> <span class="pre">FOR</span> <span class="pre">DEPTH</span></code> should be between 0.5 and 0.6.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">IMPLICITATION</span> <span class="pre">FOR</span> <span class="pre">VELOCITIES</span></code> should be between 0.5 and 0.6.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IMPLICITATION</span> <span class="pre">FOR</span> <span class="pre">DEPTH</span></code> should be between <code class="docutils literal notranslate"><span class="pre">0.5</span></code> and <code class="docutils literal notranslate"><span class="pre">0.6</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IMPLICITATION</span> <span class="pre">FOR</span> <span class="pre">VELOCITIES</span></code> should be between <code class="docutils literal notranslate"><span class="pre">0.5</span></code> and <code class="docutils literal notranslate"><span class="pre">0.6</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">IMPLICITATION</span> <span class="pre">FOR</span> <span class="pre">DIFFUSION</span></code> should be <code class="docutils literal notranslate"><span class="pre">1.</span></code> or smaller.</p></li>
 </ul>
+</div>
+<div class="section" id="surface-oscillations-wiggles">
+<h3>Surface Oscillations (Wiggles)<a class="headerlink" href="#surface-oscillations-wiggles" title="Permalink to this headline">¶</a></h3>
 <p>When physically non-meaningful gradients or oscillations occur at the water surface or the bathymetry has steep slopes, the following keyword settings may help:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">FREE</span> <span class="pre">SURFACE</span> <span class="pre">GRADIENT</span></code> - default is <code class="docutils literal notranslate"><span class="pre">1.0</span></code>, but it can be reduced to <code class="docutils literal notranslate"><span class="pre">0.1</span></code> to achieve stability (nevertheless, start with going incrementally down, such as a value of <code class="docutils literal notranslate"><span class="pre">0.9</span></code>).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">DISCRETIZATIONS</span> <span class="pre">IN</span> <span class="pre">SPACE</span> <span class="pre">:</span> <span class="pre">12;11</span></code> - uses quasi-bubble spatial discretization with 4-node triangles for velocity.</p></li>
 </ul>
 </div>
+<div class="section" id="residual-mass-errors">
+<h3>Residual Mass Errors<a class="headerlink" href="#residual-mass-errors" title="Permalink to this headline">¶</a></h3>
+<p>To reduce residual mass errors use in the steering file:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">CONTINUITY</span> <span class="n">CORRECTION</span> <span class="p">:</span> <span class="n">YES</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="computation-speed">
+<h2>Computation Speed<a class="headerlink" href="#computation-speed" title="Permalink to this headline">¶</a></h2>
+<p>Some of the keywords in TELEMAC’s steering (<code class="docutils literal notranslate"><span class="pre">*.cas</span></code>) file affect computation speed.</p>
+<ul class="simple">
+<li><p>Use the <a class="reference internal" href="../numerics/telemac2d-steady.html#tm2d-accuracy"><span class="std std-ref">ACCURACY and MAXIMUM ITERATION</span></a> keywords to yield faster convergence.</p></li>
+<li><p>Deactivate <code class="docutils literal notranslate"><span class="pre">TIDAL</span> <span class="pre">FLATS</span></code>, even though deactivating <a class="reference internal" href="../numerics/telemac2d-steady.html#tm2d-tidal"><span class="std std-ref">tidal flats</span></a> can not be recommended to yield physically meaningful and stable models.</p></li>
+<li><p>When using the GMRES solver (<code class="docutils literal notranslate"><span class="pre">SOLVER</span> <span class="pre">:</span> <span class="pre">7</span></code>), varying the <a class="reference internal" href="../numerics/telemac2d-steady.html#tm2d-solver-pars"><span class="std std-ref">solver options</span></a> may aid to reduce the total calculation time.</p></li>
+<li><p>Make sure to use the default <code class="docutils literal notranslate"><span class="pre">MATRIX</span> <span class="pre">STORAGE</span> <span class="pre">:</span> <span class="pre">3</span></code> keyword.</p></li>
+</ul>
+</div>
 <div class="section" id="errors-in-mesh-files">
 <h2>Errors in Mesh Files<a class="headerlink" href="#errors-in-mesh-files" title="Permalink to this headline">¶</a></h2>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
-<p>A 3d simulation may crash when it is used with the parameter <code class="docutils literal notranslate"><span class="pre">CHECKING</span> <span class="pre">THE</span> <span class="pre">MESH</span> <span class="pre">:</span> <span class="pre">YES</span></code>. Thus, <strong>in 3d, favourably use <code class="docutils literal notranslate"><span class="pre">CHECKING</span> <span class="pre">THE</span> <span class="pre">MESH</span> <span class="pre">:</span> <span class="pre">NO</span></code></strong>.</p>
+<p>A 3d simulation may crash when it is used with the parameter <code class="docutils literal notranslate"><span class="pre">CHECKING</span> <span class="pre">THE</span> <span class="pre">MESH</span> <span class="pre">:</span> <span class="pre">YES</span></code>. Thus, <strong>in 3d, favorably use <code class="docutils literal notranslate"><span class="pre">CHECKING</span> <span class="pre">THE</span> <span class="pre">MESH</span> <span class="pre">:</span> <span class="pre">NO</span></code></strong>.</p>
 </div>
 <p>To verify if TELEMAC can read the mesh, load the TELEMAC environment, for example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">configs</span>
@@ -913,8 +958,8 @@
 </li>
 </ul>
 </div>
-<div class="section" id="gui-qt5-support-gtk-version-compatibility-qt-dbg">
-<h3>GUI/Qt5 support (GTK version compatibility) {#qt-dbg}<a class="headerlink" href="#gui-qt5-support-gtk-version-compatibility-qt-dbg" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="gui-qt5-support-gtk-version-compatibility">
+<span id="qt-dbg"></span><h3>GUI/Qt5 support (GTK version compatibility)<a class="headerlink" href="#gui-qt5-support-gtk-version-compatibility" title="Permalink to this headline">¶</a></h3>
 <p>With the newer versions of the <em>Qt platform</em> any menu entry in <em>SALOME-HYDRO</em> will not show up. To fix this issue, install and configure <code class="docutils literal notranslate"><span class="pre">qt5ct</span></code> styles:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">qt5-style-plugins</span> <span class="pre">libnlopt0</span></code></p></li>
