@@ -4,20 +4,27 @@ Using common and consistent vocabulary is vital for working in teams. This secti
 
 ```{glossary}
 Advection
-  Advection is the motion of particles along with the bulk flow. The properties (e.g., heat) of an advected particle or substance are conserved. Mathematically, advection of incompressible fluids (e.g., water) is described by $\frac{\partial \psi}{\partial t}+\mathbf{u} \cdot \nabla \psi = 0$ where $\psi$ is a constant of the particle/substance in consideration and $\mathbf{u}$ is the fluid velocity vector. The $\nabla$ operator is literally a vector of partial differential operators $\frac{\partial}{\partial x_i}$ where $x_i$ refers to the dimensions of the flow field. In the case of steady flow (no variability in time) the advection equation becomes $\mathbf{u} \cdot \nabla \psi = 0$ {cite:p}`kundu_fluid_2008`.
+  Advection is the motion of particles along with the bulk flow. The properties (e.g., heat) of an advected particle or substance are conserved. Mathematically, advection of incompressible fluids (e.g., water) is described by the {term}`Continuity equation` {cite:p}`kundu_fluid_2008`.
 
-  *French: Advection (f) <br>German: Advektion (w)*
+  *French: Advection <br>German: Advektion*
 
 Boussinesq
-  The Boussinesq approximation assumes that density variations can be neglected except for the gravity term (i.e., in the vertical momentum equations). In addition, the Boussinesq approximation assumes that a fluid is incompressible and that wave motion is inviscid {cite:p}`spiegel1960`.
+  The Boussinesq approximation of the {term}`Continuity equation` assumes that density variations can be neglected except for the gravity term (i.e., in the vertical momentum equations). In addition, the Boussinesq approximation assumes that a fluid is incompressible and that wave motion is inviscid {cite:p}`spiegel1960`.
 
 CFL
   In the field of hydrodynamics, the abbreviation CFL commonly refers to the **Courant-Friedrichs-Lewy** condition, which represents a convergence criterion for the numerical solution to the *Navier-Stokes* partial differential equations. The CFL applies to explicit time integration schemes that may become unstable for large time steps as a function of the size of mesh cells. Today, most numerical software uses an internal value for the CFL to adaptively calculate the maximum time step that is required for the stability of explicit solvers. In 2d modelling, the CFL condition is defined as $c_{cfl}={u_x + \Delta t}/\delta x + {u_y + \Delta t}/\delta y$, where $\Delta t$ is the time step, $\Delta x$ and $\Delta y$ are grid cell sizes in $x$ and $y$ directions of the coordinate reference system, and $u_x$ and $u_y$ are the flow velocities in the $x$ and $y$ directions. An explicit solver is assumed to be stable when $c_{cfl} \leq c_{cfl, crit}$, where the critical value $c_{cfl, crit}$ for the CFL condition must be smaller than 1.0. To this end, numerical modelling software, such as BASEMENT, uses a default value of $c_{cfl, crit} = 0.9$.
 
+Continuity equation
+  The differential form of the continuity equation is $\frac{\partial \psi}{\partial t}+\mathbf{u} \cdot \nabla \psi = 0$ where $\psi$ is a constant of the particle/substance in consideration and $\mathbf{u}$ is the fluid velocity vector. The $\nabla$ operator is literally a vector of partial differential operators $\frac{\partial}{\partial x_i}$ where $x_i$ refers to the dimensions of the flow field. In the case of steady flow (no variability in time) the advection equation becomes $\mathbf{u} \cdot \nabla \psi = 0$ {cite:p}`kundu_fluid_2008`.
+
+  The mass continuity equation of an incompressible fluid, such as water, considers the constant $\Psi$ as a mass and has the form $\nabla \cdot \mathbf{u} = 0$ or $\frac{\partial u_i}{\partial x_i} = 0$ {cite:p}`kundu_fluid_2008`.
+
+  *French: Équation de continuité <br>German: Kontinuitätsgleichung*
+
 Convection
   Convection encompasses {term}`Advection` and {term}`Diffusion` {cite:p}`kundu_fluid_2008`. Thus, convection is fluid motion because of bulk transport (water flowing in a river with reference to {term}`Advection`) and dispersion of a fluid component from high-density to low-density regions ({term}`Diffusion`) in the flow field (e.g., an ink drop dispersing in a river).
 
-  *French: Convection (f) <br>German: Konvektion (w)*
+  *French: Convection (f) <br>German: Konvektion*
 
 CRS
   A Coordinate Reference System (CRS), also referred to as Spatial Reference System (**SRS**), is an orientation unit system to geographically locate objects in a map. The CRS involves an origin ($x$=0.0 and $y$=0.0) and a projection. Objects of one map can be put into another map through the transformation of their CRS with respect to the coordinates and the projection. Read more about CRS in the section on {ref}`Projections and Coordinate Systems <prj>`.
@@ -41,12 +48,27 @@ DEM
 Diffusion
   Diffusion is the result of random motion of particles, driven by differences in concentration (e.g., dissipation of highly concentrated particles towards regions of low concentration). Mathematically, diffusion is described by $\frac{\partial \psi}{\partial t} = \nabla \cdot (D \nabla \psi)$ where $\psi$ is a constant of the particle/substance in consideration; $D$ is a diffusion coefficient (or diffusivity) in m$^2$/s, which is a proportionality constant between molecular flux and the gradient of a substance (or species). The $\nabla$ operator is a vector of partial differential operators $\frac{\partial}{\partial x_i}$ where $x_i$ refers to the dimensions of the flow field {cite:p}`kundu_fluid_2008`.
 
-  *French: Diffusion (f) <br>German: Diffusion (w)*
+  *French: Diffusion <br>German: Diffusion*
 
 Echo sounder
   An echo sounder emits an acoustic signal under water, which is reflected by the objects of the underwater landscape. Echo sounding is an active {term}`Sonar` technique and enables the creation of an underwater DEM, which is also referred to as bathymetry. To perform echo sounding a probe must be installed on a boat that requires a minimum navigable water depth. In addition, the use of the echo sounder (probe) itself also requires a minimum water depth to operate with little noise inference. Therefore, by experience, a minimum water depth of 1-2 m is necessary to survey the bathymetry of a river by echo sounding.
 
   *French: Échosondeur / Sondeur acoustique <br>German: Echolot*
+
+Froude number
+  The Froude number $Fr$ is the ratio between inertia and gravity forces and it is a key number of wave propagation. Thus, $Fr$ states whether information can be transmitted in upstream direction or not {cite:p}`chow59,hager09,hager10`:
+
+  $$
+  Fr^2 = \frac{Q^2}{A^3 g} \frac{\partial A}{\partial h}\begin{cases} < 1 \rightarrow \mbox{ subcritical flow (upstream and downstream wave propagation)} \\ = 1 \rightarrow \mbox{critical flow (standing waves in upstream direction)} \\ > 1 \rightarrow \mbox{ supercritical flow (downstream wave propagation only)} \end{cases}
+  $$
+
+  The transition from supercritical flow to subcritical flow is called *hydraulic jump*. For a rectangular cross section $A$, the Froude number becomes:
+
+  $$
+  Fr = \frac{u}{\sqrt{g h}}
+  $$
+
+  The Froude number is also the basis for scaling many sediment transport phenomena in open channel flow {cite:p}`yalin71,yalin77`.
 
 GeoTIFF
   The Georeferenced Tag Image File Format (GeoTIFF) links geographic positions to {ref}`raster` images. A GeoTIFF involves multiple files containing the tagged image itself (`*.tif` file), a world file (`*.tfw` file) containing information about the geographic reference and projection system, and potentially an `*.ovr` file that links the GeoTIFF with other resource data. Read more at the *Open Geospatial Consortium*'s [standard for GeoTIFF](https://www.ogc.org/standards/geotiff).
@@ -55,7 +77,9 @@ HDF
   The [Hierarchical Data Format (HDF)](https://www.hdfgroup.org/) provides the `*.h5` (HDF4) and `*.h5` (HDF5) file formats that store large datasets in an organized manner. HDF is often used with high-performance computing (HPC) applications, such as numerical models, to store large amounts of data output. This eBook impinges on HDF datasets in the {ref}`chpt-basement` tutorial where {term}`xdmf` files represent the model output, and in the {ref}`chpt-telemac` tutorials. In particular, TELEMAC builds on mesh and boundary files of the EnSim Core that is described in the user manual of the pre- and post-processing software [Blue Kenue](https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/2011_UserManual.pdf)<sup>TM</sup> (the newest [Blue Kenue installer](https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/Installer/BlueKenue_3.12.0-alpha+20201006_64bit.msi) contains an updated version of the user manual). Understanding the HDF format significantly facilitates troubleshooting structural errors of computational meshes for numerical models.
 
 Krylov space
-  Krylov (sub) spaces are used in numerical approximation schemes for finding solutions to sparse (many zero entries), high-dimensional linear systems {cite:p}`bunch1974`. To this end, Kryloc (sub) space methods use Gaussian elimination (e.g., {term}`LU decomposition`) to speed up calculations {cite:p}`gutknecht2007`.
+  Krylov (sub) spaces are used in numerical approximation schemes for finding solutions to sparse (many zero entries), high-dimensional linear systems {cite:p}`bunch1974`. To this end, Krylov (sub) space methods use Gaussian elimination (e.g., {term}`LU decomposition`) to speed up calculations {cite:p}`gutknecht2007`.
+
+  *French: Sous-espaces de Krylov / Méthode de la puissance itérée <br>German: Krylowraum*
 
 IAHR
   The International Association for Hydro-Environment Engineering and Research (IAHR) is an independent non-profit organization that unites professionals in the field of water resources. The IAHR has multiple branches and publishes several journals in collaboration with external publishing companies. Read more about the IAHR at [https://www.iahr.org](https://www.iahr.org).
@@ -64,13 +88,14 @@ Lidar
   Light Detection and Ranging (*LiDAR* or *lidar*) uses laser pulses to measure earth surface properties such as canopy or terrain elevation. The laser pulses are sent from a remote sensing platform (fix station or airborne) to surfaces, which reflect the pulses with different speed (time-of-flight informs about terrain elevation) and energy pattern (leaves behave differently than rock). In its raw form, lidar data is a point cloud with various, geo-referenced information about the reflected signal. Lidar point clouds for end users are typically stored in *las* format or compressed *laz* format. *las*-formatted data are much faster to process, but also much larger than *laz*-formatted data. For this reason, lidar data are preferably transferred in *laz* format, while the *las* format is preferably used for processing lidar data.
 
 LU decomposition
-  A lower-upper (LU) decomposition applies to the solution of linear systems (matrices) by re-organizing a matrix into an upper and a lower triangular matrix. Thus, LU decomposition is a form of Gaussian elimination, which is typically applied in numerical analysis (e.g., {ref}`Telemac2d <tm2d-solver-pars>`) or machine learning.
+  A lower-upper (LU) decomposition applies to the solution of linear systems (matrices) by re-organizing a matrix of equations into an upper and a lower triangular matrix. Thus, LU decomposition is a form of Gaussian elimination, which is typically applied in numerical analysis (e.g., {ref}`Telemac2d <tm2d-solver-pars>`) or machine learning.
 
 MPI
   In computing, MPI stands for *Message Passing Interface*, which is a portable message passing standard. MPI is implemented in many open-source C, C++, and Fortran applications to enable parallel computing.
 
-Navier-Stokes Equation
-  The general form of the Navier-Stokes Equation describes the motion of a Newtonian fluid {cite:p}`batchelor_2000_chpt3`. The equation simplifies with the assumption of incompressible fluids and further reduces to the *Euler equation* when viscous effects are negligible, which in generally the case in far distance from the boundaries {cite:p}`kundu_fluid_2008`. A theoritical, exact solution of the Navier-Stokes equation would yield a perfect description of many natural processes. However, the underlying system equations involves more unknown parameters than equations. For this reason, rigorous simplifications and numerical approximations with considerably larger computational effort than for an analytical solution are necessary for the solution of the Navier-Stokes Equation. Simplification hypotheses are, for example, a hydrostatic pressure distribution (leading to the shallow water equations) or the assumption that a fluid is incompressible.
+Navier-Stokes equations
+  The general form of the Navier-Stokes equations describes the motion of a Newtonian fluid and expresses the conservation of mass and momentum {cite:p}`batchelor_2000_chpt3`. The Navier-Stokes equations is a special type of {term}`Continuity equation` that is derived from Cauchy's equation (conservation of momentum). The equation simplifies with the assumption of incompressible fluids and reduces to the *Euler equation* when viscous effects are negligible, which is generally the case in far distance from the boundaries {cite:p}`kundu_fluid_2008`.
+  A theoretical, exact solution of the Navier-Stokes equations would yield a perfect description of many natural processes. However, the underlying system equations involves more unknown parameters than equations. For this reason, rigorous simplifications and numerical approximations with considerably larger computational effort than for an analytical solution are necessary for the solution of the Navier-Stokes equations. Simplification hypotheses are, for example, a hydrostatic pressure distribution (leading to the shallow water equations) or the assumption that a fluid is incompressible.
 
 Operating System
   An Operating System (OS) manages the hardware of a computer, software (resources), and services for any program you want to install.
@@ -79,6 +104,15 @@ Operating System
 
 Rating curve
   See {term}`Stage-discharge relation`.
+
+Reynolds number
+  The Reynolds number $Re$ relates viscous forces to inertia and is a key parameter for flow turbulence {cite:p}`chow59`:
+
+  $$
+  Re = \frac{u h}{\nu} \begin{cases} < 800 \rightarrow \mbox{ laminar~flow} \\ \geq 800 \mbox{ and } \leq 2000 \rightarrow \mbox{ transitional~flow} \\ > 10000 \rightarrow \mbox{ turbulent~flow} \end{cases}
+  $$
+
+  Where $\nu$ denotes the kinematic viscosity (10$^{-6}$ m$^{2}$ s$^{-1}$ for water at 20$^{\circ}$C). In gravel-cobble bed rivers, inertia forces are typically dominant compared with viscous forces; therefore $Re$ is generally larger than 2000 and the flow is turbulent {cite:p}`chow59,wohl_mountain_2000`.
 
 Rich Text Format
   The proprietary Rich Text Format (RTF) wraps raw text in functional blocks that enable graphically flavored *Word*-like processors to identify document properties such as font size and type. Common RTFs are, for instance, *docx* or *odf* and enable exchanging text files between different *Word*-like processors on different operating systems.

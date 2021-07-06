@@ -733,6 +733,11 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#accuracy">
+     Accuracy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#implicitation">
      Implicitation
     </a>
@@ -745,6 +750,16 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#residual-mass-errors">
      Residual Mass Errors
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#divergence">
+     Divergence
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tidal-flats">
+     Tidal Flats
     </a>
    </li>
   </ul>
@@ -826,6 +841,18 @@
 </div>
 <div class="section" id="instable-simulations">
 <h2>Instable Simulations<a class="headerlink" href="#instable-simulations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="accuracy">
+<h3>Accuracy<a class="headerlink" href="#accuracy" title="Permalink to this headline">¶</a></h3>
+<p>When the accuracy keywords are improperly defined, TELEMAC may not be able to end the simulation. In this case make sure to comment out the accuracy keywords and let TELEMAC use its default values:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">SOLVER</span> <span class="n">ACCURACY</span> <span class="p">:</span> <span class="mf">1.E-4</span>
+<span class="o">/</span> <span class="n">ACCURACY</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">TRACERS</span> <span class="p">:</span> <span class="mf">1.E-4</span>
+<span class="o">/</span> <span class="n">ACCURACY</span> <span class="n">OF</span> <span class="n">K</span> <span class="p">:</span> <span class="mf">1.E-6</span>
+<span class="o">/</span> <span class="n">ACCURACY</span> <span class="n">OF</span> <span class="nb">EPSILON</span> <span class="p">:</span> <span class="mf">1.E-6</span>
+<span class="o">/</span> <span class="n">ACCURACY</span> <span class="n">OF</span> <span class="n">SPALART</span><span class="o">-</span><span class="n">ALLMARAS</span> <span class="p">:</span> <span class="mf">1.E-6</span>
+</pre></div>
+</div>
+<p>Moreover, variable time-step calculation may cause eternal model runs (i.e., activated with <code class="docutils literal notranslate"><span class="pre">VARIABLE</span> <span class="pre">TIME-STEP</span> <span class="pre">:</span> <span class="pre">YES</span></code>). To deactivate variable time-step calculation use <code class="docutils literal notranslate"><span class="pre">VARIABLE</span> <span class="pre">TIME-STEP</span> <span class="pre">:</span> <span class="pre">NO</span></code> and define a <code class="docutils literal notranslate"><span class="pre">TIME</span> <span class="pre">STEP</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">1.</span></code>)</p>
+</div>
 <div class="section" id="implicitation">
 <h3>Implicitation<a class="headerlink" href="#implicitation" title="Permalink to this headline">¶</a></h3>
 <p>To increase model stability, modify the following variables or make sure that the variables are within reasonable ranges in the <em>CAS</em> file:</p>
@@ -850,6 +877,35 @@
 </pre></div>
 </div>
 </div>
+<div class="section" id="divergence">
+<h3>Divergence<a class="headerlink" href="#divergence" title="Permalink to this headline">¶</a></h3>
+<p>To limit divergence issues, use the <code class="docutils literal notranslate"><span class="pre">CONTROL</span> <span class="pre">OF</span> <span class="pre">LIMITS</span></code> and <code class="docutils literal notranslate"><span class="pre">LIMIT</span> <span class="pre">VALUES</span></code> keywords. The <code class="docutils literal notranslate"><span class="pre">LIMIT</span> <span class="pre">VALUES</span></code> keyword is a list of 8 integers for minimum and maximum values for H, U, V, and T (tracers). The implementation in the steering file looks like this:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">CONTROL</span> <span class="n">OF</span> <span class="n">LIMITS</span> <span class="p">:</span> <span class="n">YES</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="n">NO</span>
+<span class="n">LIMIT</span> <span class="n">VALUES</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1000</span><span class="p">;</span><span class="mi">9000</span><span class="p">;</span><span class="o">-</span><span class="mi">1000</span><span class="p">;</span><span class="mi">1000</span><span class="p">;</span><span class="o">-</span><span class="mi">1000</span><span class="p">;</span><span class="mi">1000</span><span class="p">;</span><span class="o">-</span><span class="mi">1000</span><span class="p">;</span><span class="mi">1000</span> <span class="o">/</span> <span class="n">default</span> <span class="n">mins</span> <span class="nb">and max </span><span class="n">for</span> <span class="n">H</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">tracer</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tidal-flats">
+<h3>Tidal Flats<a class="headerlink" href="#tidal-flats" title="Permalink to this headline">¶</a></h3>
+<p>The simulation of dam breaks or flood hydrographs may cause issues leading to model instability. While the <a class="reference internal" href="../numerics/telemac2d-steady.html#tm2d-tidal"><span class="std std-ref">Tidal Flats</span></a> section in the Telemac2d steady modeling tutorial suggests physically and computationally meaningful keyword option combinations, section 16.5 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p1r1/documentation/telemac2d/user/telemac2d_user_v8p1.pdf">Telemac2d manual</a> recommends to use the following settings in the steering file as conservative choices from the BAW’s Wesel example (similar to <code class="docutils literal notranslate"><span class="pre">/telemac/v8p2/examples/telemac2d/wesel/</span></code>).</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">VELOCITY</span> <span class="n">PROFILES</span> <span class="p">:</span> <span class="mi">4</span><span class="p">;</span><span class="mi">0</span>
+<span class="n">TURBULENCE</span> <span class="n">MODEL</span> <span class="p">:</span> <span class="mi">1</span>
+<span class="n">VELOCITY</span> <span class="n">DIFFUSIVITY</span> <span class="p">:</span> <span class="mf">2.</span>
+<span class="n">TIDAL</span> <span class="n">FLATS</span> <span class="p">:</span> <span class="n">YES</span>
+<span class="n">OPTION</span> <span class="n">FOR</span> <span class="n">THE</span> <span class="n">TREATMENT</span> <span class="n">OF</span> <span class="n">TIDAL</span> <span class="n">FLATS</span> <span class="p">:</span> <span class="mi">1</span>
+<span class="n">TREATMENT</span> <span class="n">OF</span> <span class="n">NEGATIVE</span> <span class="n">DEPTHS</span> <span class="p">:</span> <span class="mi">2</span>
+<span class="n">FREE</span> <span class="n">SURFACE</span> <span class="n">GRADIENT</span> <span class="n">COMPATIBILITY</span> <span class="p">:</span> <span class="mf">0.9</span>
+<span class="n">H</span> <span class="n">CLIPPING</span> <span class="p">:</span> <span class="n">NO</span>
+<span class="k">TYPE </span><span class="n">OF</span> <span class="n">ADVECTION</span> <span class="p">:</span> <span class="mi">1</span><span class="p">;</span><span class="mi">5</span>
+<span class="n">SUPG</span> <span class="n">OPTION</span> <span class="p">:</span> <span class="mi">0</span><span class="p">;</span><span class="mi">0</span>
+<span class="n">TREATMENT</span> <span class="n">OF</span> <span class="n">THE</span> <span class="n">LINEAR</span> <span class="nb">SYSTEM</span> <span class="p">:</span> <span class="mi">2</span>
+<span class="n">SOLVER</span> <span class="p">:</span> <span class="mi">2</span>
+<span class="n">PRECONDITIONING</span> <span class="p">:</span> <span class="mi">2</span>
+<span class="n">SOLVER</span> <span class="n">ACCURACY</span> <span class="p">:</span> <span class="mf">1.E-5</span>
+<span class="n">CONTINUITY</span> <span class="n">CORRECTION</span> <span class="p">:</span> <span class="n">YES</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="computation-speed">
 <h2>Computation Speed<a class="headerlink" href="#computation-speed" title="Permalink to this headline">¶</a></h2>
@@ -859,6 +915,7 @@
 <li><p>Deactivate <code class="docutils literal notranslate"><span class="pre">TIDAL</span> <span class="pre">FLATS</span></code>, even though deactivating <a class="reference internal" href="../numerics/telemac2d-steady.html#tm2d-tidal"><span class="std std-ref">tidal flats</span></a> can not be recommended to yield physically meaningful and stable models.</p></li>
 <li><p>When using the GMRES solver (<code class="docutils literal notranslate"><span class="pre">SOLVER</span> <span class="pre">:</span> <span class="pre">7</span></code>), varying the <a class="reference internal" href="../numerics/telemac2d-steady.html#tm2d-solver-pars"><span class="std std-ref">solver options</span></a> may aid to reduce the total calculation time.</p></li>
 <li><p>Make sure to use the default <code class="docutils literal notranslate"><span class="pre">MATRIX</span> <span class="pre">STORAGE</span> <span class="pre">:</span> <span class="pre">3</span></code> keyword.</p></li>
+<li><p>Use an earlier simulation (e.g., with a coarser mesh) to initiate the model with the <code class="docutils literal notranslate"><span class="pre">COMPUTATION</span> <span class="pre">CONTINUED</span> <span class="pre">:</span> <span class="pre">YES</span></code> and <code class="docutils literal notranslate"><span class="pre">PREVIOUS</span> <span class="pre">COMPUTATION</span> <span class="pre">FILE</span> <span class="pre">:</span> <span class="pre">*.slf</span></code> keywords (see section 4.1.3 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p1r1/documentation/telemac2d/user/telemac2d_user_v8p1.pdf">Telemac2d manual</a>).</p></li>
 </ul>
 </div>
 <div class="section" id="errors-in-mesh-files">

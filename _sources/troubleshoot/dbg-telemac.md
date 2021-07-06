@@ -41,6 +41,20 @@ This approach also works with *Telemac3d* (and other modules).
 
 ## Instable Simulations
 
+### Accuracy
+
+When the accuracy keywords are improperly defined, TELEMAC may not be able to end the simulation. In this case make sure to comment out the accuracy keywords and let TELEMAC use its default values:
+
+```fortran
+/ SOLVER ACCURACY : 1.E-4
+/ ACCURACY FOR DIFFUSION OF TRACERS : 1.E-4
+/ ACCURACY OF K : 1.E-6
+/ ACCURACY OF EPSILON : 1.E-6
+/ ACCURACY OF SPALART-ALLMARAS : 1.E-6
+```
+
+Moreover, variable time-step calculation may cause eternal model runs (i.e., activated with `VARIABLE TIME-STEP : YES`). To deactivate variable time-step calculation use `VARIABLE TIME-STEP : NO` and define a `TIME STEP` (e.g., `1.`)
+
 ### Implicitation
 To increase model stability, modify the following variables or make sure that the variables are within reasonable ranges in the *CAS* file:
 
@@ -61,6 +75,37 @@ To reduce residual mass errors use in the steering file:
 CONTINUITY CORRECTION : YES
 ```
 
+### Divergence
+
+To limit divergence issues, use the `CONTROL OF LIMITS` and `LIMIT VALUES` keywords. The `LIMIT VALUES` keyword is a list of 8 integers for minimum and maximum values for H, U, V, and T (tracers). The implementation in the steering file looks like this:
+
+```fortran
+CONTROL OF LIMITS : YES / default is NO
+LIMIT VALUES : -1000;9000;-1000;1000;-1000;1000;-1000;1000 / default mins and max for H, U, V, tracer
+```
+
+### Tidal Flats
+
+The simulation of dam breaks or flood hydrographs may cause issues leading to model instability. While the {ref}`tm2d-tidal` section in the Telemac2d steady modeling tutorial suggests physically and computationally meaningful keyword option combinations, section 16.5 in the {{ tm2d }} recommends to use the following settings in the steering file as conservative choices from the BAW's Wesel example (similar to `/telemac/v8p2/examples/telemac2d/wesel/`).
+
+```fortran
+VELOCITY PROFILES : 4;0
+TURBULENCE MODEL : 1
+VELOCITY DIFFUSIVITY : 2.
+TIDAL FLATS : YES
+OPTION FOR THE TREATMENT OF TIDAL FLATS : 1
+TREATMENT OF NEGATIVE DEPTHS : 2
+FREE SURFACE GRADIENT COMPATIBILITY : 0.9
+H CLIPPING : NO
+TYPE OF ADVECTION : 1;5
+SUPG OPTION : 0;0
+TREATMENT OF THE LINEAR SYSTEM : 2
+SOLVER : 2
+PRECONDITIONING : 2
+SOLVER ACCURACY : 1.E-5
+CONTINUITY CORRECTION : YES
+```
+
 ## Computation Speed
 
 Some of the keywords in TELEMAC's steering (`*.cas`) file affect computation speed.
@@ -69,6 +114,7 @@ Some of the keywords in TELEMAC's steering (`*.cas`) file affect computation spe
 * Deactivate `TIDAL FLATS`, even though deactivating {ref}`tidal flats <tm2d-tidal>` can not be recommended to yield physically meaningful and stable models.
 * When using the GMRES solver (`SOLVER : 7`), varying the {ref}`solver options <tm2d-solver-pars>` may aid to reduce the total calculation time.
 * Make sure to use the default `MATRIX STORAGE : 3` keyword.
+* Use an earlier simulation (e.g., with a coarser mesh) to initiate the model with the `COMPUTATION CONTINUED : YES` and `PREVIOUS COMPUTATION FILE : *.slf` keywords (see section 4.1.3 in the {{ tm2d }}).
 
 ## Errors in Mesh Files
 

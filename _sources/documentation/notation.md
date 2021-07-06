@@ -67,13 +67,21 @@ The consistent use of parameters and symbols for parameters is summarized in a n
   - m
   - water depth
 
-* - $i$
+* - $i$ or `i`
   - $-$
-  - level one scalar iterator
+  - level one scalar iterator (1d space)
 
-* - $j$
+* - $j$ or `j`
   - $-$
-  - level two scalar iterator
+  - level two scalar iterator (2d space)
+
+* - `k`
+  - $-$
+  - level three scalar iterator (3d space)
+
+* - $k$
+  - m$^2$ s$^{-2}$ or J kg$^{-1}$
+  - turbulent energy
 
 * - $k_{st}$
   - m$^{1/3}$ s$^{-1}$
@@ -167,7 +175,11 @@ The consistent use of parameters and symbols for parameters is summarized in a n
   - m s$^{-1}$
   - flow velocity vector (multidimensional)
 
-* -  $x$
+* - $wse$
+  - m a.s.l.
+  - water surface elevation (absolute)
+
+* - $x$
   - m
   - streamwise coordinate pointing in the upstream direction, or Easting of geodata
 

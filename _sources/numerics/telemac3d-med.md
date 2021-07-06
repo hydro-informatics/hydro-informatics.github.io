@@ -588,7 +588,7 @@ In the opening popup window, select the just exported **MED** file containing th
 
 ```{admonition} Put all files in 1 folder
 :class: attention
-Make sure that all model files (*MED*, *BND*, and others such as the later defined *CAS* file) are all located in the same folder.
+Make sure that all model files (*MED*, *BND*, and others such as the later defined `*.cas` file) are all located in the same folder.
 ```
 
 Make the following definitions in the **Boundary conditions** frame ({numref}`Fig. %s <bc-define>`):
@@ -640,24 +640,24 @@ The boundary file should now resemble the block below (can also be downloaded [h
 SLF geometry files require more complex (node-wise) definitions of boundaries, which need to be setup with {ref}`Blue Kenue <bluekenue>` and {ref}`Fudaa-PrePro <fudaa>`.
 ```
 
-## Simulation Case File (CAS)
+## Simulation Steering Case File (CAS)
 
-The *CAS* (`.cas`) file is the control (or *steering*) file for any *TELEMAC* simulation and links all model parameters. This section guides through setting up a simple *CAS* file for *Telemac3d* simulations either manually based on a template or with the *HydroSolver module* in *SALOME-HYDRO*. Because of program instabilities and incoherent linking of file names (directories) in *SALOME-HYDRO*, it is recommended to work with the manual CAS file setup (or with Fudaa PrePro).
+The steering (`*.cas`) file is the control (or *steering*) file for any *TELEMAC* simulation and links all model parameters. This section guides through setting up a simple `*.cas` file for *Telemac3d* simulations either manually based on a template or with the *HydroSolver module* in *SALOME-HYDRO*. Because of program instabilities and incoherent linking of file names (directories) in *SALOME-HYDRO*, it is recommended to work with the manual CAS file setup (or with Fudaa PrePro).
 
 ```{tip}
 Copy a sample case from the *TELEMAC* folder (*/telemac/v8p2/examples/telemac3d/*) and edit it for convenience.
 ```
 
 ```{admonition} Windows
-The *CAS* file can also be edited/created with [Fudaa PrePro](../get-started/telemac.html#fudaa) - or any text editor software -  for use with *Salome-Hydro* on a *Linux* system later.
+The `*.cas` file can also be edited/created with {ref}`Fudaa PrePro <fudaa>`) - or any text editor software -  for use with *Salome-Hydro* on a *Linux* system later.
 ```
 
 ### Overview: Manual CAS File Setup (Recommended)
 
 The following CAS template uses the following input files:
 
-* The boundary condition file named `flume3d_bc.bnd` (see [boundary file section](#bnd-mod)
-* The geometry *MED* file `Mesh_Hn_1.med` (see [med file export section](#med-export)
+* The boundary condition file named `flume3d_bc.bnd` (see {ref}`boundary file section <bnd-mod>`)
+* The geometry *MED* file `Mesh_Hn_1.med` (see {ref}`med file export section <med-export>`)
 * Do **not include any directory names** (file paths) and make sure that **all model files are in the same folder**.
 
 The CAS file defines a steady, hydrodynamic model with an inflow rate of 50 m<sup>3</sup>/s (prescribed upstream flow rate boundary) and an outflow depth of 2 m (prescribed downstream elevation). The simulation uses 5 vertical layers that constitute a numerical grid of prisms. 3d outputs of *U* (*x*-direction), *V* (*y*-direction), and *W* (*z*-direction) velocities, as well as the elevation *Z*, are written to a file named `r3d_canal-t3d.med`. 2d outputs of depth-averaged *U* velocity (*x*-direction), depth-averaged *V* velocity (*y*-direction), and water depth *h* are written to a file named `r2d3d_canal-t3d.med`.
@@ -867,11 +867,11 @@ Parameters for **Boundary Conditions** enable the definition of roughness laws a
 With respect to roughness, *TELEMAC* developers recommend using the {cite:t}`nikuradse_stromungsgesetze_1933` roughness law in 3d (number `5`), because all others are not meaningful or not integrally implemented in the 3d version. To apply the {cite:t}`nikuradse_stromungsgesetze_1933` roughness law to the bottom and the boundaries use:
 
 * `LAW OF BOTTOM FRICTION`: `5`
-* `LAW OF FRICTION ON LATERAL BOUNDARIES`: `5`, which can well be applied to model natural banks, or set to `0` (no-slip) for symmetry.<br>*Note that the [boundary conditions file](#bnd-mod) sets the `LIUBOR` and `LIVBOR` for the `leftwall` and `rightwall` boundary edges to zero, to enable friction.
+* `LAW OF FRICTION ON LATERAL BOUNDARIES`: `5`, which can well be applied to model natural banks, or set to `0` (no-slip) for symmetry.<br>*Note that the {ref}`boundary conditions file <bnd-mod>` sets the `LIUBOR` and `LIVBOR` for the `leftwall` and `rightwall` boundary edges to zero, to enable friction.
 * `FRICTION COEFFICIENT FOR THE BOTTOM`: `0.1` corresponds to 3 times a hypothetical *d90* (grain diameter of which 90% of the surface grain mixture are finer) according to {cite:p}`vanrijn2019`.
 * `FRICTION COEFFICIENT FOR LATERAL SOLID BOUNDARIES`: `0.1` corresponds to 3 times a hypothetical *d90*, similar as for the bottom.
 
-The liquid boundary definitions for `PRESCRIBED FLOWRATES` and `PRESCRIBED ELEVATIONS` correspond to the definitions of the **downstream** boundary edge in line 2 and the **upstream** boundary edge in line 3 (see [boundary definitions section](#bnd-mod)). From the boundary file, *TELEMAC* will understand the **downstream** boundary as edge number **1** (first list element) and the **upstream** boundary as edge number **2** (second list element). Hence:
+The liquid boundary definitions for `PRESCRIBED FLOWRATES` and `PRESCRIBED ELEVATIONS` correspond to the definitions of the **downstream** boundary edge in line 2 and the **upstream** boundary edge in line 3 (see {ref}`boundary definitions section <bnd-mod>`). From the boundary file, *TELEMAC* will understand the **downstream** boundary as edge number **1** (first list element) and the **upstream** boundary as edge number **2** (second list element). Hence:
 
 * The list parameter `PRESCRIBED FLOWRATES : 50.;50.` assigns a flow rate of 50 m<sup>3</sup>/s to the **downstream** and the **upstream** boundary edges.
 * The list parameter `PRESCRIBED ELEVATIONS : 2.;0.` assigns an elevation (i.e., water depth) of two m to the **downstream** boundary and a water depth of 0.0 m to the **upstream** boundary.
@@ -880,7 +880,7 @@ The liquid boundary definitions for `PRESCRIBED FLOWRATES` and `PRESCRIBED ELEVA
 
 The `0.` value for the water does physically not make sense at the upstream boundary, but because they do not make sense, and because the boundary file (`flume3d_bc.bnd`) only defines (*prescribes*) a flow rate (by setting `LIUBOR` and `LIVBOR` to `5`), *TELEMAC* will ignore the zero-water depth at the upstream boundary.
 
-Instead of a list in the steering *CAS* file, the liquid boundary conditions can also be defined with a liquid boundary condition file in *ASCII* text format. For this purpose, a `LIQUID BOUNDARIES FILE` or a `STAGE-DISCHARGE CURVES FILE` (sections 4.3.8 and 4.3.10 in the {{ tm3d }}, respectively can be defined. The [*t3d_template.cas*](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/master/model-templates/t3d_template.cas) file includes these keywords in the *COMPUTATION ENVIRONMENT* section, though they are disabled through the `/` character at the beginning of the line. A liquid boundary file (*QSL*) may look like this:
+Instead of a list in the steering `*.cas` file, the liquid boundary conditions can also be defined with a liquid boundary condition file in *ASCII* text format. For this purpose, a `LIQUID BOUNDARIES FILE` or a `STAGE-DISCHARGE CURVES FILE` (sections 4.3.8 and 4.3.10 in the {{ tm3d }}, respectively can be defined. The [*t3d_template.cas*](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/master/model-templates/t3d_template.cas) file includes these keywords in the *COMPUTATION ENVIRONMENT* section, though they are disabled through the `/` character at the beginning of the line. A liquid boundary file (*QSL*) may look like this:
 
 ```fortran
 # t3d_canal.qsl
@@ -893,13 +893,13 @@ s           m3/s     m
 ```
 
 ```{tip}
-The `ELEVATION` parameter in the *CAS* file denotes water depth, while the `ELEVATION` keyword in an external liquid boundary file (e.g. stage-discharge curve) refers to absolute (geodetic) elevation (`Z` plus `H`).
+The `ELEVATION` parameter in the `*.cas` file denotes water depth, while the `ELEVATION` keyword in an external liquid boundary file (e.g. stage-discharge curve) refers to absolute (geodetic) elevation (`Z` plus `H`).
 ```
 
 With a prescribed flow rate, a horizontal and a vertical velocity profile can be prescribed for all liquid boundaries. With only a **downstream** and an **upstream** liquid boundary (in that order according to the above-defined boundary file), the velocity profile keywords are lists of two elements each, where the first entry refers to the **downstream** and the second element to **upstream** boundary edges:
 
 * `VELOCITY PROFILES`: `1;1` is the default option for the **horizontal** profiles. If set to `2;2`, the velocity profiles will be read from the boundary condition file.
-* `VELOCITY VERTICAL PROFILES`: `2;2` sets the **vertical** velocity profiles to logarithmic. The default is `1;1` (constant). Alternatively, a user-defined `USER_VEL_PROF_Z` subroutine can be implemented in a fortran file.
+* `VELOCITY VERTICAL PROFILES`: `2;2` sets the **vertical** velocity profiles to logarithmic. The default is `1;1` (constant). Alternatively, a user-defined `USER_VEL_PROF_Z` subroutine can be implemented in a Fortran file.
 
 Read more about options for defining velocity profiles in section 4.3.12 of the {{ tm3d }}.
 
@@ -920,14 +920,12 @@ Read more about the initial conditions in section 4.2 of the {{ tm3d }}.
 
 ### Turbulence
 
-Turbulence describes a seemingly random and chaotic state of fluid motion in the form of three-dimensional vortices (eddies). True turbulence is only present in 3d vorticity and when it occurs, it mostly dominates all other flow phenomena through increases in energy dissipation, drag, heat transfer, and mixing. The phenomenon of turbulence has been a mystery to science for a long time, since turbulent flows have been observed, but could not be directly explained by the systems of linear equations. Today, turbulence is considered a random phenomenon that can be accounted for in linear equations, for instance, by introducing statistical parameters. Not surprisingly, there are a variety of options for implementing turbulence in numerical models. The horizontal and vertical dimensions of turbulent eddies can vary greatly, especially in rivers and transitions to backwater zones (tidal flats), with large flow widths (horizontal dimension) compared to small water depths (vertical dimension). For these reasons, *TELEMAC* provides multiple turbulence models that can be applied in the vertical and horizontal dimensions.
-
-In 3d, *TELEMAC* developers recommend using either the *k-&epsilon;* model (`3`) or the *Spalart-Allmaras* model (`5`) in lieu of the mixing length model (`2`):
+The fundamental principles of turbulence and its application to the {term}`Navier-Stokes equations` are explained in the {ref}`steady Telemac2d tutorial <tm2d-turbulence>`. In 3d, TELEMAC developers recommend using either the $k-\epsilon$ model (`3`) or the *Spalart-Allmaras* model (`5`) in lieu of the mixing length model (`2`):
 
 * `HORIZONTAL TURBULENCE MODEL`: `3`
 * `VERTICAL TURBULENCE MODEL`: `3`
 
-If the `VERTICAL TURBULENCE MODEL` is set to `2` (`'MIXING LENGTH'`), a `MIXING LENGTH MODEL` can be assigned. The default is `1`, which is preferable for strong tidal influences and a value of `3` sets the length for computing vertical diffusivity to *Nezu and *Nakagawa*.
+If the `VERTICAL TURBULENCE MODEL` is set to `2` (`'MIXING LENGTH'`), a `MIXING LENGTH MODEL` can be assigned. The default is `1`, which is preferable for strong tidal influences and a value of `3` sets the length for computing vertical diffusivity to {cite:t}`nezu1993`.
 
 Read more about turbulence in *TELEMAC* in section 5.2 and the mixing length in section 5.2.2 of the {{ tm3d }}.
 
@@ -937,22 +935,22 @@ Read more about turbulence in *TELEMAC* in section 5.2 and the mixing length in 
 Skip this section if you already set up the CAS file manually.
 ```
 
-A *CAS* file can be created with the *HydroSolver* module in *SALOME-HYDRO* as follows:
+A `*.cas` file can be created with the *HydroSolver* module in *SALOME-HYDRO* as follows:
 
 1. Go to the **Hydro** top menu > **Edit cas file (English)** and a popup window along with a new frame will open. The popup window will ask for the version of *TELEMAC* (i.e., the solver) to use. Select **telemac3d** and clock **Ok**.
 
-2. In the new frame (*Eficas Telemac* viewport), go to **File** > **New** for creating a new *CAS* (case or *French* *cas*).
+2. In the new frame (*Eficas Telemac* viewport), go to **File** > **New** for creating a new `*.cas` (case or *French* *cas*).
 
-3. Save the new *CAS* file (e.g., `flume3d-steady.cas`) in the same directory where all other simulation files live.
+3. Save the new `*.cas` file (e.g., `flume3d-steady.cas`) in the same directory where all other simulation files live.
 
 ```{figure} ../img/salome/hs-create-cas.png
 :alt: telemac salome hydro hydrosolver new cas file save as
 ```
 
-A new *unnamed file1* case is created and opens up in the *Computation environment* frame. To make sure that no information will be lost, save the *CAS* file regularly. The *HydroSolver* module guides through parameter definitions as above shown (starting with the *COMPUTATION_ENVIRONMENT* block), with built-in explanations on the sidebar.
+A new *unnamed file1* case is created and opens up in the *Computation environment* frame. To make sure that no information will be lost, save the `*.cas` file regularly. The *HydroSolver* module guides through parameter definitions as above shown (starting with the *COMPUTATION_ENVIRONMENT* block), with built-in explanations on the sidebar.
 
 ```{attention}
-After finalizing the *CAS* file with *HydroSolver*, open the *CAS* file in a text editor and make sure that all parameters are coherently defined as described above. In particular, pay attention to the non-use of file directories.
+After finalizing the `*.cas` file with *HydroSolver*, open the `*.cas` file in a text editor and make sure that all parameters are coherently defined as described above. In particular, pay attention to the non-use of file directories.
 ```
 
 ## Run Simulation (Compute)
@@ -967,7 +965,7 @@ source pysource.openmpi.sh
 config.py
 ```
 
-With the *TELEMAC* environment loaded, change to the directory where the above-created 3d-flume simulation lives (e.g., `/home/modelling/flume3d-tutorial/`) and run the *CAS* file by calling the **telemac3d.py** script.
+With the *TELEMAC* environment loaded, change to the directory where the above-created 3d-flume simulation lives (e.g., `/home/modelling/flume3d-tutorial/`) and run the `*.cas` file by calling the **telemac3d.py** script.
 
 ```
 cd ~/modelling/flume3d-tutorial/
@@ -1017,10 +1015,10 @@ Thus, *Telemac3d* produced the files `r3d_canal-t3d.med` and `r2d3d_canal-t3d.me
 ### SALOME-HYDRO & HydroSolver
 
 ```{warning}
-On newer systems (e.g., Debian 10), it is highly likely, that the local libraries are newer than the ones used for compiling *TELEMAC* in the *SALOME-HYDRO* environment. Thus, simulations may fail, for example when *SALOME-HYDRO* tries to communicate with the local *openmpi* libraries. For this reason, it is recommended to use a [*TELEMAC* stand-alone installation](#modular-install) of *TELEMAC* for running simulations.
+On newer systems (e.g., Debian 10), it is highly likely, that the local libraries are newer than the ones used for compiling *TELEMAC* in the *SALOME-HYDRO* environment. Thus, simulations may fail, for example when *SALOME-HYDRO* tries to communicate with the local *openmpi* libraries. For this reason, it is recommended to use a {ref}`*TELEMAC* stand-alone installation <modular-install>` for running simulations.
 ```
 
-If the new PYTEL case is not showing up in the *Object Browser*, save the project (e.g., *tetrahedral_3d.hdf*), close, and restart *SALOME-HYDRO*. Re-open the project *hdf* file and re-activate the HydroSolver module.
+If the new PYTEL case is not showing up in the *Object Browser*, save the project (e.g., *tetrahedral_3d.hdf*), close, and restart *SALOME-HYDRO*. Re-open the project {term}`HDF` file and re-activate the HydroSolver module.
 
 * In the *Object Browser*, click on *tetrahedral_steering* (highlights in blue).
 * With the steering file highlighted, find the *Edit Pytel case for execution* button in the menu bar and click on it.
@@ -1142,7 +1140,7 @@ Configure the CSV Writer for exporting relevant data such as ELEVATION Z and 3d 
 An example of an exported CSV file containing timesteps, elevation, point coordinates, and 3d velocities.
 ```
 
-Recall that many other variables can be exported by defining them in the *CAS* file as above described in the {ref}`computational environment <tm3d-comp-env>`. A full list of 2d and 3d output parameters in available sections 3.13 and 3.12, respectively, of the [Telemac3d docs](http://ot-svn-public:telemac1*@svn.opentelemac.org/svn/opentelemac/tags/v8p1r1/documentation/telemac3d/user/telemac3d_user_v8p1.pdf).
+Recall that many other variables can be exported by defining them in the `*.cas` file as above described in the {ref}`computational environment <tm3d-comp-env>`. A full list of 2d and 3d output parameters in available sections 3.13 and 3.12, respectively, of the [Telemac3d docs](http://ot-svn-public:telemac1*@svn.opentelemac.org/svn/opentelemac/tags/v8p1r1/documentation/telemac3d/user/telemac3d_user_v8p1.pdf).
 
 ```{admonition} Discover more ParaVis Filters
 :class: tip
