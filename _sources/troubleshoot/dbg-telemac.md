@@ -116,6 +116,16 @@ Some of the keywords in TELEMAC's steering (`*.cas`) file affect computation spe
 * Make sure to use the default `MATRIX STORAGE : 3` keyword.
 * Use an earlier simulation (e.g., with a coarser mesh) to initiate the model with the `COMPUTATION CONTINUED : YES` and `PREVIOUS COMPUTATION FILE : *.slf` keywords (see section 4.1.3 in the {{ tm2d }}).
 
+Moreover, Telemac2d provides a way to stop a simulation (step) when fluxes stabilize. To enable this feature, add the following block in the steering (`*.cas`) file:
+
+```
+/ steady state stop criteria in steering.cas
+STOP IF A STEADY STATE IS REACHED : YES / default is NO
+STOP CRITERIA : 1.E-3;1.E-3;1.E-3 / use list of three values - defaults are 1.E-4
+```
+
+However, stop criteria are not functional for non-stationary flows (e.g., {cite:t}`von_karman_mechanische_1930` vortex street downstream of bridge piers). Read more about the convergence stop criteria in the {{ tm2d }} (section 5.1).
+
 ## Errors in Mesh Files
 
 ```{hint}

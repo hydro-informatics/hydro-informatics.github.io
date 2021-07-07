@@ -819,8 +819,8 @@
     </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#selafin-serafin-slf">
-     SELAFIN / SERAFIN (SLF)
+    <a class="reference internal nav-link" href="#selafin">
+     SELAFIN
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
@@ -1265,7 +1265,7 @@
 <span id="bk-meshing"></span><h2>Blue Kenue Meshing (Optional)<a class="headerlink" href="#blue-kenue-meshing-optional" title="Permalink to this headline">¶</a></h2>
 <div class="admonition-skip-this-section-if-you-created-a-2dm-quality-mesh-with-basemesh admonition">
 <p class="admonition-title">Skip this section if you created a <em>.2dm</em> quality mesh with BASEMESH</p>
-<p>This is an optional section for users who do not want to use QGIS and the BASEmesh plugin for meshing. Generating a mesh with Blue Kenue can be useful, for instance, to produce a computational grid that has triangular cells oriented parallel to the riverbanks. Otherwise, <strong>if the <code class="docutils literal notranslate"><span class="pre">*.2dm</span></code> mesh file was created</strong> with QGIS, <strong>jump to the section on creating a <span class="xref std std-ref">Selafin Object</span></strong>.</p>
+<p>This is an optional section for users who do not want to use QGIS and the BASEmesh plugin for meshing. Generating a mesh with Blue Kenue can be useful, for instance, to produce a computational grid that has triangular cells oriented parallel to the riverbanks. Otherwise, <strong>if the <code class="docutils literal notranslate"><span class="pre">*.2dm</span></code> mesh file was created</strong> with QGIS, <strong>jump to the section on creating a <a class="reference internal" href="#bk-create-slf"><span class="std std-ref">Selafin Object</span></a></strong>.</p>
 </div>
 <p>This section features the basic mesh generation with Blue Kenue and the Baxter tutorial <span id="id2">[<a class="reference internal" href="../documentation/bibliography.html#id1342">GML13</a>]</span> provides more details with detailed screenshots.</p>
 <div class="section" id="draw-model-boundary-closed-line">
@@ -1367,8 +1367,8 @@
 </div>
 </div>
 </div>
-<div class="section" id="selafin-serafin-slf">
-<span id="bk-create-slf"></span><h2>SELAFIN / SERAFIN (SLF)<a class="headerlink" href="#selafin-serafin-slf" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="selafin">
+<span id="bk-slf"></span><h2>SELAFIN<a class="headerlink" href="#selafin" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="open-and-import-ingredients">
 <h3>Open and Import Ingredients<a class="headerlink" href="#open-and-import-ingredients" title="Permalink to this headline">¶</a></h3>
 <p>Whether the mesh was created with Blue Kenue itself or with QGIS and the BASEmesh plugin, make sure to have now a Blue Kenue workspace with only the XYZ point cloud loaded (see the <a class="reference internal" href="#bk-xyz"><span class="std std-ref">Load XYZ Points</span></a> section). Before a SELAFIN object can be created, the previously created mesh (i.e., either the <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/meshes/prepro-tutorial_quality-mesh-utm33n.2dm">quality-mesh.2dm</a> or the <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/compound-mesh.t3s">compound-mesh.t3s</a>) needs to be imported into the WorkSpace in addition to the point cloud. The following instructions show the import and use of the <code class="docutils literal notranslate"><span class="pre">*.2dm</span></code> file:</p>
@@ -1388,7 +1388,7 @@
 </div>
 </div>
 <div class="section" id="create-selafin-object">
-<span id="id3"></span><h3>Create SELAFIN Object<a class="headerlink" href="#create-selafin-object" title="Permalink to this headline">¶</a></h3>
+<span id="bk-create-slf"></span><h3>Create SELAFIN Object<a class="headerlink" href="#create-selafin-object" title="Permalink to this headline">¶</a></h3>
 <p>With the open <em>dem.xyz</em> and the imported (or opened) mesh, all ingredients required by a Blue Kenue SELAFIN object are available. Now, create a new SELAFIN object:</p>
 <ul class="simple">
 <li><p>Go to <strong>File</strong> &gt; <strong>New</strong> &gt; <strong>SELAFIN Object…</strong></p></li>
@@ -1472,8 +1472,8 @@
 </div>
 <p>The upstream (inflow) liquid boundary will constitute an <strong>Open boundary with prescribed Q</strong> (discharge) and the downstream outflow (liquid) boundary will constitute an <strong>Open boundary with prescribed Q and H</strong> (i.e., prescribed <a class="reference internal" href="../documentation/glossary.html#term-Rating-curve"><span class="xref std std-term">Rating curve</span></a> / <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a>). These types of boundary conditions are commonly used in practice, with the downstream boundary typically chosen to be at a gauging station where a <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a> (<a class="reference internal" href="../documentation/glossary.html#term-Rating-curve"><span class="xref std std-term">Rating curve</span></a>) has been calibrated with historic data. To assign the two liquid boundary lines, zoom into the downstream and upstream regions indicated in  <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 72</span></a> and create both boundaries as follows:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="62362647-173b-4a09-a169-ab889ef69cdf" name="ef31b008-a1dd-4dfc-b3f3-ae9217b0f7c4" type="radio">
-</input><label class="tabbed-label" for="62362647-173b-4a09-a169-ab889ef69cdf">
+<input checked="checked" id="bc2ec377-cf42-4a48-966d-6bd00d8afe71" name="cada840b-ef51-4ae7-8172-5da3711b0dbf" type="radio">
+</input><label class="tabbed-label" for="bc2ec377-cf42-4a48-966d-6bd00d8afe71">
 Downstream boundary</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p>Zoom into the <strong>downstream</strong> region indicated in <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 72</span></a>.</p></li>
@@ -1495,8 +1495,8 @@ Downstream boundary</label><div class="tabbed-content docutils">
 <p class="caption"><span class="caption-number">Fig. 73 </span><span class="caption-text">The downstream boundary definition. Double-click on a node at one bank, then hold the <strong>Shift</strong> key and double-click on a node at the other bank to highlight the outflow (purple) line. Note that BOTTOM_BC might appear with the name <em>boundaries</em> if the object has been saved as <code class="docutils literal notranslate"><span class="pre">boundaries.bc2</span></code>.</span><a class="headerlink" href="#bk-boundary-ds" title="Permalink to this image">¶</a></p>
 </div>
 </div>
-<input id="8f0cafac-6fd1-4681-8ca7-209d8fa225e7" name="ef31b008-a1dd-4dfc-b3f3-ae9217b0f7c4" type="radio">
-</input><label class="tabbed-label" for="8f0cafac-6fd1-4681-8ca7-209d8fa225e7">
+<input id="f7cc11f1-d551-4ecb-944e-49ddfa20206e" name="cada840b-ef51-4ae7-8172-5da3711b0dbf" type="radio">
+</input><label class="tabbed-label" for="f7cc11f1-d551-4ecb-944e-49ddfa20206e">
 Upstream boundary</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p>Zoom into the <strong>upstream</strong> region indicated in  <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 72</span></a>.</p></li>

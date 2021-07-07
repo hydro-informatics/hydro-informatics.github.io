@@ -503,9 +503,8 @@ The compound mesh after dragging the model outline on the Outline (Value) and th
 Download the [compound-mesher.t3m](https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/compound-mesher.t3m) and the [compound-mesh.t3s](https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/compound-mesh.t3s) objects from the supplemental materials repository. To open the T3 Mesh object from the repository in Blue Kenue, go to **File** > **Open...** > select **2D T3 Mesh (`*.t...`)** as file type and navigate to the download directory.
 ```
 
-
-(bk-create-slf)=
-## SELAFIN / SERAFIN (SLF)
+(bk-slf)=
+## SELAFIN
 
 ### Open and Import Ingredients
 Whether the mesh was created with Blue Kenue itself or with QGIS and the BASEmesh plugin, make sure to have now a Blue Kenue workspace with only the XYZ point cloud loaded (see the {ref}`bk-xyz` section). Before a SELAFIN object can be created, the previously created mesh (i.e., either the [quality-mesh.2dm](https://github.com/hydro-informatics/telemac/raw/main/meshes/prepro-tutorial_quality-mesh-utm33n.2dm) or the [compound-mesh.t3s](https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/compound-mesh.t3s)) needs to be imported into the WorkSpace in addition to the point cloud. The following instructions show the import and use of the `*.2dm` file:

@@ -65,7 +65,7 @@ Froude number
   The transition from supercritical flow to subcritical flow is called *hydraulic jump*. For a rectangular cross section $A$, the Froude number becomes:
 
   $$
-  Fr = \frac{u}{\sqrt{g h}}
+  Fr = \frac{u}{\sqrt{g \cdot h}}
   $$
 
   The Froude number is also the basis for scaling many sediment transport phenomena in open channel flow {cite:p}`yalin71,yalin77`.
