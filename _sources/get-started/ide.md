@@ -1,7 +1,7 @@
 (sec-ide)=
 # Integrated Development Environments (IDEs)
 
-The teaching contents of this ebook build on so-called *Application Programming Inferface*s **API**s) and *Integrated Development Environment*s (**IDE**s).
+The teaching contents of this eBook build on so-called *Application Programming Inferface*s **API**s) and *Integrated Development Environment*s (**IDE**s).
 
 An **API** represents a computing interface that enables interactions between multiple software intermediaries. Modular programming becomes easy with an API, because it systematically hides complex information that is not necessarily needed to write code according to industry standards. For instance, an API can define the interface between an application (such as *Python* or *Word*) and an **Operating System** (**OS**) such as *Windows*, *Linux*, or *macOS* (also referred to as **platform**).
 
@@ -124,8 +124,11 @@ To install *JupyterLab*  on *Linux* open *Terminal* and make sure that `pip`/`pi
 sudo apt install python3 python3-pip python3-venv
 ```
 
+Export the user-level `bin` to the `PATH` environment an install JupyterLab in the user space with the following commands:
+
 ```
-pip install jupyterlab
+export PATH="$HOME/.local/bin:$PATH"
+pip install --user jupyterlab
 ```
 
 ```{note}
@@ -183,7 +186,7 @@ To install packages:
 * *Windows* users go to **File** > **Settings** > **+ Install**
 * *Linux* users go to **Edit** > **Preferences** > **+ Install**
 
-The following (additional) packages are useful for working with the contents of this ebook:
+The following (additional) packages are useful for working with the contents of this eBook:
 
 * `ide-python` provides language support for Python code
 * `language-markdown` (optional) for writing documentations with [Markdown](https://daringfireball.net/projects/markdown/).

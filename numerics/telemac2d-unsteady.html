@@ -718,8 +718,8 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#under-construction-expected-release-in-the-next-12-months">
-   Under construction. Expected release in the next 12 months.
+  <a class="reference internal nav-link" href="#get-started">
+   Get Started
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -747,9 +747,29 @@
                 
   <div class="section" id="unsteady-2d-simulation">
 <span id="chpt-unsteady"></span><h1>Unsteady 2d Simulation<a class="headerlink" href="#unsteady-2d-simulation" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="under-construction-expected-release-in-the-next-12-months">
-<h2>Under construction. Expected release in the next 12 months.<a class="headerlink" href="#under-construction-expected-release-in-the-next-12-months" title="Permalink to this headline">¶</a></h2>
-<p>Thank you for your patience.</p>
+<div class="admonition-requirements admonition">
+<p class="admonition-title">Requirements</p>
+<p>This tutorial is designed for <strong>advanced modelers</strong> and before diving into this tutorial make sure to complete the <a class="reference internal" href="pre-slf-tm.html#slf-prepro-tm"><span class="std std-ref">TELEMAC pre-processing</span></a> and <a class="reference internal" href="telemac2d-steady.html#telemac2d-steady"><span class="std std-ref">Telemac2d steady hydrodynamic modeling</span></a> tutorials.</p>
+<p>The case featured in this tutorial was established with the following software:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../get-started/others.html#npp"><span class="std std-ref">Notepad++</span></a> text editor (any other text editor will do just as well.)</p></li>
+<li><p>TELEMAC v8p2r0 (<a class="reference internal" href="../get-started/install-telemac.html#modular-install"><span class="std std-ref">stand-alone installation</span></a>).</p></li>
+<li><p><a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a> and the <a class="reference internal" href="pre-slf-tm.html#tm-qgis-plugins"><span class="std std-ref">PostTelemac plugin</span></a>.</p></li>
+<li><p>Debian Linux 10 (Buster) installed on a Virtual Machine (read more in the <a class="reference internal" href="../get-started/vm.html#chpt-vm-linux"><span class="std std-ref">software chapter</span></a>).</p></li>
+</ul>
+</div>
+<div class="section" id="get-started">
+<h2>Get Started<a class="headerlink" href="#get-started" title="Permalink to this headline">¶</a></h2>
+<p>This section builds on the SELAFIN (<code class="docutils literal notranslate"><span class="pre">*.slf</span></code>) and Conlim (<code class="docutils literal notranslate"><span class="pre">*.cli</span></code>) boundary condition files that result from the <a class="reference internal" href="pre-slf-tm.html#slf-prepro-tm"><span class="std std-ref">TELEMAC pre-processing tutorial</span></a>. Both files can also be downloaded from the supplemental materials repository of this eBook:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf">Download qgismesh.slf</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-slf/boundaries.cli">Download boundaries.cli</a>.</p></li>
+</ul>
+<p>Consider saving both files in a new folder, such as <code class="docutils literal notranslate"><span class="pre">/steady2d-tutorial/</span></code> that will contain all model files.</p>
+<div class="admonition-download-simulation-files admonition">
+<p class="admonition-title">Download simulation files</p>
+<p>All simulation files used in this tutorial are available at <a class="reference external" href="https://github.com/hydro-informatics/telemac/tree/main/steady2d-tutorial/">https://github.com/hydro-informatics/telemac/tree/main/steady2d-tutorial/</a>.</p>
+</div>
 <div class="section" id="define-unsteady-flow-boundaries">
 <span id="prepro-unsteady"></span><h3>Define unsteady flow boundaries<a class="headerlink" href="#define-unsteady-flow-boundaries" title="Permalink to this headline">¶</a></h3>
 <p>In addition, users can define a liquid boundary conditions file (<em>qsl</em>) to define time-dependent boundary conditions (e.g., discharge, water depth, flow velocity or tracers).

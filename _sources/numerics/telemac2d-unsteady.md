@@ -1,9 +1,28 @@
 (chpt-unsteady)=
 # Unsteady 2d Simulation
 
-## Under construction. Expected release in the next 12 months.
+```{admonition} Requirements
+This tutorial is designed for **advanced modelers** and before diving into this tutorial make sure to complete the {ref}`TELEMAC pre-processing <slf-prepro-tm>` and {ref}`Telemac2d steady hydrodynamic modeling <telemac2d-steady>` tutorials.
 
-Thank you for your patience.
+The case featured in this tutorial was established with the following software:
+* {ref}`Notepad++ <npp>` text editor (any other text editor will do just as well.)
+* TELEMAC v8p2r0 ({ref}`stand-alone installation <modular-install>`).
+* {ref}`QGIS <qgis-install>` and the {ref}`PostTelemac plugin <tm-qgis-plugins>`.
+* Debian Linux 10 (Buster) installed on a Virtual Machine (read more in the {ref}`software chapter <chpt-vm-linux>`).
+```
+
+## Get Started
+
+This section builds on the SELAFIN (`*.slf`) and Conlim (`*.cli`) boundary condition files that result from the {ref}`TELEMAC pre-processing tutorial <slf-prepro-tm>`. Both files can also be downloaded from the supplemental materials repository of this eBook:
+
+* [Download qgismesh.slf](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf).
+* [Download boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/boundaries.cli).
+
+Consider saving both files in a new folder, such as `/steady2d-tutorial/` that will contain all model files.
+
+```{admonition} Download simulation files
+All simulation files used in this tutorial are available at [https://github.com/hydro-informatics/telemac/tree/main/steady2d-tutorial/](https://github.com/hydro-informatics/telemac/tree/main/steady2d-tutorial/).
+```
 
 (prepro-unsteady)=
 ### Define unsteady flow boundaries

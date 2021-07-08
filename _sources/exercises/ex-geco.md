@@ -102,7 +102,7 @@ The `/habitat/` folder in the exercise repository contains $HSI$ curves in the f
 ```{admonition} GEO_UTILS (Folder: geo_utils)
 :class: tip
 A couple of `gdal`-based functions for processing rasters and shapefiles were introduced in the lecture. This exercise re-uses some of these functions, which are available in the geo-processing code repository specifically for this ebook. The repository contains a functional block from {{ ft_url }}.geotools (in the `geo_utils` folder) that enables to better understand and modify the behavior of {{ ft_url }}.
-Even though already provided in this exercise, make sure that the *geo_utils* repository is well implemented in the exercise directory (i.e., *geo_utils* scripts are stored in a folder tree like this: `Exercise-geco\geo_utils\`). The `\geo_utils\` folder corresponds to the `geo-utils\geo_utils\` directory when you clone the repository.
+Even though already provided in this exercise, make sure that the *geo_utils* repository is well implemented in the exercise directory (i.e., *geo_utils* scripts are stored in a folder tree like this: `Exercise-geco\geo_utils\`). The `\geo_utils\` folder corresponds to the `geo-utils\geo_utils\` directory when you clone the repository (alternatively use `from flusstools import geotools as geo`).
 
 Make sure that in the `\geo_utils\geoconfig.py` file, the `nan_value` is defined as 0.0 (`nan_value = 0.0`).
 ```
@@ -124,7 +124,7 @@ import json
 import numpy as np
 import pandas as pd
 
-import geo_utils as geo
+import geo_utils as geo # alternative: from flusstools import geotools as geo
 
 cache_folder = os.path.abspath("") + "\\__cache__\\"
 par_dict = {"velocity": "u",
@@ -185,14 +185,14 @@ The `Raster` class will load any *GeoTIFF* file name as a geo-referenced array o
 ```
 
 If the provided `file_name` does not exist, the `__init__` method creates a new raster with the `file_name` (this behavior is already implemented in the `if not os.path.exists(file_name)` statement.
-Next, load the `osgeo.gdal.dataset`, the `np.array`, and the `geo_transformation` of the raster. For this purpose, use the {ref}`raster2array function <createarray>` from this ebook, which is also implemented in the exercise's *geo_utils* (`geo`) package:
+Next, load the `osgeo.gdal.dataset`, the `np.array`, and the `geo_transformation` of the raster. For this purpose, use the {ref}`raster2array function <createarray>` from this eBook, which is also implemented in the exercise's *geo_utils* (`geo`) package:
 
 ```python
     # __init__(...) of Raster class in raster.py
         self.dataset, self.array, self.geo_transformation = geo.raster2array(file_name, band_number=band)
 ```
 
-To identify the {ref}`EPSG number (Authority code) <prj>` of a raster, retrieve the spatial reference system (*SRS*) of the raster. Also for this purpose we have already developed a function in the lecture with the `get_srs` form the {ref}`theory section on reprojection <re-project>`. Load the *SRS* and the *EPSG* number using the *get_srs* function with the following two lines of code in the `__init__` method:
+To identify the {ref}`EPSG number (Authority code) <prj>` of a raster, retrieve the spatial reference system (*SRS*) of the raster. Also for this purpose we have already developed a function in the lecture with the `get_srs` from the {ref}`theory section on reprojection <reproject-raster>`. Load the *SRS* and the *EPSG* number using the *get_srs* function with the following two lines of code in the `__init__` method:
 
 ```python
     # __init__(...) of Raster class in raster.py

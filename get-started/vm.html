@@ -755,6 +755,11 @@
       </a>
      </li>
      <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#option-get-the-hydro-informatics-vm">
+       Option: Get the Hydro-informatics VM
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#create-a-vm-with-virtualbox">
        Create a VM with VirtualBox
       </a>
@@ -896,7 +901,7 @@
 <div class="section" id="create-a-debian-linux-vm">
 <h2>Create a Debian Linux VM<a class="headerlink" href="#create-a-debian-linux-vm" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="get-prerequisites-required-software">
-<h3>Get prerequisites (required software)<a class="headerlink" href="#get-prerequisites-required-software" title="Permalink to this headline">¶</a></h3>
+<span id="vm-requirements"></span><h3>Get prerequisites (required software)<a class="headerlink" href="#get-prerequisites-required-software" title="Permalink to this headline">¶</a></h3>
 <p><em><strong>Estimated duration: 5-30 minutes (depends on connection speed).</strong></em></p>
 <ul class="simple">
 <li><p>Download and install the latest version of <a class="reference external" href="https://www.virtualbox.org/">VirtualBox</a>.</p>
@@ -921,6 +926,57 @@
 </li>
 </ul>
 <p>Remember where the downloaded Linux <em>.ISO</em> file is stored.</p>
+</div>
+<div class="section" id="option-get-the-hydro-informatics-vm">
+<span id="hyfo-vm"></span><h3>Option: Get the Hydro-informatics VM<a class="headerlink" href="#option-get-the-hydro-informatics-vm" title="Permalink to this headline">¶</a></h3>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Expand to see the details for getting the Hydro-Informatics Mint VM</p>
+<p>To shorten the long path of installing many hydroinformatic applications, many tutorials in this eBook can be leveraged with a tailored virtual Linux Mint 20.2 machine that is available upon email request. The Linux Mint VM comes with the following preinstalled software:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="ide.html#install-atom"><span class="std std-ref">Atom IDE</span></a> (all-in-one IDE for Python scripting and editing markdown, restructuredtext, or LaTeX files)</p></li>
+<li><p><a class="reference internal" href="ide.html#install-jupyter-linux"><span class="std std-ref">JupyterLab</span></a> (start in Terminal with <code class="docutils literal notranslate"><span class="pre">jupyter-lab</span></code>)</p></li>
+<li><p><a class="reference internal" href="geo.html#qgis-install"><span class="std std-ref">QGIS</span></a></p></li>
+<li><p><a class="reference internal" href="install-telemac.html#telemac-install"><span class="std std-ref">TELEMAC v8p2r1</span></a> (dynamically compiled stand-alone installation with parallel libraries enabled)</p></li>
+</ul>
+<p>Note that Python, LibreOffice, and Firefox are pre-installed in Linux Mint. To get the download link for the Linux Mint VM appliance (<code class="docutils literal notranslate"><span class="pre">hyfo-mint.ova</span></code>), <a href="mailto:sebastian.schwindt[AT]iws.uni-stuttgart.de?subject=Please%Send%20Hydroinformatics%20VM%20download%20link">email Sebastian</a>. Note that the <a class="reference internal" href="../terms/license.html#license"><span class="std std-ref">License</span></a> and <a class="reference internal" href="../terms/disclaimer.html#disclaimer"><span class="std std-ref">Disclaimer</span></a> apply in addition and on top any software that comes with the virtual disk image.</p>
+<p><strong>Get Started with the VM</strong></p>
+<p>All you need is an installation of VirtualBox (see <a class="reference internal" href="#vm-requirements"><span class="std std-ref">above</span></a>) and the downloaded Linux Mint VM appliance (<code class="docutils literal notranslate"><span class="pre">hyfo-mint.ova</span></code>). After downloading the appliance, open VirtualBox and:</p>
+<ul class="simple">
+<li><p>Go to <strong>File</strong> &gt; <strong>Import Appliance…</strong></p></li>
+<li><p>Navigate to the directory where you downloaded <code class="docutils literal notranslate"><span class="pre">hyfo-mint.ova</span></code></p></li>
+<li><p>Click <strong>Next</strong>.</p></li>
+<li><p>Check the <strong>Appliance settings</strong> and click <strong>Import</strong>.</p></li>
+</ul>
+<p>Now, the virtual machine called <strong>Mint Hyfo</strong> should be visible in the list of virtual machines in VirtualBox.</p>
+<p><strong>Start and Manage the VM</strong></p>
+<p>Once imported, start the <strong>Mint Hyfo</strong> VM and familiarize with the Mint Desktop. There are a few things you should know about the Mint Hyfo VM:</p>
+<ul class="simple">
+<li><p>The keyboard layout is <strong>English (US)</strong>, which makes, for example, that when you press the <code class="docutils literal notranslate"><span class="pre">Z</span></code> key on a German keyboard, the VM understands <code class="docutils literal notranslate"><span class="pre">Y</span></code>. There are a couple more important differences and the VM provides an overview of the English (US) keyboard layout with the <strong>English-US-Keyboard.png</strong> picture on the Desktop.</p></li>
+<li><p>To install or remove software either use:</p>
+<ul>
+<li><p><strong>Start</strong> &gt; <strong>System</strong> &gt; <strong>Software Manager</strong>, or</p></li>
+<li><p>the <strong>Terminal</strong> and <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">SOFTWARE-NAME</span></code></p></li>
+<li><p>your <strong>user name</strong> on the VM is: <strong>hymo</strong></p></li>
+<li><p>your <strong>user password</strong> is: <code class="docutils literal notranslate"><span class="pre">hxroot</span></code></p></li>
+</ul>
+</li>
+<li><p>Regularly run <strong>system updates</strong>. For this purpose, check if the shield-icon on the bottom right is marked with an orange dot. If this is the case, double-click on the shields icon and click on <strong>Install Updates</strong>. The password is the same as above (<code class="docutils literal notranslate"><span class="pre">hxroot</span></code>).</p></li>
+<li><p>To transfer data from the host system (e.g., your Windows) to the Mint Hyfo VM, enable folder sharing as described in the below section on <a class="reference internal" href="#vm-share"><span class="std std-ref">folder sharing</span></a>. *Note that you will</p></li>
+<li><p>The TELEMAC installation lives in the home directory (<code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/telemac/v8p2</span></code>); it is installed with parallel processing modules (<code class="docutils literal notranslate"><span class="pre">openmpi</span></code>), but without AED2 and MED file libraries. To run TELEMAC  use:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">configs</span>
+<span class="n">source</span> <span class="n">pysource</span><span class="o">.</span><span class="n">hyfo</span><span class="o">-</span><span class="n">dyn</span><span class="o">.</span><span class="n">sh</span>
+<span class="n">config</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p><strong>What you can do with the VM</strong></p>
+<p>The VM provides essentials for most tutorials in this eBook:</p>
+<ul class="simple">
+<li><p>the Python tutorials (<a class="reference internal" href="../python-basics/python.html#about-python"><span class="std std-ref">Python basics</span></a> and <a class="reference internal" href="../geopy/geo-python.html#sec-geo-python"><span class="std std-ref">Geospatial Python</span></a> tutorials) where the additional installation of <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> is recommended in a virtual environment (<a class="reference internal" href="../python-basics/pyinstall.html#pip-env"><span class="std std-ref">read the installation instructions</span></a>),</p></li>
+<li><p>the <a class="reference internal" href="../geopy/use-qgis.html#qgis-tutorial"><span class="std std-ref">QGIS Tutorial</span></a>, and</p></li>
+<li><p>the <a class="reference internal" href="../numerics/telemac.html#chpt-telemac"><span class="std std-ref">TELEMAC</span></a> tutorials.</p></li>
+</ul>
+</div>
 </div>
 <div class="section" id="create-a-vm-with-virtualbox">
 <h3>Create a VM with VirtualBox<a class="headerlink" href="#create-a-vm-with-virtualbox" title="Permalink to this headline">¶</a></h3>

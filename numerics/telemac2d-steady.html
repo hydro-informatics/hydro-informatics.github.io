@@ -859,7 +859,7 @@
 <span id="telemac2d-steady"></span><h1>Steady 2d Simulation<a class="headerlink" href="#steady-2d-simulation" title="Permalink to this headline">¶</a></h1>
 <div class="admonition-requirements admonition">
 <p class="admonition-title">Requirements</p>
-<p>This tutorial is designed for <strong>advanced beginners</strong> and before diving into this tutorial make sure to do the <a class="reference internal" href="pre-slf-tm.html#slf-prepro-tm"><span class="std std-ref">TELEMAC pre-processing tutorial</span></a>.</p>
+<p>This tutorial is designed for <strong>advanced beginners</strong> and before diving into this tutorial make sure to complete the <a class="reference internal" href="pre-slf-tm.html#slf-prepro-tm"><span class="std std-ref">TELEMAC pre-processing tutorial</span></a>.</p>
 <p>The case featured in this tutorial was established with the following software:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../get-started/others.html#npp"><span class="std std-ref">Notepad++</span></a> text editor (any other text editor will do just as well.)</p></li>
@@ -1462,6 +1462,15 @@ This tutorial features the application of the <em>Manning</em> roughness coeffic
 <span class="n">config</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
+<div class="note dropdown admonition">
+<p class="admonition-title">If you are using the Hydro-Informatics (Hyfo) Mint VM</p>
+<p>If you are working with the <a class="reference internal" href="../get-started/vm.html#hyfo-vm"><span class="std std-ref">Mint Hyfo VM</span></a>, load the TELEMAC environment as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">configs</span>
+<span class="n">source</span> <span class="n">pysource</span><span class="o">.</span><span class="n">hyfo</span><span class="o">-</span><span class="n">dyn</span><span class="o">.</span><span class="n">sh</span>
+<span class="n">config</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</div>
 <p>To start a simulation, change to the directory (<code class="docutils literal notranslate"><span class="pre">cd</span></code>) where the simulation files live and run the steering file (<code class="docutils literal notranslate"><span class="pre">*.cas</span></code>) with the <strong><a class="reference external" href="http://telemac2d.py">telemac2d.py</a></strong> script:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">mysimulations</span><span class="o">/</span><span class="n">steady2d</span><span class="o">-</span><span class="n">tutorial</span><span class="o">/</span>
 <span class="n">telemac2d</span><span class="o">.</span><span class="n">py</span> <span class="n">steady2d</span><span class="o">.</span><span class="n">cas</span>
@@ -1474,7 +1483,7 @@ This tutorial features the application of the <em>Manning</em> roughness coeffic
 <span class="n">FLUX</span> <span class="n">BOUNDARY</span>      <span class="mi">2</span>                          <span class="p">:</span>     <span class="mi">3</span><span class="mf">5.00000</span>
 <span class="o">--------------------------------------------------------------------------------</span>
                 <span class="k">FINAL </span><span class="n">MASS</span> <span class="n">BALANCE</span>
-<span class="n">T</span> <span class="o">=</span>        <span class="mi">500</span><span class="mf">0.0000</span>
+<span class="n">T</span> <span class="o">=</span>        <span class="mi">800</span><span class="mf">0.0000</span>
 
 <span class="o">---</span> <span class="n">WATER</span> <span class="o">---</span>
 <span class="n">INITIAL</span> <span class="n">MASS</span>                        <span class="p">:</span>     <span class="mi">250000</span><span class="mf">0.</span>
@@ -1527,7 +1536,7 @@ This tutorial features the application of the <em>Manning</em> roughness coeffic
 <p class="caption"><span class="caption-number">Fig. 78 </span><span class="caption-text">Load the Telemac2d simulation results file in the detached PostTelemac plugin window.</span><a class="headerlink" href="#post-tm" title="Permalink to this image">¶</a></p>
 </div>
 <div class="tip admonition">
-<p class="admonition-title">Find the r2dsteady layer in QGIS <em>Layers</em> panel</p>
+<p class="admonition-title">Find the r2dsteady layer in the QGIS <em>Layers</em> panel</p>
 <p>Once imported, the <em>r2dsteady</em> layer is listed in the <em>Layers</em> panel of QGIS (typically in the bottom-left of the window). Double-clicking on the <em>r2dsteady</em> layer will re-open the PostTelemac plugin when it was closed (e.g., after restarting QGIS). Structurally, the <em>r2dsteady</em> layer is a mesh with a particular format and QGIS needs the PostTelemac plugin to properly read the data from this selafin-type mesh.</p>
 </div>
 </div>
@@ -1541,8 +1550,8 @@ This tutorial features the application of the <em>Manning</em> roughness coeffic
 <li><p>Set the <strong>time step</strong> to <code class="docutils literal notranslate"><span class="pre">8000</span></code> (use the field indicated in <a class="reference internal" href="#posttm-export-tif"><span class="std std-numref">Fig. 79</span></a>).</p></li>
 <li><p>Select <code class="docutils literal notranslate"><span class="pre">6</span> <span class="pre">:</span> <span class="pre">VITESSE</span></code> for <strong>Parameter</strong>.</p>
 <ul>
-<li><p><em>Vitesse</em> is French for <em>velocity</em> and it is calculated as <em>VITESSE</em> = <span class="math notranslate nohighlight">\(\sqrt{(VELOCITY U)^2 + (VELOCITY V)^2}\)</span></p></li>
-<li><p>Do not use <code class="docutils literal notranslate"><span class="pre">VELOCITY</span> <span class="pre">U</span></code> nor <code class="docutils literal notranslate"><span class="pre">VELOCITY</span> <span class="pre">V</span></code>, because those are the flow velocities in <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions only and respectively.</p></li>
+<li><p><em>Vitesse</em> is French for <em>velocity</em> and it is calculated as <span class="math notranslate nohighlight">\(VITESSE = \sqrt{(VELOCITY\ U)^2 + (VELOCITY\ V)^2}\)</span></p></li>
+<li><p>Do not use <code class="docutils literal notranslate"><span class="pre">VELOCITY</span> <span class="pre">U</span></code> nor <code class="docutils literal notranslate"><span class="pre">VELOCITY</span> <span class="pre">V</span></code> because those are the flow velocities in <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions only and respectively.</p></li>
 </ul>
 </li>
 <li><p>Set in the <strong>Group</strong> frame:</p>
@@ -1601,9 +1610,9 @@ This tutorial features the application of the <em>Manning</em> roughness coeffic
 <p>The diagram in <a class="reference internal" href="#convergence-diagram-tm2d"><span class="std std-numref">Fig. 82</span></a> plots the two columns of flows at the upstream and downstream open boundaries over time for the simulation setup in this tutorial. The diagram suggests that the model reaches stability after the 55th output listing (simulation time <span class="math notranslate nohighlight">\(t \leq 5500\)</span>). Thus, the simulation time could be limited to <span class="math notranslate nohighlight">\(t = 6000\)</span>, but a simulation time of <span class="math notranslate nohighlight">\(t = 5000\)</span> would be too short.</p>
 <div class="figure align-default" id="convergence-diagram-tm2d">
 <img alt="telemac2d convergence steady model simulation discharge verification validation" src="../_images/convergence-diagram-tm.png" />
-<p class="caption"><span class="caption-number">Fig. 82 </span><span class="caption-text">Convergence of inflow and outflow at the model boundaries.</span><a class="headerlink" href="#convergence-diagram-tm2d" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 82 </span><span class="caption-text">Convergence of inflow (upstream) and outflow (downstream) at the open model boundaries.</span><a class="headerlink" href="#convergence-diagram-tm2d" title="Permalink to this image">¶</a></p>
 </div>
-<p>Note the difference between the convergence duration in this steady simulation with Telemac2d that starts with an initial condition of 1.0 m water depth (plot in <a class="reference internal" href="#convergence-diagram-tm2d"><span class="std std-numref">Fig. 82</span></a>) compared to the longer convergence duration in the BASEMENT tutorial (plot in <a class="reference internal" href="basement2d.html#convergence-diagram-bm"><span class="std std-numref">Fig. 57</span></a>) that starts with a dry model. This difference mainly stems from the type of initial conditions (initial depth versus dry channel) that also reflects in an outflow surplus of the Telemac2d simulation and a zero-outflow in the BASEMENT simulation at the beginning of the simulations. However, the faster convergence is at the cost of unrealistically wetted hollows in the Telemac2d simulation (see the above comment: <em>How reasonable are the results?</em>).</p>
+<p>Note the difference between the convergence duration in this steady simulation with Telemac2d that starts with an initial condition of 1.0 m water depth (plot in <a class="reference internal" href="#convergence-diagram-tm2d"><span class="std std-numref">Fig. 82</span></a>) compared to the longer convergence duration in the BASEMENT tutorial (plot in <a class="reference internal" href="basement2d.html#convergence-diagram-bm"><span class="std std-numref">Fig. 57</span></a>) that starts with a dry model. This difference mainly stems from the type of initial conditions (initial depth versus dry channel) that also reflects in an outflow surplus of the Telemac2d simulation and a zero-outflow in the BASEMENT simulation at the beginning of the simulations. However, the faster convergence is at the cost of unrealistically wetted hollows in the Telemac2d simulation - read more in the above comment: <em>How reasonable are the results?</em></p>
 </div>
 </div>
 </div>

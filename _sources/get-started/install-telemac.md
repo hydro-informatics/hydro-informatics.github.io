@@ -17,6 +17,11 @@ This page only guides through the **installation** of TELEMAC. A tutorial for ru
 * Familiarize with the {ref}`Linux Terminal <linux-terminal>` to understand the underpinnings for compiling TELEMAC.
 * This tutorial refers to the software package *open TELEMAC-MASCARET* as TELEMAC because *MASCARET* is a one-dimensional (1d) model and the numerical simulation schemes in this eBook focus on two-dimensional (2d) and three-dimensional (3d) modelling.
 
+```{admonition} Mint Hyfo VM users
+:class: note
+If you are working with the {ref}`Mint Hyfo Virtual Machine <hyfo-vm>`, skip the tutorials on this website because TELEMAC is already preinstalled and you are good to go for completing the {ref}`chpt-telemac` tutorials.
+```
+
 ### Two Installation Options
 
 This page describes two ways for installing TELEMAC:
@@ -193,7 +198,7 @@ sudo apt install -y cmake build-essential dialog vim
 We will need more packages to enable parallelism and compiling, but before installing them, download the latest version of TELEMAC through subversion (`svn`). The developers (irregularly) inform about the newest public release on [their website](http://www.opentelemac.org/index.php/latest-news-development-and-distribution) and the latest absolute latest release can be read from the [svn-tags website](http://svn.opentelemac.org/svn/opentelemac/tags/) (use with passwords in the below command line block). To download* TELEMAC, open *Terminal* in the *Home* directory (either use `cd` or use the *Files* browser to navigate to the *Home* directory and right-click in the empty space to open *Terminal*) and type (enter `no` when asked for password encryption):
 
 ```
-svn co http://svn.opentelemac.org/svn/opentelemac/tags/v8p2r0  ~/telemac/v8p2 --username ot-svn-public --password telemac1*
+svn co http://svn.opentelemac.org/svn/opentelemac/tags/v8p2r1  ~/telemac/v8p2 --username ot-svn-public --password telemac1*
 ```
 
 This will have downloaded TELEMAC v8p2 to the directory `/home/USER-NAME/telemac/v8p2`.
@@ -282,12 +287,11 @@ Press `Esc` to leave the *INSERT* mode and then type `:wq` (the letters are visi
 * **Are you on a virtual machine or remote desktop?** Check if another keyboard layout is installed on the VM guest / remote machine the host machine /your computer uses.
 ```
 
-Back in *Terminal*, copy the folder contents and remove the `temp` folder with the following command sequence (if you want to keep the `temp` folder for installing `hdf5` and `med` file libraries, do not `rm` the `temp` folder):
+Back in *Terminal*, copy the folder contents with the following command sequence ():
 
 ```
 sudo cp -a . ~/telemac/v8p2/optionals/metis-5.1.0/
 cd ~/telemac/v8p2/optionals/
-rm -rf temp
 ```
 
 Change to the final directory where *Metis* will live and compile *Metis*:
@@ -299,7 +303,6 @@ make
 make install
 ```
 
-
 To verify the successful installation, make sure that the file `~/telemac/v8p2/optionals/metis-5.1.0/build/lib/libmetis.a` exists (i.e., `<install_path>/lib/libmetis.a`). The installation of *Metis* on Linux is also documented in the [opentelemac wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_metis).
 
 
@@ -310,16 +313,14 @@ To verify the successful installation, make sure that the file `~/telemac/v8p2/o
 
 **HDF5** is a portable file format that incorporates metadata and communicates efficiently with *C/C++* and *Fortan* on small laptops as well as massively parallel systems. The *hdf5* file library is provided by the [HDFgroup.org](https://portal.hdfgroup.org/).
 
-We will install here version `1.8.21`. Do not try to use any other *hdf5* version because those will not work with the *med file* library (next step). The following code block creates a `temp` folder with `mkdir`, downloads, and unzips the *hdf-5-1.8.21* archive (run in *Terminal* as normal user - not as root):
+We will install here version `1.8.14`. Do not try to use any other *hdf5* version because those will not work with the *med file* library (next step). The following code block downloads and unzips the *hdf-5-1.8.14* archive in the above-created (metis) `temp/` folder (run in *Terminal* as normal user - not as root):
 
 ```
-cd ~/telemac/v8p2/optionals
-mkdir temp
-cd temp
+cd ~/telemac/v8p2/optionals/temp
 wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.21/src/hdf5-1.8.21.tar.gz
-gunzip hdf5-1.8.21.tar.gz
-tar -xvf hdf5-1.8.21.tar
-cd hdf5-1.8.21
+gunzip hdf5-1.8.14.tar.gz
+tar -xvf hdf5-1.8.14.tar
+cd hdf5-1.8.14
 ```
 
 Configure and compile *hdf5* (enter every command one-by-one):
@@ -337,15 +338,13 @@ The installation of *hdf5* on Linux is also documented in the [Telemac wiki](htt
 
 ```
 sudo apt-cache search zlib | grep -i zlib
-sudo apt install zlib1g zlib1g-dbg zlib1g-dev
+sudo apt install zlib1g zlib1g-dev
 ```
 
-The following command block, switches to the above-created`temp` folder, downloads, and unzips the *med-3.2.0* archive (run in *Terminal* as ***normal user*** - ***not as root***):
+The following command block, switches to the above-created `temp` folder, downloads, and unzips the *med-3.2.0* archive (run in *Terminal* as ***normal user*** - ***not as root***):
 
 ```
-cd ~/telemac/v8p2/optionals
-mkdir temp
-cd temp
+cd ~/telemac/v8p2/optionals/temp
 wget http://files.salome-platform.org/Salome/other/med-3.2.0.tar.gz
 gunzip med-3.2.0.tar.gz
 tar -xvf med-3.2.0.tar

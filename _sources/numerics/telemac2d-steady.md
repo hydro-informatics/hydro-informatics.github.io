@@ -2,7 +2,7 @@
 # Steady 2d Simulation
 
 ```{admonition} Requirements
-This tutorial is designed for **advanced beginners** and before diving into this tutorial make sure to do the {ref}`TELEMAC pre-processing tutorial <slf-prepro-tm>`.
+This tutorial is designed for **advanced beginners** and before diving into this tutorial make sure to complete the {ref}`TELEMAC pre-processing tutorial <slf-prepro-tm>`.
 
 The case featured in this tutorial was established with the following software:
 * {ref}`Notepad++ <npp>` text editor (any other text editor will do just as well.)
@@ -666,6 +666,18 @@ source pysource.openmpi.sh
 config.py
 ```
 
+````{admonition} If you are using the Hydro-Informatics (Hyfo) Mint VM
+:class: note, dropdown
+
+If you are working with the {ref}`Mint Hyfo VM <hyfo-vm>`, load the TELEMAC environment as follows:
+
+```
+cd ~/telemac/v8p2/configs
+source pysource.hyfo-dyn.sh
+config.py
+```
+````
+
 To start a simulation, change to the directory (`cd`) where the simulation files live and run the steering file (`*.cas`) with the **telemac2d.py** script:
 
 ```
@@ -683,7 +695,7 @@ FLUX BOUNDARY      1                          :    -35.85411
 FLUX BOUNDARY      2                          :     35.00000
 --------------------------------------------------------------------------------
                 FINAL MASS BALANCE
-T =        5000.0000
+T =        8000.0000
 
 --- WATER ---
 INITIAL MASS                        :     2500000.
@@ -743,7 +755,7 @@ The PostTelemac plugin typically opens as a frame at the bottom-right of the QGI
 Load the Telemac2d simulation results file in the detached PostTelemac plugin window.
 ```
 
-```{admonition} Find the r2dsteady layer in QGIS *Layers* panel
+```{admonition} Find the r2dsteady layer in the QGIS *Layers* panel
 :class: tip
 Once imported, the *r2dsteady* layer is listed in the *Layers* panel of QGIS (typically in the bottom-left of the window). Double-clicking on the *r2dsteady* layer will re-open the PostTelemac plugin when it was closed (e.g., after restarting QGIS). Structurally, the *r2dsteady* layer is a mesh with a particular format and QGIS needs the PostTelemac plugin to properly read the data from this selafin-type mesh.
 ```
@@ -759,8 +771,8 @@ This example features the export of a flow velocity raster at the modeling end t
 
 * Set the **time step** to `8000` (use the field indicated in {numref}`Fig. %s <posttm-export-tif>`).
 * Select `6 : VITESSE` for **Parameter**.
-  * *Vitesse* is French for *velocity* and it is calculated as *VITESSE* = $\sqrt{(VELOCITY U)^2 + (VELOCITY V)^2}$
-  * Do not use `VELOCITY U` nor `VELOCITY V`, because those are the flow velocities in $x$ and $y$ directions only and respectively.
+  * *Vitesse* is French for *velocity* and it is calculated as $VITESSE = \sqrt{(VELOCITY\ U)^2 + (VELOCITY\ V)^2}$
+  * Do not use `VELOCITY U` nor `VELOCITY V` because those are the flow velocities in $x$ and $y$ directions only and respectively.
 * Set in the **Group** frame:
   * **Cell size** to `1`, and
   * **Extent** to `Full Extent`.
@@ -830,7 +842,7 @@ The diagram in {numref}`Fig. %s <convergence-diagram-tm2d>` plots the two column
 :alt: telemac2d convergence steady model simulation discharge verification validation
 :name: convergence-diagram-tm2d
 
-Convergence of inflow and outflow at the model boundaries.
+Convergence of inflow (upstream) and outflow (downstream) at the open model boundaries.
 ```
 
-Note the difference between the convergence duration in this steady simulation with Telemac2d that starts with an initial condition of 1.0 m water depth (plot in {numref}`Fig. %s <convergence-diagram-tm2d>`) compared to the longer convergence duration in the BASEMENT tutorial (plot in {numref}`Fig. %s <convergence-diagram-bm>`) that starts with a dry model. This difference mainly stems from the type of initial conditions (initial depth versus dry channel) that also reflects in an outflow surplus of the Telemac2d simulation and a zero-outflow in the BASEMENT simulation at the beginning of the simulations. However, the faster convergence is at the cost of unrealistically wetted hollows in the Telemac2d simulation (see the above comment: *How reasonable are the results?*).
+Note the difference between the convergence duration in this steady simulation with Telemac2d that starts with an initial condition of 1.0 m water depth (plot in {numref}`Fig. %s <convergence-diagram-tm2d>`) compared to the longer convergence duration in the BASEMENT tutorial (plot in {numref}`Fig. %s <convergence-diagram-bm>`) that starts with a dry model. This difference mainly stems from the type of initial conditions (initial depth versus dry channel) that also reflects in an outflow surplus of the Telemac2d simulation and a zero-outflow in the BASEMENT simulation at the beginning of the simulations. However, the faster convergence is at the cost of unrealistically wetted hollows in the Telemac2d simulation - read more in the above comment: *How reasonable are the results?*

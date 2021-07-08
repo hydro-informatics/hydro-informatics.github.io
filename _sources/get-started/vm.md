@@ -3,6 +3,7 @@
 
 Your computer is one of your most important educational companions. So you want to protect the health of your computer and avoid problems caused by redundant or even malicious software. For this reason, it is recommended to install all software used on this website on a so-called Virtual Machine (VM). This page explains what VMs are, what advantages they have exactly, and how you can install [Debian Linux](https://www.debian.org/), one of the most stable and secure operating systems. It does not matter if you use Apple's *mac OS* or Microsoft's *Windows*, or if you already use Linux: The VM will look the same at the end.
 
+
 ## About
 
 ### What is a Virtual Machine (VM)?
@@ -34,6 +35,7 @@ There are a couple of Debian Linux spin-offs, such as [*Ubuntu*](https://ubuntu.
 
 ## Create a Debian Linux VM
 
+(vm-requirements)=
 ### Get prerequisites (required software)
 
 ***Estimated duration: 5-30 minutes (depends on connection speed).***
@@ -51,6 +53,61 @@ There are a couple of Debian Linux spin-offs, such as [*Ubuntu*](https://ubuntu.
     + [*Linux Mint* (*Xfce*)](https://www.linuxmint.com) is another efficient *Ubuntu* spin-off that is always based on the penultimate *Ubuntu* version (e.g., if the current *Ubuntu* version is 20.0, then the current *Mint* version is 19.0 and builds on *Ubuntu* 19.0)
 
 Remember where the downloaded Linux *.ISO* file is stored.
+
+(hyfo-vm)=
+### Option: Get the Hydro-informatics VM
+
+````{admonition} Expand to see the details for getting the Hydro-Informatics Mint VM
+:class: tip, dropdown
+
+To shorten the long path of installing many hydroinformatic applications, many tutorials in this eBook can be leveraged with a tailored virtual Linux Mint 20.2 machine that is available upon email request. The Linux Mint VM comes with the following preinstalled software:
+
+* {ref}`Atom IDE <install-atom>` (all-in-one IDE for Python scripting and editing markdown, restructuredtext, or LaTeX files)
+* {ref}`JupyterLab <install-jupyter-linux>` (start in Terminal with `jupyter-lab`)
+* {ref}`QGIS <qgis-install>`
+* {ref}`TELEMAC v8p2r1 <telemac-install>` (dynamically compiled stand-alone installation with parallel libraries enabled)
+
+Note that Python, LibreOffice, and Firefox are pre-installed in Linux Mint. To get the download link for the Linux Mint VM appliance (`hyfo-mint.ova`), <a href="mailto:sebastian.schwindt[AT]iws.uni-stuttgart.de?subject=Please%Send%20Hydroinformatics%20VM%20download%20link">email Sebastian</a>. Note that the {ref}`license` and {ref}`disclaimer` apply in addition and on top any software that comes with the virtual disk image.
+
+**Get Started with the VM**
+
+All you need is an installation of VirtualBox (see {ref}`above <vm-requirements>`) and the downloaded Linux Mint VM appliance (`hyfo-mint.ova`). After downloading the appliance, open VirtualBox and:
+
+* Go to **File** > **Import Appliance...**
+* Navigate to the directory where you downloaded `hyfo-mint.ova`
+* Click **Next**.
+* Check the **Appliance settings** and click **Import**.
+
+Now, the virtual machine called **Mint Hyfo** should be visible in the list of virtual machines in VirtualBox.
+
+**Start and Manage the VM**
+
+Once imported, start the **Mint Hyfo** VM and familiarize with the Mint Desktop. There are a few things you should know about the Mint Hyfo VM:
+
+* The keyboard layout is **English (US)**, which makes, for example, that when you press the `Z` key on a German keyboard, the VM understands `Y`. There are a couple more important differences and the VM provides an overview of the English (US) keyboard layout with the **English-US-Keyboard.png** picture on the Desktop.
+* To install or remove software either use:
+  * **Start** > **System** > **Software Manager**, or
+  * the **Terminal** and `sudo apt install SOFTWARE-NAME`
+  * your **user name** on the VM is: **hymo**
+  * your **user password** is: `hxroot`
+* Regularly run **system updates**. For this purpose, check if the shield-icon on the bottom right is marked with an orange dot. If this is the case, double-click on the shields icon and click on **Install Updates**. The password is the same as above (`hxroot`).
+* To transfer data from the host system (e.g., your Windows) to the Mint Hyfo VM, enable folder sharing as described in the below section on {ref}`folder sharing <vm-share>`. *Note that you will
+* The TELEMAC installation lives in the home directory (`cd ~/telemac/v8p2`); it is installed with parallel processing modules (`openmpi`), but without AED2 and MED file libraries. To run TELEMAC  use:
+
+```
+cd ~/telemac/v8p2/configs
+source pysource.hyfo-dyn.sh
+config.py
+```
+
+**What you can do with the VM**
+
+The VM provides essentials for most tutorials in this eBook:
+
+* the Python tutorials ({ref}`Python basics <about-python>` and {ref}`Geospatial Python <sec-geo-python>` tutorials) where the additional installation of {{ ft_url }} is recommended in a virtual environment ({ref}`read the installation instructions <pip-env>`),
+* the {ref}`qgis-tutorial`, and
+* the {ref}`chpt-telemac` tutorials.
+````
 
 ### Create a VM with VirtualBox
 
