@@ -67,14 +67,14 @@ To shorten the long path of installing many hydroinformatic applications, many t
 * {ref}`QGIS <qgis-install>`
 * {ref}`TELEMAC v8p2r1 <telemac-install>` (dynamically compiled stand-alone installation with parallel libraries enabled)
 
-Note that Python, LibreOffice, and Firefox are pre-installed in Linux Mint. To get the download link for the Linux Mint VM appliance (`hyfo-mint.ova`), <a href="mailto:sebastian.schwindt[AT]iws.uni-stuttgart.de?subject=Please%Send%20Hydroinformatics%20VM%20download%20link">email Sebastian</a>. Note that the {ref}`license` and {ref}`disclaimer` apply in addition and on top any software that comes with the virtual disk image.
+Note that Python, LibreOffice, and Firefox are pre-installed in Linux Mint. To get the download link for the Linux Mint VM appliance (`MintHyfo.ova`), <a href="mailto:sebastian.schwindt[AT]iws.uni-stuttgart.de?subject=Please%Send%20Hydroinformatics%20VM%20download%20link">email Sebastian</a>. Note that the {ref}`license` and {ref}`disclaimer` apply in addition and on top any software that comes with the virtual disk image.
 
 **Get Started with the VM**
 
-All you need is an installation of VirtualBox (see {ref}`above <vm-requirements>`) and the downloaded Linux Mint VM appliance (`hyfo-mint.ova`). After downloading the appliance, open VirtualBox and:
+All you need is an installation of VirtualBox (see {ref}`above <vm-requirements>`) and the downloaded Linux Mint VM appliance (`MintHyfo.ova`). After downloading the appliance, open VirtualBox and:
 
 * Go to **File** > **Import Appliance...**
-* Navigate to the directory where you downloaded `hyfo-mint.ova`
+* Navigate to the directory where you downloaded `MintHyfo.ova`
 * Click **Next**.
 * Check the **Appliance settings** and click **Import**.
 
@@ -107,6 +107,8 @@ The VM provides essentials for most tutorials in this eBook:
 * the Python tutorials ({ref}`Python basics <about-python>` and {ref}`Geospatial Python <sec-geo-python>` tutorials) where the additional installation of {{ ft_url }} is recommended in a virtual environment ({ref}`read the installation instructions <pip-env>`),
 * the {ref}`qgis-tutorial`, and
 * the {ref}`chpt-telemac` tutorials.
+
+Also BASEMENT can be installed for completing the {ref}`chpt-basement` tutorial.
 ````
 
 ### Create a VM with VirtualBox

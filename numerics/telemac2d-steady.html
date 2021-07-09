@@ -842,6 +842,11 @@
      </li>
     </ul>
    </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initialize-dry">
+     Initialize Dry
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -1446,7 +1451,7 @@ This tutorial features the application of the <em>Manning</em> roughness coeffic
 </div>
 </div>
 <div class="section" id="run-telemac2d">
-<h2>Run Telemac2d<a class="headerlink" href="#run-telemac2d" title="Permalink to this headline">¶</a></h2>
+<span id="tm2d-run"></span><h2>Run Telemac2d<a class="headerlink" href="#run-telemac2d" title="Permalink to this headline">¶</a></h2>
 <p>With the steering (<code class="docutils literal notranslate"><span class="pre">*.cas</span></code>) file, the last necessary ingredient for running a steady hydrodynamic 2d simulation with Telemac2d is available. Make sure to put all required files in one simulation folder (e.g., <code class="docutils literal notranslate"><span class="pre">~/telemac/v8p2/mysimulations/steady2d-tutorial/</span></code>). The required files can also be downloaded from this eBook’s <a class="reference external" href="https://github.com/hydro-informatics/telemac/tree/main/steady2d-tutorial/">steady2d tutorial repository</a> and include:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/qgismesh.slf">qgismesh.slf</a></p></li>
@@ -1614,6 +1619,37 @@ This tutorial features the application of the <em>Manning</em> roughness coeffic
 </div>
 <p>Note the difference between the convergence duration in this steady simulation with Telemac2d that starts with an initial condition of 1.0 m water depth (plot in <a class="reference internal" href="#convergence-diagram-tm2d"><span class="std std-numref">Fig. 82</span></a>) compared to the longer convergence duration in the BASEMENT tutorial (plot in <a class="reference internal" href="basement2d.html#convergence-diagram-bm"><span class="std std-numref">Fig. 57</span></a>) that starts with a dry model. This difference mainly stems from the type of initial conditions (initial depth versus dry channel) that also reflects in an outflow surplus of the Telemac2d simulation and a zero-outflow in the BASEMENT simulation at the beginning of the simulations. However, the faster convergence is at the cost of unrealistically wetted hollows in the Telemac2d simulation - read more in the above comment: <em>How reasonable are the results?</em></p>
 </div>
+</div>
+<div class="section" id="initialize-dry">
+<span id="tm2d-dry"></span><h2>Initialize Dry<a class="headerlink" href="#initialize-dry" title="Permalink to this headline">¶</a></h2>
+<p>For comparison, try running the Telemac2d simulation with initial dry conditions. To this end, change the upstream boundary type to <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">5</span> <span class="pre">5</span></code> (prescribed H and Q) in the  <a class="reference internal" href="pre-slf-tm.html#bk-liquid-bc"><span class="std std-ref">boundaries.cli</span></a> file. For making this modification, it is sufficient to <strong>open boundaries.cli in any text editor</strong> and use its <strong>find-and-replace</strong> function (e.g., <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">H</span></code> keys in <a class="reference internal" href="../get-started/others.html#npp"><span class="std std-ref">NotepadPlusPlus</span></a>, or <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">F</span></code> keys in <a class="reference internal" href="../get-started/ide.html#install-atom"><span class="std std-ref">Atom</span></a>):</p>
+<ul class="simple">
+<li><p>In the <strong>Find</strong> field type <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">5</span> <span class="pre">5</span></code>.</p></li>
+<li><p>In the <strong>Replace with</strong> field type <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">5</span> <span class="pre">5</span></code>.</p></li>
+<li><p>Click on <strong>Replace ALL</strong>.</p></li>
+<li><p>Save and close <strong>boundaries.cli</strong>.</p></li>
+</ul>
+<p>In the Telemac2d steering (<code class="docutils literal notranslate"><span class="pre">*.cas</span></code>) file comment out the <code class="docutils literal notranslate"><span class="pre">INITIAL</span> <span class="pre">DEPTH</span></code> keyword, change the <code class="docutils literal notranslate"><span class="pre">INITIAL</span> <span class="pre">CONDITIONS</span></code> keyword to <code class="docutils literal notranslate"><span class="pre">ZERO</span> <span class="pre">DEPTH</span></code>, and change the <code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">ELEVATIONS</span></code> keyword to <code class="docutils literal notranslate"><span class="pre">374.80565;371.33</span></code> (in lieu of <code class="docutils literal notranslate"><span class="pre">0.;371.33</span></code>). So the steering file should involve now:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="p">...</span> <span class="n">header</span>
+<span class="n">PRESCRIBED</span> <span class="n">ELEVATIONS</span> <span class="p">:</span> <span class="mi">37</span><span class="mf">4.80565</span><span class="p">;</span><span class="mi">37</span><span class="mf">1.33</span>
+<span class="o">/</span> <span class="p">...</span>
+<span class="n">INITIAL</span> <span class="n">CONDITIONS</span> <span class="p">:</span> <span class="s1">&#39;ZERO DEPTH&#39;</span>
+<span class="o">/</span> <span class="n">INITIAL</span> <span class="n">DEPTH</span> <span class="p">:</span> <span class="mi">1</span>
+<span class="o">/</span> <span class="p">...</span> <span class="n">footer</span>
+</pre></div>
+</div>
+<p>Alternatively, download the modified files:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/boundaries-555.cli">boundaries-555.cli</a></p></li>
+<li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/steady2d-initdry.cas">steady2d-initdry.cas</a></p></li>
+</ul>
+<p>Re-<a class="reference internal" href="#tm2d-run"><span class="std std-ref">run Telemac2d</span></a> and open the resulting <code class="docutils literal notranslate"><span class="pre">r2d...slf</span></code> file in QGIS with the PostTelemac plugin. Compare the results of the dry and wetted initial condition simulations with regards to the following questions:</p>
+<ul class="simple">
+<li><p>How does the mass balance evolve during the simulation?</p></li>
+<li><p>How long did the simulations take to converge and did you need to modify the <code class="docutils literal notranslate"><span class="pre">NUMBER</span> <span class="pre">OF</span> <span class="pre">TIME</span> <span class="pre">STEPS</span></code>?</p></li>
+<li><p>How reasonable are the results?</p></li>
+<li><p>Which of the two initial conditions would you use in practice to show that your simulation is correct?</p></li>
+</ul>
 </div>
 </div>
 

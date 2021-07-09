@@ -51,6 +51,8 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="canonical" href="https://hydro-informatics.com/numerics/telemac2d-unsteady.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -721,18 +723,11 @@
   <a class="reference internal nav-link" href="#get-started">
    Get Started
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#define-unsteady-flow-boundaries">
-     Define unsteady flow boundaries
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#stage-discharge-or-wse-q-relationship">
-     Stage-discharge (or WSE-Q) Relationship
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#adapt-the-steering-file">
+   Adapt the Steering File
+  </a>
  </li>
 </ul>
 
@@ -760,43 +755,82 @@
 </div>
 <div class="section" id="get-started">
 <h2>Get Started<a class="headerlink" href="#get-started" title="Permalink to this headline">¶</a></h2>
-<p>This section builds on the SELAFIN (<code class="docutils literal notranslate"><span class="pre">*.slf</span></code>) and Conlim (<code class="docutils literal notranslate"><span class="pre">*.cli</span></code>) boundary condition files that result from the <a class="reference internal" href="pre-slf-tm.html#slf-prepro-tm"><span class="std std-ref">TELEMAC pre-processing tutorial</span></a>. Both files can also be downloaded from the supplemental materials repository of this eBook:</p>
+<p>The <a class="reference internal" href="telemac2d-steady.html#telemac2d-steady"><span class="std std-ref">steady 2d tutorial</span></a> hypothesizes that the discharge of a river is constant over time. However, the discharge of a river is never truly steady and varies slightly from second to second, even in flow-controlled rivers. Alas, the inherently unsteady flow regime of rivers cannot realistically be modeled in any numerical software. As a result, we must discretize time-dependent discharge (e.g., a flood hydrograph) in a numerical model as a series of steady discharges. <a class="reference internal" href="#unsteady-hydrograph"><span class="std std-numref">Figure 83</span></a> illustrates the discretization of a natural flood hydrograph into steps of steady flows, which will be used in this tutorial.</p>
+<div class="figure align-default" id="unsteady-hydrograph">
+<img alt="unsteady flow discharge quasi steady telemac telemac2d hydrodynamic" src="../_images/unsteady-hydrograph.png" />
+<p class="caption"><span class="caption-number">Fig. 83 </span><span class="caption-text">The discretization of a natural hydrograph into steps of steady flows (qualitative hydrograph for this tutorial).</span><a class="headerlink" href="#unsteady-hydrograph" title="Permalink to this image">¶</a></p>
+</div>
+<p>This tutorial shows how such a quasi-unsteady discharge hydrograph can be created and implemented in a Telemac2d simulation. The tutorial builds on the steady simulation of a discharge of 35 m<span class="math notranslate nohighlight">\(^3\)</span>/s and requires the following data from the <a class="reference internal" href="pre-slf-tm.html#slf-prepro-tm"><span class="std std-ref">pre-processing</span></a> and <a class="reference internal" href="telemac2d-steady.html#telemac2d-steady"><span class="std std-ref">steady2d</span></a> tutorials, which can be downloaded by clicking on the filenames:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf">Download qgismesh.slf</a>.</p></li>
-<li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-slf/boundaries.cli">Download boundaries.cli</a>.</p></li>
+<li><p>The computational mesh in <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf">qgismesh.slf</a>.</p></li>
+<li><p>The boundary definitions in <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/boundaries.cli">boundaries.cli</a>.</p></li>
+<li><p>The results of the steady 2d model run for 35 m<span class="math notranslate nohighlight">\(^3\)</span>/s in <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/r2dsteady.slf">r2dsteady.slf</a> (result of the <a class="reference internal" href="telemac2d-steady.html#tm2d-dry"><span class="std std-ref">dry bonus run</span></a>).</p></li>
 </ul>
-<p>Consider saving both files in a new folder, such as <code class="docutils literal notranslate"><span class="pre">/steady2d-tutorial/</span></code> that will contain all model files.</p>
-<div class="admonition-download-simulation-files admonition">
-<p class="admonition-title">Download simulation files</p>
-<p>All simulation files used in this tutorial are available at <a class="reference external" href="https://github.com/hydro-informatics/telemac/tree/main/steady2d-tutorial/">https://github.com/hydro-informatics/telemac/tree/main/steady2d-tutorial/</a>.</p>
+<p>Consider saving the files in a new folder, such as <code class="docutils literal notranslate"><span class="pre">/unsteady2d-tutorial/</span></code>.</p>
+<div class="admonition-unsteady-simulation-file-repository admonition">
+<p class="admonition-title">Unsteady simulation file repository</p>
+<p>The simulation files used in this tutorial are available at <a class="reference external" href="https://github.com/hydro-informatics/telemac/tree/main/unsteady2d-tutorial/">https://github.com/hydro-informatics/telemac/tree/main/unsteady2d-tutorial/</a>.</p>
 </div>
-<div class="section" id="define-unsteady-flow-boundaries">
-<span id="prepro-unsteady"></span><h3>Define unsteady flow boundaries<a class="headerlink" href="#define-unsteady-flow-boundaries" title="Permalink to this headline">¶</a></h3>
-<p>In addition, users can define a liquid boundary conditions file (<em>qsl</em>) to define time-dependent boundary conditions (e.g., discharge, water depth, flow velocity or tracers).
-The name format of the boundary conditions file can be modified in the steering file with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">steering</span><span class="o">.</span><span class="n">cas</span>
-<span class="n">BOUNDARY</span> <span class="n">CONDITIONS</span> <span class="n">FILE</span> <span class="p">:</span> <span class="s1">&#39;bc_channel.cli&#39;</span>
-<span class="n">LIQUID</span> <span class="n">BOUNDARIES</span> <span class="n">FILE</span>   <span class="p">:</span> <span class="s1">&#39;bc_unsteady.qsl&#39;</span>
+</div>
+<div class="section" id="adapt-the-steering-file">
+<span id="prepro-unsteady"></span><h2>Adapt the Steering File<a class="headerlink" href="#adapt-the-steering-file" title="Permalink to this headline">¶</a></h2>
+<p>The integration of unsteady flows requires the adaptation of keywords and additional keywords (e.g., for linking liquid boundary files) in the steering (<code class="docutils literal notranslate"><span class="pre">*.cas</span></code>) file from the steady2d tutorial (<a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/steady2d.cas">download steady2d.cas</a>).</p>
+<div class="admonition-view-the-unsteady-cas-file admonition">
+<p class="admonition-title">View the unsteady CAS file</p>
+<p>To view the integration of the unsteady simulation keywords in the steering file, the <code class="docutils literal notranslate"><span class="pre">unsteady2d.cas</span></code> file can be <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/unsteady2d.cas">downloaded here</a></p>
+</div>
+<p>With the upstream open (liquid) boundary type being <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">5</span> <span class="pre">5</span></code> (prescribed Q) and the downstream open (liquid) boundary type being <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">5</span> <span class="pre">5</span></code> (prescribed Q and H), a time-dependent flow hydrograph and a <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a> needs to be provided (recall the rationales behind the choice of boundary types from the <a class="reference internal" href="pre-slf-tm.html#bk-liquid-bc"><span class="std std-ref">pre-processing tutorial</span></a>).</p>
+<p>To activate the use of a <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a> for an open (liquid) boundary with the <code class="docutils literal notranslate"><span class="pre">STAGE-DISCHARGE</span> <span class="pre">CURVES</span></code> keyword needs to be added to the steering file. This keyword accepts the following integers:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> is the <strong>default</strong> that deactivates the usage of stage discharge.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> applies prescribed elevations as function of calculated flow rate (discharge).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> applies prescribed flow rates (discharge) as function of calculated elevation.</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">STAGE-DISCHARGE</span> <span class="pre">CURVES</span></code> keyword is a list that assigns one of the three integer (i.e., either <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span></code>, or <code class="docutils literal notranslate"><span class="pre">2</span></code>) to the open (liquid) boundaries. In this tutorial <code class="docutils literal notranslate"><span class="pre">STAGE-DISCHARGE</span> <span class="pre">CURVES</span> <span class="pre">:</span> <span class="pre">0;1</span></code> actives the use of a <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a> for the downstream boundary only where the <strong>upstream open boundary number 1</strong> is set to <code class="docutils literal notranslate"><span class="pre">0</span></code> and the <strong>downstream open boundary number 1</strong> is set to <code class="docutils literal notranslate"><span class="pre">0</span></code>. To recall how TELEMAC counts open boundaries read the comment box in the <a class="reference internal" href="telemac2d-steady.html#tm2d-bounds"><span class="std std-ref">steady2d tutorial</span></a>.</p>
+<p>The form (curve) of the <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a> needs to be defined in a stage-discharge file (<a class="reference internal" href="../documentation/glossary.html#term-ASCII"><span class="xref std std-term">ASCII</span></a> text format). Such files typically apply to the downstream boundary of a model at control sections (e.g., a free overflow weir). This tutorial uses the following relation that is stored in a file called <code class="docutils literal notranslate"><span class="pre">ratingcurve.txt</span></code> (<a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/ratingcurve.txt">download</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Downstream Rating Curve</span>
+<span class="c1">#</span>
+<span class="n">Z</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>	<span class="n">Q</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">m</span>	<span class="n">m3</span><span class="o">/</span><span class="n">s</span>
+<span class="mf">371.33</span>	<span class="mi">35</span>
+<span class="mf">371.45</span>	<span class="mi">50</span>
+<span class="mf">371.86</span>	<span class="mi">101</span>
+<span class="mf">375.73</span>	<span class="mi">1130</span>
+<span class="mf">379.08</span>	<span class="mi">2560</span>
 </pre></div>
 </div>
-<p>Example for a liquid boundary conditions file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># bc_unsteady.qsl</span>
-<span class="c1"># Time-dependent inflow (discharge Q(2) and outflow (depth SL(1)</span>
-<span class="n">T</span>           <span class="n">Q</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>     <span class="n">SL</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">s</span>           <span class="n">m3</span><span class="o">/</span><span class="n">s</span>     <span class="n">m</span>
-<span class="mf">0.</span>            <span class="mf">0.</span>     <span class="mf">5.0</span>
-<span class="mf">500.</span>        <span class="mf">100.</span>     <span class="mf">5.0</span>
-<span class="mf">5000.</span>       <span class="mf">150.</span>     <span class="mf">5.0</span>
+<p>To define <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a>s for multiple open boundaries (e.g., at river diversions or tributaries), add the curves to the same file. TELEMAC automatically recognizes where the curves apply by the number given in parentheses after the parameter name in the column header. For instance, in the above example for this tutorial, the column headers <code class="docutils literal notranslate"><span class="pre">Z(2)</span></code> and <code class="docutils literal notranslate"><span class="pre">Q(2)</span></code> tell TELEMAC to use these values for the second (i.e., downstream) open boundary. The column order is not important because TELEMAC reads the curve type (i.e., either <span class="math notranslate nohighlight">\(Q(Z)\)</span> or <span class="math notranslate nohighlight">\(Z(Q)\)</span>) from the <code class="docutils literal notranslate"><span class="pre">STAGE-DISCHARGE</span> <span class="pre">CURVES</span></code> keyword.</p>
+<div class="note dropdown admonition">
+<p class="admonition-title">Expand to view an example for multiple stage-discharge curve definitions</p>
+<p>The following file block would prescribe <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a>s to the upstream and downstream boundary conditions in this tutorial. However, the file cannot be used here unless the upstream boundary type is changed to <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">5</span> <span class="pre">5</span></code> (prescribed H and Q) in the <code class="docutils literal notranslate"><span class="pre">boundaries.cli</span></code> file (read more in the <a class="reference internal" href="pre-slf-tm.html#bk-liquid-bc"><span class="std std-ref">pre-processing tutorial</span></a>).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+<span class="c1"># Downstream Rating Curve</span>
+<span class="c1">#</span>
+<span class="n">Z</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>	<span class="n">Q</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">m</span>	<span class="n">m3</span><span class="o">/</span><span class="n">s</span>
+<span class="mf">371.33</span>	<span class="mi">35</span>
+<span class="mf">371.45</span>	<span class="mi">50</span>
+<span class="mf">371.86</span>	<span class="mi">101</span>
+<span class="mf">375.73</span>	<span class="mi">1130</span>
+<span class="mf">379.08</span>	<span class="mi">2560</span>
+<span class="c1">#</span>
+<span class="c1"># Upstream Rating Curve</span>
+<span class="c1">#</span>
+<span class="n">Q</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="n">Z</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">m3</span><span class="o">/</span><span class="n">s</span>  <span class="n">m</span>
+<span class="mi">35</span>    <span class="mf">371.33</span>
+<span class="mi">50</span>    <span class="mf">371.45</span>
+<span class="mi">101</span>   <span class="mf">371.86</span>
+<span class="mi">1130</span>  <span class="mf">375.73</span>
+<span class="mi">2560</span>  <span class="mf">379.08</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="stage-discharge-or-wse-q-relationship">
-<h3>Stage-discharge (or WSE-Q) Relationship<a class="headerlink" href="#stage-discharge-or-wse-q-relationship" title="Permalink to this headline">¶</a></h3>
-<p>Define a stage-discharge file (<em>ASCII</em> format) to use a stage (water surface elevation <em>WSE</em>) - discharge relationship for boundary conditions. Such files typically apply to the downstream boundary of a model at control sections (e.g., a free overflow weir). To use a stage-discharge file, define the following keyword in the steering file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">steering</span><span class="o">.</span><span class="n">cas</span>
+<p>To use a stage-discharge file, define the following keyword in the steering file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">steering</span><span class="o">.</span><span class="n">cas</span>
+<span class="n">STAGE</span><span class="o">-</span><span class="n">DISCHARGE</span> <span class="n">CURVES</span> <span class="p">:</span> <span class="mi">1</span>
 <span class="n">STAGE</span><span class="o">-</span><span class="n">DISCHARGE</span> <span class="n">CURVES</span> <span class="n">FILE</span> <span class="p">:</span> <span class="n">YES</span>
 </pre></div>
-</div>
 </div>
 </div>
 </div>

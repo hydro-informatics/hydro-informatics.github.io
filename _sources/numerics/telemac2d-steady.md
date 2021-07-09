@@ -645,7 +645,7 @@ DIFFUSION OF VELOCITY : YES / enabled by default
 TURBULENCE MODEL : 3
 ```
 
-
+(tm2d-run)=
 ## Run Telemac2d
 
 With the steering (`*.cas`) file, the last necessary ingredient for running a steady hydrodynamic 2d simulation with Telemac2d is available. Make sure to put all required files in one simulation folder (e.g., `~/telemac/v8p2/mysimulations/steady2d-tutorial/`). The required files can also be downloaded from this eBook's [steady2d tutorial repository](https://github.com/hydro-informatics/telemac/tree/main/steady2d-tutorial/) and include:
@@ -846,3 +846,35 @@ Convergence of inflow (upstream) and outflow (downstream) at the open model boun
 ```
 
 Note the difference between the convergence duration in this steady simulation with Telemac2d that starts with an initial condition of 1.0 m water depth (plot in {numref}`Fig. %s <convergence-diagram-tm2d>`) compared to the longer convergence duration in the BASEMENT tutorial (plot in {numref}`Fig. %s <convergence-diagram-bm>`) that starts with a dry model. This difference mainly stems from the type of initial conditions (initial depth versus dry channel) that also reflects in an outflow surplus of the Telemac2d simulation and a zero-outflow in the BASEMENT simulation at the beginning of the simulations. However, the faster convergence is at the cost of unrealistically wetted hollows in the Telemac2d simulation - read more in the above comment: *How reasonable are the results?*
+
+(tm2d-dry)=
+## Initialize Dry
+For comparison, try running the Telemac2d simulation with initial dry conditions. To this end, change the upstream boundary type to `5 5 5` (prescribed H and Q) in the  {ref}`boundaries.cli <bk-liquid-bc>` file. For making this modification, it is sufficient to **open boundaries.cli in any text editor** and use its **find-and-replace** function (e.g., `CTRL` + `H` keys in {ref}`npp`, or `CTRL` + `F` keys in {ref}`install-atom`):
+
+ * In the **Find** field type `4 5 5`.
+ * In the **Replace with** field type `5 5 5`.
+ * Click on **Replace ALL**.
+ * Save and close **boundaries.cli**.
+
+In the Telemac2d steering (`*.cas`) file comment out the `INITIAL DEPTH` keyword, change the `INITIAL CONDITIONS` keyword to `ZERO DEPTH`, and change the `PRESCRIBED ELEVATIONS` keyword to `374.80565;371.33` (in lieu of `0.;371.33`). So the steering file should involve now:
+
+```fortran
+/ ... header
+PRESCRIBED ELEVATIONS : 374.80565;371.33
+/ ...
+INITIAL CONDITIONS : 'ZERO DEPTH'
+/ INITIAL DEPTH : 1
+/ ... footer
+```
+
+Alternatively, download the modified files:
+
+* [boundaries-555.cli](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/boundaries-555.cli)
+* [steady2d-initdry.cas](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/steady2d-initdry.cas)
+
+Re-{ref}`run Telemac2d <tm2d-run>` and open the resulting `r2d...slf` file in QGIS with the PostTelemac plugin. Compare the results of the dry and wetted initial condition simulations with regards to the following questions:
+
+* How does the mass balance evolve during the simulation?
+* How long did the simulations take to converge and did you need to modify the `NUMBER OF TIME STEPS`?
+* How reasonable are the results?
+* Which of the two initial conditions would you use in practice to show that your simulation is correct?

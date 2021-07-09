@@ -775,6 +775,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#posttelemac-plugin">
+   PostTelemac Plugin
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#salome-hydro">
    SALOME-HYDRO
   </a>
@@ -985,6 +990,16 @@
 </pre></div>
 </div>
 <p><em>What does this mean?</em> If <code class="docutils literal notranslate"><span class="pre">mdump</span></code> can read the mesh, the mesh file itself is OK and potential calculation errors stem from other files such as the steering file or the boundary conditions. Otherwise, revise the mesh file and resolve any potential issue.</p>
+</div>
+<div class="section" id="posttelemac-plugin">
+<h2>PostTelemac Plugin<a class="headerlink" href="#posttelemac-plugin" title="Permalink to this headline">¶</a></h2>
+<p>Some version of QGIS may throw a Python error (yellow frame in the top region of the map viewport) and a click on <strong>Stack</strong> reveals an error message. At the bottom of the error message, it might be written <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">error:</span> <span class="pre">no</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">gdal</span></code>. The error probably stems from an import statement in one of the PostTelemac plugin’s Python scripts. To troubleshoot the gdal import error, find the Python script that is raising the error message. For instance, <code class="docutils literal notranslate"><span class="pre">C:\Users\USERNAME\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\PostTelemac\meshlayerparsers\</span></code><strong><code class="docutils literal notranslate"><span class="pre">posttelemac_hdf_parser.py</span></code></strong> may cause the error with its <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">gdal</span></code> statement. Therefore:</p>
+<ul class="simple">
+<li><p>Open the concerned file, which is here: <strong><code class="docutils literal notranslate"><span class="pre">posttelemac_hdf_parser.py</span></code></strong></p></li>
+<li><p>Find the <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">gdal</span></code> statement and **replace it with <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">osgeo</span> <span class="pre">import</span> <span class="pre">gdal</span></code> (i.e.,  <s><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">gdal</span></code></s> and write <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">osgeo</span> <span class="pre">import</span> <span class="pre">gdal</span></code>)</p></li>
+<li><p>Save and close the Python file.</p></li>
+</ul>
+<p>Retry to start the PostTelemac plugin. It should run without issues now.</p>
 </div>
 <div class="section" id="salome-hydro">
 <h2>SALOME-HYDRO<a class="headerlink" href="#salome-hydro" title="Permalink to this headline">¶</a></h2>

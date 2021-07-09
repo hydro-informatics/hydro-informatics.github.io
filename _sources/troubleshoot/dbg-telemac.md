@@ -183,6 +183,17 @@ A standard answer combination of `1` - `1` - `0` will result in a console print 
 
 *What does this mean?* If `mdump` can read the mesh, the mesh file itself is OK and potential calculation errors stem from other files such as the steering file or the boundary conditions. Otherwise, revise the mesh file and resolve any potential issue.
 
+## PostTelemac Plugin
+
+Some version of QGIS may throw a Python error (yellow frame in the top region of the map viewport) and a click on **Stack** reveals an error message. At the bottom of the error message, it might be written `import error: no module named gdal`. The error probably stems from an import statement in one of the PostTelemac plugin's Python scripts. To troubleshoot the gdal import error, find the Python script that is raising the error message. For instance, `C:\Users\USERNAME\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\PostTelemac\meshlayerparsers\`**`posttelemac_hdf_parser.py`** may cause the error with its `import gdal` statement. Therefore:
+
+* Open the concerned file, which is here: **`posttelemac_hdf_parser.py`**
+* Find the `import gdal` statement and **replace it with `from osgeo import gdal` (i.e.,  <s>`import gdal`</s> and write `from osgeo import gdal`)
+* Save and close the Python file.
+
+Retry to start the PostTelemac plugin. It should run without issues now.
+
+
 ## SALOME-HYDRO
 
 ### SALOME-HYDRO not starting  (**Kernel/Session**) {#salome-dbg}

@@ -8,6 +8,9 @@ Advection
 
   *French: Advection <br>German: Advektion*
 
+ASCII
+  The American Standard Code for Information Interchange (ASCII) is an encoding standard for text on computers. The development of ASCII goes back to telegraphy and was first published in 1961 for the Latin alphabet. It was later extended by other alphabets and special characters {cite:p}`ascii1980`. ASCII code represents characters in the form of numbers. For instance, the ASCII code `77` represents uppercase `A`. In Python applications, ASCII code numbers can be useful to iterate through the alphabet (e.g., alphabetic column names), where `chr(ASCII)` returns a letter. For example, in Python `print(chr(78))` returns uppercase `B`.
+
 Boussinesq
   The Boussinesq approximation of the {term}`Continuity equation` assumes that density variations can be neglected except for the gravity term (i.e., in the vertical momentum equations). In addition, the Boussinesq approximation assumes that a fluid is incompressible and that wave motion is inviscid {cite:p}`spiegel1960`.
 
