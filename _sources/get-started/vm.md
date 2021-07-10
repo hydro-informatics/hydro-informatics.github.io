@@ -33,10 +33,8 @@ The guest machine will run Debian Linux, which is one of the most stable Linux d
 
 There are a couple of Debian Linux spin-offs, such as [*Ubuntu*](https://ubuntu.com) with some other derivatives that are more lightweight (and faster). New Linux users will have an easy start with the *Ubuntu* variants [*Linux Mint* (*Xfce*)](https://www.linuxmint.com) or [*Lubuntu*](https://lubuntu.me/downloads/). Most versions *Ubuntu* can be used instead of the Debian Linux presented here to complete the tutorials on this website.
 
-## Create a Debian Linux VM
-
 (vm-requirements)=
-### Get prerequisites (required software)
+## Get prerequisites (required software)
 
 ***Estimated duration: 5-30 minutes (depends on connection speed).***
 
@@ -55,19 +53,19 @@ There are a couple of Debian Linux spin-offs, such as [*Ubuntu*](https://ubuntu.
 Remember where the downloaded Linux *.ISO* file is stored.
 
 (hyfo-vm)=
-### Option: Get the Hydro-informatics VM
+## Option: Get the Hydro-informatics VM
 
 ````{admonition} Expand to see the details for getting the Hydro-Informatics Mint VM
 :class: tip, dropdown
 
-To shorten the long path of installing many hydroinformatic applications, many tutorials in this eBook can be leveraged with a tailored virtual Linux Mint 20.2 machine that is available upon email request. The Linux Mint VM comes with the following preinstalled software:
+To shorten the long path of installing many hydroinformatics applications, many tutorials in this eBook can be leveraged with a tailored virtual Linux Mint 20.2 machine that is available upon email request. The Linux Mint VM comes with the following pre-installed software:
 
 * {ref}`Atom IDE <install-atom>` (all-in-one IDE for Python scripting and editing markdown, restructuredtext, or LaTeX files)
 * {ref}`JupyterLab <install-jupyter-linux>` (start in Terminal with `jupyter-lab`)
 * {ref}`QGIS <qgis-install>`
 * {ref}`TELEMAC v8p2r1 <telemac-install>` (dynamically compiled stand-alone installation with parallel libraries enabled)
 
-Note that Python, LibreOffice, and Firefox are pre-installed in Linux Mint. To get the download link for the Linux Mint VM appliance (`MintHyfo.ova`), <a href="mailto:sebastian.schwindt[AT]iws.uni-stuttgart.de?subject=Please%Send%20Hydroinformatics%20VM%20download%20link">email Sebastian</a>. Note that the {ref}`license` and {ref}`disclaimer` apply in addition and on top any software that comes with the virtual disk image.
+Note that Python, LibreOffice, and Firefox are pre-installed in Linux Mint. To get the download link for the Linux Mint VM appliance (`MintHyfo.ova`), <a href="mailto:sebastian.schwindt[AT]iws.uni-stuttgart.de?subject=Please%20Send%20Hydroinformatics%20VM%20download%20link">email Sebastian</a>. Note that the hydro-informatics.com {ref}`license` and {ref}`disclaimer` apply in addition and on top of any software that comes with the virtual disk image.
 
 **Get Started with the VM**
 
@@ -82,7 +80,7 @@ Now, the virtual machine called **Mint Hyfo** should be visible in the list of v
 
 **Start and Manage the VM**
 
-Once imported, start the **Mint Hyfo** VM and familiarize with the Mint Desktop. There are a few things you should know about the Mint Hyfo VM:
+Once imported, start the **Mint Hyfo** VM and familiarize yourself with the Mint Desktop. There are a few things you should know about the Mint Hyfo VM:
 
 * The keyboard layout is **English (US)**, which makes, for example, that when you press the `Z` key on a German keyboard, the VM understands `Y`. There are a couple more important differences and the VM provides an overview of the English (US) keyboard layout with the **English-US-Keyboard.png** picture on the Desktop.
 * To install or remove software either use:
@@ -91,8 +89,8 @@ Once imported, start the **Mint Hyfo** VM and familiarize with the Mint Desktop.
   * your **user name** on the VM is: **hymo**
   * your **user password** is: `hxroot`
 * Regularly run **system updates**. For this purpose, check if the shield-icon on the bottom right is marked with an orange dot. If this is the case, double-click on the shields icon and click on **Install Updates**. The password is the same as above (`hxroot`).
-* To transfer data from the host system (e.g., your Windows) to the Mint Hyfo VM, enable folder sharing as described in the below section on {ref}`folder sharing <vm-share>`. *Note that you will
-* The TELEMAC installation lives in the home directory (`cd ~/telemac/v8p2`); it is installed with parallel processing modules (`openmpi`), but without AED2 and MED file libraries. To run TELEMAC  use:
+* To transfer data from the host system (e.g., your Windows) to the Mint Hyfo VM, enable folder sharing as described in the below section on {ref}`folder sharing <vm-share>`. *Note that you will not need to add your user name to the VM's vboxsf group (i.e., <s>`sudo usermod -aG vboxsf hymo`</s>).*
+* The TELEMAC installation lives in the home directory (`cd ~/telemac/v8p2`); it is dynamically compiled with parallelization enabled through `openmpi`, but without the AED2 and MED file libraries. To run TELEMAC  use:
 
 ```
 cd ~/telemac/v8p2/configs
@@ -111,7 +109,7 @@ The VM provides essentials for most tutorials in this eBook:
 Also BASEMENT can be installed for completing the {ref}`chpt-basement` tutorial.
 ````
 
-### Create a VM with VirtualBox
+## Create a VM with VirtualBox
 
 ***Estimated duration: 5-8 minutes.***
 
@@ -138,11 +136,11 @@ In your host system (e.g., *Windows 10*), click on *Start*, type *Oracle VM Virt
         - Click on the small blue disk symbol to *Choose a disk file ...* > select the Debian Linux net installer (*debian-xx.x.x-amd64-netinst.iso*) that you downloaded before.
     + Click *OK*.
 
-### Install Debian Linux
+## Install Debian Linux
 
 ***Estimated duration: 30 minutes.***
 
-To install Debian Linux to the VM, start the before created *Debian Linux VM* in the *VirtualBox* manager window (click on the *Debian Linux* VM and then on the green *Start* arrow). The *VirtualBox VM* window will ask for the *.iso* file to use (confirm the selected one), and start navigating through the installation:
+To install Debian Linux to the VM, start the before-created *Debian Linux VM* in the *VirtualBox* manager window (click on the *Debian Linux* VM and then on the green *Start* arrow). The *VirtualBox VM* window will ask for the *.iso* file to use (confirm the selected one), and start navigating through the installation:
 
 * Inside the *VirtualBox VM* window, select the *Graphical install* option.
 * Navigate through the language options (recommended: English - English (United States)).
@@ -166,13 +164,21 @@ Once the VM is shut down, re-open the VM *Settings* (from *VirtualBox Manager* w
 
 ## Re-use (Transfer or Copy) a VM on another Host
 
-Once you have created a VM on a virtual hard disk (the **vdi** file), you can always transfer it to another *host* system. To copy (or transport) a VM:
+Once you have created a VM on a virtual hard disk (the `*.vdi` file), you can always transfer it to another *host* system with its ecosystem. To copy (or transport) the VM:
 
-1. Copy the *vdi* file where your VM is installed (e.g., *Debian Linux.vdi*) to another system (let's call it *Host-2*), for example by using a USB flash drive.
-1. Make sure that *VirtualBox* is installed on the *Host-2* system and open *VirtualBox* on  *Host-2*.
-1. In *VirtualBox*, create a *New* (the blue rack-wheel) *Virtual Machine*.
-1. In the process of creating a *New* VM, the wizard asks if you want to create a new hard disk image or an existing one. Select *Existing hard disk* and choose the copied *vdi* file.
-1. Finalize the *New* VM wizard and start the VM as usual.
+* On the original host:
+  * Shut down the VM you want to reuse.
+  * In VirtualBox go to **File** > **Export Appliance...**.
+  * Follow the instructions to export the VM to a `*.ova` file (the **export process may take 10-15 minutes**).
+* On the new host:
+  * Make sure that VirtualBox is installed.
+  * Copy the exported `*.ova` file to the new host system.
+  * Open VirtualBox and go to **File** > **Import Appliance...**
+  * Navigate to the directory where you copied the `*.ova` file.
+  * Click **Next**.
+  * Check the **Appliance settings** and click **Import**.
+
+Now, the virtual machine should be visible in the list of virtual machines in VirtualBox.
 
 (linux-install)=
 # Debian Linux
@@ -193,7 +199,7 @@ su
 Enter the above-created password for the root user name (see installation section).
 
 ```{note}
-Root access (e.g., for installing software) is granted on many Linux distribution using the `sudo` command before the command to execute. In Debian Linux, `sudo` may refer to the wrong account and not work as desired. As a workaround type `su` in *Terminal*. Read more later in this section.
+Root access (e.g., for installing software) is granted on many Linux distributions using the `sudo` command before the command to execute. In Debian Linux, `sudo` may refer to the wrong account and not work as desired. As a workaround type `su` in *Terminal*. Read more later in this section.
 ```
 
 Install all packages required for building kernel modules:
@@ -215,7 +221,7 @@ The *VirtualBox VM* window does not show the menu with the *Devices* entry anywh
 
 ```{admonition} If the error **The guest system has no CR-ROM ...** occurs...
 :class: warning
-To troubleshoot the error message `The guest system has no CR-ROM ...`, shutdown the VM. In the *VirtualBox* manager window, right-click on the *Debian Linux* VM > *Storage* tab > Add new Optical Drive to *Controller: IDE*. Restart the *Debian Linux* VM.
+To troubleshoot the error message `The guest system has no CR-ROM ...`, shut down the VM. In the *VirtualBox* manager window, right-click on the *Debian Linux* VM > *Storage* tab > Add new Optical Drive to *Controller: IDE*. Restart the *Debian Linux* VM.
 ```
 
 Back in the Debian Linux *Terminal*, mount the *Guest Additions* *iso* file by typing in *Terminal*:
@@ -232,7 +238,7 @@ cd /mnt/cdrom
 sudo sh ./VBoxLinuxAdditions.run --nox11
 ```
 
-The kernel modules will be installed now and *Terminal* should prompt a message that invites to reboot the system. Do so by typing:
+The kernel modules will be installed now and *Terminal* should prompt a message that invites you to reboot the system. Do so by typing:
 
 ```
 shutdown -r now
@@ -250,7 +256,7 @@ To improve the visual experience do the following:
 * In the top-left corner of the Debian Linux Desktop, click on *Activities* and type *displays* in the search box.
 * Open the *Displays* settings to select a convenient display resolution.
   * If you choose a too high resolution, the *VirtualBox VM* window will turn black and jump back to the original resolution after 15-30 seconds.
-  * Consider also to turn on *Night Light* to preserve your eye vision.
+  * Consider also turning on *Night Light* to preserve your eye vision.
 * *Apply* the changes and close the *Displays* settings.
 
 (linux-terminal)=
@@ -271,7 +277,7 @@ The GNOME *Terminal* is one of the most important features, even though it optic
 
 (user-rights)=
 ## User Rights
-When installing software later, it is good practice to install it for your user account and not for `root`. Such system-relevant actions require *superuser* (`su`) rights. However, your default user name is not on the so-called *su-doers* list, which is essentially a file where all user accounts are listed that are authorized to use `sudo` in front of any command. So add your user account to the *su-doers* list by opening *Terminal* and typing:
+When installing software later, it is good practice to install it for your user account and not for `root`. Such system-relevant actions require *superuser* (`su`) rights. However, your default user name is not on the so-called *sudoers* list, which is essentially a file where all user accounts are listed that are authorized to use `sudo` in front of any command. So add your user account to the *su-doers* list by opening *Terminal* and typing:
 
 ```
 su
@@ -279,7 +285,7 @@ su
 sudo usermod -aG sudo YOUR-USER-NAME
 ```
 
-Open a new *Terminal* tab (`Shift` + `CTRL` + `T`), which should open up in your default user space with default user rights. Check if your account is on the *su-doers* list by typing:
+Open a new *Terminal* tab (`Shift` + `CTRL` + `T`), which should open up in your default user space with default user rights. Check if your account is on the *sudoers* list by typing:
 
 ```
 sudo -v
@@ -299,7 +305,7 @@ If visually nothing happens, you are good to go. Otherwise, if you get a message
 Make sure to install *Guest Additions* to enable folder sharing (see the above [Setup Linux](#setup-debian) section).
 ```
 
-Sharing data between the host system (e.g., *Windows 10*) and the guest system (*Debian Linux VM*) enables to transfer files to and from the VM to the host system.
+Sharing data between the host system (e.g., *Windows 10*) and the guest system (*Debian Linux VM*) enables the transfer of files to and from the VM to the host system.
 
 * At a place of your convenience, create a new folder on the host system (e.g., *Windows 10*) and call it shared (e.g., `C:\Users\USER\documents\shared\`).
 * Start *VirtualBox* and the Debian Linux VM.<br>*Make sure that the scaled view mode is off (toggle view modes with RIGHT `CTRL` (`Host`) and `C` on the keyboard).*
@@ -354,7 +360,7 @@ To edit the configuration of *Xorg* run:
 sudo editor /etc/X11/xorg.conf
 ```
 
-Add *nvidia* repositories and drivers (maybe not necessary on newer versions of *Debian*:
+Add *Nvidia* repositories and drivers (maybe not necessary on newer versions of *Debian*:
 
 ```
 sudo apt install software properties-common
