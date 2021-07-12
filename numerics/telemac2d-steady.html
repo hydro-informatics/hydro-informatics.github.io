@@ -931,7 +931,7 @@
 <span class="o">/------------------------------------------------------------------/</span>
 <span class="nb">TIME </span><span class="n">STEP</span> <span class="p">:</span> <span class="mf">1.</span>
 <span class="n">NUMBER</span> <span class="n">OF</span> <span class="nb">TIME </span><span class="n">STEPS</span> <span class="p">:</span> <span class="mi">8000</span>
-<span class="n">GRAPHIC</span> <span class="n">PRINTOUT</span> <span class="n">PERIOD</span> <span class="p">:</span> <span class="mi">100</span>
+<span class="n">GRAPHIC</span> <span class="n">PRINTOUT</span> <span class="n">PERIOD</span> <span class="p">:</span> <span class="mi">200</span>
 <span class="n">LISTING</span> <span class="n">PRINTOUT</span> <span class="n">PERIOD</span> <span class="p">:</span> <span class="mi">100</span>
 <span class="o">/</span>
 <span class="o">/------------------------------------------------------------------/</span>
@@ -1040,7 +1040,7 @@
 <span class="o">/</span>
 <span class="nb">TIME </span><span class="n">STEP</span> <span class="p">:</span> <span class="mf">1.</span>
 <span class="n">NUMBER</span> <span class="n">OF</span> <span class="nb">TIME </span><span class="n">STEPS</span> <span class="p">:</span> <span class="mi">8000</span>
-<span class="n">GRAPHIC</span> <span class="n">PRINTOUT</span> <span class="n">PERIOD</span> <span class="p">:</span> <span class="mi">100</span>
+<span class="n">GRAPHIC</span> <span class="n">PRINTOUT</span> <span class="n">PERIOD</span> <span class="p">:</span> <span class="mi">200</span>
 <span class="n">LISTING</span> <span class="n">PRINTOUT</span> <span class="n">PERIOD</span> <span class="p">:</span> <span class="mi">100</span>
 </pre></div>
 </div>
@@ -1441,7 +1441,7 @@ This tutorial features the application of the <em>Manning</em> roughness coeffic
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">4</span></code> to use the <span id="id32">Smagorinsky [<a class="reference internal" href="../documentation/bibliography.html#id1361">Sma63</a>]</span> (also known as <em>general circulation</em>) model, which stems from climate modeling and is appropriate for modeling maritime systems with large eddies. The <span id="id33">Smagorinsky [<a class="reference internal" href="../documentation/bibliography.html#id1361">Sma63</a>]</span> model does not account for <a class="reference internal" href="../documentation/glossary.html#term-Diffusion"><span class="xref std std-term">Diffusion</span></a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">5</span></code> to use a mixing length model according to Prandtl’s theory that a fluid quantity conserves its properties for a characteristic length before it mixes with the bulk flow <span id="id34">[<a class="reference internal" href="../documentation/bibliography.html#id1362">Bra74</a>]</span>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">6</span></code> to use the <span id="id35">Spalart and Allmaras [<a class="reference internal" href="../documentation/bibliography.html#id1360">SA92</a>]</span> (also referred to as <em>Spalart-Allmaras</em>) model that solves the <a class="reference internal" href="../documentation/glossary.html#term-Continuity-equation"><span class="xref std std-term">Continuity equation</span></a> for a viscosity-like, kinematic eddy turbulent viscosity. The <em>Spalart-Allmaras</em> model was originally developed for aerodynamic flows with low <a class="reference internal" href="../documentation/glossary.html#term-Reynolds-number"><span class="xref std std-term">Reynolds number</span></a> and it has also shown good results for other applications.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">6</span></code> to use the <span id="id35">Spalart and Allmaras [<a class="reference internal" href="../documentation/bibliography.html#id1360">SA92</a>]</span> (also referred to as <span id="id36">Spalart and Allmaras [<a class="reference internal" href="../documentation/bibliography.html#id1360">SA92</a>]</span>) model that solves the <a class="reference internal" href="../documentation/glossary.html#term-Continuity-equation"><span class="xref std std-term">Continuity equation</span></a> for a viscosity-like, kinematic eddy turbulent viscosity. The <span id="id37">Spalart and Allmaras [<a class="reference internal" href="../documentation/bibliography.html#id1360">SA92</a>]</span> model was originally developed for aerodynamic flows with low <a class="reference internal" href="../documentation/glossary.html#term-Reynolds-number"><span class="xref std std-term">Reynolds number</span></a> and it has also shown good results for other applications.</p></li>
 </ul>
 <p>This tutorial uses the <span class="math notranslate nohighlight">\(k-\epsilon\)</span> model (<code class="docutils literal notranslate"><span class="pre">3</span></code>) because of its low error rate and wide applicability (compared to other turbulence closures).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">VELOCITY</span> <span class="p">:</span> <span class="n">YES</span> <span class="o">/</span> <span class="n">enabled</span> <span class="n">by</span> <span class="n">default</span>
@@ -1608,9 +1608,41 @@ This tutorial features the application of the <em>Manning</em> roughness coeffic
 <img alt="qgis flow rate discharge control section Post Telemac convergence" src="../_images/flow-control-us.png" />
 <p class="caption"><span class="caption-number">Fig. 81 </span><span class="caption-text">Draw polylines along mesh nodes and export associated flows (Copy to clipboard).</span><a class="headerlink" href="#draw-flow-controls" title="Permalink to this image">¶</a></p>
 </div>
-<div class="admonition-a-more-consistent-way-to-export-fluxes-along-lines admonition">
+<div class="tip admonition">
 <p class="admonition-title">A more consistent way to export fluxes along lines…</p>
-<p>A more consistent way to verify fluxes at open boundaries or other particular lines (e.g., tributary inflows or diversions) is to use the <code class="docutils literal notranslate"><span class="pre">CONTROL</span> <span class="pre">SECTIONS</span></code> keyword. A control section is defined by a sequence of neighboring node numbers and the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac2d/user/telemac2d_user_v8p2.pdf">Telemac2d manual</a> provides detailed explanations in section 5.2.</p>
+<p>A more consistent way to verify fluxes at open boundaries or other particular lines (e.g., tributary inflows or diversions) is to use the <code class="docutils literal notranslate"><span class="pre">CONTROL</span> <span class="pre">SECTIONS</span></code> keyword. A control section is defined by a sequence of neighboring node numbers. For instance, to verify the fluxes over the open boundaries in this tutorial, check out the node numbers in the <code class="docutils literal notranslate"><span class="pre">boundaries.cli</span></code> file (e.g., 144 to 32 for the upstream and 34 to 5 for the downstream boundary). Then create a new text file (e.g., <code class="docutils literal notranslate"><span class="pre">control-sections.txt</span></code>) and:</p>
+<ul class="simple">
+<li><p>Add one comment line with some short information (e.g., <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">control</span> <span class="pre">sections</span> <span class="pre">input</span> <span class="pre">file</span></code>). Note that this line is <strong>mandatory</strong>.</p></li>
+<li><p>In the second line add a space-separated list of 2 integers where</p>
+<ul>
+<li><p>the first integer defines the number of cross-sections, and</p></li>
+<li><p>the second integer defines if node numbers (i.e. IDs from <code class="docutils literal notranslate"><span class="pre">boundaries.cli</span></code>) or coordinates will be defined. A negative number sets node IDs and a positive number coordinates.</p></li>
+</ul>
+</li>
+<li><p>Define as many cross sections as set with the first integer. Every cross-section definition consists of two lines:</p>
+<ul>
+<li><p>The first line is a <em>string</em> (text) without spaces that is naming the cross-section (e.g., <code class="docutils literal notranslate"><span class="pre">inflow_cs</span></code>).</p></li>
+<li><p>The second line consists of two numbers defining the start and end points of the cross-sections. If the second integer in the file line is negative, provide two space-separated integers. If the second integer is positive, provide two space-separated pairs of coordinates (put a <code class="docutils literal notranslate"><span class="pre">;</span></code> between coordinates).</p></li>
+</ul>
+</li>
+</ul>
+<p>For example, the following <code class="docutils literal notranslate"><span class="pre">control-sections.txt</span></code> file can be used with the steady simulation in this tutorial (<a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/control-sections.txt">download control-sections.txt</a>).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># control sections steady2d</span>
+<span class="mi">2</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">Inflow_boundary</span>
+<span class="mi">144</span> <span class="mi">32</span>
+<span class="n">Outflow_boundary</span>
+<span class="mi">34</span> <span class="mi">5</span>
+</pre></div>
+</div>
+<p>The second line in this file tells TELEMAC to use <code class="docutils literal notranslate"><span class="pre">2</span></code> control sections, which are defined by node IDs (<code class="docutils literal notranslate"><span class="pre">-1</span></code>). To use the control sections for the simulation add the following to the steering file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">steady2d</span><span class="o">.</span><span class="n">cas</span>
+<span class="o">/</span> <span class="o">...</span>
+<span class="n">SECTIONS</span> <span class="n">INPUT</span> <span class="n">FILE</span> <span class="p">:</span>  <span class="n">control</span><span class="o">-</span><span class="n">sections</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">SECTIONS</span> <span class="n">OUTPUT</span> <span class="n">FILE</span> <span class="p">:</span> <span class="n">r</span><span class="o">-</span><span class="n">control</span><span class="o">-</span><span class="n">flows</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>Thus, re-running the simulation will write the fluxes across the two define control sections to a file called <code class="docutils literal notranslate"><span class="pre">r-control-flows.txt</span></code>. The <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac2d/user/telemac2d_user_v8p2.pdf">Telemac2d manual</a> provides detailed explanations in section 5.2.2.</p>
 </div>
 <p>The diagram in <a class="reference internal" href="#convergence-diagram-tm2d"><span class="std std-numref">Fig. 82</span></a> plots the two columns of flows at the upstream and downstream open boundaries over time for the simulation setup in this tutorial. The diagram suggests that the model reaches stability after the 55th output listing (simulation time <span class="math notranslate nohighlight">\(t \leq 5500\)</span>). Thus, the simulation time could be limited to <span class="math notranslate nohighlight">\(t = 6000\)</span>, but a simulation time of <span class="math notranslate nohighlight">\(t = 5000\)</span> would be too short.</p>
 <div class="figure align-default" id="convergence-diagram-tm2d">

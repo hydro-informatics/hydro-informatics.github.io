@@ -51,6 +51,8 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="canonical" href="https://hydro-informatics.com/numerics/telemac3d-slf.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -718,8 +720,55 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#under-construction-expected-release-in-the-next-12-months">
-   Under construction. Expected release in the next 12 months.
+  <a class="reference internal nav-link" href="#re-use-the-2d-model">
+   Re-use the 2d Model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#steering-file">
+   Steering File
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#computation-environment">
+     Computation Environment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#general-parameters">
+     General Parameters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numerical-parameters">
+     Numerical Parameters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#vertical-3d-parameters">
+     Vertical (3d) Parameters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#open-liquid-boundaries">
+     Open (Liquid) Boundaries
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initial-conditions">
+     Initial Conditions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#turbulence">
+     Turbulence
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#run-telemac3d">
+   Run Telemac3d
   </a>
  </li>
 </ul>
@@ -735,9 +784,401 @@
                 
   <div class="section" id="telemac3d-slf">
 <span id="chpt-telemac3d-slf"></span><h1>Telemac3d (SLF)<a class="headerlink" href="#telemac3d-slf" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="under-construction-expected-release-in-the-next-12-months">
-<h2>Under construction. Expected release in the next 12 months.<a class="headerlink" href="#under-construction-expected-release-in-the-next-12-months" title="Permalink to this headline">¶</a></h2>
-<p>Thank you for your patience.</p>
+<div class="warning admonition">
+<p class="admonition-title">Tutorial under construction</p>
+<p>This tutorial is still growing and provides currently only rough guidance to constructing a 3d steady, hydrodynamic model with TELEMAC.</p>
+</div>
+<div class="admonition-requirements admonition">
+<p class="admonition-title">Requirements</p>
+<p>This tutorial is designed for <strong>advanced beginners</strong> and before diving into this tutorial make sure to complete the <a class="reference internal" href="pre-slf-tm.html#slf-prepro-tm"><span class="std std-ref">TELEMAC pre-processing tutorial</span></a>.</p>
+<p>The case featured in this tutorial was established with the following software:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../get-started/others.html#npp"><span class="std std-ref">Notepad++</span></a> text editor (any other text editor will do just as well.)</p></li>
+<li><p>TELEMAC v8p2r0 (<a class="reference internal" href="../get-started/install-telemac.html#modular-install"><span class="std std-ref">stand-alone installation</span></a>).</p></li>
+<li><p><a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a> and the <a class="reference internal" href="pre-slf-tm.html#tm-qgis-plugins"><span class="std std-ref">PostTelemac plugin</span></a>.</p></li>
+<li><p>Debian Linux 10 (Buster) installed on a Virtual Machine (read more in the <a class="reference internal" href="../get-started/vm.html#chpt-vm-linux"><span class="std std-ref">software chapter</span></a>).</p></li>
+</ul>
+</div>
+<p>This tutorial shows how a steady discharge can be simulated with Telemac3d using the SLF geometry format. <strong>The tutorial builds on the steady2d simulation</strong> of the 35-m<span class="math notranslate nohighlight">\(^3\)</span>/s discharge and requires the following data from the <a class="reference internal" href="pre-slf-tm.html#slf-prepro-tm"><span class="std std-ref">pre-processing</span></a> and <a class="reference internal" href="telemac2d-steady.html#telemac2d-steady"><span class="std std-ref">steady2d</span></a> tutorials, which can be downloaded by clicking on the filenames:</p>
+<ul class="simple">
+<li><p>The computational mesh in <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf">qgismesh.slf</a>.</p></li>
+<li><p>The boundary definitions in <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/boundaries.cli">boundaries.cli</a>.</p></li>
+<li><p>The results of the steady 2d model run for 35 m<span class="math notranslate nohighlight">\(^3\)</span>/s in <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/r2dsteady.slf">r2dsteady.slf</a> (result of the <a class="reference internal" href="telemac2d-steady.html#tm2d-dry"><span class="std std-ref">dry bonus run</span></a> ending at <code class="docutils literal notranslate"><span class="pre">T=15000</span></code>).</p></li>
+</ul>
+<p>Consider saving the files in a new folder, such as <code class="docutils literal notranslate"><span class="pre">/steady3d-tutorial/</span></code>.</p>
+<div class="admonition-d-steady-simulation-file-repository admonition">
+<p class="admonition-title">3d-steady simulation file repository</p>
+<p>The simulation files used in this tutorial are available at <a class="reference external" href="https://github.com/hydro-informatics/telemac/tree/main/steady3d-tutorial/">https://github.com/hydro-informatics/telemac/tree/main/steady3d-tutorial/</a>.</p>
+</div>
+<div class="section" id="re-use-the-2d-model">
+<span id="prepro-3dsteady-slf"></span><h2>Re-use the 2d Model<a class="headerlink" href="#re-use-the-2d-model" title="Permalink to this headline">¶</a></h2>
+<p>The simulation of 3d flow phenomena flows requires the adaptation of keywords and additional keywords (e.g., for linking liquid boundary files) in the steering (<code class="docutils literal notranslate"><span class="pre">*.cas</span></code>) file from the steady2d tutorial (<a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/steady2d.cas">download steady2d.cas</a>).</p>
+<div class="admonition-view-the-steady3d-steering-file admonition">
+<p class="admonition-title">View the steady3d steering file</p>
+<p>To view the integration of the steady3d simulation keywords in the steering file, the <code class="docutils literal notranslate"><span class="pre">steady3d.cas</span></code> file can be <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady3d-tutorial/steady3d.cas">downloaded here</a>.</p>
+</div>
+</div>
+<div class="section" id="steering-file">
+<h2>Steering File<a class="headerlink" href="#steering-file" title="Permalink to this headline">¶</a></h2>
+<p>This tutorial features a steady, hydrodynamic model with an inflow rate of 35 m<span class="math notranslate nohighlight">\(^3\)</span>/s (prescribed upstream flow rate boundary) and an outflow depth of 2 m (prescribed downstream elevation). The simulation uses 5 vertical layers that constitute a numerical grid of prisms. 3d outputs of <em>U</em> (<em>x</em>-direction), <em>V</em> (<em>y</em>-direction), and <em>W</em> (<em>z</em>-direction) velocities, as well as the elevation <em>Z</em>, are written to a file named <code class="docutils literal notranslate"><span class="pre">r3dsteady.slf</span></code>. 2d outputs of depth-averaged <em>U</em> velocity (<em>x</em>-direction), depth-averaged <em>V</em> velocity (<em>y</em>-direction), and water depth <em>h</em> are written to a file named <code class="docutils literal notranslate"><span class="pre">r2d3dsteady.slf</span></code>.</p>
+<p>The below code block shows the steering file <code class="docutils literal notranslate"><span class="pre">t3d_flume.cas</span></code> and details for every parameter are provided after the code block. The slash <code class="docutils literal notranslate"><span class="pre">/</span></code> character comments out lines (i.e., TELEMAC will ignore anything in a line the <code class="docutils literal notranslate"><span class="pre">/</span></code> character). The <code class="docutils literal notranslate"><span class="pre">:</span></code> character separates <code class="docutils literal notranslate"><span class="pre">VARIABLE</span> <span class="pre">NAME</span></code> and <code class="docutils literal notranslate"><span class="pre">VALUE</span></code>s. Alternatively to the <code class="docutils literal notranslate"><span class="pre">:</span></code>, also a <code class="docutils literal notranslate"><span class="pre">=</span></code> sign may be used. The <code class="docutils literal notranslate"><span class="pre">&amp;ETA</span></code> at the end of the file makes TELEMAC printing out a list of keywords applied (in the <em>DAMOCLES</em> routine).</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To facilitate setting up the steering (CAS) file for this tutorial, <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady3d-tutorial/steady3d.cas">download the template</a> (right-click on the link &gt; <em>Save Link As…</em> &gt; navigate to the local tutorial folder), which contains more descriptions and options for simulation parameters.</p>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Expand to view the steady3d.cas steering file</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">steady3d</span><span class="p">.</span><span class="n">cas</span>
+<span class="o">/------------------------------------------------------------------/</span>
+<span class="o">/</span>			<span class="n">COMPUTATION</span> <span class="n">ENVIRONMENT</span>
+<span class="o">/------------------------------------------------------------------/</span>
+<span class="o">/</span>
+<span class="n">TITLE</span> <span class="p">:</span> <span class="s1">&#39;3d steady&#39;</span>
+<span class="n">MASS</span><span class="o">-</span><span class="n">BALANCE</span> <span class="p">:</span> <span class="n">YES</span>
+<span class="o">/</span>
+<span class="n">BOUNDARY</span> <span class="n">CONDITIONS</span> <span class="k">FILE</span> <span class="p">:</span> <span class="n">boundaries</span><span class="p">.</span><span class="n">cli</span>
+<span class="n">GEOMETRY</span> <span class="k">FILE</span>            <span class="p">:</span> <span class="n">qgismesh</span><span class="p">.</span><span class="n">slf</span>
+<span class="mi">3</span><span class="n">D</span> <span class="k">RESULT FILE</span>           <span class="p">:</span> <span class="n">r3dsteady</span><span class="p">.</span><span class="n">slf</span>
+<span class="mi">2</span><span class="n">D</span> <span class="k">RESULT FILE</span>           <span class="p">:</span> <span class="n">r2d3dsteady</span><span class="p">.</span><span class="n">med</span>
+<span class="o">/</span> <span class="k">FILE </span><span class="n">FOR</span> <span class="mi">2</span><span class="n">D</span> <span class="n">CONTINUATION</span> <span class="p">:</span> <span class="n">r2dsteady</span><span class="p">.</span><span class="n">slf</span> <span class="o">/</span> <span class="n">sec</span><span class="p">.</span> <span class="mf">3.1</span><span class="p">.</span><span class="mi">1</span>
+<span class="o">/</span>
+<span class="n">VARIABLES</span> <span class="n">FOR</span> <span class="mi">2</span><span class="n">D</span> <span class="n">GRAPHIC</span> <span class="n">PRINTOUTS</span> <span class="p">:</span> <span class="n">U</span><span class="p">,</span><span class="n">V</span><span class="p">,</span><span class="n">H</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">Q</span><span class="p">,</span><span class="n">F</span> <span class="o">/</span> <span class="n">Q</span> <span class="n">enables</span> <span class="n">boundary</span> <span class="n">flux</span> <span class="n">equilibrium</span> <span class="n">controls</span>
+<span class="n">VARIABLES</span> <span class="n">FOR</span> <span class="mi">3</span><span class="n">D</span> <span class="n">GRAPHIC</span> <span class="n">PRINTOUTS</span> <span class="p">:</span> <span class="n">Z</span><span class="p">,</span><span class="n">U</span><span class="p">,</span><span class="n">V</span><span class="p">,</span><span class="n">W</span>
+<span class="o">/</span>
+<span class="o">/------------------------------------------------------------------/</span>
+<span class="o">/</span>			<span class="n">GENERAL</span> <span class="n">PARAMETERS</span>
+<span class="o">/------------------------------------------------------------------/</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="mi">2</span><span class="n">D</span> <span class="n">CONTINUATION</span> <span class="p">:</span> <span class="n">YES</span> <span class="o">/</span> <span class="n">enable</span> <span class="n">to</span> <span class="n">start</span> <span class="n">off</span> <span class="n">from</span> <span class="mi">2</span><span class="n">d</span> <span class="n">simulation</span>
+<span class="nb">TIME </span><span class="n">STEP</span> <span class="p">:</span> <span class="mf">1.</span>
+<span class="n">NUMBER</span> <span class="n">OF</span> <span class="nb">TIME </span><span class="n">STEPS</span> <span class="p">:</span> <span class="mi">8000</span>
+<span class="n">GRAPHIC</span> <span class="n">PRINTOUT</span> <span class="n">PERIOD</span> <span class="p">:</span> <span class="mi">500</span>
+<span class="n">LISTING</span> <span class="n">PRINTOUT</span> <span class="n">PERIOD</span> <span class="p">:</span> <span class="mi">200</span>
+<span class="o">/</span>
+<span class="o">/------------------------------------------------------------------/</span>
+<span class="o">/</span>			<span class="n">VERTICAL</span>
+<span class="o">/------------------------------------------------------------------/</span>
+<span class="o">/</span> <span class="n">vertical</span> <span class="n">cell</span> <span class="n">height</span> <span class="n">defined</span> <span class="n">by</span> <span class="n">initial</span> <span class="n">condition</span> <span class="n">x</span> <span class="n">no</span><span class="p">.</span> <span class="n">of</span> <span class="n">levels</span>
+<span class="o">/</span> <span class="n">will</span> <span class="n">be</span> <span class="n">adapted</span> <span class="n">for</span> <span class="n">every</span> <span class="nb">time </span><span class="n">step</span>
+<span class="n">NUMBER</span> <span class="n">OF</span> <span class="n">HORIZONTAL</span> <span class="n">LEVELS</span> <span class="p">:</span> <span class="mi">5</span> <span class="o">/</span> <span class="n">default</span> <span class="nb">and </span><span class="n">minimum</span> <span class="k">is </span><span class="mi">2</span><span class="p">,</span> <span class="n">upward</span> <span class="n">vertical</span> <span class="n">direction</span>
+<span class="n">MESH</span> <span class="n">TRANSFORMATION</span> <span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span><span class="o">-</span><span class="n">CALCOT</span> <span class="p">(</span><span class="n">user</span> <span class="n">defined</span><span class="p">)</span> <span class="mi">1</span><span class="o">-</span><span class="n">SIGMA</span> <span class="p">(</span><span class="n">default</span><span class="p">)</span> <span class="mi">3</span><span class="o">-</span><span class="n">user</span> <span class="n">defined</span>
+<span class="n">ELEMENT</span> <span class="p">:</span> <span class="s1">&#39;PRISM&#39;</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is</span> <span class="s1">&#39;PRISM&#39;</span> <span class="n">but</span> <span class="n">preferably</span> <span class="k">use</span> <span class="s1">&#39;TETRAHEDRON&#39;</span>
+<span class="o">/</span>
+<span class="o">/------------------------------------------------------------------/</span>
+<span class="o">/</span>			<span class="n">NUMERICAL</span> <span class="n">PARAMETERS</span>
+<span class="o">/------------------------------------------------------------------/</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">CONVECTION</span><span class="o">-</span><span class="n">DIFFUSION</span>
+<span class="o">/------------------------------------------------------------------</span>
+<span class="n">SCHEME</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">VELOCITIES</span> <span class="p">:</span> <span class="mi">5</span>
+<span class="n">SCHEME</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">K</span><span class="o">-</span><span class="nb">EPSILON</span> <span class="p">:</span> <span class="mi">5</span>
+<span class="n">SCHEME</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">TRACERS</span> <span class="p">:</span> <span class="mi">5</span>
+<span class="n">SCHEME</span> <span class="n">OPTION</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">VELOCITIES</span> <span class="p">:</span> <span class="mi">4</span> <span class="o">/</span> <span class="k">use </span><span class="mi">2</span> <span class="n">for</span> <span class="n">without</span> <span class="n">tidal</span> <span class="n">flats</span> <span class="n">for</span> <span class="n">speed</span>
+<span class="n">SCHEME</span> <span class="n">OPTION</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">K</span><span class="o">-</span><span class="nb">EPSILON</span> <span class="p">:</span> <span class="mi">4</span>
+<span class="n">SCHEME</span> <span class="n">OPTION</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">TRACERS</span> <span class="p">:</span> <span class="mi">4</span>
+<span class="o">/</span>
+<span class="n">MATRIX</span> <span class="n">STORAGE</span> <span class="p">:</span> <span class="mi">3</span> <span class="o">/</span> <span class="mi">1</span> <span class="p">(</span><span class="n">element</span><span class="o">-</span><span class="n">by</span><span class="o">-</span><span class="n">element</span><span class="p">),</span> <span class="mi">3</span> <span class="p">(</span><span class="n">segment</span><span class="o">-</span><span class="n">wise</span> <span class="n">faster</span><span class="p">)</span>
+<span class="n">SUPG</span> <span class="n">OPTION</span> <span class="p">:</span> <span class="mi">2</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">2</span>  <span class="o">/</span> <span class="n">classic</span> <span class="n">supg</span> <span class="n">for</span> <span class="n">U</span> <span class="nb">and </span><span class="n">V</span>  <span class="n">see</span> <span class="n">docs</span> <span class="n">sec</span> <span class="mf">6.2</span><span class="p">.</span><span class="mi">2</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">PROPAGATION</span> <span class="n">HEIGHT</span> <span class="nb">AND </span><span class="n">STABILITY</span>
+<span class="o">/</span> <span class="o">------------------------------------------------------------------</span>
+<span class="n">IMPLICITATION</span> <span class="n">FOR</span> <span class="n">DEPTH</span> <span class="p">:</span> <span class="mf">0.55</span> <span class="o">/</span> <span class="n">should</span> <span class="n">be</span> <span class="n">between</span> <span class="mf">0.55</span> <span class="nb">and </span><span class="mf">0.6</span>
+<span class="n">IMPLICITATION</span> <span class="n">FOR</span> <span class="n">VELOCITIES</span> <span class="p">:</span> <span class="mf">0.55</span> <span class="o">/</span> <span class="n">should</span> <span class="n">be</span> <span class="n">between</span> <span class="mf">0.55</span> <span class="nb">and </span><span class="mf">0.6</span>
+<span class="n">IMPLICITATION</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="p">:</span> <span class="mf">1.</span>
+<span class="n">FREE</span> <span class="n">SURFACE</span> <span class="n">GRADIENT</span> <span class="n">COMPATIBILITY</span> <span class="p">:</span> <span class="mf">0.1</span>  <span class="o">/</span> <span class="n">default</span> <span class="mf">1.</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">MASS</span> <span class="n">LUMPING</span> <span class="o">-</span> <span class="n">enable</span> <span class="n">to</span> <span class="n">fasten</span> <span class="n">calculations</span> <span class="p">(</span><span class="n">smoothens</span><span class="p">)</span> <span class="o">-</span> <span class="n">possibly</span> <span class="n">avoid</span> <span class="n">in</span> <span class="mi">3</span><span class="n">d</span>
+<span class="o">/</span> <span class="o">------------------------------------------------------------------</span>
+<span class="o">/</span> <span class="n">MASS</span><span class="o">-</span><span class="n">LUMPING</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">1</span> <span class="k">is </span><span class="n">ON</span> <span class="o">-</span> <span class="mi">0</span> <span class="k">is </span><span class="n">OFF</span> <span class="p">(</span><span class="n">default</span><span class="p">)</span>
+<span class="o">/</span> <span class="n">MASS</span><span class="o">-</span><span class="n">LUMPING</span> <span class="n">FOR</span> <span class="n">DEPTH</span> <span class="p">:</span> <span class="mf">1.</span>  <span class="o">/</span> <span class="n">VELOCITY</span> <span class="n">has</span> <span class="n">no</span> <span class="n">effect</span>
+<span class="o">/</span> <span class="n">MASS</span><span class="o">-</span><span class="n">LUMPING</span> <span class="n">FOR</span> <span class="n">WEAK</span> <span class="n">CHARACTERISTICS</span> <span class="p">:</span> <span class="mi">1</span>
+<span class="o">/</span>
+<span class="o">/------------------------------------------------------------------/</span>
+<span class="o">/</span>			<span class="n">HYDRODYNAMICS</span>
+<span class="o">/------------------------------------------------------------------/</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">HYDRODYNAMIC</span> <span class="n">SOLVER</span>
+<span class="o">/------------------------------------------------------------------</span>
+<span class="n">NON</span><span class="o">-</span><span class="n">HYDROSTATIC</span> <span class="n">VERSION</span> <span class="p">:</span> <span class="n">YES</span>
+<span class="o">/</span> <span class="n">solver</span> <span class="k">options </span><span class="n">are</span>
+<span class="o">/</span> <span class="mi">1</span><span class="o">-</span><span class="n">conjugate</span> <span class="n">method</span> <span class="mi">2</span><span class="o">-</span><span class="n">conjugate</span> <span class="n">residual</span> <span class="n">method</span> <span class="mi">3</span><span class="o">-</span><span class="n">conjugate</span> <span class="n">gradient</span>
+<span class="o">/</span> <span class="mi">4</span><span class="o">-</span><span class="n">minimum</span> <span class="n">error</span> <span class="mi">5</span><span class="o">-</span><span class="n">square</span> <span class="n">conjugate</span> <span class="n">gradient</span> <span class="mi">6</span><span class="o">-</span><span class="n">stabilized</span> <span class="n">conjugate</span> <span class="n">gradient</span> <span class="n">CGSTAB</span>
+<span class="o">/</span> <span class="mi">7</span><span class="o">-</span><span class="n">Generalised</span> <span class="n">Minimum</span> <span class="n">RESidual</span> <span class="n">GMRES</span> <span class="k">is </span><span class="n">the</span> <span class="n">favorite</span> <span class="n">for</span> <span class="n">improperly</span> <span class="n">conditioned</span> <span class="n">systems</span> <span class="o">-</span> <span class="n">RECOMMENDED</span> <span class="n">in</span> <span class="mi">3</span><span class="n">d</span>
+<span class="o">/</span> <span class="mi">8</span><span class="o">-</span><span class="n">direct</span> <span class="n">solver</span> <span class="n">YSMP</span> <span class="p">(</span><span class="n">Yale</span><span class="p">)</span> <span class="k">is </span><span class="nb">not </span><span class="n">working</span> <span class="n">with</span> <span class="n">parallel</span> <span class="n">versions</span>
+<span class="n">SOLVER</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">VELOCITIES</span> <span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">1</span><span class="o">-</span><span class="n">default</span>
+<span class="n">SOLVER</span> <span class="n">FOR</span> <span class="n">PROPAGATION</span> <span class="p">:</span> <span class="mi">7</span> <span class="o">/</span> <span class="mi">7</span><span class="o">-</span><span class="n">default</span>
+<span class="n">SOLVER</span> <span class="n">FOR</span> <span class="n">PPE</span> <span class="p">:</span> <span class="mi">7</span> <span class="o">/</span> <span class="mi">7</span><span class="o">-</span><span class="n">default</span>
+<span class="o">/</span> <span class="n">SOLVER</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">TRACERS</span> <span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">one</span> <span class="k">value </span><span class="n">per</span> <span class="n">tracer</span>
+<span class="n">SOLVER</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">K</span><span class="o">-</span><span class="nb">EPSILON</span> <span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">1</span><span class="o">-</span><span class="n">default</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">Set</span> <span class="k">OPTIONS </span><span class="n">for</span> <span class="n">GMRES</span>
+<span class="o">/</span> <span class="n">Increasing</span> <span class="n">values</span> <span class="n">for</span> <span class="nb">precision</span><span class="p">,</span> <span class="n">but</span> <span class="n">also</span> <span class="n">more</span> <span class="k">memory </span><span class="n">consumption</span>
+<span class="n">OPTION</span> <span class="n">OF</span> <span class="n">SOLVER</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">VELOCITIES</span> <span class="p">:</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">5</span><span class="o">-</span><span class="n">default</span> <span class="n">since</span> <span class="n">v8</span>
+<span class="n">OPTION</span> <span class="n">OF</span> <span class="n">SOLVER</span> <span class="n">FOR</span> <span class="n">PROPAGATION</span> <span class="p">:</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">5</span><span class="o">-</span><span class="n">default</span> <span class="n">since</span> <span class="n">v8</span>
+<span class="n">OPTION</span> <span class="n">OF</span> <span class="n">SOLVER</span> <span class="n">FOR</span> <span class="n">PPE</span> <span class="p">:</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">5</span><span class="o">-</span><span class="n">default</span> <span class="n">since</span> <span class="n">v8</span>
+<span class="n">OPTION</span> <span class="n">OF</span> <span class="n">SOLVER</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">K</span><span class="o">-</span><span class="nb">EPSILON</span> <span class="p">:</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">5</span><span class="o">-</span><span class="n">default</span> <span class="n">since</span> <span class="n">v8</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">Solver</span> <span class="n">ACCURACY</span>
+<span class="n">ACCURACY</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">VELOCITIES</span> <span class="p">:</span> <span class="mf">1.E-8</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="mf">1.E-8</span>
+<span class="n">ACCURACY</span> <span class="n">FOR</span> <span class="n">PROPAGATION</span> <span class="p">:</span> <span class="mf">1.E-8</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="mf">1.E-8</span>
+<span class="n">ACCURACY</span> <span class="n">FOR</span> <span class="n">PPE</span> <span class="p">:</span> <span class="mf">1.E-6</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="mf">1.E-8</span>
+<span class="n">ACCURACY</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">K</span><span class="o">-</span><span class="nb">EPSILON</span> <span class="p">:</span> <span class="mf">1.E-8</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="mf">1.E-8</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">Solver</span> <span class="n">MAXIMUM</span> <span class="n">ITERATIONS</span>
+<span class="n">MAXIMUM</span> <span class="n">NUMBER</span> <span class="n">OF</span> <span class="n">ITERATIONS</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">VELOCITIES</span> <span class="p">:</span> <span class="mi">100</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="mi">60</span>
+<span class="n">MAXIMUM</span> <span class="n">NUMBER</span> <span class="n">OF</span> <span class="n">ITERATIONS</span> <span class="n">FOR</span> <span class="n">PROPAGATION</span> <span class="p">:</span> <span class="mi">200</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="mi">100</span>
+<span class="n">MAXIMUM</span> <span class="n">NUMBER</span> <span class="n">OF</span> <span class="n">ITERATIONS</span> <span class="n">FOR</span> <span class="n">PPE</span> <span class="p">:</span> <span class="mi">100</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="mi">100</span>
+<span class="n">MAXIMUM</span> <span class="n">NUMBER</span> <span class="n">OF</span> <span class="n">ITERATIONS</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">K</span><span class="o">-</span><span class="nb">EPSILON</span> <span class="p">:</span> <span class="mi">150</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="mi">200</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">PRECONDITIONING</span> <span class="o">-</span> <span class="n">DEFAULT</span> <span class="k">Value is </span><span class="mi">2</span> <span class="n">for</span> <span class="k">all</span>
+<span class="n">PRECONDITIONING</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">VELOCITIES</span> <span class="p">:</span> <span class="mi">2</span>
+<span class="n">PRECONDITIONING</span> <span class="n">FOR</span> <span class="n">PROPAGATION</span> <span class="p">:</span> <span class="mi">2</span>
+<span class="n">PRECONDITIONING</span> <span class="n">FOR</span> <span class="n">PPE</span> <span class="p">:</span> <span class="mi">2</span>
+<span class="n">PRECONDITIONING</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">TRACERS</span> <span class="p">:</span> <span class="mi">2</span>
+<span class="n">PRECONDITIONING</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">K</span><span class="o">-</span><span class="nb">EPSILON</span> <span class="p">:</span> <span class="mi">2</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">BOUNDARY</span> <span class="n">CONDITIONS</span>
+<span class="o">/------------------------------------------------------------------</span>
+<span class="o">/</span> <span class="k">Use </span><span class="n">Nikuradse</span> <span class="n">roughness</span> <span class="n">law</span> <span class="o">-</span> <span class="k">all </span><span class="n">others</span> <span class="n">are</span> <span class="nb">not </span><span class="mi">3</span><span class="n">D</span> <span class="n">compatible</span>
+<span class="n">LAW</span> <span class="n">OF</span> <span class="n">BOTTOM</span> <span class="n">FRICTION</span> <span class="p">:</span> <span class="mi">5</span>
+<span class="n">LAW</span> <span class="n">OF</span> <span class="n">FRICTION</span> <span class="n">ON</span> <span class="n">LATERAL</span> <span class="n">BOUNDARIES</span> <span class="p">:</span> <span class="mi">5</span>  <span class="o">/</span> <span class="n">for</span> <span class="n">natural</span> <span class="n">banks</span> <span class="o">-</span> <span class="mi">0</span> <span class="n">for</span> <span class="n">symmetry</span>
+<span class="n">FRICTION</span> <span class="n">COEFFICIENT</span> <span class="n">FOR</span> <span class="n">THE</span> <span class="n">BOTTOM</span> <span class="p">:</span> <span class="mf">0.1</span> <span class="o">/</span> <span class="mi">3</span> <span class="n">times</span> <span class="n">d90</span> <span class="n">according</span> <span class="n">to</span> <span class="n">van</span> <span class="n">Rijn</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">Liquid</span> <span class="n">boundaries</span> <span class="o">-</span> <span class="n">avoid</span> <span class="n">Thompson</span> <span class="p">(</span><span class="n">invalid</span> <span class="n">in</span> <span class="mi">3</span><span class="n">d</span><span class="p">)</span>
+<span class="n">PRESCRIBED</span> <span class="n">FLOWRATES</span>  <span class="p">:</span> <span class="mi">3</span><span class="mf">5.</span><span class="p">;</span><span class="mi">3</span><span class="mf">5.</span>
+<span class="n">PRESCRIBED</span> <span class="n">ELEVATIONS</span> <span class="p">:</span> <span class="mf">0.</span><span class="p">;</span><span class="mi">37</span><span class="mf">1.33</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">INITIAL</span> <span class="n">CONDITIONS</span>
+<span class="o">/</span> <span class="o">------------------------------------------------------------------</span>
+<span class="n">INITIAL</span> <span class="n">CONDITIONS</span> <span class="p">:</span> <span class="s1">&#39;CONSTANT DEPTH&#39;</span> <span class="o">/</span> <span class="nb">or </span><span class="n">CONSTANT</span> <span class="n">DEPTH</span> <span class="n">see</span> <span class="n">docs</span> <span class="n">sec</span><span class="p">.</span> <span class="mf">4.2</span>
+<span class="n">INITIAL</span> <span class="n">DEPTH</span> <span class="p">:</span> <span class="mf">0.1</span>
+<span class="n">INITIAL</span> <span class="n">GUESS</span> <span class="n">FOR</span> <span class="n">DEPTH</span> <span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="kt">INTEGER </span><span class="n">for</span> <span class="n">speeding</span> <span class="n">up</span> <span class="n">calculations</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">Other</span>
+<span class="o">/------------------------------------------------------------------</span>
+<span class="n">VELOCITY</span> <span class="n">VERTICAL</span> <span class="n">PROFILES</span> <span class="p">:</span> <span class="mi">2</span><span class="p">;</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">0</span> <span class="p">(</span><span class="n">user</span><span class="o">-</span><span class="n">defined</span><span class="p">),</span> <span class="mi">1</span> <span class="p">(</span><span class="n">Constant</span><span class="p">),</span> <span class="mi">2</span> <span class="p">(</span><span class="nb">Log</span><span class="p">)</span>
+<span class="n">VELOCITY</span> <span class="n">PROFILES</span> <span class="p">:</span> <span class="mi">1</span><span class="p">;</span><span class="mi">1</span> <span class="o">/</span> <span class="n">horizontal</span> <span class="n">profile</span>
+<span class="o">/</span>
+<span class="o">/------------------------------------------------------------------/</span>
+<span class="o">/</span>			<span class="n">TIDAL</span> <span class="n">FLATS</span>
+<span class="o">/------------------------------------------------------------------/</span>
+<span class="n">TIDAL</span> <span class="n">FLATS</span> <span class="p">:</span> <span class="n">YES</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="n">YES</span> <span class="o">-</span> <span class="n">disable</span> <span class="n">for</span> <span class="n">faster</span> <span class="n">model</span> <span class="n">runs</span>
+<span class="o">/</span> <span class="n">TREATMENT</span> <span class="n">OF</span> <span class="n">NEGATIVE</span> <span class="n">DEPTHS</span> <span class="p">:</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">requires</span> <span class="n">mass</span> <span class="n">lumping</span> <span class="n">for</span> <span class="n">depth</span> <span class="n">set</span> <span class="n">to</span> <span class="mi">1</span>
+<span class="n">TREATMENT</span> <span class="n">ON</span> <span class="n">TIDAL</span> <span class="n">FLATS</span> <span class="n">FOR</span> <span class="n">TRACERS</span> <span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">ensure</span> <span class="n">conservation</span>
+<span class="o">/</span> <span class="n">more</span> <span class="n">in</span> <span class="n">section</span> <span class="n">docs</span> <span class="mf">6.6</span>
+<span class="o">/</span>
+<span class="o">/------------------------------------------------------------------/</span>
+<span class="o">/</span>			<span class="n">TURBULENCE</span>
+<span class="o">/------------------------------------------------------------------/</span>
+<span class="o">/</span> <span class="n">in</span> <span class="mi">3</span><span class="n">d</span> <span class="k">use </span><span class="n">k</span><span class="o">-</span><span class="nb">epsilon </span><span class="n">model</span><span class="p">,</span> <span class="n">alternatively</span> <span class="n">Spalart</span><span class="o">-</span><span class="n">Allmaras</span> <span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="nb">or</span>
+<span class="o">/</span>  <span class="n">Smagorinsky</span> <span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="n">for</span> <span class="n">highly</span> <span class="n">non</span><span class="o">-</span><span class="n">linear</span> <span class="n">flow</span>
+<span class="n">HORIZONTAL</span> <span class="n">TURBULENCE</span> <span class="n">MODEL</span> <span class="p">:</span> <span class="mi">3</span>
+<span class="n">VERTICAL</span> <span class="n">TURBULENCE</span> <span class="n">MODEL</span> <span class="p">:</span> <span class="mi">3</span>
+<span class="n">MIXING</span> <span class="n">LENGTH</span> <span class="n">MODEL</span> <span class="p">:</span> <span class="mi">3</span> <span class="o">/</span> <span class="n">telemac</span> <span class="n">docs</span> <span class="n">sec</span><span class="p">.</span> <span class="mf">5.2</span><span class="p">.</span><span class="mi">2</span>
+<span class="n">COEFFICIENT</span> <span class="n">FOR</span> <span class="n">HORIZONTAL</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">VELOCITIES</span> <span class="p">:</span> <span class="mf">1.E-6</span> <span class="o">/</span> <span class="k">is </span><span class="n">default</span>
+<span class="n">COEFFICIENT</span> <span class="n">FOR</span> <span class="n">VERTICAL</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">VELOCITIES</span>   <span class="p">:</span> <span class="mf">1.E-6</span> <span class="o">/</span> <span class="k">is </span><span class="n">default</span>
+<span class="o">/</span>
+<span class="o">/------------------------------------------------------------------/</span>
+<span class="o">/</span>			<span class="n">PARALLELISM</span>
+<span class="o">/------------------------------------------------------------------/</span>
+<span class="n">PARALLEL</span> <span class="n">PROCESSORS</span> <span class="p">:</span> <span class="mi">0</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="mi">0</span> <span class="o">-</span> <span class="k">all </span><span class="n">others</span> <span class="n">define</span> <span class="n">number</span> <span class="n">of</span> <span class="n">processors</span>
+<span class="o">/</span> <span class="n">PARTIONING</span> <span class="n">TOOL</span> <span class="p">:</span> <span class="n">METIS</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="n">METIS</span><span class="p">,</span> <span class="n">others</span> <span class="n">are</span> <span class="n">SCOTCH</span><span class="p">,</span> <span class="n">PARMETIS</span><span class="p">,</span> <span class="n">PTSCOTCH</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">ENABLE</span> <span class="n">COMMAND</span> <span class="n">PRINTS</span> <span class="n">IN</span> <span class="n">TERMINAL</span>
+<span class="p">&amp;</span><span class="n">ETA</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="computation-environment">
+<span id="tm3d-slf-env"></span><h3>Computation Environment<a class="headerlink" href="#computation-environment" title="Permalink to this headline">¶</a></h3>
+<p><strong>The following descriptions refer to section 3 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac3d/user/telemac3d_user_v8p2.pdf">Telemac3d manual</a>.</strong></p>
+<p>The computation environment defines a <strong>Title</strong> (e.g., <code class="docutils literal notranslate"><span class="pre">TELEMAC</span> <span class="pre">3D</span> <span class="pre">FLUME</span></code>). The most important parameters involve the <strong>input</strong> files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">GEOMETRY</span> <span class="pre">FILE</span></code>: <code class="docutils literal notranslate"><span class="pre">qgismesh.slf</span></code> - alternatively, select a <em>serafin</em> (SLF) geometry file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Boundary</span> <span class="pre">conditions</span> <span class="pre">file</span></code>: <code class="docutils literal notranslate"><span class="pre">boundaries.cli</span></code> - with a <em>SLF</em> file, use a <em>CLI</em> boundary file</p></li>
+</ul>
+<p>The <strong>output</strong> can be defined with the following keywords:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">3D</span> <span class="pre">RESULT</span> <span class="pre">FILE</span></code>: <code class="docutils literal notranslate"><span class="pre">r3dsteady.slf</span></code> - can be either a <em>MED</em> file or a <em>SLF</em> file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2D</span> <span class="pre">RESULT</span> <span class="pre">FILE</span></code>: <code class="docutils literal notranslate"><span class="pre">r2d3dsteady.slf</span></code> - can be either a <em>MED</em> file or a <em>SLF</em> file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VARIABLES</span> <span class="pre">FOR</span> <span class="pre">3D</span> <span class="pre">GRAPHIC</span> <span class="pre">PRINTOUTS</span></code>:  <code class="docutils literal notranslate"><span class="pre">U,V,H,S,Q,F</span></code> - many more options can be found in section 3.12 of the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac3d/user/telemac3d_user_v8p2.pdf">Telemac3d manual</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VARIABLES</span> <span class="pre">FOR</span> <span class="pre">2D</span> <span class="pre">GRAPHIC</span> <span class="pre">PRINTOUTS</span></code>:  <code class="docutils literal notranslate"><span class="pre">U,V,H</span></code> - many more options can be found in section 3.13 of the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac3d/user/telemac3d_user_v8p2.pdf">Telemac3d manual</a></p></li>
+</ul>
+<p>In addition, the <code class="docutils literal notranslate"><span class="pre">MASS-BALANCE</span> <span class="pre">:</span> <span class="pre">YES</span></code> setting will printout the mass fluxes and errors in the computation region, which is an important parameter for verifying the plausibility of the model.</p>
+</div>
+<div class="section" id="general-parameters">
+<h3>General Parameters<a class="headerlink" href="#general-parameters" title="Permalink to this headline">¶</a></h3>
+<p><strong>The following descriptions refer to section 3.2 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac3d/user/telemac3d_user_v8p2.pdf">Telemac3d manual</a>.</strong></p>
+<p>The <em>General parameters</em> specify <em>time</em> and <em>location</em> settings for the simulation:</p>
+<ul class="simple">
+<li><p><strong>Location</strong> can be used for geo-referencing of outputs (not to set in this tutorial).</p></li>
+<li><p><strong>Time</strong>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">TIME</span> <span class="pre">STEP</span></code>: <code class="docutils literal notranslate"><span class="pre">1.0</span></code> defines the time step as a multiple of graphic/listing printout periods.<br><em>Use small enough and sufficient time steps to achieve/increase computational stability and increase to yield computational efficiency.</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NUMBER</span> <span class="pre">OF</span> <span class="pre">TIME</span> <span class="pre">STEPS</span></code>: <code class="docutils literal notranslate"><span class="pre">8000</span></code> defines the overall simulation length. <br><em>Limit the number of time steps to a minimum (e.g., until equilibrium conditions are reached in a steady simulation).</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GRAPHIC</span> <span class="pre">PRINTOUT</span> <span class="pre">PERIOD</span></code> : <code class="docutils literal notranslate"><span class="pre">500</span></code> time step at which graphic variables are written,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LISTING</span> <span class="pre">PRINTOUT</span> <span class="pre">PERIOD</span></code>: <code class="docutils literal notranslate"><span class="pre">500</span></code> time step multiplier at which listing variables are printed (in this example, listings are printed every <code class="docutils literal notranslate"><span class="pre">100</span></code> · <code class="docutils literal notranslate"><span class="pre">1</span></code> = 100 seconds)</p></li>
+</ul>
+</li>
+</ul>
+<p>Modify the time parameters to examine the effect in the simulation later.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Graphic printouts, just like all other data printouts, are time consuming and will slow down the simulation.</p>
+</div>
+</div>
+<div class="section" id="numerical-parameters">
+<h3>Numerical Parameters<a class="headerlink" href="#numerical-parameters" title="Permalink to this headline">¶</a></h3>
+<p><strong>The following descriptions refer to section 6 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac3d/user/telemac3d_user_v8p2.pdf">Telemac3d manual</a>.</strong></p>
+<p>This section defines internal numerical parameters for the <a class="reference internal" href="../documentation/glossary.html#term-Advection"><span class="xref std std-term">Advection</span></a> and  <a class="reference internal" href="../documentation/glossary.html#term-Diffusion"><span class="xref std std-term">Diffusion</span></a> solvers.</p>
+<p>In Telemac3d, it is recommended to use the so-called distributive predictor-corrector (PSI) scheme (<a class="reference external" href="https://henry.baw.de/bitstream/handle/20.500.11970/104314/13_Hervouet_2015.pdf?sequence=1&amp;isAllowed=y">read more</a> at the BAW’s hydraulic engineering repository) with local implication for tidal flats (for velocity, tracers, and k-epsilon):</p>
+<ul class="simple">
+<li><p>Set the PSI scheme:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">SCHEME</span> <span class="pre">FOR</span> <span class="pre">ADVECTION</span> <span class="pre">OF</span> <span class="pre">VELOCITIES</span></code>: <code class="docutils literal notranslate"><span class="pre">5</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SCHEME</span> <span class="pre">FOR</span> <span class="pre">ADVECTION</span> <span class="pre">OF</span> <span class="pre">K-EPSILON</span></code>: <code class="docutils literal notranslate"><span class="pre">5</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SCHEME</span> <span class="pre">FOR</span> <span class="pre">ADVECTION</span> <span class="pre">OF</span> <span class="pre">TRACERS</span></code>: <code class="docutils literal notranslate"><span class="pre">5</span></code></p></li>
+</ul>
+</li>
+<li><p>Enable predictor-corrector with local implication:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">SCHEME</span> <span class="pre">OPTION</span> <span class="pre">FOR</span> <span class="pre">ADVECTION</span> <span class="pre">OF</span> <span class="pre">VELOCITIES</span></code>: <code class="docutils literal notranslate"><span class="pre">4</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SCHEME</span> <span class="pre">OPTION</span> <span class="pre">FOR</span> <span class="pre">ADVECTION</span> <span class="pre">OF</span> <span class="pre">K-EPSILON</span></code>: <code class="docutils literal notranslate"><span class="pre">4</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SCHEME</span> <span class="pre">OPTION</span> <span class="pre">FOR</span> <span class="pre">ADVECTION</span> <span class="pre">OF</span> <span class="pre">TRACERS</span></code>: <code class="docutils literal notranslate"><span class="pre">4</span></code></p></li>
+</ul>
+</li>
+</ul>
+<p>These values (<code class="docutils literal notranslate"><span class="pre">5</span></code> for the scheme and <code class="docutils literal notranslate"><span class="pre">4</span></code> for the scheme option) are default values since <em>TELEMAC v8p1</em>, but it still makes sense to define these parameters for enabling backward compatibility of the steering file. If the occurrence of tidal flats can be excluded (note that already a little backwater upstream of a barrier can represent a tidal flat), the <code class="docutils literal notranslate"><span class="pre">SCHEME</span> <span class="pre">OPTIONS</span></code> can generally set to <code class="docutils literal notranslate"><span class="pre">2</span></code> for speeding up the simulation.</p>
+<p>Similar to <a class="reference internal" href="../documentation/glossary.html#term-Advection"><span class="xref std std-term">Advection</span></a>, the above keywords can be used to define <a class="reference internal" href="../documentation/glossary.html#term-Diffusion"><span class="xref std std-term">Diffusion</span></a> steps (replace <code class="docutils literal notranslate"><span class="pre">ADVECTION</span></code> with <code class="docutils literal notranslate"><span class="pre">DIFFUSION</span></code> in the keywords), where a value of <code class="docutils literal notranslate"><span class="pre">0</span></code> can be used to override the default value of <code class="docutils literal notranslate"><span class="pre">1</span></code> and disable diffusion.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">SUPG</span> <span class="pre">OPTION</span></code> (Streamline Upwind Petrov Galerkin) keyword is a list of four integers that define if upwinding applies and what type of upwinding applies. The integers may take the following values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> disables upwinding,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> enables upwinding with a classical SUPG scheme (recommended when the <a class="reference internal" href="../documentation/glossary.html#term-CFL"><span class="xref std std-term">CFL</span></a> condition is unknown), and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> enables upwinding with a modified SUPG scheme, where upwinding corresponds to the Courant number.</p></li>
+</ul>
+<p>The default is <code class="docutils literal notranslate"><span class="pre">SUPG</span> <span class="pre">OPTION</span> <span class="pre">:</span> <span class="pre">1;0;1;1</span></code>, where the first list element refers to flow velocity (default <code class="docutils literal notranslate"><span class="pre">1</span></code>), the second to water depth (default <code class="docutils literal notranslate"><span class="pre">0</span></code>), the third to tracers (default <code class="docutils literal notranslate"><span class="pre">1</span></code>), and the last to the k-epsilon model (default <code class="docutils literal notranslate"><span class="pre">1</span></code>). Read more in section 6.2.2 of the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac3d/user/telemac3d_user_v8p2.pdf">Telemac3d manual</a>.</p>
+<p>An additional option for speeding up is to enable mass lumping for diffusion, depth, and/or weak characteristics. Mass lumping results in faster convergence, but it introduces artificial dispersion in the results, which is why enabling mass lumping is discouraged by the TELEMAC developers. The provided <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady3d-tutorial/steady3d.cas">steady3d.cas</a> includes the keywords for mass lumping, though they are disabled through the <code class="docutils literal notranslate"><span class="pre">/</span></code> at the beginning of the line.</p>
+<p><strong>Implication parameters</strong> (<code class="docutils literal notranslate"><span class="pre">IMPLICITATION</span> <span class="pre">FOR</span> <span class="pre">DEPTH</span></code> and <code class="docutils literal notranslate"><span class="pre">IMPLICITATION</span> <span class="pre">FOR</span> <span class="pre">VELOCITIES</span></code>) should be set between 0.55 and 0.60 (default is 0.55 since <em>TELEMAC v8p1</em>) and can be considered as a degree of implicitation. <code class="docutils literal notranslate"><span class="pre">IMPLICITATION</span> <span class="pre">FOR</span> <span class="pre">DIFFUSION</span></code> is set to <code class="docutils literal notranslate"><span class="pre">1.0</span></code> by default. Read more in section 6.4 of the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac3d/user/telemac3d_user_v8p2.pdf">Telemac3d manual</a>.</p>
+<p>The parameter <code class="docutils literal notranslate"><span class="pre">FREE</span> <span class="pre">SURFACE</span> <span class="pre">GRADIENT</span></code> can be used for increasing the stability of a model. Its default value is <code class="docutils literal notranslate"><span class="pre">1.0</span></code>, but it can be reduced to <code class="docutils literal notranslate"><span class="pre">0.1</span></code> to achieve stability.</p>
+<p>(tm3d-slf-vertical)</p>
+</div>
+<div class="section" id="vertical-3d-parameters">
+<h3>Vertical (3d) Parameters<a class="headerlink" href="#vertical-3d-parameters" title="Permalink to this headline">¶</a></h3>
+<p><strong>The following descriptions refer to section 4.1 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac3d/user/telemac3d_user_v8p2.pdf">Telemac3d manual</a>.</strong></p>
+<p>Telemac3d will add <em>Horizontal levels</em> (i.e., layers) that correspond to copies of the 2d-mesh to build a 3d-mesh of prisms (default) or tetrahedrons. These parameters can be defined with:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NUMBER</span> <span class="pre">OF</span> <span class="pre">HORIZONTAL</span> <span class="pre">LEVELS</span></code>: <code class="docutils literal notranslate"><span class="pre">5</span></code> where the default and minimum is <code class="docutils literal notranslate"><span class="pre">2</span></code> and the horizontal levels point in upward vertical direction. The thickness of vertical layers results from the water depth, which can be user-defined through the <code class="docutils literal notranslate"><span class="pre">INITIAL</span> <span class="pre">ELEVATION</span></code> parameter (see the section on <a class="reference internal" href="#tm3d-slf-init"><span class="std std-ref">3d initial conditions</span></a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MESH</span> <span class="pre">TRANSFORMATION</span></code>: <code class="docutils literal notranslate"><span class="pre">1</span></code> is the kind of level for the distribution (default is <code class="docutils literal notranslate"><span class="pre">1</span></code>, a homogenous sigma distribution). For unsteady (quasi-steady) simulations, set this value to <code class="docutils literal notranslate"><span class="pre">2</span></code> (or <code class="docutils literal notranslate"><span class="pre">0</span></code> - calcot) and implement a <code class="docutils literal notranslate"><span class="pre">ZSTAR</span></code> array in a user Fortran file (<code class="docutils literal notranslate"><span class="pre">USER_MESH_TRANSFORM</span></code> subroutine).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ELEMENT</span></code>: <code class="docutils literal notranslate"><span class="pre">'PRISM'</span></code> (default) and prisms can optionally split into tetrahedrons by settings this parameter to <code class="docutils literal notranslate"><span class="pre">'TETRAHEDRON'</span></code> (can potentially crash the simulation).</p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Unsteady (quasi-steady) simulations</p>
+<p>For unsteady simulations (time-variable inflow/outflow rates), pre-define the thickness of vertical layers with the <code class="docutils literal notranslate"><span class="pre">ZSTAR</span></code> parameter in a user Fortran file (subroutine) as described in section 4.1 of the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac3d/user/telemac3d_user_v8p2.pdf">Telemac3d manual</a>. Read more about setting up an unsteady simulation with TELEMAC in the <a class="reference internal" href="telemac2d-unsteady.html#chpt-unsteady"><span class="std std-ref">Telemac2d unsteady tutorial</span></a>.</p>
+</div>
+<p>To get started with writing subroutines (it is no magic neither), have a look at the <strong>bottom_bc</strong> example (<code class="docutils literal notranslate"><span class="pre">~/telemac/v8p2/examples/telemac3d/bottom_bc/</span></code>). In particular, examine the user fortran file <code class="docutils literal notranslate"><span class="pre">/user_fortran-source/user_mesh_transf.f</span></code> and its call in the steering file <code class="docutils literal notranslate"><span class="pre">t3d_bottom_source.cas</span></code> through the definition of the <code class="docutils literal notranslate"><span class="pre">FORTRAN</span> <span class="pre">FILE</span></code> keyword and setting of <code class="docutils literal notranslate"><span class="pre">MESH</span> <span class="pre">TRANSFORMATION</span> <span class="pre">:</span> <span class="pre">2</span></code>.</p>
+</div>
+<div class="section" id="open-liquid-boundaries">
+<span id="tm3d-slf-boundaries"></span><h3>Open (Liquid) Boundaries<a class="headerlink" href="#open-liquid-boundaries" title="Permalink to this headline">¶</a></h3>
+<p><strong>The following descriptions refer to section 4.2 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac3d/user/telemac3d_user_v8p2.pdf">Telemac3d manual</a>.</strong></p>
+<p>In river analyses, the non-hydrostatic version of TELEMAC should be used through the following keyword: <code class="docutils literal notranslate"><span class="pre">NON-HYDROSTATIC</span> <span class="pre">VERSION</span> <span class="pre">:</span> <span class="pre">YES</span></code>.</p>
+<p>Depending on the type of analysis, the solver-related parameters of <code class="docutils literal notranslate"><span class="pre">SOLVER</span></code>, <code class="docutils literal notranslate"><span class="pre">SOLVER</span> <span class="pre">OPTIONS</span></code>, <code class="docutils literal notranslate"><span class="pre">MAXIMUM</span> <span class="pre">NUMBER</span> <span class="pre">OF</span> <span class="pre">ITERATION</span></code>, <code class="docutils literal notranslate"><span class="pre">ACCURACY</span></code>, and <code class="docutils literal notranslate"><span class="pre">PRECONDITIONING</span></code> may be modified. The provided <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady3d-tutorial/steady3d.cas">steady3d.cas</a> includes solver keywords and comments for modifications, but the default options already provide a coherent a stable setup. Read more about solver parameters in section 6.5 of the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac3d/user/telemac3d_user_v8p2.pdf">Telemac3d manual</a>.</p>
+<p>Parameters for <strong>Boundary Conditions</strong> enable the definition of roughness laws and properties of liquid boundaries.</p>
+<p>With respect to roughness, TELEMAC developers recommend using the <span id="id1">Nikuradse [<a class="reference internal" href="../documentation/bibliography.html#id417">Nik33</a>]</span> roughness law in 3d (number <code class="docutils literal notranslate"><span class="pre">5</span></code>), because all others are not meaningful or not integrally implemented in the 3d version. To apply the <span id="id2">Nikuradse [<a class="reference internal" href="../documentation/bibliography.html#id417">Nik33</a>]</span> roughness law to the bottom and the boundaries use:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">LAW</span> <span class="pre">OF</span> <span class="pre">BOTTOM</span> <span class="pre">FRICTION</span></code>: <code class="docutils literal notranslate"><span class="pre">5</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LAW</span> <span class="pre">OF</span> <span class="pre">FRICTION</span> <span class="pre">ON</span> <span class="pre">LATERAL</span> <span class="pre">BOUNDARIES</span></code>: <code class="docutils literal notranslate"><span class="pre">5</span></code>, which can well be applied to model natural banks, or set to <code class="docutils literal notranslate"><span class="pre">0</span></code> (no-slip) for symmetry.<br>*Note that the <a class="reference internal" href="telemac3d-med.html#bnd-mod"><span class="std std-ref">boundary conditions file</span></a> sets the <code class="docutils literal notranslate"><span class="pre">LIUBOR</span></code> and <code class="docutils literal notranslate"><span class="pre">LIVBOR</span></code> for the <code class="docutils literal notranslate"><span class="pre">leftwall</span></code> and <code class="docutils literal notranslate"><span class="pre">rightwall</span></code> boundary edges to zero, to enable friction.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FRICTION</span> <span class="pre">COEFFICIENT</span> <span class="pre">FOR</span> <span class="pre">THE</span> <span class="pre">BOTTOM</span></code>: <code class="docutils literal notranslate"><span class="pre">0.1</span></code> corresponds to 3 times a hypothetical <em>d90</em> (grain diameter of which 90% of the surface grain mixture are finer) according to <span id="id3">[<a class="reference internal" href="../documentation/bibliography.html#id1353">vR19</a>]</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FRICTION</span> <span class="pre">COEFFICIENT</span> <span class="pre">FOR</span> <span class="pre">LATERAL</span> <span class="pre">SOLID</span> <span class="pre">BOUNDARIES</span></code>: <code class="docutils literal notranslate"><span class="pre">0.1</span></code> corresponds to 3 times a hypothetical <em>d90</em>, similar as for the bottom.</p></li>
+</ul>
+<p>The liquid boundary definitions for <code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">FLOWRATES</span></code> and <code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">ELEVATIONS</span></code> correspond to the definitions of the <strong>downstream</strong> boundary edge in line 2 and the <strong>upstream</strong> boundary edge in line 3 (see <a class="reference internal" href="telemac3d-med.html#bnd-mod"><span class="std std-ref">boundary definitions section</span></a>). From the boundary file, TELEMAC will understand the <strong>downstream</strong> boundary as edge number <strong>1</strong> (first list element) and the <strong>upstream</strong> boundary as edge number <strong>2</strong> (second list element). Hence:</p>
+<ul class="simple">
+<li><p>The list parameter <code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">FLOWRATES</span> <span class="pre">:</span> <span class="pre">35.;35.</span></code> assigns a flow rate of 35 m<span class="math notranslate nohighlight">\(^3\)</span>/s to the <strong>downstream</strong> and the <strong>upstream</strong> boundary edges.</p></li>
+<li><p>The list parameter <code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">ELEVATIONS</span> <span class="pre">:</span> <span class="pre">0.;371.33</span></code> assigns no elevation to the <strong>upstream</strong> boundary (number 1) and an elevation of 371.3 m a.s.l. to the <strong>downstream</strong> boundary (number 2). To recall how TELEMAC counts open boundaries read the comment box in the <a class="reference internal" href="telemac2d-steady.html#tm2d-bounds"><span class="std std-ref">steady2d tutorial</span></a>.</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">0.</span></code> value for the water does physically not make sense at the upstream boundary, but because they do not make sense, and because the boundary file (<code class="docutils literal notranslate"><span class="pre">boundaries.cli</span></code>) only defines (<em>prescribes</em>) a flow rate (by setting <code class="docutils literal notranslate"><span class="pre">LIUBOR</span></code> and <code class="docutils literal notranslate"><span class="pre">LIVBOR</span></code> to <code class="docutils literal notranslate"><span class="pre">5</span></code>), TELEMAC will ignore the zero-water depth at the upstream boundary.</p>
+<p>Instead of a list in the steering <code class="docutils literal notranslate"><span class="pre">*.cas</span></code> file, the liquid boundary conditions can also be defined with a liquid boundary condition file in <em>ASCII</em> text format. For this purpose, a <code class="docutils literal notranslate"><span class="pre">LIQUID</span> <span class="pre">BOUNDARIES</span> <span class="pre">FILE</span></code> or a <code class="docutils literal notranslate"><span class="pre">STAGE-DISCHARGE</span> <span class="pre">CURVES</span> <span class="pre">FILE</span></code> (sections 4.3.8 and 4.3.10 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac3d/user/telemac3d_user_v8p2.pdf">Telemac3d manual</a>, respectively can be defined. The <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady3d-tutorial/steady3d.cas">steady3d.cas</a> file includes these keywords in the <em>COMPUTATION ENVIRONMENT</em> section, though they are disabled through the <code class="docutils literal notranslate"><span class="pre">/</span></code> character at the beginning of the line. A liquid boundary file (<em>QSL</em>) may look like this:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="cp"># t3d_canal.qsl</span>
+<span class="cp"># time-dependent inflow upstream-discharge Q(2) and outflow downstream-depth SL(1)</span>
+<span class="n">T</span>           <span class="n">Q</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>     <span class="n">SL</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">s</span>           <span class="n">m3</span><span class="o">/</span><span class="n">s</span>     <span class="n">m</span>
+<span class="mf">0.</span>            <span class="mf">0.</span>     <span class="mi">37</span><span class="mf">4.0</span>
+<span class="mi">50</span><span class="mf">0.</span>        <span class="mi">10</span><span class="mf">0.</span>     <span class="mi">37</span><span class="mf">5.0</span>
+<span class="mi">500</span><span class="mf">0.</span>       <span class="mi">15</span><span class="mf">0.</span>     <span class="mi">57</span><span class="mf">5.7</span>
+</pre></div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">ELEVATION versus DEPTH</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ELEVATION</span></code> parameter in the <code class="docutils literal notranslate"><span class="pre">*.cas</span></code> file denotes water depth, while the <code class="docutils literal notranslate"><span class="pre">ELEVATION</span></code> keyword in an external liquid boundary file (e.g. stage-discharge curve) refers to absolute (geodetic) elevation (<code class="docutils literal notranslate"><span class="pre">Z</span></code> plus <code class="docutils literal notranslate"><span class="pre">H</span></code>).</p>
+</div>
+<p>With a prescribed flow rate, a horizontal and a vertical velocity profile can be prescribed for all liquid boundaries. With only a <strong>downstream</strong> and an <strong>upstream</strong> liquid boundary (in that order according to the above-defined boundary file), the velocity profile keywords are lists of two elements each, where the first entry refers to the <strong>downstream</strong> and the second element to <strong>upstream</strong> boundary edges:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">VELOCITY</span> <span class="pre">PROFILES</span></code>: <code class="docutils literal notranslate"><span class="pre">1;1</span></code> is the default option for the <strong>horizontal</strong> profiles. If set to <code class="docutils literal notranslate"><span class="pre">2;2</span></code>, the velocity profiles will be read from the boundary condition file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VELOCITY</span> <span class="pre">VERTICAL</span> <span class="pre">PROFILES</span></code>: <code class="docutils literal notranslate"><span class="pre">2;2</span></code> sets the <strong>vertical</strong> velocity profiles to logarithmic. The default is <code class="docutils literal notranslate"><span class="pre">1;1</span></code> (constant). Alternatively, a user-defined <code class="docutils literal notranslate"><span class="pre">USER_VEL_PROF_Z</span></code> subroutine can be implemented in a Fortran file.</p></li>
+</ul>
+<p>Read more about options for defining velocity profiles in section 4.3.12 of the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac3d/user/telemac3d_user_v8p2.pdf">Telemac3d manual</a>.</p>
+</div>
+<div class="section" id="initial-conditions">
+<span id="tm3d-slf-init"></span><h3>Initial Conditions<a class="headerlink" href="#initial-conditions" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>initial conditions</strong> describe the condition at the beginning of the simulation. This tutorial uses a constant elevation (corresponding to a constant water depth) of <code class="docutils literal notranslate"><span class="pre">2.</span></code>, and enables using an initial guess for the water depth to speed up the simulation:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">INITIAL</span> <span class="pre">CONDITIONS</span></code>: <code class="docutils literal notranslate"><span class="pre">'CONSTANT</span> <span class="pre">ELEVATION'</span></code> can alternatively be set to <code class="docutils literal notranslate"><span class="pre">'CONSTANT</span> <span class="pre">DEPTH'</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">INITIAL</span> <span class="pre">DEPTH</span></code>: <code class="docutils literal notranslate"><span class="pre">0.1</span></code> corresponds to water depth.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">INITIAL</span> <span class="pre">GUESS</span> <span class="pre">FOR</span> <span class="pre">DEPTH</span></code>: <code class="docutils literal notranslate"><span class="pre">1</span></code> must be an <strong>integer</strong> value and speeds up the calculation (convergence).</p></li>
+</ul>
+</div>
+<div class="section" id="turbulence">
+<h3>Turbulence<a class="headerlink" href="#turbulence" title="Permalink to this headline">¶</a></h3>
+<p><strong>The following descriptions refer to section 5.2 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac3d/user/telemac3d_user_v8p2.pdf">Telemac3d manual</a>.</strong></p>
+<p>The fundamental principles of turbulence and its application to the <a class="reference internal" href="../documentation/glossary.html#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a> are explained in the <a class="reference internal" href="telemac2d-steady.html#tm2d-turbulence"><span class="std std-ref">steady Telemac2d tutorial</span></a>. In 3d, TELEMAC developers recommend using either the <span class="math notranslate nohighlight">\(k-\epsilon\)</span> model (<code class="docutils literal notranslate"><span class="pre">3</span></code>) or the <span id="id4">Spalart and Allmaras [<a class="reference internal" href="../documentation/bibliography.html#id1360">SA92</a>]</span> model (<code class="docutils literal notranslate"><span class="pre">5</span></code>) in lieu of the mixing length model (<code class="docutils literal notranslate"><span class="pre">2</span></code>):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">HORIZONTAL</span> <span class="pre">TURBULENCE</span> <span class="pre">MODEL</span></code>: <code class="docutils literal notranslate"><span class="pre">3</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VERTICAL</span> <span class="pre">TURBULENCE</span> <span class="pre">MODEL</span></code>: <code class="docutils literal notranslate"><span class="pre">3</span></code></p></li>
+</ul>
+<p>If the <code class="docutils literal notranslate"><span class="pre">VERTICAL</span> <span class="pre">TURBULENCE</span> <span class="pre">MODEL</span></code> is set to <code class="docutils literal notranslate"><span class="pre">2</span></code> (<code class="docutils literal notranslate"><span class="pre">'MIXING</span> <span class="pre">LENGTH'</span></code>), a <code class="docutils literal notranslate"><span class="pre">MIXING</span> <span class="pre">LENGTH</span> <span class="pre">MODEL</span></code> can be assigned. The default is <code class="docutils literal notranslate"><span class="pre">1</span></code>, which is preferable for strong tidal influences and a value of <code class="docutils literal notranslate"><span class="pre">3</span></code> sets the length for computing vertical diffusivity to <span id="id5">Nezu and Nakagawa [<a class="reference internal" href="../documentation/bibliography.html#id1359">NN93</a>]</span>.</p>
+</div>
+</div>
+<div class="section" id="run-telemac3d">
+<h2>Run Telemac3d<a class="headerlink" href="#run-telemac3d" title="Permalink to this headline">¶</a></h2>
+<p>Go to the configuration folder of the local TELEMAC installation (e.g., <code class="docutils literal notranslate"><span class="pre">~/telemac/v8p2/configs/</span></code>) and launch the environment (e.g., <code class="docutils literal notranslate"><span class="pre">pysource.openmpi.sh</span></code> - use the same as for compiling TELEMAC).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">configs</span>
+<span class="n">source</span> <span class="n">pysource</span><span class="o">.</span><span class="n">openmpi</span><span class="o">.</span><span class="n">sh</span>
+<span class="n">config</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">If you are using the Hydro-Informatics (Hyfo) Mint VM</p>
+<p>If you are working with the <a class="reference internal" href="../get-started/vm.html#hyfo-vm"><span class="std std-ref">Mint Hyfo VM</span></a>, load the TELEMAC environment as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">configs</span>
+<span class="n">source</span> <span class="n">pysource</span><span class="o">.</span><span class="n">hyfo</span><span class="o">-</span><span class="n">dyn</span><span class="o">.</span><span class="n">sh</span>
+<span class="n">config</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</div>
+<p>With the TELEMAC environment loaded, change to the directory where the above-created 3d-flume simulation lives (e.g., <code class="docutils literal notranslate"><span class="pre">/home/telemac/v8p2/mysimulations/steady3d-tutorial/</span></code>) and run the <code class="docutils literal notranslate"><span class="pre">*.cas</span></code> file by calling the <strong><a class="reference external" href="http://telemac3d.py">telemac3d.py</a></strong> script.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">mysimulations</span><span class="o">/</span><span class="n">steady3d</span><span class="o">-</span><span class="n">tutorial</span><span class="o">/</span>
+<span class="n">telemac3d</span><span class="o">.</span><span class="n">py</span> <span class="n">steady3d</span><span class="o">.</span><span class="n">cas</span>
+</pre></div>
+</div>
+<p>As a result, a successful computation should end with the following lines (or similar) in <em>Terminal</em>:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">[...]</span>
+                    <span class="o">*************************************</span>
+                    <span class="o">*</span>    <span class="k">END </span><span class="n">OF</span> <span class="k">MEMORY </span><span class="n">ORGANIZATION</span><span class="p">:</span>    <span class="o">*</span>
+                    <span class="o">*************************************</span>
+
+<span class="n">CORRECT</span> <span class="k">END </span><span class="n">OF</span> <span class="n">RUN</span>
+
+<span class="n">ELAPSE</span> <span class="nb">TIME</span> <span class="p">:</span>
+                            <span class="mi">10</span>  <span class="n">MINUTES</span>
+                            <span class="mi">17</span>  <span class="n">SECONDS</span>
+<span class="p">...</span> <span class="n">merging</span> <span class="n">separated</span> <span class="k">result </span><span class="n">files</span>
+
+<span class="p">...</span> <span class="n">handling</span> <span class="k">result </span><span class="n">files</span>
+       <span class="n">moving</span><span class="p">:</span> <span class="n">r3dsteady</span><span class="p">.</span><span class="n">slf</span>
+<span class="p">...</span> <span class="n">deleting</span> <span class="n">working</span> <span class="n">dir</span>
+
+<span class="n">My</span> <span class="n">work</span> <span class="k">is </span><span class="n">done</span>
+</pre></div>
+</div>
 </div>
 </div>
 

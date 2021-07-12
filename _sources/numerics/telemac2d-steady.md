@@ -70,7 +70,7 @@ VARIABLES FOR GRAPHIC PRINTOUTS : U,V,H,S,Q,F / Q enables boundary flux equilibr
 /------------------------------------------------------------------/
 TIME STEP : 1.
 NUMBER OF TIME STEPS : 8000
-GRAPHIC PRINTOUT PERIOD : 100
+GRAPHIC PRINTOUT PERIOD : 200
 LISTING PRINTOUT PERIOD : 100
 /
 /------------------------------------------------------------------/
@@ -183,7 +183,7 @@ VARIABLES FOR GRAPHIC PRINTOUTS : U,V,H,S,Q,F / Q enables boundary flux equilibr
 /
 TIME STEP : 1.
 NUMBER OF TIME STEPS : 8000
-GRAPHIC PRINTOUT PERIOD : 100
+GRAPHIC PRINTOUT PERIOD : 200
 LISTING PRINTOUT PERIOD : 100
 ```
 ````
@@ -636,7 +636,7 @@ The horizontal and vertical dimensions of turbulent eddies can vary greatly, esp
   * `INFORMATION ABOUT K-EPSILON MODEL : YES` enables console output of information on the $k-\epsilon$ closure solution.
 * `4` to use the {cite:t}`smagorinsky1963` (also known as *general circulation*) model, which stems from climate modeling and is appropriate for modeling maritime systems with large eddies. The {cite:t}`smagorinsky1963` model does not account for {term}`Diffusion`.
 * `5` to use a mixing length model according to Prandtl's theory that a fluid quantity conserves its properties for a characteristic length before it mixes with the bulk flow {cite:p}`bradshaw1974`.
-* `6` to use the {cite:t}`spalart1992` (also referred to as *Spalart-Allmaras*) model that solves the {term}`Continuity equation` for a viscosity-like, kinematic eddy turbulent viscosity. The *Spalart-Allmaras* model was originally developed for aerodynamic flows with low {term}`Reynolds number` and it has also shown good results for other applications.
+* `6` to use the {cite:t}`spalart1992` (also referred to as {cite:t}`spalart1992`) model that solves the {term}`Continuity equation` for a viscosity-like, kinematic eddy turbulent viscosity. The {cite:t}`spalart1992` model was originally developed for aerodynamic flows with low {term}`Reynolds number` and it has also shown good results for other applications.
 
 This tutorial uses the $k-\epsilon$ model (`3`) because of its low error rate and wide applicability (compared to other turbulence closures).
 
@@ -832,9 +832,40 @@ To export flowrates along any line or at any node of the mesh, make sure that `Q
 Draw polylines along mesh nodes and export associated flows (Copy to clipboard).
 ```
 
-```{admonition} A more consistent way to export fluxes along lines...
-A more consistent way to verify fluxes at open boundaries or other particular lines (e.g., tributary inflows or diversions) is to use the `CONTROL SECTIONS` keyword. A control section is defined by a sequence of neighboring node numbers and the {{ tm2d }} provides detailed explanations in section 5.2.
+````{admonition} A more consistent way to export fluxes along lines...
+:class: tip
+A more consistent way to verify fluxes at open boundaries or other particular lines (e.g., tributary inflows or diversions) is to use the `CONTROL SECTIONS` keyword. A control section is defined by a sequence of neighboring node numbers. For instance, to verify the fluxes over the open boundaries in this tutorial, check out the node numbers in the `boundaries.cli` file (e.g., 144 to 32 for the upstream and 34 to 5 for the downstream boundary). Then create a new text file (e.g., `control-sections.txt`) and:
+
+* Add one comment line with some short information (e.g., `# control sections input file`). Note that this line is **mandatory**.
+* In the second line add a space-separated list of 2 integers where
+  * the first integer defines the number of cross-sections, and
+  * the second integer defines if node numbers (i.e. IDs from `boundaries.cli`) or coordinates will be defined. A negative number sets node IDs and a positive number coordinates.
+* Define as many cross sections as set with the first integer. Every cross-section definition consists of two lines:
+  * The first line is a *string* (text) without spaces that is naming the cross-section (e.g., `inflow_cs`).
+  * The second line consists of two numbers defining the start and end points of the cross-sections. If the second integer in the file line is negative, provide two space-separated integers. If the second integer is positive, provide two space-separated pairs of coordinates (put a `;` between coordinates).
+
+For example, the following `control-sections.txt` file can be used with the steady simulation in this tutorial ([download control-sections.txt](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/control-sections.txt)).
+
 ```
+# control sections steady2d
+2 -1
+Inflow_boundary
+144 32
+Outflow_boundary
+34 5
+```
+
+The second line in this file tells TELEMAC to use `2` control sections, which are defined by node IDs (`-1`). To use the control sections for the simulation add the following to the steering file:
+
+```
+/ steady2d.cas
+/ ...
+SECTIONS INPUT FILE :  control-sections.txt
+SECTIONS OUTPUT FILE : r-control-flows.txt
+```
+
+Thus, re-running the simulation will write the fluxes across the two define control sections to a file called `r-control-flows.txt`. The {{ tm2d }} provides detailed explanations in section 5.2.2.
+````
 
 The diagram in {numref}`Fig. %s <convergence-diagram-tm2d>` plots the two columns of flows at the upstream and downstream open boundaries over time for the simulation setup in this tutorial. The diagram suggests that the model reaches stability after the 55th output listing (simulation time $t \leq 5500$). Thus, the simulation time could be limited to $t = 6000$, but a simulation time of $t = 5000$ would be too short.
 

@@ -53,11 +53,11 @@ There are a couple of Debian Linux spin-offs, such as [*Ubuntu*](https://ubuntu.
 Remember where the downloaded Linux *.ISO* file is stored.
 
 (hyfo-vm)=
-## Option: Get the Hydro-informatics VM
+## Special feature: The Mint Hyfo VM
 
-````{admonition} Expand to see the details for getting the Hydro-Informatics Mint VM
-:class: tip, dropdown
+The Linux **Mint** Hydro-informatics (**Hyfo**) VM facilitates working with the contents of this eBook and it is available upon email request. Read more in the next paragraphs OR {ref}`create your own VM and jump over this section <vm-create>`.
 
+### About the Mint Hyfo VM
 To shorten the long path of installing many hydroinformatics applications, many tutorials in this eBook can be leveraged with a tailored virtual Linux Mint 20.2 machine that is available upon email request. The Linux Mint VM comes with the following pre-installed software:
 
 * {ref}`Atom IDE <install-atom>` (all-in-one IDE for Python scripting and editing markdown, restructuredtext, or LaTeX files)
@@ -67,7 +67,7 @@ To shorten the long path of installing many hydroinformatics applications, many 
 
 Note that Python, LibreOffice, and Firefox are pre-installed in Linux Mint. To get the download link for the Linux Mint VM appliance (`MintHyfo.ova`), <a href="mailto:sebastian.schwindt[AT]iws.uni-stuttgart.de?subject=Please%20Send%20Hydroinformatics%20VM%20download%20link">email Sebastian</a>. Note that the hydro-informatics.com {ref}`license` and {ref}`disclaimer` apply in addition and on top of any software that comes with the virtual disk image.
 
-**Get Started with the VM**
+### Get Started with the Mint Hyfo VM
 
 All you need is an installation of VirtualBox (see {ref}`above <vm-requirements>`) and the downloaded Linux Mint VM appliance (`MintHyfo.ova`). After downloading the appliance, open VirtualBox and:
 
@@ -78,7 +78,7 @@ All you need is an installation of VirtualBox (see {ref}`above <vm-requirements>
 
 Now, the virtual machine called **Mint Hyfo** should be visible in the list of virtual machines in VirtualBox.
 
-**Start and Manage the VM**
+### Start and Manage the Mint Hyfo VM
 
 Once imported, start the **Mint Hyfo** VM and familiarize yourself with the Mint Desktop. There are a few things you should know about the Mint Hyfo VM:
 
@@ -98,7 +98,7 @@ source pysource.hyfo-dyn.sh
 config.py
 ```
 
-**What you can do with the VM**
+### Capacities of the Mint Hyfo VM
 
 The VM provides essentials for most tutorials in this eBook:
 
@@ -107,8 +107,8 @@ The VM provides essentials for most tutorials in this eBook:
 * the {ref}`chpt-telemac` tutorials.
 
 Also BASEMENT can be installed for completing the {ref}`chpt-basement` tutorial.
-````
 
+(vm-create)=
 ## Create a VM with VirtualBox
 
 ***Estimated duration: 5-8 minutes.***

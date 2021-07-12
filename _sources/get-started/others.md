@@ -2,7 +2,7 @@
 
 (npp)=
 ## NotepadPlusPlus
-[*Notepad++*](https://notepad-plus-plus.org/) is an all-round text editor for basic coding (*R*, *Python*, *Java*, *C*, *Perl*, ...), markdown/html editing and many many (not a typo). Alternatives for *Notepad++* are for example [*ATOM*](https://atom.io/), [*Vim*](https://www.vim.org/) or [*GNU Emacs*](https://www.gnu.org/software/emacs/).
+[*Notepad++*](https://notepad-plus-plus.org/) is an all-round text editor for basic coding (*R*, *Python*, *Java*, *C*, *Perl*, ...), markdown/html editing and many many (not a typo) more. Alternatives for *Notepad++* are, for example, {ref}`install-atom`, [Vim](https://www.vim.org/) or [GNU Emacs](https://www.gnu.org/software/emacs/).
 
 (lo)=
 ## Libre Office (MS Office alternative)
@@ -10,7 +10,7 @@ Office software such as [*LibreOffice*][libreoffice] or Microsoft's *Excel* is r
 
 (octave)=
 ## GNU Octave (Matlab&reg; alternative)
-*Matlab*&reg; is nowadays established as one of the leading tools in science and engineering. However, license fees and its proprietary nature limit the use of *Matlab*&reg; to privileged entities and users. The good news is that there is a remedy in the shape of [*GNU Octave*](https://www.gnu.org/software/octave/). *GNU Octave* and *Matlab*&reg; use very similar syntax and `.m` files can be run with both programs.
+*Matlab*&reg; is nowadays established as one of the leading tools in science and engineering. However, license fees and its proprietary nature limit the use of *Matlab*&reg; to privileged entities and users. The good news is that there is a remedy in the shape of [GNU Octave](https://www.gnu.org/software/octave/). *GNU Octave* and *Matlab*&reg; use very similar syntax and `.m` files can be run with both programs.
 If error messages occur by running a `.m` file with *GNU Octave*, make sure to load relevant packages at the top of the script (this is one of the major differences between *GNU Octave* and *Matlab*&reg;). For example:
 
 ```
