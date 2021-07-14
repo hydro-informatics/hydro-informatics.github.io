@@ -623,7 +623,7 @@ The boundary file created with the *HydroSolver* involves a couple of issues tha
   + In Line 4, set `LIUBOR` and `LIVBOR` to `0` (zero *U* and *V* velocities, respectively) for the **leftwall** boundary edge.
   + In Line 5, set `LIUBOR` and `LIVBOR` to `0` (zero *U* and *V* velocities, respectively) for the **rightwall** boundary edge.
 
-The boundary file should now resemble the block below (can also be downloaded [here](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/master/model-templates/flume3d_bc.bnd)). Save and close the `*.bnd` file. The below-shown box also shows how the boundary file should look like.
+The boundary file should now resemble the block below (can also be downloaded [here](https://github.com/hydro-informatics/telemac/raw/main/steady3d-med-tutorial/flume3d_bc.bnd)). Save and close the `*.bnd` file. The below-shown box also shows how the boundary file should look like.
 
 ```
 4
@@ -665,7 +665,7 @@ The `*.cas` file defines a steady, hydrodynamic model with an inflow rate of 50 
 The below code block shows the steering file `t3d_flume.cas` and details for every parameter are provided after the code block. The slash `/` character comments out lines (i.e., TELEMAC will ignore anything in a line the `/` character). The `:` character separates `VARIABLE NAME` and `VALUE`s. Alternatively to the `:`, also a `=` sign may be used. The `&ETA` at the end of the file makes TELEMAC printing out a list of keywords applied (in the *DAMOCLES* routine).
 
 ```{tip}
-To facilitate setting up the steering (CAS) file for this tutorial, [download the template](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/master/model-templates/t3d_template.cas) (right-click on the link > *Save Link As...* > navigate to the local tutorial folder), which contains more descriptions and options for simulation parameters.
+To facilitate setting up the steering (CAS) file for this tutorial, [download the template](https://github.com/hydro-informatics/telemac/raw/main/steady3d-med-tutorial/t3d_template.cas) (right-click on the link > *Save Link As...* > navigate to the local tutorial folder), which contains more descriptions and options for simulation parameters.
 ```
 
 ```fortran
@@ -844,7 +844,7 @@ The `SUPG OPTION` (Streamline Upwind Petrov Galerkin) keyword is a list of four 
 
 The default is `SUPG OPTION : 1;0;1;1`, where the first list element refers to flow velocity (default `1`), the second to water depth (default `0`), the third to tracers (default `1`), and the last to the k-epsilon model (default `1`). Read more in section 6.2.2 of the {{ tm3d }}.
 
-An additional option for speeding up is to enable mass lumping for diffusion, depth, and/or weak characteristics. Mass lumping results in faster convergence, but it introduces artificial dispersion in the results, which is why enabling mass lumping is discouraged by the TELEMAC developers. The provided [*t3d_template.cas*](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/master/model-templates/t3d_template.cas) includes the keywords for mass lumping, though they are disabled through the `/` at the beginning of the line.
+An additional option for speeding up is to enable mass lumping for diffusion, depth, and/or weak characteristics. Mass lumping results in faster convergence, but it introduces artificial dispersion in the results, which is why enabling mass lumping is discouraged by the TELEMAC developers. The provided [t3d_template.cas](https://github.com/hydro-informatics/telemac/raw/main/steady3d-med-tutorial/t3d_template.cas) includes the keywords for mass lumping, though they are disabled through the `/` at the beginning of the line.
 
 **Implication parameters** (`IMPLICITATION FOR DEPTH` and `IMPLICITATION FOR VELOCITIES`) should be set between 0.55 and 0.60 (default is 0.55 since *TELEMAC v8p1*) and can be considered as a degree of implicitation. `IMPLICITATION FOR DIFFUSION` is set to `1.0` by default. Read more in section 6.4 of the {{ tm3d }}.
 
@@ -855,7 +855,7 @@ The parameter `FREE SURFACE GRADIENT` can be used for increasing the stability o
 
 In river analyses, the non-hydrostatic version of TELEMAC should be used through the following keyword: `NON-HYDROSTATIC VERSION : YES`.
 
-Depending on the type of analysis, the solver-related parameters of `SOLVER`, `SOLVER OPTIONS`, `MAXIMUM NUMBER OF ITERATION`, `ACCURACY`, and `PRECONDITIONING` may be modified. The provided [*t3d_template.cas*](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/master/model-templates/t3d_template.cas) includes solver keywords and comments for modifications, but the default options already provide a coherent a stable setup. Read more about solver parameters in section 6.5 of the {{ tm3d }}.
+Depending on the type of analysis, the solver-related parameters of `SOLVER`, `SOLVER OPTIONS`, `MAXIMUM NUMBER OF ITERATION`, `ACCURACY`, and `PRECONDITIONING` may be modified. The provided [t3d_template.cas](https://github.com/hydro-informatics/telemac/raw/main/steady3d-med-tutorial/t3d_template.cas) includes solver keywords and comments for modifications, but the default options already provide a coherent a stable setup. Read more about solver parameters in section 6.5 of the {{ tm3d }}.
 
 Parameters for **Boundary Conditions** enable the definition of roughness laws and properties of liquid boundaries.
 
@@ -875,7 +875,7 @@ The liquid boundary definitions for `PRESCRIBED FLOWRATES` and `PRESCRIBED ELEVA
 
 The `0.` value for the water does physically not make sense at the upstream boundary, but because they do not make sense, and because the boundary file (`flume3d_bc.bnd`) only defines (*prescribes*) a flow rate (by setting `LIUBOR` and `LIVBOR` to `5`), TELEMAC will ignore the zero-water depth at the upstream boundary.
 
-Instead of a list in the steering `*.cas` file, the liquid boundary conditions can also be defined with a liquid boundary condition file in *ASCII* text format. For this purpose, a `LIQUID BOUNDARIES FILE` or a `STAGE-DISCHARGE CURVES FILE` (sections 4.3.8 and 4.3.10 in the {{ tm3d }}, respectively can be defined. The [*t3d_template.cas*](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/master/model-templates/t3d_template.cas) file includes these keywords in the *COMPUTATION ENVIRONMENT* section, though they are disabled through the `/` character at the beginning of the line. A liquid boundary file (*QSL*) may look like this:
+Instead of a list in the steering `*.cas` file, the liquid boundary conditions can also be defined with a liquid boundary condition file in *ASCII* text format. For this purpose, a `LIQUID BOUNDARIES FILE` or a `STAGE-DISCHARGE CURVES FILE` (sections 4.3.8 and 4.3.10 in the {{ tm3d }}, respectively can be defined. The [t3d_template.cas](https://github.com/hydro-informatics/telemac/raw/main/steady3d-med-tutorial/t3d_template.cas) steering file includes these keywords in the *COMPUTATION ENVIRONMENT* section, though they are disabled through the `/` character at the beginning of the line. A liquid boundary file (*QSL*) may look like this:
 
 ```fortran
 # t3d_canal.qsl
@@ -957,7 +957,6 @@ Go to the configuration folder of the local TELEMAC installation (e.g., `~/telem
 ```
 cd ~/telemac/v8p2/configs
 source pysource.openmpi.sh
-config.py
 ```
 
 With the TELEMAC environment loaded, change to the directory where the above-created 3d-flume simulation lives (e.g., `/home/modelling/flume3d-tutorial/`) and run the `*.cas` file by calling the **telemac3d.py** script.

@@ -36,10 +36,10 @@ This approach also works with *Telemac3d* (and other modules).
 
 ## Errors in Steering (CAS) Files
 
-* make sure to use `:` rather than `=`
-* place all model files in the same folder and only use file names without the directories of files
+* Prefer `:` over `=`
+* Place all model files in the same folder and **only use file names** without the directories of files.
 
-## Instable Simulations
+## Unstable Simulations
 
 ### Accuracy
 

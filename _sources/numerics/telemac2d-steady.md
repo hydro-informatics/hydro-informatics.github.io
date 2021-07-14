@@ -543,8 +543,8 @@ Similar to the assignment of multiple friction coefficient values to multiple mo
   * Modify and save edits in `/your/simulation/case/user_fortran/friction_user.f`.
   * Tell the steering (`*.cas`) file to use the modified FRICTION_USER Fortran file by adding the keyword `FORTRAN FILE : 'user_fortran'` (makes Telemac2d looking up Fortran files in the `/user_fortran/` subfolder).
 * Useful examples are:
-  * The BAW's Donau case study that lives in `/telemac/v8p2/examples/telemac2d/donau/` and features the usage of a `*.bfr` `ZONES FILE` and a `roughness.tbl` `FRICTION DATA FILE`, which are enabled through the `FRICTION DATA : YES` keyword in the `t2d_donau.cas` file. The Donau example was presented at the XXth Telemac-Mascaret user conference and the conference proceedings are available at the BAW's [HENRY portal](https://hdl.handle.net/20.500.11970/100418).
-  * The [Baxter tutorial](http://www.opentelemac.org/index.php/component/jdownloads/summary/4-training-and-tutorials/185-telemac-2d-tutorial?Itemid=55) (look for the contribution *Reverse engineering of initial & boundary conditions with TELEMAC and algorithmic differentiation*).
+  * The BAW's Donau case study that lives in `/telemac/v8p2/examples/telemac2d/donau/` and features the usage of a `*.bfr` `ZONES FILE` and a `roughness.tbl` `FRICTION DATA FILE`, which are enabled through the `FRICTION DATA : YES` keyword in the `t2d_donau.cas` file. The Donau example was presented at the XXth Telemac-Mascaret user conference and the conference proceedings are available at the BAW's [HENRY portal](https://hdl.handle.net/20.500.11970/100418) (look for the contribution *Reverse engineering of initial & boundary conditions with TELEMAC and algorithmic differentiation*).
+  * The [Baxter tutorial](http://www.opentelemac.org/index.php/component/jdownloads/summary/4-training-and-tutorials/185-telemac-2d-tutorial?Itemid=55).
 * To assign zonal roughness values, use QGIS, Blue Kenue, and a text editor:
   * Delineate zones with different roughness coefficients draw polygons (e.g., following landscapes characteristics on a basemap) in separate shapefiles with QGIS (see also the {ref}`pre-processing tutorial on QGIS <tm-qgis-prepro>`).
   * Import the separate polygons as closed lines in Blue Kenue (see also the {ref}`pre-processing tutorial on Blue Kenue <bk-tutorial>`).
@@ -645,6 +645,7 @@ DIFFUSION OF VELOCITY : YES / enabled by default
 TURBULENCE MODEL : 3
 ```
 
+
 (tm2d-run)=
 ## Run Telemac2d
 
@@ -663,7 +664,6 @@ Go to the configuration folder of the TELEMAC installation (e.g., `~/telemac/v8p
 ```
 cd ~/telemac/v8p2/configs
 source pysource.openmpi.sh
-config.py
 ```
 
 ````{admonition} If you are using the Hydro-Informatics (Hyfo) Mint VM
@@ -674,7 +674,6 @@ If you are working with the {ref}`Mint Hyfo VM <hyfo-vm>`, load the TELEMAC envi
 ```
 cd ~/telemac/v8p2/configs
 source pysource.hyfo-dyn.sh
-config.py
 ```
 ````
 
@@ -690,29 +689,14 @@ As a result, a successful computation should end with the following lines (or si
 
 ```fortran
 [...]
-BOUNDARY FLUXES FOR WATER IN M3/S ( >0 : ENTERING )
-FLUX BOUNDARY      1                          :    -35.85411
-FLUX BOUNDARY      2                          :     35.00000
---------------------------------------------------------------------------------
-                FINAL MASS BALANCE
-T =        8000.0000
-
---- WATER ---
-INITIAL MASS                        :     2500000.
-FINAL MASS                          :     100343.0
-MASS LEAVING THE DOMAIN (OR SOURCE) :     2384217.
-MASS LOSS                           :     15440.06
-
- END OF TIME LOOP
-
- EXITING MPI
-                     *************************************STOP 0
+                     *************************************
                      *    END OF MEMORY ORGANIZATION:    *
                      *************************************
 
  CORRECT END OF RUN
 
  ELAPSE TIME :
+                             06  MINUTES
                              44  SECONDS
 ... merging separated result files
 
@@ -832,41 +816,6 @@ To export flowrates along any line or at any node of the mesh, make sure that `Q
 Draw polylines along mesh nodes and export associated flows (Copy to clipboard).
 ```
 
-````{admonition} A more consistent way to export fluxes along lines...
-:class: tip
-A more consistent way to verify fluxes at open boundaries or other particular lines (e.g., tributary inflows or diversions) is to use the `CONTROL SECTIONS` keyword. A control section is defined by a sequence of neighboring node numbers. For instance, to verify the fluxes over the open boundaries in this tutorial, check out the node numbers in the `boundaries.cli` file (e.g., 144 to 32 for the upstream and 34 to 5 for the downstream boundary). Then create a new text file (e.g., `control-sections.txt`) and:
-
-* Add one comment line with some short information (e.g., `# control sections input file`). Note that this line is **mandatory**.
-* In the second line add a space-separated list of 2 integers where
-  * the first integer defines the number of cross-sections, and
-  * the second integer defines if node numbers (i.e. IDs from `boundaries.cli`) or coordinates will be defined. A negative number sets node IDs and a positive number coordinates.
-* Define as many cross sections as set with the first integer. Every cross-section definition consists of two lines:
-  * The first line is a *string* (text) without spaces that is naming the cross-section (e.g., `inflow_cs`).
-  * The second line consists of two numbers defining the start and end points of the cross-sections. If the second integer in the file line is negative, provide two space-separated integers. If the second integer is positive, provide two space-separated pairs of coordinates (put a `;` between coordinates).
-
-For example, the following `control-sections.txt` file can be used with the steady simulation in this tutorial ([download control-sections.txt](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/control-sections.txt)).
-
-```
-# control sections steady2d
-2 -1
-Inflow_boundary
-144 32
-Outflow_boundary
-34 5
-```
-
-The second line in this file tells TELEMAC to use `2` control sections, which are defined by node IDs (`-1`). To use the control sections for the simulation add the following to the steering file:
-
-```
-/ steady2d.cas
-/ ...
-SECTIONS INPUT FILE :  control-sections.txt
-SECTIONS OUTPUT FILE : r-control-flows.txt
-```
-
-Thus, re-running the simulation will write the fluxes across the two define control sections to a file called `r-control-flows.txt`. The {{ tm2d }} provides detailed explanations in section 5.2.2.
-````
-
 The diagram in {numref}`Fig. %s <convergence-diagram-tm2d>` plots the two columns of flows at the upstream and downstream open boundaries over time for the simulation setup in this tutorial. The diagram suggests that the model reaches stability after the 55th output listing (simulation time $t \leq 5500$). Thus, the simulation time could be limited to $t = 6000$, but a simulation time of $t = 5000$ would be too short.
 
 ```{figure} ../img/telemac/convergence-diagram-tm.png
@@ -875,6 +824,12 @@ The diagram in {numref}`Fig. %s <convergence-diagram-tm2d>` plots the two column
 
 Convergence of inflow (upstream) and outflow (downstream) at the open model boundaries.
 ```
+
+```{admonition} Control Sections are more consistent for exporting fluxes along lines
+:class: tip
+In practice, the use of {ref}`CONTROL SECTIONS (unsteady tutorial) <tm-control-sections>` is more consistent to verify flows.
+```
+
 
 Note the difference between the convergence duration in this steady simulation with Telemac2d that starts with an initial condition of 1.0 m water depth (plot in {numref}`Fig. %s <convergence-diagram-tm2d>`) compared to the longer convergence duration in the BASEMENT tutorial (plot in {numref}`Fig. %s <convergence-diagram-bm>`) that starts with a dry model. This difference mainly stems from the type of initial conditions (initial depth versus dry channel) that also reflects in an outflow surplus of the Telemac2d simulation and a zero-outflow in the BASEMENT simulation at the beginning of the simulations. However, the faster convergence is at the cost of unrealistically wetted hollows in the Telemac2d simulation - read more in the above comment: *How reasonable are the results?*
 

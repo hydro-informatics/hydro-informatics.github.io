@@ -728,35 +728,30 @@
   <a class="reference internal nav-link" href="#model-adaptations">
    Model Adaptations
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#initial-conditions">
-   Initial Conditions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#general-parameters">
-   General Parameters
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#open-boundaries">
-   Open Boundaries
-  </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#quasi-steady-hydrograph">
-     Quasi-steady Hydrograph
+    <a class="reference internal nav-link" href="#initial-conditions">
+     Initial Conditions
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#stage-discharge-relation">
-     Stage-Discharge Relation
+    <a class="reference internal nav-link" href="#general-parameters">
+     General Parameters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#open-boundaries">
+     Open Boundaries
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#numerical-parameters">
      Numerical Parameters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#control-sections">
+     Control Sections
     </a>
    </li>
   </ul>
@@ -765,6 +760,23 @@
   <a class="reference internal nav-link" href="#run-telemac2d-unsteady">
    Run Telemac2d Unsteady
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#post-processing">
+   Post-processing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#open-boundary-flows">
+     Open Boundary Flows
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#practice-recommendations">
+     Practice Recommendations
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -800,7 +812,7 @@
 <p>This tutorial shows how such a quasi-steady discharge hydrograph can be created through the definition of an inflow sequence (red circles in <a class="reference internal" href="#unsteady-hydrograph"><span class="std std-numref">Fig. 83</span></a>) and implemented in a Telemac2d simulation. The tutorial builds on the steady simulation of a discharge of 35 m<span class="math notranslate nohighlight">\(^3\)</span>/s and requires the following data from the <a class="reference internal" href="pre-slf-tm.html#slf-prepro-tm"><span class="std std-ref">pre-processing</span></a> and <a class="reference internal" href="telemac2d-steady.html#telemac2d-steady"><span class="std std-ref">steady2d</span></a> tutorials, which can be downloaded by clicking on the filenames:</p>
 <ul class="simple">
 <li><p>The computational mesh in <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf">qgismesh.slf</a>.</p></li>
-<li><p>The boundary definitions in <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/boundaries.cli">boundaries.cli</a>.</p></li>
+<li><p>The boundary definitions in <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/boundaries.cli">boundaries.cli</a>.</p></li>
 <li><p>The results of the steady 2d model run for 35 m<span class="math notranslate nohighlight">\(^3\)</span>/s in <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/r2dsteady.slf">r2dsteady.slf</a> (result of the <a class="reference internal" href="telemac2d-steady.html#tm2d-dry"><span class="std std-ref">dry bonus run</span></a> ending at <code class="docutils literal notranslate"><span class="pre">T=15000</span></code>).</p></li>
 </ul>
 <p>Consider saving the files in a new folder, such as <code class="docutils literal notranslate"><span class="pre">/unsteady2d-tutorial/</span></code>.</p>
@@ -816,20 +828,24 @@
 <p class="admonition-title">View the unsteady steering file</p>
 <p>To view the integration of the unsteady simulation keywords in the steering file, the <code class="docutils literal notranslate"><span class="pre">unsteady2d.cas</span></code> file can be <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/unsteady2d.cas">downloaded here</a></p>
 </div>
-</div>
 <div class="section" id="initial-conditions">
-<h2>Initial Conditions<a class="headerlink" href="#initial-conditions" title="Permalink to this headline">¶</a></h2>
+<h3>Initial Conditions<a class="headerlink" href="#initial-conditions" title="Permalink to this headline">¶</a></h3>
 <p><strong>The following descriptions refer to section 4.1.3 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac2d/user/telemac2d_user_v8p2.pdf">Telemac2d manual</a>.</strong></p>
-<p>To speed up the calculations and provide a well-converging baseline for the quasi-steady calculations, this tutorial re-uses the output of the steady 2d simulation with dry initial conditions (see the <a class="reference internal" href="telemac2d-steady.html#tm2d-dry"><span class="std std-ref">Initialize Dry</span></a> section). To this end, the steady results file (<a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/r2dsteady.slf">r2dsteady.slf</a>) needs to be defined as <code class="docutils literal notranslate"><span class="pre">PREVIOUS</span> <span class="pre">COMPUTATION</span> <span class="pre">FILE</span></code>:</p>
+<p>To speed up the calculations and provide a well-converging baseline for the quasi-steady calculations, this tutorial re-uses the output of the steady 2d simulation with dry initial conditions (see the <a class="reference internal" href="telemac2d-steady.html#tm2d-dry"><span class="std std-ref">Initialize Dry</span></a> section). To this end, the steady results file <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/r2dsteady.slf">r2dsteady.slf</a> needs to be defined as <code class="docutils literal notranslate"><span class="pre">PREVIOUS</span> <span class="pre">COMPUTATION</span> <span class="pre">FILE</span></code>:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">COMPUTATION</span> <span class="n">CONTINUED</span> <span class="p">:</span> <span class="n">YES</span>
 <span class="n">PREVIOUS</span> <span class="n">COMPUTATION</span> <span class="k">FILE</span> <span class="p">:</span> <span class="n">r2dsteady</span><span class="p">.</span><span class="n">slf</span> <span class="o">/</span> <span class="n">results</span> <span class="n">of</span> <span class="mi">35</span> <span class="n">CMS</span> <span class="n">steady</span> <span class="n">simulation</span>
 <span class="o">/</span> <span class="n">INITIAL</span> <span class="nb">TIME </span><span class="n">SET</span> <span class="n">TO</span> <span class="n">ZERO</span> <span class="p">:</span> <span class="mi">0</span> <span class="o">/</span> <span class="n">avoid</span> <span class="n">restarting</span> <span class="n">at</span> <span class="mi">15000</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">INITIAL</span> <span class="pre">TIME</span> <span class="pre">SET</span> <span class="pre">TO</span> <span class="pre">ZERO</span></code> keyword may be additionally defined with its default of <code class="docutils literal notranslate"><span class="pre">0</span></code> to reset the time from the previous computation file from <code class="docutils literal notranslate"><span class="pre">15000</span></code> to <code class="docutils literal notranslate"><span class="pre">0</span></code>. However, this tutorial does not use this option and continues at timestep 15000.</p>
+<p>In addition, a <code class="docutils literal notranslate"><span class="pre">INITIAL</span> <span class="pre">TIME</span> <span class="pre">SET</span> <span class="pre">TO</span> <span class="pre">ZERO</span></code> keyword may be defined with its default of <code class="docutils literal notranslate"><span class="pre">0</span></code> to reset the time from the previous computation file from <code class="docutils literal notranslate"><span class="pre">15000</span></code> to <code class="docutils literal notranslate"><span class="pre">0</span></code>. However, this tutorial does not use this option and continues at timestep 15000.
+To avoid ambiguous definitions of the initial conditions, <strong>deactivate</strong> (i.e., delete or comment out lines with a <code class="docutils literal notranslate"><span class="pre">/</span></code>) a little further down in the steering file the <strong><code class="docutils literal notranslate"><span class="pre">INITIAL</span> <span class="pre">...</span></code> keywords</strong>:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">INITIAL</span> <span class="n">CONDITIONS</span> <span class="p">:</span> <span class="s1">&#39;CONSTANT DEPTH&#39;</span>
+<span class="o">/</span> <span class="n">INITIAL</span> <span class="n">DEPTH</span> <span class="p">:</span> <span class="mi">1</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="general-parameters">
-<h2>General Parameters<a class="headerlink" href="#general-parameters" title="Permalink to this headline">¶</a></h2>
+<h3>General Parameters<a class="headerlink" href="#general-parameters" title="Permalink to this headline">¶</a></h3>
 <p>To simulate the hydrograph shown in <a class="reference internal" href="#unsteady-hydrograph"><span class="std std-numref">Fig. 83</span></a>, the simulation must run for at least 15000 time steps (i.e., from <code class="docutils literal notranslate"><span class="pre">T=15000</span></code> to <code class="docutils literal notranslate"><span class="pre">T=30000</span></code>). Since printing out (intermediate) results has a significant effect on computational speed, we reduce graphic print-out time steps to every <code class="docutils literal notranslate"><span class="pre">500</span></code> time steps (in lieu of <code class="docutils literal notranslate"><span class="pre">200</span></code> used for the steady simulation):</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="nb">TIME </span><span class="n">STEP</span> <span class="p">:</span> <span class="mf">1.</span>
 <span class="n">NUMBER</span> <span class="n">OF</span> <span class="nb">TIME </span><span class="n">STEPS</span> <span class="p">:</span> <span class="mi">15000</span>
@@ -839,37 +855,56 @@
 </div>
 </div>
 <div class="section" id="open-boundaries">
-<h2>Open Boundaries<a class="headerlink" href="#open-boundaries" title="Permalink to this headline">¶</a></h2>
-<p>With the upstream open (liquid) boundary type being <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">5</span> <span class="pre">5</span></code> (prescribed Q) and the downstream open (liquid) boundary type being <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">5</span> <span class="pre">5</span></code> (prescribed Q and H), a time-dependent flow hydrograph and a <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a> needs to be provided (recall the rationales behind the choice of boundary types from the <a class="reference internal" href="pre-slf-tm.html#bk-liquid-bc"><span class="std std-ref">pre-processing tutorial</span></a>).</p>
-<div class="section" id="quasi-steady-hydrograph">
-<h3>Quasi-steady Hydrograph<a class="headerlink" href="#quasi-steady-hydrograph" title="Permalink to this headline">¶</a></h3>
+<h3>Open Boundaries<a class="headerlink" href="#open-boundaries" title="Permalink to this headline">¶</a></h3>
+<p>This section features the implementation of quasi steady (unsteady) flow conditions at the open liquid with a time-dependent inflow hydrograph and a downstream <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a>  (recall the rationales behind the choice of boundary types from the <a class="reference internal" href="pre-slf-tm.html#bk-liquid-bc"><span class="std std-ref">pre-processing tutorial</span></a>).</p>
+<hr class="docutils" />
+<p><strong>Define a Quasi-steady Hydrograph</strong></p>
 <p>With the dry-initialized model ending at T=15000, the hydrograph needs to start at <code class="docutils literal notranslate"><span class="pre">15000</span></code>, even though the model start will represent time <em>zero</em> of the unsteady simulation. To implement the triangular-shaped hydrograph shown in <a class="reference internal" href="#unsteady-hydrograph"><span class="std std-numref">Fig. 83</span></a>, <strong>create a new file called <code class="docutils literal notranslate"><span class="pre">inflows.liq</span></code></strong> in the simulation folder. Open the new <code class="docutils literal notranslate"><span class="pre">inflows.liq</span></code> file in a text editor and add the red-circled points in <a class="reference internal" href="#unsteady-hydrograph"><span class="std std-numref">Fig. 83</span></a> as time-dependent flow information at the <strong>upstream (1)</strong> and <strong>downstream (2)</strong> open (liquid) boundaries. In this file:</p>
 <ul class="simple">
 <li><p>Add a file header starting with <code class="docutils literal notranslate"><span class="pre">#</span></code> signs (out-commented lines ignored by TELEMAC).</p></li>
-<li><p>Implement 3 columns (for time <strong>T</strong>, upstream inflow rate <strong>Q(1)</strong>, and downstream outflow rate <strong>Q(2)</strong>).</p></li>
-<li><p>Separate the columns either with <em>spaces</em> or <em>tabs</em> .</p></li>
+<li><p>Implement 1 columns (for time <strong>T</strong> and upstream inflow rate <strong>Q(1)</strong>).</p></li>
+<li><p>Separate the columns either with <em>spaces</em>.</p></li>
+<li><p>The first column must be time <code class="docutils literal notranslate"><span class="pre">T</span></code> with strictly monotonously increasing values and the last time value must be greater than or equal to the last simulation timestep.</p></li>
 </ul>
-<div class="admonition-how-does-telemac-count-the-indices-of-open-liquid-boundaries admonition">
-<p class="admonition-title">How does TELEMAC count the indices of open (liquid) boundaries?</p>
+<div class="admonition-how-does-telemac-count-open-liquid-boundaries admonition">
+<p class="admonition-title">How does TELEMAC count open (liquid) boundaries?</p>
 <p>Recall the information provided in the comment box in the <a class="reference internal" href="telemac2d-steady.html#tm2d-bounds"><span class="std std-ref">steady2d tutorial</span></a>.</p>
 </div>
-<p>Thus, the <code class="docutils literal notranslate"><span class="pre">inflows.liq</span></code> file should look similar to this:</p>
+<p>Thus, the <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/inflows.liq"><code class="docutils literal notranslate"><span class="pre">inflows.liq</span></code></a> file should look similar to this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Inflow hydrograph</span>
 <span class="c1">#</span>
-<span class="n">T</span>	<span class="n">Q</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>	<span class="n">Q</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">s</span>	<span class="n">m3</span><span class="o">/</span><span class="n">s</span>	<span class="n">m3</span><span class="o">/</span><span class="n">s</span>
-<span class="mi">15000</span>	<span class="mi">35</span>	<span class="mi">35</span>
-<span class="mi">16000</span>	<span class="mi">35</span>	<span class="mi">35</span>
-<span class="mi">17000</span>	<span class="mi">50</span>	<span class="mi">50</span>
-<span class="mi">19000</span>	<span class="mi">1130</span>	<span class="mi">1130</span>
-<span class="mi">22000</span>	<span class="mi">101</span>	<span class="mi">101</span>
-<span class="mi">25000</span>	<span class="mi">35</span>	<span class="mi">35</span>
-<span class="mi">99000</span>	<span class="mi">35</span>	<span class="mi">35</span>
+<span class="n">T</span>	<span class="n">Q</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">s</span>	<span class="n">m3</span><span class="o">/</span><span class="n">s</span>
+<span class="mi">15000</span>	<span class="mi">35</span>
+<span class="mi">16000</span>	<span class="mi">35</span>
+<span class="mi">17000</span>	<span class="mi">50</span>
+<span class="mi">19000</span>	<span class="mi">1130</span>
+<span class="mi">22000</span>	<span class="mi">101</span>
+<span class="mi">25000</span>	<span class="mi">35</span>
+<span class="mi">99000</span>	<span class="mi">35</span>
 </pre></div>
 </div>
+<p>The original <code class="docutils literal notranslate"><span class="pre">boundaries.cli</span></code> file describes the downstream boundary with <code class="docutils literal notranslate"><span class="pre">prescribed</span> <span class="pre">Q</span> <span class="pre">and</span> <span class="pre">H</span></code> (type <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">5</span> <span class="pre">5</span></code>). However, in the unsteady calculation, <code class="docutils literal notranslate"><span class="pre">Q</span></code> needs to be free (otherwise, in needed to be defined in <code class="docutils literal notranslate"><span class="pre">inflows.liq</span></code> with an additional column) and for this reason, the <code class="docutils literal notranslate"><span class="pre">boundaries.cli</span></code> file requires some adaptions:</p>
+<ul class="simple">
+<li><p><strong>Open</strong> the provided <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/boundaries.cli">boundaries.cli</a> file with a text editor (e.g., <a class="reference internal" href="../get-started/others.html#npp"><span class="std std-ref">NotepadPlusPlus</span></a> on Windows or <a class="reference internal" href="../get-started/ide.html#install-atom"><span class="std std-ref">Atom</span></a>).</p></li>
+<li><p>Use find-and-replace (e.g., <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">H</span></code> keys in <a class="reference internal" href="../get-started/others.html#npp"><span class="std std-ref">NotepadPlusPlus</span></a>, or <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">F</span></code> keys in <a class="reference internal" href="../get-started/ide.html#install-atom"><span class="std std-ref">Atom</span></a>):</p>
+<ul>
+<li><p><strong>Find</strong> <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">5</span> <span class="pre">5</span></code></p></li>
+<li><p><strong>Replace</strong> with <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">4</span> <span class="pre">4</span></code></p></li>
+<li><p>Click on <strong>Replace ALL</strong>.</p></li>
+</ul>
+</li>
+<li><p><strong>Save</strong> the file as <strong>boundaries-544.cli</strong> and close it.</p></li>
+</ul>
+<p>Verify the correct settings by downloading <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/boundaries-544.cli">boundaries-544.cli</a> for the unsteady simulation.</p>
+<p>In the <strong>steering file</strong>, adapt the <strong>file name for the boundary conditions</strong> and add the link to <strong>inflows.liq</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BOUNDARY</span> <span class="n">CONDITIONS</span> <span class="n">FILE</span> <span class="p">:</span> <span class="n">boundaries</span><span class="o">-</span><span class="mf">544.</span><span class="n">cli</span>
+<span class="o">/</span> <span class="o">...</span>
+<span class="n">LIQUID</span> <span class="n">BOUNDARIES</span> <span class="n">FILE</span> <span class="p">:</span> <span class="n">inflows</span><span class="o">.</span><span class="n">liq</span>
+</pre></div>
 </div>
-<div class="section" id="stage-discharge-relation">
-<h3>Stage-Discharge Relation<a class="headerlink" href="#stage-discharge-relation" title="Permalink to this headline">¶</a></h3>
+<hr class="docutils" />
+<p><strong>Stage-Discharge Relation</strong></p>
 <p>To activate the use of a <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a> for an open (liquid) boundary with the <code class="docutils literal notranslate"><span class="pre">STAGE-DISCHARGE</span> <span class="pre">CURVES</span></code> keyword needs to be added to the steering file. This keyword accepts the following integers:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> is the <strong>default</strong> that deactivates the usage of stage discharge.</p></li>
@@ -878,7 +913,7 @@
 </ul>
 <p>The <code class="docutils literal notranslate"><span class="pre">STAGE-DISCHARGE</span> <span class="pre">CURVES</span></code> keyword is a list that assigns one of the three integer (i.e., either <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span></code>, or <code class="docutils literal notranslate"><span class="pre">2</span></code>) to the open (liquid) boundaries. In this tutorial <code class="docutils literal notranslate"><span class="pre">STAGE-DISCHARGE</span> <span class="pre">CURVES</span> <span class="pre">:</span> <span class="pre">0;1</span></code> actives the use of a <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a> for the downstream boundary only where the <strong>upstream open boundary number 1</strong> is set to <code class="docutils literal notranslate"><span class="pre">0</span></code> and the <strong>downstream open boundary number 1</strong> is set to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
 <p>The form (curve) of the <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a> needs to be defined in a stage-discharge file (<a class="reference internal" href="../documentation/glossary.html#term-ASCII"><span class="xref std std-term">ASCII</span></a> text format). Such files typically apply to the downstream boundary of a model at control sections (e.g., a free overflow weir). This tutorial uses the following relation that is stored in a file called <code class="docutils literal notranslate"><span class="pre">ratingcurve.txt</span></code> (<a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/ratingcurve.txt">download</a>):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Downstream Rating Curve</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Downstream ratingcurve.txt</span>
 <span class="c1">#</span>
 <span class="n">Z</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>	<span class="n">Q</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">m</span>	<span class="n">m3</span><span class="o">/</span><span class="n">s</span>
@@ -892,7 +927,7 @@
 <p>To define <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a>s for multiple open boundaries (e.g., at river diversions or tributaries), add the curves to the same file. TELEMAC automatically recognizes where the curves apply by the number given in parentheses after the parameter name in the column header. For instance, in the above example for this tutorial, the column headers <code class="docutils literal notranslate"><span class="pre">Z(2)</span></code> and <code class="docutils literal notranslate"><span class="pre">Q(2)</span></code> tell TELEMAC to use these values for the second (i.e., downstream) open boundary. The column order is not important because TELEMAC reads the curve type (i.e., either <span class="math notranslate nohighlight">\(Q(Z)\)</span> or <span class="math notranslate nohighlight">\(Z(Q)\)</span>) from the <code class="docutils literal notranslate"><span class="pre">STAGE-DISCHARGE</span> <span class="pre">CURVES</span></code> keyword.</p>
 <div class="note dropdown admonition">
 <p class="admonition-title">Expand to view an example for multiple stage-discharge curve definitions</p>
-<p>The following file block would prescribe <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a>s to the upstream and downstream boundary conditions in this tutorial. However, the file cannot be used here unless the upstream boundary type is changed to <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">5</span> <span class="pre">5</span></code> (prescribed H and Q) in the <code class="docutils literal notranslate"><span class="pre">boundaries.cli</span></code> file (read more in the <a class="reference internal" href="pre-slf-tm.html#bk-liquid-bc"><span class="std std-ref">pre-processing tutorial</span></a>).</p>
+<p>The following file block would prescribe <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a>s to the upstream and downstream boundary conditions in this tutorial. However, the file cannot be used here unless the upstream boundary type is changed to <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">5</span> <span class="pre">5</span></code> (<code class="docutils literal notranslate"><span class="pre">prescribed</span> <span class="pre">H</span> <span class="pre">and</span> <span class="pre">Q</span></code>) in the <code class="docutils literal notranslate"><span class="pre">boundaries.cli</span></code> file (read more in the <a class="reference internal" href="pre-slf-tm.html#bk-liquid-bc"><span class="std std-ref">pre-processing tutorial</span></a>).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
 <span class="c1"># Downstream Rating Curve</span>
 <span class="c1">#</span>
@@ -916,24 +951,76 @@
 </pre></div>
 </div>
 </div>
-<p>To use a stage-discharge file, define the following keyword in the steering file:</p>
+<p>To use the stage-discharge file, <strong>define the <code class="docutils literal notranslate"><span class="pre">STAGE-DISCHARGE</span> <span class="pre">...</span></code> keywords in the steering file</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">steering</span><span class="o">.</span><span class="n">cas</span>
-<span class="n">STAGE</span><span class="o">-</span><span class="n">DISCHARGE</span> <span class="n">CURVES</span> <span class="p">:</span> <span class="mi">1</span>
-<span class="n">STAGE</span><span class="o">-</span><span class="n">DISCHARGE</span> <span class="n">CURVES</span> <span class="n">FILE</span> <span class="p">:</span> <span class="n">YES</span>
+<span class="n">STAGE</span><span class="o">-</span><span class="n">DISCHARGE</span> <span class="n">CURVES</span> <span class="p">:</span> <span class="mi">0</span><span class="p">;</span><span class="mi">1</span>
+<span class="n">STAGE</span><span class="o">-</span><span class="n">DISCHARGE</span> <span class="n">CURVES</span> <span class="n">FILE</span> <span class="p">:</span> <span class="n">ratingcurve</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p><strong>Remove Ambiguous Open Boundary Definition Keywords</strong></p>
+<p>To avoid ambiguous definitions of the open boundaries conditions, <strong>deactivate</strong> (i.e., delete or comment out lines with a <code class="docutils literal notranslate"><span class="pre">/</span></code>) in the steering file the <strong><code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">...</span></code> keywords</strong>:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">PRESCRIBED</span> <span class="n">FLOWRATES</span>  <span class="p">:</span> <span class="mi">3</span><span class="mf">5.</span><span class="p">;</span><span class="mi">3</span><span class="mf">5.</span>
+<span class="o">/</span> <span class="n">PRESCRIBED</span> <span class="n">ELEVATIONS</span> <span class="p">:</span> <span class="mf">0.</span><span class="p">;</span><span class="mi">37</span><span class="mf">1.33</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="numerical-parameters">
 <h3>Numerical Parameters<a class="headerlink" href="#numerical-parameters" title="Permalink to this headline">¶</a></h3>
-<p>The predictor-corrector schemes (<code class="docutils literal notranslate"><span class="pre">SCHEME</span> <span class="pre">FOR</span> <span class="pre">...</span></code> keywords defined with <code class="docutils literal notranslate"><span class="pre">3</span></code>, <code class="docutils literal notranslate"><span class="pre">4</span></code>, <code class="docutils literal notranslate"><span class="pre">5</span></code>, or <code class="docutils literal notranslate"><span class="pre">15</span></code> as explained in the <a class="reference internal" href="telemac2d-steady.html#tm2d-numerical"><span class="std std-ref">steady2d tutorial</span></a>) rely on a parameter defining the number of iterations at every timestep for convergence. For quasi-steady simulations, the developers recommend to set this parameter to <code class="docutils literal notranslate"><span class="pre">2</span></code> or slightly larger (section 7.2.1 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac2d/user/telemac2d_user_v8p2.pdf">Telemac2d manual</a>). Therefore, add the following line to the steering file:</p>
+<p>The predictor-corrector schemes (<code class="docutils literal notranslate"><span class="pre">SCHEME</span> <span class="pre">FOR</span> <span class="pre">...</span></code> keywords defined with <code class="docutils literal notranslate"><span class="pre">3</span></code>, <code class="docutils literal notranslate"><span class="pre">4</span></code>, <code class="docutils literal notranslate"><span class="pre">5</span></code>, or <code class="docutils literal notranslate"><span class="pre">15</span></code> as explained in the <a class="reference internal" href="telemac2d-steady.html#tm2d-numerical"><span class="std std-ref">steady2d tutorial</span></a>) rely on a parameter defining the number of iterations at every timestep for convergence. For quasi steady simulations, the developers recommend to set this parameter to <code class="docutils literal notranslate"><span class="pre">2</span></code> or slightly larger (section 7.2.1 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac2d/user/telemac2d_user_v8p2.pdf">Telemac2d manual</a>). Therefore, add the following line to the steering file:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">NUMBER</span> <span class="n">OF</span> <span class="n">CORRECTIONS</span> <span class="n">OF</span> <span class="n">DISTRIBUTIVE</span> <span class="n">SCHEMES</span> <span class="p">:</span> <span class="mi">2</span>
 </pre></div>
 </div>
-<p>In addition, a minimum value for water depth can be set to define if a cell is wet or dry. While TELEMAC developers do not recommend using a minimum water depth for most simulations, they do recommend its usage for unsteady (quasi-steady) simulation. Defining a minimum water depth requires to set the <code class="docutils literal notranslate"><span class="pre">TREATMENT</span> <span class="pre">OF</span> <span class="pre">THE</span> <span class="pre">TIDAL</span> <span class="pre">FLATS</span></code> keyword to <code class="docutils literal notranslate"><span class="pre">2</span></code> (read more in the <a class="reference internal" href="telemac2d-steady.html#tm2d-tidal"><span class="std std-ref">steady2d tutorial</span></a>), which is not compatible with the parallelization routines, nor with the here used <code class="docutils literal notranslate"><span class="pre">SCHEME</span> <span class="pre">FOR</span> <span class="pre">ADVECTION</span> <span class="pre">...</span> <span class="pre">:</span> <span class="pre">14</span></code> settings. Thus, good results, but long non-parallelized quasi-steady calculations can be yielded with the following keywords in the steering file:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">OPTION</span> <span class="n">FOR</span> <span class="n">THE</span> <span class="n">TREATMENT</span> <span class="n">OF</span> <span class="n">TIDAL</span> <span class="n">FLATS</span> <span class="p">:</span> <span class="mi">2</span> <span class="o">/</span> <span class="k">use </span><span class="n">segment</span><span class="o">-</span><span class="n">wise</span> <span class="n">flux</span> <span class="n">control</span>
-<span class="n">MINIMUM</span> <span class="k">VALUE </span><span class="n">OF</span> <span class="n">DEPTH</span> <span class="p">:</span> <span class="mf">0.1</span> <span class="o">/</span> <span class="n">in</span> <span class="n">meters</span>
+</div>
+<div class="section" id="control-sections">
+<span id="tm-control-sections"></span><h3>Control Sections<a class="headerlink" href="#control-sections" title="Permalink to this headline">¶</a></h3>
+<p>A consistent way to verify fluxes at open boundaries or other particular lines (e.g., tributary inflows or diversions) is to use the <code class="docutils literal notranslate"><span class="pre">CONTROL</span> <span class="pre">SECTIONS</span></code> keyword (<em>though not used in this tutorial</em>). A control section is defined by a sequence of neighboring node numbers. For instance, to verify the fluxes over the open boundaries in this tutorial, check out the node numbers in the <code class="docutils literal notranslate"><span class="pre">boundaries.cli</span></code> file (e.g., 144 to 32 for the upstream and 34 to 5 for the downstream boundary). Then create a new text file (e.g., <code class="docutils literal notranslate"><span class="pre">control-sections.txt</span></code>) and:</p>
+<ul class="simple">
+<li><p>Add one comment line with some short information (e.g., <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">control</span> <span class="pre">sections</span> <span class="pre">input</span> <span class="pre">file</span></code>). Note that this line is <strong>mandatory</strong>.</p></li>
+<li><p>In the second line add a space-separated list of 2 integers where</p>
+<ul>
+<li><p>the first integer defines the number of cross-sections, and</p></li>
+<li><p>the second integer defines if node numbers (i.e. IDs from <code class="docutils literal notranslate"><span class="pre">boundaries.cli</span></code>) or coordinates will be defined. A negative number sets node IDs and a positive number coordinates.</p></li>
+</ul>
+</li>
+<li><p>Define as many cross sections as set with the first integer. Every cross-section definition consists of two lines:</p>
+<ul>
+<li><p>The first line is a <em>string</em> (text) without spaces that is naming the cross-section (e.g., <code class="docutils literal notranslate"><span class="pre">inflow_cs</span></code>).</p></li>
+<li><p>The second line consists of two numbers defining the start and end points of the cross-sections. If the second integer in the file line is negative, provide two space-separated integers. If the second integer is positive, provide two space-separated pairs of coordinates (put a space between coordinates).</p></li>
+</ul>
+</li>
+</ul>
+<p>For example, the following <code class="docutils literal notranslate"><span class="pre">control-sections.txt</span></code> file can be used with the steady simulation in this tutorial (<a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/control-sections.txt">download control-sections.txt</a>).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># control sections steady2d</span>
+<span class="mi">2</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">Inflow_boundary</span>
+<span class="mi">144</span> <span class="mi">32</span>
+<span class="n">Outflow_boundary</span>
+<span class="mi">34</span> <span class="mi">5</span>
 </pre></div>
 </div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Expand to view an example for coordinate-based control sections</p>
+<p>The following control section file uses point coordinates rather than node ID numbers to define three sections. Read more in <span id="id1">Gifford-Miears and Leon [<a class="reference internal" href="../documentation/bibliography.html#id1342">GML13</a>]</span> (i.e., section 4.1.2 in the <a class="reference external" href="http://www.opentelemac.org/index.php/component/jdownloads/summary/4-training-and-tutorials/185-telemac-2d-tutorial?Itemid=55">Baxter tutorial</a>).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># control section file using coordinates</span>
+<span class="mi">3</span> <span class="mi">0</span>
+<span class="n">affluent_creek</span>
+<span class="mf">19572355.895577</span> <span class="mf">626823.06664</span> <span class="mf">1952347.2733</span> <span class="mf">626923.9554</span>
+<span class="n">main_river_upstream</span>
+<span class="mf">1946449.824</span> <span class="mf">635349.6070</span> <span class="mf">194.919</span> <span class="mf">635209.807</span>
+<span class="n">main_river_downstream</span>
+<span class="mf">1967737.56993</span> <span class="mf">620784.415608</span> <span class="mf">1967998.16429</span> <span class="mf">620638.17849</span>
+</pre></div>
+</div>
+</div>
+<p>The second line in this file tells TELEMAC to use <code class="docutils literal notranslate"><span class="pre">2</span></code> control sections, which are defined by node IDs (<code class="docutils literal notranslate"><span class="pre">-1</span></code>). To use the control sections for the simulation add the following to the steering file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">steady2d</span><span class="o">.</span><span class="n">cas</span>
+<span class="o">/</span> <span class="o">...</span>
+<span class="n">SECTIONS</span> <span class="n">INPUT</span> <span class="n">FILE</span> <span class="p">:</span>  <span class="n">control</span><span class="o">-</span><span class="n">sections</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">SECTIONS</span> <span class="n">OUTPUT</span> <span class="n">FILE</span> <span class="p">:</span> <span class="n">r</span><span class="o">-</span><span class="n">control</span><span class="o">-</span><span class="n">flows</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>Thus, re-running the simulation will write the fluxes across the two define control sections to a file called <code class="docutils literal notranslate"><span class="pre">r-control-flows.txt</span></code>. The <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac2d/user/telemac2d_user_v8p2.pdf">Telemac2d manual</a> provides detailed explanations in section 5.2.2.</p>
 </div>
 </div>
 <div class="section" id="run-telemac2d-unsteady">
@@ -941,7 +1028,6 @@
 <p>Go to the configuration folder of the local TELEMAC installation (e.g., <code class="docutils literal notranslate"><span class="pre">~/telemac/v8p2/configs/</span></code>) and launch the environment (e.g., <code class="docutils literal notranslate"><span class="pre">pysource.openmpi.sh</span></code> - use the same as for compiling TELEMAC).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">configs</span>
 <span class="n">source</span> <span class="n">pysource</span><span class="o">.</span><span class="n">openmpi</span><span class="o">.</span><span class="n">sh</span>
-<span class="n">config</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 <div class="note dropdown admonition">
@@ -949,7 +1035,6 @@
 <p>If you are working with the <a class="reference internal" href="../get-started/vm.html#hyfo-vm"><span class="std std-ref">Mint Hyfo VM</span></a>, load the TELEMAC environment as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">configs</span>
 <span class="n">source</span> <span class="n">pysource</span><span class="o">.</span><span class="n">hyfo</span><span class="o">-</span><span class="n">dyn</span><span class="o">.</span><span class="n">sh</span>
-<span class="n">config</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 </div>
@@ -977,6 +1062,30 @@
 
 <span class="n">My</span> <span class="n">work</span> <span class="k">is </span><span class="n">done</span>
 </pre></div>
+</div>
+</div>
+<div class="section" id="post-processing">
+<h2>Post-processing<a class="headerlink" href="#post-processing" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="open-boundary-flows">
+<h3>Open Boundary Flows<a class="headerlink" href="#open-boundary-flows" title="Permalink to this headline">¶</a></h3>
+<p>The unsteady simulation intends to model time-variable flows over the open upstream and downstream open boundaries. The above-defined <a class="reference internal" href="#tm-control-sections"><span class="std std-ref">control sections</span></a> enable insights into the correct adaptation of the flow at the upstream inflow boundary (<code class="docutils literal notranslate"><span class="pre">prescribed</span> <span class="pre">Q</span></code> through <em>inflows.liq</em>) and the downstream outflow boundary (<code class="docutils literal notranslate"><span class="pre">prescribed</span> <span class="pre">H</span></code> through <em>ratingcurve.txt</em>). <a class="reference internal" href="#res-unsteady-hydrograph"><span class="std std-numref">Figure 84</span></a> shows the modeled flow rates where the <em>Inflow_boundary</em> shows perfect agreement with <em>inflows.liq</em> and the <em>Outflow_boundary</em> reflects the flattening of the discharge curve in the modeled meandering gravel-cobble bed river.</p>
+<div class="figure align-default" id="res-unsteady-hydrograph">
+<img alt="result unsteady flow discharge telemac2d hydrodynamic inflow outflow control sections" src="../_images/res-unsteady-hydrograph.png" />
+<p class="caption"><span class="caption-number">Fig. 84 </span><span class="caption-text">The simulated flows over the upstream <em>Inflow_boundary</em> and the downstream <em>Outflow_boundary</em> control sections.</span><a class="headerlink" href="#res-unsteady-hydrograph" title="Permalink to this image">¶</a></p>
+</div>
+<p>The peak inflow corresponds to the specified 1130 m<span class="math notranslate nohighlight">\(^3\)</span>/s and at the outflow peak is only 889 m<span class="math notranslate nohighlight">\(^3\)</span>/s where the peak takes about 1070 seconds (inflow at <span class="math notranslate nohighlight">\(T=19000\)</span> and outflow at <span class="math notranslate nohighlight">\(T\approx 20070\)</span>) to travel through the section.</p>
+<div class="admonition-resolve-volume-balance-issues-in-unsteady-simulations admonition">
+<p class="admonition-title">Resolve volume balance issues in unsteady simulations</p>
+<p>The total inflow and outflow volumes in the here featured simulation amount to 3479930.958 m<span class="math notranslate nohighlight">\(^3\)</span> and 3430100.437 m<span class="math notranslate nohighlight">\(^3\)</span>, respectively. Thus, there is a total volume error of 1.4<span class="math notranslate nohighlight">\(%\)</span>. To overcome such issues, the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac2d/user/telemac2d_user_v8p2.pdf">Telemac2d manual</a> recommend using a minimum value for water depth to define when a cell is wet or dry. Still, the developers do not recommend using a minimum water depth for most simulations, and emphasize using this option only for unsteady (quasi steady) simulations. Defining a minimum water depth requires to set the <code class="docutils literal notranslate"><span class="pre">TREATMENT</span> <span class="pre">OF</span> <span class="pre">THE</span> <span class="pre">TIDAL</span> <span class="pre">FLATS</span></code> keyword to <code class="docutils literal notranslate"><span class="pre">2</span></code> (read more in the <a class="reference internal" href="telemac2d-steady.html#tm2d-tidal"><span class="std std-ref">steady2d tutorial</span></a>), which is not compatible with the parallelization routines, nor with the here used <code class="docutils literal notranslate"><span class="pre">SCHEME</span> <span class="pre">FOR</span> <span class="pre">ADVECTION</span> <span class="pre">...</span> <span class="pre">:</span> <span class="pre">14</span></code> settings. Thus, good results, but long non-parallelized quasi-steady calculations can be yielded with the following keywords in the steering file:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">OPTION</span> <span class="n">FOR</span> <span class="n">THE</span> <span class="n">TREATMENT</span> <span class="n">OF</span> <span class="n">TIDAL</span> <span class="n">FLATS</span> <span class="p">:</span> <span class="mi">2</span> <span class="o">/</span> <span class="k">use </span><span class="n">segment</span><span class="o">-</span><span class="n">wise</span> <span class="n">flux</span> <span class="n">control</span>
+<span class="n">MINIMUM</span> <span class="k">VALUE </span><span class="n">OF</span> <span class="n">DEPTH</span> <span class="p">:</span> <span class="mf">0.1</span> <span class="o">/</span> <span class="n">in</span> <span class="n">meters</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="practice-recommendations">
+<h3>Practice Recommendations<a class="headerlink" href="#practice-recommendations" title="Permalink to this headline">¶</a></h3>
+<p>This tutorial ends with the graphical output of modeled flow parameters, but there are a couple more steps to accomplish in practice. For instance, the time that the flow peak takes to travel through the modeled river section might be too short (i.e., flow is too fast) or too long (i.e., flow is too slow) compared to observation data (e.g., from stream gauges). In these cases, model calibration through variations of the <a class="reference internal" href="telemac2d-steady.html#tm2d-friction"><span class="std std-ref">FRICTION COEFFICIENT</span></a> keyword might be a solution.</p>
 </div>
 </div>
 </div>

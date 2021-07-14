@@ -381,7 +381,6 @@ Go to the configuration folder of the local TELEMAC installation (e.g., `~/telem
 ```
 cd ~/telemac/v8p2/configs
 source pysource.openmpi.sh
-config.py
 ```
 
 ````{admonition} If you are using the Hydro-Informatics (Hyfo) Mint VM
@@ -392,7 +391,6 @@ If you are working with the {ref}`Mint Hyfo VM <hyfo-vm>`, load the TELEMAC envi
 ```
 cd ~/telemac/v8p2/configs
 source pysource.hyfo-dyn.sh
-config.py
 ```
 ````
 
