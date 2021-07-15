@@ -591,7 +591,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
-     Debugging TELEMAC/SALOME
+     Debugging TELEMAC
     </a>
    </li>
   </ul>
@@ -1060,10 +1060,9 @@
 <p>An additional option for speeding up is to enable mass lumping for diffusion, depth, and/or weak characteristics. Mass lumping results in faster convergence, but it introduces artificial dispersion in the results, which is why enabling mass lumping is discouraged by the TELEMAC developers. The provided <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady3d-tutorial/steady3d.cas">steady3d.cas</a> includes the keywords for mass lumping, though they are disabled through the <code class="docutils literal notranslate"><span class="pre">/</span></code> at the beginning of the line.</p>
 <p><strong>Implication parameters</strong> (<code class="docutils literal notranslate"><span class="pre">IMPLICITATION</span> <span class="pre">FOR</span> <span class="pre">DEPTH</span></code> and <code class="docutils literal notranslate"><span class="pre">IMPLICITATION</span> <span class="pre">FOR</span> <span class="pre">VELOCITIES</span></code>) should be set between 0.55 and 0.60 (default is 0.55 since <em>TELEMAC v8p1</em>) and can be considered as a degree of implicitation. <code class="docutils literal notranslate"><span class="pre">IMPLICITATION</span> <span class="pre">FOR</span> <span class="pre">DIFFUSION</span></code> is set to <code class="docutils literal notranslate"><span class="pre">1.0</span></code> by default. Read more in section 6.4 of the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac3d/user/telemac3d_user_v8p2.pdf">Telemac3d manual</a>.</p>
 <p>The parameter <code class="docutils literal notranslate"><span class="pre">FREE</span> <span class="pre">SURFACE</span> <span class="pre">GRADIENT</span></code> can be used for increasing the stability of a model. Its default value is <code class="docutils literal notranslate"><span class="pre">1.0</span></code>, but it can be reduced to <code class="docutils literal notranslate"><span class="pre">0.1</span></code> to achieve stability.</p>
-<p>(tm3d-slf-vertical)</p>
 </div>
 <div class="section" id="vertical-3d-parameters">
-<h3>Vertical (3d) Parameters<a class="headerlink" href="#vertical-3d-parameters" title="Permalink to this headline">¶</a></h3>
+<span id="tm3d-slf-vertical"></span><h3>Vertical (3d) Parameters<a class="headerlink" href="#vertical-3d-parameters" title="Permalink to this headline">¶</a></h3>
 <p><strong>The following descriptions refer to section 4.1 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac3d/user/telemac3d_user_v8p2.pdf">Telemac3d manual</a>.</strong></p>
 <p>Telemac3d will add <em>Horizontal levels</em> (i.e., layers) that correspond to copies of the 2d-mesh to build a 3d-mesh of prisms (default) or tetrahedrons. These parameters can be defined with:</p>
 <ul class="simple">

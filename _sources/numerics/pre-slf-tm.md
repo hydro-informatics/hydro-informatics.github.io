@@ -72,10 +72,10 @@ In the **Plugins** window, add both plugins as follows:
 * Install the BASEmesh plugin:
   * Go to the **All** tab (still in the *Plugins* window) and enter `basemesh` in the search field.
   * Find the **newest BASEmesh** (i.e., **Available version** >= 2.0.0) plugin and click on **Install Plugin**.
-* To install the **PostTelemac** plugin type `posttelemac` in the **All** tab and click on **Install Plugin**.
+* To install the [**PostTelemac** plugin](https://github.com/Artelia/PostTelemac/wiki#T45) type `posttelemac` in the **All** tab and click on **Install Plugin**.
 * After the successful installation **Close** the **Plugins** window.
 
-Now, the *BASEmesh 2* plugin should be available in QGIS' *Plugins* menu and the *PostTelemac* <img src="../img/qgis/sym-posttm.png"> symbol should be visible in QGIS' menu bar.
+Now, the *BASEmesh 2* plugin should be available in QGIS' *Plugins* menu and the [PostTelemac](https://github.com/Artelia/PostTelemac/wiki#T45) <img src="../img/qgis/sym-posttm.png"> symbol should be visible in QGIS' menu bar.
 
 ```{admonition} Why use BASEmesh for TELEMAC?
 By using BASEmesh, this tutorial employs BASEMENT's efficient mesh generator to minimize the number of work steps to be made in Blue Kenue. The rationale behind this approach is that QGIS is more stable and user-friendly than Blue Kenue, for instance, to correct drawing errors of boundary lines.

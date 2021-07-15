@@ -285,7 +285,7 @@ An additional option for speeding up is to enable mass lumping for diffusion, de
 
 The parameter `FREE SURFACE GRADIENT` can be used for increasing the stability of a model. Its default value is `1.0`, but it can be reduced to `0.1` to achieve stability.
 
-(tm3d-slf-vertical)
+(tm3d-slf-vertical)=
 ### Vertical (3d) Parameters
 
 **The following descriptions refer to section 4.1 in the {{ tm3d }}.**

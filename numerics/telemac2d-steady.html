@@ -591,7 +591,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
-     Debugging TELEMAC/SALOME
+     Debugging TELEMAC
     </a>
    </li>
   </ul>
@@ -1298,9 +1298,14 @@ This tutorial features the application of the <em>Manning</em> roughness coeffic
 <span class="n">FRICTION</span> <span class="n">COEFFICIENT</span> <span class="p">:</span> <span class="mf">0.03</span> <span class="o">/</span> <span class="n">Roughness</span> <span class="n">coefficient</span>
 </pre></div>
 </div>
-<div class="tip dropdown admonition">
-<p class="admonition-title">Expand to see exemplary values for Manning roughness</p>
-<p><a class="reference internal" href="#tab-mannings-n"><span class="std std-numref">Table 7</span></a> lists exemplary values for the Manning roughness coefficient <span class="math notranslate nohighlight">\(n_m\)</span> based on <span id="id22">Aldridge and Garrett [<a class="reference internal" href="../documentation/bibliography.html#id1356">AG73</a>]</span> and <span id="id23">Arcement and Schneider [<a class="reference internal" href="../documentation/bibliography.html#id1355">AS89</a>]</span>.</p>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Expand to see exemplary values for Manning roughness<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text"><a class="reference internal" href="#tab-mannings-n"><span class="std std-numref">Table 7</span></a> lists exemplary values for the Manning roughness coefficient <span class="math notranslate nohighlight">\(n_m\)</span> based on <span id="id22">Aldridge and Garrett [<a class="reference internal" href="../documentation/bibliography.html#id1356">AG73</a>]</span> and <span id="id23">Arcement and Schneider [<a class="reference internal" href="../documentation/bibliography.html#id1355">AS89</a>]</span>.</p>
 <table class="table" id="tab-mannings-n">
 <caption><span class="caption-number">Table 7 </span><span class="caption-text">Exemplary values for Manning roughness for straight uniform channels.</span><a class="headerlink" href="#tab-mannings-n" title="Permalink to this table">¶</a></caption>
 <colgroup>
@@ -1309,68 +1314,61 @@ This tutorial features the application of the <em>Manning</em> roughness coeffic
 <col style="width: 33%" />
 </colgroup>
 <thead>
-<tr class="row-odd"><th class="head"><p>Surface type</p></th>
-<th class="head"><p>Material diameter (10<span class="math notranslate nohighlight">\(^{-3}\)</span>m)</p></th>
-<th class="head"><p><span class="math notranslate nohighlight">\(n_m\)</span> (m<span class="math notranslate nohighlight">\(^{-1/3}\)</span>s)</p></th>
+<tr class="row-odd"><th class="head"><p class="card-text">Surface type</p></th>
+<th class="head"><p class="card-text">Material diameter (10<span class="math notranslate nohighlight">\(^{-3}\)</span>m)</p></th>
+<th class="head"><p class="card-text"><span class="math notranslate nohighlight">\(n_m\)</span> (m<span class="math notranslate nohighlight">\(^{-1/3}\)</span>s)</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Concrete</p></td>
-<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
-<td><p>0.012-0.018</p></td>
+<tr class="row-even"><td><p class="card-text">Concrete</p></td>
+<td><p class="card-text"><span class="math notranslate nohighlight">\(-\)</span></p></td>
+<td><p class="card-text">0.012-0.018</p></td>
 </tr>
-<tr class="row-odd"><td><p>Firm soil</p></td>
-<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
-<td><p>0.025-0.032</p></td>
+<tr class="row-odd"><td><p class="card-text">Firm soil</p></td>
+<td><p class="card-text"><span class="math notranslate nohighlight">\(-\)</span></p></td>
+<td><p class="card-text">0.025-0.032</p></td>
 </tr>
-<tr class="row-even"><td><p>Coarse sand</p></td>
-<td><p>1-2</p></td>
-<td><p>0.026-0.035</p></td>
+<tr class="row-even"><td><p class="card-text">Coarse sand</p></td>
+<td><p class="card-text">1-2</p></td>
+<td><p class="card-text">0.026-0.035</p></td>
 </tr>
-<tr class="row-odd"><td><p>Gravel</p></td>
-<td><p>2-64</p></td>
-<td><p>0.028-0.035</p></td>
+<tr class="row-odd"><td><p class="card-text">Gravel</p></td>
+<td><p class="card-text">2-64</p></td>
+<td><p class="card-text">0.028-0.035</p></td>
 </tr>
-<tr class="row-even"><td><p>Cobble</p></td>
-<td><p>64-256</p></td>
-<td><p>0.030-0.050</p></td>
+<tr class="row-even"><td><p class="card-text">Cobble</p></td>
+<td><p class="card-text">64-256</p></td>
+<td><p class="card-text">0.030-0.050</p></td>
 </tr>
-<tr class="row-odd"><td><p>Boulder</p></td>
-<td><p><span class="math notranslate nohighlight">\(&gt;\)</span> 256</p></td>
-<td><p>0.040-0.070</p></td>
+<tr class="row-odd"><td><p class="card-text">Boulder</p></td>
+<td><p class="card-text"><span class="math notranslate nohighlight">\(&gt;\)</span> 256</p></td>
+<td><p class="card-text">0.040-0.070</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="tip dropdown admonition">
+</details><div class="tip dropdown admonition">
 <p class="admonition-title">Friction zones (regional friction values)</p>
-<p>Similar to the assignment of multiple friction coefficient values to multiple model regions featured in the <a class="reference internal" href="basement2d.html#bm-geometry"><span class="std std-ref">BASEMENT tutorial</span></a>, Telemac2d provides routines for domain-wise (or zonal) friction definitions. Appendix E of the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac2d/user/telemac2d_user_v8p2.pdf">Telemac2d manual</a> provides detailed explanations for the implementation of such zonal friction values. The following tips may help to better understand the instructions in Appendix E:</p>
+<p>Similar to the assignment of multiple friction coefficient values to multiple model regions featured in the <a class="reference internal" href="basement2d.html#bm-geometry"><span class="std std-ref">BASEMENT tutorial</span></a>, Telemac2d provides routines for domain-wise (or zonal) friction area definitions through a geometry (e.g., <code class="docutils literal notranslate"><span class="pre">*.slf</span></code>) file. To create a zonal roughness Selafin geometry with QGIS and Blue Kenue use our <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/friction/create-friction-zone.pdf">Create Roughness Selafin File PDF workflow</a>. Some additional hints for using the workflow:</p>
 <ul class="simple">
-<li><p>The proposed modification of the <strong>FRICTION_USER</strong> Fortran function (subroutine) is not mandatory. If the FRICTION_USER subroutines must be enabled anyway (e.g., to implement a new roughness law such as the <span id="id24">Ferguson [<a class="reference internal" href="../documentation/bibliography.html#id185">Fer07</a>]</span> equation):</p>
-<ul>
+<li><p>Delineate zones with different roughness coefficients by drawing polygons (e.g., following landscapes characteristics on a basemap) in separate shapefiles with QGIS (see also the <a class="reference internal" href="pre-slf-tm.html#tm-qgis-prepro"><span class="std std-ref">pre-processing tutorial on QGIS</span></a>).</p></li>
+<li><p>Import the separate polygons as XYZ file or closed lines in Blue Kenue (see also the <a class="reference internal" href="pre-slf-tm.html#bk-tutorial"><span class="std std-ref">pre-processing tutorial on Blue Kenue</span></a>).</p></li>
+<li><p>Assign elevations to the polygons (closed lines) in Blue Kenue (requires <a class="reference internal" href="pre-slf-tm.html#bk-xyz"><span class="std std-ref">elevation information</span></a>).</p></li>
+<li><p>Add a new variable to the <a class="reference internal" href="pre-slf-tm.html#bk-create-slf"><span class="std std-ref">Selafin</span></a> geometry and call it BOTTOM FRICTION (this can be another <code class="docutils literal notranslate"><span class="pre">*.slf</span></code> file than the one where the computational mesh lives).</p></li>
+<li><p>Use the <a class="reference internal" href="pre-slf-tm.html#bk-2dinterp"><span class="std std-ref">Map Object</span></a> function (<em>Tools</em> &gt; <em>Map Object…</em>) to add the polygons (closed lines) to the BOTTOM FRICTION mesh variable.</p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">*.cas</span></code> file, make sure to set a value for the FRICTION parameter according to the above descriptions and to set the <code class="docutils literal notranslate"><span class="pre">*.slf</span></code> file with the BOTTOM FRICTION variable for the <code class="docutils literal notranslate"><span class="pre">ZONES</span> <span class="pre">FILE</span></code> keyword.</p></li>
+</ul>
+<p>Useful examples for creating roughness zones are:</p>
+<ul class="simple">
+<li><p>The BAW’s Donau case study that lives in <code class="docutils literal notranslate"><span class="pre">/telemac/v8p2/examples/telemac2d/donau/</span></code> and features the usage of a <code class="docutils literal notranslate"><span class="pre">*.bfr</span></code> <code class="docutils literal notranslate"><span class="pre">ZONES</span> <span class="pre">FILE</span></code> and a <code class="docutils literal notranslate"><span class="pre">roughness.tbl</span></code> <code class="docutils literal notranslate"><span class="pre">FRICTION</span> <span class="pre">DATA</span> <span class="pre">FILE</span></code>, which are enabled through the <code class="docutils literal notranslate"><span class="pre">FRICTION</span> <span class="pre">DATA</span> <span class="pre">:</span> <span class="pre">YES</span></code> keyword in the <code class="docutils literal notranslate"><span class="pre">t2d_donau.cas</span></code> file. The Donau example was presented at the XXth Telemac-Mascaret user conference and the conference proceedings are available at the BAW’s <a class="reference external" href="https://hdl.handle.net/20.500.11970/100418">HENRY portal</a> (look for the contribution <em>Reverse engineering of initial &amp; boundary conditions with TELEMAC and algorithmic differentiation</em>).</p></li>
+<li><p>The <a class="reference external" href="http://www.opentelemac.org/index.php/component/jdownloads/summary/4-training-and-tutorials/185-telemac-2d-tutorial?Itemid=55">Baxter tutorial</a>.</p></li>
+</ul>
+<p>In addition, Appendix E of the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac2d/user/telemac2d_user_v8p2.pdf">Telemac2d manual</a> provides explanations for the implementation of such zonal friction values. Yet, the proposed modification of the <strong>FRICTION_USER</strong> Fortran function (subroutine) is not mandatory. Here are some hints if the FRICTION_USER subroutines must be enabled anyway (e.g., to implement a new roughness law such as the <span id="id24">Ferguson [<a class="reference internal" href="../documentation/bibliography.html#id185">Fer07</a>]</span> equation):</p>
+<ul class="simple">
 <li><p>The FICTION_USER subroutine can be found in <code class="docutils literal notranslate"><span class="pre">/telemac/v8p2/sources/telemac2d/friction_user.f</span></code>.</p></li>
 <li><p>To use a modified version, copy <code class="docutils literal notranslate"><span class="pre">friction_user.f</span></code> to a new subfolder called <code class="docutils literal notranslate"><span class="pre">/user_fortran/</span></code> in your simulation case folder.</p></li>
 <li><p>Modify and save edits in <code class="docutils literal notranslate"><span class="pre">/your/simulation/case/user_fortran/friction_user.f</span></code>.</p></li>
 <li><p>Tell the steering (<code class="docutils literal notranslate"><span class="pre">*.cas</span></code>) file to use the modified FRICTION_USER Fortran file by adding the keyword <code class="docutils literal notranslate"><span class="pre">FORTRAN</span> <span class="pre">FILE</span> <span class="pre">:</span> <span class="pre">'user_fortran'</span></code> (makes Telemac2d looking up Fortran files in the <code class="docutils literal notranslate"><span class="pre">/user_fortran/</span></code> subfolder).</p></li>
-</ul>
-</li>
-<li><p>Useful examples are:</p>
-<ul>
-<li><p>The BAW’s Donau case study that lives in <code class="docutils literal notranslate"><span class="pre">/telemac/v8p2/examples/telemac2d/donau/</span></code> and features the usage of a <code class="docutils literal notranslate"><span class="pre">*.bfr</span></code> <code class="docutils literal notranslate"><span class="pre">ZONES</span> <span class="pre">FILE</span></code> and a <code class="docutils literal notranslate"><span class="pre">roughness.tbl</span></code> <code class="docutils literal notranslate"><span class="pre">FRICTION</span> <span class="pre">DATA</span> <span class="pre">FILE</span></code>, which are enabled through the <code class="docutils literal notranslate"><span class="pre">FRICTION</span> <span class="pre">DATA</span> <span class="pre">:</span> <span class="pre">YES</span></code> keyword in the <code class="docutils literal notranslate"><span class="pre">t2d_donau.cas</span></code> file. The Donau example was presented at the XXth Telemac-Mascaret user conference and the conference proceedings are available at the BAW’s <a class="reference external" href="https://hdl.handle.net/20.500.11970/100418">HENRY portal</a> (look for the contribution <em>Reverse engineering of initial &amp; boundary conditions with TELEMAC and algorithmic differentiation</em>).</p></li>
-<li><p>The <a class="reference external" href="http://www.opentelemac.org/index.php/component/jdownloads/summary/4-training-and-tutorials/185-telemac-2d-tutorial?Itemid=55">Baxter tutorial</a>.</p></li>
-</ul>
-</li>
-<li><p>To assign zonal roughness values, use QGIS, Blue Kenue, and a text editor:</p>
-<ul>
-<li><p>Delineate zones with different roughness coefficients draw polygons (e.g., following landscapes characteristics on a basemap) in separate shapefiles with QGIS (see also the <a class="reference internal" href="pre-slf-tm.html#tm-qgis-prepro"><span class="std std-ref">pre-processing tutorial on QGIS</span></a>).</p></li>
-<li><p>Import the separate polygons as closed lines in Blue Kenue (see also the <a class="reference internal" href="pre-slf-tm.html#bk-tutorial"><span class="std std-ref">pre-processing tutorial on Blue Kenue</span></a>).</p></li>
-<li><p>Assign elevations to the polygons (closed lines) in Blue Kenue (requires <a class="reference internal" href="pre-slf-tm.html#bk-xyz"><span class="std std-ref">elevation information</span></a>).</p></li>
-<li><p>Add a new variable to the <a class="reference internal" href="pre-slf-tm.html#bk-create-slf"><span class="std std-ref">Selafin</span></a> geometry and call it BOTTOM FRICTION (this can be another <code class="docutils literal notranslate"><span class="pre">*.slf</span></code> file than the one where the computational mesh lives).</p></li>
-<li><p>Use the <a class="reference internal" href="pre-slf-tm.html#bk-2dinterp"><span class="std std-ref">Map Object</span></a> function (<em>Tools</em> &gt; <em>Map Object…</em>) to add the polygons (closed lines) to the BOTTOM FRICTION mesh variable.</p></li>
-<li><p>Define zone numbers in Blue Kenue and save them (export) as <code class="docutils literal notranslate"><span class="pre">*.xyz</span></code> or <code class="docutils literal notranslate"><span class="pre">*.bfr</span></code> zones file (conversion to zones file may require opening the <code class="docutils literal notranslate"><span class="pre">*.xyz</span></code> file in a text editor and saving it from there as <code class="docutils literal notranslate"><span class="pre">*.bfr</span></code> file).</p></li>
-</ul>
-</li>
-<li><p>In the <code class="docutils literal notranslate"><span class="pre">*.cas</span></code> file, make sure to set a value for the FRICTION parameter according to the above descriptions and to set the <code class="docutils literal notranslate"><span class="pre">*.slf</span></code> file with the BOTTOM FRICTION variable for the <code class="docutils literal notranslate"><span class="pre">ZONES</span> <span class="pre">FILE</span></code> keyword.</p></li>
 </ul>
 </div>
 </div>
@@ -1559,7 +1557,7 @@ This tutorial features the application of the <em>Manning</em> roughness coeffic
 <p><a class="reference internal" href="#exported-tif"><span class="std std-numref">Figure 80</span></a> shows the exported flow velocity raster in QGIS with a <em>Magma</em> color map (select in the layer symbology).</p>
 <div class="figure align-default" id="exported-tif">
 <img alt="qgis flow velocity vitesse results slf PostTelemac raster geotiff tif" src="../_images/qgis-exported-tif.png" />
-<p class="caption"><span class="caption-number">Fig. 80 </span><span class="caption-text">The exported flow velocity (VITESSE) GeoTIFF raster in QGIS.</span><a class="headerlink" href="#exported-tif" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 80 </span><span class="caption-text">The exported flow velocity (VITESSE) GeoTIFF raster in QGIS with google satellite imagery <span id="id38">[<a class="reference internal" href="../documentation/bibliography.html#id1367">Goond</a>]</span> in the background.</span><a class="headerlink" href="#exported-tif" title="Permalink to this image">¶</a></p>
 </div>
 <div class="important admonition">
 <p class="admonition-title">How reasonable are the results?</p>
@@ -1633,6 +1631,10 @@ This tutorial features the application of the <em>Manning</em> roughness coeffic
 <li><p>How reasonable are the results?</p></li>
 <li><p>Which of the two initial conditions would you use in practice to show that your simulation is correct?</p></li>
 </ul>
+<dl class="simple myst">
+<dt><strong>What next?</strong></dt><dd><p>A steady discharge almost never occurs in reality and can be used at maximum to <a class="reference internal" href="calibration.html#calibration"><span class="std std-ref">calibrate</span></a> the model based on (field) measurements. Once the model is well-calibrated for 2-3 steady discharges, the steady model results may be used for initializing an <a class="reference internal" href="telemac2d-unsteady.html#chpt-unsteady"><span class="std std-ref">unsteady</span></a> simulation, possibly with <a class="reference internal" href="telemac-gaia.html#tm-gaia"><span class="std std-ref">sediment transport</span></a>.</p>
+</dd>
+</dl>
 </div>
 </div>
 

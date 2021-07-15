@@ -1,11 +1,11 @@
-# Debugging TELEMAC/SALOME
+# Debugging TELEMAC
 
 
-Since its early development, *TELEMAC* has become a robust an reliable tool for the numerically modelling of open surface flows. Yet there are a few little challenges and this page provides some answers (under development).
+Since its early development, TELEMAC has become a robust and reliable tool for the numerically modeling of open surface flows. Yet there are a few little challenges and this page provides some answers (under development).
 
 ## Traceback errors
 
-If a simulation crashes and it is not clear why, debugging with [*gdb*](http://www.gdbtutorial.com) is a good option. To do so, first install *gdb*:
+If a simulation crashes and it is not clear why debugging with [*gdb*](http://www.gdbtutorial.com) is a good option. To do so, first install *gdb*:
 
 ```
 sudo apt install gdb
@@ -34,7 +34,7 @@ To end *gdb* tap:
 
 This approach also works with *Telemac3d* (and other modules).
 
-## Errors in Steering (CAS) Files
+## Steering (CAS) Files
 
 * Prefer `:` over `=`
 * Place all model files in the same folder and **only use file names** without the directories of files.
@@ -43,7 +43,7 @@ This approach also works with *Telemac3d* (and other modules).
 
 ### Accuracy
 
-When the accuracy keywords are improperly defined, TELEMAC may not be able to end the simulation. In this case make sure to comment out the accuracy keywords and let TELEMAC use its default values:
+When the accuracy keywords are improperly defined, TELEMAC may not be able to end the simulation. In this case, make sure to comment out the accuracy keywords and let TELEMAC use its default values:
 
 ```fortran
 / SOLVER ACCURACY : 1.E-4
@@ -53,7 +53,7 @@ When the accuracy keywords are improperly defined, TELEMAC may not be able to en
 / ACCURACY OF SPALART-ALLMARAS : 1.E-6
 ```
 
-Moreover, variable time-step calculation may cause eternal model runs (i.e., activated with `VARIABLE TIME-STEP : YES`). To deactivate variable time-step calculation use `VARIABLE TIME-STEP : NO` and define a `TIME STEP` (e.g., `1.`)
+Moreover, variable timestep calculation may cause eternal model runs (i.e., activated with `VARIABLE TIME-STEP : YES`). To deactivate variable time-step calculation use `VARIABLE TIME-STEP : NO` and define a `TIME STEP` (e.g., `1.`)
 
 ### Implicitation
 To increase model stability, modify the following variables or make sure that the variables are within reasonable ranges in the *CAS* file:
@@ -86,7 +86,7 @@ LIMIT VALUES : -1000;9000;-1000;1000;-1000;1000;-1000;1000 / default mins and ma
 
 ### Tidal Flats
 
-The simulation of dam breaks or flood hydrographs may cause issues leading to model instability. While the {ref}`tm2d-tidal` section in the Telemac2d steady modeling tutorial suggests physically and computationally meaningful keyword option combinations, section 16.5 in the {{ tm2d }} recommends to use the following settings in the steering file as conservative choices from the BAW's Wesel example (similar to `/telemac/v8p2/examples/telemac2d/wesel/`).
+The simulation of dam breaks or flood hydrographs may cause issues leading to model instability. While the {ref}`tm2d-tidal` section in the Telemac2d steady modeling tutorial suggests physically and computationally meaningful keyword option combinations, section 16.5 in the {{ tm2d }} recommends using the following settings in the steering file as conservative choices from the BAW's Wesel example (similar to `/telemac/v8p2/examples/telemac2d/wesel/`).
 
 ```fortran
 VELOCITY PROFILES : 4;0
@@ -105,6 +105,33 @@ PRECONDITIONING : 2
 SOLVER ACCURACY : 1.E-5
 CONTINUITY CORRECTION : YES
 ```
+
+
+### Exceeding Maximum Iterations
+*This section is co-authored by {{ scolari }}*.
+
+A simulation may print `EXCEEDING MAXIMUM ITERATIONS` warnings in the *Terminal*:
+
+```fortran
+GRACJG (BIEF) : EXCEEDING MAXIMUM ITERATIONS:    50 RELATIVE PRECISION:  0.7234532E-01
+GRACJG (BIEF) : EXCEEDING MAXIMUM ITERATIONS:    50 RELATIVE PRECISION:  NaN
+GRACJG (BIEF) : EXCEEDING MAXIMUM ITERATIONS:    50 RELATIVE PRECISION:  NaN
+GRACJG (BIEF) : EXCEEDING MAXIMUM ITERATIONS:    50 RELATIVE PRECISION:  NaN
+GRACJG (BIEF) : EXCEEDING MAXIMUM ITERATIONS:    50 RELATIVE PRECISION:  NaN
+GRACJG (BIEF) : EXCEEDING MAXIMUM ITERATIONS:    50 RELATIVE PRECISION:  NaN
+GRACJG (BIEF) : EXCEEDING MAXIMUM ITERATIONS:    50 RELATIVE PRECISION:  NaN
+```
+
+To troubleshoot the `EXCEEDING MAXIMUM ITERATIONS` warnings, try the following options:
+
+*	Decrease the timestep gradually.
+*	Decrease the solver accuracy (e.g. from `1.E-8` to `1.E-6`),
+*	Increase the `MAXIMUM NUMBER OF ITERATIONS FOR SOLVER` keyword value, but do not exceed `200`.
+*	Change the `VELOCITY PROFILE` type (read this eBook's instructions for {ref}`2d <tm2d-bounds>` or {ref}`3d  <tm3d-slf-boundaries>`).
+*	Cold starts (i.e., {ref}`defining initial conditions with the INITIAL CONDITIONS keyword in the steering file <tm2d-init>`) may not converge. Therefore, either
+  *	increase the `PRESCRIBED FLOWRATES` gradually (or in a {ref}`liquid boundary file <tm2d-liq-file>`), or
+  *	{ref}`create an initial conditions Selafin file <bk-create-slf>`, assigning a water depth at the inlet nodes.
+
 
 ## Computation Speed
 
@@ -126,21 +153,28 @@ STOP CRITERIA : 1.E-3;1.E-3;1.E-3 / use list of three values - defaults are 1.E-
 
 However, stop criteria are not functional for non-stationary flows (e.g., {cite:t}`von_karman_mechanische_1930` vortex street downstream of bridge piers). Read more about the convergence stop criteria in the {{ tm2d }} (section 5.1).
 
-## Errors in Mesh Files
+## Mesh File
+
+### Fine High-resolution Meshes
+*This section is co-authored by {{ scolari }}*.
+
+For creating very fine meshes with a grid size smaller than 1.0 m, a selafin (`*.slf`) geometry file should be saved in double precision format (SERAFIND). Otherwise, model boundary edges may not be well represented in the computational mesh. {numref}`Figure %s <mesh-precision>` illustrates the loss in boundary accuracy when single-precision (a) is used instead of double-precision (b).
+
+```{figure} ../img/telemac/single-double-precision-mesh.png
+:alt: telemac slf selafin single double precision serafind
+:name: mesh-precision
+
+The loss boundary precision in a single-precision selafin mesh (a) compared to a double-precision selafin mesh (b).
+```
+
+
+### Built-in Mesh Consistency Check
 
 ```{hint}
 A 3d simulation may crash when it is used with the parameter `CHECKING THE MESH : YES`. Thus, **in 3d, favorably use `CHECKING THE MESH : NO`**.
 ```
 
-To verify if TELEMAC can read the mesh, load the TELEMAC environment, for example:
-
-```
-cd ~/telemac/v8p2/configs
-source pysource.openmpi.sh
-config.py
-```
-
-The go to the directory where the mesh to be checked lives and run `mdump`, for example:
+To verify if TELEMAC can read the mesh, load the TELEMAC environment (e.g., `source pysource.openmpi.sh`) and go to the directory where the mesh to be checked lives and run `mdump`, for example:
 
 ```
 cd ~/telemac/studies/test-case/
@@ -158,7 +192,7 @@ Until the time of writing this tutorial, `mdump` asks for input variables in *Fr
     + Option `0`: Read all
     + Option `i`: Read mesh number `i`
 
-A standard answer combination of `1` - `1` - `0` will result in a console print of all nodes and connections between the nodes in the mesh, given that *TELEMAC* is able to read the mesh file. Starting with:
+A standard answer combination of `1` - `1` - `0` will result in a console print of all nodes and connections between the nodes in the mesh, given that *TELEMAC* can read the mesh file. Starting with:
 
 ```
 (**********************************************************)
@@ -183,9 +217,88 @@ A standard answer combination of `1` - `1` - `0` will result in a console print 
 
 *What does this mean?* If `mdump` can read the mesh, the mesh file itself is OK and potential calculation errors stem from other files such as the steering file or the boundary conditions. Otherwise, revise the mesh file and resolve any potential issue.
 
+## Boundaries
+
+*This section is co-authored by {{ scolari }}*.
+
+### No Water in the Model
+Erroneous simulations where **no water is entering or exiting** the domain have most likely improperly defined boundary conditions. For instance, consider the open  boundaries shown in {numref}`Fig. %s <dbg-bc-bk>` with `prescribed Q (4 5 5)` upstream and `prescribed H (5 4 4)` downstream.
+
+```{figure} ../img/telemac/dbg-bc-bk.png
+:alt: debugging boundary conditions cli bluekenue
+:name: dbg-bc-bk
+
+The definition of open (liquid) boundaries with `prescribed Q (4 5 5)` upstream and `prescribed H (5 4 4)` downstream.
+```
+
+Intuitively, you may think that the upstream boundary is number (1) and the downstream boundary is number (2). However, the order of boundary numbering depends on the definition order during the setup of the boundaries (e.g., described in the {ref}`BlueKenue pre-processing tutorial <bk-bc>`). If you do not remember the definition order, it can be read in the boundary (`*.cli`) file at any time. For instance, the boundary file for the above-shown mesh ({numref}`Fig. %s <dbg-bc-bk>`) looks like the representation in {numref}`Fig. %s <dbg-boundaries>` where the **Outlet** is defined **above** the **Inlet**. Therefore, the **downstream (Outlet) open boundary is number (1)** and the **upstream (Inlet) open boundary is number (2)** in this simulation.
+
+```{figure} ../img/telemac/dbg-boundaries.png
+:alt: debugging boundary conditions cli bluekenue
+:name: dbg-boundaries
+
+Exemplary definition of a downstream (Outlet) and an upstream (Inlet) open boundary in a boundary.cli file corresponding to {numref}`Fig. %s <dbg-bc-bk>`.
+```
+
+Thus, these two boundaries must be referenced in the steering (`*.cas`) file as follows to prescribe a flow rate `Q` (e.g., 10 m$^3$/s) at the upstream and a depth `H` (e.g., 0.75 m) at the downstream boundary:
+
+```fortran
+PRESCRIBED FLOWRATES : 0.;10
+PRESCRIBED DEPTHS : 0.75;0.
+```
+
+### Problem on Boundary Number (Simulation Stop)
+
+This section guides through debugging error messages such as:
+
+```fortran
+DEBIMP_2D: PROBLEM ON BOUNDARY NUMBER       2
+        GIVE A VELOCITY PROFILE
+        IN THE BOUNDARY CONDITIONS FILE
+        OR CHECK THE WATER DEPTHS
+        OTHER POSSIBLE CAUSE:
+        SUPERCRITICAL ENTRANCE WITH FREE DEPTH
+```
+
+To get a better appreciation of the cause of the error (e.g., to figure out if supercritical flow conditions at the entrance are the cause), add the {term}`Froude number` to the output variables in the steering (`*.cas`) file. To this end, add `F` to the output variable keyword:
+
+```fortran
+VARIABLES FOR GRAPHIC PRINTOUTS : U,V,H,S,Q,F
+```
+
+With a more precise of the cause for the error, try one of the following options:
+
+Supercritical boundaries at the entrance
+:	For supercritical flow conditions at the entrance, make sure that a `prescribed Q and H` boundary also gets a discharge and a depth assigned in the steering file. For instance, if the Inlet in Figures {numref}`%s <dbg-bc-bk>` and {numref}`%s <dbg-boundaries>` was `5 5 5` (`prescribed Q and H`) instead of `4 5 5`, the steering file needs to prescribe flowrates and depths. For instance, add a depth of `0.9` for the Inlet as follows:
+
+  `PRESCRIBED FLOWRATES : 0.;10`
+
+  `PRESCRIBED DEPTHS : 0.75;0.9`
+
+Change the (vertical) velocity profile
+: The definition of a `VELOCITY PROFILE` keyword in the steering file is explained in the {ref}`steady2d tutorial <tm2d-bounds>` in this eBook. The addition `VERTICAL` applies to 3d models only (read more in the {ref}`Telemac 3d (SLF) section <tm3d-slf-boundaries>`).
+
+3d models with supercritical boundaries
+: Too many vertical layers may result in very thin 3d mesh elements that cause supercritical flows locally. Thus, consider reducing the {ref}`NUMBER OF HORIZONTAL LEVELS <tm3d-slf-vertical>` in the steering file to satisfy the {term}`CFL` condition.
+
+
+
+## BlueKenue
+
+*This section is co-authored by {{ scolari }}*.
+
+BlueKenue may throw errors or not correctly show when working with 3d meshes. Some of the issues can be resolved by using the latest version of BlueKenue (v3.12.2-alpha at the time of editing this article).
+
+**OnFileOpendata(): ERROR: on Activate()**
+: **Causes** The error message typically occurs with parallelized model runs when Telemac3d / PARTEL did not correctly merge the mesh at the end of the simulation.
+
+  **Solution** Increase the simulation duration (`DURATION` keyword) slightly to be able to save the T3DRES files (mesh partition) while the simulation is still running but after the target simulation end time. For instance, if the target simulation end time is 7200 and the timestep is 10 s, increase the end time to 7300 and save the T3DRES files after 720 timesteps. Then, merge the T3DRES files manually by running the following command in *Terminal* `runcode.py --merge -w temp_directory/ telemac3d file.cas` (make sure the TELEMAC environment is activated with `source pysource.YOUR-ENV.sh`). To get help with running this command, read [this TELEMAC Forum entry](http://opentelemac.co.uk/index.php/assistance/forum5/21-telemac-3d/7221-continue-computation-from-temporary-file).
+
+  **Updates** Follow the [BlueKenue thread in the TELEMAC Forum](http://www.openmascaret.org/index.php/assistance/forum5/blue-kenue/13278-issue-with-geometry-file?start=10#38837) for troubleshooting updates on this error.
+
 ## PostTelemac Plugin
 
-Some version of QGIS may throw a Python error (yellow frame in the top region of the map viewport) and a click on **Stack** reveals an error message. At the bottom of the error message, it might be written `import error: no module named gdal`. The error probably stems from an import statement in one of the PostTelemac plugin's Python scripts. To troubleshoot the gdal import error, find the Python script that is raising the error message. For instance, `C:\Users\USERNAME\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\PostTelemac\meshlayerparsers\`**`posttelemac_hdf_parser.py`** may cause the error with its `import gdal` statement. Therefore:
+Some versions of QGIS may throw a Python error (yellow frame in the top region of the map viewport) and a click on **Stack** reveals an error message. At the bottom of the error message, it might be written `import error: no module named gdal`. The error probably stems from an import statement in one of the PostTelemac plugin's Python scripts. To troubleshoot the gdal import error, find the Python script that is raising the error message. For instance, `C:\Users\USERNAME\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\PostTelemac\meshlayerparsers\`**`posttelemac_hdf_parser.py`** may cause the error with its `import gdal` statement. Therefore:
 
 * Open the concerned file, which is here: **`posttelemac_hdf_parser.py`**
 * Find the `import gdal` statement and **replace it with `from osgeo import gdal` (i.e.,  <s>`import gdal`</s> and write `from osgeo import gdal`)
@@ -201,10 +314,10 @@ Retry to start the PostTelemac plugin. It should run without issues now.
 If an error message is raised by `Kernel/Session` in the `Naming Service` (typically ends up in `[Errno 3] No such process` ... `RuntimeError: Process NUMBER for Kernel/Session not found`), there are multiple possible origins that partially root in potentially hard-coded library versions of the installer. To troubleshoot:
 
 * Manually create copies of newer libraries with names of older versions. For instance,
-    + In the 4th line after running `./salome`, `Kernel/Session` may prompt `error while loading [...] libSOMETHING.so.20 cannot open [...] No such file or directory`
-    + Identify the version installed with `whereis libSOMETHING.so.20` (replace `libSOMETHING.so.20` with the missing library); for example, this may output `/usr/lib/x86_64-linux-gnu/libSOMETHING.so.40`
-    + Create a copy of the newer library and rename the copy as needed by SALOME; for example, tap  `sudo cp /usr/lib/x86_64-linux-gnu/libSOMETHING.so.40 usr/lib/x86_64-linux-gnu/libSOMETHING.so.20`
-    + Most likely, the following files need to be copied:
+  + In the 4th line after running `./salome`, `Kernel/Session` may prompt `error while loading [...] libSOMETHING.so.20 cannot open [...] No such file or directory`
+  + Identify the version installed with `whereis libSOMETHING.so.20` (replace `libSOMETHING.so.20` with the missing library); for example, this may output `/usr/lib/x86_64-linux-gnu/libSOMETHING.so.40`
+  + Create a copy of the newer library and rename the copy as needed by SALOME; for example, tap  `sudo cp /usr/lib/x86_64-linux-gnu/libSOMETHING.so.40 usr/lib/x86_64-linux-gnu/libSOMETHING.so.20`
+  + Most likely, the following files need to be copied:
 ```
 sudo cp /usr/lib/x86_64-linux-gnu/libmpi.so.40 /usr/lib/x86_64-linux-gnu/libmpi.so.20
 sudo cp /usr/lib/x86_64-linux-gnu/libicui18n.so.63 /usr/lib/x86_64-linux-gnu/libicui18n.so.57
@@ -231,10 +344,10 @@ With the newer versions of the *Qt platform* any menu entry in *SALOME-HYDRO* wi
 * `sudo apt install qt5-style-plugins libnlopt0`
 * `sudo apt install qt5ct`
 * Configure `qt5ct` (just tap `qt5ct` in *Terminal*)
-    + Go to the *Appearance* tab
-    + Set *Style* to `gtk2` and *Standard dialogs* to `GTK2`
-    + Click on *Apply* and *OK*
-* Open the file `~/.profile` (e.g. use the file browser, go to the `Home` folder and pressing `CTRL` + `H` to toggle viewing hidden files) and add at the very bottom of the file:
+  + Go to the *Appearance* tab
+  + Set *Style* to `gtk2` and *Standard dialogs* to `GTK2`
+  + Click on *Apply* and *OK*
+* Open the file `~/.profile` (e.g. use the file browser, go to the `Home` folder and press `CTRL` + `H` to toggle viewing hidden files) and add at the very bottom of the file:
 
 ```
 export QT_STYLE_OVERRIDE=gtk2
@@ -242,7 +355,6 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 ```
 
 * Save and close `.profile` and reboot (or just re-login).
-
 
 ```{note}
 If a file called `~/.bash_profile` (or `~/.bash_login`) exists, the above lines should be written to this `~/.bash_profile`/`~/.bash_login` because in this case, `.profile` will not be read when logging in.

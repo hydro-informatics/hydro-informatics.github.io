@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Debugging TELEMAC/SALOME &#8212; Hydro-Informatics</title>
+    <title>Debugging TELEMAC &#8212; Hydro-Informatics</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -51,6 +51,8 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="canonical" href="https://hydro-informatics.com/troubleshoot/dbg-telemac.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -589,7 +591,7 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Debugging TELEMAC/SALOME
+     Debugging TELEMAC
     </a>
    </li>
   </ul>
@@ -723,8 +725,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#errors-in-steering-cas-files">
-   Errors in Steering (CAS) Files
+  <a class="reference internal nav-link" href="#steering-cas-files">
+   Steering (CAS) Files
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -762,6 +764,11 @@
      Tidal Flats
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exceeding-maximum-iterations">
+     Exceeding Maximum Iterations
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -770,8 +777,42 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#errors-in-mesh-files">
-   Errors in Mesh Files
+  <a class="reference internal nav-link" href="#mesh-file">
+   Mesh File
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fine-high-resolution-meshes">
+     Fine High-resolution Meshes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#built-in-mesh-consistency-check">
+     Built-in Mesh Consistency Check
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#boundaries">
+   Boundaries
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#no-water-in-the-model">
+     No Water in the Model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#problem-on-boundary-number-simulation-stop">
+     Problem on Boundary Number (Simulation Stop)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bluekenue">
+   BlueKenue
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -811,12 +852,12 @@
         
               <div>
                 
-  <div class="section" id="debugging-telemac-salome">
-<h1>Debugging TELEMAC/SALOME<a class="headerlink" href="#debugging-telemac-salome" title="Permalink to this headline">¶</a></h1>
-<p>Since its early development, <em>TELEMAC</em> has become a robust an reliable tool for the numerically modelling of open surface flows. Yet there are a few little challenges and this page provides some answers (under development).</p>
+  <div class="section" id="debugging-telemac">
+<h1>Debugging TELEMAC<a class="headerlink" href="#debugging-telemac" title="Permalink to this headline">¶</a></h1>
+<p>Since its early development, TELEMAC has become a robust and reliable tool for the numerically modeling of open surface flows. Yet there are a few little challenges and this page provides some answers (under development).</p>
 <div class="section" id="traceback-errors">
 <h2>Traceback errors<a class="headerlink" href="#traceback-errors" title="Permalink to this headline">¶</a></h2>
-<p>If a simulation crashes and it is not clear why, debugging with <a class="reference external" href="http://www.gdbtutorial.com"><em>gdb</em></a> is a good option. To do so, first install <em>gdb</em>:</p>
+<p>If a simulation crashes and it is not clear why debugging with <a class="reference external" href="http://www.gdbtutorial.com"><em>gdb</em></a> is a good option. To do so, first install <em>gdb</em>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">gdb</span>
 </pre></div>
 </div>
@@ -837,8 +878,8 @@
 </div>
 <p>This approach also works with <em>Telemac3d</em> (and other modules).</p>
 </div>
-<div class="section" id="errors-in-steering-cas-files">
-<h2>Errors in Steering (CAS) Files<a class="headerlink" href="#errors-in-steering-cas-files" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="steering-cas-files">
+<h2>Steering (CAS) Files<a class="headerlink" href="#steering-cas-files" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Prefer <code class="docutils literal notranslate"><span class="pre">:</span></code> over <code class="docutils literal notranslate"><span class="pre">=</span></code></p></li>
 <li><p>Place all model files in the same folder and <strong>only use file names</strong> without the directories of files.</p></li>
@@ -848,7 +889,7 @@
 <h2>Unstable Simulations<a class="headerlink" href="#unstable-simulations" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="accuracy">
 <h3>Accuracy<a class="headerlink" href="#accuracy" title="Permalink to this headline">¶</a></h3>
-<p>When the accuracy keywords are improperly defined, TELEMAC may not be able to end the simulation. In this case make sure to comment out the accuracy keywords and let TELEMAC use its default values:</p>
+<p>When the accuracy keywords are improperly defined, TELEMAC may not be able to end the simulation. In this case, make sure to comment out the accuracy keywords and let TELEMAC use its default values:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">SOLVER</span> <span class="n">ACCURACY</span> <span class="p">:</span> <span class="mf">1.E-4</span>
 <span class="o">/</span> <span class="n">ACCURACY</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">TRACERS</span> <span class="p">:</span> <span class="mf">1.E-4</span>
 <span class="o">/</span> <span class="n">ACCURACY</span> <span class="n">OF</span> <span class="n">K</span> <span class="p">:</span> <span class="mf">1.E-6</span>
@@ -856,7 +897,7 @@
 <span class="o">/</span> <span class="n">ACCURACY</span> <span class="n">OF</span> <span class="n">SPALART</span><span class="o">-</span><span class="n">ALLMARAS</span> <span class="p">:</span> <span class="mf">1.E-6</span>
 </pre></div>
 </div>
-<p>Moreover, variable time-step calculation may cause eternal model runs (i.e., activated with <code class="docutils literal notranslate"><span class="pre">VARIABLE</span> <span class="pre">TIME-STEP</span> <span class="pre">:</span> <span class="pre">YES</span></code>). To deactivate variable time-step calculation use <code class="docutils literal notranslate"><span class="pre">VARIABLE</span> <span class="pre">TIME-STEP</span> <span class="pre">:</span> <span class="pre">NO</span></code> and define a <code class="docutils literal notranslate"><span class="pre">TIME</span> <span class="pre">STEP</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">1.</span></code>)</p>
+<p>Moreover, variable timestep calculation may cause eternal model runs (i.e., activated with <code class="docutils literal notranslate"><span class="pre">VARIABLE</span> <span class="pre">TIME-STEP</span> <span class="pre">:</span> <span class="pre">YES</span></code>). To deactivate variable time-step calculation use <code class="docutils literal notranslate"><span class="pre">VARIABLE</span> <span class="pre">TIME-STEP</span> <span class="pre">:</span> <span class="pre">NO</span></code> and define a <code class="docutils literal notranslate"><span class="pre">TIME</span> <span class="pre">STEP</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">1.</span></code>)</p>
 </div>
 <div class="section" id="implicitation">
 <h3>Implicitation<a class="headerlink" href="#implicitation" title="Permalink to this headline">¶</a></h3>
@@ -892,7 +933,7 @@
 </div>
 <div class="section" id="tidal-flats">
 <h3>Tidal Flats<a class="headerlink" href="#tidal-flats" title="Permalink to this headline">¶</a></h3>
-<p>The simulation of dam breaks or flood hydrographs may cause issues leading to model instability. While the <a class="reference internal" href="../numerics/telemac2d-steady.html#tm2d-tidal"><span class="std std-ref">Tidal Flats</span></a> section in the Telemac2d steady modeling tutorial suggests physically and computationally meaningful keyword option combinations, section 16.5 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac2d/user/telemac2d_user_v8p2.pdf">Telemac2d manual</a> recommends to use the following settings in the steering file as conservative choices from the BAW’s Wesel example (similar to <code class="docutils literal notranslate"><span class="pre">/telemac/v8p2/examples/telemac2d/wesel/</span></code>).</p>
+<p>The simulation of dam breaks or flood hydrographs may cause issues leading to model instability. While the <a class="reference internal" href="../numerics/telemac2d-steady.html#tm2d-tidal"><span class="std std-ref">Tidal Flats</span></a> section in the Telemac2d steady modeling tutorial suggests physically and computationally meaningful keyword option combinations, section 16.5 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac2d/user/telemac2d_user_v8p2.pdf">Telemac2d manual</a> recommends using the following settings in the steering file as conservative choices from the BAW’s Wesel example (similar to <code class="docutils literal notranslate"><span class="pre">/telemac/v8p2/examples/telemac2d/wesel/</span></code>).</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">VELOCITY</span> <span class="n">PROFILES</span> <span class="p">:</span> <span class="mi">4</span><span class="p">;</span><span class="mi">0</span>
 <span class="n">TURBULENCE</span> <span class="n">MODEL</span> <span class="p">:</span> <span class="mi">1</span>
 <span class="n">VELOCITY</span> <span class="n">DIFFUSIVITY</span> <span class="p">:</span> <span class="mf">2.</span>
@@ -910,6 +951,30 @@
 <span class="n">CONTINUITY</span> <span class="n">CORRECTION</span> <span class="p">:</span> <span class="n">YES</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="exceeding-maximum-iterations">
+<h3>Exceeding Maximum Iterations<a class="headerlink" href="#exceeding-maximum-iterations" title="Permalink to this headline">¶</a></h3>
+<p><em>This section is co-authored by <a class="reference external" href="https://www.iws.uni-stuttgart.de/institut/team/Scolari/">Federica Scolari</a></em>.</p>
+<p>A simulation may print <code class="docutils literal notranslate"><span class="pre">EXCEEDING</span> <span class="pre">MAXIMUM</span> <span class="pre">ITERATIONS</span></code> warnings in the <em>Terminal</em>:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">GRACJG</span> <span class="p">(</span><span class="n">BIEF</span><span class="p">)</span> <span class="p">:</span> <span class="n">EXCEEDING</span> <span class="n">MAXIMUM</span> <span class="n">ITERATIONS</span><span class="p">:</span>    <span class="mi">50</span> <span class="n">RELATIVE</span> <span class="nb">PRECISION</span><span class="p">:</span>  <span class="mf">0.7234532E-01</span>
+<span class="n">GRACJG</span> <span class="p">(</span><span class="n">BIEF</span><span class="p">)</span> <span class="p">:</span> <span class="n">EXCEEDING</span> <span class="n">MAXIMUM</span> <span class="n">ITERATIONS</span><span class="p">:</span>    <span class="mi">50</span> <span class="n">RELATIVE</span> <span class="nb">PRECISION</span><span class="p">:</span>  <span class="n">NaN</span>
+<span class="n">GRACJG</span> <span class="p">(</span><span class="n">BIEF</span><span class="p">)</span> <span class="p">:</span> <span class="n">EXCEEDING</span> <span class="n">MAXIMUM</span> <span class="n">ITERATIONS</span><span class="p">:</span>    <span class="mi">50</span> <span class="n">RELATIVE</span> <span class="nb">PRECISION</span><span class="p">:</span>  <span class="n">NaN</span>
+<span class="n">GRACJG</span> <span class="p">(</span><span class="n">BIEF</span><span class="p">)</span> <span class="p">:</span> <span class="n">EXCEEDING</span> <span class="n">MAXIMUM</span> <span class="n">ITERATIONS</span><span class="p">:</span>    <span class="mi">50</span> <span class="n">RELATIVE</span> <span class="nb">PRECISION</span><span class="p">:</span>  <span class="n">NaN</span>
+<span class="n">GRACJG</span> <span class="p">(</span><span class="n">BIEF</span><span class="p">)</span> <span class="p">:</span> <span class="n">EXCEEDING</span> <span class="n">MAXIMUM</span> <span class="n">ITERATIONS</span><span class="p">:</span>    <span class="mi">50</span> <span class="n">RELATIVE</span> <span class="nb">PRECISION</span><span class="p">:</span>  <span class="n">NaN</span>
+<span class="n">GRACJG</span> <span class="p">(</span><span class="n">BIEF</span><span class="p">)</span> <span class="p">:</span> <span class="n">EXCEEDING</span> <span class="n">MAXIMUM</span> <span class="n">ITERATIONS</span><span class="p">:</span>    <span class="mi">50</span> <span class="n">RELATIVE</span> <span class="nb">PRECISION</span><span class="p">:</span>  <span class="n">NaN</span>
+<span class="n">GRACJG</span> <span class="p">(</span><span class="n">BIEF</span><span class="p">)</span> <span class="p">:</span> <span class="n">EXCEEDING</span> <span class="n">MAXIMUM</span> <span class="n">ITERATIONS</span><span class="p">:</span>    <span class="mi">50</span> <span class="n">RELATIVE</span> <span class="nb">PRECISION</span><span class="p">:</span>  <span class="n">NaN</span>
+</pre></div>
+</div>
+<p>To troubleshoot the <code class="docutils literal notranslate"><span class="pre">EXCEEDING</span> <span class="pre">MAXIMUM</span> <span class="pre">ITERATIONS</span></code> warnings, try the following options:</p>
+<ul class="simple">
+<li><p>Decrease the timestep gradually.</p></li>
+<li><p>Decrease the solver accuracy (e.g. from <code class="docutils literal notranslate"><span class="pre">1.E-8</span></code> to <code class="docutils literal notranslate"><span class="pre">1.E-6</span></code>),</p></li>
+<li><p>Increase the <code class="docutils literal notranslate"><span class="pre">MAXIMUM</span> <span class="pre">NUMBER</span> <span class="pre">OF</span> <span class="pre">ITERATIONS</span> <span class="pre">FOR</span> <span class="pre">SOLVER</span></code> keyword value, but do not exceed <code class="docutils literal notranslate"><span class="pre">200</span></code>.</p></li>
+<li><p>Change the <code class="docutils literal notranslate"><span class="pre">VELOCITY</span> <span class="pre">PROFILE</span></code> type (read this eBook’s instructions for <a class="reference internal" href="../numerics/telemac2d-steady.html#tm2d-bounds"><span class="std std-ref">2d</span></a> or <a class="reference internal" href="../numerics/telemac3d-slf.html#tm3d-slf-boundaries"><span class="std std-ref">3d</span></a>).</p></li>
+<li><p>Cold starts (i.e., <a class="reference internal" href="../numerics/telemac2d-steady.html#tm2d-init"><span class="std std-ref">defining initial conditions with the INITIAL CONDITIONS keyword in the steering file</span></a>) may not converge. Therefore, either</p></li>
+<li><p>increase the <code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">FLOWRATES</span></code> gradually (or in a <a class="reference internal" href="../numerics/telemac2d-unsteady.html#tm2d-liq-file"><span class="std std-ref">liquid boundary file</span></a>), or</p></li>
+<li><p><a class="reference internal" href="../numerics/pre-slf-tm.html#bk-create-slf"><span class="std std-ref">create an initial conditions Selafin file</span></a>, assigning a water depth at the inlet nodes.</p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="computation-speed">
@@ -930,19 +995,24 @@
 </div>
 <p>However, stop criteria are not functional for non-stationary flows (e.g., <span id="id1">Von Karmàn [<a class="reference internal" href="../documentation/bibliography.html#id592">VK30</a>]</span> vortex street downstream of bridge piers). Read more about the convergence stop criteria in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac2d/user/telemac2d_user_v8p2.pdf">Telemac2d manual</a> (section 5.1).</p>
 </div>
-<div class="section" id="errors-in-mesh-files">
-<h2>Errors in Mesh Files<a class="headerlink" href="#errors-in-mesh-files" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mesh-file">
+<h2>Mesh File<a class="headerlink" href="#mesh-file" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="fine-high-resolution-meshes">
+<h3>Fine High-resolution Meshes<a class="headerlink" href="#fine-high-resolution-meshes" title="Permalink to this headline">¶</a></h3>
+<p><em>This section is co-authored by <a class="reference external" href="https://www.iws.uni-stuttgart.de/institut/team/Scolari/">Federica Scolari</a></em>.</p>
+<p>For creating very fine meshes with a grid size smaller than 1.0 m, a selafin (<code class="docutils literal notranslate"><span class="pre">*.slf</span></code>) geometry file should be saved in double precision format (SERAFIND). Otherwise, model boundary edges may not be well represented in the computational mesh. <a class="reference internal" href="#mesh-precision"><span class="std std-numref">Figure 145</span></a> illustrates the loss in boundary accuracy when single-precision (a) is used instead of double-precision (b).</p>
+<div class="figure align-default" id="mesh-precision">
+<img alt="telemac slf selafin single double precision serafind" src="../_images/single-double-precision-mesh.png" />
+<p class="caption"><span class="caption-number">Fig. 145 </span><span class="caption-text">The loss boundary precision in a single-precision selafin mesh (a) compared to a double-precision selafin mesh (b).</span><a class="headerlink" href="#mesh-precision" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="built-in-mesh-consistency-check">
+<h3>Built-in Mesh Consistency Check<a class="headerlink" href="#built-in-mesh-consistency-check" title="Permalink to this headline">¶</a></h3>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>A 3d simulation may crash when it is used with the parameter <code class="docutils literal notranslate"><span class="pre">CHECKING</span> <span class="pre">THE</span> <span class="pre">MESH</span> <span class="pre">:</span> <span class="pre">YES</span></code>. Thus, <strong>in 3d, favorably use <code class="docutils literal notranslate"><span class="pre">CHECKING</span> <span class="pre">THE</span> <span class="pre">MESH</span> <span class="pre">:</span> <span class="pre">NO</span></code></strong>.</p>
 </div>
-<p>To verify if TELEMAC can read the mesh, load the TELEMAC environment, for example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">configs</span>
-<span class="n">source</span> <span class="n">pysource</span><span class="o">.</span><span class="n">openmpi</span><span class="o">.</span><span class="n">sh</span>
-<span class="n">config</span><span class="o">.</span><span class="n">py</span>
-</pre></div>
-</div>
-<p>The go to the directory where the mesh to be checked lives and run <code class="docutils literal notranslate"><span class="pre">mdump</span></code>, for example:</p>
+<p>To verify if TELEMAC can read the mesh, load the TELEMAC environment (e.g., <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">pysource.openmpi.sh</span></code>) and go to the directory where the mesh to be checked lives and run <code class="docutils literal notranslate"><span class="pre">mdump</span></code>, for example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">studies</span><span class="o">/</span><span class="n">test</span><span class="o">-</span><span class="n">case</span><span class="o">/</span>
 <span class="n">mdump</span> <span class="n">mesh</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">test</span><span class="o">.</span><span class="n">med</span>
 </pre></div>
@@ -968,7 +1038,7 @@
 </ul>
 </li>
 </ul>
-<p>A standard answer combination of <code class="docutils literal notranslate"><span class="pre">1</span></code> - <code class="docutils literal notranslate"><span class="pre">1</span></code> - <code class="docutils literal notranslate"><span class="pre">0</span></code> will result in a console print of all nodes and connections between the nodes in the mesh, given that <em>TELEMAC</em> is able to read the mesh file. Starting with:</p>
+<p>A standard answer combination of <code class="docutils literal notranslate"><span class="pre">1</span></code> - <code class="docutils literal notranslate"><span class="pre">1</span></code> - <code class="docutils literal notranslate"><span class="pre">0</span></code> will result in a console print of all nodes and connections between the nodes in the mesh, given that <em>TELEMAC</em> can read the mesh file. Starting with:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(**********************************************************)
 (* INFORMATIONS GENERALES SUR LE MAILLAGE DE CALCUL N°01: *)
 (**********************************************************)
@@ -991,9 +1061,70 @@
 </div>
 <p><em>What does this mean?</em> If <code class="docutils literal notranslate"><span class="pre">mdump</span></code> can read the mesh, the mesh file itself is OK and potential calculation errors stem from other files such as the steering file or the boundary conditions. Otherwise, revise the mesh file and resolve any potential issue.</p>
 </div>
+</div>
+<div class="section" id="boundaries">
+<h2>Boundaries<a class="headerlink" href="#boundaries" title="Permalink to this headline">¶</a></h2>
+<p><em>This section is co-authored by <a class="reference external" href="https://www.iws.uni-stuttgart.de/institut/team/Scolari/">Federica Scolari</a></em>.</p>
+<div class="section" id="no-water-in-the-model">
+<h3>No Water in the Model<a class="headerlink" href="#no-water-in-the-model" title="Permalink to this headline">¶</a></h3>
+<p>Erroneous simulations where <strong>no water is entering or exiting</strong> the domain have most likely improperly defined boundary conditions. For instance, consider the open  boundaries shown in <a class="reference internal" href="#dbg-bc-bk"><span class="std std-numref">Fig. 146</span></a> with <code class="docutils literal notranslate"><span class="pre">prescribed</span> <span class="pre">Q</span> <span class="pre">(4</span> <span class="pre">5</span> <span class="pre">5)</span></code> upstream and <code class="docutils literal notranslate"><span class="pre">prescribed</span> <span class="pre">H</span> <span class="pre">(5</span> <span class="pre">4</span> <span class="pre">4)</span></code> downstream.</p>
+<div class="figure align-default" id="dbg-bc-bk">
+<img alt="debugging boundary conditions cli bluekenue" src="../_images/dbg-bc-bk.png" />
+<p class="caption"><span class="caption-number">Fig. 146 </span><span class="caption-text">The definition of open (liquid) boundaries with <code class="docutils literal notranslate"><span class="pre">prescribed</span> <span class="pre">Q</span> <span class="pre">(4</span> <span class="pre">5</span> <span class="pre">5)</span></code> upstream and <code class="docutils literal notranslate"><span class="pre">prescribed</span> <span class="pre">H</span> <span class="pre">(5</span> <span class="pre">4</span> <span class="pre">4)</span></code> downstream.</span><a class="headerlink" href="#dbg-bc-bk" title="Permalink to this image">¶</a></p>
+</div>
+<p>Intuitively, you may think that the upstream boundary is number (1) and the downstream boundary is number (2). However, the order of boundary numbering depends on the definition order during the setup of the boundaries (e.g., described in the <a class="reference internal" href="../numerics/pre-slf-tm.html#bk-bc"><span class="std std-ref">BlueKenue pre-processing tutorial</span></a>). If you do not remember the definition order, it can be read in the boundary (<code class="docutils literal notranslate"><span class="pre">*.cli</span></code>) file at any time. For instance, the boundary file for the above-shown mesh (<a class="reference internal" href="#dbg-bc-bk"><span class="std std-numref">Fig. 146</span></a>) looks like the representation in <a class="reference internal" href="#dbg-boundaries"><span class="std std-numref">Fig. 147</span></a> where the <strong>Outlet</strong> is defined <strong>above</strong> the <strong>Inlet</strong>. Therefore, the <strong>downstream (Outlet) open boundary is number (1)</strong> and the <strong>upstream (Inlet) open boundary is number (2)</strong> in this simulation.</p>
+<div class="figure align-default" id="dbg-boundaries">
+<img alt="debugging boundary conditions cli bluekenue" src="../_images/dbg-boundaries.png" />
+<p class="caption"><span class="caption-number">Fig. 147 </span><span class="caption-text">Exemplary definition of a downstream (Outlet) and an upstream (Inlet) open boundary in a boundary.cli file corresponding to <a class="reference internal" href="#dbg-bc-bk"><span class="std std-numref">Fig. 146</span></a>.</span><a class="headerlink" href="#dbg-boundaries" title="Permalink to this image">¶</a></p>
+</div>
+<p>Thus, these two boundaries must be referenced in the steering (<code class="docutils literal notranslate"><span class="pre">*.cas</span></code>) file as follows to prescribe a flow rate <code class="docutils literal notranslate"><span class="pre">Q</span></code> (e.g., 10 m<span class="math notranslate nohighlight">\(^3\)</span>/s) at the upstream and a depth <code class="docutils literal notranslate"><span class="pre">H</span></code> (e.g., 0.75 m) at the downstream boundary:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">PRESCRIBED</span> <span class="n">FLOWRATES</span> <span class="p">:</span> <span class="mf">0.</span><span class="p">;</span><span class="mi">10</span>
+<span class="n">PRESCRIBED</span> <span class="n">DEPTHS</span> <span class="p">:</span> <span class="mf">0.75</span><span class="p">;</span><span class="mf">0.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="problem-on-boundary-number-simulation-stop">
+<h3>Problem on Boundary Number (Simulation Stop)<a class="headerlink" href="#problem-on-boundary-number-simulation-stop" title="Permalink to this headline">¶</a></h3>
+<p>This section guides through debugging error messages such as:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">DEBIMP_2D</span><span class="p">:</span> <span class="n">PROBLEM</span> <span class="n">ON</span> <span class="n">BOUNDARY</span> <span class="n">NUMBER</span>       <span class="mi">2</span>
+        <span class="n">GIVE</span> <span class="n">A</span> <span class="n">VELOCITY</span> <span class="n">PROFILE</span>
+        <span class="n">IN</span> <span class="n">THE</span> <span class="n">BOUNDARY</span> <span class="n">CONDITIONS</span> <span class="k">FILE</span>
+<span class="k">        </span><span class="nb">OR </span><span class="n">CHECK</span> <span class="n">THE</span> <span class="n">WATER</span> <span class="n">DEPTHS</span>
+        <span class="n">OTHER</span> <span class="n">POSSIBLE</span> <span class="n">CAUSE</span><span class="p">:</span>
+        <span class="n">SUPERCRITICAL</span> <span class="n">ENTRANCE</span> <span class="n">WITH</span> <span class="n">FREE</span> <span class="n">DEPTH</span>
+</pre></div>
+</div>
+<p>To get a better appreciation of the cause of the error (e.g., to figure out if supercritical flow conditions at the entrance are the cause), add the <a class="reference internal" href="../documentation/glossary.html#term-Froude-number"><span class="xref std std-term">Froude number</span></a> to the output variables in the steering (<code class="docutils literal notranslate"><span class="pre">*.cas</span></code>) file. To this end, add <code class="docutils literal notranslate"><span class="pre">F</span></code> to the output variable keyword:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">VARIABLES</span> <span class="n">FOR</span> <span class="n">GRAPHIC</span> <span class="n">PRINTOUTS</span> <span class="p">:</span> <span class="n">U</span><span class="p">,</span><span class="n">V</span><span class="p">,</span><span class="n">H</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">Q</span><span class="p">,</span><span class="n">F</span>
+</pre></div>
+</div>
+<p>With a more precise of the cause for the error, try one of the following options:</p>
+<dl class="simple myst">
+<dt>Supercritical boundaries at the entrance</dt><dd><p>For supercritical flow conditions at the entrance, make sure that a <code class="docutils literal notranslate"><span class="pre">prescribed</span> <span class="pre">Q</span> <span class="pre">and</span> <span class="pre">H</span></code> boundary also gets a discharge and a depth assigned in the steering file. For instance, if the Inlet in Figures <a class="reference internal" href="#dbg-bc-bk"><span class="std std-numref">146</span></a> and <a class="reference internal" href="#dbg-boundaries"><span class="std std-numref">147</span></a> was <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">5</span> <span class="pre">5</span></code> (<code class="docutils literal notranslate"><span class="pre">prescribed</span> <span class="pre">Q</span> <span class="pre">and</span> <span class="pre">H</span></code>) instead of <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">5</span> <span class="pre">5</span></code>, the steering file needs to prescribe flowrates and depths. For instance, add a depth of <code class="docutils literal notranslate"><span class="pre">0.9</span></code> for the Inlet as follows:</p>
+<p><code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">FLOWRATES</span> <span class="pre">:</span> <span class="pre">0.;10</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">DEPTHS</span> <span class="pre">:</span> <span class="pre">0.75;0.9</span></code></p>
+</dd>
+<dt>Change the (vertical) velocity profile</dt><dd><p>The definition of a <code class="docutils literal notranslate"><span class="pre">VELOCITY</span> <span class="pre">PROFILE</span></code> keyword in the steering file is explained in the <a class="reference internal" href="../numerics/telemac2d-steady.html#tm2d-bounds"><span class="std std-ref">steady2d tutorial</span></a> in this eBook. The addition <code class="docutils literal notranslate"><span class="pre">VERTICAL</span></code> applies to 3d models only (read more in the <a class="reference internal" href="../numerics/telemac3d-slf.html#tm3d-slf-boundaries"><span class="std std-ref">Telemac 3d (SLF) section</span></a>).</p>
+</dd>
+<dt>3d models with supercritical boundaries</dt><dd><p>Too many vertical layers may result in very thin 3d mesh elements that cause supercritical flows locally. Thus, consider reducing the <a class="reference internal" href="../numerics/telemac3d-slf.html#tm3d-slf-vertical"><span class="std std-ref">NUMBER OF HORIZONTAL LEVELS</span></a> in the steering file to satisfy the <a class="reference internal" href="../documentation/glossary.html#term-CFL"><span class="xref std std-term">CFL</span></a> condition.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="bluekenue">
+<h2>BlueKenue<a class="headerlink" href="#bluekenue" title="Permalink to this headline">¶</a></h2>
+<p><em>This section is co-authored by <a class="reference external" href="https://www.iws.uni-stuttgart.de/institut/team/Scolari/">Federica Scolari</a></em>.</p>
+<p>BlueKenue may throw errors or not correctly show when working with 3d meshes. Some of the issues can be resolved by using the latest version of BlueKenue (v3.12.2-alpha at the time of editing this article).</p>
+<dl class="simple myst">
+<dt><strong>OnFileOpendata(): ERROR: on Activate()</strong></dt><dd><p><strong>Causes</strong> The error message typically occurs with parallelized model runs when Telemac3d / PARTEL did not correctly merge the mesh at the end of the simulation.</p>
+<p><strong>Solution</strong> Increase the simulation duration (<code class="docutils literal notranslate"><span class="pre">DURATION</span></code> keyword) slightly to be able to save the T3DRES files (mesh partition) while the simulation is still running but after the target simulation end time. For instance, if the target simulation end time is 7200 and the timestep is 10 s, increase the end time to 7300 and save the T3DRES files after 720 timesteps. Then, merge the T3DRES files manually by running the following command in <em>Terminal</em> <code class="docutils literal notranslate"><span class="pre">runcode.py</span> <span class="pre">--merge</span> <span class="pre">-w</span> <span class="pre">temp_directory/</span> <span class="pre">telemac3d</span> <span class="pre">file.cas</span></code> (make sure the TELEMAC environment is activated with <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">pysource.YOUR-ENV.sh</span></code>). To get help with running this command, read <a class="reference external" href="http://opentelemac.co.uk/index.php/assistance/forum5/21-telemac-3d/7221-continue-computation-from-temporary-file">this TELEMAC Forum entry</a>.</p>
+<p><strong>Updates</strong> Follow the <a class="reference external" href="http://www.openmascaret.org/index.php/assistance/forum5/blue-kenue/13278-issue-with-geometry-file?start=10#38837">BlueKenue thread in the TELEMAC Forum</a> for troubleshooting updates on this error.</p>
+</dd>
+</dl>
+</div>
 <div class="section" id="posttelemac-plugin">
 <h2>PostTelemac Plugin<a class="headerlink" href="#posttelemac-plugin" title="Permalink to this headline">¶</a></h2>
-<p>Some version of QGIS may throw a Python error (yellow frame in the top region of the map viewport) and a click on <strong>Stack</strong> reveals an error message. At the bottom of the error message, it might be written <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">error:</span> <span class="pre">no</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">gdal</span></code>. The error probably stems from an import statement in one of the PostTelemac plugin’s Python scripts. To troubleshoot the gdal import error, find the Python script that is raising the error message. For instance, <code class="docutils literal notranslate"><span class="pre">C:\Users\USERNAME\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\PostTelemac\meshlayerparsers\</span></code><strong><code class="docutils literal notranslate"><span class="pre">posttelemac_hdf_parser.py</span></code></strong> may cause the error with its <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">gdal</span></code> statement. Therefore:</p>
+<p>Some versions of QGIS may throw a Python error (yellow frame in the top region of the map viewport) and a click on <strong>Stack</strong> reveals an error message. At the bottom of the error message, it might be written <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">error:</span> <span class="pre">no</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">gdal</span></code>. The error probably stems from an import statement in one of the PostTelemac plugin’s Python scripts. To troubleshoot the gdal import error, find the Python script that is raising the error message. For instance, <code class="docutils literal notranslate"><span class="pre">C:\Users\USERNAME\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\PostTelemac\meshlayerparsers\</span></code><strong><code class="docutils literal notranslate"><span class="pre">posttelemac_hdf_parser.py</span></code></strong> may cause the error with its <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">gdal</span></code> statement. Therefore:</p>
 <ul class="simple">
 <li><p>Open the concerned file, which is here: <strong><code class="docutils literal notranslate"><span class="pre">posttelemac_hdf_parser.py</span></code></strong></p></li>
 <li><p>Find the <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">gdal</span></code> statement and **replace it with <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">osgeo</span> <span class="pre">import</span> <span class="pre">gdal</span></code> (i.e.,  <s><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">gdal</span></code></s> and write <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">osgeo</span> <span class="pre">import</span> <span class="pre">gdal</span></code>)</p></li>
@@ -1050,7 +1181,7 @@
 <li><p>Click on <em>Apply</em> and <em>OK</em></p></li>
 </ul>
 </li>
-<li><p>Open the file <code class="docutils literal notranslate"><span class="pre">~/.profile</span></code> (e.g. use the file browser, go to the <code class="docutils literal notranslate"><span class="pre">Home</span></code> folder and pressing <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">H</span></code> to toggle viewing hidden files) and add at the very bottom of the file:</p></li>
+<li><p>Open the file <code class="docutils literal notranslate"><span class="pre">~/.profile</span></code> (e.g. use the file browser, go to the <code class="docutils literal notranslate"><span class="pre">Home</span></code> folder and press <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">H</span></code> to toggle viewing hidden files) and add at the very bottom of the file:</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">QT_STYLE_OVERRIDE</span><span class="o">=</span><span class="n">gtk2</span>
 <span class="n">export</span> <span class="n">QT_QPA_PLATFORMTHEME</span><span class="o">=</span><span class="n">qt5ct</span>

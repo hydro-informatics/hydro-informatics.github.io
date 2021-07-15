@@ -4,7 +4,6 @@
 ```{admonition} Requirements
 This tutorial is designed for **advanced modelers** and before diving into this tutorial make sure to complete the {ref}`TELEMAC pre-processing <slf-prepro-tm>` and {ref}`Telemac2d steady hydrodynamic modeling <telemac2d-steady>` tutorials.
 
-
 The case featured in this tutorial was established with the following software:
 * {ref}`Notepad++ <npp>` text editor (any other text editor will do just as well.)
 * TELEMAC v8p2r0 ({ref}`stand-alone installation <modular-install>`).
@@ -76,9 +75,10 @@ GRAPHIC PRINTOUT PERIOD : 500
 LISTING PRINTOUT PERIOD : 500
 ```
 
+(tm2d-liq-file)=
 ### Open Boundaries
 
-This section features the implementation of quasi steady (unsteady) flow conditions at the open liquid with a time-dependent inflow hydrograph and a downstream {term}`Stage-discharge relation`  (recall the rationales behind the choice of boundary types from the {ref}`pre-processing tutorial <bk-liquid-bc>`).
+This section features the implementation of quasi-steady (unsteady) flow conditions at the open liquid with a time-dependent inflow hydrograph and a downstream {term}`Stage-discharge relation`  (recall the rationales behind the choice of boundary types from the {ref}`pre-processing tutorial <bk-liquid-bc>`).
 
 ---
 
@@ -111,7 +111,7 @@ s	m3/s
 99000	35
 ```
 
-The original `boundaries.cli` file describes the downstream boundary with `prescribed Q and H` (type `5 5 5`). However, in the unsteady calculation, `Q` needs to be free (otherwise, in needed to be defined in `inflows.liq` with an additional column) and for this reason, the `boundaries.cli` file requires some adaptions:
+The original `boundaries.cli` file describes the downstream boundary with `prescribed Q and H` (type `5 5 5`). However, in the unsteady calculation, `Q` needs to be free (otherwise, Q(2) needed to be defined in `inflows.liq` with an additional column) and for this reason, the `boundaries.cli` file requires some adaptions:
 
 * **Open** the provided [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/boundaries.cli) file with a text editor (e.g., {ref}`npp` on Windows or {ref}`Atom <install-atom>`).
 * Use find-and-replace (e.g., `CTRL` + `H` keys in {ref}`npp`, or `CTRL` + `F` keys in {ref}`install-atom`):
@@ -132,15 +132,14 @@ LIQUID BOUNDARIES FILE : inflows.liq
 
 ---
 
-**Stage-Discharge Relation**
-
+**Rating Curve (Stage-Discharge Relation)**
 To activate the use of a {term}`Stage-discharge relation` for an open (liquid) boundary with the `STAGE-DISCHARGE CURVES` keyword needs to be added to the steering file. This keyword accepts the following integers:
 
-* `0` is the **default** that deactivates the usage of stage discharge.
-* `1` applies prescribed elevations as function of calculated flow rate (discharge).
-* `2` applies prescribed flow rates (discharge) as function of calculated elevation.
+* `0` is the **default** that deactivates the usage of a stage-discharge curve.
+* `1` applies prescribed elevations as a function of calculated flow rate (discharge).
+* `2` applies prescribed flow rates (discharge) as a function of calculated elevation.
 
-The `STAGE-DISCHARGE CURVES` keyword is a list that assigns one of the three integer (i.e., either `0`, `1`, or `2`) to the open (liquid) boundaries. In this tutorial `STAGE-DISCHARGE CURVES : 0;1` actives the use of a {term}`Stage-discharge relation` for the downstream boundary only where the **upstream open boundary number 1** is set to `0` and the **downstream open boundary number 1** is set to `0`.
+The `STAGE-DISCHARGE CURVES` keyword is a list that assigns one of the three integers (i.e., either `0`, `1`, or `2`) to the open (liquid) boundaries. In this tutorial `STAGE-DISCHARGE CURVES : 0;1` actives the use of a {term}`Stage-discharge relation` for the downstream boundary only where the **upstream open boundary number 1** is set to `0` and the **downstream open boundary number 1** is set to `0`.
 
 The form (curve) of the {term}`Stage-discharge relation` needs to be defined in a stage-discharge file ({term}`ASCII` text format). Such files typically apply to the downstream boundary of a model at control sections (e.g., a free overflow weir). This tutorial uses the following relation that is stored in a file called `ratingcurve.txt` ([download](https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/ratingcurve.txt)):
 
@@ -158,8 +157,7 @@ m	m3/s
 
 To define {term}`Stage-discharge relation`s for multiple open boundaries (e.g., at river diversions or tributaries), add the curves to the same file. TELEMAC automatically recognizes where the curves apply by the number given in parentheses after the parameter name in the column header. For instance, in the above example for this tutorial, the column headers `Z(2)` and `Q(2)` tell TELEMAC to use these values for the second (i.e., downstream) open boundary. The column order is not important because TELEMAC reads the curve type (i.e., either $Q(Z)$ or $Z(Q)$) from the `STAGE-DISCHARGE CURVES` keyword.
 
-````{admonition} Expand to view an example for multiple stage-discharge curve definitions
-:class: note, dropdown
+````{dropdown} Expand to view an example for multiple stage-discharge curve definitions
 The following file block would prescribe {term}`Stage-discharge relation`s to the upstream and downstream boundary conditions in this tutorial. However, the file cannot be used here unless the upstream boundary type is changed to `5 5 5` (`prescribed H and Q`) in the `boundaries.cli` file (read more in the {ref}`pre-processing tutorial <bk-liquid-bc>`).
 ```
 #
@@ -205,10 +203,9 @@ To avoid ambiguous definitions of the open boundaries conditions, **deactivate**
 ```
 
 
-
 ### Numerical Parameters
 
-The predictor-corrector schemes (`SCHEME FOR ...` keywords defined with `3`, `4`, `5`, or `15` as explained in the {ref}`steady2d tutorial <tm2d-numerical>`) rely on a parameter defining the number of iterations at every timestep for convergence. For quasi steady simulations, the developers recommend to set this parameter to `2` or slightly larger (section 7.2.1 in the {{ tm2d }}). Therefore, add the following line to the steering file:
+The predictor-corrector schemes (`SCHEME FOR ...` keywords defined with `3`, `4`, `5`, or `15` as explained in the {ref}`steady2d tutorial <tm2d-numerical>`) rely on a parameter defining the number of iterations at every timestep for convergence. For quasi-steady simulations, the developers recommend setting this parameter to `2` or slightly larger (section 7.2.1 in the {{ tm2d }}). Therefore, **add the following line to the steering file**:
 
 ```fortran
 NUMBER OF CORRECTIONS OF DISTRIBUTIVE SCHEMES : 2
@@ -217,17 +214,17 @@ NUMBER OF CORRECTIONS OF DISTRIBUTIVE SCHEMES : 2
 (tm-control-sections)=
 ### Control Sections
 
-A consistent way to verify fluxes at open boundaries or other particular lines (e.g., tributary inflows or diversions) is to use the `CONTROL SECTIONS` keyword (*though not used in this tutorial*). A control section is defined by a sequence of neighboring node numbers. For instance, to verify the fluxes over the open boundaries in this tutorial, check out the node numbers in the `boundaries.cli` file (e.g., 144 to 32 for the upstream and 34 to 5 for the downstream boundary). Then create a new text file (e.g., `control-sections.txt`) and:
+A consistent way to verify fluxes at open boundaries or other particular lines (e.g., tributary inflows or diversions) is to use the `CONTROL SECTIONS` keyword. A control section is defined by a sequence of neighboring node numbers. For instance, to verify the fluxes over the open boundaries in this tutorial, check out the node numbers in the `boundaries.cli` file (e.g., 144 to 32 for the upstream and 34 to 5 for the downstream boundary). Then, **create a new text file** (e.g., **control-sections.txt**) and:
 
-* Add one comment line with some short information (e.g., `# control sections input file`). Note that this line is **mandatory**.
-* In the second line add a space-separated list of 2 integers where
+* **Add one comment line** with some short information (e.g., `# control sections input file`). Note that this line is **mandatory**.
+* In the **second line** add a **space-separated list of 2 integers** where
   * the first integer defines the number of cross-sections, and
   * the second integer defines if node numbers (i.e. IDs from `boundaries.cli`) or coordinates will be defined. A negative number sets node IDs and a positive number coordinates.
-* Define as many cross sections as set with the first integer. Every cross-section definition consists of two lines:
+* **Define as many cross sections as defined with the first integer.** Every cross-section definition consists of two lines:
   * The first line is a *string* (text) without spaces that is naming the cross-section (e.g., `inflow_cs`).
   * The second line consists of two numbers defining the start and end points of the cross-sections. If the second integer in the file line is negative, provide two space-separated integers. If the second integer is positive, provide two space-separated pairs of coordinates (put a space between coordinates).
 
-For example, the following `control-sections.txt` file can be used with the steady simulation in this tutorial ([download control-sections.txt](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/control-sections.txt)).
+For example, the following *control-sections.txt* file can be used with the steady simulation in this tutorial ([download control-sections.txt](https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/control-sections.txt)).
 
 ```
 # control sections steady2d
@@ -238,8 +235,7 @@ Outflow_boundary
 34 5
 ```
 
-````{admonition} Expand to view an example for coordinate-based control sections
-:class: note, dropdown
+````{dropdown} Expand to view an example for coordinate-based control sections
 The following control section file uses point coordinates rather than node ID numbers to define three sections. Read more in {cite:t}`baxter2013` (i.e., section 4.1.2 in the [Baxter tutorial](http://www.opentelemac.org/index.php/component/jdownloads/summary/4-training-and-tutorials/185-telemac-2d-tutorial?Itemid=55)).
 ```
 # control section file using coordinates
@@ -253,7 +249,6 @@ main_river_downstream
 ```
 ````
 
-
 The second line in this file tells TELEMAC to use `2` control sections, which are defined by node IDs (`-1`). To use the control sections for the simulation add the following to the steering file:
 
 ```
@@ -263,7 +258,7 @@ SECTIONS INPUT FILE :  control-sections.txt
 SECTIONS OUTPUT FILE : r-control-flows.txt
 ```
 
-Thus, re-running the simulation will write the fluxes across the two define control sections to a file called `r-control-flows.txt`. The {{ tm2d }} provides detailed explanations in section 5.2.2.
+Thus, re-running the simulation will write the fluxes across the two define control sections to a file called *r-control-flows.txt*. The {{ tm2d }} provides explanations in section 5.2.2.
 
 ## Run Telemac2d Unsteady
 
@@ -292,8 +287,14 @@ cd ~/telemac/v8p2/mysimulations/unsteady2d-tutorial/
 telemac2d.py unsteady2d.cas
 ```
 
+````{admonition} Speed up
+With {ref}`parallelism <mpi>` enabled (e.g., in the {ref}`Mint Hyfo Virtual Machine <hyfo-vm>`), speed up the calculation by using multiple CPUs through the `--ncsize=N` flag. For instance, the following line runs the unsteady simulation on `N=2` CPUs:
 
-As a result, a successful computation should end with the following lines (or similar) in *Terminal*:
+```
+telemac2d.py unsteady2d.cas --ncsize=2
+```
+````
+A successful computation should end with the following lines (or similar) in *Terminal*:
 
 ```fortran
 [...]
@@ -310,10 +311,17 @@ ELAPSE TIME :
 
 ... handling result files
        moving: r2dunsteady.slf
+       moving: r-control-sections.txt
 ... deleting working dir
 
 My work is done
 ```
+
+Telemac2d will write the files *r2dunsteady.slf* and *r-control-sections.txt*. Both result files are also available in the modelling repository to enable accomplishing the post-processing tutorial:
+
+* [get r2dunsteady.slf](https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/r2dunsteady.slf), and
+* [get r-control-sections.txt](https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/r-control-sections.txt).
+
 
 ## Post-processing
 
@@ -328,11 +336,12 @@ The unsteady simulation intends to model time-variable flows over the open upstr
 The simulated flows over the upstream *Inflow_boundary* and the downstream *Outflow_boundary* control sections.
 ```
 
-The peak inflow corresponds to the specified 1130 m$^3$/s and at the outflow peak is only 889 m$^3$/s where the peak takes about 1070 seconds (inflow at $T=19000$ and outflow at $T\approx 20070$) to travel through the section.
+The peak inflow corresponds to the specified 1130 m$^3$/s while the outflow peak discharge is only 889 m$^3$/s and the peak takes about 1070 seconds (inflow at $T=19000$ and outflow at $T\approx 20070$) to travel through the section.
 
 
 ````{admonition} Resolve volume balance issues in unsteady simulations
-The total inflow and outflow volumes in the here featured simulation amount to 3479930.958 m$^3$ and 3430100.437 m$^3$, respectively. Thus, there is a total volume error of 1.4$%$. To overcome such issues, the {{ tm2d }} recommend using a minimum value for water depth to define when a cell is wet or dry. Still, the developers do not recommend using a minimum water depth for most simulations, and emphasize using this option only for unsteady (quasi steady) simulations. Defining a minimum water depth requires to set the `TREATMENT OF THE TIDAL FLATS` keyword to `2` (read more in the {ref}`steady2d tutorial <tm2d-tidal>`), which is not compatible with the parallelization routines, nor with the here used `SCHEME FOR ADVECTION ... : 14` settings. Thus, good results, but long non-parallelized quasi-steady calculations can be yielded with the following keywords in the steering file:
+:class: warning, dropdown
+The total inflow and outflow volumes in the here featured simulation amount to 3479930.958 m$^3$ and 3430100.437 m$^3$, respectively. Thus, there is a total volume error of 1.4$%$. To overcome such issues, the {{ tm2d }} recommend using a minimum value for water depth to define when a cell is wet or dry. Still, the developers do not recommend using a minimum water depth for most simulations and emphasize using this option only for unsteady (quasi-steady) simulations. Defining a minimum water depth requires setting the `TREATMENT OF THE TIDAL FLATS` keyword to `2` (read more in the {ref}`steady2d tutorial <tm2d-tidal>`), which is not compatible with the parallelization routines, nor with the here used `SCHEME FOR ADVECTION ... : 14` settings. Thus, good results, but long non-parallelized quasi-steady calculations can be yielded with the following keywords in the steering file:
 
 ```fortran
 OPTION FOR THE TREATMENT OF TIDAL FLATS : 2 / use segment-wise flux control
@@ -340,6 +349,32 @@ MINIMUM VALUE OF DEPTH : 0.1 / in meters
 ```
 ````
 
-### Practice Recommendations
 
-This tutorial ends with the graphical output of modeled flow parameters, but there are a couple more steps to accomplish in practice. For instance, the time that the flow peak takes to travel through the modeled river section might be too short (i.e., flow is too fast) or too long (i.e., flow is too slow) compared to observation data (e.g., from stream gauges). In these cases, model calibration through variations of the {ref}`FRICTION COEFFICIENT <tm2d-friction>` keyword might be a solution.
+### Visualization with QGIS
+
+The results of the unsteady simulation can be visualized and exported to raster (e.g., {term}`GeoTIFF`) or shapefile formats in QGIS with the PostTelemac plugin the same way as explained in the steady2d tutorial ({ref}`read the steady2d post-processing <tm2d-post-export>`). The latest QGIS releases additionally enable to load the Selafin results mesh file (here: *r2dunsteady.slf*) as a QGIS mesh layer. Therefore, **launch QGIS**, go to the **Layer** menu and click on **Add Layer** > **Add Mesh Layer...**. In the popup window (*Data Source Manager / Mesh*), **select r2dunsteady.slf**, click **Add**, and **Close**. {numref}`Figure %s <qgis-r2dunsteady-imported>` shows the imported r2dunsteady mesh layer in QGIS with a *Softlight* blending (set in the *Symbology*) on google satellite imagery.
+
+```{figure} ../img/telemac/qgis-r2dunsteady-imported.png
+:alt: qgis telemac2d unsteady quasi steady simulation results slf
+:name: qgis-r2dunsteady-imported
+
+The unsteady (quasi-steady) simulation results file r2dunsteady.slf imported as mesh layer in QGIS and super-positioned on google satellite imagery {cite:p}`googlesat`.
+```
+
+The simulation parameter (e.g., `U`, `V`, or `Q`) and the timestep shown can be controlled in the layer properties of the `r2dunsteady` layer (double-click on it in the *Layers* panel).
+
+To **create a video of simulation results**, use the open-source [Crayfish](https://www.lutraconsulting.co.uk/projects/crayfish/) plugin that enables the animated visualization of meshes and their attributes (e.g., change of node values over time). Get the *Crayfish* plugin from QGIS **Plugins** menu > **Manage and Install Plugins...** > tap `crayfish` in the **All** tab and click on **Install Plugin**. The plugin is now ready to create a video by clicking through QGIS **Mesh** menu > **Crayfish** **Export Animation ...**. In the *Crayfish* popup window, toggle through three tabs, and adapt video settings (e.g., define a file name such as `velocity-video.avi` in the **General** tab). Note that *Crayfish* will automatically export the frame and active variable (here, the default is `U`) selected on the mesh (*Layer Properties*). When all settings are made, click on **OK** to start the export.
+
+```{admonition} Crayfish first time use
+:class: warning
+The first time that a video is exported, *Crayfish* will require the definition of an **FFmpeg video encoder** and guide through the installation (if required). Follow the instructions (preferably use automatic installers). If *Crayfish* did not automatically continue the video export, re-start exporting the video after the FFmpeg installation.
+```
+
+The below-shown box features and exemplary video output of flow velocity.
+
+```{dropdown} Expand to view the resulting video
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/JKAiZ1ChUEg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Sebastian Schwindt <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+```
+
+**What next?**
+: This tutorial ends with the graphical output of modeled flow parameters, but there are a couple more steps to accomplish in practice. For instance, the time that the flow peak takes to travel through the modeled river section might be too short (i.e., flow is too fast) or too long (i.e., flow is too slow) compared to observation data (e.g., from stream gauges). In these cases, model calibration through variations of the {ref}`FRICTION COEFFICIENT <tm2d-friction>` keyword might be a solution. Read more in the {ref}`calibration` section.

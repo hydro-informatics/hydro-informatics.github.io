@@ -591,7 +591,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
-     Debugging TELEMAC/SALOME
+     Debugging TELEMAC
     </a>
    </li>
   </ul>
@@ -796,7 +796,7 @@
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
+    <a class="reference internal nav-link" href="#id3">
      Import results.xdmf
     </a>
    </li>
@@ -1189,7 +1189,7 @@
 <p>To enhance the visualization of the new (flow velocity) raster, double-click on the new raster in the <strong>Layers</strong> panel and switch to the <strong>Symbology</strong> tab. Select <strong>Singleband pseudocolor</strong> for <strong>Render type</strong> (in the top region of the window) and a <strong>Color ramp</strong>. To suppress zero-value pixels, double-click on the <strong>Color</strong> of the <strong>0</strong>-<strong>Value</strong> field, and in the <strong>Select color</strong> window reduce the <strong>Opacity</strong> to <strong>0<span class="math notranslate nohighlight">\(%\)</span></strong>. <a class="reference internal" href="#bm-exported-u-raster"><span class="std std-numref">Figure 52</span></a> shows an example visualization of the exported flow velocity raster.</p>
 <div class="figure align-default" id="bm-exported-u-raster">
 <img alt="basement output rasterize mesh geotiff visualization singleband pseudocolor" src="../_images/bm-exported-u.png" />
-<p class="caption"><span class="caption-number">Fig. 52 </span><span class="caption-text">A Singleband pseudocolor (Layer Properties &gt; Symbology) represents the exported GeoTIFF flow velocity raster with a <em>Reds</em> color ramp and zero-value pixels set to zero-opacity.</span><a class="headerlink" href="#bm-exported-u-raster" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 52 </span><span class="caption-text">A Singleband pseudocolor (Layer Properties &gt; Symbology) represents the exported GeoTIFF flow velocity raster with a <em>Reds</em> color ramp and zero-value pixels set to zero-opacity, superpositioned on google satellite imagery <span id="id2">[<a class="reference internal" href="../documentation/bibliography.html#id1367">Goond</a>]</span>.</span><a class="headerlink" href="#bm-exported-u-raster" title="Permalink to this image">¶</a></p>
 </div>
 <div class="admonition-analyze-geodata-results-with-python admonition">
 <p class="admonition-title">Analyze geodata results with Python</p>
@@ -1216,8 +1216,8 @@
 <div class="section" id="post-processing-with-paraview">
 <span id="bm-paraview"></span><h1>Post-processing with ParaView<a class="headerlink" href="#post-processing-with-paraview" title="Permalink to this headline">¶</a></h1>
 <p><em>ParaView</em> is freely available visualization software, which enables plotting and processing BASEMENT’s <em>results.<a class="reference internal" href="../documentation/glossary.html#term-xdmf"><span class="xref std std-term">xdmf</span></a></em> file for scientific purposes. Download and install (requires <strong>Admin</strong>/<strong>sudo</strong> rights) the latest version of <em>ParaView</em> from their <a class="reference external" href="https://www.paraview.org/download/">website</a> (if not yet done).</p>
-<div class="section" id="id2">
-<h2>Import results.xdmf<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h2>Import results.xdmf<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>Open <em>ParaView</em> and <strong>click on the folder icon</strong> (top-left of the window indicated in <a class="reference internal" href="#fig-pv-import"><span class="std std-numref">Fig. 53</span></a>) to load the simulation results file (<code class="docutils literal notranslate"><span class="pre">results.xdmf</span></code>). <em>ParaView</em> might ask to choose an appropriate XDMF read plugin: <strong>Select <code class="docutils literal notranslate"><span class="pre">XDMF</span> <span class="pre">Reader</span></code></strong> and click <code class="docutils literal notranslate"><span class="pre">OK</span></code>. Now, the <code class="docutils literal notranslate"><span class="pre">results.xdmf</span></code> should be visible in the <strong>Pipeline Browser</strong> and the <strong>Apply</strong> button has turned green (click on it).</p>
 <div class="figure align-default" id="fig-pv-import">
 <img alt="basement results paraview" src="../_images/import-results.png" />
@@ -1296,8 +1296,8 @@
 </ul>
 <p>In detail, this looks as follows:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="884d93b3-d802-4439-a1f7-987ca4902e46" name="b1b6b9d4-f6aa-4eb2-b589-2d0e4f7e498c" type="radio">
-</input><label class="tabbed-label" for="884d93b3-d802-4439-a1f7-987ca4902e46">
+<input checked="checked" id="1074a304-edf3-4b18-aa91-bc7e6ecb4d5d" name="0886ff37-9f1d-4b34-a2a7-f03712c2b65c" type="radio">
+</input><label class="tabbed-label" for="1074a304-edf3-4b18-aa91-bc7e6ecb4d5d">
 Windows / conda</label><div class="tabbed-content docutils">
 <p>Launch <em>Windows</em> or <em>Anaconda Prompt</em> and tap (requires that the conda environment <a class="reference internal" href="../python-basics/pyinstall.html#conda-quick"><span class="std std-ref">flussenv</span></a> is installed):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">flussenv</span>
@@ -1306,8 +1306,8 @@ Windows / conda</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="87ee6513-1d8d-41b7-b58a-3fddf53f16eb" name="b1b6b9d4-f6aa-4eb2-b589-2d0e4f7e498c" type="radio">
-</input><label class="tabbed-label" for="87ee6513-1d8d-41b7-b58a-3fddf53f16eb">
+<input id="c08d3b09-0383-4954-a25a-89136077fea7" name="0886ff37-9f1d-4b34-a2a7-f03712c2b65c" type="radio">
+</input><label class="tabbed-label" for="c08d3b09-0383-4954-a25a-89136077fea7">
 Linux / pip</label><div class="tabbed-content docutils">
 <p>Launch <em>Linux Terminal</em> and tap (requires that the pip environment <a class="reference internal" href="../python-basics/pyinstall.html#pip-quick"><span class="std std-ref">vflussenv</span></a> is installed in the HOME directory):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~</span>
@@ -1344,7 +1344,10 @@ Linux / pip</label><div class="tabbed-content docutils">
 <li><p><strong>No water in the model</strong><br>The discharge defined in the <em>steady-inflow.txt</em> file (see <a class="reference internal" href="#bm-hydraulics"><span class="std std-ref">Hydraulics</span></a> section) must define reasonable flows in the simulation time. In addition, the definition of the  <a class="reference internal" href="#bm-geo-fin"><span class="std std-ref">upstream_direction</span></a> (e.g., wrongly defined as <code class="docutils literal notranslate"><span class="pre">&quot;left&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;right&quot;</span></code>) may cause this error. Depending on your system’s region settings, use the English <strong><code class="docutils literal notranslate"><span class="pre">.</span></code></strong> in lieu of the European <strong><code class="docutils literal notranslate"><span class="pre">,</span></code></strong> decimal delimiter to define discharges in <em>steady-inflow.txt</em>.</p></li>
 </ul>
 </div>
-<p><strong>What next?</strong> The verification of the model stability represents only one step on the pathway to a useable model in practice. Before a numerical model can be used for simulating decision-making scenarios, it must be calibrated and validated with measurement data. Read more in the <a class="reference internal" href="calibration.html"><span class="doc">Calibration and Validation</span></a> section.</p>
+<dl class="simple myst">
+<dt><strong>What next?</strong></dt><dd><p>The verification of the model stability represents only one step on the pathway to a useable model in practice. Before a numerical model can be used for simulating decision-making scenarios, it must be calibrated and validated with measurement data. Read more in the <a class="reference internal" href="calibration.html"><span class="doc">Calibration and Validation</span></a> section.</p>
+</dd>
+</dl>
 </div>
 
     <script type="text/x-thebe-config">

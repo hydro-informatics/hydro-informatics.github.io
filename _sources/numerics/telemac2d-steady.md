@@ -493,9 +493,7 @@ LAW OF BOTTOM FRICTION : 4 / 4-Manning
 FRICTION COEFFICIENT : 0.03 / Roughness coefficient
 ```
 
-````{admonition} Expand to see exemplary values for Manning roughness
-:class: tip, dropdown
-
+````{dropdown} Expand to see exemplary values for Manning roughness
 {numref}`Table %s <tab-mannings-n>` lists exemplary values for the Manning roughness coefficient $n_m$ based on {cite:t}`usgs1973_n` and {cite:t}`usgs1989_n`.
 
 ```{list-table} Exemplary values for Manning roughness for straight uniform channels.
@@ -535,25 +533,25 @@ FRICTION COEFFICIENT : 0.03 / Roughness coefficient
 
 ```{admonition} Friction zones (regional friction values)
 :class: tip, dropdown
-Similar to the assignment of multiple friction coefficient values to multiple model regions featured in the {ref}`BASEMENT tutorial <bm-geometry>`, Telemac2d provides routines for domain-wise (or zonal) friction definitions. Appendix E of the {{ tm2d }} provides detailed explanations for the implementation of such zonal friction values. The following tips may help to better understand the instructions in Appendix E:
+Similar to the assignment of multiple friction coefficient values to multiple model regions featured in the {ref}`BASEMENT tutorial <bm-geometry>`, Telemac2d provides routines for domain-wise (or zonal) friction area definitions through a geometry (e.g., `*.slf`) file. To create a zonal roughness Selafin geometry with QGIS and Blue Kenue use our [Create Roughness Selafin File PDF workflow](https://github.com/hydro-informatics/telemac/raw/main/friction/create-friction-zone.pdf). Some additional hints for using the workflow:
 
-* The proposed modification of the **FRICTION_USER** Fortran function (subroutine) is not mandatory. If the FRICTION_USER subroutines must be enabled anyway (e.g., to implement a new roughness law such as the {cite:t}`ferguson_flow_2007` equation):
-  * The FICTION_USER subroutine can be found in `/telemac/v8p2/sources/telemac2d/friction_user.f`.
-  * To use a modified version, copy `friction_user.f` to a new subfolder called `/user_fortran/` in your simulation case folder.
-  * Modify and save edits in `/your/simulation/case/user_fortran/friction_user.f`.
-  * Tell the steering (`*.cas`) file to use the modified FRICTION_USER Fortran file by adding the keyword `FORTRAN FILE : 'user_fortran'` (makes Telemac2d looking up Fortran files in the `/user_fortran/` subfolder).
-* Useful examples are:
-  * The BAW's Donau case study that lives in `/telemac/v8p2/examples/telemac2d/donau/` and features the usage of a `*.bfr` `ZONES FILE` and a `roughness.tbl` `FRICTION DATA FILE`, which are enabled through the `FRICTION DATA : YES` keyword in the `t2d_donau.cas` file. The Donau example was presented at the XXth Telemac-Mascaret user conference and the conference proceedings are available at the BAW's [HENRY portal](https://hdl.handle.net/20.500.11970/100418) (look for the contribution *Reverse engineering of initial & boundary conditions with TELEMAC and algorithmic differentiation*).
-  * The [Baxter tutorial](http://www.opentelemac.org/index.php/component/jdownloads/summary/4-training-and-tutorials/185-telemac-2d-tutorial?Itemid=55).
-* To assign zonal roughness values, use QGIS, Blue Kenue, and a text editor:
-  * Delineate zones with different roughness coefficients draw polygons (e.g., following landscapes characteristics on a basemap) in separate shapefiles with QGIS (see also the {ref}`pre-processing tutorial on QGIS <tm-qgis-prepro>`).
-  * Import the separate polygons as closed lines in Blue Kenue (see also the {ref}`pre-processing tutorial on Blue Kenue <bk-tutorial>`).
-  * Assign elevations to the polygons (closed lines) in Blue Kenue (requires {ref}`elevation information <bk-xyz>`).
-  * Add a new variable to the {ref}`Selafin <bk-create-slf>` geometry and call it BOTTOM FRICTION (this can be another `*.slf` file than the one where the computational mesh lives).
-  * Use the {ref}`Map Object <bk-2dinterp>` function (*Tools* > *Map Object...*) to add the polygons (closed lines) to the BOTTOM FRICTION mesh variable.
-  * Define zone numbers in Blue Kenue and save them (export) as `*.xyz` or `*.bfr` zones file (conversion to zones file may require opening the `*.xyz` file in a text editor and saving it from there as `*.bfr` file).
+* Delineate zones with different roughness coefficients by drawing polygons (e.g., following landscapes characteristics on a basemap) in separate shapefiles with QGIS (see also the {ref}`pre-processing tutorial on QGIS <tm-qgis-prepro>`).
+* Import the separate polygons as XYZ file or closed lines in Blue Kenue (see also the {ref}`pre-processing tutorial on Blue Kenue <bk-tutorial>`).
+* Assign elevations to the polygons (closed lines) in Blue Kenue (requires {ref}`elevation information <bk-xyz>`).
+* Add a new variable to the {ref}`Selafin <bk-create-slf>` geometry and call it BOTTOM FRICTION (this can be another `*.slf` file than the one where the computational mesh lives).
+* Use the {ref}`Map Object <bk-2dinterp>` function (*Tools* > *Map Object...*) to add the polygons (closed lines) to the BOTTOM FRICTION mesh variable.
 * In the `*.cas` file, make sure to set a value for the FRICTION parameter according to the above descriptions and to set the `*.slf` file with the BOTTOM FRICTION variable for the `ZONES FILE` keyword.
 
+
+Useful examples for creating roughness zones are:
+  * The BAW's Donau case study that lives in `/telemac/v8p2/examples/telemac2d/donau/` and features the usage of a `*.bfr` `ZONES FILE` and a `roughness.tbl` `FRICTION DATA FILE`, which are enabled through the `FRICTION DATA : YES` keyword in the `t2d_donau.cas` file. The Donau example was presented at the XXth Telemac-Mascaret user conference and the conference proceedings are available at the BAW's [HENRY portal](https://hdl.handle.net/20.500.11970/100418) (look for the contribution *Reverse engineering of initial & boundary conditions with TELEMAC and algorithmic differentiation*).
+  * The [Baxter tutorial](http://www.opentelemac.org/index.php/component/jdownloads/summary/4-training-and-tutorials/185-telemac-2d-tutorial?Itemid=55).
+
+In addition, Appendix E of the {{ tm2d }} provides explanations for the implementation of such zonal friction values. Yet, the proposed modification of the **FRICTION_USER** Fortran function (subroutine) is not mandatory. Here are some hints if the FRICTION_USER subroutines must be enabled anyway (e.g., to implement a new roughness law such as the {cite:t}`ferguson_flow_2007` equation):
+* The FICTION_USER subroutine can be found in `/telemac/v8p2/sources/telemac2d/friction_user.f`.
+* To use a modified version, copy `friction_user.f` to a new subfolder called `/user_fortran/` in your simulation case folder.
+* Modify and save edits in `/your/simulation/case/user_fortran/friction_user.f`.
+* Tell the steering (`*.cas`) file to use the modified FRICTION_USER Fortran file by adding the keyword `FORTRAN FILE : 'user_fortran'` (makes Telemac2d looking up Fortran files in the `/user_fortran/` subfolder).
 ```
 
 (tm2d-bounds)=
@@ -779,7 +777,7 @@ The successful raster creation results in a new layer called **r2dsteady_raster_
 :alt: qgis flow velocity vitesse results slf PostTelemac raster geotiff tif
 :name: exported-tif
 
-The exported flow velocity (VITESSE) GeoTIFF raster in QGIS.
+The exported flow velocity (VITESSE) GeoTIFF raster in QGIS with google satellite imagery {cite:p}`googlesat` in the background.
 ```
 
 ```{admonition} How reasonable are the results?
@@ -864,3 +862,7 @@ Re-{ref}`run Telemac2d <tm2d-run>` and open the resulting `r2d...slf` file in QG
 * How long did the simulations take to converge and did you need to modify the `NUMBER OF TIME STEPS`?
 * How reasonable are the results?
 * Which of the two initial conditions would you use in practice to show that your simulation is correct?
+
+
+**What next?**
+: A steady discharge almost never occurs in reality and can be used at maximum to {ref}`calibrate <calibration>` the model based on (field) measurements. Once the model is well-calibrated for 2-3 steady discharges, the steady model results may be used for initializing an {ref}`unsteady <chpt-unsteady>` simulation, possibly with {ref}`sediment transport <tm-gaia>`.

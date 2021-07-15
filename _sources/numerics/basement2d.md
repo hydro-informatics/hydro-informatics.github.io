@@ -377,7 +377,7 @@ To enhance the visualization of the new (flow velocity) raster, double-click on 
 :alt: basement output rasterize mesh geotiff visualization singleband pseudocolor
 :name: bm-exported-u-raster
 
-A Singleband pseudocolor (Layer Properties > Symbology) represents the exported GeoTIFF flow velocity raster with a *Reds* color ramp and zero-value pixels set to zero-opacity.
+A Singleband pseudocolor (Layer Properties > Symbology) represents the exported GeoTIFF flow velocity raster with a *Reds* color ramp and zero-value pixels set to zero-opacity, superpositioned on google satellite imagery {cite:p}`googlesat`.
 ```
 
 ```{admonition} Analyze geodata results with Python
@@ -545,4 +545,5 @@ Note the difference between the convergence duration in this steady simulation w
 * **No water in the model**<br>The discharge defined in the *steady-inflow.txt* file (see {ref}`bm-hydraulics` section) must define reasonable flows in the simulation time. In addition, the definition of the  {ref}`upstream_direction <bm-geo-fin>` (e.g., wrongly defined as `"left"` or `"right"`) may cause this error. Depending on your system's region settings, use the English **`.`** in lieu of the European **`,`** decimal delimiter to define discharges in *steady-inflow.txt*.
 ```
 
-**What next?** The verification of the model stability represents only one step on the pathway to a useable model in practice. Before a numerical model can be used for simulating decision-making scenarios, it must be calibrated and validated with measurement data. Read more in the {doc}`calibration` section.
+**What next?**
+: The verification of the model stability represents only one step on the pathway to a useable model in practice. Before a numerical model can be used for simulating decision-making scenarios, it must be calibrated and validated with measurement data. Read more in the {doc}`calibration` section.

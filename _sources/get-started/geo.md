@@ -8,7 +8,9 @@ Geospatial analyses (or analytics) use, manipulate, and illustrate data from geo
 For the visualization of geodata (`.shp` and `.tif` files), GIS software is required and the analyses described on these pages refer to the usage of [QGIS](https://www.qgis.org). This eBook uses QGIS within the sections on {ref}`geospatial programming with Python <sec-geo-python>` and numerical modelling with the ETH Zurich's {doc}`BASEMENT <../numerics/basement>` software.
 
 ### Install QGIS on Windows
-Download and install the latest version of [QGIS](https://www.qgis.org/en/site/forusers/download.html) for Windows.
+Download and install the latest version of [QGIS](https://www.qgis.org/en/site/forusers/download.html) for Windows. Even though the developers recommend installing QGIS through *OSGeo4W*, this pathway for installation is not recommended for working with the *hydro-informatics* eBook (many plugin errors and outdated library dependencies). Therefore, **preferably download and use the latest QGIS Standalone Installer**.
+
+
 
 ### Install QGIS on Linux (via Flatpak)
 
