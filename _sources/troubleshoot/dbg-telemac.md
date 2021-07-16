@@ -192,7 +192,7 @@ Until the time of writing this tutorial, `mdump` asks for input variables in *Fr
     + Option `0`: Read all
     + Option `i`: Read mesh number `i`
 
-A standard answer combination of `1` - `1` - `0` will result in a console print of all nodes and connections between the nodes in the mesh, given that *TELEMAC* can read the mesh file. Starting with:
+A standard answer combination of `1` - `1` - `0` will result in a console print of all nodes and connections between the nodes in the mesh, given that TELEMAC can read the mesh file. Starting with:
 
 ```
 (**********************************************************)
@@ -215,7 +215,7 @@ A standard answer combination of `1` - `1` - `0` will result in a console print 
 [...]
 ```
 
-*What does this mean?* If `mdump` can read the mesh, the mesh file itself is OK and potential calculation errors stem from other files such as the steering file or the boundary conditions. Otherwise, revise the mesh file and resolve any potential issue.
+**What this output means:** If `mdump` can read the mesh, the mesh file itself is OK and potential calculation errors stem from other files such as the steering file or the boundary conditions. Otherwise, revise the mesh file and resolve any potential issue.
 
 ## Boundaries
 
@@ -290,11 +290,11 @@ Change the (vertical) velocity profile
 BlueKenue may throw errors or not correctly show when working with 3d meshes. Some of the issues can be resolved by using the latest version of BlueKenue (v3.12.2-alpha at the time of editing this article).
 
 **OnFileOpendata(): ERROR: on Activate()**
-: **Causes** The error message typically occurs with parallelized model runs when Telemac3d / PARTEL did not correctly merge the mesh at the end of the simulation.
+: **Causes:** The error message typically occurs with parallelized model runs when Telemac3d / PARTEL did not correctly merge the mesh at the end of the simulation.
 
-  **Solution** Increase the simulation duration (`DURATION` keyword) slightly to be able to save the T3DRES files (mesh partition) while the simulation is still running but after the target simulation end time. For instance, if the target simulation end time is 7200 and the timestep is 10 s, increase the end time to 7300 and save the T3DRES files after 720 timesteps. Then, merge the T3DRES files manually by running the following command in *Terminal* `runcode.py --merge -w temp_directory/ telemac3d file.cas` (make sure the TELEMAC environment is activated with `source pysource.YOUR-ENV.sh`). To get help with running this command, read [this TELEMAC Forum entry](http://opentelemac.co.uk/index.php/assistance/forum5/21-telemac-3d/7221-continue-computation-from-temporary-file).
+  **Solution:** Force TELEMAC to not delete the temporary simulation folder (a folder that is visible in the simulation directory by default only while a simulation is running). Keeping the temporary calculation directory is achieved through adding a `-t` flag at the end of the simulation run command. For instance, tap the following to keep the simulation folder for a Telemac3d simulation (read more in in Annex A of the {{ tm3d }}): `telemac3d.py steering-file.cas -t`<br>The temporary folder contains T3DRES (mesh partition) files that can be merged and then opened in BlueKenue. To merge the T3DRES files run the following command (make sure the TELEMAC environment is still activated with `source pysource.YOUR-ENV.sh`):<br>`runcode.py --merge -w temp_directory/ telemac3d file.cas` <br>To get help with running this command, read [this TELEMAC Forum entry](http://opentelemac.co.uk/index.php/assistance/forum5/21-telemac-3d/7221-continue-computation-from-temporary-file).
 
-  **Updates** Follow the [BlueKenue thread in the TELEMAC Forum](http://www.openmascaret.org/index.php/assistance/forum5/blue-kenue/13278-issue-with-geometry-file?start=10#38837) for troubleshooting updates on this error.
+  For **updates on this message**, follow the [BlueKenue thread in the TELEMAC Forum](http://www.openmascaret.org/index.php/assistance/forum5/blue-kenue/13278-issue-with-geometry-file?start=10#38837) for troubleshooting updates on this error.
 
 ## PostTelemac Plugin
 

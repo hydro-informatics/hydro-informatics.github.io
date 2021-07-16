@@ -533,7 +533,7 @@ FRICTION COEFFICIENT : 0.03 / Roughness coefficient
 
 ```{admonition} Friction zones (regional friction values)
 :class: tip, dropdown
-Similar to the assignment of multiple friction coefficient values to multiple model regions featured in the {ref}`BASEMENT tutorial <bm-geometry>`, Telemac2d provides routines for domain-wise (or zonal) friction area definitions through a geometry (e.g., `*.slf`) file. To create a zonal roughness Selafin geometry with QGIS and Blue Kenue use our [Create Roughness Selafin File PDF workflow](https://github.com/hydro-informatics/telemac/raw/main/friction/create-friction-zone.pdf). Some additional hints for using the workflow:
+Similar to the assignment of multiple friction coefficient values to multiple model regions featured in the {ref}`BASEMENT tutorial <bm-geometry>`, Telemac2d provides routines for domain-wise (or zonal) friction area definitions through a geometry (e.g., `*.slf`) file. To create a zonal roughness Selafin geometry with QGIS and Blue Kenue use our [Create Roughness Selafin File PDF workflow](https://github.com/hydro-informatics/telemac/raw/main/friction/create-friction-zone-slf.pdf). Some additional hints for using the workflow:
 
 * Delineate zones with different roughness coefficients by drawing polygons (e.g., following landscapes characteristics on a basemap) in separate shapefiles with QGIS (see also the {ref}`pre-processing tutorial on QGIS <tm-qgis-prepro>`).
 * Import the separate polygons as XYZ file or closed lines in Blue Kenue (see also the {ref}`pre-processing tutorial on Blue Kenue <bk-tutorial>`).
