@@ -129,11 +129,15 @@ The consistent use of parameters and symbols for parameters is summarized in a n
 
 * - $q_{b}$
   - kg s$^{-1}$ m$^{-1}$
-  - unit bed load transport capacity
+  - unit bedload transport capacity
 
 * - $Q_{bf}$
   - m$^3$ s$^{-1}$
   - bank-full discharge
+
+* - $q_{s}$
+  - kg s$^{-1}$ m$^{-1}$
+  - unit sediment transport capacity
 
 * - $Re$
   - $-$
@@ -216,6 +220,14 @@ The consistent use of parameters and symbols for parameters is summarized in a n
 * - $\Delta {z}$
   - m
   - difference in height or cell size in $z$-direction
+
+* - $\epsilon$
+  - $-$
+  - porosity
+
+* - $\eta$
+  - m
+  - active layer thickness
 
 * - $\nu$
   - m$^{2}$ s$^{-1}$

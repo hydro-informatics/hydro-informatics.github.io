@@ -443,7 +443,7 @@
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="../numerics/telemac-gaia.html">
-       Unsteady Hydro-Morphodynamic 2d Simulation (Gaia)
+       Hydro-Morphodynamic 2d Simulation (Gaia)
       </a>
      </li>
     </ul>
@@ -822,7 +822,7 @@
 <p>A geodatabase (also known as <em>spatial database</em>) can store, query (e.g., using <a class="reference external" href="https://en.wikibooks.org/wiki/Structured_Query_Language">Structured Query Language SQL</a>), or modify data with geographic references (<em>geospatial data</em>). Primarily, geospatial data consist of vector data (see shapefiles), but raster data can also be implemented. A geodatabase links these data with attribute tables and geographic coordinates. The special aspect of geodatabases is that these data can be queried and manipulated by users via a (web or local) GIS (geographic information system) server. With software like <a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a> (or <em>ArcGIS Pro</em>), for example, queries can be made on a kind of local server using locally stored geodata. The typical geodatabase format is <code class="docutils literal notranslate"><span class="pre">.gdb</span></code>, which works actually like a directory in <a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a> or <em>ArcGIS</em>, and the maximum size of a <code class="docutils literal notranslate"><span class="pre">.gdb</span></code> file is 1 terabyte.</p>
 <div class="figure align-default" id="id3">
 <img alt="gdb" src="../_images/geo-database.png" />
-<p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">The functional skeleton of a geodatabase.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 14 </span><span class="caption-text">The functional skeleton of a geodatabase.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="vector-data">
@@ -851,7 +851,7 @@
 <p>Shapefile vector data typically has an attribute table (just like any other geodatabase) in which each polygon, line, or point object can be assigned an attribute value. Attributes are defined by columns along with their names (column headers) and can have numeric (e.g., <em>float</em>, <em>double</em>, <em>int</em>, or <em>long</em>), text (<em>string</em>), or date/time (e.g. <em>yyyymmdd</em> or <em>HH:MM:SS</em>) formats.</p>
 <div class="figure align-default" id="id4">
 <img alt="shp-illu" src="../_images/geo-shp-illu.png" />
-<p class="caption"><span class="caption-number">Fig. 13 </span><span class="caption-text">Illustration of point, (poly) line, and polygon shapefiles.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 15 </span><span class="caption-text">Illustration of point, (poly) line, and polygon shapefiles.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="shapefile-versus-geodatabase">
@@ -863,7 +863,7 @@
 <p>A triangulated irregular network (TIN) represents a surface consisting of multiple triangles. In hydraulic engineering and water resources research, one of the most important usages of TIN is the generation of computational meshes for numerical models (e.g., in the <a class="reference internal" href="../numerics/basement.html#chpt-basement"><span class="std std-ref">BASEMENT</span></a> tutorial). In such models, a TIN consists of lines and nodes forming georeferenced, three-dimensionally sloped triangles of the surface, which represent a digital elevation model (DEM). TIN nodes have georeferenced coordinates and potentially more attribute information such as node IDs and elevation. The advantage of a TIN DEM over a raster DEM is that it requires less storage space. Alas, manipulating a TIN is not that easy like manipulating a raster. The below figure shows an example TIN created with <a class="reference external" href="https://matplotlib.org/3.1.1/api/tri_api.html#matplotlib.tri.TriAnalyzer"><code class="docutils literal notranslate"><span class="pre">matplotlib.tri.TriAnalyzer</span></code></a>, and based on a <a class="reference external" href="https://matplotlib.org/3.1.1/gallery/images_contours_and_fields/tricontour_smooth_delaunay.html#sphx-glr-gallery-images-contours-and-fields-tricontour-smooth-delaunay-py">showcase from the matplotlib docs</a>. The file ending of a TIN is <code class="docutils literal notranslate"><span class="pre">.TIN</span></code>.</p>
 <div class="figure align-default" id="id5">
 <img alt="tin-illu" src="../_images/geo-tin.png" />
-<p class="caption"><span class="caption-number">Fig. 14 </span><span class="caption-text">Illustration of a TIN.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 16 </span><span class="caption-text">Illustration of a TIN.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="geojson">
@@ -906,7 +906,7 @@
 </div>
 <div class="figure align-default" id="id6">
 <img alt="raster-illu" src="../_images/geo-raster-illu.png" />
-<p class="caption"><span class="caption-number">Fig. 15 </span><span class="caption-text">Illustration of the Natural Earth’s NE1_50M_SR_W.tif raster zoomed on Nepal, with point and line shapefiles indicating major cities and country borders, respectively. Take note of the tile-like appearance of the grid, where each tile corresponds to a 50m-x-50m raster cell.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 17 </span><span class="caption-text">Illustration of the Natural Earth’s NE1_50M_SR_W.tif raster zoomed on Nepal, with point and line shapefiles indicating major cities and country borders, respectively. Take note of the tile-like appearance of the grid, where each tile corresponds to a 50m-x-50m raster cell.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="lidar-and-underwater-digital-elevation-models-bathymetries">

@@ -2,7 +2,7 @@
 
 Using common and consistent vocabulary is vital for working in teams. This section exemplifies a glossary with technical terms recurring in this eBook.
 
-```{glossary}
+````{glossary}
 Advection
   Advection is the motion of particles along with the bulk flow. The properties (e.g., heat) of an advected particle or substance are conserved. Mathematically, advection of incompressible fluids (e.g., water) is described by the {term}`Continuity equation` {cite:p}`kundu_fluid_2008`.
 
@@ -10,6 +10,14 @@ Advection
 
 ASCII
   The American Standard Code for Information Interchange (ASCII) is an encoding standard for text on computers. The development of ASCII goes back to telegraphy and was first published in 1961 for the Latin alphabet. It was later extended by other alphabets and special characters {cite:p}`ascii1980`. ASCII code represents characters in the form of numbers. For instance, the ASCII code `77` represents uppercase `A`. In Python applications, ASCII code numbers can be useful to iterate through the alphabet (e.g., alphabetic column names), where `chr(ASCII)` returns a letter. For example, in Python `print(chr(78))` returns uppercase `B`.
+
+Bedload
+  Bedload (also referred to as *bed load*) is a special type of {term}`Sediment transport` describing the displacement of coarse particles by rolling, sliding, and/or jumping on the riverbed. In river hydraulics, the so-called dimensionless bed shear stress or *Shields* stress {cite:p}`shields_anwendung_1936` is often used as the threshold value for the mobilization of sediment from the riverbed. Read more about bedload in this eBook in the {ref}`Python exercises <mpm>` or the {ref}`Telemac2d-Gaia tutorial <tm-gaia>`.
+
+  ```{image} https://github.com/Ecohydraulics/media/raw/master/png/sediment-uptake.png
+  ```
+
+  *French: Charriage <br>German: Geschiebtransport*
 
 Boussinesq
   The Boussinesq approximation of the {term}`Continuity equation` assumes that density variations can be neglected except for the gravity term (i.e., in the vertical momentum equations). In addition, the Boussinesq approximation assumes that a fluid is incompressible and that wave motion is inviscid {cite:p}`spiegel1960`.
@@ -58,6 +66,15 @@ Echo sounder
 
   *French: Échosondeur / Sondeur acoustique <br>German: Echolot*
 
+Exner equation
+  The {cite:t}`exner_uber_1925` equation yields sediment mass conservation in a hydro-morphodynamic model (see also the {ref}`TELEMAC-Gaia tutorial <tm-gaia>`) and expresses that the time-dependent {term}`Topographic change` rate $\frac{\partial \eta}{\partial t}$ equals the sediment fluxes $q_s$ over the boundaries {cite:p}`hirano1971,blom2003`:
+
+  $$
+  \frac{\partial \eta}{\partial t} = -\frac{1}{epsilon}\frac{\partial q_s}{\partial x}
+  $$
+
+  where $\epsilon$ is the porosity of the active transport layer and $\eta$ is the thickness of the active transport layer.
+
 Froude number
   The Froude number $Fr$ is the ratio between inertia and gravity forces and it is a key number of wave propagation. Thus, $Fr$ states whether information can be transmitted in upstream direction or not {cite:p}`chow59,hager09,hager10`:
 
@@ -72,6 +89,8 @@ Froude number
   $$
 
   The Froude number is also the basis for scaling many sediment transport phenomena in open channel flow {cite:p}`yalin71,yalin77`.
+
+  *French: Nombre de Froude <br>German: Froudezahl*
 
 GeoTIFF
   The Georeferenced Tag Image File Format (GeoTIFF) links geographic positions to {ref}`raster` images. A GeoTIFF involves multiple files containing the tagged image itself (`*.tif` file), a world file (`*.tfw` file) containing information about the geographic reference and projection system, and potentially an `*.ovr` file that links the GeoTIFF with other resource data. Read more at the *Open Geospatial Consortium*'s [standard for GeoTIFF](https://www.ogc.org/standards/geotiff).
@@ -120,11 +139,26 @@ Reynolds number
 Rich Text Format
   The proprietary Rich Text Format (RTF) wraps raw text in functional blocks that enable graphically flavored *Word*-like processors to identify document properties such as font size and type. Common RTFs are, for instance, *docx* or *odf* and enable exchanging text files between different *Word*-like processors on different operating systems.
 
+Sediment transport
+  Fluvial sediment transport encompasses two modes of particle displacement: (1) suspended load and (2) bedload (see figure below). Finer particles with a weight that can be carried by the fluid (water) are transported as {term}`Suspended load`. Coarser particles rolling, sliding, and jumping on the channel bed are transported as {term}`Bedload`. There is third type of transport, the so-called wash load, which is finer than the coarse bed load, but too heavy (large) to be transported in suspension {cite:p}`einstein_bed-load_1950`.
+
+  ```{image} https://github.com/Ecohydraulics/media/raw/master/png/sediment-transport.png
+  ```
+
+  *French: Transport solide <br>German: Sedimenttransport*
+
+Suspended load
+  Suspended load is a special type of {term}`Sediment transport` describing the displacement of fine particles with the bulk flow.
+
+  *French: Transport en suspension <br>German: Schwebstofftransport*
+
 SMS 2dm
   SMS (Surface-water Modeling System) is a proprietary software suite from *Aquaveo* for surface water modeling. `2dm` file format is natively produced with SMS and represents a computational grid with x, y, and z coordinates of nodes along with node ids. The [developer's wiki](https://www.xmswiki.com/wiki/SMS:2D_Mesh_Files_*.2dm) provides a comprehensive description of the file format.
 
 Sonar
-  Sound navigation and ranging (*Sonar*) is a technique for locating objects in space and underwater by emitting sound pulses. An active *Sonar* system, such as radio detecting and ranging (*radar*), emits and receives sound signals to map objects underwater (time-of-flight measurement). Passive *Sonar* detects signals emitted by an object itself (e.g., vibrations from fish motion or Whale chant), but cannot accurately map underwater objects.
+  Sound navigation and ranging (*Sonar*) is a technique for locating objects in space and underwater by emitting sound pulses. An active *Sonar* system, such as radio detecting and ranging (*radar*), emits and receives sound signals to map objects underwater (time-of-flight measurement). Passive *Sonar* detects signals emitted by an object itself (e.g., vibrations from fish motion or Whale chant), but cannot accurately map underwater objects. For this reason, methods have been developed that, based on a level of detection (LoD), generate topographic change maps conveying and accounting for spatial uncertainty. Depending on the method, either strict global LoD raster {cite:p}`pasternack_flood-driven_2017` or less strict pixel-based LoD values {cite:p}`wheaton_accounting_2010` are used to remove uncertainty from topographic change maps. Topographic change maps also enable the visualization of soil loss (i.e., erosion), which is a growing challenge for agriculture and beyond. To this end, the USGS developed a publicly available website that is dedicated to topographic change (visit [https://usgs.gov](https://www.usgs.gov/core-science-systems/eros/topochange)).
+
+  *French: changement du terrain (non-technique) <br>German: topografischer Wandel (kein technischer Begriff)*
 
 SRS
   See {term}`CRS`.
@@ -137,6 +171,9 @@ Stage-discharge relation
 STL
   The Standard Tessellation Language (STL) file format is native to a three-dimensional (3d) printing CAD software type called [stereolithography](https://en.wikipedia.org/wiki/Stereolithography). An STL file describes 3d structures in the form of unstructured triangulated surfaces with arbitrary units.
 
+Topographic change
+  Topographic change is the increase or decrease in elevation of the Earth's surface as a function of time. Conceptually, tracking topographic changes could consist of a simple comparison (i.e., subtraction) of elevation changes at two different moments. However, topographic change detection is not quite that simple, since every measurement technique has spatial inaccuracies with regards to the exact location and elevation of recorded points.
+
 xdmf
   The [eXtensible Data Model and Format (XDMF)](https://www.xdmf.org/) library provides standard routines for exchanging (scientific) datasets that result from high performance computing (HPC) tasks. XDMF files redundantly store *light* and *heavy* data in XML and HDF5 format and *Python* interfaces exist for both formats. Thus, XDMF or XMF files are often linked to a `*.h4` or `*.h5` ({term}`HDF`) file that contains heavy simulation datasets.
-```
+````
