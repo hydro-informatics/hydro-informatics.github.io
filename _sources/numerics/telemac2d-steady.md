@@ -193,7 +193,7 @@ LISTING PRINTOUT PERIOD : 100
 
 **The following descriptions refer to section 7.1 in the {{ tm2d }}.**
 
-Telemac2d comes with three solvers for approximating the depth-averaged {term}`Navier-Stokes equations` (shallow water) {cite:p}`p. 262 in <kundu_fluid_2008>` that can be chosen by adding an **EQUATIONS** keyword:
+Telemac2d comes with three solvers for approximating the depth-averaged {term}`Navier-Stokes equations` (i.e., the {term}`Shallow water equations`) {cite:p}`p. 262 in <kundu_fluid_2008>` that can be chosen by adding an **EQUATIONS** keyword:
 
 * `EQUATIONS : SAINT-VENANT FE` is the **default** that make Telemac2d use a Saint-Venant finite element method,
 * `EQUATIONS : SAINT-VENANT FV` makes Telemac2d use a Saint-Venant finite volume method, and
@@ -230,7 +230,7 @@ The **PROPAGATION** keyword (default: `YES`) affects the modeling of propagation
 
 **The following descriptions refer to section 7.2.1 in the {{ tm2d }}.**
 
-Telemac2d uses finite elements for iterative solutions to the {term}`Navier-Stokes equations`. To this end, a **TREATMENT OF THE LINEAR SYSTEM** keyword enables replacing the original set of equations (option `1`) involved in TELEMAC's finite element solver with a generalized wave equation (option `2`). The replacement (i.e., the use of the **generalized wave equation**) is set to **default since v8p2** and decreases computation time, but smoothens the results. The default (`TREATMENT OF THE LINEAR SYSTEM : 2`) automatically activates mass lumping for depth and velocity, and implies explicit velocity diffusion.
+Telemac2d uses finite elements for iterative solutions to the {term}`Shallow water equations`. To this end, a **TREATMENT OF THE LINEAR SYSTEM** keyword enables replacing the original set of equations (option `1`) involved in TELEMAC's finite element solver with a generalized wave equation (option `2`). The replacement (i.e., the use of the **generalized wave equation**) is set to **default since v8p2** and decreases computation time, but smoothens the results. The default (`TREATMENT OF THE LINEAR SYSTEM : 2`) automatically activates mass lumping for depth and velocity, and implies explicit velocity diffusion.
 
 ```{admonition} Use SCHEME FOR ADVECTION in lieu of TYPE OF ADVECTION
 :class: note, dropdown
@@ -622,7 +622,7 @@ The simulation speed can be significantly increased when the model has already b
 
 **The following descriptions refer to section 6.2 in the {{ tm2d }}.**
 
-Turbulence describes a seemingly random and chaotic state of fluid motion in the form of three-dimensional vortices (eddies). True turbulence is only present in 3d vorticity and when it occurs, it mostly dominates all other flow phenomena through increases in energy dissipation, drag, heat transfer, and mixing {cite:p}`kundu_fluid_2008`. The phenomenon of turbulence has been a mystery to science for a long time, since turbulent flows have been observed, but could not be directly explained by the systems of linear equations. Today, turbulence is considered a random phenomenon that can be accounted for in linear equations, for instance, by introducing statistical parameters. For instance, when turbulence applies to the {term}`Navier-Stokes equations` a numerical solution for a quantity (e.g., flow velocity) corresponds to $value = \overline{mean value} + value fluctuation'$. For this purpose, there are a variety of options for implementing turbulence in numerical models {cite:p}`nezu1993`.
+Turbulence describes a seemingly random and chaotic state of fluid motion in the form of three-dimensional vortices (eddies). True turbulence is only present in 3d vorticity and when it occurs, it mostly dominates all other flow phenomena through increases in energy dissipation, drag, heat transfer, and mixing {cite:p}`kundu_fluid_2008`. The phenomenon of turbulence has been a mystery to science for a long time, since turbulent flows have been observed, but could not be directly explained by the systems of linear equations. Today, turbulence is considered a random phenomenon that can be accounted for in linear equations, for instance, by introducing statistical parameters. For instance, when turbulence applies to the depth-averaged {term}`Navier-Stokes equations` a numerical solution for a quantity (e.g., flow velocity) corresponds to $value = \overline{mean value} + value fluctuation'$. For this purpose, there are a variety of options for implementing turbulence in numerical models {cite:p}`nezu1993`.
 
 The horizontal and vertical dimensions of turbulent eddies can vary greatly, especially in rivers and transitions to backwater zones (tidal flats) where the large horizontal flow dimension (river width) is significantly larger than the vertical flow dimension (water depth). Telemac2d provides multiple turbulence models that can be applied to the vertical and horizontal dimensions and defined with the `TURBULENCE MODEL` keyword being an integer number for one of the following options:
 

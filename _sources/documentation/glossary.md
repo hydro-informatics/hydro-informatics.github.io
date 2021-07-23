@@ -117,7 +117,7 @@ MPI
 
 Navier-Stokes equations
   The general form of the Navier-Stokes equations describes the motion of a Newtonian fluid and expresses the conservation of mass and momentum {cite:p}`batchelor_2000_chpt3`. The Navier-Stokes equations is a special type of {term}`Continuity equation` that is derived from Cauchy's equation (conservation of momentum). The equation simplifies with the assumption of incompressible fluids and reduces to the *Euler equation* when viscous effects are negligible, which is generally the case in far distance from the boundaries {cite:p}`kundu_fluid_2008`.
-  A theoretical, exact solution of the Navier-Stokes equations would yield a perfect description of many natural processes. However, the underlying system equations involves more unknown parameters than equations. For this reason, rigorous simplifications and numerical approximations with considerably larger computational effort than for an analytical solution are necessary for the solution of the Navier-Stokes equations. Simplification hypotheses are, for example, a hydrostatic pressure distribution (leading to the shallow water equations) or the assumption that a fluid is incompressible.
+  A theoretical, exact solution of the Navier-Stokes equations would yield a perfect description of many natural processes. However, the underlying system equations involves more unknown parameters than equations. For this reason, rigorous simplifications (e.g., the {term}`Shallow water equations`) and numerical approximations with considerably larger computational effort than for an analytical solution are necessary for the solution of the Navier-Stokes equations. Simplification hypotheses are, for example, a hydrostatic pressure distribution (leading to the shallow water equations) or the assumption that a fluid is incompressible.
 
 Operating System
   An Operating System (OS) manages the hardware of a computer, software (resources), and services for any program you want to install.
@@ -139,6 +139,9 @@ Reynolds number
 Rich Text Format
   The proprietary Rich Text Format (RTF) wraps raw text in functional blocks that enable graphically flavored *Word*-like processors to identify document properties such as font size and type. Common RTFs are, for instance, *docx* or *odf* and enable exchanging text files between different *Word*-like processors on different operating systems.
 
+Saint-Venant equations
+  Cf. {term}`Shallow water equations`.
+
 Sediment transport
   Fluvial sediment transport encompasses two modes of particle displacement: (1) suspended load and (2) bedload (see figure below). Finer particles with a weight that can be carried by the fluid (water) are transported as {term}`Suspended load`. Coarser particles rolling, sliding, and jumping on the channel bed are transported as {term}`Bedload`. There is third type of transport, the so-called wash load, which is finer than the coarse bed load, but too heavy (large) to be transported in suspension {cite:p}`einstein_bed-load_1950`.
 
@@ -146,6 +149,13 @@ Sediment transport
   ```
 
   *French: Transport solide <br>German: Sedimenttransport*
+
+Shallow water equations
+  In shallow (i.e., small water depths) and wide waters (many rivers), the assumption of hydrostatic pressure distribution can be made to simplify the {term}`Navier-Stokes equations`. The corresponding simplified form of the {term}`Navier-Stokes equations` is referred to as the shallow water equations. The shallow water equations imply that vertical flow velocity is negligible compared to horizontal (and longitudinal) flow velocity. This assumption is valid in many river systems, but there are several cases for which the shallow water equations are not suited {cite:p}`kundu_fluid_2008`.
+
+  For instance, the depth-averaged shallow water equations are **not suited** for any pressurized flows (e.g., at weirs or in pipes). This eBook recommends to **use the shallow water equations** only when the water depth is smaller than a 1/20 times the characteristic wavelength (e.g., flood waves or in tsunami/oceanic models) and when the water depth is smaller than 1/10 of the wetted channel width. The application of the shallow water equations is featured in this eBook with the tutorials on 2d numerical modeling (i.e., in the {ref}`BASEMENT <basement2d>` and {ref}`Telemac2d <telemac2d-steady>` chapters).
+
+  *French: Équations (de Barré) de Saint-Venant <br>German: Flachwassergleichungen / Saint-Venant-Gleichungen*
 
 Suspended load
   Suspended load is a special type of {term}`Sediment transport` describing the displacement of fine particles with the bulk flow.

@@ -1,9 +1,8 @@
-# Markdown and Code Documentation
+# Markdown and Documentation
 
-## Document your work
+## Document Your Work
 Leonardo Da Vinci used journals to sketch, develop and eventually pass on his ideas. Alexander von Humboldt documented many of his journeys in travel journals and Marie Skłodowska Curie wrote down the theory of "radioactivity" using pens and papers. Today,  writing media have evolved into infinite digital oceans with sophisticated tools for documenting code and ideas. Also, how we look for and retrieve information has evolved from searching for lexicon entries to using keywords in search engines.
 So if you have made an ingenious discovery, you want to make sure you document it well so that others can understand and use it. You also want to make sure that others can find your stroke of genius in digital media. You also want to make sure that others can find your stroke of genius in digital media. One of the most widespread methods for documenting and spreading ideas is the use of so-called wikis (from Hawaiian: *fast*), which can easily be written in markdown language. *GitHub* provides comprehensive, easy-to-read explanations for [project documentation](https://guides.github.com/features/wikis/) with *Markdown* as core element. This page presents the basics of the markdown language to leverage wikis. Moreover, the powerful alternative of using *reStructuredText* in *Sphinx*-based documentations is introduced.
-
 
 
 ```{tip}
@@ -11,35 +10,35 @@ So if you have made an ingenious discovery, you want to make sure you document i
 ```
 
 
-## What to document?
+## What to Document?
 
 Good code documentation starts with a qualitative and concise description of software (e.g., a *Python* package) capacities, products, and requirements. It also provides workflows for installing and using the software, at best with illustrative examples. Finally, a good troubleshooting section enables users to find problems in their data setup or software usage. To enable future development and maintenance, a *Contributing* section provides * good-practice guidelines* for coding new software capacities.
 
-### Present the software
+### Present Your Software or Project
 
 This section intends to advertise the benefits and capacities of the software: Tell users briefly the purpose of the software, why it is unique and what it produces.
 
 ### Requirements
 
-This section should answer the following questions:
+A section on requirements should tell users or stakeholders:
 
 * What system requirements are needed?
-* Which dependencies does the software have (e.g., other *Python* packages such as {ref}`numpy`)?
-* What input data does a user need to run the software?
+* Which dependencies does the software or project have (e.g., other *Python* packages such as {ref}`numpy`)?
+* What input data are needed to run the software?
 
 ### Installation
 
-Describe step-by-step the installation of the software (e.g., how to download and access your *Python* package). Screenshots can be helpful here. At best, the *Requirements* section made it clear what users need to proceed with the installation.
+An installation section should describe step-by-step the installation of the software (e.g., how to download and access your *Python* package) or the workflow of a project. Screenshots can be helpful. The *Requirements* section should already have clarified what users need for the installation.
 
 ### Usage
 
-Describe how the software can be used, starting with basics such as importing the software as *Python* package. Mention possible pre- and post-processing for input and output data, respectively. If available, add more complex functionalities consecutively in a logical order.
+A section on usage should describe how the software can be used, starting with basics such as importing the software as *Python* package. In addition, it should mention possible treatments of input and output data (i.e., pre- and post-processing, respectively). If available, add more complex functionalities consecutively in a logical order.
 
 To truly make your software useful to others, add a case study. Most users will not read the detailed code documentation until they get the software to run once and see what it can do. A use case also helps to check the logic of your code and gives users the opportunity to bridge imperfect code documentation sections to their workflow. This can sometimes be necessary, even if your code is certainly perfect and the documentation is foolproof.
 
 ### Troubleshooting
 
-Sure, your code is error-free and of course, only the user makes mistakes. Show compassion and integrate specific {ref}`try-except` in the source code, which point out possible error sources. These error (and maybe even warning) messages should all be listed in a *Troubleshoot* section of the code documentation. Any source of error (message) should be documented regarding the following aspects:
+Sure, your code and workflow are error-free and of course, only the user makes mistakes. Anyway, show compassion and integrate specific {ref}`try-except` statements in the source code, which point out possible error sources. These error (and maybe even warning) messages should all be listed in a *Troubleshoot* section of the code documentation. Any source of error (message) should be documented regarding the following aspects:
 
 * Cause: Possible reasons for why an error occurs.
 * Remedy: Steps for troubleshooting an error.
@@ -50,7 +49,8 @@ Your software is brilliant. To make the software even more brilliant, foolproof,
 
 
 ## Markdown
-*Markdown* was created in 2004 and is a simple markup language that is intuitive and easy to learn. Markup languages structure the content of plain text documents regarding the way a document is displayed to end-users ({term}`Rich Text Format`). Other popular markup languages are for example [TeX](https://en.wikipedia.org/wiki/TeX) and [XML (Extensible Markup Language)](https://en.wikipedia.org/wiki/XML). *Markdown* became a popular tool for writing syntactically distinguishable computer text that is then translated into {term}`Rich Text Format` flavor. Here is an example of how *Markdown* works:
+
+For writing a documentation of a code or project in web-publish-ready format, cross-platform typesetting is needed. For this purpose, *Markdown* represents a good choice (among others, such as {ref}`reStructuredText <rst>`). *Markdown* was created in 2004 and is a simple markup language that is intuitive and easy to learn. Markup languages structure the content of plain text documents regarding the way a document is displayed to end-users ({term}`Rich Text Format`). Other popular markup languages are for example [TeX](https://en.wikipedia.org/wiki/TeX) and [XML (Extensible Markup Language)](https://en.wikipedia.org/wiki/XML). *Markdown* became a popular tool for writing syntactically distinguishable computer text that is then translated into {term}`Rich Text Format` flavor. Here is an example of how *Markdown* works:
 
 
 ````{tabbed} Raw Markdown
@@ -259,6 +259,7 @@ There are other git-services and wiki host providers out there, such as [GitLab]
 Get practice in markdown with the [markdown and git](../exercises/ex-git) exercise.
 ```
 
+(rst)=
 ## reStructuredText, Sphinx, and readthedocs
 
 An alternative to markdown is [reStructuredText](https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html) that enables embedding *Python docstrings* (read more about {ref}`chpt-style`) in any script with [*Sphinx*](https://www.sphinx-doc.org).
