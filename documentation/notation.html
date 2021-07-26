@@ -143,7 +143,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../get-started/git.html">
-     Introduction to git
+     git
     </a>
    </li>
    <li class="toctree-l2">
@@ -445,7 +445,7 @@
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="../numerics/telemac-gaia.html">
-       Hydro-Morphodynamic 2d Simulation (Gaia)
+       Morphodynamics 2d with Gaia
       </a>
      </li>
     </ul>
@@ -505,7 +505,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="documentation.html">
-   Markdown and Code Documentation
+   Markdown and Documentation
   </a>
  </li>
  <li class="toctree-l1">
@@ -849,15 +849,15 @@
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(Q_{b}\)</span></p></td>
 <td><p>kg s<span class="math notranslate nohighlight">\(^{-1}\)</span></p></td>
-<td><p>bed load transport capacity</p></td>
+<td><p>bed load transport (capacity)</p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(Q_{b * cr}\)</span></p></td>
 <td><p>kg s<span class="math notranslate nohighlight">\(^{-1}\)</span></p></td>
-<td><p>dimensionless bed load transport capacity</p></td>
+<td><p>dimensionless bed load transport (capacity)</p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(q_{b}\)</span></p></td>
 <td><p>kg s<span class="math notranslate nohighlight">\(^{-1}\)</span> m<span class="math notranslate nohighlight">\(^{-1}\)</span></p></td>
-<td><p>unit bedload transport capacity</p></td>
+<td><p>unit bedload transport (capacity)</p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(Q_{bf}\)</span></p></td>
 <td><p>m<span class="math notranslate nohighlight">\(^3\)</span> s<span class="math notranslate nohighlight">\(^{-1}\)</span></p></td>
@@ -939,29 +939,37 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\Delta {t}\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\alpha\)</span></p></td>
+<td><p><em>rad</em> or <em>deg</em></p></td>
+<td><p>angle between the longitudinal channel (<span class="math notranslate nohighlight">\(x\)</span>) axis and a mass transport vector</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\Delta {t}\)</span></p></td>
 <td><p>s or years</p></td>
 <td><p>time period (duration) or timestep length</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\Delta {x}\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\Delta {x}\)</span></p></td>
 <td><p>m</p></td>
 <td><p>horizontal distance or cell size in <span class="math notranslate nohighlight">\(x\)</span>-direction</p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\Delta {y}\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\Delta {y}\)</span></p></td>
 <td><p>m</p></td>
 <td><p>spanwise distance or cell size in <span class="math notranslate nohighlight">\(y\)</span>-direction</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\Delta {z}\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\Delta {z}\)</span></p></td>
 <td><p>m</p></td>
 <td><p>difference in height or cell size in <span class="math notranslate nohighlight">\(z\)</span>-direction</p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\epsilon\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\epsilon\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
 <td><p>porosity</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\eta\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\eta\)</span></p></td>
 <td><p>m</p></td>
 <td><p>active layer thickness</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\nabla\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+<td><p>operator vector of partial differentials <span class="math notranslate nohighlight">\(\frac{\partial}{\partial x_i}\)</span> where <span class="math notranslate nohighlight">\(x_i\)</span> refers to the dimensions of the flow field <span id="id1">[<a class="reference internal" href="bibliography.html#id330">KC08</a>]</span></p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\nu\)</span></p></td>
 <td><p>m<span class="math notranslate nohighlight">\(^{2}\)</span> s<span class="math notranslate nohighlight">\(^{-1}\)</span></p></td>

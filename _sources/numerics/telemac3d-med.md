@@ -1,5 +1,5 @@
 (chpt-telemac3d-med)=
-# Telemac3d (Salome-Hydro and MED)
+# Steady 3d (MED and Salome)
 
 ```{image} ../img/salome/telemac3d-header.png
 :alt: telemac3d salome med results

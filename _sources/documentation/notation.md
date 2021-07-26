@@ -121,15 +121,15 @@ The consistent use of parameters and symbols for parameters is summarized in a n
 
 * - $Q_{b}$
   - kg s$^{-1}$
-  - bed load transport capacity
+  - bed load transport (capacity)
 
 * - $Q_{b * cr}$
   - kg s$^{-1}$
-  - dimensionless bed load transport capacity
+  - dimensionless bed load transport (capacity)
 
 * - $q_{b}$
   - kg s$^{-1}$ m$^{-1}$
-  - unit bedload transport capacity
+  - unit bedload transport (capacity)
 
 * - $Q_{bf}$
   - m$^3$ s$^{-1}$
@@ -205,6 +205,10 @@ The consistent use of parameters and symbols for parameters is summarized in a n
   - Unit
   - Description
 
+* - $\alpha$
+  - *rad* or *deg*
+  - angle between the longitudinal channel ($x$) axis and a mass transport vector
+
 * - $\Delta {t}$
   - s or years
   - time period (duration) or timestep length
@@ -228,6 +232,10 @@ The consistent use of parameters and symbols for parameters is summarized in a n
 * - $\eta$
   - m
   - active layer thickness
+
+* - $\nabla$
+  - $-$
+  - operator vector of partial differentials $\frac{\partial}{\partial x_i}$ where $x_i$ refers to the dimensions of the flow field {cite:p}`kundu_fluid_2008`
 
 * - $\nu$
   - m$^{2}$ s$^{-1}$

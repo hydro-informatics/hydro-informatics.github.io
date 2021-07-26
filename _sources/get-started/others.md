@@ -1,8 +1,8 @@
 # Other Software Resources
 
 (npp)=
-## NotepadPlusPlus
-[*Notepad++*](https://notepad-plus-plus.org/) is an all-round text editor for basic coding (*R*, *Python*, *Java*, *C*, *Perl*, ...), markdown/html editing and many many (not a typo) more. Alternatives for *Notepad++* are, for example, {ref}`install-atom`, [Vim](https://www.vim.org/) or [GNU Emacs](https://www.gnu.org/software/emacs/).
+## NotepadPlusPlus (Text Editor)
+[*Notepad++*](https://notepad-plus-plus.org/) is an all-round text editor for basic coding (*R*, *Python*, *Java*, *C*, *Perl*, ...), markdown/html editing and many many (not a typo) more. Alternatives for *Notepad++* are, for example, {ref}`install-atom` (cross-platform), [Vim](https://www.vim.org/) (Linux) or [GNU Emacs](https://www.gnu.org/software/emacs/) (Linux).
 
 (lo)=
 ## Libre Office (MS Office alternative)

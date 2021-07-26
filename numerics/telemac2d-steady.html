@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Steady 2d Simulation &#8212; Hydro-Informatics</title>
+    <title>Steady 2d &#8212; Hydro-Informatics</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -57,7 +57,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Unsteady 2d Simulation" href="telemac2d-unsteady.html" />
+    <link rel="next" title="Unsteady 2d" href="telemac2d-unsteady.html" />
     <link rel="prev" title="Telemac2d" href="telemac2d.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -143,7 +143,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../get-started/git.html">
-     Introduction to git
+     git
     </a>
    </li>
    <li class="toctree-l2">
@@ -435,17 +435,12 @@
     <ul class="current">
      <li class="toctree-l3 current active">
       <a class="current reference internal" href="#">
-       Steady 2d Simulation
+       Steady 2d
       </a>
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="telemac2d-unsteady.html">
-       Unsteady 2d Simulation
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="telemac-gaia.html">
-       Hydro-Morphodynamic 2d Simulation (Gaia)
+       Unsteady 2d
       </a>
      </li>
     </ul>
@@ -462,15 +457,20 @@
     <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="telemac3d-slf.html">
-       Telemac3d (SLF)
+       Steady 3d (SLF - Selafin)
       </a>
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="telemac3d-med.html">
-       Telemac3d (Salome-Hydro and MED)
+       Steady 3d (MED and Salome)
       </a>
      </li>
     </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="telemac-gaia.html">
+     Gaia (Morphodynamics)
+    </a>
    </li>
   </ul>
  </li>
@@ -505,7 +505,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../documentation/documentation.html">
-   Markdown and Code Documentation
+   Markdown and Documentation
   </a>
  </li>
  <li class="toctree-l1">
@@ -721,7 +721,7 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Steady 2d Simulation
+   Steady 2d
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
@@ -842,12 +842,12 @@
      </li>
     </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#initialize-dry">
-     Initialize Dry
-    </a>
-   </li>
   </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#re-initialize-dry">
+   Re-Initialize Dry
+  </a>
  </li>
 </ul>
 
@@ -860,8 +860,8 @@
         
               <div>
                 
-  <div class="section" id="steady-2d-simulation">
-<span id="telemac2d-steady"></span><h1>Steady 2d Simulation<a class="headerlink" href="#steady-2d-simulation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="steady-2d">
+<span id="telemac2d-steady"></span><h1>Steady 2d<a class="headerlink" href="#steady-2d" title="Permalink to this headline">¶</a></h1>
 <div class="admonition-requirements admonition">
 <p class="admonition-title">Requirements</p>
 <p>This tutorial is designed for <strong>advanced beginners</strong> and before diving into this tutorial make sure to complete the <a class="reference internal" href="pre-slf-tm.html#slf-prepro-tm"><span class="std std-ref">TELEMAC pre-processing tutorial</span></a>.</p>
@@ -1013,7 +1013,7 @@
 </div>
 </div>
 <div class="section" id="general-parameters">
-<h3>General Parameters<a class="headerlink" href="#general-parameters" title="Permalink to this headline">¶</a></h3>
+<span id="tm2d-gen"></span><h3>General Parameters<a class="headerlink" href="#general-parameters" title="Permalink to this headline">¶</a></h3>
 <p>The general parameters define the computation environment starting with a simulation title and the most important links to the two mandatory input files:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">BOUNDARY</span> <span class="pre">CONDITIONS</span> <span class="pre">FILE</span></code> : <code class="docutils literal notranslate"><span class="pre">boundaries.cli</span></code> - with a <em>MED</em> file, use a <em>BND</em> boundary file</p></li>
@@ -1601,9 +1601,10 @@ Expand to see exemplary values for Manning roughness<div class="summary-down doc
 <p>Note the difference between the convergence duration in this steady simulation with Telemac2d that starts with an initial condition of 1.0 m water depth (plot in <a class="reference internal" href="#convergence-diagram-tm2d"><span class="std std-numref">Fig. 84</span></a>) compared to the longer convergence duration in the BASEMENT tutorial (plot in <a class="reference internal" href="basement2d.html#convergence-diagram-bm"><span class="std std-numref">Fig. 59</span></a>) that starts with a dry model. This difference mainly stems from the type of initial conditions (initial depth versus dry channel) that also reflects in an outflow surplus of the Telemac2d simulation and a zero-outflow in the BASEMENT simulation at the beginning of the simulations. However, the faster convergence is at the cost of unrealistically wetted hollows in the Telemac2d simulation - read more in the above comment: <em>How reasonable are the results?</em></p>
 </div>
 </div>
-<div class="section" id="initialize-dry">
-<span id="tm2d-dry"></span><h2>Initialize Dry<a class="headerlink" href="#initialize-dry" title="Permalink to this headline">¶</a></h2>
-<p>For comparison, try running the Telemac2d simulation with initial dry conditions. To this end, change the upstream boundary type to <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">5</span> <span class="pre">5</span></code> (prescribed H and Q) in the  <a class="reference internal" href="pre-slf-tm.html#bk-liquid-bc"><span class="std std-ref">boundaries.cli</span></a> file. For making this modification, it is sufficient to <strong>open boundaries.cli in any text editor</strong> and use its <strong>find-and-replace</strong> function (e.g., <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">H</span></code> keys in <a class="reference internal" href="../get-started/others.html#npp"><span class="std std-ref">NotepadPlusPlus</span></a>, or <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">F</span></code> keys in <a class="reference internal" href="../get-started/ide.html#install-atom"><span class="std std-ref">Atom</span></a>):</p>
+</div>
+<div class="section" id="re-initialize-dry">
+<span id="tm2d-dry"></span><h1>Re-Initialize Dry<a class="headerlink" href="#re-initialize-dry" title="Permalink to this headline">¶</a></h1>
+<p>For comparison, try running the Telemac2d simulation with initial dry conditions. To this end, change the upstream boundary type to <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">5</span> <span class="pre">5</span></code> (prescribed H and Q) in the  <a class="reference internal" href="pre-slf-tm.html#bk-liquid-bc"><span class="std std-ref">boundaries.cli</span></a> file. For making this modification, it is sufficient to <strong>open boundaries.cli in any text editor</strong> and use its <strong>find-and-replace</strong> function (e.g., <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">H</span></code> keys in <a class="reference internal" href="../get-started/others.html#npp"><span class="std std-ref">NotepadPlusPlus (Text Editor)</span></a>, or <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">F</span></code> keys in <a class="reference internal" href="../get-started/ide.html#install-atom"><span class="std std-ref">Atom</span></a>):</p>
 <ul class="simple">
 <li><p>In the <strong>Find</strong> field type <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">5</span> <span class="pre">5</span></code>.</p></li>
 <li><p>In the <strong>Replace with</strong> field type <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">5</span> <span class="pre">5</span></code>.</p></li>
@@ -1636,7 +1637,6 @@ Expand to see exemplary values for Manning roughness<div class="summary-down doc
 </dd>
 </dl>
 </div>
-</div>
 
     <script type="text/x-thebe-config">
     {
@@ -1664,7 +1664,7 @@ Expand to see exemplary values for Manning roughness<div class="summary-down doc
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="telemac2d.html" title="previous page">Telemac2d</a>
-    <a class='right-next' id="next-link" href="telemac2d-unsteady.html" title="next page">Unsteady 2d Simulation</a>
+    <a class='right-next' id="next-link" href="telemac2d-unsteady.html" title="next page">Unsteady 2d</a>
 
         </div>
         

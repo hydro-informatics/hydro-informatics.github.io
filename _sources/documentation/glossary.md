@@ -12,7 +12,7 @@ ASCII
   The American Standard Code for Information Interchange (ASCII) is an encoding standard for text on computers. The development of ASCII goes back to telegraphy and was first published in 1961 for the Latin alphabet. It was later extended by other alphabets and special characters {cite:p}`ascii1980`. ASCII code represents characters in the form of numbers. For instance, the ASCII code `77` represents uppercase `A`. In Python applications, ASCII code numbers can be useful to iterate through the alphabet (e.g., alphabetic column names), where `chr(ASCII)` returns a letter. For example, in Python `print(chr(78))` returns uppercase `B`.
 
 Bedload
-  Bedload (also referred to as *bed load*) is a special type of {term}`Sediment transport` describing the displacement of coarse particles by rolling, sliding, and/or jumping on the riverbed. In river hydraulics, the so-called dimensionless bed shear stress or *Shields* stress {cite:p}`shields_anwendung_1936` is often used as the threshold value for the mobilization of sediment from the riverbed. Read more about bedload in this eBook in the {ref}`Python exercises <mpm>` or the {ref}`Telemac2d-Gaia tutorial <tm-gaia>`.
+  Bedload (also referred to as *bed load*) is a special type of {term}`Sediment transport` describing the displacement of coarse particles by rolling, sliding, and/or jumping on the riverbed. In river hydraulics, the so-called dimensionless bed shear stress or *Shields* stress {cite:p}`shields_anwendung_1936` is often used as the threshold value for the mobilization of sediment from the riverbed. Read more about bedload in this eBook in the {ref}`Python exercises <mpm>` or the {ref}`Telemac2d-Gaia tutorial <tm-gaia>`. In numerical models, bedload transport is often computed using the {term}`Exner equation`.
 
   ```{image} https://github.com/Ecohydraulics/media/raw/master/png/sediment-uptake.png
   ```
@@ -57,7 +57,7 @@ DEM
   Ultimately, there are many options for *correct* DEM-terminology depending on the region where you are. Now, what is the correct term in which language? There is no universal answer to this question and a good choice is to be patient with the communication partner.
 
 Diffusion
-  Diffusion is the result of random motion of particles, driven by differences in concentration (e.g., dissipation of highly concentrated particles towards regions of low concentration). Mathematically, diffusion is described by $\frac{\partial \psi}{\partial t} = \nabla \cdot (D \nabla \psi)$ where $\psi$ is a constant of the particle/substance in consideration; $D$ is a diffusion coefficient (or diffusivity) in m$^2$/s, which is a proportionality constant between molecular flux and the gradient of a substance (or species). The $\nabla$ operator is a vector of partial differential operators $\frac{\partial}{\partial x_i}$ where $x_i$ refers to the dimensions of the flow field {cite:p}`kundu_fluid_2008`.
+  Diffusion is the result of random motion of particles, driven by differences in concentration (e.g., dissipation of highly concentrated particles towards regions of low concentration). Mathematically, diffusion is described by $\frac{\partial \psi}{\partial t} = \nabla \cdot (D \nabla \psi)$ where $\psi$ is a constant of the particle/substance in consideration; $D$ is a diffusion coefficient (or diffusivity) in m$^2$/s, which is a proportionality constant between molecular flux and the gradient of a substance (or species). The $\nabla$ operator is a vector of partial differentials $\frac{\partial}{\partial x_i}$ where $x_i$ refers to the dimensions of the flow field {cite:p}`kundu_fluid_2008`.
 
   *French: Diffusion <br>German: Diffusion*
 
@@ -67,13 +67,32 @@ Echo sounder
   *French: Échosondeur / Sondeur acoustique <br>German: Echolot*
 
 Exner equation
-  The {cite:t}`exner_uber_1925` equation yields sediment mass conservation in a hydro-morphodynamic model (see also the {ref}`TELEMAC-Gaia tutorial <tm-gaia>`) and expresses that the time-dependent {term}`Topographic change` rate $\frac{\partial \eta}{\partial t}$ equals the sediment fluxes $q_s$ over the boundaries {cite:p}`hirano1971,blom2003`:
+  The {cite:t}`exner_uber_1925` equation yields sediment mass conservation in a hydro-morphodynamic model (see also the {ref}`TELEMAC-Gaia tutorial <tm-gaia>`) and expresses that the time-dependent {term}`Topographic change` rate $\frac{\partial \eta}{\partial t}$ equals the unit sediment ({term}`Bedload`) fluxes $q_b$ over the boundaries {cite:p}`hirano1971,blom2003`:
 
   $$
-  \frac{\partial \eta}{\partial t} = -\frac{1}{epsilon}\frac{\partial q_s}{\partial x}
+  \frac{\partial \eta}{\partial t} = -\frac{1}{\epsilon}\frac{\partial q_b}{\partial x}
   $$
 
-  where $\epsilon$ is the porosity of the active transport layer and $\eta$ is the thickness of the active transport layer.
+  where $\epsilon$ is the porosity of the active transport (riverbed) layer, and $\eta$ is the thickness of the active (riverbed) transport layer.
+
+  ```{admonition} TELEMAC-Gaia uses a mass-conservative form of the Exner equation
+  :class: note, dropdown
+
+  TELEMAC's morphodynamics module {ref}`Gaia <tm-gaia>` uses a vertical integral of a mass transport vector $\boldsymbol{q_b}$ in the Exner equation, which accounts for the sediment grain density $\rho_s$:
+
+  $$
+  \left(1 - \epsilon\right) \frac{\partial \left(\rho_s \eta\right)}{\partial t} + \nabla \cdot \left(\rho_s \boldsymbol{q_b} \eta \right) = 0
+  $$
+
+  The $\nabla$ operator is a vector of partial differentials $\frac{\partial}{\partial x_i}$ where $x_i$ refers to the dimensions of the flow field {cite:p}`kundu_fluid_2008`.  The unit bedload transport vector $\boldsymbol{q_b}$ is composed of an $x$ and a $y$ component:
+
+  $$
+  \boldsymbol{q_b} =  \begin{pmatrix}q_{b_x} \\ q_{b_y} \end{pmatrix}  =  \begin{pmatrix}q_{b} \cos \alpha \\ q_{b} \sin \alpha  \end{pmatrix}
+  $$
+
+  where $\alpha$ is the angle between the longitudinal channel ($x$) axis and the bedload transport vector $\boldsymbol{q_b}$.
+  ```
+
 
 Froude number
   The Froude number $Fr$ is the ratio between inertia and gravity forces and it is a key number of wave propagation. Thus, $Fr$ states whether information can be transmitted in upstream direction or not {cite:p}`chow59,hager09,hager10`:

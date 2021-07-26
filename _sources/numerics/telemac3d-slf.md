@@ -1,5 +1,5 @@
 (chpt-telemac3d-slf)=
-# Telemac3d (SLF)
+# Steady 3d (SLF - Selafin)
 
 ```{admonition} Tutorial under construction
 :class: warning

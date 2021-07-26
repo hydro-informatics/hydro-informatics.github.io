@@ -1,5 +1,5 @@
 (telemac2d-steady)=
-# Steady 2d Simulation
+# Steady 2d
 
 ```{admonition} Requirements
 This tutorial is designed for **advanced beginners** and before diving into this tutorial make sure to complete the {ref}`TELEMAC pre-processing tutorial <slf-prepro-tm>`.
@@ -151,6 +151,7 @@ The `&ETA` keyword at the bottom of the `*.cas` template file makes TELEMAC prin
 ```
 ````
 
+(tm2d-gen)=
 ### General Parameters
 
 The general parameters define the computation environment starting with a simulation title and the most important links to the two mandatory input files:
@@ -832,7 +833,7 @@ In practice, the use of {ref}`CONTROL SECTIONS (unsteady tutorial) <tm-control-s
 Note the difference between the convergence duration in this steady simulation with Telemac2d that starts with an initial condition of 1.0 m water depth (plot in {numref}`Fig. %s <convergence-diagram-tm2d>`) compared to the longer convergence duration in the BASEMENT tutorial (plot in {numref}`Fig. %s <convergence-diagram-bm>`) that starts with a dry model. This difference mainly stems from the type of initial conditions (initial depth versus dry channel) that also reflects in an outflow surplus of the Telemac2d simulation and a zero-outflow in the BASEMENT simulation at the beginning of the simulations. However, the faster convergence is at the cost of unrealistically wetted hollows in the Telemac2d simulation - read more in the above comment: *How reasonable are the results?*
 
 (tm2d-dry)=
-## Initialize Dry
+# Re-Initialize Dry
 For comparison, try running the Telemac2d simulation with initial dry conditions. To this end, change the upstream boundary type to `5 5 5` (prescribed H and Q) in the  {ref}`boundaries.cli <bk-liquid-bc>` file. For making this modification, it is sufficient to **open boundaries.cli in any text editor** and use its **find-and-replace** function (e.g., `CTRL` + `H` keys in {ref}`npp`, or `CTRL` + `F` keys in {ref}`install-atom`):
 
  * In the **Find** field type `4 5 5`.

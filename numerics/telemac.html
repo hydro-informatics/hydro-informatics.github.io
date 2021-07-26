@@ -141,7 +141,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../get-started/git.html">
-     Introduction to git
+     git
     </a>
    </li>
    <li class="toctree-l2">
@@ -433,17 +433,12 @@
     <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="telemac2d-steady.html">
-       Steady 2d Simulation
+       Steady 2d
       </a>
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="telemac2d-unsteady.html">
-       Unsteady 2d Simulation
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="telemac-gaia.html">
-       Hydro-Morphodynamic 2d Simulation (Gaia)
+       Unsteady 2d
       </a>
      </li>
     </ul>
@@ -460,15 +455,20 @@
     <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="telemac3d-slf.html">
-       Telemac3d (SLF)
+       Steady 3d (SLF - Selafin)
       </a>
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="telemac3d-med.html">
-       Telemac3d (Salome-Hydro and MED)
+       Steady 3d (MED and Salome)
       </a>
      </li>
     </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="telemac-gaia.html">
+     Gaia (Morphodynamics)
+    </a>
    </li>
   </ul>
  </li>
@@ -503,7 +503,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../documentation/documentation.html">
-   Markdown and Code Documentation
+   Markdown and Documentation
   </a>
  </li>
  <li class="toctree-l1">
@@ -798,18 +798,14 @@
 <p>Working on <a class="reference external" href="https://www.debian.org/">Debian Linux</a> or one of its derivatives (see the chapter on <a class="reference internal" href="../get-started/vm.html#chpt-vm-linux"><span class="std std-ref">Virtual Machines (VMs) and Linux</span></a>) facilitates handling TELEMAC, because most of its core algorithms were originally developed on Linux platforms. Using Linux follow the <a class="reference internal" href="../get-started/install-telemac.html#telemac-install"><span class="std std-ref">TELEMAC installation</span></a> chapter (account for approximately 2 hours for the installation).</p>
 <div class="section" id="general-introduction-and-tutorial-guide">
 <span id="tm-tutorial-guide"></span><h2>General Introduction and Tutorial Guide<a class="headerlink" href="#general-introduction-and-tutorial-guide" title="Permalink to this headline">¶</a></h2>
-<p>The analysis of hydro-environments with TELEMAC involves pre-processing for abstracting the fluvial landscape, setting up control files, running a TELEMAC solver, and post-processing. The first-time user faces an overwhelming number of software options for pre- and post-processing. Moreover, TELEMAC comes with a wide range of modules for two-dimensional (2d) and three-dimensional (3d) modeling of hydro-morphodynamic processes of various water bodies, from mountain rivers to coastal deltas under the influence of tides. Also, multiple sediment transport phenomena can be modeled and coupled with steady or unsteady flow conditions.</p>
-<p>The tutorials in this eBook feature:</p>
+<p>The analysis of hydro-environments with TELEMAC involves pre-processing for abstracting the fluvial landscape, setting up control files, running a TELEMAC solver, and post-processing. The first-time user faces an overwhelming number of software options for pre- and post-processing. Moreover, TELEMAC comes with a wide range of modules for two-dimensional (2d) and three-dimensional (3d) modeling of hydro-morphodynamic processes of various water bodies, from mountain rivers to coastal deltas under the influence of tides. Also, multiple sediment transport phenomena can be modeled and coupled with steady or unsteady flow conditions. Consequently, TELEMAC’s applications range is very wide and this eBook provides tutorials for a sound understanding of fundamental elements of river ecosystem modeling. To this end, this eBook features the following tutorials:</p>
 <ul class="simple">
-<li><p>the usage of TELEMAC with the computational mesh created in the <a class="reference internal" href="pre-slf-tm.html#slf-prepro-tm"><span class="std std-ref">pre-processing  tutorial</span></a>;</p></li>
-<li><p>a purely hydrodynamic 2d model with steady discharge boundary conditions in the <a class="reference internal" href="telemac2d.html#chpt-telemac2d"><span class="std std-ref">Telemac2d</span></a> section with the standard SLF geometry format;</p></li>
-<li><p>a purely hydrodynamic 3d model with steady discharge boundary conditions in the <a class="reference internal" href="telemac3d.html#chpt-telemac3d"><span class="std std-ref">Telemac3d</span></a> section with the MED geometry format.</p></li>
-<li><p>Future tutorials (under development) will also feature:</p>
-<ul>
-<li><p>the implementation of unsteady boundary conditions (replace steady flow boundaries);</p></li>
-<li><p>the activation of sediment transport (morphodynamic) modeling with TELEMAC’s Gaia module.</p></li>
-</ul>
-</li>
+<li><p>Generate a Selafin <code class="docutils literal notranslate"><span class="pre">*.slf*</span></code> geometry mesh along with boundary conditions with QGIS, the BASEmesh plugin, and BlueKenue in the <a class="reference internal" href="pre-slf-tm.html#slf-prepro-tm"><span class="std std-ref">pre-processing tutorial</span></a>. <strong>Recommended as first introductory tutorial for beginners.</strong></p></li>
+<li><p>Setup a purely hydrodynamic, steady Telemac2d simulation in the <a class="reference internal" href="telemac2d-steady.html#telemac2d-steady"><span class="std std-ref">steady 2d tutorial</span></a> (Selafin <code class="docutils literal notranslate"><span class="pre">*.slf*</span></code> geometry). <strong>Recommended as a second tutorial for beginners.</strong></p></li>
+<li><p>Apply quasi-steady (near-census unsteady) flow conditions (e.g., important for modeling a flood hydrograph) in the <a class="reference internal" href="telemac2d-unsteady.html#chpt-unsteady"><span class="std std-ref">unsteady Telemac2d tutorial</span></a>. This tutorial builds on top of the steady Telemac2d tutorial.</p></li>
+<li><p>Setup a purely hydrodynamic 3d model in the <a class="reference internal" href="telemac3d-slf.html#chpt-telemac3d-slf"><span class="std std-ref">Telemac3d (Selafin) tutorial</span></a> with the standard Selafin (<code class="docutils literal notranslate"><span class="pre">*.slf</span></code>) format.</p></li>
+<li><p>Setup a purely hydrodynamic 3d model in the <a class="reference internal" href="telemac3d-med.html#chpt-telemac3d-med"><span class="std std-ref">Telemac3d (MED and Salome) tutorial</span></a> with the MED geometry format using SALOME-HYDRO. <strong>Recommended for experienced Linux users and when computational performance is critical.</strong></p></li>
+<li><p>Couple hydrodynamics (i.e., Telemac2d or Telemac3d) with morphodynamics (i.e., <a class="reference internal" href="../documentation/glossary.html#term-Sediment-transport"><span class="xref std std-term">Sediment transport</span></a>) in the <a class="reference internal" href="telemac-gaia.html#tm-gaia"><span class="std std-ref">Gaia tutorial</span></a>.</p></li>
 </ul>
 <p>The tutorials build on the user manuals provided by the TELEMAC developers at <a class="reference external" href="http://wiki.opentelemac.org/doku.php?id=documentation_v8p2r0">http://wiki.opentelemac.org</a>.</p>
 <div class="section" id="pre-processing">
@@ -827,7 +823,7 @@
 </div>
 <div class="section" id="post-processing">
 <h3>Post-processing<a class="headerlink" href="#post-processing" title="Permalink to this headline">¶</a></h3>
-<p><em>Artelia Eau et Environnement</em> created the <a class="reference external" href="https://plugins.qgis.org/plugins/PostTelemac/">PostTelemac</a> plugin for <a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a>, which is a powerful and convenient tool for visualizing and post-processing TELEMAC simulation results. The <a class="reference internal" href="telemac2d-steady.html#tm-steady2d-postpro"><span class="std std-ref">Telemac2d (steady) Post-processing</span></a> illustrates the usage of the PostTelemac QGIS plugin (read more in the <a class="reference internal" href="pre-slf-tm.html#tm-qgis-plugins"><span class="std std-ref">TELEMAC pre-processing tutorial</span></a>) to create <a class="reference internal" href="../geopy/geospatial-data.html#raster"><span class="std std-ref">raster</span></a> maps and other useful data derivatives from TELEMAC output. In addition, the <a class="reference internal" href="telemac3d-med.html#sh-postproc"><span class="std std-ref">Telemac3d (MED)</span></a> tutorial features the usage of the ParaVis module (a ParaVie derivative) in <a class="reference internal" href="../get-started/install-openfoam.html#salome-install"><span class="std std-ref">SALOME</span></a>.</p>
+<p><em>Artelia Eau et Environnement</em> created the <a class="reference external" href="https://plugins.qgis.org/plugins/PostTelemac/">PostTelemac</a> plugin for <a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a>, which is a powerful and convenient tool for visualizing and post-processing TELEMAC simulation results. The <a class="reference internal" href="telemac2d-steady.html#tm-steady2d-postpro"><span class="std std-ref">Telemac2d (steady) Post-processing</span></a> illustrates the usage of the PostTelemac QGIS plugin (read more in the <a class="reference internal" href="pre-slf-tm.html#tm-qgis-plugins"><span class="std std-ref">TELEMAC pre-processing tutorial</span></a>) to create <a class="reference internal" href="../geopy/geospatial-data.html#raster"><span class="std std-ref">raster</span></a> maps and other useful data derivatives from TELEMAC output. In addition, the <a class="reference internal" href="telemac3d-med.html#sh-postproc"><span class="std std-ref">Telemac3d (MED)</span></a> tutorial features the usage of the ParaVis module (a ParaView derivative) in <a class="reference internal" href="../get-started/install-openfoam.html#salome-install"><span class="std std-ref">SALOME</span></a>.</p>
 </div>
 </div>
 <div class="section" id="the-telemac-file-structure">
@@ -837,7 +833,7 @@
 <li><p>Steering file</p>
 <ul>
 <li><p>File format: <code class="docutils literal notranslate"><span class="pre">*.cas</span></code></p></li>
-<li><p>Prepare either with <a class="reference internal" href="../get-started/install-telemac.html#fudaa"><span class="std std-ref">Fudaa PrePro</span></a> or use a text editor (e.g., <a class="reference internal" href="../get-started/others.html#npp"><span class="std std-ref">NotepadPlusPlus</span></a> or <a class="reference internal" href="../get-started/ide.html#install-atom"><span class="std std-ref">Atom</span></a>).</p></li>
+<li><p>Prepare either with <a class="reference internal" href="../get-started/install-telemac.html#fudaa"><span class="std std-ref">Fudaa PrePro</span></a> or use a text editor (e.g., <a class="reference internal" href="../get-started/others.html#npp"><span class="std std-ref">NotepadPlusPlus (Text Editor)</span></a> or <a class="reference internal" href="../get-started/ide.html#install-atom"><span class="std std-ref">Atom</span></a>).</p></li>
 </ul>
 </li>
 <li><p>Geometry file</p>

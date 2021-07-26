@@ -8,16 +8,15 @@ Working on [Debian Linux](https://www.debian.org/) or one of its derivatives (se
 (tm-tutorial-guide)=
 ## General Introduction and Tutorial Guide
 
-The analysis of hydro-environments with TELEMAC involves pre-processing for abstracting the fluvial landscape, setting up control files, running a TELEMAC solver, and post-processing. The first-time user faces an overwhelming number of software options for pre- and post-processing. Moreover, TELEMAC comes with a wide range of modules for two-dimensional (2d) and three-dimensional (3d) modeling of hydro-morphodynamic processes of various water bodies, from mountain rivers to coastal deltas under the influence of tides. Also, multiple sediment transport phenomena can be modeled and coupled with steady or unsteady flow conditions.
+The analysis of hydro-environments with TELEMAC involves pre-processing for abstracting the fluvial landscape, setting up control files, running a TELEMAC solver, and post-processing. The first-time user faces an overwhelming number of software options for pre- and post-processing. Moreover, TELEMAC comes with a wide range of modules for two-dimensional (2d) and three-dimensional (3d) modeling of hydro-morphodynamic processes of various water bodies, from mountain rivers to coastal deltas under the influence of tides. Also, multiple sediment transport phenomena can be modeled and coupled with steady or unsteady flow conditions. Consequently, TELEMAC's applications range is very wide and this eBook provides tutorials for a sound understanding of fundamental elements of river ecosystem modeling. To this end, this eBook features the following tutorials:
 
-The tutorials in this eBook feature:
+* Generate a Selafin `*.slf*` geometry mesh along with boundary conditions with QGIS, the BASEmesh plugin, and BlueKenue in the {ref}`pre-processing tutorial <slf-prepro-tm>`. **Recommended as first introductory tutorial for beginners.**
+* Setup a purely hydrodynamic, steady Telemac2d simulation in the {ref}`steady 2d tutorial <telemac2d-steady>` (Selafin `*.slf*` geometry). **Recommended as a second tutorial for beginners.**
+* Apply quasi-steady (near-census unsteady) flow conditions (e.g., important for modeling a flood hydrograph) in the {ref}`unsteady Telemac2d tutorial <chpt-unsteady>`. This tutorial builds on top of the steady Telemac2d tutorial.
+* Setup a purely hydrodynamic 3d model in the {ref}`Telemac3d (Selafin) tutorial <chpt-telemac3d-slf>` with the standard Selafin (`*.slf`) format.
+* Setup a purely hydrodynamic 3d model in the {ref}`Telemac3d (MED and Salome) tutorial <chpt-telemac3d-med>` with the MED geometry format using SALOME-HYDRO. **Recommended for experienced Linux users and when computational performance is critical.**
+* Couple hydrodynamics (i.e., Telemac2d or Telemac3d) with morphodynamics (i.e., {term}`Sediment transport`) in the {ref}`Gaia tutorial <tm-gaia>`.
 
-* the usage of TELEMAC with the computational mesh created in the {ref}`pre-processing  tutorial <slf-prepro-tm>`;
-* a purely hydrodynamic 2d model with steady discharge boundary conditions in the {ref}`chpt-telemac2d` section with the standard SLF geometry format;
-* a purely hydrodynamic 3d model with steady discharge boundary conditions in the {ref}`chpt-telemac3d` section with the MED geometry format.
-* Future tutorials (under development) will also feature:
-  * the implementation of unsteady boundary conditions (replace steady flow boundaries);
-  * the activation of sediment transport (morphodynamic) modeling with TELEMAC's Gaia module.
 
 The tutorials build on the user manuals provided by the TELEMAC developers at [http://wiki.opentelemac.org](http://wiki.opentelemac.org/doku.php?id=documentation_v8p2r0).
 
@@ -36,7 +35,7 @@ The centerpiece of any TELEMAC model is the control (steering or CAS) file, whic
 
 ### Post-processing
 
-*Artelia Eau et Environnement* created the [PostTelemac](https://plugins.qgis.org/plugins/PostTelemac/) plugin for {ref}`qgis-install`, which is a powerful and convenient tool for visualizing and post-processing TELEMAC simulation results. The {ref}`Telemac2d (steady) Post-processing <tm-steady2d-postpro>` illustrates the usage of the PostTelemac QGIS plugin (read more in the {ref}`TELEMAC pre-processing tutorial <tm-qgis-plugins>`) to create {ref}`raster <raster>` maps and other useful data derivatives from TELEMAC output. In addition, the {ref}`Telemac3d (MED) <sh-postproc>` tutorial features the usage of the ParaVis module (a ParaVie derivative) in {ref}`SALOME <salome-install>`.
+*Artelia Eau et Environnement* created the [PostTelemac](https://plugins.qgis.org/plugins/PostTelemac/) plugin for {ref}`qgis-install`, which is a powerful and convenient tool for visualizing and post-processing TELEMAC simulation results. The {ref}`Telemac2d (steady) Post-processing <tm-steady2d-postpro>` illustrates the usage of the PostTelemac QGIS plugin (read more in the {ref}`TELEMAC pre-processing tutorial <tm-qgis-plugins>`) to create {ref}`raster <raster>` maps and other useful data derivatives from TELEMAC output. In addition, the {ref}`Telemac3d (MED) <sh-postproc>` tutorial features the usage of the ParaVis module (a ParaView derivative) in {ref}`SALOME <salome-install>`.
 
 (tm-files)=
 ## The TELEMAC File Structure

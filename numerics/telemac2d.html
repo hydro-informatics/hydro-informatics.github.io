@@ -55,7 +55,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Steady 2d Simulation" href="telemac2d-steady.html" />
+    <link rel="next" title="Steady 2d" href="telemac2d-steady.html" />
     <link rel="prev" title="Pre-processing" href="pre-slf-tm.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -433,17 +433,12 @@
     <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="telemac2d-steady.html">
-       Steady 2d Simulation
+       Steady 2d
       </a>
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="telemac2d-unsteady.html">
-       Unsteady 2d Simulation
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="telemac-gaia.html">
-       Morphodynamics 2d with Gaia
+       Unsteady 2d
       </a>
      </li>
     </ul>
@@ -460,15 +455,20 @@
     <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="telemac3d-slf.html">
-       Telemac3d (SLF)
+       Steady 3d (SLF - Selafin)
       </a>
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="telemac3d-med.html">
-       Telemac3d (Salome-Hydro and MED)
+       Steady 3d (MED and Salome)
       </a>
      </li>
     </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="telemac-gaia.html">
+     Gaia (Morphodynamics)
+    </a>
    </li>
   </ul>
  </li>
@@ -726,10 +726,9 @@
 <p class="admonition-title">Growing chapter</p>
 <p>This chapter is currently still growing and contents are in a beta-state.</p>
 </div>
-<p>Telemac2d iteratively solves the depth-averaged <a class="reference internal" href="../documentation/glossary.html#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a> (i.e., the <a class="reference internal" href="../documentation/glossary.html#term-Shallow-water-equations"><span class="xref std std-term">Shallow water equations</span></a>).</p>
-<p>The Telemac2d tutorials build on the SELAFIN (<code class="docutils literal notranslate"><span class="pre">*.slf</span></code>) and Conlim (<code class="docutils literal notranslate"><span class="pre">*.cli</span></code>) boundary condition files that result from the <a class="reference internal" href="pre-slf-tm.html#slf-prepro-tm"><span class="std std-ref">TELEMAC pre-processing tutorial</span></a>.</p>
-<p>The <a class="reference internal" href="telemac2d-steady.html#telemac2d-steady"><span class="std std-ref">Steady Simulation</span></a> tutorial features using the <code class="docutils literal notranslate"><span class="pre">*.slf</span></code> and <code class="docutils literal notranslate"><span class="pre">*.cli</span></code> files for a steady hydrodynamic 2d simulation with the Telemac2d module.</p>
-<p>The tutorial descriptions refer to the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac2d/user/telemac2d_user_v8p2.pdf">Telemac2d manual</a>.</p>
+<p>Telemac2d iteratively solves the depth-averaged <a class="reference internal" href="../documentation/glossary.html#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a> (i.e., the <a class="reference internal" href="../documentation/glossary.html#term-Shallow-water-equations"><span class="xref std std-term">Shallow water equations</span></a>). The Telemac2d tutorials in this eBook use the SELAFIN (<code class="docutils literal notranslate"><span class="pre">*.slf</span></code>) and Conlim boundary condition (<code class="docutils literal notranslate"><span class="pre">*.cli</span></code>) files that result from the <a class="reference internal" href="pre-slf-tm.html#slf-prepro-tm"><span class="std std-ref">TELEMAC pre-processing tutorial</span></a> and the descriptions refer to the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac2d/user/telemac2d_user_v8p2.pdf">Telemac2d manual</a>.</p>
+<p>The <a class="reference internal" href="telemac2d-steady.html#telemac2d-steady"><span class="std std-ref">steady 2d</span></a> tutorial is the baseline for almost all other TELEMAC-related chapters in this eBook. On top, the <a class="reference internal" href="telemac2d-unsteady.html#chpt-unsteady"><span class="std std-ref">unsteady 2d</span></a> tutorial features the adaption of quasi-steady (near-census unsteady) flow conditions, which is important, for instance, for modeling a flood hydrograph.</p>
+<p>Beyond hydrodynamic models, <a class="reference internal" href="../documentation/glossary.html#term-Sediment-transport"><span class="xref std std-term">Sediment transport</span></a> (i.e., morphodynamics) can be modeled using the Gaia module in a TELEMAC simulation. The necessary coupling of hydrodynamics and morphodynamics is described in detail and in general for Selafin-based TELEMAC models in the <a class="reference internal" href="telemac-gaia.html#tm-gaia"><span class="std std-ref">Gaia chapter</span></a>.</p>
 <div class="toctree-wrapper compound">
 </div>
 </div>
@@ -760,7 +759,7 @@
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="pre-slf-tm.html" title="previous page">Pre-processing</a>
-    <a class='right-next' id="next-link" href="telemac2d-steady.html" title="next page">Steady 2d Simulation</a>
+    <a class='right-next' id="next-link" href="telemac2d-steady.html" title="next page">Steady 2d</a>
 
         </div>
         

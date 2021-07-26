@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Morphodynamics 2d with Gaia &#8212; Hydro-Informatics</title>
+    <title>Gaia (Morphodynamics) &#8212; Hydro-Informatics</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -57,8 +57,8 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Telemac3d" href="telemac3d.html" />
-    <link rel="prev" title="Unsteady 2d Simulation" href="telemac2d-unsteady.html" />
+    <link rel="next" title="OpenFOAM" href="openfoam.html" />
+    <link rel="prev" title="Steady 3d (MED and Salome)" href="telemac3d-med.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -423,29 +423,24 @@
      Pre-processing
     </a>
    </li>
-   <li class="toctree-l2 current active has-children">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="telemac2d.html">
      Telemac2d
     </a>
-    <input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
     <label for="toctree-checkbox-11">
      <i class="fas fa-chevron-down">
      </i>
     </label>
-    <ul class="current">
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="telemac2d-steady.html">
-       Steady 2d Simulation
+       Steady 2d
       </a>
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="telemac2d-unsteady.html">
-       Unsteady 2d Simulation
-      </a>
-     </li>
-     <li class="toctree-l3 current active">
-      <a class="current reference internal" href="#">
-       Morphodynamics 2d with Gaia
+       Unsteady 2d
       </a>
      </li>
     </ul>
@@ -462,15 +457,20 @@
     <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="telemac3d-slf.html">
-       Telemac3d (SLF)
+       Steady 3d (SLF - Selafin)
       </a>
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="telemac3d-med.html">
-       Telemac3d (Salome-Hydro and MED)
+       Steady 3d (MED and Salome)
       </a>
      </li>
     </ul>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Gaia (Morphodynamics)
+    </a>
    </li>
   </ul>
  </li>
@@ -735,47 +735,47 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-is-gaia">
-     What is Gaia?
+    <a class="reference internal nav-link" href="#sediment-transport-and-gaia">
+     Sediment Transport and Gaia?
     </a>
    </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gaia-and-telemac">
+   Gaia and TELEMAC
+  </a>
+  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#coupling-hydro-morphodynamics">
      Coupling Hydro-morphodynamics
     </a>
    </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#coupling-gaia-and-telemac">
-   Coupling Gaia and TELEMAC
-  </a>
-  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#activate-gaia">
-     Activate Gaia
+    <a class="reference internal nav-link" href="#file-requirements-for-coupling-gaia">
+     File Requirements for Coupling Gaia
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gaia-file-requirements-and-steering">
-     Gaia File Requirements and Steering
+    <a class="reference internal nav-link" href="#link-gaia-in-the-hydrodynamics-steering-file">
+     Link Gaia in the Hydrodynamics Steering File
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#mandatory-files">
-   Mandatory files
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#setup-of-gaia-steering-file">
-   Setup of Gaia Steering file
+  <a class="reference internal nav-link" href="#gaia-steering">
+   Gaia Steering
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#define-input-and-output-files">
-     Define input and output files
+    <a class="reference internal nav-link" href="#general-parameters">
+     General Parameters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#boundary-conditions">
+     Boundary Conditions
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -806,11 +806,11 @@
         
               <div>
                 
-  <div class="section" id="morphodynamics-2d-with-gaia">
-<span id="tm-gaia"></span><h1>Morphodynamics 2d with Gaia<a class="headerlink" href="#morphodynamics-2d-with-gaia" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="gaia-morphodynamics">
+<span id="tm-gaia"></span><h1>Gaia (Morphodynamics)<a class="headerlink" href="#gaia-morphodynamics" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-default" id="hydro-morphodynamics">
 <img alt="hydrodynamics morphodynamics" src="../_images/hydro-morphodynamics.png" />
-<p class="caption"><span class="caption-number">Fig. 88 </span><span class="caption-text">A morphodynamically active tributary of Cache Creek (California, USA).</span><a class="headerlink" href="#hydro-morphodynamics" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 143 </span><span class="caption-text">A morphodynamically active tributary of Cache Creek (California, USA).</span><a class="headerlink" href="#hydro-morphodynamics" title="Permalink to this image">¶</a></p>
 </div>
 <p>This chapter guides through modelling <a class="reference internal" href="../documentation/glossary.html#term-Sediment-transport"><span class="xref std std-term">Sediment transport</span></a> and related phenomena in rivers (morphodynamics) with Telemac2d and the Gaia module. Notably, a simple steady2d example demonstrates how <a class="reference internal" href="../documentation/glossary.html#term-Sediment-transport"><span class="xref std std-term">Sediment transport</span></a> in the form of bedload can be modeled with the TELEMAC software suite.</p>
 <div class="section" id="under-construction-expected-release-in-the-next-12-months">
@@ -834,9 +834,9 @@
 <h3>Hydro-morphodynamics Terminology<a class="headerlink" href="#hydro-morphodynamics-terminology" title="Permalink to this headline">¶</a></h3>
 <p>A hydro-morphodynamic simulation implies modeling runoff-driven <strong><a class="reference internal" href="../documentation/glossary.html#term-Sediment-transport"><span class="xref std std-term">Sediment transport</span></a></strong> processes. The previous sections in this eBook focus on hydrodynamics defined as <em>the study of liquids in motion</em> and this section focusses on <strong>morphodynamics</strong> defined as <strong>the study of time-dependent changes in the forms of alluvial beds and their underlying processes</strong>.</p>
 </div>
-<div class="section" id="what-is-gaia">
-<h3>What is Gaia?<a class="headerlink" href="#what-is-gaia" title="Permalink to this headline">¶</a></h3>
-<p>TELEMAC has a dedicated module called Gaia for this purpose and Gaia enables modelling sediment transport and morphological evolution (i.e., <a class="reference internal" href="../documentation/glossary.html#term-Topographic-change"><span class="xref std std-term">Topographic change</span></a>) in rivers, lakes, and estuaries. Gaia comes with particular routines to consider spatio-temporal variation of grain sizes, grading curves, and sediment transport modes in the form of <strong><a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> (coarse sediment)</strong> and/or <strong><a class="reference internal" href="../documentation/glossary.html#term-Suspended-load"><span class="xref std std-term">Suspended load</span></a> (fine sediment)</strong>. <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> is calculated by solving a semi-empiric equations, such as  the <span id="id1">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula (read more later in this tutorial). <a class="reference internal" href="../documentation/glossary.html#term-Suspended-load"><span class="xref std std-term">Suspended load</span></a> is modeled by solving the <a class="reference internal" href="../documentation/glossary.html#term-Advection"><span class="xref std std-term">Advection</span></a>-<a class="reference internal" href="../documentation/glossary.html#term-Diffusion"><span class="xref std std-term">Diffusion</span></a> equations and additionally requires closures for sediment erosion and deposition fluxes . Sediment is further distinguished between very fine, <strong>cohesive</strong> sediment and coarser, <strong>non-cohesive</strong> sediment. In addition, Gaia accounts for bed evolution through an iterative solution of the <span id="id2">Exner [<a class="reference internal" href="../documentation/bibliography.html#id182">Exn25</a>]</span> equation for mass conversation.</p>
+<div class="section" id="sediment-transport-and-gaia">
+<h3>Sediment Transport and Gaia?<a class="headerlink" href="#sediment-transport-and-gaia" title="Permalink to this headline">¶</a></h3>
+<p>TELEMAC has a dedicated module called Gaia for this purpose and Gaia enables modelling sediment transport and morphological evolution (i.e., <a class="reference internal" href="../documentation/glossary.html#term-Topographic-change"><span class="xref std std-term">Topographic change</span></a>) in rivers, lakes, and estuaries. Gaia comes with particular routines to consider spatio-temporal variation of grain sizes, grading curves, and sediment transport modes in the form of <strong><a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> (coarse sediment)</strong> and/or <strong><a class="reference internal" href="../documentation/glossary.html#term-Suspended-load"><span class="xref std std-term">Suspended load</span></a> (fine sediment)</strong>. <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> is calculated by solving a semi-empiric equations, such as  the <span id="id1">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula (read more later in this tutorial). <a class="reference internal" href="../documentation/glossary.html#term-Suspended-load"><span class="xref std std-term">Suspended load</span></a> is modeled by solving the <a class="reference internal" href="../documentation/glossary.html#term-Advection"><span class="xref std std-term">Advection</span></a>-<a class="reference internal" href="../documentation/glossary.html#term-Diffusion"><span class="xref std std-term">Diffusion</span></a> equations and additionally requires closures for sediment erosion and deposition fluxes . Sediment is further distinguished between very fine, <strong>cohesive</strong> sediment and coarser, <strong>non-cohesive</strong> sediment. In addition, Gaia accounts for bed evolution through an iterative solution of the <a class="reference internal" href="../documentation/glossary.html#term-Exner-equation"><span class="xref std std-term">Exner equation</span></a> <span id="id2">[<a class="reference internal" href="../documentation/bibliography.html#id182">Exn25</a>]</span> for mass conversation.</p>
 <details class="sphinx-bs dropdown card mb-3">
 <summary class="summary-title card-header">
 The difference between Gaia and SISYPHE<div class="summary-down docutils">
@@ -847,6 +847,10 @@ The difference between Gaia and SISYPHE<div class="summary-down docutils">
 <p class="card-text">To get specifications beyond the features presented here in the TELEMAC documentation and in the TELEMAC forum, it is useful to know that there has been a predecessor module of Gaia called SISYPHE. Most of the SISYPHE routines are still available in recent TELEMAC versions through Gaia, although with functional enhancements that require adjustments in some keywords. Read more in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a> in Appendix 8.1.</p>
 </div>
 </details></div>
+</div>
+<div class="section" id="gaia-and-telemac">
+<span id="tm-coupling"></span><h2>Gaia and TELEMAC<a class="headerlink" href="#gaia-and-telemac" title="Permalink to this headline">¶</a></h2>
+<p>The morphodynamics module Gaia can be internally <strong>coupled</strong> with the hydrodynamic models Telemac2d (solving the <a class="reference internal" href="../documentation/glossary.html#term-Shallow-water-equations"><span class="xref std std-term">Shallow water equations</span></a>) or Telemac3d (solving the Reynolds-averaged <a class="reference internal" href="../documentation/glossary.html#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a>). This section explains different types of coupling Telemac2d/Telemac3d (hydrodynamics) with Gaia (morphodynamics) and how coupling can be implement in the TELEMAC software suite.</p>
 <div class="section" id="coupling-hydro-morphodynamics">
 <h3>Coupling Hydro-morphodynamics<a class="headerlink" href="#coupling-hydro-morphodynamics" title="Permalink to this headline">¶</a></h3>
 <p>A hydro-morphodynamic numerical model can be either <strong>fully coupled</strong> or <strong>decoupled</strong>.</p>
@@ -859,85 +863,104 @@ The difference between Gaia and SISYPHE<div class="summary-down docutils">
 </dd>
 </dl>
 </div>
-</div>
-<div class="section" id="coupling-gaia-and-telemac">
-<h2>Coupling Gaia and TELEMAC<a class="headerlink" href="#coupling-gaia-and-telemac" title="Permalink to this headline">¶</a></h2>
-<p><em>This section is partially based on descriptions from <a class="reference external" href="https://github.com/KMouris">Kilian Mouris</a>.</em></p>
-<div class="section" id="activate-gaia">
-<h3>Activate Gaia<a class="headerlink" href="#activate-gaia" title="Permalink to this headline">¶</a></h3>
-<p>Gaia can be internally coupled with the hydrodynamic models Telemac2d (solving the <a class="reference internal" href="../documentation/glossary.html#term-Shallow-water-equations"><span class="xref std std-term">Shallow water equations</span></a>) or Telemac3d (solving the Reynolds-averaged <a class="reference internal" href="../documentation/glossary.html#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a>). To this end, the following keyword must be added to a Telemac2d or Telemac3d steering file:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">COUPLING</span> <span class="n">WITH</span> <span class="p">:</span> <span class="s1">&#39;GAIA&#39;</span>
-</pre></div>
-</div>
-<p>This tutorial builds on the results of the <a class="reference internal" href="telemac2d-steady.html#tm2d-dry"><span class="std std-ref">dry-initialized steady2d model</span></a> to significantly speed up calculations. This type of model initialization is called <strong>hotstart</strong> and in the case of Telemac requires a results file from a previous simulation. For this purpose, place the dry-initialized steady2d results file in the simulation folder (download <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/r2dsteady.slf">r2dsteady.slf</a>) and setup the hotstart in the Telemac2d steering file for this tutorial with the following keywords:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">COMPUTATION</span> <span class="n">CONTINUED</span> <span class="p">:</span> <span class="n">YES</span>
-<span class="n">PREVIOUS</span> <span class="n">COMPUTATION</span> <span class="k">FILE</span> <span class="p">:</span> <span class="n">r2dsteady</span><span class="p">.</span><span class="n">slf</span> <span class="o">/</span> <span class="n">results</span> <span class="n">of</span> <span class="mi">35</span> <span class="n">CMS</span> <span class="n">steady</span> <span class="n">simulation</span>
-<span class="n">INITIAL</span> <span class="nb">TIME </span><span class="n">SET</span> <span class="n">TO</span> <span class="n">ZERO</span> <span class="p">:</span> <span class="n">YES</span> <span class="o">/</span> <span class="n">avoid</span> <span class="n">restarting</span> <span class="n">at</span> <span class="mi">15000</span>
-</pre></div>
-</div>
-<p>The <code class="docutils literal notranslate"><span class="pre">INITIAL</span> <span class="pre">TIME</span> <span class="pre">SET</span> <span class="pre">TO</span> <span class="pre">ZERO</span></code> keyword resets the simulation time to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
-</div>
-<div class="section" id="gaia-file-requirements-and-steering">
-<h3>Gaia File Requirements and Steering<a class="headerlink" href="#gaia-file-requirements-and-steering" title="Permalink to this headline">¶</a></h3>
-<p>Gaia requires an own steering (<code class="docutils literal notranslate"><span class="pre">*.cas</span></code>) file that needs to be referenced in the main steering file of the simulation. Thus, in addition to the standard Telemac2d steering, boundaries and geometry mesh file, <strong>create a new steering file in the modeling folder</strong> and call it, for example, <strong>gaia4bedload.cas</strong>. The following files should now be living in the modeling folder for this tutorial (e.g., called <code class="docutils literal notranslate"><span class="pre">/gaia2d-tutorial/</span></code>):</p>
+<div class="section" id="file-requirements-for-coupling-gaia">
+<h3>File Requirements for Coupling Gaia<a class="headerlink" href="#file-requirements-for-coupling-gaia" title="Permalink to this headline">¶</a></h3>
+<p>In addition to the standard Telemac2d steering, boundaries and geometry mesh file, coupling Gaia requires an own steering (<code class="docutils literal notranslate"><span class="pre">*.cas</span></code>) file that needs to be referenced in the main steering file of the simulation. To this end, <strong>create a new folder for the Gaia tutorial</strong> (e.g., called <code class="docutils literal notranslate"><span class="pre">/gaia2d-tutorial/</span></code>), copy the dry-initialized steady2d simulation and results files, and <strong>create a new Gaia steering file</strong> (e.g., called <code class="docutils literal notranslate"><span class="pre">gaia-morphodynamics.cas</span></code>). Thus, the following files should live in the modeling folder for this tutorial :</p>
 <ul class="simple">
 <li><p>The computational mesh in the form of <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/qgismesh.slf">qgismesh.slf</a>.</p></li>
 <li><p>The boundary definitions in the form of <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli">boundaries.cli</a>.</p></li>
 <li><p>The results of the dry-initialized steady 2d model run for 35 m<span class="math notranslate nohighlight">\(^3\)</span>/s in the form of <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/r2dsteady.slf">r2dsteady.slf</a> (result of the <a class="reference internal" href="telemac2d-steady.html#tm2d-dry"><span class="std std-ref">dry bonus run</span></a> ending at <code class="docutils literal notranslate"><span class="pre">T=15000</span></code>).</p></li>
 <li><p>A Telemac2d steering file for this tutorial, building on the dry-initialized steady2d steering file, and called <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/steady2d-gaia.cas">steady2d-gaia.cas</a>.</p></li>
-<li><p>The new <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/gaia4bedload.cas">gaia4bedload.cas</a> steering file.</p></li>
+<li><p>The new <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/gaia-morphodynamics.cas">gaia-morphodynamics.cas</a> steering file.</p></li>
 </ul>
-<div class="admonition-unsteady-simulation-file-repository admonition">
-<p class="admonition-title">Unsteady simulation file repository</p>
+<div class="admonition-gaia-simulation-file-repository admonition">
+<p class="admonition-title">Gaia simulation file repository</p>
 <p>The simulation files used in this tutorial are available at <a class="reference external" href="https://github.com/hydro-informatics/telemac/tree/main/gaia2d-tutorial/">https://github.com/hydro-informatics/telemac/tree/main/gaia2d-tutorial/</a>.</p>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">GAIA</span> <span class="pre">STEERING</span> <span class="pre">FILE</span> <span class="pre">:</span> <span class="pre">gaia4bedload.cas</span></code></p>
-<p>Since Gaia is not operated fully coupled, the first step is to compute the flow variables with a fixed bed.
-Subsequently the discretized sediment equation is solved separately.
-The suspended sediment transport processes are computed by the hydrodynamic modules (Telemac2d or Telemac3d), while near-bed, <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> and processes
-in the bottom layer are handled by Gaia.</p>
+</div>
+<div class="section" id="link-gaia-in-the-hydrodynamics-steering-file">
+<h3>Link Gaia in the Hydrodynamics Steering File<a class="headerlink" href="#link-gaia-in-the-hydrodynamics-steering-file" title="Permalink to this headline">¶</a></h3>
+<p>To programmatically implement the coupling of Gaia with a Telemac2d/Telemac3d simulation, at least five keywords should be defined in addition to the keywords presented in the <a class="reference internal" href="telemac2d-steady.html#telemac2d-steady"><span class="std std-ref">steady2d chapter</span></a>. The first additional keyword is the baseline for any coupling with Telemac2d or Telemac3d steering file:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">steady2d</span><span class="o">-</span><span class="n">gaia</span><span class="p">.</span><span class="n">cas</span>
+<span class="n">COUPLING</span> <span class="n">WITH</span> <span class="p">:</span> <span class="s1">&#39;GAIA&#39;</span>
+</pre></div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">steady2d-gaia.cas is the hydrodynamics (Telemac2d or Telemac3d) steering file</p>
+<p>In this tutorial the hydrodynamics (Telemac2d or Telemac3d) steering file is referred to as <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/steady2d-gaia.cas">steady2d-gaia.cas</a> and the morphodynamics (Gaia) steering file is referred to as <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/gaia-morphodynamics.cas">gaia-morphodynamics.cas</a>.</p>
+</div>
+<p>This tutorial builds on the results of the <a class="reference internal" href="telemac2d-steady.html#tm2d-dry"><span class="std std-ref">dry-initialized steady2d model</span></a> because Gaia is design as a decoupled model (see the {ref}`above definitions <tm-coupling>). Using a former calculations result for model initialization is called <strong>hotstart</strong> for which TELEMAC requires a results file from a previous simulation. For this purpose, place the dry-initialized steady2d results file in the simulation folder (<a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/r2dsteady.slf">download r2dsteady.slf</a>) and setup the hotstart in the Telemac2d steering file for this tutorial with the following keywords:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">steady2d</span><span class="o">-</span><span class="n">gaia</span><span class="p">.</span><span class="n">cas</span>
+<span class="o">/</span> <span class="p">...</span>
+<span class="n">COMPUTATION</span> <span class="n">CONTINUED</span> <span class="p">:</span> <span class="n">YES</span>
+<span class="n">PREVIOUS</span> <span class="n">COMPUTATION</span> <span class="k">FILE</span> <span class="p">:</span> <span class="n">r2dsteady</span><span class="p">.</span><span class="n">slf</span> <span class="o">/</span> <span class="n">results</span> <span class="n">of</span> <span class="mi">35</span> <span class="n">CMS</span> <span class="n">steady</span> <span class="n">simulation</span>
+<span class="n">INITIAL</span> <span class="nb">TIME </span><span class="n">SET</span> <span class="n">TO</span> <span class="n">ZERO</span> <span class="p">:</span> <span class="n">YES</span> <span class="o">/</span> <span class="n">avoid</span> <span class="n">restarting</span> <span class="n">at</span> <span class="mi">15000</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">INITIAL</span> <span class="pre">TIME</span> <span class="pre">SET</span> <span class="pre">TO</span> <span class="pre">ZERO</span></code> keyword resets the simulation time to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>Ultimately, the <strong>GAIA STEERING FILE</strong> keyword links the above-created <code class="docutils literal notranslate"><span class="pre">gaia-morphodynamics.cas</span></code> in the Telemac2d (or Telemac3d) hydrodynamics steering file:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">steady2d</span><span class="o">-</span><span class="n">gaia</span><span class="p">.</span><span class="n">cas</span>
+<span class="o">/</span> <span class="p">...</span>
+<span class="n">GAIA</span> <span class="n">STEERING</span> <span class="k">FILE</span> <span class="p">:</span> <span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
+</pre></div>
 </div>
 </div>
-<div class="section" id="mandatory-files">
-<h2>Mandatory files<a class="headerlink" href="#mandatory-files" title="Permalink to this headline">¶</a></h2>
-<p>The following files are mandatory to simulate morphodynamics:</p>
+</div>
+<div class="section" id="gaia-steering">
+<h2>Gaia Steering<a class="headerlink" href="#gaia-steering" title="Permalink to this headline">¶</a></h2>
+<p><em>This section is partially based on descriptions from <a class="reference external" href="https://github.com/KMouris">Kilian Mouris</a>.</em></p>
+<p>The following instructions refer to the setup of the above-created Gaia steering file (<code class="docutils literal notranslate"><span class="pre">gaia-morphodynamics.cas</span></code>), which requires some mandatory parameters and enables many more optional keywords settings. An overview of all keywords can be found in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/reference/gaia_reference_v8p2.pdf">Gaia reference manual</a> and the dictionary file <code class="docutils literal notranslate"><span class="pre">/telemac/v8p2/sources/gaia/gaia.dico</span></code>. Similar to the Telemac2d or Telemac3d hydrodynamics steering file, the Gaia steering file requires definitions of general (file-related), physical, and numerical parameters.</p>
+<div class="section" id="general-parameters">
+<h3>General Parameters<a class="headerlink" href="#general-parameters" title="Permalink to this headline">¶</a></h3>
+<p>The general parameters defining mandatory input and output files resemble the hydrodynamic steering file. Input files can also be the same as used in the hydrodynamics steering file. Therefore, <strong>define</strong> the <strong><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/qgismesh.slf">qgismesh.slf</a></strong> from the <a class="reference internal" href="pre-slf-tm.html#slf-prepro-tm"><span class="std std-ref">pre-processing</span></a> <strong>as geometry file</strong> and <strong><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli">boundaries.cli</a></strong> as <strong>boundary conditions file</strong>. However, the Gaia <code class="docutils literal notranslate"><span class="pre">RESULTS</span> <span class="pre">FILE</span></code> keyword should differ from the <code class="docutils literal notranslate"><span class="pre">RESULTS</span> <span class="pre">FILE</span></code> keyword in the hydrodynamic steering file.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">COMPUTATION</span> <span class="n">ENVIRONMENT</span>
+<span class="o">/</span>
+<span class="n">BOUNDARY</span> <span class="n">CONDITIONS</span> <span class="k">FILE</span> <span class="p">:</span> <span class="n">boundaries</span><span class="p">.</span><span class="n">cli</span>
+<span class="n">GEOMETRY</span> <span class="k">FILE</span> <span class="p">:</span> <span class="n">qgismesh</span><span class="p">.</span><span class="n">slf</span>
+<span class="n">RESULTS</span> <span class="k">FILE</span> <span class="p">:</span> <span class="n">rGaia</span><span class="o">-</span><span class="n">steady2d</span><span class="p">.</span><span class="n">slf</span>
+<span class="n">MASS</span><span class="o">-</span><span class="n">BALANCE</span> <span class="p">:</span> <span class="n">YES</span>
+</pre></div>
+</div>
+<p>Graphical output variables related to sediment transport can be defined with the <code class="docutils literal notranslate"><span class="pre">VARIABLES</span> <span class="pre">FOR</span> <span class="pre">GRAPHIC</span> <span class="pre">PRINTOUTS</span></code> keyword for <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> and/or <a class="reference internal" href="../documentation/glossary.html#term-Suspended-load"><span class="xref std std-term">Suspended load</span></a> with the following list-options:</p>
 <ul class="simple">
-<li><p>the steering files for Gaia and the hydrodynamic module (e.g. <a class="reference internal" href="telemac2d.html"><span class="doc std std-doc">T2D</span></a>
-or <a class="reference internal" href="telemac3d.html"><span class="doc std std-doc">T3D</span></a></p>
-<ul>
-<li><p>File format : *.cas</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">E</span></code> for bottom evolution in (m)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">M</span></code> for the magnitude (length) of the bi-directional (i.e., <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions) unit solid transport (bedload, suspended load, and dissolved tracers) <span class="math notranslate nohighlight">\(\boldsymbol{q_s}\)</span> (read more in the definition of the <a class="reference internal" href="../documentation/glossary.html#term-Exner-equation"><span class="xref std std-term">Exner equation</span></a>) in (kg<span class="math notranslate nohighlight">\(\cdot\)</span>m<span class="math notranslate nohighlight">\(^{-1}\cdot\)</span>s<span class="math notranslate nohighlight">\(^{-1}\)</span>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">N</span></code> for unit solid transport (bedload, suspended load, and dissolved tracers) in <span class="math notranslate nohighlight">\(x\)</span>-direction <span class="math notranslate nohighlight">\(\boldsymbol{q_s}\cdot\cos\alpha\)</span> in (kg<span class="math notranslate nohighlight">\(\cdot\)</span>m<span class="math notranslate nohighlight">\(^{-1}\cdot\)</span>s<span class="math notranslate nohighlight">\(^{-1}\)</span>) where  <span class="math notranslate nohighlight">\(\alpha\)</span> is the angle between the longitudinal channel (<span class="math notranslate nohighlight">\(x\)</span>) axis and the solid transport vector <span class="math notranslate nohighlight">\(\boldsymbol{q_s}\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">P</span></code> for unit solid transport (bedload, suspended load, and dissolved tracers) in <span class="math notranslate nohighlight">\(y\)</span>-direction <span class="math notranslate nohighlight">\(\boldsymbol{q_s}\cdot\sin\alpha\)</span> in (kg<span class="math notranslate nohighlight">\(\cdot\)</span>m<span class="math notranslate nohighlight">\(^{-1}\cdot\)</span>s<span class="math notranslate nohighlight">\(^{-1}\)</span>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">QSBL</span></code> <code class="docutils literal notranslate"><span class="pre">M</span></code> for the magnitude (length) of the bi-directional (i.e., <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions) unit <strong>bedload (only)</strong> transport <span class="math notranslate nohighlight">\(\boldsymbol{q_b}\)</span> in (kg<span class="math notranslate nohighlight">\(\cdot\)</span>m<span class="math notranslate nohighlight">\(^{-1}\cdot\)</span>s<span class="math notranslate nohighlight">\(^{-1}\)</span>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TOB</span></code> for bed shear stress in (N<span class="math notranslate nohighlight">\(\cdot\)</span>m<span class="math notranslate nohighlight">\(^{-2}\)</span>)</p></li>
 </ul>
-</li>
-<li><p>the geometry file</p>
-<ul>
-<li><p>File format : *.slf</p></li>
-</ul>
-</li>
-<li><p>the boundary conditions file</p>
-<ul>
-<li><p>File format : *.cli</p></li>
-</ul>
-</li>
-</ul>
-<p>Optional files such as Fortran file (<em>.f), the reference file (</em>.slf), but are not featured here.</p>
+<p>The parameters <code class="docutils literal notranslate"><span class="pre">M</span></code> and <code class="docutils literal notranslate"><span class="pre">QSBL</span></code> will result in the same output if no suspended load is simulated. To output multiple parameters, set the graphical printouts keyword as follows:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">continued</span><span class="p">:</span> <span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
+<span class="o">/</span> <span class="p">...</span>
+<span class="n">VARIABLES</span> <span class="n">FOR</span> <span class="n">GRAPHIC</span> <span class="n">PRINTOUTS</span> <span class="p">:</span> <span class="n">E</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">QSBL</span><span class="p">,</span><span class="n">TOB</span><span class="p">,</span><span class="n">U</span><span class="p">,</span><span class="n">V</span>
+</pre></div>
 </div>
-<div class="section" id="setup-of-gaia-steering-file">
-<h2>Setup of Gaia Steering file<a class="headerlink" href="#setup-of-gaia-steering-file" title="Permalink to this headline">¶</a></h2>
-<p>This file contains the necessary information for running a morphodynamic simulation and must contain all parameter values that differ from the default value (as specified in the dictionary file <code class="docutils literal notranslate"><span class="pre">gaia.dico</span></code> and the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/reference/gaia_reference_v8p2.pdf">Gaia reference manual</a>).</p>
-<p>It is recommended to orientate on the following 3 categories to set up the Steering-file.</p>
-<div class="section" id="define-input-and-output-files">
-<h3>Define input and output files<a class="headerlink" href="#define-input-and-output-files" title="Permalink to this headline">¶</a></h3>
-<p>All files should be stored in the same folder.</p>
-<p>Assign file names to at least the following keywords:</p>
-<p><code class="docutils literal notranslate"><span class="pre">GEOMETRY</span> <span class="pre">FILE</span> <span class="pre">:</span> <span class="pre">'*.slf'</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">BOUNDARY</span> <span class="pre">CONDITIONS</span> <span class="pre">FILE</span> <span class="pre">:</span> <span class="pre">'*.cli'</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">RESULTS</span> <span class="pre">FILE</span> <span class="pre">:</span> <span class="pre">'*.slf'</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">VARIABLES</span> <span class="pre">FOR</span> <span class="pre">GRAPHIC</span> <span class="pre">PRINTOUTS</span> <span class="pre">:</span> <span class="pre">''</span></code></p>
+</div>
+<div class="section" id="boundary-conditions">
+<span id="gaia-bc"></span><h3>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this headline">¶</a></h3>
+<p>The boundary conditions in Gaia work similarly as for hydrodynamics and can be added to the existing boundaries file through modification of the <strong>LITBOR</strong> definition. For this purpose, open the boundary conditions file <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli">boundaries.cli</a> in a <a class="reference internal" href="../get-started/others.html#npp"><span class="std std-ref">text editor</span></a> and modify the eighth entry of all open liquid boundary lines. Counting line entries sounds like a tedious task, but is fairly straightforward in practice:</p>
+<ul class="simple">
+<li><p>The first three entries of the upstream and downstream boundaries are <strong>LIHBOR</strong> (water depth), <strong>LIUBOR</strong> (flow velocity in <span class="math notranslate nohighlight">\(x\)</span>-direction), and <strong>LIVBOR</strong> (flow velocity in <span class="math notranslate nohighlight">\(y\)</span>-direction). These three values were set to <code class="docutils literal notranslate"><span class="pre">5</span></code> in the <a class="reference internal" href="telemac2d-steady.html#tm2d-dry"><span class="std std-ref">dry-initialized steady2d simulation</span></a>, which defines the upstream and downstream boundaries with <strong>prescribed H and Q</strong>.</p></li>
+<li><p>The following four entries are <code class="docutils literal notranslate"><span class="pre">0.000</span></code> (for HBOR, UBOR, VBOR, and AUBOR) and would prescribe (assign) float values directly in the boundary file (deactivated through the <code class="docutils literal notranslate"><span class="pre">0.000</span></code> setting).</p></li>
+<li><p>The eighth entry is the <strong>LITBOR</strong> type, which currently set to <code class="docutils literal notranslate"><span class="pre">2</span></code> (closed wall) and has to be modified for use with Gaia:</p>
+<ul>
+<li><p>Open the upstream and downstream boundary for sediment transport by <strong>setting LITBOR to <code class="docutils literal notranslate"><span class="pre">4</span></code></strong> (prescribed flowrate). This setting is useful for prescribing sold flowrates either in the steering file or with a liquid boundaries file as described in the <a class="reference internal" href="telemac2d-unsteady.html#tm2d-liq-file"><span class="std std-ref">unsteady (quasi-steady) tutorial</span></a>.</p></li>
+<li><p>Alternatively, a value of <code class="docutils literal notranslate"><span class="pre">5</span></code> can be assigned for prescribing equilibrium solid flowrates, which also requires that EBOR is set to <code class="docutils literal notranslate"><span class="pre">0.0</span></code> (no change of bottom elevation).</p></li>
+</ul>
+</li>
+</ul>
 </div>
 <div class="section" id="physical-parameters">
 <h3>Physical Parameters<a class="headerlink" href="#physical-parameters" title="Permalink to this headline">¶</a></h3>
 <p>Define essential physical parameters such as sediment type, grain sizes, and decide which
 transport mechanisms, and formulas to include in your calculation. Consider the following important keywords:</p>
+<p>TYPE OF SEDIMENT :
+BED LOAD FOR ALL SANDS :
+SUSPENSION FOR ALL SANDS :
+BED-LOAD TRANSPORT FORMULA FOR ALL SANDS :</p>
 <p><code class="docutils literal notranslate"><span class="pre">TYPE</span> <span class="pre">OF</span> <span class="pre">SEDIMENT</span> <span class="pre">:</span> <span class="pre">CO;</span> <span class="pre">NCO</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">CLASSES</span> <span class="pre">SEDIMENT</span> <span class="pre">DIAMETERS</span> <span class="pre">:</span> <span class="pre">0.0001;</span> <span class="pre">0.1</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">BED</span> <span class="pre">LOAD</span> <span class="pre">FOR</span> <span class="pre">ALL</span> <span class="pre">SANDS</span> <span class="pre">:</span> <span class="pre">YES</span> <span class="pre">or</span> <span class="pre">NO</span></code></p>
@@ -999,8 +1022,8 @@ the required keywords (see Coupling GAIA and TELEMAC) for the coupling must be p
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="telemac2d-unsteady.html" title="previous page">Unsteady 2d Simulation</a>
-    <a class='right-next' id="next-link" href="telemac3d.html" title="next page">Telemac3d</a>
+    <a class='left-prev' id="prev-link" href="telemac3d-med.html" title="previous page">Steady 3d (MED and Salome)</a>
+    <a class='right-next' id="next-link" href="openfoam.html" title="next page">OpenFOAM</a>
 
         </div>
         
