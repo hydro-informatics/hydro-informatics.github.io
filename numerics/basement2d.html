@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simulation Setup (Steady 2d) &#8212; Hydro-Informatics</title>
+    <title>Steady 2d Simulation and Post-processing &#8212; Hydro-Informatics</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -143,7 +143,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../get-started/git.html">
-     Introduction to git
+     git
     </a>
    </li>
    <li class="toctree-l2">
@@ -403,7 +403,7 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Simulation Setup (Steady 2d)
+     Steady 2d Simulation and Post-processing
     </a>
    </li>
   </ul>
@@ -435,17 +435,12 @@
     <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="telemac2d-steady.html">
-       Steady 2d Simulation
+       Steady 2d
       </a>
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="telemac2d-unsteady.html">
-       Unsteady 2d Simulation
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="telemac-gaia.html">
-       Hydro-Morphodynamic 2d Simulation (Gaia)
+       Unsteady 2d
       </a>
      </li>
     </ul>
@@ -462,15 +457,20 @@
     <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="telemac3d-slf.html">
-       Telemac3d (SLF)
+       Steady 3d (SLF - Selafin)
       </a>
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="telemac3d-med.html">
-       Telemac3d (Salome-Hydro and MED)
+       Steady 3d (MED and Salome)
       </a>
      </li>
     </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="telemac-gaia.html">
+     Gaia (Morphodynamics)
+    </a>
    </li>
   </ul>
  </li>
@@ -505,7 +505,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../documentation/documentation.html">
-   Markdown and Code Documentation
+   Markdown and Documentation
   </a>
  </li>
  <li class="toctree-l1">
@@ -721,7 +721,7 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Simulation Setup (Steady 2d)
+   Steady 2d Simulation and Post-processing
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
@@ -833,8 +833,8 @@
         
               <div>
                 
-  <div class="section" id="simulation-setup-steady-2d">
-<span id="basement2d"></span><h1>Simulation Setup (Steady 2d)<a class="headerlink" href="#simulation-setup-steady-2d" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="steady-2d-simulation-and-post-processing">
+<span id="basement2d"></span><h1>Steady 2d Simulation and Post-processing<a class="headerlink" href="#steady-2d-simulation-and-post-processing" title="Permalink to this headline">¶</a></h1>
 <p>In addition to the <a class="reference internal" href="../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> file from the <a class="reference internal" href="pre-qgis-bm.html#qgis-prepro-bm"><span class="std std-ref">Pre-processing with QGIS</span></a> tutorial, the numerical engine of BASEMENT needs a model setup file (<strong>model.json</strong>) and a simulation file (<strong>simulation.json</strong>), which both are created automatically by BASEMENT.</p>
 <p>The following sections describe how to make BASEMENT creating the required <a class="reference internal" href="../jupyter/xml.html#json"><span class="std std-ref">JSON</span></a> files in a project directory such as <code class="docutils literal notranslate"><span class="pre">C:\Basement\steady2d-tutorial\</span></code> (<em>Windows</em>) or <code class="docutils literal notranslate"><span class="pre">~/Basement/steady2d-tutorial/</span></code> (<em>Linux</em>). Therefore, the <strong>first step is to create a project directory (folder)</strong>.</p>
 <div class="attention admonition">
@@ -1296,8 +1296,8 @@
 </ul>
 <p>In detail, this looks as follows:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="f442fc07-3e12-44de-8d59-7cd6800a1cc7" name="8e44b64f-3a67-44e5-a3d5-2362f1c8051a" type="radio">
-</input><label class="tabbed-label" for="f442fc07-3e12-44de-8d59-7cd6800a1cc7">
+<input checked="checked" id="415c355c-4c67-4d5d-ba7a-b93e4d701109" name="3f75d3a7-20ec-4592-ba94-ee72a2e4def3" type="radio">
+</input><label class="tabbed-label" for="415c355c-4c67-4d5d-ba7a-b93e4d701109">
 Windows / conda</label><div class="tabbed-content docutils">
 <p>Launch <em>Windows</em> or <em>Anaconda Prompt</em> and tap (requires that the conda environment <a class="reference internal" href="../python-basics/pyinstall.html#conda-quick"><span class="std std-ref">flussenv</span></a> is installed):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">flussenv</span>
@@ -1306,8 +1306,8 @@ Windows / conda</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="0ff0307c-57cf-412a-a092-da495ddfa4c5" name="8e44b64f-3a67-44e5-a3d5-2362f1c8051a" type="radio">
-</input><label class="tabbed-label" for="0ff0307c-57cf-412a-a092-da495ddfa4c5">
+<input id="d6dfde16-4e3b-4ae4-b7f4-1891c7e6f18b" name="3f75d3a7-20ec-4592-ba94-ee72a2e4def3" type="radio">
+</input><label class="tabbed-label" for="d6dfde16-4e3b-4ae4-b7f4-1891c7e6f18b">
 Linux / pip</label><div class="tabbed-content docutils">
 <p>Launch <em>Linux Terminal</em> and tap (requires that the pip environment <a class="reference internal" href="../python-basics/pyinstall.html#pip-quick"><span class="std std-ref">vflussenv</span></a> is installed in the HOME directory):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~</span>

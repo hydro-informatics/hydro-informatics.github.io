@@ -23,7 +23,7 @@ git clone https://github.com/Ecohydraulics/Exercise-ManningStrickler.git
 The Rhone River in Switzerland (source: Sebastian Schwindt 2014).
 ```
 
-
+(calc-1d-hyd)=
 ## Theoretical background
 The [Gauckler-Manning-Strickler formula](https://en.wikipedia.org/wiki/Manning_formula) {cite:p}`kundu_fluid_2008` (or *Strickler formula* in Europe) relates water depth and flow velocity of open channel flow based on the assumption of one-dimensional (cross-section-averaged) flow characteristics. The *Strickler formula* results from a heavy simplification of the [*Navier-Stokes*](https://en.wikipedia.org/wiki/Navier-Stokes_equations) and the [*continuity*](https://en.wikipedia.org/wiki/Continuity_equation) equations {cite:p}`kundu_fluid_2008`. Even though one-dimensional (1d) approaches have largely been replaced by at least two-dimensional (2d) numerical models today, the 1d Strickler formula is still frequently used as a first approximation for boundary conditions.
 

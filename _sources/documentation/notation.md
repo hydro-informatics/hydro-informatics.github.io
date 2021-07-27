@@ -47,6 +47,10 @@ The consistent use of parameters and symbols for parameters is summarized in a n
   - m
   - grain diameter of which $pq$~$\%$ of the mixture are finer
 
+* - $D_{x}$
+  - m
+  - dimensionless grain diameter (cf. {term}`Shields parameter`)
+
 * - $Fr$
   - $-$
   - Froude number
@@ -263,7 +267,7 @@ The consistent use of parameters and symbols for parameters is summarized in a n
 
 * - $\tau_x$
   - $-$
-  - dimensionless bed shear stress
+  - dimensionless bed shear stress or {term}`Shields parameter`
 
 * - $\tau_{x,cr}$
   - $-$

@@ -433,17 +433,12 @@
     <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../numerics/telemac2d-steady.html">
-       Steady 2d Simulation
+       Steady 2d
       </a>
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="../numerics/telemac2d-unsteady.html">
-       Unsteady 2d Simulation
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac-gaia.html">
-       Hydro-Morphodynamic 2d Simulation (Gaia)
+       Unsteady 2d
       </a>
      </li>
     </ul>
@@ -460,15 +455,20 @@
     <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../numerics/telemac3d-slf.html">
-       Telemac3d (SLF)
+       Steady 3d (SLF - Selafin)
       </a>
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="../numerics/telemac3d-med.html">
-       Telemac3d (Salome-Hydro and MED)
+       Steady 3d (MED and Salome)
       </a>
      </li>
     </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/telemac-gaia.html">
+     Gaia (Morphodynamics)
+    </a>
    </li>
   </ul>
  </li>
@@ -887,8 +887,8 @@ So if you have made an ingenious discovery, you want to make sure you document i
 <h2>Markdown<a class="headerlink" href="#markdown" title="Permalink to this headline">¶</a></h2>
 <p>For writing a documentation of a code or project in web-publish-ready format, cross-platform typesetting is needed. For this purpose, <em>Markdown</em> represents a good choice (among others, such as <a class="reference internal" href="#rst"><span class="std std-ref">reStructuredText</span></a>). <em>Markdown</em> was created in 2004 and is a simple markup language that is intuitive and easy to learn. Markup languages structure the content of plain text documents regarding the way a document is displayed to end-users (<a class="reference internal" href="glossary.html#term-Rich-Text-Format"><span class="xref std std-term">Rich Text Format</span></a>). Other popular markup languages are for example <a class="reference external" href="https://en.wikipedia.org/wiki/TeX">TeX</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/XML">XML (Extensible Markup Language)</a>. <em>Markdown</em> became a popular tool for writing syntactically distinguishable computer text that is then translated into <a class="reference internal" href="glossary.html#term-Rich-Text-Format"><span class="xref std std-term">Rich Text Format</span></a> flavor. Here is an example of how <em>Markdown</em> works:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="ec1a4e1c-b753-491c-b5fd-6b94dfe5ab82" name="e9c79574-0d63-4305-8217-e198f083e065" type="radio">
-</input><label class="tabbed-label" for="ec1a4e1c-b753-491c-b5fd-6b94dfe5ab82">
+<input checked="checked" id="c38c1167-6857-4cb6-b8f8-442ed5cd1de6" name="f87f14e9-986b-47ff-973b-e0e91a0e66a8" type="radio">
+</input><label class="tabbed-label" for="c38c1167-6857-4cb6-b8f8-442ed5cd1de6">
 Raw Markdown</label><div class="tabbed-content docutils">
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># Better than Word-like rich text editors</span>
 <span class="ge">*OS*</span>-independent functionality:
@@ -899,8 +899,8 @@ Raw Markdown</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="e90e038a-8f87-4f52-ac9a-2e19cb01b62e" name="e9c79574-0d63-4305-8217-e198f083e065" type="radio">
-</input><label class="tabbed-label" for="e90e038a-8f87-4f52-ac9a-2e19cb01b62e">
+<input id="2e28079b-9bf5-4f32-82e8-45da8da38e0c" name="f87f14e9-986b-47ff-973b-e0e91a0e66a8" type="radio">
+</input><label class="tabbed-label" for="2e28079b-9bf5-4f32-82e8-45da8da38e0c">
 Rendered</label><div class="tabbed-content docutils">
 <p><strong>Better than Word-like rich text editors</strong></p>
 <p><em>OS</em>-independent functionality:</p>
@@ -995,8 +995,8 @@ Rendered</label><div class="tabbed-content docutils">
 <h3>Itemization (Un-numbered Lists)<a class="headerlink" href="#itemization-un-numbered-lists" title="Permalink to this headline">¶</a></h3>
 <p>Itemized list section can be produced using <code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">+</span></code>, or <code class="docutils literal notranslate"><span class="pre">-</span></code> symbols with tabs that determine the list indentation:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="41992c77-a695-45c6-89e8-dd1ec5b69df2" name="ebf8d75c-5143-4b57-8fff-94da1c7ba1a8" type="radio">
-</input><label class="tabbed-label" for="41992c77-a695-45c6-89e8-dd1ec5b69df2">
+<input checked="checked" id="6ed55db2-93cb-4a36-afd8-e8e404a067b7" name="c315e25e-94f5-49ce-a413-23ba2c221987" type="radio">
+</input><label class="tabbed-label" for="6ed55db2-93cb-4a36-afd8-e8e404a067b7">
 Raw Markdown</label><div class="tabbed-content docutils">
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="k">*</span> level 1 item
     <span class="k">-</span> level 2 item
@@ -1006,8 +1006,8 @@ Raw Markdown</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="77bbaf3d-001c-4d3a-a574-97497a345183" name="ebf8d75c-5143-4b57-8fff-94da1c7ba1a8" type="radio">
-</input><label class="tabbed-label" for="77bbaf3d-001c-4d3a-a574-97497a345183">
+<input id="2351691a-224d-41bd-94c2-ac718a10fb99" name="c315e25e-94f5-49ce-a413-23ba2c221987" type="radio">
+</input><label class="tabbed-label" for="2351691a-224d-41bd-94c2-ac718a10fb99">
 Rendered</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p>level 1 item</p>
@@ -1029,8 +1029,8 @@ Rendered</label><div class="tabbed-content docutils">
 <h3>Tables<a class="headerlink" href="#tables" title="Permalink to this headline">¶</a></h3>
 <p>Table columns are separated by a <code class="docutils literal notranslate"><span class="pre">|</span></code> sign. The first row determines row headers and the second row the alignment through the use of <code class="docutils literal notranslate"><span class="pre">:</span></code> (see below example).</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="5de4651c-495e-48c5-844b-01174dd66c98" name="0e46b9e2-de2e-4e6d-97cd-c7f15347215d" type="radio">
-</input><label class="tabbed-label" for="5de4651c-495e-48c5-844b-01174dd66c98">
+<input checked="checked" id="cbbadc57-e4f8-44b4-a7cf-27f292594128" name="265b4e9e-786e-4695-9755-a650cb627e2d" type="radio">
+</input><label class="tabbed-label" for="cbbadc57-e4f8-44b4-a7cf-27f292594128">
 Raw Markdown</label><div class="tabbed-content docutils">
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>| Fruit | Kingdom | Genus |
 |-------|:-------:|------:|
@@ -1039,8 +1039,8 @@ Raw Markdown</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="f331b987-20ff-49d7-8e76-e7603146fcdf" name="0e46b9e2-de2e-4e6d-97cd-c7f15347215d" type="radio">
-</input><label class="tabbed-label" for="f331b987-20ff-49d7-8e76-e7603146fcdf">
+<input id="3486faf2-0f4b-4436-9d87-c02c47df00f4" name="265b4e9e-786e-4695-9755-a650cb627e2d" type="radio">
+</input><label class="tabbed-label" for="3486faf2-0f4b-4436-9d87-c02c47df00f4">
 Rendered</label><div class="tabbed-content docutils">
 <table class="colwidths-auto table">
 <thead>

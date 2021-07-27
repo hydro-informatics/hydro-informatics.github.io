@@ -1,7 +1,11 @@
 # Debugging TELEMAC
 
+Since its early development, TELEMAC has become a robust and reliable tool for the numerically modeling of open surface flows. Yet there are a few little challenges and this always growing page provides some answers.
 
-Since its early development, TELEMAC has become a robust and reliable tool for the numerically modeling of open surface flows. Yet there are a few little challenges and this page provides some answers (under development).
+```{admonition} Keyword-research the TELEMAC docs
+:class: tip
+To look up the reference, implementation, and/or meaning of a variable, class, script, file, or module, visit the {{ tmdoxy }}.
+```
 
 ## Traceback errors
 

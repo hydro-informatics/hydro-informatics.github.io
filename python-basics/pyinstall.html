@@ -55,7 +55,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Introduction to git" href="../get-started/git.html" />
+    <link rel="next" title="git" href="../get-started/git.html" />
     <link rel="prev" title="Integrated Development Environments (IDEs)" href="../get-started/ide.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -141,7 +141,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../get-started/git.html">
-     Introduction to git
+     git
     </a>
    </li>
    <li class="toctree-l2">
@@ -433,17 +433,12 @@
     <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../numerics/telemac2d-steady.html">
-       Steady 2d Simulation
+       Steady 2d
       </a>
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="../numerics/telemac2d-unsteady.html">
-       Unsteady 2d Simulation
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac-gaia.html">
-       Hydro-Morphodynamic 2d Simulation (Gaia)
+       Unsteady 2d
       </a>
      </li>
     </ul>
@@ -460,15 +455,20 @@
     <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../numerics/telemac3d-slf.html">
-       Telemac3d (SLF)
+       Steady 3d (SLF - Selafin)
       </a>
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="../numerics/telemac3d-med.html">
-       Telemac3d (Salome-Hydro and MED)
+       Steady 3d (MED and Salome)
       </a>
      </li>
     </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/telemac-gaia.html">
+     Gaia (Morphodynamics)
+    </a>
    </li>
   </ul>
  </li>
@@ -503,7 +503,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../documentation/documentation.html">
-   Markdown and Code Documentation
+   Markdown and Documentation
   </a>
  </li>
  <li class="toctree-l1">
@@ -824,8 +824,8 @@
 <span id="pip-quick"></span><h3>Quick Guide<a class="headerlink" href="#quick-guide" title="Permalink to this headline">¶</a></h3>
 <p>Consider installing, create and activate a new virtual environment for working with the contents of this eBook as explained in the following platform-dependent paragraphs.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="6ab6b5a2-4eda-4084-97e2-c3a010df1362" name="edd63a17-6d12-4959-a0dc-1d90f4ea13fa" type="radio">
-</input><label class="tabbed-label" for="6ab6b5a2-4eda-4084-97e2-c3a010df1362">
+<input checked="checked" id="ba06e449-9910-4390-950c-c375d6c3761e" name="43e05e7e-f737-4595-b961-23adc7694eb8" type="radio">
+</input><label class="tabbed-label" for="ba06e449-9910-4390-950c-c375d6c3761e">
 Linux</label><div class="tabbed-content docutils">
 <p>To avoid affecting the system’s Python interpreter, set up a virtual environment with <em>venv</em>. the first step is to make sure that <em>Python3</em> and <em>venv</em> are installed on the system:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">python3</span> <span class="n">python3</span><span class="o">-</span><span class="n">venv</span>
@@ -867,8 +867,8 @@ Python 3.X.X (default, MMM DD YYYY, hh:mm:ss)
 </div>
 <p>Recall that newer <em>Linux</em> versions may not differentiate between <em>Python2</em> and <em>Python3</em> (i.e., use <code class="docutils literal notranslate"><span class="pre">python</span></code> rather than <code class="docutils literal notranslate"><span class="pre">python3</span></code>).</p>
 </div>
-<input id="684fe17c-248c-48a3-8161-8e5497aadaf3" name="edd63a17-6d12-4959-a0dc-1d90f4ea13fa" type="radio">
-</input><label class="tabbed-label" for="684fe17c-248c-48a3-8161-8e5497aadaf3">
+<input id="d5bf2809-7a62-4ff5-ba08-4ca96c85170c" name="43e05e7e-f737-4595-b961-23adc7694eb8" type="radio">
+</input><label class="tabbed-label" for="d5bf2809-7a62-4ff5-ba08-4ca96c85170c">
 Windows</label><div class="tabbed-content docutils">
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -929,15 +929,15 @@ Windows</label><div class="tabbed-content docutils">
 <h3>Manage pip (Install, Uninstall, or Upgrade) Modules<a class="headerlink" href="#manage-pip-install-uninstall-or-upgrade-modules" title="Permalink to this headline">¶</a></h3>
 <p>More than 300,000 projects live on <a class="reference external" href="https://pypi.org/">pypi.org</a> and there are packages available for many purposes. To find suitable packages visit <a class="reference external" href="https://pypi.org/search/">https://pypi.org/search/</a>. To install (i.e., add) one of these <code class="docutils literal notranslate"><span class="pre">pip</span></code>/<code class="docutils literal notranslate"><span class="pre">pip3</span></code> packages use:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="84eb6a51-515b-4233-97be-01d18a41bc3d" name="1c17b838-29fb-4b74-ae9f-540a54c2add9" type="radio">
-</input><label class="tabbed-label" for="84eb6a51-515b-4233-97be-01d18a41bc3d">
+<input checked="checked" id="88981d83-61b9-4b72-bb1a-362d36237eeb" name="8b050abd-f045-4de4-bce5-a3e8b3d2ffd9" type="radio">
+</input><label class="tabbed-label" for="88981d83-61b9-4b72-bb1a-362d36237eeb">
 Linux Terminal</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
 </div>
 </div>
-<input id="46ac912d-e8f3-4c7a-993e-25ff366899bf" name="1c17b838-29fb-4b74-ae9f-540a54c2add9" type="radio">
-</input><label class="tabbed-label" for="46ac912d-e8f3-4c7a-993e-25ff366899bf">
+<input id="30e07902-71a3-4cf4-aa9f-1e8da47a6693" name="8b050abd-f045-4de4-bce5-a3e8b3d2ffd9" type="radio">
+</input><label class="tabbed-label" for="30e07902-71a3-4cf4-aa9f-1e8da47a6693">
 Windows Command Prompt</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
@@ -950,15 +950,15 @@ Windows Command Prompt</label><div class="tabbed-content docutils">
 </div>
 <p>To remove (i.e., uninstall) a <code class="docutils literal notranslate"><span class="pre">pip</span></code>/<code class="docutils literal notranslate"><span class="pre">pip3</span></code>-installed package use:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="b1749ab1-16f9-4e72-a8cb-4607043f7f42" name="29e07b21-1b05-4c7f-b921-311b36d29ba1" type="radio">
-</input><label class="tabbed-label" for="b1749ab1-16f9-4e72-a8cb-4607043f7f42">
+<input checked="checked" id="a930fee0-b3db-4e90-b516-e1f514e71448" name="1e46c87e-622d-4bb5-85de-56c966e76efe" type="radio">
+</input><label class="tabbed-label" for="a930fee0-b3db-4e90-b516-e1f514e71448">
 Linux Terminal</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">uninstall</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
 </div>
 </div>
-<input id="5f909af9-02a7-4d56-8067-1471affac70b" name="29e07b21-1b05-4c7f-b921-311b36d29ba1" type="radio">
-</input><label class="tabbed-label" for="5f909af9-02a7-4d56-8067-1471affac70b">
+<input id="aa81eae2-d401-4f28-8351-208bf1e54952" name="1e46c87e-622d-4bb5-85de-56c966e76efe" type="radio">
+</input><label class="tabbed-label" for="aa81eae2-d401-4f28-8351-208bf1e54952">
 Windows Command Prompt</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">uninstall</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
@@ -967,15 +967,15 @@ Windows Command Prompt</label><div class="tabbed-content docutils">
 </div>
 <p>To upgrade (update) a package that lives in a local user environment use:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="94b5b4e7-7861-40df-8bef-090a4e004694" name="302d3b1c-5404-4d95-9531-6995240d82aa" type="radio">
-</input><label class="tabbed-label" for="94b5b4e7-7861-40df-8bef-090a4e004694">
+<input checked="checked" id="c8e54ad3-8f6f-45ac-99ea-ed7a689e847e" name="ad1361c3-bd0f-4fa7-b23a-e865ecdd9a3c" type="radio">
+</input><label class="tabbed-label" for="c8e54ad3-8f6f-45ac-99ea-ed7a689e847e">
 Linux Terminal</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
 </div>
 </div>
-<input id="a25ef59a-7eb9-4211-973a-2e67f0b5ccac" name="302d3b1c-5404-4d95-9531-6995240d82aa" type="radio">
-</input><label class="tabbed-label" for="a25ef59a-7eb9-4211-973a-2e67f0b5ccac">
+<input id="4defa88f-5567-48d5-a93e-46822b8aad90" name="ad1361c3-bd0f-4fa7-b23a-e865ecdd9a3c" type="radio">
+</input><label class="tabbed-label" for="4defa88f-5567-48d5-a93e-46822b8aad90">
 Windows Command Prompt</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="o">--</span><span class="n">user</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
@@ -999,7 +999,7 @@ Windows Command Prompt</label><div class="tabbed-content docutils">
 <div class="section" id="conda-quick">
 <span id="id2"></span><h3>Quick Guide<a class="headerlink" href="#conda-quick" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
-<li><p>Download the <em>flussenv</em> <a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/flusstools-pckg/main/environment.yml">environment file</a> (right-click &gt; <em>Save Link as …</em> &gt; select target directory). If needed, copy the file contents of <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> in a local text editor, such as <a class="reference internal" href="../get-started/others.html#npp"><span class="std std-ref">NotepadPlusPlus</span></a>, and save the file for example in a directory called <em>C:/temp/</em>).</p></li>
+<li><p>Download the <em>flussenv</em> <a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/flusstools-pckg/main/environment.yml">environment file</a> (right-click &gt; <em>Save Link as …</em> &gt; select target directory). If needed, copy the file contents of <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> in a local text editor, such as <a class="reference internal" href="../get-started/others.html#npp"><span class="std std-ref">NotepadPlusPlus (Text Editor)</span></a>, and save the file for example in a directory called <em>C:/temp/</em>).</p></li>
 <li><p>Open a command line</p>
 <ul class="simple">
 <li><p>On <em>Windows</em>: <em>Anaconda Prompt</em> (<code class="docutils literal notranslate"><span class="pre">Windows</span></code> key &gt; type <code class="docutils literal notranslate"><span class="pre">Anaconda</span> <span class="pre">Prompt</span></code> &gt; hit <code class="docutils literal notranslate"><span class="pre">Enter</span></code>).</p></li>
@@ -1056,13 +1056,13 @@ Windows Command Prompt</label><div class="tabbed-content docutils">
 <h3>JupyterLab<a class="headerlink" href="#jupyterlab" title="Permalink to this headline">¶</a></h3>
 <p>The following descriptions require that <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a> is installed for locally editing <em>Jupyter</em> notebooks (<em>.ipynb</em> files), <em>Python</em> scripts (<em>.py</em> files), and folders.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="cc2337c2-ae7e-48a1-a276-120965eef089" name="bfb19a47-37b6-4d76-b8f0-9c3486d72059" type="radio">
-</input><label class="tabbed-label" for="cc2337c2-ae7e-48a1-a276-120965eef089">
+<input checked="checked" id="6ec2d7b6-71e9-4c44-a690-e2280f932b6a" name="f7414786-74db-46bf-a51f-c565377dfabd" type="radio">
+</input><label class="tabbed-label" for="6ec2d7b6-71e9-4c44-a690-e2280f932b6a">
 Linux</label><div class="tabbed-content docutils">
 <p>Start <em>JupyterLab</em> by typing <code class="docutils literal notranslate"><span class="pre">jupyter-lab</span></code> in <em>Terminal</em>.</p>
 </div>
-<input id="898a1ec4-6449-485d-9bf2-6aabc5f5511a" name="bfb19a47-37b6-4d76-b8f0-9c3486d72059" type="radio">
-</input><label class="tabbed-label" for="898a1ec4-6449-485d-9bf2-6aabc5f5511a">
+<input id="e472ab9c-ddfa-46c2-89da-0d08ca8bbbbb" name="f7414786-74db-46bf-a51f-c565377dfabd" type="radio">
+</input><label class="tabbed-label" for="e472ab9c-ddfa-46c2-89da-0d08ca8bbbbb">
 Windows</label><div class="tabbed-content docutils">
 <p>Start <em>JupyterLab</em> by typing <code class="docutils literal notranslate"><span class="pre">jupyter-lab</span></code> in <em>Anaconda Prompt</em>.</p>
 </div>
@@ -1114,8 +1114,8 @@ Windows</label><div class="tabbed-content docutils">
 <span id="atom-setup"></span><h3>Atom and Python<a class="headerlink" href="#atom-and-python" title="Permalink to this headline">¶</a></h3>
 <p>Depending on your platform make sure that all requirements are installed to configure <em>Atom</em>s <code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code> package:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="14f2cf88-1df4-4c1f-9562-5d4379c66fdc" name="45d89eb2-a82c-4058-b6c6-f49f79e059be" type="radio">
-</input><label class="tabbed-label" for="14f2cf88-1df4-4c1f-9562-5d4379c66fdc">
+<input checked="checked" id="909a8080-9999-4ed2-b856-f63844e6607a" name="7611c573-c2ee-4e0f-a7b1-acae27e5105a" type="radio">
+</input><label class="tabbed-label" for="909a8080-9999-4ed2-b856-f63844e6607a">
 Linux</label><div class="tabbed-content docutils">
 <div class="admonition-requirements admonition">
 <p class="admonition-title">Requirements</p>
@@ -1150,8 +1150,8 @@ Python 3.X.X (default, MMM DD YYYY, hh:mm:ss)
 </div>
 <p>The import of <em>flusstools</em> should pass silently. Otherwise, re-install <em>flusstools</em> according to the above <a class="reference internal" href="#pip-quick"><span class="std std-ref">Quick Guide</span></a> for installing a virtual environment.</p>
 </div>
-<input id="0a2b3285-0734-407a-a139-0297fd8ec6f8" name="45d89eb2-a82c-4058-b6c6-f49f79e059be" type="radio">
-</input><label class="tabbed-label" for="0a2b3285-0734-407a-a139-0297fd8ec6f8">
+<input id="faece30c-2053-4734-b08b-72f4e7edec23" name="7611c573-c2ee-4e0f-a7b1-acae27e5105a" type="radio">
+</input><label class="tabbed-label" for="faece30c-2053-4734-b08b-72f4e7edec23">
 Windows</label><div class="tabbed-content docutils">
 <div class="admonition-requirements admonition">
 <p class="admonition-title">Requirements</p>
@@ -1253,7 +1253,7 @@ Windows</label><div class="tabbed-content docutils">
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="../get-started/ide.html" title="previous page">Integrated Development Environments (IDEs)</a>
-    <a class='right-next' id="next-link" href="../get-started/git.html" title="next page">Introduction to git</a>
+    <a class='right-next' id="next-link" href="../get-started/git.html" title="next page">git</a>
 
         </div>
         

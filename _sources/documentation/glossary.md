@@ -17,6 +17,8 @@ Bedload
   ```{image} https://github.com/Ecohydraulics/media/raw/master/png/sediment-uptake.png
   ```
 
+  In addition, the term *traveling bedload* refers to a transport mode that is similar to wash load, but without suspended load {cite:p}`yu_effect_2009,piton_sediment_2016`.
+
   *French: Charriage <br>German: Geschiebtransport*
 
 Boussinesq
@@ -60,6 +62,15 @@ Diffusion
   Diffusion is the result of random motion of particles, driven by differences in concentration (e.g., dissipation of highly concentrated particles towards regions of low concentration). Mathematically, diffusion is described by $\frac{\partial \psi}{\partial t} = \nabla \cdot (D \nabla \psi)$ where $\psi$ is a constant of the particle/substance in consideration; $D$ is a diffusion coefficient (or diffusivity) in m$^2$/s, which is a proportionality constant between molecular flux and the gradient of a substance (or species). The $\nabla$ operator is a vector of partial differentials $\frac{\partial}{\partial x_i}$ where $x_i$ refers to the dimensions of the flow field {cite:p}`kundu_fluid_2008`.
 
   *French: Diffusion <br>German: Diffusion*
+
+Dimensionless bed shear stress
+  The dimensionless bed shear stress $\tau_x$ (in the literature often called $\theta$) is derived from the shear forces that act on the riverbed as a result of flowing water. $\tau_x$ is a key parameter in the calculation of {term}`Bedload` transport where many semi-empiric equations assume that a sediment grain is mobile when a particle size-related, critical value of the dimensionless bed shear stress is exceeded. This critical value of dimensionless bed shear stress is also referred to as {term}`Shields parameter`. To this end, $\tau_x$ is calculated based on hydraulic characteristics and the characteristic grain size $D_{pq}$ {cite:p}`von_karman_mechanische_1930,kramer_modellgeschiebe_1932`:
+
+  $$
+	\tau_x = \frac{R_h~\cdot~S_e}{\left(s-1\right)~\cdot~D_{pq}}
+  $$
+
+  where $R_h$ is the hydraulic radius (cf. calculation in the {ref}`1d hydraulic Python exercise <calc-1d-hyd>`); $S_{e}$ is energy slope; and $s$ is the ratio of sediment grain and water density (typically 2.68) {cite:p}`schwindt_hydro-morphological_2017`. $R_h$ is often substituted by water depth, which is a valid assumption in wide rivers with monotonous cross-sectional shape, and for cells in a 2d numerical model.
 
 Echo sounder
   An echo sounder emits an acoustic signal under water, which is reflected by the objects of the underwater landscape. Echo sounding is an active {term}`Sonar` technique and enables the creation of an underwater DEM, which is also referred to as bathymetry. To perform echo sounding a probe must be installed on a boat that requires a minimum navigable water depth. In addition, the use of the echo sounder (probe) itself also requires a minimum water depth to operate with little noise inference. Therefore, by experience, a minimum water depth of 1-2 m is necessary to survey the bathymetry of a river by echo sounding.
@@ -162,12 +173,15 @@ Saint-Venant equations
   Cf. {term}`Shallow water equations`.
 
 Sediment transport
-  Fluvial sediment transport encompasses two modes of particle displacement: (1) suspended load and (2) bedload (see figure below). Finer particles with a weight that can be carried by the fluid (water) are transported as {term}`Suspended load`. Coarser particles rolling, sliding, and jumping on the channel bed are transported as {term}`Bedload`. There is third type of transport, the so-called wash load, which is finer than the coarse bed load, but too heavy (large) to be transported in suspension {cite:p}`einstein_bed-load_1950`.
+  Fluvial sediment transport encompasses two modes of particle displacement: (1) suspended load and (2) bedload (see figure below). Finer particles with a weight that can be carried by the fluid (water) are transported as {term}`Suspended load`. Coarser particles rolling, sliding, and jumping on the channel bed are transported as {term}`Bedload`. There is third type of transport, the so-called wash load, which is finer than the coarse bed load, but too heavy (large) to be transported in suspension {cite:p}`einstein_bed-load_1950`. The units for sediment transport are for an integral flow cross-section kg$^3\cdot$s$^{-1}$ or per unit width kg$^3\cdot$s$^{-1}$m$^{-1}$.
 
   ```{image} https://github.com/Ecohydraulics/media/raw/master/png/sediment-transport.png
   ```
 
   *French: Transport solide <br>German: Sedimenttransport*
+
+Sediment yield
+  The sediment yield is the amount of sediment eroded per unit area (tons$\cdot$km$^{-2}\cdot$year$^{-1}$) of a watershed {cite:p}`griffiths2006a`.
 
 Shallow water equations
   In shallow (i.e., small water depths) and wide waters (many rivers), the assumption of hydrostatic pressure distribution can be made to simplify the {term}`Navier-Stokes equations`. The corresponding simplified form of the {term}`Navier-Stokes equations` is referred to as the shallow water equations. The shallow water equations imply that vertical flow velocity is negligible compared to horizontal (and longitudinal) flow velocity. This assumption is valid in many river systems, but there are several cases for which the shallow water equations are not suited {cite:p}`kundu_fluid_2008`.
@@ -175,6 +189,24 @@ Shallow water equations
   For instance, the depth-averaged shallow water equations are **not suited** for any pressurized flows (e.g., at weirs or in pipes). This eBook recommends to **use the shallow water equations** only when the water depth is smaller than a 1/20 times the characteristic wavelength (e.g., flood waves or in tsunami/oceanic models) and when the water depth is smaller than 1/10 of the wetted channel width. The application of the shallow water equations is featured in this eBook with the tutorials on 2d numerical modeling (i.e., in the {ref}`BASEMENT <basement2d>` and {ref}`Telemac2d <telemac2d-steady>` chapters).
 
   *French: Équations (de Barré) de Saint-Venant <br>German: Flachwassergleichungen / Saint-Venant-Gleichungen*
+
+Shields parameter
+  The {cite:t}`shields_anwendung_1936` parameter $\tau_{x,cr}$ (in the literature also often named $\theta_{cr}$) is a dimensionless value of critical bed shear stress for sediment mobility. For this reason, the Shields parameter is also often referred to as **dimensionless critical bed shear stress**. Flow conditions and grain sizes with a {term}`Dimensionless bed shear stress` $\tau_x$ smaller than the Shields parameter curve are considered immobile. Vice versa, flow conditions and grains associated with a {term}`Dimensionless bed shear stress` larger than the Shields parameter are considered mobile. In fully turbulent flow, the Shields parameter can be taken as a constant value of approximately 0.047$\pm$0.15 {cite:p}`von_karman_mechanische_1930,kramer_modellgeschiebe_1932,smart_sedimenttransport_1983`. To evaluate if a grain is in motion, its {term}`Dimensionless bed shear stress` value is plotted against its dimensionless diameter $D_x$ in the so-called Shields diagram (also referred to as the *Hunter-Rouse* {cite:p}`rouse_critical_1965` diagram). $D_x$ is calculated for any grain with a diameter $D_{pq}$ (in m) as {cite:p}`einstein_bed-load_1950`:
+
+  $$
+  D_x = \left[\frac{(s-1)\cdot g}{\nu^2}\right]^{1/3}\cdot D_{pq}
+  $$
+
+  where $s$ is the ratio of sediment grain and water density (typically 2.68); $g$ is gravitational acceleration; and $\nu$ is the kinematic viscosity of water ($\approx$10$^{-6}$m$^{2}$ s$^{-1}$) {cite:p}`schwindt_hydro-morphological_2017`. Read the definition of {term}`Dimensionless bed shear stress` for the calculation of $\tau_{x}$. {numref}`Figure %s <shields-diagram>` shows the Shields diagram where the Shields curve is plotted based on descriptions in {cite:t}`guo_logarithmic_2002`.
+
+  ```{figure} ../img/shields-diagram.png
+  :alt: Shields diagram guo hunter critical bed shear stress
+  :name: shields-diagram
+
+  The Shields parameter $\tau_{x,cr}$ (critical dimensionless bed shear stress) for grain mobility as a function of the dimensionless particle diameter $D_x$, according to {cite:t}`guo_logarithmic_2002`.
+  ```
+
+  Beyond grain size and local hydrodynamics, $\tau_{x,cr}$ is also a function of global channel roughness and slope, relative submergence and bedload transport intensity {cite:p}`wilcock_critical_1993,gregoretti_inception_2008,lamb_is_2008,recking_bed-load_2008,ferguson_river_2012`.
 
 Suspended load
   Suspended load is a special type of {term}`Sediment transport` describing the displacement of fine particles with the bulk flow.

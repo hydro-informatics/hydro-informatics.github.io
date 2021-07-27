@@ -403,7 +403,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="basement2d.html">
-     Simulation Setup (Steady 2d)
+     Steady 2d Simulation and Post-processing
     </a>
    </li>
   </ul>
@@ -764,8 +764,8 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gaia-steering">
-   Gaia Steering
+  <a class="reference internal nav-link" href="#gaia-setup">
+   Gaia Setup
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -779,8 +779,18 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#physical-parameters">
-     Physical Parameters
+    <a class="reference internal nav-link" href="#physical-parameters-general">
+     Physical Parameters (General)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bedload">
+     Bedload
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#suspended-load">
+     Suspended Load
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -906,33 +916,38 @@ The difference between Gaia and SISYPHE<div class="summary-down docutils">
 </div>
 </div>
 </div>
-<div class="section" id="gaia-steering">
-<h2>Gaia Steering<a class="headerlink" href="#gaia-steering" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="gaia-setup">
+<h2>Gaia Setup<a class="headerlink" href="#gaia-setup" title="Permalink to this headline">¶</a></h2>
 <p><em>This section is partially based on descriptions from <a class="reference external" href="https://github.com/KMouris">Kilian Mouris</a>.</em></p>
 <p>The following instructions refer to the setup of the above-created Gaia steering file (<code class="docutils literal notranslate"><span class="pre">gaia-morphodynamics.cas</span></code>), which requires some mandatory parameters and enables many more optional keywords settings. An overview of all keywords can be found in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/reference/gaia_reference_v8p2.pdf">Gaia reference manual</a> and the dictionary file <code class="docutils literal notranslate"><span class="pre">/telemac/v8p2/sources/gaia/gaia.dico</span></code>. Similar to the Telemac2d or Telemac3d hydrodynamics steering file, the Gaia steering file requires definitions of general (file-related), physical, and numerical parameters.</p>
 <div class="section" id="general-parameters">
 <h3>General Parameters<a class="headerlink" href="#general-parameters" title="Permalink to this headline">¶</a></h3>
-<p>The general parameters defining mandatory input and output files resemble the hydrodynamic steering file. Input files can also be the same as used in the hydrodynamics steering file. Therefore, <strong>define</strong> the <strong><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/qgismesh.slf">qgismesh.slf</a></strong> from the <a class="reference internal" href="pre-slf-tm.html#slf-prepro-tm"><span class="std std-ref">pre-processing</span></a> <strong>as geometry file</strong> and <strong><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli">boundaries.cli</a></strong> as <strong>boundary conditions file</strong>. However, the Gaia <code class="docutils literal notranslate"><span class="pre">RESULTS</span> <span class="pre">FILE</span></code> keyword should differ from the <code class="docutils literal notranslate"><span class="pre">RESULTS</span> <span class="pre">FILE</span></code> keyword in the hydrodynamic steering file.</p>
+<p>The general parameters defining mandatory input and output files resemble the hydrodynamic steering file. Input files can also be the same as used in the hydrodynamics steering file. Therefore, <strong>define</strong> the <strong><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/qgismesh.slf">qgismesh.slf</a></strong> from the <a class="reference internal" href="pre-slf-tm.html#slf-prepro-tm"><span class="std std-ref">pre-processing</span></a> <strong>as geometry file</strong> and <strong>boundaries-gaia.cli</strong> as <strong>boundary conditions file</strong>. The boundary conditions file will be created based on the hydrodynamics <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli">boundaries.cli</a> in the section on <a class="reference internal" href="#gaia-bc"><span class="std std-ref">boundary conditions for Gaia</span></a>. The Gaia <strong>RESULTS FILE</strong> keyword should also differ from the RESULTS FILE keyword in the hydrodynamic steering file.</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
 <span class="o">/</span>
 <span class="o">/</span> <span class="n">COMPUTATION</span> <span class="n">ENVIRONMENT</span>
 <span class="o">/</span>
-<span class="n">BOUNDARY</span> <span class="n">CONDITIONS</span> <span class="k">FILE</span> <span class="p">:</span> <span class="n">boundaries</span><span class="p">.</span><span class="n">cli</span>
+<span class="n">BOUNDARY</span> <span class="n">CONDITIONS</span> <span class="k">FILE</span> <span class="p">:</span> <span class="n">boundaries</span><span class="o">-</span><span class="n">gaia</span><span class="p">.</span><span class="n">cli</span>
 <span class="n">GEOMETRY</span> <span class="k">FILE</span> <span class="p">:</span> <span class="n">qgismesh</span><span class="p">.</span><span class="n">slf</span>
 <span class="n">RESULTS</span> <span class="k">FILE</span> <span class="p">:</span> <span class="n">rGaia</span><span class="o">-</span><span class="n">steady2d</span><span class="p">.</span><span class="n">slf</span>
 <span class="n">MASS</span><span class="o">-</span><span class="n">BALANCE</span> <span class="p">:</span> <span class="n">YES</span>
 </pre></div>
 </div>
-<p>Graphical output variables related to sediment transport can be defined with the <code class="docutils literal notranslate"><span class="pre">VARIABLES</span> <span class="pre">FOR</span> <span class="pre">GRAPHIC</span> <span class="pre">PRINTOUTS</span></code> keyword for <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> and/or <a class="reference internal" href="../documentation/glossary.html#term-Suspended-load"><span class="xref std std-term">Suspended load</span></a> with the following list-options:</p>
+<p>Graphical output variables related to sediment transport can be defined with the <strong>VARIABLES FOR GRAPHIC PRINTOUTS</strong> keyword for <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> and/or <a class="reference internal" href="../documentation/glossary.html#term-Suspended-load"><span class="xref std std-term">Suspended load</span></a> with the following list-options:</p>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">B</span></code> for bottom elevation in (m a.s.l.)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">E</span></code> for bottom evolution in (m)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">F</span></code> for <a class="reference internal" href="../documentation/glossary.html#term-Froude-number"><span class="xref std std-term">Froude number</span></a> (-)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">M</span></code> for the magnitude (length) of the bi-directional (i.e., <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions) unit solid transport (bedload, suspended load, and dissolved tracers) <span class="math notranslate nohighlight">\(\boldsymbol{q_s}\)</span> (read more in the definition of the <a class="reference internal" href="../documentation/glossary.html#term-Exner-equation"><span class="xref std std-term">Exner equation</span></a>) in (kg<span class="math notranslate nohighlight">\(\cdot\)</span>m<span class="math notranslate nohighlight">\(^{-1}\cdot\)</span>s<span class="math notranslate nohighlight">\(^{-1}\)</span>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MU</span></code> for the skin friction coefficient (depends on the <a class="reference internal" href="telemac2d-steady.html#tm2d-friction"><span class="std std-ref">friction law</span></a> in the hydrodynamic steering file)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">N</span></code> for unit solid transport (bedload, suspended load, and dissolved tracers) in <span class="math notranslate nohighlight">\(x\)</span>-direction <span class="math notranslate nohighlight">\(\boldsymbol{q_s}\cdot\cos\alpha\)</span> in (kg<span class="math notranslate nohighlight">\(\cdot\)</span>m<span class="math notranslate nohighlight">\(^{-1}\cdot\)</span>s<span class="math notranslate nohighlight">\(^{-1}\)</span>) where  <span class="math notranslate nohighlight">\(\alpha\)</span> is the angle between the longitudinal channel (<span class="math notranslate nohighlight">\(x\)</span>) axis and the solid transport vector <span class="math notranslate nohighlight">\(\boldsymbol{q_s}\)</span>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">P</span></code> for unit solid transport (bedload, suspended load, and dissolved tracers) in <span class="math notranslate nohighlight">\(y\)</span>-direction <span class="math notranslate nohighlight">\(\boldsymbol{q_s}\cdot\sin\alpha\)</span> in (kg<span class="math notranslate nohighlight">\(\cdot\)</span>m<span class="math notranslate nohighlight">\(^{-1}\cdot\)</span>s<span class="math notranslate nohighlight">\(^{-1}\)</span>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">QSBL</span></code> <code class="docutils literal notranslate"><span class="pre">M</span></code> for the magnitude (length) of the bi-directional (i.e., <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions) unit <strong>bedload (only)</strong> transport <span class="math notranslate nohighlight">\(\boldsymbol{q_b}\)</span> in (kg<span class="math notranslate nohighlight">\(\cdot\)</span>m<span class="math notranslate nohighlight">\(^{-1}\cdot\)</span>s<span class="math notranslate nohighlight">\(^{-1}\)</span>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">R</span></code> for the non-erodible bottom (?)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">S</span></code> for water surface elevation in (m a.s.l.)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">TOB</span></code> for bed shear stress in (N<span class="math notranslate nohighlight">\(\cdot\)</span>m<span class="math notranslate nohighlight">\(^{-2}\)</span>)</p></li>
 </ul>
-<p>The parameters <code class="docutils literal notranslate"><span class="pre">M</span></code> and <code class="docutils literal notranslate"><span class="pre">QSBL</span></code> will result in the same output if no suspended load is simulated. To output multiple parameters, set the graphical printouts keyword as follows:</p>
+<p>The parameters <code class="docutils literal notranslate"><span class="pre">M</span></code> and <code class="docutils literal notranslate"><span class="pre">QSBL</span></code> will result in the same output if no suspended load is simulated. In addition, also Sisyphe printout parameters may be used according to the definitions in section 1.2.4 in the <a class="reference external" href="http://svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/sisyphe/user/sisyphe_user_v8p2.pdf">Sisyphe manual</a>. To output multiple parameters, set the graphical printouts keyword as follows:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">continued</span><span class="p">:</span> <span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
 <span class="o">/</span> <span class="p">...</span>
 <span class="n">VARIABLES</span> <span class="n">FOR</span> <span class="n">GRAPHIC</span> <span class="n">PRINTOUTS</span> <span class="p">:</span> <span class="n">E</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">QSBL</span><span class="p">,</span><span class="n">TOB</span><span class="p">,</span><span class="n">U</span><span class="p">,</span><span class="n">V</span>
@@ -941,32 +956,249 @@ The difference between Gaia and SISYPHE<div class="summary-down docutils">
 </div>
 <div class="section" id="boundary-conditions">
 <span id="gaia-bc"></span><h3>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this headline">¶</a></h3>
-<p>The boundary conditions in Gaia work similarly as for hydrodynamics and can be added to the existing boundaries file through modification of the <strong>LITBOR</strong> definition. For this purpose, open the boundary conditions file <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli">boundaries.cli</a> in a <a class="reference internal" href="../get-started/others.html#npp"><span class="std std-ref">text editor</span></a> and modify the eighth entry of all open liquid boundary lines. Counting line entries sounds like a tedious task, but is fairly straightforward in practice:</p>
+<p>The boundary conditions in Gaia work similarly as for hydrodynamics and can be derived from the hydrodynamics <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli">boundaries.cli</a> file.</p>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Recall the structure of the hydrodynamics boundaries.cli file</p>
+<p>The <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli">boundaries.cli</a> file has 13 variables per line, which are separated with a <code class="docutils literal notranslate"><span class="pre">space</span></code> and this is how the file head looks like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>         <span class="mi">138</span>           <span class="mi">1</span>   <span class="c1">#</span>
+<span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9836</span>           <span class="mi">2</span>   <span class="c1">#</span>
+<span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9838</span>           <span class="mi">3</span>   <span class="c1">#</span>
+<span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9194</span>           <span class="mi">4</span>   <span class="c1">#</span>
+<span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9827</span>           <span class="mi">5</span>   <span class="c1">#</span>
+<span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9828</span>           <span class="mi">6</span>   <span class="c1">#</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<p><a class="reference internal" href="#tab-gaia-bc"><span class="std std-numref">Table 8</span></a> shows the variables of a Gaia boundary conditions files compared with the hydrodynamic Telemac2d/3d <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli">boundaries.cli</a> file.</p>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+View the Cross-comparison Table of Boundary variables and types in Telemac2d/3d and Gaia<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<table class="table" id="tab-gaia-bc">
+<caption><span class="caption-number">Table 8 </span><span class="caption-text">Boundary variables and types in Telemac2d/3d and Gaia.</span><a class="headerlink" href="#tab-gaia-bc" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p class="card-text">Variable no.<br></p></th>
+<th class="head"><p class="card-text">Flag<br></p></th>
+<th class="head"><p class="card-text">Telemac2d/3d<br>
+<small><em>parameter</em></small></p></th>
+<th class="head"><p class="card-text">Gaia<br>
+<small><em>parameter</em></small></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="card-text">1</p></td>
+<td><p class="card-text">boundary type</p></td>
+<td><p class="card-text">LIHBOR<br>
+<small><em>water depth</em></small></p></td>
+<td><p class="card-text">LIHBOR<br>
+<small><em>water depth</em></small></p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text">2</p></td>
+<td><p class="card-text">boundary type</p></td>
+<td><p class="card-text">LIUBOR<br>
+<small><em><span class="math notranslate nohighlight">\(x\)</span>-flowrate or <span class="math notranslate nohighlight">\(u\)</span></em></small></p></td>
+<td><p class="card-text">LIQBOR<br>
+<small><em>sediment load</em></small></p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text">3</p></td>
+<td><p class="card-text">boundary type</p></td>
+<td><p class="card-text">LIVBOR<br>
+<small><em><span class="math notranslate nohighlight">\(y\)</span>-flowrate or <span class="math notranslate nohighlight">\(v\)</span></em></small></p></td>
+<td><p class="card-text">LIVBOR<br>
+<small><em>velocity</em></small></p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text">4</p></td>
+<td><p class="card-text">Prescription</p></td>
+<td><p class="card-text">HBOR<br>
+<small><em>water depth</em></small></p></td>
+<td><p class="card-text">Q2BOR<br>
+<small><em>sediment load</em></small></p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text">5</p></td>
+<td><p class="card-text">Prescription</p></td>
+<td><p class="card-text">UBOR<br>
+<small><em><span class="math notranslate nohighlight">\(x\)</span>-flowrate or <span class="math notranslate nohighlight">\(u\)</span></em></small></p></td>
+<td><p class="card-text">UBOR<br>
+<small><em><span class="math notranslate nohighlight">\(x\)</span>-flowrate or <span class="math notranslate nohighlight">\(u\)</span></em></small></p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text">6</p></td>
+<td><p class="card-text">Prescription</p></td>
+<td><p class="card-text">VBOR<br>
+<small><em><span class="math notranslate nohighlight">\(y\)</span>-flowrate or <span class="math notranslate nohighlight">\(v\)</span></em></small></p></td>
+<td><p class="card-text">VBOR<br>
+<small><em><span class="math notranslate nohighlight">\(y\)</span>-flowrate or <span class="math notranslate nohighlight">\(v\)</span></em></small></p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text">7</p></td>
+<td><p class="card-text">Prescription</p></td>
+<td><p class="card-text">AUBOR<br>
+<small><em>wall friction</em></small></p></td>
+<td><p class="card-text">AUBOR<br>
+<small><em>wall friction</em></small></p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text">8</p></td>
+<td><p class="card-text">boundary type</p></td>
+<td><p class="card-text">LITBOR<br>
+<small><em>tracer</em></small></p></td>
+<td><p class="card-text">LIEBOR (LICBOR)<br>
+<small><em>bottom elevation</em></small></p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text">9</p></td>
+<td><p class="card-text">Prescription</p></td>
+<td><p class="card-text">TBOR<br>
+<small><em>tracer</em></small></p></td>
+<td><p class="card-text">EBOR (CBOR)<br>
+<small><em>bottom elevation</em></small></p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text">10</p></td>
+<td><p class="card-text">Prescription</p></td>
+<td><p class="card-text">ATBOR<br>
+<small><em>heat fluxes</em></small></p></td>
+<td><p class="card-text">ATBOR<br>
+<small><em>heat fluxes</em></small></p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text">11</p></td>
+<td><p class="card-text">Prescription</p></td>
+<td><p class="card-text">BTBOR<br>
+<small><em>heat fluxes</em></small></p></td>
+<td><p class="card-text">BTBOR<br>
+<small><em>heat fluxes</em></small></p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text">12</p></td>
+<td><p class="card-text">Global Node ID</p></td>
+<td><p class="card-text">N<br>
+<small><em>Selafin mesh</em></small></p></td>
+<td><p class="card-text">N<br>
+<small><em>Selafin mesh</em></small></p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text">13</p></td>
+<td><p class="card-text">Local Node ID</p></td>
+<td><p class="card-text">K <br><small><em>boundary file</em></small></p></td>
+<td><p class="card-text">K <br><small><em>boundary file</em></small></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</details><p>The boundary type variables (no. 1, 2, 3, and 8) listed in <a class="reference internal" href="#tab-gaia-bc"><span class="std std-numref">Tab. 8</span></a> can take the integer values <code class="docutils literal notranslate"><span class="pre">2</span></code> (closed wall), <code class="docutils literal notranslate"><span class="pre">4</span></code> (free Neumann-type boundary), <code class="docutils literal notranslate"><span class="pre">5</span></code> (Dirichlet-type prescribed boundary), or <code class="docutils literal notranslate"><span class="pre">6</span></code> (Dirichlet-type velocity).</p>
+<p>To define sediment transport boundaries for Gaia, <strong>create a copy of <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli">boundaries.cli</a></strong> and call it <strong>boundaries-gaia.cli</strong>. In the context of Gaia, most hydrodynamic boundary types can be kept and only the <strong>LIEBOR</strong> entry requires some adaptations. For this purpose, open the new <strong>boundaries-gaia.cli</strong> file with a <a class="reference internal" href="../get-started/others.html#npp"><span class="std std-ref">text editor</span></a> and modify the eighth entry (cf. <a class="reference internal" href="#tab-gaia-bc"><span class="std std-numref">Tab. 8</span></a>) of all open liquid boundary lines. Counting line entries sounds like a tedious task, but is fairly straightforward in practice:</p>
 <ul class="simple">
-<li><p>The first three entries of the upstream and downstream boundaries are <strong>LIHBOR</strong> (water depth), <strong>LIUBOR</strong> (flow velocity in <span class="math notranslate nohighlight">\(x\)</span>-direction), and <strong>LIVBOR</strong> (flow velocity in <span class="math notranslate nohighlight">\(y\)</span>-direction). These three values were set to <code class="docutils literal notranslate"><span class="pre">5</span></code> in the <a class="reference internal" href="telemac2d-steady.html#tm2d-dry"><span class="std std-ref">dry-initialized steady2d simulation</span></a>, which defines the upstream and downstream boundaries with <strong>prescribed H and Q</strong>.</p></li>
-<li><p>The following four entries are <code class="docutils literal notranslate"><span class="pre">0.000</span></code> (for HBOR, UBOR, VBOR, and AUBOR) and would prescribe (assign) float values directly in the boundary file (deactivated through the <code class="docutils literal notranslate"><span class="pre">0.000</span></code> setting).</p></li>
-<li><p>The eighth entry is the <strong>LITBOR</strong> type, which currently set to <code class="docutils literal notranslate"><span class="pre">2</span></code> (closed wall) and has to be modified for use with Gaia:</p>
+<li><p>The first three entries (cf. <a class="reference internal" href="#tab-gaia-bc"><span class="std std-numref">Tab. 8</span></a>) of the upstream and downstream boundaries are:</p>
 <ul>
-<li><p>Open the upstream and downstream boundary for sediment transport by <strong>setting LITBOR to <code class="docutils literal notranslate"><span class="pre">4</span></code></strong> (prescribed flowrate). This setting is useful for prescribing sold flowrates either in the steering file or with a liquid boundaries file as described in the <a class="reference internal" href="telemac2d-unsteady.html#tm2d-liq-file"><span class="std std-ref">unsteady (quasi-steady) tutorial</span></a>.</p></li>
+<li><p><strong>LIHBOR</strong> for water depth,</p></li>
+<li><p><strong>LIQBOR</strong> for sediment transport, and <strong>LIVBOR</strong> (flow velocity). These three values were set to <code class="docutils literal notranslate"><span class="pre">5</span></code> in the corresponding hydrodynamics boundary file (<a class="reference internal" href="telemac2d-steady.html#tm2d-dry"><span class="std std-ref">dry-initialized steady2d simulation</span></a>) and can be kept to use <strong>prescribed H and Q</strong> upstream and downstream boundaries.</p></li>
+</ul>
+</li>
+<li><p>The following four entries (4-7 in <a class="reference internal" href="#tab-gaia-bc"><span class="std std-numref">Tab. 8</span></a>) are <code class="docutils literal notranslate"><span class="pre">0.000</span></code> (for Q2BOR, UBOR, VBOR, and AUBOR) and would prescribe (assign) float values directly in the boundary file (deactivated through the <code class="docutils literal notranslate"><span class="pre">0.000</span></code> setting).</p></li>
+<li><p>The eighth entry is the <strong>LIEBOR</strong> type, which currently set to <code class="docutils literal notranslate"><span class="pre">2</span></code> (closed wall) and has to be modified for use with Gaia:</p>
+<ul>
+<li><p>Open the upstream and downstream boundary for sediment transport by <strong>setting LIEBOR to <code class="docutils literal notranslate"><span class="pre">4</span></code></strong> (prescribed flowrate). This setting is useful for prescribing sold flowrates either in the steering file or with a liquid boundaries file as described in the <a class="reference internal" href="telemac2d-unsteady.html#tm2d-liq-file"><span class="std std-ref">unsteady (quasi-steady) tutorial</span></a>.</p></li>
 <li><p>Alternatively, a value of <code class="docutils literal notranslate"><span class="pre">5</span></code> can be assigned for prescribing equilibrium solid flowrates, which also requires that EBOR is set to <code class="docutils literal notranslate"><span class="pre">0.0</span></code> (no change of bottom elevation).</p></li>
 </ul>
 </li>
 </ul>
+<p>The boxes below indicate how the required adaptations in the <code class="docutils literal notranslate"><span class="pre">boundaries-gaia.cli</span></code> file where the importance lies in the second entry (<strong>LIQBOR</strong>) being set to <code class="docutils literal notranslate"><span class="pre">5</span></code> and the eighth entry (<strong>LIEBOR</strong>) being set to <code class="docutils literal notranslate"><span class="pre">4</span></code>.</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="7f5d4a3a-b058-49a7-939a-2cd0568860ee" name="d19a9c81-b278-4764-b800-8e6c5a4525c7" type="radio">
+</input><label class="tabbed-label" for="7f5d4a3a-b058-49a7-939a-2cd0568860ee">
+Upstream boundary</label><div class="tabbed-content docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">go</span> <span class="n">to</span> <span class="n">line</span> <span class="mi">7</span><span class="p">]</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>         <span class="mi">144</span>           <span class="mi">7</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9824</span>           <span class="mi">8</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9831</span>           <span class="mi">9</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>          <span class="mi">89</span>          <span class="mi">10</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9817</span>          <span class="mi">11</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9818</span>          <span class="mi">12</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>         <span class="mi">109</span>          <span class="mi">13</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>       <span class="mi">10011</span>          <span class="mi">14</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9820</span>          <span class="mi">15</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>         <span class="mi">105</span>          <span class="mi">16</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">7936</span>          <span class="mi">17</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>          <span class="mi">93</span>          <span class="mi">18</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">7940</span>          <span class="mi">19</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">7555</span>          <span class="mi">20</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>       <span class="mi">11484</span>          <span class="mi">21</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>          <span class="mi">73</span>          <span class="mi">22</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>       <span class="mi">11481</span>          <span class="mi">23</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>          <span class="mi">77</span>          <span class="mi">24</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>          <span class="mi">32</span>          <span class="mi">25</span>   <span class="c1"># upstream (144 - 32)</span>
+</pre></div>
 </div>
-<div class="section" id="physical-parameters">
-<h3>Physical Parameters<a class="headerlink" href="#physical-parameters" title="Permalink to this headline">¶</a></h3>
-<p>Define essential physical parameters such as sediment type, grain sizes, and decide which
-transport mechanisms, and formulas to include in your calculation. Consider the following important keywords:</p>
-<p>TYPE OF SEDIMENT :
-BED LOAD FOR ALL SANDS :
-SUSPENSION FOR ALL SANDS :
-BED-LOAD TRANSPORT FORMULA FOR ALL SANDS :</p>
-<p><code class="docutils literal notranslate"><span class="pre">TYPE</span> <span class="pre">OF</span> <span class="pre">SEDIMENT</span> <span class="pre">:</span> <span class="pre">CO;</span> <span class="pre">NCO</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">CLASSES</span> <span class="pre">SEDIMENT</span> <span class="pre">DIAMETERS</span> <span class="pre">:</span> <span class="pre">0.0001;</span> <span class="pre">0.1</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">BED</span> <span class="pre">LOAD</span> <span class="pre">FOR</span> <span class="pre">ALL</span> <span class="pre">SANDS</span> <span class="pre">:</span> <span class="pre">YES</span> <span class="pre">or</span> <span class="pre">NO</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">BED-LOAD</span> <span class="pre">TRANSPORT</span> <span class="pre">FORMULA</span> <span class="pre">FOR</span> <span class="pre">ALL</span> <span class="pre">SANDS</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">SUSPENSION</span> <span class="pre">FOR</span> <span class="pre">ALL</span> <span class="pre">SANDS</span> <span class="pre">:</span> <span class="pre">YES</span> <span class="pre">or</span> <span class="pre">NO</span></code></p>
+</div>
+<input id="25938bca-949b-42b3-96a4-7c7607e2dfde" name="d19a9c81-b278-4764-b800-8e6c5a4525c7" type="radio">
+</input><label class="tabbed-label" for="25938bca-949b-42b3-96a4-7c7607e2dfde">
+Downstream boundary</label><div class="tabbed-content docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">go</span> <span class="n">to</span> <span class="n">line</span> <span class="mi">312</span><span class="p">]</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>          <span class="mi">34</span>         <span class="mi">312</span>   <span class="c1"># downstream (34 - 5)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>         <span class="mi">113</span>         <span class="mi">313</span>   <span class="c1"># downstream (34 - 5)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>         <span class="mi">765</span>         <span class="mi">314</span>   <span class="c1"># downstream (34 - 5)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>         <span class="mi">116</span>         <span class="mi">315</span>   <span class="c1"># downstream (34 - 5)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>       <span class="mi">11242</span>         <span class="mi">316</span>   <span class="c1"># downstream (34 - 5)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>          <span class="mi">81</span>         <span class="mi">317</span>   <span class="c1"># downstream (34 - 5)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>         <span class="mi">769</span>         <span class="mi">318</span>   <span class="c1"># downstream (34 - 5)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>          <span class="mi">85</span>         <span class="mi">319</span>   <span class="c1"># downstream (34 - 5)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>          <span class="mi">97</span>         <span class="mi">320</span>   <span class="c1"># downstream (34 - 5)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">5293</span>         <span class="mi">321</span>   <span class="c1"># downstream (34 - 5)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>         <span class="mi">101</span>         <span class="mi">322</span>   <span class="c1"># downstream (34 - 5)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">5294</span>         <span class="mi">323</span>   <span class="c1"># downstream (34 - 5)</span>
+<span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>           <span class="mi">5</span>         <span class="mi">324</span>   <span class="c1"># downstream (34 - 5)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To prescribe a sediment flowrate of <strong>10 kg<span class="math notranslate nohighlight">\(^3\cdot\)</span>s<span class="math notranslate nohighlight">\(^{-1}\)</span></strong> across the upstream and downstream boundaries through the <code class="docutils literal notranslate"><span class="pre">LIQBOR</span> <span class="pre">=</span> <span class="pre">5</span></code>, <strong>add the PRESCRIBED SOLID DISCHARGES keyword to the Gaia steering file (gaia-morphodynamics.cas)</strong>:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">continued</span><span class="p">:</span> <span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
+<span class="o">/</span> <span class="p">...</span>
+<span class="n">PRESCRIBED</span> <span class="n">SOLID</span> <span class="n">DISCHARGES</span> <span class="p">:</span> <span class="mi">1</span><span class="mf">0.0</span><span class="p">;</span><span class="mi">1</span><span class="mf">0.0</span>
+</pre></div>
+</div>
+<p>Recall that the first and second values in the list of prescribed solid discharges refer to the first (beginning at line 1) and second open boundary listed in the <code class="docutils literal notranslate"><span class="pre">boundaries-gaia.cas</span></code> (i.e., upstream and downstream in that order).</p>
+</div>
+<div class="section" id="physical-parameters-general">
+<h3>Physical Parameters (General)<a class="headerlink" href="#physical-parameters-general" title="Permalink to this headline">¶</a></h3>
+<p>The essential physical parameters embrace sediment type, grain sizes, and definitions of
+transport mechanisms that apply to the simulation. This tutorial deals with non-cohesive sediment only, which is defined through the keywords setting <code class="docutils literal notranslate"><span class="pre">TYPE</span> <span class="pre">OF</span> <span class="pre">SEDIMENT</span> <span class="pre">:</span> <span class="pre">NCO</span></code>.</p>
+<div class="admonition-cohesive-sediment-transport admonition">
+<p class="admonition-title">Cohesive sediment transport</p>
+<p>Gaia considers sediment with grain diameters of less than 60<span class="math notranslate nohighlight">\(\cdot\)</span>10<span class="math notranslate nohighlight">\(^{-6}\)</span>m being cohesive. To model such fine sediment, where capillary forces may have a significant impact, adaptations in the boundary conditions file and types are required. In the cohesive sediment case, the <code class="docutils literal notranslate"><span class="pre">TYPE</span> <span class="pre">OF</span> <span class="pre">SEDIMENT</span></code> keyword is <code class="docutils literal notranslate"><span class="pre">CO</span></code>. Read more about modelling cohesive sediment in section 3.3.3 of the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a>.</p>
+</div>
+<p>Gaia enables the differentiation between classes of sediment diameters with the <strong>CLASSES SEDIMENT DIAMETERS</strong> keyword. This tutorial features the implementation of three sediment classes in the form of sand (0.0005 m), gravel (0.02 m), and cobble (0.1 m) and assign a grain density of 2680 kg m<span class="math notranslate nohighlight">\(^{-3}\)</span> to the three classes.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">continued</span><span class="p">:</span> <span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">PHYSICAL</span> <span class="n">PARAMETERS</span>
+<span class="o">/</span>
+<span class="k">TYPE </span><span class="n">OF</span> <span class="n">SEDIMENT</span> <span class="p">:</span> <span class="n">CO</span>
+<span class="n">CLASSES</span> <span class="n">SEDIMENT</span> <span class="n">DIAMETERS</span> <span class="p">:</span> <span class="mf">0.0005</span><span class="p">;</span><span class="mf">0.02</span><span class="p">;</span><span class="mf">0.1</span> <span class="o">/</span> <span class="n">in</span> <span class="n">m</span>
+<span class="n">CLASSES</span> <span class="n">SEDIMENT</span> <span class="n">DENSITY</span> <span class="p">:</span> <span class="mi">2680</span><span class="p">;</span><span class="mi">2680</span><span class="p">;</span><span class="mi">2680</span> <span class="o">/</span> <span class="n">in</span> <span class="n">kg</span> <span class="n">per</span> <span class="n">m3</span>
+</pre></div>
+</div>
+<p>The particle size classes can also be assigned specific shield energy values or settling velocities.</p>
+<p>Particular sediment transport formulae are related to the phenomena under consideration and their implementation in the Gaia steering file is explained in the next sections.</p>
 <p>Specific settling velocities or shields parameters can be defined or calculated directly by GAIA (default).</p>
+</div>
+<div class="section" id="bedload">
+<span id="gaia-bl"></span><h3>Bedload<a class="headerlink" href="#bedload" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> transport that is supplied by channel-internal and external sources, mostly during floods. The calculation of <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> requires a differentiation between two limiting factors <span id="id3">[<a class="reference internal" href="../documentation/bibliography.html#id123">CF15</a>]</span>:</p>
+<ol class="simple">
+<li><p>The flow-driven transport capacity and</p></li>
+<li><p>The sediment supply.</p></li>
+</ol>
+<p>The hydraulic transport capacity (1) results from and evaluation of <a class="reference internal" href="../documentation/glossary.html#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a><span class="math notranslate nohighlight">\(\tau_x\)</span> and its critical value, often referred to as the <code class="docutils literal notranslate"><span class="pre">Shields</span> <span class="pre">parameter</span></code> <span class="math notranslate nohighlight">\(\tau_{x,cr}\)</span> .</p>
+<p><span class="math notranslate nohighlight">\(\tau_{* cr}\)</span> is also a function of channel roughness and slope, relative submergence and bedload transport intensity <span id="id4">[<a class="reference internal" href="../documentation/bibliography.html#id186">Fer12</a>, <a class="reference internal" href="../documentation/bibliography.html#id224">Gre08</a>, <a class="reference internal" href="../documentation/bibliography.html#id334">LDV08</a>, <a class="reference internal" href="../documentation/bibliography.html#id476">RFP+08</a>, <a class="reference internal" href="../documentation/bibliography.html#id613">Wil93</a>]</span>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">BED</span> <span class="pre">LOAD</span> <span class="pre">FOR</span> <span class="pre">ALL</span> <span class="pre">SANDS</span> <span class="pre">:</span> <span class="pre">YES</span> <span class="pre">or</span> <span class="pre">NO</span></code>
+<code class="docutils literal notranslate"><span class="pre">BED-LOAD</span> <span class="pre">TRANSPORT</span> <span class="pre">FORMULA</span> <span class="pre">FOR</span> <span class="pre">ALL</span> <span class="pre">SANDS</span></code></p>
+</div>
+<div class="section" id="suspended-load">
+<span id="gaia-sl"></span><h3>Suspended Load<a class="headerlink" href="#suspended-load" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">SUSPENSION</span> <span class="pre">FOR</span> <span class="pre">ALL</span> <span class="pre">SANDS</span> <span class="pre">:</span> <span class="pre">YES</span> <span class="pre">or</span> <span class="pre">NO</span></code></p>
 </div>
 <div class="section" id="numerical-options-and-parameters">
 <h3>Numerical options and parameters<a class="headerlink" href="#numerical-options-and-parameters" title="Permalink to this headline">¶</a></h3>
