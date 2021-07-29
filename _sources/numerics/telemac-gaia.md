@@ -352,7 +352,7 @@ transport mechanisms that apply to the simulation. This tutorial deals with non-
 Gaia considers sediment with grain diameters of less than 60$\cdot$10$^{-6}$m being cohesive. To model such fine sediment, where capillary forces may have a significant impact, adaptations in the boundary conditions file and types are required. In the cohesive sediment case, the `TYPE OF SEDIMENT` keyword is `CO`. Read more about modelling cohesive sediment in section 3.3.3 of the {{ gaia }}.
 ```
 
-Gaia enables the differentiation between classes of sediment diameters with the **CLASSES SEDIMENT DIAMETERS** keyword. This tutorial features the implementation of three sediment classes in the form of sand (0.0005 m), gravel (0.02 m), and cobble (0.1 m) and assign a grain density of 2680 kg m$^{-3}$ to the three classes.
+Gaia enables the differentiation between classes of sediment diameters with the **CLASSES SEDIMENT DIAMETERS** keyword. This tutorial features the implementation of three sediment classes in the form of sand (0.0005 m), gravel (0.02 m), and cobble (0.1 m) and assign a grain density of 2680 kg m$^{-3}$ to the three classes. The grain sizes correspond to representative mean (average) diameters for every class.
 
 ```fortran
 / continued: gaia-morphodynamics.cas
@@ -377,15 +377,63 @@ Specific settling velocities or shields parameters can be defined or calculated 
 (gaia-bl)=
 ### Bedload
 
-{term}`Bedload` transport that is supplied by channel-internal and external sources, mostly during floods. The calculation of {term}`Bedload` requires a differentiation between two limiting factors {cite:p}`church_morphodynamics_2015`:
+```{admonition} The basics of bedload transport
+:class: important
+For a better reading experience of this section, the {ref}`glossary` helps with explanations of the terms {term}`Sediment transport`, (dimensionless) {term}`Bedload` transport $\Phi$, {term}`Dimensionless bed shear stress` $\tau_{x}$, and the {term}`Shields parameter` $\tau_{x,cr}$ (in that order).
+```
 
-1. The flow-driven transport capacity and
-2. The sediment supply.
+The calculation of {term}`Bedload` transport requires expert knowledge about the modeled ecosystem for judging whether the system is sediment supply-limited or transport capacity-limited {cite:p}`church_morphodynamics_2015`.
+
+Sediment supply-limited rivers
+: A sediment supply-limited river is characterized by clearly visible incision trends indicating that the river's runoff could potentially transport more sediment than is available in the river. Sediment-supply limited river sections typically occur downstream of dams, which represent an unsurmountable barrier for sediment.
+
+Transport capacity-limited (alluvial) rivers
+: A transport capacity-limited river is characterized by sediment abundance where the river's runoff is too small to transport all available sediment during a flood. Sediment accumulations (i.e., the alluvium) are present and the channel has the tendency to braiding into {term}`anabranches <Anabranch>`.
+
+The following figures feature sediment supply-limited river sections and a transport capacity-limited river section.
+
+````{tabbed} Artificially sediment supply-limited
+```{figure} ../img/nature/doubs-capacity-2015.JPG
+:height: 350px
+:alt: channel doubs france sediment supply transport limited
+:name: doubs-2015
+
+The Doubs in the Franche-Comté (France) during a small flood. The sediment supply is interrupted by a cascade of dams upstream with the consequence of a straight monotonous channel with significant plant growth along the banks. The riverbed primarily consists of boulders that are immobile most of the time. Thus, the river section can be characterized as artificially sediment supply-limited (picture: Sebastian Schwindt 2015).
+```
+````
+
+````{tabbed} Naturally sediment supply-limited
+```{figure} ../img/nature/krimmler-ache-2010.jpg
+:height: 350px
+:alt: naturally channel krimmler ache austria sediment supply transport limited
+:name: krimml-2010
+
+The Krimmler Ache in Austria during a small flood event. Even though the watershed has a high {term}`Sediment yield`, the transport capacity of the water in this river section is so high, that the riverbed only consists of large boulders. Thus, the river section can be characterized as naturally sediment supply-limited (picture: Sebastian Schwindt 2010).
+```
+````
+
+````{tabbed} Capacity-limited
+```{figure} ../img/nature/jenbach-alluvial-2020.jpg
+:height: 350px
+:alt: alluvial channel jenbach sediment supply transport limited
+:name: jenbach-2020
+
+The Jenbach in the Bavarian Alps (Germany) after an intense natural sediment supply in an upstream reach in the form of a landslide. Thus, the river section can be characterized as transport capacity-limited (picture: Sebastian Schwindt 2020).
+```
+````
+
+**Why is the differentiation between sediment supply and transport capacity-limited rivers important for numerical modeling?**
+
+Gaia provides different formulae for calculating bedload, which are mostly either derived from lab experiments with infinite sediment supply (e.g., the {cite:t}`meyer-peter_formulas_1948` formula and its derivates or from field measurements in partially transport capacity-limited rivers (e.g., {cite:t}`wilcock_critical_1993`). Formulae that account for limited sediment supply often involve a correction factor for the {term}`Shields parameter`. The below TABLE lists available bedload transport formulae in Gaia.
+
+
+TABLECOMINGSOON
+
 
 The hydraulic transport capacity (1) results from and evaluation of {term}`Dimensionless bed shear stress`$\tau_x$ and its critical value, often referred to as the `Shields parameter` $\tau_{x,cr}$ .
 
 
-$\tau_{* cr}$ is also a function of channel roughness and slope, relative submergence and bedload transport intensity {cite:p}`wilcock_critical_1993,gregoretti_inception_2008,lamb_is_2008,recking_bed-load_2008,ferguson_river_2012`.
+
 
 
 

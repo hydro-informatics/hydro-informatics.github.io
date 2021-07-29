@@ -239,7 +239,7 @@ The consistent use of parameters and symbols for parameters is summarized in a n
 
 * - $\nabla$
   - $-$
-  - operator vector of partial differentials $\frac{\partial}{\partial x_i}$ where $x_i$ refers to the dimensions of the flow field {cite:p}`kundu_fluid_2008`
+  - operator vector (*nabla*) of partial differentials $\frac{\partial}{\partial x_i}$ where $x_i$ refers to the dimensions of the flow field {cite:p}`kundu_fluid_2008`
 
 * - $\nu$
   - m$^{2}$ s$^{-1}$

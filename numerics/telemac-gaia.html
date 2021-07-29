@@ -1107,8 +1107,8 @@ View the Cross-comparison Table of Boundary variables and types in Telemac2d/3d 
 </ul>
 <p>The boxes below indicate how the required adaptations in the <code class="docutils literal notranslate"><span class="pre">boundaries-gaia.cli</span></code> file where the importance lies in the second entry (<strong>LIQBOR</strong>) being set to <code class="docutils literal notranslate"><span class="pre">5</span></code> and the eighth entry (<strong>LIEBOR</strong>) being set to <code class="docutils literal notranslate"><span class="pre">4</span></code>.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="7f5d4a3a-b058-49a7-939a-2cd0568860ee" name="d19a9c81-b278-4764-b800-8e6c5a4525c7" type="radio">
-</input><label class="tabbed-label" for="7f5d4a3a-b058-49a7-939a-2cd0568860ee">
+<input checked="checked" id="e6bb2465-09f7-4a7c-9353-aeba891266a4" name="b70e01e1-e070-4ffa-bdf2-00280d171a73" type="radio">
+</input><label class="tabbed-label" for="e6bb2465-09f7-4a7c-9353-aeba891266a4">
 Upstream boundary</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">go</span> <span class="n">to</span> <span class="n">line</span> <span class="mi">7</span><span class="p">]</span>
 <span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>         <span class="mi">144</span>           <span class="mi">7</span>   <span class="c1"># upstream (144 - 32)</span>
@@ -1133,8 +1133,8 @@ Upstream boundary</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="25938bca-949b-42b3-96a4-7c7607e2dfde" name="d19a9c81-b278-4764-b800-8e6c5a4525c7" type="radio">
-</input><label class="tabbed-label" for="25938bca-949b-42b3-96a4-7c7607e2dfde">
+<input id="571a838c-deff-4a05-be0b-218897b4fa76" name="b70e01e1-e070-4ffa-bdf2-00280d171a73" type="radio">
+</input><label class="tabbed-label" for="571a838c-deff-4a05-be0b-218897b4fa76">
 Downstream boundary</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">go</span> <span class="n">to</span> <span class="n">line</span> <span class="mi">312</span><span class="p">]</span>
 <span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>          <span class="mi">34</span>         <span class="mi">312</span>   <span class="c1"># downstream (34 - 5)</span>
@@ -1170,7 +1170,7 @@ transport mechanisms that apply to the simulation. This tutorial deals with non-
 <p class="admonition-title">Cohesive sediment transport</p>
 <p>Gaia considers sediment with grain diameters of less than 60<span class="math notranslate nohighlight">\(\cdot\)</span>10<span class="math notranslate nohighlight">\(^{-6}\)</span>m being cohesive. To model such fine sediment, where capillary forces may have a significant impact, adaptations in the boundary conditions file and types are required. In the cohesive sediment case, the <code class="docutils literal notranslate"><span class="pre">TYPE</span> <span class="pre">OF</span> <span class="pre">SEDIMENT</span></code> keyword is <code class="docutils literal notranslate"><span class="pre">CO</span></code>. Read more about modelling cohesive sediment in section 3.3.3 of the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a>.</p>
 </div>
-<p>Gaia enables the differentiation between classes of sediment diameters with the <strong>CLASSES SEDIMENT DIAMETERS</strong> keyword. This tutorial features the implementation of three sediment classes in the form of sand (0.0005 m), gravel (0.02 m), and cobble (0.1 m) and assign a grain density of 2680 kg m<span class="math notranslate nohighlight">\(^{-3}\)</span> to the three classes.</p>
+<p>Gaia enables the differentiation between classes of sediment diameters with the <strong>CLASSES SEDIMENT DIAMETERS</strong> keyword. This tutorial features the implementation of three sediment classes in the form of sand (0.0005 m), gravel (0.02 m), and cobble (0.1 m) and assign a grain density of 2680 kg m<span class="math notranslate nohighlight">\(^{-3}\)</span> to the three classes. The grain sizes correspond to representative mean (average) diameters for every class.</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">continued</span><span class="p">:</span> <span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
 <span class="o">/</span>
 <span class="o">/</span> <span class="n">PHYSICAL</span> <span class="n">PARAMETERS</span>
@@ -1186,13 +1186,48 @@ transport mechanisms that apply to the simulation. This tutorial deals with non-
 </div>
 <div class="section" id="bedload">
 <span id="gaia-bl"></span><h3>Bedload<a class="headerlink" href="#bedload" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> transport that is supplied by channel-internal and external sources, mostly during floods. The calculation of <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> requires a differentiation between two limiting factors <span id="id3">[<a class="reference internal" href="../documentation/bibliography.html#id123">CF15</a>]</span>:</p>
-<ol class="simple">
-<li><p>The flow-driven transport capacity and</p></li>
-<li><p>The sediment supply.</p></li>
-</ol>
+<div class="important admonition">
+<p class="admonition-title">The basics of bedload transport</p>
+<p>For a better reading experience of this section, the <a class="reference internal" href="../documentation/glossary.html#glossary"><span class="std std-ref">Glossary</span></a> helps with explanations of the terms <a class="reference internal" href="../documentation/glossary.html#term-Sediment-transport"><span class="xref std std-term">Sediment transport</span></a>, (dimensionless) <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> transport <span class="math notranslate nohighlight">\(\Phi\)</span>, <a class="reference internal" href="../documentation/glossary.html#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a> <span class="math notranslate nohighlight">\(\tau_{x}\)</span>, and the <a class="reference internal" href="../documentation/glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a> <span class="math notranslate nohighlight">\(\tau_{x,cr}\)</span> (in that order).</p>
+</div>
+<p>The calculation of <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> transport requires expert knowledge about the modeled ecosystem for judging whether the system is sediment supply-limited or transport capacity-limited <span id="id3">[<a class="reference internal" href="../documentation/bibliography.html#id123">CF15</a>]</span>.</p>
+<dl class="simple myst">
+<dt>Sediment supply-limited rivers</dt><dd><p>A sediment supply-limited river is characterized by clearly visible incision trends indicating that the river’s runoff could potentially transport more sediment than is available in the river. Sediment-supply limited river sections typically occur downstream of dams, which represent an unsurmountable barrier for sediment.</p>
+</dd>
+<dt>Transport capacity-limited (alluvial) rivers</dt><dd><p>A transport capacity-limited river is characterized by sediment abundance where the river’s runoff is too small to transport all available sediment during a flood. Sediment accumulations (i.e., the alluvium) are present and the channel has the tendency to braiding into <a class="reference internal" href="../documentation/glossary.html#term-Anabranch"><span class="xref std std-term">anabranches</span></a>.</p>
+</dd>
+</dl>
+<p>The following figures feature sediment supply-limited river sections and a transport capacity-limited river section.</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="12bf88fa-0b91-4e91-a67c-19a24b2ddcdb" name="a53a9b68-03ac-4f63-8365-a4876fbd4e01" type="radio">
+</input><label class="tabbed-label" for="12bf88fa-0b91-4e91-a67c-19a24b2ddcdb">
+Artificially sediment supply-limited</label><div class="tabbed-content docutils">
+<div class="figure align-default" id="doubs-2015">
+<a class="reference internal image-reference" href="../_images/doubs-capacity-2015.JPG"><img alt="channel doubs france sediment supply transport limited" src="../_images/doubs-capacity-2015.JPG" style="height: 350px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 144 </span><span class="caption-text">The Doubs in the Franche-Comté (France) during a small flood. The sediment supply is interrupted by a cascade of dams upstream with the consequence of a straight monotonous channel with significant plant growth along the banks. The riverbed primarily consists of boulders that are immobile most of the time. Thus, the river section can be characterized as artificially sediment supply-limited (picture: Sebastian Schwindt 2015).</span><a class="headerlink" href="#doubs-2015" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<input id="06fe0206-d163-4e67-8ad3-221f6b1aa0b1" name="a53a9b68-03ac-4f63-8365-a4876fbd4e01" type="radio">
+</input><label class="tabbed-label" for="06fe0206-d163-4e67-8ad3-221f6b1aa0b1">
+Naturally sediment supply-limited</label><div class="tabbed-content docutils">
+<div class="figure align-default" id="krimml-2010">
+<a class="reference internal image-reference" href="../_images/krimmler-ache-2010.jpg"><img alt="naturally channel krimmler ache austria sediment supply transport limited" src="../_images/krimmler-ache-2010.jpg" style="height: 350px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 145 </span><span class="caption-text">The Krimmler Ache in Austria during a small flood event. Even though the watershed has a high <a class="reference internal" href="../documentation/glossary.html#term-Sediment-yield"><span class="xref std std-term">Sediment yield</span></a>, the transport capacity of the water in this river section is so high, that the riverbed only consists of large boulders. Thus, the river section can be characterized as naturally sediment supply-limited (picture: Sebastian Schwindt 2010).</span><a class="headerlink" href="#krimml-2010" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<input id="f0b0f2fe-5f7b-4987-8630-bbaefcde1d70" name="a53a9b68-03ac-4f63-8365-a4876fbd4e01" type="radio">
+</input><label class="tabbed-label" for="f0b0f2fe-5f7b-4987-8630-bbaefcde1d70">
+Capacity-limited</label><div class="tabbed-content docutils">
+<div class="figure align-default" id="jenbach-2020">
+<a class="reference internal image-reference" href="../_images/jenbach-alluvial-2020.jpg"><img alt="alluvial channel jenbach sediment supply transport limited" src="../_images/jenbach-alluvial-2020.jpg" style="height: 350px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 146 </span><span class="caption-text">The Jenbach in the Bavarian Alps (Germany) after an intense natural sediment supply in an upstream reach in the form of a landslide. Thus, the river section can be characterized as transport capacity-limited (picture: Sebastian Schwindt 2020).</span><a class="headerlink" href="#jenbach-2020" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+<p><strong>Why is the differentiation between sediment supply and transport capacity-limited rivers important for numerical modeling?</strong></p>
+<p>Gaia provides different formulae for calculating bedload, which are mostly either derived from lab experiments with infinite sediment supply (e.g., the <span id="id4">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula and its derivates or from field measurements in partially transport capacity-limited rivers (e.g., <span id="id5">Wilcock [<a class="reference internal" href="../documentation/bibliography.html#id613">Wil93</a>]</span>). Formulae that account for limited sediment supply often involve a correction factor for the <a class="reference internal" href="../documentation/glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a>. The below TABLE lists available bedload transport formulae in Gaia.</p>
+<p>TABLECOMINGSOON</p>
 <p>The hydraulic transport capacity (1) results from and evaluation of <a class="reference internal" href="../documentation/glossary.html#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a><span class="math notranslate nohighlight">\(\tau_x\)</span> and its critical value, often referred to as the <code class="docutils literal notranslate"><span class="pre">Shields</span> <span class="pre">parameter</span></code> <span class="math notranslate nohighlight">\(\tau_{x,cr}\)</span> .</p>
-<p><span class="math notranslate nohighlight">\(\tau_{* cr}\)</span> is also a function of channel roughness and slope, relative submergence and bedload transport intensity <span id="id4">[<a class="reference internal" href="../documentation/bibliography.html#id186">Fer12</a>, <a class="reference internal" href="../documentation/bibliography.html#id224">Gre08</a>, <a class="reference internal" href="../documentation/bibliography.html#id334">LDV08</a>, <a class="reference internal" href="../documentation/bibliography.html#id476">RFP+08</a>, <a class="reference internal" href="../documentation/bibliography.html#id613">Wil93</a>]</span>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">BED</span> <span class="pre">LOAD</span> <span class="pre">FOR</span> <span class="pre">ALL</span> <span class="pre">SANDS</span> <span class="pre">:</span> <span class="pre">YES</span> <span class="pre">or</span> <span class="pre">NO</span></code>
 <code class="docutils literal notranslate"><span class="pre">BED-LOAD</span> <span class="pre">TRANSPORT</span> <span class="pre">FORMULA</span> <span class="pre">FOR</span> <span class="pre">ALL</span> <span class="pre">SANDS</span></code></p>
 </div>
