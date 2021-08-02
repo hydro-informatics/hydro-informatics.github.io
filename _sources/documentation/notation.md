@@ -49,7 +49,7 @@ The consistent use of parameters and symbols for parameters is summarized in a n
 
 * - $D_{x}$
   - m
-  - dimensionless grain diameter (cf. {term}`Shields parameter`)
+  - dimensionless grain diameter (cf. Equation {eq}`eq-d-dimless` and {term}`Shields parameter`)
 
 * - $Fr$
   - $-$
@@ -58,6 +58,14 @@ The consistent use of parameters and symbols for parameters is summarized in a n
 * - $f_D$
   - $-$
   - Darcy-Weisbach friction factor
+
+* - $F_{eb}$
+  - $-$
+  - Einstein-Brown (EB) factor (Equation {eq}`eq-f-eb`)
+
+* - $f_{mpm}$
+  - $-$
+  - Meyer-Peter and Müller (MPM) factor
 
 * - $g$
   - m s$^{-2}$
@@ -247,7 +255,11 @@ The consistent use of parameters and symbols for parameters is summarized in a n
 
 * - $\Phi$
   - $-$
-  - dimensionless bedload transport
+  - dimensionless {term}`Sediment transport`
+
+* - $\Phi_b$
+  - $-$
+  - dimensionless {term}`Bedload` transport
 
 * - $\psi$
   - variable
@@ -267,10 +279,10 @@ The consistent use of parameters and symbols for parameters is summarized in a n
 
 * - $\tau_x$
   - $-$
-  - dimensionless bed shear stress or {term}`Shields parameter`
+  - {term}`Dimensionless bed shear stress`
 
 * - $\tau_{x,cr}$
   - $-$
-  - critical dimensionless bed shear stress (Shields parameter)
+  - Critical {term}`Dimensionless bed shear stress` or {term}`Shields parameter`
 
 ```

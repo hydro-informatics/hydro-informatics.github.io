@@ -12,6 +12,8 @@ Advection
 Anabranch
   An anabranched river (section) is characterized by one or more side channels diverting from the main river stem. Anabranching (or also anastomosing) channels occur primarily in alluvial channel beds where more sediment is available than the water runoff can transport (transport capacity-limited rivers). Thus, an anabranching river has high sediment loads and channel avulsion is likely to occur during floods {cite:p}`nanson_anabranching_1996,riquier_are_2017,huang_why_2007`. This eBook shows an example for an anabranching river section in the morphdynamic modeling tutorial in {numref}`Fig. %s <jenbach-2020>`.
 
+  *French: Anabranche <br>German: Flussarm*
+
 Anastomosing rivers
   See {term}`Anabranch`.
 
@@ -19,13 +21,13 @@ ASCII
   The American Standard Code for Information Interchange (ASCII) is an encoding standard for text on computers. The development of ASCII goes back to telegraphy and was first published in 1961 for the Latin alphabet. It was later extended by other alphabets and special characters {cite:p}`ascii1980`. ASCII code represents characters in the form of numbers. For instance, the ASCII code `77` represents uppercase `A`. In Python applications, ASCII code numbers can be useful to iterate through the alphabet (e.g., alphabetic column names), where `chr(ASCII)` returns a letter. For example, in Python `print(chr(78))` returns uppercase `B`.
 
 Bedload
-  Bedload (also referred to as *bed load*) $Q_b$ (or $q_b$ for unit bedload) in kg$\cdot$s$^{-1}$ (or kg$\cdot$s$^{-1}$\cdot$m$^{-1}$) is a special type of {term}`Sediment transport` describing the displacement of coarse particles by rolling, sliding, and/or jumping on the riverbed. In river hydraulics, the so-called {term}`Dimensionless bed shear stress` or also referred to as {term}`Shields parameter` {cite:p}`shields_anwendung_1936` is often used as the threshold value for the mobilization of sediment from the riverbed. The dimensionless expression of bedload transport is {cite:p}`einstein_bed-load_1950`:
+  Bedload (also referred to as *bed load*) $Q_b$ (or $q_b$ for unit bedload) in kg$\cdot$s$^{-1}$ (or kg$\cdot$s$^{-1}\cdot$m$^{-1}$) is a special type of {term}`Sediment transport` describing the displacement of coarse particles by rolling, sliding, and/or jumping on the riverbed. In river hydraulics, the so-called {term}`Dimensionless bed shear stress` or also referred to as {term}`Shields parameter` {cite:p}`shields_anwendung_1936` is often used as the threshold value for the mobilization of sediment from the riverbed. The dimensionless expression of bedload transport is {cite:p}`einstein_bed-load_1950`:
 
   $$
-  \Phi = \frac{q_b}{\rho_{w} \sqrt{(s - 1) g D_{pq}}} \approx \frac{Q_b}{0.5\cdot(b + B)\rho_{w} \sqrt{(s - 1) g D_{pq}}}
+  \Phi_b = \frac{q_b}{\rho_{w} \sqrt{(s - 1) g D_{pq}}} \approx \frac{Q_b}{0.5\cdot(b + B)\rho_{w} \sqrt{(s - 1) g D_{pq}}}
   $$
 
-  where $\rho_{w}$ is the density of water; $s$ is the ratio of sediment grain and water density (typically 2.68) {cite:p}`schwindt_hydro-morphological_2017`; $g$ is gravitational acceleration; $D_{pq}$ is the grain diameter of which $pq$~$\%$ of the mixture are finer; and $b$ and $B$ are the channel bottom and surface width, respectively (or cell width/height in a 2d numerical model).
+  where $\rho_{w}$ is the density of water; $s$ is the ratio of sediment grain and water density (typically 2.68) {cite:p}`schwindt_hydro-morphological_2017`; $g$ is gravitational acceleration; $D_{pq}$ is the grain diameter of which $pq \%$ of the mixture are finer; and $b$ and $B$ are the channel bottom and surface width, respectively (or cell width/height in a 2d numerical model).
 
   Read more about the calculation of bedload in this eBook in the {ref}`Python exercises <mpm>` or the {ref}`Telemac2d-Gaia tutorial <tm-gaia>`. In numerical models, bedload transport is often computed using the {term}`Exner equation`.
 
@@ -179,6 +181,16 @@ Operating System
 
   *French: Système d'exploitation <br>German: Betriebssystem*
 
+Plane bed
+  A plane bed refers to a type of riverbed that is characterized by irregular bedforms with distant, varying confinement, often in transition between transport capacity-limited and sediment supply-limited river sections {cite:p}`schwindt_hydro-morphological_2017`.
+
+  ```{figure} ../img/nature/plane_bed_Drance.jpg
+  :alt: planebed plane bed river stream example geomorphology
+  :name: plane-bed
+
+  Example of a planed bed river section at the Drance (VS, Switzerland). Picture: Sebastian Schwindt (2016).
+  ```
+
 Rating curve
   See {term}`Stage-discharge relation`.
 
@@ -186,7 +198,7 @@ Reynolds number
   The Reynolds number $Re$ relates viscous forces to inertia and is a key parameter for flow turbulence {cite:p}`chow59`:
 
   $$
-  Re = \frac{u h}{\nu} \begin{cases} < 800 \rightarrow \mbox{ laminar~flow} \\ \geq 800 \mbox{ and } \leq 2000 \rightarrow \mbox{ transitional~flow} \\ > 10000 \rightarrow \mbox{ turbulent~flow} \end{cases}
+  Re = \frac{u h}{\nu} \begin{cases} < 800 \rightarrow \mbox{ laminar\ flow} \\ \geq 800 \mbox{ and } \leq 2000 \rightarrow \mbox{ transitional\ flow} \\ > 10000 \rightarrow \mbox{ turbulent~flow} \end{cases}
   $$
 
   Where $\nu$ denotes the kinematic viscosity (10$^{-6}$ m$^{2}$ s$^{-1}$ for water at 20$^{\circ}$C). In gravel-cobble bed rivers, inertia forces are typically dominant compared with viscous forces; therefore $Re$ is generally larger than 2000 and the flow is turbulent {cite:p}`chow59,wohl_mountain_2000`.
@@ -228,7 +240,7 @@ Shields parameter
 
   where $s$ is the ratio of sediment grain and water density (typically 2.68); $g$ is gravitational acceleration; and $\nu$ is the kinematic viscosity of water ($\approx$10$^{-6}$m$^{2}$ s$^{-1}$) {cite:p}`schwindt_hydro-morphological_2017`. Read the definition of {term}`Dimensionless bed shear stress` for the calculation of $\tau_{x}$. {numref}`Figure %s <shields-diagram>` shows the Shields diagram where the Shields curve is plotted based on descriptions in {cite:t}`guo_logarithmic_2002`.
 
-  ```{figure} ../img/shields-diagram.png
+  ```{figure} ../img/shields-diagram.jpg
   :alt: Shields diagram guo hunter critical bed shear stress
   :name: shields-diagram
 

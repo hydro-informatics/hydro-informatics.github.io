@@ -724,9 +724,9 @@
                 
   <div class="section" id="notation">
 <h1>Notation<a class="headerlink" href="#notation" title="Permalink to this headline">¶</a></h1>
-<p>The consistent use of parameters and symbols for parameters is summarized in a notation table stating symbols, associated parameter definitions, and parameter units. <a class="reference internal" href="#tab-notation-latin"><span class="std std-numref">Table 9</span></a> and <a class="reference internal" href="#tab-notation-greek"><span class="std std-numref">Table 10</span></a> list Latin and Greek letters (symbols) used in this eBook.</p>
+<p>The consistent use of parameters and symbols for parameters is summarized in a notation table stating symbols, associated parameter definitions, and parameter units. <a class="reference internal" href="#tab-notation-latin"><span class="std std-numref">Table 10</span></a> and <a class="reference internal" href="#tab-notation-greek"><span class="std std-numref">Table 11</span></a> list Latin and Greek letters (symbols) used in this eBook.</p>
 <table class="table" id="tab-notation-latin">
-<caption><span class="caption-number">Table 9 </span><span class="caption-text">Latin letters (symbols) and parameters used in this eBook (in alphabetical order).</span><a class="headerlink" href="#tab-notation-latin" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-number">Table 10 </span><span class="caption-text">Latin letters (symbols) and parameters used in this eBook (in alphabetical order).</span><a class="headerlink" href="#tab-notation-latin" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 33%" />
 <col style="width: 33%" />
@@ -777,7 +777,7 @@
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(D_{x}\)</span></p></td>
 <td><p>m</p></td>
-<td><p>dimensionless grain diameter (cf. <a class="reference internal" href="glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a>)</p></td>
+<td><p>dimensionless grain diameter (cf. Equation <a class="reference internal" href="../numerics/telemac-gaia.html#equation-eq-d-dimless">(6)</a> and <a class="reference internal" href="glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a>)</p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(Fr\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
@@ -786,6 +786,14 @@
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(f_D\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
 <td><p>Darcy-Weisbach friction factor</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(F_{eb}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+<td><p>Einstein-Brown (EB) factor (Equation <a class="reference internal" href="../numerics/telemac-gaia.html#equation-eq-f-eb">(5)</a>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(f_{mpm}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+<td><p>Meyer-Peter and Müller (MPM) factor</p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(g\)</span></p></td>
 <td><p>m s<span class="math notranslate nohighlight">\(^{-2}\)</span></p></td>
@@ -930,7 +938,7 @@
 </tbody>
 </table>
 <table class="table" id="tab-notation-greek">
-<caption><span class="caption-number">Table 10 </span><span class="caption-text">Greek letters (symbols) and parameters used in this eBook (in alphabetical order).</span><a class="headerlink" href="#tab-notation-greek" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-number">Table 11 </span><span class="caption-text">Greek letters (symbols) and parameters used in this eBook (in alphabetical order).</span><a class="headerlink" href="#tab-notation-greek" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 33%" />
 <col style="width: 33%" />
@@ -981,31 +989,35 @@
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\Phi\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
-<td><p>dimensionless bedload transport</p></td>
+<td><p>dimensionless <a class="reference internal" href="glossary.html#term-Sediment-transport"><span class="xref std std-term">Sediment transport</span></a></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\psi\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\Phi_b\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
+<td><p>dimensionless <a class="reference internal" href="glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> transport</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\psi\)</span></p></td>
 <td><p>variable</p></td>
 <td><p>constant of a transported particle (substance)</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\rho_s\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\rho_s\)</span></p></td>
 <td><p>kg m<span class="math notranslate nohighlight">\(^{-3}\)</span></p></td>
 <td><p>sediment grain density</p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\rho_w\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\rho_w\)</span></p></td>
 <td><p>kg m<span class="math notranslate nohighlight">\(^{-3}\)</span></p></td>
 <td><p>density of water</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\tau\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\tau\)</span></p></td>
 <td><p>N m<span class="math notranslate nohighlight">\(^{-2}\)</span></p></td>
 <td><p>bed shear stress</p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\tau_x\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\tau_x\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
-<td><p>dimensionless bed shear stress or <a class="reference internal" href="glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a></p></td>
+<td><p><a class="reference internal" href="glossary.html#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\tau_{x,cr}\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\tau_{x,cr}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(-\)</span></p></td>
-<td><p>critical dimensionless bed shear stress (Shields parameter)</p></td>
+<td><p>Critical <a class="reference internal" href="glossary.html#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a> or <a class="reference internal" href="glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a></p></td>
 </tr>
 </tbody>
 </table>

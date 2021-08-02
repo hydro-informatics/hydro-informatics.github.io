@@ -313,7 +313,8 @@ Retry to start the PostTelemac plugin. It should run without issues now.
 
 ## SALOME-HYDRO
 
-### SALOME-HYDRO not starting  (**Kernel/Session**) {#salome-dbg}
+(salome-dbg)=
+### SALOME-HYDRO not starting  (**Kernel/Session**)
 
 If an error message is raised by `Kernel/Session` in the `Naming Service` (typically ends up in `[Errno 3] No such process` ... `RuntimeError: Process NUMBER for Kernel/Session not found`), there are multiple possible origins that partially root in potentially hard-coded library versions of the installer. To troubleshoot:
 

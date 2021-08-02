@@ -742,8 +742,8 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gaia-and-telemac">
-   Gaia and TELEMAC
+  <a class="reference internal nav-link" href="#telemac-setup">
+   TELEMAC Setup
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -778,21 +778,55 @@
      Boundary Conditions
     </a>
    </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#define-sediment">
+   Define Sediment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bedload">
+   Bedload
+  </a>
+  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#physical-parameters-general">
-     Physical Parameters (General)
+    <a class="reference internal nav-link" href="#principles">
+     Principles
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#bedload">
-     Bedload
+    <a class="reference internal nav-link" href="#calculous-and-parameters">
+     Calculous and Parameters
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#suspended-load">
-     Suspended Load
+    <a class="reference internal nav-link" href="#meyer-peter-and-muller-1948">
+     Meyer-Peter and Müller (1948)
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#einstein-brown-1942-49">
+     Einstein-Brown (1942/49)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#engelund-hansen-1967">
+     Engelund-Hansen (1967)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#van-rijn-1984">
+     van Rijn (1984)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#suspended-load">
+   Suspended Load
+  </a>
+  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#numerical-options-and-parameters">
      Numerical options and parameters
@@ -858,8 +892,8 @@ The difference between Gaia and SISYPHE<div class="summary-down docutils">
 </div>
 </details></div>
 </div>
-<div class="section" id="gaia-and-telemac">
-<span id="tm-coupling"></span><h2>Gaia and TELEMAC<a class="headerlink" href="#gaia-and-telemac" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="telemac-setup">
+<span id="tm-coupling"></span><h2>TELEMAC Setup<a class="headerlink" href="#telemac-setup" title="Permalink to this headline">¶</a></h2>
 <p>The morphodynamics module Gaia can be internally <strong>coupled</strong> with the hydrodynamic models Telemac2d (solving the <a class="reference internal" href="../documentation/glossary.html#term-Shallow-water-equations"><span class="xref std std-term">Shallow water equations</span></a>) or Telemac3d (solving the Reynolds-averaged <a class="reference internal" href="../documentation/glossary.html#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a>). This section explains different types of coupling Telemac2d/Telemac3d (hydrodynamics) with Gaia (morphodynamics) and how coupling can be implement in the TELEMAC software suite.</p>
 <div class="section" id="coupling-hydro-morphodynamics">
 <h3>Coupling Hydro-morphodynamics<a class="headerlink" href="#coupling-hydro-morphodynamics" title="Permalink to this headline">¶</a></h3>
@@ -1107,8 +1141,8 @@ View the Cross-comparison Table of Boundary variables and types in Telemac2d/3d 
 </ul>
 <p>The boxes below indicate how the required adaptations in the <code class="docutils literal notranslate"><span class="pre">boundaries-gaia.cli</span></code> file where the importance lies in the second entry (<strong>LIQBOR</strong>) being set to <code class="docutils literal notranslate"><span class="pre">5</span></code> and the eighth entry (<strong>LIEBOR</strong>) being set to <code class="docutils literal notranslate"><span class="pre">4</span></code>.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="e6bb2465-09f7-4a7c-9353-aeba891266a4" name="b70e01e1-e070-4ffa-bdf2-00280d171a73" type="radio">
-</input><label class="tabbed-label" for="e6bb2465-09f7-4a7c-9353-aeba891266a4">
+<input checked="checked" id="239cafb1-d598-4301-8bce-c1fbdf23e232" name="476f285f-f9ee-478a-990f-b1f2a3f37ffe" type="radio">
+</input><label class="tabbed-label" for="239cafb1-d598-4301-8bce-c1fbdf23e232">
 Upstream boundary</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">go</span> <span class="n">to</span> <span class="n">line</span> <span class="mi">7</span><span class="p">]</span>
 <span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>         <span class="mi">144</span>           <span class="mi">7</span>   <span class="c1"># upstream (144 - 32)</span>
@@ -1133,8 +1167,8 @@ Upstream boundary</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="571a838c-deff-4a05-be0b-218897b4fa76" name="b70e01e1-e070-4ffa-bdf2-00280d171a73" type="radio">
-</input><label class="tabbed-label" for="571a838c-deff-4a05-be0b-218897b4fa76">
+<input id="734822b6-6dde-4a43-999d-007ce2726696" name="476f285f-f9ee-478a-990f-b1f2a3f37ffe" type="radio">
+</input><label class="tabbed-label" for="734822b6-6dde-4a43-999d-007ce2726696">
 Downstream boundary</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">go</span> <span class="n">to</span> <span class="n">line</span> <span class="mi">312</span><span class="p">]</span>
 <span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>          <span class="mi">34</span>         <span class="mi">312</span>   <span class="c1"># downstream (34 - 5)</span>
@@ -1162,8 +1196,9 @@ Downstream boundary</label><div class="tabbed-content docutils">
 </div>
 <p>Recall that the first and second values in the list of prescribed solid discharges refer to the first (beginning at line 1) and second open boundary listed in the <code class="docutils literal notranslate"><span class="pre">boundaries-gaia.cas</span></code> (i.e., upstream and downstream in that order).</p>
 </div>
-<div class="section" id="physical-parameters-general">
-<h3>Physical Parameters (General)<a class="headerlink" href="#physical-parameters-general" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="define-sediment">
+<span id="gaia-sed"></span><h2>Define Sediment<a class="headerlink" href="#define-sediment" title="Permalink to this headline">¶</a></h2>
 <p>The essential physical parameters embrace sediment type, grain sizes, and definitions of
 transport mechanisms that apply to the simulation. This tutorial deals with non-cohesive sediment only, which is defined through the keywords setting <code class="docutils literal notranslate"><span class="pre">TYPE</span> <span class="pre">OF</span> <span class="pre">SEDIMENT</span> <span class="pre">:</span> <span class="pre">NCO</span></code>.</p>
 <div class="admonition-cohesive-sediment-transport admonition">
@@ -1173,23 +1208,24 @@ transport mechanisms that apply to the simulation. This tutorial deals with non-
 <p>Gaia enables the differentiation between classes of sediment diameters with the <strong>CLASSES SEDIMENT DIAMETERS</strong> keyword. This tutorial features the implementation of three sediment classes in the form of sand (0.0005 m), gravel (0.02 m), and cobble (0.1 m) and assign a grain density of 2680 kg m<span class="math notranslate nohighlight">\(^{-3}\)</span> to the three classes. The grain sizes correspond to representative mean (average) diameters for every class.</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">continued</span><span class="p">:</span> <span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
 <span class="o">/</span>
-<span class="o">/</span> <span class="n">PHYSICAL</span> <span class="n">PARAMETERS</span>
+<span class="o">/</span> <span class="n">PHYSICAL</span> <span class="n">PARAMETERS</span> <span class="n">FOR</span> <span class="n">SEDIMENT</span>
 <span class="o">/</span>
-<span class="k">TYPE </span><span class="n">OF</span> <span class="n">SEDIMENT</span> <span class="p">:</span> <span class="n">CO</span>
+<span class="n">CLASSES</span> <span class="k">TYPE </span><span class="n">OF</span> <span class="n">SEDIMENT</span> <span class="p">:</span> <span class="n">NCO</span>
 <span class="n">CLASSES</span> <span class="n">SEDIMENT</span> <span class="n">DIAMETERS</span> <span class="p">:</span> <span class="mf">0.0005</span><span class="p">;</span><span class="mf">0.02</span><span class="p">;</span><span class="mf">0.1</span> <span class="o">/</span> <span class="n">in</span> <span class="n">m</span>
 <span class="n">CLASSES</span> <span class="n">SEDIMENT</span> <span class="n">DENSITY</span> <span class="p">:</span> <span class="mi">2680</span><span class="p">;</span><span class="mi">2680</span><span class="p">;</span><span class="mi">2680</span> <span class="o">/</span> <span class="n">in</span> <span class="n">kg</span> <span class="n">per</span> <span class="n">m3</span>
 </pre></div>
 </div>
-<p>The particle size classes can also be assigned specific shield energy values or settling velocities.</p>
+<p>The particle size classes can also be assigned specific <a class="reference internal" href="../documentation/glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a> values (<code class="docutils literal notranslate"><span class="pre">CLASSES</span> <span class="pre">CRITICAL</span> <span class="pre">SHEAR</span> <span class="pre">STRESS</span></code>) or settling velocities (<code class="docutils literal notranslate"><span class="pre">CLASSES</span> <span class="pre">SETTLING</span> <span class="pre">VELOCITIES</span> </code>) (e.g., to impose no-erosion or no-deposition conditions).</p>
 <p>Particular sediment transport formulae are related to the phenomena under consideration and their implementation in the Gaia steering file is explained in the next sections.</p>
-<p>Specific settling velocities or shields parameters can be defined or calculated directly by GAIA (default).</p>
 </div>
 <div class="section" id="bedload">
-<span id="gaia-bl"></span><h3>Bedload<a class="headerlink" href="#bedload" title="Permalink to this headline">¶</a></h3>
+<span id="gaia-bl"></span><h2>Bedload<a class="headerlink" href="#bedload" title="Permalink to this headline">¶</a></h2>
 <div class="important admonition">
-<p class="admonition-title">The basics of bedload transport</p>
-<p>For a better reading experience of this section, the <a class="reference internal" href="../documentation/glossary.html#glossary"><span class="std std-ref">Glossary</span></a> helps with explanations of the terms <a class="reference internal" href="../documentation/glossary.html#term-Sediment-transport"><span class="xref std std-term">Sediment transport</span></a>, (dimensionless) <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> transport <span class="math notranslate nohighlight">\(\Phi\)</span>, <a class="reference internal" href="../documentation/glossary.html#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a> <span class="math notranslate nohighlight">\(\tau_{x}\)</span>, and the <a class="reference internal" href="../documentation/glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a> <span class="math notranslate nohighlight">\(\tau_{x,cr}\)</span> (in that order).</p>
+<p class="admonition-title">Bedload basics</p>
+<p>For a better reading experience of this section, the <a class="reference internal" href="../documentation/glossary.html#glossary"><span class="std std-ref">Glossary</span></a> helps with explanations of the terms <a class="reference internal" href="../documentation/glossary.html#term-Sediment-transport"><span class="xref std std-term">Sediment transport</span></a>, (dimensionless) <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> transport <span class="math notranslate nohighlight">\(\Phi_b\)</span>, <a class="reference internal" href="../documentation/glossary.html#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a> <span class="math notranslate nohighlight">\(\tau_{x}\)</span>, and the <a class="reference internal" href="../documentation/glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a> <span class="math notranslate nohighlight">\(\tau_{x,cr}\)</span> (in that order).</p>
 </div>
+<div class="section" id="principles">
+<span id="bl-principles"></span><h3>Principles<a class="headerlink" href="#principles" title="Permalink to this headline">¶</a></h3>
 <p>The calculation of <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> transport requires expert knowledge about the modeled ecosystem for judging whether the system is sediment supply-limited or transport capacity-limited <span id="id3">[<a class="reference internal" href="../documentation/bibliography.html#id123">CF15</a>]</span>.</p>
 <dl class="simple myst">
 <dt>Sediment supply-limited rivers</dt><dd><p>A sediment supply-limited river is characterized by clearly visible incision trends indicating that the river’s runoff could potentially transport more sediment than is available in the river. Sediment-supply limited river sections typically occur downstream of dams, which represent an unsurmountable barrier for sediment.</p>
@@ -1199,24 +1235,24 @@ transport mechanisms that apply to the simulation. This tutorial deals with non-
 </dl>
 <p>The following figures feature sediment supply-limited river sections and a transport capacity-limited river section.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="12bf88fa-0b91-4e91-a67c-19a24b2ddcdb" name="a53a9b68-03ac-4f63-8365-a4876fbd4e01" type="radio">
-</input><label class="tabbed-label" for="12bf88fa-0b91-4e91-a67c-19a24b2ddcdb">
+<input checked="checked" id="3bce5aea-e691-47f5-8522-363ed4d726e2" name="0ca55327-9ce5-457f-b80e-e5add2d7d257" type="radio">
+</input><label class="tabbed-label" for="3bce5aea-e691-47f5-8522-363ed4d726e2">
 Artificially sediment supply-limited</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="doubs-2015">
 <a class="reference internal image-reference" href="../_images/doubs-capacity-2015.JPG"><img alt="channel doubs france sediment supply transport limited" src="../_images/doubs-capacity-2015.JPG" style="height: 350px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 144 </span><span class="caption-text">The Doubs in the Franche-Comté (France) during a small flood. The sediment supply is interrupted by a cascade of dams upstream with the consequence of a straight monotonous channel with significant plant growth along the banks. The riverbed primarily consists of boulders that are immobile most of the time. Thus, the river section can be characterized as artificially sediment supply-limited (picture: Sebastian Schwindt 2015).</span><a class="headerlink" href="#doubs-2015" title="Permalink to this image">¶</a></p>
 </div>
 </div>
-<input id="06fe0206-d163-4e67-8ad3-221f6b1aa0b1" name="a53a9b68-03ac-4f63-8365-a4876fbd4e01" type="radio">
-</input><label class="tabbed-label" for="06fe0206-d163-4e67-8ad3-221f6b1aa0b1">
+<input id="a249b5ac-ed33-43a3-8477-e8b6c946cb7d" name="0ca55327-9ce5-457f-b80e-e5add2d7d257" type="radio">
+</input><label class="tabbed-label" for="a249b5ac-ed33-43a3-8477-e8b6c946cb7d">
 Naturally sediment supply-limited</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="krimml-2010">
-<a class="reference internal image-reference" href="../_images/krimmler-ache-2010.jpg"><img alt="naturally channel krimmler ache austria sediment supply transport limited" src="../_images/krimmler-ache-2010.jpg" style="height: 350px;" /></a>
+<a class="with-shadow reference internal image-reference" href="../_images/krimmler-ache-2010.jpg"><img alt="naturally channel krimmler ache austria sediment supply transport limited" class="with-shadow" src="../_images/krimmler-ache-2010.jpg" style="height: 350px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 145 </span><span class="caption-text">The Krimmler Ache in Austria during a small flood event. Even though the watershed has a high <a class="reference internal" href="../documentation/glossary.html#term-Sediment-yield"><span class="xref std std-term">Sediment yield</span></a>, the transport capacity of the water in this river section is so high, that the riverbed only consists of large boulders. Thus, the river section can be characterized as naturally sediment supply-limited (picture: Sebastian Schwindt 2010).</span><a class="headerlink" href="#krimml-2010" title="Permalink to this image">¶</a></p>
 </div>
 </div>
-<input id="f0b0f2fe-5f7b-4987-8630-bbaefcde1d70" name="a53a9b68-03ac-4f63-8365-a4876fbd4e01" type="radio">
-</input><label class="tabbed-label" for="f0b0f2fe-5f7b-4987-8630-bbaefcde1d70">
+<input id="9ffd8669-7109-4ff8-ae17-00b42628da29" name="0ca55327-9ce5-457f-b80e-e5add2d7d257" type="radio">
+</input><label class="tabbed-label" for="9ffd8669-7109-4ff8-ae17-00b42628da29">
 Capacity-limited</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="jenbach-2020">
 <a class="reference internal image-reference" href="../_images/jenbach-alluvial-2020.jpg"><img alt="alluvial channel jenbach sediment supply transport limited" src="../_images/jenbach-alluvial-2020.jpg" style="height: 350px;" /></a>
@@ -1225,16 +1261,197 @@ Capacity-limited</label><div class="tabbed-content docutils">
 </div>
 </div>
 <p><strong>Why is the differentiation between sediment supply and transport capacity-limited rivers important for numerical modeling?</strong></p>
-<p>Gaia provides different formulae for calculating bedload, which are mostly either derived from lab experiments with infinite sediment supply (e.g., the <span id="id4">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula and its derivates or from field measurements in partially transport capacity-limited rivers (e.g., <span id="id5">Wilcock [<a class="reference internal" href="../documentation/bibliography.html#id613">Wil93</a>]</span>). Formulae that account for limited sediment supply often involve a correction factor for the <a class="reference internal" href="../documentation/glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a>. The below TABLE lists available bedload transport formulae in Gaia.</p>
-<p>TABLECOMINGSOON</p>
-<p>The hydraulic transport capacity (1) results from and evaluation of <a class="reference internal" href="../documentation/glossary.html#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a><span class="math notranslate nohighlight">\(\tau_x\)</span> and its critical value, often referred to as the <code class="docutils literal notranslate"><span class="pre">Shields</span> <span class="pre">parameter</span></code> <span class="math notranslate nohighlight">\(\tau_{x,cr}\)</span> .</p>
-<p><code class="docutils literal notranslate"><span class="pre">BED</span> <span class="pre">LOAD</span> <span class="pre">FOR</span> <span class="pre">ALL</span> <span class="pre">SANDS</span> <span class="pre">:</span> <span class="pre">YES</span> <span class="pre">or</span> <span class="pre">NO</span></code>
-<code class="docutils literal notranslate"><span class="pre">BED-LOAD</span> <span class="pre">TRANSPORT</span> <span class="pre">FORMULA</span> <span class="pre">FOR</span> <span class="pre">ALL</span> <span class="pre">SANDS</span></code></p>
+<p>Gaia provides different formulae for calculating bedload, which are mostly either derived from lab experiments with infinite sediment supply (e.g., the <span id="id4">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula and its derivates or from field measurements in partially transport capacity-limited rivers (e.g., <span id="id5">Wilcock [<a class="reference internal" href="../documentation/bibliography.html#id613">Wil93</a>]</span>). Formulae that account for limited sediment supply often involve a correction factor for the <a class="reference internal" href="../documentation/glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a>.</p>
+</div>
+<div class="section" id="calculous-and-parameters">
+<h3>Calculous and Parameters<a class="headerlink" href="#calculous-and-parameters" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> is typically designated with <span class="math notranslate nohighlight">\(q_b\)</span> (in kg<span class="math notranslate nohighlight">\(\cdot\)</span>s<span class="math notranslate nohighlight">\(^{-1}\cdot\)</span>m<span class="math notranslate nohighlight">\(^{-1}\)</span>) and accounts for particulate transport in the form of the displacement of rolling, sliding, and/or jumping coarse particles. In river hydraulics, the so-called <a class="reference internal" href="../documentation/glossary.html#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a> or also referred to as <a class="reference internal" href="../documentation/glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a> <span id="id6">[<a class="reference internal" href="../documentation/bibliography.html#id533">Shi36</a>]</span> is often used as the threshold value for the mobilization of sediment from the riverbed. TELEMAC and Gaia output a dimensionless expression of bedload transport according to <span id="id7">Einstein [<a class="reference internal" href="../documentation/bibliography.html#id176">Ein50</a>]</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-phi-gaia">
+<span class="eqno">(2)<a class="headerlink" href="#equation-eq-phi-gaia" title="Permalink to this equation">¶</a></span>\[
+\Phi_b = \frac{q_b}{\rho_{w} \sqrt{(s - 1) g D_{pq}}}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\rho_{w}\)</span> is the density of water; <span class="math notranslate nohighlight">\(s\)</span> is the ratio of sediment grain and water density (typically 2.68) <span id="id8">[<a class="reference internal" href="../documentation/bibliography.html#id520">Sch17</a>]</span>; <span class="math notranslate nohighlight">\(g\)</span> is gravitational acceleration; and <span class="math notranslate nohighlight">\(D_{pq}\)</span> is the characteristic grain diameter of the sediment class (cf. <a class="reference internal" href="#gaia-sed"><span class="std std-ref">Define Sediment</span></a>). Note that the dimensionless expression <span class="math notranslate nohighlight">\(\Phi\)</span> and the dimensional expression <span class="math notranslate nohighlight">\(q_b\)</span> represent unit bedload (i.e., bedload normalized by a unit of width). In Gaia, the unit of width corresponds to a side of a numerical mesh cell over which the mass fluxes are calculated.</p>
+<p>Equation <a class="reference internal" href="#equation-eq-phi-gaia">(2)</a> expresses only the dimensional conversion for bedload transport (i.e., the way how dimensions are removed or added to sediment transport). In fact, this is only the first step to solve the other side of a bedload equation by means of a (semi-) empirical formula. To calculate <span class="math notranslate nohighlight">\(\Phi_b\)</span>, Gaia currently provides a set of (semi-) empirical formulae, which can be modified with user Fortran files and defined in the Gaia steering file with the <code class="docutils literal notranslate"><span class="pre">BED-LOAD</span> <span class="pre">TRANSPORT</span> <span class="pre">FORMULA</span> <span class="pre">FOR</span> <span class="pre">ALL</span> <span class="pre">SANDS</span></code> <code class="docutils literal notranslate"><span class="pre">integer</span></code> keyword. <a class="reference internal" href="#tab-gaia-bl-formulae"><span class="std std-numref">Table 9</span></a> lists possible integers for the keyword for currently available bedload transport formulae, including references to original publications, formula application ranges, and the names of the Fortran files for modifications.</p>
+<table class="colwidths-given table" id="tab-gaia-bl-formulae">
+<caption><span class="caption-number">Table 9 </span><span class="caption-text"><em>Bedload transport formulae implemented in Gaia with application limits with regards to the grain diameter <span class="math notranslate nohighlight">\(D\)</span>, and <strong>cross section-averaged</strong> Froude number <span class="math notranslate nohighlight">\(Fr\)</span>, slope <span class="math notranslate nohighlight">\(S\)</span>, water depth <span class="math notranslate nohighlight">\(h\)</span>, and flow velocity <span class="math notranslate nohighlight">\(u\)</span>. The Fortran files live in TELEMAC sources-directory.</em></span><a class="headerlink" href="#tab-gaia-bl-formulae" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 36%" />
+<col style="width: 21%" />
+<col style="width: 25%" />
+<col style="width: 11%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Gaia</p></th>
+<th class="head"><p>Author(s)</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(D\)</span></p></th>
+<th class="head"><p><em><a class="reference internal" href="../documentation/glossary.html#term-Froude-number"><span class="xref std std-term">Fr</span></a></em>; <span class="math notranslate nohighlight">\(S\)</span>; <span class="math notranslate nohighlight">\(h\)</span>; and <span class="math notranslate nohighlight">\(u\)</span></p></th>
+<th class="head"><p>User Fortran</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>(no.)</p></th>
+<th class="head"><p>(ref.)</p></th>
+<th class="head"><p>(10<span class="math notranslate nohighlight">\(^{-3}\)</span>m)</p></th>
+<th class="head"><p>(-); (-); (m); (m/s)</p></th>
+<th class="head"><p>(file name)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#gaia-mpm"><span class="std std-ref">1</span></a></p></td>
+<td><p><span id="id9">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span></p></td>
+<td><p>0.4 <span class="math notranslate nohighlight">\(&lt;\)</span>D_{50}<span class="math notranslate nohighlight">\(&lt;\)</span>28.6</p></td>
+<td><p>10<span class="math notranslate nohighlight">\(^{-4}&lt;Fr&lt;\)</span>639<br> 0.0004<span class="math notranslate nohighlight">\(&lt;S&lt;\)</span>0.02<br>0.01<span class="math notranslate nohighlight">\(&lt;h&lt;\)</span>1.2<br>0.2<span class="math notranslate nohighlight">\(&lt;u\)</span></p></td>
+<td><p><a class="reference external" href="http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__meyer__gaia_8f.html">bedload_meyer_gaia.f</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#gaia-einstein"><span class="std std-ref">2</span></a></p></td>
+<td><p><span id="id10">Brown [<a class="reference internal" href="../documentation/bibliography.html#id1371">Bro49</a>], Einstein [<a class="reference internal" href="../documentation/bibliography.html#id176">Ein50</a>]</span></p></td>
+<td><p>0.25<span class="math notranslate nohighlight">\(&lt;D_{35}&lt;\)</span>32</p></td>
+<td></td>
+<td><p><a class="reference external" href="http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__einst__gaia_8f.html">bedload_einst.f</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></td>
+<td><p><span id="id11">Engelund and Hansen [<a class="reference internal" href="../documentation/bibliography.html#id179">EH67</a>]</span></p></td>
+<td><p>0.15<span class="math notranslate nohighlight">\(&lt;D_{50}&lt;\)</span>5.0</p></td>
+<td><p>0.1<span class="math notranslate nohighlight">\(&lt;Fr&lt;\)</span>10</p></td>
+<td><p><a class="reference external" href="http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__engel__gaia_8f.html">bedload_engel_gaia.f</a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">30</span></code></p></td>
+<td><p><span id="id12">Chollet and Cunge [<a class="reference internal" href="../documentation/bibliography.html#id1372">CC79</a>], Engelund and Hansen [<a class="reference internal" href="../documentation/bibliography.html#id179">EH67</a>]</span></p></td>
+<td><p>0.15<span class="math notranslate nohighlight">\(&lt;D_{50}&lt;\)</span>5.0</p></td>
+<td><p>0.1<span class="math notranslate nohighlight">\(&lt;Fr&lt;\)</span>10</p></td>
+<td><p><a class="reference external" href="http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__engel__cc__gaia_8f.html">bedload_engel_cc_gaia.f</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">7</span></code></p></td>
+<td><p><span id="id13">Van Rijn [<a class="reference internal" href="../documentation/bibliography.html#id588">VR84</a>]</span></p></td>
+<td><p>0.6<span class="math notranslate nohighlight">\(&lt;D_{50}&lt;\)</span>2.0</p></td>
+<td><p>0.5<span class="math notranslate nohighlight">\(&lt;h\)</span><br>0.2<span class="math notranslate nohighlight">\(&lt;u\)</span></p></td>
+<td><p><a class="reference external" href="http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__vanrijn__gaia_8f.html">bedload_vanrijn_gaia.f</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>To use the <span id="id14">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula (<code class="docutils literal notranslate"><span class="pre">1</span></code> according to  <a class="reference internal" href="#tab-gaia-bl-formulae"><span class="std std-numref">Tab. 9</span></a>) in this tutorial, **add the following line to the gaia-morphdynamics.cas steering file:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">continued</span><span class="p">:</span> <span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">BEDLOAD</span>
+<span class="o">/</span>
+<span class="n">BED</span> <span class="n">LOAD</span> <span class="n">FOR</span> <span class="k">ALL </span><span class="n">SANDS</span> <span class="p">:</span> <span class="n">YES</span> <span class="o">/</span> <span class="n">deactivate</span> <span class="n">with</span> <span class="n">NO</span>
+<span class="n">BED</span><span class="o">-</span><span class="n">LOAD</span> <span class="n">TRANSPORT</span> <span class="n">FORMULA</span> <span class="n">FOR</span> <span class="k">ALL </span><span class="n">SANDS</span> <span class="p">:</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>The following sections provide more details on how <span class="math notranslate nohighlight">\(\Phi_b\)</span> is calculated with the pre-defined formulae listed in <a class="reference internal" href="#tab-gaia-bl-formulae"><span class="std std-numref">Tab. 9</span></a>.</p>
+<div class="note dropdown admonition">
+<p class="admonition-title">User Fortran Files</p>
+<p>To implement a user Fortran file, copy the original TELEMAC Fortran file from the <code class="docutils literal notranslate"><span class="pre">/telemac/v8pX/sources/</span></code> directory (e.g., <code class="docutils literal notranslate"><span class="pre">/telemac/v8pX/sources/gaia/bedload_einst_gaia.f</span></code>) to the project directory (e.g., <code class="docutils literal notranslate"><span class="pre">/telemac/v8pX/simulations/gaia-tutorial/user_fortran/bedload_einst_gaia.f</span></code>). Finally, tell TELEMAC where to look for user fortran files by defining the following keyword in a steering file (e.g., in <code class="docutils literal notranslate"><span class="pre">gaia-morphodynamics.cas</span></code>):</p>
+<p><code class="docutils literal notranslate"><span class="pre">FORTRAN</span> <span class="pre">FILE</span> <span class="pre">:</span> <span class="pre">'user_fortran'</span></code></p>
+</div>
+</div>
+<div class="section" id="meyer-peter-and-muller-1948">
+<span id="gaia-mpm"></span><h3>Meyer-Peter and Müller (1948)<a class="headerlink" href="#meyer-peter-and-muller-1948" title="Permalink to this headline">¶</a></h3>
+<div class="warning admonition">
+<p class="admonition-title">Recall the validity range for the MPM formula (1)</p>
+<p>Revise <a class="reference internal" href="#tab-gaia-bl-formulae"><span class="std std-numref">Tab. 9</span></a> to ensure that the application is in the applicable range of parameters corresponding to the conditions under which the formula has been developed.</p>
+</div>
+<p>The <span id="id15">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula was published in 1948 by Swiss researchers Eugen Meyer-Peter, professor at <a class="reference external" href="https://ethz.ch/en.html">ETH Zurich</a> and founder of the school’s hydraulics laboratory (Zurich’s famous <a class="reference external" href="https://vaw.ethz.ch/">VAW</a>), and Professor Robert Müller. Their empirical formula is the result of more than a decade of collaboration and the elaboration began one year after the VAW was founded in 1931, when Robert Müller was appointed assistant to Eugen Meyer-Peter. The two scientists also worked with Henry Favre and Hans-Albert Einstein who came up with another approach for calculating bedload. An early version of the <span id="id16">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula was published in 1934 and it is the basis for many formulas that refer to a critical <a class="reference internal" href="../documentation/glossary.html#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a> (i.e., <a class="reference internal" href="../documentation/glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a>). It is important to remember that the formula is based on data from lab flume experiments with quasi unlimited sediment supply. This is why bedload transport calculated with the <span id="id17">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula corresponds to the <a class="reference internal" href="#bl-principles"><span class="std std-ref">hydraulic transport capacity</span></a> of an alluvial channel. Thus, <strong>the <span id="id18">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula tends to overestimate bedload transport</strong> and it is inherently designed for estimating bedload <strong>based on simplified 1d cross section-averaged hydraulics</strong> (see also the <a class="reference internal" href="../exercises/ex-sediment.html#ex-py-sediment"><span class="std std-ref">Python sediment transport exercise</span></a>).</p>
+<p>Ultimately, the left side of Equation <a class="reference internal" href="#equation-eq-phi-gaia">(2)</a> (<span class="math notranslate nohighlight">\(\Phi_b\)</span>) can be calculated with the <span id="id19">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula as follows:</p>
+<div class="math notranslate nohighlight" id="equation-eq-mpm">
+<span class="eqno">(3)<a class="headerlink" href="#equation-eq-mpm" title="Permalink to this equation">¶</a></span>\[\begin{split}
+\Phi_b = \begin{cases} 0 &amp; \mbox{ if } \tau_{x,cr} &gt; \tau_{x} \\ f_{mpm} \cdot (\tau_{x} - \tau_{x,cr})^{3/2} &amp; \mbox{ if } \tau_{x,cr} \leq \tau_{x}\end{cases}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(f_{mpm}\)</span> is the MPM coefficient (default is 8), <span class="math notranslate nohighlight">\(\tau_{x,cr}\)</span> denotes the <a class="reference internal" href="../documentation/glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a> (<span class="math notranslate nohighlight">\(\approx\)</span> 0.047 and up to 0.07 in mountain rivers), and <span class="math notranslate nohighlight">\(\tau_{x}\)</span> is the <a class="reference internal" href="../documentation/glossary.html#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a>. When using the <span id="id20">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula with Gaia, consistency with original publications is <strong>ensured by defining <span class="math notranslate nohighlight">\(\tau_{x,cr}\)</span> and <span class="math notranslate nohighlight">\(f_{mpm}\)</span> in the steering file</strong>:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">continued</span><span class="p">:</span> <span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">BEDLOAD</span>
+<span class="n">BED</span><span class="o">-</span><span class="n">LOAD</span> <span class="n">TRANSPORT</span> <span class="n">FORMULA</span> <span class="n">FOR</span> <span class="k">ALL </span><span class="n">SANDS</span> <span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">see</span> <span class="n">above</span>
+<span class="n">SHIELDS</span> <span class="n">PARAMETERS</span> <span class="p">:</span> <span class="mf">0.047</span>
+<span class="n">MPM</span> <span class="n">COEFFICIENT</span> <span class="p">:</span> <span class="mi">8</span>
+</pre></div>
+</div>
+<div class="admonition-wong-parker-correction-of-the-mpm-formula admonition">
+<p class="admonition-title">Wong-Parker correction of the MPM formula</p>
+<p>The Wong-Parker correction <span id="id21">[<a class="reference internal" href="../documentation/bibliography.html#id626">WP06</a>]</span> for the <span id="id22">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula refers to a statistical re-analysis of the original experimental datasets and applies to <a class="reference internal" href="../documentation/glossary.html#term-Plane-bed"><span class="xref std std-term">Plane bed</span></a> river sections. To this end, the Wong-Parker correction yields lower bedload transport values and it excludes the form drag correction of the original formula with the following expression: <span class="math notranslate nohighlight">\(\Phi_{b} \approx 3.97 \cdot (\tau_{x} - 0.0495)^{3/2}\)</span>. Thus, to implement the Wong-Parker correction in Gaia use:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">SHIELDS</span> <span class="n">PARAMETERS</span> <span class="p">:</span> <span class="mf">0.0495</span>
+<span class="n">MPM</span> <span class="n">COEFFICIENT</span> <span class="p">:</span> <span class="mf">3.97</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="einstein-brown-1942-49">
+<span id="gaia-einstein"></span><h3>Einstein-Brown (1942/49)<a class="headerlink" href="#einstein-brown-1942-49" title="Permalink to this headline">¶</a></h3>
+<div class="warning admonition">
+<p class="admonition-title">Recall the validity range for the Einstein-Brown formula (2)</p>
+<p>Revise <a class="reference internal" href="#tab-gaia-bl-formulae"><span class="std std-numref">Tab. 9</span></a> to ensure that the application is in the applicable range of parameters corresponding to the conditions under which the formula has been developed.</p>
+</div>
+<p>Hans Albert Einstein, son of the famous Albert Einstein, was a pioneer of probability-based analyses of sediment transport. In particular, he hypothesized that the beginning and the end of sediment motion can be expressed in terms of probabilities. Furthermore, Einstein assumed  that the sediment motion is a series of step-wise displacements followed by rest periods and that the average distance of a displacement is approximately hundred times the particle (grain) diameter. Aiming to account for his observations in lab flume experiments, Einstein introduced hiding and lifting correction coefficients <span id="id23">[<a class="reference internal" href="../documentation/bibliography.html#id1373">Ein42</a>]</span>.</p>
+<p>The Einstein formula differs from any <span id="id24">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span>-based formula in that it does not imply a threshold for incipient motion of sediment. However, despite or because Einstein’s sediment transport theory is significantly more complex than many other bedload transport formulae, it did not become very popular in engineering applications. Today, Gaia enables user-friendly applications of Einstein’s formula, which was similarly presented by <span id="id25">Brown [<a class="reference internal" href="../documentation/bibliography.html#id1371">Bro49</a>]</span> at an engineering hydraulic conference in 1949.</p>
+<p>According to <span id="id26">Einstein [<a class="reference internal" href="../documentation/bibliography.html#id1373">Ein42</a>]</span>-<span id="id27">Brown [<a class="reference internal" href="../documentation/bibliography.html#id1371">Bro49</a>]</span>, the left side of Equation <a class="reference internal" href="#equation-eq-phi-gaia">(2)</a> (<span class="math notranslate nohighlight">\(\Phi_b\)</span>) is calculated as follows:</p>
+<div class="math notranslate nohighlight" id="equation-eq-einstein-brown">
+<span class="eqno">(4)<a class="headerlink" href="#equation-eq-einstein-brown" title="Permalink to this equation">¶</a></span>\[\begin{split}
+\Phi_b = \begin{cases} 0 &amp; \mbox{ if } \tau_{x} &lt; 0.0025
+F_{eb} 2.15 \cdot \exp{-0.391/\tau_{x}} &amp; \mbox{ if } 0.0025 \geq \tau_{x} \leq 0.2\\ F_{eb} \cdot  40 \cdot \tau_{x}^{3} &amp; \mbox{ if } \tau_{x} &gt; 0.2  \tau_{x}\end{cases}
+\end{split}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight" id="equation-eq-f-eb">
+<span class="eqno">(5)<a class="headerlink" href="#equation-eq-f-eb" title="Permalink to this equation">¶</a></span>\[
+F_{eb} = \left(\frac{2}{3} + \frac{36}{D_x}\right)^{0.5} - \left(\frac{36}{D_x}\right)^{0.5}
+\]</div>
+<p><span class="math notranslate nohighlight">\(D_x\)</span> is the dimensionless particle diameter calculated as:</p>
+<div class="math notranslate nohighlight" id="equation-eq-d-dimless">
+<span class="eqno">(6)<a class="headerlink" href="#equation-eq-d-dimless" title="Permalink to this equation">¶</a></span>\[
+D_x = \left[\frac{(s-1)\cdot g}{\nu^2}\right]^{1/3}\cdot D_{pq}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(s\)</span> is the ratio of sediment grain and water density (typically 2.68); <span class="math notranslate nohighlight">\(g\)</span> is gravitational acceleration; and <span class="math notranslate nohighlight">\(\nu\)</span> is the kinematic viscosity of water (<span class="math notranslate nohighlight">\(\approx\)</span>10<span class="math notranslate nohighlight">\(^{-6}\)</span>m<span class="math notranslate nohighlight">\(^{2}\)</span> s<span class="math notranslate nohighlight">\(^{-1}\)</span>) <span id="id28">[<a class="reference internal" href="../documentation/bibliography.html#id520">Sch17</a>]</span>.</p>
+<p>To use the <span id="id29">[<a class="reference internal" href="../documentation/bibliography.html#id1373">Ein42</a>]</span>-<span id="id30">Brown [<a class="reference internal" href="../documentation/bibliography.html#id1371">Bro49</a>]</span> formulae in Gaia use:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">BED</span><span class="o">-</span><span class="n">LOAD</span> <span class="n">TRANSPORT</span> <span class="n">FORMULA</span> <span class="n">FOR</span> <span class="k">ALL </span><span class="n">SANDS</span> <span class="p">:</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<div class="admonition-consider-adapting-bedload-einst-f admonition">
+<p class="admonition-title">Consider adapting bedload_einst.f</p>
+<p>The application thresholds as a function of <span class="math notranslate nohighlight">\(\tau_{x}\)</span> stem from the Gaia Fortran file <a class="reference external" href="http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__einst__gaia_8f.html">bedload_einst.f</a>. However, the original publications suggest using a threshold of <span class="math notranslate nohighlight">\(\tau_{x}\)</span>=0.182 (rather than 0.2) for switching the formula cases.</p>
+</div>
+</div>
+<div class="section" id="engelund-hansen-1967">
+<span id="gaia-engelund"></span><h3>Engelund-Hansen (1967)<a class="headerlink" href="#engelund-hansen-1967" title="Permalink to this headline">¶</a></h3>
+<div class="warning admonition">
+<p class="admonition-title">Recall the validity range for the Engelund-Hansen formulae (3 and 30)</p>
+<p>Revise <a class="reference internal" href="#tab-gaia-bl-formulae"><span class="std std-numref">Tab. 9</span></a> to ensure that the application is in the applicable range of parameters corresponding to the conditions under which the formula has been developed.</p>
+</div>
+<p>The <span id="id31">Engelund and Hansen [<a class="reference internal" href="../documentation/bibliography.html#id179">EH67</a>]</span> formula takes into account the solid transport as a whole and thus considers the transport in suspension and the transport by scavenging. Starting from the current power approach of the original 1966 formula of <span id="id32">Bagnold [<a class="reference internal" href="../documentation/bibliography.html#id34">Bag66</a>], Bagnold [<a class="reference internal" href="../documentation/bibliography.html#id33">Bag80</a>]</span>, the formula describes in particular the solid transport in the dune regime due to low energies by balancing the energy useful to drive the particles up the dunes with the energy supplied by the fluid to the particles. Applying the theory of <span id="id33">Bagnold [<a class="reference internal" href="../documentation/bibliography.html#id34">Bag66</a>], Bagnold [<a class="reference internal" href="../documentation/bibliography.html#id33">Bag80</a>]</span>, the shear $$ is the sum of the shear transmitted between the grains by the fluid and the shear transmitted by moment changes caused by intergranular collisions. Consequently, grains are eroded as long as the fluid shear equals the critical shear.</p>
+<p>dimensionless friction coefficient <span class="math notranslate nohighlight">\(f_{eh}\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+f_{eh} = \frac{2\cdot S}{Fr}
+\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-engelund">
+<span class="eqno">(7)<a class="headerlink" href="#equation-eq-engelund" title="Permalink to this equation">¶</a></span>\[
+\Phi_b = \frac{0.1\cdot \tau_{*}}{f_{eh}}
+\]</div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">BED</span><span class="o">-</span><span class="n">LOAD</span> <span class="n">TRANSPORT</span> <span class="n">FORMULA</span> <span class="n">FOR</span> <span class="k">ALL </span><span class="n">SANDS</span> <span class="p">:</span> <span class="mi">3</span> <span class="o">/</span> <span class="mi">30</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="van-rijn-1984">
+<span id="gaia-rijn"></span><h3>van Rijn (1984)<a class="headerlink" href="#van-rijn-1984" title="Permalink to this headline">¶</a></h3>
+<div class="warning admonition">
+<p class="admonition-title">Recall the validity range for the van-Rijn formula (7)</p>
+<p>Revise <a class="reference internal" href="#tab-gaia-bl-formulae"><span class="std std-numref">Tab. 9</span></a> to ensure that the application is in the applicable range of parameters corresponding to the conditions under which the formula has been developed.</p>
+</div>
+<p>In developing his formula, Leo van Rijn studied several formulations, among which are those of <span id="id34">Bagnold [<a class="reference internal" href="../documentation/bibliography.html#id33">Bag80</a>]</span>, <span id="id35">Einstein [<a class="reference internal" href="../documentation/bibliography.html#id1373">Ein42</a>]</span> or <span id="id36">Ackers and White [<a class="reference internal" href="../documentation/bibliography.html#id8">AW73</a>]</span>. The theory of <span id="id37">Bagnold [<a class="reference internal" href="../documentation/bibliography.html#id33">Bag80</a>]</span>, according to which bedload is dominated by gravity while suspended transport is controlled by turbulence, was followed in the path of <span id="id38">Van Rijn [<a class="reference internal" href="../documentation/bibliography.html#id588">VR84</a>]</span> formulations. For the calculation of the bedload transport, in a manner identical to \cite{ackers73}, the important parameters retained are the dimensionless diameter as well as a solid transport parameter depending on the frictional velocities. To calibrate his near-bed (bedload) solid transport model, <span id="id39">Van Rijn [<a class="reference internal" href="../documentation/bibliography.html#id588">VR84</a>]</span> used data from experiments on flat-bottomed channels with different materials whose mean diameter was 1.8~[mm]. Then, <span id="id40">Van Rijn [<a class="reference internal" href="../documentation/bibliography.html#id588">VR84</a>]</span>conducted further comparative experiments to compare the results of the old model with experiments in channels for river flows and particles of 0.2 to 2~[mm] diameter. Concerning the suspended transport, <span id="id41">Van Rijn [<a class="reference internal" href="../documentation/bibliography.html#id588">VR84</a>]</span> established criteria for suspension also based on laboratory experiments by simplifying the calibration parameters empirically. Finally he performed a validation of the suspension transport using particles smaller than 0.5~[mm]. This was performed using several data sets and then comparing the results with those obtained from different formulas.
+The formula of <span id="id42">Van Rijn [<a class="reference internal" href="../documentation/bibliography.html#id588">VR84</a>]</span> takes into account the total sediment transport, i.e. by scavenging and by suspension by calculating both parts separately.</p>
+<div class="math notranslate nohighlight" id="equation-eq-rijn">
+<span class="eqno">(8)<a class="headerlink" href="#equation-eq-rijn" title="Permalink to this equation">¶</a></span>\[
+\Phi_b = 0.053\cdot \frac{T{2.1}}{D_{x}^{0.3}}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+T = \frac{{u}^2_* - {u}^2_{*, cr}}{{u}^2_{*, cr}}
+\]</div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">BED</span><span class="o">-</span><span class="n">LOAD</span> <span class="n">TRANSPORT</span> <span class="n">FORMULA</span> <span class="n">FOR</span> <span class="k">ALL </span><span class="n">SANDS</span> <span class="p">:</span> <span class="mi">7</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="suspended-load">
-<span id="gaia-sl"></span><h3>Suspended Load<a class="headerlink" href="#suspended-load" title="Permalink to this headline">¶</a></h3>
+<span id="gaia-sl"></span><h2>Suspended Load<a class="headerlink" href="#suspended-load" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">SUSPENSION</span> <span class="pre">FOR</span> <span class="pre">ALL</span> <span class="pre">SANDS</span> <span class="pre">:</span> <span class="pre">YES</span> <span class="pre">or</span> <span class="pre">NO</span></code></p>
-</div>
 <div class="section" id="numerical-options-and-parameters">
 <h3>Numerical options and parameters<a class="headerlink" href="#numerical-options-and-parameters" title="Permalink to this headline">¶</a></h3>
 <p>Define which numerical schemes, solvers to use in your calculation. Consider the following important keywords:</p>

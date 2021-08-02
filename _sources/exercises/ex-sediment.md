@@ -1,3 +1,4 @@
+(ex-py-sediment)=
 # 1d Sediment Transport
 
 ```{admonition} Goals
@@ -71,11 +72,11 @@ The principle of sediment mobilization.
 (mpm)=
 ### The Meyer-Peter and Müller (1948) formula
 
-The {cite:t}`meyer-peter_formulas_1948` formula for estimating {term}`Bedload` transport was published by Swiss researchers Eugen Meyer-Peter (founder of the [Laboratory of Hydraulics, Hydrology and Glaciology (VAW)](https://vaw.ethz.ch/en/) and Robert Müller. Their study began one year after the establishment of the VAW in 1931 when Robert Müller was appointed assistant to Eugen Meyer-Peter. The two scientists worked in collaboration with Henry Favre and Albert Einstein's son Hans Albert. In 1934, the laboratory published for the first time a formula for the calculation of {term}`Bedload` transport and its fundamental relationship between observed $\tau_{x}$ and critical $\tau_{x,cr}$ dimensionless bed shear stresses is used until today. The dimensionless {term}`Bedload` transport rate $\Phi$ according to {cite:t}`meyer-peter_formulas_1948` is: <a name="phi"></a>
+The {cite:t}`meyer-peter_formulas_1948` formula for estimating {term}`Bedload` transport was published by Swiss researchers Eugen Meyer-Peter (founder of the [Laboratory of Hydraulics, Hydrology and Glaciology (VAW)](https://vaw.ethz.ch/en/) and Robert Müller. Their study began one year after the establishment of the VAW in 1931 when Robert Müller was appointed assistant to Eugen Meyer-Peter. The two scientists worked in collaboration with Henry Favre and Albert Einstein's son Hans Albert. In 1934, the laboratory published for the first time a formula for the calculation of {term}`Bedload` transport and its fundamental relationship between observed $\tau_{x}$ and critical $\tau_{x,cr}$ dimensionless bed shear stresses is used until today. The dimensionless {term}`Bedload` transport rate $\Phi_b$ according to {cite:t}`meyer-peter_formulas_1948` is:
 
 $$
-\Phi \approx 8 \cdot (\tau_{x} - \tau_{x,cr})^{3/2}
-$$
+\Phi_b \approx 8 \cdot (\tau_{x} - \tau_{x,cr})^{3/2}
+$$ (eq-py-mpm)
 
 where <a name="taux"></a>
 * $\tau_{x,cr}$ $\approx$ 0.047 (up to 0.07 in mountain rivers), and
@@ -92,17 +93,17 @@ The *Meyer-Peter & Müller* formula applies (like any other {term}`Sediment tran
 * 0.0002 m$^3$/(s $\cdot$ m) $< q <$ 2.0 m$^3$/(s $\cdot$ m) ($q$ is the unit discharge, i.e., $q=Q/[0. 5\cdot (b + B)]$)
 * 0.25 $< s <$ 3.2
 
-The dimensionless expression for {term}`Bedload` $\Phi$ was used to enable information transfer between different channels across scales by preserving geometric, kinematic, and dynamic similarity. The set of dimensionless parameters used results from [Buckingham's $\Pi$ theorem](https://pint.readthedocs.io/en/stable/pitheorem.html) {cite:p}`buckingham_model_1915`.
-Therefore, to add dimensions to $\Phi$, it needs to be multiplied with the same set of parameters used for deriving the dimensionless expression from *Meyer-Peter & Müller*. Their set of parameters involves the characteristic grain size $D_{char}$, the grain density $\rho_{s}$, and the gravitational acceleration $g$. Thus, the dimensional unit {term}`Bedload` is (in kg/s and meter width, i.e., kg/(s$\cdot$m): <a name="qb"></a>
+The dimensionless expression for {term}`Bedload` $\Phi_b$ was used to enable information transfer between different channels across scales by preserving geometric, kinematic, and dynamic similarity. The set of dimensionless parameters used results from [Buckingham's $\Pi$ theorem](https://pint.readthedocs.io/en/stable/pitheorem.html) {cite:p}`buckingham_model_1915`.
+Therefore, to add dimensions to $\Phi_b$, it needs to be multiplied with the same set of parameters used for deriving the dimensionless expression from *Meyer-Peter & Müller*. Their set of parameters involves the characteristic grain size $D_{char}$, the grain density $\rho_{s}$, and the gravitational acceleration $g$. Thus, the dimensional unit {term}`Bedload` is (in kg/s and meter width, i.e., kg/(s$\cdot$m): <a name="qb"></a>
 
 $$
-q_{b} = \Phi \cdot ((s-1) \cdot g \cdot D_{char}^{3})^{1/2} \cdot \rho_{s}
+q_{b} = \Phi_b \cdot ((s-1) \cdot g \cdot D_{char}^{3})^{1/2} \cdot \rho_{s}
 $$
 
 The cross-section averaged {term}`Bedload` $Q_{b}$ (kg/s) is then:
 
 $$
-Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi \cdot [(s-1) \cdot g \cdot D_{char}^{3}]^{1/2} \cdot \rho_{s}
+Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_{char}^{3}]^{1/2} \cdot \rho_{s}
 $$
 
 where $b_{eff}$ is the hydraulically active channel width of the flow cross-section (e.g., for a trapezoid $b_{eff} = 0.5 \cdot (b + B)$).
@@ -335,7 +336,7 @@ class BedCore:
 Import `fun` (the script with logging functions) to enable the usage of `logging.warning(...)` messages in the methods of `BedCore` and its child classes.
 ```
 
-Add a method to convert the dimensionless {term}`Bedload` transport $\Phi$ into a dimensional value (kg/s). In addition to the variables defined in the `__init__` method, the `add_dimensions` method will require the effective channel width $b_{eff}$ ([recall the above descriptions](#qb):
+Add a method to convert the dimensionless {term}`Bedload` transport $\Phi_b$ into a dimensional value (kg/s). In addition to the variables defined in the `__init__` method, the `add_dimensions` method will require the effective channel width $b_{eff}$ ([recall the above descriptions](#qb):
 
 ```python
     def add_dimensions(self, b):
@@ -359,7 +360,7 @@ Many {term}`Bedload` transport formulae involve the dimensionless bed shear stre
 
 ### Write a Meyer-Peter & Müller Bedload Assessment Class
 
-Create a new script (e.g., `mpm.py`) and implement a `MPM` class (**M**eyer-**P**eter & **M**üller) that inherits from the `BedCore` class. The `__init__` method of `MPM` should initialize `BedCore` and overwrite (recall {ref}`polymorphism`) relevant parameters to the calculation of {term}`Bedload` according to Meyer-Peter & Müller (1948). Moreover, the initialization of an `MPM` object should go along with a check of the validity and the calculation of the dimensionless {term}`Bedload` transport $\Phi$ ([see above explanations](#mpm)):
+Create a new script (e.g., `mpm.py`) and implement a `MPM` class (**M**eyer-**P**eter & **M**üller) that inherits from the `BedCore` class. The `__init__` method of `MPM` should initialize `BedCore` and overwrite (recall {ref}`polymorphism`) relevant parameters to the calculation of {term}`Bedload` according to Meyer-Peter & Müller (1948). Moreover, the initialization of an `MPM` object should go along with a check of the validity and the calculation of the dimensionless {term}`Bedload` transport $\Phi_b$ ([see above explanations](#mpm)):
 
 ```python
 from bedload import *
@@ -401,7 +402,7 @@ Add the `check_validity` method to verify if the provided cross-section characte
 The here shown `check_validity` method takes the *Froude* number as input argument. Alternatively, assign the *Froude* number already in `__init__` and use `self.Fr`.
 ```
 
-To calculate dimensionless {term}`Bedload` transport $\Phi$ according to Meyer-Peter & Müller, implement a `compute_phi` method that uses the `compute_tau_x` method from `BedCore`:
+To calculate dimensionless {term}`Bedload` transport $\Phi_b$ according to Meyer-Peter & Müller, implement a `compute_phi` method that uses the `compute_tau_x` method from `BedCore`:
 
 ```python
    def compute_phi(self):
@@ -416,7 +417,7 @@ To calculate dimensionless {term}`Bedload` transport $\Phi$ according to Meyer-P
             self.phi = np.nan
 ```
 
-With the `MPM` class defined, we can now fill the `calculate_mpm` function in the `main.py` script. The function should create a *pandas* data frame with columns of dimensionless {term}`Bedload` transport $\Phi$ and dimensional {term}`Bedload` transport $Q_{b}$ associated with a channel profile (`"River Sta"`) and flow scenario (`"Profile" > "Scenario"`).
+With the `MPM` class defined, we can now fill the `calculate_mpm` function in the `main.py` script. The function should create a *pandas* data frame with columns of dimensionless {term}`Bedload` transport $$ and dimensional {term}`Bedload` transport $Q_{b}$ associated with a channel profile (`"River Sta"`) and flow scenario (`"Profile" > "Scenario"`).
 
 The following code block illustrates an example for the `calculate_mpm` function that creates the *pandas* data frame from a {ref}`dict` (`mpm_dict`). The illustrative function creates the *dictionary* with void value lists, extracts hydraulic data from the *HEC-RAS* data frame, and loops over the `"River Sta"` entries. The loop checks if the `"River Sta"` entries are valid (i.e., not `"Nan"`) because empty rows that *HEC-RAS* automatically adds between output profiles should not be analyzed. If the check was successful, the loop appends the profile, scenario, and discharge directly to `mpm_dict`. The section-wise {term}`Bedload` transport results from `MPM` objects. After the loop, the function returns `mpm_dict` as a `pd.DataFrame` object.
 
@@ -539,7 +540,7 @@ There are many possible solutions to this exercise and any solution that results
 ```
 
 ```{admonition} Homework
-* HOMEWORK 1: Implement the Parker-Wong correction {cite:p}`wong_reanalysis_2006` for the *Meyer-Peter & Müller* formula:$\Phi_{pw} \approx 4.93 \cdot (\tau_{x} - \tau_{x,cr})^{1.6}$. Implement the formula in the `MPM` class either use an optional keyword argument in `compute_phi` or a new method.
+* HOMEWORK 1: Implement the Parker-Wong correction {cite:p}`wong_reanalysis_2006` for the {cite:t}`meyer-peter_formulas_1948` formula:$\Phi_{b,pw} \approx 4.93 \cdot (\tau_{x} - \tau_{x,cr})^{1.6}$. Implement the formula in the `MPM` class either use an optional keyword argument in `compute_phi` or a new method.
 
 * HOMEWORK 2: Use the `openpyxl` library to add a background color to the headers of output tables.
 
