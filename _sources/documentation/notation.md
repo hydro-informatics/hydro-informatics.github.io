@@ -31,6 +31,14 @@ The consistent use of parameters and symbols for parameters is summarized in a n
   - $-$
   - Courant-Friedrichs-Lewy ({term}`CFL`) condition
 
+* - $c_{f}$
+  - $-$
+  - {ref}`combined form drag and skin friction coefficient <c-friction>`
+
+* - $c'_{f}$
+  - $-$
+  - {ref}`skin friction coefficient <c-friction>` (Equation {eq}`eq-cf-skin`)
+
 * - $cHSI$
   - index
   - combined habitat suitability index
@@ -53,7 +61,7 @@ The consistent use of parameters and symbols for parameters is summarized in a n
 
 * - $Fr$
   - $-$
-  - Froude number
+  - {term}`Froude number`
 
 * - $f_D$
   - $-$
@@ -62,6 +70,14 @@ The consistent use of parameters and symbols for parameters is summarized in a n
 * - $F_{eb}$
   - $-$
   - Einstein-Brown (EB) factor (Equation {eq}`eq-f-eb`)
+
+* - $f_{eh}$
+  - $-$
+  - factor in the Engelund and Hansen bedload equation {eq}`eq-f-eh`
+
+* - $f_{fr}$
+  - $-$
+  - friction correction factor for bed shear stress (Equation {eq}`eq-f-fr`)
 
 * - $f_{mpm}$
   - $-$

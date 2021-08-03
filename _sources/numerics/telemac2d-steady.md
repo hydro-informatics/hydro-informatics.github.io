@@ -532,6 +532,8 @@ FRICTION COEFFICIENT : 0.03 / Roughness coefficient
 
 ````
 
+The friction coefficient is more generally referred with the variable $c_{f}$, which has a particular relevance for {term}`Bedload` transport (cf. {ref}`morphodynamic calculations with Gaia <c-friction>`).
+
 ```{admonition} Friction zones (regional friction values)
 :class: tip, dropdown
 Similar to the assignment of multiple friction coefficient values to multiple model regions featured in the {ref}`BASEMENT tutorial <bm-geometry>`, Telemac2d provides routines for domain-wise (or zonal) friction area definitions through a geometry (e.g., `*.slf`) file. To create a zonal roughness Selafin geometry with QGIS and Blue Kenue use our [Create Roughness Selafin File PDF workflow](https://github.com/hydro-informatics/telemac/raw/main/friction/create-friction-zone-slf.pdf). Some additional hints for using the workflow:

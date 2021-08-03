@@ -24,7 +24,7 @@ Bedload
   Bedload (also referred to as *bed load*) $Q_b$ (or $q_b$ for unit bedload) in kg$\cdot$s$^{-1}$ (or kg$\cdot$s$^{-1}\cdot$m$^{-1}$) is a special type of {term}`Sediment transport` describing the displacement of coarse particles by rolling, sliding, and/or jumping on the riverbed. In river hydraulics, the so-called {term}`Dimensionless bed shear stress` or also referred to as {term}`Shields parameter` {cite:p}`shields_anwendung_1936` is often used as the threshold value for the mobilization of sediment from the riverbed. The dimensionless expression of bedload transport is {cite:p}`einstein_bed-load_1950`:
 
   $$
-  \Phi_b = \frac{q_b}{\rho_{w} \sqrt{(s - 1) g D_{pq}}} \approx \frac{Q_b}{0.5\cdot(b + B)\rho_{w} \sqrt{(s - 1) g D_{pq}}}
+  \Phi_b = \frac{q_b}{\rho_{w} \sqrt{(s - 1) g D^{3}_{pq}}} \approx \frac{Q_b}{0.5\cdot(b + B)\rho_{w} \sqrt{(s - 1) g D^{3}_{pq}}}
   $$
 
   where $\rho_{w}$ is the density of water; $s$ is the ratio of sediment grain and water density (typically 2.68) {cite:p}`schwindt_hydro-morphological_2017`; $g$ is gravitational acceleration; $D_{pq}$ is the grain diameter of which $pq \%$ of the mixture are finer; and $b$ and $B$ are the channel bottom and surface width, respectively (or cell width/height in a 2d numerical model).
@@ -188,7 +188,7 @@ Plane bed
   :alt: planebed plane bed river stream example geomorphology
   :name: plane-bed
 
-  Example of a planed bed river section at the Drance (VS, Switzerland). Picture: Sebastian Schwindt (2016).
+  Example of a plane bed river section at the Drance (VS, Switzerland). Picture: Sebastian Schwindt (2016).
   ```
 
 Rating curve
@@ -198,7 +198,7 @@ Reynolds number
   The Reynolds number $Re$ relates viscous forces to inertia and is a key parameter for flow turbulence {cite:p}`chow59`:
 
   $$
-  Re = \frac{u h}{\nu} \begin{cases} < 800 \rightarrow \mbox{ laminar\ flow} \\ \geq 800 \mbox{ and } \leq 2000 \rightarrow \mbox{ transitional\ flow} \\ > 10000 \rightarrow \mbox{ turbulent~flow} \end{cases}
+  Re = \frac{u h}{\nu} \begin{cases} < 800 \rightarrow \mbox{ laminar flow} \\ \geq 800 \mbox{ and } \leq 2000 \rightarrow \mbox{ transitional flow} \\ > 10000 \rightarrow \mbox{ turbulent flow} \end{cases}
   $$
 
   Where $\nu$ denotes the kinematic viscosity (10$^{-6}$ m$^{2}$ s$^{-1}$ for water at 20$^{\circ}$C). In gravel-cobble bed rivers, inertia forces are typically dominant compared with viscous forces; therefore $Re$ is generally larger than 2000 and the flow is turbulent {cite:p}`chow59,wohl_mountain_2000`.
