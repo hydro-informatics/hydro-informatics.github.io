@@ -866,6 +866,17 @@ Re-{ref}`run Telemac2d <tm2d-run>` and open the resulting `r2d...slf` file in QG
 * How reasonable are the results?
 * Which of the two initial conditions would you use in practice to show that your simulation is correct?
 
+# 2d Calibration Parameters
+
+```{dropdown} Recall: How to calibrate?
+Calibration involves the step-wise adaptation of model input parameters to yield a possibly best stochastic fit of modeled and measured data. In the process of model calibration, only one parameter should be modified at a time by 10 to 20-% deviations from its default value. For instance, if the default is `BETA : 1.3`, the calibration may test for `BETA : 1.2`, then `BETA : 1.1` and so on, ultimately to find out which value for **BETA** brings the model results closest to observations.
+
+Moreover, a sensitivity analysis compares step-wise modifications of multiple parameters (still: one at a time) and theirs effect on model results. For instance, if a 10-% variation of **BETA** yields a 5-% change in global water depth while a 10-% variation of a friction coefficient yields a 20-% change in global water depth, it may be concluded that the model sensitivity with respect to the friction coefficient is higher than with respect to **BETA**. However, such conclusions require careful considerations in multi-parametric, complex models of river ecosystems.
+```
+
+The following parameters may be used for calibrating a 2d model to measurements (e.g., water surface elevation, water depth, or flow velocity) that were made at a gauged discharge:
+
+* `FRICTION COEFFICIENT FOR ...` ({ref}`friction section <tm2d-friction>`)
 
 **What next?**
 : A steady discharge almost never occurs in reality and can be used at maximum to {ref}`calibrate <calibration>` the model based on (field) measurements. Once the model is well-calibrated for 2-3 steady discharges, the steady model results may be used for initializing an {ref}`unsteady <chpt-unsteady>` simulation, possibly with {ref}`sediment transport <tm-gaia>`.

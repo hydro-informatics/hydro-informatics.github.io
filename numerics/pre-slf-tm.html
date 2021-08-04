@@ -401,7 +401,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="basement2d.html">
-     Simulation Setup (Steady 2d)
+     Steady 2d Simulation and Post-processing
     </a>
    </li>
   </ul>
@@ -465,10 +465,37 @@
      </li>
     </ul>
    </li>
-   <li class="toctree-l2">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="telemac-gaia.html">
      Gaia (Morphodynamics)
     </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label for="toctree-checkbox-13">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="gaia-basics.html">
+       Gaia Basic Setup
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="gaia-bedload.html">
+       Bedload
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="gaia-suspended.html">
+       Suspended Load
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="gaia-run.html">
+       Run Simulation
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -476,8 +503,8 @@
   <a class="reference internal" href="openfoam.html">
    OpenFOAM
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -525,8 +552,8 @@
   <a class="reference internal" href="../exercises/docs-exercises.html">
    Exercises
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-  <label for="toctree-checkbox-14">
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -549,8 +576,8 @@
   <a class="reference internal" href="../troubleshoot/dbg-programming.html">
    Programming Tools and IDEs
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-  <label for="toctree-checkbox-15">
+  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+  <label for="toctree-checkbox-16">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -576,8 +603,8 @@
   <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
    Numerical Models
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-  <label for="toctree-checkbox-16">
+  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+  <label for="toctree-checkbox-17">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -598,8 +625,8 @@
   <a class="reference internal" href="../troubleshoot/dbg-os.html">
    Operating Systems (Linux and VMs)
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
-  <label for="toctree-checkbox-17">
+  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+  <label for="toctree-checkbox-18">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1472,8 +1499,8 @@
 </div>
 <p>The upstream (inflow) liquid boundary will constitute an <strong>Open boundary with prescribed Q</strong> (discharge) and the downstream outflow (liquid) boundary will constitute an <strong>Open boundary with prescribed Q and H</strong> (i.e., prescribed <a class="reference internal" href="../documentation/glossary.html#term-Rating-curve"><span class="xref std std-term">Rating curve</span></a> / <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a>). These types of boundary conditions are commonly used in practice, with the downstream boundary typically chosen to be at a gauging station where a <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a> (<a class="reference internal" href="../documentation/glossary.html#term-Rating-curve"><span class="xref std std-term">Rating curve</span></a>) has been calibrated with historic data. To assign the two liquid boundary lines, zoom into the downstream and upstream regions indicated in  <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 74</span></a> and create both boundaries as follows:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="f33867e6-c8a2-4699-82dd-36a585be9ce5" name="474e9c64-5094-4a74-9dfe-065b762344e7" type="radio">
-</input><label class="tabbed-label" for="f33867e6-c8a2-4699-82dd-36a585be9ce5">
+<input checked="checked" id="a88e54e9-4788-4a65-a185-94751462f6a0" name="60d4bb0b-6a18-4449-9f10-15f742d39b79" type="radio">
+</input><label class="tabbed-label" for="a88e54e9-4788-4a65-a185-94751462f6a0">
 Downstream boundary</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p>Zoom into the <strong>downstream</strong> region indicated in <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 74</span></a>.</p></li>
@@ -1495,8 +1522,8 @@ Downstream boundary</label><div class="tabbed-content docutils">
 <p class="caption"><span class="caption-number">Fig. 75 </span><span class="caption-text">The downstream boundary definition. Double-click on a node at one bank, then hold the <strong>Shift</strong> key and double-click on a node at the other bank to highlight the outflow (purple) line. Note that BOTTOM_BC might appear with the name <em>boundaries</em> if the object has been saved as <code class="docutils literal notranslate"><span class="pre">boundaries.bc2</span></code>.</span><a class="headerlink" href="#bk-boundary-ds" title="Permalink to this image">¶</a></p>
 </div>
 </div>
-<input id="74cc7f7a-da81-4f0e-be82-818890de1c81" name="474e9c64-5094-4a74-9dfe-065b762344e7" type="radio">
-</input><label class="tabbed-label" for="74cc7f7a-da81-4f0e-be82-818890de1c81">
+<input id="deccd09b-799f-41b0-9759-dec8b200dfc7" name="60d4bb0b-6a18-4449-9f10-15f742d39b79" type="radio">
+</input><label class="tabbed-label" for="deccd09b-799f-41b0-9759-dec8b200dfc7">
 Upstream boundary</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p>Zoom into the <strong>upstream</strong> region indicated in  <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 74</span></a>.</p></li>

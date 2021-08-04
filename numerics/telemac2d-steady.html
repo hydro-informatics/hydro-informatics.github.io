@@ -467,10 +467,37 @@
      </li>
     </ul>
    </li>
-   <li class="toctree-l2">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="telemac-gaia.html">
      Gaia (Morphodynamics)
     </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label for="toctree-checkbox-13">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="gaia-basics.html">
+       Gaia Basic Setup
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="gaia-bedload.html">
+       Bedload
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="gaia-suspended.html">
+       Suspended Load
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="gaia-run.html">
+       Run Simulation
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -478,8 +505,8 @@
   <a class="reference internal" href="openfoam.html">
    OpenFOAM
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -527,8 +554,8 @@
   <a class="reference internal" href="../exercises/docs-exercises.html">
    Exercises
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-  <label for="toctree-checkbox-14">
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -551,8 +578,8 @@
   <a class="reference internal" href="../troubleshoot/dbg-programming.html">
    Programming Tools and IDEs
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-  <label for="toctree-checkbox-15">
+  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+  <label for="toctree-checkbox-16">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -578,8 +605,8 @@
   <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
    Numerical Models
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-  <label for="toctree-checkbox-16">
+  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+  <label for="toctree-checkbox-17">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -600,8 +627,8 @@
   <a class="reference internal" href="../troubleshoot/dbg-os.html">
    Operating Systems (Linux and VMs)
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
-  <label for="toctree-checkbox-17">
+  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+  <label for="toctree-checkbox-18">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -847,6 +874,11 @@
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#re-initialize-dry">
    Re-Initialize Dry
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#d-calibration-parameters">
+   2d Calibration Parameters
   </a>
  </li>
 </ul>
@@ -1347,7 +1379,7 @@ Expand to see exemplary values for Manning roughness<div class="summary-down doc
 </tbody>
 </table>
 </div>
-</details><p>The friction coefficient is more generally referred with the variable <span class="math notranslate nohighlight">\(c_{f}\)</span>, which has a particular relevance for <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> transport (cf. <a class="reference internal" href="telemac-gaia.html#c-friction"><span class="std std-ref">morphodynamic calculations with Gaia</span></a>).</p>
+</details><p>The friction coefficient is more generally referred with the variable <span class="math notranslate nohighlight">\(c_{f}\)</span>, which has a particular relevance for <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> transport (cf. <a class="reference internal" href="gaia-bedload.html#c-friction"><span class="std std-ref">morphodynamic calculations with Gaia</span></a>).</p>
 <div class="tip dropdown admonition">
 <p class="admonition-title">Friction zones (regional friction values)</p>
 <p>Similar to the assignment of multiple friction coefficient values to multiple model regions featured in the <a class="reference internal" href="basement2d.html#bm-geometry"><span class="std std-ref">BASEMENT tutorial</span></a>, Telemac2d provides routines for domain-wise (or zonal) friction area definitions through a geometry (e.g., <code class="docutils literal notranslate"><span class="pre">*.slf</span></code>) file. To create a zonal roughness Selafin geometry with QGIS and Blue Kenue use our <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/friction/create-friction-zone-slf.pdf">Create Roughness Selafin File PDF workflow</a>. Some additional hints for using the workflow:</p>
@@ -1632,6 +1664,23 @@ Expand to see exemplary values for Manning roughness<div class="summary-down doc
 <li><p>How long did the simulations take to converge and did you need to modify the <code class="docutils literal notranslate"><span class="pre">NUMBER</span> <span class="pre">OF</span> <span class="pre">TIME</span> <span class="pre">STEPS</span></code>?</p></li>
 <li><p>How reasonable are the results?</p></li>
 <li><p>Which of the two initial conditions would you use in practice to show that your simulation is correct?</p></li>
+</ul>
+</div>
+<div class="section" id="d-calibration-parameters">
+<h1>2d Calibration Parameters<a class="headerlink" href="#d-calibration-parameters" title="Permalink to this headline">¶</a></h1>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Recall: How to calibrate?<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text">Calibration involves the step-wise adaptation of model input parameters to yield a possibly best stochastic fit of modeled and measured data. In the process of model calibration, only one parameter should be modified at a time by 10 to 20-% deviations from its default value. For instance, if the default is <code class="docutils literal notranslate"><span class="pre">BETA</span> <span class="pre">:</span> <span class="pre">1.3</span></code>, the calibration may test for <code class="docutils literal notranslate"><span class="pre">BETA</span> <span class="pre">:</span> <span class="pre">1.2</span></code>, then <code class="docutils literal notranslate"><span class="pre">BETA</span> <span class="pre">:</span> <span class="pre">1.1</span></code> and so on, ultimately to find out which value for <strong>BETA</strong> brings the model results closest to observations.</p>
+<p class="card-text">Moreover, a sensitivity analysis compares step-wise modifications of multiple parameters (still: one at a time) and theirs effect on model results. For instance, if a 10-% variation of <strong>BETA</strong> yields a 5-% change in global water depth while a 10-% variation of a friction coefficient yields a 20-% change in global water depth, it may be concluded that the model sensitivity with respect to the friction coefficient is higher than with respect to <strong>BETA</strong>. However, such conclusions require careful considerations in multi-parametric, complex models of river ecosystems.</p>
+</div>
+</details><p>The following parameters may be used for calibrating a 2d model to measurements (e.g., water surface elevation, water depth, or flow velocity) that were made at a gauged discharge:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FRICTION</span> <span class="pre">COEFFICIENT</span> <span class="pre">FOR</span> <span class="pre">...</span></code> (<a class="reference internal" href="#tm2d-friction"><span class="std std-ref">friction section</span></a>)</p></li>
 </ul>
 <dl class="simple myst">
 <dt><strong>What next?</strong></dt><dd><p>A steady discharge almost never occurs in reality and can be used at maximum to <a class="reference internal" href="calibration.html#calibration"><span class="std std-ref">calibrate</span></a> the model based on (field) measurements. Once the model is well-calibrated for 2-3 steady discharges, the steady model results may be used for initializing an <a class="reference internal" href="telemac2d-unsteady.html#chpt-unsteady"><span class="std std-ref">unsteady</span></a> simulation, possibly with <a class="reference internal" href="telemac-gaia.html#tm-gaia"><span class="std std-ref">sediment transport</span></a>.</p>

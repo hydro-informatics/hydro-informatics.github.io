@@ -79,9 +79,13 @@ The consistent use of parameters and symbols for parameters is summarized in a n
   - $-$
   - friction correction factor for bed shear stress (Equation {eq}`eq-f-fr`)
 
+* - $f_{k'_{s}}$
+  - $-$
+  - {ref}`ratio between skin friction and mean diameter <bl-calibration>`
+
 * - $f_{mpm}$
   - $-$
-  - Meyer-Peter and Müller (MPM) factor
+  - Meyer-Peter and Müller (MPM) factor (Equation {eq}`eq-mpm`)
 
 * - $g$
   - m s$^{-2}$
@@ -159,6 +163,10 @@ The consistent use of parameters and symbols for parameters is summarized in a n
   - kg s$^{-1}$ m$^{-1}$
   - unit bedload transport (capacity)
 
+* - $q_{b,sc}$
+  - kg s$^{-1}$ m$^{-1}$
+  - {ref}`slope-corrected <gaia-dir>` unit bedload transport (capacity)
+
 * - $Q_{bf}$
   - m$^3$ s$^{-1}$
   - bank-full discharge
@@ -222,6 +230,10 @@ The consistent use of parameters and symbols for parameters is summarized in a n
 * - $z$
   - m
   - vertical coordinate pointing against the gravity acceleration vector
+
+* - $z_{b}$
+  - m or m a.s.l.
+  - riverbed elevation pointing against the gravity acceleration vector
 ```
 
 
@@ -236,6 +248,10 @@ The consistent use of parameters and symbols for parameters is summarized in a n
 * - $\alpha$
   - *rad* or *deg*
   - angle between the longitudinal channel ($x$) axis and a mass transport vector
+
+* - $\beta$
+  - $-$
+  - empiric bedload intensity correction factor (e.g., in {ref}`Gaia <gaia-dir>`)
 
 * - $\Delta {t}$
   - s or years

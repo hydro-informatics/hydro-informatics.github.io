@@ -271,6 +271,11 @@ Stage-discharge relation
 STL
   The Standard Tessellation Language (STL) file format is native to a three-dimensional (3d) printing CAD software type called [stereolithography](https://en.wikipedia.org/wiki/Stereolithography). An STL file describes 3d structures in the form of unstructured triangulated surfaces with arbitrary units.
 
+Thalweg
+  The term Thalweg stems from old German spelling for valley (today: *Tal*) and should be more correctly referred to as *Talweg*. The literal translation of Talweg is valley path and originally refers to a line that longitudinally connects the lowest points of valley cross-section profiles. Geomorphologists sometimes use slightly different definitions of Talweg. International law is more explicit, referring to the Thalweg as the primary navigable channel at boarders between two countries.
+
+  *French: talweg / thalweg <br>German: Talweg*
+
 Topographic change
   Topographic change is the increase or decrease in elevation of the Earth's surface as a function of time. Conceptually, tracking topographic changes could consist of a simple comparison (i.e., subtraction) of elevation changes at two different moments. However, topographic change detection is not quite that simple, since every measurement technique has spatial inaccuracies with regards to the exact location and elevation of recorded points. For this reason, methods have been developed that, based on a level of detection (LoD), generate topographic change maps conveying and accounting for spatial uncertainty. Depending on the method, either strict global LoD raster {cite:p}`pasternack_flood-driven_2017` or less strict pixel-based LoD values {cite:p}`wheaton_accounting_2010` are used to remove uncertainty from topographic change maps. Topographic change maps also enable the visualization of soil loss (i.e., erosion), which is a growing challenge for agriculture and beyond. To this end, the USGS developed a publicly available website that is dedicated to topographic change (visit [https://usgs.gov](https://www.usgs.gov/core-science-systems/eros/topochange)).
 

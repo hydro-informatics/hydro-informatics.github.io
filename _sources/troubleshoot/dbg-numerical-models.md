@@ -10,7 +10,7 @@ The hints for meshing are extracted from [Olsen (1999)](http://folk.ntnu.no/nils
 
 General:
 
-* Mesh transition: Cells should not be smaller or larger than 50% or 200%, respectively of the size of neighbouring cells.
+* Mesh transition: Cells should not be smaller or larger than 50% or 200%, respectively of the size of neighboring cells.
 * Prefer triangular meshes over rectangular meshes (computational efficiency).
 
 

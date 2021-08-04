@@ -1,0 +1,1227 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bedload &#8212; Hydro-Informatics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="canonical" href="https://hydro-informatics.com/numerics/gaia-bedload.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Suspended Load" href="gaia-suspended.html" />
+    <link rel="prev" title="Basic Setup of Gaia" href="gaia-basics.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/icon.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  Get Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../lectures/classroom.html">
+   The Virtual Classroom
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/lectures.html">
+     Lectures and Exercises
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/take_seat.html">
+     Take a Seat
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../get-started/software.html">
+   Software Resources
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/vm.html">
+     Virtual Machines and Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/ide.html">
+     Integrated Development Environments (IDEs)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python-basics/pyinstall.html">
+     Install Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/git.html">
+     git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/geo.html">
+     Geospatial Software
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-openfoam.html">
+     OpenFOAM (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-telemac.html">
+     TELEMAC (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/others.html">
+     Other Software Resources
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Python Basics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/python.html">
+   First Steps
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pybase.html">
+     Hello Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyerror.html">
+     Errors, Logging, and Debugging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyloop.html">
+     Loops and Conditional Statements
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/modularize.html">
+   Object Orientation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyfun.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pypckg.html">
+     Packages, Modules and Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/classes.html">
+     Object Orientation and Classes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/data-handling.html">
+   Data and File Handling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pynum.html">
+     Load and Write Basic Data Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/xml.html">
+     Workbooks (xlsx) and JSON
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyplot.html">
+     Plotting
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../jupyter/pystyle.html">
+   Code Style and Conventions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../jupyter/gui.html">
+   Graphical User Interfaces (GUIs)
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/python-exercises.html">
+   Python Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-ms.html">
+     1d Hydraulics (Manning-Strickler Formula)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sp.html">
+     Reservoir Volume (Sequent Peak Algorithm)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-floods.html">
+     Flood Return Periods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sediment.html">
+     1d Sediment Transport
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-gui.html">
+     Create a GUI
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Geospatial Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/geospatial-data.html">
+   Geospatial Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/use-qgis.html">
+   QGIS Tutorial
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../geopy/geo-python.html">
+   Geospatial Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-pckg.html">
+     Geospatial Open Source Python Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-shp.html">
+     Shapefile (Vector Dataset) Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-raster.html">
+     Raster (Gridded) Dataset Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-convert.html">
+     Raster to Vector Conversion and Vice Versa
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-arcpy.html">
+     The Commercial arcpy Library
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/geo-exercises.html">
+   Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-geco.html">
+     Script a Habitat Suitability Map
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Numerical Modeling
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="numerical-modeling.html">
+   Principles
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="basement.html">
+   BASEMENT
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pre-qgis-bm.html">
+     Pre-processing with QGIS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="basement2d.html">
+     Steady 2d Simulation and Post-processing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="telemac.html">
+   TELEMAC
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="pre-slf-tm.html">
+     Pre-processing
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="telemac2d.html">
+     Telemac2d
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="telemac2d-steady.html">
+       Steady 2d
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="telemac2d-unsteady.html">
+       Unsteady 2d
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="telemac3d.html">
+     Telemac3d
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="telemac3d-slf.html">
+       Steady 3d (SLF - Selafin)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="telemac3d-med.html">
+       Steady 3d (MED and Salome)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="telemac-gaia.html">
+     Gaia (Morphodynamics)
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label for="toctree-checkbox-13">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="gaia-basics.html">
+       Basic Setup of Gaia
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       Bedload
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="gaia-suspended.html">
+       Suspended Load
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="gaia-run.html">
+       Run Simulation
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="openfoam.html">
+   OpenFOAM
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pre-qgis-of.html">
+     Pre-processing with QGIS
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="calibration.html">
+   Calibration and Validation
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Documentation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/documentation.html">
+   Markdown and Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/glossary.html">
+   Glossary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/notation.html">
+   Notation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/bibliography.html">
+   References
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/docs-exercises.html">
+   Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-git.html">
+     Git and markdown
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Troubleshoot
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
+   Programming Tools and IDEs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+  <label for="toctree-checkbox-16">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
+     Debugging Anaconda
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-python.html">
+     Debugging Python Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
+     Debugging Jupyter
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
+   Numerical Models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+  <label for="toctree-checkbox-17">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
+     Debugging BASEMENT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
+     Debugging TELEMAC
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-os.html">
+   Operating Systems (Linux and VMs)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+  <label for="toctree-checkbox-18">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
+     Debugging Debian Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
+     Debugging Virtual Machines
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Disclaimer and License
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/numerics/gaia-bedload.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/hydro-informatics/jupyter-python-course"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#principles">
+   Principles
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#formulae-and-parameters">
+   Formulae and Parameters
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#meyer-peter-and-muller-1948">
+     Meyer-Peter and Müller (1948)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#einstein-brown-1942-49">
+     Einstein-Brown (1942/49)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#engelund-hansen-1967-chollet-cunge">
+     Engelund-Hansen (1967) / Chollet-Cunge
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#van-rijn-1984">
+     van Rijn (1984)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#wilcock-crowe-2003">
+     Wilcock-Crowe (2003)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#correction-factors">
+   Correction Factors
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#friction-correctors">
+     Friction Correctors
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#direction-and-magnitude-intensity">
+     Direction and Magnitude (Intensity)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#secondary-currents">
+     Secondary Currents
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#active-layer">
+   Active Layer
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="bedload">
+<span id="gaia-bl"></span><h1>Bedload<a class="headerlink" href="#bedload" title="Permalink to this headline">¶</a></h1>
+<div class="important admonition">
+<p class="admonition-title">Bedload basics</p>
+<p>For a better reading experience of this section, the <a class="reference internal" href="../documentation/glossary.html#glossary"><span class="std std-ref">Glossary</span></a> helps with explanations of the terms <a class="reference internal" href="../documentation/glossary.html#term-Sediment-transport"><span class="xref std std-term">Sediment transport</span></a>, (dimensionless) <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> transport <span class="math notranslate nohighlight">\(\Phi_b\)</span>, <a class="reference internal" href="../documentation/glossary.html#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a> <span class="math notranslate nohighlight">\(\tau_{x}\)</span>, and the <a class="reference internal" href="../documentation/glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a> <span class="math notranslate nohighlight">\(\tau_{x,cr}\)</span> (in that order).</p>
+</div>
+<div class="section" id="principles">
+<span id="bl-principles"></span><h2>Principles<a class="headerlink" href="#principles" title="Permalink to this headline">¶</a></h2>
+<p>The calculation of <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> transport requires expert knowledge about the modeled ecosystem for judging whether the system is sediment supply-limited or transport capacity-limited <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id123">CF15</a>]</span>.</p>
+<dl class="simple myst">
+<dt>Sediment supply-limited rivers</dt><dd><p>A sediment supply-limited river is characterized by clearly visible incision trends indicating that the river’s runoff could potentially transport more sediment than is available in the river. Sediment-supply limited river sections typically occur downstream of dams, which represent an unsurmountable barrier for sediment. Thus, in a supply-limited river, the <strong>flow competence</strong> is insufficient to mobilize a typically coarse riverbed.</p>
+</dd>
+<dt>Transport capacity-limited (alluvial) rivers</dt><dd><p>A transport capacity-limited river is characterized by sediment abundance where the river’s runoff is too small to transport all available sediment during a flood. Sediment accumulations (i.e., the alluvium) are present and the channel has the tendency to braiding into <a class="reference internal" href="../documentation/glossary.html#term-Anabranch"><span class="xref std std-term">anabranches</span></a>. Thus, the <strong>transport capacity</strong> is insufficient to mobilize the entire amount of available sediment.</p>
+</dd>
+</dl>
+<div class="important admonition">
+<p class="admonition-title">Limitation types vary in space and in time</p>
+<p>The channel types may strongly vary strongly in space between river sections or segments and in time. For instance, the same river section that appears to be supply-limited because of insufficient flow competence may turn into a transport capacity-limited section during a flood when high discharges exert high shear stresses on the riverbed. The spatio-temporal variation of transport limitation types is particularly pronounced in near-census, healthy river ecosystems that are perpetually adjusting to a morphodynamic equilibrium.</p>
+</div>
+<p>The following figures feature sediment supply-limited river sections and a transport capacity-limited river section.</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="585e4afb-5036-4981-baf9-389c230488a9" name="2749607e-e15c-4fe3-baf0-ff1adb38fef5" type="radio">
+</input><label class="tabbed-label" for="585e4afb-5036-4981-baf9-389c230488a9">
+Artificially sediment supply-limited</label><div class="tabbed-content docutils">
+<div class="figure align-default" id="doubs-2015">
+<a class="reference internal image-reference" href="../_images/doubs-capacity-2015.JPG"><img alt="channel doubs france sediment supply transport limited" src="../_images/doubs-capacity-2015.JPG" style="height: 350px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 144 </span><span class="caption-text">The Doubs in the Franche-Comté (France) during a small flood. The sediment supply is interrupted by a cascade of dams upstream with the consequence of a straight monotonous channel with significant plant growth along the banks. The riverbed primarily consists of boulders that are immobile most of the time. Thus, the river section can be characterized as artificially sediment supply-limited (picture: Sebastian Schwindt 2015).</span><a class="headerlink" href="#doubs-2015" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<input id="28bce605-d4ef-44dd-b34e-74ad1e027839" name="2749607e-e15c-4fe3-baf0-ff1adb38fef5" type="radio">
+</input><label class="tabbed-label" for="28bce605-d4ef-44dd-b34e-74ad1e027839">
+Naturally sediment supply-limited</label><div class="tabbed-content docutils">
+<div class="figure align-default" id="krimml-2010">
+<a class="with-shadow reference internal image-reference" href="../_images/krimmler-ache-2010.jpg"><img alt="naturally channel krimmler ache austria sediment supply transport limited" class="with-shadow" src="../_images/krimmler-ache-2010.jpg" style="height: 350px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 145 </span><span class="caption-text">The Krimmler Ache in Austria during a small flood event. Even though the watershed has a high <a class="reference internal" href="../documentation/glossary.html#term-Sediment-yield"><span class="xref std std-term">Sediment yield</span></a>, the transport capacity of the water in this river section is so high, that the riverbed only consists of large boulders. Thus, the river section can be characterized as naturally sediment supply-limited (picture: Sebastian Schwindt 2010).</span><a class="headerlink" href="#krimml-2010" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<input id="65b5752c-b004-4e41-901d-0c2b0b6d0ed5" name="2749607e-e15c-4fe3-baf0-ff1adb38fef5" type="radio">
+</input><label class="tabbed-label" for="65b5752c-b004-4e41-901d-0c2b0b6d0ed5">
+Capacity-limited</label><div class="tabbed-content docutils">
+<div class="figure align-default" id="jenbach-2020">
+<a class="reference internal image-reference" href="../_images/jenbach-alluvial-2020.jpg"><img alt="alluvial channel jenbach sediment supply transport limited" src="../_images/jenbach-alluvial-2020.jpg" style="height: 350px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 146 </span><span class="caption-text">The Jenbach in the Bavarian Alps (Germany) after an intense natural sediment supply in an upstream reach in the form of a landslide. Thus, the river section can be characterized as transport capacity-limited (picture: Sebastian Schwindt 2020).</span><a class="headerlink" href="#jenbach-2020" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+<p><strong>Why is the differentiation between sediment supply and transport capacity-limited rivers important for numerical modeling?</strong></p>
+<p>Gaia provides different formulae for calculating bedload, which are mostly either derived from lab experiments with infinite sediment supply (e.g., the <span id="id2">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula and its derivates, see <a class="reference internal" href="#gaia-mpm"><span class="std std-ref">below</span></a>) or from field measurements in partially transport capacity-limited rivers (e.g., <span id="id3">Wilcock [<a class="reference internal" href="../documentation/bibliography.html#id613">Wil93</a>]</span>). Formulae that account for limited sediment supply often involve a correction factor for the <a class="reference internal" href="../documentation/glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a>.</p>
+</div>
+<div class="section" id="formulae-and-parameters">
+<h2>Formulae and Parameters<a class="headerlink" href="#formulae-and-parameters" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> is typically designated with <span class="math notranslate nohighlight">\(q_b\)</span> (in kg<span class="math notranslate nohighlight">\(\cdot\)</span>s<span class="math notranslate nohighlight">\(^{-1}\cdot\)</span>m<span class="math notranslate nohighlight">\(^{-1}\)</span>) and accounts for particulate transport in the form of the displacement of rolling, sliding, and/or jumping coarse particles. In river hydraulics, the so-called <a class="reference internal" href="../documentation/glossary.html#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a> or also referred to as <a class="reference internal" href="../documentation/glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a> <span id="id4">[<a class="reference internal" href="../documentation/bibliography.html#id533">Shi36</a>]</span> is often used as the threshold value for the mobilization of sediment from the riverbed. TELEMAC and Gaia output a dimensionless expression of bedload transport according to <span id="id5">Einstein [<a class="reference internal" href="../documentation/bibliography.html#id176">Ein50</a>]</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-phi-gaia">
+<span class="eqno">(2)<a class="headerlink" href="#equation-eq-phi-gaia" title="Permalink to this equation">¶</a></span>\[
+\Phi_b = \frac{q_b}{\rho_{w} \sqrt{(s - 1) g D^{3}_{pq}}}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\rho_{w}\)</span> is the density of water; <span class="math notranslate nohighlight">\(s\)</span> is the ratio of sediment grain and water density (typically 2.68) <span id="id6">[<a class="reference internal" href="../documentation/bibliography.html#id520">Sch17</a>]</span>; <span class="math notranslate nohighlight">\(g\)</span> is gravitational acceleration; and <span class="math notranslate nohighlight">\(D_{pq}\)</span> is the characteristic grain diameter of the sediment class (cf. <a class="reference internal" href="gaia-basics.html#gaia-sed"><span class="std std-ref">Sediment Classes</span></a>). Note that the dimensionless expression <span class="math notranslate nohighlight">\(\Phi\)</span> and the dimensional expression <span class="math notranslate nohighlight">\(q_b\)</span> represent unit bedload (i.e., bedload normalized by a unit of width). In Gaia, the unit of width corresponds to a side of a numerical mesh cell over which the mass fluxes are calculated.</p>
+<p>Equation <a class="reference internal" href="#equation-eq-phi-gaia">(2)</a> expresses only the dimensional conversion for bedload transport (i.e., the way how dimensions are removed or added to sediment transport). In fact, this is only the first step to solve the other side of a bedload equation by means of a (semi-) empirical formula. To calculate <span class="math notranslate nohighlight">\(\Phi_b\)</span>, Gaia currently provides a set of (semi-) empirical formulae, which can be modified with user Fortran files and defined in the Gaia steering file with the <strong>BED-LOAD TRANSPORT FORMULA FOR ALL SANDS</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code> keyword. <a class="reference internal" href="#tab-gaia-bl-formulae"><span class="std std-numref">Table 9</span></a> lists possible integers for the keyword for currently available bedload transport formulae, including references to original publications, formula application ranges, and the names of the Fortran files for modifications.</p>
+<table class="colwidths-given table" id="tab-gaia-bl-formulae">
+<caption><span class="caption-number">Table 9 </span><span class="caption-text"><em>Bedload transport formulae implemented in Gaia with application limits with regards to the grain diameter <span class="math notranslate nohighlight">\(D\)</span>, and <strong>cross section-averaged</strong> Froude number <span class="math notranslate nohighlight">\(Fr\)</span>, slope <span class="math notranslate nohighlight">\(S\)</span>, water depth <span class="math notranslate nohighlight">\(h\)</span>, and flow velocity <span class="math notranslate nohighlight">\(u\)</span>. The Fortran files live in TELEMAC sources-directory.</em></span><a class="headerlink" href="#tab-gaia-bl-formulae" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 36%" />
+<col style="width: 21%" />
+<col style="width: 25%" />
+<col style="width: 11%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Gaia</p></th>
+<th class="head"><p>Author(s)</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(D\)</span></p></th>
+<th class="head"><p><em><a class="reference internal" href="../documentation/glossary.html#term-Froude-number"><span class="xref std std-term">Fr</span></a></em>; <span class="math notranslate nohighlight">\(S\)</span>; <span class="math notranslate nohighlight">\(h\)</span>; and <span class="math notranslate nohighlight">\(u\)</span></p></th>
+<th class="head"><p>User Fortran</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>(no.)</p></th>
+<th class="head"><p>(ref.)</p></th>
+<th class="head"><p>(10<span class="math notranslate nohighlight">\(^{-3}\)</span>m)</p></th>
+<th class="head"><p>(-); (-); (m); (m/s)</p></th>
+<th class="head"><p>(file name)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#gaia-mpm"><span class="std std-ref">1</span></a></p></td>
+<td><p><span id="id7">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span></p></td>
+<td><p>0.4 <span class="math notranslate nohighlight">\(&lt;D_{50}&lt;\)</span>28.6</p></td>
+<td><p>10<span class="math notranslate nohighlight">\(^{-4}&lt;Fr&lt;\)</span>639<br> 0.0004<span class="math notranslate nohighlight">\(&lt;S&lt;\)</span>0.02<br>0.01<span class="math notranslate nohighlight">\(&lt;h&lt;\)</span>1.2<br>0.2<span class="math notranslate nohighlight">\(&lt;u\)</span></p></td>
+<td><p><a class="reference external" href="http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__meyer__gaia_8f.html">bedload_meyer_gaia.f</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#gaia-einstein"><span class="std std-ref">2</span></a></p></td>
+<td><p><span id="id8">Brown [<a class="reference internal" href="../documentation/bibliography.html#id1371">Bro49</a>], Einstein [<a class="reference internal" href="../documentation/bibliography.html#id176">Ein50</a>]</span></p></td>
+<td><p>0.25<span class="math notranslate nohighlight">\(&lt;D_{35}&lt;\)</span>32</p></td>
+<td></td>
+<td><p><a class="reference external" href="http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__einst__gaia_8f.html">bedload_einst.f</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></td>
+<td><p><span id="id9">Engelund and Hansen [<a class="reference internal" href="../documentation/bibliography.html#id179">EH67</a>]</span></p></td>
+<td><p>0.15<span class="math notranslate nohighlight">\(&lt;D_{50}&lt;\)</span>5.0</p></td>
+<td><p>0.1<span class="math notranslate nohighlight">\(&lt;Fr&lt;\)</span>10</p></td>
+<td><p><a class="reference external" href="http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__engel__gaia_8f.html">bedload_engel_gaia.f</a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">30</span></code></p></td>
+<td><p><span id="id10">Chollet and Cunge [<a class="reference internal" href="../documentation/bibliography.html#id1372">CC79</a>], Engelund and Hansen [<a class="reference internal" href="../documentation/bibliography.html#id179">EH67</a>]</span></p></td>
+<td><p>0.15<span class="math notranslate nohighlight">\(&lt;D_{50}&lt;\)</span>5.0</p></td>
+<td><p>0.1<span class="math notranslate nohighlight">\(&lt;Fr&lt;\)</span>10</p></td>
+<td><p><a class="reference external" href="http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__engel__cc__gaia_8f.html">bedload_engel_cc_gaia.f</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">7</span></code></p></td>
+<td><p><span id="id11">Van Rijn [<a class="reference internal" href="../documentation/bibliography.html#id588">VR84</a>]</span></p></td>
+<td><p>0.6<span class="math notranslate nohighlight">\(&lt;D_{50}&lt;\)</span>2.0</p></td>
+<td><p>0.5<span class="math notranslate nohighlight">\(&lt;h\)</span><br>0.2<span class="math notranslate nohighlight">\(&lt;u\)</span></p></td>
+<td><p><a class="reference external" href="http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__vanrijn__gaia_8f.html">bedload_vanrijn_gaia.f</a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">10</span></code></p></td>
+<td><p><span id="id12">Wilcock and Crowe [<a class="reference internal" href="../documentation/bibliography.html#id1374">WC03</a>]</span></p></td>
+<td><p>0.063 <span class="math notranslate nohighlight">\(\lesssim D_{pq}\)</span></p></td>
+<td></td>
+<td><p><a class="reference external" href="http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__wilcock__crowe__gaia_8f.html">bedload_wilcock_crowe_gaia.f</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>To use the <span id="id13">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula (<code class="docutils literal notranslate"><span class="pre">1</span></code> according to  <a class="reference internal" href="#tab-gaia-bl-formulae"><span class="std std-numref">Tab. 9</span></a>) in this tutorial, **add the following line to the gaia-morphdynamics.cas steering file:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">continued</span><span class="p">:</span> <span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">BEDLOAD</span>
+<span class="o">/</span>
+<span class="n">BED</span> <span class="n">LOAD</span> <span class="n">FOR</span> <span class="k">ALL </span><span class="n">SANDS</span> <span class="p">:</span> <span class="n">YES</span> <span class="o">/</span> <span class="n">deactivate</span> <span class="n">with</span> <span class="n">NO</span>
+<span class="n">BED</span><span class="o">-</span><span class="n">LOAD</span> <span class="n">TRANSPORT</span> <span class="n">FORMULA</span> <span class="n">FOR</span> <span class="k">ALL </span><span class="n">SANDS</span> <span class="p">:</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>The following sections provide more details on how <span class="math notranslate nohighlight">\(\Phi_b\)</span> is calculated with the pre-defined formulae listed in <a class="reference internal" href="#tab-gaia-bl-formulae"><span class="std std-numref">Tab. 9</span></a>.</p>
+<div class="note dropdown admonition">
+<p class="admonition-title">User Fortran Files</p>
+<p>To implement a user Fortran file, copy the original TELEMAC Fortran file from the <code class="docutils literal notranslate"><span class="pre">/telemac/v8pX/sources/</span></code> directory (e.g., <code class="docutils literal notranslate"><span class="pre">/telemac/v8pX/sources/gaia/bedload_einst_gaia.f</span></code>) to the project directory (e.g., <code class="docutils literal notranslate"><span class="pre">/telemac/v8pX/simulations/gaia-tutorial/user_fortran/bedload_einst_gaia.f</span></code>). Finally, tell TELEMAC where to look for user fortran files by defining the following keyword in a steering file (e.g., in <code class="docutils literal notranslate"><span class="pre">gaia-morphodynamics.cas</span></code>):</p>
+<p><code class="docutils literal notranslate"><span class="pre">FORTRAN</span> <span class="pre">FILE</span> <span class="pre">:</span> <span class="pre">'user_fortran'</span></code></p>
+</div>
+<div class="section" id="meyer-peter-and-muller-1948">
+<span id="gaia-mpm"></span><h3>Meyer-Peter and Müller (1948)<a class="headerlink" href="#meyer-peter-and-muller-1948" title="Permalink to this headline">¶</a></h3>
+<div class="warning admonition">
+<p class="admonition-title">Recall the validity range for the MPM formula (1)</p>
+<p>Revise <a class="reference internal" href="#tab-gaia-bl-formulae"><span class="std std-numref">Tab. 9</span></a> to ensure that the application is in the applicable range of parameters corresponding to the conditions under which the formula has been developed.</p>
+</div>
+<p>The <span id="id14">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula was published in 1948 by Swiss researchers Eugen Meyer-Peter, professor at <a class="reference external" href="https://ethz.ch/en.html">ETH Zurich</a> and founder of the school’s hydraulics laboratory (Zurich’s famous <a class="reference external" href="https://vaw.ethz.ch/">VAW</a>), and Professor Robert Müller. Their empirical formula is the result of more than a decade of collaboration and the elaboration began one year after the VAW was founded in 1931, when Robert Müller was appointed assistant to Eugen Meyer-Peter. The two scientists also worked with Henry Favre and Hans-Albert Einstein who came up with another approach for calculating bedload. An early version of the <span id="id15">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula was published in 1934 and it is the basis for many formulas that refer to a critical <a class="reference internal" href="../documentation/glossary.html#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a> (i.e., <a class="reference internal" href="../documentation/glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a>). It is important to remember that the formula is based on data from lab flume experiments with quasi unlimited sediment supply. This is why bedload transport calculated with the <span id="id16">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula corresponds to the <a class="reference internal" href="#bl-principles"><span class="std std-ref">hydraulic transport capacity</span></a> of an alluvial channel. Thus, <strong>the <span id="id17">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula tends to overestimate bedload transport</strong> and it is inherently designed for estimating bedload <strong>based on simplified 1d cross section-averaged hydraulics</strong> (see also the <a class="reference internal" href="../exercises/ex-sediment.html#ex-py-sediment"><span class="std std-ref">Python sediment transport exercise</span></a>).</p>
+<p>Ultimately, the left side of Equation <a class="reference internal" href="#equation-eq-phi-gaia">(2)</a> (<span class="math notranslate nohighlight">\(\Phi_b\)</span>) can be calculated with the <span id="id18">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula as follows:</p>
+<div class="math notranslate nohighlight" id="equation-eq-mpm">
+<span class="eqno">(3)<a class="headerlink" href="#equation-eq-mpm" title="Permalink to this equation">¶</a></span>\[\begin{split}
+\Phi_b = \begin{cases} 0 &amp; \mbox{ if } \tau_{x,cr} &gt; \tau_{x} \\ f_{mpm} \cdot (\tau_{x} - \tau_{x,cr})^{3/2} &amp; \mbox{ if } \tau_{x,cr} \leq \tau_{x}\end{cases}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(f_{mpm}\)</span> is the MPM coefficient (default is 8), <span class="math notranslate nohighlight">\(\tau_{x,cr}\)</span> denotes the <a class="reference internal" href="../documentation/glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a> (<span class="math notranslate nohighlight">\(\approx\)</span> 0.047 and up to 0.07 in mountain rivers), and <span class="math notranslate nohighlight">\(\tau_{x}\)</span> is the <a class="reference internal" href="../documentation/glossary.html#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a>. When using the <span id="id19">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula with Gaia, consistency with original publications is <strong>ensured by defining <span class="math notranslate nohighlight">\(\tau_{x,cr}\)</span> and <span class="math notranslate nohighlight">\(f_{mpm}\)</span> in the steering file</strong>:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">continued</span><span class="p">:</span> <span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">BEDLOAD</span>
+<span class="n">BED</span><span class="o">-</span><span class="n">LOAD</span> <span class="n">TRANSPORT</span> <span class="n">FORMULA</span> <span class="n">FOR</span> <span class="k">ALL </span><span class="n">SANDS</span> <span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">see</span> <span class="n">above</span>
+<span class="n">SHIELDS</span> <span class="n">PARAMETERS</span> <span class="p">:</span> <span class="mf">0.047</span>
+<span class="n">MPM</span> <span class="n">COEFFICIENT</span> <span class="p">:</span> <span class="mi">8</span>
+</pre></div>
+</div>
+<div class="admonition-wong-parker-correction-of-the-mpm-formula admonition">
+<p class="admonition-title">Wong-Parker correction of the MPM formula</p>
+<p>The Wong-Parker correction <span id="id20">[<a class="reference internal" href="../documentation/bibliography.html#id626">WP06</a>]</span> for the <span id="id21">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula refers to a statistical re-analysis of the original experimental datasets and applies to <a class="reference internal" href="../documentation/glossary.html#term-Plane-bed"><span class="xref std std-term">Plane bed</span></a> river sections. To this end, the Wong-Parker correction yields lower bedload transport values and it excludes the form drag correction of the original formula with the following expression: <span class="math notranslate nohighlight">\(\Phi_{b} \approx 3.97 \cdot (\tau_{x} - 0.0495)^{3/2}\)</span>. Thus, to implement the Wong-Parker correction in Gaia use:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">SHIELDS</span> <span class="n">PARAMETERS</span> <span class="p">:</span> <span class="mf">0.0495</span>
+<span class="n">MPM</span> <span class="n">COEFFICIENT</span> <span class="p">:</span> <span class="mf">3.97</span>
+</pre></div>
+</div>
+</div>
+<p><strong>To directly continue with the tutorial using the <span id="id22">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula, jump forward to the <a class="reference internal" href="#c-factors"><span class="std std-ref">correction factors</span></a> section.</strong></p>
+</div>
+<div class="section" id="einstein-brown-1942-49">
+<span id="gaia-einstein"></span><h3>Einstein-Brown (1942/49)<a class="headerlink" href="#einstein-brown-1942-49" title="Permalink to this headline">¶</a></h3>
+<div class="warning admonition">
+<p class="admonition-title">Recall the validity range for the Einstein-Brown formula (2)</p>
+<p>Revise <a class="reference internal" href="#tab-gaia-bl-formulae"><span class="std std-numref">Tab. 9</span></a> to ensure that the application is in the applicable range of parameters corresponding to the conditions under which the formula has been developed.</p>
+</div>
+<p>Hans Albert Einstein, son of the famous Albert Einstein, was a pioneer of probability-based analyses of sediment transport. In particular, he hypothesized that the beginning and the end of sediment motion can be expressed in terms of probabilities. Furthermore, Einstein assumed  that the sediment motion is a series of step-wise displacements followed by rest periods and that the average distance of a displacement is approximately hundred times the particle (grain) diameter. Aiming to account for his observations in lab flume experiments, Einstein introduced hiding and lifting correction coefficients <span id="id23">[<a class="reference internal" href="../documentation/bibliography.html#id1373">Ein42</a>]</span>.</p>
+<p>The Einstein formula differs from any <span id="id24">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span>-based formula in that it does not imply a threshold for incipient motion of sediment. However, despite or because Einstein’s sediment transport theory is significantly more complex than many other bedload transport formulae, it did not become very popular in engineering applications. Today, Gaia enables user-friendly applications of Einstein’s formula, which was similarly presented by <span id="id25">Brown [<a class="reference internal" href="../documentation/bibliography.html#id1371">Bro49</a>]</span> at an engineering hydraulic conference in 1949.</p>
+<p>According to <span id="id26">Einstein [<a class="reference internal" href="../documentation/bibliography.html#id1373">Ein42</a>]</span>-<span id="id27">Brown [<a class="reference internal" href="../documentation/bibliography.html#id1371">Bro49</a>]</span>, the left side of Equation <a class="reference internal" href="#equation-eq-phi-gaia">(2)</a> (<span class="math notranslate nohighlight">\(\Phi_b\)</span>) is calculated as follows:</p>
+<div class="math notranslate nohighlight" id="equation-eq-einstein-brown">
+<span class="eqno">(4)<a class="headerlink" href="#equation-eq-einstein-brown" title="Permalink to this equation">¶</a></span>\[\begin{split}
+\Phi_b = \begin{cases} 0 &amp; \mbox{ if } \tau_{x} &lt; 0.0025 \\ F_{eb}\cdot 2.15 \cdot \exp{(-0.391/\tau_{x})} &amp; \mbox{ if } 0.0025 \geq \tau_{x} \leq 0.2\\ F_{eb} \cdot  40 \cdot \tau_{x}^{3} &amp; \mbox{ if } \tau_{x} &gt; 0.2  \tau_{x}\end{cases}
+\end{split}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight" id="equation-eq-f-eb">
+<span class="eqno">(5)<a class="headerlink" href="#equation-eq-f-eb" title="Permalink to this equation">¶</a></span>\[
+F_{eb} = \left(\frac{2}{3} + \frac{36}{D_x}\right)^{0.5} - \left(\frac{36}{D_x}\right)^{0.5}
+\]</div>
+<p><span class="math notranslate nohighlight">\(D_x\)</span> is the dimensionless particle diameter calculated as:</p>
+<div class="math notranslate nohighlight" id="equation-eq-d-dimless">
+<span class="eqno">(6)<a class="headerlink" href="#equation-eq-d-dimless" title="Permalink to this equation">¶</a></span>\[
+D_x = \left[\frac{(s-1)\cdot g}{\nu^2}\right]^{1/3}\cdot D_{pq}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(s\)</span> is the ratio of sediment grain and water density (typically 2.68); <span class="math notranslate nohighlight">\(g\)</span> is gravitational acceleration; and <span class="math notranslate nohighlight">\(\nu\)</span> is the kinematic viscosity of water (<span class="math notranslate nohighlight">\(\approx\)</span>10<span class="math notranslate nohighlight">\(^{-6}\)</span>m<span class="math notranslate nohighlight">\(^{2}\)</span> s<span class="math notranslate nohighlight">\(^{-1}\)</span>) <span id="id28">[<a class="reference internal" href="../documentation/bibliography.html#id520">Sch17</a>]</span>.</p>
+<p>To use the <span id="id29">Einstein [<a class="reference internal" href="../documentation/bibliography.html#id1373">Ein42</a>]</span>-<span id="id30">Brown [<a class="reference internal" href="../documentation/bibliography.html#id1371">Bro49</a>]</span> formulae in Gaia use:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">BED</span><span class="o">-</span><span class="n">LOAD</span> <span class="n">TRANSPORT</span> <span class="n">FORMULA</span> <span class="n">FOR</span> <span class="k">ALL </span><span class="n">SANDS</span> <span class="p">:</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<div class="admonition-consider-adapting-bedload-einst-f admonition">
+<p class="admonition-title">Consider adapting bedload_einst.f</p>
+<p>The application thresholds as a function of <span class="math notranslate nohighlight">\(\tau_{x}\)</span> stem from the Gaia Fortran file <a class="reference external" href="http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__einst__gaia_8f.html">bedload_einst.f</a>. However, the original <span id="id31">Einstein [<a class="reference internal" href="../documentation/bibliography.html#id1373">Ein42</a>]</span>-<span id="id32">Brown [<a class="reference internal" href="../documentation/bibliography.html#id1371">Bro49</a>]</span> publications suggest a threshold of <span class="math notranslate nohighlight">\(\tau_{x}\)</span>=0.182 (rather than 0.2) for switching the formula cases.</p>
+</div>
+</div>
+<div class="section" id="engelund-hansen-1967-chollet-cunge">
+<span id="gaia-engelund"></span><h3>Engelund-Hansen (1967) / Chollet-Cunge<a class="headerlink" href="#engelund-hansen-1967-chollet-cunge" title="Permalink to this headline">¶</a></h3>
+<div class="warning admonition">
+<p class="admonition-title">Recall the validity range for the Engelund-Hansen formulae (3 and 30)</p>
+<p>Revise <a class="reference internal" href="#tab-gaia-bl-formulae"><span class="std std-numref">Tab. 9</span></a> to ensure that the application is in the applicable range of parameters corresponding to the conditions under which the formula has been developed.</p>
+</div>
+<p>The <span id="id33">Engelund and Hansen [<a class="reference internal" href="../documentation/bibliography.html#id179">EH67</a>]</span> formula accounts for total sediment transport including <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> and suspended load. Starting from the power-approach from <span id="id34">Bagnold [<a class="reference internal" href="../documentation/bibliography.html#id34">Bag66</a>], Bagnold [<a class="reference internal" href="../documentation/bibliography.html#id33">Bag80</a>]</span>, the <span id="id35">Engelund and Hansen [<a class="reference internal" href="../documentation/bibliography.html#id179">EH67</a>]</span> formula was developed for sediment transport calculations over dune channel beds. due to low energies by balancing the energy useful to drive the particles up the dunes with the energy supplied by the fluid to the particles. The <span id="id36">Bagnold [<a class="reference internal" href="../documentation/bibliography.html#id34">Bag66</a>]</span> theory considers the total shear as the sum of the shear transmitted between grains and the fluid, and the shear transmitted by momentum changes caused by intergranular collisions. Thus, erosion takes place as long as the <a class="reference internal" href="../documentation/glossary.html#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a> is greater or equal to its critical value (i.e., the <a class="reference internal" href="../documentation/glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a>). Gaia uses a modification of the <span id="id37">Engelund and Hansen [<a class="reference internal" href="../documentation/bibliography.html#id179">EH67</a>]</span> that accounts for head loss over movable beds <span id="id38">[<a class="reference internal" href="../documentation/bibliography.html#id1372">CC79</a>]</span> and calculates the left side of Equation <a class="reference internal" href="#equation-eq-phi-gaia">(2)</a> (<span class="math notranslate nohighlight">\(\Phi_b\)</span>) as follows:</p>
+<div class="math notranslate nohighlight" id="equation-eq-engelund">
+<span class="eqno">(7)<a class="headerlink" href="#equation-eq-engelund" title="Permalink to this equation">¶</a></span>\[
+\Phi_b = 0.05\cdot \frac{f^{2.5}_{eh}}{c_f}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(c_f\)</span> is a friction coefficient that accounts for form drag and skin friction (calculated with the hydrodynamics in Telemac2d/3d). Read more about skin friction in the <a class="reference internal" href="#c-friction"><span class="std std-ref">correction factors</span></a> section. The <span class="math notranslate nohighlight">\(f_{eh}\)</span> factor is a function of the <a class="reference internal" href="../documentation/glossary.html#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a> <span class="math notranslate nohighlight">\(\tau_{x}\)</span>. To use the <span id="id39">Engelund and Hansen [<a class="reference internal" href="../documentation/bibliography.html#id179">EH67</a>]</span> formula in Gaia use:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">BED</span><span class="o">-</span><span class="n">LOAD</span> <span class="n">TRANSPORT</span> <span class="n">FORMULA</span> <span class="n">FOR</span> <span class="k">ALL </span><span class="n">SANDS</span> <span class="p">:</span> <span class="mi">30</span>
+</pre></div>
+</div>
+<p>In addition, <span id="id40">Chollet and Cunge [<a class="reference internal" href="../documentation/bibliography.html#id1372">CC79</a>]</span> introduced a step-wise function for the calculation of <span class="math notranslate nohighlight">\(f_{eh}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-f-eh">
+<span class="eqno">(8)<a class="headerlink" href="#equation-eq-f-eh" title="Permalink to this equation">¶</a></span>\[\begin{split}
+f_{eh} = \begin{cases} 0 &amp; \mbox{ if } \tau_{x} \leq 0.06 &amp; \mbox{ (no transport)}\\ [2.5 (\tau_{x} - 0.06)]^{0.5} &amp; \mbox{ if } 0.06 &lt; \tau_{x} &lt; 0.384  &amp; \mbox{ (dunes)} \\ 1.066\cdot \tau_{x}^{0.176} &amp; \mbox{ if } 0.384 &lt; \tau_{x} &lt; 1.08  &amp; \mbox{ (transitional)} \\ \tau_{x} &amp; \mbox{ if } 1.08 \leq \tau_{x}  &amp; \mbox{ (sheet flow)} \end{cases}
+\end{split}\]</div>
+<p>To apply the correction <span id="id41">Chollet and Cunge [<a class="reference internal" href="../documentation/bibliography.html#id1372">CC79</a>]</span> adaption of the <span id="id42">Engelund and Hansen [<a class="reference internal" href="../documentation/bibliography.html#id179">EH67</a>]</span> formula use:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">BED</span><span class="o">-</span><span class="n">LOAD</span> <span class="n">TRANSPORT</span> <span class="n">FORMULA</span> <span class="n">FOR</span> <span class="k">ALL </span><span class="n">SANDS</span> <span class="p">:</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="van-rijn-1984">
+<span id="gaia-rijn"></span><h3>van Rijn (1984)<a class="headerlink" href="#van-rijn-1984" title="Permalink to this headline">¶</a></h3>
+<div class="warning admonition">
+<p class="admonition-title">Recall the validity range for the van-Rijn formula (7)</p>
+<p>Revise <a class="reference internal" href="#tab-gaia-bl-formulae"><span class="std std-numref">Tab. 9</span></a> to ensure that the application is in the applicable range of parameters corresponding to the conditions under which the formula has been developed.</p>
+</div>
+<p>The sediment transport formula from Leo van Rijn <span id="id43">[<a class="reference internal" href="../documentation/bibliography.html#id588">VR84</a>]</span> refers to the theories from <span id="id44">Bagnold [<a class="reference internal" href="../documentation/bibliography.html#id33">Bag80</a>]</span>, <span id="id45">Einstein [<a class="reference internal" href="../documentation/bibliography.html#id1373">Ein42</a>]</span>, and <span id="id46">Ackers and White [<a class="reference internal" href="../documentation/bibliography.html#id8">AW73</a>]</span>. Thus, the <span id="id47">Van Rijn [<a class="reference internal" href="../documentation/bibliography.html#id588">VR84</a>]</span> formulae assume that bedload is dominated by gravity while suspended load transport is controlled by turbulence according to <span id="id48">Bagnold [<a class="reference internal" href="../documentation/bibliography.html#id33">Bag80</a>]</span>. To this end, the <span id="id49">Van Rijn [<a class="reference internal" href="../documentation/bibliography.html#id588">VR84</a>]</span> formulae calculate bedload transport similar to <span id="id50">Ackers and White [<a class="reference internal" href="../documentation/bibliography.html#id8">AW73</a>]</span> where transport rates depend on friction velocities. To calibrate his near-bed (bedload) solid transport model, <span id="id51">Van Rijn [<a class="reference internal" href="../documentation/bibliography.html#id588">VR84</a>]</span> used data from experiments on flat-bed (zero-slope) channels with a mean sediments grain diameter of 1.8 mm. <span id="id52">Van Rijn [<a class="reference internal" href="../documentation/bibliography.html#id588">VR84</a>]</span> conducted additional experiments to vet the results of his model against varying grain diameters between 0.2 and 2 mm. In addition, <span id="id53">Van Rijn [<a class="reference internal" href="../documentation/bibliography.html#id588">VR84</a>]</span> established criteria for sediment suspension based on laboratory experiments with grain diameters of less than 0.5 mm and by simplifying the calibration parameters empirically. While the original <span id="id54">Van Rijn [<a class="reference internal" href="../documentation/bibliography.html#id588">VR84</a>]</span> formula accounts for total sediment transport (i.e., <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> and suspended load), the following explanations for the implementation in Gaia are limited to <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> only.</p>
+<p>According to <span id="id55">Van Rijn [<a class="reference internal" href="../documentation/bibliography.html#id588">VR84</a>]</span>, the left side of Equation <a class="reference internal" href="#equation-eq-phi-gaia">(2)</a> (<span class="math notranslate nohighlight">\(\Phi_b\)</span>) is calculated as follows:</p>
+<div class="math notranslate nohighlight" id="equation-eq-rijn">
+<span class="eqno">(9)<a class="headerlink" href="#equation-eq-rijn" title="Permalink to this equation">¶</a></span>\[
+\Phi_b = \frac{0.053}{D_{x}^{0.3}} \cdot \left(\frac{\tau_{x} - \tau_{x,cr}}{\tau_{x,cr}}\right)^{2.1}
+\]</div>
+<p>Explanations of the <a class="reference internal" href="../documentation/glossary.html#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a> <span class="math notranslate nohighlight">\(\tau_{x}\)</span>, its critical value <span class="math notranslate nohighlight">\(\tau_{x,cr}\)</span> (i.e., the <a class="reference internal" href="../documentation/glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a>), and the dimensionless grain diameter <span class="math notranslate nohighlight">\(D_{x}\)</span> are explained in the above sections on the <a class="reference internal" href="#gaia-mpm"><span class="std std-ref">Meyer-Peter and Müller</span></a> and the <a class="reference internal" href="#gaia-einstein"><span class="std std-ref">Einstein-Brown</span></a> formulae.</p>
+<p>To use the <span id="id56">Van Rijn [<a class="reference internal" href="../documentation/bibliography.html#id588">VR84</a>]</span> formula in Gaia use:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">BED</span><span class="o">-</span><span class="n">LOAD</span> <span class="n">TRANSPORT</span> <span class="n">FORMULA</span> <span class="n">FOR</span> <span class="k">ALL </span><span class="n">SANDS</span> <span class="p">:</span> <span class="mi">7</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="wilcock-crowe-2003">
+<span id="gaia-wilcock"></span><h3>Wilcock-Crowe (2003)<a class="headerlink" href="#wilcock-crowe-2003" title="Permalink to this headline">¶</a></h3>
+<div class="warning admonition">
+<p class="admonition-title">Applicability of the Wilcock-Crow formula (10)</p>
+<p>The multi-fraction bedload transport formula from <span id="id57">Wilcock and Crowe [<a class="reference internal" href="../documentation/bibliography.html#id1374">WC03</a>]</span> does not state particular validity ranges, but the authors limit their approach to sand-gravel-cobble sediments with a minimum grain diameter of 0.063 mm. The explanations in this section limit to the application background of the <span id="id58">Wilcock and Crowe [<a class="reference internal" href="../documentation/bibliography.html#id1374">WC03</a>]</span> approach. The complex set of equations is explained in detail in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a> (section 3.1.2) and by <span id="id59">Cordier <em>et al.</em> [<a class="reference internal" href="../documentation/bibliography.html#id1378">CTC+19</a>], Cordier <em>et al.</em> [<a class="reference internal" href="../documentation/bibliography.html#id1377">CTC+20</a>]</span>.</p>
+</div>
+<p>The <span id="id60">Wilcock and Crowe [<a class="reference internal" href="../documentation/bibliography.html#id1374">WC03</a>]</span> approach is a multi-fraction sediment transport model that is primarily applicable in armored river sections for modeling bed aggradation or degradation.
+The approach takes up the idea of <span id="id61">Parker [<a class="reference internal" href="../documentation/bibliography.html#id1375">Par90</a>]</span> on applying a reference shear stress at which a small constant solid transport rate can be observed. The reference shear stress is close to, but a little bit larger than the <a class="reference internal" href="../documentation/glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a> <span class="math notranslate nohighlight">\(\tau_{x,cr}\)</span>. To this end, <span id="id62">Wilcock and Crowe [<a class="reference internal" href="../documentation/bibliography.html#id1374">WC03</a>]</span> implement reference transport 0.002 as proposed by <span id="id63">Parker [<a class="reference internal" href="../documentation/bibliography.html#id1375">Par90</a>]</span>.</p>
+<p>The multi-fraction <span id="id64">Wilcock and Crowe [<a class="reference internal" href="../documentation/bibliography.html#id1374">WC03</a>]</span> model uses the complete sediment grain size distribution of the riverbed surface and calculates bedload transport for each of the specified grain sizes (starting with the smallest grain size). The sediment transport model builds on flume experiments from <span id="id65">Proffitt and Sutherland [<a class="reference internal" href="../documentation/bibliography.html#id1376">PS83</a>]</span> and <span id="id66">Parker [<a class="reference internal" href="../documentation/bibliography.html#id1375">Par90</a>]</span> and it accounts for hiding/exposure effects on gravel transport as a function of the sand fraction in the riverbed.</p>
+<p>Ultimately, the <span id="id67">Wilcock and Crowe [<a class="reference internal" href="../documentation/bibliography.html#id1374">WC03</a>]</span> model represents a development of the <span id="id68">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula, takes up the implementation of a reference transport rate <span id="id69">[<a class="reference internal" href="../documentation/bibliography.html#id1375">Par90</a>]</span>, and is calibrated to hiding/exposure effects as a function of the sand fraction.</p>
+<p>The calculation of <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> transport according to <span id="id70">Wilcock and Crowe [<a class="reference internal" href="../documentation/bibliography.html#id1374">WC03</a>]</span> starts with a definition of a dimensionless transport capacity <span class="math notranslate nohighlight">\(\Phi_i\)</span> per sediment fraction that removes dimensions from bedload rate computed with a third-party formula for that fraction only (e.g., the <span id="id71">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula).</p>
+<p>To use the <span id="id72">Wilcock and Crowe [<a class="reference internal" href="../documentation/bibliography.html#id1374">WC03</a>]</span> formula in Gaia, define multiple <a class="reference internal" href="gaia-basics.html#gaia-sed"><span class="std std-ref">sediment classes</span></a> and use:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">BED</span><span class="o">-</span><span class="n">LOAD</span> <span class="n">TRANSPORT</span> <span class="n">FORMULA</span> <span class="n">FOR</span> <span class="k">ALL </span><span class="n">SANDS</span> <span class="p">:</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="correction-factors">
+<span id="c-factors"></span><h2>Correction Factors<a class="headerlink" href="#correction-factors" title="Permalink to this headline">¶</a></h2>
+<p>Correction factors for sediment transport may be needed to account for transversal channel slope, secondary currents, or skin friction correction.</p>
+<div class="section" id="friction-correctors">
+<span id="c-friction"></span><h3>Friction Correctors<a class="headerlink" href="#friction-correctors" title="Permalink to this headline">¶</a></h3>
+<p>Friction is often considered with simplified approaches lumping together skin friction and form drag, but in a two-dimensional model only skin friction affects bedload. <span id="id73">Einstein [<a class="reference internal" href="../documentation/bibliography.html#id176">Ein50</a>]</span> accounts for skin friction with a correction factor <span class="math notranslate nohighlight">\(f_{fr}\)</span> of (dimensional) bed shear stress <span class="math notranslate nohighlight">\(\tau\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-tau-fr">
+<span class="eqno">(10)<a class="headerlink" href="#equation-eq-tau-fr" title="Permalink to this equation">¶</a></span>\[
+\tau' = f_{fr} \cdot \tau
+\]</div>
+<div class="admonition-how-telemac2d-calculates-tau admonition">
+<p class="admonition-title">How Telemac2d calculates <span class="math notranslate nohighlight">\(\tau\)</span></p>
+<p>Telemac2d uses the length of the <span class="math notranslate nohighlight">\(x\)</span>-<span class="math notranslate nohighlight">\(y\)</span> velocity vectors to calculate <span class="math notranslate nohighlight">\(\tau\)</span> with the user-defined <code class="docutils literal notranslate"><span class="pre">FRICTION</span> <span class="pre">COEFFICIENT</span></code> <span class="math notranslate nohighlight">\(c_{f}\)</span>: <span class="math notranslate nohighlight">\(\tau = 0.5\cdot \rho_{w}\cdot c_{f}\cdot (U^2 + V^2)\)</span></p>
+</div>
+<p>The correction factor <span class="math notranslate nohighlight">\(f_{fr}\)</span> is defined as the ratio of the global friction coefficient <span class="math notranslate nohighlight">\(c_{f}\)</span> (i.e., lumped form drag and skin friction) and the skin friction-only coefficient <span class="math notranslate nohighlight">\(c'_{f}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-f-fr">
+<span class="eqno">(11)<a class="headerlink" href="#equation-eq-f-fr" title="Permalink to this equation">¶</a></span>\[
+f_{fr} = \frac{c'_{f}}{c_{f}}
+\]</div>
+<p>The skin friction-only coefficient is calculated as:</p>
+<div class="math notranslate nohighlight" id="equation-eq-cf-skin">
+<span class="eqno">(12)<a class="headerlink" href="#equation-eq-cf-skin" title="Permalink to this equation">¶</a></span>\[
+c'_{f} = 2\cdot \left(\frac{\kappa}{log(12 h/ k'_{s})}\right)^{2}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\kappa\)</span> is the <span id="id74">Von Karmàn [<a class="reference internal" href="../documentation/bibliography.html#id592">VK30</a>]</span> constant (0.4), <span class="math notranslate nohighlight">\(h\)</span> is water depth, and <span class="math notranslate nohighlight">\(k'_{s}\)</span> is the representative roughness length, which is often assumed as a multiple of the characteristic grain size (read more in the section on <a class="reference internal" href="gaia-run.html#bl-calibration"><span class="std std-ref">bedload calibration</span></a>).</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="b942228c-971a-42eb-a109-1d6fc4e2e35a" name="99748707-ebcd-4464-a383-6fca6b2dcedc" type="radio">
+</input><label class="tabbed-label" for="b942228c-971a-42eb-a109-1d6fc4e2e35a">
+Skin Friction</label><div class="tabbed-content docutils">
+<p>Gaia uses by default the skin friction correction coefficient that it derives from the hydrodynamic solver (i.e., Telemac2d/3d). In very shallow waters, this behavior might cause instabilities. Therefore, the <strong>SKIN FRICTION CORRECTION</strong> (integer on-off, default is <code class="docutils literal notranslate"><span class="pre">1</span></code>) keyword can be defined in Gaia to disable the correction factor calculation and setting <span class="math notranslate nohighlight">\(f_{fr}\)</span> to 1. To disable skin friction correction and set <span class="math notranslate nohighlight">\(f_{fr}\)</span>=1, add the following to the Gaia steering file (not in this tutorial):</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">SKIN</span> <span class="n">FRICTION</span> <span class="n">CORRECTION</span> <span class="p">:</span> <span class="mi">0</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="mi">1</span> <span class="n">to</span> <span class="n">enable</span> <span class="n">skin</span> <span class="n">friction</span> <span class="n">correction</span>
+</pre></div>
+</div>
+<p>On ripple riverbeds (i.e., fine sandy hills as typically observed at ocean beaches during low tides), the skin friction correction should be set to <code class="docutils literal notranslate"><span class="pre">2</span></code> for enabling a bedform predictor. Read more in section 3.1.8 of the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a>.</p>
+</div>
+<input id="3a5b23d4-25be-4950-8523-ed8a4e71cca6" name="99748707-ebcd-4464-a383-6fca6b2dcedc" type="radio">
+</input><label class="tabbed-label" for="3a5b23d4-25be-4950-8523-ed8a4e71cca6">
+Bedform Roughness</label><div class="tabbed-content docutils">
+<p>The finer the sediment of the riverbed, the more important turbulence created by the bed shape becomes. For instance, skin friction calculated based on a multiple of the diameter of a sand grain’s characteristic roughness length <span class="math notranslate nohighlight">\(k'_{s}\)</span> is very small. However, sand tends to shape the riverbed into ripple or dune forms, which cause additional <em>bedform turbulence</em>, as featured in the video below.</p>
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/q4eRwyeLKfA " title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>By default, Gaia does not account for turbulence (i.e., roughness effects) of bedforms, but it can be enabled by setting the <strong>COMPUTE BED ROUGHNESS AT SEDIMENT SCALE</strong> keyword to <code class="docutils literal notranslate"><span class="pre">YES</span></code> (default is <code class="docutils literal notranslate"><span class="pre">NO</span></code>). Then, one of the following options for the <strong>BED ROUGHNESS PREDICTOR OPTION</strong> keyword can be defined:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> for using the default approach of using a multiple of the characteristic grain diameter for calculating <span class="math notranslate nohighlight">\(k'_{s}\)</span> in Equation <a class="reference internal" href="#equation-eq-cf-skin">(12)</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> for ripple bedforms with waves and currents as a function of flow velocity and the characteristics grain size <span id="id75">[<a class="reference internal" href="../documentation/bibliography.html#id1380">RC07</a>, <a class="reference internal" href="../documentation/bibliography.html#id1381">WH94</a>]</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">3</span></code> for ripple bedforms with currents only as a function of flow velocity, water depth, the characteristic grain size, and an additional sand grain diameter <span id="id76">[<a class="reference internal" href="../documentation/bibliography.html#id1382">HVH10</a>, <a class="reference internal" href="../documentation/bibliography.html#id1380">RC07</a>]</span>.</p></li>
+</ul>
+<p>The <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a> (section 3.1.9) summarizes the set of equations that go into the calculation of the <strong>BED ROUGHNESS PREDICTOR OPTION</strong> keyword.</p>
+</div>
+</div>
+</div>
+<div class="section" id="direction-and-magnitude-intensity">
+<span id="gaia-dir"></span><h3>Direction and Magnitude (Intensity)<a class="headerlink" href="#direction-and-magnitude-intensity" title="Permalink to this headline">¶</a></h3>
+<p>Natural rivers are characterized by non-straight lines of the <a class="reference internal" href="../documentation/glossary.html#term-Thalweg"><span class="xref std std-term">Thalweg</span></a>, which involves that water and sediment are subjected to curve effects. However, water and sediment behave differently in a curve because sediment has a greater inertia than water <span id="id77">[<a class="reference internal" href="../documentation/bibliography.html#id1166">ML16</a>]</span>. Gaia accounts for the different inertia of sediment transport as a function of water depth, curve radius, a spiral flow coefficient (<code class="docutils literal notranslate"><span class="pre">A</span></code>), and the depth-averaged, 2d velocities <em>U</em> and <em>V</em>. In addition, sediment transport reacts more inert to horizontal (transversal) channel slope and can be considered in <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions as explained for the <a class="reference internal" href="../documentation/glossary.html#term-Exner-equation"><span class="xref std std-term">Exner equation</span></a>. To this end, Gaia calculates the slope-corrected unit bedload transport <span class="math notranslate nohighlight">\(q_{b,sc}\)</span> as follows:</p>
+<div class="math notranslate nohighlight" id="equation-eq-qb-corr">
+<span class="eqno">(13)<a class="headerlink" href="#equation-eq-qb-corr" title="Permalink to this equation">¶</a></span>\[
+\boldsymbol{q_{b,sc}} = q_{b} \left[1 + \beta \left(\cos \alpha  \frac{\partial z_{b}}{\partial x} + \sin \alpha \frac{\partial z_{b}}{\partial y} \right)\right]
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> is the angle between the longitudinal channel (<span class="math notranslate nohighlight">\(x\)</span>) axis and the bedload transport vector (see also the <a class="reference internal" href="../documentation/glossary.html#term-Exner-equation"><span class="xref std std-term">Exner equation</span></a>), <span class="math notranslate nohighlight">\(\beta\)</span> is an empiric bedload intensity correction factor from <span id="id78">Koch and Flokstra [<a class="reference internal" href="../documentation/bibliography.html#id1383">KF80</a>]</span>, and <span class="math notranslate nohighlight">\(z_{b}\)</span> is the riverbed elevation.</p>
+<p>The deviation angle <span class="math notranslate nohighlight">\(\alpha\)</span> and the <span class="math notranslate nohighlight">\(\beta\)</span> factor can be defined in Gaia with the keywords a <strong>FORMULA FOR DEVIATION</strong> and a <strong>FORMULA FOR SLOPE EFFECT</strong> (horizontal). To use one or both keywords, the <strong>SLOPE EFFECT</strong> keyword must be set to <code class="docutils literal notranslate"><span class="pre">YES</span></code> (disable by setting it to <code class="docutils literal notranslate"><span class="pre">NO</span></code>).</p>
+<p>The <strong>FORMULA FOR DEVIATION</strong> keyword can take the following integer values to define a particular formula for the sediment shape function (cf. section 3.1.4 in <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a>):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> for bed level computation according to <span id="id79">Koch and Flokstra [<a class="reference internal" href="../documentation/bibliography.html#id1383">KF80</a>]</span> (<strong>default</strong>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> for the <span id="id80">Talmon <em>et al.</em> [<a class="reference internal" href="../documentation/bibliography.html#id1384">TSVM95</a>]</span> approach based on laboratory experiments, which should be used with the <strong>PARAMETER FOR DEVIATION</strong> keyword (default is <code class="docutils literal notranslate"><span class="pre">0.85</span></code>, but an optimum was found with <code class="docutils literal notranslate"><span class="pre">1.6</span></code> <span id="id81">[<a class="reference internal" href="../documentation/bibliography.html#id1379">MAL+17</a>]</span>) to set the <code class="docutils literal notranslate"><span class="pre">BETA2</span></code> parameter.</p></li>
+</ul>
+<p>The  <strong>FORMULA FOR SLOPE EFFECT</strong> keyword affects not only the direction of sediment transport, but also its magnitude (or intensity) and it can take the following values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> for bed level computation according to <span id="id82">Koch and Flokstra [<a class="reference internal" href="../documentation/bibliography.html#id1383">KF80</a>]</span> (<strong>default</strong> and similar to FORMULA FOR DEVIATION). The value <code class="docutils literal notranslate"><span class="pre">1</span></code> enables the definition of the empiric bed slope correction factor <span class="math notranslate nohighlight">\(\beta\)</span> in Equation <a class="reference internal" href="#equation-eq-qb-corr">(13)</a> through the <strong>BETA</strong> keyword (default is <code class="docutils literal notranslate"><span class="pre">BETA</span> <span class="pre">:</span>&#160; <span class="pre">1.3</span></code>).</p>
+<ul>
+<li><p>To increase bed elevation change, increase <strong>BETA</strong>.</p></li>
+<li><p>To decrease bed elevation change, decrease <strong>BETA</strong>.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> for slope correction in sand-bed rivers based on an approach from <span id="id83">Soulsby [<a class="reference internal" href="../documentation/bibliography.html#id1385">Sou97</a>]</span>, which applies a correction of the <a class="reference internal" href="../documentation/glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a> as a function of the friction angle of the sediment and the riverbed slope. The friction angle can be defined with the additional <code class="docutils literal notranslate"><span class="pre">FRICTION</span> <span class="pre">ANGLE</span> <span class="pre">OF</span> <span class="pre">THE</span> <span class="pre">SEDIMENT</span></code> keyword (default is <code class="docutils literal notranslate"><span class="pre">40.</span></code>).</p></li>
+</ul>
+</div>
+<div class="section" id="secondary-currents">
+<span id="gaia-secondary"></span><h3>Secondary Currents<a class="headerlink" href="#secondary-currents" title="Permalink to this headline">¶</a></h3>
+<p>Secondary currents may occur in curved channels (i.e., in most near-census natural rivers) and describe the phenomenon of water moving like a gyroscope through riverbends. More specifically, secondary flows are helical motions in which water near the surface is driven toward the outer bend, while water near the riverbed is driven toward the inner bend. Thus, secondary flows are a 3d phenomenon that can be represented in 2d models only with auxiliary tools. For <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> transport, the near-bed current toward the inner bend is especially important, because it promotes erosion at the outer bend and may lead to deposition at the inner bend.</p>
+<p>By default, Telemac2d and Gaia do not consider secondary currents, but an approach based on <span id="id84">Engelund [<a class="reference internal" href="../documentation/bibliography.html#id1386">Eng74</a>]</span> can be enabled by setting the <strong>SECONDARY CURRENTS</strong> keyword to <code class="docutils literal notranslate"><span class="pre">YES</span></code> (default is <code class="docutils literal notranslate"><span class="pre">NO</span></code>). In addition, the <strong>SECONDARY CURRENTS ALPHA COEFFICIENT</strong> keyword can be used to adapt the roughness length as a function channel bottom roughness (i.e., smooth or rough riverbeds). For instance, use <code class="docutils literal notranslate"><span class="pre">SECONDARY</span> <span class="pre">CURRENTS</span> <span class="pre">ALPHA</span> <span class="pre">COEFFICIENT</span> <span class="pre">:</span> <span class="pre">0.75</span></code> for a very rough riverbed, or <code class="docutils literal notranslate"><span class="pre">SECONDARY</span> <span class="pre">CURRENTS</span> <span class="pre">ALPHA</span> <span class="pre">COEFFICIENT</span> <span class="pre">:</span> <span class="pre">1.</span></code> (default) for a smooth riverbed. To following this tutorial, use:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">SECONDARY</span> <span class="n">CURRENTS</span> <span class="p">:</span> <span class="n">YES</span>
+<span class="n">SECONDARY</span> <span class="n">CURRENTS</span> <span class="n">ALPHA</span> <span class="n">COEFFICIENT</span> <span class="p">:</span> <span class="mf">0.8</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="active-layer">
+<span id="gaia-active-lyr"></span><h2>Active Layer<a class="headerlink" href="#active-layer" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="gaia-basics.html#gaia-bc"><span class="std std-ref">boundary conditions</span></a> of a model define sediment supply (inflow) and outflow rates, which may stem from gauging stations, measurements, or watershed soil loss models, such as the Revised Universal Soil Loss Equation (RUSLE) <span id="id85">[<a class="reference internal" href="../documentation/bibliography.html#id1387">Ren97</a>]</span>. Sediment that just passes through the model and merely settles from time to time before being mobilized again (in accordance with <span id="id86">Einstein [<a class="reference internal" href="../documentation/bibliography.html#id176">Ein50</a>]</span>s theory) is referred to as wash load or traveling bedload <span id="id87">[<a class="reference internal" href="../documentation/bibliography.html#id458">PR17</a>]</span>. However, sediment can also be recruited (eroded) from the riverbed or deposited on the riverbed within the model boundaries. To tell a morphodynamic model to what depths it can erode (e.g., because bedrock or concrete is present below), active layers can be defined. In addition, multiple active layers can be defined, for example, to implement sediment stratification with respect to grain sizes. Grain size stratification plays a role especially when the riverbed is armored, which means that the uppermost sediment layer is significantly coarser than deeper sediment layers <span id="id88">[<a class="reference internal" href="../documentation/bibliography.html#id1368">Hir71</a>]</span>.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "hydro-informatics/jupyter-python-course",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./numerics"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="gaia-basics.html" title="previous page">Basic Setup of Gaia</a>
+    <a class='right-next' id="next-link" href="gaia-suspended.html" title="next page">Suspended Load</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Sebastian Schwindt<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
