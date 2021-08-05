@@ -1,6 +1,9 @@
 (gaia-bl)=
 # Bedload
 
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/e6lk2pk72Gc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Bedload traveling in a lab flume by jumping, rolling, and sliding (under water footage). Source: Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+
 ```{admonition} Bedload basics
 :class: important
 For a better reading experience of this section, the {ref}`glossary` helps with explanations of the terms {term}`Sediment transport`, (dimensionless) {term}`Bedload` transport $\Phi_b$, {term}`Dimensionless bed shear stress` $\tau_{x}$, and the {term}`Shields parameter` $\tau_{x,cr}$ (in that order).
@@ -312,7 +315,7 @@ On ripple riverbeds (i.e., fine sandy hills as typically observed at ocean beach
 ````{tabbed} Bedform Roughness
 The finer the sediment of the riverbed, the more important turbulence created by the bed shape becomes. For instance, skin friction calculated based on a multiple of the diameter of a sand grain's characteristic roughness length $k'_{s}$ is very small. However, sand tends to shape the riverbed into ripple or dune forms, which cause additional *bedform turbulence*, as featured in the video below.
 
-<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/q4eRwyeLKfA " title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/q4eRwyeLKfA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 
 By default, Gaia does not account for turbulence (i.e., roughness effects) of bedforms, but it can be enabled by setting the **COMPUTE BED ROUGHNESS AT SEDIMENT SCALE** keyword to `YES` (default is `NO`). Then, one of the following options for the **BED ROUGHNESS PREDICTOR OPTION** keyword can be defined:
@@ -362,7 +365,13 @@ SECONDARY CURRENTS : YES
 SECONDARY CURRENTS ALPHA COEFFICIENT : 0.8
 ```
 
-(gaia-active-lyr)=
-## Active Layer
+## Example Applications
 
-The {ref}`boundary conditions <gaia-bc>` of a model define sediment supply (inflow) and outflow rates, which may stem from gauging stations, measurements, or watershed soil loss models, such as the Revised Universal Soil Loss Equation (RUSLE) {cite:p}`renard1997`. Sediment that just passes through the model and merely settles from time to time before being mobilized again (in accordance with {cite:t}`einstein_bed-load_1950`s theory) is referred to as wash load or traveling bedload {cite:p}`piton_concept_2017`. However, sediment can also be recruited (eroded) from the riverbed or deposited on the riverbed within the model boundaries. To tell a morphodynamic model to what depths it can erode (e.g., because bedrock or concrete is present below), active layers can be defined. In addition, multiple active layers can be defined, for example, to implement sediment stratification with respect to grain sizes. Grain size stratification plays a role especially when the riverbed is armored, which means that the uppermost sediment layer is significantly coarser than deeper sediment layers {cite:p}`hirano1971`.
+Examples for the implementation of bedload come along with the TELEMAC installation (e.g., in `telemac/v8p2/examples/gaia`). The following examples in the `gaia` folder are feature (pure) bedload implementations:
+
+* Application of the {ref}`Wilcock-Crowe formula <gaia-wilcock>` (multiple sediment classes): **wilcock_crowe-t2d/**
+* Bedload in a bend of the Rhine River with quasi steady (unsteady) flow conditions: **yen-2d/**
+* Bedload coupled with Telemac3d: **bosse-t3d/**
+* Model of an armored (stratified) riverbed: **guenter-t2d/**
+* Coastal sand (bedload) transport coupled with the wave propagation module Tomawac: **littoral-t2d-tom/**
+* Coupling with the dredging module Nestor: **nestor_dig_test-t2d/**

@@ -195,7 +195,7 @@ sudo apt install -y cmake build-essential dialog vim
 
 ### Download TELEMAC
 ***Estimated duration: 15-30 minutes.***
-We will need more packages to enable parallelism and compiling, but before installing them, download the latest version of TELEMAC through subversion (`svn`). The developers (irregularly) inform about the newest public release on [their website](http://www.opentelemac.org/index.php/latest-news-development-and-distribution) and the latest absolute latest release can be read from the [svn-tags website](http://svn.opentelemac.org/svn/opentelemac/tags/) (use with passwords in the below command line block). To download* TELEMAC, open *Terminal* in the *Home* directory (either use `cd` or use the *Files* browser to navigate to the *Home* directory and right-click in the empty space to open *Terminal*) and type (enter `no` when asked for password encryption):
+We will need more packages to enable parallelism and compiling, but before installing them, download the latest version of TELEMAC through subversion (`svn`). The developers (irregularly) inform about the newest public release on [their website](http://www.opentelemac.org/index.php/latest-news-development-and-distribution) and the latest absolute latest release can be read from the [svn-tags website](http://svn.opentelemac.org/svn/opentelemac/tags/) (use with passwords in the below command line block). To download TELEMAC, open *Terminal* in the *Home* directory (either use `cd` or use the *Files* browser to navigate to the *Home* directory and right-click in the empty space to open *Terminal*) and type (enter `no` when asked for password encryption):
 
 ```
 svn co http://svn.opentelemac.org/svn/opentelemac/tags/v8p2r1  ~/telemac/v8p2 --username ot-svn-public --password telemac1*

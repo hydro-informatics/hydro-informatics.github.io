@@ -136,7 +136,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../python-basics/pyinstall.html">
-     Install Python
+     Python (Installation)
     </a>
    </li>
    <li class="toctree-l2">
@@ -476,8 +476,13 @@
     </label>
     <ul>
      <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/gaia-coupling.html">
+       Introduction and Coupling
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="../numerics/gaia-basics.html">
-       Gaia Basic Setup
+       Basic Setup of Gaia
       </a>
      </li>
      <li class="toctree-l3">
@@ -492,7 +497,7 @@
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="../numerics/gaia-run.html">
-       Run Simulation
+       Run Gaia
       </a>
      </li>
     </ul>
@@ -1121,7 +1126,7 @@ To enable parallelism, a <em>C</em> compiler is required for recognition of the 
 <div class="section" id="download-telemac">
 <h3>Download TELEMAC<a class="headerlink" href="#download-telemac" title="Permalink to this headline">¶</a></h3>
 <p><em><strong>Estimated duration: 15-30 minutes.</strong></em>
-We will need more packages to enable parallelism and compiling, but before installing them, download the latest version of TELEMAC through subversion (<code class="docutils literal notranslate"><span class="pre">svn</span></code>). The developers (irregularly) inform about the newest public release on <a class="reference external" href="http://www.opentelemac.org/index.php/latest-news-development-and-distribution">their website</a> and the latest absolute latest release can be read from the <a class="reference external" href="http://svn.opentelemac.org/svn/opentelemac/tags/">svn-tags website</a> (use with passwords in the below command line block). To download* TELEMAC, open <em>Terminal</em> in the <em>Home</em> directory (either use <code class="docutils literal notranslate"><span class="pre">cd</span></code> or use the <em>Files</em> browser to navigate to the <em>Home</em> directory and right-click in the empty space to open <em>Terminal</em>) and type (enter <code class="docutils literal notranslate"><span class="pre">no</span></code> when asked for password encryption):</p>
+We will need more packages to enable parallelism and compiling, but before installing them, download the latest version of TELEMAC through subversion (<code class="docutils literal notranslate"><span class="pre">svn</span></code>). The developers (irregularly) inform about the newest public release on <a class="reference external" href="http://www.opentelemac.org/index.php/latest-news-development-and-distribution">their website</a> and the latest absolute latest release can be read from the <a class="reference external" href="http://svn.opentelemac.org/svn/opentelemac/tags/">svn-tags website</a> (use with passwords in the below command line block). To download TELEMAC, open <em>Terminal</em> in the <em>Home</em> directory (either use <code class="docutils literal notranslate"><span class="pre">cd</span></code> or use the <em>Files</em> browser to navigate to the <em>Home</em> directory and right-click in the empty space to open <em>Terminal</em>) and type (enter <code class="docutils literal notranslate"><span class="pre">no</span></code> when asked for password encryption):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">svn</span> <span class="n">co</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">svn</span><span class="o">.</span><span class="n">opentelemac</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">svn</span><span class="o">/</span><span class="n">opentelemac</span><span class="o">/</span><span class="n">tags</span><span class="o">/</span><span class="n">v8p2r1</span>  <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span> <span class="o">--</span><span class="n">username</span> <span class="n">ot</span><span class="o">-</span><span class="n">svn</span><span class="o">-</span><span class="n">public</span> <span class="o">--</span><span class="n">password</span> <span class="n">telemac1</span><span class="o">*</span>
 </pre></div>
 </div>

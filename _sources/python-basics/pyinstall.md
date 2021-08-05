@@ -1,5 +1,5 @@
 (install-python)=
-# Install Python
+# Python (Installation)
 
 *Python*'s two-fold development (*Python2* and *Python3*) and other parallel versions of *Python* (e.g., ESRI's ArcGIS or Nvidia's cuda *Python* versions) may cause that multiple versions of *Python* are installed on your computer (even though *Python2* is about to disappear). As consequence packages might have been unintentionally or unknowingly installed for another *Python* interpreter than used in a project. However, the parallel existence of multiple *Python* interpreters is sometimes beneficial, for instance, when packages are installed that are not compatible with each other. So how to **deal with the challenge of having multiple *Python* interpreters (or environments) installed?**
 

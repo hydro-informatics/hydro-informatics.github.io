@@ -478,6 +478,11 @@
     </label>
     <ul class="current">
      <li class="toctree-l3">
+      <a class="reference internal" href="gaia-coupling.html">
+       Introduction and Coupling
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="gaia-basics.html">
        Basic Setup of Gaia
       </a>
@@ -494,7 +499,7 @@
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="gaia-run.html">
-       Run Simulation
+       Run Gaia
       </a>
      </li>
     </ul>
@@ -806,8 +811,8 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#active-layer">
-   Active Layer
+  <a class="reference internal nav-link" href="#example-applications">
+   Example Applications
   </a>
  </li>
 </ul>
@@ -823,6 +828,8 @@
                 
   <div class="section" id="bedload">
 <span id="gaia-bl"></span><h1>Bedload<a class="headerlink" href="#bedload" title="Permalink to this headline">¶</a></h1>
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/e6lk2pk72Gc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Bedload traveling in a lab flume by jumping, rolling, and sliding (under water footage). Source: Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 <div class="important admonition">
 <p class="admonition-title">Bedload basics</p>
 <p>For a better reading experience of this section, the <a class="reference internal" href="../documentation/glossary.html#glossary"><span class="std std-ref">Glossary</span></a> helps with explanations of the terms <a class="reference internal" href="../documentation/glossary.html#term-Sediment-transport"><span class="xref std std-term">Sediment transport</span></a>, (dimensionless) <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> transport <span class="math notranslate nohighlight">\(\Phi_b\)</span>, <a class="reference internal" href="../documentation/glossary.html#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a> <span class="math notranslate nohighlight">\(\tau_{x}\)</span>, and the <a class="reference internal" href="../documentation/glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a> <span class="math notranslate nohighlight">\(\tau_{x,cr}\)</span> (in that order).</p>
@@ -842,28 +849,28 @@
 </div>
 <p>The following figures feature sediment supply-limited river sections and a transport capacity-limited river section.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="585e4afb-5036-4981-baf9-389c230488a9" name="2749607e-e15c-4fe3-baf0-ff1adb38fef5" type="radio">
-</input><label class="tabbed-label" for="585e4afb-5036-4981-baf9-389c230488a9">
+<input checked="checked" id="52708ec7-052a-4165-9930-d55e311ddda7" name="10ac555f-179d-452f-bc8f-4409d1132799" type="radio">
+</input><label class="tabbed-label" for="52708ec7-052a-4165-9930-d55e311ddda7">
 Artificially sediment supply-limited</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="doubs-2015">
 <a class="reference internal image-reference" href="../_images/doubs-capacity-2015.JPG"><img alt="channel doubs france sediment supply transport limited" src="../_images/doubs-capacity-2015.JPG" style="height: 350px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 144 </span><span class="caption-text">The Doubs in the Franche-Comté (France) during a small flood. The sediment supply is interrupted by a cascade of dams upstream with the consequence of a straight monotonous channel with significant plant growth along the banks. The riverbed primarily consists of boulders that are immobile most of the time. Thus, the river section can be characterized as artificially sediment supply-limited (picture: Sebastian Schwindt 2015).</span><a class="headerlink" href="#doubs-2015" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 146 </span><span class="caption-text">The Doubs in the Franche-Comté (France) during a small flood. The sediment supply is interrupted by a cascade of dams upstream with the consequence of a straight monotonous channel with significant plant growth along the banks. The riverbed primarily consists of boulders that are immobile most of the time. Thus, the river section can be characterized as artificially sediment supply-limited (picture: Sebastian Schwindt 2015).</span><a class="headerlink" href="#doubs-2015" title="Permalink to this image">¶</a></p>
 </div>
 </div>
-<input id="28bce605-d4ef-44dd-b34e-74ad1e027839" name="2749607e-e15c-4fe3-baf0-ff1adb38fef5" type="radio">
-</input><label class="tabbed-label" for="28bce605-d4ef-44dd-b34e-74ad1e027839">
+<input id="eed20c24-dafa-4dc7-9350-0ca08f9031a1" name="10ac555f-179d-452f-bc8f-4409d1132799" type="radio">
+</input><label class="tabbed-label" for="eed20c24-dafa-4dc7-9350-0ca08f9031a1">
 Naturally sediment supply-limited</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="krimml-2010">
 <a class="with-shadow reference internal image-reference" href="../_images/krimmler-ache-2010.jpg"><img alt="naturally channel krimmler ache austria sediment supply transport limited" class="with-shadow" src="../_images/krimmler-ache-2010.jpg" style="height: 350px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 145 </span><span class="caption-text">The Krimmler Ache in Austria during a small flood event. Even though the watershed has a high <a class="reference internal" href="../documentation/glossary.html#term-Sediment-yield"><span class="xref std std-term">Sediment yield</span></a>, the transport capacity of the water in this river section is so high, that the riverbed only consists of large boulders. Thus, the river section can be characterized as naturally sediment supply-limited (picture: Sebastian Schwindt 2010).</span><a class="headerlink" href="#krimml-2010" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 147 </span><span class="caption-text">The Krimmler Ache in Austria during a small flood event. Even though the watershed has a high <a class="reference internal" href="../documentation/glossary.html#term-Sediment-yield"><span class="xref std std-term">Sediment yield</span></a>, the transport capacity of the water in this river section is so high, that the riverbed only consists of large boulders. Thus, the river section can be characterized as naturally sediment supply-limited (picture: Sebastian Schwindt 2010).</span><a class="headerlink" href="#krimml-2010" title="Permalink to this image">¶</a></p>
 </div>
 </div>
-<input id="65b5752c-b004-4e41-901d-0c2b0b6d0ed5" name="2749607e-e15c-4fe3-baf0-ff1adb38fef5" type="radio">
-</input><label class="tabbed-label" for="65b5752c-b004-4e41-901d-0c2b0b6d0ed5">
+<input id="f6e462da-a668-45fa-8229-75d337a5efb4" name="10ac555f-179d-452f-bc8f-4409d1132799" type="radio">
+</input><label class="tabbed-label" for="f6e462da-a668-45fa-8229-75d337a5efb4">
 Capacity-limited</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="jenbach-2020">
 <a class="reference internal image-reference" href="../_images/jenbach-alluvial-2020.jpg"><img alt="alluvial channel jenbach sediment supply transport limited" src="../_images/jenbach-alluvial-2020.jpg" style="height: 350px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 146 </span><span class="caption-text">The Jenbach in the Bavarian Alps (Germany) after an intense natural sediment supply in an upstream reach in the form of a landslide. Thus, the river section can be characterized as transport capacity-limited (picture: Sebastian Schwindt 2020).</span><a class="headerlink" href="#jenbach-2020" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 148 </span><span class="caption-text">The Jenbach in the Bavarian Alps (Germany) after an intense natural sediment supply in an upstream reach in the form of a landslide. Thus, the river section can be characterized as transport capacity-limited (picture: Sebastian Schwindt 2020).</span><a class="headerlink" href="#jenbach-2020" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
@@ -1106,8 +1113,8 @@ c'_{f} = 2\cdot \left(\frac{\kappa}{log(12 h/ k'_{s})}\right)^{2}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\kappa\)</span> is the <span id="id74">Von Karmàn [<a class="reference internal" href="../documentation/bibliography.html#id592">VK30</a>]</span> constant (0.4), <span class="math notranslate nohighlight">\(h\)</span> is water depth, and <span class="math notranslate nohighlight">\(k'_{s}\)</span> is the representative roughness length, which is often assumed as a multiple of the characteristic grain size (read more in the section on <a class="reference internal" href="gaia-run.html#bl-calibration"><span class="std std-ref">bedload calibration</span></a>).</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="b942228c-971a-42eb-a109-1d6fc4e2e35a" name="99748707-ebcd-4464-a383-6fca6b2dcedc" type="radio">
-</input><label class="tabbed-label" for="b942228c-971a-42eb-a109-1d6fc4e2e35a">
+<input checked="checked" id="1ed89ea7-ab18-4bd7-a98b-9a97e17c73dc" name="4b90856c-f2c8-4205-82ff-714792cd2bc1" type="radio">
+</input><label class="tabbed-label" for="1ed89ea7-ab18-4bd7-a98b-9a97e17c73dc">
 Skin Friction</label><div class="tabbed-content docutils">
 <p>Gaia uses by default the skin friction correction coefficient that it derives from the hydrodynamic solver (i.e., Telemac2d/3d). In very shallow waters, this behavior might cause instabilities. Therefore, the <strong>SKIN FRICTION CORRECTION</strong> (integer on-off, default is <code class="docutils literal notranslate"><span class="pre">1</span></code>) keyword can be defined in Gaia to disable the correction factor calculation and setting <span class="math notranslate nohighlight">\(f_{fr}\)</span> to 1. To disable skin friction correction and set <span class="math notranslate nohighlight">\(f_{fr}\)</span>=1, add the following to the Gaia steering file (not in this tutorial):</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">SKIN</span> <span class="n">FRICTION</span> <span class="n">CORRECTION</span> <span class="p">:</span> <span class="mi">0</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="mi">1</span> <span class="n">to</span> <span class="n">enable</span> <span class="n">skin</span> <span class="n">friction</span> <span class="n">correction</span>
@@ -1115,11 +1122,11 @@ Skin Friction</label><div class="tabbed-content docutils">
 </div>
 <p>On ripple riverbeds (i.e., fine sandy hills as typically observed at ocean beaches during low tides), the skin friction correction should be set to <code class="docutils literal notranslate"><span class="pre">2</span></code> for enabling a bedform predictor. Read more in section 3.1.8 of the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a>.</p>
 </div>
-<input id="3a5b23d4-25be-4950-8523-ed8a4e71cca6" name="99748707-ebcd-4464-a383-6fca6b2dcedc" type="radio">
-</input><label class="tabbed-label" for="3a5b23d4-25be-4950-8523-ed8a4e71cca6">
+<input id="a28b5450-1d91-4bec-a347-49e5c00f9e9d" name="4b90856c-f2c8-4205-82ff-714792cd2bc1" type="radio">
+</input><label class="tabbed-label" for="a28b5450-1d91-4bec-a347-49e5c00f9e9d">
 Bedform Roughness</label><div class="tabbed-content docutils">
 <p>The finer the sediment of the riverbed, the more important turbulence created by the bed shape becomes. For instance, skin friction calculated based on a multiple of the diameter of a sand grain’s characteristic roughness length <span class="math notranslate nohighlight">\(k'_{s}\)</span> is very small. However, sand tends to shape the riverbed into ripple or dune forms, which cause additional <em>bedform turbulence</em>, as featured in the video below.</p>
-<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/q4eRwyeLKfA " title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/q4eRwyeLKfA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 <p>By default, Gaia does not account for turbulence (i.e., roughness effects) of bedforms, but it can be enabled by setting the <strong>COMPUTE BED ROUGHNESS AT SEDIMENT SCALE</strong> keyword to <code class="docutils literal notranslate"><span class="pre">YES</span></code> (default is <code class="docutils literal notranslate"><span class="pre">NO</span></code>). Then, one of the following options for the <strong>BED ROUGHNESS PREDICTOR OPTION</strong> keyword can be defined:</p>
 <ul class="simple">
@@ -1166,9 +1173,17 @@ Bedform Roughness</label><div class="tabbed-content docutils">
 </div>
 </div>
 </div>
-<div class="section" id="active-layer">
-<span id="gaia-active-lyr"></span><h2>Active Layer<a class="headerlink" href="#active-layer" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference internal" href="gaia-basics.html#gaia-bc"><span class="std std-ref">boundary conditions</span></a> of a model define sediment supply (inflow) and outflow rates, which may stem from gauging stations, measurements, or watershed soil loss models, such as the Revised Universal Soil Loss Equation (RUSLE) <span id="id85">[<a class="reference internal" href="../documentation/bibliography.html#id1387">Ren97</a>]</span>. Sediment that just passes through the model and merely settles from time to time before being mobilized again (in accordance with <span id="id86">Einstein [<a class="reference internal" href="../documentation/bibliography.html#id176">Ein50</a>]</span>s theory) is referred to as wash load or traveling bedload <span id="id87">[<a class="reference internal" href="../documentation/bibliography.html#id458">PR17</a>]</span>. However, sediment can also be recruited (eroded) from the riverbed or deposited on the riverbed within the model boundaries. To tell a morphodynamic model to what depths it can erode (e.g., because bedrock or concrete is present below), active layers can be defined. In addition, multiple active layers can be defined, for example, to implement sediment stratification with respect to grain sizes. Grain size stratification plays a role especially when the riverbed is armored, which means that the uppermost sediment layer is significantly coarser than deeper sediment layers <span id="id88">[<a class="reference internal" href="../documentation/bibliography.html#id1368">Hir71</a>]</span>.</p>
+<div class="section" id="example-applications">
+<h2>Example Applications<a class="headerlink" href="#example-applications" title="Permalink to this headline">¶</a></h2>
+<p>Examples for the implementation of bedload come along with the TELEMAC installation (e.g., in <code class="docutils literal notranslate"><span class="pre">telemac/v8p2/examples/gaia</span></code>). The following examples in the <code class="docutils literal notranslate"><span class="pre">gaia</span></code> folder are feature (pure) bedload implementations:</p>
+<ul class="simple">
+<li><p>Application of the <a class="reference internal" href="#gaia-wilcock"><span class="std std-ref">Wilcock-Crowe formula</span></a> (multiple sediment classes): <strong>wilcock_crowe-t2d/</strong></p></li>
+<li><p>Bedload in a bend of the Rhine River with quasi steady (unsteady) flow conditions: <strong>yen-2d/</strong></p></li>
+<li><p>Bedload coupled with Telemac3d: <strong>bosse-t3d/</strong></p></li>
+<li><p>Model of an armored (stratified) riverbed: <strong>guenter-t2d/</strong></p></li>
+<li><p>Coastal sand (bedload) transport coupled with the wave propagation module Tomawac: <strong>littoral-t2d-tom/</strong></p></li>
+<li><p>Coupling with the dredging module Nestor: <strong>nestor_dig_test-t2d/</strong></p></li>
+</ul>
 </div>
 </div>
 

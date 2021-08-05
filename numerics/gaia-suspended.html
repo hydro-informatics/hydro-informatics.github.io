@@ -51,11 +51,13 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="canonical" href="https://hydro-informatics.com/numerics/gaia-suspended.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Run Simulation" href="gaia-run.html" />
+    <link rel="next" title="Run Gaia" href="gaia-run.html" />
     <link rel="prev" title="Bedload" href="gaia-bedload.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -476,8 +478,13 @@
     </label>
     <ul class="current">
      <li class="toctree-l3">
+      <a class="reference internal" href="gaia-coupling.html">
+       Introduction and Coupling
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="gaia-basics.html">
-       Gaia Basic Setup
+       Basic Setup of Gaia
       </a>
      </li>
      <li class="toctree-l3">
@@ -492,7 +499,7 @@
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="gaia-run.html">
-       Run Simulation
+       Run Gaia
       </a>
      </li>
     </ul>
@@ -749,6 +756,11 @@
    Numerical options and parameters
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-applications">
+   Example Applications
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -762,6 +774,8 @@
                 
   <div class="section" id="suspended-load">
 <span id="gaia-sl"></span><h1>Suspended Load<a class="headerlink" href="#suspended-load" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference internal" href="../documentation/glossary.html#term-Suspended-load"><span class="xref std std-term">Suspended load</span></a> refers to fine particles (<span class="math notranslate nohighlight">\(\lesssim\)</span> 0.5 mm) that are transported in the water column. The TELEMAC software suite uses the hydrodynamic Telemac2d/3d models to simulate <a class="reference internal" href="../documentation/glossary.html#term-Suspended-load"><span class="xref std std-term">Suspended load</span></a> by solving the <a class="reference internal" href="../documentation/glossary.html#term-Advection"><span class="xref std std-term">Advection</span></a>-<a class="reference internal" href="../documentation/glossary.html#term-Diffusion"><span class="xref std std-term">Diffusion</span></a> equations for tracers.</p>
+<p>and additionally requires closures for sediment erosion and deposition fluxes.</p>
 <p><code class="docutils literal notranslate"><span class="pre">SUSPENSION</span> <span class="pre">FOR</span> <span class="pre">ALL</span> <span class="pre">SANDS</span> <span class="pre">:</span> <span class="pre">YES</span> <span class="pre">or</span> <span class="pre">NO</span></code></p>
 <div class="section" id="numerical-options-and-parameters">
 <h2>Numerical options and parameters<a class="headerlink" href="#numerical-options-and-parameters" title="Permalink to this headline">¶</a></h2>
@@ -772,6 +786,19 @@
 <p><code class="docutils literal notranslate"><span class="pre">FINITE</span> <span class="pre">VOLUMES</span> <span class="pre">:</span> <span class="pre">YES</span> <span class="pre">or</span> <span class="pre">NO</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">ADVECTION-DIFFUSION</span> <span class="pre">SCHEME</span> <span class="pre">WITH</span> <span class="pre">SETTLING</span> <span class="pre">VELOCITY</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">SOLVER</span> <span class="pre">FOR</span> <span class="pre">DIFFUSION</span> <span class="pre">OF</span> <span class="pre">SUSPENSION</span></code></p>
+</div>
+<div class="section" id="example-applications">
+<h2>Example Applications<a class="headerlink" href="#example-applications" title="Permalink to this headline">¶</a></h2>
+<p>Examples for the implementation of suspended load come along with the TELEMAC installation (e.g., in <code class="docutils literal notranslate"><span class="pre">telemac/v8p2/examples/gaia</span></code>). The following examples in the <code class="docutils literal notranslate"><span class="pre">gaia</span></code> folder are feature (pure) suspended load implementations:</p>
+<ul class="simple">
+<li><p>2d model of combined cohesive and non-cohesive suspended transport: <strong>hippodrome-t2d/</strong></p></li>
+<li><p>2d model of cohesive mud: <strong>mud_conservation-t2d/</strong></p></li>
+<li><p>3d model of combined cohesive and non-cohesive suspended transport: <strong>hippodrome-t2d/</strong></p></li>
+<li><p>3d model of non-cohesive suspended transport with skin friction correction: <strong>lyn-t3d/</strong></p></li>
+<li><p>3d model of cohesive suspended transport as tracer in Telemac3d: <strong>rouse-t3d/</strong></p></li>
+<li><p>3d model of a tidal flume with cohesive sediment: <strong>tidal_flats-t3d/</strong></p></li>
+<li><p>Coupling with waves: <strong>sandpit-t2d/</strong></p></li>
+</ul>
 </div>
 </div>
 
@@ -801,7 +828,7 @@
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="gaia-bedload.html" title="previous page">Bedload</a>
-    <a class='right-next' id="next-link" href="gaia-run.html" title="next page">Run Simulation</a>
+    <a class='right-next' id="next-link" href="gaia-run.html" title="next page">Run Gaia</a>
 
         </div>
         
