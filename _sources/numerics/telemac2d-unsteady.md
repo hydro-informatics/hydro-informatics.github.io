@@ -349,7 +349,6 @@ MINIMUM VALUE OF DEPTH : 0.1 / in meters
 ```
 ````
 
-
 ### Visualization with QGIS
 
 The results of the unsteady simulation can be visualized and exported to raster (e.g., {term}`GeoTIFF`) or shapefile formats in QGIS with the PostTelemac plugin the same way as explained in the steady2d tutorial ({ref}`read the steady2d post-processing <tm2d-post-export>`). The latest QGIS releases additionally enable to load the Selafin results mesh file (here: *r2dunsteady.slf*) as a QGIS mesh layer. Therefore, **launch QGIS**, go to the **Layer** menu and click on **Add Layer** > **Add Mesh Layer...**. In the popup window (*Data Source Manager / Mesh*), **select r2dunsteady.slf**, click **Add**, and **Close**. {numref}`Figure %s <qgis-r2dunsteady-imported>` shows the imported r2dunsteady mesh layer in QGIS with a *Softlight* blending (set in the *Symbology*) on google satellite imagery.
@@ -374,7 +373,7 @@ The below-shown box features and exemplary video output of flow velocity.
 
 ```{dropdown} Expand to view the resulting video
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/JKAiZ1ChUEg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Sebastian Schwindt <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
-``` 
+```
 
 **What next?**
 : This tutorial ends with the graphical output of modeled flow parameters, but there are a couple more steps to accomplish in practice. For instance, the time that the flow peak takes to travel through the modeled river section might be too short (i.e., flow is too fast) or too long (i.e., flow is too slow) compared to observation data (e.g., from stream gauges). In these cases, model calibration through variations of the {ref}`FRICTION COEFFICIENT <tm2d-friction>` keyword might be a solution. Read more in the {ref}`calibration` section.

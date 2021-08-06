@@ -23,11 +23,11 @@ Graphical output variables related to sediment transport can be defined with the
 * `B` for bottom elevation in (m a.s.l.)
 * `E` for bottom evolution in (m)
 * `F` for {term}`Froude number` (-)
-* `M` for the magnitude (length) of the bi-directional (i.e., $x$ and $y$ directions) unit solid transport (bedload, suspended load, and dissolved tracers) $\boldsymbol{q_s}$ (read more in the definition of the {term}`Exner equation`) in (kg$\cdot$m$^{-1}\cdot$s$^{-1}$)
-* `MU` for the skin friction coefficient (depends on the {ref}`friction law <tm2d-friction>` in the hydrodynamic steering file)
-* `N` for unit solid transport (bedload, suspended load, and dissolved tracers) in $x$-direction $\boldsymbol{q_s}\cdot\cos\alpha$ in (kg$\cdot$m$^{-1}\cdot$s$^{-1}$) where  $\alpha$ is the angle between the longitudinal channel ($x$) axis and the solid transport vector $\boldsymbol{q_s}$.
-* `P` for unit solid transport (bedload, suspended load, and dissolved tracers) in $y$-direction $\boldsymbol{q_s}\cdot\sin\alpha$ in (kg$\cdot$m$^{-1}\cdot$s$^{-1}$)
-* `QSBL` `M` for the magnitude (length) of the bi-directional (i.e., $x$ and $y$ directions) unit **bedload (only)** transport $\boldsymbol{q_b}$ in (kg$\cdot$m$^{-1}\cdot$s$^{-1}$)
+* `M` for the magnitude (length) of the bi-directional (i.e., $x$ and $y$ directions) unit sediment transport $\boldsymbol{q_s}$ (read more in the definition of the {term}`Exner equation`) in (kg$\cdot$m$^{-1}\cdot$s$^{-1}$)
+* `MU` for the skin friction coefficient (as a function of {ref}`skin friction correction factors <c-friction>` described in the section on bedload)
+* `N` for unit bedload transport in $x$-direction $\boldsymbol{q_b}\cdot\cos\alpha$ in (kg$\cdot$m$^{-1}\cdot$s$^{-1}$) where  $\alpha$ is the angle between the longitudinal channel ($x$) axis and the solid transport vector $\boldsymbol{q_b}$.
+* `P` for unit bedload transport in $y$-direction $\boldsymbol{q_b}\cdot\sin\alpha$ in (kg$\cdot$m$^{-1}\cdot$s$^{-1}$)
+* `QSBL` for the magnitude (length) of the bi-directional (i.e., $x$ and $y$ directions) unit **bedload (only)** transport $\boldsymbol{q_b}$ in (kg$\cdot$m$^{-1}\cdot$s$^{-1}$)
 * `R` for the non-erodible bottom (?)
 * `S` for water surface elevation in (m a.s.l.)
 * `TOB` for bed shear stress in (N$\cdot$m$^{-2}$)
@@ -37,7 +37,7 @@ The parameters `M` and `QSBL` will result in the same output if no suspended loa
 ```fortran
 / continued: gaia-morphodynamics.cas
 / ...
-VARIABLES FOR GRAPHIC PRINTOUTS : E,M,N,P,QSBL,TOB,U,V
+VARIABLES FOR GRAPHIC PRINTOUTS : E,M,N,P,QSBL,TOB
 ```
 
 (gaia-bc)=
@@ -226,19 +226,13 @@ The boxes below indicate how the required adaptations in the `boundaries-gaia.cl
 ```
 ````
 
-To prescribe a sediment flowrate of **10 kg$^3\cdot$s$^{-1}$** across the upstream and downstream boundaries through the `LIQBOR = 5`, **add the PRESCRIBED SOLID DISCHARGES keyword to the Gaia steering file (gaia-morphodynamics.cas)**:
-
-```fortran
-/ continued: gaia-morphodynamics.cas
-/ ...
-PRESCRIBED SOLID DISCHARGES : 10.0;10.0
-```
-
 Recall that the first and second values in the list of prescribed solid discharges refer to the first (beginning at line 1) and second open boundary listed in the `boundaries-gaia.cas` (i.e., upstream and downstream in that order).
 
 ```{admonition} Why two boundary condition files?
 Most examples of the TELEMAC installation (`/telemac/v8pX/examples/gaia/`) use a single boundary conditions file, which is works fine because the numerical values are identical. However, the flags of a Gaia `*.cli` and a Telemac2d/3d `*.cli` file are not the same and for this reason, this eBook features the usage of two identical boundary condition files.
 ```
+
+The above explanations refer to the geometric assignment of boundary types in the `*.cli` files. In addition, sediment fluxes across these open boundaries need to be defined in the Gaia steering file. The prescription (and initialization) of sediment fluxes differs for bedload and suspended load and this is why the implementation of sediment flux prescriptions is defined in the corresponding sections (i.e., {ref}`boundaries for bedload <gaia-bc-bl>` and {ref}`boundaries for suspended load <gaia-bc-sl>`),
 
 ## Riverbed Composition
 
@@ -270,6 +264,11 @@ The particle size classes can also be assigned specific {term}`Shields parameter
 Note that the Sisyphe keyword NUMBER OF SIZE-CLASSES OF BED MATERIAL is obsolete in Gaia.
 
 Particular sediment transport formulae are related to the phenomena under consideration and their implementation in the Gaia steering file is explained in the next sections.
+
+```{admonition} Zonal sediment definitions
+:class: tip
+Sediment size classes can be declared for particular zones of a model, similar to friction zones (recall the friction zone box at the bottom of the {ref}`section on friction boundaries <tm2d-friction>`). Thus, a Selafin (`*.slf`) file containing riverbed characteristics can be declared with the **GEOMETRY FILE** keywords in the Gaia steering file. An example for zonal sediment definitions is provided with the Wilcock-Crowe model in the TELEMAC installation (e.g., `/telemac/v8pX/examples/gaia/wilcock_crowe-t2d/` -  have a look at **gai_ref_WC2003.slf** in BlueKenue).
+```
 
 (gaia-active-lyr)=
 ### Active Layer
@@ -315,3 +314,14 @@ LAYERS INITIAL THICKNESS : 1.5 / m - default is 100
 ```
 
 Gaia derives mixed cohesive and non-cohesive sediment beds from the composition of the active layer. Non-cohesive sediment in the form of gravel and cobble is transported as bedload and sand is transported in suspension. Cohesive sediment is purely transported as suspended load. The {{ gaia }} provide more information on the transport of mixed sediment in section 3.2.1. In addition, riverbed consolidation can be modeled by defining the **BED MODEL** keyword with `2` (cf. {{ gaia }}, section 3.3).
+
+## Implementation of Bedload and Suspended Load
+
+Sediment transport modeling is often very computationally expensive. Therefore, it is important to be clear about the primary type of sediment transport mode and to activate only the most important phenomenon. For this reason, answer the question ***What type of sediment transport phenomenon is predominant in the model?*** If you are not sure about the answer this question, revise the section on {ref}`sediment transport modes <gaia-seditrans>`. Ultimately, here are some practice oriented hints:
+
+ * **Bedload only**: Modeling suspended load in a gravel-cobble bed river with a sand content (i.e., the sediment is mostly larger than 2 mm) of less than 5-10% is not purposeful and the definition `SUSPENSION FOR ALL SANDS : NO` should be used. In this case, the {ref}`section on bedload modeling <gaia-bl>` provides all necessary information and the suspended load section can be skipped.
+* **Suspended load only**: Fine particle displacement in reservoirs, lakes, or coastal areas, primarily involves suspended load processes. If the sediment is generally finer than 1 mm, modeling bedload may not be necessary. In this case, skip the bedload modeling section and directly jump to the {ref}`section on suspended load modeling <gaia-sl>`.
+* **Bedload and suspended load**: When the sediment mixture involves sand particles with diameters between 1-2 mm, and/or particles that may be both finer or coarser, mixed transport processes drive sediment transport. In this case, both the sections on {ref}`bedload <gaia-bl>` and {ref}`suspended load <gaia-sl>` modeling should be accomplished successively.
+* **Cohesive sediment**: When cohesive sediment is in the system (i.e., grain diameters of less than 0.06 mm), {ref}`suspended load <gaia-sl>` modeling must be activated.
+
+This eBook features the implementation of combined bedload and suspended load modeling in a short river section with a gravel-cobble bed and high sand content.

@@ -138,7 +138,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../python-basics/pyinstall.html">
-     Install Python
+     Python (Installation)
     </a>
    </li>
    <li class="toctree-l2">
@@ -478,8 +478,13 @@
     </label>
     <ul>
      <li class="toctree-l3">
+      <a class="reference internal" href="gaia-coupling.html">
+       Introduction and Coupling
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="gaia-basics.html">
-       Gaia Basic Setup
+       Basic Setup of Gaia
       </a>
      </li>
      <li class="toctree-l3">
@@ -494,27 +499,10 @@
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="gaia-run.html">
-       Run Simulation
+       Run Gaia
       </a>
      </li>
     </ul>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="openfoam.html">
-   OpenFOAM
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-  <label for="toctree-checkbox-14">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pre-qgis-of.html">
-     Pre-processing with QGIS
-    </a>
    </li>
   </ul>
  </li>
@@ -554,8 +542,8 @@
   <a class="reference internal" href="../exercises/docs-exercises.html">
    Exercises
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-  <label for="toctree-checkbox-15">
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -578,8 +566,8 @@
   <a class="reference internal" href="../troubleshoot/dbg-programming.html">
    Programming Tools and IDEs
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-  <label for="toctree-checkbox-16">
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -605,8 +593,8 @@
   <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
    Numerical Models
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
-  <label for="toctree-checkbox-17">
+  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+  <label for="toctree-checkbox-16">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -627,8 +615,8 @@
   <a class="reference internal" href="../troubleshoot/dbg-os.html">
    Operating Systems (Linux and VMs)
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
-  <label for="toctree-checkbox-18">
+  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+  <label for="toctree-checkbox-17">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1038,7 +1026,7 @@ Expand to view an example for coordinate-based control sections<div class="summa
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">The following control section file uses point coordinates rather than node ID numbers to define three sections. Read more in <span id="id1">Gifford-Miears and Leon [<a class="reference internal" href="../documentation/bibliography.html#id1342">GML13</a>]</span> (i.e., section 4.1.2 in the <a class="reference external" href="http://www.opentelemac.org/index.php/component/jdownloads/summary/4-training-and-tutorials/185-telemac-2d-tutorial?Itemid=55">Baxter tutorial</a>).</p>
+<p class="card-text">The following control section file uses point coordinates rather than node ID numbers to define three sections. Read more in <span id="id1">Gifford-Miears and Leon [<a class="reference internal" href="../documentation/bibliography.html#id1343">GML13</a>]</span> (i.e., section 4.1.2 in the <a class="reference external" href="http://www.opentelemac.org/index.php/component/jdownloads/summary/4-training-and-tutorials/185-telemac-2d-tutorial?Itemid=55">Baxter tutorial</a>).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># control section file using coordinates</span>
 <span class="mi">3</span> <span class="mi">0</span>
 <span class="n">affluent_creek</span>
@@ -1138,7 +1126,7 @@ Expand to view an example for coordinate-based control sections<div class="summa
 <p>The results of the unsteady simulation can be visualized and exported to raster (e.g., <a class="reference internal" href="../documentation/glossary.html#term-GeoTIFF"><span class="xref std std-term">GeoTIFF</span></a>) or shapefile formats in QGIS with the PostTelemac plugin the same way as explained in the steady2d tutorial (<a class="reference internal" href="telemac2d-steady.html#tm2d-post-export"><span class="std std-ref">read the steady2d post-processing</span></a>). The latest QGIS releases additionally enable to load the Selafin results mesh file (here: <em>r2dunsteady.slf</em>) as a QGIS mesh layer. Therefore, <strong>launch QGIS</strong>, go to the <strong>Layer</strong> menu and click on <strong>Add Layer</strong> &gt; <strong>Add Mesh Layer…</strong>. In the popup window (<em>Data Source Manager / Mesh</em>), <strong>select r2dunsteady.slf</strong>, click <strong>Add</strong>, and <strong>Close</strong>. <a class="reference internal" href="#qgis-r2dunsteady-imported"><span class="std std-numref">Figure 87</span></a> shows the imported r2dunsteady mesh layer in QGIS with a <em>Softlight</em> blending (set in the <em>Symbology</em>) on google satellite imagery.</p>
 <div class="figure align-default" id="qgis-r2dunsteady-imported">
 <img alt="qgis telemac2d unsteady quasi steady simulation results slf" src="../_images/qgis-r2dunsteady-imported.png" />
-<p class="caption"><span class="caption-number">Fig. 87 </span><span class="caption-text">The unsteady (quasi-steady) simulation results file r2dunsteady.slf imported as mesh layer in QGIS and super-positioned on google satellite imagery <span id="id2">[<a class="reference internal" href="../documentation/bibliography.html#id1367">Goond</a>]</span>.</span><a class="headerlink" href="#qgis-r2dunsteady-imported" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 87 </span><span class="caption-text">The unsteady (quasi-steady) simulation results file r2dunsteady.slf imported as mesh layer in QGIS and super-positioned on google satellite imagery <span id="id2">[<a class="reference internal" href="../documentation/bibliography.html#id1368">Goond</a>]</span>.</span><a class="headerlink" href="#qgis-r2dunsteady-imported" title="Permalink to this image">¶</a></p>
 </div>
 <p>The simulation parameter (e.g., <code class="docutils literal notranslate"><span class="pre">U</span></code>, <code class="docutils literal notranslate"><span class="pre">V</span></code>, or <code class="docutils literal notranslate"><span class="pre">Q</span></code>) and the timestep shown can be controlled in the layer properties of the <code class="docutils literal notranslate"><span class="pre">r2dunsteady</span></code> layer (double-click on it in the <em>Layers</em> panel).</p>
 <p>To <strong>create a video of simulation results</strong>, use the open-source <a class="reference external" href="https://www.lutraconsulting.co.uk/projects/crayfish/">Crayfish</a> plugin that enables the animated visualization of meshes and their attributes (e.g., change of node values over time). Get the <em>Crayfish</em> plugin from QGIS <strong>Plugins</strong> menu &gt; <strong>Manage and Install Plugins…</strong> &gt; tap <code class="docutils literal notranslate"><span class="pre">crayfish</span></code> in the <strong>All</strong> tab and click on <strong>Install Plugin</strong>. The plugin is now ready to create a video by clicking through QGIS <strong>Mesh</strong> menu &gt; <strong>Crayfish</strong> <strong>Export Animation …</strong>. In the <em>Crayfish</em> popup window, toggle through three tabs, and adapt video settings (e.g., define a file name such as <code class="docutils literal notranslate"><span class="pre">velocity-video.avi</span></code> in the <strong>General</strong> tab). Note that <em>Crayfish</em> will automatically export the frame and active variable (here, the default is <code class="docutils literal notranslate"><span class="pre">U</span></code>) selected on the mesh (<em>Layer Properties</em>). When all settings are made, click on <strong>OK</strong> to start the export.</p>

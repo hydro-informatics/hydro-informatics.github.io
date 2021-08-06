@@ -57,7 +57,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="OpenFOAM" href="openfoam.html" />
+    <link rel="next" title="Calibration and Validation" href="calibration.html" />
     <link rel="prev" title="Suspended Load" href="gaia-suspended.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -138,7 +138,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../python-basics/pyinstall.html">
-     Install Python
+     Python (Installation)
     </a>
    </li>
    <li class="toctree-l2">
@@ -478,6 +478,11 @@
     </label>
     <ul class="current">
      <li class="toctree-l3">
+      <a class="reference internal" href="gaia-coupling.html">
+       Introduction and Coupling
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="gaia-basics.html">
        Basic Setup of Gaia
       </a>
@@ -498,23 +503,6 @@
       </a>
      </li>
     </ul>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="openfoam.html">
-   OpenFOAM
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-  <label for="toctree-checkbox-14">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pre-qgis-of.html">
-     Pre-processing with QGIS
-    </a>
    </li>
   </ul>
  </li>
@@ -554,8 +542,8 @@
   <a class="reference internal" href="../exercises/docs-exercises.html">
    Exercises
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-  <label for="toctree-checkbox-15">
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -578,8 +566,8 @@
   <a class="reference internal" href="../troubleshoot/dbg-programming.html">
    Programming Tools and IDEs
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-  <label for="toctree-checkbox-16">
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -605,8 +593,8 @@
   <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
    Numerical Models
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
-  <label for="toctree-checkbox-17">
+  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+  <label for="toctree-checkbox-16">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -627,8 +615,8 @@
   <a class="reference internal" href="../troubleshoot/dbg-os.html">
    Operating Systems (Linux and VMs)
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
-  <label for="toctree-checkbox-18">
+  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+  <label for="toctree-checkbox-17">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -747,6 +735,11 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#post-processing-in-qgis">
+   Post-processing in QGIS
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#calibration-parameters">
    Calibration Parameters
   </a>
@@ -754,6 +747,11 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#bedload-calibration">
      Bedload Calibration
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#suspended-load-calibration">
+     Suspended Load Calibration
     </a>
    </li>
   </ul>
@@ -771,18 +769,69 @@
                 
   <div class="section" id="run-gaia">
 <span id="gaia-run"></span><h1>Run Gaia<a class="headerlink" href="#run-gaia" title="Permalink to this headline">¶</a></h1>
-<p>The simulation is started identically to a hydrodynamic simulation by calling the <a class="reference external" href="http://telemac2d.py">telemac2d.py</a> script.
-Please note that <code class="docutils literal notranslate"><span class="pre">*_tel.cas</span></code> is the hydrodynamic and not the GAIA steering file.</p>
-<p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">/go/to/dir</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">telemac2d.py</span> <span class="pre">*_tel.cas</span></code></p>
-<p>However, in the steering file of the hydrodynamic model
-the required keywords (see Coupling GAIA and TELEMAC) for the coupling must be present.</p>
-<div class="admonition-get-inspired-by-the-telemac-examples admonition">
-<p class="admonition-title">Get inspired by the TELEMAC examples</p>
-<p>The installation of TELEMAC comes with examples for Gaia applied to Telemac2d and Telemac3d models, which can be found in:</p>
-<p><code class="docutils literal notranslate"><span class="pre">/telemac/v8p2/examples/gaia/</span></code></p>
-<p>Because Gaia is the successor of SISYPHE, also the SISYPHE examples are useful, in particular with regards to multi-grain size modeling:</p>
-<p><code class="docutils literal notranslate"><span class="pre">/telemac/v8p2/examples/sisyphe/</span></code></p>
+<p>Make sure that the simulation folder (e.g., <code class="docutils literal notranslate"><span class="pre">/gaia-tutorial/</span></code>) contains at least the following files (or similar, depending on the simulation case):</p>
+<ul class="simple">
+<li><p>A computational mesh, for example, in the form of <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/qgismesh.slf">qgismesh.slf</a>.</p></li>
+<li><p>A hydrodynamic boundary definitions, for example, in the form of <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli">boundaries.cli</a>.</p></li>
+<li><p>A Gaia boundary definitions, for example, in the form of <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries-gaia.cli">boundaries-gaia.cli</a>.</p></li>
+<li><p>A results file of a Telemac2d/3d simulation, for example, for 35 m<span class="math notranslate nohighlight">\(^3\)</span>/s in the form of <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/r2dsteady.slf">r2dsteady.slf</a> (result of the <a class="reference internal" href="telemac2d-steady.html#tm2d-dry"><span class="std std-ref">dry bonus run</span></a> ending at <code class="docutils literal notranslate"><span class="pre">T=15000</span></code>).</p></li>
+<li><p>A Telemac2d steering file, such as <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/steady2d-gaia.cas">steady2d-gaia.cas</a>.</p></li>
+<li><p>A Gaia steering file, such as <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/gaia-morphodynamics.cas">gaia-morphodynamics.cas</a>e.</p></li>
+</ul>
+<p>With all these files available, open <em>Terminal</em>, go to the TELEMAC configuration folder (e.g., <code class="docutils literal notranslate"><span class="pre">~/telemac/v8p2/configs/</span></code>), and launch the environment (e.g., <code class="docutils literal notranslate"><span class="pre">pysource.openmpi.sh</span></code> - use the same as for compiling TELEMAC).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">configs</span>
+<span class="n">source</span> <span class="n">pysource</span><span class="o">.</span><span class="n">openmpi</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">If you are using the Hydro-Informatics (Hyfo) Mint VM</p>
+<p>If you are working with the <a class="reference internal" href="../get-started/vm.html#hyfo-vm"><span class="std std-ref">Mint Hyfo VM</span></a>, load the TELEMAC environment as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">configs</span>
+<span class="n">source</span> <span class="n">pysource</span><span class="o">.</span><span class="n">hyfo</span><span class="o">-</span><span class="n">dyn</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+</div>
+<p>With the TELEMAC environment loaded, change to the directory where the above-created 3d-flume simulation lives (e.g., <code class="docutils literal notranslate"><span class="pre">/home/telemac/v8p2/mysimulations/gaia2d-tutorial/</span></code>) and run the <code class="docutils literal notranslate"><span class="pre">*.cas</span></code> file by calling the <strong><a class="reference external" href="http://telemac2d.py">telemac2d.py</a></strong> script (it will automatically know that it needs to use Gaia when it reads the line containing <code class="docutils literal notranslate"><span class="pre">COUPLING</span> <span class="pre">WITH</span> <span class="pre">:</span> <span class="pre">'GAIA'</span></code>).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">mysimulations</span><span class="o">/</span><span class="n">gaia2d</span><span class="o">-</span><span class="n">tutorial</span><span class="o">/</span>
+<span class="n">telemac2d</span><span class="o">.</span><span class="n">py</span> <span class="n">steady2d</span><span class="o">-</span><span class="n">gaia</span><span class="o">.</span><span class="n">cas</span>
+</pre></div>
+</div>
+<div class="admonition-speed-up admonition">
+<p class="admonition-title">Speed up</p>
+<p>With <a class="reference internal" href="../get-started/install-telemac.html#mpi"><span class="std std-ref">parallelism</span></a> enabled (e.g., in the <a class="reference internal" href="../get-started/vm.html#hyfo-vm"><span class="std std-ref">Mint Hyfo Virtual Machine</span></a>), speed up the calculation by using multiple CPUs through the <code class="docutils literal notranslate"><span class="pre">--ncsize=N</span></code> flag. For instance, the following line runs the unsteady simulation on <code class="docutils literal notranslate"><span class="pre">N=2</span></code> CPUs:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">telemac2d</span><span class="o">.</span><span class="n">py</span> <span class="n">steady2d</span><span class="o">-</span><span class="n">gaia</span><span class="o">.</span><span class="n">cas</span> <span class="o">--</span><span class="n">ncsize</span><span class="o">=</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<p>A successful computation should end with the following lines (or similar) in <em>Terminal</em>:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">[...]</span>
+                    <span class="o">*************************************</span>
+                    <span class="o">*</span>    <span class="k">END </span><span class="n">OF</span> <span class="k">MEMORY </span><span class="n">ORGANIZATION</span><span class="p">:</span>    <span class="o">*</span>
+                    <span class="o">*************************************</span>
+
+<span class="n">CORRECT</span> <span class="k">END </span><span class="n">OF</span> <span class="n">RUN</span>
+
+<span class="n">ELAPSE</span> <span class="nb">TIME</span> <span class="p">:</span>
+                            <span class="mi">14</span>  <span class="n">MINUTES</span>
+                            <span class="mi">25</span>  <span class="n">SECONDS</span>
+<span class="p">...</span> <span class="n">merging</span> <span class="n">separated</span> <span class="k">result </span><span class="n">files</span>
+
+<span class="p">...</span> <span class="n">handling</span> <span class="k">result </span><span class="n">files</span>
+       <span class="n">moving</span><span class="p">:</span> <span class="n">r2dsteady</span><span class="o">-</span><span class="n">gaia</span><span class="p">.</span><span class="n">slf</span>
+       <span class="n">moving</span><span class="p">:</span> <span class="n">rGaia</span><span class="o">-</span><span class="n">steady2d</span><span class="p">.</span><span class="n">slf</span>
+<span class="p">...</span> <span class="n">deleting</span> <span class="n">working</span> <span class="n">dir</span>
+
+<span class="n">My</span> <span class="n">work</span> <span class="k">is </span><span class="n">done</span>
+</pre></div>
+</div>
+<p>Telemac2d will write the files <em>r2dsteady-gaia.slf</em> and <em>rGaia-steady2d.slf</em>. Both result files are also available in the modelling repository to enable accomplishing the post-processing tutorial:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/r2dsteady-gaia.slf">get r2dunsteady.slf</a>, and</p></li>
+<li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/rGaia-steady2d.txt">get r-control-sections.txt</a>.</p></li>
+</ul>
+<div class="section" id="post-processing-in-qgis">
+<h2>Post-processing in QGIS<a class="headerlink" href="#post-processing-in-qgis" title="Permalink to this headline">¶</a></h2>
+<p>PASS</p>
 </div>
 <div class="section" id="calibration-parameters">
 <span id="bl-calibration"></span><h2>Calibration Parameters<a class="headerlink" href="#calibration-parameters" title="Permalink to this headline">¶</a></h2>
@@ -803,8 +852,8 @@ Recall: How to calibrate?<div class="summary-down docutils">
 <li><p>Representative roughness length <span class="math notranslate nohighlight">\(k'_{s}\)</span> (cf. Equation <a class="reference internal" href="gaia-bedload.html#equation-eq-cf-skin">(12)</a>) with the keyword <strong>RATIO BETWEEN SKIN FRICTION AND MEAN DIAMETER</strong> <span class="math notranslate nohighlight">\(f_{k'_{s}}\)</span> (default: <span class="math notranslate nohighlight">\(f_{k'_{s}}\)</span>=<code class="docutils literal notranslate"><span class="pre">3.</span></code>). Note that this keyword is a multiplier of the characteristic grain size <span class="math notranslate nohighlight">\(D_{50}\)</span>; thus: <span class="math notranslate nohighlight">\(k'_{s}= f_{k'_{s}} \cdot D_{50}\)</span> (goes into Equation <a class="reference internal" href="gaia-bedload.html#equation-eq-cf-skin">(12)</a>)</p>
 <ul>
 <li><p>To use this calibration parameter, make sure that <code class="docutils literal notranslate"><span class="pre">SKIN</span> <span class="pre">FRICTION</span> <span class="pre">CORRECTION</span> <span class="pre">:</span> <span class="pre">1</span></code>.</p></li>
-<li><p>On dune-form sand riverbeds, start with <span class="math notranslate nohighlight">\(f_{k'_{s}}\)</span>=<code class="docutils literal notranslate"><span class="pre">37.</span></code> <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id1379">MAL+17</a>]</span>.</p></li>
-<li><p>In alternating bar riverbeds, start with <span class="math notranslate nohighlight">\(f_{k'_{s}}\)</span>=<code class="docutils literal notranslate"><span class="pre">3.6</span></code> <span id="id2">[<a class="reference internal" href="../documentation/bibliography.html#id1379">MAL+17</a>]</span>.</p></li>
+<li><p>On dune-form sand riverbeds, start with <span class="math notranslate nohighlight">\(f_{k'_{s}}\)</span>=<code class="docutils literal notranslate"><span class="pre">37.</span></code> <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id1380">MAL+17</a>]</span>.</p></li>
+<li><p>In alternating bar riverbeds, start with <span class="math notranslate nohighlight">\(f_{k'_{s}}\)</span>=<code class="docutils literal notranslate"><span class="pre">3.6</span></code> <span id="id2">[<a class="reference internal" href="../documentation/bibliography.html#id1380">MAL+17</a>]</span>.</p></li>
 </ul>
 </li>
 <li><p>For models based on the <a class="reference internal" href="gaia-bedload.html#gaia-mpm"><span class="std std-ref">Meyer-Peter and Müller</span></a> formula (i.e., using a <a class="reference internal" href="../documentation/glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a> for incipient sediment motion), the <strong>SHIELDS PARAMETERS</strong> keyword may be modified:</p>
@@ -813,13 +862,26 @@ Recall: How to calibrate?<div class="summary-down docutils">
 <li><p>If erosion is underestimated, reduce <strong>SHIELDS PARAMETERS</strong>.</p></li>
 </ul>
 </li>
-<li><p>With slope correction enabled and using the <span id="id3">Koch and Flokstra [<a class="reference internal" href="../documentation/bibliography.html#id1383">KF80</a>]</span> correction formulae, adapt the <strong>BETA</strong> keyword from Equation <a class="reference internal" href="gaia-bedload.html#equation-eq-qb-corr">(13)</a> (default is <code class="docutils literal notranslate"><span class="pre">BETA</span> <span class="pre">:</span>&#160; <span class="pre">1.3</span></code>).</p>
+<li><p>With slope correction enabled and using the <span id="id3">Koch and Flokstra [<a class="reference internal" href="../documentation/bibliography.html#id1384">KF80</a>]</span> correction formulae, adapt the <strong>BETA</strong> keyword from Equation <a class="reference internal" href="gaia-bedload.html#equation-eq-qb-corr">(13)</a> (default is <code class="docutils literal notranslate"><span class="pre">BETA</span> <span class="pre">:</span>&#160; <span class="pre">1.3</span></code>).</p>
 <ul>
 <li><p>If erosion in curved channel sections is overpredicted, decrease <strong>BETA</strong>.</p></li>
 <li><p>If erosion in curved channel sections is underpredicted, increase <strong>BETA</strong>.</p></li>
 </ul>
 </li>
 <li><p>To adjust deposition and erosion pattern in curves (riverbends), enable the <strong>SECONDARY CURRENTS</strong> keyword and modify the <strong>SECONDARY CURRENTS ALPHA COEFFICIENT</strong> value (cf. <a class="reference internal" href="gaia-bedload.html#gaia-secondary"><span class="std std-ref">Secondary Currents</span></a>).</p></li>
+</ul>
+</div>
+<div class="section" id="suspended-load-calibration">
+<h3>Suspended Load Calibration<a class="headerlink" href="#suspended-load-calibration" title="Permalink to this headline">¶</a></h3>
+<p>The following list of parameters can be considered for calibrating suspended load transport and deposition-erosion pattern in Gaia:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="gaia-suspended.html#gaia-sl-sed"><span class="std std-ref">**CLASSES SETTLING VELOCITIES**</span></a>:</p>
+<ul>
+<li><p>Reduce to enhance transport length and reduce deposition rates</p></li>
+<li><p>Increase to shorten transport trajectories and enhance deposition</p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="gaia-suspended.html#gaia-sl-sed"><span class="std std-ref">**CLASSES CRITICAL SHEAR STRESS FOR MUD DEPOSITION**</span></a>: Reduce to keep sediment in suspension (or vice versa).</p></li>
 </ul>
 </div>
 </div>
@@ -851,7 +913,7 @@ Recall: How to calibrate?<div class="summary-down docutils">
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="gaia-suspended.html" title="previous page">Suspended Load</a>
-    <a class='right-next' id="next-link" href="openfoam.html" title="next page">OpenFOAM</a>
+    <a class='right-next' id="next-link" href="calibration.html" title="next page">Calibration and Validation</a>
 
         </div>
         

@@ -21,6 +21,10 @@ For *Python* courses, students may want to improve their learning experience by 
 
 ## Anaconda Navigator
 
+```{admonition} Use Anaconda on Windows
+Anaconda works well on Windows, but Linux (or also macOS) user will have a better experience with advanced text editors such as {ref}`Atom <install-atom>`.
+```
+
 *Anaconda* is a *Python* and *R* distribution that enables the usage of a couple of IDEs such as [*PyCharm*](https://www.jetbrains.com/pycharm/), [*Spyder*](https://www.spyder-ide.org/), or [*JupyterLab (Notebook)*](https://jupyter.org/).
 
 The very first step to getting started with *Anaconda* consists in downloading and installing [*Anaconda*](https://www.anaconda.com/products/individual) where students may use the individual license for educational training purposes (note that a commercial license needs to be purchased for profit organizations). On Windows, *Anaconda* should be installed in the *LOCAL* user folder (e.g., *C:\users\<your-user-name>\AppData\Local*). *Linux* or *macOS* users find download and installation instructions directly at the developer's website, tailored for their specific distribution, even though they might be better of with {ref}`install-atom`.

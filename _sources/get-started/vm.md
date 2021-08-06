@@ -39,16 +39,16 @@ There are a couple of Debian Linux spin-offs, such as [*Ubuntu*](https://ubuntu.
 ***Estimated duration: 5-30 minutes (depends on connection speed).***
 
 * Download and install the latest version of [VirtualBox](https://www.virtualbox.org/).
-    + *Oracles*'s *VirtualBox* is a free and open-source hosted hypervisor software.
-    + The installation of *VirtualBox* requires administrator rights on the host machine. So if you are working in a professional environment, talk to your IT administrator.
-    + *VirtualBox* installers are available for *Windows*, *mac OS*, and *Solaris*.
+  + *Oracles*'s *VirtualBox* is a free and open-source hosted hypervisor software.
+  + The installation of *VirtualBox* requires administrator rights on the host machine. So if you are working in a professional environment, talk to your IT administrator.
+  + *VirtualBox* installers are available for *Windows*, *mac OS*, and *Solaris*.
 * Download the latest Debian Linux (or one of its spin-offs - see next bullet point) net installer (this is the **recommended** solution **for** working with **TELEMAC**):
-    + Find the CD-section and click on the [*amd64*](https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/) version
-    + Scroll to the bottom of the page and download the latest net installer (*debian-xx.x.x-amd64-netinst.iso*)
-    + If the above link is not working, visit [debian.org](https://www.debian.org/), find the *Getting Debian* section (do not click on the one in the top menu), click on *CD/USB ISO images* and click on [Download CD/DVD images using HTTP](https://www.debian.org/CD/http-ftp/).
+  + Find the CD-section and click on the [*amd64*](https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/) version
+  + Scroll to the bottom of the page and download the latest net installer (*debian-xx.x.x-amd64-netinst.iso*)
+  + If the above link is not working, visit [debian.org](https://www.debian.org/), find the *Getting Debian* section (do not click on the one in the top menu), click on *CD/USB ISO images* and click on [Download CD/DVD images using HTTP](https://www.debian.org/CD/http-ftp/).
 * *ISO* images for Debian spin-offs can also be used to complete the tutorials on this website (all-round systems):
-    + [*Lubuntu*](https://lubuntu.me/downloads/) is a fast and light-weight derivative of *Ubuntu*
-    + [*Linux Mint* (*Xfce*)](https://www.linuxmint.com) is another efficient *Ubuntu* spin-off that is always based on the penultimate *Ubuntu* version (e.g., if the current *Ubuntu* version is 20.0, then the current *Mint* version is 19.0 and builds on *Ubuntu* 19.0)
+  + [*Lubuntu*](https://lubuntu.me/downloads/) is a fast and light-weight derivative of *Ubuntu*
+  + [*Linux Mint* (*Xfce*)](https://www.linuxmint.com) is another efficient *Ubuntu* spin-off that is always based on the penultimate *Ubuntu* version (e.g., if the current *Ubuntu* version is 20.0, then the current *Mint* version is 19.0 and builds on *Ubuntu* 19.0)
 
 Remember where the downloaded Linux *.ISO* file is stored.
 
@@ -116,25 +116,25 @@ Also BASEMENT can be installed for completing the {ref}`chpt-basement` tutorial.
 In your host system (e.g., *Windows 10*), click on *Start*, type *Oracle VM VirtualBox*, and hit enter. In the opened *VirtualBox* manager window:
 
 * Click on the blue *New* button to open the VM creation wizard and enter:
-    + *Name:* Debian Linux <br>*Note: The wizard should automatically recognize the* Type *and*Version *fields.*
-    + *Machine Folder:* `C:\Users\USERNAME\VirtualBox VMs`
-    + *Type:* Linux
-    + *Version:* Debian (64-bit)  <br>> Click on the *Next* button
-    + Allocate memory size: the more memory is allocated to the VM, the faster will be the VM (and for example TELEMAC-MASCARET), but the slower will be the host system (*Windows 10*). Rule of thumb: stay in the green range of the bar (e.g., allocate 8192 MB)
-    <br>> Click on the *Next* button
-    + Select *Create a virtual hard disk now* and click on the *Create* button.
-    + Select *VDI* (native to *VirtualBox*) and click on *Next*.
-    + Preferably choose *Dynamically allocated* to start with a small virtual disk size, which can take a maximum size to be defined in the next step. Click on the *Next* button.
-    + Leave the default disk name as is and allocate a maximum size for the virtual disk (recommended: min. 32 GB). Click on the *Create* button.
+  + *Name:* Debian Linux <br>*Note: The wizard should automatically recognize the* Type *and*Version *fields.*
+  + *Machine Folder:* `C:\Users\USERNAME\VirtualBox VMs`
+  + *Type:* Linux
+  + *Version:* Debian (64-bit)  <br>> Click on the *Next* button
+  + Allocate memory size: the more memory is allocated to the VM, the faster will be the VM (and for example TELEMAC-MASCARET), but the slower will be the host system (*Windows 10*). Rule of thumb: stay in the green range of the bar (e.g., allocate 8192 MB)
+  <br>> Click on the *Next* button
+  + Select *Create a virtual hard disk now* and click on the *Create* button.
+  + Select *VDI* (native to *VirtualBox*) and click on *Next*.
+  + Preferably choose *Dynamically allocated* to start with a small virtual disk size, which can take a maximum size to be defined in the next step. Click on the *Next* button.
+  + Leave the default disk name as is and allocate a maximum size for the virtual disk (recommended: min. 32 GB). Click on the *Create* button.
 * Great - the basics are all set now and we are back in the *VirtualBox* main window, where a *Debian Linux* VM should be visible now on the left side of the window.
 * With the *Debian Linux* VM highlighted (i.e., just click on it), click on the yellow *Settings* wheel button, which opens the *Settings* window:
-    + In the *System/Motherboard* tab, verify the memory allocation and check the *Enable EFI (special OSes only)* box (enable).
-    + In the *System/Processor* tab, select the number of processors that the VM uses. To not slowing down the host system (*Windows 10*), stay in the green range of the CPU bar. For parallel processing with TELEMAC-MASCARET, allocate at least 4 CPUs.
-    + In the *Display* tab, check the *Enable 3D Acceleration* box.
-    + In the *Storage* tab, find the *Controller: IDE*, where an *Empty* disk symbol should be located below.
-        - Click on the *Empty* disk symbol and find the *Attributes* frame on the right side of the window, where a small blue disk symbol should be visible.
-        - Click on the small blue disk symbol to *Choose a disk file ...* > select the Debian Linux net installer (*debian-xx.x.x-amd64-netinst.iso*) that you downloaded before.
-    + Click *OK*.
+  + In the *System/Motherboard* tab, verify the memory allocation and check the *Enable EFI (special OSes only)* box (enable).
+  + In the *System/Processor* tab, select the number of processors that the VM uses. To not slowing down the host system (*Windows 10*), stay in the green range of the CPU bar. For parallel processing with TELEMAC-MASCARET, allocate at least 4 CPUs.
+  + In the *Display* tab, check the *Enable 3D Acceleration* box.
+  + In the *Storage* tab, find the *Controller: IDE*, where an *Empty* disk symbol should be located below.
+    - Click on the *Empty* disk symbol and find the *Attributes* frame on the right side of the window, where a small blue disk symbol should be visible.
+    - Click on the small blue disk symbol to *Choose a disk file ...* > select the Debian Linux net installer (*debian-xx.x.x-amd64-netinst.iso*) that you downloaded before.
+  + Click *OK*.
 
 ## Install Debian Linux
 

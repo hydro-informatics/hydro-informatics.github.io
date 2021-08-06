@@ -251,7 +251,7 @@ The three `SCHEME FOR ADVECTION` scalar keywords values may take the following v
 * `1` sets a not mass-conservative method of characteristics (default for all);
 * `2` sets a semi-implicit scheme and activates the Streamline Upwind Petrov Galerkin (SUPG - see below);
 * `3`, `4`, `13`, and `14` activate the so-called NERD scheme (these numbers activate different schemes in 3d only);
-* `5` sets a mass-conservative PSI distributive scheme; and
+* `5` sets a mass-conservative PSI distributive scheme (do not use with tidal flats); and
 * `15` sets the mass-conservative ERIA scheme that works with tidal flats.
 
 Options `4` and `5` require that the {term}`CFL` condition is smaller than 1.

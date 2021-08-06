@@ -136,7 +136,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../python-basics/pyinstall.html">
-     Install Python
+     Python (Installation)
     </a>
    </li>
    <li class="toctree-l2">
@@ -476,8 +476,13 @@
     </label>
     <ul>
      <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/gaia-coupling.html">
+       Introduction and Coupling
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="../numerics/gaia-basics.html">
-       Gaia Basic Setup
+       Basic Setup of Gaia
       </a>
      </li>
      <li class="toctree-l3">
@@ -492,27 +497,10 @@
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="../numerics/gaia-run.html">
-       Run Simulation
+       Run Gaia
       </a>
      </li>
     </ul>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../numerics/openfoam.html">
-   OpenFOAM
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-  <label for="toctree-checkbox-14">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/pre-qgis-of.html">
-     Pre-processing with QGIS
-    </a>
    </li>
   </ul>
  </li>
@@ -552,8 +540,8 @@
   <a class="reference internal" href="../exercises/docs-exercises.html">
    Exercises
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-  <label for="toctree-checkbox-15">
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -576,8 +564,8 @@
   <a class="reference internal" href="../troubleshoot/dbg-programming.html">
    Programming Tools and IDEs
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-  <label for="toctree-checkbox-16">
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -603,8 +591,8 @@
   <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
    Numerical Models
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
-  <label for="toctree-checkbox-17">
+  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+  <label for="toctree-checkbox-16">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -625,8 +613,8 @@
   <a class="reference internal" href="../troubleshoot/dbg-os.html">
    Operating Systems (Linux and VMs)
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
-  <label for="toctree-checkbox-18">
+  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+  <label for="toctree-checkbox-17">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -966,7 +954,7 @@
                 
   <div class="section" id="load-and-write-basic-data-files">
 <h1>Load and Write Basic Data Files<a class="headerlink" href="#load-and-write-basic-data-files" title="Permalink to this headline">¶</a></h1>
-<p>Basic (text) file handling, <em>NumPy</em>, <em>pandas</em>, and <em>DateTime</em>. For interactive reading and executing code blocks <a class="reference external" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> and find <em>pybum.ipynb</em> or <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Install Python</span></a> locally along with <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a>.</p>
+<p>Basic (text) file handling, <em>NumPy</em>, <em>pandas</em>, and <em>DateTime</em>. For interactive reading and executing code blocks <a class="reference external" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> and find <em>pybum.ipynb</em> or <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Python (Installation)</span></a> locally along with <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a>.</p>
 <p>Data can be stored in many different (text) file formats such as <em>txt</em> or <em>csv</em> files. <em>Python</em> provides the <code class="docutils literal notranslate"><span class="pre">open(file)</span></code> and <code class="docutils literal notranslate"><span class="pre">write(...)</span></code> functions to read and write data from nearby every text file format, respectively. There are packages such as <code class="docutils literal notranslate"><span class="pre">csv</span></code> (for <em>csv</em> files), which simplify handling specific file types. This section illustrates the use of the <code class="docutils literal notranslate"><span class="pre">load(file)</span></code> and <code class="docutils literal notranslate"><span class="pre">write(...)</span></code> functions, and introduces the <em>pandas</em> module with its capacity to import and export numeric data along with row and column headers.</p>
 <div class="section" id="load-open-text-file-data">
 <span id="open-modes"></span><h2>Load (Open) Text File Data<a class="headerlink" href="#load-open-text-file-data" title="Permalink to this headline">¶</a></h2>
@@ -1621,7 +1609,7 @@ Mean value along axis 1 (rows): [4.25       2.5        6.25       4.33333333 6.7
 <p><em>pandas</em> is a powerful module (package) for data analyses and manipulation with <em>Python</em>. It has can handle <em>NumPy</em> arrays, and both packages jointly represent a powerful data processing engine. The power of <em>pandas</em> lies in processing data frames, data labeling (e.g., workbook-like columns names), and flexible file handling functions (e.g., the built-in <code class="docutils literal notranslate"><span class="pre">read_csv(csv-file)</span></code>). While <em>NumPy</em> arrays enable calculations with multidimensional arrays (beyond 2-dimensional tables) and low memory consumption, <em>pandas</em> <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>s efficiently process and label tabular data with more than ~100,000 rows. Because of its labelling capacity, <em>pandas</em> also finds broad application in machine learning. In summary, <em>pandas</em>’ functionality builds on top of <em>NumPy</em> and both packages are developed by the <a class="reference external" href="https://www.scipy.org/"><em>SciPy</em></a> (<em>Scientific computing tools for Python</em>) community that also develops <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> (see <a class="reference internal" href="pyplot.html"><span class="doc std std-doc">the plotting section</span></a> and <em>IPython</em> (<em>Jupyter</em>’s <em>Python</em> kernel).</p>
 <div class="section" id="id4">
 <h2>Installation<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-<p><em>pandas</em>’ developer’s recommend to install <em>pandas</em> with the <em>SciPy</em> stack in <a class="reference internal" href="../get-started/ide.html"><span class="doc std std-doc"><em>Anaconda</em></span></a>, similar to the recommendations for installing <em>NumPy</em>. With the provided <a class="reference external" href="https://github.com/hydro-informatics/materials-py-install/blob/master/environment.yml"><em>environment.yml</em> (<code class="docutils literal notranslate"><span class="pre">hypy</span></code>)</a> for <em>Anaconda</em>, <em>NumPy</em> is already installed (more information in the <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Install Python</span></a> section). To install <em>NumPy</em> in another <em>conda</em> environment, open <em>Anaconda Prompt</em> (<em>Start</em> &gt; type <em>Anaconda Prompt</em>) and type:</p>
+<p><em>pandas</em>’ developer’s recommend to install <em>pandas</em> with the <em>SciPy</em> stack in <a class="reference internal" href="../get-started/ide.html"><span class="doc std std-doc"><em>Anaconda</em></span></a>, similar to the recommendations for installing <em>NumPy</em>. With the provided <a class="reference external" href="https://github.com/hydro-informatics/materials-py-install/blob/master/environment.yml"><em>environment.yml</em> (<code class="docutils literal notranslate"><span class="pre">hypy</span></code>)</a> for <em>Anaconda</em>, <em>NumPy</em> is already installed (more information in the <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Python (Installation)</span></a> section). To install <em>NumPy</em> in another <em>conda</em> environment, open <em>Anaconda Prompt</em> (<em>Start</em> &gt; type <em>Anaconda Prompt</em>) and type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">ENVIRONMENT</span><span class="o">-</span><span class="n">NAME</span>
 <span class="n">conda</span> <span class="n">install</span> <span class="n">pandas</span>
 </pre></div>

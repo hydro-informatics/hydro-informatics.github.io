@@ -136,7 +136,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../python-basics/pyinstall.html">
-     Install Python
+     Python (Installation)
     </a>
    </li>
    <li class="toctree-l2">
@@ -476,8 +476,13 @@
     </label>
     <ul>
      <li class="toctree-l3">
+      <a class="reference internal" href="gaia-coupling.html">
+       Introduction and Coupling
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="gaia-basics.html">
-       Gaia Basic Setup
+       Basic Setup of Gaia
       </a>
      </li>
      <li class="toctree-l3">
@@ -492,27 +497,10 @@
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="gaia-run.html">
-       Run Simulation
+       Run Gaia
       </a>
      </li>
     </ul>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="openfoam.html">
-   OpenFOAM
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-  <label for="toctree-checkbox-14">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pre-qgis-of.html">
-     Pre-processing with QGIS
-    </a>
    </li>
   </ul>
  </li>
@@ -552,8 +540,8 @@
   <a class="reference internal" href="../exercises/docs-exercises.html">
    Exercises
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-  <label for="toctree-checkbox-15">
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -576,8 +564,8 @@
   <a class="reference internal" href="../troubleshoot/dbg-programming.html">
    Programming Tools and IDEs
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-  <label for="toctree-checkbox-16">
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -603,8 +591,8 @@
   <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
    Numerical Models
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
-  <label for="toctree-checkbox-17">
+  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+  <label for="toctree-checkbox-16">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -625,8 +613,8 @@
   <a class="reference internal" href="../troubleshoot/dbg-os.html">
    Operating Systems (Linux and VMs)
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
-  <label for="toctree-checkbox-18">
+  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+  <label for="toctree-checkbox-17">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -749,7 +737,7 @@
                 
   <div class="section" id="principles">
 <h1>Principles<a class="headerlink" href="#principles" title="Permalink to this headline">¶</a></h1>
-<p>Numerical models in water resources engineering approximate the motion of fluids through iterative solutions of the <a class="reference internal" href="../documentation/glossary.html#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a>. The role of numerical models is becoming more and more important where models are distinguished regarding simplification hypotheses (e.g., for dimensions or fluid characteristics). Purely hydrodynamic models simulate the motion of water and  have high accuracy for simulating flow phenomena, but major challenges remain for morphodynamic modeling. While one-dimensional (<strong>1d</strong> cross-section-averaged) modeling is slowly abandoned for its incapacity to account for complex flow phenomena in natural rivers, two-dimensional (<strong>2d</strong>) and three-dimensional (<strong>3d</strong>) models are becoming more and more popular. Still, there are challenges in model choices and understanding numerical models. In this context, <span id="id1">Mosselman and Le [<a class="reference internal" href="../documentation/bibliography.html#id1166">ML16</a>]</span> highlight five widespread and common problems in the creation and interpretation of numerical models. These five mistakes are:</p>
+<p>Numerical models in water resources engineering approximate the motion of fluids through iterative solutions of the <a class="reference internal" href="../documentation/glossary.html#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a>. The role of numerical models is becoming more and more important where models are distinguished regarding simplification hypotheses (e.g., for dimensions or fluid characteristics). Purely hydrodynamic models simulate the motion of water and  have high accuracy for simulating flow phenomena, but major challenges remain for morphodynamic modeling. While one-dimensional (<strong>1d</strong> cross-section-averaged) modeling is slowly abandoned for its incapacity to account for complex flow phenomena in natural rivers, two-dimensional (<strong>2d</strong>) and three-dimensional (<strong>3d</strong>) models are becoming more and more popular. Still, there are challenges in model choices and understanding numerical models. In this context, <span id="id1">Mosselman and Le [<a class="reference internal" href="../documentation/bibliography.html#id1167">ML16</a>]</span> highlight five widespread and common problems in the creation and interpretation of numerical models. These five mistakes are:</p>
 <ol class="simple">
 <li><p>Preparation: One-dimensional (1d), two-dimensional (2d), and three-dimensional (3d) models require similar input data (flow series, stage-discharge relation, roughness, digital elevation model, grain sizes). What varies are the computation (3d &gt; 2d &gt; 1d) and the calibration (1d &gt; 2d &gt; 3d) efforts.</p></li>
 <li><p>Grid setup: The model boundaries need to be at an adequate distance to the area of interest. An inflow boundary should only be along the permanently wetted riverbed and the most upstream 1-2% of the modeled channel bed should have a non-erosive constraint assigned to the cells. Otherwise, the model may be unstable because of locally very high velocity and erosion rates close to the inflow boundary.</p></li>
@@ -757,7 +745,7 @@
 <li><p>Model validation/post-processing: Wrong confidence in poorly validated numerical models: Every model requires validation data, which involves exhausting and labor-intensive fieldwork.</p></li>
 <li><p>Model interpretation: The direction of sediment transport and water flow vectors mostly differ.</p></li>
 </ol>
-<p>This chapter introduces open-access and open-source software with extensive tutorials on pre-processing (geo) spatially explicit data, setting up model control files, running models, and post-processing. Tutorials are available for the following software:</p>
+<p>This chapter introduces open-access and open-source software with extensive tutorials on pre-processing (geo) spatially explicit data, setting up model control files, running models, and post-processing. Tutorials are available in this eBook for the following software:</p>
 <ul class="simple">
 <li><p><strong>BASEMENT (open-access)</strong><br>The <a class="reference internal" href="basement.html#chpt-basement"><span class="std std-ref">BASEMENT</span></a> tutorial introduces 2d hydrodynamic modelling with the ETH Zurich’s (Switzerland) numerical model <em>BASEMENT</em> 3.x, which was primarily developed with benchmark tests on <strong>mountain rivers/streams</strong>.</p></li>
 <li><p><strong>TELEMAC (open source)</strong><br>Open TELEMAC-MASCARET is a powerful software suite for a large variety of <strong>rivers, lakes, and even ocean deltas</strong>.</p>
@@ -768,9 +756,7 @@
 </ul>
 </li>
 </ul>
-<!--
-* OpenFOAM8
--->
+<p><strong>OpenFOAM</strong> represents another powerful modeling tool, which <strong>is recommended here for modeling flow-structure interactions</strong>, but not particularly featured in this eBook. OpenFOAM developers provide detailed documentation with high-quality tutorials on their website. Especially, their <a class="reference external" href="https://wiki.openfoam.com/index.php?title=%223_weeks%22_series">3-week tutorial</a> is a very good start into OpenFOAM modeling for PhD students or engineers. On <a class="reference internal" href="../get-started/vm.html#linux-install"><span class="std std-ref">Debian Linux / Ubuntu / Mint</span></a>, preferably install OpenFOAM from the <a class="reference external" href="https://develop.openfoam.com/Development/openfoam/-/wikis/precompiled/debian#ubuntu">Ubuntu repository</a>.</p>
 </div>
 
     <script type="text/x-thebe-config">

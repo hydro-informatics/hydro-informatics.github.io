@@ -136,7 +136,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../python-basics/pyinstall.html">
-     Install Python
+     Python (Installation)
     </a>
    </li>
    <li class="toctree-l2">
@@ -476,8 +476,13 @@
     </label>
     <ul>
      <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/gaia-coupling.html">
+       Introduction and Coupling
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="../numerics/gaia-basics.html">
-       Gaia Basic Setup
+       Basic Setup of Gaia
       </a>
      </li>
      <li class="toctree-l3">
@@ -492,27 +497,10 @@
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="../numerics/gaia-run.html">
-       Run Simulation
+       Run Gaia
       </a>
      </li>
     </ul>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../numerics/openfoam.html">
-   OpenFOAM
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-  <label for="toctree-checkbox-14">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/pre-qgis-of.html">
-     Pre-processing with QGIS
-    </a>
    </li>
   </ul>
  </li>
@@ -552,8 +540,8 @@
   <a class="reference internal" href="../exercises/docs-exercises.html">
    Exercises
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-  <label for="toctree-checkbox-15">
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -576,8 +564,8 @@
   <a class="reference internal" href="../troubleshoot/dbg-programming.html">
    Programming Tools and IDEs
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-  <label for="toctree-checkbox-16">
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -603,8 +591,8 @@
   <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
    Numerical Models
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
-  <label for="toctree-checkbox-17">
+  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+  <label for="toctree-checkbox-16">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -625,8 +613,8 @@
   <a class="reference internal" href="../troubleshoot/dbg-os.html">
    Operating Systems (Linux and VMs)
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
-  <label for="toctree-checkbox-18">
+  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+  <label for="toctree-checkbox-17">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -834,7 +822,7 @@
                 
   <div class="section" id="hello-data-types">
 <h1>Hello Data Types<a class="headerlink" href="#hello-data-types" title="Permalink to this headline">¶</a></h1>
-<p>About Python, variable types and script execution. For interactive reading and executing code blocks <a class="reference external" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> and find <em>pybase.ipynb</em> or <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Install Python</span></a> locally along with <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a>.</p>
+<p>About Python, variable types and script execution. For interactive reading and executing code blocks <a class="reference external" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> and find <em>pybase.ipynb</em> or <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Python (Installation)</span></a> locally along with <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a>.</p>
 <div class="section" id="load-python-environment">
 <h2>Load Python Environment<a class="headerlink" href="#load-python-environment" title="Permalink to this headline">¶</a></h2>
 <p>These pages are written with <a class="reference external" href="https://jupyter.org/"><em>JupyterLab</em></a> <img alt="https://jupyter.org/assets/main-logo.svg" src="https://jupyter.org/assets/main-logo.svg" />. For the best learning experience make sure to read about <a class="reference internal" href="../get-started/ide.html#sec-ide"><span class="std std-ref">Integrated Development Environments (IDEs)</span></a> before starting this tutorial.</p>
@@ -890,8 +878,8 @@
 <h3>Text<a class="headerlink" href="#text" title="Permalink to this headline">¶</a></h3>
 <p>Text variables in <em>Python</em> are <em>strings</em> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) that consist of multiple <em>characters</em> (<code class="docutils literal notranslate"><span class="pre">chr</span></code>):</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="1df8f199-98a1-4190-bc8e-6a5d46b0268e" name="9dba1ffb-7d65-4588-a505-89a5af453e3d" type="radio">
-</input><label class="tabbed-label" for="1df8f199-98a1-4190-bc8e-6a5d46b0268e">
+<input checked="checked" id="da8dad5d-b96a-43a8-a61a-52f5af473f59" name="228c2946-ed6e-44a2-ab25-867eb9f64894" type="radio">
+</input><label class="tabbed-label" for="da8dad5d-b96a-43a8-a61a-52f5af473f59">
 Rendered table</label><div class="tabbed-content docutils">
 <table class="colwidths-auto table">
 <thead>
@@ -920,8 +908,8 @@ Rendered table</label><div class="tabbed-content docutils">
 </tbody>
 </table>
 </div>
-<input id="5f92da4b-84b9-48f2-9f15-facc7dceabca" name="9dba1ffb-7d65-4588-a505-89a5af453e3d" type="radio">
-</input><label class="tabbed-label" for="5f92da4b-84b9-48f2-9f15-facc7dceabca">
+<input id="813328e9-00e0-45cb-aaa0-d72a2d477b73" name="228c2946-ed6e-44a2-ab25-867eb9f64894" type="radio">
+</input><label class="tabbed-label" for="813328e9-00e0-45cb-aaa0-d72a2d477b73">
 Source code</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>| Type | Example     | Description                        |
 |------|:-----------:|------------------------------------|

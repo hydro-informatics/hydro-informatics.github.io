@@ -31,6 +31,14 @@ The consistent use of parameters and symbols for parameters is summarized in a n
   - $-$
   - Courant-Friedrichs-Lewy ({term}`CFL`) condition
 
+* - $c_{eq}$
+  - g m$^{-3}$
+  - fine material equilibrium near-bed concentration (cf. {ref}`gaia-sl-formulae`)
+
+* - $C_{D}$
+  - $-$
+  - drag coefficient (cf. Equation {eq}`eq-cd-stokes`)
+
 * - $c_{f}$
   - $-$
   - {ref}`combined form drag and skin friction coefficient <c-friction>`
@@ -38,6 +46,10 @@ The consistent use of parameters and symbols for parameters is summarized in a n
 * - $c'_{f}$
   - $-$
   - {ref}`skin friction coefficient <c-friction>` (Equation {eq}`eq-cf-skin`)
+
+* - $c_{mud}$
+  - g m$^{-3}$
+  - fine material concentration (cf. Equation {eq}`eq-gaia-dep`)
 
 * - $cHSI$
   - index
@@ -119,6 +131,10 @@ The consistent use of parameters and symbols for parameters is summarized in a n
   - m$^{1/3}$ s$^{-1}$
   - Strickler roughness coefficient (fictive units)
 
+* - $M$
+  - kg m$^{-2}$ s$^{-1}$
+  - {cite:t}`partheniades1965` erosion constant (cf. Equation {eq}`eq-gaia-erosion`)
+
 * - $m$
   - $-$
   - channel bank slope
@@ -175,6 +191,14 @@ The consistent use of parameters and symbols for parameters is summarized in a n
   - kg s$^{-1}$ m$^{-1}$
   - unit sediment transport capacity
 
+* - $q_{s,dep}$
+  - kg s$^{-1}$ m$^{-1}$
+  - unit suspended deposition flux (Equation {eq}`eq-gaia-dep`)
+
+* - $q_{s,dep}$
+  - kg s$^{-1}$ m$^{-1}$
+  - unit suspended erosion flux (Equation {eq}`eq-gaia-erosion`)
+
 * - $Re$
   - $-$
   - Reynolds number
@@ -214,6 +238,14 @@ The consistent use of parameters and symbols for parameters is summarized in a n
 * - $\mathbf{u}$ (bold)
   - m s$^{-1}$
   - flow velocity vector (multidimensional)
+
+* - $u_{cr}$
+  - m s$^{-1}$
+  - critical shear velocity for mud deposition (cf. Equation {eq}`eq-gaia-dep`)
+
+* - $w_{s}$
+  - m s$^{-1}$
+  - settling velocity (cf. Equation {eq}`eq-ws`)
 
 * - $wse$
   - m a.s.l.
@@ -308,6 +340,10 @@ The consistent use of parameters and symbols for parameters is summarized in a n
 * - $\tau$
   - N m$^{-2}$
   - bed shear stress
+
+* - $\tau_{cr}$
+  - N m$^{-2}$
+  - Critical dimensional bed shear stress (cf. Equation {eq}`eq-gaia-erosion`)
 
 * - $\tau_x$
   - $-$

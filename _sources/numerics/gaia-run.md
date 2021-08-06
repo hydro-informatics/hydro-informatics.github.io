@@ -1,28 +1,79 @@
 
 (gaia-run)=
 # Run Gaia
-The simulation is started identically to a hydrodynamic simulation by calling the telemac2d.py script.
-Please note that `*_tel.cas` is the hydrodynamic and not the GAIA steering file.
 
-`cd /go/to/dir`
+Make sure that the simulation folder (e.g., `/gaia-tutorial/`) contains at least the following files (or similar, depending on the simulation case):
 
-`telemac2d.py *_tel.cas`
+* A computational mesh, for example, in the form of [qgismesh.slf](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/qgismesh.slf).
+* A hydrodynamic boundary definitions, for example, in the form of [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli).
+* A Gaia boundary definitions, for example, in the form of [boundaries-gaia.cli](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries-gaia.cli).
+* A results file of a Telemac2d/3d simulation, for example, for 35 m$^3$/s in the form of [r2dsteady.slf](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/r2dsteady.slf) (result of the {ref}`dry bonus run <tm2d-dry>` ending at `T=15000`).
+* A Telemac2d steering file, such as [steady2d-gaia.cas](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/steady2d-gaia.cas).
+* A Gaia steering file, such as [gaia-morphodynamics.cas](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/gaia-morphodynamics.cas)e.
 
-However, in the steering file of the hydrodynamic model
-the required keywords (see Coupling GAIA and TELEMAC) for the coupling must be present.
-
-
-```{admonition} Get inspired by the TELEMAC examples
-The installation of TELEMAC comes with examples for Gaia applied to Telemac2d and Telemac3d models, which can be found in:
-
-`/telemac/v8p2/examples/gaia/`
-
-Because Gaia is the successor of SISYPHE, also the SISYPHE examples are useful, in particular with regards to multi-grain size modeling:
-
-`/telemac/v8p2/examples/sisyphe/`
+With all these files available, open *Terminal*, go to the TELEMAC configuration folder (e.g., `~/telemac/v8p2/configs/`), and launch the environment (e.g., `pysource.openmpi.sh` - use the same as for compiling TELEMAC).
 
 ```
+cd ~/telemac/v8p2/configs
+source pysource.openmpi.sh
+```
 
+````{admonition} If you are using the Hydro-Informatics (Hyfo) Mint VM
+:class: note, dropdown
+
+If you are working with the {ref}`Mint Hyfo VM <hyfo-vm>`, load the TELEMAC environment as follows:
+
+```
+cd ~/telemac/v8p2/configs
+source pysource.hyfo-dyn.sh
+```
+````
+
+With the TELEMAC environment loaded, change to the directory where the above-created 3d-flume simulation lives (e.g., `/home/telemac/v8p2/mysimulations/gaia2d-tutorial/`) and run the `*.cas` file by calling the **telemac2d.py** script (it will automatically know that it needs to use Gaia when it reads the line containing `COUPLING WITH : 'GAIA'`).
+
+```
+cd ~/telemac/v8p2/mysimulations/gaia2d-tutorial/
+telemac2d.py steady2d-gaia.cas
+```
+
+````{admonition} Speed up
+With {ref}`parallelism <mpi>` enabled (e.g., in the {ref}`Mint Hyfo Virtual Machine <hyfo-vm>`), speed up the calculation by using multiple CPUs through the `--ncsize=N` flag. For instance, the following line runs the unsteady simulation on `N=2` CPUs:
+
+```
+telemac2d.py steady2d-gaia.cas --ncsize=2
+```
+````
+A successful computation should end with the following lines (or similar) in *Terminal*:
+
+```fortran
+[...]
+                    *************************************
+                    *    END OF MEMORY ORGANIZATION:    *
+                    *************************************
+
+CORRECT END OF RUN
+
+ELAPSE TIME :
+                            14  MINUTES
+                            25  SECONDS
+... merging separated result files
+
+... handling result files
+       moving: r2dsteady-gaia.slf
+       moving: rGaia-steady2d.slf
+... deleting working dir
+
+My work is done
+```
+
+Telemac2d will write the files *r2dsteady-gaia.slf* and *rGaia-steady2d.slf*. Both result files are also available in the modelling repository to enable accomplishing the post-processing tutorial:
+
+* [get r2dunsteady.slf](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/r2dsteady-gaia.slf), and
+* [get r-control-sections.txt](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/rGaia-steady2d.txt).
+
+## Post-processing in QGIS
+
+PASS
 
 (bl-calibration)=
 ## Calibration Parameters
@@ -47,3 +98,12 @@ The following list of parameters can be considered for calibrating bedload in Ga
   * If erosion in curved channel sections is overpredicted, decrease **BETA**.
   * If erosion in curved channel sections is underpredicted, increase **BETA**.
 * To adjust deposition and erosion pattern in curves (riverbends), enable the **SECONDARY CURRENTS** keyword and modify the **SECONDARY CURRENTS ALPHA COEFFICIENT** value (cf. {ref}`Secondary Currents <gaia-secondary>`).
+
+### Suspended Load Calibration
+
+The following list of parameters can be considered for calibrating suspended load transport and deposition-erosion pattern in Gaia:
+
+* {ref}`**CLASSES SETTLING VELOCITIES** <gaia-sl-sed>`:
+  - Reduce to enhance transport length and reduce deposition rates
+  - Increase to shorten transport trajectories and enhance deposition
+* {ref}`**CLASSES CRITICAL SHEAR STRESS FOR MUD DEPOSITION** <gaia-sl-sed>`: Reduce to keep sediment in suspension (or vice versa).

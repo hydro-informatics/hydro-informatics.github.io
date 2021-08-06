@@ -102,6 +102,11 @@ BED-LOAD TRANSPORT FORMULA FOR ALL SANDS : 1
 
 The following sections provide more details on how $\Phi_b$ is calculated with the pre-defined formulae listed in {numref}`Tab. %s <tab-gaia-bl-formulae>`.
 
+```{admonition} User-defined Bedload transport formulae
+:class: tip
+User can add more bedload transport formula by adding a modified copy of a FORTRAN file template. The {{ gaia }} explain the procedure for adding a new user-defined bedload formula in detailed in section 6.3.
+```
+
 ```{admonition} User Fortran Files
 :class: note, dropdown
 To implement a user Fortran file, copy the original TELEMAC Fortran file from the `/telemac/v8pX/sources/` directory (e.g., `/telemac/v8pX/sources/gaia/bedload_einst_gaia.f`) to the project directory (e.g., `/telemac/v8pX/simulations/gaia-tutorial/user_fortran/bedload_einst_gaia.f`). Finally, tell TELEMAC where to look for user fortran files by defining the following keyword in a steering file (e.g., in `gaia-morphodynamics.cas`):
@@ -293,7 +298,6 @@ $$
 f_{fr} = \frac{c'_{f}}{c_{f}}
 $$ (eq-f-fr)
 
-
 The skin friction-only coefficient is calculated as:
 
 $$
@@ -361,9 +365,29 @@ Secondary currents may occur in curved channels (i.e., in most near-census natur
 By default, Telemac2d and Gaia do not consider secondary currents, but an approach based on {cite:t}`engelund1974` can be enabled by setting the **SECONDARY CURRENTS** keyword to `YES` (default is `NO`). In addition, the **SECONDARY CURRENTS ALPHA COEFFICIENT** keyword can be used to adapt the roughness length as a function channel bottom roughness (i.e., smooth or rough riverbeds). For instance, use `SECONDARY CURRENTS ALPHA COEFFICIENT : 0.75` for a very rough riverbed, or `SECONDARY CURRENTS ALPHA COEFFICIENT : 1.` (default) for a smooth riverbed. To following this tutorial, use:
 
 ```fortran
+/ continued: gaia-morphodynamics.cas
+/ ...
 SECONDARY CURRENTS : YES
 SECONDARY CURRENTS ALPHA COEFFICIENT : 0.8
 ```
+
+(gaia-bc-bl)=
+## Boundary Conditions
+
+With the {ref}`LIQBOR flag <gaia-bc>` set to `5`, per-sediment class bedload load can be prescribed at the open liquid boundaries similar to the hydrodynamic steering setup with the **PRESCRIBED SOLID DISCHARGES** keyword (one value per {ref}`sediment class defined <gaia-sed>`). To prescribe a bedload transport of **10 kg$^3\cdot$s$^{-1}$** across the upstream and downstream boundaries through the `LIQBOR = 5` boundaries, **add the PRESCRIBED SOLID DISCHARGES keyword to the Gaia steering file (gaia-morphodynamics.cas)**:
+
+```fortran
+/ continued: gaia-morphodynamics.cas
+/ ...
+PRESCRIBED SOLID DISCHARGES : 0.0;10.0;10.0
+```
+
+```{admonition} Porosity and PRESCRIBED SOLID DISCHARGES
+:class: important
+The **PRESCRIBED SOLID DISCHARGES** keyword makes TELEMAC printing out sediment mass balances accounting for the riverbed porosity $\epsilon$. Thus, the solid mass flux printouts correspond to $q_{b}/(1-\epsilon)$.
+```
+
+Gaia can be run with liquid boundary files for assigning time-dependent solid discharges (the outflow should be kept in equilibrium). Solid discharge time series can be implemented using `455`-`5` boundary definitions, analogous to the descriptions of the {ref}`Telemac2d unsteady boundary setup <tm2d-liq-file>`. For more guidance, have a look at the *yen-2d* example (`telemac/v8p2/examples/gaia/yen-2d`) featuring a quasi steady bedload simulation at the Rhine River. In addition, more background information about the definition of bedload boundary conditions can be found in section 3.1.11 in the {{ gaia }}.
 
 ## Example Applications
 

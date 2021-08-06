@@ -14,7 +14,7 @@ Large datasets, such as airborne imagery and hydro-meteorological datasets colle
 ```{admonition} What is hydro-informatics.com?
 :class: tip
 The term hydroinformatics (or hydro-informatics) refers to a sub-discipline of informatics and has its origins in computational hydraulics. Hydroinformatics involves numerical modeling as well as data science methods for the efficient and sustainable use of water resources (definition derived from the {term}`IAHR`'s and IWA [Joint Committee on Hydroinformatics](https://www.iahr.org/index/committe/15)).
-The syllable *hydro* goes back to the Greek word for *water* and the term *informatics* can be used as a synonym for studying computational systems. To this end, the *hydro-informatics.com* eBook features the use of *hydroinformatics* to leverage studies of river ecosystems concerning hydraulic engineering, ecohydraulics, geomorphology, geo-informatics, and hydrology.
+The syllable *hydro* goes back to the Greek word for *water* and the term *informatics* can be used as a synonym for studying computational systems. To this end, the *hydro-informatics.com* eBook features the use of *hydroinformatics* to leverage studies of river ecosystems with regards to hydraulic engineering, ecohydraulics, geomorphology, geo-informatics, and hydrology.
 ```
 
 ## Contents
@@ -31,8 +31,8 @@ The eBook provides tutorials for:
 * Version control with {doc}`git </get-started/git>`
 * Geospatial analyses with {ref}`QGIS <qgis-tutorial>`
 * Numerical modeling with
-  * The {doc}`ETH Zurich's BASEMENT </numerics/basement>` (v3) software
-  * {doc}`TELEMAC </numerics/telemac>` (currently only Telemac3d)
+  * The {doc}`ETH Zurich's BASEMENT </numerics/basement>` (v3) software (2d hydrodynamics)
+  * {doc}`TELEMAC </numerics/telemac>` (2d, 3d, and morphodynamics)
 
 All applications use open source or open access software, and the {ref}`software` chapter provides guidance on finding and installing appropriate and efficient software.
 

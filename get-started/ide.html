@@ -55,7 +55,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Install Python" href="../python-basics/pyinstall.html" />
+    <link rel="next" title="Python (Installation)" href="../python-basics/pyinstall.html" />
     <link rel="prev" title="Virtual Machines and Linux" href="vm.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -136,7 +136,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../python-basics/pyinstall.html">
-     Install Python
+     Python (Installation)
     </a>
    </li>
    <li class="toctree-l2">
@@ -476,8 +476,13 @@
     </label>
     <ul>
      <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/gaia-coupling.html">
+       Introduction and Coupling
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="../numerics/gaia-basics.html">
-       Gaia Basic Setup
+       Basic Setup of Gaia
       </a>
      </li>
      <li class="toctree-l3">
@@ -492,27 +497,10 @@
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="../numerics/gaia-run.html">
-       Run Simulation
+       Run Gaia
       </a>
      </li>
     </ul>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../numerics/openfoam.html">
-   OpenFOAM
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-  <label for="toctree-checkbox-14">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/pre-qgis-of.html">
-     Pre-processing with QGIS
-    </a>
    </li>
   </ul>
  </li>
@@ -552,8 +540,8 @@
   <a class="reference internal" href="../exercises/docs-exercises.html">
    Exercises
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-  <label for="toctree-checkbox-15">
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -576,8 +564,8 @@
   <a class="reference internal" href="../troubleshoot/dbg-programming.html">
    Programming Tools and IDEs
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-  <label for="toctree-checkbox-16">
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -603,8 +591,8 @@
   <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
    Numerical Models
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
-  <label for="toctree-checkbox-17">
+  <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+  <label for="toctree-checkbox-16">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -625,8 +613,8 @@
   <a class="reference internal" href="../troubleshoot/dbg-os.html">
    Operating Systems (Linux and VMs)
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
-  <label for="toctree-checkbox-18">
+  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+  <label for="toctree-checkbox-17">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -859,6 +847,10 @@
 <p><strong><em>Anaconda</em> is the favorite solution for</strong> working with the <em>Python</em> tutorials in this ebook on <strong>Windows</strong>. <em>Linux</em> users may want to install the text and code editor <a class="reference internal" href="#install-atom"><span class="std std-ref">Atom</span></a> and optionally <a class="reference internal" href="#install-jupyter-linux"><span class="std std-ref">Jupyter on Linux</span></a>.</p>
 <div class="section" id="anaconda-navigator">
 <h2>Anaconda Navigator<a class="headerlink" href="#anaconda-navigator" title="Permalink to this headline">¶</a></h2>
+<div class="admonition-use-anaconda-on-windows admonition">
+<p class="admonition-title">Use Anaconda on Windows</p>
+<p>Anaconda works well on Windows, but Linux (or also macOS) user will have a better experience with advanced text editors such as <a class="reference internal" href="#install-atom"><span class="std std-ref">Atom</span></a>.</p>
+</div>
 <p><em>Anaconda</em> is a <em>Python</em> and <em>R</em> distribution that enables the usage of a couple of IDEs such as <a class="reference external" href="https://www.jetbrains.com/pycharm/"><em>PyCharm</em></a>, <a class="reference external" href="https://www.spyder-ide.org/"><em>Spyder</em></a>, or <a class="reference external" href="https://jupyter.org/"><em>JupyterLab (Notebook)</em></a>.</p>
 <p>The very first step to getting started with <em>Anaconda</em> consists in downloading and installing <a class="reference external" href="https://www.anaconda.com/products/individual"><em>Anaconda</em></a> where students may use the individual license for educational training purposes (note that a commercial license needs to be purchased for profit organizations). On Windows, <em>Anaconda</em> should be installed in the <em>LOCAL</em> user folder (e.g., <em>C:\users&lt;your-user-name&gt;\AppData\Local</em>). <em>Linux</em> or <em>macOS</em> users find download and installation instructions directly at the developer’s website, tailored for their specific distribution, even though they might be better of with <a class="reference internal" href="#install-atom"><span class="std std-ref">Atom</span></a>.</p>
 <p>After the successful installation of <em>Anaconda</em>, IDEs for <em>Python</em> programming or <em>markdown</em> editing can be directly installed by launching the <strong>Anaconda navigator</strong>. <strong><code class="docutils literal notranslate"><span class="pre">conda</span></code></strong> environments can be created later, following the instructions in the <a class="reference internal" href="../python-basics/pyinstall.html#conda-env"><span class="std std-ref">conda env (Windows Preference)</span></a> section.</p>
@@ -975,8 +967,8 @@ The <em>Jupyter</em> kernels support the three core programming languages <stron
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <div class="tabbed-set docutils">
-<input checked="checked" id="759da832-717c-4cd8-a74b-333cc7850db5" name="481ebfe9-c580-45cc-b11a-bb30cf9577ee" type="radio">
-</input><label class="tabbed-label" for="759da832-717c-4cd8-a74b-333cc7850db5">
+<input checked="checked" id="f48a13eb-c859-44d0-8224-73fd0832181a" name="396a1e59-ad5f-4acb-92a7-1570e4109cad" type="radio">
+</input><label class="tabbed-label" for="f48a13eb-c859-44d0-8224-73fd0832181a">
 Linux</label><div class="tabbed-content docutils">
 <p><strong>Linux</strong> users find installers for various distributions at <a class="reference external" href="https://atom.io/">atom.io</a>. <strong>Debian</strong> (<strong>Ubuntu</strong>), <strong>Red Hat</strong> / <strong>CentOS</strong>, <strong>Fedora</strong>, and <strong>SUSE</strong> find easy installation guides at <a class="reference external" href="https://flight-manual.atom.io/getting-started/sections/installing-atom/">https://flight-manual.atom.io</a>.</p>
 <p>The short version for <strong>Debian</strong> (<strong>Ubuntu</strong>) is:</p>
@@ -995,8 +987,8 @@ Linux</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="41b5c47b-a350-48e3-8d28-4d13eb9c9f26" name="481ebfe9-c580-45cc-b11a-bb30cf9577ee" type="radio">
-</input><label class="tabbed-label" for="41b5c47b-a350-48e3-8d28-4d13eb9c9f26">
+<input id="f6b5b593-6e4c-49b1-b984-55e4843071f1" name="396a1e59-ad5f-4acb-92a7-1570e4109cad" type="radio">
+</input><label class="tabbed-label" for="f6b5b593-6e4c-49b1-b984-55e4843071f1">
 Windows</label><div class="tabbed-content docutils">
 <p><strong>Windows</strong> users can download <em>Atom</em> from <a class="reference external" href="https://atom.io/">atom.io</a> and install the executable.</p>
 </div>
@@ -1075,7 +1067,7 @@ Windows</label><div class="tabbed-content docutils">
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="vm.html" title="previous page">Virtual Machines and Linux</a>
-    <a class='right-next' id="next-link" href="../python-basics/pyinstall.html" title="next page">Install Python</a>
+    <a class='right-next' id="next-link" href="../python-basics/pyinstall.html" title="next page">Python (Installation)</a>
 
         </div>
         
