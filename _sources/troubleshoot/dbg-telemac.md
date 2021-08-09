@@ -285,7 +285,13 @@ Change the (vertical) velocity profile
 3d models with supercritical boundaries
 : Too many vertical layers may result in very thin 3d mesh elements that cause supercritical flows locally. Thus, consider reducing the {ref}`NUMBER OF HORIZONTAL LEVELS <tm3d-slf-vertical>` in the steering file to satisfy the {term}`CFL` condition.
 
+## Gaia (Morphodynamics)
 
+### UNKNOWN BOUNDARY CONDITIONS
+
+TELEMAC-Gaia may interrupt with an error message such as `KEYWORD: ... UNKNOWN BOUNDARY CONDITIONS FILE ...`. This message means that the boundary condition type in the `*.cli` file does not match the boundary conditions defined in the `*.cas` file. For instance, if the tracer (suspended load) boundary column (`9` in the Gaia `*.cli` file for `CBOR`) is set to `5`, try using `EQUILIBRIUM INFLOW CONCENTRATION : YES` or double-check the numbers defined for the **PRESCRIBED SUSPENDED SEDIMENTS CONCENTRATION VALUES** keyword.
+
+Read more about setting up boundary condition files for Gaia in the {ref}`Gaia Basics section <gaia-bc>`. The definition of boundary types in the Gaia steering file are described separately for {ref}`bedload <gaia-bc-bl>` and {ref}`suspended load <gaia-bc-sl>`.
 
 ## BlueKenue
 

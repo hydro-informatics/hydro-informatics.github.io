@@ -137,7 +137,7 @@ where $f_{mpm}$ is the MPM coefficient (default is 8), $\tau_{x,cr}$ denotes the
 /
 / BEDLOAD
 BED-LOAD TRANSPORT FORMULA FOR ALL SANDS : 1 / see above
-SHIELDS PARAMETERS : 0.047
+CLASSES SHIELDS PARAMETERS : 0.047;0.047;0.047
 MPM COEFFICIENT : 8
 ```
 
@@ -145,7 +145,7 @@ MPM COEFFICIENT : 8
 The Wong-Parker correction {cite:p}`wong_reanalysis_2006` for the {cite:t}`meyer-peter_formulas_1948` formula refers to a statistical re-analysis of the original experimental datasets and applies to {term}`Plane bed` river sections. To this end, the Wong-Parker correction yields lower bedload transport values and it excludes the form drag correction of the original formula with the following expression: $\Phi_{b} \approx 3.97 \cdot (\tau_{x} - 0.0495)^{3/2}$. Thus, to implement the Wong-Parker correction in Gaia use:
 
 ```fortran
-SHIELDS PARAMETERS : 0.0495
+CLASSES SHIELDS PARAMETERS : 0.0495;0.0495;0.0495
 MPM COEFFICIENT : 3.97
 ```
 ````

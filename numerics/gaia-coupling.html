@@ -499,7 +499,7 @@
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="gaia-run.html">
-       Run Gaia
+       Run and Analyze
       </a>
      </li>
     </ul>
@@ -769,6 +769,11 @@
      Hotstart
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#control-sections">
+     Control Sections
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -884,6 +889,10 @@ The difference between Gaia and SISYPHE<div class="summary-down docutils">
 <span class="o">/</span> <span class="n">INITIAL</span> <span class="n">DEPTH</span> <span class="p">:</span> <span class="mf">0.005</span> <span class="o">/</span> <span class="k">use </span><span class="kt">INTEGER </span><span class="n">for</span> <span class="n">speeding</span> <span class="n">up</span> <span class="n">calculations</span>
 </pre></div>
 </div>
+<div class="warning admonition">
+<p class="admonition-title">Bottom elevation must be available in the hotstart geometry (SLF)</p>
+<p>The bottom elevation must be printed out in the results file of the simulation used for the hotstart. To this end, make sure that the list of values for the <strong>VARIABLES FOR GRAPHIC PRINTOUTS</strong> keyword contains <code class="docutils literal notranslate"><span class="pre">B</span></code> as indicated in the <a class="reference internal" href="telemac2d-steady.html#tm2d-dry"><span class="std std-ref">explanations for the setup of the dry-initialized model</span></a>.</p>
+</div>
 <p>The dry-initialized steering file also prescribes flowrates and elevations, that need to be <strong>kept in steady2d-gaia.cas</strong>. Therefore, make sure that the flowrate and elevation prescription keywords are activated:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">steady2d</span><span class="o">-</span><span class="n">gaia</span><span class="p">.</span><span class="n">cas</span>
 <span class="o">/</span> <span class="p">...</span>
@@ -892,6 +901,34 @@ The difference between Gaia and SISYPHE<div class="summary-down docutils">
 <span class="n">PRESCRIBED</span> <span class="n">ELEVATIONS</span> <span class="p">:</span> <span class="mi">37</span><span class="mf">4.805626</span><span class="p">;</span><span class="mi">37</span><span class="mf">1.33</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="control-sections">
+<h3>Control Sections<a class="headerlink" href="#control-sections" title="Permalink to this headline">¶</a></h3>
+<p>Control sections are sequences of node numbers (or node coordinates) at which TELEMAC sums up fluxes, for instance, to verify inflow and outflow mass balances. The unsteady flow tutorial provides detailed instructions for <a class="reference internal" href="telemac2d-unsteady.html#tm-control-sections"><span class="std std-ref">defining control sections</span></a> and this tutorial re-uses the control sections file from the unsteady flow tutorial (<strong><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/control-sections.txt">download control-sections.txt</a></strong>).</p>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Expand to view the file <em>control-sections.txt</em><div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># control sections steady2d</span>
+<span class="mi">2</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">Inflow_boundary</span>
+<span class="mi">144</span> <span class="mi">32</span>
+<span class="n">Outflow_boundary</span>
+<span class="mi">34</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+</details><p>To use the control sections for the Gaia simulation add the following to the <strong>hydrodynamics</strong> steering file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">steady2d</span><span class="o">-</span><span class="n">gaia</span><span class="o">.</span><span class="n">cas</span>
+<span class="o">/</span> <span class="o">...</span>
+<span class="n">SECTIONS</span> <span class="n">INPUT</span> <span class="n">FILE</span> <span class="p">:</span>  <span class="n">control</span><span class="o">-</span><span class="n">sections</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">SECTIONS</span> <span class="n">OUTPUT</span> <span class="n">FILE</span> <span class="p">:</span> <span class="n">r</span><span class="o">-</span><span class="n">control</span><span class="o">-</span><span class="n">flows</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>Thus, re-running the simulation will write the fluxes across the two define control sections to a file called <em>r-control-flows.txt</em>.</p>
 </div>
 </div>
 </div>

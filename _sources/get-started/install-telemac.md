@@ -86,7 +86,7 @@ sudo apt install python3-numpy python3-scipy python3-matplotlib python3-distutil
 ```
 
 ````{admonition} Qt Errors
-:class: note
+:class: warning, dropdown
 If an error occurs during the installation, install the extended dependencies (includes Qt) with the following command:
 
 ```
@@ -371,7 +371,7 @@ The installation of the *med file* library on Linux is also documented in the [o
 
 ```{admonition} Permission denied?
 :class: attention, dropdown
-If you consistently get ***permission denied*** messages, unlock all read and write rights for the `telemac` directory with the following command: `sudo -R 777  /home/USER-NAME/telemac` (replace `USER-NAME` with the user for whom `telemac` is installed).
+If you consistently get ***permission denied*** messages, unlock all read and write rights for the `telemac` directory with the following command: `sudo -R 777  /home/USER-NAME/telemac` (replace `USER-NAME` with the user for whom TELEMAC is installed).
 ```
 
 Finally, **remove the `temp` folder** to avoid storing garbage:
@@ -385,7 +385,7 @@ sudo rm -r temp
 
 ***Estimated duration: < 5 minutes.***
 
-To use TELEMAC's water quality (***waqtel***) module, the *AED2* is (partially) required. In some verswions of TELEMAC, the make files for installing *AED2* are provided with the `svn` repository in the *optionals* folder. Otherwise, download and unpack the *aed2* folder from the manual installation sources on [opentelemac.org](http://www.opentelemac.org/index.php/component/jdownloads/summary/39-manual-installation-sources/2126-aed2?Itemid=54). Then, to install *AED2*, `cd` to the *aed2* folder and run `make`:
+To use TELEMAC's water quality (***waqtel***) module, the *AED2* is (partially) required. In some versions of TELEMAC, the make files for installing *AED2* are provided with the `svn` repository in the *optionals* folder. Otherwise, download and unpack the *aed2* folder from the manual installation sources on [opentelemac.org](http://www.opentelemac.org/index.php/component/jdownloads/summary/39-manual-installation-sources/2126-aed2?Itemid=54). Then, to install *AED2*, *cd* to the *aed2* folder and run `make`:
 
 ```
 cd ~/telemac/v8p2/optionals/aed2

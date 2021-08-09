@@ -24,7 +24,7 @@ For suspended load, the definition of additional sediment properties for every s
 Settling velocities $w_{s}$ for the particles can be defined with the **CLASSES SETTLING VELOCITIES** keyword to calculate the deposition flux $q_{s,dep}$:
 
 $$
-q_{s,dep} = w_s\cdot c_{mud} \cdot \left[1 - \left(\frac{\sqrt{\tau / \rho_w}{u_{cr}}}\right)^{2} \right]
+q_{s,dep} = w_{s} \cdot c_{mud} \cdot \left[1 - \left(\frac{\sqrt{\tau / \rho_{w}}}{u_{cr}}\right)^{2} \right]
 $$ (eq-gaia-dep)
 
 where $c_{mud}$ is the concentration of *mud* in g/l (i.e., g m$^{-3}$), $\tau$ is dimensional bed shear stress (N$\cdot$m$^{-2}$), and $u_{cr}$ is the critical shear velocity for mud deposition (m s$^{-1}$).
@@ -95,12 +95,17 @@ The sediment transport formulae for suspended load modeling can be defined with 
 (gaia-ic-sl)=
 ## Initial Conditions
 
+```{admonition} Requires TELEMAC v8p2 or more recent
+:class: warning
+The setup of initial and boundary conditions as described in this eBook requires TELEMAC v8p2 or later. Earlier versions, such as v8p1, will not recognize the keywords for initial conditions.
+```
+
 Gaia enables a class-wise definition of initial concentrations for suspended load following the order of {ref}`sediment class definitions <gaia-sed>`. The following list definition sets the initial concentration for the 0.5 mm sediment class ({ref}`recall its definition <gaia-sed>`) to 0.6 **g/l** (i.e., 0.0006 gram per m$^3$) and 0.0 g/l for the 0.02-m and 0.1-m sediment size classes. However, the definition of initial suspended sediment concentrations is overridden in 2d at boundary nodes when the **EQUILIBRIUM INFLOW CONCENTRATION** keyword is set to `YES` (requires that the {ref}`tracer boundary <gaia-bc>` is set to `5`).
 
 ```fortran
 / continued: gaia-morphodynamics.cas
 / ...
-INITIAL SUSPENDED SEDIMENTS CONCENTRATION VALUES : 0.6D0 ; 0.D0 ; 0.D0
+INITIAL SUSPENDED SEDIMENTS CONCENTRATION VALUES : 6.E-04;0.;0.
 ```
 
 Read more about the definition of initial conditions in section 2.1.1 in the {{ gaia }}.
@@ -113,7 +118,7 @@ With the {ref}`tracer boundary <gaia-bc>` set to `5`, per-sediment class suspend
 ```fortran
 / continued: gaia-morphodynamics.cas
 / ...
-PRESCRIBED SUSPENDED SEDIMENTS CONCENTRATION VALUES : 0.6D0 ; 0.D0 ; 0.D0
+PRESCRIBED SUSPENDED SEDIMENTS CONCENTRATION VALUES : 6.E-04;0.;0.
 / EQUILIBRIUM INFLOW CONCENTRATION : YES / not used in  this tutorial
 ```
 
@@ -122,7 +127,6 @@ Gaia can be run with liquid boundary files for assigning time-dependent suspende
 
 
 ## Numerical Parameters
-
 
 Most numerical parameters for suspended load modeling depend on the hydrodynamic Telemac2d/3d steering file definitions. In addition, keywords directly affecting the simulation of suspended load should be declared in the Gaia steering file.
 
@@ -135,7 +139,7 @@ The **SCHEME FOR ADVECTION ...** keywords for velocities, tracers, and turbulenc
 * `13` and `14` for the *Edge-based N-scheme* (NERD), which is similar to `3` and `4`, but better adapted to tidal flats. **Option `14` is used in this tutorial** according to the recommendation in the {{ gaia }}.
 * `15` for the mass-conservative *ERIA scheme* that works with tidal flats.
 
-The options `4` and `14` should be defined along with the keyword definition `CONTINUITY CORRECTION : YES`, and enable a correction of vertical convection velocities. To this end, the keyword **CORRECTION ON CONVECTION VELOCITY** can be set to `YES` to avoid an overestimation of suspended load, especially in deep waters.
+The options `4` and `14` can be defined along with the keyword definition `CONTINUITY CORRECTION : YES`, and enable a correction of vertical convection velocities. To this end, the keyword **CORRECTION ON CONVECTION VELOCITY** can be set to `YES` to avoid an overestimation of suspended load, especially in deep waters.
 
 The **SCHEME OPTION FOR ADVECTION OF SUSPENDED SEDIMENTS** can additionally be defined to either use a  **strong (default of `1`)** or a **weak (`2`)** form for advection. A weak form decreases {term}`Diffusion`, is more conservative, and increases computation time (read more in the {ref}`Telemac2d steady section <tm2d-fe>`).
 
@@ -144,10 +148,6 @@ The **SCHEME OPTION FOR ADVECTION OF SUSPENDED SEDIMENTS** can additionally be d
 / ...
 SCHEME FOR ADVECTION OF SUSPENDED SEDIMENTS : 14
 CONTINUITY CORRECTION : YES / use when SCHEME is 4 or 14
-
-
-ADVECTION-DIFFUSION SCHEME WITH SETTLING VELOCITY :
-SOLVER FOR DIFFUSION OF SUSPENSION :
 ```
 
 

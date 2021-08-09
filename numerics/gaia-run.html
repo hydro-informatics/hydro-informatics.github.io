@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Run Gaia &#8212; Hydro-Informatics</title>
+    <title>Run and Analyze &#8212; Hydro-Informatics</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -499,7 +499,7 @@
      </li>
      <li class="toctree-l3 current active">
       <a class="current reference internal" href="#">
-       Run Gaia
+       Run and Analyze
       </a>
      </li>
     </ul>
@@ -735,9 +735,21 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#run-gaia">
+   Run Gaia
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#post-processing-in-qgis">
    Post-processing in QGIS
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#open-boundary-fluxes">
+     Open Boundary Fluxes
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#calibration-parameters">
@@ -767,8 +779,10 @@
         
               <div>
                 
-  <div class="section" id="run-gaia">
-<span id="gaia-run"></span><h1>Run Gaia<a class="headerlink" href="#run-gaia" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="run-and-analyze">
+<span id="gaia-run"></span><h1>Run and Analyze<a class="headerlink" href="#run-and-analyze" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="run-gaia">
+<h2>Run Gaia<a class="headerlink" href="#run-gaia" title="Permalink to this headline">¶</a></h2>
 <p>Make sure that the simulation folder (e.g., <code class="docutils literal notranslate"><span class="pre">/gaia-tutorial/</span></code>) contains at least the following files (or similar, depending on the simulation case):</p>
 <ul class="simple">
 <li><p>A computational mesh, for example, in the form of <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/qgismesh.slf">qgismesh.slf</a>.</p></li>
@@ -829,9 +843,18 @@
 <li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/r2dsteady-gaia.slf">get r2dunsteady.slf</a>, and</p></li>
 <li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/rGaia-steady2d.txt">get r-control-sections.txt</a>.</p></li>
 </ul>
+</div>
 <div class="section" id="post-processing-in-qgis">
 <h2>Post-processing in QGIS<a class="headerlink" href="#post-processing-in-qgis" title="Permalink to this headline">¶</a></h2>
-<p>PASS</p>
+<div class="section" id="open-boundary-fluxes">
+<h3>Open Boundary Fluxes<a class="headerlink" href="#open-boundary-fluxes" title="Permalink to this headline">¶</a></h3>
+<p>The above-defined <a class="reference internal" href="telemac2d-unsteady.html#tm-control-sections"><span class="std std-ref">control sections</span></a> enable insights into the correct adaptation of the flow at the upstream inflow boundary (<code class="docutils literal notranslate"><span class="pre">prescribed</span> <span class="pre">Q</span></code> through <em>inflows.liq</em>) and the downstream outflow boundary (<code class="docutils literal notranslate"><span class="pre">prescribed</span> <span class="pre">H</span></code> through <em>ratingcurve.txt</em>). <code class="xref std std-numref docutils literal notranslate"><span class="pre">Figure</span> <span class="pre">%s</span></code> shows the modeled flow rates where the <em>Inflow_boundary</em> shows perfect agreement with <em>inflows.liq</em> and the <em>Outflow_boundary</em> reflects the flattening of the discharge curve in the modeled meandering gravel-cobble bed river.</p>
+<div class="figure align-default" id="res-gaia-hydrograph">
+<img alt="result unsteady flow discharge telemac2d hydrodynamic inflow outflow control sections" src="../_images/res-unsteady-hydrograph.png" />
+<p class="caption"><span class="caption-number">Fig. 149 </span><span class="caption-text">The simulated flows over the upstream <em>Inflow_boundary</em> and the downstream <em>Outflow_boundary</em> control sections.</span><a class="headerlink" href="#res-gaia-hydrograph" title="Permalink to this image">¶</a></p>
+</div>
+<p>The peak inflow corresponds to the specified 1130 m<span class="math notranslate nohighlight">\(^3\)</span>/s while the outflow peak discharge is only 889 m<span class="math notranslate nohighlight">\(^3\)</span>/s and the peak takes about 1070 seconds (inflow at <span class="math notranslate nohighlight">\(T=19000\)</span> and outflow at <span class="math notranslate nohighlight">\(T\approx 20070\)</span>) to travel through the section.</p>
+</div>
 </div>
 <div class="section" id="calibration-parameters">
 <span id="bl-calibration"></span><h2>Calibration Parameters<a class="headerlink" href="#calibration-parameters" title="Permalink to this headline">¶</a></h2>

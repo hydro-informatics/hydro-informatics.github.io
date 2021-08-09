@@ -843,10 +843,14 @@ For comparison, try running the Telemac2d simulation with initial dry conditions
  * Click on **Replace ALL**.
  * Save and close **boundaries.cli**.
 
-In the Telemac2d steering (`*.cas`) file comment out the `INITIAL DEPTH` keyword, change the `INITIAL CONDITIONS` keyword to `ZERO DEPTH`, and change the `PRESCRIBED ELEVATIONS` keyword to `374.80565;371.33` (in lieu of `0.;371.33`). So the steering file should involve now:
+In the Telemac2d steering (`*.cas`) file comment out the **INITIAL DEPTH** keyword, change the **INITIAL CONDITIONS** keyword to `ZERO DEPTH`, and change the **PRESCRIBED ELEVATIONS** keyword to `374.80565;371.33` (in lieu of `0.;371.33`). In addition, to use the results of the dry initialization for morphodynamic calculations, bottom elevation (`B`) must be added to the list of graphical printout variables.
+
+So the steering file should involve now:
 
 ```fortran
 / ... header
+VARIABLES FOR GRAPHIC PRINTOUTS : U,V,H,S,Q,F,B
+/ ...
 PRESCRIBED ELEVATIONS : 374.80565;371.33
 / ...
 INITIAL CONDITIONS : 'ZERO DEPTH'

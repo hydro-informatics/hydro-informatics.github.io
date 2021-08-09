@@ -1,6 +1,8 @@
 
 (gaia-run)=
-# Run Gaia
+# Run and Analyze
+
+## Run Gaia
 
 Make sure that the simulation folder (e.g., `/gaia-tutorial/`) contains at least the following files (or similar, depending on the simulation case):
 
@@ -73,7 +75,18 @@ Telemac2d will write the files *r2dsteady-gaia.slf* and *rGaia-steady2d.slf*. Bo
 
 ## Post-processing in QGIS
 
-PASS
+### Open Boundary Fluxes
+
+The above-defined {ref}`control sections <tm-control-sections>` enable insights into the correct adaptation of the flow at the upstream inflow boundary (`prescribed Q` through *inflows.liq*) and the downstream outflow boundary (`prescribed H` through *ratingcurve.txt*). {numref}`Figure %s <res-unsteady-hydrograph>` shows the modeled flow rates where the *Inflow_boundary* shows perfect agreement with *inflows.liq* and the *Outflow_boundary* reflects the flattening of the discharge curve in the modeled meandering gravel-cobble bed river.
+
+```{figure} ../img/telemac/res-unsteady-hydrograph.png
+:alt: result unsteady flow discharge telemac2d hydrodynamic inflow outflow control sections
+:name: res-gaia-hydrograph
+
+The simulated flows over the upstream *Inflow_boundary* and the downstream *Outflow_boundary* control sections.
+```
+
+The peak inflow corresponds to the specified 1130 m$^3$/s while the outflow peak discharge is only 889 m$^3$/s and the peak takes about 1070 seconds (inflow at $T=19000$ and outflow at $T\approx 20070$) to travel through the section.
 
 (bl-calibration)=
 ## Calibration Parameters

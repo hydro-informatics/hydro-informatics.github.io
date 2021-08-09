@@ -618,26 +618,7 @@ Even though the liquid boundaries are already defined in QGIS (see the {ref}`QGI
 
 The upstream (inflow) liquid boundary will constitute an **Open boundary with prescribed Q** (discharge) and the downstream outflow (liquid) boundary will constitute an **Open boundary with prescribed Q and H** (i.e., prescribed {term}`Rating curve` / {term}`Stage-discharge relation`). These types of boundary conditions are commonly used in practice, with the downstream boundary typically chosen to be at a gauging station where a {term}`Stage-discharge relation` ({term}`Rating curve`) has been calibrated with historic data. To assign the two liquid boundary lines, zoom into the downstream and upstream regions indicated in  {numref}`Fig. %s <bk-bc-types>` and create both boundaries as follows:
 
-````{tabbed} Downstream boundary
-* Zoom into the **downstream** region indicated in {numref}`Fig. %s <bk-bc-types>`.
-* Locate the main channel banks corresponding to the breaklines drawn in QGIS ({ref}`see above <tm-bm-breaklines>`) or Blue Kenue ({ref}`see above <bk-draw-ol>`), and which are indicated by the red-dotted lines in {numref}`Fig. %s <bk-boundary-ds>`.
-* **Double-click** on a **node at one bank** of the model outline (no matter what bank), then **hold** the **Shift** key and **double-click** on a **node at the other bank** to highlight the outflow (purple) line (see {numref}`Fig. %s <bk-boundary-ds>`).
-* **Right-click** on the purple outflow line and select **Add Boundary Segment**.
-* In the opening window (**CONLIM Boundary Segment Editor**) make the following settings:
-  * Define **Boundary Name** as `downstream`.
-  * In the **Boundary Code** field select `Open boundary with prescribed Q and H`.
-  * Keep all other defaults and click **OK**.
-* **Save** the **boundaries** object by clicking on the disk <img src="../img/telemac/bk-sym-save.png"> symbol and confirm overwriting `boundaries.bc2` (i.e., click **Yes**).
 
-**Switch to** the **Upstream boundary tab** to define the inflow conditions according to {numref}`Fig. %s <bk-boundary-us>`.
-
-```{figure} ../img/telemac/bk-bm-boundary-ds.png
-:alt: bluekenue boundary conditions conlim create upstream prescribed discharge depth flow
-:name: bk-boundary-ds
-
-The downstream boundary definition. Double-click on a node at one bank, then hold the **Shift** key and double-click on a node at the other bank to highlight the outflow (purple) line. Note that BOTTOM_BC might appear with the name *boundaries* if the object has been saved as `boundaries.bc2`.
-```
-````
 
 ````{tabbed} Upstream boundary
 * Zoom into the **upstream** region indicated in  {numref}`Fig. %s <bk-bc-types>`.
@@ -650,11 +631,32 @@ The downstream boundary definition. Double-click on a node at one bank, then hol
   * Keep all other defaults and click **OK**.
 * **Save** the **boundaries** object by clicking on the disk <img src="../img/telemac/bk-sym-save.png"> symbol and confirm overwriting `boundaries.bc2` (i.e., click **Yes**).
 
+**Switch to** the **Downstream boundary tab** to define the outflow conditions according to {numref}`Fig. %s <bk-boundary-ds>`.
+
 ```{figure} ../img/telemac/bk-bm-boundary-us.png
 :alt: bluekenue boundary conditions conlim create upstream prescribed discharge flow
 :name: bk-boundary-us
 
 The upstream boundary definition. Double-click on a node at one bank, then hold the **Shift** key and double-click on a node at the other bank to highlight the inflow (purple) line. Note that BOTTOM_BC might appear with the name *boundaries* if the object has been saved as `boundaries.bc2`.
+```
+````
+
+````{tabbed} Downstream boundary
+* Zoom into the **downstream** region indicated in {numref}`Fig. %s <bk-bc-types>`.
+* Locate the main channel banks corresponding to the breaklines drawn in QGIS ({ref}`see above <tm-bm-breaklines>`) or Blue Kenue ({ref}`see above <bk-draw-ol>`), and which are indicated by the red-dotted lines in {numref}`Fig. %s <bk-boundary-ds>`.
+* **Double-click** on a **node at one bank** of the model outline (no matter what bank), then **hold** the **Shift** key and **double-click** on a **node at the other bank** to highlight the outflow (purple) line (see {numref}`Fig. %s <bk-boundary-ds>`).
+* **Right-click** on the purple outflow line and select **Add Boundary Segment**.
+* In the opening window (**CONLIM Boundary Segment Editor**) make the following settings:
+  * Define **Boundary Name** as `downstream`.
+  * In the **Boundary Code** field select `Open boundary with prescribed Q and H`.
+  * Keep all other defaults and click **OK**.
+* **Save** the **boundaries** object by clicking on the disk <img src="../img/telemac/bk-sym-save.png"> symbol and confirm overwriting `boundaries.bc2` (i.e., click **Yes**).
+
+```{figure} ../img/telemac/bk-bm-boundary-ds.png
+:alt: bluekenue boundary conditions conlim create upstream prescribed discharge depth flow
+:name: bk-boundary-ds
+
+The downstream boundary definition. Double-click on a node at one bank, then hold the **Shift** key and double-click on a node at the other bank to highlight the outflow (purple) line. Note that BOTTOM_BC might appear with the name *boundaries* if the object has been saved as `boundaries.bc2`.
 ```
 ````
 

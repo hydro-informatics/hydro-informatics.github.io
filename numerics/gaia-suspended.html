@@ -57,7 +57,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Run Gaia" href="gaia-run.html" />
+    <link rel="next" title="Run and Analyze" href="gaia-run.html" />
     <link rel="prev" title="Bedload" href="gaia-bedload.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -499,7 +499,7 @@
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="gaia-run.html">
-       Run Gaia
+       Run and Analyze
       </a>
      </li>
     </ul>
@@ -806,7 +806,7 @@
 <p>Settling velocities <span class="math notranslate nohighlight">\(w_{s}\)</span> for the particles can be defined with the <strong>CLASSES SETTLING VELOCITIES</strong> keyword to calculate the deposition flux <span class="math notranslate nohighlight">\(q_{s,dep}\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eq-gaia-dep">
 <span class="eqno">(14)<a class="headerlink" href="#equation-eq-gaia-dep" title="Permalink to this equation">¶</a></span>\[
-q_{s,dep} = w_s\cdot c_{mud} \cdot \left[1 - \left(\frac{\sqrt{\tau / \rho_w}{u_{cr}}}\right)^{2} \right]
+q_{s,dep} = w_{s} \cdot c_{mud} \cdot \left[1 - \left(\frac{\sqrt{\tau / \rho_{w}}}{u_{cr}}\right)^{2} \right]
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(c_{mud}\)</span> is the concentration of <em>mud</em> in g/l (i.e., g m<span class="math notranslate nohighlight">\(^{-3}\)</span>), <span class="math notranslate nohighlight">\(\tau\)</span> is dimensional bed shear stress (N<span class="math notranslate nohighlight">\(\cdot\)</span>m<span class="math notranslate nohighlight">\(^{-2}\)</span>), and <span class="math notranslate nohighlight">\(u_{cr}\)</span> is the critical shear velocity for mud deposition (m s<span class="math notranslate nohighlight">\(^{-1}\)</span>).</p>
 <p>The settling velocity is computed as <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id153">Dey14</a>]</span>:</p>
@@ -880,10 +880,14 @@ q_{s,e} = \begin{cases} M\cdot \left(\frac{\tau}{\tau_{cr}} - 1\right) &amp; \mb
 </div>
 <div class="section" id="initial-conditions">
 <span id="gaia-ic-sl"></span><h2>Initial Conditions<a class="headerlink" href="#initial-conditions" title="Permalink to this headline">¶</a></h2>
+<div class="warning admonition">
+<p class="admonition-title">Requires TELEMAC v8p2 or more recent</p>
+<p>The setup of initial and boundary conditions as described in this eBook requires TELEMAC v8p2 or later. Earlier versions, such as v8p1, will not recognize the keywords for initial conditions.</p>
+</div>
 <p>Gaia enables a class-wise definition of initial concentrations for suspended load following the order of <a class="reference internal" href="gaia-basics.html#gaia-sed"><span class="std std-ref">sediment class definitions</span></a>. The following list definition sets the initial concentration for the 0.5 mm sediment class (<a class="reference internal" href="gaia-basics.html#gaia-sed"><span class="std std-ref">recall its definition</span></a>) to 0.6 <strong>g/l</strong> (i.e., 0.0006 gram per m<span class="math notranslate nohighlight">\(^3\)</span>) and 0.0 g/l for the 0.02-m and 0.1-m sediment size classes. However, the definition of initial suspended sediment concentrations is overridden in 2d at boundary nodes when the <strong>EQUILIBRIUM INFLOW CONCENTRATION</strong> keyword is set to <code class="docutils literal notranslate"><span class="pre">YES</span></code> (requires that the <a class="reference internal" href="gaia-basics.html#gaia-bc"><span class="std std-ref">tracer boundary</span></a> is set to <code class="docutils literal notranslate"><span class="pre">5</span></code>).</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">continued</span><span class="p">:</span> <span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
 <span class="o">/</span> <span class="p">...</span>
-<span class="n">INITIAL</span> <span class="n">SUSPENDED</span> <span class="n">SEDIMENTS</span> <span class="n">CONCENTRATION</span> <span class="n">VALUES</span> <span class="p">:</span> <span class="mf">0.6D0</span> <span class="p">;</span> <span class="mf">0.D0</span> <span class="p">;</span> <span class="mf">0.D0</span>
+<span class="n">INITIAL</span> <span class="n">SUSPENDED</span> <span class="n">SEDIMENTS</span> <span class="n">CONCENTRATION</span> <span class="n">VALUES</span> <span class="p">:</span> <span class="mf">6.E-04</span><span class="p">;</span><span class="mf">0.</span><span class="p">;</span><span class="mf">0.</span>
 </pre></div>
 </div>
 <p>Read more about the definition of initial conditions in section 2.1.1 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a>.</p>
@@ -893,7 +897,7 @@ q_{s,e} = \begin{cases} M\cdot \left(\frac{\tau}{\tau_{cr}} - 1\right) &amp; \mb
 <p>With the <a class="reference internal" href="gaia-basics.html#gaia-bc"><span class="std std-ref">tracer boundary</span></a> set to <code class="docutils literal notranslate"><span class="pre">5</span></code>, per-sediment class suspended load concentrations can be prescribed at the open liquid boundaries similar to the initial concentrations. Alternatively, the <strong>EQUILIBRIUM INFLOW CONCENTRATION</strong> keyword may be used:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">continued</span><span class="p">:</span> <span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
 <span class="o">/</span> <span class="p">...</span>
-<span class="n">PRESCRIBED</span> <span class="n">SUSPENDED</span> <span class="n">SEDIMENTS</span> <span class="n">CONCENTRATION</span> <span class="n">VALUES</span> <span class="p">:</span> <span class="mf">0.6D0</span> <span class="p">;</span> <span class="mf">0.D0</span> <span class="p">;</span> <span class="mf">0.D0</span>
+<span class="n">PRESCRIBED</span> <span class="n">SUSPENDED</span> <span class="n">SEDIMENTS</span> <span class="n">CONCENTRATION</span> <span class="n">VALUES</span> <span class="p">:</span> <span class="mf">6.E-04</span><span class="p">;</span><span class="mf">0.</span><span class="p">;</span><span class="mf">0.</span>
 <span class="o">/</span> <span class="n">EQUILIBRIUM</span> <span class="n">INFLOW</span> <span class="n">CONCENTRATION</span> <span class="p">:</span> <span class="n">YES</span> <span class="o">/</span> <span class="nb">not </span><span class="n">used</span> <span class="n">in</span>  <span class="n">this</span> <span class="n">tutorial</span>
 </pre></div>
 </div>
@@ -911,16 +915,12 @@ q_{s,e} = \begin{cases} M\cdot \left(\frac{\tau}{\tau_{cr}} - 1\right) &amp; \mb
 <li><p><code class="docutils literal notranslate"><span class="pre">13</span></code> and <code class="docutils literal notranslate"><span class="pre">14</span></code> for the <em>Edge-based N-scheme</em> (NERD), which is similar to <code class="docutils literal notranslate"><span class="pre">3</span></code> and <code class="docutils literal notranslate"><span class="pre">4</span></code>, but better adapted to tidal flats. <strong>Option <code class="docutils literal notranslate"><span class="pre">14</span></code> is used in this tutorial</strong> according to the recommendation in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">15</span></code> for the mass-conservative <em>ERIA scheme</em> that works with tidal flats.</p></li>
 </ul>
-<p>The options <code class="docutils literal notranslate"><span class="pre">4</span></code> and <code class="docutils literal notranslate"><span class="pre">14</span></code> should be defined along with the keyword definition <code class="docutils literal notranslate"><span class="pre">CONTINUITY</span> <span class="pre">CORRECTION</span> <span class="pre">:</span> <span class="pre">YES</span></code>, and enable a correction of vertical convection velocities. To this end, the keyword <strong>CORRECTION ON CONVECTION VELOCITY</strong> can be set to <code class="docutils literal notranslate"><span class="pre">YES</span></code> to avoid an overestimation of suspended load, especially in deep waters.</p>
+<p>The options <code class="docutils literal notranslate"><span class="pre">4</span></code> and <code class="docutils literal notranslate"><span class="pre">14</span></code> can be defined along with the keyword definition <code class="docutils literal notranslate"><span class="pre">CONTINUITY</span> <span class="pre">CORRECTION</span> <span class="pre">:</span> <span class="pre">YES</span></code>, and enable a correction of vertical convection velocities. To this end, the keyword <strong>CORRECTION ON CONVECTION VELOCITY</strong> can be set to <code class="docutils literal notranslate"><span class="pre">YES</span></code> to avoid an overestimation of suspended load, especially in deep waters.</p>
 <p>The <strong>SCHEME OPTION FOR ADVECTION OF SUSPENDED SEDIMENTS</strong> can additionally be defined to either use a  <strong>strong (default of <code class="docutils literal notranslate"><span class="pre">1</span></code>)</strong> or a <strong>weak (<code class="docutils literal notranslate"><span class="pre">2</span></code>)</strong> form for advection. A weak form decreases <a class="reference internal" href="../documentation/glossary.html#term-Diffusion"><span class="xref std std-term">Diffusion</span></a>, is more conservative, and increases computation time (read more in the <a class="reference internal" href="telemac2d-steady.html#tm2d-fe"><span class="std std-ref">Telemac2d steady section</span></a>).</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">continued</span><span class="p">:</span> <span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
 <span class="o">/</span> <span class="p">...</span>
 <span class="n">SCHEME</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">SUSPENDED</span> <span class="n">SEDIMENTS</span> <span class="p">:</span> <span class="mi">14</span>
 <span class="n">CONTINUITY</span> <span class="n">CORRECTION</span> <span class="p">:</span> <span class="n">YES</span> <span class="o">/</span> <span class="k">use </span><span class="n">when</span> <span class="n">SCHEME</span> <span class="k">is </span><span class="mi">4</span> <span class="nb">or </span><span class="mi">14</span>
-
-
-<span class="n">ADVECTION</span><span class="o">-</span><span class="n">DIFFUSION</span> <span class="n">SCHEME</span> <span class="n">WITH</span> <span class="n">SETTLING</span> <span class="n">VELOCITY</span> <span class="p">:</span>
-<span class="n">SOLVER</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">SUSPENSION</span> <span class="p">:</span>
 </pre></div>
 </div>
 <p>Read more about the definition of initial conditions in section 2.1.5 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a>.</p>
@@ -966,7 +966,7 @@ q_{s,e} = \begin{cases} M\cdot \left(\frac{\tau}{\tau_{cr}} - 1\right) &amp; \mb
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="gaia-bedload.html" title="previous page">Bedload</a>
-    <a class='right-next' id="next-link" href="gaia-run.html" title="next page">Run Gaia</a>
+    <a class='right-next' id="next-link" href="gaia-run.html" title="next page">Run and Analyze</a>
 
         </div>
         

@@ -113,6 +113,11 @@ The **INITIAL TIME SET TO ZERO** keyword resets the simulation time to `0`. In a
 / INITIAL DEPTH : 0.005 / use INTEGER for speeding up calculations
 ```
 
+```{admonition} Bottom elevation must be available in the hotstart geometry (SLF)
+:class: warning
+The bottom elevation must be printed out in the results file of the simulation used for the hotstart. To this end, make sure that the list of values for the **VARIABLES FOR GRAPHIC PRINTOUTS** keyword contains `B` as indicated in the {ref}`explanations for the setup of the dry-initialized model <tm2d-dry>`.
+```
+
 The dry-initialized steering file also prescribes flowrates and elevations, that need to be **kept in steady2d-gaia.cas**. Therefore, make sure that the flowrate and elevation prescription keywords are activated:
 
 ```fortran
@@ -122,3 +127,29 @@ The dry-initialized steering file also prescribes flowrates and elevations, that
 PRESCRIBED FLOWRATES  : 35.;35.
 PRESCRIBED ELEVATIONS : 374.805626;371.33
 ```
+
+### Control Sections
+
+Control sections are sequences of node numbers (or node coordinates) at which TELEMAC sums up fluxes, for instance, to verify inflow and outflow mass balances. The unsteady flow tutorial provides detailed instructions for {ref}`defining control sections <tm-control-sections>` and this tutorial re-uses the control sections file from the unsteady flow tutorial (**[download control-sections.txt](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/control-sections.txt)**).
+
+````{dropdown} Expand to view the file *control-sections.txt*
+```
+# control sections steady2d
+2 -1
+Inflow_boundary
+144 32
+Outflow_boundary
+34 5
+```
+````
+
+To use the control sections for the Gaia simulation add the following to the **hydrodynamics** steering file:
+
+```
+/ steady2d-gaia.cas
+/ ...
+SECTIONS INPUT FILE :  control-sections.txt
+SECTIONS OUTPUT FILE : r-control-flows.txt
+```
+
+Thus, re-running the simulation will write the fluxes across the two define control sections to a file called *r-control-flows.txt*.

@@ -234,6 +234,7 @@ Most examples of the TELEMAC installation (`/telemac/v8pX/examples/gaia/`) use a
 
 The above explanations refer to the geometric assignment of boundary types in the `*.cli` files. In addition, sediment fluxes across these open boundaries need to be defined in the Gaia steering file. The prescription (and initialization) of sediment fluxes differs for bedload and suspended load and this is why the implementation of sediment flux prescriptions is defined in the corresponding sections (i.e., {ref}`boundaries for bedload <gaia-bc-bl>` and {ref}`boundaries for suspended load <gaia-bc-sl>`),
 
+
 ## Riverbed Composition
 
 (gaia-sed)=
