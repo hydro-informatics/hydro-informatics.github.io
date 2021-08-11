@@ -812,8 +812,8 @@
 </div>
 <div class="admonition-speed-up admonition">
 <p class="admonition-title">Speed up</p>
-<p>With <a class="reference internal" href="../get-started/install-telemac.html#mpi"><span class="std std-ref">parallelism</span></a> enabled (e.g., in the <a class="reference internal" href="../get-started/vm.html#hyfo-vm"><span class="std std-ref">Mint Hyfo Virtual Machine</span></a>), speed up the calculation by using multiple CPUs through the <code class="docutils literal notranslate"><span class="pre">--ncsize=N</span></code> flag. For instance, the following line runs the unsteady simulation on <code class="docutils literal notranslate"><span class="pre">N=2</span></code> CPUs:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">telemac2d</span><span class="o">.</span><span class="n">py</span> <span class="n">steady2d</span><span class="o">-</span><span class="n">gaia</span><span class="o">.</span><span class="n">cas</span> <span class="o">--</span><span class="n">ncsize</span><span class="o">=</span><span class="mi">2</span>
+<p>With <a class="reference internal" href="../get-started/install-telemac.html#mpi"><span class="std std-ref">parallelism</span></a> enabled (e.g., in the <a class="reference internal" href="../get-started/vm.html#hyfo-vm"><span class="std std-ref">Mint Hyfo Virtual Machine</span></a>), speed up the calculation by using multiple CPUs through the <code class="docutils literal notranslate"><span class="pre">--ncsize=N</span></code> flag. For instance, the following line runs the unsteady simulation on <code class="docutils literal notranslate"><span class="pre">N=4</span></code> CPUs:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">telemac2d</span><span class="o">.</span><span class="n">py</span> <span class="n">steady2d</span><span class="o">-</span><span class="n">gaia</span><span class="o">.</span><span class="n">cas</span> <span class="o">--</span><span class="n">ncsize</span><span class="o">=</span><span class="mi">4</span>
 </pre></div>
 </div>
 </div>
@@ -826,6 +826,7 @@
 <span class="n">CORRECT</span> <span class="k">END </span><span class="n">OF</span> <span class="n">RUN</span>
 
 <span class="n">ELAPSE</span> <span class="nb">TIME</span> <span class="p">:</span>
+                             <span class="mi">1</span>  <span class="n">HOURS</span>
                             <span class="mi">14</span>  <span class="n">MINUTES</span>
                             <span class="mi">25</span>  <span class="n">SECONDS</span>
 <span class="p">...</span> <span class="n">merging</span> <span class="n">separated</span> <span class="k">result </span><span class="n">files</span>
@@ -848,7 +849,7 @@
 <h2>Post-processing in QGIS<a class="headerlink" href="#post-processing-in-qgis" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="open-boundary-fluxes">
 <h3>Open Boundary Fluxes<a class="headerlink" href="#open-boundary-fluxes" title="Permalink to this headline">¶</a></h3>
-<p>The above-defined <a class="reference internal" href="telemac2d-unsteady.html#tm-control-sections"><span class="std std-ref">control sections</span></a> enable insights into the correct adaptation of the flow at the upstream inflow boundary (<code class="docutils literal notranslate"><span class="pre">prescribed</span> <span class="pre">Q</span></code> through <em>inflows.liq</em>) and the downstream outflow boundary (<code class="docutils literal notranslate"><span class="pre">prescribed</span> <span class="pre">H</span></code> through <em>ratingcurve.txt</em>). <code class="xref std std-numref docutils literal notranslate"><span class="pre">Figure</span> <span class="pre">%s</span></code> shows the modeled flow rates where the <em>Inflow_boundary</em> shows perfect agreement with <em>inflows.liq</em> and the <em>Outflow_boundary</em> reflects the flattening of the discharge curve in the modeled meandering gravel-cobble bed river.</p>
+<p>The above-defined <a class="reference internal" href="telemac2d-unsteady.html#tm-control-sections"><span class="std std-ref">control sections</span></a> enable insights into the correct adaptation of the flow at the upstream inflow boundary (<code class="docutils literal notranslate"><span class="pre">prescribed</span> <span class="pre">Q</span></code> through <em>inflows.liq</em>) and the downstream outflow boundary (<code class="docutils literal notranslate"><span class="pre">prescribed</span> <span class="pre">H</span></code> through <em>ratingcurve.txt</em>). <a class="reference internal" href="#res-gaia-hydrograph"><span class="std std-numref">Figure 149</span></a> shows the modeled flow rates where the <em>Inflow_boundary</em> shows perfect agreement with <em>inflows.liq</em> and the <em>Outflow_boundary</em> reflects the flattening of the discharge curve in the modeled meandering gravel-cobble bed river.</p>
 <div class="figure align-default" id="res-gaia-hydrograph">
 <img alt="result unsteady flow discharge telemac2d hydrodynamic inflow outflow control sections" src="../_images/res-unsteady-hydrograph.png" />
 <p class="caption"><span class="caption-number">Fig. 149 </span><span class="caption-text">The simulated flows over the upstream <em>Inflow_boundary</em> and the downstream <em>Outflow_boundary</em> control sections.</span><a class="headerlink" href="#res-gaia-hydrograph" title="Permalink to this image">¶</a></p>

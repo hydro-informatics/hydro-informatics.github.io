@@ -706,7 +706,7 @@ NUMBER OF HORIZONTAL LEVELS : 5
 /			NUMERICAL PARAMETERS
 /------------------------------------------------------------------/
 /
-/ CONVECTION-DIFFUSION
+/ ADVECTION-DIFFUSION
 /------------------------------------------------------------------
 SCHEME FOR ADVECTION OF VELOCITIES : 5
 SCHEME FOR ADVECTION OF K-EPSILON : 5

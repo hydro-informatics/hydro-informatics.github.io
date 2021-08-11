@@ -54,6 +54,10 @@ So what option to choose? To leverage the full capacities of TELEMAC, use both: 
 (modular-install)=
 ## Stand-alone Installation of TELEMAC
 
+```{admonition} TELEMAC Docker image
+The Austrian engineering office *Flussplan* provides a Docker container of TELEMAC v8 on their [docker-telemac GitHub repository](https://github.com/flussplan/docker-telemac). Note that a Docker container represents an easy-to-install virtual environment that leverages cross-platform compatibility, but affects computational performance. If you have the proprietary Docker software installed and computational performance is not the primary concern for your models, *Flussplan*'s Docker container might be a good choice. For instance, purely hydrodynamic models with small numbers of grid nodes and without additional TELEMAC module implications will efficiently run in the Docker container. 
+```
+
 ### Prerequisites
 
 Working with TELEMAC requires some software for downloading source files, compiling, and running the program. The mandatory software prerequisites for installing TELEMAC on [Debian Linux](https://www.debian.org/) are:

@@ -36,7 +36,7 @@ $$
 where:
 
 * $u$ is the cross-section-averaged flow velocity in (m/s)
-* $k_{st}$ is the *Strickler* coefficient in *fictional* (m^{1/3}/s) corresponding to the inverse of [*Manning's*](http://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm) $n_m$.
+* $k_{st}$ is the *Strickler* coefficient in *fictional* (m$^{1/3}$/s) corresponding to the inverse of [*Manning's*](http://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm) $n_m$.
 	- $k_{st}$ $\approx$ 20 ($n_m \approx$ 0.05) for rough, complex, and near-natural rivers
 	- $k_{st}$ $\approx$ 90 ($n_m \approx$ 0.011) for smooth, concrete-lined channels
 	- $k_{st}$ $\approx$ 26/$D_{90}^{1/6}$ (approximation based on the grain size $D_{90}$, where 90% of the surface sediment grains are smaller, according to [Meyer-Peter and Müller 1948](http://resolver.tudelft.nl/uuid:4fda9b61-be28-4703-ab06-43cdc2a21bd7)

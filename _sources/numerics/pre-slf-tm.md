@@ -143,7 +143,7 @@ This section resembles the instructions of the {ref}`BASEMENT pre-processing <ma
 :alt: qgis telemac basemesh point line shapefiles
 :name: tm-shapefiles
 
-The breaklines, liquid boundaries, and region points shapefile to draw for creating a quality mesh with the BASEmesh plugin.
+The breaklines, liquid boundaries, and region points shapefile to draw for creating a quality mesh with the BASEmesh plugin (background map: {cite:t}`googlesat` satellite imagery).
 ```
 
 (tm-bm-breaklines)=

@@ -780,7 +780,7 @@ The successful raster creation results in a new layer called **r2dsteady_raster_
 :alt: qgis flow velocity vitesse results slf PostTelemac raster geotiff tif
 :name: exported-tif
 
-The exported flow velocity (VITESSE) GeoTIFF raster in QGIS with google satellite imagery {cite:p}`googlesat` in the background.
+The exported flow velocity (VITESSE) GeoTIFF raster in QGIS (background map: {cite:t}`googlesat` satellite imagery).
 ```
 
 ```{admonition} How reasonable are the results?
@@ -814,7 +814,7 @@ To export flowrates along any line or at any node of the mesh, make sure that `Q
 :alt: qgis flow rate discharge control section Post Telemac convergence
 :name: draw-flow-controls
 
-Draw polylines along mesh nodes and export associated flows (Copy to clipboard).
+Draw polylines along mesh nodes and export associated flows (Copy to clipboard; background map: {cite:t}`googlesat` satellite imagery).
 ```
 
 The diagram in {numref}`Fig. %s <convergence-diagram-tm2d>` plots the two columns of flows at the upstream and downstream open boundaries over time for the simulation setup in this tutorial. The diagram suggests that the model reaches stability after the 55th output listing (simulation time $t \leq 5500$). Thus, the simulation time could be limited to $t = 6000$, but a simulation time of $t = 5000$ would be too short.

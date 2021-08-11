@@ -14,7 +14,6 @@ Make sure that the simulation folder (e.g., `/gaia-tutorial/`) contains at least
 * A Gaia steering file, such as [gaia-morphodynamics.cas](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/gaia-morphodynamics.cas)e.
 
 With all these files available, open *Terminal*, go to the TELEMAC configuration folder (e.g., `~/telemac/v8p2/configs/`), and launch the environment (e.g., `pysource.openmpi.sh` - use the same as for compiling TELEMAC).
-
 ```
 cd ~/telemac/v8p2/configs
 source pysource.openmpi.sh
@@ -39,10 +38,10 @@ telemac2d.py steady2d-gaia.cas
 ```
 
 ````{admonition} Speed up
-With {ref}`parallelism <mpi>` enabled (e.g., in the {ref}`Mint Hyfo Virtual Machine <hyfo-vm>`), speed up the calculation by using multiple CPUs through the `--ncsize=N` flag. For instance, the following line runs the unsteady simulation on `N=2` CPUs:
+With {ref}`parallelism <mpi>` enabled (e.g., in the {ref}`Mint Hyfo Virtual Machine <hyfo-vm>`), speed up the calculation by using multiple CPUs through the `--ncsize=N` flag. For instance, the following line runs the unsteady simulation on `N=4` CPUs:
 
 ```
-telemac2d.py steady2d-gaia.cas --ncsize=2
+telemac2d.py steady2d-gaia.cas --ncsize=4
 ```
 ````
 A successful computation should end with the following lines (or similar) in *Terminal*:
@@ -56,6 +55,7 @@ A successful computation should end with the following lines (or similar) in *Te
 CORRECT END OF RUN
 
 ELAPSE TIME :
+                             1  HOURS
                             14  MINUTES
                             25  SECONDS
 ... merging separated result files
@@ -77,7 +77,7 @@ Telemac2d will write the files *r2dsteady-gaia.slf* and *rGaia-steady2d.slf*. Bo
 
 ### Open Boundary Fluxes
 
-The above-defined {ref}`control sections <tm-control-sections>` enable insights into the correct adaptation of the flow at the upstream inflow boundary (`prescribed Q` through *inflows.liq*) and the downstream outflow boundary (`prescribed H` through *ratingcurve.txt*). {numref}`Figure %s <res-unsteady-hydrograph>` shows the modeled flow rates where the *Inflow_boundary* shows perfect agreement with *inflows.liq* and the *Outflow_boundary* reflects the flattening of the discharge curve in the modeled meandering gravel-cobble bed river.
+The above-defined {ref}`control sections <tm-control-sections>` enable insights into the correct adaptation of the flow at the upstream inflow boundary (`prescribed Q` through *inflows.liq*) and the downstream outflow boundary (`prescribed H` through *ratingcurve.txt*). {numref}`Figure %s <res-gaia-hydrograph>` shows the modeled flow rates where the *Inflow_boundary* shows perfect agreement with *inflows.liq* and the *Outflow_boundary* reflects the flattening of the discharge curve in the modeled meandering gravel-cobble bed river.
 
 ```{figure} ../img/telemac/res-unsteady-hydrograph.png
 :alt: result unsteady flow discharge telemac2d hydrodynamic inflow outflow control sections

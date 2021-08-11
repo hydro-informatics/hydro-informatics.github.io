@@ -379,7 +379,7 @@ With the {ref}`LIQBOR flag <gaia-bc>` set to `5`, per-sediment class bedload loa
 ```fortran
 / continued: gaia-morphodynamics.cas
 / ...
-PRESCRIBED SOLID DISCHARGES : 0.0;10.0;10.0
+PRESCRIBED SOLID DISCHARGES : 10.;0.
 ```
 
 ```{admonition} Porosity and PRESCRIBED SOLID DISCHARGES
@@ -399,3 +399,4 @@ Examples for the implementation of bedload come along with the TELEMAC installat
 * Model of an armored (stratified) riverbed: **guenter-t2d/**
 * Coastal sand (bedload) transport coupled with the wave propagation module Tomawac: **littoral-t2d-tom/**
 * Coupling with the dredging module Nestor: **nestor_dig_test-t2d/**
+* Finite Volume solver featuring time-dependent solid discharge in a `*.liq`: **flume_bc-t2d/**

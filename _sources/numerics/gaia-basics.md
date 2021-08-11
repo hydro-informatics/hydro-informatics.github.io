@@ -167,18 +167,28 @@ The [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/gaia2
 ````
 
 The boundary type variables (no. 1, 2, 3, and 8) listed in {numref}`Tab. %s <tab-gaia-bc>` can take the integer values `2` (closed wall), `4` (free Neumann-type boundary), `5` (Dirichlet-type prescribed boundary), or `6` (Dirichlet-type velocity).
+The importance for a Gaia simulation is that the eighth entry (**LIEBOR**) is set to `5` or `4` for free prescriptions but **not to `2`**, which would correspond to closed wall for tracers (suspended load).
 
 To define sediment transport boundaries for Gaia, **create a copy of [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli)** and call it **boundaries-gaia.cli**. In the context of Gaia, the hydrodynamic boundary types can be kept though their flags are differently interpreted according to the list in {numref}`Tab. %s <tab-gaia-bc>`.
-
-The importance for a Gaia simulation is that the eighth entry (**LIEBOR**) is set to `5` (or `4` for free prescriptions) and **not to `2`**, which would correspond to closed wall for tracers (suspended load). To verify the correct setup of the boundary conditions files, open **boundaries.cli** and **boundaries-gaia.cli**  with a {ref}`text editor <npp>` and check on the eighth entry (cf. {numref}`Tab. %s <tab-gaia-bc>`) of all open liquid boundary lines. Counting line entries sounds like a tedious task, but is fairly straightforward in practice. The **boundaries-gaia.cli** file is organized as follows:
+To verify the correct setup of the boundary conditions files, open **boundaries.cli** and **boundaries-gaia.cli**  with a {ref}`text editor <npp>` and check on the liquid boundary definitions. Both the **boundaries.cli** and the **boundaries-gaia.cli** files are similarly organized according to {numref}`Tab. %s <tab-gaia-bc>`.
 
 * The first three entries (cf. {numref}`Tab. %s <tab-gaia-bc>`) of the upstream and downstream boundaries are:
   * **LIHBOR** for water depth,
-  * **LIQBOR** for sediment transport, and **LIVBOR** (flow velocity). These three values were set to `5` in the corresponding hydrodynamics boundary file ({ref}`dry-initialized steady2d simulation<tm2d-dry>`) and can be kept to use **prescribed H and Q** upstream and downstream boundaries.
+  * **LIQBOR** for sediment transport, and **LIVBOR** (flow velocity). These three values were set to `5` in the corresponding hydrodynamics boundary file ({ref}`dry-initialized steady2d simulation<tm2d-dry>`). Make sure to keep:
+    - the **prescribed H and Q** (`5 5 5`) definitions at the upstream boundary, and
+    - the modified free-depth (i.e., **prescribed Q only** with `4 5 5`) downstream boundary.
+
+```{admonition} Why not prescribe depth downstream?
+The riverbed elevation is expected to change in a morphodynamic simulation. Thus, with a movable bed, we are interested in how water depth may change (e.g., important in the case of floods) and prescribing water depth would fail this objective.
+```
+
 * The following four entries (4-7 in {numref}`Tab. %s <tab-gaia-bc>`) are `0.000` (for Q2BOR, UBOR, VBOR, and AUBOR) and would prescribe (assign) float values directly in the boundary file (deactivated through the `0.000` setting).
 * The eighth entry is the **LIEBOR** type, which must bet set to `5` for enabling tracers (i.e., suspended load) and may not be `2` (closed wall). To enable Gaia from any existing purely hydrodynamic Telemac2d/3d simulation, make the following modifications (already done in *boundaries.cli*/*boundaries-gaia.cli* for this tutorial):
-  * Open the upstream and downstream boundary for sediment transport by **setting LIEBOR to `5`** (prescribed equilibrium flowrate), which also requires that EBOR is set to `0.0` (no change of bottom elevation).
-  * Alternatively, a value of `4` can be assigned for prescribing solid flowrates either in the steering file or with a liquid boundaries file as described in the {ref}`unsteady (quasi-steady) tutorial <tm2d-liq-file>`.
+  * Open the upstream and downstream boundary for sediment transport by **setting**
+    - the **upstream LIEBOR to `5`** (prescribed -equilibrium- flowrate), which also requires that EBOR is set to `0.0` (no change of bottom elevation), and
+    - **downstream LIEBOR to `4`** (free flowrate).
+
+The prescription of time-dependent solid flowrates with a liquid boundaries file can be achieved with `LIEBOR=5` and following the descriptions in the {ref}`unsteady (quasi-steady) tutorial <tm2d-liq-file>`.
 
 The boxes below indicate how the required adaptations in the `boundaries-gaia.cli` file where the importance lies in the second entry (**LIQBOR**) being set to `5` and the eighth entry (**LIEBOR**) being set to `5`.
 
@@ -210,29 +220,29 @@ The boxes below indicate how the required adaptations in the `boundaries-gaia.cl
 ````{tabbed} Downstream boundary
 ```
 [go to line 312]
-5 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000          34         312   # downstream (34 - 5)
-5 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000         113         313   # downstream (34 - 5)
-5 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000         765         314   # downstream (34 - 5)
-5 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000         116         315   # downstream (34 - 5)
-5 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000       11242         316   # downstream (34 - 5)
-5 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000          81         317   # downstream (34 - 5)
-5 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000         769         318   # downstream (34 - 5)
-5 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000          85         319   # downstream (34 - 5)
-5 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000          97         320   # downstream (34 - 5)
-5 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000        5293         321   # downstream (34 - 5)
-5 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000         101         322   # downstream (34 - 5)
-5 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000        5294         323   # downstream (34 - 5)
-5 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000           5         324   # downstream (34 - 5)
+4 5 5  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000          34         312   # downstream (34 - 5)
+4 5 5  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000         113         313   # downstream (34 - 5)
+4 5 5  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000         765         314   # downstream (34 - 5)
+4 5 5  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000         116         315   # downstream (34 - 5)
+4 5 5  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000       11242         316   # downstream (34 - 5)
+4 5 5  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000          81         317   # downstream (34 - 5)
+4 5 5  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000         769         318   # downstream (34 - 5)
+4 5 5  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000          85         319   # downstream (34 - 5)
+4 5 5  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000          97         320   # downstream (34 - 5)
+4 5 5  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000        5293         321   # downstream (34 - 5)
+4 5 5  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000         101         322   # downstream (34 - 5)
+4 5 5  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000        5294         323   # downstream (34 - 5)
+4 5 5  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000           5         324   # downstream (34 - 5)
 ```
 ````
 
-Recall that the first and second values in the list of prescribed solid discharges refer to the first (beginning at line 1) and second open boundary listed in the `boundaries-gaia.cas` (i.e., upstream and downstream in that order).
+Recall that the first and second values in the list of prescribed solid discharges refer to the first (beginning at line 1) and second open boundary listed in the `boundaries-gaia.cli`, respectively (i.e., upstream and downstream in that order).
 
 ```{admonition} Why two boundary condition files?
-Most examples of the TELEMAC installation (`/telemac/v8pX/examples/gaia/`) use a single boundary conditions file, which is works fine because the numerical values are identical. However, the flags of a Gaia `*.cli` and a Telemac2d/3d `*.cli` file are not the same and for this reason, this eBook features the usage of two identical boundary condition files.
+Most examples of the TELEMAC installation (`/telemac/v8pX/examples/gaia/`) use a single boundary conditions file, which works fine because the numerical values are identical. However, the flags of a Gaia `*.cli` and a Telemac2d/3d `*.cli` file are not the same and for this reason, this eBook features the usage of two identical boundary condition files. In addition, to prescribe bedload fluxes in the `*.cli` file, there must be the extra Gaia boundary file as above described.
 ```
 
-The above explanations refer to the geometric assignment of boundary types in the `*.cli` files. In addition, sediment fluxes across these open boundaries need to be defined in the Gaia steering file. The prescription (and initialization) of sediment fluxes differs for bedload and suspended load and this is why the implementation of sediment flux prescriptions is defined in the corresponding sections (i.e., {ref}`boundaries for bedload <gaia-bc-bl>` and {ref}`boundaries for suspended load <gaia-bc-sl>`),
+This section only explains the **geometric** assignment of boundary types in the `*.cli` files. In addition, (sediment) **fluxes** across these open boundaries are to be **defined in the (Gaia) steering file**. The prescription (and initialization) of sediment fluxes differs for bedload and suspended load and this is why the implementation of sediment flux prescriptions is defined in the corresponding sections (i.e., {ref}`boundaries for bedload <gaia-bc-bl>` and {ref}`boundaries for suspended load <gaia-bc-sl>`),
 
 
 ## Riverbed Composition
