@@ -76,20 +76,20 @@ The sediment transport formulae for suspended load modeling can be defined with 
 
 * `1` for the {cite:t}`zyserman1994` formula:
   - uses a skin friction correction (cf. {ref}`bedload corrections <c-friction>`) for the {term}`Shields parameter`.
-  - is defined in `/telemac/v8pX/sources/gaia/`**[suspension_fredsoe_gaia.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/suspension__fredsoe__gaia_8f.html)**
+  - is defined in `/telemac/v8p2/sources/gaia/`**[suspension_fredsoe_gaia.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/suspension__fredsoe__gaia_8f.html)**
 * `2` for the {cite:t}`bijker1992` formula:
   - calculates suspended load concentration as a function of bedload and reference skin-friction elevation.
   - requires that {ref}`bedload calculation <gaia-bl>` is activated.
-  - is defined in `/telemac/v8pX/sources/gaia/`**[suspension_bijker_gaia.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/suspension__bijker__gaia_8f.html)**
+  - is defined in `/telemac/v8p2/sources/gaia/`**[suspension_bijker_gaia.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/suspension__bijker__gaia_8f.html)**
 * `3` for the {cite:t}`van_rijn_suspension_1984` formula:
   - counterpart of the {ref}`gaia-rijn` formula for bedload.
   - uses a skin friction correction (cf. {ref}`bedload corrections <c-friction>`) for the {term}`Shields parameter`.
   - calculates reference skin-friction elevation as a function of roughness length (cf. Equation {eq}`eq-cf-skin` in the bedload section).
-  - is defined in `/telemac/v8pX/sources/gaia/`**[suspension_vanrijn_gaia.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/suspension__vanrijn__gaia_8f.html)**
+  - is defined in `/telemac/v8p2/sources/gaia/`**[suspension_vanrijn_gaia.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/suspension__vanrijn__gaia_8f.html)**
 * `4` for the {cite:t}`soulsby1997`-{cite:t}`rijn2007` formula:
   - uses an orbital velocity of waves (i.e., suggested application: coastal/marine regions).
   - read more about suspended load and waves in section 5.1 of the {{ gaia }}.
-  - is defined in `/telemac/v8pX/sources/gaia/`**[suspension_sandflow_gaia.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/suspension__sandflow__gaia_8f.html)**
+  - is defined in `/telemac/v8p2/sources/gaia/`**[suspension_sandflow_gaia.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/suspension__sandflow__gaia_8f.html)**
 
 
 (gaia-ic-sl)=

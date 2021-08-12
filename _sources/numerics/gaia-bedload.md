@@ -15,10 +15,10 @@ For a better reading experience of this section, the {ref}`glossary` helps with 
 The calculation of {term}`Bedload` transport requires expert knowledge about the modeled ecosystem for judging whether the system is sediment supply-limited or transport capacity-limited {cite:p}`church_morphodynamics_2015`.
 
 Sediment supply-limited rivers
-: A sediment supply-limited river is characterized by clearly visible incision trends indicating that the river's runoff could potentially transport more sediment than is available in the river. Sediment-supply limited river sections typically occur downstream of dams, which represent an unsurmountable barrier for sediment. Thus, in a supply-limited river, the **flow competence** is insufficient to mobilize a typically coarse riverbed.
+: A sediment supply-limited river is characterized by clearly visible incision trends indicating that the river's runoff could potentially transport more sediment than is available in the river. Sediment-supply limited river sections typically occur downstream of dams, which represent an unsurmountable barrier for sediment. Thus, in a supply-limited river, the **flow competence** (hydrodynamic force or **transport capacity**) is insufficient to mobilize a typically coarse riverbed, but it is sufficient for transporting external sediment supply.
 
 Transport capacity-limited (alluvial) rivers
-: A transport capacity-limited river is characterized by sediment abundance where the river's runoff is too small to transport all available sediment during a flood. Sediment accumulations (i.e., the alluvium) are present and the channel has the tendency to braiding into {term}`anabranches <Anabranch>`. Thus, the **transport capacity** is insufficient to mobilize the entire amount of available sediment.
+: A transport capacity-limited river is characterized by sediment abundance where the river's runoff is too small to transport all available sediment during a flood. Sediment accumulations (i.e., the alluvium) are present and the channel has the tendency to braiding into {term}`anabranches <Anabranch>`. Thus, the *flow competence** (or **transport capacity**) is insufficient to transport the entire amount of available sediment (external supply and riverbed).
 
 ```{admonition} Limitation types vary in space and in time
 :class: important
@@ -44,7 +44,7 @@ The Doubs in the Franche-Comté (France) during a small flood. The sediment supp
 :name: krimml-2010
 :class: with-shadow
 
-The Krimmler Ache in Austria during a small flood event. Even though the watershed has a high {term}`Sediment yield`, the transport capacity of the water in this river section is so high, that the riverbed only consists of large boulders. Thus, the river section can be characterized as naturally sediment supply-limited (picture: Sebastian Schwindt 2010).
+The Krimmler Ache in Austria during a small flood event. Even though the watershed has a high {term}`Sediment yield`, the transport capacity of the water in this river section is so high that the riverbed predominantly consists of large boulders. Thus, the river section can be characterized as naturally sediment supply-limited (picture: Sebastian Schwindt 2010).
 ```
 ````
 
@@ -54,42 +54,41 @@ The Krimmler Ache in Austria during a small flood event. Even though the watersh
 :alt: alluvial channel jenbach sediment supply transport limited
 :name: jenbach-2020
 
-The Jenbach in the Bavarian Alps (Germany) after an intense natural sediment supply in an upstream reach in the form of a landslide. Thus, the river section can be characterized as transport capacity-limited (picture: Sebastian Schwindt 2020).
+The Jenbach in the Bavarian Alps (Germany) after an intense natural sediment supply in an upstream reach in the form of a landslide. The river section can be characterized as transport capacity-limited (picture: Sebastian Schwindt 2020).
 ```
 ````
 
 **Why is the differentiation between sediment supply and transport capacity-limited rivers important for numerical modeling?**
 
-Gaia provides different formulae for calculating bedload, which are mostly either derived from lab experiments with infinite sediment supply (e.g., the {cite:t}`meyer-peter_formulas_1948` formula and its derivates, see {ref}`below <gaia-mpm>`) or from field measurements in partially transport capacity-limited rivers (e.g., {cite:t}`wilcock_critical_1993`). Formulae that account for limited sediment supply often involve a correction factor for the {term}`Shields parameter`.
-
+Gaia provides different formulae for calculating bedload transport, which are partially either derived from lab experiments with infinite sediment supply (e.g., the {cite:t}`meyer-peter_formulas_1948` formula and its derivates, see {ref}`below <gaia-mpm>`) or from field measurements in partially transport capacity-limited rivers (e.g., {cite:t}`wilcock_critical_1993`). Formulae that account for limited sediment supply often involve a correction factor for the {term}`Shields parameter`.
 
 ## Formulae and Parameters
 
-{term}`Bedload` is typically designated with $q_b$ (in kg$\cdot$s$^{-1}\cdot$m$^{-1}$) and accounts for particulate transport in the form of the displacement of rolling, sliding, and/or jumping coarse particles. In river hydraulics, the so-called {term}`Dimensionless bed shear stress` or also referred to as {term}`Shields parameter` {cite:p}`shields_anwendung_1936` is often used as the threshold value for the mobilization of sediment from the riverbed. TELEMAC and Gaia output a dimensionless expression of bedload transport according to {cite:t}`einstein_bed-load_1950`:
+{term}`Bedload` is typically designated with $q_b$ (in kg$\cdot$s$^{-1}\cdot$m$^{-1}$) and accounts for particulate transport in the form of the displacement of rolling, sliding, and/or jumping coarse particles. In river hydraulics, the so-called {term}`Dimensionless bed shear stress`, also referred to as {term}`Shields parameter` {cite:p}`shields_anwendung_1936`, is often used as threshold value for the mobilization of sediment from the riverbed. TELEMAC and Gaia build on a dimensionless expression of bedload transport according to {cite:t}`einstein_bed-load_1950`:
 
 $$
 \Phi_b = \frac{q_b}{\rho_{w} \sqrt{(s - 1) g D^{3}_{pq}}}
 $$ (eq-phi-gaia)
 
-where $\rho_{w}$ is the density of water; $s$ is the ratio of sediment grain and water density (typically 2.68) {cite:p}`schwindt_hydro-morphological_2017`; $g$ is gravitational acceleration; and $D_{pq}$ is the characteristic grain diameter of the sediment class (cf. {ref}`gaia-sed`). Note that the dimensionless expression $\Phi$ and the dimensional expression $q_b$ represent unit bedload (i.e., bedload normalized by a unit of width). In Gaia, the unit of width corresponds to a side of a numerical mesh cell over which the mass fluxes are calculated.
+where $\rho_{w}$ is the density of water; $s$ is the ratio of sediment grain and water density (typically 2.68) {cite:p}`schwindt_hydro-morphological_2017`; $g$ is gravitational acceleration; and $D_{pq}$ is the characteristic grain diameter of the sediment class (cf. {ref}`gaia-sed`). Note that the dimensionless expression $\Phi$ and the dimensional expression $q_{b}$ represent unit bedload (i.e., bedload normalized by a unit of width). **Gaia outputs are dimensional and correspond to $q_{b}$** (recall the **VARIABLES FOR GRAPHIC PRINTOUTS** definitions in the {ref}`General Parameters section <gaia-gen>`) where the unit of width corresponds to the edge length of a numerical mesh cell over which the mass fluxes are calculated.
 
-Equation {eq}`eq-phi-gaia` expresses only the dimensional conversion for bedload transport (i.e., the way how dimensions are removed or added to sediment transport). In fact, this is only the first step to solve the other side of a bedload equation by means of a (semi-) empirical formula. To calculate $\Phi_b$, Gaia currently provides a set of (semi-) empirical formulae, which can be modified with user Fortran files and defined in the Gaia steering file with the **BED-LOAD TRANSPORT FORMULA FOR ALL SANDS** `integer` keyword. {numref}`Table %s <tab-gaia-bl-formulae>` lists possible integers for the keyword for currently available bedload transport formulae, including references to original publications, formula application ranges, and the names of the Fortran files for modifications.
+Equation {eq}`eq-phi-gaia` expresses only the dimensional conversion for bedload transport (i.e., the way how dimensions are removed or added to sediment transport). In fact, this is only the first step to solve the other side of a bedload equation by means of a (semi-) empirical formula. To calculate $\Phi_{b}$, Gaia provides a set of (semi-) empirical formulae, which can be modified with user Fortran files and defined in the Gaia steering file with the **BED-LOAD TRANSPORT FORMULA FOR ALL SANDS** `integer` keyword. {numref}`Table %s <tab-gaia-bl-formulae>` lists possible integers for the keyword to define a bedload transport formulae, including references to original publications, formula application ranges, and the names of the Fortran source files for modifications.
 
-```{csv-table} *Bedload transport formulae implemented in Gaia with application limits with regards to the grain diameter $D$, and **cross section-averaged** Froude number $Fr$, slope $S$, water depth $h$, and flow velocity $u$. The Fortran files live in TELEMAC sources-directory.*
+```{csv-table} *Bedload transport formulae implemented in Gaia with application limits regarding the grain diameter $D$, **cross section-averaged** Froude number $Fr$, slope $S$, water depth $h$, and flow velocity $u$. The Fortran files live in the TELEMAC source/gaia directory.*
 :header: Gaia, Author(s), $D$, "*{term}`Fr <Froude number>`*; $S$; $h$; and $u$", User Fortran
 :header-rows: 1
 :widths: 10, 50, 30, 35, 15
 :name: tab-gaia-bl-formulae
 "(no.)", "(ref.)", "(10$^{-3}$m)", "(-); (-); (m); (m/s)", "(file name)"
-{ref}`1 <gaia-mpm>`, "{cite:t}`meyer-peter_formulas_1948`", 0.4 $<D_{50}<$28.6, "10$^{-4}<Fr<$639<br> 0.0004$<S<$0.02<br>0.01$<h<$1.2<br>0.2$<u$", [bedload_meyer_gaia.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__meyer__gaia_8f.html)
-{ref}`2 <gaia-einstein>`, "{cite:t}`einstein_bed-load_1950, brown1949`", 0.25$<D_{35}<$32, "", [bedload_einst.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__einst__gaia_8f.html)
+`1`, "{cite:t}`meyer-peter_formulas_1948`", 0.4 $<D_{50}<$28.6, "10$^{-4}<Fr<$639<br> 0.0004$<S<$0.02<br>0.01$<h<$1.2<br>0.2$<u$", [bedload_meyer_gaia.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__meyer__gaia_8f.html)
+{`2`, "{cite:t}`einstein_bed-load_1950, brown1949`", 0.25$<D_{35}<$32, "", [bedload_einst.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__einst__gaia_8f.html)
  `3`, {cite:t}`engelund_monograph_1967`, 0.15$<D_{50}<$5.0, "0.1$<Fr<$10", [bedload_engel_gaia.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__engel__gaia_8f.html)
  `30`, "{cite:t}`engelund_monograph_1967,chollet1979`", 0.15$<D_{50}<$5.0, "0.1$<Fr<$10", [bedload_engel_cc_gaia.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__engel__cc__gaia_8f.html)
  `7`, {cite:t}`van_rijn_sediment_1984`, 0.6$<D_{50}<$2.0, "0.5$<h$<br>0.2$<u$", [bedload_vanrijn_gaia.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__vanrijn__gaia_8f.html)
  `10`, {cite:t}`wilcock2003`,"0.063 $\lesssim D_{pq}$", "", [bedload_wilcock_crowe_gaia.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__wilcock__crowe__gaia_8f.html)
 ```
 
-To use the {cite:t}`meyer-peter_formulas_1948` formula (`1` according to  {numref}`Tab. %s <tab-gaia-bl-formulae>`) in this tutorial, **add the following line to the gaia-morphdynamics.cas steering file:
+To use the {cite:t}`meyer-peter_formulas_1948` formula (`1` according to  {numref}`Tab. %s <tab-gaia-bl-formulae>`) in this tutorial, **add the following line to the gaia-morphdynamics.cas steering file**:
 
 ```fortran
 / continued: gaia-morphodynamics.cas
@@ -100,16 +99,16 @@ BED LOAD FOR ALL SANDS : YES / deactivate with NO
 BED-LOAD TRANSPORT FORMULA FOR ALL SANDS : 1
 ```
 
-The following sections provide more details on how $\Phi_b$ is calculated with the pre-defined formulae listed in {numref}`Tab. %s <tab-gaia-bl-formulae>`.
+The following sections provide more details on how $\Phi_{b}$ is calculated with the pre-defined formulae listed in {numref}`Tab. %s <tab-gaia-bl-formulae>`.
 
-```{admonition} User-defined Bedload transport formulae
+```{admonition} User-defined Bedload transport formulae in a specific Fortran file
 :class: tip
-User can add more bedload transport formula by adding a modified copy of a FORTRAN file template. The {{ gaia }} explain the procedure for adding a new user-defined bedload formula in detailed in section 6.3.
+User can add more bedload transport formula by adding a modified copy of a FORTRAN file template. The {{ gaia }} explains the procedure for adding a new user-defined bedload formula in detailed in section 6.3.
 ```
 
 ```{admonition} User Fortran Files
 :class: note, dropdown
-To implement a user Fortran file, copy the original TELEMAC Fortran file from the `/telemac/v8pX/sources/` directory (e.g., `/telemac/v8pX/sources/gaia/bedload_einst_gaia.f`) to the project directory (e.g., `/telemac/v8pX/simulations/gaia-tutorial/user_fortran/bedload_einst_gaia.f`). Finally, tell TELEMAC where to look for user fortran files by defining the following keyword in a steering file (e.g., in `gaia-morphodynamics.cas`):
+To implement a user Fortran file, copy the original TELEMAC Fortran file from the `/telemac/v8p2/sources/` directory (e.g., `/telemac/v8p2/sources/gaia/bedload_einst_gaia.f`) to the project directory (e.g., `/telemac/v8p2/simulations/gaia-tutorial/user_fortran/bedload_einst_gaia.f`). Finally, tell TELEMAC where to look for user fortran files by defining the following keyword in a steering file (e.g., in `gaia-morphodynamics.cas`):
 
 `FORTRAN FILE : 'user_fortran'`
 ```
@@ -122,7 +121,7 @@ To implement a user Fortran file, copy the original TELEMAC Fortran file from th
 Revise {numref}`Tab. %s <tab-gaia-bl-formulae>` to ensure that the application is in the applicable range of parameters corresponding to the conditions under which the formula has been developed.
 ```
 
-The {cite:t}`meyer-peter_formulas_1948` formula was published in 1948 by Swiss researchers Eugen Meyer-Peter, professor at [ETH Zurich](https://ethz.ch/en.html) and founder of the school's hydraulics laboratory (Zurich's famous [VAW](https://vaw.ethz.ch/)), and Professor Robert Müller. Their empirical formula is the result of more than a decade of collaboration and the elaboration began one year after the VAW was founded in 1931, when Robert Müller was appointed assistant to Eugen Meyer-Peter. The two scientists also worked with Henry Favre and Hans-Albert Einstein who came up with another approach for calculating bedload. An early version of the {cite:t}`meyer-peter_formulas_1948` formula was published in 1934 and it is the basis for many formulas that refer to a critical {term}`Dimensionless bed shear stress` (i.e., {term}`Shields parameter`). It is important to remember that the formula is based on data from lab flume experiments with quasi unlimited sediment supply. This is why bedload transport calculated with the {cite:t}`meyer-peter_formulas_1948` formula corresponds to the {ref}`hydraulic transport capacity <bl-principles>` of an alluvial channel. Thus, **the {cite:t}`meyer-peter_formulas_1948` formula tends to overestimate bedload transport** and it is inherently designed for estimating bedload **based on simplified 1d cross section-averaged hydraulics** (see also the {ref}`Python sediment transport exercise <ex-py-sediment>`).
+The {cite:t}`meyer-peter_formulas_1948` formula was published in 1948 by Swiss researchers Eugen Meyer-Peter, professor at [ETH Zurich](https://ethz.ch/en.html) and founder of the school's hydraulics laboratory (Zurich's famous [VAW](https://vaw.ethz.ch/)), and Robert Müller. Their empirical formula is the result of more than a decade of collaboration and the elaboration began one year after the VAW was founded in 1931, when Robert Müller was appointed assistant to Eugen Meyer-Peter. The two scientists also worked with Henry Favre and Hans-Albert Einstein who came up with another approach for calculating bedload. An early version of the {cite:t}`meyer-peter_formulas_1948` formula was published in 1934 and it is the basis for many other formulas that refer to a critical {term}`Dimensionless bed shear stress` (i.e., {term}`Shields parameter`). It is important to remember that the formula is based on data from lab flume experiments with high sediment supply. This is why bedload transport calculated with the {cite:t}`meyer-peter_formulas_1948` formula corresponds to the {ref}`hydraulic transport capacity <bl-principles>` of an alluvial channel. Thus, **the {cite:t}`meyer-peter_formulas_1948` formula tends to overestimate bedload transport** and it is inherently designed for estimating bedload **based on simplified 1d cross section-averaged hydraulics** (see also the {ref}`Python sediment transport exercise <ex-py-sediment>`). Good results can be expected when flood flows are simulated in an alluvial river section.
 
 Ultimately, the left side of Equation {eq}`eq-phi-gaia` ($\Phi_b$) can be calculated with the {cite:t}`meyer-peter_formulas_1948` formula as follows:
 
@@ -142,7 +141,7 @@ MPM COEFFICIENT : 8
 ```
 
 ````{admonition} Wong-Parker correction of the MPM formula
-The Wong-Parker correction {cite:p}`wong_reanalysis_2006` for the {cite:t}`meyer-peter_formulas_1948` formula refers to a statistical re-analysis of the original experimental datasets and applies to {term}`Plane bed` river sections. To this end, the Wong-Parker correction yields lower bedload transport values and it excludes the form drag correction of the original formula with the following expression: $\Phi_{b} \approx 3.97 \cdot (\tau_{x} - 0.0495)^{3/2}$. Thus, to implement the Wong-Parker correction in Gaia use:
+The Wong-Parker {cite:p}`wong_reanalysis_2006` correction for the {cite:t}`meyer-peter_formulas_1948` formula refers to a statistical re-analysis of the original experimental datasets and applies to {term}`Plane bed` river sections. To this end, the Wong-Parker correction yields lower bedload transport values and it excludes the form drag correction of the original formula with the following expression: $\Phi_{b} \approx 3.97 \cdot (\tau_{x} - 0.0495)^{3/2}$. Thus, to implement the Wong-Parker correction in Gaia use:
 
 ```fortran
 CLASSES SHIELDS PARAMETERS : 0.0495;0.0495;0.0495
@@ -160,14 +159,12 @@ MPM COEFFICIENT : 3.97
 Revise {numref}`Tab. %s <tab-gaia-bl-formulae>` to ensure that the application is in the applicable range of parameters corresponding to the conditions under which the formula has been developed.
 ```
 
-Hans Albert Einstein, son of the famous Albert Einstein, was a pioneer of probability-based analyses of sediment transport. In particular, he hypothesized that the beginning and the end of sediment motion can be expressed in terms of probabilities. Furthermore, Einstein assumed  that the sediment motion is a series of step-wise displacements followed by rest periods and that the average distance of a displacement is approximately hundred times the particle (grain) diameter. Aiming to account for his observations in lab flume experiments, Einstein introduced hiding and lifting correction coefficients {cite:p}`einstein1942`.
+Hans Albert Einstein, son of the famous Albert Einstein, was a pioneer of probability-based analyses of sediment transport. In particular, he hypothesized that the beginning and the end of sediment motion can be expressed in terms of probabilities. Furthermore, Einstein assumed that sediment motion is a series of step-wise displacements followed by rest periods and that the average distance of a particle displacement is approximately hundred times the particle (grain) diameter. Moreover, to account for observations he made in lab flume experiments, Einstein introduced hiding and lifting correction coefficients {cite:p}`einstein1942`.
 
-The Einstein formula differs from any {cite:t}`meyer-peter_formulas_1948`-based formula in that it does not imply a threshold for incipient motion of sediment. However, despite or because Einstein's sediment transport theory is significantly more complex than many other bedload transport formulae, it did not become very popular in engineering applications. Today, Gaia enables user-friendly applications of Einstein's formula, which was similarly presented by {cite:t}`brown1949` at an engineering hydraulic conference in 1949.
-
-According to {cite:t}`einstein1942`-{cite:t}`brown1949`, the left side of Equation {eq}`eq-phi-gaia` ($\Phi_b$) is calculated as follows:
+The Einstein formula differs from any {cite:t}`meyer-peter_formulas_1948`-based formula in that it does not imply a threshold for incipient motion of sediment. However, despite or because Einstein's sediment transport theory is significantly more complex than many other bedload transport formulae, it did not become very popular in engineering applications. Today, Gaia enables the user-friendly application of Einstein's formula, which was similarly presented by {cite:t}`brown1949` at an engineering hydraulic conference in 1949. According to {cite:t}`einstein1942`-{cite:t}`brown1949`, the left side of Equation {eq}`eq-phi-gaia` ($\Phi_b$) is calculated as follows:
 
 $$
-\Phi_b = \begin{cases} 0 & \mbox{ if } \tau_{x} < 0.0025 \\ F_{eb}\cdot 2.15 \cdot \exp{(-0.391/\tau_{x})} & \mbox{ if } 0.0025 \geq \tau_{x} \leq 0.2\\ F_{eb} \cdot  40 \cdot \tau_{x}^{3} & \mbox{ if } \tau_{x} > 0.2  \tau_{x}\end{cases}
+\Phi_b = \begin{cases} 0 & \mbox{ if } \tau_{x} < 0.0025 \\ F_{eb}\cdot 2.15 \cdot \exp{(-0.391/\tau_{x})} & \mbox{ if } 0.0025 \leq \tau_{x} \leq 0.2\\ F_{eb} \cdot  40 \cdot \tau_{x}^{3} & \mbox{ if } \tau_{x} > 0.2  \tau_{x}\end{cases}
 $$ (eq-einstein-brown)
 
 where
@@ -203,7 +200,7 @@ The application thresholds as a function of $\tau_{x}$ stem from the Gaia Fortra
 Revise {numref}`Tab. %s <tab-gaia-bl-formulae>` to ensure that the application is in the applicable range of parameters corresponding to the conditions under which the formula has been developed.
 ```
 
-The {cite:t}`engelund_monograph_1967` formula accounts for total sediment transport including {term}`Bedload` and suspended load. Starting from the power-approach from {cite:t}`bagnold_approach_1966,bagnold_empirical_1980`, the {cite:t}`engelund_monograph_1967` formula was developed for sediment transport calculations over dune channel beds. due to low energies by balancing the energy useful to drive the particles up the dunes with the energy supplied by the fluid to the particles. The {cite:t}`bagnold_approach_1966` theory considers the total shear as the sum of the shear transmitted between grains and the fluid, and the shear transmitted by momentum changes caused by intergranular collisions. Thus, erosion takes place as long as the {term}`Dimensionless bed shear stress` is greater or equal to its critical value (i.e., the {term}`Shields parameter`). Gaia uses a modification of the {cite:t}`engelund_monograph_1967` that accounts for head loss over movable beds {cite:p}`chollet1979` and calculates the left side of Equation {eq}`eq-phi-gaia` ($\Phi_b$) as follows:
+The {cite:t}`engelund_monograph_1967` formula accounts for total sediment transport including {term}`Bedload` and {term}`Suspended load`. Starting from the Bagnold power-approach {cite:p}`bagnold_approach_1966,bagnold_empirical_1980`, the {cite:t}`engelund_monograph_1967` formula was developed for sediment transport calculations over dune channel beds. due to low energies by balancing the energy useful to drive the particles up the dunes with the energy supplied by the fluid to the particles. The {cite:t}`bagnold_approach_1966` theory considers the total shear as the sum of the shear transmitted between grains and the fluid, and the shear transmitted by momentum changes caused by intergranular collisions. Thus, erosion takes place as long as the {term}`Dimensionless bed shear stress` is greater or equal to its critical value (i.e., the {term}`Shields parameter`). Gaia uses a modification of the {cite:t}`engelund_monograph_1967` that accounts for head loss over movable beds {cite:p}`chollet1979` and calculates the left side of Equation {eq}`eq-phi-gaia` ($\Phi_b$) as follows:
 
 $$
 \Phi_b = 0.05\cdot \frac{f^{2.5}_{eh}}{c_f}
@@ -374,13 +371,15 @@ SECONDARY CURRENTS ALPHA COEFFICIENT : 0.8
 (gaia-bc-bl)=
 ## Boundary Conditions
 
-With the {ref}`LIQBOR flag <gaia-bc>` set to `5`, per-sediment class bedload load can be prescribed at the open liquid boundaries similar to the hydrodynamic steering setup with the **PRESCRIBED SOLID DISCHARGES** keyword (one value per {ref}`sediment class defined <gaia-sed>`). To prescribe a bedload transport of **10 kg$^3\cdot$s$^{-1}$** across the upstream and downstream boundaries through the `LIQBOR = 5` boundaries, **add the PRESCRIBED SOLID DISCHARGES keyword to the Gaia steering file (gaia-morphodynamics.cas)**:
+The {ref}`Gaia Basis section on boundary conditions <gaia-bc>` explains the geometric definition of open liquid boundaries in the `*.cli` files. To prescribe a bedload transport of **10 kg$^3\cdot$s$^{-1}$** across the upstream (`LIEBOR=5`) boundary and free outflow at the downstream (`LIEBOR=4`) boundary, **add the PRESCRIBED SOLID DISCHARGES keyword to the Gaia steering file (gaia-morphodynamics.cas)**:
 
 ```fortran
 / continued: gaia-morphodynamics.cas
 / ...
 PRESCRIBED SOLID DISCHARGES : 10.;0.
 ```
+
+Recall that the first and second values in the list of prescribed solid discharges refer to the first (beginning at line 1) and second open boundary listed in the `boundaries-gaia.cli`, respectively (i.e., upstream and downstream in that order).
 
 ```{admonition} Porosity and PRESCRIBED SOLID DISCHARGES
 :class: important

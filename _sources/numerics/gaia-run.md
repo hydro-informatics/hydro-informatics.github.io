@@ -56,13 +56,14 @@ CORRECT END OF RUN
 
 ELAPSE TIME :
                              1  HOURS
-                            14  MINUTES
-                            25  SECONDS
+                             4  MINUTES
+                            34  SECONDS
 ... merging separated result files
 
 ... handling result files
        moving: r2dsteady-gaia.slf
        moving: rGaia-steady2d.slf
+       moving: r-control-sections.txt
 ... deleting working dir
 
 My work is done
