@@ -774,6 +774,11 @@
      Control Sections
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hydrodynamic-steering-summary">
+     Hydrodynamic Steering Summary
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -795,7 +800,7 @@
 <p>The case featured in this tutorial was established with the following software:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../get-started/others.html#npp"><span class="std std-ref">Notepad++</span></a> text editor (any other text editor will do just as well.)</p></li>
-<li><p>TELEMAC v8p2r0 (<a class="reference internal" href="../get-started/install-telemac.html#modular-install"><span class="std std-ref">stand-alone installation</span></a>).</p></li>
+<li><p>TELEMAC v8p2r0 (<a class="reference internal" href="../get-started/install-telemac.html#modular-install"><span class="std std-ref">stand-alone installation</span></a>) - earlier versions will not recognize some of the keywords used in this eBook.</p></li>
 <li><p><a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a> and the <a class="reference internal" href="pre-slf-tm.html#tm-qgis-plugins"><span class="std std-ref">PostTelemac plugin</span></a>.</p></li>
 <li><p>Debian Linux 10 (Buster) installed on a Virtual Machine (read more in the <a class="reference internal" href="../get-started/vm.html#chpt-vm-linux"><span class="std std-ref">software chapter</span></a>).</p></li>
 </ul>
@@ -820,7 +825,7 @@ The difference between Gaia and SISYPHE<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">To get specifications beyond the features presented here in the TELEMAC documentation and the TELEMAC forum, it is useful to know that there has been a predecessor module of Gaia called SISYPHE. SISYPHE and its routines are still available in recent TELEMAC versions in addition to and through Gaia. Although the use of SISYPHE routines through Gaia with functional enhancements require adjustments of some keywords. Read more in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a> in Appendix 8.1 and in the <a class="reference external" href="http://svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/sources/gaia/gaia.dico">gaia.dico</a> file (lives in the TELEMAC installation directory: <code class="docutils literal notranslate"><span class="pre">telemac/v8px/sources/gaia/gaia.dico</span></code>).</p>
+<p class="card-text">To get specifications beyond the features presented here in the TELEMAC documentation and the TELEMAC forum, it is useful to know that there has been a predecessor module of Gaia called SISYPHE. SISYPHE and its routines are still available in recent TELEMAC versions in addition to and through Gaia. Although the use of SISYPHE routines through Gaia with functional enhancements require adjustments of some keywords. Read more in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a> in Appendix 8.1 and in the <a class="reference external" href="http://svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/sources/gaia/gaia.dico">gaia.dico</a> file (lives in the TELEMAC installation directory: <code class="docutils literal notranslate"><span class="pre">telemac/v8p2/sources/gaia/gaia.dico</span></code>).</p>
 </div>
 </details></div>
 <div class="section" id="coupling-telemac-and-gaia">
@@ -837,7 +842,7 @@ The difference between Gaia and SISYPHE<div class="summary-down docutils">
 <p><em>Application range:</em> Most river models, and in particular, lake or oceanic models.</p>
 </dd>
 </dl>
-<p>Gaia is designed as a fully coupled model where the morphodynamic calculation frequency is a function of a <em>coupling period</em> parameter (read more in section 5.1.2 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a>). Note that the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a> (section 1.1.3) says that Gaia is decoupled, though in reality it is currently fully coupled. Moreover, the coupling period is currently only a user-defined parameter with reference to SISYPHE, which can be modified in the hydrodynamic steering file with:</p>
+<p>Gaia is designed as a de-coupled model where the morphodynamic calculation frequency is a function of a <em>coupling period</em> parameter (read more in section 5.1.2 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a>). Note that the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a> (section 1.1.3) says that Gaia is decoupled, though it successively solves hydrodynamics and morphodynamics for every timestep. Moreover, the coupling period is currently only a user-defined parameter with reference to SISYPHE, which can be modified in the hydrodynamic steering file with:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">steady2d</span><span class="o">-</span><span class="n">gaia</span><span class="p">.</span><span class="n">cas</span>
 <span class="o">/</span><span class="p">...</span>
 <span class="n">COUPLING</span> <span class="n">PERIOD</span> <span class="n">FOR</span> <span class="n">SISYPHE</span> <span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="kt">integer</span>
@@ -879,7 +884,7 @@ The difference between Gaia and SISYPHE<div class="summary-down docutils">
 </div>
 </div>
 <div class="section" id="hotstart">
-<h3>Hotstart<a class="headerlink" href="#hotstart" title="Permalink to this headline">¶</a></h3>
+<span id="gaia-hotstart"></span><h3>Hotstart<a class="headerlink" href="#hotstart" title="Permalink to this headline">¶</a></h3>
 <p>This tutorial builds on the results of the <a class="reference internal" href="telemac2d-steady.html#tm2d-dry"><span class="std std-ref">dry-initialized steady2d model</span></a> because Gaia is designed as a decoupled model (see the {ref}`above definitions <tm-coupling>). Using a former simulation result for model initialization is called <strong>hotstart</strong> for which TELEMAC requires, of course, a results file from a previous simulation. For this purpose, make sure that the dry-initialized steady2d results file in the simulation folder (<a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/r2dsteady.slf">download r2dsteady.slf</a>). Then <strong>define the hotstart in the Telemac2d steering file</strong> with the following keywords:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">steady2d</span><span class="o">-</span><span class="n">gaia</span><span class="p">.</span><span class="n">cas</span>
 <span class="o">/</span> <span class="p">...</span>
@@ -937,6 +942,116 @@ Expand to view the file <em>control-sections.txt</em><div class="summary-down do
 </pre></div>
 </div>
 <p>Thus, re-running the simulation will write the fluxes across the two defined control sections to a file called <em>r-control-flows.txt</em>.</p>
+</div>
+<div class="section" id="hydrodynamic-steering-summary">
+<h3>Hydrodynamic Steering Summary<a class="headerlink" href="#hydrodynamic-steering-summary" title="Permalink to this headline">¶</a></h3>
+<p>With the above adaptions and using a simulation length of <code class="docutils literal notranslate"><span class="pre">30000</span></code> timesteps (to observed morphodynamic evolution) with a graphical printout period of every <code class="docutils literal notranslate"><span class="pre">5000</span></code> timesteps (to reduce the output file size), the final hydrodynamic steering file should look like this:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">steady2d</span><span class="o">-</span><span class="n">gaia</span><span class="p">.</span><span class="n">cas</span>
+<span class="o">/</span>
+<span class="n">TITLE</span> <span class="p">:</span> <span class="s1">&#39;gaia2d steady&#39;</span>
+<span class="o">/</span>
+<span class="n">COMPUTATION</span> <span class="n">CONTINUED</span> <span class="p">:</span> <span class="n">YES</span> <span class="o">/</span> <span class="n">build</span> <span class="n">on</span> <span class="n">top</span> <span class="n">of</span> <span class="n">a</span> <span class="n">steady</span> <span class="n">flow</span> <span class="n">initialization</span>
+<span class="n">PREVIOUS</span> <span class="n">COMPUTATION</span> <span class="k">FILE</span> <span class="p">:</span> <span class="n">r2dsteady</span><span class="p">.</span><span class="n">slf</span> <span class="o">/</span> <span class="n">here</span> <span class="o">-</span> <span class="mi">35</span> <span class="n">CMS</span> <span class="n">initialization</span> <span class="n">after</span> <span class="n">t</span> <span class="mi">15000</span>
+<span class="n">INITIAL</span> <span class="nb">TIME </span><span class="n">SET</span> <span class="n">TO</span> <span class="n">ZERO</span> <span class="p">:</span> <span class="n">YES</span> <span class="o">/</span> <span class="n">avoid</span> <span class="n">restarting</span> <span class="n">at</span> <span class="mi">15000</span>
+<span class="o">/</span>
+<span class="n">COUPLING</span> <span class="n">WITH</span> <span class="p">:</span> <span class="s1">&#39;GAIA&#39;</span>
+<span class="n">GAIA</span> <span class="n">STEERING</span> <span class="k">FILE</span> <span class="p">:</span> <span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">DEFAULTS</span> <span class="n">FROM</span> <span class="n">STEADY2D</span>
+<span class="o">/</span>
+<span class="o">/------------------------------------------------------------------/</span>
+<span class="o">/</span>			<span class="n">COMPUTATION</span> <span class="n">ENVIRONMENT</span>
+<span class="o">/------------------------------------------------------------------/</span>
+<span class="o">/</span>
+<span class="n">BOUNDARY</span> <span class="n">CONDITIONS</span> <span class="k">FILE</span> <span class="p">:</span> <span class="n">boundaries</span><span class="p">.</span><span class="n">cli</span>
+<span class="n">GEOMETRY</span> <span class="k">FILE</span>            <span class="p">:</span> <span class="n">qgismesh</span><span class="p">.</span><span class="n">slf</span>
+<span class="n">RESULTS</span> <span class="k">FILE</span>           <span class="p">:</span> <span class="n">r2dsteady</span><span class="o">-</span><span class="n">gaia</span><span class="p">.</span><span class="n">slf</span>
+<span class="o">/</span>
+<span class="n">MASS</span><span class="o">-</span><span class="n">BALANCE</span> <span class="p">:</span> <span class="n">YES</span> <span class="o">/</span> <span class="n">activates</span> <span class="n">mass</span> <span class="n">balance</span> <span class="n">printouts</span> <span class="o">-</span> <span class="n">does</span> <span class="nb">not </span><span class="n">enforce</span> <span class="n">mass</span> <span class="n">balance</span>
+<span class="n">VARIABLES</span> <span class="n">FOR</span> <span class="n">GRAPHIC</span> <span class="n">PRINTOUTS</span> <span class="p">:</span> <span class="n">U</span><span class="p">,</span><span class="n">V</span><span class="p">,</span><span class="n">H</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">Q</span><span class="p">,</span><span class="n">F</span> <span class="o">/</span> <span class="n">Q</span> <span class="n">enables</span> <span class="n">boundary</span> <span class="n">flux</span> <span class="n">equilibrium</span> <span class="n">controls</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">CONTROL</span> <span class="n">SECTIONS</span>
+<span class="n">SECTIONS</span> <span class="n">INPUT</span> <span class="k">FILE</span> <span class="p">:</span>  <span class="n">control</span><span class="o">-</span><span class="n">sections</span><span class="p">.</span><span class="n">txt</span>
+<span class="n">SECTIONS</span> <span class="n">OUTPUT</span> <span class="k">FILE</span> <span class="p">:</span> <span class="n">r</span><span class="o">-</span><span class="n">control</span><span class="o">-</span><span class="n">flows</span><span class="p">.</span><span class="n">txt</span>
+<span class="o">/</span>
+<span class="o">/------------------------------------------------------------------/</span>
+<span class="o">/</span>			<span class="n">GENERAL</span> <span class="n">PARAMETERS</span>
+<span class="o">/------------------------------------------------------------------/</span>
+<span class="nb">TIME </span><span class="n">STEP</span> <span class="p">:</span> <span class="mf">1.</span>
+<span class="n">NUMBER</span> <span class="n">OF</span> <span class="nb">TIME </span><span class="n">STEPS</span> <span class="p">:</span> <span class="mi">30000</span>
+<span class="n">GRAPHIC</span> <span class="n">PRINTOUT</span> <span class="n">PERIOD</span> <span class="p">:</span> <span class="mi">5000</span>
+<span class="n">LISTING</span> <span class="n">PRINTOUT</span> <span class="n">PERIOD</span> <span class="p">:</span> <span class="mi">5000</span>
+<span class="o">/</span>
+<span class="o">/------------------------------------------------------------------/</span>
+<span class="o">/</span>			<span class="n">NUMERICAL</span> <span class="n">PARAMETERS</span>
+<span class="o">/------------------------------------------------------------------/</span>
+<span class="o">/</span> <span class="n">General</span> <span class="n">solver</span> <span class="n">parameters</span> <span class="n">from</span> <span class="n">section</span> <span class="mf">7.1</span>
+<span class="n">DISCRETIZATIONS</span> <span class="n">IN</span> <span class="n">SPACE</span> <span class="p">:</span> <span class="mi">11</span><span class="p">;</span><span class="mi">11</span>
+<span class="n">FREE</span> <span class="n">SURFACE</span> <span class="n">GRADIENT</span> <span class="n">COMPATIBILITY</span> <span class="p">:</span> <span class="mf">0.1</span>  <span class="o">/</span> <span class="n">default</span> <span class="mf">1.</span>
+<span class="n">ADVECTION</span> <span class="p">:</span> <span class="n">YES</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">FINITE</span> <span class="n">ELEMENT</span> <span class="n">SCHEME</span> <span class="n">PARAMETERS</span> <span class="o">-</span> <span class="n">section</span> <span class="mf">7.2</span><span class="p">.</span><span class="mi">1</span> <span class="n">in</span> <span class="n">the</span> <span class="n">manual</span>
+<span class="o">/------------------------------------------------------------------</span>
+<span class="n">TREATMENT</span> <span class="n">OF</span> <span class="n">THE</span> <span class="n">LINEAR</span> <span class="nb">SYSTEM</span> <span class="p">:</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="mi">2</span> <span class="o">-</span> <span class="k">use </span><span class="mi">1</span> <span class="n">to</span> <span class="n">avoid</span> <span class="n">smoothened</span> <span class="n">results</span>
+<span class="n">SCHEME</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">VELOCITIES</span> <span class="p">:</span> <span class="mi">14</span> <span class="o">/</span> <span class="n">alternatively</span> <span class="n">keep</span> <span class="mi">1</span>
+<span class="n">SCHEME</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">TRACERS</span> <span class="p">:</span> <span class="mi">5</span>
+<span class="n">SCHEME</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">K</span><span class="o">-</span><span class="nb">EPSILON</span> <span class="p">:</span> <span class="mi">14</span>
+<span class="n">IMPLICITATION</span> <span class="n">FOR</span> <span class="n">DEPTH</span> <span class="p">:</span> <span class="mf">0.55</span> <span class="o">/</span> <span class="n">should</span> <span class="n">be</span> <span class="n">between</span> <span class="mf">0.55</span> <span class="nb">and </span><span class="mf">0.6</span>
+<span class="n">IMPLICITATION</span> <span class="n">FOR</span> <span class="n">VELOCITY</span> <span class="p">:</span> <span class="mf">0.55</span> <span class="o">/</span> <span class="n">should</span> <span class="n">be</span> <span class="n">between</span> <span class="mf">0.55</span> <span class="nb">and </span><span class="mf">0.6</span>
+<span class="n">IMPLICITATION</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">VELOCITY</span> <span class="p">:</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">v8p2</span> <span class="n">default</span>
+<span class="n">IMPLICITATION</span> <span class="n">COEFFICIENT</span> <span class="n">OF</span> <span class="n">TRACERS</span> <span class="p">:</span> <span class="mf">0.6</span> <span class="o">/</span> <span class="n">v8p2</span> <span class="n">default</span>
+<span class="n">MASS</span><span class="o">-</span><span class="n">LUMPING</span> <span class="n">ON</span> <span class="n">H</span> <span class="p">:</span> <span class="mf">1.</span>
+<span class="n">MASS</span><span class="o">-</span><span class="n">LUMPING</span> <span class="n">ON</span> <span class="n">VELOCITY</span> <span class="p">:</span> <span class="mf">1.</span>
+<span class="n">MASS</span><span class="o">-</span><span class="n">LUMPING</span> <span class="n">ON</span> <span class="n">TRACERS</span> <span class="p">:</span> <span class="mf">1.</span>
+<span class="o">/</span> <span class="n">MASS</span><span class="o">-</span><span class="n">LUMPING</span> <span class="n">FOR</span> <span class="n">WEAK</span> <span class="n">CHARACTERISTICS</span> <span class="p">:</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">enabling</span> <span class="n">leads</span> <span class="n">to</span> <span class="n">weak</span> <span class="n">characteristics</span>
+<span class="n">SUPG</span> <span class="n">OPTION</span> <span class="p">:</span> <span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">2</span>  <span class="o">/</span> <span class="n">classic</span> <span class="n">supg</span> <span class="n">for</span> <span class="n">U</span> <span class="nb">and </span><span class="n">V</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">SOLVER</span>
+<span class="o">/------------------------------------------------------------------</span>
+<span class="n">INFORMATION</span> <span class="n">ABOUT</span> <span class="n">SOLVER</span> <span class="p">:</span> <span class="n">YES</span>
+<span class="n">SOLVER</span> <span class="p">:</span> <span class="mi">1</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">TIDAL</span> <span class="n">FLATS</span>  <span class="o">-</span> <span class="n">see</span> <span class="n">section</span> <span class="mf">7.5</span>
+<span class="n">TIDAL</span> <span class="n">FLATS</span> <span class="p">:</span> <span class="n">YES</span>
+<span class="n">CONTINUITY</span> <span class="n">CORRECTION</span> <span class="p">:</span> <span class="n">YES</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="n">NO</span>
+<span class="n">OPTION</span> <span class="n">FOR</span> <span class="n">THE</span> <span class="n">TREATMENT</span> <span class="n">OF</span> <span class="n">TIDAL</span> <span class="n">FLATS</span> <span class="p">:</span> <span class="mi">1</span>
+<span class="n">TREATMENT</span> <span class="n">OF</span> <span class="n">NEGATIVE</span> <span class="n">DEPTHS</span> <span class="p">:</span> <span class="mi">2</span> <span class="o">/</span> <span class="k">value </span><span class="mi">2</span> <span class="nb">or </span><span class="mi">3</span> <span class="k">is </span><span class="n">required</span> <span class="n">with</span> <span class="n">tidal</span> <span class="n">flats</span> <span class="o">-</span> <span class="n">default</span> <span class="k">is </span><span class="mi">1</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">MATRIX</span> <span class="n">HANDLING</span> <span class="o">-</span> <span class="n">see</span> <span class="n">section</span> <span class="mf">7.6</span>
+<span class="n">MATRIX</span> <span class="n">STORAGE</span> <span class="p">:</span> <span class="mi">3</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="mi">3</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">BOUNDARY</span> <span class="n">CONDITIONS</span>
+<span class="o">/------------------------------------------------------------------</span>
+<span class="o">/</span>
+<span class="n">LAW</span> <span class="n">OF</span> <span class="n">BOTTOM</span> <span class="n">FRICTION</span> <span class="p">:</span> <span class="mi">4</span> <span class="o">/</span> <span class="mi">4</span><span class="o">-</span><span class="n">Manning</span>
+<span class="n">FRICTION</span> <span class="n">COEFFICIENT</span> <span class="p">:</span> <span class="mf">0.03</span> <span class="o">/</span> <span class="n">Roughness</span> <span class="n">coefficient</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">Liquid</span> <span class="n">boundaries</span>
+<span class="n">PRESCRIBED</span> <span class="n">FLOWRATES</span>  <span class="p">:</span> <span class="mi">3</span><span class="mf">5.</span><span class="p">;</span><span class="mi">3</span><span class="mf">5.</span>
+<span class="o">/</span> <span class="n">PRESCRIBED</span> <span class="n">ELEVATIONS</span> <span class="p">:</span> <span class="mi">37</span><span class="mf">4.805626</span><span class="p">;</span><span class="mf">0.</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="k">Type </span><span class="n">of</span> <span class="n">velocity</span> <span class="n">profile</span> <span class="n">can</span> <span class="n">be</span> <span class="mi">1</span><span class="o">-</span><span class="n">constant</span> <span class="n">normal</span> <span class="n">profile</span> <span class="p">(</span><span class="n">default</span><span class="p">)</span> <span class="nb">and</span> <span class="p">(</span><span class="n">cli</span><span class="p">)</span> <span class="mi">4</span><span class="o">-</span><span class="n">vector</span> <span class="k">is </span><span class="n">proportional</span> <span class="n">to</span> <span class="n">root</span> <span class="p">(</span><span class="n">water</span> <span class="n">depth</span><span class="p">,</span> <span class="k">only </span><span class="n">for</span> <span class="n">Q</span><span class="p">)</span>
+<span class="n">VELOCITY</span> <span class="n">PROFILES</span> <span class="p">:</span> <span class="mi">4</span><span class="p">;</span><span class="mi">1</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">INITIAL</span> <span class="n">CONDITIONS</span> <span class="o">-</span> <span class="nb">not </span><span class="n">required</span> <span class="p">(</span><span class="n">hotstart</span><span class="p">)</span>
+<span class="o">/</span> <span class="o">------------------------------------------------------------------</span>
+<span class="o">/</span> <span class="n">INITIAL</span> <span class="n">CONDITIONS</span> <span class="p">:</span> <span class="s1">&#39;ZERO DEPTH&#39;</span> <span class="o">/</span> <span class="k">use </span><span class="n">ZERO</span> <span class="n">DEPTH</span> <span class="n">to</span> <span class="n">start</span> <span class="n">with</span> <span class="n">dry</span> <span class="n">model</span> <span class="n">conditions</span>
+<span class="o">/</span> <span class="n">INITIAL</span> <span class="n">DEPTH</span> <span class="p">:</span> <span class="mf">0.005</span> <span class="o">/</span> <span class="k">use </span><span class="kt">INTEGER </span><span class="n">for</span> <span class="n">speeding</span> <span class="n">up</span> <span class="n">calculations</span>
+<span class="o">/</span>
+<span class="o">/</span> <span class="n">STABILITY</span> <span class="n">CONTROLS</span>
+<span class="o">/</span> <span class="o">------------------------------------------------------------------</span>
+<span class="n">PRINTING</span> <span class="n">CUMULATED</span> <span class="n">FLOWRATES</span> <span class="p">:</span> <span class="n">YES</span>
+<span class="o">/</span>
+<span class="o">/------------------------------------------------------------------/</span>
+<span class="o">/</span>			<span class="n">TURBULENCE</span>
+<span class="o">/------------------------------------------------------------------/</span>
+<span class="o">/</span>
+<span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">VELOCITY</span> <span class="p">:</span> <span class="n">YES</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="n">YES</span>
+<span class="n">TURBULENCE</span> <span class="n">MODEL</span> <span class="p">:</span> <span class="mi">3</span>
+<span class="o">/</span>
+<span class="p">&amp;</span><span class="n">ETA</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>

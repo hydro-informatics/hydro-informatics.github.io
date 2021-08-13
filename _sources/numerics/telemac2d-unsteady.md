@@ -280,7 +280,7 @@ source pysource.hyfo-dyn.sh
 ```
 ````
 
-With the TELEMAC environment loaded, change to the directory where the above-created 3d-flume simulation lives (e.g., `/home/telemac/v8p2/mysimulations/unsteady2d-tutorial/`) and run the `*.cas` file by calling the **telemac2d.py** script.
+With the TELEMAC environment loaded, change to the directory where the unsteady simulation lives (e.g., `/home/telemac/v8p2/mysimulations/unsteady2d-tutorial/`) and run the `*.cas` file by calling the **telemac2d.py** script.
 
 ```
 cd ~/telemac/v8p2/mysimulations/unsteady2d-tutorial/
@@ -351,7 +351,7 @@ MINIMUM VALUE OF DEPTH : 0.1 / in meters
 
 ### Visualization with QGIS
 
-The results of the unsteady simulation can be visualized and exported to raster (e.g., {term}`GeoTIFF`) or shapefile formats in QGIS with the PostTelemac plugin the same way as explained in the steady2d tutorial ({ref}`read the steady2d post-processing <tm2d-post-export>`). The latest QGIS releases additionally enable to load the Selafin results mesh file (here: *r2dunsteady.slf*) as a QGIS mesh layer. Therefore, **launch QGIS**, go to the **Layer** menu and click on **Add Layer** > **Add Mesh Layer...**. In the popup window (*Data Source Manager / Mesh*), **select r2dunsteady.slf**, click **Add**, and **Close**. {numref}`Figure %s <qgis-r2dunsteady-imported>` shows the imported r2dunsteady mesh layer in QGIS with a *Softlight* blending (set in the *Symbology*) on google satellite imagery.
+The results of the unsteady simulation can be visualized and snapshots exported to raster (e.g., {term}`GeoTIFF`) or shapefile formats in QGIS with the PostTelemac plugin the same way as explained in the steady2d tutorial ({ref}`read the steady2d post-processing <tm2d-post-export>`). The latest QGIS releases additionally enable to load the Selafin results mesh file (here: *r2dunsteady.slf*) as a QGIS mesh layer. Therefore, **launch QGIS**, go to the **Layer** menu and click on **Add Layer** > **Add Mesh Layer...**. In the popup window (*Data Source Manager / Mesh*), **select r2dunsteady.slf**, click **Add**, and **Close**. {numref}`Figure %s <qgis-r2dunsteady-imported>` shows the imported r2dunsteady mesh layer in QGIS with a *Softlight* blending (set in the *Symbology*) on google satellite imagery.
 
 ```{figure} ../img/telemac/qgis-r2dunsteady-imported.png
 :alt: qgis telemac2d unsteady quasi steady simulation results slf

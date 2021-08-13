@@ -384,17 +384,22 @@ A Singleband pseudocolor (Layer Properties > Symbology) represents the exported 
 Facilitate the conversion and analysis of geospatial data with efficient {ref}`sec-geo-python` applications and the {{ ft_url }} package.
 ```
 
+(bm-crayfish)=
 ## Mesh Visualization with Crayfish
 
 The open-source [Crayfish](https://www.lutraconsulting.co.uk/projects/crayfish/) plugin enables the visualization of mesh values (e.g., change of node values over time) with many features, such as exporting video animations of model results. To create a video of, for instance, the flow velocity outputs at the 1+15 simulation timesteps, use the Crayfish plugin as follows:
 
-* In QGIS, make sure the Crayfish plugin is installed.
+* In QGIS, make sure the Crayfish plugin is installed (recall the {ref}`QGIS instructions <qgis-tbx-install>`).
 * In the **Layer** panel, select **prepro-tutorial_quality-mesh-interp**.
 * With *prepro-tutorial_quality-mesh-interp* selected, go to **Mesh** (top dropdown menu) > **Crayfish** > **Export Animation ...** (if the layer is not highlighted, an error message pops up: *Please select a Mesh Layer for export*).
 * In the **Export Animation** window, go to the **General** tab and define an output file name by clicking on the **...** button (e.g., `velocity-video.avi`).
 * Click **OK**.
 
-The first time that a video is exported, Crayfish will require the definition of an **FFmpeg video encoder** and guide through the installation (if required). Follow the instructions and re-start exporting the video. An exemplary avi-video file of flow velocity outputs can be ([downloaded here](https://github.com/hydro-informatics/materials-bm/raw/main/exports/velocity-video-crayfish.avi)).
+The first time that a video is exported, Crayfish will require the definition of an **FFmpeg video encoder** and guide through the installation (if required). Follow the instructions and re-start exporting the video.
+
+ The resulting video export may look like this:
+
+ <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/AYG0i1becyI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Sebastian Schwindt <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 
 ```{admonition} Make animations of other parameters
 :class: note

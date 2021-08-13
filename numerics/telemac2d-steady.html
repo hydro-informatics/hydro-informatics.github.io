@@ -1649,7 +1649,9 @@ Expand to see exemplary values for Manning roughness<div class="summary-down doc
 <li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/boundaries-555.cli">boundaries-555.cli</a></p></li>
 <li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/steady2d-initdry.cas">steady2d-initdry.cas</a></p></li>
 </ul>
-<p>Re-<a class="reference internal" href="#tm2d-run"><span class="std std-ref">run Telemac2d</span></a> and open the resulting <code class="docutils literal notranslate"><span class="pre">r2d...slf</span></code> file in QGIS with the PostTelemac plugin. Compare the results of the dry and wetted initial condition simulations with regards to the following questions:</p>
+<p>Re-<a class="reference internal" href="#tm2d-run"><span class="std std-ref">run Telemac2d</span></a> and open the resulting <code class="docutils literal notranslate"><span class="pre">r2d...slf</span></code> file in QGIS with the PostTelemac plugin. The following video features the flow velocity vector evolution during the dry-initialized model run:</p>
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/hh843xrLycI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Sebastian Schwindt <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>Compare the results of the dry and wetted initial condition simulations with regards to the following questions:</p>
 <ul class="simple">
 <li><p>How does the mass balance evolve during the simulation?</p></li>
 <li><p>How long did the simulations take to converge and did you need to modify the <code class="docutils literal notranslate"><span class="pre">NUMBER</span> <span class="pre">OF</span> <span class="pre">TIME</span> <span class="pre">STEPS</span></code>?</p></li>
@@ -1658,7 +1660,7 @@ Expand to see exemplary values for Manning roughness<div class="summary-down doc
 </ul>
 </div>
 <div class="section" id="d-calibration-parameters">
-<h1>2d Calibration Parameters<a class="headerlink" href="#d-calibration-parameters" title="Permalink to this headline">¶</a></h1>
+<span id="tm2d-calibration"></span><h1>2d Calibration Parameters<a class="headerlink" href="#d-calibration-parameters" title="Permalink to this headline">¶</a></h1>
 <details class="sphinx-bs dropdown card mb-3">
 <summary class="summary-title card-header">
 Recall: How to calibrate?<div class="summary-down docutils">
@@ -1671,7 +1673,10 @@ Recall: How to calibrate?<div class="summary-down docutils">
 </div>
 </details><p>The following parameters may be used for calibrating a 2d model to measurements (e.g., water surface elevation, water depth, or flow velocity) that were made at a gauged discharge:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">FRICTION</span> <span class="pre">COEFFICIENT</span> <span class="pre">FOR</span> <span class="pre">...</span></code> (<a class="reference internal" href="#tm2d-friction"><span class="std std-ref">friction section</span></a>)</p></li>
+<li><p><strong>FRICTION COEFFICIENT FOR …</strong> (<a class="reference internal" href="#tm2d-friction"><span class="std std-ref">friction section</span></a>)</p></li>
+<li><p>Solvers, solver options, implicitation and other numerical parameters (<a class="reference internal" href="#tm2d-solver-pars"><span class="std std-ref">numerical parameter section</span></a>)</p></li>
+<li><p>Type of model <a class="reference internal" href="#tm2d-init"><span class="std std-ref">initialization</span></a></p></li>
+<li><p><a class="reference internal" href="#tm2d-turbulence"><span class="std std-ref">Turbulence models and parameters</span></a></p></li>
 </ul>
 <dl class="simple myst">
 <dt><strong>What next?</strong></dt><dd><p>A steady discharge almost never occurs in reality and can be used at maximum to <a class="reference internal" href="calibration.html#calibration"><span class="std std-ref">calibrate</span></a> the model based on (field) measurements. Once the model is well-calibrated for 2-3 steady discharges, the steady model results may be used for initializing an <a class="reference internal" href="telemac2d-unsteady.html#chpt-unsteady"><span class="std std-ref">unsteady</span></a> simulation, possibly with <a class="reference internal" href="telemac-gaia.html#tm-gaia"><span class="std std-ref">sediment transport</span></a>.</p>

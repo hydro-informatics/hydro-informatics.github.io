@@ -831,7 +831,6 @@ Convergence of inflow (upstream) and outflow (downstream) at the open model boun
 In practice, the use of {ref}`CONTROL SECTIONS (unsteady tutorial) <tm-control-sections>` is more consistent to verify flows.
 ```
 
-
 Note the difference between the convergence duration in this steady simulation with Telemac2d that starts with an initial condition of 1.0 m water depth (plot in {numref}`Fig. %s <convergence-diagram-tm2d>`) compared to the longer convergence duration in the BASEMENT tutorial (plot in {numref}`Fig. %s <convergence-diagram-bm>`) that starts with a dry model. This difference mainly stems from the type of initial conditions (initial depth versus dry channel) that also reflects in an outflow surplus of the Telemac2d simulation and a zero-outflow in the BASEMENT simulation at the beginning of the simulations. However, the faster convergence is at the cost of unrealistically wetted hollows in the Telemac2d simulation - read more in the above comment: *How reasonable are the results?*
 
 (tm2d-dry)=
@@ -863,13 +862,18 @@ Alternatively, download the modified files:
 * [boundaries-555.cli](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/boundaries-555.cli)
 * [steady2d-initdry.cas](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/steady2d-initdry.cas)
 
-Re-{ref}`run Telemac2d <tm2d-run>` and open the resulting `r2d...slf` file in QGIS with the PostTelemac plugin. Compare the results of the dry and wetted initial condition simulations with regards to the following questions:
+Re-{ref}`run Telemac2d <tm2d-run>` and open the resulting `r2d...slf` file in QGIS with the PostTelemac plugin. The following video features the flow velocity vector evolution during the dry-initialized model run:
+
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/hh843xrLycI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Sebastian Schwindt <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+
+Compare the results of the dry and wetted initial condition simulations with regards to the following questions:
 
 * How does the mass balance evolve during the simulation?
 * How long did the simulations take to converge and did you need to modify the `NUMBER OF TIME STEPS`?
 * How reasonable are the results?
 * Which of the two initial conditions would you use in practice to show that your simulation is correct?
 
+(tm2d-calibration)=
 # 2d Calibration Parameters
 
 ```{dropdown} Recall: How to calibrate?
@@ -880,7 +884,10 @@ Moreover, a sensitivity analysis compares step-wise modifications of multiple pa
 
 The following parameters may be used for calibrating a 2d model to measurements (e.g., water surface elevation, water depth, or flow velocity) that were made at a gauged discharge:
 
-* `FRICTION COEFFICIENT FOR ...` ({ref}`friction section <tm2d-friction>`)
+* **FRICTION COEFFICIENT FOR ...** ({ref}`friction section <tm2d-friction>`)
+* Solvers, solver options, implicitation and other numerical parameters ({ref}`numerical parameter section <tm2d-solver-pars>`)
+* Type of model {ref}`initialization <tm2d-init>`
+* {ref}`Turbulence models and parameters <tm2d-turbulence>`
 
 **What next?**
 : A steady discharge almost never occurs in reality and can be used at maximum to {ref}`calibrate <calibration>` the model based on (field) measurements. Once the model is well-calibrated for 2-3 steady discharges, the steady model results may be used for initializing an {ref}`unsteady <chpt-unsteady>` simulation, possibly with {ref}`sediment transport <tm-gaia>`.

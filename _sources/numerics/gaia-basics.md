@@ -177,19 +177,28 @@ Most examples of the TELEMAC installation (`/telemac/v8p2/examples/gaia/`) use a
 
 To verify the correct setup of the boundary conditions files, open **boundaries.cli** and **boundaries-gaia.cli**  with a {ref}`text editor <npp>` and check on the liquid boundary definitions. Both the **boundaries.cli** and the **boundaries-gaia.cli** files are similarly organized according to {numref}`Tab. %s <tab-gaia-bc>`.
 
-* The first three entries of the upstream and downstream boundaries are (according to {numref}`Tab. %s <tab-gaia-bc>`):
+* The first three entries of the upstream boundary are (according to {numref}`Tab. %s <tab-gaia-bc>`):
   * `4` for **LIHBOR** for water depth, which was set to `5` in the {ref}`dry-initialized steady2d simulation<tm2d-dry>`;
   * `5` for **LIQBOR** for (solid) discharge, and **LIVBOR** (flow velocity) corresponding to the hydrodynamics boundary file ({ref}`dry-initialized steady2d simulation<tm2d-dry>`).
-  *  In summary, make sure to **prescribe Q only** (i.e., with `4 5 5`) at the upstream and downstream boundaries.
+  *  In summary, make sure to **prescribe Q only** (i.e., with `4 5 5`) at the upstream boundary.
 
-```{admonition} Why not prescribe water depth (elevation)?
-The riverbed elevation is expected to change in a morphodynamic simulation. Thus, with a movable bed, we are interested in how the water depth and the riverbed elevation change as a function of water runoff (e.g., important in the case of floods). Prescribing the water depth/elevation would fail to meet this objective.
+```{admonition} Why not prescribe water depth (elevation) at the upstream boundary?
+The riverbed elevation is expected to change in a morphodynamic simulation. Thus, with a movable bed, we are interested in how the water depth and the riverbed elevation change as a function of water runoff (e.g., important in the case of floods). Prescribing the water depth/elevation at the inflow boundary would fail to meet this objective.
+```
+
+* The first three entries of the downstream boundary are (according to {numref}`Tab. %s <tab-gaia-bc>`):
+  * `5` for **LIHBOR** for prescribed water depth, in line with the {ref}`dry-initialized steady2d simulation<tm2d-dry>`;
+  * `4` for **LIQBOR** for (solid) discharge, and **LIVBOR** (flow velocity).
+  *  In summary, make sure to **prescribe Q only** (i.e., with `5 4 4`) at the downstream boundary.
+
+```{admonition} Why not prescribe discharge at the downstream boundary?
+The sediment outflow is mostly unknown and prescribing fluxes at the downstream boundary would force the model to deposit any sediment inflow in the model, too. Thus, the model must have the option to vary outflow as a function of eroded (or deposited) sediment, which may lead to different fluxes at the upstream and downstream boundaries.
 ```
 
 * The following four entries (4-7 in {numref}`Tab. %s <tab-gaia-bc>`) are `0.000` (for the Q2BOR, UBOR, VBOR, and AUBOR values) and would prescribe (assign) float values directly in the boundary file (deactivated through the `0.000` setting).
 * The eighth entry is the **LIEBOR** type, which must bet set to `4` or `5` for enabling solid discharge fluxes and may not be `2` (closed wall). To enable solid flux modeling with Gaia from any existing purely hydrodynamic Telemac2d/3d simulation `*.cli`, make the following modifications (already done in *boundaries.cli*/*boundaries-gaia.cli* for this tutorial):
   - the **upstream LIEBOR to `5`** (prescribed -equilibrium- flowrate), which also requires that EBOR is set to `0.0` (no change of bottom elevation), and
-  - **downstream LIEBOR to `4`** (free flowrate).
+  - **downstream LIEBOR to `4`** (free).
 
 The prescription of time-dependent solid flowrates with a liquid boundaries file can be achieved with `LIEBOR=5` and following the descriptions in the {ref}`unsteady (quasi-steady) tutorial <tm2d-liq-file>`.
 
@@ -223,19 +232,19 @@ The below boxes feature the setup of the **boundaries.cli** and **boundaries-gai
 ````{tabbed} Downstream boundary
 ```
 [go to line 312]
-4 5 5  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000          34         312   # downstream (34 - 5)
-4 5 5  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000         113         313   # downstream (34 - 5)
-4 5 5  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000         765         314   # downstream (34 - 5)
-4 5 5  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000         116         315   # downstream (34 - 5)
-4 5 5  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000       11242         316   # downstream (34 - 5)
-4 5 5  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000          81         317   # downstream (34 - 5)
-4 5 5  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000         769         318   # downstream (34 - 5)
-4 5 5  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000          85         319   # downstream (34 - 5)
-4 5 5  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000          97         320   # downstream (34 - 5)
-4 5 5  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000        5293         321   # downstream (34 - 5)
-4 5 5  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000         101         322   # downstream (34 - 5)
-4 5 5  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000        5294         323   # downstream (34 - 5)
-4 5 5  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000           5         324   # downstream (34 - 5)
+5 4 4  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000          34         312   # downstream (34 - 5)
+5 4 4  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000         113         313   # downstream (34 - 5)
+5 4 4  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000         765         314   # downstream (34 - 5)
+5 4 4  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000         116         315   # downstream (34 - 5)
+5 4 4  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000       11242         316   # downstream (34 - 5)
+5 4 4  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000          81         317   # downstream (34 - 5)
+5 4 4  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000         769         318   # downstream (34 - 5)
+5 4 4  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000          85         319   # downstream (34 - 5)
+5 4 4  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000          97         320   # downstream (34 - 5)
+5 4 4  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000        5293         321   # downstream (34 - 5)
+5 4 4  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000         101         322   # downstream (34 - 5)
+5 4 4  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000        5294         323   # downstream (34 - 5)
+5 4 4  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000           5         324   # downstream (34 - 5)
 ```
 ````
 
