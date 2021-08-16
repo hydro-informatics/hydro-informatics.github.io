@@ -314,6 +314,10 @@ None of these options should be used with tracers because they are not mass-cons
 
 The finite volume method is mentioned here for completeness and detailed descriptions are available in section 7.2.2 of the {{ tm2d }}.
 
+```{admonition} Use finite volumes only with v8p2 or later
+Earlier version's of Telemac2d's finite volume solver are buggy, but since major improvements were implemented wit v8p2, the newest versions run stable.
+```
+
 The finite volume method involves the definition of a scheme through the **FINITE VOLUME SCHEME** keyword that can take integer values:
 
 * `0` enables the {cite:t}`roe1981ars` scheme ,
@@ -328,9 +332,12 @@ All finite volume schemes are explicit and potentially subjected to instability.
 ```fortran
 DESIRED COURANT NUMBER : 0.9
 VARIABLE TIME-STEP : YES / default is NO
+DURATION : 10000
 ```
 
-The variable timestep will cause irregular listing outputs, while the graphic output frequency stems from the above-defined `TIME STEP`. Note that **this tutorial uses VARIABLE TIME-STEP : NO** because it uses finite elements.
+The **DURATION** keyword is required to terminate the simulation.
+
+The variable timestep will cause irregular listing outputs, while the graphic output frequency stems from the above-defined `TIME STEP`. Note that **this tutorial uses VARIABLE TIME-STEP : NO**, though **variable timesteps do also work with FINITE ELEMENTS**.
 
 The **FINITE VOLUME SCHEME TIME ORDER** keyword defines the second-order time scheme, which is by default set to *Euler explicit* (`1`). Setting the time scheme order to `2` makes Telemac2d using the Newmark scheme where an integration coefficient may be used to change the integration parameter (`NEWMARK TIME INTEGRATION COEFFICIENT : 1` corresponds to *Euler explicit*). To implement these options in the steering file, use the following settings:
 
@@ -842,7 +849,9 @@ For comparison, try running the Telemac2d simulation with initial dry conditions
  * Click on **Replace ALL**.
  * Save and close **boundaries.cli**.
 
-In the Telemac2d steering (`*.cas`) file comment out the **INITIAL DEPTH** keyword, change the **INITIAL CONDITIONS** keyword to `ZERO DEPTH`, and change the **PRESCRIBED ELEVATIONS** keyword to `374.80565;371.33` (in lieu of `0.;371.33`). In addition, to use the results of the dry initialization for morphodynamic calculations, bottom elevation (`B`) must be added to the list of graphical printout variables.
+In the Telemac2d steering (`*.cas`) file comment out the **INITIAL DEPTH** keyword, change the **INITIAL CONDITIONS** keyword to `ZERO DEPTH`, and change the **PRESCRIBED ELEVATIONS** keyword to `374.80565;371.33` (in lieu of `0.;371.33`).  In addition, the **PRESCRIBED FLOWRATES** should assign the discharge at the inflow and outflow boundaries with `35.;35`.
+
+Moreover, to use the results of the dry initialization for morphodynamic calculations, the bottom elevation (`B`) must be added to the list of graphical printout variables.
 
 So the steering file should involve now:
 
@@ -850,6 +859,7 @@ So the steering file should involve now:
 / ... header
 VARIABLES FOR GRAPHIC PRINTOUTS : U,V,H,S,Q,F,B
 / ...
+PRESCRIBED FLOWRATES  : 35.;35.
 PRESCRIBED ELEVATIONS : 374.80565;371.33
 / ...
 INITIAL CONDITIONS : 'ZERO DEPTH'

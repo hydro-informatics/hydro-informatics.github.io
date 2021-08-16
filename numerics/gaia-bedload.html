@@ -832,24 +832,24 @@
 </div>
 <p>The following figures feature sediment supply-limited river sections and a transport capacity-limited river section.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="8c57a212-3b47-4ee2-b876-83ee730e3411" name="fd2e95c1-74ca-4b64-b201-a299925a92ce" type="radio">
-</input><label class="tabbed-label" for="8c57a212-3b47-4ee2-b876-83ee730e3411">
+<input checked="checked" id="107fbabc-a0c1-42a9-bfee-90931ead4997" name="403af2e0-cfde-48c2-b6c8-6c95a2e9a07b" type="radio">
+</input><label class="tabbed-label" for="107fbabc-a0c1-42a9-bfee-90931ead4997">
 Artificially sediment supply-limited</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="doubs-2015">
 <a class="reference internal image-reference" href="../_images/doubs-capacity-2015.JPG"><img alt="channel doubs france sediment supply transport limited" src="../_images/doubs-capacity-2015.JPG" style="height: 350px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 146 </span><span class="caption-text">The Doubs in the Franche-Comté (France) during a small flood. The sediment supply is interrupted by a cascade of dams upstream with the consequence of a straight monotonous channel with significant plant growth along the banks. The riverbed primarily consists of boulders that are immobile most of the time. Thus, the river section can be characterized as artificially sediment supply-limited (picture: Sebastian Schwindt 2015).</span><a class="headerlink" href="#doubs-2015" title="Permalink to this image">¶</a></p>
 </div>
 </div>
-<input id="f248af51-70cc-43fe-8af3-02b7296ee1aa" name="fd2e95c1-74ca-4b64-b201-a299925a92ce" type="radio">
-</input><label class="tabbed-label" for="f248af51-70cc-43fe-8af3-02b7296ee1aa">
+<input id="9eae0f7a-7171-4471-8f17-1db8e983066c" name="403af2e0-cfde-48c2-b6c8-6c95a2e9a07b" type="radio">
+</input><label class="tabbed-label" for="9eae0f7a-7171-4471-8f17-1db8e983066c">
 Naturally sediment supply-limited</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="krimml-2010">
 <a class="with-shadow reference internal image-reference" href="../_images/krimmler-ache-2010.jpg"><img alt="naturally channel krimmler ache austria sediment supply transport limited" class="with-shadow" src="../_images/krimmler-ache-2010.jpg" style="height: 350px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 147 </span><span class="caption-text">The Krimmler Ache in Austria during a small flood event. Even though the watershed has a high <a class="reference internal" href="../documentation/glossary.html#term-Sediment-yield"><span class="xref std std-term">Sediment yield</span></a>, the transport capacity of the water in this river section is so high that the riverbed predominantly consists of large boulders. Thus, the river section can be characterized as naturally sediment supply-limited (picture: Sebastian Schwindt 2010).</span><a class="headerlink" href="#krimml-2010" title="Permalink to this image">¶</a></p>
 </div>
 </div>
-<input id="7cc0489a-0885-4c3f-9ebf-0bb61a97c782" name="fd2e95c1-74ca-4b64-b201-a299925a92ce" type="radio">
-</input><label class="tabbed-label" for="7cc0489a-0885-4c3f-9ebf-0bb61a97c782">
+<input id="a8acb5a4-0465-41ce-a5f0-930ed295c7c9" name="403af2e0-cfde-48c2-b6c8-6c95a2e9a07b" type="radio">
+</input><label class="tabbed-label" for="a8acb5a4-0465-41ce-a5f0-930ed295c7c9">
 Capacity-limited</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="jenbach-2020">
 <a class="reference internal image-reference" href="../_images/jenbach-alluvial-2020.jpg"><img alt="alluvial channel jenbach sediment supply transport limited" src="../_images/jenbach-alluvial-2020.jpg" style="height: 350px;" /></a>
@@ -1098,8 +1098,8 @@ c'_{f} = 2\cdot \left(\frac{\kappa}{log(12 h/ k'_{s})}\right)^{2}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\kappa\)</span> is the <span id="id73">Von Karmàn [<a class="reference internal" href="../documentation/bibliography.html#id593">VK30</a>]</span> constant (0.4), <span class="math notranslate nohighlight">\(h\)</span> is water depth, and <span class="math notranslate nohighlight">\(k'_{s}\)</span> is the representative roughness length, which is often assumed as a multiple of the characteristic grain size (read more in the section on <a class="reference internal" href="gaia-run.html#bl-calibration"><span class="std std-ref">bedload calibration</span></a>).</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="50e08e41-26d2-4eed-99b0-415bc7de7b95" name="afec90c3-4f31-4b6c-9f3b-19e5c35be640" type="radio">
-</input><label class="tabbed-label" for="50e08e41-26d2-4eed-99b0-415bc7de7b95">
+<input checked="checked" id="eab75f2c-4ab2-41f5-a317-23e7f0d71109" name="cef88386-695e-4fea-bbcb-6b99bdbc0612" type="radio">
+</input><label class="tabbed-label" for="eab75f2c-4ab2-41f5-a317-23e7f0d71109">
 Skin Friction</label><div class="tabbed-content docutils">
 <p>Gaia uses by default the skin friction correction coefficient that it derives from the hydrodynamic solver (i.e., Telemac2d/3d). In very shallow waters, this behavior might cause instabilities. Therefore, the <strong>SKIN FRICTION CORRECTION</strong> (integer on-off, default is <code class="docutils literal notranslate"><span class="pre">1</span></code>) keyword can be defined in Gaia to disable the correction factor calculation and setting <span class="math notranslate nohighlight">\(f_{fr}\)</span> to 1. To disable skin friction correction (i.e., set <span class="math notranslate nohighlight">\(f_{fr}\)</span> to 1), add the following to the Gaia steering file (not used in this tutorial):</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">SKIN</span> <span class="n">FRICTION</span> <span class="n">CORRECTION</span> <span class="p">:</span> <span class="mi">0</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="mi">1</span> <span class="n">to</span> <span class="n">enable</span> <span class="n">skin</span> <span class="n">friction</span> <span class="n">correction</span>
@@ -1107,8 +1107,8 @@ Skin Friction</label><div class="tabbed-content docutils">
 </div>
 <p>On ripple riverbeds (i.e., fine sandy hills as typically observed at ocean beaches during low tides), the skin friction correction should be set to <code class="docutils literal notranslate"><span class="pre">2</span></code> for enabling a bedform predictor. Read more in section 3.1.8 of the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a>.</p>
 </div>
-<input id="a239469e-76eb-4c2b-b08a-02e7e4913a99" name="afec90c3-4f31-4b6c-9f3b-19e5c35be640" type="radio">
-</input><label class="tabbed-label" for="a239469e-76eb-4c2b-b08a-02e7e4913a99">
+<input id="12003c78-3625-4929-95e0-876a20230f7c" name="cef88386-695e-4fea-bbcb-6b99bdbc0612" type="radio">
+</input><label class="tabbed-label" for="12003c78-3625-4929-95e0-876a20230f7c">
 Bedform Roughness</label><div class="tabbed-content docutils">
 <p>The finer the sediment of the riverbed, the more important turbulence created by the bed shape becomes. For instance, skin friction calculated based on a multiple of the diameter of a sand grain’s characteristic roughness length <span class="math notranslate nohighlight">\(k'_{s}\)</span> is very small. However, sand tends to shape the riverbed into ripple or dune forms, which cause additional <em>bedform turbulence</em>, as featured in the video below.</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/q4eRwyeLKfA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

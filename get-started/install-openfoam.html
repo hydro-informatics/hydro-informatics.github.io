@@ -765,8 +765,8 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#install-openfoam-v8">
-     Install OpenFOAM (v8)
+    <a class="reference internal nav-link" href="#install-openfoam-v9">
+     Install OpenFOAM (v9)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -812,6 +812,14 @@
   <div class="section" id="openfoam-installation">
 <span id="openfoam-install"></span><h1>OpenFOAM (Installation)<a class="headerlink" href="#openfoam-installation" title="Permalink to this headline">¶</a></h1>
 <p>This tutorial guides through the installation of <a class="reference external" href="http://www.openfoam.org/">OpenFOAM</a> on <a class="reference external" href="https://www.ubuntu.org/">Ubuntu Linux</a> and <a class="reference internal" href="#openfoam-debian"><span class="std std-ref">Debian 10</span></a>. For installing <em>OpenFOAM</em> on many other platforms (even <em>Windows</em>) visit the <a class="reference external" href="https://openfoam.org">developer’s website</a>.</p>
+<div class="admonition-learn-openfoam admonition">
+<p class="admonition-title">Learn OpenFOAM</p>
+<p>OpenFOAM represents a powerful modeling tool, which is recommended here for modeling flow-structure interaction. OpenFOAM developers provide detailed documentation with high-quality tutorials on their website. Especially, their 3-week tutorial is a very good start into OpenFOAM modeling for PhD students or engineers.</p>
+</div>
+<div class="admonition-max-out-computation-power admonition">
+<p class="admonition-title">Max out computation power</p>
+<p>On Debian Linux / Ubuntu / Mint, preferably install OpenFOAM from the Ubuntu repository rather than installing OpenFOAM in a <em>Docker</em> container. The reason for this is that a Docker container is a virtual environment, which does not enable OpenFOAM to directly access the full physical capacity of your computer.</p>
+</div>
 <div class="section" id="ubuntu-incl-mint-and-lubuntu">
 <h2>Ubuntu (incl. Mint and Lubuntu)<a class="headerlink" href="#ubuntu-incl-mint-and-lubuntu" title="Permalink to this headline">¶</a></h2>
 <p>The installation on <em>Ubuntu Linux</em> or one of its derivatives is probably one of the easiest and most sustainable ways for working with <em>OpenFOAM</em>.</p>
@@ -822,7 +830,7 @@
 <li><p>Download and add the <em>gpg key</em> <br> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">sh</span> <span class="pre">-c</span> <span class="pre">&quot;wget</span> <span class="pre">-O</span> <span class="pre">-</span> <span class="pre">https://dl.openfoam.org/gpg.key</span> <span class="pre">|</span> <span class="pre">apt-key</span> <span class="pre">add</span> <span class="pre">-&quot;</span></code></p></li>
 <li><p>Add the repository to <em>sources.list</em> <br> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">add-apt-repository</span> <span class="pre">http://dl.openfoam.org/ubuntu</span></code></p></li>
 <li><p>Update the <code class="docutils literal notranslate"><span class="pre">apt</span></code> package list <br> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">update</span></code></p></li>
-<li><p>Install <em>OpenFOAM</em> along with a tailored version of <em>ParaView</em>: <br> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">-y</span> <span class="pre">install</span> <span class="pre">openfoam8</span></code></p></li>
+<li><p>Install <em>OpenFOAM</em> along with a tailored version of <em>ParaView</em>: <br> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">-y</span> <span class="pre">install</span> <span class="pre">openfoam9</span></code></p></li>
 </ol>
 <p>Optionally, install <em>gedit</em>, which is often used in the documentation and for instructions for setting environment variables:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">gedit</span>
@@ -835,9 +843,9 @@
 </div>
 <div class="section" id="update-openfoam">
 <h3>Update OpenFOAM<a class="headerlink" href="#update-openfoam" title="Permalink to this headline">¶</a></h3>
-<p>The <em>OpenFOAM</em> developers periodically update (recompile) new versions of <code class="docutils literal notranslate"><span class="pre">openfoam8</span></code>. To get these latest versions run:</p>
+<p>The <em>OpenFOAM</em> developers periodically update (recompile) new versions of <code class="docutils literal notranslate"><span class="pre">openfoam9</span></code>. To get these latest versions run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
-<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="o">--</span><span class="n">only</span><span class="o">-</span><span class="n">upgrade</span> <span class="n">openfoam8</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="o">--</span><span class="n">only</span><span class="o">-</span><span class="n">upgrade</span> <span class="n">openfoam9</span>
 </pre></div>
 </div>
 </div>
@@ -846,7 +854,7 @@
 <p><em>OpenFOAM</em> uses a set of environment variables that aid calling the program and its helpers. To define environment variables, every <em>OpenFOAM</em> <em>Ubuntu</em> user needs to modify the <em>.bashrc</em> file, which lives in the <em>/home/USER/</em> directory:</p>
 <ul class="simple">
 <li><p>Open the user <em>.bashrc</em> file: <br> <code class="docutils literal notranslate"><span class="pre">gedit</span> <span class="pre">~/.bashrc</span></code></p></li>
-<li><p>On the bottom of the <em>.bashrc</em> file add: <br> <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/opt/openfoam8/etc/bashrc</span></code></p></li>
+<li><p>On the bottom of the <em>.bashrc</em> file add: <br> <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/opt/openfoam9/etc/bashrc</span></code></p></li>
 <li><p>Save and close the user <em>.bashrc</em> file.</p></li>
 </ul>
 <p>Open a new <em>Terminal</em> (or, to be sure, re-login on <em>Ubuntu</em>) and test if the system recognizes the <em>OpenFOAM</em> environment variables:</p>
@@ -863,8 +871,8 @@
 <h3>Test-run<a class="headerlink" href="#test-run" title="Permalink to this headline">¶</a></h3>
 <p>With the environment variables defined, create a new directory for <em>OpenFOAM</em> projects:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~</span>
-<span class="n">mkdir</span> <span class="n">OpenFoam8</span>
-<span class="n">cd</span> <span class="n">OpenFoam8</span>
+<span class="n">mkdir</span> <span class="n">OpenFoam9</span>
+<span class="n">cd</span> <span class="n">OpenFoam9</span>
 </pre></div>
 </div>
 <p>Copy the <em>pitzDaily</em> <em>OpenFOAM</em> tutorial by using the <code class="docutils literal notranslate"><span class="pre">$FOAM_[...]</span></code> environment variables (<a class="reference external" href="https://openfoamwiki.net/index.php/Environment_variables">full list</a>:</p>
@@ -924,24 +932,24 @@ cp -r $FOAM_TUTORIALS/incompressible/simpleFoam/pitzDaily .
 </pre></div>
 </div>
 </div>
-<div class="section" id="install-openfoam-v8">
-<h3>Install OpenFOAM (v8)<a class="headerlink" href="#install-openfoam-v8" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="install-openfoam-v9">
+<h3>Install OpenFOAM (v9)<a class="headerlink" href="#install-openfoam-v9" title="Permalink to this headline">¶</a></h3>
 <p>Download the latest <em>OpenFOAM</em> package for <em>docker</em>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">sh</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;wget http://dl.openfoam.org/docker/openfoam8-linux -O /usr/bin/openfoam8-linux&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">sh</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;wget http://dl.openfoam.org/docker/openfoam9-linux -O /usr/bin/openfoam9-linux&quot;</span>
 </pre></div>
 </div>
-<p>Make the downloaded <code class="docutils literal notranslate"><span class="pre">openfoam8-linux</span></code> script executable:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">chmod</span> <span class="mi">755</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">openfoam8</span><span class="o">-</span><span class="n">linux</span>
+<p>Make the downloaded <code class="docutils literal notranslate"><span class="pre">openfoam9-linux</span></code> script executable:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">chmod</span> <span class="mi">755</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">openfoam9</span><span class="o">-</span><span class="n">linux</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="get-started-first-time-launch">
 <h3>Get Started (First-time Launch)<a class="headerlink" href="#get-started-first-time-launch" title="Permalink to this headline">¶</a></h3>
-<p>Create a new directory (e.g., <em>/home/OpenFoam8/</em>) and launch the <code class="docutils literal notranslate"><span class="pre">openfoam8-linux</span></code> environment:</p>
+<p>Create a new directory (e.g., <em>/home/OpenFoam9/</em>) and launch the <code class="docutils literal notranslate"><span class="pre">openfoam9-linux</span></code> environment:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~</span>
-<span class="n">mkdir</span> <span class="n">OpenFoam8</span>
-<span class="n">cd</span> <span class="n">OpenFoam8</span>
-<span class="n">openfoam8</span><span class="o">-</span><span class="n">linux</span>
+<span class="n">mkdir</span> <span class="n">OpenFoam9</span>
+<span class="n">cd</span> <span class="n">OpenFoam9</span>
+<span class="n">openfoam9</span><span class="o">-</span><span class="n">linux</span>
 </pre></div>
 </div>
 <p>The <em>docker</em> environment should now be launched in <em>Terminal</em>. To test <em>OpenFOAM</em>, copy the <em>pitzDaily</em> <em>OpenFOAM</em> tutorial by using the <a class="reference external" href="https://openfoamwiki.net/index.php/Environment_variables"><strong>FOAM</strong> environment variables</a>:</p>
@@ -962,7 +970,7 @@ cp -r $FOAM_TUTORIALS/incompressible/simpleFoam/pitzDaily .
 <div class="section" id="usual-launch-procedure">
 <h3>Usual Launch Procedure<a class="headerlink" href="#usual-launch-procedure" title="Permalink to this headline">¶</a></h3>
 <p>With <em>docker</em> and <em>OpenFOAM</em> being installed, every user of the <code class="docutils literal notranslate"><span class="pre">docker</span></code> group (see above instructions for adding users to the docker <code class="docutils literal notranslate"><span class="pre">group</span></code>) can launch <em>OpenFOAM</em> through <em>Terminal</em> by entering:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">openfoam8</span><span class="o">-</span><span class="n">linux</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">openfoam9</span><span class="o">-</span><span class="n">linux</span>
 </pre></div>
 </div>
 <p>To quit the program tap (in <em>Terminal</em>/<em>docker</em>):</p>

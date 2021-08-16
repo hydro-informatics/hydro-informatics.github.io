@@ -467,7 +467,7 @@ Download the [channel-mesh.t3c](https://github.com/hydro-informatics/telemac/raw
 
 Next, embed the channel mesh in a coarser floodplain mesh by creating a **new T3 Mesh Generator** object (**File** > **New** > **T3 Mesh Generator**). In the **T3 Mesh** popup window make the following settings (see also {numref}`Fig. %s <bk-t3-mesher>`):
 
-* **Enable* the **Resample Outline** checkbox.
+* **Enable** the **Resample Outline** checkbox.
 * Set the **Default Edge Length** to `20`.
 * Keep all other defaults.
 * Press **OK** (**not Run**).
@@ -594,7 +594,7 @@ TELEMAC needs to know how to treat the outer edges of the model (mesh). For this
 ```
 
 * In the opening popup window (**Available t3s Objects**), select the above-created **BOTTOM** mesh (i.e., the mesh with elevation information) and click **OK**. A new **BOTTOM_BC** object will occur in the **Data Items** tree of the WorkSpace.
-* Drag the new **BOTTOM_BC** object onto the **2D View (1)**, which will enable the *prescription* of boundary condition types.
+* Drag the new **BOTTOM_BC** object onto the **2D View (1)**, which will **enable the *prescription* of boundary condition types** (details in the next section).
 
 {numref}`Figure %s <bk-bc-types>` illustrates the new BOTTOM_BC object in the 2D View (1) and indicates where upstream and downstream liquid boundaries will be applied in the next section.
 
@@ -660,7 +660,7 @@ The downstream boundary definition. Double-click on a node at one bank, then hol
 ```
 ````
 
-Ultimately, TELEMAC will need a `*.cli` (*Conlim Table) file that can be created by highlighting the **boundaries (LIHBOR)** entry of the **boundaries** (or BOTTOM_BC) object in the **Data Items** tree and pressing the disk <img src="../img/telemac/bk-sym-save.png"> symbol (see {numref}`Fig. %s <bk-bc-fin>`). Save the boundaries file, for instance, as `boundaries.cli`.
+Ultimately, TELEMAC will need a **`*.cli` file (*Conlim Table*)** that can be created by highlighting the **boundaries (LIHBOR)** entry of the **boundaries** (or BOTTOM_BC) object in the **Data Items** tree and pressing the disk <img src="../img/telemac/bk-sym-save.png"> symbol (see {numref}`Fig. %s <bk-bc-fin>`). Save the boundaries file, for instance, as `boundaries.cli`.
 
 ```{figure} ../img/telemac/bk-bc-fin.png
 :alt: bluekenue liquid boundary conditions conlim upstream inflow outflow downstream cli

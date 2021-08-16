@@ -3,6 +3,14 @@
 
 This tutorial guides through the installation of [OpenFOAM](http://www.openfoam.org/) on [Ubuntu Linux](https://www.ubuntu.org/) and {ref}`openfoam-debian`. For installing *OpenFOAM* on many other platforms (even *Windows*) visit the [developer's website](https://openfoam.org).
 
+```{admonition} Learn OpenFOAM
+OpenFOAM represents a powerful modeling tool, which is recommended here for modeling flow-structure interaction. OpenFOAM developers provide detailed documentation with high-quality tutorials on their website. Especially, their 3-week tutorial is a very good start into OpenFOAM modeling for PhD students or engineers.
+```
+
+```{admonition} Max out computation power
+On Debian Linux / Ubuntu / Mint, preferably install OpenFOAM from the Ubuntu repository rather than installing OpenFOAM in a *Docker* container. The reason for this is that a Docker container is a virtual environment, which does not enable OpenFOAM to directly access the full physical capacity of your computer.
+```
+
 ## Ubuntu (incl. Mint and Lubuntu)
 
 The installation on *Ubuntu Linux* or one of its derivatives is probably one of the easiest and most sustainable ways for working with *OpenFOAM*.
@@ -14,7 +22,7 @@ The installation on any *Ubuntu Linux* platform is straight-forward and can be c
 1. Download and add the *gpg key* <br> `sudo sh -c "wget -O - https://dl.openfoam.org/gpg.key | apt-key add -"`
 1. Add the repository to *sources.list* <br> `sudo add-apt-repository http://dl.openfoam.org/ubuntu`
 1. Update the `apt` package list <br> `sudo apt update`
-1. Install *OpenFOAM* along with a tailored version of *ParaView*: <br> `sudo apt-get -y install openfoam8`
+1. Install *OpenFOAM* along with a tailored version of *ParaView*: <br> `sudo apt -y install openfoam9`
 
 Optionally, install *gedit*, which is often used in the documentation and for instructions for setting environment variables:
 
@@ -28,11 +36,11 @@ Even though the developer's installation instructions suggest using `apt-get upd
 
 ### Update OpenFOAM
 
-The *OpenFOAM* developers periodically update (recompile) new versions of `openfoam8`. To get these latest versions run:
+The *OpenFOAM* developers periodically update (recompile) new versions of `openfoam9`. To get these latest versions run:
 
 ```
 sudo apt update
-sudo apt install --only-upgrade openfoam8
+sudo apt install --only-upgrade openfoam9
 ```
 
 ### Setup User Configuration
@@ -40,7 +48,7 @@ sudo apt install --only-upgrade openfoam8
 *OpenFOAM* uses a set of environment variables that aid calling the program and its helpers. To define environment variables, every *OpenFOAM* *Ubuntu* user needs to modify the *.bashrc* file, which lives in the */home/USER/* directory:
 
 * Open the user *.bashrc* file: <br> `gedit ~/.bashrc`
-* On the bottom of the *.bashrc* file add: <br> `source /opt/openfoam8/etc/bashrc`
+* On the bottom of the *.bashrc* file add: <br> `source /opt/openfoam9/etc/bashrc`
 * Save and close the user *.bashrc* file.
 
 Open a new *Terminal* (or, to be sure, re-login on *Ubuntu*) and test if the system recognizes the *OpenFOAM* environment variables:
@@ -61,8 +69,8 @@ With the environment variables defined, create a new directory for *OpenFOAM* pr
 
 ```
 cd ~
-mkdir OpenFoam8
-cd OpenFoam8
+mkdir OpenFoam9
+cd OpenFoam9
 ```
 
 Copy the *pitzDaily* *OpenFOAM* tutorial by using the `$FOAM_[...]` environment variables ([full list](https://openfoamwiki.net/index.php/Environment_variables):
@@ -142,29 +150,29 @@ sudo apt install xorg dbus-x11 x11-xserver-utils
 sudo apt install xfce4 xfce4-goodies xrdp
 ```
 
-### Install OpenFOAM (v8)
+### Install OpenFOAM (v9)
 
 Download the latest *OpenFOAM* package for *docker*:
 
 ```
-sudo sh -c "wget http://dl.openfoam.org/docker/openfoam8-linux -O /usr/bin/openfoam8-linux"
+sudo sh -c "wget http://dl.openfoam.org/docker/openfoam9-linux -O /usr/bin/openfoam9-linux"
 ```
 
-Make the downloaded `openfoam8-linux` script executable:
+Make the downloaded `openfoam9-linux` script executable:
 
 ```
-sudo chmod 755 /usr/bin/openfoam8-linux
+sudo chmod 755 /usr/bin/openfoam9-linux
 ```
 
 ### Get Started (First-time Launch)
 
-Create a new directory (e.g., */home/OpenFoam8/*) and launch the `openfoam8-linux` environment:
+Create a new directory (e.g., */home/OpenFoam9/*) and launch the `openfoam9-linux` environment:
 
 ```
 cd ~
-mkdir OpenFoam8
-cd OpenFoam8
-openfoam8-linux
+mkdir OpenFoam9
+cd OpenFoam9
+openfoam9-linux
 ```
 
 The *docker* environment should now be launched in *Terminal*. To test *OpenFOAM*, copy the *pitzDaily* *OpenFOAM* tutorial by using the [**FOAM** environment variables](https://openfoamwiki.net/index.php/Environment_variables):
@@ -191,7 +199,7 @@ To quit *docker*, tap `exit`. The installation procedure is described in detail 
 With *docker* and *OpenFOAM* being installed, every user of the `docker` group (see above instructions for adding users to the docker `group`) can launch *OpenFOAM* through *Terminal* by entering:
 
 ```
-openfoam8-linux
+openfoam9-linux
 ```
 
 To quit the program tap (in *Terminal*/*docker*):

@@ -1348,7 +1348,7 @@
 </div>
 <p>Next, embed the channel mesh in a coarser floodplain mesh by creating a <strong>new T3 Mesh Generator</strong> object (<strong>File</strong> &gt; <strong>New</strong> &gt; <strong>T3 Mesh Generator</strong>). In the <strong>T3 Mesh</strong> popup window make the following settings (see also <a class="reference internal" href="#bk-t3-mesher"><span class="std std-numref">Fig. 70</span></a>):</p>
 <ul class="simple">
-<li><p>*<em>Enable</em> the <strong>Resample Outline</strong> checkbox.</p></li>
+<li><p><strong>Enable</strong> the <strong>Resample Outline</strong> checkbox.</p></li>
 <li><p>Set the <strong>Default Edge Length</strong> to <code class="docutils literal notranslate"><span class="pre">20</span></code>.</p></li>
 <li><p>Keep all other defaults.</p></li>
 <li><p>Press <strong>OK</strong> (<strong>not Run</strong>).</p></li>
@@ -1464,7 +1464,7 @@
 <img alt="../_images/bk-create-bc.png" src="../_images/bk-create-bc.png" />
 <ul class="simple">
 <li><p>In the opening popup window (<strong>Available t3s Objects</strong>), select the above-created <strong>BOTTOM</strong> mesh (i.e., the mesh with elevation information) and click <strong>OK</strong>. A new <strong>BOTTOM_BC</strong> object will occur in the <strong>Data Items</strong> tree of the WorkSpace.</p></li>
-<li><p>Drag the new <strong>BOTTOM_BC</strong> object onto the <strong>2D View (1)</strong>, which will enable the <em>prescription</em> of boundary condition types.</p></li>
+<li><p>Drag the new <strong>BOTTOM_BC</strong> object onto the <strong>2D View (1)</strong>, which will <strong>enable the <em>prescription</em> of boundary condition types</strong> (details in the next section).</p></li>
 </ul>
 <p><a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Figure 74</span></a> illustrates the new BOTTOM_BC object in the 2D View (1) and indicates where upstream and downstream liquid boundaries will be applied in the next section.</p>
 <div class="figure align-default" id="bk-bc-types">
@@ -1482,8 +1482,8 @@
 </div>
 <p>The upstream (inflow) liquid boundary will constitute an <strong>Open boundary with prescribed Q</strong> (discharge) and the downstream outflow (liquid) boundary will constitute an <strong>Open boundary with prescribed Q and H</strong> (i.e., prescribed <a class="reference internal" href="../documentation/glossary.html#term-Rating-curve"><span class="xref std std-term">Rating curve</span></a> / <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a>). These types of boundary conditions are commonly used in practice, with the downstream boundary typically chosen to be at a gauging station where a <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a> (<a class="reference internal" href="../documentation/glossary.html#term-Rating-curve"><span class="xref std std-term">Rating curve</span></a>) has been calibrated with historic data. To assign the two liquid boundary lines, zoom into the downstream and upstream regions indicated in  <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 74</span></a> and create both boundaries as follows:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="43b2c236-927f-434a-b989-259ee029e09c" name="e0d7e083-59de-491c-b348-b02d35eb1845" type="radio">
-</input><label class="tabbed-label" for="43b2c236-927f-434a-b989-259ee029e09c">
+<input checked="checked" id="55fc43a0-4eaa-41a5-b032-3597948ccfbc" name="dfeb62f1-e013-4ebd-a94c-f87fdd41d97d" type="radio">
+</input><label class="tabbed-label" for="55fc43a0-4eaa-41a5-b032-3597948ccfbc">
 Upstream boundary</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p>Zoom into the <strong>upstream</strong> region indicated in  <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 74</span></a>.</p></li>
@@ -1505,8 +1505,8 @@ Upstream boundary</label><div class="tabbed-content docutils">
 <p class="caption"><span class="caption-number">Fig. 75 </span><span class="caption-text">The upstream boundary definition. Double-click on a node at one bank, then hold the <strong>Shift</strong> key and double-click on a node at the other bank to highlight the inflow (purple) line. Note that BOTTOM_BC might appear with the name <em>boundaries</em> if the object has been saved as <code class="docutils literal notranslate"><span class="pre">boundaries.bc2</span></code>.</span><a class="headerlink" href="#bk-boundary-us" title="Permalink to this image">¶</a></p>
 </div>
 </div>
-<input id="945ea7ed-fffd-45e0-b4c1-459f6ce9545c" name="e0d7e083-59de-491c-b348-b02d35eb1845" type="radio">
-</input><label class="tabbed-label" for="945ea7ed-fffd-45e0-b4c1-459f6ce9545c">
+<input id="f454091f-4425-46f1-b09f-5c6826ec66dc" name="dfeb62f1-e013-4ebd-a94c-f87fdd41d97d" type="radio">
+</input><label class="tabbed-label" for="f454091f-4425-46f1-b09f-5c6826ec66dc">
 Downstream boundary</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p>Zoom into the <strong>downstream</strong> region indicated in <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 74</span></a>.</p></li>
@@ -1528,7 +1528,7 @@ Downstream boundary</label><div class="tabbed-content docutils">
 </div>
 </div>
 </div>
-<p>Ultimately, TELEMAC will need a <code class="docutils literal notranslate"><span class="pre">*.cli</span></code> (*Conlim Table) file that can be created by highlighting the <strong>boundaries (LIHBOR)</strong> entry of the <strong>boundaries</strong> (or BOTTOM_BC) object in the <strong>Data Items</strong> tree and pressing the disk <img alt="../_images/bk-sym-save.png" src="../_images/bk-sym-save.png" /> symbol (see <a class="reference internal" href="#bk-bc-fin"><span class="std std-numref">Fig. 77</span></a>). Save the boundaries file, for instance, as <code class="docutils literal notranslate"><span class="pre">boundaries.cli</span></code>.</p>
+<p>Ultimately, TELEMAC will need a <strong><code class="docutils literal notranslate"><span class="pre">*.cli</span></code> file (<em>Conlim Table</em>)</strong> that can be created by highlighting the <strong>boundaries (LIHBOR)</strong> entry of the <strong>boundaries</strong> (or BOTTOM_BC) object in the <strong>Data Items</strong> tree and pressing the disk <img alt="../_images/bk-sym-save.png" src="../_images/bk-sym-save.png" /> symbol (see <a class="reference internal" href="#bk-bc-fin"><span class="std std-numref">Fig. 77</span></a>). Save the boundaries file, for instance, as <code class="docutils literal notranslate"><span class="pre">boundaries.cli</span></code>.</p>
 <div class="figure align-default" id="bk-bc-fin">
 <img alt="bluekenue liquid boundary conditions conlim upstream inflow outflow downstream cli" src="../_images/bk-bc-fin.png" />
 <p class="caption"><span class="caption-number">Fig. 77 </span><span class="caption-text">The finalized boundary conditions are saved in a .CLI file by highlighting the <strong>boundaries (LIHBOR)</strong> entry of the <strong>boundaries</strong> (or BOTTOM_BC) object in the <strong>Data Items</strong> tree.</span><a class="headerlink" href="#bk-bc-fin" title="Permalink to this image">¶</a></p>

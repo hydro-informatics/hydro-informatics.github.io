@@ -1,7 +1,6 @@
-# Welcome to the Hydro-Informatics Learning Platform
+# Welcome to Hydro-Informatics.com
 
-
-The educational platform for Data & Programming, Geospatial Analysis, and Modeling Tools in the field of Water Resources Engineering & Research.
+The educational platform and eBook for Data & Programming, Geospatial Analysis, and Modeling Tools in the field of Water Resources Engineering & Research.
 
 ```{image} img/icons/banner-logo.jpg
 :alt: hydro-informatics github sebastian schwindt
