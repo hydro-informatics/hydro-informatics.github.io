@@ -499,17 +499,12 @@
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="../numerics/gaia-run.html">
-       Run Gaia
+       Run and Analyze
       </a>
      </li>
     </ul>
    </li>
   </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../numerics/calibration.html">
-   Calibration and Validation
-  </a>
  </li>
 </ul>
 <p class="caption">
@@ -1152,7 +1147,7 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
 </div>
 <div class="section" id="create-a-bedload-core-class">
 <h3>Create a Bedload Core Class<a class="headerlink" href="#create-a-bedload-core-class" title="Permalink to this headline">¶</a></h3>
-<p>A <code class="docutils literal notranslate"><span class="pre">BedCore</span></code> class written in the <code class="docutils literal notranslate"><span class="pre">bedload.py</span></code> script provides variables and methods, which are relevant to many <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> and <a class="reference internal" href="../documentation/glossary.html#term-Sediment-transport"><span class="xref std std-term">Sediment transport</span></a> calculation formulae, such as the <em>Parker-Wong</em> correction <span id="id9">[<a class="reference internal" href="../documentation/bibliography.html#id626">WP06</a>]</span> or the <span id="id10">Smart and Jaeggi [<a class="reference internal" href="../documentation/bibliography.html#id544">SJ83</a>]</span> (<a class="reference external" href="https://ethz.ch/content/dam/ethz/special-interest/baug/vaw/vaw-dam/documents/das-institut/mitteilungen/1980-1989/064.pdf">direct download</a> ). Moreover, the <code class="docutils literal notranslate"><span class="pre">BedCore</span></code> class contains constants such as the gravitational acceleration <span class="math notranslate nohighlight">\(g\)</span> (i.e., <code class="docutils literal notranslate"><span class="pre">self.g=9.81</span></code>), the ratio of sediment grain and water density <span class="math notranslate nohighlight">\(s\)</span> (i.e., <code class="docutils literal notranslate"><span class="pre">self.s=2.68</span></code>), and the critical dimensionless bed shear stress <span class="math notranslate nohighlight">\(\tau_{x,cr}\)</span> (i.e., <code class="docutils literal notranslate"><span class="pre">self.tau_xcr=0.047</span></code>, which may be re-defined by users). The header of the <code class="docutils literal notranslate"><span class="pre">BedCore</span></code> class should look (similar) like this:</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">BedCore</span></code> class written in the <code class="docutils literal notranslate"><span class="pre">bedload.py</span></code> script provides variables and methods, which are relevant to many <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> and <a class="reference internal" href="../documentation/glossary.html#term-Sediment-transport"><span class="xref std std-term">Sediment transport</span></a> calculation formulae, such as the <em>Parker-Wong</em> correction <span id="id9">[<a class="reference internal" href="../documentation/bibliography.html#id627">WP06</a>]</span> or the <span id="id10">Smart and Jaeggi [<a class="reference internal" href="../documentation/bibliography.html#id544">SJ83</a>]</span> (<a class="reference external" href="https://ethz.ch/content/dam/ethz/special-interest/baug/vaw/vaw-dam/documents/das-institut/mitteilungen/1980-1989/064.pdf">direct download</a> ). Moreover, the <code class="docutils literal notranslate"><span class="pre">BedCore</span></code> class contains constants such as the gravitational acceleration <span class="math notranslate nohighlight">\(g\)</span> (i.e., <code class="docutils literal notranslate"><span class="pre">self.g=9.81</span></code>), the ratio of sediment grain and water density <span class="math notranslate nohighlight">\(s\)</span> (i.e., <code class="docutils literal notranslate"><span class="pre">self.s=2.68</span></code>), and the critical dimensionless bed shear stress <span class="math notranslate nohighlight">\(\tau_{x,cr}\)</span> (i.e., <code class="docutils literal notranslate"><span class="pre">self.tau_xcr=0.047</span></code>, which may be re-defined by users). The header of the <code class="docutils literal notranslate"><span class="pre">BedCore</span></code> class should look (similar) like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fun</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -1443,7 +1438,7 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
 <div class="admonition-homework admonition">
 <p class="admonition-title">Homework</p>
 <ul class="simple">
-<li><p>HOMEWORK 1: Implement the Parker-Wong correction <span id="id11">[<a class="reference internal" href="../documentation/bibliography.html#id626">WP06</a>]</span> for the <span id="id12">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula:<span class="math notranslate nohighlight">\(\Phi_{b,pw} \approx 4.93 \cdot (\tau_{x} - \tau_{x,cr})^{1.6}\)</span>. Implement the formula in the <code class="docutils literal notranslate"><span class="pre">MPM</span></code> class either use an optional keyword argument in <code class="docutils literal notranslate"><span class="pre">compute_phi</span></code> or a new method.</p></li>
+<li><p>HOMEWORK 1: Implement the Parker-Wong correction <span id="id11">[<a class="reference internal" href="../documentation/bibliography.html#id627">WP06</a>]</span> for the <span id="id12">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula:<span class="math notranslate nohighlight">\(\Phi_{b,pw} \approx 4.93 \cdot (\tau_{x} - \tau_{x,cr})^{1.6}\)</span>. Implement the formula in the <code class="docutils literal notranslate"><span class="pre">MPM</span></code> class either use an optional keyword argument in <code class="docutils literal notranslate"><span class="pre">compute_phi</span></code> or a new method.</p></li>
 <li><p>HOMEWORK 2: Use the <code class="docutils literal notranslate"><span class="pre">openpyxl</span></code> library to add a background color to the headers of output tables.</p></li>
 <li><p>HOMEWORK 3: Choose and extract 3 profiles from <code class="docutils literal notranslate"><span class="pre">mpm_results</span></code> and plot the dimensional <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> transport <span class="math notranslate nohighlight">\(Q_{b}\)</span> (y-axis) against the discharge <span class="math notranslate nohighlight">\(q\)</span> (x-axis).</p></li>
 </ul>

@@ -506,11 +506,6 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="calibration.html">
-   Calibration and Validation
-  </a>
- </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -1050,7 +1045,7 @@ Expand to view an example for coordinate-based control sections<div class="summa
 </div>
 <div class="section" id="run-telemac2d-unsteady">
 <h2>Run Telemac2d Unsteady<a class="headerlink" href="#run-telemac2d-unsteady" title="Permalink to this headline">¶</a></h2>
-<p>Go to the configuration folder of the local TELEMAC installation (e.g., <code class="docutils literal notranslate"><span class="pre">~/telemac/v8p2/configs/</span></code>) and launch the environment (e.g., <code class="docutils literal notranslate"><span class="pre">pysource.openmpi.sh</span></code> - use the same as for compiling TELEMAC).</p>
+<p>Go to the configuration folder of the local TELEMAC installation (e.g., <code class="docutils literal notranslate"><span class="pre">~/telemac/v8p2/configs/</span></code>) and load the environment (e.g., <code class="docutils literal notranslate"><span class="pre">pysource.openmpi.sh</span></code> - use the same as for compiling TELEMAC).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">configs</span>
 <span class="n">source</span> <span class="n">pysource</span><span class="o">.</span><span class="n">openmpi</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
@@ -1070,7 +1065,7 @@ Expand to view an example for coordinate-based control sections<div class="summa
 </div>
 <div class="admonition-speed-up admonition">
 <p class="admonition-title">Speed up</p>
-<p>With <a class="reference internal" href="../get-started/install-telemac.html#mpi"><span class="std std-ref">parallelism</span></a> enabled (e.g., in the <a class="reference internal" href="../get-started/vm.html#hyfo-vm"><span class="std std-ref">Mint Hyfo Virtual Machine</span></a>), speed up the calculation by using multiple CPUs through the <code class="docutils literal notranslate"><span class="pre">--ncsize=N</span></code> flag. For instance, the following line runs the unsteady simulation on <code class="docutils literal notranslate"><span class="pre">N=2</span></code> CPUs:</p>
+<p>With <a class="reference internal" href="../get-started/install-telemac.html#mpi"><span class="std std-ref">parallelism</span></a> enabled (e.g., in the <a class="reference internal" href="../get-started/vm.html#hyfo-vm"><span class="std std-ref">Mint Hyfo Virtual Machine</span></a>), speed up the calculation by using multiple cores through the <code class="docutils literal notranslate"><span class="pre">--ncsize=N</span></code> flag. For instance, the following line runs the unsteady simulation on <code class="docutils literal notranslate"><span class="pre">N=2</span></code> cores:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">telemac2d</span><span class="o">.</span><span class="n">py</span> <span class="n">unsteady2d</span><span class="o">.</span><span class="n">cas</span> <span class="o">--</span><span class="n">ncsize</span><span class="o">=</span><span class="mi">2</span>
 </pre></div>
 </div>
@@ -1145,7 +1140,7 @@ Expand to view the resulting video<div class="summary-down docutils">
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/JKAiZ1ChUEg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Sebastian Schwindt <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 </div>
 </details><dl class="simple myst">
-<dt><strong>What next?</strong></dt><dd><p>This tutorial ends with the graphical output of modeled flow parameters, but there are a couple more steps to accomplish in practice. For instance, the time that the flow peak takes to travel through the modeled river section might be too short (i.e., flow is too fast) or too long (i.e., flow is too slow) compared to observation data (e.g., from stream gauges). In these cases, model calibration through variations of the <a class="reference internal" href="telemac2d-steady.html#tm2d-friction"><span class="std std-ref">FRICTION COEFFICIENT</span></a> keyword might be a solution. Read more in the <a class="reference internal" href="calibration.html#calibration"><span class="std std-ref">Calibration and Validation</span></a> section.</p>
+<dt><strong>What next?</strong></dt><dd><p>This tutorial ends with the graphical output of modeled flow parameters, but there are a couple more steps to accomplish in practice. For instance, the time that the flow peak takes to travel through the modeled river section might be too short (i.e., flow is too fast) or too long (i.e., flow is too slow) compared to observation data (e.g., from stream gauges). In these cases, model calibration through variations of the <a class="reference internal" href="telemac2d-steady.html#tm2d-friction"><span class="std std-ref">FRICTION COEFFICIENT</span></a> keyword might be a solution. Read more in the <a class="reference internal" href="numerical-modeling.html#calibration"><span class="std std-ref">Calibration and Validation</span></a> section.</p>
 </dd>
 </dl>
 </div>

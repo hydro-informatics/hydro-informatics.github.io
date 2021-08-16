@@ -551,4 +551,4 @@ Note the difference between the convergence duration in this steady simulation w
 ```
 
 **What next?**
-: The verification of the model stability represents only one step on the pathway to a useable model in practice. Before a numerical model can be used for simulating decision-making scenarios, it must be calibrated and validated with measurement data. Read more in the {doc}`calibration` section.
+: The verification of the model stability represents only one step on the pathway to a useable model in practice. Before a numerical model can be used for simulating decision-making scenarios, it must be calibrated and validated with measurement data (similar to TELEMAC {ref}`hydrodynamics <tm2d-calibration>`). 

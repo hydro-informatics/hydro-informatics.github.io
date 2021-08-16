@@ -262,7 +262,7 @@ Thus, re-running the simulation will write the fluxes across the two define cont
 
 ## Run Telemac2d Unsteady
 
-Go to the configuration folder of the local TELEMAC installation (e.g., `~/telemac/v8p2/configs/`) and launch the environment (e.g., `pysource.openmpi.sh` - use the same as for compiling TELEMAC).
+Go to the configuration folder of the local TELEMAC installation (e.g., `~/telemac/v8p2/configs/`) and load the environment (e.g., `pysource.openmpi.sh` - use the same as for compiling TELEMAC).
 
 ```
 cd ~/telemac/v8p2/configs
@@ -288,7 +288,7 @@ telemac2d.py unsteady2d.cas
 ```
 
 ````{admonition} Speed up
-With {ref}`parallelism <mpi>` enabled (e.g., in the {ref}`Mint Hyfo Virtual Machine <hyfo-vm>`), speed up the calculation by using multiple CPUs through the `--ncsize=N` flag. For instance, the following line runs the unsteady simulation on `N=2` CPUs:
+With {ref}`parallelism <mpi>` enabled (e.g., in the {ref}`Mint Hyfo Virtual Machine <hyfo-vm>`), speed up the calculation by using multiple cores through the `--ncsize=N` flag. For instance, the following line runs the unsteady simulation on `N=2` cores:
 
 ```
 telemac2d.py unsteady2d.cas --ncsize=2

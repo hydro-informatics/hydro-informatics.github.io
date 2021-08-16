@@ -499,17 +499,12 @@
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="../numerics/gaia-run.html">
-       Run Gaia
+       Run and Analyze
       </a>
      </li>
     </ul>
    </li>
   </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../numerics/calibration.html">
-   Calibration and Validation
-  </a>
  </li>
 </ul>
 <p class="caption">
@@ -900,7 +895,7 @@
 <br>For example, the combination of the water depth-related <span class="math notranslate nohighlight">\(HSI_{h}\)</span> and flow velocity-related <span class="math notranslate nohighlight">\(HSI_{u}\)</span> with the product method is: <span class="math notranslate nohighlight">\(cHSI = (HSI_{h} \cdot HSI_{u})\)</span></p></li>
 </ul>
 <p>Therefore, if the pixel-based <span class="math notranslate nohighlight">\(HSI\)</span> values for water depth and flow velocity are known from a two-dimensional (2d) hydrodynamic model, then for each pixel the <span class="math notranslate nohighlight">\(cHSI\)</span> value can be calculated either as the product or geometric mean of the single-parameter <span class="math notranslate nohighlight">\(HSI_{par}\)</span> rasters.</p>
-<p>This habitat assessment concept was introduced by <span id="id1">Bovee [<a class="reference internal" href="../documentation/bibliography.html#id832">Bov86</a>]</span> and <span id="id2">Stalnaker <em>et al.</em> [<a class="reference internal" href="../documentation/bibliography.html#id791">SLH+95</a>]</span> (<a class="reference external" href="https://apps.dtic.mil/sti/pdfs/ADA322762.pdf">direct download</a>). However, these authors built their usable (physical) habitat assessment based on one-dimensional (1d) numerical models that were commonly used in the last millennium. Today, 2d numerical models are the state-of-the-art to determine physical habitat geospatially explicit based on pixel-based <span class="math notranslate nohighlight">\(cHSI\)</span> values. There are two different options for calculating the usable habitat area (<span class="math notranslate nohighlight">\(UHA\)</span>) based on pixel-based <span class="math notranslate nohighlight">\(cHSI\)</span> values (and even more options can be found in the scientific literature). <a name="uha-methods"></a></p>
+<p>This habitat assessment concept was introduced by <span id="id1">Bovee [<a class="reference internal" href="../documentation/bibliography.html#id833">Bov86</a>]</span> and <span id="id2">Stalnaker <em>et al.</em> [<a class="reference internal" href="../documentation/bibliography.html#id792">SLH+95</a>]</span> (<a class="reference external" href="https://apps.dtic.mil/sti/pdfs/ADA322762.pdf">direct download</a>). However, these authors built their usable (physical) habitat assessment based on one-dimensional (1d) numerical models that were commonly used in the last millennium. Today, 2d numerical models are the state-of-the-art to determine physical habitat geospatially explicit based on pixel-based <span class="math notranslate nohighlight">\(cHSI\)</span> values. There are two different options for calculating the usable habitat area (<span class="math notranslate nohighlight">\(UHA\)</span>) based on pixel-based <span class="math notranslate nohighlight">\(cHSI\)</span> values (and even more options can be found in the scientific literature). <a name="uha-methods"></a></p>
 <ol class="simple">
 <li><p>Use a threshold value above which a pixel is classified as a usable habitat.</p>
 <ul class="simple">
@@ -918,10 +913,10 @@
 </ol>
 <div class="attention admonition">
 <p class="admonition-title">Weighted Usable Area (WUA) vs. UHA</p>
-<p>Some authors (e.g., <span id="id3">Yao <em>et al.</em> [<a class="reference internal" href="../documentation/bibliography.html#id1033">YBR18</a>]</span>, <span id="id4">Tuhtan <em>et al.</em> [<a class="reference internal" href="../documentation/bibliography.html#id1149">TNW12</a>]</span>) incorrectly refer to this weighting as Weighted Usable Area (<em>WUA</em>), which conflicts with the original definition of <em>WUA</em> <span id="id5">[<a class="reference internal" href="../documentation/bibliography.html#id832">Bov86</a>]</span>.</p>
+<p>Some authors (e.g., <span id="id3">Yao <em>et al.</em> [<a class="reference internal" href="../documentation/bibliography.html#id1034">YBR18</a>]</span>, <span id="id4">Tuhtan <em>et al.</em> [<a class="reference internal" href="../documentation/bibliography.html#id1150">TNW12</a>]</span>) incorrectly refer to this weighting as Weighted Usable Area (<em>WUA</em>), which conflicts with the original definition of <em>WUA</em> <span id="id5">[<a class="reference internal" href="../documentation/bibliography.html#id833">Bov86</a>]</span>.</p>
 <p>The threshold method is preferable over the weighting method because the <span class="math notranslate nohighlight">\(HSI\)</span>  has the unit of <em>Index</em> and is therefore not dimensionless. As a result, unrealistic units of <em>Index</em> areas (e.g., <em>Index</em>-m<span class="math notranslate nohighlight">\(^2\)</span>) are created in the weighting method, which is also introducing non-measurable uncertainty.</p>
 </div>
-<p>An alternative to the deterministic calculation of the <span class="math notranslate nohighlight">\(HSI\)</span> and <span class="math notranslate nohighlight">\(cHSI\)</span> values of a pixel is a fuzzy logic approach <span id="id6">[<a class="reference internal" href="../documentation/bibliography.html#id1171">NSW13</a>]</span>. In the fuzzy logic approach, pixels are classified, for instance, as <em>low</em>, <em>medium</em>, or <em>high</em> habitat quality as a function of the associated water depth or flow velocity using categorical (<em>low</em>, <em>medium</em>, or <em>high</em>), expert assessment-based <span class="math notranslate nohighlight">\(HSI\)</span> curves. The <span class="math notranslate nohighlight">\(cHSI\)</span> value results from the center of gravity of superimposed membership functions of considered parameters (e.g., water depth and flow velocity).</p>
+<p>An alternative to the deterministic calculation of the <span class="math notranslate nohighlight">\(HSI\)</span> and <span class="math notranslate nohighlight">\(cHSI\)</span> values of a pixel is a fuzzy logic approach <span id="id6">[<a class="reference internal" href="../documentation/bibliography.html#id1172">NSW13</a>]</span>. In the fuzzy logic approach, pixels are classified, for instance, as <em>low</em>, <em>medium</em>, or <em>high</em> habitat quality as a function of the associated water depth or flow velocity using categorical (<em>low</em>, <em>medium</em>, or <em>high</em>), expert assessment-based <span class="math notranslate nohighlight">\(HSI\)</span> curves. The <span class="math notranslate nohighlight">\(cHSI\)</span> value results from the center of gravity of superimposed membership functions of considered parameters (e.g., water depth and flow velocity).</p>
 <p>Sustainable river management involves the challenge of designing an aquatic habitat for target fish species at different life stages. The concept of usable physical habitat area represents a powerful tool to leverage the assessment of the ecological integrity of river management and engineering measures. For example, by calculating the usable habitat area before and after the implementation of measures, valuable conclusions can be drawn about the ecological integrity of restoration efforts.</p>
 <p>This exercise demonstrates the use of 2d hydrodynamic modeling results to algorithmically evaluate usable habitat area based on the calculation of geospatially explicit <span class="math notranslate nohighlight">\(cHSI\)</span> values.</p>
 </div>

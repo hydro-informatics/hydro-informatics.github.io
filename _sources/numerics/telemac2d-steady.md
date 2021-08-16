@@ -26,7 +26,7 @@ All simulation files used in this tutorial are available at [https://github.com/
 
 ## Steering File (CAS)
 
-The steering file has the file ending `*.cas` (presumably derived from the French word *cas*, which means *case* in English). The `*.cas` file is the main simulation file with information about references to the two always mandatory files (i.e., the [SELAFIN / SERAFIN](https://gdal.org/drivers/vector/selafin.html) `*.slf` geometry and the `*.cli` boundary files) and optional files, as well as definitions of simulation parameters. The steering file can be created or edited with a basic text editor or advanced software such as {ref}`Fudaa PrePro <fudaa>` or {ref}`Blue Kenue <bluekenue>`. This tutorial uses {ref}`Notepad++ <npp>` as basic text editor to minimize the number of software involved.
+The steering file has the file ending `*.cas` (presumably derived from the French word *cas*, which means *case* in English). The `*.cas` file is the main simulation file with information about references to the two always mandatory files (i.e., the [SELAFIN / SERAFIN](https://gdal.org/drivers/vector/selafin.html) `*.slf` geometry and the `*.cli` boundary files) and optional files, as well as definitions of simulation parameters. The steering file can be created or edited with a basic text editor or advanced software such as {ref}`Fudaa PrePro <fudaa>` or {ref}`Blue Kenue <bluekenue>`. This tutorial uses {ref}`Notepad++ <npp>` as a basic text editor to minimize the number of software involved.
 
 ```{admonition} Fudaa PrePro
 *Fudaa PrePro* comes with variable descriptions that facilitate the definition of boundaries, initial conditions, and numerical parameters in the steering file. However, Fudaa PrePro refers to the platform system to reference simulation files (`\` on Windows and `/` on Linux) and writes absolute file paths to the `*.cas` file, which often require manual correction (e.g., if Fudaa PrePro is used for setting up a `*.cas` file on Windows for running a TELEMAC simulation on Linux). For working with Fudaa PrePro, follow the download instructions in the {ref}`software chapter <fudaa>`. To launch Fudaa Prepro, open *Terminal* (Linux) or *Command Prompt* (Windows) and tap:
@@ -196,7 +196,7 @@ LISTING PRINTOUT PERIOD : 100
 
 Telemac2d comes with three solvers for approximating the depth-averaged {term}`Navier-Stokes equations` (i.e., the {term}`Shallow water equations`) {cite:p}`p. 262 in <kundu_fluid_2008>` that can be chosen by adding an **EQUATIONS** keyword:
 
-* `EQUATIONS : SAINT-VENANT FE` is the **default** that make Telemac2d use a Saint-Venant finite element method,
+* `EQUATIONS : SAINT-VENANT FE` is the **default** that makes Telemac2d use a Saint-Venant finite element method,
 * `EQUATIONS : SAINT-VENANT FV` makes Telemac2d use a Saint-Venant finite volume method, and
 * `EQUATIONS : BOUSSINESQ` makes Telemac2d use the {term}`Boussinesq` approximations (constant density except in the vertical momentum equation).
 
@@ -206,7 +206,7 @@ In addition, a type of discretization has to be specified with the **DISCRETIZAT
 * `12` activates quasi-bubble discretization with 4-node triangles, and
 * `13` activates quadratic discretization with 6-node triangles.
 
-The {{ tm2d }} recommend using the default value of `DISCRETIZATIONS IN SPACE : 11;11` that assign a linear discretization for velocity and water depth (computationally fastest). The option `12;11` may be used to reduce free surface instabilities or oscillations (e.g., along with steep bathymetry gradients). The option `13;11` increases the accuracy of results, the computation time, memory usage, and it is currently not available in Telemac2d.
+The {{ tm2d }} recommend using the default value of `DISCRETIZATIONS IN SPACE : 11;11` that assigns a linear discretization for velocity and water depth (computationally fastest). The option `12;11` may be used to reduce free surface instabilities or oscillations (e.g., along with steep bathymetry gradients). The option `13;11` increases the accuracy of results, the computation time, memory usage, and it is currently not available in Telemac2d.
 
 In addition, the **FREE SURFACE GRADIENT** keyword can be defined for increasing the stability of a model. Its default value is `1.0`, but it can be reduced close to zero to achieve stability. The developers propose a minimum value of `0.`, but this would lead to non-meaningful results and this is why this eBook recommends a value slightly higher than zero. For instance, the following keyword combination may reduce surface instabilities (also referred to as *wiggles* or *oscillations*):
 
@@ -877,17 +877,21 @@ Compare the results of the dry and wetted initial condition simulations with reg
 # 2d Calibration Parameters
 
 ```{dropdown} Recall: How to calibrate?
-Calibration involves the step-wise adaptation of model input parameters to yield a possibly best stochastic fit of modeled and measured data. In the process of model calibration, only one parameter should be modified at a time by 10 to 20-% deviations from its default value. For instance, if the default is `BETA : 1.3`, the calibration may test for `BETA : 1.2`, then `BETA : 1.1` and so on, ultimately to find out which value for **BETA** brings the model results closest to observations.
+Calibration involves the step-wise adaptation of model input parameters to yield a possibly best (statistic) fit of modeled and measured data. In the process of model calibration, only one parameter should be modified at a time by 10 to 20-% deviations from its default value. For instance, if the default is `FRICTION COEFFICIENT : 0.03`, the calibration may test for `FRICTION COEFFICIENT : 0.033`, then `FRICTION COEFFICIENT : 0.036`, `FRICTION COEFFICIENT : 0.027` and so on, ultimately to find out which value for **FRICTION COEFFICIENT** brings the model results closest to observations.
 
-Moreover, a sensitivity analysis compares step-wise modifications of multiple parameters (still: one at a time) and theirs effect on model results. For instance, if a 10-% variation of **BETA** yields a 5-% change in global water depth while a 10-% variation of a friction coefficient yields a 20-% change in global water depth, it may be concluded that the model sensitivity with respect to the friction coefficient is higher than with respect to **BETA**. However, such conclusions require careful considerations in multi-parametric, complex models of river ecosystems.
+Moreover, a sensitivity analysis compares step-wise modifications of multiple parameters (still: one at a time) and theirs effect on model results. For instance, if a 10-% variation of **FRICTION COEFFICIENT** yields a 5-% change in global water depth while a 10-% variation of grid size (edge length) yields a 20-% change in global water depth, it may be concluded that the model sensitivity with respect to the grid size. However, such conclusions require careful considerations in multi-parametric, complex models of river ecosystems.
 ```
 
 The following parameters may be used for calibrating a 2d model to measurements (e.g., water surface elevation, water depth, or flow velocity) that were made at a gauged discharge:
 
-* **FRICTION COEFFICIENT FOR ...** ({ref}`friction section <tm2d-friction>`)
+* **FRICTION COEFFICIENT** ({ref}`friction section <tm2d-friction>`)
 * Solvers, solver options, implicitation and other numerical parameters ({ref}`numerical parameter section <tm2d-solver-pars>`)
 * Type of model {ref}`initialization <tm2d-init>`
 * {ref}`Turbulence models and parameters <tm2d-turbulence>`
+
+```{admonition} Avoid accuracy-reducing keyword settings
+Keyword settings such as `MASS-LUMPING ... : ...`  lead to an increased smoothing (i.e., reduced accuracy) of results in order to increase computation speed. However, in most cases, it is worth accepting longer computation times and yielding higher accuracy, which will reduce efforts for model calibration, and thus, saving more time in the end.
+```
 
 **What next?**
 : A steady discharge almost never occurs in reality and can be used at maximum to {ref}`calibrate <calibration>` the model based on (field) measurements. Once the model is well-calibrated for 2-3 steady discharges, the steady model results may be used for initializing an {ref}`unsteady <chpt-unsteady>` simulation, possibly with {ref}`sediment transport <tm-gaia>`.

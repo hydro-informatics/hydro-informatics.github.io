@@ -497,17 +497,12 @@
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="gaia-run.html">
-       Run Gaia
+       Run and Analyze
       </a>
      </li>
     </ul>
    </li>
   </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="calibration.html">
-   Calibration and Validation
-  </a>
  </li>
 </ul>
 <p class="caption">
@@ -727,6 +722,29 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-setup">
+   Model Setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calibration-and-validation">
+   Calibration and Validation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-to-do-with-numerical-model-results">
+   What to do with Numerical Model Results?
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -737,7 +755,9 @@
                 
   <div class="section" id="principles">
 <h1>Principles<a class="headerlink" href="#principles" title="Permalink to this headline">¶</a></h1>
-<p>Numerical models in water resources engineering approximate the motion of fluids through iterative solutions of the <a class="reference internal" href="../documentation/glossary.html#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a>. The role of numerical models is becoming more and more important where models are distinguished regarding simplification hypotheses (e.g., for dimensions or fluid characteristics). Purely hydrodynamic models simulate the motion of water and  have high accuracy for simulating flow phenomena, but major challenges remain for morphodynamic modeling. While one-dimensional (<strong>1d</strong> cross-section-averaged) modeling is slowly abandoned for its incapacity to account for complex flow phenomena in natural rivers, two-dimensional (<strong>2d</strong>) and three-dimensional (<strong>3d</strong>) models are becoming more and more popular. Still, there are challenges in model choices and understanding numerical models. In this context, <span id="id1">Mosselman and Le [<a class="reference internal" href="../documentation/bibliography.html#id1167">ML16</a>]</span> highlight five widespread and common problems in the creation and interpretation of numerical models. These five mistakes are:</p>
+<div class="section" id="model-setup">
+<h2>Model Setup<a class="headerlink" href="#model-setup" title="Permalink to this headline">¶</a></h2>
+<p>Numerical models in water resources engineering approximate the motion of fluids through iterative solutions of the <a class="reference internal" href="../documentation/glossary.html#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a>. The role of numerical models is becoming more and more important where models are distinguished regarding simplification hypotheses (e.g., for dimensions or fluid characteristics). Purely hydrodynamic models simulate the motion of water and have high accuracy for simulating flow phenomena, but major challenges remain for morphodynamic modeling. While one-dimensional (<strong>1d</strong> cross-section-averaged) modeling is slowly abandoned for its incapacity to account for complex flow phenomena in natural rivers, two-dimensional (<strong>2d</strong>) and three-dimensional (<strong>3d</strong>) models are becoming more and more popular. Still, there are challenges in model choices and understanding numerical models. In this context, <span id="id1">Mosselman and Le [<a class="reference internal" href="../documentation/bibliography.html#id1167">ML16</a>]</span> highlight five widespread and common problems in the creation and interpretation of numerical models. These five mistakes are:</p>
 <ol class="simple">
 <li><p>Preparation: One-dimensional (1d), two-dimensional (2d), and three-dimensional (3d) models require similar input data (flow series, stage-discharge relation, roughness, digital elevation model, grain sizes). What varies are the computation (3d &gt; 2d &gt; 1d) and the calibration (1d &gt; 2d &gt; 3d) efforts.</p></li>
 <li><p>Grid setup: The model boundaries need to be at an adequate distance to the area of interest. An inflow boundary should only be along the permanently wetted riverbed and the most upstream 1-2% of the modeled channel bed should have a non-erosive constraint assigned to the cells. Otherwise, the model may be unstable because of locally very high velocity and erosion rates close to the inflow boundary.</p></li>
@@ -757,6 +777,25 @@
 </li>
 </ul>
 <p><strong>OpenFOAM</strong> represents another powerful modeling tool, which <strong>is recommended here for modeling flow-structure interactions</strong>, but not particularly featured in this eBook. OpenFOAM developers provide detailed documentation with high-quality tutorials on their website. Especially, their <a class="reference external" href="https://wiki.openfoam.com/index.php?title=%223_weeks%22_series">3-week tutorial</a> is a very good start into OpenFOAM modeling for PhD students or engineers. On <a class="reference internal" href="../get-started/vm.html#linux-install"><span class="std std-ref">Debian Linux / Ubuntu / Mint</span></a>, preferably install OpenFOAM from the <a class="reference external" href="https://develop.openfoam.com/Development/openfoam/-/wikis/precompiled/debian#ubuntu">Ubuntu repository</a>.</p>
+</div>
+<div class="section" id="calibration-and-validation">
+<span id="calibration"></span><h2>Calibration and Validation<a class="headerlink" href="#calibration-and-validation" title="Permalink to this headline">¶</a></h2>
+<p>A numerical model may provide good data, which is not meaningful unless a model is calibrated and validated. There are three possibilities to do so.</p>
+<ol class="simple">
+<li><p>Numerical calibration assesses the stability of the simulation itself. The parameters affected are for example the <a class="reference internal" href="../documentation/glossary.html#term-CFL"><span class="xref std std-term">CFL</span></a> (Courant-Friedrichs-Lewy) condition or other hydraulic parameters. A numerical calibration can be time-consuming and requires expert knowledge to judge the validity of parameters.</p></li>
+<li><p>Hydraulic calibration (and validation), which compares modeled water surface levels, flow velocities, or bed shear stress with observation data.</p></li>
+<li><p>Morphological calibration and validation compare simulated with observed terrain change rates (not applicable here because it was not applied in the model).</p></li>
+</ol>
+<div class="admonition-the-difference-between-calibration-and-validation admonition">
+<p class="admonition-title">The Difference between Calibration and Validation</p>
+<p><strong>Calibration</strong> is the iterative adaptation of a simulation to reality using measurement (observation) data with the goal of minimizing the error between modeled and observed results. <strong>Validation</strong> only assess the goodness (or error) of the model without adapting the model itself.</p>
+</div>
+<p>This eBooks provides hints for model calibration (parameters) in the TELEMAC sections on <a class="reference internal" href="telemac2d-steady.html#tm2d-calibration"><span class="std std-ref">hydrodynamics</span></a> and <a class="reference internal" href="gaia-run.html#gaia-calibration"><span class="std std-ref">morphodynamics</span></a>.</p>
+</div>
+<div class="section" id="what-to-do-with-numerical-model-results">
+<h2>What to do with Numerical Model Results?<a class="headerlink" href="#what-to-do-with-numerical-model-results" title="Permalink to this headline">¶</a></h2>
+<p>Once the model is calibrated, it can be used to simulate flood hydrographs to assess the stability of river engineering features and the river landscape or inundation area. Moreover, the <a class="reference external" href="https://pubs.er.usgs.gov/publication/70121265">habitat quality of rivers for target fish species</a> can be assessed, for example, as a function of water depth, flow velocity, and grain size (and other parameters). There is even special software to perform these tasks, such as <a class="reference external" href="http://www.casimir-software.de/ENG/index_eng.html">CASiMiR</a> (commercial) or <a class="reference external" href="https://riverarchitect.github.io">River Architect</a>.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
