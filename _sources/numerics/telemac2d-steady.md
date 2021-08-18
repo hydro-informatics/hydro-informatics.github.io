@@ -842,24 +842,34 @@ Note the difference between the convergence duration in this steady simulation w
 
 (tm2d-dry)=
 # Re-Initialize Dry
-For comparison, try running the Telemac2d simulation with initial dry conditions. To this end, change the upstream boundary type to `5 5 5` (prescribed H and Q) in the  {ref}`boundaries.cli <bk-liquid-bc>` file. For making this modification, it is sufficient to **open boundaries.cli in any text editor** and use its **find-and-replace** function (e.g., `CTRL` + `H` keys in {ref}`npp`, or `CTRL` + `F` keys in {ref}`install-atom`):
+For comparison, try running the Telemac2d simulation with initial dry conditions. To this end, change the downstream boundary type to `5 4 4` (prescribed H only) in the  {ref}`boundaries.cli <bk-liquid-bc>` file. For making this modification, it is sufficient to **open boundaries.cli in any text editor** and use its **find-and-replace** function (e.g., `CTRL` + `H` keys in {ref}`npp`, or `CTRL` + `F` keys in {ref}`install-atom`):
 
- * In the **Find** field type `4 5 5`.
- * In the **Replace with** field type `5 5 5`.
+ * In the **Find** field type `5 5 5`.
+ * In the **Replace with** field type `5 4 4`.
  * Click on **Replace ALL**.
- * Save and close **boundaries.cli**.
 
-In the Telemac2d steering (`*.cas`) file comment out the **INITIAL DEPTH** keyword, change the **INITIAL CONDITIONS** keyword to `ZERO DEPTH`, and change the **PRESCRIBED ELEVATIONS** keyword to `374.80565;371.33` (in lieu of `0.;371.33`).  In addition, the **PRESCRIBED FLOWRATES** should assign the discharge at the inflow and outflow boundaries with `35.;35`.
+In addition, the upstream boundary requires prescribed flowrate and water depths to avoid supercritical fluxes at the beginning of the simulation. To this end, **find-and-replace** the upstream boundary settings in **boundaries.cli**:
+
+* In the **Find** field type `4 5 5`.
+* In the **Replace with** field type `5 5 5`.
+* Click on **Replace ALL**.
+* Save and close **boundaries.cli**.
+
+In the Telemac2d steering (`*.cas`) file comment out the **INITIAL DEPTH** keyword, change the **INITIAL CONDITIONS** keyword to `ZERO DEPTH`, and change the **PRESCRIBED ELEVATIONS** keyword to `374.80565;371.33;371.33`.  In addition, the **PRESCRIBED FLOWRATES** should assign the discharge at the inflow and outflow boundaries with `35.;0.`.
+
+```{admonition} 5-5-5 boundaries everywhere
+`5 5 5` (prescribed Q and H) boundaries can alternatively applied in the here presented case also to the downstream boundary, which would require one additional adaptation of the steering file: Set `PRESCRIBED FLOWRATES : 35.;35.`. However, this setting may lead to an overdetermination of boundary conditions which may cause non-sense results (e.g., standing waves) in some model setups (in particular, simple geometries).
+```
 
 Moreover, to use the results of the dry initialization for morphodynamic calculations, the bottom elevation (`B`) must be added to the list of graphical printout variables.
 
-So the steering file should involve now:
+The steering file should involve now:
 
 ```fortran
 / ... header
 VARIABLES FOR GRAPHIC PRINTOUTS : U,V,H,S,Q,F,B
 / ...
-PRESCRIBED FLOWRATES  : 35.;35.
+PRESCRIBED FLOWRATES  : 35.;0.
 PRESCRIBED ELEVATIONS : 374.80565;371.33
 / ...
 INITIAL CONDITIONS : 'ZERO DEPTH'
@@ -869,8 +879,8 @@ INITIAL CONDITIONS : 'ZERO DEPTH'
 
 Alternatively, download the modified files:
 
-* [boundaries-555.cli](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/boundaries-555.cli)
-* [steady2d-initdry.cas](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/steady2d-initdry.cas)
+* [boundaries-dry.cli](https://github.com/hydro-informatics/telemac/raw/main/steady2d-dry/boundaries-dry.cli)
+* [steady2d-initdry.cas](https://github.com/hydro-informatics/telemac/raw/main/steady2d-dry/steady2d-dry.cas)
 
 Re-{ref}`run Telemac2d <tm2d-run>` and open the resulting `r2d...slf` file in QGIS with the PostTelemac plugin. The following video features the flow velocity vector evolution during the dry-initialized model run:
 

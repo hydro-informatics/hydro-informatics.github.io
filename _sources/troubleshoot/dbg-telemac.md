@@ -38,6 +38,20 @@ To end *gdb* tap:
 
 This approach also works with *Telemac3d* (and other modules).
 
+### Error Message Quickfixes
+
+This section lists quick fixes for some frequent error messages.
+
+RANDOM CRASH
+: If TELEMAC crashes for apparently random reasons, make sure that:
+
+  * No line in the steering file has more than 72 (active characteristics). For instance, the line `CLASSES CRITICAL SHEAR STRESS FOR MUD DEPOSITION = 0.011; 0.011; 0.011; 0.011` would be too long and needs a line break, such as:
+
+  ```fortran
+  CLASSES CRITICAL SHEAR STRESS FOR MUD DEPOSITION = 0.011; 0.011
+  ; 0.011; 0.011
+  ```
+
 ## Steering (CAS) Files
 
 * Prefer `:` over `=`

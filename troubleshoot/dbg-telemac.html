@@ -733,6 +733,13 @@
   <a class="reference internal nav-link" href="#traceback-errors">
    Traceback errors
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#error-message-quickfixes">
+     Error Message Quickfixes
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#steering-cas-files">
@@ -903,6 +910,21 @@
 </pre></div>
 </div>
 <p>This approach also works with <em>Telemac3d</em> (and other modules).</p>
+<div class="section" id="error-message-quickfixes">
+<h3>Error Message Quickfixes<a class="headerlink" href="#error-message-quickfixes" title="Permalink to this headline">¶</a></h3>
+<p>This section lists quick fixes for some frequent error messages.</p>
+<dl class="simple myst">
+<dt>RANDOM CRASH</dt><dd><p>If TELEMAC crashes for apparently random reasons, make sure that:</p>
+<ul class="simple">
+<li><p>No line in the steering file has more than 72 (active characteristics). For instance, the line <code class="docutils literal notranslate"><span class="pre">CLASSES</span> <span class="pre">CRITICAL</span> <span class="pre">SHEAR</span> <span class="pre">STRESS</span> <span class="pre">FOR</span> <span class="pre">MUD</span> <span class="pre">DEPOSITION</span> <span class="pre">=</span> <span class="pre">0.011;</span> <span class="pre">0.011;</span> <span class="pre">0.011;</span> <span class="pre">0.011</span></code> would be too long and needs a line break, such as:</p></li>
+</ul>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">CLASSES</span> <span class="k">CRITICAL </span><span class="n">SHEAR</span> <span class="n">STRESS</span> <span class="n">FOR</span> <span class="n">MUD</span> <span class="n">DEPOSITION</span> <span class="o">=</span> <span class="mf">0.011</span><span class="p">;</span> <span class="mf">0.011</span>
+<span class="p">;</span> <span class="mf">0.011</span><span class="p">;</span> <span class="mf">0.011</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
 </div>
 <div class="section" id="steering-cas-files">
 <h2>Steering (CAS) Files<a class="headerlink" href="#steering-cas-files" title="Permalink to this headline">¶</a></h2>
