@@ -1,6 +1,6 @@
 # Welcome to Hydro-Informatics.com
 
-**<span style="color: #d6d6d6 "> The educational platform and eBook for Data Analysis & Programming, Geospatial Analysis, and Modeling Tools in Water Resources Engineering & Research. </span>**
+***<span style="color: #8BA5DB "> The educational platform and eBook for Data Analysis & Programming, Geospatial Analysis, and Modeling Tools in Water Resources Engineering & Research. </span>***
 
 ```{image} img/icons/banner-logo.jpg
 :alt: hydro-informatics github sebastian schwindt

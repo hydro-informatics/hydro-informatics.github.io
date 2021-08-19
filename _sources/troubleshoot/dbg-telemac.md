@@ -71,7 +71,22 @@ When the accuracy keywords are improperly defined, TELEMAC may not be able to en
 / ACCURACY OF SPALART-ALLMARAS : 1.E-6
 ```
 
-Moreover, variable timestep calculation may cause eternal model runs (i.e., activated with `VARIABLE TIME-STEP : YES`). To deactivate variable time-step calculation use `VARIABLE TIME-STEP : NO` and define a `TIME STEP` (e.g., `1.`)
+### Variable Time-Steps and CFL Condition
+
+Unstable simulations may occur when the {term}`CFL` condition is insufficiently fulfilled. To ensure that the {term}`CFL` condition is respected, enable variable timestep calculation and use the **DESIRED COURANT NUMBER** keyword (default value `1`), for example:
+
+```fortran
+TIME STEP : 5
+VARIABLE TIME-STEP : YES
+DURATION : 5000
+DESIRED COURANT NUMBER : 0.9
+```
+
+Note that the **TIME STEP** is still required because the **GRAPHIC PRINTOUT PERIOD** is a multiple of the defined **TIME STEP**. 
+
+```{admonition} Use the DURATION keyword
+A variable timestep calculation may run eternally. Assigning the **DURATION** keyword avoids such eternal runs.
+```
 
 ### Implicitation
 To increase model stability, modify the following variables or make sure that the variables are within reasonable ranges in the *CAS* file:

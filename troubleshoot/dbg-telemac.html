@@ -757,6 +757,11 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#variable-time-steps-and-cfl-condition">
+     Variable Time-Steps and CFL Condition
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#implicitation">
      Implicitation
     </a>
@@ -945,7 +950,21 @@
 <span class="o">/</span> <span class="n">ACCURACY</span> <span class="n">OF</span> <span class="n">SPALART</span><span class="o">-</span><span class="n">ALLMARAS</span> <span class="p">:</span> <span class="mf">1.E-6</span>
 </pre></div>
 </div>
-<p>Moreover, variable timestep calculation may cause eternal model runs (i.e., activated with <code class="docutils literal notranslate"><span class="pre">VARIABLE</span> <span class="pre">TIME-STEP</span> <span class="pre">:</span> <span class="pre">YES</span></code>). To deactivate variable time-step calculation use <code class="docutils literal notranslate"><span class="pre">VARIABLE</span> <span class="pre">TIME-STEP</span> <span class="pre">:</span> <span class="pre">NO</span></code> and define a <code class="docutils literal notranslate"><span class="pre">TIME</span> <span class="pre">STEP</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">1.</span></code>)</p>
+</div>
+<div class="section" id="variable-time-steps-and-cfl-condition">
+<h3>Variable Time-Steps and CFL Condition<a class="headerlink" href="#variable-time-steps-and-cfl-condition" title="Permalink to this headline">¶</a></h3>
+<p>Unstable simulations may occur when the <a class="reference internal" href="../documentation/glossary.html#term-CFL"><span class="xref std std-term">CFL</span></a> condition is insufficiently fulfilled. To ensure that the <a class="reference internal" href="../documentation/glossary.html#term-CFL"><span class="xref std std-term">CFL</span></a> condition is respected, enable variable timestep calculation and use the <strong>DESIRED COURANT NUMBER</strong> keyword (default value <code class="docutils literal notranslate"><span class="pre">1</span></code>), for example:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="nb">TIME </span><span class="n">STEP</span> <span class="p">:</span> <span class="mi">5</span>
+<span class="n">VARIABLE</span> <span class="nb">TIME</span><span class="o">-</span><span class="n">STEP</span> <span class="p">:</span> <span class="n">YES</span>
+<span class="n">DURATION</span> <span class="p">:</span> <span class="mi">5000</span>
+<span class="n">DESIRED</span> <span class="n">COURANT</span> <span class="n">NUMBER</span> <span class="p">:</span> <span class="mf">0.9</span>
+</pre></div>
+</div>
+<p>Note that the <strong>TIME STEP</strong> is still required because the <strong>GRAPHIC PRINTOUT PERIOD</strong> is a multiple of the defined <strong>TIME STEP</strong>.</p>
+<div class="admonition-use-the-duration-keyword admonition">
+<p class="admonition-title">Use the DURATION keyword</p>
+<p>A variable timestep calculation may run eternally. Assigning the <strong>DURATION</strong> keyword avoids such eternal runs.</p>
+</div>
 </div>
 <div class="section" id="implicitation">
 <h3>Implicitation<a class="headerlink" href="#implicitation" title="Permalink to this headline">¶</a></h3>
