@@ -1630,16 +1630,16 @@ Expand to see exemplary values for Manning roughness<div class="summary-down doc
 <ul class="simple">
 <li><p>In the <strong>Find</strong> field type <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">5</span> <span class="pre">5</span></code>.</p></li>
 <li><p>In the <strong>Replace with</strong> field type <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">4</span> <span class="pre">4</span></code>.</p></li>
-<li><p>Click on <strong>Replace ALL</strong>.</p></li>
+<li><p>Click on <strong>Replace</strong> all <strong>downstream</strong> boundary node types.</p></li>
 </ul>
 <p>In addition, the upstream boundary requires prescribed flowrate and water depths to avoid supercritical fluxes at the beginning of the simulation. To this end, <strong>find-and-replace</strong> the upstream boundary settings in <strong>boundaries.cli</strong>:</p>
 <ul class="simple">
 <li><p>In the <strong>Find</strong> field type <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">5</span> <span class="pre">5</span></code>.</p></li>
 <li><p>In the <strong>Replace with</strong> field type <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">5</span> <span class="pre">5</span></code>.</p></li>
-<li><p>Click on <strong>Replace ALL</strong>.</p></li>
+<li><p>Click on <strong>Replace</strong> all <strong>upstream</strong> boundary node types.</p></li>
 <li><p>Save and close <strong>boundaries.cli</strong>.</p></li>
 </ul>
-<p>In the Telemac2d steering (<code class="docutils literal notranslate"><span class="pre">*.cas</span></code>) file comment out the <strong>INITIAL DEPTH</strong> keyword, change the <strong>INITIAL CONDITIONS</strong> keyword to <code class="docutils literal notranslate"><span class="pre">ZERO</span> <span class="pre">DEPTH</span></code>, and change the <strong>PRESCRIBED ELEVATIONS</strong> keyword to <code class="docutils literal notranslate"><span class="pre">374.80565;371.33;371.33</span></code>.  In addition, the <strong>PRESCRIBED FLOWRATES</strong> should assign the discharge at the inflow and outflow boundaries with <code class="docutils literal notranslate"><span class="pre">35.;0.</span></code>.</p>
+<p>In the Telemac2d steering (<code class="docutils literal notranslate"><span class="pre">*.cas</span></code>) file comment out the <strong>INITIAL DEPTH</strong> keyword, change the <strong>INITIAL CONDITIONS</strong> keyword to <code class="docutils literal notranslate"><span class="pre">ZERO</span> <span class="pre">DEPTH</span></code>, and change the <strong>PRESCRIBED ELEVATIONS</strong> keyword to <code class="docutils literal notranslate"><span class="pre">374.80565;371.33</span></code>.  In addition, the <strong>PRESCRIBED FLOWRATES</strong> should assign the discharge at the inflow and outflow boundaries with <code class="docutils literal notranslate"><span class="pre">35.;0.</span></code>.</p>
 <div class="admonition-boundaries-everywhere admonition">
 <p class="admonition-title">5-5-5 boundaries everywhere</p>
 <p><code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">5</span> <span class="pre">5</span></code> (prescribed Q and H) boundaries can alternatively applied in the here presented case also to the downstream boundary, which would require one additional adaptation of the steering file: Set <code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">FLOWRATES</span> <span class="pre">:</span> <span class="pre">35.;35.</span></code>. However, this setting may lead to an overdetermination of boundary conditions which may cause non-sense results (e.g., standing waves) in some model setups (in particular, simple geometries).</p>

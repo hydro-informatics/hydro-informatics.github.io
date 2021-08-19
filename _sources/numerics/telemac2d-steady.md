@@ -846,16 +846,16 @@ For comparison, try running the Telemac2d simulation with initial dry conditions
 
  * In the **Find** field type `5 5 5`.
  * In the **Replace with** field type `5 4 4`.
- * Click on **Replace ALL**.
+ * Click on **Replace** all **downstream** boundary node types.
 
 In addition, the upstream boundary requires prescribed flowrate and water depths to avoid supercritical fluxes at the beginning of the simulation. To this end, **find-and-replace** the upstream boundary settings in **boundaries.cli**:
 
 * In the **Find** field type `4 5 5`.
 * In the **Replace with** field type `5 5 5`.
-* Click on **Replace ALL**.
+* Click on **Replace** all **upstream** boundary node types.
 * Save and close **boundaries.cli**.
 
-In the Telemac2d steering (`*.cas`) file comment out the **INITIAL DEPTH** keyword, change the **INITIAL CONDITIONS** keyword to `ZERO DEPTH`, and change the **PRESCRIBED ELEVATIONS** keyword to `374.80565;371.33;371.33`.  In addition, the **PRESCRIBED FLOWRATES** should assign the discharge at the inflow and outflow boundaries with `35.;0.`.
+In the Telemac2d steering (`*.cas`) file comment out the **INITIAL DEPTH** keyword, change the **INITIAL CONDITIONS** keyword to `ZERO DEPTH`, and change the **PRESCRIBED ELEVATIONS** keyword to `374.80565;371.33`.  In addition, the **PRESCRIBED FLOWRATES** should assign the discharge at the inflow and outflow boundaries with `35.;0.`.
 
 ```{admonition} 5-5-5 boundaries everywhere
 `5 5 5` (prescribed Q and H) boundaries can alternatively applied in the here presented case also to the downstream boundary, which would require one additional adaptation of the steering file: Set `PRESCRIBED FLOWRATES : 35.;35.`. However, this setting may lead to an overdetermination of boundary conditions which may cause non-sense results (e.g., standing waves) in some model setups (in particular, simple geometries).
