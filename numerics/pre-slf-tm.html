@@ -758,8 +758,8 @@
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#model-boundary-and-breaklines">
-     Model Boundary and Breaklines
+    <a class="reference internal nav-link" href="#model-boundaries-and-breaklines">
+     Model Boundaries and Breaklines
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
@@ -891,23 +891,23 @@
 <li><p>Install <a class="reference internal" href="../get-started/install-telemac.html#bluekenue"><span class="std std-ref">Blue Kenue</span></a>.</p></li>
 </ul>
 </div>
-<p>The first steps in numerical modeling of a river with TELEMAC consist in the conversion of a Digital Elevation Model (<strong><a class="reference internal" href="../documentation/glossary.html#term-DEM"><span class="xref std std-term">DEM</span></a></strong>) into a computational mesh. This tutorial guides through the creation of</p>
+<p>The first steps in numerical modeling of a river with TELEMAC consist in the conversion of a Digital Elevation Model (<strong><a class="reference internal" href="../documentation/glossary.html#term-DEM"><span class="xref std std-term">DEM</span></a></strong>) into a computational mesh. This tutorial guides through the creation of:</p>
 <ul class="simple">
-<li><p>A QGIS project for creating a computational mesh, similar to the <a class="reference internal" href="pre-qgis-bm.html#qgis-prepro-bm"><span class="std std-ref">BASEMENT</span></a> pre-processing.</p></li>
+<li><p>A QGIS project for creating a computational mesh (similar to the <a class="reference internal" href="pre-qgis-bm.html#qgis-prepro-bm"><span class="std std-ref">BASEMENT</span></a> pre-processing).</p></li>
 <li><p>Optionally, the mesh generation with the Blue Kenue software is featured.</p></li>
-<li><p>A <a class="reference internal" href="../get-started/install-telemac.html#bluekenue"><span class="std std-ref">Blue Kenue</span></a> workspace to interpolate terrain elevations from a <a class="reference internal" href="../documentation/glossary.html#term-DEM"><span class="xref std std-term">DEM</span></a>, export the mesh to the SELAFIN/SERAFIN (<code class="docutils literal notranslate"><span class="pre">*.slf</span></code>) geometry format for TELEMAC, and define boundary lines.</p></li>
+<li><p>A <a class="reference internal" href="../get-started/install-telemac.html#bluekenue"><span class="std std-ref">Blue Kenue</span></a> workspace to interpolate terrain elevations from a <a class="reference internal" href="../documentation/glossary.html#term-DEM"><span class="xref std std-term">DEM</span></a>, including the export of a mesh to the SELAFIN/SERAFIN (<code class="docutils literal notranslate"><span class="pre">*.slf</span></code>) geometry format for TELEMAC, and the definition boundary edges.</p></li>
 </ul>
 <p>At the end of this tutorial, <a class="reference internal" href="telemac.html#chpt-telemac"><span class="std std-ref">TELEMAC</span></a> users will have generated a computational mesh in the <code class="docutils literal notranslate"><span class="pre">*.slf</span></code> file format, which is ready to use for the <a class="reference internal" href="telemac2d-steady.html#telemac2d-steady"><span class="std std-ref">Telemac2d steady</span></a> simulation tutorial. Additional materials and intermediate data products are provided in this eBook’s supplemental <a class="reference external" href="https://github.com/hydro-informatics/telemac">telemac</a> data repository.</p>
 <div class="tip admonition">
 <p class="admonition-title">Platform compatibility</p>
-<p>All software applications featured in this tutorial can be run on <em>Linux</em>, <em>Windows</em>, and <em>macOS</em> (in theory - not tested) platforms.</p>
+<p>All software applications featured in this tutorial can be run on <em>Linux</em>, <em>Windows</em>, and also potentially <em>macOS</em> (not tested) platforms.</p>
 </div>
 </div>
 <div class="section" id="qgis">
 <span id="tm-qgis-prepro"></span><h1>QGIS<a class="headerlink" href="#qgis" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="create-and-setup-a-new-project">
 <h2>Create and Setup a New Project<a class="headerlink" href="#create-and-setup-a-new-project" title="Permalink to this headline">¶</a></h2>
-<p>Launch QGIS and <a class="reference internal" href="../geopy/use-qgis.html#qgis-project"><span class="std std-ref">create a new QGIS project</span></a> to get started with this tutorial. As featured in the <a class="reference internal" href="../geopy/use-qgis.html#qgis-tutorial"><span class="std std-ref">QGIS Tutorial</span></a>, set up a coordinate reference system (CRS) for the project. This example uses data of a river in Bavaria (UTM zone 33N), which requires the following CRS:</p>
+<p>Launch QGIS and <a class="reference internal" href="../geopy/use-qgis.html#qgis-project"><span class="std std-ref">create a new QGIS project</span></a> to get started with this tutorial. As featured in the <a class="reference internal" href="../geopy/use-qgis.html#qgis-tutorial"><span class="std std-ref">QGIS Tutorial</span></a>, set up a coordinate reference system (<a class="reference internal" href="../documentation/glossary.html#term-CRS"><span class="xref std std-term">CRS</span></a>) for the project. This example uses data of a river in Bavaria (Germany, UTM zone 33N), which requires the following <a class="reference internal" href="../documentation/glossary.html#term-CRS"><span class="xref std std-term">CRS</span></a>:</p>
 <ul class="simple">
 <li><p>In the QGIS top menu go to <strong>Project</strong> &gt; <strong>Properties</strong>.</p></li>
 <li><p>Activate the <strong>CRS</strong> tab.</p></li>
@@ -921,12 +921,12 @@
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Save the project…</p>
-<p>Save the QGIS project (<strong>Project</strong> &gt; <strong>Save As…</strong>), for example, under the name <strong>prepro-tutorial.qgz</strong>.</p>
+<p>Save the QGIS project (<strong>Project</strong> &gt; <strong>Save As…</strong>), for example, with the name <strong>prepro-tutorial.qgz</strong>.</p>
 </div>
 </div>
 <div class="section" id="third-party-plugins">
 <span id="tm-qgis-plugins"></span><h2>Third-party Plugins<a class="headerlink" href="#third-party-plugins" title="Permalink to this headline">¶</a></h2>
-<p>The TELEMAC tutorials rely on the BASEmesh plugin and the <em>PostTelemac</em> plugin. <strong>Open</strong> the <strong>QGIS plugin manager</strong> (<strong>Plugins</strong> menu &gt; <strong>Manage and Install Plugins</strong>) to open the <strong>Plugins</strong> window (<a class="reference internal" href="#open-qgis-plugin-manager"><span class="std std-numref">Fig. 61</span></a>).</p>
+<p>The TELEMAC tutorials rely on the BASEmesh plugin and the <em>PostTelemac</em> plugin. To this end, <strong>open</strong> the <strong>QGIS plugin manager</strong> (<strong>Plugins</strong> menu &gt; <strong>Manage and Install Plugins</strong>) to open the <strong>Plugins</strong> window (<a class="reference internal" href="#open-qgis-plugin-manager"><span class="std std-numref">Fig. 61</span></a>).</p>
 <div class="figure align-default" id="open-qgis-plugin-manager">
 <img alt="qgis basement telemac plugins manager" src="../_images/plugin-manager-open.png" />
 <p class="caption"><span class="caption-number">Fig. 61 </span><span class="caption-text">Open QGIS’ Plugins Manager.</span><a class="headerlink" href="#open-qgis-plugin-manager" title="Permalink to this image">¶</a></p>
@@ -943,7 +943,7 @@
 <li><p>the repository address: <a class="reference external" href="https://people.ee.ethz.ch/~basement/qgis_plugins/qgis_plugins.xml">https://people.ee.ethz.ch/~basement/qgis_plugins/qgis_plugins.xml</a>.</p></li>
 </ul>
 </li>
-<li><p>Click <strong>OK</strong>. The new repository should now be visible in the <strong>Plugin Repositories</strong> listbox. If the connection is <strong>OK</strong>.</p></li>
+<li><p>Click <strong>OK</strong>. The new repository should now be visible in the <strong>Plugin Repositories</strong> listbox.</p></li>
 </ul>
 </li>
 <li><p>Install the BASEmesh plugin:</p>
@@ -963,7 +963,7 @@
 </div>
 <div class="section" id="load-dem">
 <span id="get-dem-xyz"></span><h2>Load DEM<a class="headerlink" href="#load-dem" title="Permalink to this headline">¶</a></h2>
-<p>This tutorial uses height information that is stored in a <a class="reference internal" href="../documentation/glossary.html#term-DEM"><span class="xref std std-term">DEM</span></a>. For the QGIS section, preferably use the <a class="reference internal" href="../documentation/glossary.html#term-GeoTIFF"><span class="xref std std-term">GeoTIFF</span></a> <a class="reference internal" href="../documentation/glossary.html#term-DEM"><span class="xref std std-term">DEM</span></a> with UTM zone 33N as {term} <code class="docutils literal notranslate"><span class="pre">CRS</span></code>:</p>
+<p>This tutorial uses height information that is stored in a <a class="reference internal" href="../documentation/glossary.html#term-DEM"><span class="xref std std-term">DEM</span></a>. For the QGIS section, preferably use the <a class="reference internal" href="../documentation/glossary.html#term-GeoTIFF"><span class="xref std std-term">GeoTIFF</span></a> <a class="reference internal" href="../documentation/glossary.html#term-DEM"><span class="xref std std-term">DEM</span></a> with UTM zone 33N as {term} <code class="docutils literal notranslate"><span class="pre">CRS</span></code> as follows:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/rasters/dem-utm33n.tif"><strong>Download the GeoTIFF DEM</strong></a> and save it in the same folder (<code class="docutils literal notranslate"><span class="pre">/Project</span> <span class="pre">Home/</span></code> or a sub-directory) as the above-create <strong>qgz</strong> project.</p></li>
 <li><p>Add the downloaded DEM as a new raster layer in <em>QGIS</em>:</p>
@@ -975,7 +975,7 @@
 <li><p>To facilitate delineating specific regions of the river ecosystem later, add a <a class="reference internal" href="../geopy/use-qgis.html#basemap"><span class="std std-ref">satellite imagery basemap</span></a> (XYZ tile) under the <a class="reference internal" href="../documentation/glossary.html#term-DEM"><span class="xref std std-term">DEM</span></a> and customize the layer symbology.</p></li>
 </ul>
 <div class="tip admonition">
-<p class="admonition-title">What are QGIS panels, what is a basemap and how can I order layers?</p>
+<p class="admonition-title">What are QGIS panels, what is a basemap, and how can I re-order layers?</p>
 <p>Learn more in the <em>QGIS</em> tutorial on <a class="reference internal" href="../geopy/use-qgis.html#qgis-tbx-install"><span class="std std-ref">Panels, Toolbars, and Plugins</span></a>.</p>
 </div>
 <p>The <strong>dem-utm33n</strong> layer should now be visible in the viewport and listed in the <strong>Layers</strong> panel. <strong>Right-click</strong> on the <strong>dem-utm33n</strong> layer and select <strong>Zoom to Layer(s)</strong> to view the layer.</p>
@@ -1010,18 +1010,18 @@
 </li>
 </ul>
 </div>
-<div class="section" id="model-boundary-and-breaklines">
-<span id="make-tm-shp"></span><h2>Model Boundary and Breaklines<a class="headerlink" href="#model-boundary-and-breaklines" title="Permalink to this headline">¶</a></h2>
-<p>This section resembles the instructions of the <a class="reference internal" href="pre-qgis-bm.html#make-2dm"><span class="std std-ref">BASEMENT pre-processing</span></a> tutorial to generate an <a class="reference internal" href="../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> mesh file. The differences are that the shapefiles for the TELEMAC pre-processing use the <em>UTM zone 33N</em> <a class="reference internal" href="../documentation/glossary.html#term-CRS"><span class="xref std std-term">CRS</span></a> and that the height (elevation) interpolation needs to be done with the Blue Kenue software to generate liquid boundary lines and an <code class="docutils literal notranslate"><span class="pre">*.slf</span></code> geometry file for TELEMAC. The generation of the <a class="reference internal" href="../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> mesh relies on the <a class="reference internal" href="pre-qgis-bm.html#get-basemesh"><span class="std std-ref">QGIS BASEmesh plugin</span></a> that and requires drawing a</p>
+<div class="section" id="model-boundaries-and-breaklines">
+<span id="make-tm-shp"></span><h2>Model Boundaries and Breaklines<a class="headerlink" href="#model-boundaries-and-breaklines" title="Permalink to this headline">¶</a></h2>
+<p>This section resembles the instructions of the <a class="reference internal" href="pre-qgis-bm.html#make-2dm"><span class="std std-ref">BASEMENT pre-processing</span></a> tutorial to generate an <a class="reference internal" href="../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> mesh file. The differences are that the shapefiles for the TELEMAC pre-processing use the <em>UTM zone 33N</em> <a class="reference internal" href="../documentation/glossary.html#term-CRS"><span class="xref std std-term">CRS</span></a> and that the height (elevation) interpolation needs to be done with the Blue Kenue software to generate liquid boundary lines and an <code class="docutils literal notranslate"><span class="pre">*.slf</span></code> geometry file for TELEMAC. The generation of the <a class="reference internal" href="../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> mesh relies on the <a class="reference internal" href="pre-qgis-bm.html#get-basemesh"><span class="std std-ref">QGIS BASEmesh plugin</span></a> and requires drawing a</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="../geopy/use-qgis.html#create-line-shp"><span class="std std-ref">Line Shapefile</span></a> called <code class="docutils literal notranslate"><span class="pre">breaklines.shp</span></code> that contains model boundaries and internal breaklines between model regions with different characteristics;</p></li>
-<li><p><a class="reference internal" href="../geopy/use-qgis.html#create-line-shp"><span class="std std-ref">Line Shapefile</span></a> called <code class="docutils literal notranslate"><span class="pre">liquid-boundaries.shp</span></code> that contains model boundaries for assigning inflow and outflow conditions; and a</p></li>
-<li><p><a class="reference internal" href="../geopy/use-qgis.html#create-point-shp"><span class="std std-ref">Point Shapefile</span></a> called <code class="docutils literal notranslate"><span class="pre">region-pts.shp</span></code> that contains markers for the definition of characteristics of model regions.</p></li>
+<li><p><a class="reference internal" href="../geopy/use-qgis.html#create-line-shp"><span class="std std-ref">Line Shapefile</span></a> called <em>breaklines.shp</em> that contains model boundaries and internal breaklines between model regions with different characteristics;</p></li>
+<li><p><a class="reference internal" href="../geopy/use-qgis.html#create-line-shp"><span class="std std-ref">Line Shapefile</span></a> called <em>liquid-boundaries.shp</em> that contains model boundaries for assigning inflow and outflow conditions;</p></li>
+<li><p><a class="reference internal" href="../geopy/use-qgis.html#create-point-shp"><span class="std std-ref">Point Shapefile</span></a> called <em>region-pts.shp</em> that contains markers for the definition of characteristics of model regions.</p></li>
 </ul>
 <p><a class="reference internal" href="#tm-shapefiles"><span class="std std-numref">Figure 63</span></a> provides an overview of the shapefiles to be drawn for generating a quality mesh with the BASEmesh plugin.</p>
 <div class="figure align-default" id="tm-shapefiles">
 <img alt="qgis telemac basemesh point line shapefiles" src="../_images/tm-prepro-illu.png" />
-<p class="caption"><span class="caption-number">Fig. 63 </span><span class="caption-text">The breaklines, liquid boundaries, and region points shapefile to draw for creating a quality mesh with the BASEmesh plugin (background map: <span id="id1">Google [<a class="reference internal" href="../documentation/bibliography.html#id1368">Goond</a>]</span> satellite imagery).</span><a class="headerlink" href="#tm-shapefiles" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 63 </span><span class="caption-text">The breaklines, liquid boundaries, and region points shapefile to draw for creating a 2dm quality mesh with the BASEmesh plugin (background map: <span id="id1">Google [<a class="reference internal" href="../documentation/bibliography.html#id1368">Goond</a>]</span> satellite imagery).</span><a class="headerlink" href="#tm-shapefiles" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="breaklines-and-model-outline">
 <span id="tm-bm-breaklines"></span><h3>Breaklines and Model Outline<a class="headerlink" href="#breaklines-and-model-outline" title="Permalink to this headline">¶</a></h3>
@@ -1037,19 +1037,19 @@
 <li><p>Delineate the outer bounds of the floodplains.</p></li>
 <li><p>Make sure that all points and lines are inside the <a class="reference internal" href="pre-qgis-bm.html#get-dem"><span class="std std-ref">DEM layer</span></a>.</p></li>
 <li><p>Do not cross the river (wetted area indicated by the satellite imagery basemap).</p></li>
-<li><p><strong>Finalize</strong> every line with a <strong>right-click</strong>. floodplain**.</p></li>
+<li><p><strong>Finalize</strong> every line with a <strong>right-click</strong>.</p></li>
 </ul>
 </li>
 <li><p>The <strong>breaklines of the left bank (LB) and right bank (RB)</strong>:</p>
 <ul>
-<li><p>Draw lines along the wetted main channel indicated in the satellite imagery basemap.</p></li>
+<li><p>Draw lines along the wetted main channel indicated in the satellite imagery (basemap).</p></li>
 <li><p>Make sure that line ends perfectly coincide with the before-created floodplain boundary lines (snapping is needed); thus, the main channel’s breaklines and the floodplain boundary lines need to enclose the floodplains without any gap between the lines.</p></li>
 </ul>
 </li>
 <li><p><strong>Breaklines of gravel banks</strong>:</p>
 <ul>
 <li><p>Draw lines along the gravel banks that are visible in the satellite imagery basemap in the main channel.</p></li>
-<li><p>Make sure that the line ends perfectly coincide with the before-created main channel breaklines; thus, the main channel’s hard breaklines and the gravel bank breaklines need to enclose the gravel banks without any gap between the lines.</p></li>
+<li><p>Make sure that the line ends perfectly coincide (use snapping) with the before-created main channel breaklines; thus, the main channel’s hard breaklines and the gravel bank breaklines need to enclose the gravel banks without any gap between the lines.</p></li>
 </ul>
 </li>
 <li><p>Optional: <strong>Breaklines of block ramps</strong>:</p>
@@ -1073,7 +1073,7 @@
 </div>
 <div class="section" id="liquid-boundaries">
 <span id="tm-bm-liquid-boundaries"></span><h3>Liquid Boundaries<a class="headerlink" href="#liquid-boundaries" title="Permalink to this headline">¶</a></h3>
-<p>The <strong>liquid boundaries</strong> define where hydraulic conditions, such as a given discharge or stage-discharge relationship, apply at the model inflow (upstream) and outflow (downstream) limits. Thus, a functional river model requires at least one inflow boundary (line) where mass flow into the model and one outflow boundary (line) where mass fluxes leave the model. For this purpose, <a class="reference internal" href="../geopy/use-qgis.html#create-line-shp"><span class="std std-ref">Create a Line Shapefile</span></a> called <strong>liquid-boundaries.shp</strong>, select <code class="docutils literal notranslate"><span class="pre">EPSG:</span> <span class="pre">32633</span> <span class="pre">-</span> <span class="pre">WGS</span> <span class="pre">84</span> <span class="pre">/</span> <span class="pre">UTM</span> <span class="pre">zone</span> <span class="pre">33N</span></code> as <a class="reference internal" href="../documentation/glossary.html#term-CRS"><span class="xref std std-term">CRS</span></a> <img alt="../_images/sym-crs.png" src="../_images/sym-crs.png" />, and define <strong>two text data fields</strong> named <strong>type</strong> and <strong>stringdef</strong>. Make sure that <strong>snapping</strong> is still <strong>enabled</strong> and <strong>Toggle (Start) Editing</strong> <img alt="../_images/yellow-pen.png" src="../_images/yellow-pen.png" /> the new <strong>liquid-boundaries.shp</strong>. Then draw two lines:</p>
+<p>The <strong>liquid boundaries</strong> define where hydraulic conditions, such as a given discharge or stage-discharge relationship, apply at the model inflow (upstream) and outflow (downstream) limits. Thus, a functional river model requires at least one inflow boundary (line) where mass fluxes enter the model and one outflow boundary (line) where mass fluxes leave the model. For this purpose, <a class="reference internal" href="../geopy/use-qgis.html#create-line-shp"><span class="std std-ref">Create a Line Shapefile</span></a> called <strong>liquid-boundaries.shp</strong>, select <code class="docutils literal notranslate"><span class="pre">EPSG:</span> <span class="pre">32633</span> <span class="pre">-</span> <span class="pre">WGS</span> <span class="pre">84</span> <span class="pre">/</span> <span class="pre">UTM</span> <span class="pre">zone</span> <span class="pre">33N</span></code> as <a class="reference internal" href="../documentation/glossary.html#term-CRS"><span class="xref std std-term">CRS</span></a> <img alt="../_images/sym-crs.png" src="../_images/sym-crs.png" />, and define <strong>two text data fields</strong> named <strong>type</strong> and <strong>stringdef</strong>. Make sure that <strong>snapping</strong> is still <strong>enabled</strong> and <strong>Toggle (Start) Editing</strong> <img alt="../_images/yellow-pen.png" src="../_images/yellow-pen.png" /> the new <strong>liquid-boundaries.shp</strong>. Then draw two lines:</p>
 <ul class="simple">
 <li><p>Activate <strong>Add Line Feature</strong> <img alt="../_images/sym-add-line.png" src="../_images/sym-add-line.png" />.</p></li>
 <li><p>Draw an inflow boundary line (light blue line on the left of <a class="reference internal" href="#tm-shapefiles"><span class="std std-numref">Fig. 63</span></a>):</p>
@@ -1168,14 +1168,14 @@
 <ul class="simple">
 <li><p>Triangulation constraints frame:</p>
 <ul>
-<li><p><strong>Breaklines</strong> = <strong>breaklines</strong> (see <a class="reference internal" href="#make-tm-shp"><span class="std std-ref">Model Boundary and Breaklines</span></a>).</p></li>
+<li><p><strong>Breaklines</strong> = <strong>breaklines</strong> (see <a class="reference internal" href="#make-tm-shp"><span class="std std-ref">Model Boundaries and Breaklines</span></a>).</p></li>
 <li><p>Keep all other defaults.</p></li>
 </ul>
 </li>
 <li><p>Regions frame:</p>
 <ul>
 <li><p><strong>Activate the Regions</strong> checkbox.</p></li>
-<li><p><strong>Region marker layer</strong> = <strong>regions-points</strong> (see <a class="reference internal" href="#make-tm-shp"><span class="std std-ref">Model Boundary and Breaklines</span></a>).</p></li>
+<li><p><strong>Region marker layer</strong> = <strong>regions-points</strong> (see <a class="reference internal" href="#make-tm-shp"><span class="std std-ref">Model Boundaries and Breaklines</span></a>).</p></li>
 <li><p><strong>Activate the MATID field</strong> checkbox and select the <em>regions-points</em> shapefile’s <strong>MATID field</strong>.</p></li>
 <li><p><strong>Activate the Maximum area field</strong> checkbox and select the <em>regions-points</em> shapefile’s <strong>max_area field</strong>.</p></li>
 </ul>
@@ -1202,7 +1202,7 @@
 <img alt="basement qgis quality mesh tin" src="../_images/bm-quality-meshing-success.png" />
 <p class="caption"><span class="caption-number">Fig. 65 </span><span class="caption-text">Definitions to be made in BASEmesh’s Quality meshing tool.</span><a class="headerlink" href="#fig-tm-qualm" title="Permalink to this image">¶</a></p>
 </div>
-<p>Quality meshing may take a couple of seconds. After a successful mesh generation the file <strong>prepro-tutorial_quality-mesh-interp.2dm</strong> will have been generated and shown in QGIS as single-color surface with <code class="docutils literal notranslate"><span class="pre">0-0</span></code> <strong>Bed Elevation</strong>. The next section shows the interpolation of elevation data with the Blue Kenue software.</p>
+<p>Quality meshing may take a short while. After a successful mesh generation the file <strong>prepro-tutorial_quality-mesh-interp.2dm</strong> will have been generated and it automatically shows up in QGIS as a single-color surface with <code class="docutils literal notranslate"><span class="pre">0-0</span></code> <strong>Bed Elevation</strong>. The next section shows the interpolation of elevation data with the Blue Kenue software.</p>
 <div class="tip admonition">
 <p class="admonition-title">Troubles with running the quality mesh generator?</p>
 <p>Download the <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/meshes/prepro-tutorial_quality-mesh-utm33n.2dm">tutorial quality mesh file</a> and save it in the project folder, for instance, <code class="docutils literal notranslate"><span class="pre">/Project</span> <span class="pre">Home/meshes/prepro-tutorial_quality-mesh-utm33n.2dm</span></code>.</p>
@@ -1214,7 +1214,7 @@
 <div class="section" id="get-started">
 <span id="bk-intro"></span><h2>Get Started<a class="headerlink" href="#get-started" title="Permalink to this headline">¶</a></h2>
 <p>This section features the <a class="reference internal" href="../get-started/install-telemac.html#bluekenue"><span class="std std-ref">Blue Kenue</span></a> software to interpolate terrain elevations from a <a class="reference internal" href="../documentation/glossary.html#term-DEM"><span class="xref std std-term">DEM</span></a>.xyz file on an <a class="reference internal" href="../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> mesh, export the mesh to the SELAFIN/SERAFIN (<code class="docutils literal notranslate"><span class="pre">*.slf</span></code>) geometry format for TELEMAC, and define boundary lines.</p>
-<p>In addition, the <a class="reference internal" href="#bk-meshing"><span class="std std-ref">Meshing with Blue Kenue</span></a> explains the mesh generation with Blue Kenue, which might be unstable because of program crashes and inflexible for correcting line drawing errors. Still, meshing with Blue Kenue might be desirable to create a computational mesh with long triangular cells that approximately follow the river streamlines.</p>
+<p>In addition, the <a class="reference internal" href="#bk-meshing"><span class="std std-ref">Meshing with Blue Kenue</span></a> section explains the mesh generation with Blue Kenue, which might be unstable because of program crashes and inflexible for correcting line drawing errors. Still, meshing with Blue Kenue might be desirable to create a computational mesh with long triangular cells that approximately follow the river streamlines (i.e., using a channel sub-mesh).</p>
 <p>To familiarize with Blue Kenue, launch the software (more details in the <a class="reference internal" href="../get-started/install-telemac.html#bluekenue"><span class="std std-ref">installation chapter</span></a>) and locate</p>
 <ul class="simple">
 <li><p>the <strong>WorkSpace</strong> browser (on the left of the window),</p></li>
@@ -1234,7 +1234,7 @@
 </li>
 </ul>
 <p>The <strong>Edit</strong> menu enables editing Blue Kenue objects, such as lines, point sets, or meshes.</p>
-<p>The <strong>Tools</strong> menu provides routines that can be applied to particular Blue Kenue objects, or for combining objects. In particular, this tutorial will make use of the <strong>Map Objects…</strong> tool.</p>
+<p>The <strong>Tools</strong> menu provides routines that can be applied to particular Blue Kenue objects or for combining objects. In particular, this tutorial will make use of the <strong>Map Objects…</strong> tool.</p>
 </div>
 <div class="section" id="files-and-objects">
 <span id="bk-files"></span><h2>Files and Objects<a class="headerlink" href="#files-and-objects" title="Permalink to this headline">¶</a></h2>
@@ -1249,7 +1249,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">*.t3m</span></code> files contain Blue Kenue mesh generator objects to create a <code class="docutils literal notranslate"><span class="pre">*.t3s</span></code> mesh object.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">*.t3s</span></code> files contain Blue Kenue mesh objects that can either be imported (e.g., from an <a class="reference internal" href="../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> file) or created with a <code class="docutils literal notranslate"><span class="pre">*.t3m</span></code> mesh generator.</p></li>
 </ul>
-<p>All files that are created with Blue Kenue are based on the ASCII EnSim 1.0 file type standard. The EnSim Core builds on <a class="reference internal" href="../documentation/glossary.html#term-HDF"><span class="xref std std-term">HDF</span></a> and it is documented in Blue Kenue’s <a class="reference external" href="https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/2011_UserManual.pdf">user manual PDF</a><sup>TM</sup> that comes along with the <a class="reference external" href="https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/Installer/BlueKenue_3.12.0-alpha+20201006_64bit.msi">Blue Kenue installer</a> (in Blue Kenue press the <code class="docutils literal notranslate"><span class="pre">F1</span></code> key to open the manual). Understanding the EnSim Core can significantly facilitate troubleshooting structural errors of Blue Kenue files.</p>
+<p>All files that are created with Blue Kenue are based on the ASCII EnSim 1.0 file type standard. The EnSim Core builds on <a class="reference internal" href="../documentation/glossary.html#term-HDF"><span class="xref std std-term">HDF</span></a> and it is documented in Blue Kenue’s <a class="reference external" href="https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/2011_UserManual.pdf">user manual PDF</a> that comes along with the <a class="reference external" href="https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/Installer/BlueKenue_3.12.0-alpha+20201006_64bit.msi">Blue Kenue installer</a> (in Blue Kenue press the <code class="docutils literal notranslate"><span class="pre">F1</span></code> key to open the manual). Note that understanding the EnSim Core can significantly facilitate troubleshooting structural errors of Blue Kenue files.</p>
 </div>
 <div class="section" id="load-xyz-points">
 <span id="bk-xyz"></span><h2>Load XYZ Points<a class="headerlink" href="#load-xyz-points" title="Permalink to this headline">¶</a></h2>
@@ -1275,9 +1275,9 @@
 <span id="bk-meshing"></span><h2>Blue Kenue Meshing (Optional)<a class="headerlink" href="#blue-kenue-meshing-optional" title="Permalink to this headline">¶</a></h2>
 <div class="admonition-skip-this-section-if-you-created-a-2dm-quality-mesh-with-basemesh admonition">
 <p class="admonition-title">Skip this section if you created a <em>.2dm</em> quality mesh with BASEMESH</p>
-<p>This is an optional section for users who do not want to use QGIS and the BASEmesh plugin for meshing. Generating a mesh with Blue Kenue can be useful, for instance, to produce a computational grid that has triangular cells oriented parallel to the riverbanks. Otherwise, <strong>if the <code class="docutils literal notranslate"><span class="pre">*.2dm</span></code> mesh file was created</strong> with QGIS, <strong>jump to the section on creating a <a class="reference internal" href="#bk-create-slf"><span class="std std-ref">Selafin Object</span></a></strong>.</p>
+<p>This is an optional section for users who do not want to use QGIS and the BASEmesh plugin for meshing. Generating a mesh with Blue Kenue can be useful, for instance, to produce a computational grid that has triangular cells oriented parallel to the riverbanks (i.e., a channel sub-mesh). Otherwise, <strong>if the <code class="docutils literal notranslate"><span class="pre">*.2dm</span></code> mesh file was created</strong> with QGIS, <strong>jump to the section on creating a <a class="reference internal" href="#bk-create-slf"><span class="std std-ref">Selafin Object</span></a></strong>.</p>
 </div>
-<p>This section features the basic mesh generation with Blue Kenue and the Baxter tutorial <span id="id3">[<a class="reference internal" href="../documentation/bibliography.html#id1343">GML13</a>]</span> provides more details with detailed screenshots.</p>
+<p>This section features the basic mesh generation with Blue Kenue. The Baxter tutorial <span id="id3">[<a class="reference internal" href="../documentation/bibliography.html#id1343">GML13</a>]</span> provides more details with detailed screenshots.</p>
 <div class="section" id="draw-model-boundary-closed-line">
 <h3>Draw Model Boundary (Closed Line)<a class="headerlink" href="#draw-model-boundary-closed-line" title="Permalink to this headline">¶</a></h3>
 <p>Delineate the model boundary (outline) with a closed line object (see also <a class="reference internal" href="#bk-model-outline"><span class="std std-numref">Fig. 67</span></a>):</p>
@@ -1327,12 +1327,12 @@
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Troubles with drawing the open lines of the channel banks?</p>
-<p>Download the lines from the supplemental materials repository, notably download <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/LeftBank.i2s">LeftBank.i2s</a> and <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/RightBank.i2s">RightBank.i2s</a>. To open the Open Line objects from the repository in Blue Kenue, go to <strong>File</strong> &gt; <strong>Open…</strong> &gt; select <strong>Line Sets (<code class="docutils literal notranslate"><span class="pre">*.i2s</span></code>, <code class="docutils literal notranslate"><span class="pre">*.i3s</span></code>)</strong> as file type and navigate to the download directory.</p>
+<p>Download the lines from the supplemental materials repository. Notably download <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/LeftBank.i2s">LeftBank.i2s</a> and <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/RightBank.i2s">RightBank.i2s</a>. To open the Open Line objects from the repository in Blue Kenue, go to <strong>File</strong> &gt; <strong>Open…</strong> &gt; select <strong>Line Sets (<code class="docutils literal notranslate"><span class="pre">*.i2s</span></code>, <code class="docutils literal notranslate"><span class="pre">*.i3s</span></code>)</strong> as file type and navigate to the download directory.</p>
 </div>
 </div>
 <div class="section" id="generate-mesh-es">
 <h3>Generate Mesh(es)<a class="headerlink" href="#generate-mesh-es" title="Permalink to this headline">¶</a></h3>
-<p>Blue Kenue provides mesh generators for creating regular or unstructured computational grids (meshes). This example features the <strong>T3 Channel Mesher</strong> to generate a triangular mesh, which involves first create a channel mesh (sub-mesh) and second generate a compound mesh that embeds the channel sub-mesh in a coarser mesh of the floodplains. To this end start with creating a new <strong>T3 Channel Mesher</strong> object (<strong>File</strong> &gt; <strong>New</strong> &gt; <strong>T3 Channel Mesher</strong>). In the popup window set:</p>
+<p>Blue Kenue provides mesh generators for creating regular or unstructured computational grids (meshes). This example features the <strong>T3 Channel Mesher</strong> to generate a triangular mesh, which involves first creating a channel mesh (sub-mesh) and second generating a compound mesh that embeds the channel sub-mesh in a coarser mesh of the floodplains. To this end, start with creating a new <strong>T3 Channel Mesher</strong> object (<strong>File</strong> &gt; <strong>New</strong> &gt; <strong>T3 Channel Mesher</strong>). In the popup window set:</p>
 <ul class="simple">
 <li><p><strong>CrossChannelNodeCount</strong> to <code class="docutils literal notranslate"><span class="pre">20</span></code> and</p></li>
 <li><p><strong>AlongChannelInterval</strong> to <code class="docutils literal notranslate"><span class="pre">15</span></code>.</p></li>
@@ -1362,7 +1362,7 @@
 <li><p>The above-created <strong>model-outline</strong> object on the <strong>Outline (Value)</strong> of the <strong>new T3 Mesh</strong>, and</p></li>
 <li><p>The channel <strong>Mesh</strong> on the <strong>SubMeshes</strong> attribute of the <strong>new T3 Mesh</strong>.</p></li>
 </ul>
-<p>Generate the compound mesh by double-clicking on the <strong>new T3 Mesh</strong> object and click <strong>Run</strong>. Confirm the question box (<em>Continue?</em> &gt; <strong>Yes</strong>) and press <strong>OK</strong> after the mesh generator is finished (<em>Done…</em>). To visualize the resulting <strong>Mesh</strong>, drag it on the <strong>2D View (1)</strong> object.</p>
+<p>Generate the compound mesh by double-clicking on the <strong>new T3 Mesh</strong> object and single-clicking on <strong>Run</strong>. Confirm the question box (<em>Continue?</em> &gt; <strong>Yes</strong>) and press <strong>OK</strong> after the mesh generator is finished (<em>Done…</em>). To visualize the resulting <strong>Mesh</strong>, drag it on the <strong>2D View (1)</strong>.</p>
 <div class="figure align-default" id="bk-mesh-compound">
 <img alt="bluekenue generate combined mesh drag and drop" src="../_images/bk-mesh-compound.png" />
 <p class="caption"><span class="caption-number">Fig. 71 </span><span class="caption-text">The compound mesh after dragging the model outline on the Outline (Value) and the channel Mesh on the SubMeshes attribute of the new T3 Mesh generator object.</span><a class="headerlink" href="#bk-mesh-compound" title="Permalink to this image">¶</a></p>
@@ -1381,7 +1381,7 @@
 <span id="bk-slf"></span><h2>SELAFIN<a class="headerlink" href="#selafin" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="open-and-import-ingredients">
 <h3>Open and Import Ingredients<a class="headerlink" href="#open-and-import-ingredients" title="Permalink to this headline">¶</a></h3>
-<p>Whether the mesh was created with Blue Kenue itself or with QGIS and the BASEmesh plugin, make sure to have now a Blue Kenue workspace with only the XYZ point cloud loaded (see the <a class="reference internal" href="#bk-xyz"><span class="std std-ref">Load XYZ Points</span></a> section). Before a SELAFIN object can be created, the previously created mesh (i.e., either the <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/meshes/prepro-tutorial_quality-mesh-utm33n.2dm">quality-mesh.2dm</a> or the <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/compound-mesh.t3s">compound-mesh.t3s</a>) needs to be imported into the WorkSpace in addition to the point cloud. The following instructions show the import and use of the <code class="docutils literal notranslate"><span class="pre">*.2dm</span></code> file:</p>
+<p>Whether the mesh was created with Blue Kenue or QGIS (and the BASEmesh plugin), make sure to have now a Blue Kenue workspace with only the XYZ point cloud loaded (see the <a class="reference internal" href="#bk-xyz"><span class="std std-ref">Load XYZ Points</span></a> section). Before a SELAFIN object can be created, the previously created mesh (i.e., either the <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/meshes/prepro-tutorial_quality-mesh-utm33n.2dm">quality-mesh.2dm</a> or the <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/compound-mesh.t3s">compound-mesh.t3s</a>) needs to be imported into the WorkSpace in addition to the point cloud. The following instructions show the import and use of the <code class="docutils literal notranslate"><span class="pre">*.2dm</span></code> file:</p>
 <ul class="simple">
 <li><p>In Blue Kenue go to <strong>File</strong> &gt; <strong>Import</strong> &gt; <strong>SMS 2DM Mesh</strong>.</p></li>
 <li><p>In the import window, navigate to the folder where the <code class="docutils literal notranslate"><span class="pre">*.2dm</span></code> file lives, select the <code class="docutils literal notranslate"><span class="pre">*.2dm</span></code> file, and click <strong>Open</strong>.</p></li>
@@ -1391,7 +1391,7 @@
 <p class="admonition-title">How to load a Blue Kenue .T3S mesh file?</p>
 <p>In contrast to an <a class="reference internal" href="../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> (<code class="docutils literal notranslate"><span class="pre">*.2dm</span></code>) file that has to be <em>imported</em>, a <code class="docutils literal notranslate"><span class="pre">*.t3s</span></code> file has to be <strong>opened</strong> in Blue Kenue. To this end, <strong>open</strong> the T3 Mesh (<code class="docutils literal notranslate"><span class="pre">*.t3s</span></code>) from <strong>File</strong> &gt; <strong>Open…</strong> &gt; select <strong>2D T3 Mesh (<code class="docutils literal notranslate"><span class="pre">*.t...</span></code>)</strong> as file type and navigate to the download directory. Select the <code class="docutils literal notranslate"><span class="pre">*.t3s</span></code> mesh file and click <strong>Open</strong>.</p>
 </div>
-<p>Ignore any warning message regarding the projection, but make sure that Blue Kenue correctly read the mesh coordinates by <strong>dragging</strong> the imported (or opened) mesh onto the <strong>2D View (1)</strong>. The Blue Kenue window should now look similar to the presentation in <a class="reference internal" href="#bk-imported-mesh"><span class="std std-numref">Fig. 72</span></a>.</p>
+<p>Ignore warning messages regarding the projection, but make sure that Blue Kenue correctly read the mesh coordinates by <strong>dragging</strong> the imported (or opened) mesh onto the <strong>2D View (1)</strong>. The Blue Kenue window should now look similar to <a class="reference internal" href="#bk-imported-mesh"><span class="std std-numref">Fig. 72</span></a>.</p>
 <div class="figure align-default" id="bk-imported-mesh">
 <img alt="bluekenue import open 2dm t3s mesh drag" src="../_images/bk-imported-mesh.png" />
 <p class="caption"><span class="caption-number">Fig. 72 </span><span class="caption-text">The imported mesh in the 2D View (1).</span><a class="headerlink" href="#bk-imported-mesh" title="Permalink to this image">¶</a></p>
@@ -1407,7 +1407,7 @@
 <ul class="simple">
 <li><p>In the popup window (<em>Properties of:new Selafin</em>) click <strong>OK</strong> and a <strong>new Selafin</strong> object will appear in the WorkSpace’s <strong>Data Items</strong>.</p></li>
 <li><p><strong>Right-click</strong> on the <strong>new Selafin</strong> object and select <strong>Add Variable…</strong></p></li>
-<li><p>In the <strong>Add New SELAFIN Variable</strong> window:</p>
+<li><p>Take the following action in the <strong>Add New SELAFIN Variable</strong> window:</p>
 <ul>
 <li><p>In the <strong>Mesh</strong> field, select the above-imported (or opened) mesh (e.g., <code class="docutils literal notranslate"><span class="pre">prepro-tutorial_quality-mesh-utm33n.2dm</span></code>).</p></li>
 <li><p>In the <strong>Name</strong> field, select <strong>BOTTOM</strong>.</p></li>
@@ -1420,13 +1420,13 @@
 </div>
 <div class="section" id="create-2d-interpolator">
 <span id="bk-2dinterp"></span><h3>Create 2D Interpolator<a class="headerlink" href="#create-2d-interpolator" title="Permalink to this headline">¶</a></h3>
-<p>A 2D Interpolator object is required to map elevation information onto the Selafin mesh. to this end, create a new 2D Interpolator object and map the elevations onto the BOTTOM mesh:</p>
+<p>A 2D Interpolator object is required to map elevation information onto the Selafin mesh. To this end, create a new 2D Interpolator object and map elevations onto the BOTTOM mesh:</p>
 <ul class="simple">
 <li><p>Go to <strong>File</strong> &gt; <strong>New</strong> &gt; <strong>2D Interpolator…</strong> and a <strong>new 2D Interpolator</strong> object will appear in the <strong>Data Items</strong> of the WorkSpace.</p></li>
 </ul>
 <img alt="../_images/bk-create-2Dinterpolator.png" src="../_images/bk-create-2Dinterpolator.png" />
 <ul class="simple">
-<li><p><strong>Drag</strong> the <strong>dem (Z)</strong> (i.e., the above-opened <em>dem.xyz</em> pointcloud) onto the <strong>new 2D Interpolator</strong> object (red arrow in <a class="reference internal" href="#bk-mesh-interpolated"><span class="std std-numref">Fig. 73</span></a>).</p></li>
+<li><p><strong>Drag dem (Z)</strong> (i.e., the above-opened <em>dem.xyz</em> pointcloud) onto the <strong>new 2D Interpolator</strong> object (red arrow in <a class="reference internal" href="#bk-mesh-interpolated"><span class="std std-numref">Fig. 73</span></a>).</p></li>
 <li><p><strong>Highlight</strong> (click on) the <strong>BOTTOM (Anonymous Attribute)</strong> mesh attribute of the above-created SELAFIN object (e.g., called <code class="docutils literal notranslate"><span class="pre">qgismesh</span></code>).</p></li>
 <li><p>With the mesh highlighted, go to the <strong>Tools</strong> top menu &gt; <strong>Map Object…</strong>.</p></li>
 <li><p>In the opening <strong>Available Objects</strong> window select the <strong>new 2D Interpolator</strong> and click <strong>OK</strong>.</p></li>
@@ -1434,14 +1434,14 @@
 <li><p>Save the final meshes:</p>
 <ul>
 <li><p>The BOTTOM mesh is a Blue Kenue <code class="docutils literal notranslate"><span class="pre">*.t3s</span></code> mesh object; to save it, highlight it in the <strong>Data Items</strong> tree and click on the disk <img alt="../_images/bk-sym-save.png" src="../_images/bk-sym-save.png" /> symbol. Then, save the mesh, for instance, as <code class="docutils literal notranslate"><span class="pre">BOTTOM.t3s</span></code> file.</p></li>
-<li><p>To save the Selafin mesh in its current (with interpolated elevations) state, highlight the Selafin object (e.g., <code class="docutils literal notranslate"><span class="pre">qgismesh</span></code>) and click on the disk <img alt="../_images/bk-sym-save.png" src="../_images/bk-sym-save.png" /> symbol. This action overwrites the above-saved <code class="docutils literal notranslate"><span class="pre">*.slf</span></code> file (i.e., click <strong>Yes</strong> to confirm replacing it).</p></li>
+<li><p>To save the Selafin mesh in its current (with interpolated elevations) state, highlight the Selafin object (e.g., <code class="docutils literal notranslate"><span class="pre">qgismesh</span></code>) and click on the disk <img alt="../_images/bk-sym-save.png" src="../_images/bk-sym-save.png" /> symbol. This action overwrites the above-saved <code class="docutils literal notranslate"><span class="pre">*.slf</span></code> file (click <strong>Yes</strong> to confirm replacing it).</p></li>
 </ul>
 </li>
 </ul>
-<p>To verify if the 2D interpolator correctly interpolated the elevations on the BOTTOM mesh, drag the BOTTOM mesh onto the <strong>2D View (1)</strong>. Uncheck the visibility of dem (Z) and the imported (or opened) mesh with a right-click on these elements in the 2D View (1) tree and <strong>deselect</strong> the <strong>Visible</strong> entry. Thus, only the height-interpolated mesh should be visible now, as indicated in <a class="reference internal" href="#bk-mesh-interpolated"><span class="std std-numref">Fig. 73</span></a>. If the <strong>interpolation has been successful, the mesh is displayed in a variety of (rainbow) colors</strong>. Otherwise, <strong>if the mesh is</strong> completely, monotonously <strong>monochrome (red)</strong>, the elevation <strong>interpolation</strong> has <strong>not</strong> been <strong>successful</strong> and must be repeated (the numerical model cannot work properly without height information).</p>
+<p>To verify if the 2D interpolator correctly interpolated the elevations on the BOTTOM mesh, drag the BOTTOM mesh onto the <strong>2D View (1)</strong>. Uncheck the visibility of dem (Z) and the imported (or opened) mesh with a right-click on these elements in the 2D View (1) tree and <strong>deselect</strong> the <strong>Visible</strong> entry. Thus, only the height-interpolated mesh should be visible now, as indicated in <a class="reference internal" href="#bk-mesh-interpolated"><span class="std std-numref">Fig. 73</span></a>. If the <strong>interpolation has been successful, the mesh is displayed in a variety of (rainbow) colors</strong>. Otherwise, <strong>if the mesh is</strong> completely, monotonously <strong>monochrome (red)</strong>, the elevation <strong>interpolation</strong> has <strong>not</strong> been <strong>successful</strong> and must be repeated (the numerical model cannot work properly without elevation information).</p>
 <div class="figure align-default" id="bk-mesh-interpolated">
 <img alt="bluekenue 2dm t3s mesh interpolate height elevation 2D interpolator map object" src="../_images/bk-mesh-interpolated.png" />
-<p class="caption"><span class="caption-number">Fig. 73 </span><span class="caption-text">The height-interpolated mesh in the 2D View (1) with an indication of the drag and drop actions for running the object mapping with a new 2D Interpolator object.</span><a class="headerlink" href="#bk-mesh-interpolated" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 73 </span><span class="caption-text">The height-interpolated mesh in the 2D View (1) with indication of drag and drop actions for running the object mapping with a new 2D Interpolator object.</span><a class="headerlink" href="#bk-mesh-interpolated" title="Permalink to this image">¶</a></p>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Troubles with creating the Selafin mesh and or the height interpolation?</p>
@@ -1457,7 +1457,7 @@
 <span id="bk-bc"></span><h2>Boundary Conditions (Conlim - CLI)<a class="headerlink" href="#boundary-conditions-conlim-cli" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="create-conlim-object">
 <h3>Create Conlim Object<a class="headerlink" href="#create-conlim-object" title="Permalink to this headline">¶</a></h3>
-<p>TELEMAC needs to know how to treat the outer edges of the model (mesh). For this purpose, boundary conditions have to be assigned to all nodes that constitute the <code class="docutils literal notranslate"><span class="pre">*.slf</span></code>mesh outline.</p>
+<p>TELEMAC needs to know how to treat the outer edges of the model (mesh). For this purpose, boundary conditions have to be assigned to all nodes that constitute the <code class="docutils literal notranslate"><span class="pre">*.slf</span></code>mesh outline:</p>
 <ul class="simple">
 <li><p>Go to <strong>File</strong> &gt; <strong>New</strong> &gt; <strong>Boundary Conditions (Conlim )…</strong> and a <strong>new 2D Interpolator</strong> object will appear in the <strong>Data Items</strong> of the WorkSpace.</p></li>
 </ul>
@@ -1469,21 +1469,21 @@
 <p><a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Figure 74</span></a> illustrates the new BOTTOM_BC object in the 2D View (1) and indicates where upstream and downstream liquid boundaries will be applied in the next section.</p>
 <div class="figure align-default" id="bk-bc-types">
 <img alt="bluekenue boundary conditions conlim create upstream downstream" src="../_images/bk-bc-types.png" />
-<p class="caption"><span class="caption-number">Fig. 74 </span><span class="caption-text">The new Boundary Conditions (Conlim) object (BOTTOM_BC) in the 2D View (1) with a qualitative overview on the position of upstream and downstream boundaries where prescribed flow (Q) and prescribed flow (Q) and Depth (H) will be applied, respectively.</span><a class="headerlink" href="#bk-bc-types" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 74 </span><span class="caption-text">The new Boundary Conditions (Conlim) object (BOTTOM_BC) in the 2D View (1) with a qualitative overview of the position of upstream and downstream boundaries where prescribed flow (Q) and prescribed flow (Q) and Depth (H) will be applied later in the TELEMAC setup.</span><a class="headerlink" href="#bk-bc-types" title="Permalink to this image">¶</a></p>
 </div>
-<p>To <strong>save the new BOTTOM_BC object</strong>, highlight it in the <strong>Data Items</strong> tree and click on the disk <img alt="../_images/bk-sym-save.png" src="../_images/bk-sym-save.png" /> symbol. Define a file name such as <strong><code class="docutils literal notranslate"><span class="pre">boundaries.bc2</span></code></strong>. As a result of saving the object, the BOTTOM_BC object takes on the new file name (e.g., <strong>boundaries</strong>).</p>
+<p>To <strong>save the new BOTTOM_BC object</strong>, highlight it in the <strong>Data Items</strong> tree and click on the disk <img alt="../_images/bk-sym-save.png" src="../_images/bk-sym-save.png" /> symbol. Define a filename such as <strong><code class="docutils literal notranslate"><span class="pre">boundaries.bc2</span></code></strong>. As a result of saving the object, the BOTTOM_BC object takes on the new file name (e.g., <strong>boundaries</strong>).</p>
 </div>
 <div class="section" id="define-liquid-boundaries">
 <span id="bk-liquid-bc"></span><h3>Define Liquid Boundaries<a class="headerlink" href="#define-liquid-boundaries" title="Permalink to this headline">¶</a></h3>
-<p>The default boundary type of the <strong>boundaries</strong> object is <strong>Closed boundary (wall)</strong>. Therefore, to enable mass (i.e., water, sediment, and/or other tracer) fluxes through the model, at least two openings must be drawn into the closed boundary. For this purpose, at least one inflow and one outflow open boundary for liquids must be defined. This tutorial uses this minimum number of required open boundaries (i.e., one upstream inflow and one downstream outflow boundary), which are indicated in <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 74</span></a>.</p>
+<p>The default boundary type of the <strong>boundaries</strong> object is <strong>Closed boundary (wall)</strong>. Therefore, to enable mass (i.e., water, sediment, and/or tracer) fluxes through the model, at least two openings must be drawn into the closed boundary. For this purpose, at least one inflow and one outflow open boundary for liquids must be defined. This tutorial uses this minimum number of required open boundaries (i.e., one upstream inflow and one downstream outflow boundary), which are indicated in <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 74</span></a>.</p>
 <div class="admonition-liquid-boundaries-must-be-defined-in-blue-kenue admonition">
 <p class="admonition-title">Liquid boundaries must be defined in Blue Kenue</p>
 <p>Even though the liquid boundaries are already defined in QGIS (see the <a class="reference internal" href="#tm-bm-liquid-boundaries"><span class="std std-ref">QGIS section on Liquid Boundaries</span></a>), it is always necessary to define the liquid boundaries in Blue Kenue to fit the node numbers (IDs) of the Selafin mesh.</p>
 </div>
-<p>The upstream (inflow) liquid boundary will constitute an <strong>Open boundary with prescribed Q</strong> (discharge) and the downstream outflow (liquid) boundary will constitute an <strong>Open boundary with prescribed Q and H</strong> (i.e., prescribed <a class="reference internal" href="../documentation/glossary.html#term-Rating-curve"><span class="xref std std-term">Rating curve</span></a> / <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a>). These types of boundary conditions are commonly used in practice, with the downstream boundary typically chosen to be at a gauging station where a <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a> (<a class="reference internal" href="../documentation/glossary.html#term-Rating-curve"><span class="xref std std-term">Rating curve</span></a>) has been calibrated with historic data. To assign the two liquid boundary lines, zoom into the downstream and upstream regions indicated in  <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 74</span></a> and create both boundaries as follows:</p>
+<p>The upstream (inflow) liquid boundary will constitute an <strong>Open boundary with prescribed Q</strong> (discharge) and the downstream outflow (liquid) boundary will constitute an <strong>Open boundary with prescribed Q and H</strong> (i.e., prescribed <a class="reference internal" href="../documentation/glossary.html#term-Rating-curve"><span class="xref std std-term">Rating curve</span></a> / <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a>). These types of boundary conditions are commonly used in practice, with the downstream boundary typically chosen to be at a gauging station where a <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a> (<a class="reference internal" href="../documentation/glossary.html#term-Rating-curve"><span class="xref std std-term">Rating curve</span></a>) has been calibrated with historic data. To assign the two liquid boundary lines, zoom into the downstream and upstream regions indicated in  <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 74</span></a> and create both boundaries as follows (toggle tabs):</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="39d5d59a-addf-4461-b504-511a01dcb7fc" name="7105fde5-6d8b-4b02-873a-87e20567b5b9" type="radio">
-</input><label class="tabbed-label" for="39d5d59a-addf-4461-b504-511a01dcb7fc">
+<input checked="checked" id="0dcbdce8-8c84-429e-b816-212a68e9bfa9" name="a9bc6f4c-acca-48e5-9d50-fd99a246dd8e" type="radio">
+</input><label class="tabbed-label" for="0dcbdce8-8c84-429e-b816-212a68e9bfa9">
 Upstream boundary</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p>Zoom into the <strong>upstream</strong> region indicated in  <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 74</span></a>.</p></li>
@@ -1502,15 +1502,15 @@ Upstream boundary</label><div class="tabbed-content docutils">
 <p><strong>Switch to</strong> the <strong>Downstream boundary tab</strong> to define the outflow conditions according to <a class="reference internal" href="#bk-boundary-ds"><span class="std std-numref">Fig. 76</span></a>.</p>
 <div class="figure align-default" id="bk-boundary-us">
 <img alt="bluekenue boundary conditions conlim create upstream prescribed discharge flow" src="../_images/bk-bm-boundary-us.png" />
-<p class="caption"><span class="caption-number">Fig. 75 </span><span class="caption-text">The upstream boundary definition. Double-click on a node at one bank, then hold the <strong>Shift</strong> key and double-click on a node at the other bank to highlight the inflow (purple) line. Note that BOTTOM_BC might appear with the name <em>boundaries</em> if the object has been saved as <code class="docutils literal notranslate"><span class="pre">boundaries.bc2</span></code>.</span><a class="headerlink" href="#bk-boundary-us" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 75 </span><span class="caption-text">The upstream boundary definition. Double-click on a node at one bank, then hold the <strong>Shift</strong> key and double-click on a node at the other bank to highlight the inflow (purple) line. Note that BOTTOM_BC might appear with the name <em>boundaries</em> if the object was saved as <em>boundaries.bc2</em>.</span><a class="headerlink" href="#bk-boundary-us" title="Permalink to this image">¶</a></p>
 </div>
 </div>
-<input id="6bd14d0d-afc0-48ec-a112-81cc01a04d06" name="7105fde5-6d8b-4b02-873a-87e20567b5b9" type="radio">
-</input><label class="tabbed-label" for="6bd14d0d-afc0-48ec-a112-81cc01a04d06">
+<input id="7f933971-1a09-4cce-af83-8bcd19583244" name="a9bc6f4c-acca-48e5-9d50-fd99a246dd8e" type="radio">
+</input><label class="tabbed-label" for="7f933971-1a09-4cce-af83-8bcd19583244">
 Downstream boundary</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p>Zoom into the <strong>downstream</strong> region indicated in <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 74</span></a>.</p></li>
-<li><p>Locate the main channel banks corresponding to the breaklines drawn in QGIS (<a class="reference internal" href="#tm-bm-breaklines"><span class="std std-ref">see above</span></a>) or Blue Kenue (<a class="reference internal" href="#bk-draw-ol"><span class="std std-ref">see above</span></a>), and which are indicated by the red-dotted lines in <a class="reference internal" href="#bk-boundary-ds"><span class="std std-numref">Fig. 76</span></a>.</p></li>
+<li><p>Locate the main channel banks corresponding to the breaklines drawn in QGIS (<a class="reference internal" href="#tm-bm-breaklines"><span class="std std-ref">see above</span></a>) or Blue Kenue (<a class="reference internal" href="#bk-draw-ol"><span class="std std-ref">see above</span></a>), which are indicated by the red-dotted lines in <a class="reference internal" href="#bk-boundary-ds"><span class="std std-numref">Fig. 76</span></a>.</p></li>
 <li><p><strong>Double-click</strong> on a <strong>node at one bank</strong> of the model outline (no matter what bank), then <strong>hold</strong> the <strong>Shift</strong> key and <strong>double-click</strong> on a <strong>node at the other bank</strong> to highlight the outflow (purple) line (see <a class="reference internal" href="#bk-boundary-ds"><span class="std std-numref">Fig. 76</span></a>).</p></li>
 <li><p><strong>Right-click</strong> on the purple outflow line and select <strong>Add Boundary Segment</strong>.</p></li>
 <li><p>In the opening window (<strong>CONLIM Boundary Segment Editor</strong>) make the following settings:</p>
@@ -1524,11 +1524,16 @@ Downstream boundary</label><div class="tabbed-content docutils">
 </ul>
 <div class="figure align-default" id="bk-boundary-ds">
 <img alt="bluekenue boundary conditions conlim create upstream prescribed discharge depth flow" src="../_images/bk-bm-boundary-ds.png" />
-<p class="caption"><span class="caption-number">Fig. 76 </span><span class="caption-text">The downstream boundary definition. Double-click on a node at one bank, then hold the <strong>Shift</strong> key and double-click on a node at the other bank to highlight the outflow (purple) line. Note that BOTTOM_BC might appear with the name <em>boundaries</em> if the object has been saved as <code class="docutils literal notranslate"><span class="pre">boundaries.bc2</span></code>.</span><a class="headerlink" href="#bk-boundary-ds" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 76 </span><span class="caption-text">The downstream boundary definition. Double-click on a node at one bank, then hold the <strong>Shift</strong> key and double-click on a node at the other bank to highlight the outflow (purple) line. Note that BOTTOM_BC might appear with the name <em>boundaries</em> if the object was saved as <em>boundaries.bc2</em>.</span><a class="headerlink" href="#bk-boundary-ds" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
-<p>Ultimately, TELEMAC will need a <strong><code class="docutils literal notranslate"><span class="pre">*.cli</span></code> file (<em>Conlim Table</em>)</strong> that can be created by highlighting the <strong>boundaries (LIHBOR)</strong> entry of the <strong>boundaries</strong> (or BOTTOM_BC) object in the <strong>Data Items</strong> tree and pressing the disk <img alt="../_images/bk-sym-save.png" src="../_images/bk-sym-save.png" /> symbol (see <a class="reference internal" href="#bk-bc-fin"><span class="std std-numref">Fig. 77</span></a>). Save the boundaries file, for instance, as <code class="docutils literal notranslate"><span class="pre">boundaries.cli</span></code>.</p>
+<p>Ultimately, TELEMAC will need a <strong><code class="docutils literal notranslate"><span class="pre">*.cli</span></code> file (<em>Conlim Table</em>)</strong> that can be created by</p>
+<ul class="simple">
+<li><p>highlighting the <strong>boundaries (LIHBOR)</strong> entry of the <strong>boundaries</strong> (or BOTTOM_BC) object in the <strong>Data Items</strong> tree and</p></li>
+<li><p>pressing the disk <img alt="../_images/bk-sym-save.png" src="../_images/bk-sym-save.png" /> symbol (see <a class="reference internal" href="#bk-bc-fin"><span class="std std-numref">Fig. 77</span></a>).</p></li>
+</ul>
+<p>Save the boundaries file, for instance, as <strong>boundaries.cli</strong>.</p>
 <div class="figure align-default" id="bk-bc-fin">
 <img alt="bluekenue liquid boundary conditions conlim upstream inflow outflow downstream cli" src="../_images/bk-bc-fin.png" />
 <p class="caption"><span class="caption-number">Fig. 77 </span><span class="caption-text">The finalized boundary conditions are saved in a .CLI file by highlighting the <strong>boundaries (LIHBOR)</strong> entry of the <strong>boundaries</strong> (or BOTTOM_BC) object in the <strong>Data Items</strong> tree.</span><a class="headerlink" href="#bk-bc-fin" title="Permalink to this image">¶</a></p>
@@ -1541,7 +1546,7 @@ Downstream boundary</label><div class="tabbed-content docutils">
 <li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-slf/boundaries.cli">Download boundaries.cli</a>.</p></li>
 </ul>
 </div>
-<p>The here created Selafin/Serafin (<code class="docutils literal notranslate"><span class="pre">*.slf</span></code>) and boundary conditions (<code class="docutils literal notranslate"><span class="pre">*.cli</span></code>) files are the main products that are needed for running any other SELAFIN-based TELEMAC tutorial in this eBook. The <a class="reference internal" href="telemac2d-steady.html#telemac2d-steady"><span class="std std-ref">steady 2d</span></a> tutorial assigns a constant discharge at the upstream (inflow) and a constant discharge plus constant depth at the downstream (outflow) boundaries. To perform an unsteady calculation, the steady flow rates can be replaced with a <code class="docutils literal notranslate"><span class="pre">*.qsl</span></code> ASCII text file.</p>
+<p>The here created Selafin/Serafin (<code class="docutils literal notranslate"><span class="pre">*.slf</span></code>) and boundary conditions (<code class="docutils literal notranslate"><span class="pre">*.cli</span></code>) files are the main products that are needed for running any other SELAFIN-based TELEMAC tutorial in this eBook. The <a class="reference internal" href="telemac2d-steady.html#telemac2d-steady"><span class="std std-ref">steady 2d</span></a> tutorial assigns a constant discharge at the upstream (inflow) and a constant discharge plus constant depth at the downstream (outflow) boundaries. To perform an unsteady calculation, the steady flow rates can be replaced with a <code class="docutils literal notranslate"><span class="pre">*.qsl</span></code> ASCII text file. To this end, the <code class="docutils literal notranslate"><span class="pre">*.cli</span></code> file can be easily adapted any time later with a basic text editor (e.g., <a class="reference internal" href="../get-started/others.html#npp"><span class="std std-ref">NotepadPlusPlus (Text Editor)</span></a> on Windows or <a class="reference internal" href="../get-started/ide.html#install-atom"><span class="std std-ref">Atom</span></a>).</p>
 </div>
 </div>
 </div>

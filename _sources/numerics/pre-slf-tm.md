@@ -10,24 +10,24 @@ This tutorial is designed for **advanced beginners** and before diving into this
 * Install {ref}`Blue Kenue <bluekenue>`.
 ```
 
-The first steps in numerical modeling of a river with TELEMAC consist in the conversion of a Digital Elevation Model (**{term}`DEM`**) into a computational mesh. This tutorial guides through the creation of
+The first steps in numerical modeling of a river with TELEMAC consist in the conversion of a Digital Elevation Model (**{term}`DEM`**) into a computational mesh. This tutorial guides through the creation of:
 
-* A QGIS project for creating a computational mesh, similar to the {ref}`BASEMENT <qgis-prepro-bm>` pre-processing.
+* A QGIS project for creating a computational mesh (similar to the {ref}`BASEMENT <qgis-prepro-bm>` pre-processing).
 * Optionally, the mesh generation with the Blue Kenue software is featured.
-* A {ref}`Blue Kenue <bluekenue>` workspace to interpolate terrain elevations from a {term}`DEM`, export the mesh to the SELAFIN/SERAFIN (`*.slf`) geometry format for TELEMAC, and define boundary lines.
+* A {ref}`Blue Kenue <bluekenue>` workspace to interpolate terrain elevations from a {term}`DEM`, including the export of a mesh to the SELAFIN/SERAFIN (`*.slf`) geometry format for TELEMAC, and the definition boundary edges.
 
 At the end of this tutorial, {ref}`chpt-telemac` users will have generated a computational mesh in the `*.slf` file format, which is ready to use for the {ref}`Telemac2d steady <telemac2d-steady>` simulation tutorial. Additional materials and intermediate data products are provided in this eBook's supplemental [telemac](https://github.com/hydro-informatics/telemac) data repository.
 
 ```{admonition} Platform compatibility
 :class: tip
-All software applications featured in this tutorial can be run on *Linux*, *Windows*, and *macOS* (in theory - not tested) platforms.
+All software applications featured in this tutorial can be run on *Linux*, *Windows*, and also potentially *macOS* (not tested) platforms.
 ```
 
 (tm-qgis-prepro)=
 # QGIS
 
 ## Create and Setup a New Project
-Launch QGIS and {ref}`create a new QGIS project <qgis-project>` to get started with this tutorial. As featured in the {ref}`qgis-tutorial`, set up a coordinate reference system (CRS) for the project. This example uses data of a river in Bavaria (UTM zone 33N), which requires the following CRS:
+Launch QGIS and {ref}`create a new QGIS project <qgis-project>` to get started with this tutorial. As featured in the {ref}`qgis-tutorial`, set up a coordinate reference system ({term}`CRS`) for the project. This example uses data of a river in Bavaria (Germany, UTM zone 33N), which requires the following {term}`CRS`:
 
 * In the QGIS top menu go to **Project** > **Properties**.
 * Activate the **CRS** tab.
@@ -45,13 +45,13 @@ Define UTM zone 33N (WGS84) as project CRS.
 
 ```{admonition} Save the project...
 :class: tip
-Save the QGIS project (**Project** > **Save As...**), for example, under the name **prepro-tutorial.qgz**.
+Save the QGIS project (**Project** > **Save As...**), for example, with the name **prepro-tutorial.qgz**.
 ```
 
 (tm-qgis-plugins)=
 ## Third-party Plugins
 
-The TELEMAC tutorials rely on the BASEmesh plugin and the *PostTelemac* plugin. **Open** the **QGIS plugin manager** (**Plugins** menu > **Manage and Install Plugins**) to open the **Plugins** window ({numref}`Fig. %s <open-qgis-plugin-manager>`).
+The TELEMAC tutorials rely on the BASEmesh plugin and the *PostTelemac* plugin. To this end, **open** the **QGIS plugin manager** (**Plugins** menu > **Manage and Install Plugins**) to open the **Plugins** window ({numref}`Fig. %s <open-qgis-plugin-manager>`).
 
 ```{figure} ../img/qgis/plugin-manager-open.png
 :alt: qgis basement telemac plugins manager
@@ -68,7 +68,7 @@ In the **Plugins** window, add both plugins as follows:
   * In the popup window enter:
     * a name for the new repository, for instance, `BASEmesh Plugin Repository`;
     * the repository address: [https://people.ee.ethz.ch/~basement/qgis_plugins/qgis_plugins.xml](https://people.ee.ethz.ch/~basement/qgis_plugins/qgis_plugins.xml).
-  * Click **OK**. The new repository should now be visible in the **Plugin Repositories** listbox. If the connection is **OK**.
+  * Click **OK**. The new repository should now be visible in the **Plugin Repositories** listbox.
 * Install the BASEmesh plugin:
   * Go to the **All** tab (still in the *Plugins* window) and enter `basemesh` in the search field.
   * Find the **newest BASEmesh** (i.e., **Available version** >= 2.0.0) plugin and click on **Install Plugin**.
@@ -84,7 +84,7 @@ By using BASEmesh, this tutorial employs BASEMENT's efficient mesh generator to 
 (get-dem-xyz)=
 ## Load DEM
 
-This tutorial uses height information that is stored in a {term}`DEM`. For the QGIS section, preferably use the {term}`GeoTIFF` {term}`DEM` with UTM zone 33N as {term} `CRS`:
+This tutorial uses height information that is stored in a {term}`DEM`. For the QGIS section, preferably use the {term}`GeoTIFF` {term}`DEM` with UTM zone 33N as {term} `CRS` as follows:
 
 * [**Download the GeoTIFF DEM**](https://github.com/hydro-informatics/telemac/raw/main/rasters/dem-utm33n.tif) and save it in the same folder (`/Project Home/` or a sub-directory) as the above-create **qgz** project.
 * Add the downloaded DEM as a new raster layer in *QGIS*:
@@ -92,7 +92,7 @@ This tutorial uses height information that is stored in a {term}`DEM`. For the Q
   * Drag the DEM *tif* from the **Project Home** folder into QGIS' **Layer** panel.
 * To facilitate delineating specific regions of the river ecosystem later, add a {ref}`satellite imagery basemap <basemap>` (XYZ tile) under the {term}`DEM` and customize the layer symbology.
 
-```{admonition} What are QGIS panels, what is a basemap and how can I order layers?
+```{admonition} What are QGIS panels, what is a basemap, and how can I re-order layers?
 :class: tip
 Learn more in the *QGIS* tutorial on {ref}`qgis-tbx-install`.
 ```
@@ -129,13 +129,13 @@ It is important that the lines do not overlap to avoid ambiguous or missing defi
   * **Self Snapping** <img src="../img/qgis/sym-self-snapping.png">.
 
 (make-tm-shp)=
-## Model Boundary and Breaklines
+## Model Boundaries and Breaklines
 
-This section resembles the instructions of the {ref}`BASEMENT pre-processing <make-2dm>` tutorial to generate an {term}`SMS 2dm` mesh file. The differences are that the shapefiles for the TELEMAC pre-processing use the *UTM zone 33N* {term}`CRS` and that the height (elevation) interpolation needs to be done with the Blue Kenue software to generate liquid boundary lines and an `*.slf` geometry file for TELEMAC. The generation of the {term}`SMS 2dm` mesh relies on the {ref}`QGIS BASEmesh plugin <get-basemesh>` that and requires drawing a
+This section resembles the instructions of the {ref}`BASEMENT pre-processing <make-2dm>` tutorial to generate an {term}`SMS 2dm` mesh file. The differences are that the shapefiles for the TELEMAC pre-processing use the *UTM zone 33N* {term}`CRS` and that the height (elevation) interpolation needs to be done with the Blue Kenue software to generate liquid boundary lines and an `*.slf` geometry file for TELEMAC. The generation of the {term}`SMS 2dm` mesh relies on the {ref}`QGIS BASEmesh plugin <get-basemesh>` and requires drawing a
 
-* {ref}`Line Shapefile <create-line-shp>` called `breaklines.shp` that contains model boundaries and internal breaklines between model regions with different characteristics;
-* {ref}`Line Shapefile <create-line-shp>` called `liquid-boundaries.shp` that contains model boundaries for assigning inflow and outflow conditions; and a
-* {ref}`Point Shapefile <create-point-shp>` called `region-pts.shp` that contains markers for the definition of characteristics of model regions.
+* {ref}`Line Shapefile <create-line-shp>` called *breaklines.shp* that contains model boundaries and internal breaklines between model regions with different characteristics;
+* {ref}`Line Shapefile <create-line-shp>` called *liquid-boundaries.shp* that contains model boundaries for assigning inflow and outflow conditions;
+* {ref}`Point Shapefile <create-point-shp>` called *region-pts.shp* that contains markers for the definition of characteristics of model regions.
 
 {numref}`Figure %s <tm-shapefiles>` provides an overview of the shapefiles to be drawn for generating a quality mesh with the BASEmesh plugin.
 
@@ -143,7 +143,7 @@ This section resembles the instructions of the {ref}`BASEMENT pre-processing <ma
 :alt: qgis telemac basemesh point line shapefiles
 :name: tm-shapefiles
 
-The breaklines, liquid boundaries, and region points shapefile to draw for creating a quality mesh with the BASEmesh plugin (background map: {cite:t}`googlesat` satellite imagery).
+The breaklines, liquid boundaries, and region points shapefile to draw for creating a 2dm quality mesh with the BASEmesh plugin (background map: {cite:t}`googlesat` satellite imagery).
 ```
 
 (tm-bm-breaklines)=
@@ -164,13 +164,13 @@ Start editing **breaklines.shp** by clicking on the yellow pen <img src="../img/
   * Delineate the outer bounds of the floodplains.
   * Make sure that all points and lines are inside the {ref}`DEM layer <get-dem>`.
   * Do not cross the river (wetted area indicated by the satellite imagery basemap).
-  * **Finalize** every line with a **right-click**. floodplain**.
+  * **Finalize** every line with a **right-click**.
 * The **breaklines of the left bank (LB) and right bank (RB)**:
-  * Draw lines along the wetted main channel indicated in the satellite imagery basemap.
+  * Draw lines along the wetted main channel indicated in the satellite imagery (basemap).
   * Make sure that line ends perfectly coincide with the before-created floodplain boundary lines (snapping is needed); thus, the main channel's breaklines and the floodplain boundary lines need to enclose the floodplains without any gap between the lines.
 * **Breaklines of gravel banks**:
   * Draw lines along the gravel banks that are visible in the satellite imagery basemap in the main channel.
-  * Make sure that the line ends perfectly coincide with the before-created main channel breaklines; thus, the main channel's hard breaklines and the gravel bank breaklines need to enclose the gravel banks without any gap between the lines.
+  * Make sure that the line ends perfectly coincide (use snapping) with the before-created main channel breaklines; thus, the main channel's hard breaklines and the gravel bank breaklines need to enclose the gravel banks without any gap between the lines.
 * Optional: **Breaklines of block ramps**:
   * Find the rough block ramps (effervescing waters) in the satellite imagery basemap and delineate them by drawing lines across the wetted main channel.
   * Make sure that the line ends perfectly coincide with the main channel breaklines; thus, the main channel's hard breaklines and the block ramp breaklines need to enclose the block ramps without any gap between the lines.
@@ -195,7 +195,7 @@ If you are dealing with a large {term}`GeoTIFF`, consider using QGIS' [Raster to
 (tm-bm-liquid-boundaries)=
 ### Liquid Boundaries
 
-The **liquid boundaries** define where hydraulic conditions, such as a given discharge or stage-discharge relationship, apply at the model inflow (upstream) and outflow (downstream) limits. Thus, a functional river model requires at least one inflow boundary (line) where mass flow into the model and one outflow boundary (line) where mass fluxes leave the model. For this purpose, {ref}`create-line-shp` called **liquid-boundaries.shp**, select `EPSG: 32633 - WGS 84 / UTM zone 33N` as {term}`CRS` <img src="../img/qgis/sym-crs.png">, and define **two text data fields** named **type** and **stringdef**. Make sure that **snapping** is still **enabled** and **Toggle (Start) Editing** <img src="../img/qgis/yellow-pen.png"> the new **liquid-boundaries.shp**. Then draw two lines:
+The **liquid boundaries** define where hydraulic conditions, such as a given discharge or stage-discharge relationship, apply at the model inflow (upstream) and outflow (downstream) limits. Thus, a functional river model requires at least one inflow boundary (line) where mass fluxes enter the model and one outflow boundary (line) where mass fluxes leave the model. For this purpose, {ref}`create-line-shp` called **liquid-boundaries.shp**, select `EPSG: 32633 - WGS 84 / UTM zone 33N` as {term}`CRS` <img src="../img/qgis/sym-crs.png">, and define **two text data fields** named **type** and **stringdef**. Make sure that **snapping** is still **enabled** and **Toggle (Start) Editing** <img src="../img/qgis/yellow-pen.png"> the new **liquid-boundaries.shp**. Then draw two lines:
 
 * Activate **Add Line Feature** <img src="../img/qgis/sym-add-line.png">.
 * Draw an inflow boundary line (light blue line on the left of {numref}`Fig. %s <tm-shapefiles>`):
@@ -300,7 +300,7 @@ Download the [zipped region-points shapefile](https://github.com/hydro-informati
 Definitions to be made in BASEmesh's Quality meshing tool.
 ```
 
-Quality meshing may take a couple of seconds. After a successful mesh generation the file **prepro-tutorial_quality-mesh-interp.2dm** will have been generated and shown in QGIS as single-color surface with `0-0` **Bed Elevation**. The next section shows the interpolation of elevation data with the Blue Kenue software.
+Quality meshing may take a short while. After a successful mesh generation the file **prepro-tutorial_quality-mesh-interp.2dm** will have been generated and it automatically shows up in QGIS as a single-color surface with `0-0` **Bed Elevation**. The next section shows the interpolation of elevation data with the Blue Kenue software.
 
 ```{admonition} Troubles with running the quality mesh generator?
 :class: tip
@@ -314,7 +314,7 @@ Download the [tutorial quality mesh file](https://github.com/hydro-informatics/t
 ## Get Started
 This section features the {ref}`Blue Kenue <bluekenue>` software to interpolate terrain elevations from a {term}`DEM`.xyz file on an {term}`SMS 2dm` mesh, export the mesh to the SELAFIN/SERAFIN (`*.slf`) geometry format for TELEMAC, and define boundary lines.
 
-In addition, the {ref}`Meshing with Blue Kenue <bk-meshing>` explains the mesh generation with Blue Kenue, which might be unstable because of program crashes and inflexible for correcting line drawing errors. Still, meshing with Blue Kenue might be desirable to create a computational mesh with long triangular cells that approximately follow the river streamlines.
+In addition, the {ref}`Meshing with Blue Kenue <bk-meshing>` section explains the mesh generation with Blue Kenue, which might be unstable because of program crashes and inflexible for correcting line drawing errors. Still, meshing with Blue Kenue might be desirable to create a computational mesh with long triangular cells that approximately follow the river streamlines (i.e., using a channel sub-mesh).
 
 To familiarize with Blue Kenue, launch the software (more details in the {ref}`installation chapter <bluekenue>`) and locate
 
@@ -333,7 +333,7 @@ Have a look at the **File** menu, which enables to:
 
 The **Edit** menu enables editing Blue Kenue objects, such as lines, point sets, or meshes.
 
-The **Tools** menu provides routines that can be applied to particular Blue Kenue objects, or for combining objects. In particular, this tutorial will make use of the **Map Objects...** tool.
+The **Tools** menu provides routines that can be applied to particular Blue Kenue objects or for combining objects. In particular, this tutorial will make use of the **Map Objects...** tool.
 
 (bk-files)=
 ## Files and Objects
@@ -349,7 +349,7 @@ Blue Kenue saves every object in software specific file formats and this eBook r
 * `*.t3m` files contain Blue Kenue mesh generator objects to create a `*.t3s` mesh object.
 * `*.t3s` files contain Blue Kenue mesh objects that can either be imported (e.g., from an {term}`SMS 2dm` file) or created with a `*.t3m` mesh generator.
 
-All files that are created with Blue Kenue are based on the ASCII EnSim 1.0 file type standard. The EnSim Core builds on {term}`HDF` and it is documented in Blue Kenue's [user manual PDF](https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/2011_UserManual.pdf)<sup>TM</sup> that comes along with the [Blue Kenue installer](https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/Installer/BlueKenue_3.12.0-alpha+20201006_64bit.msi) (in Blue Kenue press the `F1` key to open the manual). Understanding the EnSim Core can significantly facilitate troubleshooting structural errors of Blue Kenue files.
+All files that are created with Blue Kenue are based on the ASCII EnSim 1.0 file type standard. The EnSim Core builds on {term}`HDF` and it is documented in Blue Kenue's [user manual PDF](https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/2011_UserManual.pdf) that comes along with the [Blue Kenue installer](https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/Installer/BlueKenue_3.12.0-alpha+20201006_64bit.msi) (in Blue Kenue press the `F1` key to open the manual). Note that understanding the EnSim Core can significantly facilitate troubleshooting structural errors of Blue Kenue files.
 
 (bk-xyz)=
 ## Load XYZ Points
@@ -383,10 +383,10 @@ To verify the {term}`CRS` of the point dataset, right-click on **dem (Z)**, sele
 ## Blue Kenue Meshing (Optional)
 
 ```{admonition} Skip this section if you created a *.2dm* quality mesh with BASEMESH
-This is an optional section for users who do not want to use QGIS and the BASEmesh plugin for meshing. Generating a mesh with Blue Kenue can be useful, for instance, to produce a computational grid that has triangular cells oriented parallel to the riverbanks. Otherwise, **if the `*.2dm` mesh file was created** with QGIS, **jump to the section on creating a {ref}`Selafin Object <bk-create-slf>`**.
+This is an optional section for users who do not want to use QGIS and the BASEmesh plugin for meshing. Generating a mesh with Blue Kenue can be useful, for instance, to produce a computational grid that has triangular cells oriented parallel to the riverbanks (i.e., a channel sub-mesh). Otherwise, **if the `*.2dm` mesh file was created** with QGIS, **jump to the section on creating a {ref}`Selafin Object <bk-create-slf>`**.
 ```
 
-This section features the basic mesh generation with Blue Kenue and the Baxter tutorial {cite:p}`baxter2013` provides more details with detailed screenshots.
+This section features the basic mesh generation with Blue Kenue. The Baxter tutorial {cite:p}`baxter2013` provides more details with detailed screenshots.
 
 ### Draw Model Boundary (Closed Line)
 
@@ -441,12 +441,12 @@ The finalized Open and Closed Line objects delineating the model boundaries and 
 
 ```{admonition} Troubles with drawing the open lines of the channel banks?
 :class: tip
-Download the lines from the supplemental materials repository, notably download [LeftBank.i2s](https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/LeftBank.i2s) and [RightBank.i2s](https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/RightBank.i2s). To open the Open Line objects from the repository in Blue Kenue, go to **File** > **Open...** > select **Line Sets (`*.i2s`, `*.i3s`)** as file type and navigate to the download directory.
+Download the lines from the supplemental materials repository. Notably download [LeftBank.i2s](https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/LeftBank.i2s) and [RightBank.i2s](https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/RightBank.i2s). To open the Open Line objects from the repository in Blue Kenue, go to **File** > **Open...** > select **Line Sets (`*.i2s`, `*.i3s`)** as file type and navigate to the download directory.
 ```
 
 ### Generate Mesh(es)
 
-Blue Kenue provides mesh generators for creating regular or unstructured computational grids (meshes). This example features the **T3 Channel Mesher** to generate a triangular mesh, which involves first create a channel mesh (sub-mesh) and second generate a compound mesh that embeds the channel sub-mesh in a coarser mesh of the floodplains. To this end start with creating a new **T3 Channel Mesher** object (**File** > **New** > **T3 Channel Mesher**). In the popup window set:
+Blue Kenue provides mesh generators for creating regular or unstructured computational grids (meshes). This example features the **T3 Channel Mesher** to generate a triangular mesh, which involves first creating a channel mesh (sub-mesh) and second generating a compound mesh that embeds the channel sub-mesh in a coarser mesh of the floodplains. To this end, start with creating a new **T3 Channel Mesher** object (**File** > **New** > **T3 Channel Mesher**). In the popup window set:
 
 * **CrossChannelNodeCount** to `20` and
 * **AlongChannelInterval** to `15`.
@@ -484,7 +484,7 @@ Define the **Outline (Value)** by dragging (see also {numref}`Fig. %s <bk-mesh-c
 * The above-created **model-outline** object on the **Outline (Value)** of the **new T3 Mesh**, and
 * The channel **Mesh** on the **SubMeshes** attribute of the **new T3 Mesh**.
 
-Generate the compound mesh by double-clicking on the **new T3 Mesh** object and click **Run**. Confirm the question box (*Continue?* > **Yes**) and press **OK** after the mesh generator is finished (*Done...*). To visualize the resulting **Mesh**, drag it on the **2D View (1)** object.
+Generate the compound mesh by double-clicking on the **new T3 Mesh** object and single-clicking on **Run**. Confirm the question box (*Continue?* > **Yes**) and press **OK** after the mesh generator is finished (*Done...*). To visualize the resulting **Mesh**, drag it on the **2D View (1)**.
 
 ```{figure} ../img/telemac/bk-mesh-compound.png
 :alt: bluekenue generate combined mesh drag and drop
@@ -507,7 +507,7 @@ Download the [compound-mesher.t3m](https://github.com/hydro-informatics/telemac/
 ## SELAFIN
 
 ### Open and Import Ingredients
-Whether the mesh was created with Blue Kenue itself or with QGIS and the BASEmesh plugin, make sure to have now a Blue Kenue workspace with only the XYZ point cloud loaded (see the {ref}`bk-xyz` section). Before a SELAFIN object can be created, the previously created mesh (i.e., either the [quality-mesh.2dm](https://github.com/hydro-informatics/telemac/raw/main/meshes/prepro-tutorial_quality-mesh-utm33n.2dm) or the [compound-mesh.t3s](https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/compound-mesh.t3s)) needs to be imported into the WorkSpace in addition to the point cloud. The following instructions show the import and use of the `*.2dm` file:
+Whether the mesh was created with Blue Kenue or QGIS (and the BASEmesh plugin), make sure to have now a Blue Kenue workspace with only the XYZ point cloud loaded (see the {ref}`bk-xyz` section). Before a SELAFIN object can be created, the previously created mesh (i.e., either the [quality-mesh.2dm](https://github.com/hydro-informatics/telemac/raw/main/meshes/prepro-tutorial_quality-mesh-utm33n.2dm) or the [compound-mesh.t3s](https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/compound-mesh.t3s)) needs to be imported into the WorkSpace in addition to the point cloud. The following instructions show the import and use of the `*.2dm` file:
 
 * In Blue Kenue go to **File** > **Import** > **SMS 2DM Mesh**.
 * In the import window, navigate to the folder where the `*.2dm` file lives, select the `*.2dm` file, and click **Open**.
@@ -518,7 +518,7 @@ Whether the mesh was created with Blue Kenue itself or with QGIS and the BASEmes
 In contrast to an {term}`SMS 2dm` (`*.2dm`) file that has to be *imported*, a `*.t3s` file has to be **opened** in Blue Kenue. To this end, **open** the T3 Mesh (`*.t3s`) from **File** > **Open...** > select **2D T3 Mesh (`*.t...`)** as file type and navigate to the download directory. Select the `*.t3s` mesh file and click **Open**.
 ```
 
-Ignore any warning message regarding the projection, but make sure that Blue Kenue correctly read the mesh coordinates by **dragging** the imported (or opened) mesh onto the **2D View (1)**. The Blue Kenue window should now look similar to the presentation in {numref}`Fig. %s <bk-imported-mesh>`.
+Ignore warning messages regarding the projection, but make sure that Blue Kenue correctly read the mesh coordinates by **dragging** the imported (or opened) mesh onto the **2D View (1)**. The Blue Kenue window should now look similar to {numref}`Fig. %s <bk-imported-mesh>`.
 
 ```{figure} ../img/telemac/bk-imported-mesh.png
 :alt: bluekenue import open 2dm t3s mesh drag
@@ -539,7 +539,7 @@ With the open *dem.xyz* and the imported (or opened) mesh, all ingredients requi
 
 * In the popup window (*Properties of:new Selafin*) click **OK** and a **new Selafin** object will appear in the WorkSpace's **Data Items**.
 * **Right-click** on the **new Selafin** object and select **Add Variable...**
-* In the **Add New SELAFIN Variable** window:
+* Take the following action in the **Add New SELAFIN Variable** window:
   * In the **Mesh** field, select the above-imported (or opened) mesh (e.g., `prepro-tutorial_quality-mesh-utm33n.2dm`).
   * In the **Name** field, select **BOTTOM**.
   * In the **Units** field, select **M** (i.e., meters).
@@ -549,29 +549,29 @@ With the open *dem.xyz* and the imported (or opened) mesh, all ingredients requi
 (bk-2dinterp)=
 ### Create 2D Interpolator
 
-A 2D Interpolator object is required to map elevation information onto the Selafin mesh. to this end, create a new 2D Interpolator object and map the elevations onto the BOTTOM mesh:
+A 2D Interpolator object is required to map elevation information onto the Selafin mesh. To this end, create a new 2D Interpolator object and map elevations onto the BOTTOM mesh:
 
 * Go to **File** > **New** > **2D Interpolator...** and a **new 2D Interpolator** object will appear in the **Data Items** of the WorkSpace.
 
 ```{image} ../img/telemac/bk-create-2Dinterpolator.png
 ```
 
-* **Drag** the **dem (Z)** (i.e., the above-opened *dem.xyz* pointcloud) onto the **new 2D Interpolator** object (red arrow in {numref}`Fig. %s <bk-mesh-interpolated>`).
+* **Drag dem (Z)** (i.e., the above-opened *dem.xyz* pointcloud) onto the **new 2D Interpolator** object (red arrow in {numref}`Fig. %s <bk-mesh-interpolated>`).
 * **Highlight** (click on) the **BOTTOM (Anonymous Attribute)** mesh attribute of the above-created SELAFIN object (e.g., called `qgismesh`).
 * With the mesh highlighted, go to the **Tools** top menu > **Map Object...**.
 * In the opening **Available Objects** window select the **new 2D Interpolator** and click **OK**.
 * Once the *Processing...* finished, click **OK**.
 * Save the final meshes:
   * The BOTTOM mesh is a Blue Kenue `*.t3s` mesh object; to save it, highlight it in the **Data Items** tree and click on the disk <img src="../img/telemac/bk-sym-save.png"> symbol. Then, save the mesh, for instance, as `BOTTOM.t3s` file.
-  * To save the Selafin mesh in its current (with interpolated elevations) state, highlight the Selafin object (e.g., `qgismesh`) and click on the disk <img src="../img/telemac/bk-sym-save.png"> symbol. This action overwrites the above-saved `*.slf` file (i.e., click **Yes** to confirm replacing it).
+  * To save the Selafin mesh in its current (with interpolated elevations) state, highlight the Selafin object (e.g., `qgismesh`) and click on the disk <img src="../img/telemac/bk-sym-save.png"> symbol. This action overwrites the above-saved `*.slf` file (click **Yes** to confirm replacing it).
 
-To verify if the 2D interpolator correctly interpolated the elevations on the BOTTOM mesh, drag the BOTTOM mesh onto the **2D View (1)**. Uncheck the visibility of dem (Z) and the imported (or opened) mesh with a right-click on these elements in the 2D View (1) tree and **deselect** the **Visible** entry. Thus, only the height-interpolated mesh should be visible now, as indicated in {numref}`Fig. %s <bk-mesh-interpolated>`. If the **interpolation has been successful, the mesh is displayed in a variety of (rainbow) colors**. Otherwise, **if the mesh is** completely, monotonously **monochrome (red)**, the elevation **interpolation** has **not** been **successful** and must be repeated (the numerical model cannot work properly without height information).
+To verify if the 2D interpolator correctly interpolated the elevations on the BOTTOM mesh, drag the BOTTOM mesh onto the **2D View (1)**. Uncheck the visibility of dem (Z) and the imported (or opened) mesh with a right-click on these elements in the 2D View (1) tree and **deselect** the **Visible** entry. Thus, only the height-interpolated mesh should be visible now, as indicated in {numref}`Fig. %s <bk-mesh-interpolated>`. If the **interpolation has been successful, the mesh is displayed in a variety of (rainbow) colors**. Otherwise, **if the mesh is** completely, monotonously **monochrome (red)**, the elevation **interpolation** has **not** been **successful** and must be repeated (the numerical model cannot work properly without elevation information).
 
 ```{figure} ../img/telemac/bk-mesh-interpolated.png
 :alt: bluekenue 2dm t3s mesh interpolate height elevation 2D interpolator map object
 :name: bk-mesh-interpolated
 
-The height-interpolated mesh in the 2D View (1) with an indication of the drag and drop actions for running the object mapping with a new 2D Interpolator object.
+The height-interpolated mesh in the 2D View (1) with indication of drag and drop actions for running the object mapping with a new 2D Interpolator object.
 ```
 
 ```{admonition} Troubles with creating the Selafin mesh and or the height interpolation?
@@ -586,7 +586,7 @@ Download the BOTTOM mesh and the SELAFIN object from the supplemental materials 
 ## Boundary Conditions (Conlim - CLI)
 
 ### Create Conlim Object
-TELEMAC needs to know how to treat the outer edges of the model (mesh). For this purpose, boundary conditions have to be assigned to all nodes that constitute the `*.slf`mesh outline.
+TELEMAC needs to know how to treat the outer edges of the model (mesh). For this purpose, boundary conditions have to be assigned to all nodes that constitute the `*.slf`mesh outline:
 
 * Go to **File** > **New** > **Boundary Conditions (Conlim )...** and a **new 2D Interpolator** object will appear in the **Data Items** of the WorkSpace.
 
@@ -602,22 +602,21 @@ TELEMAC needs to know how to treat the outer edges of the model (mesh). For this
 :alt: bluekenue boundary conditions conlim create upstream downstream
 :name: bk-bc-types
 
-The new Boundary Conditions (Conlim) object (BOTTOM_BC) in the 2D View (1) with a qualitative overview on the position of upstream and downstream boundaries where prescribed flow (Q) and prescribed flow (Q) and Depth (H) will be applied, respectively.
+The new Boundary Conditions (Conlim) object (BOTTOM_BC) in the 2D View (1) with a qualitative overview of the position of upstream and downstream boundaries where prescribed flow (Q) and prescribed flow (Q) and Depth (H) will be applied later in the TELEMAC setup.
 ```
 
-To **save the new BOTTOM_BC object**, highlight it in the **Data Items** tree and click on the disk <img src="../img/telemac/bk-sym-save.png"> symbol. Define a file name such as **`boundaries.bc2`**. As a result of saving the object, the BOTTOM_BC object takes on the new file name (e.g., **boundaries**).
+To **save the new BOTTOM_BC object**, highlight it in the **Data Items** tree and click on the disk <img src="../img/telemac/bk-sym-save.png"> symbol. Define a filename such as **`boundaries.bc2`**. As a result of saving the object, the BOTTOM_BC object takes on the new file name (e.g., **boundaries**).
 
 (bk-liquid-bc)=
 ### Define Liquid Boundaries
 
-The default boundary type of the **boundaries** object is **Closed boundary (wall)**. Therefore, to enable mass (i.e., water, sediment, and/or other tracer) fluxes through the model, at least two openings must be drawn into the closed boundary. For this purpose, at least one inflow and one outflow open boundary for liquids must be defined. This tutorial uses this minimum number of required open boundaries (i.e., one upstream inflow and one downstream outflow boundary), which are indicated in {numref}`Fig. %s <bk-bc-types>`.
+The default boundary type of the **boundaries** object is **Closed boundary (wall)**. Therefore, to enable mass (i.e., water, sediment, and/or tracer) fluxes through the model, at least two openings must be drawn into the closed boundary. For this purpose, at least one inflow and one outflow open boundary for liquids must be defined. This tutorial uses this minimum number of required open boundaries (i.e., one upstream inflow and one downstream outflow boundary), which are indicated in {numref}`Fig. %s <bk-bc-types>`.
 
 ```{admonition} Liquid boundaries must be defined in Blue Kenue
 Even though the liquid boundaries are already defined in QGIS (see the {ref}`QGIS section on Liquid Boundaries <tm-bm-liquid-boundaries>`), it is always necessary to define the liquid boundaries in Blue Kenue to fit the node numbers (IDs) of the Selafin mesh.
 ```
 
-The upstream (inflow) liquid boundary will constitute an **Open boundary with prescribed Q** (discharge) and the downstream outflow (liquid) boundary will constitute an **Open boundary with prescribed Q and H** (i.e., prescribed {term}`Rating curve` / {term}`Stage-discharge relation`). These types of boundary conditions are commonly used in practice, with the downstream boundary typically chosen to be at a gauging station where a {term}`Stage-discharge relation` ({term}`Rating curve`) has been calibrated with historic data. To assign the two liquid boundary lines, zoom into the downstream and upstream regions indicated in  {numref}`Fig. %s <bk-bc-types>` and create both boundaries as follows:
-
+The upstream (inflow) liquid boundary will constitute an **Open boundary with prescribed Q** (discharge) and the downstream outflow (liquid) boundary will constitute an **Open boundary with prescribed Q and H** (i.e., prescribed {term}`Rating curve` / {term}`Stage-discharge relation`). These types of boundary conditions are commonly used in practice, with the downstream boundary typically chosen to be at a gauging station where a {term}`Stage-discharge relation` ({term}`Rating curve`) has been calibrated with historic data. To assign the two liquid boundary lines, zoom into the downstream and upstream regions indicated in  {numref}`Fig. %s <bk-bc-types>` and create both boundaries as follows (toggle tabs):
 
 
 ````{tabbed} Upstream boundary
@@ -637,13 +636,13 @@ The upstream (inflow) liquid boundary will constitute an **Open boundary with pr
 :alt: bluekenue boundary conditions conlim create upstream prescribed discharge flow
 :name: bk-boundary-us
 
-The upstream boundary definition. Double-click on a node at one bank, then hold the **Shift** key and double-click on a node at the other bank to highlight the inflow (purple) line. Note that BOTTOM_BC might appear with the name *boundaries* if the object has been saved as `boundaries.bc2`.
+The upstream boundary definition. Double-click on a node at one bank, then hold the **Shift** key and double-click on a node at the other bank to highlight the inflow (purple) line. Note that BOTTOM_BC might appear with the name *boundaries* if the object was saved as *boundaries.bc2*.
 ```
 ````
 
 ````{tabbed} Downstream boundary
 * Zoom into the **downstream** region indicated in {numref}`Fig. %s <bk-bc-types>`.
-* Locate the main channel banks corresponding to the breaklines drawn in QGIS ({ref}`see above <tm-bm-breaklines>`) or Blue Kenue ({ref}`see above <bk-draw-ol>`), and which are indicated by the red-dotted lines in {numref}`Fig. %s <bk-boundary-ds>`.
+* Locate the main channel banks corresponding to the breaklines drawn in QGIS ({ref}`see above <tm-bm-breaklines>`) or Blue Kenue ({ref}`see above <bk-draw-ol>`), which are indicated by the red-dotted lines in {numref}`Fig. %s <bk-boundary-ds>`.
 * **Double-click** on a **node at one bank** of the model outline (no matter what bank), then **hold** the **Shift** key and **double-click** on a **node at the other bank** to highlight the outflow (purple) line (see {numref}`Fig. %s <bk-boundary-ds>`).
 * **Right-click** on the purple outflow line and select **Add Boundary Segment**.
 * In the opening window (**CONLIM Boundary Segment Editor**) make the following settings:
@@ -656,11 +655,15 @@ The upstream boundary definition. Double-click on a node at one bank, then hold 
 :alt: bluekenue boundary conditions conlim create upstream prescribed discharge depth flow
 :name: bk-boundary-ds
 
-The downstream boundary definition. Double-click on a node at one bank, then hold the **Shift** key and double-click on a node at the other bank to highlight the outflow (purple) line. Note that BOTTOM_BC might appear with the name *boundaries* if the object has been saved as `boundaries.bc2`.
+The downstream boundary definition. Double-click on a node at one bank, then hold the **Shift** key and double-click on a node at the other bank to highlight the outflow (purple) line. Note that BOTTOM_BC might appear with the name *boundaries* if the object was saved as *boundaries.bc2*.
 ```
 ````
 
-Ultimately, TELEMAC will need a **`*.cli` file (*Conlim Table*)** that can be created by highlighting the **boundaries (LIHBOR)** entry of the **boundaries** (or BOTTOM_BC) object in the **Data Items** tree and pressing the disk <img src="../img/telemac/bk-sym-save.png"> symbol (see {numref}`Fig. %s <bk-bc-fin>`). Save the boundaries file, for instance, as `boundaries.cli`.
+Ultimately, TELEMAC will need a **`*.cli` file (*Conlim Table*)** that can be created by
+* highlighting the **boundaries (LIHBOR)** entry of the **boundaries** (or BOTTOM_BC) object in the **Data Items** tree and
+* pressing the disk <img src="../img/telemac/bk-sym-save.png"> symbol (see {numref}`Fig. %s <bk-bc-fin>`).
+
+Save the boundaries file, for instance, as **boundaries.cli**.
 
 ```{figure} ../img/telemac/bk-bc-fin.png
 :alt: bluekenue liquid boundary conditions conlim upstream inflow outflow downstream cli
@@ -677,4 +680,4 @@ Download the **boundaries** (BOTTOM_BC) Blue Kenue and TELEMAC boundaries (LIHBO
 * [Download boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/boundaries.cli).
 ```
 
-The here created Selafin/Serafin (`*.slf`) and boundary conditions (`*.cli`) files are the main products that are needed for running any other SELAFIN-based TELEMAC tutorial in this eBook. The {ref}`steady 2d <telemac2d-steady>` tutorial assigns a constant discharge at the upstream (inflow) and a constant discharge plus constant depth at the downstream (outflow) boundaries. To perform an unsteady calculation, the steady flow rates can be replaced with a `*.qsl` ASCII text file.
+The here created Selafin/Serafin (`*.slf`) and boundary conditions (`*.cli`) files are the main products that are needed for running any other SELAFIN-based TELEMAC tutorial in this eBook. The {ref}`steady 2d <telemac2d-steady>` tutorial assigns a constant discharge at the upstream (inflow) and a constant discharge plus constant depth at the downstream (outflow) boundaries. To perform an unsteady calculation, the steady flow rates can be replaced with a `*.qsl` ASCII text file. To this end, the `*.cli` file can be easily adapted any time later with a basic text editor (e.g., {ref}`npp` on Windows or {ref}`Atom <install-atom>`).
