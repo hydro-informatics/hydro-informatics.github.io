@@ -18,7 +18,7 @@ Sediment supply-limited rivers
 : A sediment supply-limited river is characterized by clearly visible incision trends indicating that the river's runoff could potentially transport more sediment than is available in the river. Sediment-supply limited river sections typically occur downstream of dams, which represent an insurmountable barrier for sediment. Thus, in a supply-limited river, the **flow competence** (hydrodynamic force or **transport capacity**) is insufficient to mobilize a typically coarse riverbed, but it is sufficient for transporting external sediment supply.
 
 Transport capacity-limited (alluvial) rivers
-: A transport capacity-limited river is characterized by sediment abundance where the river's runoff is too small to transport all available sediment during a flood. Sediment accumulations (i.e., the alluvium) are present and the channel tends to braid into {term}`anabranches <Anabranch>`. Thus, the *flow competence** (or **transport capacity**) is insufficient to transport the entire amount of available sediment (external supply and riverbed).
+: A transport capacity-limited river is characterized by sediment abundance where the river's runoff is too small to transport all available sediment during a flood. Sediment accumulations (i.e., the alluvium) are present and the channel tends to braid into {term}`anabranches <Anabranch>`. Thus, the **flow competence** (or **transport capacity**) is insufficient to transport the entire amount of available sediment (external supply and riverbed).
 
 ```{admonition} Limitation types vary in space and in time
 :class: important
@@ -383,7 +383,7 @@ Recall that the first and second values in the list of prescribed solid discharg
 ```{admonition} Porosity and PRESCRIBED SOLID DISCHARGES
 :class: important
 The **PRESCRIBED SOLID DISCHARGES** keyword makes TELEMAC calculate sediment mass balances accounting for the riverbed porosity $\epsilon$. Thus, the solid mass flux printouts correspond to $q_{b}/(1-\epsilon)$.
-``` 
+```
 
 Gaia can be run with liquid boundary files for assigning time-dependent solid discharges (the outflow should be kept in equilibrium). Solid discharge time series can be implemented using `455`-`5` boundary definitions, analogous to the descriptions of the {ref}`Telemac2d unsteady boundary setup <tm2d-liq-file>`. For more guidance, have a look at the *yen-2d* example (`telemac/v8p2/examples/gaia/yen-2d`) featuring a quasi-steady bedload simulation at the Rhine River. In addition, more background information about the definition of bedload boundary conditions can be found in section 3.1.11 in the {{ gaia }}.
 

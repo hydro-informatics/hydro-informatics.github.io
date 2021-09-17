@@ -1,10 +1,6 @@
 (chpt-telemac2d)=
 # Telemac2d
 
-```{admonition} Growing chapter
-This chapter is currently still growing and contents are in a beta-state.
-```
-
 Telemac2d iteratively solves the depth-averaged {term}`Navier-Stokes equations` (i.e., the {term}`Shallow water equations`). The Telemac2d tutorials in this eBook use the SELAFIN (`*.slf`) and Conlim boundary condition (`*.cli`) files that result from the {ref}`TELEMAC pre-processing tutorial <slf-prepro-tm>` and the descriptions refer to the {{ tm2d }}.
 
 The {ref}`steady 2d <telemac2d-steady>` tutorial is the baseline for almost all other TELEMAC-related chapters in this eBook. On top, the {ref}`unsteady 2d <chpt-unsteady>` tutorial features the adaption of quasi-steady (near-census unsteady) flow conditions, which is important, for instance, for modeling a flood hydrograph.
