@@ -772,7 +772,7 @@
 <span id="chpt-git"></span><h1>git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="the-concept">
 <h2>The Concept<a class="headerlink" href="#the-concept" title="Permalink to this headline">¶</a></h2>
-<p><strong>git is</strong> a fast,** scalable, distributed <strong>revision (version) control system</strong>, originally developed by <em>Linus Torvalds</em>  (<a class="reference external" href="https://git.kernel.org/">read more about the git kernel</a>). <em>git</em> enables to coordinate work among collaborators beyond programming, in any set of files. Its support of non-linear workflows, speed, and data integrity make git an indispensable tool in many industries and research. Before starting to read this <em>git</em> tutorial, have a look at the schematic functioning of repositories hosted with <em>git</em>.</p>
+<p><strong>git is</strong> a fast, scalable, distributed <strong>revision (version) control system</strong>, originally developed by <em>Linus Torvalds</em>  (<a class="reference external" href="https://git.kernel.org/">read more about the git kernel</a>). <em>git</em> enables to coordinate work among collaborators beyond programming, in any set of files. Its support of non-linear workflows, speed, and data integrity make git an indispensable tool in many industries and research. Before starting to read this <em>git</em> tutorial, have a look at the schematic functioning of repositories hosted with <em>git</em>.</p>
 <div class="figure align-default" id="id1">
 <img alt="git-scheme" src="../_images/git-scheme.png" />
 <p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">The concept of git and basic vocabulary. The REMOTE frame is online (i.e., someone else’s computer) and the LOCAL frame is what happens on a personal computer, which is connected to the internet. Repositories can be newly created or forked remotely. Remote repositories can be cloned locally, modified locally, and local changes can be pushed to a remote repository. Collaborators want to make sure to regularly pull changes of a remote repository. Working with and on different branches becomes increasingly important with the number of developers and for the moment we just need to remember that we start working in the master branch (i.e., upstream origin / HEAD = main).</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
@@ -782,18 +782,18 @@
 <span id="dl"></span><h2>Install git<a class="headerlink" href="#install-git" title="Permalink to this headline">¶</a></h2>
 <p>The materials provided with this eBook are best downloaded and updated using <em>git</em>-able environments (avoid downloading materials as <em>zip</em> file).</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="c06fbd3e-2874-4d0b-ad9c-9e149b0687c4" name="9f2dce1c-6ddc-4f3a-b8a9-efdc108917e5" type="radio">
-</input><label class="tabbed-label" for="c06fbd3e-2874-4d0b-ad9c-9e149b0687c4">
+<input checked="checked" id="3f3d904e-1c5d-462a-ba40-97e1c4f7d727" name="d2c1c390-12df-44e3-bf34-db331145e96d" type="radio">
+</input><label class="tabbed-label" for="3f3d904e-1c5d-462a-ba40-97e1c4f7d727">
 Linux</label><div class="tabbed-content docutils">
 <p>You are already good to go - git is an integral feature of most Linux distributions.</p>
 </div>
-<input id="05c7d056-1d26-40be-8aa4-99430128f17f" name="9f2dce1c-6ddc-4f3a-b8a9-efdc108917e5" type="radio">
-</input><label class="tabbed-label" for="05c7d056-1d26-40be-8aa4-99430128f17f">
+<input id="268de9c8-92f1-4d76-a89a-8a99af9998ba" name="d2c1c390-12df-44e3-bf34-db331145e96d" type="radio">
+</input><label class="tabbed-label" for="268de9c8-92f1-4d76-a89a-8a99af9998ba">
 Windows</label><div class="tabbed-content docutils">
 <p>Download and install <a class="reference external" href="https://git-scm.com/downloads"><em>Git Bash</em></a> and use it for example <a class="reference external" href="https://www.jetbrains.com/pycharm/">PyCharm’s Community Edition</a> or <a class="reference external" href="https://atom.io">Atom</a>.</p>
 </div>
-<input id="72045e5f-5f9d-4f47-a487-b97da6578e49" name="9f2dce1c-6ddc-4f3a-b8a9-efdc108917e5" type="radio">
-</input><label class="tabbed-label" for="72045e5f-5f9d-4f47-a487-b97da6578e49">
+<input id="523fb39c-6935-4fec-859b-ce36f0693159" name="d2c1c390-12df-44e3-bf34-db331145e96d" type="radio">
+</input><label class="tabbed-label" for="523fb39c-6935-4fec-859b-ce36f0693159">
 macOS</label><div class="tabbed-content docutils">
 <p>macOS users may use <a class="reference external" href="https://developer.apple.com/xcode/">Homebrew</a> for installing git, but there are other options, such as <a class="reference external" href="https://developer.apple.com/xcode/">Xcode</a>.</p>
 <p>To use Homebrew for installing git, start with installing Homebrew through the <a class="reference external" href="https://support.apple.com/guide/terminal/open-or-quit-terminal-apd5265185d-f365-44cb-8b09-71a064a42125/mac">macOS Terminal</a>:</p>
