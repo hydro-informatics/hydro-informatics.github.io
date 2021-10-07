@@ -17,7 +17,7 @@ Students of the University of Stuttgart may want to explore the [TIK's GitHub ac
 
 ## Exercises
 
-Exercises are an integral part of this ebook and additional materials are provided on external git repositories, such as:
+Exercises are an integral part of this eBook and additional materials are provided on external git repositories, such as:
 
 * Assignment instructions,
 * Code templates, and
@@ -34,7 +34,7 @@ This course introduces the version-control system git and the programming langua
 Interactive lectures familiarize students with version control via git, markdown language for documentation, and *Python* programming. The course is organized by the [IWS-LWW department](https://www.iws.uni-stuttgart.de/en/lww/) at the [University of Stuttgart](https://www.uni-stuttgart.de/) in winter semesters for the [Water Resources Engineering and Management (WAREM)](https://www.warem.uni-stuttgart.de/) program. The course builds on in-house and external open access materials, which serve as a reference guide and support for independent studies.
 
 ```{attention}
-To ensure adequate support for every student, the number of participants is limited to 15. For this reason, register as soon as possible on [ILIAS](https://ilias3.uni-stuttgart.de/goto_Uni_Stuttgart_crs_2101155.html) and [C@MPUS](https://campus.uni-stuttgart.de/cusonline/pl/ui/$ctx/wbLv.wbShowLVDetail?pStpSpNr=272592) (decisive is the registration on C@MPUS).
+To ensure adequate support for every student, the number of participants is limited to 15. For this reason, register as soon as possible on [ILIAS](https://ilias3.uni-stuttgart.de/goto_Uni_Stuttgart_crs_2554056.html) and [C@MPUS](https://campus.uni-stuttgart.de/cusonline/pl/ui/$ctx/wbLv.wbShowLVDetail?pStpSpNr=284455) (decisive is the registration on C@MPUS).
 ```
 
 ### Requirements
@@ -64,14 +64,10 @@ Solution 2: Atom
 : At the core, *Atom* is a text editor, but it can be easily extended with many capacities for almost all popular programming languages.
 
 ### Schedule (Winter 2021/22)
-Every Wednesday and Thursday morning live in *WebEx*, starting from October/November 2021, through February 2022.
+Every Wednesday morning on Campus in the WAREM CIP-Pool, starting from October/November 2021, through February 2022.
 
 
-```{note}
-The exact schedule is available on the University of Stuttgart's [ILIAS](https://ilias3.uni-stuttgart.de/goto_Uni_Stuttgart_crs_2101155.html) and [C@MPUS](https://campus.uni-stuttgart.de/cusonline/pl/ui/$ctx/wbLv.wbShowLVDetail?pStpSpNr=272592&pSpracheNr=) pages.
-```
-
-### Learning objectives
+### Learning Objectives
 
 Students acquire basic and advanced skills in Python programming, git version control, data handling and geospatial analyses. The dedicated learner deepens the ability to think logically and translate work processes into structured, object-oriented algorithms. Through the application of open-access software and git, students will be able to effectively support any team in the world and boost any project. The practice-oriented exercises transfer additional knowledge on how to leverage challenges in water resources management.
 

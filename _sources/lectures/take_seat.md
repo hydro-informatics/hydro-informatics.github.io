@@ -10,7 +10,7 @@ Each of the lectures requires one or more software tools, most of which are desc
 If you find errors (e.g., in this eBook) or solutions to (unknown) issues with any software, feel very welcome to report them to the lecturer(s).
 
 
-## Join live video conferences
+## Join Live Video Lectures
 
 The University of Stuttgart uses **Cisco Webex** software for video conferencing ([read more on the school's website](https://www.tik.uni-stuttgart.de/en/support/service-manuals/webex/)). Therefore, *Cisco Webex* is used for live streaming lectures and free clients are available for students and staff ([go to the download page](https://unistuttgart.webex.com/webappng/sites/unistuttgart/dashboard?siteurl=unistuttgart)). Once installed, open *Webex* and enter you user ID (students: `stREGISTRATIONNUMBER` or staff: `acSTAFFID`).
 
