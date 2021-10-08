@@ -55,7 +55,7 @@ So what option to choose? To leverage the full capacities of TELEMAC, use both: 
 ## Stand-alone Installation of TELEMAC
 
 ```{admonition} TELEMAC Docker image
-The Austrian engineering office *Flussplan* provides a Docker container of TELEMAC v8 on their [docker-telemac GitHub repository](https://github.com/flussplan/docker-telemac). Note that a Docker container represents an easy-to-install virtual environment that leverages cross-platform compatibility, but affects computational performance. If you have the proprietary Docker software installed and computational performance is not the primary concern for your models, *Flussplan*'s Docker container might be a good choice. For instance, purely hydrodynamic models with small numbers of grid nodes and without additional TELEMAC module implications will efficiently run in the Docker container. 
+The Austrian engineering office *Flussplan* provides a Docker container of TELEMAC v8 on their [docker-telemac GitHub repository](https://github.com/flussplan/docker-telemac). Note that a Docker container represents an easy-to-install virtual environment that leverages cross-platform compatibility, but affects computational performance. If you have the proprietary Docker software installed and computational performance is not the primary concern for your models, *Flussplan*'s Docker container might be a good choice. For instance, purely hydrodynamic models with small numbers of grid nodes and without additional TELEMAC module implications will efficiently run in the Docker container.
 ```
 
 ### Prerequisites
@@ -108,7 +108,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> import numpy
 >>> import scipy
 >>> import matplotlib
->>> a = numpy.array((1, 1)
+>>> a = numpy.array((1, 1))
 >>> print(a)
 [1 1]
 >>> exit()
@@ -321,7 +321,7 @@ We will install here version `1.8.14`. Do not try to use any other *hdf5* versio
 
 ```
 cd ~/telemac/v8p2/optionals/temp
-wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.21/src/hdf5-1.8.21.tar.gz
+wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.14/src/hdf5-1.8.14.tar.gz
 gunzip hdf5-1.8.14.tar.gz
 tar -xvf hdf5-1.8.14.tar
 cd hdf5-1.8.14

@@ -28,16 +28,30 @@ pip and virtual environments are preferable with *Linux* systems for working wit
 Consider installing, create and activate a new virtual environment for working with the contents of this eBook as explained in the following platform-dependent paragraphs.
 
 ````{tabbed} Linux
-To avoid affecting the system's Python interpreter, set up a virtual environment with *venv*. the first step is to make sure that *Python3* and *venv* are installed on the system:
+To avoid affecting the system's Python interpreter, set up a virtual environment with *venv*. The first step is to make sure that *Python3* and *venv* are installed on the system:
 
 ```
 sudo apt install python3 python3-venv
 ```
 
-Next, make sure that `pip3` and `tkinter` are installed:
+Next, make sure that `pip3` and `tkinter` are installed and up to date:
 
 ```
 sudo apt install python3-pip python3-tk tk8.6-dev
+python3 -m pip install --upgrade pip
+```
+
+```{admonition} python vs. python3
+:class: attention
+Python2 experienced its *sunset* in January 2020, but some systems still use Python2 as default for the `python` command and require a distinguished call of Python3 with the `python3` command.
+This behavior is more and more deprecated and most up-to-date systems will automatically refer to Python3 when typing `python`.
+
+**Thus, it might be possible that your system requires using `python` rather than `python3` (i.e., use `python -m pip install --upgrade pip` here and in the following command sequences).**
+```
+
+To check the installed version of Python tap:
+```
+which python
 ```
 
 Then go to the home directory (or wherever you want to install the virtual environment) and create a new virtual environment (e.g., called *vflussenv*):
@@ -80,7 +94,6 @@ Python 3.X.X (default, MMM DD YYYY, hh:mm:ss)
 [GCC 9.X.X on linux]
 >>> import flusstools as ft
 ```
-
 Recall that newer *Linux* versions may not differentiate between *Python2* and *Python3* (i.e., use `python` rather than `python3`).
 ````
 
