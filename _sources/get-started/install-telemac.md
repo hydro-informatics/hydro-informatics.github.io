@@ -317,14 +317,14 @@ To verify the successful installation, make sure that the file `~/telemac/v8p2/o
 
 **HDF5** is a portable file format that incorporates metadata and communicates efficiently with *C/C++* and *Fortan* on small laptops as well as massively parallel systems. The *hdf5* file library is provided by the [HDFgroup.org](https://portal.hdfgroup.org/).
 
-We will install here version `1.8.14`. Do not try to use any other *hdf5* version because those will not work with the *med file* library (next step). The following code block downloads and unzips the *hdf-5-1.8.14* archive in the above-created (metis) `temp/` folder (run in *Terminal* as normal user - not as root):
+We will install here version `1.8.21`. Do not try to use any other *hdf5* version because those will not work with the *med file* library (next step). The following code block downloads and unzips the *hdf-5-1.8.21* archive in the above-created (metis) `temp/` folder (run in *Terminal* as normal user - not as root):
 
 ```
 cd ~/telemac/v8p2/optionals/temp
-wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.14/src/hdf5-1.8.14.tar.gz
-gunzip hdf5-1.8.14.tar.gz
-tar -xvf hdf5-1.8.14.tar
-cd hdf5-1.8.14
+wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.21/src/hdf5-1.8.21.tar.gz
+gunzip hdf5-1.8.21.tar.gz
+tar -xvf hdf5-1.8.21.tar
+cd hdf5-1.8.21
 ```
 
 Configure and compile *hdf5* (enter every command one-by-one):
