@@ -1,7 +1,7 @@
 (openfoam-install)=
 # OpenFOAM (Installation)
 
-This tutorial guides through the installation of [OpenFOAM](http://www.openfoam.org/) on [Ubuntu Linux](https://www.ubuntu.org/) and {ref}`openfoam-debian`. For installing *OpenFOAM* on many other platforms (even *Windows*) visit the [developer's website](https://openfoam.org).
+This tutorial guides through the installation of [OpenFOAM](http://www.openfoam.org/) on [Ubuntu Linux](https://www.ubuntu.org/) and {ref}`openfoam-debian`. For installing OpenFOAM on many other platforms (even *Windows*) visit the [developer's website](https://openfoam.org).
 
 ```{admonition} Learn OpenFOAM
 OpenFOAM represents a powerful modeling tool, which is recommended here for modeling flow-structure interaction. OpenFOAM developers provide detailed documentation with high-quality tutorials on their website. Especially, their 3-week tutorial is a very good start into OpenFOAM modeling for PhD students or engineers.
@@ -13,7 +13,7 @@ On Debian Linux / Ubuntu / Mint, preferably install OpenFOAM from the Ubuntu rep
 
 ## Ubuntu (incl. Mint and Lubuntu)
 
-The installation on *Ubuntu Linux* or one of its derivatives is probably one of the easiest and most sustainable ways for working with *OpenFOAM*.
+The installation on *Ubuntu Linux* or one of its derivatives is probably one of the easiest and most sustainable ways for working with OpenFOAM.
 
 ### Install OpenFOAM
 
@@ -22,7 +22,7 @@ The installation on any *Ubuntu Linux* platform is straight-forward and can be c
 1. Download and add the *gpg key* <br> `sudo sh -c "wget -O - https://dl.openfoam.org/gpg.key | apt-key add -"`
 1. Add the repository to *sources.list* <br> `sudo add-apt-repository http://dl.openfoam.org/ubuntu`
 1. Update the `apt` package list <br> `sudo apt update`
-1. Install *OpenFOAM* along with a tailored version of *ParaView*: <br> `sudo apt -y install openfoam9`
+1. Install OpenFOAM along with a tailored version of ParaView: <br> `sudo apt -y install openfoam9`
 
 Optionally, install *gedit*, which is often used in the documentation and for instructions for setting environment variables:
 
@@ -36,7 +36,7 @@ Even though the developer's installation instructions suggest using `apt-get upd
 
 ### Update OpenFOAM
 
-The *OpenFOAM* developers periodically update (recompile) new versions of `openfoam9`. To get these latest versions run:
+The OpenFOAM developers periodically update (recompile) new versions of `openfoam9`. To get these latest versions run:
 
 ```
 sudo apt update
@@ -45,13 +45,13 @@ sudo apt install --only-upgrade openfoam9
 
 ### Setup User Configuration
 
-*OpenFOAM* uses a set of environment variables that aid calling the program and its helpers. To define environment variables, every *OpenFOAM* *Ubuntu* user needs to modify the *.bashrc* file, which lives in the */home/USER/* directory:
+OpenFOAM uses a set of environment variables that aid calling the program and its helpers. To define environment variables, every OpenFOAM - *Ubuntu* user needs to modify the *.bashrc* file, which lives in the */home/USER/* directory:
 
 * Open the user *.bashrc* file: <br> `gedit ~/.bashrc`
 * On the bottom of the *.bashrc* file add: <br> `source /opt/openfoam9/etc/bashrc`
 * Save and close the user *.bashrc* file.
 
-Open a new *Terminal* (or, to be sure, re-login on *Ubuntu*) and test if the system recognizes the *OpenFOAM* environment variables:
+Open a new *Terminal* (or, to be sure, re-login on *Ubuntu*) and test if the system recognizes the OpenFOAM environment variables:
 
 ```
 simpleFoam -help
@@ -61,11 +61,11 @@ simpleFoam -help
     ...
 
 
-If correctly set up, *Terminal* returns a set of options for running *OpenFOAM*.
+If correctly set up, *Terminal* returns a set of options for running OpenFOAM.
 
 ### Test-run
 
-With the environment variables defined, create a new directory for *OpenFOAM* projects:
+With the environment variables defined, create a new directory for OpenFOAM projects:
 
 ```
 cd ~
@@ -73,7 +73,7 @@ mkdir OpenFoam9
 cd OpenFoam9
 ```
 
-Copy the *pitzDaily* *OpenFOAM* tutorial by using the `$FOAM_[...]` environment variables ([full list](https://openfoamwiki.net/index.php/Environment_variables):
+Copy the *pitzDaily* OpenFOAM tutorial by using the `$FOAM_[...]` environment variables ([full list](https://openfoamwiki.net/index.php/Environment_variables)):
 
 ```
 mkdir -p $FOAM_RUN
@@ -90,14 +90,14 @@ simpleFoam
 paraFoam
 ```
 
-To get started with *OpenFoam*, refer to the *User Guide* provided by [*CFD Direct*](https://cfd.direct/openfoam/user-guide/).
+To get started with OpenFOAM, refer to the *User Guide* provided by [*CFD Direct*](https://cfd.direct/openfoam/user-guide/).
 
 (openfoam-debian)=
 ## Debian 10
 
 ### Prerequisites
 
-Debian users will need to install *curl* and *docker* for being able to install *OpenFOAM*. First, make sure to get rid of any outdated version of *docker* (if this returns an error, that is not a problem):
+Debian users will need to install *curl* and *docker* for being able to install OpenFOAM. First, make sure to get rid of any outdated version of *docker* (if this returns an error, that is not a problem):
 
 ```
 sudo apt-get remove docker docker-engine docker.io containerd runc
@@ -135,13 +135,13 @@ Verify the successful installation of *docker*:
 sudo docker run hello-world
 ```
 
-Until here, *docker* is installed for sudoers only. To enable running *docker* and *OpenFOAM* for any user, the user's *USERNAME* must be added to the system's `docker` group. Therefore, **add every *docker* and *OpenFOAM* user to the `docker` group** (required for every **USERNAME**):
+Until here, *docker* is installed for sudoers only. To enable running *docker* and OpenFOAM for any user, the user's *USERNAME* must be added to the system's `docker` group. Therefore, **add every *docker* and OpenFOAM user to the `docker` group** (required for every **USERNAME**):
 
 ```
 sudo usermod -aG docker USERNAME
 ```
 
-With *docker* being installed, the system is ready for the installation of *OpenFOAM* on *Debian*.
+With *docker* being installed, the system is ready for the installation of OpenFOAM on *Debian*.
 
 On a remote desktop computer or a virtual machine, make sure to also install *X11* and *Xrdp*, for example for an *Xfce* desktop:
 
@@ -152,7 +152,7 @@ sudo apt install xfce4 xfce4-goodies xrdp
 
 ### Install OpenFOAM (v9)
 
-Download the latest *OpenFOAM* package for *docker*:
+Download the latest OpenFOAM package for *docker*:
 
 ```
 sudo sh -c "wget http://dl.openfoam.org/docker/openfoam9-linux -O /usr/bin/openfoam9-linux"
@@ -175,7 +175,7 @@ cd OpenFoam9
 openfoam9-linux
 ```
 
-The *docker* environment should now be launched in *Terminal*. To test *OpenFOAM*, copy the *pitzDaily* *OpenFOAM* tutorial by using the [**FOAM** environment variables](https://openfoamwiki.net/index.php/Environment_variables):
+The *docker* environment should now be launched in *Terminal*. To test OpenFOAM, copy the *pitzDaily* OpenFOAM tutorial by using the [**FOAM** environment variables](https://openfoamwiki.net/index.php/Environment_variables):
 
 ```
 mkdir -p $FOAM_RUN
@@ -196,7 +196,7 @@ To quit *docker*, tap `exit`. The installation procedure is described in detail 
 
 ### Usual Launch Procedure
 
-With *docker* and *OpenFOAM* being installed, every user of the `docker` group (see above instructions for adding users to the docker `group`) can launch *OpenFOAM* through *Terminal* by entering:
+With *docker* and OpenFOAM being installed, every user of the `docker` group (see above instructions for adding users to the docker `group`) can launch OpenFOAM through *Terminal* by entering:
 
 ```
 openfoam9-linux
@@ -208,7 +208,7 @@ To quit the program tap (in *Terminal*/*docker*):
 exit
 ```
 
-To get started with *OpenFoam*, refer to the *User Guide* provided by [*CFD Direct*](https://cfd.direct/openfoam/user-guide/).
+To get started with OpenFOAM, refer to the *User Guide* provided by [*CFD Direct*](https://cfd.direct/openfoam/user-guide/).
 
 
 ## Utilities (Pre- & Post Processors)
@@ -216,9 +216,9 @@ To get started with *OpenFoam*, refer to the *User Guide* provided by [*CFD Dire
 (salome-install)=
 ### SALOME
 
-Similar to *TELEMAC*, the *SALOME* platform represents a powerful toolkit for generating computational meshes for *OpenFOAM*. Download *SALOME* from [salome-platform.org](https://www.salome-platform.org/downloads/current-version) for your distribution (here: *Linux Ubuntu*).
+Similar to *TELEMAC*, the SALOME platform represents a powerful toolkit for generating computational meshes for OpenFOAM. Download SALOME from [salome-platform.org](https://www.salome-platform.org/downloads/current-version) for your distribution (here: *Linux Ubuntu*).
 
-Unpack the *SALOME* package in a convenient folder (replace the `.tar.gz` file name with the one you downloaded):
+Unpack the SALOME package in a convenient folder (replace the `.tar.gz` file name with the one you downloaded):
 
 ```
 tar xfz SALOME-9.6.0-UB20.04-SRC.tar.gz
@@ -229,7 +229,7 @@ Install dependencies:
 sudo apt install net-tools libopengl0 libtbb-dev
 ```
 
-To run *SALOME*, `cd` to the directory where the unpacked package is located and typ `salome`:
+To run SALOME, `cd` to the directory where the unpacked package is located and typ `salome`:
 
 ```
 cd SALOME-9.6.0-UB20.04-SRC.tar.gz
@@ -237,7 +237,7 @@ source env_launch.sh
 ./salome
 ```
 
-If `./salome` does not work (in particular on a *Virtual Machine*), try to run `./mesa_salome` (prevents problems with *openGL* in the *Mesh* module), or re-compile *SALOME*:
+If `./salome` does not work (in particular on a virtual machine), try to run `./mesa_salome` (prevents problems with *openGL* in the *Mesh* module), or re-compile SALOME:
 
 ```
 ./sat prepare SALOME-9.6.0

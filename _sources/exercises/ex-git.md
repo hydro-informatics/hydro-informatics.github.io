@@ -1,4 +1,5 @@
-# Git and markdown
+(git-exercise)=
+# Git and Markdown
 
 ```{admonition} Goals
 Use *git* and get familiar with writing markdown documents.
@@ -15,9 +16,7 @@ Get ready by cloning the exercise repository:
 git clone https://github.com/Ecohydraulics/Exercise-git.git
 ```
 
-
-
-***Acitivity:*** Describe your favorite dam, fish or river in a markdown file named `README.md`.
+***Activity:*** Describe your favorite dam, fish or river in a markdown file named `README.md`.
 
 ````{panels}
 Features to implement in the `README.md` file:

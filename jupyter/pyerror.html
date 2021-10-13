@@ -141,7 +141,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../get-started/git.html">
-     git
+     Version Control : git
     </a>
    </li>
    <li class="toctree-l2">
@@ -543,7 +543,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-git.html">
-     Git and markdown
+     Git and Markdown
     </a>
    </li>
   </ul>
@@ -846,7 +846,7 @@
                 
   <div class="section" id="errors-logging-and-debugging">
 <span id="sec-pyerror"></span><h1>Errors, Logging, and Debugging<a class="headerlink" href="#errors-logging-and-debugging" title="Permalink to this headline">¶</a></h1>
-<p>Handle error types and troubleshoot (debug). For interactive reading and executing code blocks <a class="reference external" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> and find <em>pyerror.ipynb</em> or <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Python (Installation)</span></a> locally along with <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a>.</p>
+<p>Handle error types and troubleshoot (debug). For interactive reading and executing code blocks <a class="reference external" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> and find <em>pyerror.ipynb</em>, or install <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Python</span></a> and <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a> locally.</p>
 <div class="section" id="errors-exceptions">
 <h2>Errors &amp; Exceptions<a class="headerlink" href="#errors-exceptions" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="error-types">
@@ -968,7 +968,7 @@
 </ul>
 </li>
 </ul>
-<p>Until here, messages are only written to the log file, but we cannot see any message in the console. To enable simultaneous logging to the log file and the console (<em>Python</em> terminal), use <code class="docutils literal notranslate"><span class="pre">logging.getLogger().addHandler(logging.StreamHandler())</span></code> (appends an <em>io</em> stream handler).</p>
+<p>Until here, messages are only written to the log file, but we cannot see any message in the console. To enable simultaneous logging to the log file and the console (<em>Python</em> terminal), use <code class="docutils literal notranslate"><span class="pre">logging.getLogger().addHandler(logging.StreamHandler())</span></code> that appends an <em>io</em> stream handler.</p>
 <p>To write a message to the log file (and <em>Python</em> terminal), use</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">logging.debug(&quot;message&quot;)</span></code> for code diagnoses,</p></li>
@@ -1017,7 +1017,7 @@ The variable is not numeric.
 <span class="mi">2050</span><span class="o">-</span><span class="mi">00</span><span class="o">-</span><span class="mi">00</span> <span class="mi">18</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">46</span><span class="p">,</span><span class="mi">669</span> <span class="o">-</span> <span class="n">The</span> <span class="n">variable</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">numeric</span><span class="o">.</span>
 </pre></div>
 </div>
-<p>Events can also be documented by instantiating a logger object with <code class="docutils literal notranslate"><span class="pre">logger</span> <span class="pre">=</span> <span class="pre">logging.getLogger(__name__)</span></code>. This favorable solution is recommended for advanced coding such as writing a <a class="reference internal" href="pypckg.html#sec-pypckg"><span class="std std-ref">custom *Python* library</span></a>) (read more in the <a class="reference external" href="https://docs.python.org/3/howto/logging.html#advanced-logging-tutorial"><em>Python</em> docs on advanced logging</a>). An example script with a more sophisticated logger is provided with the <a class="reference external" href="https://github.com/hydro-informatics/material-py-codes/raw/master/logging/Logger.py">Logger script at the course repository</a> (available during lecture series).</p>
+<p>Events can also be documented by instantiating a logger object with <code class="docutils literal notranslate"><span class="pre">logger</span> <span class="pre">=</span> <span class="pre">logging.getLogger(__name__)</span></code>. This favorable solution is recommended for advanced coding such as writing a <a class="reference internal" href="pypckg.html#sec-pypckg"><span class="std std-ref">custom Python library</span></a>) (read more in the <a class="reference external" href="https://docs.python.org/3/howto/logging.html#advanced-logging-tutorial">Python docs on advanced logging</a>). An example script with a more sophisticated logger is provided with the <a class="reference external" href="https://github.com/hydro-informatics/material-py-codes/raw/master/logging/Logger.py">Logger script at the course repository</a>.</p>
 </div>
 <div class="section" id="debugging">
 <h2>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h2>

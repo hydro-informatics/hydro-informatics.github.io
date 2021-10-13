@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>git &#8212; Hydro-Informatics</title>
+    <title>Version Control : git &#8212; Hydro-Informatics</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -141,7 +141,7 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     git
+     Version Control : git
     </a>
    </li>
    <li class="toctree-l2">
@@ -543,7 +543,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-git.html">
-     Git and markdown
+     Git and Markdown
     </a>
    </li>
   </ul>
@@ -768,8 +768,8 @@
         
               <div>
                 
-  <div class="section" id="git">
-<span id="chpt-git"></span><h1>git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="version-control-git">
+<span id="chpt-git"></span><h1>Version Control : git<a class="headerlink" href="#version-control-git" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="the-concept">
 <h2>The Concept<a class="headerlink" href="#the-concept" title="Permalink to this headline">¶</a></h2>
 <p><strong>git is</strong> a fast, scalable, distributed <strong>revision (version) control system</strong>, originally developed by <em>Linus Torvalds</em>  (<a class="reference external" href="https://git.kernel.org/">read more about the git kernel</a>). <em>git</em> enables to coordinate work among collaborators beyond programming, in any set of files. Its support of non-linear workflows, speed, and data integrity make git an indispensable tool in many industries and research. Before starting to read this <em>git</em> tutorial, have a look at the schematic functioning of repositories hosted with <em>git</em>.</p>
@@ -782,18 +782,18 @@
 <span id="dl"></span><h2>Install git<a class="headerlink" href="#install-git" title="Permalink to this headline">¶</a></h2>
 <p>The materials provided with this eBook are best downloaded and updated using <em>git</em>-able environments (avoid downloading materials as <em>zip</em> file).</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="3f3d904e-1c5d-462a-ba40-97e1c4f7d727" name="d2c1c390-12df-44e3-bf34-db331145e96d" type="radio">
-</input><label class="tabbed-label" for="3f3d904e-1c5d-462a-ba40-97e1c4f7d727">
+<input checked="checked" id="b75a0352-ea91-4d07-8c42-06840040610f" name="bcf742f8-e6aa-4625-b00f-da7c39ce402a" type="radio">
+</input><label class="tabbed-label" for="b75a0352-ea91-4d07-8c42-06840040610f">
 Linux</label><div class="tabbed-content docutils">
 <p>You are already good to go - git is an integral feature of most Linux distributions.</p>
 </div>
-<input id="268de9c8-92f1-4d76-a89a-8a99af9998ba" name="d2c1c390-12df-44e3-bf34-db331145e96d" type="radio">
-</input><label class="tabbed-label" for="268de9c8-92f1-4d76-a89a-8a99af9998ba">
+<input id="572fe8da-15fe-4246-8150-43fc8a425fae" name="bcf742f8-e6aa-4625-b00f-da7c39ce402a" type="radio">
+</input><label class="tabbed-label" for="572fe8da-15fe-4246-8150-43fc8a425fae">
 Windows</label><div class="tabbed-content docutils">
 <p>Download and install <a class="reference external" href="https://git-scm.com/downloads"><em>Git Bash</em></a> and use it for example <a class="reference external" href="https://www.jetbrains.com/pycharm/">PyCharm’s Community Edition</a> or <a class="reference external" href="https://atom.io">Atom</a>.</p>
 </div>
-<input id="523fb39c-6935-4fec-859b-ce36f0693159" name="d2c1c390-12df-44e3-bf34-db331145e96d" type="radio">
-</input><label class="tabbed-label" for="523fb39c-6935-4fec-859b-ce36f0693159">
+<input id="342f762d-3581-4ef2-abfe-10e33febf355" name="bcf742f8-e6aa-4625-b00f-da7c39ce402a" type="radio">
+</input><label class="tabbed-label" for="342f762d-3581-4ef2-abfe-10e33febf355">
 macOS</label><div class="tabbed-content docutils">
 <p>macOS users may use <a class="reference external" href="https://developer.apple.com/xcode/">Homebrew</a> for installing git, but there are other options, such as <a class="reference external" href="https://developer.apple.com/xcode/">Xcode</a>.</p>
 <p>To use Homebrew for installing git, start with installing Homebrew through the <a class="reference external" href="https://support.apple.com/guide/terminal/open-or-quit-terminal-apd5265185d-f365-44cb-8b09-71a064a42125/mac">macOS Terminal</a>:</p>
@@ -821,7 +821,7 @@ eval $(/opt/homebrew/bin/brew shellenv)
 <p>To create a <em>git</em> repository, make sure to have access to a <em>git</em> provider. The most popular way to get access to a <em>git</em>-able server is to register with one on the long list of popular <em>git</em> providers.</p>
 <div class="note admonition">
 <p class="admonition-title">Students of the University of Stuttgart</p>
-<p>Students of the University of Stuttgart may use <em>GitHub</em> using their institutional ID (e.g., <code class="docutils literal notranslate"><span class="pre">st9009133</span></code>) through the <a class="reference external" href="https://github.tik.uni-stuttgart.de/login">TIK’s GitHub account and login page</a>.</p>
+<p>Students of the University of Stuttgart may use <em>GitHub</em> using their institutional ID (e.g., <code class="docutils literal notranslate"><span class="pre">st9009133</span></code> ) through the <a class="reference external" href="https://github.tik.uni-stuttgart.de/login">TIK’s GitHub account and login page</a>.</p>
 </div>
 </div>
 <div class="section" id="clone-download-a-repository">
@@ -834,7 +834,7 @@ eval $(/opt/homebrew/bin/brew shellenv)
 <li><p><em>Linux</em>: <em>Terminal</em></p></li>
 </ul>
 </li>
-<li><p>Clone the course repository (change materials according to the course attended):<br> <strong><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/hydro-informatics/materials</span></code></strong>  (or whatever repository you want to clone)</p></li>
+<li><p>Clone the course repository (change materials according to the course attended):<br> <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/hydro-informatics/materials</span></code>  (or whatever repository you want to clone)</p></li>
 </ol>
 <p>Done.</p>
 </div>
@@ -842,9 +842,9 @@ eval $(/opt/homebrew/bin/brew shellenv)
 <span id="update"></span><h2>Pull (Update/Re-Download) a Local Repository<a class="headerlink" href="#pull-update-re-download-a-local-repository" title="Permalink to this headline">¶</a></h2>
 <p><em>git</em> (within <em>Git Bash</em>, <em>PyCharm</em>, or <em>Terminal</em>) is the only option to update local copies of a remote repository consistently. To do so, open one of the above mention <em>git</em>-able command lines and do the following:</p>
 <ol class="simple">
-<li><p>Go to the local directory of the repository with the <a class="reference external" href="https://en.wikipedia.org/wiki/Cd_(command)"><code class="docutils literal notranslate"><span class="pre">cd</span></code></a> command (e.g., <code class="docutils literal notranslate"><span class="pre">materials</span></code>):</br> <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">&quot;D:/Python/materials/&quot;</span></code> (or wherever <code class="docutils literal notranslate"><span class="pre">materials</span></code> was cloned).</p></li>
+<li><p>Go to the local directory of the repository with the <a class="reference external" href="https://en.wikipedia.org/wiki/Cd_(command)"><code class="docutils literal notranslate"><span class="pre">cd</span></code></a> command (e.g., <code class="docutils literal notranslate"><span class="pre">materials</span></code>):<br> <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">&quot;D:/Python/materials/&quot;</span></code> (or wherever <code class="docutils literal notranslate"><span class="pre">materials</span></code> was cloned).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> - shows the modifications made.</p></li>
-<li><p>Merge errors may occur when changes were made in the local copy. To avoid merge errors, type: </br> <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">--rebase</span></code> - if locally edited scripts were modified remotely since the last pull, this will prompt issues and highlight problematic sections with <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code>). Manually open concerned files and resolve the issues (delete invalid <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> highlights).</p></li>
+<li><p>Merge errors may occur when changes were made in the local copy. To avoid merge errors, type: <br> <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">--rebase</span></code> - if locally edited scripts were modified remotely since the last pull, this will prompt issues and highlight problematic sections with <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> ). Manually open concerned files and resolve the issues (delete invalid <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> highlights).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code></p></li>
 </ol>
 <p>Done.</p>
@@ -854,7 +854,7 @@ eval $(/opt/homebrew/bin/brew shellenv)
 <p>After editing files in a repository locally, <em>add</em> - <em>commit</em> - <em>push</em> (in that order) your edits to the remote copy of the repository with version control. To <em>add</em> - <em>commit</em> - <em>push</em> local changes to a remote repository, make sure to be the remote repository owner or a contributor. Then open a <em>git</em>-able terminal and type:</p>
 <ol class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> - this shows the modifications made.</p></li>
-<li><p>If the status looks OK with the consciously made changes, type <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code> </br>Optionally, if only single files were changed, use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">filename.py</span></code> instead. Best solution: use a local <a class="reference external" href="https://help.github.com/en/github/using-git/ignoring-files">.gitignore file</a>.</p></li>
+<li><p>If the status looks OK with the consciously made changes, type <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code> <br>Optionally, if only single files were changed, use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">filename.py</span></code> instead. Best solution: use a local <a class="reference external" href="https://help.github.com/en/github/using-git/ignoring-files">.gitignore file</a>.</p></li>
 <li><p>Commit changes <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;Leave</span> <span class="pre">a</span> <span class="pre">message&quot;</span></code> - leave a significant and precise short message.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">--rebase</span></code> - if locally edited scripts were modified remotely since the last pull, this will prompt issues and highlight problematic sections with <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code>). Manually open concerned files and resolve the issues (delete invalid <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> highlights).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code></p></li>
@@ -874,7 +874,7 @@ eval $(/opt/homebrew/bin/brew shellenv)
 <p>If any error occurs, carefully read why the error occurred and follow the instructions for troubleshooting (e.g., for setting up your user configuration with <a class="reference external" href="https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/managing-email-preferences/setting-your-commit-email-address#setting-your-commit-email-address-in-git">git config –global user.email “email&#64;example.com”</a>). You may ignore warning messages regarding line-end formats (<em>WARNING … LF endings …</em>) for most applications presented in this eBook.</p>
 <div class="admonition-exercise admonition">
 <p class="admonition-title">Exercise</p>
-<p>Practice <em>git</em> with the <a class="reference internal" href="../exercises/ex-git.html"><span class="doc std std-doc">markdown and git</span></a> exercise.</p>
+<p>Practice <em>git</em> with the <a class="reference internal" href="../exercises/ex-git.html#git-exercise"><span class="std std-ref">markdown and git</span></a> exercise.</p>
 </div>
 </div>
 </div>

@@ -9,7 +9,7 @@ This tutorial is designed for **beginners** and before diving into this tutorial
 * Read (or watch) and understand this eBook's {ref}`qgis-tutorial`.
 ```
 
-The first steps in numerical modeling of a river with BASEMENT consist in the conversion of a Digital Elevation Model (**{term}`DEM`**) into a computational mesh. This tutorial guides through the creation of a QGIS project for converting a {term}`DEM` ({term}`GeoTIFF`) into a computational mesh that can be used with various numerical modeling software featured in this eBook. At the end of this tutorial, {ref}`chpt-basement` users will have generated a computational grid in the {term}`SMS 2dm` format.
+The first steps in numerical modeling of a river with BASEMENT consist in the conversion of a **Digital Elevation Model ({term}`DEM`)** into a computational mesh. This tutorial guides through the creation of a QGIS project for converting a {term}`DEM` ({term}`GeoTIFF`) into a computational mesh that can be used with various numerical modeling software featured in this eBook. At the end of this tutorial, {ref}`chpt-basement` users will have generated a computational grid in the {term}`SMS 2dm` format.
 
 ```{admonition} Platform compatibility
 :class: tip
@@ -20,6 +20,7 @@ All software applications featured in this tutorial can be run on *Linux*, *Wind
 ## QGIS Setup
 
 ### Coordinate Reference System (CRS)
+
 Launch QGIS and {ref}`create a new QGIS project <qgis-project>` to get started with this tutorial.
 As featured in the {ref}`qgis-tutorial`, set up a coordinate reference system (CRS) for the project. This example uses data of a river in Bavaria (Germany zone 4), which requires the following CRS:
 

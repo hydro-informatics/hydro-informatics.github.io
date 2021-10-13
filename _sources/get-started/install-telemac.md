@@ -36,12 +36,12 @@ This page describes two ways for installing TELEMAC:
     - The variety of install options may cause errors when incompatible packages are combined
     - Challenging installation of optional modules such as AED2, HPC and parallelism
 * Option 2: {ref}`Installation of TELEMAC within the SALOME-HYDRO <salome-hydro>` software suite.
-  * All pre-processing tasks are managed with *SALOME-HYDRO*
-  * TELEMAC is launched through the *HYDRO-SOLVER* module
-  * Post-processing is performed with *ParaView*
+  * All pre-processing tasks are managed with SALOME-HYDRO
+  * TELEMAC is launched through the HYDRO-SOLVER module
+  * Post-processing is performed with ParaView
   * **Advantages**:
     - All-in-one solution for pre-processing
-    - Integrated HPC installation of TELEMAC *v8p2*
+    - Integrated HPC installation of TELEMAC v8p2
     - Efficient for MED-file handling
   * **Disadvantages**:
     - Common input geometry file formats such as *SLF* (selafin) require additional software
@@ -55,14 +55,14 @@ So what option to choose? To leverage the full capacities of TELEMAC, use both: 
 ## Stand-alone Installation of TELEMAC
 
 ```{admonition} TELEMAC Docker image
-The Austrian engineering office *Flussplan* provides a Docker container of TELEMAC v8 on their [docker-telemac GitHub repository](https://github.com/flussplan/docker-telemac). Note that a Docker container represents an easy-to-install virtual environment that leverages cross-platform compatibility, but affects computational performance. If you have the proprietary Docker software installed and computational performance is not the primary concern for your models, *Flussplan*'s Docker container might be a good choice. For instance, purely hydrodynamic models with small numbers of grid nodes and without additional TELEMAC module implications will efficiently run in the Docker container.
+The Austrian engineering office *Flussplan* provides a Docker container of TELEMAC v8 on their [docker-telemac GitHub repository](https://github.com/flussplan/docker-telemac). Note that a Docker container represents an easy-to-install virtual environment that leverages cross-platform compatibility, but affects computational performance. If you have the proprietary Docker software installed and computational performance is not the primary concern for your models, Flussplan's Docker container might be a good choice. For instance, purely hydrodynamic models with small numbers of grid nodes and without additional TELEMAC module implications will efficiently run in the Docker container.
 ```
 
 ### Prerequisites
 
 Working with TELEMAC requires some software for downloading source files, compiling, and running the program. The mandatory software prerequisites for installing TELEMAC on [Debian Linux](https://www.debian.org/) are:
 
-* *Python* (use *Python3* in the latest releases)
+* Python (use *Python3* in the latest releases)
 * *Subversion (svn)*
 * GNU Fortran 95 compiler (*gfortran*)
 
@@ -75,9 +75,9 @@ Superuser (`sudo` for **su**per **do**ers list) rights are required for many act
 
 ***Estimated duration: 5-8 minutes.***
 
-The high-level programing language *Python3* is pre-installed on Debian Linux 10.x and needed to launch the compiler script for TELEMAC. To launch *Python3*, open *Terminal* and type `python3`. To exit *Python*, type `exit()`.
+The high-level programing language *Python3* is pre-installed on Debian Linux 10.x and needed to launch the compiler script for TELEMAC. To launch *Python3*, open *Terminal* and type `python3`. To exit Python, type `exit()`.
 
-TELEMAC requires the following additional *Python* libraries:
+TELEMAC requires the following additional Python libraries:
 
 * [*NumPy*](https://numpy.org/)
 * [*SciPy*](https://scipy.org/)
@@ -114,10 +114,10 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> exit()
 ```
 
-None of the three library imports should return an `ImportError` message. To learn more about *Python* read the section on {ref}`sec-pypckg`.
+None of the three library imports should return an `ImportError` message. To learn more about Python read the section on {ref}`sec-pypckg`.
 
 <!--
-Debian Linux' standard installation comes with `python` for *Python2* and `python3` for *Python3*. To avoid confusion in the installation of TELEMAC, make sure that whatever `python*` environment variable is used, *Python3* is called. To do so, open *Terminal* (as superuser/root `su`) and find out what versions of *Python* are installed:
+Debian Linux' standard installation comes with `python` for *Python2* and `python3` for *Python3*. To avoid confusion in the installation of TELEMAC, make sure that whatever `python*` environment variable is used, *Python3* is called. To do so, open *Terminal* (as superuser/root `su`) and find out what versions of Python are installed:
 
 ```
 ls /usr/bin/python*
@@ -221,7 +221,7 @@ This section guides through the installation of additional packages required for
 
 ```{admonition} Use SALOME-HYDRO's MED, Metis, and AED2 libraries
 :class: tip
-The newest versions of Hdf5, MEDFichier, Metis, AED2, and many more are included and compiled in the [SALOME-HYDRO](#salome-hydro) installer. Thus, consider installing *SALOME-HYDRO* before installing TELEMAC and just copy relevant, compiled libraries from the directory `~/SALOME-HYDRO/Salome-V2_2-s9/prerequisites/` to `~/telemac/v8p2/optionals/`. In this case, it is sufficient to install *open MPI* as below described and then go directly to the {ref}`compile-tm` section, where the optionals-folder names need to be adapted.
+The newest versions of Hdf5, MEDFichier, Metis, AED2, and many more are included and compiled in the [SALOME-HYDRO](#salome-hydro) installer. Thus, consider installing SALOME-HYDRO before installing TELEMAC and just copy relevant, compiled libraries from the directory `~/SALOME-HYDRO/Salome-V2_2-s9/prerequisites/` to `~/telemac/v8p2/optionals/`. In this case, it is sufficient to install *open MPI* as below described and then go directly to the {ref}`compile-tm` section, where the optionals-folder names need to be adapted.
 ```
 
 (mpi)=
@@ -275,7 +275,7 @@ Open *Metis*' `Makefile` in the *VIM* text editor (installed earlier through `su
 sudo vim Makefile
 ```
 
-*VIM* opens in the *Terminal* window and the program may be a little bit confusing to use for someone who is used to *Windows* or *mac OS*. If *VIM*/*Terminal* asks if you want to continue *E*diting, confirm with the `E` key. Then click in the file and enable editing through pressing the `i` key. Now, `-- INSERT --` should be prompted on the bottom of the window. Look for the `prefix  = not-set` and the `cc = not-set` definitions. Click in the corresponding lines and press the `i` key to enable editing (recall: `-- INSERT --` will appear at the bottom of the window). Then change both variables to:
+*VIM* opens in the *Terminal* window and the program may be a little bit confusing to use for someone who is used to *Windows* or *mac OS*. If *VIM*/*Terminal* asks if you want to continue {**E**}diting, confirm with the `E` key. Then click in the file and enable editing through pressing the `i` key. Now, `-- INSERT --` should be prompted on the bottom of the window. Look for the `prefix  = not-set` and the `cc = not-set` definitions. Click in the corresponding lines and press the `i` key to enable editing (recall: `-- INSERT --` will appear at the bottom of the window). Change both variables to:
 
 ```
 prefix = ~/telemac/v8p2/optionals/metis-5.1.0/build/
@@ -291,7 +291,7 @@ Press `Esc` to leave the *INSERT* mode and then type `:wq` (the letters are visi
 * **Are you on a virtual machine or remote desktop?** Check if another keyboard layout is installed on the VM guest / remote machine the host machine /your computer uses.
 ```
 
-Back in *Terminal*, copy the folder contents with the following command sequence ():
+Back in *Terminal*, copy the folder contents with the following command sequence:
 
 ```
 sudo cp -a . ~/telemac/v8p2/optionals/metis-5.1.0/
@@ -307,7 +307,7 @@ make
 make install
 ```
 
-To verify the successful installation, make sure that the file `~/telemac/v8p2/optionals/metis-5.1.0/build/lib/libmetis.a` exists (i.e., `<install_path>/lib/libmetis.a`). The installation of *Metis* on Linux is also documented in the [opentelemac wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_metis).
+To verify the successful installation, make sure that the file `~/telemac/v8p2/optionals/metis-5.1.0/build/lib/libmetis.a` exists (i.e., `<install_path>/lib/libmetis.a` ). The installation of *Metis* on Linux is also documented in the [opentelemac wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_metis).
 
 
 (med-hdf)=
@@ -315,7 +315,7 @@ To verify the successful installation, make sure that the file `~/telemac/v8p2/o
 
 ***Estimated duration: 15-25 minutes (building libraries takes time).***
 
-**HDF5** is a portable file format that incorporates metadata and communicates efficiently with *C/C++* and *Fortan* on small laptops as well as massively parallel systems. The *hdf5* file library is provided by the [HDFgroup.org](https://portal.hdfgroup.org/).
+**HDF5** is a portable file format that incorporates metadata and communicates efficiently with *C/C++* and *Fortran* on small laptops as well as massively parallel systems. The *hdf5* file library is provided by the [HDFgroup.org](https://portal.hdfgroup.org/).
 
 We will install here version `1.8.21`. Do not try to use any other *hdf5* version because those will not work with the *med file* library (next step). The following code block downloads and unzips the *hdf-5-1.8.21* archive in the above-created (metis) `temp/` folder (run in *Terminal* as normal user - not as root):
 
@@ -367,7 +367,7 @@ The flag `--prefix` sets the installation directory and `--width-hdf5` tells the
 
 ```{admonition} Why *--disable-python*?
 :class: note, dropdown
-We need to disable *Python* for the *med file* library because this feature would require *SWIG* version 2.0 and it is not compatible with the current versions of *SWIG* (4.x). Because *SWIG* has no full backward compatibility, the only option we have is to disable *Python* integrity for the *med file* library. Otherwise, *Python* integrity could be implemented by installing *Python* developer kits (`sudo apt install python3-dev` and `sudo apt install python3.7-dev`) and using the configuration `./configure --with-hdf5=/home/USER-NAME/Telemac/hdf5 PYTHON_LDFLAGS='-lpython3.7m' --with-swig=yes`. To find out what version of *Python* is installed, type `python -V`.
+We need to disable Python for the *med file* library because this feature would require *SWIG* version 2.0 and it is not compatible with the current versions of *SWIG* (4.x). Because *SWIG* has no full backward compatibility, the only option we have is to disable Python integrity for the *med file* library. Otherwise, Python integrity could be implemented by installing Python developer kits ( `sudo apt install python3-dev`  and  `sudo apt install python3.7-dev` ) and using the configuration `./configure --with-hdf5=/home/USER-NAME/Telemac/hdf5 PYTHON_LDFLAGS='-lpython3.7m' --with-swig=yes`. To find out what version of Python is installed, type `python -V`.
 ```
 
 
@@ -483,7 +483,7 @@ cmd_obj:    /usr/bin/mpif90 -cpp -c -O3 -DHAVE_AED2 -DHAVE_MPI -DHAVE_MED -fconv
 An additional keyword in the configurations is `options:` that accepts multiple keywords including `mpi`, `api` (*TelApy* - *TELEMAC's Python API*), `hpc`, and `dyn` or `static`.  The provided `cfg` file primarily uses the `mpi` keyword. To use other installation options (e.g., HPC or dynamic), read the instructions for HPC installation on [opentelemac.org](http://wiki.opentelemac.org/doku.php?id=installation_on_linux) and have a look at the most advanced default config file from EDF (`~/telemac/v8p2/configs/systel.edf.cfg`).
 
 
-### Setup *Python* Source File
+### Setup Python Source File
 
 ***Estimated duration: 15-20 minutes.***
 
@@ -497,14 +497,14 @@ To facilitate setting up the `pysource` file use our template:
 * For **dynamic compiling**, [download systel.pysource.openmpi-dyn.sh](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/master/debian/pysource.openmpi-dyn.sh) (in lieu of the above *pysource.openmpi.sh*).
 ```
 
-The *Python* source file lives in `~/telemac/v8p2/configs`, where there is also a template available called `pysource.template.sh`. Here, we will use the template to create our own *Python* source file called `pysource.openmpi.sh` tailored for compiling the parallel version of TELEMAC on Debian Linux with the *Open MPI* library. The *Python* source file starts with the definition of the following variables:
+The Python source file lives in `~/telemac/v8p2/configs`, where there is also a template available called `pysource.template.sh`. Here, we will use the template to create our own Python source file called `pysource.openmpi.sh` tailored for compiling the parallel version of TELEMAC on Debian Linux with the *Open MPI* library. The Python source file starts with the definition of the following variables:
 
 * `HOMETEL`: The path to the `telemac/VERSION` folder (`<root>`).
 * `SYSTELCFG`: The path to the above-modified configuration file  (`systel.cis-debian.cfg`) relative to `HOMETEL`.
 * `USETELCFG`: The name of the configuration to be used (`debgfopenmpi`). Configurations enabled are defined in the `systel.*.cfg` file, in the brackets (`[debgfopenmpi]`) directly below the header of every configuration section.
 * `SOURCEFILE`: The path to this file and its name relative to `HOMETEL`.
 
-More definitions are required to define TELEMAC's *Application Programming Interface* (*API*), (parallel) compilers to build TELEMAC with *Open MPI*, and external libraries located in the `optionals` folder. The following code block shows how the *Python* source file `pysource.openmpi.sh` should look like. Make sure to **verify every directory on your local file system**, use your *USER-NAME*, and take your time to get all directories right, without typos (critical task).
+More definitions are required to define TELEMAC's *Application Programming Interface* (*API*), (parallel) compilers to build TELEMAC with *Open MPI*, and external libraries located in the `optionals` folder. The following code block shows how the Python source file `pysource.openmpi.sh` should look like. Make sure to **verify every directory on your local file system**, use your *USER-NAME*, and take your time to get all directories right, without typos (critical task).
 
 ```
 ### TELEMAC settings -----------------------------------------------
@@ -554,7 +554,7 @@ export LD_LIBRARY_PATH=$AEDHOME/obj:$LD_LIBRARY_PATH
 
 ***Estimated duration: 20-30 minutes (compiling takes time).***
 
-The compiler is called through *Python* and the above-created bash script (`pysource.openmpi.sh`). Thus, the *Python* source file `pysource.openmpi.sh` knows where helper programs and libraries are located, and it knows the configuration to be used. With the *Python* source file, compiling TELEMAC becomes an easy task in *Terminal*. First, load the *Python* source file `pysource.openmpi.sh` as source in *Terminal*, and then, test if it is correctly configured by running `config.py`:
+The compiler is called through Python and the above-created bash script ( `pysource.openmpi.sh` ). Thus, the Python source file `pysource.openmpi.sh` knows where helper programs and libraries are located, and it knows the configuration to be used. With the Python source file, compiling TELEMAC becomes an easy task in *Terminal*. First, load the Python source file `pysource.openmpi.sh` as source in *Terminal*, and then, test if it is correctly configured by running `config.py`:
 
 ```
 cd ~/telemac/v8p2/configs
@@ -628,7 +628,7 @@ TELEMAC should startup, run the example case, and again end with the phrase `My 
 
 ```{admonition} Troubleshoot *No such file or directory*
 :class: attention, dropdown
-If you interrupted the *Terminal* session and get an error message such as `No such file or directory`, you may need to re-define (re-load) the *Python* source file: In *Terminal* go (`cd`) to `~/telemac/v8p2/configs`, type `source pysource.openmpi.sh` > `config.py`, and then go back to the `examples` folder to re-run the example.
+If you interrupted the *Terminal* session and get an error message such as `No such file or directory`, you may need to re-define (re-load) the Python source file: In *Terminal* go (`cd`) to `~/telemac/v8p2/configs`, type `source pysource.openmpi.sh` > `config.py`, and then go back to the `examples` folder to re-run the example.
 ```
 
 ### Run Sample Cases (Examples)
@@ -651,42 +651,42 @@ The `validate_telemac.py` script may fail to run when not all modules are instal
 ## Utilities (Pre- & Post-processing)
 
 (bluekenue)=
-### Blue Kenue<sup>TM</sup> (Windows or Linux+Wine)
+### BlueKenue (Windows or Linux+Wine)
 
 ***Estimated duration: 10 minutes.***
 
-[Blue Kenue<sup>TM</sup>](https://nrc.canada.ca/en/research-development/products-services/software-applications/blue-kenuetm-software-tool-hydraulic-modellers) is a pre- and post-processing software provided by the [National Research Council Canada](https://nrc.canada.ca/en), which is compatible with TELEMAC. It provides similar functions as the [*Fudaa*](http://www.opentelemac.org/index.php/latest-news-development-and-distribution/240-fudaa-mascaret-3-6) software featured by the TELEMAC developers and additionally comes with a powerful mesh generator. It is in particular for the mesh generator that you want to install Blue Kenue<sup>TM</sup>. The only drawback is that Blue Kenue<sup>TM</sup> is designed for *Windows*. So there are two options for installing Blue Kenue<sup>TM</sup>:
+[BlueKenue](https://nrc.canada.ca/en/research-development/products-services/software-applications/blue-kenuetm-software-tool-hydraulic-modellers)<sup>TM</sup> is a pre- and post-processing software provided by the [National Research Council Canada](https://nrc.canada.ca/en), which is compatible with TELEMAC. It provides similar functions as the [Fudaa](http://www.opentelemac.org/index.php/latest-news-development-and-distribution/240-fudaa-mascaret-3-6) software featured by the TELEMAC developers and additionally comes with a powerful mesh generator. It is in particular for the mesh generator that you want to install BlueKenue<sup>TM</sup>. The only drawback is that BlueKenue<sup>TM</sup> is designed for *Windows*. So there are two options for installing BlueKenue<sup>TM</sup>:
 
-1. TELEMAC is running on a Debian Linux VM and your host system is *Windows*:<br>[Download](https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/Installer/BlueKenue_3.12.0-alpha+20201006_64bit.msi) (login details in the [Telemac Forum](http://www.opentelemac.org/index.php/assistance/forum5/blue-kenue)) and install *Blue Kenue<sup>TM</sup>* on *Windows* and use the {ref}`shared folder <vm-share>` of the VM to transfer mesh files.
-1. Use [*Wine*](https://wiki.debian.org/Wine) (compatibility layer in *Linux* that enables running *Windows* applications) to install *Blue Kenue<sup>TM</sup>* on *Linux*.
+1. TELEMAC is running on a Debian Linux VM and your host system is *Windows*:<br>[Download](https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/Installer/BlueKenue_3.12.0-alpha+20201006_64bit.msi) (login details in the [Telemac Forum](http://www.opentelemac.org/index.php/assistance/forum5/blue-kenue)) and install BlueKenue<sup>TM</sup> on *Windows* and use the {ref}`shared folder <vm-share>` of the VM to transfer mesh files.
+1. Use [*Wine*](https://wiki.debian.org/Wine) (compatibility layer in *Linux* that enables running *Windows* applications) to install BlueKenue<sup>TM</sup> on *Linux*.
 
-Here are the steps for installing Blue Kenue<sup>TM</sup> on Debian Linux with {ref}`wine <wine>`:
+Here are the steps for installing BlueKenue<sup>TM</sup> on Debian Linux with {ref}`wine <wine>`:
 
 * Make sure to install {ref}`wine <wine>` (Virtual Machines chapter).
-* Download the *Blue Kenue<sup>TM</sup>* *msi* installer (**32-bit**) from the [developer's website](https://nrc.canada.ca/en/research-development/products-services/software-applications/blue-kenuetm-software-tool-hydraulic-modellers) (follow the instructions on the website - [direct download](https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/Installer/BlueKenue_3.3.4_32bit.msi)).
+* Download the BlueKenue<sup>TM</sup> *msi* installer (**32-bit**) from the [developer's website](https://nrc.canada.ca/en/research-development/products-services/software-applications/blue-kenuetm-software-tool-hydraulic-modellers) (follow the instructions on the website - [direct download](https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/Installer/BlueKenue_3.3.4_32bit.msi)).
 * Step-wise approach: Go to [https://chyms.nrc.gc.ca](https://chyms.nrc.gc.ca) and log in with the login details provided in the [Telemac User Forum](http://www.opentelemac.org/index.php/community-old/forum4/blue-kenue/12464-4-ways-to-report-bugs-and-suggestions-for-blue-kenue).
 
 ```{note}
 The latest 64-bit version (or any 64-bit version) will not install with *wine*. **Make sure to use the 32-bit installer.**
 ```
 
-* Install *Blue Kenue<sup>TM</sup>* by using the *Wine*: In *Terminal* type `wine control`.
+* Install BlueKenue<sup>TM</sup> by using the *Wine*: In *Terminal* type `wine control`.
 * After running `wine control` in *Terminal*, a windows-like window opens.
 * Click on the *Add/Remove...* button in the window, which opens up another window (*Add/Remove Programs*).
-* Click on the *Install...* button and select the downloaded *msi* installer for *Blue Kenue<sup>TM</sup>*.
-* Follow the instructions to install *Blue Kenue<sup>TM</sup>* for *Everyone* (all users) and create a *Desktop Icon*.
+* Click on the *Install...* button and select the downloaded *msi* installer for BlueKenue<sup>TM</sup>.
+* Follow the instructions to install BlueKenue<sup>TM</sup> for *Everyone* (all users) and create a *Desktop Icon*.
 
-After the successful installation, launch *Blue Kenue<sup>TM</sup>* with *Wine* (read more about starting *Windows* applications through {ref}`wine in the Virtual Machines chapter <wine>`):
+After the successful installation, launch BlueKenue<sup>TM</sup> with *Wine* (read more about starting *Windows* applications through {ref}`wine in the Virtual Machines chapter <wine>`):
 
 * In *Terminal* type `wine explorer`
-* In the *Wine Explorer* window, navigate to *Desktop* and find the *BlueKenue* shortcut.
-* Start *BlueKenue* by double-clicking on the shortcut.
-* Alternatively, identify the installation path and the Blue Kenue<sup>TM</sup> executable.
+* In the *Wine Explorer* window, navigate to *Desktop* and find the BlueKenue shortcut.
+* Start BlueKenue by double-clicking on the shortcut.
+* Alternatively, identify the installation path and the BlueKenue<sup>TM</sup> executable.
     + The 32-bit version is typically installed in `"C:\\Program Files (x86)\\CHC\\BlueKenue\\BlueKenue.exe"`.
     + The 64-bit version is typically installed in `"C:\\Program Files\\CHC\\BlueKenue\\BlueKenue.exe"`.
-    + Start *Blue Kenue<sup>TM</sup>* with `wine "C:\\Program Files\\CHC\\BlueKenue\\BlueKenue.exe"`.
+    + Start BlueKenue<sup>TM</sup> with `wine "C:\\Program Files\\CHC\\BlueKenue\\BlueKenue.exe"`.
 
-The Canadian Hydrological Model Stewardship (CHyMS) provides more guidance for installing Blue Kenue<sup>TM</sup> on other platforms than *Windows* on their [FAQ](https://chyms.nrc.gc.ca/docs/FAQ.html) page in the troubleshooting section ([direct link to *how to run blue Kenue on another operating system*](https://chyms.nrc.gc.ca/docs/FAQ.html#troubleshooting-how-run-on-another-os)).
+The Canadian Hydrological Model Stewardship (CHyMS) provides more guidance for installing BlueKenue<sup>TM</sup> on other platforms than *Windows* on their [FAQ](https://chyms.nrc.gc.ca/docs/FAQ.html) page in the troubleshooting section ([direct link to *how to run Blue Kenue on another operating system*](https://chyms.nrc.gc.ca/docs/FAQ.html#troubleshooting-how-run-on-another-os)).
 
 (fudaa)=
 ### Fudaa-PrePro (Linux and Windows)
@@ -759,7 +759,7 @@ sudo apt install openmpi-common gfortran mpi-default-dev zlib1g-dev libnuma-dev 
 The following steps for renaming system libraries are potentially harmful to your system. **Only continue if you absolutely know what you are doing.** Otherwise, go back to the {ref}`modular-install` section.
 ```
 
-*SALOME-HYDRO* is using some outdated libraries, which require that newer versions (e.g., of the *openmpi* library) must be copied and the copies must be renamed to match the outdated library names. Therefore, open *Terminal* and tap:
+SALOME-HYDRO is using some outdated libraries, which require that newer versions (e.g., of the *openmpi* library) must be copied and the copies must be renamed to match the outdated library names. Therefore, open *Terminal* and tap:
 
 ```
 sudo cp /usr/lib/x86_64-linux-gnu/libmpi.so.40 /usr/lib/x86_64-linux-gnu/libmpi.so.20
@@ -774,13 +774,13 @@ sudo cp /usr/lib/x86_64-linux-gnu/libmpi_mpifh.so.40 /usr/lib/x86_64-linux-gnu/l
 sudo cp /usr/lib/x86_64-linux-gnu/libmpi_usempi_ignore_tkr.so.40 /usr/lib/x86_64-linux-gnu/libmpi_usempi_ignore_tkr.so.20
 ```
 
-In addition, the *Qt* library of the *SALOME-HYDRO* installer is targeting out-dated libraries on *Debian 10*. To troubleshoot this issue, open the file explorer and:
+In addition, the *Qt* library of the SALOME-HYDRO installer is targeting out-dated libraries on *Debian 10*. To troubleshoot this issue, open the file explorer and:
 
 * Go to the directory `/usr/lib/x86_64-linux-gnu/`
 * Find, highlight, and copy all **lib** files that contain the string **libQt5** (or even just **Qt5**).
 * Paste the copied **Qt5** library files into `/SALOME-HYDRO/Salome-V2_2/prerequisites/Qt-591/lib/` (confirm **replace existing files**).
 
-Both procedures for copying library files are anything but a coherent solution. However, it is currently the only way to get *SALOME-HYDRO* working on *Debian 10*.
+Both procedures for copying library files are anything but a coherent solution. However, it is currently the only way to get SALOME-HYDRO working on *Debian 10*.
 
 ### Install SALOME-HYDRO
 
@@ -794,7 +794,7 @@ chmod 775 Salome-HYDRO-V2_2-S9.run
 During the installation process, define a convenient installation directory such as **/home/salome-hydro/**. The installer guides through the installation and prompts how to launch the program at the end.
 
 ```{attention}
-If you get error messages such as `./create_appli_V1_1_univ.sh/xml: line [...]: No such file or directory.`, there is probably an issue with the version of *Python*. In this case, run `update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1` and re-try.
+If you get error messages such as `./create_appli_V1_1_univ.sh/xml: line [...]: No such file or directory.`, there is probably an issue with the version of Python. In this case, run `update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1` and re-try.
 ```
 
 Try to launch SALOME-HYDRO:
@@ -804,13 +804,13 @@ cd /home/salome-hydro/appli_V2_2/
 ./salome
 ```
 
-If there are issues such as  `Kernel/Session` in the `Naming Service` (`[Errno 3] No such process` ... `RuntimeError: Process NUMBER for Kernel/Session not found`), go to the [troubleshooting page](../troubleshoot/dbg-telemac.html#salome-dbg).
+If there are issues such as  `Kernel/Session` in the `Naming Service` (`[Errno 3] No such process` ... `RuntimeError: Process NUMBER for Kernel/Session not found`), go to the {ref}`troubleshooting page <salome-dbg>`.
 
-If the program is not showing up properly (e.g., empty menu items), read more about [Qt GUI support on the troubleshooting page](../troubleshoot/dbg-telemac.html#qt-dbg)
+If the program is not showing up properly (e.g., empty menu items), read more about Qt GUI support on the {ref}`troubleshooting page <qt-dbg>`.
 
 <!--
 ```{tip}
-**Set a keyboard shortcut to start SALOME-HYDRO on Debian Linux**: Go to *Activities*, tap *keyboard*, and select *Keyboard* from the list (do not click on *Tweaks*). In the *Keyboard* window, scroll to the bottom and click on the `+` sign to define a new shortcut. In the popup window use, for example, *Salome-Hydro* as *Name*, in the *Command* box tap `/home/salome-hydro/appli_V1_1_univ/salome` (or where ever *SALOME-HYDRO* is installed), and define a *Shortcut*, such as `CTRL` + `Alt` + `S`.
+**Set a keyboard shortcut to start SALOME-HYDRO on Debian Linux**: Go to *Activities*, tap *keyboard*, and select *Keyboard* from the list (do not click on *Tweaks*). In the *Keyboard* window, scroll to the bottom and click on the `+` sign to define a new shortcut. In the popup window use, for example, SALOME-HYDRO as *Name*, in the *Command* box tap `/home/salome-hydro/appli_V1_1_univ/salome` (or where ever SALOME-HYDRO is installed), and define a *Shortcut*, such as `CTRL` + `Alt` + `S`.
 ```
 
 ```{figure} ../img/sah-keyboard-shortcut.png
@@ -823,7 +823,7 @@ Define a keyboard shortcut to start SALOME-HYDRO.
 (paravis-salome)=
 ### ParaView (ParaVis) through SALOME-HYDRO
 
-[*ParaView*](https://www.paraview.org) serves for the visualization of model results in the SALOME-HYDRO modelling chain. The built-in module *ParaViS* essentially corresponds to *ParaView*, but the separate usage of *ParaView* enables a better experience for post-processing of results. The installation of *SALOME-HYDRO* already involves an older version of *ParaView* that is able to manipulate *MED* files. To start *ParaView* through *SALOME-HYDRO*, open *Terminal*, `cd` to the directory where *SALOME-HYDRO* is installed, launch the environment, and then launch *ParaView*:
+[ParaView](https://www.paraview.org) serves for the visualization of model results in the SALOME-HYDRO modelling chain. The built-in module *ParaViS* essentially corresponds to ParaView, but the separate usage of ParaView enables a better experience for post-processing of results. The installation of SALOME-HYDRO already involves an older version of ParaView that is able to manipulate *MED* files. To start ParaView through SALOME-HYDRO, open *Terminal*, `cd` to the directory where SALOME-HYDRO is installed, launch the environment, and then launch ParaView:
 
 ```
 cd /home/slome-hydro/appli_V2_2/
@@ -832,21 +832,21 @@ cd /home/slome-hydro/appli_V2_2/
 ```
 
 ```{tip}
-If the *ParaVis* module continuously crashes in *SALOME-HYDRO*, consider to install the latest version of [*SALOME*](../get-started/install-openfoam.html#salome) (e.g., as described with the installation of *OpenFOAM*).
+If the *ParaVis* module continuously crashes in SALOME-HYDRO, consider to install the latest version of [*SALOME*](../get-started/install-openfoam.html#salome) (e.g., as described with the installation of *OpenFOAM*).
 ```
 
-Alternatively, *ParaView* is freely available on the [developer's website](https://www.paraview.org/download/) and the latest stable release can be installed on *Debian Linux*, through the *Terminal*:
+Alternatively, ParaView is freely available on the [developer's website](https://www.paraview.org/download/) and the latest stable release can be installed on *Debian Linux*, through the *Terminal*:
 
 ```
 sudo apt install paraview
 ```
 
-In this case, to run *ParaView* tap `paraview` in *Terminal*. If you are using a virtual machine, start *ParaView* with the `--mesa-llvm` flag (i.e., `paraview --mesa-llvm`).
+In this case, to run ParaView tap `paraview` in *Terminal*. If you are using a virtual machine, start ParaView with the `--mesa-llvm` flag (i.e., `paraview --mesa-llvm`).
 To enable *MED* file handling, *MED* coupling is necessary, which requires to follow the installation instructions on [docs.salome-platform.org](https://docs.salome-platform.org/7/dev/MEDCoupling/install.html).
 
 ### Start SALOME-HYDRO
 
-To start *SALOME-HYDRO*, open *Terminal* and tap:
+To start SALOME-HYDRO, open *Terminal* and tap:
 
 ```
 /home/salome-hydro/appli_V1_1_univ/salome

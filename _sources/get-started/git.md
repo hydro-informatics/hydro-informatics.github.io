@@ -1,5 +1,5 @@
 (chpt-git)=
-# git
+# Version Control : git
 
 ## The Concept
 
@@ -62,7 +62,7 @@ To create a *git* repository, make sure to have access to a *git* provider. The 
 
 ```{admonition} Students of the University of Stuttgart
 :class: note
-Students of the University of Stuttgart may use *GitHub* using their institutional ID (e.g., `st9009133`) through the [TIK's GitHub account and login page](https://github.tik.uni-stuttgart.de/login).
+Students of the University of Stuttgart may use *GitHub* using their institutional ID (e.g., `st9009133` ) through the [TIK's GitHub account and login page](https://github.tik.uni-stuttgart.de/login).
 ```
 
 ## Clone (Download) a Repository
@@ -72,7 +72,7 @@ Students of the University of Stuttgart may use *GitHub* using their institution
 1. Open your favorite *git*-able command line:
     * *Windows* Options: *PowerShell*, *Git Bash*, or *Command Prompt*
     * *Linux*: *Terminal*
-1. Clone the course repository (change materials according to the course attended):<br> **`git clone https://github.com/hydro-informatics/materials`**  (or whatever repository you want to clone)
+1. Clone the course repository (change materials according to the course attended):<br> `git clone https://github.com/hydro-informatics/materials`  (or whatever repository you want to clone)
 
 Done.
 
@@ -81,9 +81,9 @@ Done.
 
 *git* (within *Git Bash*, *PyCharm*, or *Terminal*) is the only option to update local copies of a remote repository consistently. To do so, open one of the above mention *git*-able command lines and do the following:
 
-1. Go to the local directory of the repository with the [`cd`](https://en.wikipedia.org/wiki/Cd_(command)) command (e.g., `materials`):</br> `cd "D:/Python/materials/"` (or wherever `materials` was cloned).
+1. Go to the local directory of the repository with the [`cd`](https://en.wikipedia.org/wiki/Cd_(command)) command (e.g., `materials`):<br> `cd "D:/Python/materials/"` (or wherever `materials` was cloned).
 1. `git status` - shows the modifications made.
-1.  Merge errors may occur when changes were made in the local copy. To avoid merge errors, type: </br> `git pull --rebase` - if locally edited scripts were modified remotely since the last pull, this will prompt issues and highlight problematic sections with `>>>`). Manually open concerned files and resolve the issues (delete invalid `>>>` highlights).
+1.  Merge errors may occur when changes were made in the local copy. To avoid merge errors, type: <br> `git pull --rebase` - if locally edited scripts were modified remotely since the last pull, this will prompt issues and highlight problematic sections with `>>>` ). Manually open concerned files and resolve the issues (delete invalid `>>>` highlights).
 1. `git push`
 
 Done.
@@ -94,7 +94,7 @@ Done.
 
 After editing files in a repository locally, *add* - *commit* - *push* (in that order) your edits to the remote copy of the repository with version control. To *add* - *commit* - *push* local changes to a remote repository, make sure to be the remote repository owner or a contributor. Then open a *git*-able terminal and type:
 1. `git status` - this shows the modifications made.
-1. If the status looks OK with the consciously made changes, type `git add .` </br>Optionally, if only single files were changed, use `git add filename.py` instead. Best solution: use a local [.gitignore file](https://help.github.com/en/github/using-git/ignoring-files).
+1. If the status looks OK with the consciously made changes, type `git add .` <br>Optionally, if only single files were changed, use `git add filename.py` instead. Best solution: use a local [.gitignore file](https://help.github.com/en/github/using-git/ignoring-files).
 1. Commit changes `git commit -m "Leave a message"` - leave a significant and precise short message.
 1. `git pull --rebase` - if locally edited scripts were modified remotely since the last pull, this will prompt issues and highlight problematic sections with `>>>`). Manually open concerned files and resolve the issues (delete invalid `>>>` highlights).
 1. `git push`
@@ -116,5 +116,5 @@ git push
 If any error occurs, carefully read why the error occurred and follow the instructions for troubleshooting (e.g., for setting up your user configuration with [git config --global user.email "email@example.com"](https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/managing-email-preferences/setting-your-commit-email-address#setting-your-commit-email-address-in-git)). You may ignore warning messages regarding line-end formats (*WARNING ... LF endings ...*) for most applications presented in this eBook.
 
 ```{admonition} Exercise
-Practice *git* with the [markdown and git](../exercises/ex-git) exercise.
+Practice *git* with the {ref}`markdown and git <git-exercise>` exercise.
 ```

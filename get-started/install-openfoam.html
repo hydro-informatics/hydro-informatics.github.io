@@ -141,7 +141,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="git.html">
-     git
+     Version Control : git
     </a>
    </li>
    <li class="toctree-l2">
@@ -543,7 +543,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../exercises/ex-git.html">
-     Git and markdown
+     Git and Markdown
     </a>
    </li>
   </ul>
@@ -811,7 +811,7 @@
                 
   <div class="section" id="openfoam-installation">
 <span id="openfoam-install"></span><h1>OpenFOAM (Installation)<a class="headerlink" href="#openfoam-installation" title="Permalink to this headline">¶</a></h1>
-<p>This tutorial guides through the installation of <a class="reference external" href="http://www.openfoam.org/">OpenFOAM</a> on <a class="reference external" href="https://www.ubuntu.org/">Ubuntu Linux</a> and <a class="reference internal" href="#openfoam-debian"><span class="std std-ref">Debian 10</span></a>. For installing <em>OpenFOAM</em> on many other platforms (even <em>Windows</em>) visit the <a class="reference external" href="https://openfoam.org">developer’s website</a>.</p>
+<p>This tutorial guides through the installation of <a class="reference external" href="http://www.openfoam.org/">OpenFOAM</a> on <a class="reference external" href="https://www.ubuntu.org/">Ubuntu Linux</a> and <a class="reference internal" href="#openfoam-debian"><span class="std std-ref">Debian 10</span></a>. For installing OpenFOAM on many other platforms (even <em>Windows</em>) visit the <a class="reference external" href="https://openfoam.org">developer’s website</a>.</p>
 <div class="admonition-learn-openfoam admonition">
 <p class="admonition-title">Learn OpenFOAM</p>
 <p>OpenFOAM represents a powerful modeling tool, which is recommended here for modeling flow-structure interaction. OpenFOAM developers provide detailed documentation with high-quality tutorials on their website. Especially, their 3-week tutorial is a very good start into OpenFOAM modeling for PhD students or engineers.</p>
@@ -822,7 +822,7 @@
 </div>
 <div class="section" id="ubuntu-incl-mint-and-lubuntu">
 <h2>Ubuntu (incl. Mint and Lubuntu)<a class="headerlink" href="#ubuntu-incl-mint-and-lubuntu" title="Permalink to this headline">¶</a></h2>
-<p>The installation on <em>Ubuntu Linux</em> or one of its derivatives is probably one of the easiest and most sustainable ways for working with <em>OpenFOAM</em>.</p>
+<p>The installation on <em>Ubuntu Linux</em> or one of its derivatives is probably one of the easiest and most sustainable ways for working with OpenFOAM.</p>
 <div class="section" id="install-openfoam">
 <h3>Install OpenFOAM<a class="headerlink" href="#install-openfoam" title="Permalink to this headline">¶</a></h3>
 <p>The installation on any <em>Ubuntu Linux</em> platform is straight-forward and can be carried out as described on the <a class="reference external" href="https://openfoam.org/download/8-ubuntu/">developer’s website</a>. In detail, these steps include:</p>
@@ -830,7 +830,7 @@
 <li><p>Download and add the <em>gpg key</em> <br> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">sh</span> <span class="pre">-c</span> <span class="pre">&quot;wget</span> <span class="pre">-O</span> <span class="pre">-</span> <span class="pre">https://dl.openfoam.org/gpg.key</span> <span class="pre">|</span> <span class="pre">apt-key</span> <span class="pre">add</span> <span class="pre">-&quot;</span></code></p></li>
 <li><p>Add the repository to <em>sources.list</em> <br> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">add-apt-repository</span> <span class="pre">http://dl.openfoam.org/ubuntu</span></code></p></li>
 <li><p>Update the <code class="docutils literal notranslate"><span class="pre">apt</span></code> package list <br> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">update</span></code></p></li>
-<li><p>Install <em>OpenFOAM</em> along with a tailored version of <em>ParaView</em>: <br> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">-y</span> <span class="pre">install</span> <span class="pre">openfoam9</span></code></p></li>
+<li><p>Install OpenFOAM along with a tailored version of ParaView: <br> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">-y</span> <span class="pre">install</span> <span class="pre">openfoam9</span></code></p></li>
 </ol>
 <p>Optionally, install <em>gedit</em>, which is often used in the documentation and for instructions for setting environment variables:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">gedit</span>
@@ -843,7 +843,7 @@
 </div>
 <div class="section" id="update-openfoam">
 <h3>Update OpenFOAM<a class="headerlink" href="#update-openfoam" title="Permalink to this headline">¶</a></h3>
-<p>The <em>OpenFOAM</em> developers periodically update (recompile) new versions of <code class="docutils literal notranslate"><span class="pre">openfoam9</span></code>. To get these latest versions run:</p>
+<p>The OpenFOAM developers periodically update (recompile) new versions of <code class="docutils literal notranslate"><span class="pre">openfoam9</span></code>. To get these latest versions run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
 <span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="o">--</span><span class="n">only</span><span class="o">-</span><span class="n">upgrade</span> <span class="n">openfoam9</span>
 </pre></div>
@@ -851,13 +851,13 @@
 </div>
 <div class="section" id="setup-user-configuration">
 <h3>Setup User Configuration<a class="headerlink" href="#setup-user-configuration" title="Permalink to this headline">¶</a></h3>
-<p><em>OpenFOAM</em> uses a set of environment variables that aid calling the program and its helpers. To define environment variables, every <em>OpenFOAM</em> <em>Ubuntu</em> user needs to modify the <em>.bashrc</em> file, which lives in the <em>/home/USER/</em> directory:</p>
+<p>OpenFOAM uses a set of environment variables that aid calling the program and its helpers. To define environment variables, every OpenFOAM - <em>Ubuntu</em> user needs to modify the <em>.bashrc</em> file, which lives in the <em>/home/USER/</em> directory:</p>
 <ul class="simple">
 <li><p>Open the user <em>.bashrc</em> file: <br> <code class="docutils literal notranslate"><span class="pre">gedit</span> <span class="pre">~/.bashrc</span></code></p></li>
 <li><p>On the bottom of the <em>.bashrc</em> file add: <br> <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/opt/openfoam9/etc/bashrc</span></code></p></li>
 <li><p>Save and close the user <em>.bashrc</em> file.</p></li>
 </ul>
-<p>Open a new <em>Terminal</em> (or, to be sure, re-login on <em>Ubuntu</em>) and test if the system recognizes the <em>OpenFOAM</em> environment variables:</p>
+<p>Open a new <em>Terminal</em> (or, to be sure, re-login on <em>Ubuntu</em>) and test if the system recognizes the OpenFOAM environment variables:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">simpleFoam</span> <span class="o">-</span><span class="n">help</span>
 </pre></div>
 </div>
@@ -865,17 +865,17 @@
 ...
 </pre></div>
 </div>
-<p>If correctly set up, <em>Terminal</em> returns a set of options for running <em>OpenFOAM</em>.</p>
+<p>If correctly set up, <em>Terminal</em> returns a set of options for running OpenFOAM.</p>
 </div>
 <div class="section" id="test-run">
 <h3>Test-run<a class="headerlink" href="#test-run" title="Permalink to this headline">¶</a></h3>
-<p>With the environment variables defined, create a new directory for <em>OpenFOAM</em> projects:</p>
+<p>With the environment variables defined, create a new directory for OpenFOAM projects:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~</span>
 <span class="n">mkdir</span> <span class="n">OpenFoam9</span>
 <span class="n">cd</span> <span class="n">OpenFoam9</span>
 </pre></div>
 </div>
-<p>Copy the <em>pitzDaily</em> <em>OpenFOAM</em> tutorial by using the <code class="docutils literal notranslate"><span class="pre">$FOAM_[...]</span></code> environment variables (<a class="reference external" href="https://openfoamwiki.net/index.php/Environment_variables">full list</a>:</p>
+<p>Copy the <em>pitzDaily</em> OpenFOAM tutorial by using the <code class="docutils literal notranslate"><span class="pre">$FOAM_[...]</span></code> environment variables (<a class="reference external" href="https://openfoamwiki.net/index.php/Environment_variables">full list</a>):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mkdir -p $FOAM_RUN
 cd $FOAM_RUN
 cp -r $FOAM_TUTORIALS/incompressible/simpleFoam/pitzDaily .
@@ -888,14 +888,14 @@ cp -r $FOAM_TUTORIALS/incompressible/simpleFoam/pitzDaily .
 <span class="n">paraFoam</span>
 </pre></div>
 </div>
-<p>To get started with <em>OpenFoam</em>, refer to the <em>User Guide</em> provided by <a class="reference external" href="https://cfd.direct/openfoam/user-guide/"><em>CFD Direct</em></a>.</p>
+<p>To get started with OpenFOAM, refer to the <em>User Guide</em> provided by <a class="reference external" href="https://cfd.direct/openfoam/user-guide/"><em>CFD Direct</em></a>.</p>
 </div>
 </div>
 <div class="section" id="debian-10">
 <span id="openfoam-debian"></span><h2>Debian 10<a class="headerlink" href="#debian-10" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="prerequisites">
 <h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
-<p>Debian users will need to install <em>curl</em> and <em>docker</em> for being able to install <em>OpenFOAM</em>. First, make sure to get rid of any outdated version of <em>docker</em> (if this returns an error, that is not a problem):</p>
+<p>Debian users will need to install <em>curl</em> and <em>docker</em> for being able to install OpenFOAM. First, make sure to get rid of any outdated version of <em>docker</em> (if this returns an error, that is not a problem):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">remove</span> <span class="n">docker</span> <span class="n">docker</span><span class="o">-</span><span class="n">engine</span> <span class="n">docker</span><span class="o">.</span><span class="n">io</span> <span class="n">containerd</span> <span class="n">runc</span>
 </pre></div>
 </div>
@@ -921,11 +921,11 @@ cp -r $FOAM_TUTORIALS/incompressible/simpleFoam/pitzDaily .
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">docker</span> <span class="n">run</span> <span class="n">hello</span><span class="o">-</span><span class="n">world</span>
 </pre></div>
 </div>
-<p>Until here, <em>docker</em> is installed for sudoers only. To enable running <em>docker</em> and <em>OpenFOAM</em> for any user, the user’s <em>USERNAME</em> must be added to the system’s <code class="docutils literal notranslate"><span class="pre">docker</span></code> group. Therefore, <strong>add every <em>docker</em> and <em>OpenFOAM</em> user to the <code class="docutils literal notranslate"><span class="pre">docker</span></code> group</strong> (required for every <strong>USERNAME</strong>):</p>
+<p>Until here, <em>docker</em> is installed for sudoers only. To enable running <em>docker</em> and OpenFOAM for any user, the user’s <em>USERNAME</em> must be added to the system’s <code class="docutils literal notranslate"><span class="pre">docker</span></code> group. Therefore, <strong>add every <em>docker</em> and OpenFOAM user to the <code class="docutils literal notranslate"><span class="pre">docker</span></code> group</strong> (required for every <strong>USERNAME</strong>):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">usermod</span> <span class="o">-</span><span class="n">aG</span> <span class="n">docker</span> <span class="n">USERNAME</span>
 </pre></div>
 </div>
-<p>With <em>docker</em> being installed, the system is ready for the installation of <em>OpenFOAM</em> on <em>Debian</em>.</p>
+<p>With <em>docker</em> being installed, the system is ready for the installation of OpenFOAM on <em>Debian</em>.</p>
 <p>On a remote desktop computer or a virtual machine, make sure to also install <em>X11</em> and <em>Xrdp</em>, for example for an <em>Xfce</em> desktop:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">xorg</span> <span class="n">dbus</span><span class="o">-</span><span class="n">x11</span> <span class="n">x11</span><span class="o">-</span><span class="n">xserver</span><span class="o">-</span><span class="n">utils</span>
 <span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">xfce4</span> <span class="n">xfce4</span><span class="o">-</span><span class="n">goodies</span> <span class="n">xrdp</span>
@@ -934,7 +934,7 @@ cp -r $FOAM_TUTORIALS/incompressible/simpleFoam/pitzDaily .
 </div>
 <div class="section" id="install-openfoam-v9">
 <h3>Install OpenFOAM (v9)<a class="headerlink" href="#install-openfoam-v9" title="Permalink to this headline">¶</a></h3>
-<p>Download the latest <em>OpenFOAM</em> package for <em>docker</em>:</p>
+<p>Download the latest OpenFOAM package for <em>docker</em>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">sh</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;wget http://dl.openfoam.org/docker/openfoam9-linux -O /usr/bin/openfoam9-linux&quot;</span>
 </pre></div>
 </div>
@@ -952,7 +952,7 @@ cp -r $FOAM_TUTORIALS/incompressible/simpleFoam/pitzDaily .
 <span class="n">openfoam9</span><span class="o">-</span><span class="n">linux</span>
 </pre></div>
 </div>
-<p>The <em>docker</em> environment should now be launched in <em>Terminal</em>. To test <em>OpenFOAM</em>, copy the <em>pitzDaily</em> <em>OpenFOAM</em> tutorial by using the <a class="reference external" href="https://openfoamwiki.net/index.php/Environment_variables"><strong>FOAM</strong> environment variables</a>:</p>
+<p>The <em>docker</em> environment should now be launched in <em>Terminal</em>. To test OpenFOAM, copy the <em>pitzDaily</em> OpenFOAM tutorial by using the <a class="reference external" href="https://openfoamwiki.net/index.php/Environment_variables"><strong>FOAM</strong> environment variables</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mkdir -p $FOAM_RUN
 cd $FOAM_RUN
 cp -r $FOAM_TUTORIALS/incompressible/simpleFoam/pitzDaily .
@@ -969,7 +969,7 @@ cp -r $FOAM_TUTORIALS/incompressible/simpleFoam/pitzDaily .
 </div>
 <div class="section" id="usual-launch-procedure">
 <h3>Usual Launch Procedure<a class="headerlink" href="#usual-launch-procedure" title="Permalink to this headline">¶</a></h3>
-<p>With <em>docker</em> and <em>OpenFOAM</em> being installed, every user of the <code class="docutils literal notranslate"><span class="pre">docker</span></code> group (see above instructions for adding users to the docker <code class="docutils literal notranslate"><span class="pre">group</span></code>) can launch <em>OpenFOAM</em> through <em>Terminal</em> by entering:</p>
+<p>With <em>docker</em> and OpenFOAM being installed, every user of the <code class="docutils literal notranslate"><span class="pre">docker</span></code> group (see above instructions for adding users to the docker <code class="docutils literal notranslate"><span class="pre">group</span></code>) can launch OpenFOAM through <em>Terminal</em> by entering:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">openfoam9</span><span class="o">-</span><span class="n">linux</span>
 </pre></div>
 </div>
@@ -977,15 +977,15 @@ cp -r $FOAM_TUTORIALS/incompressible/simpleFoam/pitzDaily .
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">exit</span>
 </pre></div>
 </div>
-<p>To get started with <em>OpenFoam</em>, refer to the <em>User Guide</em> provided by <a class="reference external" href="https://cfd.direct/openfoam/user-guide/"><em>CFD Direct</em></a>.</p>
+<p>To get started with OpenFOAM, refer to the <em>User Guide</em> provided by <a class="reference external" href="https://cfd.direct/openfoam/user-guide/"><em>CFD Direct</em></a>.</p>
 </div>
 </div>
 <div class="section" id="utilities-pre-post-processors">
 <h2>Utilities (Pre- &amp; Post Processors)<a class="headerlink" href="#utilities-pre-post-processors" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="salome">
 <span id="salome-install"></span><h3>SALOME<a class="headerlink" href="#salome" title="Permalink to this headline">¶</a></h3>
-<p>Similar to <em>TELEMAC</em>, the <em>SALOME</em> platform represents a powerful toolkit for generating computational meshes for <em>OpenFOAM</em>. Download <em>SALOME</em> from <a class="reference external" href="https://www.salome-platform.org/downloads/current-version">salome-platform.org</a> for your distribution (here: <em>Linux Ubuntu</em>).</p>
-<p>Unpack the <em>SALOME</em> package in a convenient folder (replace the <code class="docutils literal notranslate"><span class="pre">.tar.gz</span></code> file name with the one you downloaded):</p>
+<p>Similar to <em>TELEMAC</em>, the SALOME platform represents a powerful toolkit for generating computational meshes for OpenFOAM. Download SALOME from <a class="reference external" href="https://www.salome-platform.org/downloads/current-version">salome-platform.org</a> for your distribution (here: <em>Linux Ubuntu</em>).</p>
+<p>Unpack the SALOME package in a convenient folder (replace the <code class="docutils literal notranslate"><span class="pre">.tar.gz</span></code> file name with the one you downloaded):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tar</span> <span class="n">xfz</span> <span class="n">SALOME</span><span class="o">-</span><span class="mf">9.6.0</span><span class="o">-</span><span class="n">UB20</span><span class="mf">.04</span><span class="o">-</span><span class="n">SRC</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
 </pre></div>
 </div>
@@ -993,13 +993,13 @@ cp -r $FOAM_TUTORIALS/incompressible/simpleFoam/pitzDaily .
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">net</span><span class="o">-</span><span class="n">tools</span> <span class="n">libopengl0</span> <span class="n">libtbb</span><span class="o">-</span><span class="n">dev</span>
 </pre></div>
 </div>
-<p>To run <em>SALOME</em>, <code class="docutils literal notranslate"><span class="pre">cd</span></code> to the directory where the unpacked package is located and typ <code class="docutils literal notranslate"><span class="pre">salome</span></code>:</p>
+<p>To run SALOME, <code class="docutils literal notranslate"><span class="pre">cd</span></code> to the directory where the unpacked package is located and typ <code class="docutils literal notranslate"><span class="pre">salome</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">SALOME</span><span class="o">-</span><span class="mf">9.6.0</span><span class="o">-</span><span class="n">UB20</span><span class="mf">.04</span><span class="o">-</span><span class="n">SRC</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
 <span class="n">source</span> <span class="n">env_launch</span><span class="o">.</span><span class="n">sh</span>
 <span class="o">./</span><span class="n">salome</span>
 </pre></div>
 </div>
-<p>If <code class="docutils literal notranslate"><span class="pre">./salome</span></code> does not work (in particular on a <em>Virtual Machine</em>), try to run <code class="docutils literal notranslate"><span class="pre">./mesa_salome</span></code> (prevents problems with <em>openGL</em> in the <em>Mesh</em> module), or re-compile <em>SALOME</em>:</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">./salome</span></code> does not work (in particular on a virtual machine), try to run <code class="docutils literal notranslate"><span class="pre">./mesa_salome</span></code> (prevents problems with <em>openGL</em> in the <em>Mesh</em> module), or re-compile SALOME:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">sat</span> <span class="n">prepare</span> <span class="n">SALOME</span><span class="o">-</span><span class="mf">9.6.0</span>
 <span class="o">./</span><span class="n">sat</span> <span class="o">-</span><span class="n">t</span> <span class="nb">compile</span> <span class="n">SALOME</span><span class="o">-</span><span class="mf">9.6.0</span>
 <span class="o">./</span><span class="n">sat</span> <span class="n">environ</span> <span class="n">SALOME</span><span class="o">-</span><span class="mf">9.6.0</span>
