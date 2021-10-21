@@ -25,7 +25,7 @@ pip and virtual environments are preferable with *Linux* systems for working wit
 (pip-quick)=
 ### Quick Guide
 
-Consider installing, create and activate a new virtual environment for working with the contents of this eBook as explained in the following platform-dependent paragraphs.
+Consider installing, creating, and activating a new virtual environment for working with the contents of this eBook as explained in the following platform-dependent paragraphs.
 
 ````{tabbed} Linux
 To avoid affecting the system's Python interpreter, set up a virtual environment with *venv*. The first step is to make sure that *Python3* and *venv* are installed on the system:
@@ -229,7 +229,6 @@ Read more about virtual environments and pip at [https://packaging.python.org](h
 (conda-env)=
 ## conda env (Windows Preference)
 
-
 This section features the quick installation of the {{ ft_env }} for *Anaconda* followed by more detailed explanations on the creation and management of *conda* environments.
 
 ```{admonition} Use conda on Windows
@@ -293,7 +292,7 @@ There are many more `conda` commands and the most important ones are summarized 
 (python-ide-setup)=
 ## Setup Interfaces and IDEs
 
-To follow the course content and run code cells, it is recommended to use {ref}`jupyter`, which can be installed locally or run it remotely by clicking on [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter) - the batch is implemented at the top of all jupyter notebook-based sections. To create projects, develop programs, or simply complete course assignments, it is recommended to use an Integrated Development Environment (*IDE*), such as {ref}`pycharm`.
+To follow the contents of this eBook and run code cells, it is recommended to use {ref}`jupyter`, which can be installed locally or run it remotely by clicking on [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter) - the batch is implemented at the top of all jupyter notebook-based sections. To create projects, develop programs, or simply complete course assignments, it is recommended to use an Integrated Development Environment (*IDE*), such as {ref}`pycharm`.
 
 ### JupyterLab
 
@@ -363,7 +362,7 @@ Depending on your platform make sure that all requirements are installed to conf
   * In *Atom* go to **File** > **Preferences** > **+ Install** and install the `platformio-ide` package (see also {ref}`atom-packages`).
 * Install *flusstools* according to the *pip* {ref}`pip-quick`, preferably in a virtual environment.
 
-**Do not conda-install *flusstools* on *Linux*.**
+**Do not conda-install *flusstools* on *Linux* (use pip).**
 ```
 
 When *flusstools* and its requirements are correctly installed launch `platformio-ide-terminal` (in *Atom* go to **Packages** (top menu) > **platformio-ide-terminal** > **New Terminal**).

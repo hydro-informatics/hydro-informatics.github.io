@@ -1,28 +1,32 @@
 (sec-ide)=
 # Integrated Development Environments (IDEs)
 
-The teaching contents of this eBook build on so-called *Application Programming Inferface*s **API**s) and *Integrated Development Environment*s (**IDE**s).
+The teaching contents of this eBook build on so-called *Application Programming Interface*s **API**s) and *Integrated Development Environment*s (**IDE**s).
 
-An **API** represents a computing interface that enables interactions between multiple software intermediaries. Modular programming becomes easy with an API, because it systematically hides complex information that is not necessarily needed to write code according to industry standards. For instance, an API can define the interface between an application (such as *Python* or *Word*) and an **Operating System** (**OS**) such as *Windows*, *Linux*, or *macOS* (also referred to as **platform**).
+An **API** represents a computing interface that enables interactions between multiple software intermediaries. Modular programming becomes easy with an API because it systematically hides complex information that is not necessarily needed to write code according to industry standards. For instance, an API can define the interface between an application (such as *Python* or *Word*) and an **Operating System** (**OS**) such as *Windows*, *Linux*, or *macOS* (also referred to as **platform**).
 
 An **IDE** enables the definition of a project to use, for example, a specific *Python* environment, and it enables robust coding by pointing out issues directly in the code, even before it ran for the first time. Powerful IDEs go even further and assist in documenting code with markdown (*.md* files) and directly pipe into *git* (see the {ref}`chpt-git`).
 
 ```{admonition} Which IDE to choose?
-:class: tip, dropdown
-The answer to this question depends on the platform you are using (e.g., *Windows* or *Linux*) and your personal preferences. The Author's preference is in general {ref}`install-atom`, where *Windows* users should also install {ref}`anaconda` in parallel. When opting for *Atom*, *Linux* users will not need to install *Anaconda* or *PyCharm*.
+:class: tip
+The answer to this question depends on the platform you are using (e.g., *Windows* or *Linux*), your personal preferences, and your goals.
 
-For *Python* courses, students may want to improve their learning experience by installing {ref}`jupyter` locally. *Windows* users find instructions in the {ref}`install-jupyter-windows` section. *Linux* users find instructions in the {ref}`install-jupyter-linux` section.
+For writing Python software itself, the Author's preference is in general {ref}`Atom <install-atom>` (optionally and on Windows only: {ref}`PyCharm <pycharm>`). To test and run Python code (software) locally,  for ***Windows* users, the installation of {ref}`anaconda` is almost indispensable**. *Linux* users will be mostly fine with their system setup without the need to install *Anaconda* or *PyCharm*.
+
+For code documentation, examples, and the best learning experience in the *Python* courses featured in this eBook, consider installing {ref}`jupyter` locally. *Windows* users find instructions in the {ref}`install-jupyter-windows` section. *Linux* users find instructions in the {ref}`install-jupyter-linux` section.
+
+**Once you have an IDE installed, carefully read the {ref}`instructions for installing Python <install-python>`.**
 ```
 
 (anaconda)=
 # Anaconda
 
-***Anaconda* is the favorite solution for** working with the *Python* tutorials in this ebook on **Windows**. *Linux* users may want to install the text and code editor {ref}`install-atom` and optionally {ref}`install-jupyter-linux`.
+***Anaconda* is the favorite solution for** working with the *Python* tutorials in this eBook on **Windows**. *Linux* users may want to install the text and code editor {ref}`install-atom` and optionally {ref}`install-jupyter-linux`.
 
 ## Anaconda Navigator
 
 ```{admonition} Use Anaconda on Windows
-Anaconda works well on Windows, but Linux (or also macOS) user will have a better experience with advanced text editors such as {ref}`Atom <install-atom>`.
+Anaconda works well on Windows, but Linux (or also macOS) users will have a better experience with advanced text editors such as {ref}`Atom <install-atom>`.
 ```
 
 *Anaconda* is a *Python* and *R* distribution that enables the usage of a couple of IDEs such as [*PyCharm*](https://www.jetbrains.com/pycharm/), [*Spyder*](https://www.spyder-ide.org/), or [*JupyterLab (Notebook)*](https://jupyter.org/).
@@ -55,46 +59,57 @@ After the installation of *PyCharm* for *Anaconda*, open *Anaconda Navigator*:
 1. In *PyCharm* click on `+ Create New Project`
 1. Option 1 (preferred): Use the [developer's up-to-date documentation](https://docs.anaconda.com/anaconda/user-guide/tasks/pycharm/) for setting up *PyCharm* with *Anaconda*.
 1. Option 2 (quick to read, but may fail): A window will open - enter:
-    - *Location* - Select a local directory for the project (e.g., *C:/hydro/project*)
-    - *Project Interpreter* - Check the `Existing interpreter` box and select an existing interpreter.
-    - Click on the `Create` button.
+  - *Location* - Select a local directory for the project (e.g., *C:/hydro/project*)
+  - *Project Interpreter* - Check the `Existing interpreter` box and select an existing interpreter.
+  - Click on the `Create` button.
 
-All set - you are ready to work with *Python*, markdown (documentation) and the {ref}`chpt-git`.
-***PyCharm-Python* users** can read more about setting up *conda* environments in the {ref}`ide-setup` section.
+All set - you are ready to edit *Python* (`.py`), markdown (`.md` for documentation), and other file types.
+
+```{admonition} Finalize the Installation of Python
+:class: tip
+**Carefully read the {ref}`instructions for installing Python <install-python>` on your platform.**
+```
 
 (jupyter)=
 # JupyterLab
 
 *Jupyter* is a spin-off of [*IPython*](https://ipython.org/), which is "a rich architecture for interactive computing".
 
-(install-jupyter-windows)=
-## Jupyter on Windows
-### Via Anaconda Navigator
-
 *JupyterLab* is a product of the nonprofit organization [*Project Jupyter*](https://jupyter.org/), which develops "open-source software, open-standards, and services for interactive computing across dozens of programming languages". A *Jupyter* notebook (*.ipynb* file) enables the combination of markdown text blocks with executable code blocks. Essentially, a *Jupyter* notebook is a *JavaScript Object Notation* ([*JSON*](https://www.json.org/json-en.html) file. The structure of *JSON* files enables the easy export of *.ipynb*  notebooks to many other open standard output formats such as *HTML*, [*LaTeX*](https://latex-project.org/), *markdown*, *Python*, *presentation slides*, or *PDF*.
 The *Jupyter* kernels support the three core programming languages **Ju**lia, **Pyt**hon and **R**, and many more *Jupyter* kernels (currently 49) for other programming languages exist.
+
+
+```{admonition} Working with Jupyter
+:class: tip
+Get familiar with *JupyterLab*, by creating files, adding new *Markdown* or *Python* cells, and running cells. The essentials of *markdown* are explained in the {ref}`Markdown and Documentation <markdown>` section (short read). Learning *Python* is more than a short read and the {ref}`Python Basics chapter<python>` provides some insights (takes time).
+```
+
+(install-jupyter-windows)=
+## Jupyter on Windows
+
+*Anaconda Navigator* alternatively provides the application *Jupyter Notebook*. However, *JupyterLab* is the *Project Jupyter*'s next-generation user interface, which is more flexible and powerful. This is why this website refers to *JupyterLab* rather than the *Jupyter Notebook* app. The following sections explain how to install it on your Windows computer, either by using the graphical user interface of *Anaconda Navigator*, or the conda prompt command line (recommended).
+
+### Via Anaconda Navigator
 
 1. Open *Anaconda Navigator* and make sure to be in the *Home* tab.
 1. Look for *JupyterLab* and click on the *Install* button (if already installed, there is only a *Launch* button visible).
 1. After successful installation, open *JupyterLab*, by clicking on the *Launch* button.
 1. *JupyterLab* opens in the default web browser, where *Jupyter* notebooks (*.ipynb*) or *Python* files can be created and edited.
 
-```{admonition} Working with Jupyter
-:class: tip
-Get familiar with *JupyterLab*, by creating files, adding new *Markdown* or *Python* cells, and running cells. The essentials of *markdown* are explained on the [Markdown and Documentation](../get-started/documentation.html#markdown) page (short read). Learning *Python* is more than a short read and the [*Python* (basics)](../python-basics/python) walks you through the course contents to learn *Python* (takes time).
-```
 
-```{note}
-*Anaconda Navigator* alternatively provides the application *Jupyter Notebook*. However, *JupyterLab* is the *Project Jupyter*'s next-generation user interface, which is more flexible and powerful. This is why this website refers to *JupyterLab* rather than the *Jupyter Notebook* app.
-```
-
-### Via Anaconda Prompt
+### Via Anaconda Prompt (Recommended)
 
 Open *Anaconda Prompt*, which represents a *Terminal* window with a black background and a blinking cursor.
 
 If you are working with *Miniconda*, install the *Jupyter Notebook* app by typing `conda install jupyter` and confirm with `y` when *Anaconda Prompt* asks `Proceed ([y]/n)?`.
 
-To start the *JupyterLab* app and open, create, or modify *Jupyter* notebooks, type `jupyter lab` (`jupyter notebook` for *Jupyter Notebook*) in *Anaconda Prompt (Miniconda3)* and hit *Enter*. The *Jupyter Notebook* application will open in the default webbrowser.
+To **start** *JupyterLab* and open, create, or modify *Jupyter* notebooks, type:
+
+```
+jupyter lab
+```
+
+If the command fails, try either `jupyter-lab` or start Jupyter notebook by typing `jupyter notebook`. The *Jupyter Notebook* application will open in the default webbrowser.
 
 ### Extensions and Spellchecker
 
@@ -122,13 +137,13 @@ conda install "nbconvert=5.6.1"
 (install-jupyter-linux)=
 ## Jupyter on Linux
 
-To install *JupyterLab*  on *Linux* open *Terminal* and make sure that `pip`/`pip3` is installed:
+To install *JupyterLab* on *Linux*, open *Terminal* and make sure that `pip`/`pip3` is installed:
 
 ```
 sudo apt install python3 python3-pip python3-venv
 ```
 
-Export the user-level `bin` to the `PATH` environment an install JupyterLab in the user space with the following commands:
+Export the user-level `bin` to the `PATH` environment and install JupyterLab in the user space with the following commands:
 
 ```
 export PATH="$HOME/.local/bin:$PATH"
@@ -231,4 +246,4 @@ Read more at [atom.io](https://atom.io/packages/spell-check) for more informatio
 (atom-python)=
 ## Enable (Python) Console
 
-While the `script` package enables to run a *Python* script, it may be desirable to have a built-in *Python* console window running in *Atom*. To this end, the `platformio-ide-terminal` package tweaks into the system's default terminal (*Terminal* on *Linux* or *PowerShell* on *Windows 10*), which can run an existing installation of *Python* (i.e., *Python* must be installed on the system in some form). Depending on your platform, follow the instructions in the {ref}`atom-setup` section.
+While the `script` package enables running a *Python* script, it may be desirable to have a built-in *Python* console window running in *Atom*. To this end, the `platformio-ide-terminal` package tweaks into the system's default terminal (*Terminal* on *Linux* or *PowerShell* on *Windows 10*), which can run an existing installation of *Python* (i.e., *Python* must be installed on the system in some form). Depending on your platform, follow the instructions in the {ref}`atom-setup` section.
