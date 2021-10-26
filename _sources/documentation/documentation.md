@@ -1,4 +1,4 @@
-# Markdown and Documentation
+# How to Markdown and Document
 
 ## Document Your Work
 Leonardo Da Vinci used journals to sketch, develop and eventually pass on his ideas. Alexander von Humboldt documented many of his journeys in travel journals and Marie Skłodowska Curie wrote down the theory of "radioactivity" using pens and papers. Today,  writing media have evolved into infinite digital oceans with sophisticated tools for documenting code and ideas. Also, how we look for and retrieve information has evolved from searching for lexicon entries to using keywords in search engines.
@@ -244,7 +244,7 @@ Arrows and operators can also be implemented as *html* symbols. The following ta
 | &rlm;    | `&rlm;`     |  | &Prime;  | `&Prime;`   |  | &diams;   | `&diams;`   |
 
 
-
+(docs-wikis)=
 ## Wikis
 
 While every {ref}`git <chpt-git>` repository should at least contain a descriptive *README.md*, *wiki* s provide much more detail and guidance. Wikis are a convenient way to guide users with permanent sidebars (such as the menu bar on this website), help users to understand methods and codes, and collaborative coding with precise descriptions of scripts. *GitHub* users find options to activate *wiki*s in the *Settings* tab of a repository and the developers continue to improve *wiki* functions ([read more about *GitHub*'s wikis](https://help.github.com/en/github/building-a-strong-community/about-wikis)).

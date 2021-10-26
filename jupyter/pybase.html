@@ -513,7 +513,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../documentation/documentation.html">
-   Markdown and Documentation
+   How to Markdown and Document
   </a>
  </li>
  <li class="toctree-l1">
@@ -816,16 +816,56 @@
               <div>
                 
   <div class="section" id="hello-data-types">
-<h1>Hello Data Types<a class="headerlink" href="#hello-data-types" title="Permalink to this headline">¶</a></h1>
+<span id="hi-python"></span><h1>Hello Data Types<a class="headerlink" href="#hello-data-types" title="Permalink to this headline">¶</a></h1>
 <p>About Python, variable types and script execution. For interactive reading and executing code blocks <a class="reference external" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> and find <em>pybase.ipynb</em>, or install <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Python</span></a> and <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a> locally.</p>
+<div class="admonition-requirements-for-local-usage admonition">
+<p class="admonition-title">Requirements for Local Usage</p>
+<p>For running code locally, <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">install Python</span></a> along with an <a class="reference internal" href="../get-started/ide.html#sec-ide"><span class="std std-ref">IDE</span></a> that fits your needs and preferences.</p>
+</div>
 <div class="section" id="load-python-environment">
 <h2>Load Python Environment<a class="headerlink" href="#load-python-environment" title="Permalink to this headline">¶</a></h2>
 <p>These pages are written with <a class="reference external" href="https://jupyter.org/"><em>JupyterLab</em></a> <img alt="https://jupyter.org/assets/main-logo.svg" src="https://jupyter.org/assets/main-logo.svg" />. For the best learning experience make sure to read about <a class="reference internal" href="../get-started/ide.html#sec-ide"><span class="std std-ref">Integrated Development Environments (IDEs)</span></a> before starting this tutorial.</p>
 </div>
 <div class="section" id="the-first-lines-of-code">
 <h2>The First Lines of Code<a class="headerlink" href="#the-first-lines-of-code" title="Permalink to this headline">¶</a></h2>
-<p>The examples in the first steps revolve around ice cream to illustrate the utility of presented code blocks. So if you do not like ice cream, just replace it with another category of things …</p>
-<p>To start, let’s get the very first “feedback” from the <em>Python</em> console by typing:</p>
+<p>The examples in the first steps revolve around ice cream to illustrate the utility of simple code snippets. If you do not like ice cream, replace it with your favorite category of things.</p>
+<div class="tip admonition">
+<p class="admonition-title">How to Run Python</p>
+<p>The very first thing you need to run Python code is, obviously, Python itself. Python can be started in a standard (system) terminal or a terminal of an IDE. Make sure to use a standard terminal for your platform according to the <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Python installation</span></a> descriptions. For instance:</p>
+<ul class="simple">
+<li><p>On Windows, click on the start menu, tap <code class="docutils literal notranslate"><span class="pre">Anaconda</span> <span class="pre">Prompt</span></code>, and hit <code class="docutils literal notranslate"><span class="pre">Enter</span></code></p></li>
+<li><p>On Linux, open the system Terminal (e.g., Gnome Terminal by pressing <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> +  <code class="docutils literal notranslate"><span class="pre">Alt</span></code> + <code class="docutils literal notranslate"><span class="pre">T</span></code> - if nothing happens, have a look at the <a class="reference internal" href="../get-started/vm.html#linux-terminal"><span class="std std-ref">Linux Terminal introduction</span></a>)</p></li>
+<li><p>On macOS, find the Terminal (or <em>Command Line Tools</em>), tap <code class="docutils literal notranslate"><span class="pre">Python</span></code>, and hit <code class="docutils literal notranslate"><span class="pre">Enter</span></code></p></li>
+</ul>
+<p><strong>Alternatively</strong>, <strong>use your favorite IDE</strong> to run Python code in a terminal environment:</p>
+<ul class="simple">
+<li><p>With <strong>PyCharm</strong> (Windows):</p>
+<ul>
+<li><p>Create a new empty project and use the <em>flusstools</em> environment (read <a class="reference internal" href="../python-basics/pyinstall.html#conda-env"><span class="std std-ref">how to get it</span></a> and <a class="reference internal" href="../python-basics/pyinstall.html#ide-setup"><span class="std std-ref">how to create a PyCharm project</span></a>)</p></li>
+<li><p>Find and click on the <strong>Python Console</strong> tab at the bottom of the PyCharm window</p></li>
+<li><p>The Python console is now ready to use.</p></li>
+</ul>
+</li>
+<li><p>With <strong>Atom</strong> (Windows / Linux / macOS):</p>
+<ul>
+<li><p>Make sure the <em>flusstools</em> environment is installed for your platform (read <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">how to get it</span></a> )</p></li>
+<li><p>In Atom, install and enable the <code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code> (<a class="reference internal" href="../python-basics/pyinstall.html#atom-setup"><span class="std std-ref">read more</span></a>)</p></li>
+<li><p>In Atom, go to <strong>Packages</strong> (top menu) &gt; <strong>platformio-ide-terminal</strong> &gt; <strong>New Terminal</strong></p></li>
+<li><p>Windows + Anaconda users: enter <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">flussenv</span></code></p></li>
+<li><p>Linux + pip/venv users: make sure where your <code class="docutils literal notranslate"><span class="pre">vflussenv</span></code> lives and tap <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">vflussenv/bin/activate</span></code> (<a class="reference internal" href="../python-basics/pyinstall.html#pip-quick"><span class="std std-ref">read more</span></a>)</p></li>
+<li><p>All platforms: tap <code class="docutils literal notranslate"><span class="pre">python</span></code> - the console is now ready to use.</p></li>
+</ul>
+</li>
+<li><p>With <strong>Jupyter</strong> (cross-platform):</p>
+<ul>
+<li><p>Open a Terminal following the above descriptions</p></li>
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">jupyter-lab</span></code> (or <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code>, or <code class="docutils literal notranslate"><span class="pre">jupyterlab</span></code>, or <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code> depending on your installation) &gt; Jupyter opens in your web browser</p></li>
+<li><p>Navigate to a local copy of this Jupyter notebook and run any code block (click on a code block and hit the run triangle button in the top menu).</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Ultimately, <strong>you are ready to</strong> get the very first “feedback” (<em>callback</em>) from the <strong>Python</strong> console. Start with a simple call of the <code class="docutils literal notranslate"><span class="pre">print</span></code> function by entering:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This is callback from the digital ice cream printer.&quot;</span><span class="p">)</span>
@@ -833,30 +873,29 @@
 </div>
 </div>
 </div>
-<p>In order to run the above <code class="docutils literal notranslate"><span class="pre">print</span></code>command in <em>Jupyter Lab</em>, just click in the above box, then click on the run (triangle) button in the top menu.</p>
-<p>In order to run a print command in <em>PyCharm</em>:</p>
+<p>Recall that the <code class="docutils literal notranslate"><span class="pre">print</span></code> command, like all other Python commands that will follow, can be either run in a <em>Python</em> console (e.g., <em>Conda Prompt</em> on Windows or <em>Terminal</em> on Linux) or in your favorite IDE. In addition, we can write down the <code class="docutils literal notranslate"><span class="pre">print</span></code> command in a <strong>Python file ending on <code class="docutils literal notranslate"><span class="pre">.py</span></code></strong> (e.g., <code class="docutils literal notranslate"><span class="pre">icecream_tutorial.py</span></code>) and run the file. For instance, in <strong>PyCharm</strong>:</p>
 <ul class="simple">
-<li><p>Expand the project branch (if not yet done: on left side of the window)</p></li>
+<li><p>Expand the project branch (if not yet done: on the left side of the window)</p></li>
 <li><p>Right-click in the project folder, select <code class="docutils literal notranslate"><span class="pre">New</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">File</span></code> and name the new <em>Python</em> (<code class="docutils literal notranslate"><span class="pre">.py</span></code>) file (e.g., <code class="docutils literal notranslate"><span class="pre">icecream_tutorial.py</span></code>).</p></li>
 <li><p>Copy the above <code class="docutils literal notranslate"><span class="pre">print(&quot;...&quot;)</span></code> code into the new Python file and save it.</p></li>
 <li><p>Right-click in the Python file, then <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">icecream_tutorial.py</span></code> (alternatively: press the <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Shift</span></code> + <code class="docutils literal notranslate"><span class="pre">F10</span></code>keys).</p></li>
-<li><p>Now, the <em>Python Console</em> should pop up at the bottom of the window and it will print the text in the above <code class="docutils literal notranslate"><span class="pre">print</span></code>command.</p></li>
+<li><p>Now, the <em>Python Console</em> should pop up at the bottom of the window and it will print the text in the above <code class="docutils literal notranslate"><span class="pre">print</span></code> command.</p></li>
 </ul>
+<p>In any <strong>other (IDE) Terminal</strong>, <code class="docutils literal notranslate"><span class="pre">cd</span></code> to the directory where the Python file (<code class="docutils literal notranslate"><span class="pre">icecream_tutorial.py</span></code>) lives, then enter <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">icecream_tutorial.py</span></code> and hit <code class="docutils literal notranslate"><span class="pre">Enter</span></code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In the following, there will not be anymore the differentiation between using <em>PyCharm</em> (or any other <em>IDE</em>) and <em>Jupyter Lab</em>. Thus, <strong>Run the script</strong> means: run the script in your favorite <em>IDE</em> in the following.</p>
+<p>In the following, there will not be anymore the differentiation between using PyCharm or any other IDE and Jupyter. Thus, <strong>Run the script/code block</strong> means: run the script in your favorite IDE in the following.</p>
 </div>
-<p>With the <code class="docutils literal notranslate"><span class="pre">&quot;</span></code> apostrophes in the <code class="docutils literal notranslate"><span class="pre">print</span></code> command, we pass a <em><strong>string</strong></em> variable to the <code class="docutils literal notranslate"><span class="pre">print</span></code> command. Instead of using <code class="docutils literal notranslate"><span class="pre">&quot;</span></code>, one can also use <code class="docutils literal notranslate"><span class="pre">'</span></code>, but it is important to use the same type of apostrophe at the beginning and at the end of the string (text) variable.</p>
+<p>With the <code class="docutils literal notranslate"><span class="pre">&quot;</span></code> apostrophes in the <code class="docutils literal notranslate"><span class="pre">print</span></code> command, we pass a <em><strong>string</strong></em> variable to the <code class="docutils literal notranslate"><span class="pre">print</span></code> command. Instead of using <code class="docutils literal notranslate"><span class="pre">&quot;</span></code>, one can also use <code class="docutils literal notranslate"><span class="pre">'</span></code>, but it is important to use the same type of apostrophe at the beginning and the end of the string (text) variable.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Be reasonable with the usage of <code class="docutils literal notranslate"><span class="pre">print</span></code>. Especially in loops, the use of <code class="docutils literal notranslate"><span class="pre">print</span></code> leads to unnecessary system load and slows down the script.</p>
+<p>Be reasonable with the usage of <code class="docutils literal notranslate"><span class="pre">print</span></code>. Especially in loops, <code class="docutils literal notranslate"><span class="pre">print</span></code> leads to unnecessary system load and slows down the script.</p>
 </div>
-<p>A marginal note: In Python3 <code class="docutils literal notranslate"><span class="pre">print</span></code> is a function, not a keyword as in Python2. <code class="docutils literal notranslate"><span class="pre">print</span></code> is useful for example to make a running script show where it currently is.</p>
-<p>It is also possible to print other types of variables than strings, but the combination of numerical and text variables requires more encoding.</p>
+<p>A marginal note: In Python3 <code class="docutils literal notranslate"><span class="pre">print</span></code> is a function, not a keyword as in Python2. <code class="docutils literal notranslate"><span class="pre">print</span></code> is useful, for example, to make a script show where it is currently running. It is also possible to print other types of variables than strings, but the combination of numerical and text variables requires more encoding (see next sections).</p>
 </div>
 <div class="section" id="python-variables-and-data-types">
 <span id="var"></span><h2>Python Variables and Data Types<a class="headerlink" href="#python-variables-and-data-types" title="Permalink to this headline">¶</a></h2>
-<p>The above print command already introduced string variables. In sum, there are five standard variable (or data) types in <em>Python</em>:</p>
+<p>The above-shown <code class="docutils literal notranslate"><span class="pre">print</span></code> function already involved <em>string</em> variables. In addition, there are a couple of other variable (data) types in Python:</p>
 <ul class="simple">
 <li><p>text</p></li>
 <li><p>boolean</p></li>
@@ -867,14 +906,14 @@
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Data and variable types are difficult to understand if you simply try to learn them by heart. Remember that there are different data types that can be useful when writing code and that the most relevant data types are listed here in tabular form.</p>
+<p>Data and variable types are difficult to understand if you simply try to learn them by heart. Remember that different data types can be useful when writing code for a particular solution.</p>
 </div>
 <div class="section" id="text">
 <h3>Text<a class="headerlink" href="#text" title="Permalink to this headline">¶</a></h3>
 <p>Text variables in <em>Python</em> are <em>strings</em> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) that consist of multiple <em>characters</em> (<code class="docutils literal notranslate"><span class="pre">chr</span></code>):</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="95443a6c-4e58-48c1-9fce-6c00574b78c4" name="e432b7d6-4334-43b5-b5e7-eb66defc60ef" type="radio">
-</input><label class="tabbed-label" for="95443a6c-4e58-48c1-9fce-6c00574b78c4">
+<input checked="checked" id="ec7d3a19-3d02-428b-aa83-457d4713e90e" name="3ce5b330-56b4-4618-b4be-9d33d490357e" type="radio">
+</input><label class="tabbed-label" for="ec7d3a19-3d02-428b-aa83-457d4713e90e">
 Rendered table</label><div class="tabbed-content docutils">
 <table class="colwidths-auto table">
 <thead>
@@ -903,8 +942,8 @@ Rendered table</label><div class="tabbed-content docutils">
 </tbody>
 </table>
 </div>
-<input id="77e8d432-718f-4fb9-9960-289c4c2bdf0d" name="e432b7d6-4334-43b5-b5e7-eb66defc60ef" type="radio">
-</input><label class="tabbed-label" for="77e8d432-718f-4fb9-9960-289c4c2bdf0d">
+<input id="7e4144f2-b3e9-48c0-8f6a-b18f72f64602" name="3ce5b330-56b4-4618-b4be-9d33d490357e" type="radio">
+</input><label class="tabbed-label" for="7e4144f2-b3e9-48c0-8f6a-b18f72f64602">
 Source code</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>| Type | Example     | Description                        |
 |------|:-----------:|------------------------------------|
@@ -929,7 +968,7 @@ Source code</label><div class="tabbed-content docutils">
 </div>
 </div>
 </div>
-<p>Characters can be converted to numbers and other way round. This feature can be useful in loops to iterate for example over alphabetically ordered lists (attention: the conversion depends on how your operating system is configured).</p>
+<p>Characters can be converted to numbers and the other way round. This feature can be useful in loops to iterate for example over alphabetically ordered lists (attention: the conversion depends on how your operating system is configured).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="mi">67</span><span class="p">))</span>
@@ -941,7 +980,7 @@ Source code</label><div class="tabbed-content docutils">
 </div>
 <div class="section" id="boolean">
 <span id="bool"></span><h3>Boolean<a class="headerlink" href="#boolean" title="Permalink to this headline">¶</a></h3>
-<p>Boolean variables are either True (1) or False (0) with many useful code implementations. We will come back to booelans later on in conditional statements.</p>
+<p>Boolean variables are either <code class="docutils literal notranslate"><span class="pre">True</span></code> (1) or <code class="docutils literal notranslate"><span class="pre">False</span></code> (0) with many useful code implementations. We will come back to booelans (<strong>bool</strong>) later in the section on conditional (<code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">...</span></code>) statements.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bowl</span> <span class="o">=</span> <span class="kc">False</span>
@@ -953,6 +992,7 @@ Source code</label><div class="tabbed-content docutils">
 </div>
 <div class="section" id="numbers-numeric">
 <span id="num"></span><h3>Numbers (Numeric)<a class="headerlink" href="#numbers-numeric" title="Permalink to this headline">¶</a></h3>
+<p>Python knows a couple of different numeric data types:</p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Type</p></th>
@@ -975,7 +1015,7 @@ Source code</label><div class="tabbed-content docutils">
 </tr>
 </tbody>
 </table>
-<p>To create a variable, use the <code class="docutils literal notranslate"><span class="pre">=</span></code> sign as follows:</p>
+<p>To create a numeric variable, use the <code class="docutils literal notranslate"><span class="pre">=</span></code> sign as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scoops</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># int</span>
@@ -984,8 +1024,8 @@ Source code</label><div class="tabbed-content docutils">
 </div>
 </div>
 </div>
-<p><em>Python</em> does not require a type assignment for a variable because it is a high-level, interpreted programming language (other than for example <em>C++</em>). However, once a variable was assigned a data type, do not change it in the code (it is just good practice - so that scoops remain integers).</p>
-<p>If a print statement combines numeric and text variables, the numeric variables first have to be converted to text and then <em>concatenated</em> to a string. There are several ways to combine multiple variables in a text string.</p>
+<p><strong>Python</strong> does not require a type assignment for a variable because it <strong>is a high-level, interpreted programming language</strong> (other than, for example, <em>C++</em>). However, once a variable was assigned a data type, do not change it in the code (it is just good practice - so that scoops remain integers).</p>
+<p>If a print statement combines numeric and text variables, the numeric variables first have to be converted to text, and then <strong>concatenated</strong> to a string. There are several ways to combine multiple variables in a text string:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;My ice cream consists of </span><span class="si">%d</span><span class="s2"> scoops.&quot;</span> <span class="o">%</span> <span class="n">scoops</span><span class="p">)</span> <span class="c1"># use %d for integers, %f for floats and %s for strings</span>
@@ -1006,7 +1046,7 @@ Source code</label><div class="tabbed-content docutils">
 </div>
 <div class="section" id="list">
 <span id="id1"></span><h3>List<a class="headerlink" href="#list" title="Permalink to this headline">¶</a></h3>
-<p>A list is a series of values, which is embraced with brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code>. The values can be any other data type (i.e., numeric, text, dictionary or tuple) - even a list (so-called <em>nested lists</em>).</p>
+<p>A list is a series of values, which is embraced with brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code>. The values can be any other data type (i.e., numeric, text, dictionary, or tuple), or even another list (so-called <em>nested lists</em>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flavors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;chocolate&quot;</span><span class="p">,</span> <span class="s2">&quot;bread&quot;</span><span class="p">,</span> <span class="n">flavor1</span><span class="p">]</span> <span class="c1"># a list of strings</span>
@@ -1017,10 +1057,10 @@ Source code</label><div class="tabbed-content docutils">
 </div>
 </div>
 </div>
-<p>The items of a list are called <em>entries</em> and <em>entries</em> can be appended, inserted or deleted from a list.</p>
+<p>The items of a list are called <strong>entries</strong> and <em>entries</em> can be appended, inserted, or deleted from a list.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><em>Python</em> alway starts counting from zero. Thus, the first entry of a list is entry number 0.</p>
+<p>Python always starts counting from zero. Thus, the first entry of a list is entry number 0.</p>
 </div>
 <p>Also lists have many useful built-in functions:</p>
 <div class="cell docutils container">
@@ -1041,7 +1081,7 @@ Source code</label><div class="tabbed-content docutils">
 </div>
 <div class="section" id="tuple">
 <span id="id2"></span><h3>Tuple<a class="headerlink" href="#tuple" title="Permalink to this headline">¶</a></h3>
-<p>A tuple represents a collection of <em>Python</em> objects, similar to a list and the sequence of values (data types) in a tuple can take any type. Elements of a tuple are also indexed with integers. In contrast to lists, a tuple is embraced with round parentheses <code class="docutils literal notranslate"><span class="pre">()</span></code> and a <strong>tuple is immutable</strong> while <strong>lists are mutable</strong>. This means that a tuple object can no longer be modified after it has been created. So why would you like to use tuples then? The answer is that a tuple is more memory efficient than a mutable object because the immutable tuple can create references to existing objects. In addition, a tuple can serve as a <code class="docutils literal notranslate"><span class="pre">key</span></code> of a dictionary (see below), which is not possible with a list.</p>
+<p>A tuple represents a collection of Python objects, similar to a list, and the sequence of values (data types) in a tuple can take any type. Elements of a tuple are also indexed with integers. In contrast to lists, a tuple is embraced with round parentheses <code class="docutils literal notranslate"><span class="pre">()</span></code> and a <strong>tuple is immutable</strong> while <strong>lists are mutable</strong>. This means that a tuple object can no longer be modified after it has been created. So why would you like to use tuples then? The answer is that a tuple is more memory efficient than a mutable object because the immutable tuple can create references to existing objects. In addition, a tuple can serve as a <code class="docutils literal notranslate"><span class="pre">key</span></code> of a dictionary (see below), which is not possible with a list.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;a text element&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">3.03</span><span class="p">)</span> <span class="c1"># example tuple</span>
@@ -1078,7 +1118,7 @@ Source code</label><div class="tabbed-content docutils">
 </div>
 <div class="section" id="dictionary">
 <span id="dict"></span><h3>Dictionary<a class="headerlink" href="#dictionary" title="Permalink to this headline">¶</a></h3>
-<p>Dictionaries are a powerful data type in <em>Python</em> and have the basic structure <code class="docutils literal notranslate"><span class="pre">my_dict</span> <span class="pre">=</span> <span class="pre">{key:</span> <span class="pre">value}</span></code>. In contrast to lists, an element of a dictionary is called by invoking a <code class="docutils literal notranslate"><span class="pre">key</span></code> rather than an entry number. A dictionary is not enumerated and <code class="docutils literal notranslate"><span class="pre">key</span></code>s just point to their <code class="docutils literal notranslate"><span class="pre">value</span></code>s (whatever data type the <code class="docutils literal notranslate"><span class="pre">value</span></code>then is).</p>
+<p>Dictionaries are a powerful data type in Python and have the basic structure <code class="docutils literal notranslate"><span class="pre">my_dict</span> <span class="pre">=</span> <span class="pre">{key:</span> <span class="pre">value}</span></code>. In contrast to lists, an element of a dictionary is called by invoking a <code class="docutils literal notranslate"><span class="pre">key</span></code> rather than an entry number. A dictionary is not enumerated and <code class="docutils literal notranslate"><span class="pre">key</span></code>s just point to their <code class="docutils literal notranslate"><span class="pre">value</span></code>s (whatever data type the <code class="docutils literal notranslate"><span class="pre">value</span></code> is).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_dict</span> <span class="o">=</span>  <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;Value 1&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;Value 2&quot;</span><span class="p">}</span>
@@ -1088,7 +1128,7 @@ Source code</label><div class="tabbed-content docutils">
 </div>
 </div>
 </div>
-<p>Also dictionary data types have many useful built-in functions:</p>
+<p>Also dictionaries have many useful built-in functions:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_dict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;Value 3&quot;</span><span class="p">})</span>  <span class="c1"># add a dictionary element </span>
@@ -1099,7 +1139,7 @@ Source code</label><div class="tabbed-content docutils">
 </div>
 </div>
 </div>
-<p>Two lists of the same length can be <em>zipped</em> into a dictionary:</p>
+<p>In addition, two lists of the same length can be <em>zipped</em> into a dictionary:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weight</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">]</span>

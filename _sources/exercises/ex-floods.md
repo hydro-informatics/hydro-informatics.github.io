@@ -88,7 +88,7 @@ Flow data can be retrieved from gauging stations. In Germany, the ["Gewässerkun
 
 ```
 import hydrofunctions as hf
-hf.draw_map()` # (only runs in JupyterLab)
+hf.draw_map()` # only runs in JupyterLab
 ```
 
 ## Load Data with *pandas*

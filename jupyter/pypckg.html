@@ -513,7 +513,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../documentation/documentation.html">
-   Markdown and Documentation
+   How to Markdown and Document
   </a>
  </li>
  <li class="toctree-l1">
@@ -780,8 +780,8 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-a-module">
-   Create a Module
+  <a class="reference internal nav-link" href="#create-a-new-module">
+   Create a new Module
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -825,14 +825,18 @@
   <div class="section" id="packages-modules-and-libraries">
 <span id="sec-pypckg"></span><h1>Packages, Modules and Libraries<a class="headerlink" href="#packages-modules-and-libraries" title="Permalink to this headline">¶</a></h1>
 <p>Import external libraries and organize your code into functional chunks. For interactive reading and executing code blocks <a class="reference external" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> and find <em>pypckg.ipynb</em>, or install <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Python</span></a> and <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a> locally.</p>
+<div class="admonition-requirements admonition">
+<p class="admonition-title">Requirements</p>
+<p>Make sure to understand <a class="reference internal" href="pyfun.html#chpt-functions"><span class="std std-ref">Python functions</span></a>.</p>
+</div>
 <div class="section" id="import-packages-or-modules">
 <h2>Import Packages or Modules<a class="headerlink" href="#import-packages-or-modules" title="Permalink to this headline">¶</a></h2>
-<p>Importing a package or module in <em>Python</em> makes external functions and other elements (such as objects) of modules accessible in a script. The functions and other elements are stored within another <em>Python</em> file (<code class="docutils literal notranslate"><span class="pre">.py</span></code>) in some <em>/site_packages/</em> folder of the interpreter environments. Thus, in order to use a non-standard package, it needs to be downloaded and installed first. Standard packages (e.g., <code class="docutils literal notranslate"><span class="pre">os</span></code>, <code class="docutils literal notranslate"><span class="pre">math</span></code>) are always accessible and other can be added with <em>conda</em> (<a class="reference external" href="pyinstall.html#install-pckg">read the installation instructions</a>).</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>There is a <strong>difference between modules and packages</strong>. Modules are single or multiple files that can be imported as one import (e.g., <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">a_module</span></code>). Packages are a collection of modules in a directory with a defined package hierarchy, which enables the import of individual modules (e.g. <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">a_package.module</span> <span class="pre">import</span> <span class="pre">a_function</span></code>). Packages are therefore also modules, but with a hierarchy definition (i.e., a <code class="docutils literal notranslate"><span class="pre">__path__</span></code> attribute and a <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file). Sounds fuzzy? Read this page down to the bottom and come back here to re-read this note.</p>
+<p>Importing a package or module in Python makes external functions and other elements (such as objects) of modules accessible in a script. The functions and other elements are stored within another Python file (<code class="docutils literal notranslate"><span class="pre">.py</span></code>) in some <em>/site_packages/</em> folder (directory) of the interpreter environments. Thus, to use a non-standard package, it needs to be downloaded and installed first. Standard Python packages (e.g., <code class="docutils literal notranslate"><span class="pre">os</span></code>, <code class="docutils literal notranslate"><span class="pre">math</span></code>) are always accessible and other can be added with <em>conda</em> (<a class="reference internal" href="../python-basics/pyinstall.html#install-pckg"><span class="std std-ref">read more about conda-installing</span></a>) or <em>pip</em> (<a class="reference internal" href="../python-basics/pyinstall.html#pip-install-pckg"><span class="std std-ref">read more pip-installing</span></a>).</p>
+<div class="admonition-the-difference-between-a-module-and-a-package admonition">
+<p class="admonition-title">The Difference between a Module and a Package</p>
+<p>Modules are single or multiple files that can be imported independently (e.g. import a script named <code class="docutils literal notranslate"><span class="pre">a_module.py</span></code> with <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">a_module</span></code>). Packages are a collection of modules in a directory with a defined hierarchy, which also enables the import of individual modules (e.g. <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">a_package.module</span> <span class="pre">import</span> <span class="pre">a_function</span></code>). Packages are therefore also modules, but with a hierarchy definition (i.e., a <code class="docutils literal notranslate"><span class="pre">__path__</span></code> attribute and an <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file). Sounds fuzzy? Read this section down to the bottom and come back here to re-read this note.</p>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">os</span></code> package provides some useful system-terminal like commands, for example, to manage folder directories. So let’s import this essential package.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">os</span></code> package provides basic system-terminal-like commands, for example, to manage folder directories. So let’s import this essential package:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -894,7 +898,7 @@
 </div>
 <div class="section" id="what-is-the-best-way-to-import-a-package-or-module">
 <h3>What is the best way to import a package or module?<a class="headerlink" href="#what-is-the-best-way-to-import-a-package-or-module" title="Permalink to this headline">¶</a></h3>
-<p>There is no global answer to this questions. However, be aware that <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">package-name</span> <span class="pre">import</span> <span class="pre">*</span></code> overwrites any existing variable or other item in the script. Thus, only use <code class="docutils literal notranslate"><span class="pre">*</span></code> when you are aware of all contents of a module.</p>
+<p>There is no global answer to this question. However, be aware that <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">package-name</span> <span class="pre">import</span> <span class="pre">*</span></code> overwrites any existing variable or other items in the script. Thus, only use <code class="docutils literal notranslate"><span class="pre">*</span></code> when you are aware of all contents of a module or package.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pi</span> <span class="o">=</span> <span class="mf">9.112</span> <span class="c1"># define a float called pi </span>
@@ -908,12 +912,12 @@
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Define default import packages for <em>JupyterLab</em>’s <em>IPython</em> kernel (read more on the <a class="reference external" href="pyinstall.html#ipython"><em>Python</em> installation page</a>).</p>
+<p>Define default import packages for <em>JupyterLab</em>’s <em>IPython</em> kernel (read more in the <a class="reference internal" href="../python-basics/pyinstall.html#ipython-config"><span class="std std-ref">Python installation section</span></a>).</p>
 </div>
 </div>
 <div class="section" id="what-items-attributes-classes-functions-are-in-a-module">
 <h3>What items (attributes, classes, functions) are in a module?<a class="headerlink" href="#what-items-attributes-classes-functions-are-in-a-module" title="Permalink to this headline">¶</a></h3>
-<p>Sometimes we want to explore modules or to check variable attributes. This is achieved with the <code class="docutils literal notranslate"><span class="pre">dir()</span></code> command:</p>
+<p>Sometimes we want to explore modules or check variable attributes. This is achieved with the <code class="docutils literal notranslate"><span class="pre">dir()</span></code> command:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
@@ -928,9 +932,9 @@
 </div>
 </div>
 </div>
-<div class="section" id="create-a-module">
-<span id="make-mod"></span><h2>Create a Module<a class="headerlink" href="#create-a-module" title="Permalink to this headline">¶</a></h2>
-<p>In object-oriented programming and code factorization, writing own, new modules is an essential task. In order to write a new module, first create a new script. Then, open the new script and add some parameters and functions.</p>
+<div class="section" id="create-a-new-module">
+<span id="make-mod"></span><h2>Create a new Module<a class="headerlink" href="#create-a-new-module" title="Permalink to this headline">¶</a></h2>
+<p>In object-oriented programming and code factorization, writing custom, new modules is an essential task. To write a new module, first, create a new script. Then, open the new script and add some parameters and functions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># icecreamdialogue.py</span>
@@ -941,7 +945,7 @@
 </div>
 </div>
 </div>
-<p><a class="reference external" href="https://github.com/hydro-informatics/icecream/raw/master/single-scripts/icecreamdialogue.py"><code class="docutils literal notranslate"><span class="pre">icecreamdialogue.py</span></code></a> can now either be executed as script (nothing will happen visibly) or imported as module to access its variables (e.g., <code class="docutils literal notranslate"><span class="pre">icecreamdialogue.flavors</span></code>).</p>
+<p><a class="reference external" href="https://github.com/hydro-informatics/icecream/raw/master/single-scripts/icecreamdialogue.py"><code class="docutils literal notranslate"><span class="pre">icecreamdialogue.py</span></code></a> can now either be executed as a script (nothing will happen visibly) or imported as a module to access its variables (e.g., <code class="docutils literal notranslate"><span class="pre">icecreamdialogue.flavors</span></code>):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">icecreamdialogue</span> <span class="k">as</span> <span class="nn">icd</span>
@@ -954,7 +958,7 @@
 </div>
 <div class="section" id="make-script-stand-alone">
 <span id="standalone"></span><h3>Make Script Stand-alone<a class="headerlink" href="#make-script-stand-alone" title="Permalink to this headline">¶</a></h3>
-<p>As an alternative, we can append the call to items in <a class="reference external" href="https://github.com/hydro-informatics/icecream/raw/master/single-scripts/icecreamdialogue.py"><code class="docutils literal notranslate"><span class="pre">icecreamdialogue.py</span></code></a> in the script and run it as a stand-alone script by adding the called item in to a <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(__name__</span> <span class="pre">==</span> <span class="pre">'__main__'):</span></code> statement:</p>
+<p>As an alternative, we can append the call to items in <a class="reference external" href="https://github.com/hydro-informatics/icecream/raw/master/single-scripts/icecreamdialogue.py"><code class="docutils literal notranslate"><span class="pre">icecreamdialogue.py</span></code></a> in the script and run it as a stand-alone script by adding an <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(__name__</span> <span class="pre">==</span> <span class="pre">'__main__'):</span></code> block:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># icecreamdialogue_standalone.py</span>
@@ -971,18 +975,18 @@
 </div>
 </div>
 </div>
-<p>Now we can run <a class="reference external" href="https://github.com/hydro-informatics/icecream/raw/master/single-scripts/icecreamdialogue_standalone.py"><code class="docutils literal notranslate"><span class="pre">icecreamdialogue_standalone.py</span></code></a> in the terminal (e.g., <em>PyCharm</em>’s <em>Terminal</em> tab at the bottom of the window).</p>
+<p>Now we can run <a class="reference external" href="https://github.com/hydro-informatics/icecream/raw/master/single-scripts/icecreamdialogue_standalone.py"><code class="docutils literal notranslate"><span class="pre">icecreamdialogue_standalone.py</span></code></a> in a terminal (e.g., Linux Terminal, <em>PyCharm</em>’s <em>Terminal</em> tab at the bottom of the window, or in Atom using <code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code>).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">temp</span>\ <span class="n">python</span> <span class="n">icecreamdialogue_standalone</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Sepending on the definition of system variables used in the <em>Terminal</em> environment, the <em>Python</em> must be called with a different variable name then <code class="docutils literal notranslate"><span class="pre">python</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">python3</span></code> on many <em>Linux</em> platforms).</p>
+<p>Depending on the definition of system variables used in the <em>Terminal</em> environment, Python must be called with a different variable name than <code class="docutils literal notranslate"><span class="pre">python</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">python3</span></code> on some Linux platforms).</p>
 </div>
 </div>
 <div class="section" id="standalone-scripts-with-input-parameters">
 <span id="standaloneplus"></span><h3>Standalone Scripts with Input Parameters<a class="headerlink" href="#standalone-scripts-with-input-parameters" title="Permalink to this headline">¶</a></h3>
-<p>To make the script more flexible, we can define <code class="docutils literal notranslate"><span class="pre">scoops_wanted</span></code> as an input variable of a function.</p>
+<p>To make the script more flexible, we can define, for instance, <code class="docutils literal notranslate"><span class="pre">scoops_wanted</span></code> as an input variable of a function.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># icecreamdialogue_standalone_withinput.py</span>
 <span class="n">flavors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;vanilla&quot;</span><span class="p">,</span> <span class="s2">&quot;chocolate&quot;</span><span class="p">,</span> <span class="s2">&quot;bread&quot;</span><span class="p">]</span>
 <span class="n">price_scoops</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;two euros&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;three euros&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;your health&quot;</span><span class="p">}</span>
@@ -1000,24 +1004,24 @@
         <span class="n">dialogue</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
 </pre></div>
 </div>
-<p>Now we can run <code class="docutils literal notranslate"><span class="pre">icecreamdialogue_standalone_withinput.py</span></code> in the terminal.</p>
+<p>Now, we can run <code class="docutils literal notranslate"><span class="pre">icecreamdialogue_standalone_withinput.py</span></code> in a terminal.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">temp</span>\ <span class="n">python3</span> <span class="n">icecreamdialogue_standalone</span><span class="o">.</span><span class="n">py</span> <span class="mi">2</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="initialization-of-a-package-hierarchically-organized-module">
 <span id="make-pckg"></span><h3>Initialization of a Package (Hierarchically Organized Module)<a class="headerlink" href="#initialization-of-a-package-hierarchically-organized-module" title="Permalink to this headline">¶</a></h3>
-<p>Good practice involves that one script does not exceed 50-100 lines of code. In consequence, a package will most likely consist of multiple scripts that are stored in one folder and one master script serves for the initiation of the scripts. This master script is called <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> and <em>Python</em> will always invoke this script name in a package folder. Example structure of a module called <code class="docutils literal notranslate"><span class="pre">icecreamery</span></code>:</p>
+<p>Good practice involves that one script does not exceed 50-100 lines of code (except inline docs and multiline variables). In consequence, a package will most likely consist of multiple scripts that are stored in one folder and one core script serves for the initiation of the scripts. This core script is called <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> and Python will always invoke this script name in a package folder. Example structure of a module called <code class="docutils literal notranslate"><span class="pre">icecreamery</span></code>:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">icecreamery</span></code> (folder name)</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>   - package initiation <em>Python</em> script</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">icecreamdialogue.py</span></code>   - dialogue producing <em>Python</em> script</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">icecreamdialogue.py</span></code>  - dialogue producing <em>Python</em> script</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">icecream_maker.py</span></code>   - virtual ice cream producing <em>Python</em> script</p></li>
 </ul>
 </li>
 </ul>
-<p>In order to automatically invoke the two relevant scripts (sub-modules) of the <code class="docutils literal notranslate"><span class="pre">icecreamery</span></code> module, the <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> needs to include the following:</p>
+<p>To automatically invoke the two relevant scripts (sub-modules) of the <code class="docutils literal notranslate"><span class="pre">icecreamery</span></code> module, the <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> needs to include the following:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># __init__.py</span>
@@ -1041,7 +1045,7 @@
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;icecreamdialogue&#39;</span><span class="p">,</span> <span class="s1">&#39;icecream_maker&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>The full example of the <code class="docutils literal notranslate"><span class="pre">icecreamery_all</span></code> package is available in the <a class="reference external" href="https://github.com/hydro-informatics/icecream"><em>icecream</em></a> repository.</p>
+<p>ThThe full example of the <code class="docutils literal notranslate"><span class="pre">icecreamery_all</span></code> package is also available in an <a class="reference external" href="https://github.com/hydro-informatics/icecream">icecream</a> repository.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># example usage of the icecreamery package</span>
@@ -1054,16 +1058,16 @@
 </div>
 <div class="section" id="package-creation-summary">
 <h3>Package Creation Summary<a class="headerlink" href="#package-creation-summary" title="Permalink to this headline">¶</a></h3>
-<p>A hierachically organized package contains a <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file with an <code class="docutils literal notranslate"><span class="pre">__all__</span></code> list to invoke relevant module scripts. The structure of a module can be more complex than the above example list (e.g., with sub-folders). When you write a package, remember to use <a class="reference external" href="pystyle.html#libs">meaningful script and variable names</a>, and to document it.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Implement a custom <a class="reference external" href="pyerror.html#logging">logger</a> in your module with <code class="docutils literal notranslate"><span class="pre">logger</span> <span class="pre">=</span> <span class="pre">logging.getLogger(__name__)</span></code> (replace <code class="docutils literal notranslate"><span class="pre">__name__</span></code> with for example <code class="docutils literal notranslate"><span class="pre">my-module-log</span></code>).</p>
+<p>A hierarchically organized package contains an <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file with an <code class="docutils literal notranslate"><span class="pre">__all__</span></code> list to invoke relevant module scripts. The structure of a module can be more complex than the above example list (e.g., with sub-folders). When you write a package, consider using <a class="reference internal" href="pystyle.html#libs"><span class="std std-ref">meaningful script and variable names</span></a>, along with appropriate documentation.</p>
+<div class="admonition-exercise-with-logging admonition">
+<p class="admonition-title">Exercise with logging</p>
+<p>Implement a custom <a class="reference internal" href="pyerror.html#logging"><span class="std std-ref">logger</span></a> in your module with <code class="docutils literal notranslate"><span class="pre">logger</span> <span class="pre">=</span> <span class="pre">logging.getLogger(__name__)</span></code> (replace <code class="docutils literal notranslate"><span class="pre">__name__</span></code> with for example <code class="docutils literal notranslate"><span class="pre">my-module-log</span></code>).</p>
 </div>
 </div>
 </div>
 <div class="section" id="reload-re-import-a-package-or-module">
 <h2>Reload (Re-import) a Package or Module<a class="headerlink" href="#reload-re-import-a-package-or-module" title="Permalink to this headline">¶</a></h2>
-<p>Since <em>Python3</em> reloading a module requires to import the <code class="docutils literal notranslate"><span class="pre">importlib</span></code> module first. Reloading makes only sense if you are actively writing a new module. To reload any module type:</p>
+<p>Since Python3, reloading a module requires importing the <code class="docutils literal notranslate"><span class="pre">importlib</span></code> module first. Reloading makes only sense if you are actively writing a new module. To reload any module type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">importlib</span>
 <span class="n">importlib</span><span class="o">.</span><span class="n">reload</span><span class="p">(</span><span class="n">my</span><span class="o">-</span><span class="n">module</span><span class="p">)</span>
 </pre></div>

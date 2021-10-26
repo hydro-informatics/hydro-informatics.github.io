@@ -167,8 +167,8 @@ Alternatively, find the *OSGeo4W* from the *Windows* start menu and type `py3_en
 
 The import of *flusstools* should not return any import error. If there is an import error, find out the troublesome package's name and re-install it. In particular, the installation of *GDAL* may be challenging when working with `pip`, in particular on *Windows*. To learn more about the installation of *GDAL* visit the [Download > Binaries section on the developer's website](https://gdal.org/download.html#binaries).
 
-
-### Manage pip (Install, Uninstall, or Upgrade) Modules
+(pip-install-pckg)=
+### Manage pip (Install, Uninstall, or Upgrade) Modules or Packages
 
 More than 300,000 projects live on [pypi.org](https://pypi.org/) and there are packages available for many purposes. To find suitable packages visit [https://pypi.org/search/](https://pypi.org/search/). To install (i.e., add) one of these `pip`/`pip3` packages use:
 
@@ -265,7 +265,7 @@ The active environment corresponds to the environment that you are working in (e
 1. Activate the desired environment with `conda activate ENV-NAME` (e.g., `conda activate flussenv`)
 
 (install-pckg)=
-### Install Additional *Python* Packages
+### Install Additional Python Packages
 
 To install (more) {ref}`Python packages <sec-pypckg>` in a *conda* environment:
 
@@ -294,6 +294,7 @@ There are many more `conda` commands and the most important ones are summarized 
 
 To follow the contents of this eBook and run code cells, it is recommended to use {ref}`jupyter`, which can be installed locally or run it remotely by clicking on [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter) - the batch is implemented at the top of all jupyter notebook-based sections. To create projects, develop programs, or simply complete course assignments, it is recommended to use an Integrated Development Environment (*IDE*), such as {ref}`pycharm`.
 
+(ipython-config)=
 ### JupyterLab
 
 The following descriptions require that {ref}`jupyter` is installed for locally editing *Jupyter* notebooks (*.ipynb* files), *Python* scripts (*.py* files), and folders.
