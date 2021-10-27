@@ -209,7 +209,9 @@ Rich Text Format
   The proprietary Rich Text Format (RTF) wraps raw text in functional blocks that enable graphically flavored *Word*-like processors to identify document properties such as font size and type. Common RTFs are, for instance, *docx* or *odf* and enable exchanging text files between different *Word*-like processors on different operating systems.
 
 Saint-Venant equations
-  Cf. {term}`Shallow water equations`.
+  The French mathematician Adhémar Jean Claude Barré de Saint-Venant introduced dimensional simplifications of the {term}`Navier-Stokes equations`. For simple cross-sections, the one-dimensional (1d), cross-section averaged Saint-Venant equations can be applied, and represent the baseline for the Manning-Strickler Formula (cf. the {ref}`1d Hydraulics Python exercise <ex-1d-hydraulics>`). The two-dimensional (2d), depth-averaged Saint-Venant equations are more frequently referred to as the {term}`Shallow water equations`, which imply a hydrostatic pressure distribution {cite:p}`graf_hydraulique_2011`.
+
+  *French: Équations (de Barré) de Saint-Venant <br>German: Saint-Venant-Gleichungen*
 
 Sediment transport
   Fluvial sediment transport encompasses two modes of particle displacement: (1) suspended load and (2) bedload (see figure below). Finer particles with a weight that can be carried by the fluid (water) are transported as {term}`Suspended load`. Coarser particles rolling, sliding, and jumping on the channel bed are transported as {term}`Bedload`. There is third type of transport, the so-called wash load, which is finer than the coarse bed load, but too heavy (large) to be transported in suspension {cite:p}`einstein_bed-load_1950`. The units for sediment transport are for an integral flow cross-section kg$^3\cdot$s$^{-1}$ or per unit width kg$^3\cdot$s$^{-1}$m$^{-1}$.
@@ -229,7 +231,7 @@ Shallow water equations
 
   For instance, the depth-averaged shallow water equations are **not suited** for any pressurized flows (e.g., at weirs or in pipes). This eBook recommends to **use the shallow water equations** only when the water depth is smaller than a 1/20 times the characteristic wavelength (e.g., flood waves or in tsunami/oceanic models) and when the water depth is smaller than 1/10 of the wetted channel width. The application of the shallow water equations is featured in this eBook with the tutorials on 2d numerical modeling (i.e., in the {ref}`BASEMENT <basement2d>` and {ref}`Telemac2d <telemac2d-steady>` chapters).
 
-  *French: Équations (de Barré) de Saint-Venant <br>German: Flachwassergleichungen / Saint-Venant-Gleichungen*
+  *French: Équations (de Barré) de Saint-Venant <br>German: Flachwassergleichungen*
 
 Shields parameter
   The {cite:t}`shields_anwendung_1936` parameter $\tau_{x,cr}$ (in the literature also often named $\theta_{cr}$) is a dimensionless value of critical bed shear stress for sediment mobility. For this reason, the Shields parameter is also often referred to as **dimensionless critical bed shear stress**. Flow conditions and grain sizes with a {term}`Dimensionless bed shear stress` $\tau_x$ smaller than the Shields parameter curve are considered immobile. Vice versa, flow conditions and grains associated with a {term}`Dimensionless bed shear stress` larger than the Shields parameter are considered mobile. In fully turbulent flow, the Shields parameter can be taken as a constant value of approximately 0.047$\pm$0.15 {cite:p}`von_karman_mechanische_1930,kramer_modellgeschiebe_1932,smart_sedimenttransport_1983`. To evaluate if a grain is in motion, its {term}`Dimensionless bed shear stress` value is plotted against its dimensionless diameter $D_x$ in the so-called Shields diagram (also referred to as the *Hunter-Rouse* {cite:p}`rouse_critical_1965` diagram). $D_x$ is calculated for any grain with a diameter $D_{pq}$ (in m) as {cite:p}`einstein_bed-load_1950`:
