@@ -976,12 +976,12 @@
 <p>To write a message to the log file (and Python terminal), use</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">logging.debug(&quot;message&quot;)</span></code> for code diagnoses,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">logging.info(&quot;message&quot;)</span></code> for progress information (just like we used <code class="docutils literal notranslate"><span class="pre">print(&quot;message&quot;)</span></code> before,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">logging.info(&quot;message&quot;)</span></code> for progress information (just like we used <code class="docutils literal notranslate"><span class="pre">print(&quot;message&quot;)</span></code> before),</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">logging.warning(&quot;warning-message&quot;)</span></code> for unexpected event documentation (without the program being interrupted),</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">logging.error(&quot;error-message&quot;)</span></code> for errors that entail malfunction of the code, and</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">logging.critical(&quot;message&quot;)</span></code> for critical errors that may lead to program (Python) crashes.</p></li>
 </ul>
-<p><em>Warning</em>, <em>error</em>, and <em>critical</em> message should be implemented in exception raises (see above <code class="docutils literal notranslate"><span class="pre">try</span></code> - <code class="docutils literal notranslate"><span class="pre">except</span></code> statements).</p>
+<p><em>Warning</em>, <em>error</em>, and <em>critical</em> messages should be implemented in exception raises (see above <code class="docutils literal notranslate"><span class="pre">try</span></code> - <code class="docutils literal notranslate"><span class="pre">except</span></code> statements).</p>
 <p>At the end of a script, logging should be stopped with <code class="docutils literal notranslate"><span class="pre">logging.shutdown()</span></code> because otherwise the log file is locked by Python and the Python Kernel needs to be stopped to make modifications (e.g. re-moving) to the log file.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
