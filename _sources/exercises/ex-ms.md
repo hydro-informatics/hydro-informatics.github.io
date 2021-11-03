@@ -7,7 +7,7 @@ Write a basic script and use loops. Write a function and parse optional keyword 
 
 ```{admonition} Requirements
 :class: attention
-*Python* libraries: *math* (standard library). Read and understand how [loops](../jupyter/pyloop) and {ref}`chpt-functions` work in *Python*.
+*Python* libraries: *math* (standard library). Read and understand how {ref}`loops <sec-pyloop>` and {ref}`chpt-functions` work in Python.
 ```
 
 Get ready by cloning the exercise repository:
@@ -25,7 +25,7 @@ The Rhone River in Switzerland (source: Sebastian Schwindt 2014).
 
 (calc-1d-hyd)=
 ## Theoretical background
-The [Gauckler-Manning-Strickler formula](https://en.wikipedia.org/wiki/Manning_formula) {cite:p}`kundu_fluid_2008` (or *Strickler formula* in Europe) relates water depth and flow velocity of open channel flow based on the assumption of one-dimensional (cross-section-averaged) flow characteristics. The *Strickler formula* results from a heavy simplification of the [*Navier-Stokes*](https://en.wikipedia.org/wiki/Navier-Stokes_equations) and the [*continuity*](https://en.wikipedia.org/wiki/Continuity_equation) equations {cite:p}`kundu_fluid_2008`. Even though one-dimensional (1d) approaches have largely been replaced by at least two-dimensional (2d) numerical models today, the 1d Strickler formula is still frequently used as a first approximation for boundary conditions.
+The [Gauckler-Manning-Strickler formula](https://en.wikipedia.org/wiki/Manning_formula) {cite:p}`kundu_fluid_2008` (or *Strickler formula* in Europe) relates water depth and flow velocity of open channel flow based on the assumption of one-dimensional (cross-section-averaged) flow characteristics. The *Strickler formula* results from a heavy simplification of the {term}`Navier-Stokes equations` and the {term}`Continuity equation` {cite:p}`kundu_fluid_2008`. Even though one-dimensional (1d) approaches have largely been replaced by at least two-dimensional (2d) numerical models today, the 1d Strickler formula is still frequently used as a first approximation for boundary conditions.
 
 The basic shape of the *Strickler formula* is:
 
@@ -36,7 +36,7 @@ $$
 where:
 
 * $u$ is the cross-section-averaged flow velocity in (m/s)
-* $k_{st}$ is the *Strickler* coefficient in *fictional* (m$^{1/3}$/s) corresponding to the inverse of [*Manning's*](http://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm) $n_m$.
+* $k_{st}$ is the *Strickler* coefficient in *fictional* (m$^{1/3}$/s) corresponding to the inverse of [Manning's](http://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm) $n_m$.
 	- $k_{st}$ $\approx$ 20 ($n_m \approx$ 0.05) for rough, complex, and near-natural rivers
 	- $k_{st}$ $\approx$ 90 ($n_m \approx$ 0.011) for smooth, concrete-lined channels
 	- $k_{st}$ $\approx$ 26/$D_{90}^{1/6}$ (approximation based on the grain size $D_{90}$, where 90% of the surface sediment grains are smaller, according to [Meyer-Peter and Müller 1948](http://resolver.tudelft.nl/uuid:4fda9b61-be28-4703-ab06-43cdc2a21bd7)
@@ -91,11 +91,12 @@ In the code, only use *Manning's* $n_m$ and parse `kwargs.items()` to find out t
 The backward solution to the *Manning-Strickler* formula is a non-linear problem if the channel is not rectangular. This is why an iterative approximation is needed and here, we use the *Newton-Raphson* scheme {cite:p}`akanbi_model_1987` for this purpose (see also the {{ uni_portal }}).
 
 
-```{tip}
+```{admonition} Absolute Values
+:class: tip
 The absolute value of a parameter can be easily accessed through the built-in `abs()` method in *Python3*.
 ```
 
-Use a Newton-Raphson solution scheme {cite:p}`paine_open-channel_1992` to interpolate the water depth `h` for a given discharge $Q$ of a trapezoidal channel.
+Use a Newton-Raphson solution scheme {cite:p}`paine_open-channel_1992` to interpolate the water depth `h` for a given discharge `Q` of a trapezoidal channel.
 
 * Write a new function `def interpolate_h(Q, b, m, S, **kwargs):`
 * Define an initial guess of `h` (e.g., `h = 1.0`) and an initial error margin (e.g., `eps = 1.0`)

@@ -47,7 +47,7 @@ Sure, your code and workflow are error-free and of course, only the user makes m
 
 Your software is brilliant. To make the software even more brilliant, foolproof, and powerful, it is a great idea (actually: an absolute must) to get more authors on the development team. However, any other author likely has individual preferences when it comes to code standards. So make sure to set up clear rules for other contributors from the beginning. For example, define clear code conventions as explained in the {ref}`chpt-style` section.
 
-
+(markdown)=
 ## Markdown
 
 For writing a documentation of a code or project in web-publish-ready format, cross-platform typesetting is needed. For this purpose, *Markdown* represents a good choice (among others, such as {ref}`reStructuredText <rst>`). *Markdown* was created in 2004 and is a simple markup language that is intuitive and easy to learn. Markup languages structure the content of plain text documents regarding the way a document is displayed to end-users ({term}`Rich Text Format`). Other popular markup languages are for example [TeX](https://en.wikipedia.org/wiki/TeX) and [XML (Extensible Markup Language)](https://en.wikipedia.org/wiki/XML). *Markdown* became a popular tool for writing syntactically distinguishable computer text that is then translated into {term}`Rich Text Format` flavor. Here is an example of how *Markdown* works:

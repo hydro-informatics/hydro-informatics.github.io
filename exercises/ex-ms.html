@@ -241,7 +241,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/pynum.html">
-     Load and Write Basic Data Files
+     Data Files, NumPy &amp; Pandas
     </a>
    </li>
    <li class="toctree-l2">
@@ -773,7 +773,7 @@
 </div>
 <div class="attention admonition">
 <p class="admonition-title">Requirements</p>
-<p><em>Python</em> libraries: <em>math</em> (standard library). Read and understand how <a class="reference internal" href="../jupyter/pyloop.html"><span class="doc std std-doc">loops</span></a> and <a class="reference internal" href="../jupyter/pyfun.html#chpt-functions"><span class="std std-ref">Functions</span></a> work in <em>Python</em>.</p>
+<p><em>Python</em> libraries: <em>math</em> (standard library). Read and understand how <a class="reference internal" href="../jupyter/pyloop.html#sec-pyloop"><span class="std std-ref">loops</span></a> and <a class="reference internal" href="../jupyter/pyfun.html#chpt-functions"><span class="std std-ref">Functions</span></a> work in Python.</p>
 </div>
 <p>Get ready by cloning the exercise repository:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ecohydraulics</span><span class="o">/</span><span class="n">Exercise</span><span class="o">-</span><span class="n">ManningStrickler</span><span class="o">.</span><span class="n">git</span>
@@ -785,7 +785,7 @@
 </div>
 <div class="section" id="theoretical-background">
 <span id="calc-1d-hyd"></span><h2>Theoretical background<a class="headerlink" href="#theoretical-background" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Manning_formula">Gauckler-Manning-Strickler formula</a> <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id330">KC08</a>]</span> (or <em>Strickler formula</em> in Europe) relates water depth and flow velocity of open channel flow based on the assumption of one-dimensional (cross-section-averaged) flow characteristics. The <em>Strickler formula</em> results from a heavy simplification of the <a class="reference external" href="https://en.wikipedia.org/wiki/Navier-Stokes_equations"><em>Navier-Stokes</em></a> and the <a class="reference external" href="https://en.wikipedia.org/wiki/Continuity_equation"><em>continuity</em></a> equations <span id="id2">[<a class="reference internal" href="../documentation/bibliography.html#id330">KC08</a>]</span>. Even though one-dimensional (1d) approaches have largely been replaced by at least two-dimensional (2d) numerical models today, the 1d Strickler formula is still frequently used as a first approximation for boundary conditions.</p>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Manning_formula">Gauckler-Manning-Strickler formula</a> <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id330">KC08</a>]</span> (or <em>Strickler formula</em> in Europe) relates water depth and flow velocity of open channel flow based on the assumption of one-dimensional (cross-section-averaged) flow characteristics. The <em>Strickler formula</em> results from a heavy simplification of the <a class="reference internal" href="../documentation/glossary.html#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a> and the <a class="reference internal" href="../documentation/glossary.html#term-Continuity-equation"><span class="xref std std-term">Continuity equation</span></a> <span id="id2">[<a class="reference internal" href="../documentation/bibliography.html#id330">KC08</a>]</span>. Even though one-dimensional (1d) approaches have largely been replaced by at least two-dimensional (2d) numerical models today, the 1d Strickler formula is still frequently used as a first approximation for boundary conditions.</p>
 <p>The basic shape of the <em>Strickler formula</em> is:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -794,7 +794,7 @@ u = k_{st}\cdot S^{1/2} \cdot R_{h}^{2/3}
 <p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(u\)</span> is the cross-section-averaged flow velocity in (m/s)</p></li>
-<li><p><span class="math notranslate nohighlight">\(k_{st}\)</span> is the <em>Strickler</em> coefficient in <em>fictional</em> (m<span class="math notranslate nohighlight">\(^{1/3}\)</span>/s) corresponding to the inverse of <a class="reference external" href="http://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm"><em>Manning’s</em></a> <span class="math notranslate nohighlight">\(n_m\)</span>.</p>
+<li><p><span class="math notranslate nohighlight">\(k_{st}\)</span> is the <em>Strickler</em> coefficient in <em>fictional</em> (m<span class="math notranslate nohighlight">\(^{1/3}\)</span>/s) corresponding to the inverse of <a class="reference external" href="http://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm">Manning’s</a> <span class="math notranslate nohighlight">\(n_m\)</span>.</p>
 <ul>
 <li><p><span class="math notranslate nohighlight">\(k_{st}\)</span> <span class="math notranslate nohighlight">\(\approx\)</span> 20 (<span class="math notranslate nohighlight">\(n_m \approx\)</span> 0.05) for rough, complex, and near-natural rivers</p></li>
 <li><p><span class="math notranslate nohighlight">\(k_{st}\)</span> <span class="math notranslate nohighlight">\(\approx\)</span> 90 (<span class="math notranslate nohighlight">\(n_m \approx\)</span> 0.011) for smooth, concrete-lined channels</p></li>
@@ -837,7 +837,7 @@ Q = u \cdot A = k_{st} \cdot S^{1/2}\cdot R_{h}^{2/3} \cdot A
 </div>
 <div class="section" id="flexibilize">
 <h2>Flexibilize<a class="headerlink" href="#flexibilize" title="Permalink to this headline">¶</a></h2>
-<p>Make the function more flexible through the usage of optional <a class="reference internal" href="../jupyter/pyfun.html#kwargs"><span class="std std-ref">Keyword Arguments **kwargs</span></a> so that a user can optionally either provide the <span class="math notranslate nohighlight">\(D_{90}\)</span> (<code class="docutils literal notranslate"><span class="pre">D90</span></code>), the <em>Strickler</em> coefficient <span class="math notranslate nohighlight">\(k_{st}\)</span> (<code class="docutils literal notranslate"><span class="pre">k_st</span></code>), or <em>Manning’s</em> <span class="math notranslate nohighlight">\(n_m\)</span> (<code class="docutils literal notranslate"><span class="pre">n_m</span></code>).</p>
+<p>Make the function more flexible through the usage of optional <a class="reference internal" href="../jupyter/pyfun.html#kwargs"><span class="std std-ref">Optional Keyword Arguments **kwargs</span></a> so that a user can optionally either provide the <span class="math notranslate nohighlight">\(D_{90}\)</span> (<code class="docutils literal notranslate"><span class="pre">D90</span></code>), the <em>Strickler</em> coefficient <span class="math notranslate nohighlight">\(k_{st}\)</span> (<code class="docutils literal notranslate"><span class="pre">k_st</span></code>), or <em>Manning’s</em> <span class="math notranslate nohighlight">\(n_m\)</span> (<code class="docutils literal notranslate"><span class="pre">n_m</span></code>).</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>In the code, only use <em>Manning’s</em> <span class="math notranslate nohighlight">\(n_m\)</span> and parse <code class="docutils literal notranslate"><span class="pre">kwargs.items()</span></code> to find out the <code class="docutils literal notranslate"><span class="pre">kwargs</span></code> provided by a user.</p>
@@ -846,11 +846,11 @@ Q = u \cdot A = k_{st} \cdot S^{1/2}\cdot R_{h}^{2/3} \cdot A
 <div class="section" id="invert-the-function">
 <h2>Invert the function<a class="headerlink" href="#invert-the-function" title="Permalink to this headline">¶</a></h2>
 <p>The backward solution to the <em>Manning-Strickler</em> formula is a non-linear problem if the channel is not rectangular. This is why an iterative approximation is needed and here, we use the <em>Newton-Raphson</em> scheme <span id="id3">[<a class="reference internal" href="../documentation/bibliography.html#id11">AK87</a>]</span> for this purpose (see also the <a class="reference external" href="https://ilias3.uni-stuttgart.de">the University of Stuttgart’s ILIAS platform</a>).</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
+<div class="tip admonition">
+<p class="admonition-title">Absolute Values</p>
 <p>The absolute value of a parameter can be easily accessed through the built-in <code class="docutils literal notranslate"><span class="pre">abs()</span></code> method in <em>Python3</em>.</p>
 </div>
-<p>Use a Newton-Raphson solution scheme <span id="id4">[<a class="reference internal" href="../documentation/bibliography.html#id438">Pai92</a>]</span> to interpolate the water depth <code class="docutils literal notranslate"><span class="pre">h</span></code> for a given discharge <span class="math notranslate nohighlight">\(Q\)</span> of a trapezoidal channel.</p>
+<p>Use a Newton-Raphson solution scheme <span id="id4">[<a class="reference internal" href="../documentation/bibliography.html#id438">Pai92</a>]</span> to interpolate the water depth <code class="docutils literal notranslate"><span class="pre">h</span></code> for a given discharge <code class="docutils literal notranslate"><span class="pre">Q</span></code> of a trapezoidal channel.</p>
 <ul class="simple">
 <li><p>Write a new function <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">interpolate_h(Q,</span> <span class="pre">b,</span> <span class="pre">m,</span> <span class="pre">S,</span> <span class="pre">**kwargs):</span></code></p></li>
 <li><p>Define an initial guess of <code class="docutils literal notranslate"><span class="pre">h</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">h</span> <span class="pre">=</span> <span class="pre">1.0</span></code>) and an initial error margin (e.g., <code class="docutils literal notranslate"><span class="pre">eps</span> <span class="pre">=</span> <span class="pre">1.0</span></code>)</p></li>

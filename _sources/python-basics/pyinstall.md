@@ -292,7 +292,7 @@ There are many more `conda` commands and the most important ones are summarized 
 (python-ide-setup)=
 ## Setup Interfaces and IDEs
 
-To follow the contents of this eBook and run code cells, it is recommended to use {ref}`jupyter`, which can be installed locally or run it remotely by clicking on [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter) - the batch is implemented at the top of all jupyter notebook-based sections. To create projects, develop programs, or simply complete course assignments, it is recommended to use an Integrated Development Environment (*IDE*), such as {ref}`pycharm`.
+To follow the contents of this eBook and run code cells, it is recommended to use {ref}`jupyter`, which can be installed locally or run it remotely by clicking on [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter) - the batch is implemented at the top of all Jupyter notebook-based sections. To create projects, develop programs, or simply complete course assignments, it is recommended to use an Integrated Development Environment (*IDE*), such as {ref}`pycharm`.
 
 (ipython-config)=
 ### JupyterLab
