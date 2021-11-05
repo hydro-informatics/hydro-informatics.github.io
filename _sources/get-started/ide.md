@@ -3,9 +3,9 @@
 
 The teaching contents of this eBook build on so-called *Application Programming Interface*s **API**s) and *Integrated Development Environment*s (**IDE**s).
 
-An **API** represents a computing interface that enables interactions between multiple software intermediaries. Modular programming becomes easy with an API because it systematically hides complex information that is not necessarily needed to write code according to industry standards. For instance, an API can define the interface between an application (such as *Python* or *Word*) and an **Operating System** (**OS**) such as *Windows*, *Linux*, or *macOS* (also referred to as **platform**).
+An **API** represents a computing interface that enables interactions between multiple software intermediaries. Modular programming becomes easy with an API because it systematically hides complex information that is not necessarily needed to write code according to industry standards. For instance, an API can define the interface between an application (such as Python or *Word*) and an **Operating System** (**OS**) such as *Windows*, *Linux*, or *macOS* (also referred to as **platform**).
 
-An **IDE** enables the definition of a project to use, for example, a specific *Python* environment, and it enables robust coding by pointing out issues directly in the code, even before it ran for the first time. Powerful IDEs go even further and assist in documenting code with markdown (*.md* files) and directly pipe into *git* (see the {ref}`chpt-git`).
+An **IDE** enables the definition of a project to use, for example, a specific Python environment, and it enables robust coding by pointing out issues directly in the code, even before it ran for the first time. Powerful IDEs go even further and assist in documenting code with markdown (*.md* files) and directly pipe into *git* (see the {ref}`chpt-git`).
 
 ```{admonition} Which IDE to choose?
 :class: tip
@@ -13,7 +13,7 @@ The answer to this question depends on the platform you are using (e.g., *Window
 
 For writing Python software itself, the Author's preference is in general {ref}`Atom <install-atom>` (optionally and on Windows only: {ref}`PyCharm <pycharm>`). To test and run Python code (software) locally,  for ***Windows* users, the installation of {ref}`anaconda` is almost indispensable**. *Linux* users will be mostly fine with their system setup without the need to install *Anaconda* or *PyCharm*.
 
-For code documentation, examples, and the best learning experience in the *Python* courses featured in this eBook, consider installing {ref}`jupyter` locally. *Windows* users find instructions in the {ref}`install-jupyter-windows` section. *Linux* users find instructions in the {ref}`install-jupyter-linux` section.
+For code documentation, examples, and the best learning experience in the Python courses featured in this eBook, consider installing {ref}`jupyter` locally. *Windows* users find instructions in the {ref}`install-jupyter-windows` section. *Linux* users find instructions in the {ref}`install-jupyter-linux` section.
 
 **Once you have an IDE installed, carefully read the {ref}`instructions for installing Python <install-python>`.**
 ```
@@ -21,7 +21,7 @@ For code documentation, examples, and the best learning experience in the *Pytho
 (anaconda)=
 # Anaconda
 
-***Anaconda* is the favorite solution for** working with the *Python* tutorials in this eBook on **Windows**. *Linux* users may want to install the text and code editor {ref}`install-atom` and optionally {ref}`install-jupyter-linux`.
+***Anaconda* is the favorite solution for** working with the Python tutorials in this eBook on **Windows**. *Linux* users may want to install the text and code editor {ref}`install-atom` and optionally {ref}`install-jupyter-linux`.
 
 ## Anaconda Navigator
 
@@ -29,11 +29,11 @@ For code documentation, examples, and the best learning experience in the *Pytho
 Anaconda works well on Windows, but Linux (or also macOS) users will have a better experience with advanced text editors such as {ref}`Atom <install-atom>`.
 ```
 
-*Anaconda* is a *Python* and *R* distribution that enables the usage of a couple of IDEs such as [*PyCharm*](https://www.jetbrains.com/pycharm/), [*Spyder*](https://www.spyder-ide.org/), or [*JupyterLab (Notebook)*](https://jupyter.org/).
+*Anaconda* is a Python and *R* distribution that enables the usage of a couple of IDEs such as [*PyCharm*](https://www.jetbrains.com/pycharm/), [*Spyder*](https://www.spyder-ide.org/), or [*JupyterLab (Notebook)*](https://jupyter.org/).
 
 The very first step to getting started with *Anaconda* consists in downloading and installing [*Anaconda*](https://www.anaconda.com/products/individual) where students may use the individual license for educational training purposes (note that a commercial license needs to be purchased for profit organizations). On Windows, *Anaconda* should be installed in the *LOCAL* user folder (e.g., *C:\users\<your-user-name>\AppData\Local*). *Linux* or *macOS* users find download and installation instructions directly at the developer's website, tailored for their specific distribution, even though they might be better of with {ref}`install-atom`.
 
-After the successful installation of *Anaconda*, IDEs for *Python* programming or *markdown* editing can be directly installed by launching the **Anaconda navigator**. **`conda`** environments can be created later, following the instructions in the {ref}`conda-env` section.
+After the successful installation of *Anaconda*, IDEs for Python programming or *markdown* editing can be directly installed by launching the **Anaconda navigator**. **`conda`** environments can be created later, following the instructions in the {ref}`conda-env` section.
 
 ## Miniconda
 
@@ -48,7 +48,7 @@ To work with *Jupyter* notebooks (open, create, or modify), type `jupyter lab` (
 (pycharm)=
 ## PyCharm with Anaconda
 
-*Jetbrains* [*PyCharm (Community Edition)*](https://www.jetbrains.com/pycharm/) is an open-access IDE for non-commercial use. Alternatives are [*Spyder IDE*](https://www.spyder-ide.org/) (for *Python*) or [*RStudio*](https://rstudio.com/) (*R* and *Python*). However, before launching any project in an IDE, the installation of an interpreter (e.g., *Python* or *R*) is necessary (we already installed an interpreter with *Anaconda*).
+*Jetbrains* [*PyCharm (Community Edition)*](https://www.jetbrains.com/pycharm/) is an open-access IDE for non-commercial use. Alternatives are [*Spyder IDE*](https://www.spyder-ide.org/) (for Python) or [*RStudio*](https://rstudio.com/) (*R* and Python). However, before launching any project in an IDE, the installation of an interpreter (e.g., Python or *R*) is necessary (we already installed an interpreter with *Anaconda*).
 
 *PyCharm* is available as an *Anaconda Navigator* (i.e., *Anaconda*'s graphical user interface) module. To enable *PyCharm* in *Anaconda*, download *PyCharm* from the [developer's website](https://www.jetbrains.com/pycharm/promo/anaconda/) and install *PyCharm*. A reboot may be required after the installation.
 
@@ -63,7 +63,7 @@ After the installation of *PyCharm* for *Anaconda*, open *Anaconda Navigator*:
   - *Project Interpreter* - Check the `Existing interpreter` box and select an existing interpreter.
   - Click on the `Create` button.
 
-All set - you are ready to edit *Python* (`.py`), markdown (`.md` for documentation), and other file types.
+All set - you are ready to edit Python (`.py`), markdown (`.md` for documentation), and other file types.
 
 ```{admonition} Finalize the Installation of Python
 :class: tip
@@ -75,13 +75,13 @@ All set - you are ready to edit *Python* (`.py`), markdown (`.md` for documentat
 
 *Jupyter* is a spin-off of [*IPython*](https://ipython.org/), which is "a rich architecture for interactive computing".
 
-*JupyterLab* is a product of the nonprofit organization [*Project Jupyter*](https://jupyter.org/), which develops "open-source software, open-standards, and services for interactive computing across dozens of programming languages". A *Jupyter* notebook (*.ipynb* file) enables the combination of markdown text blocks with executable code blocks. Essentially, a *Jupyter* notebook is a *JavaScript Object Notation* ([*JSON*](https://www.json.org/json-en.html) file. The structure of *JSON* files enables the easy export of *.ipynb*  notebooks to many other open standard output formats such as *HTML*, [*LaTeX*](https://latex-project.org/), *markdown*, *Python*, *presentation slides*, or *PDF*.
+*JupyterLab* is a product of the nonprofit organization [*Project Jupyter*](https://jupyter.org/), which develops "open-source software, open-standards, and services for interactive computing across dozens of programming languages". A *Jupyter* notebook (*.ipynb* file) enables the combination of markdown text blocks with executable code blocks. Essentially, a *Jupyter* notebook is a *JavaScript Object Notation* ([*JSON*](https://www.json.org/json-en.html) file. The structure of *JSON* files enables the easy export of *.ipynb*  notebooks to many other open standard output formats such as *HTML*, [*LaTeX*](https://latex-project.org/), *markdown*, Python, *presentation slides*, or *PDF*.
 The *Jupyter* kernels support the three core programming languages **Ju**lia, **Pyt**hon and **R**, and many more *Jupyter* kernels (currently 49) for other programming languages exist.
 
 
 ```{admonition} Working with Jupyter
 :class: tip
-Get familiar with *JupyterLab*, by creating files, adding new *Markdown* or *Python* cells, and running cells. The essentials of *markdown* are explained in the {ref}`Markdown and Documentation <markdown>` section (short read). Learning *Python* is more than a short read and the {ref}`Python Basics chapter<python>` provides some insights (takes time).
+Get familiar with *JupyterLab*, by creating files, adding new *Markdown* or Python cells, and running cells. The essentials of *markdown* are explained in the {ref}`Markdown <markdown>` section (short read). Learning Python is more than a short read and the {ref}`Python Basics chapter<python>` provides some insights (takes time).
 ```
 
 (install-jupyter-windows)=
@@ -94,7 +94,7 @@ Get familiar with *JupyterLab*, by creating files, adding new *Markdown* or *Pyt
 1. Open *Anaconda Navigator* and make sure to be in the *Home* tab.
 1. Look for *JupyterLab* and click on the *Install* button (if already installed, there is only a *Launch* button visible).
 1. After successful installation, open *JupyterLab*, by clicking on the *Launch* button.
-1. *JupyterLab* opens in the default web browser, where *Jupyter* notebooks (*.ipynb*) or *Python* files can be created and edited.
+1. *JupyterLab* opens in the default web browser, where *Jupyter* notebooks (*.ipynb*) or Python files can be created and edited.
 
 
 ### Via Anaconda Prompt (Recommended)
@@ -119,7 +119,7 @@ Many additional features for *JupyterLab* are available through [*nbextensions*]
 conda install -c conda-forge jupyter_contrib_nbextensions
 ```
 
-When reading through the *Python* tutorials on this website, you will probably find one or another spelling mistake (please <a href="mailto:sebastian.schwindt[AT]iws.uni-stuttgart.de?subject=HYPY%20Spelling%20mistake">report mistakes!</a>). In particular, the *Python* pages are affected, because they were created with *Jupyter Lab*, where there is no spell checker pre-installed. To avoid at least the most unpleasant errors you can install a spellchecker in *jupyter*. One solution is to install [*@ijmbbarr*](https://github.com/ijmbarr/jupyterlab_spellchecker)s spellchecker, which requires installing *nodejs* (through *Anaconda Prompt* and in addition to *nbextensions*):
+When reading through the Python tutorials on this website, you will probably find one or another spelling mistake (please <a href="mailto:sebastian.schwindt[AT]iws.uni-stuttgart.de?subject=HYPY%20Spelling%20mistake">report mistakes!</a>). In particular, the Python sections may be affected because they were created with *Jupyter Lab*, where there is no spell checker pre-installed. To avoid at least the most unpleasant errors you can install a spellchecker in *jupyter*. One solution is to install [*@ijmbbarr*](https://github.com/ijmbarr/jupyterlab_spellchecker)s spellchecker, which requires installing *nodejs* (through *Anaconda Prompt* and in addition to *nbextensions*):
 
 ```
 conda install -c conda-forge nodejs
@@ -169,7 +169,7 @@ Closing *Terminal* will also terminate the localhost that runs *JupyterLab*. Thu
 (install-atom)=
 # Atom
 
-*Atom* is a hackable text editor that is compatible with almost any programming language. While its bare installation has little functionality, the omni-compatibility can be enabled by installing desired packages (e.g., for *Python*, *Markdown*, or *LaTex*). Another big advantage of *Atom* is the availability of powerful spell checker packages.
+*Atom* is a hackable text editor that is compatible with almost any programming language. While its bare installation has little functionality, the omni-compatibility can be enabled by installing desired packages (e.g., for Python, *Markdown*, or *LaTex*). Another big advantage of *Atom* is the availability of powerful spell checker packages.
 
 ## Installation
 
@@ -212,9 +212,9 @@ The following (additional) packages are useful for working with the contents of 
 * `language-restructuredtext` (optional) for writing documentations with [reStructuredText](https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html).
 * `language-tex` (optional) to write reports or presentations with [LaTex](https://www.latex-project.org/)
 * `platformio-ide-terminal` (*platformio-ide*) adds a terminal window to *Atom*
-* `python-docstring` facilitates inline documentation of *Python* code
-* `python-requirements` enables to install required packages for running *Python* code
-* `script` enables to run *Python* and many other code types ([read the docs](https://atom.io/packages/script)); after the installation, running a code (*Python*) file can be triggered by clicking on the **Packages** top menu > **Script**  > **Run Script**.
+* `python-docstring` facilitates inline documentation of Python code
+* `python-requirements` enables to install required packages for running Python code
+* `script` enables to run Python and many other code types ([read the docs](https://atom.io/packages/script)); after the installation, running a code (Python) file can be triggered by clicking on the **Packages** top menu > **Script**  > **Run Script**.
 
 ## Spell Checking
 
@@ -246,4 +246,4 @@ Read more at [atom.io](https://atom.io/packages/spell-check) for more informatio
 (atom-python)=
 ## Enable (Python) Console
 
-While the `script` package enables running a *Python* script, it may be desirable to have a built-in *Python* console window running in *Atom*. To this end, the `platformio-ide-terminal` package tweaks into the system's default terminal (*Terminal* on *Linux* or *PowerShell* on *Windows 10*), which can run an existing installation of *Python* (i.e., *Python* must be installed on the system in some form). Depending on your platform, follow the instructions in the {ref}`atom-setup` section.
+While the `script` package enables running a Python script, it may be desirable to have a built-in Python console window running in *Atom*. To this end, the `platformio-ide-terminal` package tweaks into the system's default terminal (*Terminal* on *Linux* or *PowerShell* on *Windows 10*), which can run an existing installation of Python (i.e., Python must be installed on the system in some form). Depending on your platform, follow the instructions in the {ref}`atom-setup` section.
