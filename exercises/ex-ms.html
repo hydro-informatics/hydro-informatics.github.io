@@ -105,6 +105,11 @@
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/principles.html">
+     Principles
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../lectures/lectures.html">
      Lectures and Exercises
     </a>
@@ -798,7 +803,7 @@ u = k_{st}\cdot S^{1/2} \cdot R_{h}^{2/3}
 <ul>
 <li><p><span class="math notranslate nohighlight">\(k_{st}\)</span> <span class="math notranslate nohighlight">\(\approx\)</span> 20 (<span class="math notranslate nohighlight">\(n_m \approx\)</span> 0.05) for rough, complex, and near-natural rivers</p></li>
 <li><p><span class="math notranslate nohighlight">\(k_{st}\)</span> <span class="math notranslate nohighlight">\(\approx\)</span> 90 (<span class="math notranslate nohighlight">\(n_m \approx\)</span> 0.011) for smooth, concrete-lined channels</p></li>
-<li><p><span class="math notranslate nohighlight">\(k_{st}\)</span> <span class="math notranslate nohighlight">\(\approx\)</span> 26/<span class="math notranslate nohighlight">\(D_{90}^{1/6}\)</span> (approximation based on the grain size <span class="math notranslate nohighlight">\(D_{90}\)</span>, where 90% of the surface sediment grains are smaller, according to <a class="reference external" href="http://resolver.tudelft.nl/uuid:4fda9b61-be28-4703-ab06-43cdc2a21bd7">Meyer-Peter and Müller 1948</a></p></li>
+<li><p><span class="math notranslate nohighlight">\(k_{st}\)</span> <span class="math notranslate nohighlight">\(\approx\)</span> 26/<span class="math notranslate nohighlight">\(D_{90}^{1/6}\)</span> (approximation based on the grain size <span class="math notranslate nohighlight">\(D_{90}\)</span>, where 90% of the surface sediment grains are smaller, according to <span id="id3">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span></p></li>
 </ul>
 </li>
 <li><p><span class="math notranslate nohighlight">\(S\)</span> is the hypothetic energy slope (m/m), which can be assumed to correspond to the channel slope for steady, uniform flow conditions.</p></li>
@@ -837,7 +842,7 @@ Q = u \cdot A = k_{st} \cdot S^{1/2}\cdot R_{h}^{2/3} \cdot A
 </div>
 <div class="section" id="flexibilize">
 <h2>Flexibilize<a class="headerlink" href="#flexibilize" title="Permalink to this headline">¶</a></h2>
-<p>Make the function more flexible through the usage of optional <a class="reference internal" href="../jupyter/pyfun.html#kwargs"><span class="std std-ref">Optional Keyword Arguments **kwargs</span></a> so that a user can optionally either provide the <span class="math notranslate nohighlight">\(D_{90}\)</span> (<code class="docutils literal notranslate"><span class="pre">D90</span></code>), the <em>Strickler</em> coefficient <span class="math notranslate nohighlight">\(k_{st}\)</span> (<code class="docutils literal notranslate"><span class="pre">k_st</span></code>), or <em>Manning’s</em> <span class="math notranslate nohighlight">\(n_m\)</span> (<code class="docutils literal notranslate"><span class="pre">n_m</span></code>).</p>
+<p>Make the function more flexible through the implementation of (optional) <a class="reference internal" href="../jupyter/pyfun.html#kwargs"><span class="std std-ref"> keyword arguments</span></a> so that a user can optionally either provide the <span class="math notranslate nohighlight">\(D_{90}\)</span> (<code class="docutils literal notranslate"><span class="pre">D90</span></code>), the <em>Strickler</em> coefficient <span class="math notranslate nohighlight">\(k_{st}\)</span> (<code class="docutils literal notranslate"><span class="pre">k_st</span></code>), or <em>Manning’s</em> <span class="math notranslate nohighlight">\(n_m\)</span> (<code class="docutils literal notranslate"><span class="pre">n_m</span></code>).</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>In the code, only use <em>Manning’s</em> <span class="math notranslate nohighlight">\(n_m\)</span> and parse <code class="docutils literal notranslate"><span class="pre">kwargs.items()</span></code> to find out the <code class="docutils literal notranslate"><span class="pre">kwargs</span></code> provided by a user.</p>
@@ -845,12 +850,12 @@ Q = u \cdot A = k_{st} \cdot S^{1/2}\cdot R_{h}^{2/3} \cdot A
 </div>
 <div class="section" id="invert-the-function">
 <h2>Invert the function<a class="headerlink" href="#invert-the-function" title="Permalink to this headline">¶</a></h2>
-<p>The backward solution to the <em>Manning-Strickler</em> formula is a non-linear problem if the channel is not rectangular. This is why an iterative approximation is needed and here, we use the <em>Newton-Raphson</em> scheme <span id="id3">[<a class="reference internal" href="../documentation/bibliography.html#id11">AK87</a>]</span> for this purpose (see also the <a class="reference external" href="https://ilias3.uni-stuttgart.de">the University of Stuttgart’s ILIAS platform</a>).</p>
+<p>The backward solution to the <em>Manning-Strickler</em> formula is a non-linear problem if the channel is not rectangular. This is why an iterative approximation is needed and here, we use the <em>Newton-Raphson</em> scheme <span id="id4">[<a class="reference internal" href="../documentation/bibliography.html#id11">AK87</a>]</span> for this purpose (see also the <a class="reference external" href="https://ilias3.uni-stuttgart.de">the University of Stuttgart’s ILIAS platform</a>).</p>
 <div class="tip admonition">
 <p class="admonition-title">Absolute Values</p>
 <p>The absolute value of a parameter can be easily accessed through the built-in <code class="docutils literal notranslate"><span class="pre">abs()</span></code> method in <em>Python3</em>.</p>
 </div>
-<p>Use a Newton-Raphson solution scheme <span id="id4">[<a class="reference internal" href="../documentation/bibliography.html#id438">Pai92</a>]</span> to interpolate the water depth <code class="docutils literal notranslate"><span class="pre">h</span></code> for a given discharge <code class="docutils literal notranslate"><span class="pre">Q</span></code> of a trapezoidal channel.</p>
+<p>Use a Newton-Raphson solution scheme <span id="id5">[<a class="reference internal" href="../documentation/bibliography.html#id438">Pai92</a>]</span> to interpolate the water depth <code class="docutils literal notranslate"><span class="pre">h</span></code> for a given discharge <code class="docutils literal notranslate"><span class="pre">Q</span></code> of a trapezoidal channel.</p>
 <ul class="simple">
 <li><p>Write a new function <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">interpolate_h(Q,</span> <span class="pre">b,</span> <span class="pre">m,</span> <span class="pre">S,</span> <span class="pre">**kwargs):</span></code></p></li>
 <li><p>Define an initial guess of <code class="docutils literal notranslate"><span class="pre">h</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">h</span> <span class="pre">=</span> <span class="pre">1.0</span></code>) and an initial error margin (e.g., <code class="docutils literal notranslate"><span class="pre">eps</span> <span class="pre">=</span> <span class="pre">1.0</span></code>)</p></li>
