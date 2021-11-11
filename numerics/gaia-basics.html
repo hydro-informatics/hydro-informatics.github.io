@@ -105,6 +105,11 @@
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/principles.html">
+     Principles
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../lectures/lectures.html">
      Lectures and Exercises
     </a>
@@ -757,8 +762,8 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#bedload-or-suspended-load">
-   Bedload or Suspended Load?
+  <a class="reference internal nav-link" href="#bedload-vs-suspended-load">
+   Bedload vs. Suspended Load
   </a>
  </li>
 </ul>
@@ -988,8 +993,8 @@ View the cross-comparison Table of Boundary variables and types in Telemac2d/3d 
 <p>The prescription of time-dependent solid flowrates with a liquid boundaries file can be achieved with <code class="docutils literal notranslate"><span class="pre">LIEBOR=5</span></code> and following the descriptions in the <a class="reference internal" href="telemac2d-unsteady.html#tm2d-liq-file"><span class="std std-ref">unsteady (quasi-steady) tutorial</span></a>.</p>
 <p>The below boxes feature the setup of the <strong>boundaries.cli</strong> and <strong>boundaries-gaia.cli</strong> files for this tutorial according to the above descriptions.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="3a804d50-8b43-4cb4-90fe-39a1ac046ce6" name="0a857d09-92b2-427d-8f91-72fd903e0dd7" type="radio">
-</input><label class="tabbed-label" for="3a804d50-8b43-4cb4-90fe-39a1ac046ce6">
+<input checked="checked" id="d1cc5793-e848-4ad1-965c-fa9c8254783c" name="a03052a3-67a3-4738-baa6-b7dbef38eb7a" type="radio">
+</input><label class="tabbed-label" for="d1cc5793-e848-4ad1-965c-fa9c8254783c">
 Upstream boundary</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">go</span> <span class="n">to</span> <span class="n">line</span> <span class="mi">7</span><span class="p">]</span>
 <span class="mi">4</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>         <span class="mi">144</span>           <span class="mi">7</span>   <span class="c1"># upstream (144 - 32)</span>
@@ -1014,8 +1019,8 @@ Upstream boundary</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="4f15b529-b3a9-4b21-bcfc-44ce5b66d306" name="0a857d09-92b2-427d-8f91-72fd903e0dd7" type="radio">
-</input><label class="tabbed-label" for="4f15b529-b3a9-4b21-bcfc-44ce5b66d306">
+<input id="77f60179-d92d-4d29-8008-572a6d0b37f2" name="a03052a3-67a3-4738-baa6-b7dbef38eb7a" type="radio">
+</input><label class="tabbed-label" for="77f60179-d92d-4d29-8008-572a6d0b37f2">
 Downstream boundary</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">go</span> <span class="n">to</span> <span class="n">line</span> <span class="mi">312</span><span class="p">]</span>
 <span class="mi">5</span> <span class="mi">4</span> <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>          <span class="mi">34</span>         <span class="mi">312</span>   <span class="c1"># downstream (34 - 5)</span>
@@ -1097,8 +1102,8 @@ transport mechanisms that apply to the simulation. This tutorial deals with non-
 <p>Gaia derives mixed cohesive and non-cohesive sediment beds from the composition of the active layer. Non-cohesive sediment in the form of gravel and cobble is transported as bedload and sand is transported in suspension. Cohesive sediment is purely transported as suspended load. The <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a> provides more information on the transport of mixed (cohesive and non-cohesive) sediment in section 3.2.1. In addition, riverbed consolidation can be simulated by defining the <strong>BED MODEL</strong> keyword with <code class="docutils literal notranslate"><span class="pre">2</span></code> (cf. <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a>, section 3.3).</p>
 </div>
 </div>
-<div class="section" id="bedload-or-suspended-load">
-<h2>Bedload or Suspended Load?<a class="headerlink" href="#bedload-or-suspended-load" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="bedload-vs-suspended-load">
+<h2>Bedload vs. Suspended Load<a class="headerlink" href="#bedload-vs-suspended-load" title="Permalink to this headline">¶</a></h2>
 <p>Sediment transport modeling quickly becomes computationally expensive. Therefore, it is important to be clear about the primary type of sediment transport mode and to activate only the most important phenomenon (i.e., either <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> or <a class="reference internal" href="../documentation/glossary.html#term-Suspended-load"><span class="xref std std-term">Suspended load</span></a>). For this reason, answer the question <em><strong>What type of sediment transport phenomenon is predominant in the model?</strong></em> If you are not sure about the answer to this question, revise the section on <a class="reference internal" href="gaia-coupling.html#gaia-seditrans"><span class="std std-ref">sediment transport modes</span></a>. In addition, here are some practice-oriented suggestions:</p>
 <ul class="simple">
 <li><p><strong>Bedload only</strong>: Modeling suspended load in a gravel-cobble bed river with a sand content (i.e., the sediment is mostly larger than 2 mm) of less than 5-10% is not purposeful and the definition <code class="docutils literal notranslate"><span class="pre">SUSPENSION</span> <span class="pre">FOR</span> <span class="pre">ALL</span> <span class="pre">SANDS</span> <span class="pre">:</span> <span class="pre">NO</span></code> should be used. In this case, the <a class="reference internal" href="gaia-bedload.html#gaia-bl"><span class="std std-ref">section on bedload modeling</span></a> provides all necessary information and the suspended load section can be skipped.</p></li>

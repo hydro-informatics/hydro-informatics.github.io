@@ -47,6 +47,8 @@ Fully coupled model
 
   *Application range:* Rapid morphodynamic processes, such as hyper-concentrated sediment-laden flows or debris flow.
 
+
+
 Decoupled model
 : A decoupled model solves morphodynamic (i.e., the {term}`Exner equation`) not iteratively with, and optionally, not for every hydrodynamic timestep. Thus, a user-defined frequency calculation frequency for morphodynamics can be set, such as every 2$^{nd}$ or 10$^{th}$ hydrodynamic timestep. Therefore, the active channel bottom is considered fixed when hydrodynamic variables are solved and bed elevation (or {term}`Topographic change`) is calculated at a user-defined frequency and separately (i.e., *decoupled* or *asynchronous*) from hydrodynamics.
 

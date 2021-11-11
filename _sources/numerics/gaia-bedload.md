@@ -64,13 +64,18 @@ Gaia provides different formulae for calculating bedload transport, which are pa
 
 ## Formulae and Parameters
 
-{term}`Bedload` is typically designated with $q_b$ (in kg$\cdot$s$^{-1}\cdot$m$^{-1}$) and accounts for particulate transport in the form of the displacement of rolling, sliding, and/or jumping coarse particles. In river hydraulics, the so-called {term}`Dimensionless bed shear stress`, also referred to as {term}`Shields parameter` {cite:p}`shields_anwendung_1936`, is often used as a threshold value for the mobilization of sediment from the riverbed. TELEMAC and Gaia build on a dimensionless expression of bedload transport according to {cite:t}`einstein_bed-load_1950`:
+{term}`Bedload` is typically designated with $q_b$ (in kg$\cdot$s$^{-1}\cdot$m$^{-1}$ i.e. weight per unit time and width) and accounts for particulate transport in the form of the displacement of rolling, sliding, and/or jumping coarse particles. In river hydraulics, the so-called {term}`Dimensionless bed shear stress`, also referred to as {term}`Shields parameter` {cite:p}`shields_anwendung_1936`, is often used as a threshold value for the mobilization of sediment from the riverbed. TELEMAC and Gaia build on a dimensionless expression of bedload transport intensity according to {cite:t}`einstein_bed-load_1950`:
 
 $$
-\Phi_b = \frac{q_b}{\rho_{w} \sqrt{(s - 1) g D^{3}_{pq}}}
+\Phi_b = \frac{q_b}{\rho_{s} \sqrt{(s - 1) g D^{3}_{pq}}}
 $$ (eq-phi-gaia)
 
-where $\rho_{w}$ is the density of water; $s$ is the ratio of sediment grain and water density (typically 2.68) {cite:p}`schwindt_hydro-morphological_2017`; $g$ is gravitational acceleration; and $D_{pq}$ is the characteristic grain diameter of the sediment class (cf. {ref}`gaia-sed`). Note that the dimensionless expression $\Phi$ and the dimensional expression $q_{b}$ represent unit bedload (i.e., bedload normalized by a unit of width). **Gaia outputs are dimensional and correspond to $q_{b}$** (recall the **VARIABLES FOR GRAPHIC PRINTOUTS** definitions in the {ref}`General Parameters section <gaia-gen>`) where the unit of width corresponds to the edge length of a numerical mesh cell over which the mass fluxes are calculated.
+where $\rho_{s}$ is the density of sediment grains; $s$ is the ratio of sediment grain and water density (typically 2.68) {cite:p}`schwindt_hydro-morphological_2017`; $g$ is gravitational acceleration; and $D_{pq}$ is the characteristic grain diameter of the sediment class (cf. {ref}`gaia-sed`). Note that the dimensionless expression $\Phi$ and the dimensional expression $q_{b}$ represent unit bedload (i.e., bedload normalized by a unit of width). **Gaia outputs are dimensional and correspond to $q_{b}$** (recall the **VARIABLES FOR GRAPHIC PRINTOUTS** definitions in the {ref}`General Parameters section <gaia-gen>`) where the unit of width corresponds to the edge length of a numerical mesh cell over which the mass fluxes are calculated.
+
+```{admonition} Comment on the Original Einstein (1950) Expression
+:class: dropdown
+The original equation for $\Phi_b$ can be found on page 34 (Equation 42) in {cite:t}`einstein_bed-load_1950`. This formula involves an additional division by the gravitational acceleration $g$, which does not appear in later references to the Einstein expression of $\Phi_b$ and would also not result in a dimensionless term. For this reason, Equation {eq}`eq-phi-gaia` is adapted here.
+```
 
 Equation {eq}`eq-phi-gaia` expresses only the dimensional conversion for bedload transport (i.e., the way how dimensions are removed or added to sediment transport). In fact, this is only the first step to solve the other side of a bedload equation using a (semi-) empirical formula. To calculate $\Phi_{b}$, Gaia provides a set of (semi-) empirical formulae, which can be modified with user Fortran files and defined in the Gaia steering file with the **BED-LOAD TRANSPORT FORMULA FOR ALL SANDS** `integer` keyword. {numref}`Table %s <tab-gaia-bl-formulae>` lists possible integers for the keyword to define a bedload transport formulae, including references to original publications, formula application ranges, and the names of the Fortran source files for modifications.
 
@@ -81,7 +86,7 @@ Equation {eq}`eq-phi-gaia` expresses only the dimensional conversion for bedload
 :name: tab-gaia-bl-formulae
 "(no.)", "(ref.)", "(10$^{-3}$m)", "(-); (-); (m); (m/s)", "(file name)"
 `1`, "{cite:t}`meyer-peter_formulas_1948`", 0.4 $<D_{50}<$28.6, "10$^{-4}<Fr<$639<br> 0.0004$<S<$0.02<br>0.01$<h<$1.2<br>0.2$<u$", [bedload_meyer_gaia.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__meyer__gaia_8f.html)
-{2`, "{cite:t}`einstein_bed-load_1950, brown1949`", 0.25$<D_{35}<$32, "", [bedload_einst.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__einst__gaia_8f.html)
+`2`, "{cite:t}`einstein_bed-load_1950`-{cite:t}`brown1949`", 0.25$<D_{35}<$32, "", [bedload_einst.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__einst__gaia_8f.html)
  `3`, {cite:t}`engelund_monograph_1967`, 0.15$<D_{50}<$5.0, "0.1$<Fr<$10", [bedload_engel_gaia.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__engel__gaia_8f.html)
  `30`, "{cite:t}`engelund_monograph_1967,chollet1979`", 0.15$<D_{50}<$5.0, "0.1$<Fr<$10", [bedload_engel_cc_gaia.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__engel__cc__gaia_8f.html)
  `7`, {cite:t}`van_rijn_sediment_1984`, 0.6$<D_{50}<$2.0, "0.5$<h$<br>0.2$<u$", [bedload_vanrijn_gaia.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__vanrijn__gaia_8f.html)
@@ -149,7 +154,7 @@ MPM COEFFICIENT : 3.97
 ```
 ````
 
-**To directly continue with the tutorial using the {cite:t}`meyer-peter_formulas_1948` formula, jump forward to the {ref}`correction factors <c-factors>` section.**
+**To directly continue with the tutorial using the {cite:t}`meyer-peter_formulas_1948` formula, jump to the {ref}`correction factors <c-factors>` section.**
 
 (gaia-einstein)=
 ### Einstein-Brown (1942/49)

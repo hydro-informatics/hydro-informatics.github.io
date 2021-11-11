@@ -326,7 +326,7 @@ LAYERS INITIAL THICKNESS : 1.5 / m - default is 100
 
 Gaia derives mixed cohesive and non-cohesive sediment beds from the composition of the active layer. Non-cohesive sediment in the form of gravel and cobble is transported as bedload and sand is transported in suspension. Cohesive sediment is purely transported as suspended load. The {{ gaia }} provides more information on the transport of mixed (cohesive and non-cohesive) sediment in section 3.2.1. In addition, riverbed consolidation can be simulated by defining the **BED MODEL** keyword with `2` (cf. {{ gaia }}, section 3.3).
 
-## Bedload or Suspended Load?
+## Bedload vs. Suspended Load
 
 Sediment transport modeling quickly becomes computationally expensive. Therefore, it is important to be clear about the primary type of sediment transport mode and to activate only the most important phenomenon (i.e., either {term}`Bedload` or {term}`Suspended load`). For this reason, answer the question ***What type of sediment transport phenomenon is predominant in the model?*** If you are not sure about the answer to this question, revise the section on {ref}`sediment transport modes <gaia-seditrans>`. In addition, here are some practice-oriented suggestions:
 
