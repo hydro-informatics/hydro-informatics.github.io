@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>How to Markdown and Document &#8212; Hydro-Informatics</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -42,10 +42,10 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/tabs.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
         const thebe_selector_output = ".output,.cell_output"
@@ -58,7 +58,10 @@
     <link rel="next" title="Glossary" href="glossary.html" />
     <link rel="prev" title="Run and Analyze" href="../numerics/gaia-run.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -75,6 +78,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="../_static/icon.jpg" class="logo" alt="logo">
       
       
@@ -84,9 +91,9 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p class="caption">
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Get Started
  </span>
@@ -102,6 +109,11 @@
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/principles.html">
+     Principles
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../lectures/lectures.html">
      Lectures and Exercises
@@ -167,7 +179,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Python Basics
  </span>
@@ -302,7 +314,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Geospatial Analysis
  </span>
@@ -373,7 +385,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Numerical Modeling
  </span>
@@ -505,7 +517,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Documentation
  </span>
@@ -549,7 +561,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Troubleshoot
  </span>
@@ -627,7 +639,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Disclaimer and License
  </span>
@@ -725,7 +737,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#document-your-work">
@@ -844,7 +856,7 @@
         
               <div>
                 
-  <div class="section" id="how-to-markdown-and-document">
+  <div class="tex2jax_ignore mathjax_ignore section" id="how-to-markdown-and-document">
 <h1>How to Markdown and Document<a class="headerlink" href="#how-to-markdown-and-document" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="document-your-work">
 <h2>Document Your Work<a class="headerlink" href="#document-your-work" title="Permalink to this headline">¶</a></h2>
@@ -897,8 +909,8 @@ So if you have made an ingenious discovery, you want to make sure you document i
 <span id="id1"></span><h2>Markdown<a class="headerlink" href="#markdown" title="Permalink to this headline">¶</a></h2>
 <p>For writing a documentation of a code or project in web-publish-ready format, cross-platform typesetting is needed. For this purpose, <em>Markdown</em> represents a good choice (among others, such as <a class="reference internal" href="#rst"><span class="std std-ref">reStructuredText</span></a>). <em>Markdown</em> was created in 2004 and is a simple markup language that is intuitive and easy to learn. Markup languages structure the content of plain text documents regarding the way a document is displayed to end-users (<a class="reference internal" href="glossary.html#term-Rich-Text-Format"><span class="xref std std-term">Rich Text Format</span></a>). Other popular markup languages are for example <a class="reference external" href="https://en.wikipedia.org/wiki/TeX">TeX</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/XML">XML (Extensible Markup Language)</a>. <em>Markdown</em> became a popular tool for writing syntactically distinguishable computer text that is then translated into <a class="reference internal" href="glossary.html#term-Rich-Text-Format"><span class="xref std std-term">Rich Text Format</span></a> flavor. Here is an example of how <em>Markdown</em> works:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="0c0ad583-46d6-4b5b-92bf-8d96d845f568" name="5d6e9c87-9be3-4881-ba06-05bb5b767a65" type="radio">
-</input><label class="tabbed-label" for="0c0ad583-46d6-4b5b-92bf-8d96d845f568">
+<input checked="checked" id="28653699-008e-42b6-8967-f72db9ddd770" name="6e88269b-c1db-42c1-8d55-a842fd172e33" type="radio">
+</input><label class="tabbed-label" for="28653699-008e-42b6-8967-f72db9ddd770">
 Raw Markdown</label><div class="tabbed-content docutils">
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># Better than Word-like rich text editors</span>
 <span class="ge">*OS*</span>-independent functionality:
@@ -909,8 +921,8 @@ Raw Markdown</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="3cc31350-70bf-43b7-9305-db5ecc2859fd" name="5d6e9c87-9be3-4881-ba06-05bb5b767a65" type="radio">
-</input><label class="tabbed-label" for="3cc31350-70bf-43b7-9305-db5ecc2859fd">
+<input id="1c795a8f-61c6-4e85-847b-719da5f43c69" name="6e88269b-c1db-42c1-8d55-a842fd172e33" type="radio">
+</input><label class="tabbed-label" for="1c795a8f-61c6-4e85-847b-719da5f43c69">
 Rendered</label><div class="tabbed-content docutils">
 <p><strong>Better than Word-like rich text editors</strong></p>
 <p><em>OS</em>-independent functionality:</p>
@@ -939,8 +951,8 @@ Rendered</label><div class="tabbed-content docutils">
 </thead>
 <tbody>
 <tr class="row-even"><td class="text-align:left"><p>Blockquote</p></td>
-<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">|</span>&#160;&#160;&#160;&#160; <span class="pre">A</span> <span class="pre">quote</span></code></p></td>
-<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">|</span></code>      A quote</p></td>
+<td class="text-align:left"><p>`</p></td>
+<td class="text-align:left"><p>A quote`</p></td>
 </tr>
 <tr class="row-odd"><td class="text-align:left"><p>Bold text</p></td>
 <td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">**Bold**</span></code></p></td>
@@ -1005,8 +1017,8 @@ Rendered</label><div class="tabbed-content docutils">
 <h3>Itemization (Un-numbered Lists)<a class="headerlink" href="#itemization-un-numbered-lists" title="Permalink to this headline">¶</a></h3>
 <p>Itemized list section can be produced using <code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">+</span></code>, or <code class="docutils literal notranslate"><span class="pre">-</span></code> symbols with tabs that determine the list indentation:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="50a919d9-f43c-4b7b-9c6c-c3fbceda99c6" name="3689a27e-07bf-4afd-adef-39b3bb3da08d" type="radio">
-</input><label class="tabbed-label" for="50a919d9-f43c-4b7b-9c6c-c3fbceda99c6">
+<input checked="checked" id="f1c219fe-5016-4723-beb3-ee2f95f46f2e" name="45f08e50-9512-42a6-8a25-95f40a6985df" type="radio">
+</input><label class="tabbed-label" for="f1c219fe-5016-4723-beb3-ee2f95f46f2e">
 Raw Markdown</label><div class="tabbed-content docutils">
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="k">*</span> level 1 item
     <span class="k">-</span> level 2 item
@@ -1016,8 +1028,8 @@ Raw Markdown</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="7c2c0fde-3bb3-4c0b-8346-fb5458a6430a" name="3689a27e-07bf-4afd-adef-39b3bb3da08d" type="radio">
-</input><label class="tabbed-label" for="7c2c0fde-3bb3-4c0b-8346-fb5458a6430a">
+<input id="4a50ea99-9d06-4561-bf81-a25873d5f204" name="45f08e50-9512-42a6-8a25-95f40a6985df" type="radio">
+</input><label class="tabbed-label" for="4a50ea99-9d06-4561-bf81-a25873d5f204">
 Rendered</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p>level 1 item</p>
@@ -1039,8 +1051,8 @@ Rendered</label><div class="tabbed-content docutils">
 <h3>Tables<a class="headerlink" href="#tables" title="Permalink to this headline">¶</a></h3>
 <p>Table columns are separated by a <code class="docutils literal notranslate"><span class="pre">|</span></code> sign. The first row determines row headers and the second row the alignment through the use of <code class="docutils literal notranslate"><span class="pre">:</span></code> (see below example).</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="2e984381-e044-4c61-afeb-a98a91e33e18" name="9ed7d157-e017-44dc-af89-f130928be252" type="radio">
-</input><label class="tabbed-label" for="2e984381-e044-4c61-afeb-a98a91e33e18">
+<input checked="checked" id="94dbda2d-798d-45d0-9527-ee30378c6438" name="a53a270b-a9d6-46a3-b239-37f50420f29e" type="radio">
+</input><label class="tabbed-label" for="94dbda2d-798d-45d0-9527-ee30378c6438">
 Raw Markdown</label><div class="tabbed-content docutils">
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>| Fruit | Kingdom | Genus |
 |-------|:-------:|------:|
@@ -1049,8 +1061,8 @@ Raw Markdown</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="5acadc11-a3e7-42ac-a81e-3d450ee0e00e" name="9ed7d157-e017-44dc-af89-f130928be252" type="radio">
-</input><label class="tabbed-label" for="5acadc11-a3e7-42ac-a81e-3d450ee0e00e">
+<input id="3fd0d882-7885-463a-9830-3f6d49f50bda" name="a53a270b-a9d6-46a3-b239-37f50420f29e" type="radio">
+</input><label class="tabbed-label" for="3fd0d882-7885-463a-9830-3f6d49f50bda">
 Rendered</label><div class="tabbed-content docutils">
 <table class="colwidths-auto table">
 <thead>
@@ -1601,16 +1613,27 @@ Rendered</label><div class="tabbed-content docutils">
               </div>
               
         
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="../numerics/gaia-run.html" title="previous page">Run and Analyze</a>
-    <a class='right-next' id="next-link" href="glossary.html" title="next page">Glossary</a>
-
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../numerics/gaia-run.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Run and Analyze</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="glossary.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Glossary</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
@@ -1626,8 +1649,7 @@ Rendered</label><div class="tabbed-content docutils">
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

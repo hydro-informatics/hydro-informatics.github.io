@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pre-processing &#8212; Hydro-Informatics</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -42,10 +42,10 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/tabs.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
         const thebe_selector_output = ".output,.cell_output"
@@ -58,7 +58,10 @@
     <link rel="next" title="Telemac2d" href="telemac2d.html" />
     <link rel="prev" title="TELEMAC" href="telemac.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -75,6 +78,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="../_static/icon.jpg" class="logo" alt="logo">
       
       
@@ -84,9 +91,9 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p class="caption">
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Get Started
  </span>
@@ -102,6 +109,11 @@
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/principles.html">
+     Principles
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../lectures/lectures.html">
      Lectures and Exercises
@@ -167,7 +179,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Python Basics
  </span>
@@ -302,7 +314,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Geospatial Analysis
  </span>
@@ -373,7 +385,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Numerical Modeling
  </span>
@@ -505,7 +517,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Documentation
  </span>
@@ -549,7 +561,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Troubleshoot
  </span>
@@ -627,7 +639,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Disclaimer and License
  </span>
@@ -725,7 +737,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
@@ -880,7 +892,7 @@
         
               <div>
                 
-  <div class="section" id="pre-processing">
+  <div class="tex2jax_ignore mathjax_ignore section" id="pre-processing">
 <span id="slf-prepro-tm"></span><h1>Pre-processing<a class="headerlink" href="#pre-processing" title="Permalink to this headline">¶</a></h1>
 <div class="attention admonition">
 <p class="admonition-title">Requirements</p>
@@ -903,7 +915,7 @@
 <p>All software applications featured in this tutorial can be run on <em>Linux</em>, <em>Windows</em>, and also potentially <em>macOS</em> (not tested) platforms.</p>
 </div>
 </div>
-<div class="section" id="qgis">
+<div class="tex2jax_ignore mathjax_ignore section" id="qgis">
 <span id="tm-qgis-prepro"></span><h1>QGIS<a class="headerlink" href="#qgis" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="create-and-setup-a-new-project">
 <h2>Create and Setup a New Project<a class="headerlink" href="#create-and-setup-a-new-project" title="Permalink to this headline">¶</a></h2>
@@ -1209,7 +1221,7 @@
 </div>
 </div>
 </div>
-<div class="section" id="bluekenue">
+<div class="tex2jax_ignore mathjax_ignore section" id="bluekenue">
 <span id="bk-tutorial"></span><h1>BlueKenue<a class="headerlink" href="#bluekenue" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="get-started">
 <span id="bk-intro"></span><h2>Get Started<a class="headerlink" href="#get-started" title="Permalink to this headline">¶</a></h2>
@@ -1482,8 +1494,8 @@
 </div>
 <p>The upstream (inflow) liquid boundary will constitute an <strong>Open boundary with prescribed Q</strong> (discharge) and the downstream outflow (liquid) boundary will constitute an <strong>Open boundary with prescribed Q and H</strong> (i.e., prescribed <a class="reference internal" href="../documentation/glossary.html#term-Rating-curve"><span class="xref std std-term">Rating curve</span></a> / <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a>). These types of boundary conditions are commonly used in practice, with the downstream boundary typically chosen to be at a gauging station where a <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a> (<a class="reference internal" href="../documentation/glossary.html#term-Rating-curve"><span class="xref std std-term">Rating curve</span></a>) has been calibrated with historic data. To assign the two liquid boundary lines, zoom into the downstream and upstream regions indicated in  <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 74</span></a> and create both boundaries as follows (toggle tabs):</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="74a0d734-c93c-4dad-8eb7-610f183c0e37" name="a61764aa-db91-4765-887a-29b8be3229ab" type="radio">
-</input><label class="tabbed-label" for="74a0d734-c93c-4dad-8eb7-610f183c0e37">
+<input checked="checked" id="53a17bbe-66b4-4340-a078-3c07ea40089e" name="6fcaa377-b50e-4e25-97c1-e6fcad251840" type="radio">
+</input><label class="tabbed-label" for="53a17bbe-66b4-4340-a078-3c07ea40089e">
 Upstream boundary</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p>Zoom into the <strong>upstream</strong> region indicated in  <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 74</span></a>.</p></li>
@@ -1505,8 +1517,8 @@ Upstream boundary</label><div class="tabbed-content docutils">
 <p class="caption"><span class="caption-number">Fig. 75 </span><span class="caption-text">The upstream boundary definition. Double-click on a node at one bank, then hold the <strong>Shift</strong> key and double-click on a node at the other bank to highlight the inflow (purple) line. Note that BOTTOM_BC might appear with the name <em>boundaries</em> if the object was saved as <em>boundaries.bc2</em>.</span><a class="headerlink" href="#bk-boundary-us" title="Permalink to this image">¶</a></p>
 </div>
 </div>
-<input id="966bf572-44a4-42fb-83e4-b216ad095748" name="a61764aa-db91-4765-887a-29b8be3229ab" type="radio">
-</input><label class="tabbed-label" for="966bf572-44a4-42fb-83e4-b216ad095748">
+<input id="3565adcc-3bd4-4b29-a1b2-50a1d24db526" name="6fcaa377-b50e-4e25-97c1-e6fcad251840" type="radio">
+</input><label class="tabbed-label" for="3565adcc-3bd4-4b29-a1b2-50a1d24db526">
 Downstream boundary</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p>Zoom into the <strong>downstream</strong> region indicated in <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 74</span></a>.</p></li>
@@ -1574,16 +1586,27 @@ Downstream boundary</label><div class="tabbed-content docutils">
               </div>
               
         
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="telemac.html" title="previous page">TELEMAC</a>
-    <a class='right-next' id="next-link" href="telemac2d.html" title="next page">Telemac2d</a>
-
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="telemac.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">TELEMAC</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="telemac2d.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Telemac2d</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
@@ -1599,8 +1622,7 @@ Downstream boundary</label><div class="tabbed-content docutils">
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

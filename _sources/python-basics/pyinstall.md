@@ -41,6 +41,12 @@ sudo apt install python3-pip python3-tk tk8.6-dev
 python3 -m pip install --upgrade pip
 ```
 
+Install `numpy` with:
+
+```
+pip install numpy
+```
+
 ```{admonition} python vs. python3
 :class: attention
 Python2 experienced its *sunset* in January 2020, but some systems still use Python2 as default for the `python` command and require a distinguished call of Python3 with the `python3` command.
@@ -77,8 +83,28 @@ Then, install *QGIS* and *GDAL* for *Linux* (this should work with any *Debian* 
 ```
 sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable && sudo apt update
 sudo apt install libgeos-dev gdal-bin libgdal-dev
+```
+
+Export the `gdal` installation path:
+
+```
+export CPLUS_INCLUDE_PATH=/usr/include/gdal
+export C_INCLUDE_PATH=/usr/include/gdal
+```
+
+Install gdal for the *vflussenv* Python environment:
+
+```
+pip3 install GDAL==$(gdal-config --version)
+```
+
+<span style="color: #e1aea3 ">
+If the above line fails, try:
+
+```
 pip3 install GDAL==$(gdal-config --version) --global-option=build_ext --global-option="-I/usr/include/gdal/"
 ```
+</span>
 
 Now, install *flusstools* with:
 

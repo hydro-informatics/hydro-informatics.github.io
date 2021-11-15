@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Version Control : git &#8212; Hydro-Informatics</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -42,10 +42,10 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/tabs.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
         const thebe_selector_output = ".output,.cell_output"
@@ -58,7 +58,10 @@
     <link rel="next" title="Geospatial Software" href="geo.html" />
     <link rel="prev" title="Python (Installation)" href="../python-basics/pyinstall.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -75,6 +78,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="../_static/icon.jpg" class="logo" alt="logo">
       
       
@@ -84,9 +91,9 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p class="caption">
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Get Started
  </span>
@@ -102,6 +109,11 @@
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/principles.html">
+     Principles
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../lectures/lectures.html">
      Lectures and Exercises
@@ -167,7 +179,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Python Basics
  </span>
@@ -302,7 +314,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Geospatial Analysis
  </span>
@@ -373,7 +385,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Numerical Modeling
  </span>
@@ -505,7 +517,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Documentation
  </span>
@@ -549,7 +561,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Troubleshoot
  </span>
@@ -627,7 +639,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Disclaimer and License
  </span>
@@ -725,7 +737,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-concept">
@@ -768,7 +780,7 @@
         
               <div>
                 
-  <div class="section" id="version-control-git">
+  <div class="tex2jax_ignore mathjax_ignore section" id="version-control-git">
 <span id="chpt-git"></span><h1>Version Control : git<a class="headerlink" href="#version-control-git" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="the-concept">
 <h2>The Concept<a class="headerlink" href="#the-concept" title="Permalink to this headline">¶</a></h2>
@@ -782,18 +794,18 @@
 <span id="dl"></span><h2>Install git<a class="headerlink" href="#install-git" title="Permalink to this headline">¶</a></h2>
 <p>The materials provided with this eBook are best downloaded and updated using <em>git</em>-able environments (avoid downloading materials as <em>zip</em> file).</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="45f935e7-12b1-4584-9c99-f4ee23be69ba" name="c50518e5-409b-4b94-a61c-271ef4fc3950" type="radio">
-</input><label class="tabbed-label" for="45f935e7-12b1-4584-9c99-f4ee23be69ba">
+<input checked="checked" id="c8bd9ab3-6890-4c9f-b45b-2ca751d54f56" name="3da54843-8ce5-40f6-acbc-2be98b80cfd5" type="radio">
+</input><label class="tabbed-label" for="c8bd9ab3-6890-4c9f-b45b-2ca751d54f56">
 Linux</label><div class="tabbed-content docutils">
 <p>You are already good to go - git is an integral feature of most Linux distributions.</p>
 </div>
-<input id="2ac6be06-678e-4f0a-a406-f7b8e98099c1" name="c50518e5-409b-4b94-a61c-271ef4fc3950" type="radio">
-</input><label class="tabbed-label" for="2ac6be06-678e-4f0a-a406-f7b8e98099c1">
+<input id="63f346b9-0b26-4093-bfc8-835e1188ad85" name="3da54843-8ce5-40f6-acbc-2be98b80cfd5" type="radio">
+</input><label class="tabbed-label" for="63f346b9-0b26-4093-bfc8-835e1188ad85">
 Windows</label><div class="tabbed-content docutils">
 <p>Download and install <a class="reference external" href="https://git-scm.com/downloads"><em>Git Bash</em></a> and use it for example <a class="reference external" href="https://www.jetbrains.com/pycharm/">PyCharm’s Community Edition</a> or <a class="reference external" href="https://atom.io">Atom</a>.</p>
 </div>
-<input id="f6dc7467-95d1-4480-812b-0aa21ba3722a" name="c50518e5-409b-4b94-a61c-271ef4fc3950" type="radio">
-</input><label class="tabbed-label" for="f6dc7467-95d1-4480-812b-0aa21ba3722a">
+<input id="d7387e69-0b9c-4f5b-bb2c-7fbea4d68a4e" name="3da54843-8ce5-40f6-acbc-2be98b80cfd5" type="radio">
+</input><label class="tabbed-label" for="d7387e69-0b9c-4f5b-bb2c-7fbea4d68a4e">
 macOS</label><div class="tabbed-content docutils">
 <p>macOS users may use <a class="reference external" href="https://developer.apple.com/xcode/">Homebrew</a> for installing git, but there are other options, such as <a class="reference external" href="https://developer.apple.com/xcode/">Xcode</a>.</p>
 <p>To use Homebrew for installing git, start with installing Homebrew through the <a class="reference external" href="https://support.apple.com/guide/terminal/open-or-quit-terminal-apd5265185d-f365-44cb-8b09-71a064a42125/mac">macOS Terminal</a>:</p>
@@ -902,16 +914,27 @@ eval $(/opt/homebrew/bin/brew shellenv)
               </div>
               
         
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="../python-basics/pyinstall.html" title="previous page">Python (Installation)</a>
-    <a class='right-next' id="next-link" href="geo.html" title="next page">Geospatial Software</a>
-
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../python-basics/pyinstall.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Python (Installation)</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="geo.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Geospatial Software</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
@@ -927,8 +950,7 @@ eval $(/opt/homebrew/bin/brew shellenv)
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

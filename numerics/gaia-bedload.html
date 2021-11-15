@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bedload &#8212; Hydro-Informatics</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -42,17 +42,17 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/tabs.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="canonical" href="https://hydro-informatics.com/numerics/gaia-bedload.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -60,7 +60,10 @@
     <link rel="next" title="Suspended Load" href="gaia-suspended.html" />
     <link rel="prev" title="Basic Setup of Gaia" href="gaia-basics.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -77,6 +80,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="../_static/icon.jpg" class="logo" alt="logo">
       
       
@@ -86,9 +93,9 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p class="caption">
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Get Started
  </span>
@@ -174,7 +181,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Python Basics
  </span>
@@ -309,7 +316,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Geospatial Analysis
  </span>
@@ -380,7 +387,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Numerical Modeling
  </span>
@@ -512,7 +519,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Documentation
  </span>
@@ -556,7 +563,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Troubleshoot
  </span>
@@ -634,7 +641,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Disclaimer and License
  </span>
@@ -732,7 +739,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#principles">
@@ -814,7 +821,7 @@
         
               <div>
                 
-  <div class="section" id="bedload">
+  <div class="tex2jax_ignore mathjax_ignore section" id="bedload">
 <span id="gaia-bl"></span><h1>Bedload<a class="headerlink" href="#bedload" title="Permalink to this headline">¶</a></h1>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/e6lk2pk72Gc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Bedload traveling in a lab flume by jumping, rolling, and sliding (under water footage). Source: Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
@@ -837,24 +844,24 @@
 </div>
 <p>The following figures feature sediment supply-limited river sections and a transport capacity-limited river section.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="134a1435-caf1-4984-a8e4-be973991d9cc" name="a6ba8bd5-34d9-4c24-897a-c61ce85fb312" type="radio">
-</input><label class="tabbed-label" for="134a1435-caf1-4984-a8e4-be973991d9cc">
+<input checked="checked" id="b4b358d2-98a6-45f5-a98d-a77dff03f627" name="66690012-17d1-4829-8840-784ac107f144" type="radio">
+</input><label class="tabbed-label" for="b4b358d2-98a6-45f5-a98d-a77dff03f627">
 Artificially sediment supply-limited</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="doubs-2015">
 <a class="reference internal image-reference" href="../_images/doubs-capacity-2015.JPG"><img alt="channel doubs france sediment supply transport limited" src="../_images/doubs-capacity-2015.JPG" style="height: 350px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 146 </span><span class="caption-text">The Doubs in the Franche-Comté (France) during a small flood. The sediment supply is interrupted by a cascade of dams upstream with the consequence of a straight monotonous channel with significant plant growth along the banks. The riverbed primarily consists of boulders that are immobile most of the time. Thus, the river section can be characterized as artificially sediment supply-limited (picture: Sebastian Schwindt 2015).</span><a class="headerlink" href="#doubs-2015" title="Permalink to this image">¶</a></p>
 </div>
 </div>
-<input id="7c4fb414-ebd3-4433-8855-22f007b5fd02" name="a6ba8bd5-34d9-4c24-897a-c61ce85fb312" type="radio">
-</input><label class="tabbed-label" for="7c4fb414-ebd3-4433-8855-22f007b5fd02">
+<input id="95c61b73-281e-4a50-b653-1159b9ca40c1" name="66690012-17d1-4829-8840-784ac107f144" type="radio">
+</input><label class="tabbed-label" for="95c61b73-281e-4a50-b653-1159b9ca40c1">
 Naturally sediment supply-limited</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="krimml-2010">
 <a class="with-shadow reference internal image-reference" href="../_images/krimmler-ache-2010.jpg"><img alt="naturally channel krimmler ache austria sediment supply transport limited" class="with-shadow" src="../_images/krimmler-ache-2010.jpg" style="height: 350px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 147 </span><span class="caption-text">The Krimmler Ache in Austria during a small flood event. Even though the watershed has a high <a class="reference internal" href="../documentation/glossary.html#term-Sediment-yield"><span class="xref std std-term">Sediment yield</span></a>, the transport capacity of the water in this river section is so high that the riverbed predominantly consists of large boulders. Thus, the river section can be characterized as naturally sediment supply-limited (picture: Sebastian Schwindt 2010).</span><a class="headerlink" href="#krimml-2010" title="Permalink to this image">¶</a></p>
 </div>
 </div>
-<input id="194f2e8d-f874-43b3-b87d-b79a1ddac3ab" name="a6ba8bd5-34d9-4c24-897a-c61ce85fb312" type="radio">
-</input><label class="tabbed-label" for="194f2e8d-f874-43b3-b87d-b79a1ddac3ab">
+<input id="d853d54c-33c5-4622-bc26-c37faa69ce47" name="66690012-17d1-4829-8840-784ac107f144" type="radio">
+</input><label class="tabbed-label" for="d853d54c-33c5-4622-bc26-c37faa69ce47">
 Capacity-limited</label><div class="tabbed-content docutils">
 <div class="figure align-default" id="jenbach-2020">
 <a class="reference internal image-reference" href="../_images/jenbach-alluvial-2020.jpg"><img alt="alluvial channel jenbach sediment supply transport limited" src="../_images/jenbach-alluvial-2020.jpg" style="height: 350px;" /></a>
@@ -1107,8 +1114,8 @@ c'_{f} = 2\cdot \left(\frac{\kappa}{log(12 h/ k'_{s})}\right)^{2}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\kappa\)</span> is the <span id="id75">Von Karmàn [<a class="reference internal" href="../documentation/bibliography.html#id593">VK30</a>]</span> constant (0.4), <span class="math notranslate nohighlight">\(h\)</span> is water depth, and <span class="math notranslate nohighlight">\(k'_{s}\)</span> is the representative roughness length, which is often assumed as a multiple of the characteristic grain size (read more in the section on <a class="reference internal" href="gaia-run.html#bl-calibration"><span class="std std-ref">bedload calibration</span></a>).</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="985fb331-c070-47e5-ad0c-bc68115662b4" name="175fdf3f-fdea-4017-abbd-ab86bf74f023" type="radio">
-</input><label class="tabbed-label" for="985fb331-c070-47e5-ad0c-bc68115662b4">
+<input checked="checked" id="b0c99fc7-46f3-4179-8eef-a38e346b820a" name="86f699e9-431a-4b9f-acf8-6c1720d4ea38" type="radio">
+</input><label class="tabbed-label" for="b0c99fc7-46f3-4179-8eef-a38e346b820a">
 Skin Friction</label><div class="tabbed-content docutils">
 <p>Gaia uses by default the skin friction correction coefficient that it derives from the hydrodynamic solver (i.e., Telemac2d/3d). In very shallow waters, this behavior might cause instabilities. Therefore, the <strong>SKIN FRICTION CORRECTION</strong> (integer on-off, default is <code class="docutils literal notranslate"><span class="pre">1</span></code>) keyword can be defined in Gaia to disable the correction factor calculation and setting <span class="math notranslate nohighlight">\(f_{fr}\)</span> to 1. To disable skin friction correction (i.e., set <span class="math notranslate nohighlight">\(f_{fr}\)</span> to 1), add the following to the Gaia steering file (not used in this tutorial):</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">SKIN</span> <span class="n">FRICTION</span> <span class="n">CORRECTION</span> <span class="p">:</span> <span class="mi">0</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="mi">1</span> <span class="n">to</span> <span class="n">enable</span> <span class="n">skin</span> <span class="n">friction</span> <span class="n">correction</span>
@@ -1116,8 +1123,8 @@ Skin Friction</label><div class="tabbed-content docutils">
 </div>
 <p>On ripple riverbeds (i.e., fine sandy hills as typically observed at ocean beaches during low tides), the skin friction correction should be set to <code class="docutils literal notranslate"><span class="pre">2</span></code> for enabling a bedform predictor. Read more in section 3.1.8 of the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a>.</p>
 </div>
-<input id="c08df64a-c067-48b6-9b7b-721451cb8aec" name="175fdf3f-fdea-4017-abbd-ab86bf74f023" type="radio">
-</input><label class="tabbed-label" for="c08df64a-c067-48b6-9b7b-721451cb8aec">
+<input id="2ded2389-3976-4151-a8cb-f2b94c1aacde" name="86f699e9-431a-4b9f-acf8-6c1720d4ea38" type="radio">
+</input><label class="tabbed-label" for="2ded2389-3976-4151-a8cb-f2b94c1aacde">
 Bedform Roughness</label><div class="tabbed-content docutils">
 <p>The finer the sediment of the riverbed, the more important turbulence created by the bed shape becomes. For instance, skin friction calculated based on a multiple of the diameter of a sand grain’s characteristic roughness length <span class="math notranslate nohighlight">\(k'_{s}\)</span> is very small. However, sand tends to shape the riverbed into ripple or dune forms, which cause additional <em>bedform turbulence</em>, as featured in the video below.</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/q4eRwyeLKfA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -1222,16 +1229,27 @@ q_{b,sc} = q_{b} \left[1 + \beta \left(\cos \alpha  \frac{\partial z_{b}}{\parti
               </div>
               
         
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="gaia-basics.html" title="previous page">Basic Setup of Gaia</a>
-    <a class='right-next' id="next-link" href="gaia-suspended.html" title="next page">Suspended Load</a>
-
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="gaia-basics.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Basic Setup of Gaia</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="gaia-suspended.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Suspended Load</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
@@ -1247,8 +1265,7 @@ q_{b,sc} = q_{b} \left[1 + \beta \left(\cos \alpha  \frac{\partial z_{b}}{\parti
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

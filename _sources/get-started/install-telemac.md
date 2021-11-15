@@ -62,7 +62,7 @@ The Austrian engineering office *Flussplan* provides a Docker container of TELEM
 
 Working with TELEMAC requires some software for downloading source files, compiling, and running the program. The mandatory software prerequisites for installing TELEMAC on [Debian Linux](https://www.debian.org/) are:
 
-* Python (use *Python3* in the latest releases)
+* Python3 (avoid *Python2*)
 * *Subversion (svn)*
 * GNU Fortran 95 compiler (*gfortran*)
 
