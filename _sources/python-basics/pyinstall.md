@@ -28,7 +28,7 @@ pip and virtual environments are preferable with *Linux* systems for working wit
 Consider installing, creating, and activating a new virtual environment for working with the contents of this eBook as explained in the following platform-dependent paragraphs.
 
 ````{tabbed} Linux
-To avoid affecting the system's Python interpreter, set up a virtual environment with *venv*. The first step is to make sure that *Python3* and *venv* are installed on the system:
+To avoid affecting the system's Python interpreter, set up a virtual environment with *venv*. The first step is to make sure that Python3 and *venv* are installed on the system:
 
 ```
 sudo apt install python3 python3-venv

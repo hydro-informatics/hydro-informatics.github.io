@@ -7,7 +7,7 @@ Load custom modules and functions in a script. Open comma-type delimited files a
 
 ```{admonition} Requirements
 :class: attention
-*Python* libraries: {ref}`pandas` and *matplotlib*. Understand data handling with {ref}`pandas`.
+Python libraries: {ref}`pandas` and *matplotlib*. Understand data handling with {ref}`pandas`.
 ```
 
 Get ready by cloning the exercise repository:
@@ -24,7 +24,7 @@ Flood at the Mangfall River in Bavaria (source: KSS 2020).
 ```
 
 ## Terminology
-Flood frequency analysis uses series of discharge data (e.g., from a gauging station) and evaluates the occurrence probability of a particular discharge. Thus, the occurrence probability defines the frequency of a discharge, which is important for two reasons:
+Flood frequency analysis uses a series of discharge data (e.g., from a gauging station) and evaluates the occurrence probability of a particular discharge. Thus, the occurrence probability defines the frequency of a discharge, which is important for two reasons:
 
 1. **Flood safety**: Many legal frames use a **recurrence interval** (i.e., a return period or frequency in units of years) to define safety levels that buildings and infrastructure must meet.
 1. **Ecohydraulics**: In arid areas, in particular, it is important to know how long certain discharges are below certain levels, where many aquatic habitats may not be deep enough, too hot, or disconnected from the main channel. Therefore, we want to know the **exceedance probability** of a given discharge.
@@ -208,7 +208,7 @@ The plot functions only work correctly if the probability column is named $Pr$, 
 
 The here shown method is only an interpolation. For extrapolating return periods beyond the length of the observation period (e.g., for extreme events such as a 1000-year flood), a prediction model is necessary (e.g., Gumbel distributed-extrapolation).
 
-After all, there is already software that calculates return periods, freely available at the U.S. Army Corps of Engineers Hydrologic Engineering Center (*HEC*) {cite:p}`us_army_corps_of_engineeers_hydrologic_2016`: [HEC-SPP](https://www.hec.usace.army.mil/software/hec-ssp/). HEC-SPP enables the calculation of flow event frequencies and return periods according to US standards. So if you are not working in or for the United States, you still may want to have your own code ready. Moreover, *HEC-SPP* requires pre-processing of discharge data (i.e., it only works with annual maxima).
+After all, there is already software that calculates return periods, freely available at the U.S. Army Corps of Engineers Hydrologic Engineering Center (*HEC*) {cite:p}`us_army_corps_of_engineeers_hydrologic_2016`: [HEC-SPP](https://www.hec.usace.army.mil/software/hec-ssp/). HEC-SPP enables the calculation of flow event frequencies and return periods according to US standards. So if you are not working in or for the United States, you still may want to have your code ready. Moreover, *HEC-SPP* requires pre-processing of discharge data (i.e., it only works with annual maxima).
 
 
 ```{admonition} Homework

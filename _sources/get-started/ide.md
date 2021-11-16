@@ -73,7 +73,7 @@ All set - you are ready to edit Python (`.py`), markdown (`.md` for documentatio
 (jupyter)=
 # JupyterLab
 
-*Jupyter* is a spin-off of [*IPython*](https://ipython.org/), which is "a rich architecture for interactive computing".
+*Jupyter* is a spin-off of [IPython](https://ipython.org/), which is "a rich architecture for interactive computing".
 
 *JupyterLab* is a product of the nonprofit organization [*Project Jupyter*](https://jupyter.org/), which develops "open-source software, open-standards, and services for interactive computing across dozens of programming languages". A *Jupyter* notebook (*.ipynb* file) enables the combination of markdown text blocks with executable code blocks. Essentially, a *Jupyter* notebook is a *JavaScript Object Notation* ([*JSON*](https://www.json.org/json-en.html) file. The structure of *JSON* files enables the easy export of *.ipynb*  notebooks to many other open standard output formats such as *HTML*, [*LaTeX*](https://latex-project.org/), *markdown*, Python, *presentation slides*, or *PDF*.
 The *Jupyter* kernels support the three core programming languages **Ju**lia, **Pyt**hon and **R**, and many more *Jupyter* kernels (currently 49) for other programming languages exist.
@@ -81,7 +81,7 @@ The *Jupyter* kernels support the three core programming languages **Ju**lia, **
 
 ```{admonition} Working with Jupyter
 :class: tip
-Get familiar with *JupyterLab*, by creating files, adding new *Markdown* or Python cells, and running cells. The essentials of *markdown* are explained in the {ref}`Markdown <markdown>` section (short read). Learning Python is more than a short read and the {ref}`Python Basics chapter<python>` provides some insights (takes time).
+Get familiar with *JupyterLab*, by creating files, adding new *Markdown* or Python cells, and running cells. The essentials of *markdown* are explained in the {ref}`Markdown <markdown>` section (short read). Learning Python is more than a short read and the {ref}`Python Basics chapter <about-python>` provides some insights (takes time).
 ```
 
 (install-jupyter-windows)=

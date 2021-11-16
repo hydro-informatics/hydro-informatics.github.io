@@ -1,3 +1,4 @@
+(ex-seq-peak)=
 # Reservoir Volume (Sequent Peak Algorithm)
 
 ```{admonition} Goals
@@ -6,7 +7,7 @@ Write custom functions, load data from comma-type delimited text files, and mani
 
 ```{admonition} Requirements
 :class: attention
-*Python* libraries: {ref}`numpy` including *scipy* and *matplotlib*. Read and understand the data handling with {ref}`numpy` and [functions](../jupyter/pyfun).
+Python libraries: {ref}`numpy` including *scipy* and *matplotlib*. Read and understand the data handling with {ref}`numpy` and {ref}`functions <chpt-functions>`.
 ```
 
 Get ready by cloning the exercise repository:
