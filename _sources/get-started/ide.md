@@ -197,8 +197,10 @@ sudo apt install atom
 **Windows** users can download *Atom* from [atom.io](https://atom.io/) and install the executable.
 ````
 
+
+
 (atom-packages)=
-## Useful Atom Packages
+## Get Useful Atom Packages
 
 To install packages:
 
@@ -242,8 +244,46 @@ Other packages enable spell checking for particular file formats:
 
 Read more at [atom.io](https://atom.io/packages/spell-check) for more information on other distributions and dictionaries.
 
-
 (atom-python)=
-## Enable (Python) Console
+## Usage
+
+````{tabbed} Linux
+
+Open Terminal and activate the environment where `flusstools` is installed. For instance, if `flusstools` is installed in a virtual environment called `vflussenv` that lives in the user home directory (`/home/USER/`) according to the Python installation instructions in this eBook (see {ref}`pip quick guide <pip-quick>`), activate the environment as follows:
+
+```
+cd ~
+source vflussenv/bin/activate
+```
+
+````
+
+````{tabbed} Windows
+Open Anaconda Prompt and activate `flussenv` (given that {{ ft_url }} is installed according to the {ref}`conda quick guide <conda-quick>`):
+
+```
+conda activate flussenv
+```
+````
+
+Then, start *Atom* in the (pip or conda) environment through Terminal (Linux) or Anaconda Prompt (Windows):
+
+```
+atom
+```
+
+*Atom* should open and provide the option to select a folder where a Python project will live or is already living. After selecting a folder, start editing your Python (`.py`) files. For running Python scripts, first set up the *Script* package:
+
+* Make sure that the [script package](https://atom.io/packages/script) is installed.
+* Configure the *Srcpit* packge in *Atom* by clicking on **Packages** > **Configure Script** (`Alt` + `Ctrl` + `Shift` + `O`):
+  * In the **Command** field enter `python` (or `python3`).
+  * Click on **Save as profile** and enter a prilfe name (e.g. `flussprofile`).
+
+To run a Python script:
+
+* Either go to **Packages** > **Script** > **Run with profile** and select **flussprofile**
+* Or press `Alt` + `Ctrl` + `Shift` + `B`
+
+## More Console Options
 
 While the `script` package enables running a Python script, it may be desirable to have a built-in Python console window running in *Atom*. To this end, the `platformio-ide-terminal` package tweaks into the system's default terminal (*Terminal* on *Linux* or *PowerShell* on *Windows 10*), which can run an existing installation of Python (i.e., Python must be installed on the system in some form). Depending on your platform, follow the instructions in the {ref}`atom-setup` section.

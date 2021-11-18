@@ -41,10 +41,10 @@ sudo apt install python3-pip python3-tk tk8.6-dev
 python3 -m pip install --upgrade pip
 ```
 
-Install `numpy` with:
+Install `numpy` and `openpyxl` with:
 
 ```
-pip install numpy
+pip install numpy openpyxl
 ```
 
 ```{admonition} python vs. python3
@@ -133,7 +133,7 @@ Make sure that {{ getpy }} (>= version 3.4) installed. In addition, install *vir
 
 ```
 python -m pip install --upgrade pip
-python -m pip install --user virtualenv
+python -m pip install --user virtualenv numpy openpyxl
 ```
 
 Then go to the directory wherever you want to install a new virtual environment called *vflussenv* and create the new virtual environment:
@@ -172,7 +172,7 @@ conda install -c conda-forge gdal
 Finally, install *flusstools* and its dependencies with:
 
 ```
-python -m pip install numpy pandas plotting matplotlib plotly openpyxl
+python -m pip install pandas plotting matplotlib plotly
 ```
 
 ```{admonition} For geospatial analyses ...
@@ -273,7 +273,7 @@ Anaconda and conda environments are preferable with *Windows* systems for workin
 1. Navigate to the download directory where `environment.yml` is located (use [`cd`](https://www.digitalcitizen.life/command-prompt-how-use-basic-commands) to navigate, for example, to `cd C:/temp/`).
 1. Enter `conda env create -f environment.yml` (this creates an environment called `flussenv`). <br> *... takes a while ...*
 1. Activate *flussenv*: `conda activate flussenv`
-1. Install *numpy*: `pip install numpy`
+1. Install *numpy* and *openpyxl*: `pip install numpy openpyxl`
 1. Install *flusstools*: `pip install flusstools`
 
 ### Create and Install
