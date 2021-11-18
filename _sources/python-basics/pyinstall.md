@@ -41,10 +41,10 @@ sudo apt install python3-pip python3-tk tk8.6-dev
 python3 -m pip install --upgrade pip
 ```
 
-Install `numpy` and `openpyxl` with:
+Install *numpy* with:
 
 ```
-pip install numpy openpyxl
+pip install numpy
 ```
 
 ```{admonition} python vs. python3
@@ -99,7 +99,7 @@ pip3 install GDAL==$(gdal-config --version)
 ```
 
 <span style="color: #e1aea3 ">
-If the above line fails, try:
+If the above line ultimately fails (i.e., does not end with **Successfully installed GDAL-X.X.X**, which override previous errors such as `invalid command 'bdist_wheel'`), try:
 
 ```
 pip3 install GDAL==$(gdal-config --version) --global-option=build_ext --global-option="-I/usr/include/gdal/"
@@ -133,7 +133,7 @@ Make sure that {{ getpy }} (>= version 3.4) installed. In addition, install *vir
 
 ```
 python -m pip install --upgrade pip
-python -m pip install --user virtualenv numpy openpyxl
+python -m pip install --user virtualenv numpy
 ```
 
 Then go to the directory wherever you want to install a new virtual environment called *vflussenv* and create the new virtual environment:
@@ -273,7 +273,7 @@ Anaconda and conda environments are preferable with *Windows* systems for workin
 1. Navigate to the download directory where `environment.yml` is located (use [`cd`](https://www.digitalcitizen.life/command-prompt-how-use-basic-commands) to navigate, for example, to `cd C:/temp/`).
 1. Enter `conda env create -f environment.yml` (this creates an environment called `flussenv`). <br> *... takes a while ...*
 1. Activate *flussenv*: `conda activate flussenv`
-1. Install *numpy* and *openpyxl*: `pip install numpy openpyxl`
+1. Install *numpy*: `pip install numpy`
 1. Install *flusstools*: `pip install flusstools`
 
 ### Create and Install
@@ -402,15 +402,12 @@ In the opening *Terminal*:
 cd ~/where/vflussenv-lives
 source vflussenv/bin/activate
 ```
-* Start *Python* and import *flusstools*:
+* Start Atom:
+
 ```
-user:~$ python
-Python 3.X.X (default, MMM DD YYYY, hh:mm:ss)
-[GCC 9.X.X on linux]
->>> import flusstools as ft
+user:~$ atom
 ```
 
-The import of *flusstools* should pass silently. Otherwise, re-install *flusstools* according to the above {ref}`pip-quick` for installing a virtual environment.
 ````
 
 ````{tabbed} Windows
@@ -423,7 +420,7 @@ The import of *flusstools* should pass silently. Otherwise, re-install *flusstoo
 **Do not try to `pip`-install *flusstools* outside of a conda environment on *Windows*.**
 ```
 
-To set up a *Python* *Anaconda* terminal in *Atom* the following **first-time-start steps** are required:
+To set up a Python *Anaconda* terminal in *Atom* the following **first-time-start steps** are required:
 
 * Launch `platformio-ide-terminal` (in *Atom* go to **Packages** (top menu) > **platformio-ide-terminal** > **New Terminal**)
 * Typically, [PowerShell](https://aka.ms/pscore6) will open, where the following commands need to be entered:
@@ -435,9 +432,10 @@ Once this is done, the *flusstools* package **can be activated and used for regu
 
 * Launch `platformio-ide-terminal` (in *Atom* go to **Packages** (top menu) > **platformio-ide-terminal** > **New Terminal**)
 * In the terminal activate the *flussenv* environment: `conda activate flussenv`
-* In the activated environment launch python `python`
-* If the installation of *flusstools* is OK, the following imports should pass silently (otherwise, start over with the conda {ref}`conda-quick`): `import flusstools as ft`
+* In the activated environment launch python `atom`
 ````
+
+Read more about the integration of Python and environments in Atom in the section on the {ref}`installation of Atom (IDE) <atom-python>`.
 
 
 (ide-setup)=

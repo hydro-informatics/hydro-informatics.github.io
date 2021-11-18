@@ -31,7 +31,7 @@ Anaconda works well on Windows, but Linux (or also macOS) users will have a bett
 
 *Anaconda* is a Python and *R* distribution that enables the usage of a couple of IDEs such as [*PyCharm*](https://www.jetbrains.com/pycharm/), [*Spyder*](https://www.spyder-ide.org/), or [*JupyterLab (Notebook)*](https://jupyter.org/).
 
-The very first step to getting started with *Anaconda* consists in downloading and installing [*Anaconda*](https://www.anaconda.com/products/individual) where students may use the individual license for educational training purposes (note that a commercial license needs to be purchased for profit organizations). On Windows, *Anaconda* should be installed in the *LOCAL* user folder (e.g., *C:\users\<your-user-name>\AppData\Local*). *Linux* or *macOS* users find download and installation instructions directly at the developer's website, tailored for their specific distribution, even though they might be better of with {ref}`install-atom`.
+The very first step to getting started with *Anaconda* consists in downloading and installing [*Anaconda*](https://www.anaconda.com/products/individual) where students may use the individual license for educational training purposes (note that a commercial license needs to be purchased for for-profit organizations). On Windows, *Anaconda* should be installed in the *LOCAL* user folder (e.g., *C:\users\<your-user-name>\AppData\Local*). *Linux* or *macOS* users find download and installation instructions directly at the developer's website, tailored for their specific distribution, even though they might be better of with {ref}`install-atom`.
 
 After the successful installation of *Anaconda*, IDEs for Python programming or *markdown* editing can be directly installed by launching the **Anaconda navigator**. **`conda`** environments can be created later, following the instructions in the {ref}`conda-env` section.
 
@@ -200,7 +200,9 @@ sudo apt install atom
 
 
 (atom-packages)=
-## Get Useful Atom Packages
+## Atom Packages
+
+### Get Useful Atom Packages
 
 To install packages:
 
@@ -218,7 +220,7 @@ The following (additional) packages are useful for working with the contents of 
 * `python-requirements` enables to install required packages for running Python code
 * `script` enables to run Python and many other code types ([read the docs](https://atom.io/packages/script)); after the installation, running a code (Python) file can be triggered by clicking on the **Packages** top menu > **Script**  > **Run Script**.
 
-## Spell Checking
+### Spell Checking
 
 The default-installed **spell-check** package runs basic spellcheck for plain text, GitHub Markdown, AsciiDoc, and reStructuredText by using the system's default dictionaries.
 
@@ -245,7 +247,11 @@ Other packages enable spell checking for particular file formats:
 Read more at [atom.io](https://atom.io/packages/spell-check) for more information on other distributions and dictionaries.
 
 (atom-python)=
-## Usage
+## Usage with Python
+
+```{admonition} Requirements
+To enable Python compatibility, first, visit the {ref}`install-python` section and install {{ ft_url }} for your system (i.e., either in a virtual or conda environment).
+```
 
 ````{tabbed} Linux
 
@@ -272,10 +278,14 @@ Then, start *Atom* in the (pip or conda) environment through Terminal (Linux) or
 atom
 ```
 
-*Atom* should open and provide the option to select a folder where a Python project will live or is already living. After selecting a folder, start editing your Python (`.py`) files. For running Python scripts, first set up the *Script* package:
+*Atom* should open and provide the option to select a folder where a Python project will live or is already living. After selecting a folder, start editing your Python (`.py`) files. For running Python scripts, there are two options:
+
+
+````{tabbed} Option 1: Use Script Package
+ first set up the *Script* package:
 
 * Make sure that the [script package](https://atom.io/packages/script) is installed.
-* Configure the *Srcpit* packge in *Atom* by clicking on **Packages** > **Configure Script** (`Alt` + `Ctrl` + `Shift` + `O`):
+* Configure the *Srcipt* packge in *Atom* by clicking on **Packages** > **Configure Script** (`Alt` + `Ctrl` + `Shift` + `O`):
   * In the **Command** field enter `python` (or `python3`).
   * Click on **Save as profile** and enter a prilfe name (e.g. `flussprofile`).
 
@@ -283,6 +293,13 @@ To run a Python script:
 
 * Either go to **Packages** > **Script** > **Run with profile** and select **flussprofile**
 * Or press `Alt` + `Ctrl` + `Shift` + `B`
+````
+````{tabbed} Option 2: Use atom-python-virtualenv Package
+Make sure to install the `atom-python-virtualenv` package (see the section on {ref}`installing Atom packages <atom-packages>`) and select `vflussenv` from the status bar at the bottom of the window as indicated in the below figure.
+
+```{image} ../img/python/atom-enable-env.png
+```
+````
 
 ## More Console Options
 
