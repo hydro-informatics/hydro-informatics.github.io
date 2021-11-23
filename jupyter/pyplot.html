@@ -44,6 +44,8 @@
     <script src="../_static/tabs.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe,.cell"
@@ -766,10 +768,7 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#tools-packages-for-plotting-with-python">
-   Tools (Packages) for Plotting with
-   <em>
-    Python
-   </em>
+   Tools (Packages) for Plotting with Python
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -784,7 +783,7 @@
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#step-by-step-recipe-for-1d-2d-line-plots">
-     Step-by-step Recipe for 1d/2d (line) plots
+     Step-by-step Recipe for 1d/2d (line) Plots
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -870,18 +869,18 @@
 <h1>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h1>
 <p>Use matplotlib, pandas, and plotly to leverage Python’s power of data visualization. For interactive reading and executing code blocks <a class="reference external" href="https://mybinder.org/v2/gh/hydro-informatics/jupyter-python-course/main"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> and find <em>b07-pyplot.ipynb</em> or <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Python (Installation)</span></a> locally along with <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a>.</p>
 <div class="section" id="tools-packages-for-plotting-with-python">
-<h2>Tools (Packages) for Plotting with <em>Python</em><a class="headerlink" href="#tools-packages-for-plotting-with-python" title="Permalink to this headline">¶</a></h2>
-<p>Several packages enable plotting in <em>Python</em>. The last page already introduced <a class="reference external" href="pynum.html#numpy"><em>NumPy</em></a> and <a class="reference external" href="pynum.html#pandas"><em>pandas</em></a> for plotting histograms. <em>pandas</em> plotting capacities go way beyond just plotting histograms and it relies on the powerful <a class="reference external" href="https://matplotlib.org/"><em>matplotlib</em></a> library. <em>SciPy</em>’s <em>matplotlib</em> is the most popular plotting library in <em>Python</em> (since its introduction in 2003) and not only <em>pandas</em>, but also other libraries (for example the abstraction layer <a class="reference external" href="https://seaborn.pydata.org/"><em>Seaborn</em></a>) use <em>matplotlib</em> with facilitated commands. This page introduces the following packages for data visualization:</p>
+<h2>Tools (Packages) for Plotting with Python<a class="headerlink" href="#tools-packages-for-plotting-with-python" title="Permalink to this headline">¶</a></h2>
+<p>Several packages enable plotting in Python. The last page already introduced <a class="reference internal" href="pynum.html#numpy"><span class="std std-ref">NumPy</span></a> and <a class="reference internal" href="pynum.html#pandas"><span class="std std-ref">pandas</span></a> for plotting histograms. <em>pandas</em> plotting capacities go way beyond just plotting histograms and it relies on the powerful <a class="reference external" href="https://matplotlib.org/"><em>matplotlib</em></a> library. <em>SciPy</em>’s <em>matplotlib</em> is the most popular plotting library in Python (since its introduction in 2003) and not only <em>pandas</em>, but also other libraries (for example the abstraction layer <a class="reference external" href="https://seaborn.pydata.org/">Seaborn</a>) use <em>matplotlib</em> with facilitated commands. This page introduces the following packages for data visualization:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="#matplotlib"><em>matplotlib</em></a> - the baseline for data visualization in <em>Python</em></p></li>
-<li><p><a class="reference external" href="#pandas"><em>pandas</em></a> - as wrapper API of <em>matplotlib</em>, with many simplified options for meaningful plots</p></li>
-<li><p><a class="reference external" href="#plotly"><em>plotly</em></a> - for interactive plots, in which users can change and move plot scales</p></li>
+<li><p><a class="reference internal" href="#matplotlib"><span class="std std-ref">matplotlib</span></a> - the baseline for data visualization in Python</p></li>
+<li><p><a class="reference internal" href="pynum.html#pandas"><span class="std std-ref">pandas</span></a> - as wrapper API of <em>matplotlib</em>, with many simplified options for meaningful plots</p></li>
+<li><p><a class="reference internal" href="#plotly"><span class="std std-ref">plotly</span></a> - for interactive plots, in which users can change and move plot scales</p></li>
 </ul>
 </div>
 <div class="section" id="matplotlib">
 <span id="id1"></span><h2>Matplotlib<a class="headerlink" href="#matplotlib" title="Permalink to this headline">¶</a></h2>
-<p>Because of its complexity and the fact that all important functions can be used with <em>pandas</em> in a much more manageable way, we will only discuss <em>matplotlib</em> only briefly here. Yet it is important to know how <em>matplotlib</em> works in order to better understand the baseline of plotting with <em>Python</em> and to use more complex graphics or more plotting options when needed.</p>
-<p>In 2003, the development of <em>matplotlib</em> was initiated in the field of neurobiology by <a class="reference external" href="https://en.wikipedia.org/wiki/John_D._Hunter"><em>John D. Hunter (†)</em></a> to emulate <em>The MathWork</em>’s <em>MATLAB®</em> software. This early development is was constituted the <code class="docutils literal notranslate"><span class="pre">pylab</span></code> package, which is deprecated today for its bad practice of overwriting <em>Python</em> (in particular <em>NumPy</em>) <code class="docutils literal notranslate"><span class="pre">plot()</span></code> and <code class="docutils literal notranslate"><span class="pre">array()</span></code> methods/objects. Today, it is recommended to use:<br>
+<p>Because of its complexity and the fact that all important functions can be used with <em>pandas</em> in a much more manageable way, we will only discuss <em>matplotlib</em> only briefly here. Yet it is important to know how <em>matplotlib</em> works to better understand the baseline of plotting with <em>Python</em> and to use more complex graphics or more plotting options when needed.</p>
+<p>In 2003, the development of <em>matplotlib</em> was initiated in the field of neurobiology by <a class="reference external" href="https://en.wikipedia.org/wiki/John_D._Hunter"><em>John D. Hunter (†)</em></a> to emulate <em>The MathWork</em>’s <em>MATLAB®</em> software. This early development is was constituted the <code class="docutils literal notranslate"><span class="pre">pylab</span></code> package, which is deprecated today for its bad practice of overwriting Python (in particular NumPy) <code class="docutils literal notranslate"><span class="pre">plot()</span></code> and <code class="docutils literal notranslate"><span class="pre">array()</span></code> methods/objects. Today, it is recommended to use:<br>
 <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">matplotlib.pyplot</span> <span class="pre">as</span> <span class="pre">plt</span></code>.</p>
 <div class="section" id="some-terms-and-definitions">
 <h3>Some Terms and Definitions<a class="headerlink" href="#some-terms-and-definitions" title="Permalink to this headline">¶</a></h3>
@@ -889,19 +888,19 @@
 <p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/pyplot-defs.png" /> of a pyplot figure.</p>
 </div>
 <div class="section" id="step-by-step-recipe-for-1d-2d-line-plots">
-<span id="plotxy"></span><h3>Step-by-step Recipe for 1d/2d (line) plots<a class="headerlink" href="#step-by-step-recipe-for-1d-2d-line-plots" title="Permalink to this headline">¶</a></h3>
+<span id="plotxy"></span><h3>Step-by-step Recipe for 1d/2d (line) Plots<a class="headerlink" href="#step-by-step-recipe-for-1d-2d-line-plots" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
 <li><p>Import <em>matplolib</em>’s <code class="docutils literal notranslate"><span class="pre">pyplot</span></code> package with <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">matplotlib.pyplot</span> <span class="pre">as</span> <span class="pre">plt</span></code></p></li>
 <li><p>Create a figure with <code class="docutils literal notranslate"><span class="pre">plt.figure(figsize=(width_inch,</span> <span class="pre">height_inch),</span> <span class="pre">dpi=int,</span> <span class="pre">facecolor=str,</span> <span class="pre">edgecolor=str)</span></code></p></li>
 <li><p>Add axes to the figure with `axes=fig.add_subplot(row=int, column=int, index=int, label=str)</p></li>
-<li><p>Generate a <a class="reference external" href="http://matplotlib.org/users/colormaps.html">color map</a>; <code class="docutils literal notranslate"><span class="pre">plt.cm.getcmap()</span></code> generates an array of colors as explained with the <a class="reference external" href="pynum.html#colors"><em>NumPy</em> instructions</a>. For example <code class="docutils literal notranslate"><span class="pre">colormap=([255,</span> <span class="pre">0,</span> <span class="pre">0])</span></code> creates a color map with just one color (red).</p></li>
-<li><p>Plot the data (finally!) to plot</p>
+<li><p>Generate a <a class="reference external" href="http://matplotlib.org/users/colormaps.html">color map</a>; <code class="docutils literal notranslate"><span class="pre">plt.cm.getcmap()</span></code> generates an array of colors as explained in the <a class="reference internal" href="pynum.html#colors"><span class="std std-ref">numpy section</span></a>. For example <code class="docutils literal notranslate"><span class="pre">colormap=([255,</span> <span class="pre">0,</span> <span class="pre">0])</span></code> creates a color map with just one color (red).</p></li>
+<li><p>To plot the data with</p>
 <ul class="simple">
-<li><p>lines with <code class="docutils literal notranslate"><span class="pre">axes.plot(x,</span> <span class="pre">y,</span> <span class="pre">linestyle=str,</span> <span class="pre">marker=str,</span> <span class="pre">color=Colormap(int),</span> <span class="pre">label=str)</span></code> and many more <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> can be defined (<a class="reference external" href="https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.lines.Line2D.html#matplotlib.lines.Line2D">go the <em>matplotlib</em> docs</a>).</p></li>
-<li><p>points (markers) with <code class="docutils literal notranslate"><span class="pre">axes.scatter(x,</span> <span class="pre">y,</span> <span class="pre">MarkerStyle=str,</span> <span class="pre">cmap=Colormap,</span> <span class="pre">label=str)</span></code> and many more <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> can be defined (<a class="reference external" href="https://matplotlib.org/3.2.1/api/_as_gen/matplotlib.pyplot.scatter.html">go the <em>matplotlib</em> docs</a>)</p></li>
+<li><p>lines use <code class="docutils literal notranslate"><span class="pre">axes.plot(x,</span> <span class="pre">y,</span> <span class="pre">linestyle=str,</span> <span class="pre">marker=str,</span> <span class="pre">color=Colormap(int),</span> <span class="pre">label=str)</span></code> and many more <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> can be defined (<a class="reference external" href="https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.lines.Line2D.html#matplotlib.lines.Line2D">go the <em>matplotlib</em> docs</a>).</p></li>
+<li><p>points (markers) use <code class="docutils literal notranslate"><span class="pre">axes.scatter(x,</span> <span class="pre">y,</span> <span class="pre">MarkerStyle=str,</span> <span class="pre">cmap=Colormap,</span> <span class="pre">label=str)</span></code> and many more <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> can be defined (<a class="reference external" href="https://matplotlib.org/3.2.1/api/_as_gen/matplotlib.pyplot.scatter.html">go the <em>matplotlib</em> docs</a>)</p></li>
 </ul>
 </li>
-<li><p>Manipulate the axis ticks</p>
+<li><p>Manipulate axis ticks</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">plt.xticks(list)</span></code> define x-axis ticks</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">plt.yticks(list)</span></code> define y-axis ticks</p></li>
@@ -911,19 +910,19 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">axes.set_ylabel(str)</span></code> sets the y-axis label</p></li>
 </ul>
 </li>
-<li><p>Add legend (optionally) with <code class="docutils literal notranslate"><span class="pre">axes.legend(loc=str,</span> <span class="pre">facecolor=str,</span> <span class="pre">edgecolor=str,</span> <span class="pre">framealpha=float_between_0_and_1)</span></code> and many more <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> can be defined (<a class="reference external" href="https://matplotlib.org/3.1.1/api/legend_api.html#matplotlib.legend.Legend">confer to the <em>matplotlib</em> docs</a>).</p></li>
-<li><p>Optional: Save figure with <code class="docutils literal notranslate"><span class="pre">plt.savefig(fname=str,</span> <span class="pre">dpi=int)</span></code> with many more <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> available (<a class="reference external" href="https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.savefig.html">confer to the <em>matplotlib</em> docs</a>).</p></li>
+<li><p>Add a legend (optionally) with <code class="docutils literal notranslate"><span class="pre">axes.legend(loc=str,</span> <span class="pre">facecolor=str,</span> <span class="pre">edgecolor=str,</span> <span class="pre">framealpha=float_between_0_and_1)</span></code> and many more <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> can be defined (<a class="reference external" href="https://matplotlib.org/3.1.1/api/legend_api.html#matplotlib.legend.Legend">confer to the <em>matplotlib</em> docs</a>).</p></li>
+<li><p>Optional: Save the figure with <code class="docutils literal notranslate"><span class="pre">plt.savefig(fname=str,</span> <span class="pre">dpi=int)</span></code> with many more <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> available (<a class="reference external" href="https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.savefig.html">confer to the <em>matplotlib</em> docs</a>).</p></li>
 </ol>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Most of the below illustrated <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> features are embedded in a plotter script, which is available at the <a class="reference external" href="https://github.com/hydro-informatics/material-py-codes/raw/master/plotting/plotter.py">course repository</a> (only when the lecture is active).</p>
+<p>Most of the below illustrated <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> features are embedded in a plotter script, which is available at a <a class="reference external" href="https://github.com/hydro-informatics/material-py-codes/raw/master/plotting/plotter.py">supplemental repository of this eBook</a>.</p>
 </div>
-<p>The following code block illustrates the plot recipe using <a class="reference external" href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.RandomState.weibull.html#numpy.random.RandomState.weibull">randomly drawn samples from a <em>Weibull</em> distribution</a> with a the distribution shape factor <em>a</em> (for <em>a</em>=1, the <em>Weibull</em> distribution reduces to an exponential distribution). The <code class="docutils literal notranslate"><span class="pre">seed</span></code> argument describes the source of randomness and <code class="docutils literal notranslate"><span class="pre">seed=None</span></code> makes <em>Python</em> use randomness from operating system variables.</p>
-<p>The code block below makes use of a function called <code class="docutils literal notranslate"><span class="pre">plot_xy</span></code> that requires <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> arguments and accepts the following optional keyword arguments:</p>
+<p>The following code block illustrates a plot recipe using <a class="reference external" href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.RandomState.weibull.html#numpy.random.RandomState.weibull">randomly drawn samples from a <em>Weibull</em> distribution</a> with the distribution shape factor <span class="math notranslate nohighlight">\(a\)</span> (for <code class="docutils literal notranslate"><span class="pre">a=1</span></code>, the <em>Weibull</em> distribution reduces to an exponential distribution). The <code class="docutils literal notranslate"><span class="pre">seed</span></code> argument describes the source of randomness and <code class="docutils literal notranslate"><span class="pre">seed=None</span></code> makes Python use randomness from operating system variables.</p>
+<p>The below code block makes use of a function called <code class="docutils literal notranslate"><span class="pre">plot_xy</span></code> that requires <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> arguments and accepts the following optional keyword arguments:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">plot_type=str</span></code> defines if a line or scatter plot should be produced,</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">label=str</span></code> sets the legend,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">save=str</span></code> defines a path where the figure should be saved (the figure is not saved if nothing provided). To activate saving a figure write for example <code class="docutils literal notranslate"><span class="pre">save='C:/temp/weibull.png'</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">save=str</span></code> defines a path where the figure should be saved (the figure is not saved if nothing is provided). To activate saving a figure, use the optional keyword argument <code class="docutils literal notranslate"><span class="pre">save</span></code>, for example, <code class="docutils literal notranslate"><span class="pre">save='C:/temp/weibull.png'</span></code> saves the figure to a local <code class="docutils literal notranslate"><span class="pre">temp</span></code> folder on a Windows <code class="docutils literal notranslate"><span class="pre">C:</span></code> drive.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -961,14 +960,16 @@
 </div>
 </div>
 </div>
+<img alt="../_images/output_3_1.png" src="../_images/output_3_1.png" />
+<img alt="../_images/output_3_2.png" src="../_images/output_3_2.png" />
 <div class="admonition-challenge admonition">
 <p class="admonition-title">Challenge</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">plot_xy</span></code> function has some weaknesses. For example if more arguments are provided or <code class="docutils literal notranslate"><span class="pre">y</span></code> data are an array that should produce multiple lines. How can you optimize the <code class="docutils literal notranslate"><span class="pre">plot_xy</span></code> function, to make it more robust and enable multi-line plotting?</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">plot_xy</span></code> function has some weaknesses. For instance, if more arguments are provided, or <code class="docutils literal notranslate"><span class="pre">y</span></code> data is a multidimensional array (not <span class="math notranslate nohighlight">\(nx1\)</span> or <span class="math notranslate nohighlight">\(1xm\)</span>) that should produce multiple plot lines, the function will not work. So, how can you optimize the <code class="docutils literal notranslate"><span class="pre">plot_xy</span></code> function, to make it more robust and enable multi-line plotting?</p>
 </div>
 </div>
 <div class="section" id="surface-and-contour-plots">
 <h3>Surface and Contour Plots<a class="headerlink" href="#surface-and-contour-plots" title="Permalink to this headline">¶</a></h3>
-<p><em>matplotlib</em> provides multiple options to plot X-Y-Z data, for example (i.e., there are more options):</p>
+<p><em>matplotlib</em> provides multiple options to plot X-Y-Z (2d/3d) data such as:</p>
 <ul class="simple">
 <li><p>Surface plots with color shades: <a class="reference external" href="https://matplotlib.org/mpl_toolkits/mplot3d/tutorial.html#surface-plots"><code class="docutils literal notranslate"><span class="pre">axes.plot_surface(X,</span> <span class="pre">Y,</span> <span class="pre">Z)</span></code></a></p></li>
 <li><p>Contour plots: <a class="reference external" href="https://matplotlib.org/mpl_toolkits/mplot3d/tutorial.html#contour-plots"><code class="docutils literal notranslate"><span class="pre">axes.contour(X,</span> <span class="pre">Y,</span> <span class="pre">Z)</span></code></a></p></li>
@@ -978,13 +979,13 @@
 <li><p>Streamplots (e.g., of velocity vectors): <a class="reference external" href="https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.streamplot.html"><code class="docutils literal notranslate"><span class="pre">axes.streamplot(X,</span> <span class="pre">Y,</span> <span class="pre">U,</span> <span class="pre">V)</span></code></a></p></li>
 <li><p>Color-coded representation of gridded values with (annotated) heatmaps (e.g., for habitat suitability index maps): <a class="reference external" href="https://matplotlib.org/3.1.1/gallery/images_contours_and_fields/image_annotated_heatmap.html"><code class="docutils literal notranslate"><span class="pre">axes.imshow(data,</span> <span class="pre">**kwargs)</span></code></a></p></li>
 </ul>
-<p>Only streamplots are discussed here, since they are a useful tool for the visualization of velocity vectors (flow fields) in rivers. To generate a streamplot:</p>
+<p>This section features the usage of streamplots, which are a useful tool for the visualization of velocity vectors (flow fields) in rivers (e.g., produced with a numerical model). To generate a streamplot:</p>
 <ol class="simple">
-<li><p>Create an <code class="docutils literal notranslate"><span class="pre">X</span></code> - <code class="docutils literal notranslate"><span class="pre">Y</span></code> grid, for example with the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.mgrid.html"><em>NumPy</em>’s <code class="docutils literal notranslate"><span class="pre">mgrid</span></code> method</a>: <code class="docutils literal notranslate"><span class="pre">Y,</span> <span class="pre">X</span> <span class="pre">=</span> <span class="pre">np.mgrid[range,</span> <span class="pre">range]</span></code></p></li>
-<li><p>Assign stream field data (such data can be artificially generated for example as <code class="docutils literal notranslate"><span class="pre">U</span></code> and <code class="docutils literal notranslate"><span class="pre">V</span></code>) to the grid nodes as calculate a scalar value (e.g., <code class="docutils literal notranslate"><span class="pre">velocity</span></code> as a function of the 2-directional field data).</p></li>
-<li><p>Generate figures as before in the <code class="docutils literal notranslate"><span class="pre">plot_xy</span></code> function example (see <a class="reference external" href="#plotxy">above 1d/2d plot instructions</a>).</p></li>
+<li><p>Create an <code class="docutils literal notranslate"><span class="pre">X</span></code> - <code class="docutils literal notranslate"><span class="pre">Y</span></code> grid, for example with the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.mgrid.html">NumPy’s <code class="docutils literal notranslate"><span class="pre">mgrid</span></code> method</a>: <code class="docutils literal notranslate"><span class="pre">Y,</span> <span class="pre">X</span> <span class="pre">=</span> <span class="pre">np.mgrid[range,</span> <span class="pre">range]</span></code></p></li>
+<li><p>Assign stream field data (can be artificially generated, for example, in the form of <code class="docutils literal notranslate"><span class="pre">U</span></code> and <code class="docutils literal notranslate"><span class="pre">V</span></code> variables in the below code block) to the grid nodes. Note that every grid node can only get assigned one scalar value, which is <code class="docutils literal notranslate"><span class="pre">velocity</span></code> (as a function of the 2-directional field data) in the below code block.</p></li>
+<li><p>Generate figures, as before in the <code class="docutils literal notranslate"><span class="pre">plot_xy</span></code> function example (see the <a class="reference internal" href="#plotxy"><span class="std std-ref">above 1d/2d plot instructions</span></a>).</p></li>
 </ol>
-<p>The below code block illustrates the generation of a streamplot (adapted from the <a class="reference external" href="https://matplotlib.org/3.1.1/gallery/images_contours_and_fields/plot_streamplot.html#sphx-glr-gallery-images-contours-and-fields-plot-streamplot-py"><em>matplotlib</em> docs</a>) and uses <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">matplotlib.gridspec</span></code> to place the subplots in the figure.</p>
+<p>The below code block illustrates the generation of a streamplot (adapted from the <a class="reference external" href="https://matplotlib.org/3.1.1/gallery/images_contours_and_fields/plot_streamplot.html#sphx-glr-gallery-images-contours-and-fields-plot-streamplot-py">matplotlib docs</a>) and uses <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">matplotlib.gridspec</span></code> to place the subplots in the figure.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -1019,10 +1020,11 @@
 </div>
 </div>
 </div>
+<img alt="../_images/output_6_0.png" src="../_images/output_6_0.png" />
 </div>
 <div class="section" id="fonts-and-styles">
 <h3>Fonts and Styles<a class="headerlink" href="#fonts-and-styles" title="Permalink to this headline">¶</a></h3>
-<p>The previous example already featured font type adjustment for the plot titles (<code class="docutils literal notranslate"><span class="pre">axes.set_title('title',</span> <span class="pre">font</span> <span class="pre">...)</span></code>). The font and its characteristics (e.g., size, weight, style, or family) can be defined in a more coherent manner with <code class="docutils literal notranslate"><span class="pre">matplotlib.font_manager.FontProperties</span></code> (<a class="reference external" href="https://matplotlib.org/3.1.1/api/font_manager_api.html">cf. the <em>matplotlib</em> docs</a>), where plot font settings can be globally modified within a script.</p>
+<p>The previous example featured a font type adjustment for the plot titles (<code class="docutils literal notranslate"><span class="pre">axes.set_title('title',</span> <span class="pre">font</span> <span class="pre">...)</span></code>). The font and its characteristics (e.g., size, weight, style, or family) can be defined more coherently with <code class="docutils literal notranslate"><span class="pre">matplotlib.font_manager.FontProperties</span></code> (<a class="reference external" href="https://matplotlib.org/3.1.1/api/font_manager_api.html">cf. the matplotlib docs</a>), where plot font settings can be globally modified within a script.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -1063,8 +1065,9 @@
 </div>
 </div>
 </div>
-<p>Instead of using <code class="docutils literal notranslate"><span class="pre">rc</span></code>, font characteristics can also be updated with <em>matplotlib</em>’s <code class="docutils literal notranslate"><span class="pre">rcParams</span></code> <em>dictionary</em>. In general, all font parameters can be accessed with <code class="docutils literal notranslate"><span class="pre">rcParams</span></code> along with many more parameters of plot layout options. The parametric options are stored in the <a class="reference external" href="https://matplotlib.org/tutorials/introductory/customizing.html#customizing-with-matplotlibrc-files"><code class="docutils literal notranslate"><span class="pre">matplotlibrc</span></code></a> file and can be accessed with <code class="docutils literal notranslate"><span class="pre">rcParams[&quot;matplotlibrc-parameter&quot;]</span></code>. Read more about modification options (<code class="docutils literal notranslate"><span class="pre">&quot;matplotlibrc-parameter&quot;</span></code>) in the <a class="reference external" href="https://matplotlib.org/tutorials/introductory/customizing.html#customizing-with-matplotlibrc-files"><em>matplotlib</em> docs</a>. In order to modify a (font) style parameter use <code class="docutils literal notranslate"><span class="pre">rcParams.update({parameter-name:</span> <span class="pre">parameter-value})</span></code> (which does not always work - for example in <a class="reference external" href="https://github.com/jupyter/notebook/issues/3385"><em>jupyter</em></a>).</p>
-<p>In addition, many default plot styles are available through <a class="reference external" href="https://matplotlib.org/api/style_api.html#matplotlib-style"><code class="docutils literal notranslate"><span class="pre">matplotlib.style</span></code></a> with many <a class="reference external" href="https://matplotlib.org/gallery/style_sheets/style_sheets_reference.html">style templates</a>. The following example illustrates the application of <code class="docutils literal notranslate"><span class="pre">rcParams</span></code> and <code class="docutils literal notranslate"><span class="pre">style</span></code> to the previously generated x-y oscillation dataset.</p>
+<img alt="../_images/output_8_1.png" src="../_images/output_8_1.png" />
+<p>Instead of using <code class="docutils literal notranslate"><span class="pre">rc</span></code>, font characteristics can also be updated with matplotlib’s <code class="docutils literal notranslate"><span class="pre">rcParams</span></code> <em>dictionary</em>. In general, all font parameters can be accessed with <code class="docutils literal notranslate"><span class="pre">rcParams</span></code> along with many more parameters of plot layout options. The parametric options are stored in the <a class="reference external" href="https://matplotlib.org/tutorials/introductory/customizing.html#customizing-with-matplotlibrc-files"><code class="docutils literal notranslate"><span class="pre">matplotlibrc</span></code></a> file and can be accessed with <code class="docutils literal notranslate"><span class="pre">rcParams[&quot;matplotlibrc-parameter&quot;]</span></code>. Read more about modification options (<code class="docutils literal notranslate"><span class="pre">&quot;matplotlibrc-parameter&quot;</span></code>) in the <a class="reference external" href="https://matplotlib.org/tutorials/introductory/customizing.html#customizing-with-matplotlibrc-files"><em>matplotlib</em> docs</a>. In order to modify a (font) style parameter use <code class="docutils literal notranslate"><span class="pre">rcParams.update({parameter-name:</span> <span class="pre">parameter-value})</span></code> (which does not always work, for example, in <a class="reference external" href="https://github.com/jupyter/notebook/issues/3385">jupyter</a>).</p>
+<p>In addition, many default plot styles are available through <a class="reference external" href="https://matplotlib.org/api/style_api.html#matplotlib-style"><code class="docutils literal notranslate"><span class="pre">matplotlib.style</span></code></a> with many <a class="reference external" href="https://matplotlib.org/gallery/style_sheets/style_sheets_reference.html">style templates</a>. The following example illustrates the application of <code class="docutils literal notranslate"><span class="pre">rcParams</span></code> and <code class="docutils literal notranslate"><span class="pre">style</span></code> variables to the previously generated x-y oscillation dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rcParams</span>
@@ -1097,7 +1100,7 @@
 </div>
 <div class="section" id="annotations">
 <h3>Annotations<a class="headerlink" href="#annotations" title="Permalink to this headline">¶</a></h3>
-<p>Pointing out particularities in graphs is sometimes helpful to explain observations on graphs. Here are some options illustrated with a self-explaining code block.</p>
+<p>Pointing out particularities in graphs is sometimes helpful to explain or name observations on graphs. The following code block shows some options with self-explaining <em>strings</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rcParams</span>
@@ -1126,13 +1129,14 @@
 </div>
 </div>
 </div>
+<img alt="../_images/output_12_0.png" src="../_images/output_12_0.png" />
 <div class="admonition-challenge admonition">
 <p class="admonition-title">Challenge</p>
-<p>The above code blocks involve many repetitive statements such as <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">...</span></code> - <code class="docutils literal notranslate"><span class="pre">rcParams.update(rcParamsDefault)</span></code>, and <code class="docutils literal notranslate"><span class="pre">plot.show()</span></code> at the end. Can you write a <a class="reference external" href="pyfun.html#wrappers">wrapper function</a> to decorate any other <em>matplotlib</em> plot function?</p>
+<p>The above code blocks involve many repetitive statements such as <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">...</span></code> - <code class="docutils literal notranslate"><span class="pre">rcParams.update(rcParamsDefault)</span></code>, and <code class="docutils literal notranslate"><span class="pre">plot.show()</span></code> at the end. Can you write a <a class="reference internal" href="pyfun.html#wrappers"><span class="std std-ref">wrapper</span></a> to decorate a <em>matplotlib</em> plot function?</p>
 </div>
 <div class="admonition-exercise admonition">
 <p class="admonition-title">Exercise</p>
-<p>Get familiar with built-in plot functions using <em>matplotlib</em> with the template scripts provided for the <a class="reference internal" href="../exercises/ex-sp.html"><span class="doc std std-doc">Reservoir design</span></a> and <a class="reference internal" href="../exercises/ex-floods.html"><span class="doc std std-doc">Flood return period calculation</span></a> exercises.</p>
+<p>Familiarize with built-in plot functions using <em>matplotlib</em> with the template scripts provided with the <a class="reference internal" href="../exercises/ex-sp.html#ex-seq-peak"><span class="std std-ref">reservoir design</span></a> and <a class="reference internal" href="../exercises/ex-floods.html#ex-floods"><span class="std std-ref">flood return period calculation</span></a> exercises.</p>
 </div>
 </div>
 </div>
@@ -1141,16 +1145,17 @@
 <p>Plotting with <em>matplotlib</em> can be daunting, not because the library is poorly documented (the complete opposite is the case), but because <em>matplotlib</em> is very extensive. <em>pandas</em> brings remedy with simplified commands for high-quality plots. The simplest way to plot a <em>pandas</em> data frame is <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html"><code class="docutils literal notranslate"><span class="pre">pd.DataFrame.plot(x=&quot;col1&quot;,</span> <span class="pre">y=&quot;col2&quot;)</span></code></a>. The following example illustrates this fundamentally simple usage with a river discharge series stored in a workbook.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flow_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;data/USGS_11421000_MRY_flows.xlsx&#39;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Mean Monthly CMS&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flow_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;data/example_flow_gauge.xlsx&#39;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Mean Monthly CMS&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">flow_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
 <span class="n">flow_df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;Date (mmm-jj)&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Flow (CMS)&quot;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<img alt="../_images/output_15_2.png" src="../_images/output_15_2.png" />
 <div class="section" id="pandas-and-matplotlib">
 <h3><em>pandas</em> and <em>matplotlib</em><a class="headerlink" href="#pandas-and-matplotlib" title="Permalink to this headline">¶</a></h3>
-<p>Because <em>pandas</em> plot functionality roots in the <em>matplotlib</em> library, it can be easily combined, for example to create subplots:</p>
+<p>Because <em>pandas</em> plot functionality roots in the <em>matplotlib</em> library, those can be easily combined, for example, to create subplots:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -1165,19 +1170,21 @@
 </div>
 </div>
 </div>
+<img alt="../_images/output_17_1.png" src="../_images/output_17_1.png" />
 </div>
 <div class="section" id="boxplots-and-error-bars">
 <h3>Boxplots and Error Bars<a class="headerlink" href="#boxplots-and-error-bars" title="Permalink to this headline">¶</a></h3>
-<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Box_plot">box-plot</a> graphically represents the distribution of (statistical) scatter and parameters of a data series. Why are box-plots particularly mentioned within the <em>pandas</em> plot explanations? Well, the reason is that with <em>pandas</em> data frames, we typically load data series with certain statistical properties per column. For example if we run a steady-flow experiment in a hydraulic lab flume with ultrasonic probes for deriving flow depths, we will observe signal fluctuation, even though the flow was steady. By loading the signal data into a <em>pandas</em> data frame, we can use a box plot to observe the average flow depth and the noise in the measurement among different probes. Thus, probes with unexpected noise can be identified and repaired. This small example can be applied on a broader scale to many other sensors and for many other purposes (noise does not automatically mean that a sensor is broken). A box-plot has the following attributes:</p>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Box_plot">box-plot</a> graphically represents the distribution of (statistical) scatter and parameters of a data series.</p>
+<p>Why use a box-plot with a <em>pandas</em> data frame? The reason is that with <em>pandas</em> data frames, we typically load data series with per-column statistical properties. For instance, if we run a steady-flow experiment in a hydraulic lab flume with ultrasonic probes for deriving water depths, we will observe signal fluctuation, even though the flow was steady. By loading the signal data into a <em>pandas</em> data frame, we can use a box plot to observe the average water depth and the noise in the measurement among different probes. Thus, probes with unexpected noise can be identified and repaired. This small example can be applied on a broader scale to many other sensors and for many other purposes (noise does not always mean that a sensor is broken). A box-plot has the following attributes:</p>
 <ul class="simple">
 <li><p><em>boxes</em> represent the main body of the data with quartiles and confidence intervals around the median (if activated).</p></li>
-<li><p><em>medians</em> are horizontal lines at the median (visually in the middle) of each box.</p></li>
+<li><p><em>medians</em> are horizontal lines at the median (visually in the middle) of every box.</p></li>
 <li><p><em>whiskers</em> are vertical lines that extend to the most extreme, non-outlier data points.</p></li>
 <li><p><em>caps</em> are small horizontal line endings of whiskers.</p></li>
 <li><p><em>fliers</em> are outlier points beyond whiskers.</p></li>
 <li><p><em>means</em> are either points or lines of dataset means.</p></li>
 </ul>
-<p><em>pandas</em> data frames make use of <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.boxplot.html#matplotlib.pyplot.boxplot"><code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot.boxplot</span></code></a> to generate box-plots with <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.boxplot.html"><code class="docutils literal notranslate"><span class="pre">df.boxplot()</span></code></a> or <code class="docutils literal notranslate"><span class="pre">df.plot.box()</span></code>. The following example features box-plots of flow depth measurements with ultrasonic probes (sensors 1, 2, 3, and 5) and manipulations of</p>
+<p><em>pandas</em> data frames make use of <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.boxplot.html#matplotlib.pyplot.boxplot"><code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot.boxplot</span></code></a> to generate box-plots with <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.boxplot.html"><code class="docutils literal notranslate"><span class="pre">df.boxplot()</span></code></a> or <code class="docutils literal notranslate"><span class="pre">df.plot.box()</span></code>. The following example features box-plots of water depth measurements with ultrasonic probes (sensors 1, 2, 3, and 5) stored in <code class="docutils literal notranslate"><span class="pre">FlowDepth009.csv</span></code> (<a class="reference external" href="https://raw.githubusercontent.com/hydro-informatics/jupyter-python-course/main/data/FlowDepth009.csv">download</a>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">us_sensor_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/FlowDepth009.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
@@ -1203,7 +1210,8 @@
 </div>
 </div>
 </div>
-<p>Box-plots represent the statistical assets of datasets, but box-plots can quickly become confusing when they are presented in technical reports for multiple measurement series. Yet it is state-of-the-art and good practice to present uncertainties in datasets in scientific and non-scientific publications, but somewhat more easily than, for example, with box-plots. To meet the standards of good practice, so-called <a class="reference external" href="https://en.wikipedia.org/wiki/Error_bar">error bars</a> should be added to data bars. Error bars express the uncertainty of a data set graphically in a simple way by displaying only whiskers. Regardless of whether scatter or bar plot, error bars can easily be added to graphics with <em>matplotlib</em> (<a class="reference external" href="https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.errorbar.html">more in the developer’s docs</a>). The following example shows the application of error bars to bar plots of the above ultrasonic sensor data.</p>
+<img alt="../_images/output_19_2.png" src="../_images/output_19_2.png" />
+<p>Box-plots represent the statistical assets of datasets, but box-plots can quickly become confusing (messy) when they are presented in technical reports for multiple measurement series. Yet, it is state-of-the-art and good practice to present uncertainties in datasets in scientific and non-scientific publications, but somewhat more easily than, for example, with box-plots. To this end, so-called <a class="reference external" href="https://en.wikipedia.org/wiki/Error_bar">error bars</a> can be added to data bars. Error bars graphically express the uncertainty of a data set simply, by displaying only whiskers. Regardless of whether scatter or bar plot, error bars can easily be added to graphics through <em>matplotlib</em> (<a class="reference external" href="https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.errorbar.html">more in the developer’s docs</a>). The following example shows the application of error bars to bar plots of the above ultrasonic sensor data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
@@ -1217,29 +1225,46 @@
 </div>
 </div>
 </div>
+<img alt="../_images/output_21_1.png" src="../_images/output_21_1.png" />
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In scatter plots, errors are present in both <em>x</em> and <em>y</em> directions. For example, the <em>x</em>-uncertainty may result from the measurement device precision and <em>y</em>-uncertainty can be a result of signal processing. The above error measure in terms of the standard deviation is just an example of error amplitude. To measure and represent uncertainty correctly, always refer to device descriptions and assess precision effects of multiple devices or signal processing by calculating the <a class="reference external" href="https://en.wikipedia.org/wiki/Propagation_of_uncertainty">propagation of errors</a>.</p>
+<p>In scatter plots, errors are present in both <em>x</em> and <em>y</em> directions. For instance, the <em>x</em>-uncertainty may result from the measurement device precision, and <em>y</em>-uncertainty can be a result of signal processing. The above error measure in terms of the standard deviation is just an example of error amplitude. To measure and represent uncertainty correctly, always refer to device descriptions and assess precision effects of multiple devices or signal processing by calculating the <a class="reference external" href="https://en.wikipedia.org/wiki/Propagation_of_uncertainty">propagation of errors</a>.</p>
 </div>
-<p>More options for visualizing <em>pandas</em> data frame is provided in the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/visualization.html">developer’s visualization docs</a> - and keep in mind that <em>matplotlib</em> can always be well nested in <em>pandas</em> plots.</p>
+<p>More options for visualizing a <em>pandas</em> data frame is provided in the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/visualization.html">developer’s visualization docs</a>. Keep in mind that <em>matplotlib</em> can always be applied on top of a <em>pandas</em> plot.</p>
 </div>
 </div>
 <div class="section" id="interactive-plots-with-plotly">
 <span id="plotly"></span><h2>Interactive Plots with <em>plotly</em><a class="headerlink" href="#interactive-plots-with-plotly" title="Permalink to this headline">¶</a></h2>
-<p>The above shown <em>matplotlib</em> and <em>pandas</em> packages are great for creating static graphs or click-able graphs on a desktop environment. Although interactive plots for web presentations can be created with <em>matplotlib</em> (<a class="reference external" href="https://matplotlib.org/3.1.1/users/interactive.html">read more in the <em>matplotlib</em> docs</a>), <em>plotly</em> leverages many more interactive web plot options within an easy-to-use API library. <em>plotly</em> can also handle JSON-like data (hosted somewhere in the internet) to create web applications with <em>Dash</em>. However, the company behind (<em>Plotly</em>) is a business-oriented</p>
+<p>The above shown <em>matplotlib</em> and <em>pandas</em> packages are great for creating static graphs in a desktop, report, or paper environment. Although interactive plots for web presentations can be created with <em>matplotlib</em> (<a class="reference external" href="https://matplotlib.org/3.1.1/users/interactive.html">read more in the <em>matplotlib</em> docs</a>), the <em>plotly</em> library leverages many more interactive web plotting options within an easy-to-use API. <em>plotly</em> can also handle JSON-like data (hosted somewhere on the internet) to create web applications with <em>Dash</em>. Just one issue: the company behind (<em>Plotly</em>) is business-oriented…</p>
 <div class="section" id="installation">
 <h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
-<p><em>plotly</em> is not a default package neither in the <em>environment.yml</em> (<code class="docutils literal notranslate"><span class="pre">hypy</span></code>) environment file nor in the <em>conda base</em> environment. Therefore, it must be installed manually with <em>conda prompt</em> (or <em>Conda Navigator</em> if you prefer the Desktop version). So open <em>conda prompt</em> to install <em>plotly</em> for:</p>
+<p><em>plotly</em> is not a default package neither in the <code class="docutils literal notranslate"><span class="pre">flusstools</span></code> environment file (<em>environment.yml</em>), nor in the <em>conda base</em> environment. Therefore, it must be installed manually with <em>conda prompt</em> (or <em>Conda Navigator</em> if you prefer the Desktop version). Therefore, open <em>conda prompt</em> to install <em>plotly</em> for:</p>
 <ul class="simple">
-<li><p><em>jupyter</em> usage type with the base environment activated: <br> <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">plotly</span></code> (confirm installation when asked for it) <br> <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">labextension</span> <span class="pre">install</span> <span class="pre">jupyterlab-plotly&#64;4.11.0</span></code> (change version <code class="docutils literal notranslate"><span class="pre">4.11.0</span></code> to latest version listed <a class="reference external" href="https://github.com/plotly/plotly.py/releases">here</a>) <br> optional: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">plotly</span> <span class="pre">chart-studio</span></code> (good for other plots than featured on this page)</p></li>
-<li><p><em>hypy</em> (e.g., within <em>PyCharm</em>): <br> <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">hypy</span></code> <br>  <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">plotly</span></code> (confirm installation when asked for it) <br> <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">&quot;notebook&gt;=5.3&quot;</span> <span class="pre">&quot;ipywidgets&gt;=7.2&quot;</span></code></p></li>
-<li><p><a class="reference external" href="https://plotly.com/python/troubleshooting/">Read the trouble shooting info to fix problems with jupyter or <em>Python</em></a> (there may be some…).</p></li>
+<li><p><em>jupyter</em> usage and a <strong>conda environment</strong>: <br> <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">plotly</span></code> (confirm installation when asked for it) <br> <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">labextension</span> <span class="pre">install</span> <span class="pre">jupyterlab-plotly&#64;4.11.0</span></code> (change version <code class="docutils literal notranslate"><span class="pre">4.11.0</span></code> to latest version listed <a class="reference external" href="https://github.com/plotly/plotly.py/releases">here</a>) <br> optional: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">plotly</span> <span class="pre">chart-studio</span></code> (good for other plots than featured on this page)</p></li>
+<li><p><em>jupyter</em> usage in a <strong>virtual environment</strong>: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">plotly</span></code></p></li>
 </ul>
-<p>Read more about installing packages within <em>conda environments</em> on the <a class="reference external" href="pyinstall.html#install-pckg"><em>Python</em> installation page</a>.</p>
+<p><a class="reference external" href="https://plotly.com/python/troubleshooting/">For troubleshooting, visit the developer’s website and fix problems with jupyter or Python</a> (there may be some…).</p>
+<p>To install <em>plotly</em> in <em>flussenv</em> (e.g., for usage with PyCharm or Atom) in a:</p>
+<ul class="simple">
+<li><p><strong>conda environment</strong> (<a class="reference internal" href="../python-basics/pyinstall.html#conda-env"><span class="std std-ref">recall installation instructions</span></a>):</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">flussenv</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">plotly</span></code> (confirm installation when asked for it)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">&quot;notebook&gt;=5.3&quot;</span> <span class="pre">&quot;ipywidgets&gt;=7.2&quot;</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>pip environment</strong> (<a class="reference internal" href="../python-basics/pyinstall.html#pip-env"><span class="std std-ref">recall installation instructions</span></a>):</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">vflussenv/bin/activate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">plotly</span></code></p></li>
+</ul>
+</li>
+</ul>
+<p>Read more about installing packages in a <a class="reference internal" href="../python-basics/pyinstall.html#install-pckg"><span class="std std-ref">conda environmen</span></a> or <a class="reference internal" href="../python-basics/pyinstall.html#pip-install-pckg"><span class="std std-ref">pip environment</span></a>.</p>
 </div>
 <div class="section" id="usage-simple-plots">
 <h3>Usage (Simple Plots)<a class="headerlink" href="#usage-simple-plots" title="Permalink to this headline">¶</a></h3>
-<p><em>plotly</em> comes with many datasets that can be queried online for showcases. The following example uses one of these datasets (find more at <a class="reference external" href="https://plotly.com/python-api-reference/generated/plotly.express.data.html">plotly.com</a>).</p>
+<p><em>plotly</em> comes with datasets that can be queried online for showcases. The following example uses one of these datasets (find more at <a class="reference external" href="https://plotly.com/python-api-reference/generated/plotly.express.data.html">plotly.com</a>).</p>
 <div class="admonition-recall admonition">
 <p class="admonition-title">Recall</p>
 <p>If the graph is not showing up, open <em>Anaconda Prompt</em> and make sure to install support for <em>Jupyter Notebook</em> in the active environment: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">&quot;notebook&gt;=5.3&quot;</span> <span class="pre">&quot;ipywidgets&gt;=7.2&quot;</span></code></p>
@@ -1249,55 +1274,57 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
 <span class="kn">import</span> <span class="nn">plotly.offline</span> <span class="k">as</span> <span class="nn">pyo</span>
-<span class="c1"># pyo.init_notebook_mode() </span>
-<span class="c1"># df = px.data.gapminder().query(&quot;continent==&#39;Europe&#39;&quot;)</span>
-<span class="c1"># fig = px.line(df, x=&quot;year&quot;, y=&quot;pop&quot;, color=&#39;country&#39;)</span>
-<span class="c1"># fig.show()</span>
-<span class="c1"># pyo.iplot(fig, filename=&#39;population&#39;)</span>
+<span class="n">pyo</span><span class="o">.</span><span class="n">init_notebook_mode</span><span class="p">()</span> 
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;continent==&#39;Europe&#39;&quot;</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;pop&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">pyo</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;population&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>In hydraulics, we often prefer to visualize data in locally stored text files, for example after processing data with <em>NumPy</em> or <em>pandas</em>. <em>plotly</em> works hand in hand with <em>pandas</em> and the following example features plotting <em>pandas</em> data frames, build from a <em>csv</em> file, with <em>ploty</em> (better solutions for <em>pandas</em> data frame sorting are shown in the <a class="reference external" href="hypy_pynum.html#pd-reshape">reshaping section</a> of the data handling page). The example uses <code class="docutils literal notranslate"><span class="pre">plotly.offline</span></code> to plot the data in notebook mode (<code class="docutils literal notranslate"><span class="pre">pyo.init_notebook_mode()</span></code>) and <code class="docutils literal notranslate"><span class="pre">pyo.iplot()</span></code> can be used to write the plot functions to a local script for interactive plotting. The <em>csv</em> file comes from the <em>Food and Agriculture Organization of the United Nations</em> (FAO) data center <a class="reference external" href="http://www.fao.org/faostat/en/#data/ET">FAOSTAT</a>.</p>
+<img alt="../_images/plotly_pop.png" src="../_images/plotly_pop.png" />
+<p>In hydraulics, we often prefer to visualize data in locally stored text files, for example, after processing output from 2d-numerical modeling with NumPy or pandas. <em>plotly</em> works hand-in-hand with <em>pandas</em> and the following example features plotting <em>pandas</em> data frames, build from a <em>csv</em> file, with <em>ploty</em> (better solutions for <em>pandas</em> data frame sorting are shown in the <a class="reference internal" href="pynum.html#pd-reshape"><span class="std std-ref">pandas reshaping section</span></a>). The following example uses <code class="docutils literal notranslate"><span class="pre">plotly.offline</span></code> to plot data in notebook mode (<code class="docutils literal notranslate"><span class="pre">pyo.init_notebook_mode()</span></code>) and <code class="docutils literal notranslate"><span class="pre">pyo.iplot()</span></code> can be used to write plot functions to a locally-living script for interactive plotting. The <em>csv</em> file comes from the <em>Food and Agriculture Organization of the United Nations</em> (FAO) data center <a class="reference external" href="http://www.fao.org/faostat/en/#data/ET">FAOSTAT</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
 <span class="kn">import</span> <span class="nn">plotly.offline</span> <span class="k">as</span> <span class="nn">pyo</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="c1"># pyo.init_notebook_mode()  # activate to create local function script</span>
+<span class="n">pyo</span><span class="o">.</span><span class="n">init_notebook_mode</span><span class="p">()</span>  <span class="c1"># activate to create local function script</span>
 
-<span class="c1"># df = pd.read_csv(&quot;data/faostat_temperature_change.csv&quot;)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/faostat_temperature_change.csv&quot;</span><span class="p">)</span>
 
-<span class="c1"># # filter dataframe by country and month</span>
-<span class="c1"># country_filter = &quot;France&quot;  # available in the csv: Austria, Belgium, Finland, France, Germany</span>
-<span class="c1"># month_filter1 = &quot;January&quot;</span>
-<span class="c1"># month_filter2 = &quot;July&quot;</span>
+<span class="c1"># filter dataframe by country and month</span>
+<span class="n">country_filter</span> <span class="o">=</span> <span class="s2">&quot;France&quot;</span>  <span class="c1"># available in the csv: Austria, Belgium, Finland, France, Germany</span>
+<span class="n">month_filter1</span> <span class="o">=</span> <span class="s2">&quot;January&quot;</span>
+<span class="n">month_filter2</span> <span class="o">=</span> <span class="s2">&quot;July&quot;</span>
 
-<span class="c1"># df_country = df[df.Area == country_filter]</span>
-<span class="c1"># df_country_month1 = df[df.Months == month_filter1]</span>
-<span class="c1"># df_country_month2 = df[df.Months == month_filter2]</span>
+<span class="n">df_country</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">Area</span> <span class="o">==</span> <span class="n">country_filter</span><span class="p">]</span>
+<span class="n">df_country_month1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">Months</span> <span class="o">==</span> <span class="n">month_filter1</span><span class="p">]</span>
+<span class="n">df_country_month2</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">Months</span> <span class="o">==</span> <span class="n">month_filter2</span><span class="p">]</span>
 
-<span class="c1"># # define plot type = go.Bar</span>
-<span class="c1"># bar_plots = [go.Bar(x=df_country_month1[&quot;Year&quot;], y=df_country_month1[&quot;Value&quot;], name=str(month_filter1), marker=go.bar.Marker(color=&#39;#86DCEB&#39;)),</span>
-<span class="c1">#              go.Bar(x=df_country_month2[&quot;Year&quot;], y=df_country_month2[&quot;Value&quot;], name=str(month_filter2), marker=go.bar.Marker(color=&#39;#EA9285&#39;))]</span>
+<span class="c1"># define plot type = go.Bar</span>
+<span class="n">bar_plots</span> <span class="o">=</span> <span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">df_country_month1</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">df_country_month1</span><span class="p">[</span><span class="s2">&quot;Value&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">month_filter1</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="n">go</span><span class="o">.</span><span class="n">bar</span><span class="o">.</span><span class="n">Marker</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#86DCEB&#39;</span><span class="p">)),</span>
+             <span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">df_country_month2</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">df_country_month2</span><span class="p">[</span><span class="s2">&quot;Value&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">month_filter2</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="n">go</span><span class="o">.</span><span class="n">bar</span><span class="o">.</span><span class="n">Marker</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#EA9285&#39;</span><span class="p">))]</span>
 
-<span class="c1"># # set layout</span>
-<span class="c1"># layout = go.Layout(title=go.layout.Title(text=&quot;Monthly average surface temperature deviation (ref. 1951-1980) in &quot; + str(country_filter), x=0.5),</span>
-<span class="c1">#                    yaxis_title=&quot;Temperature (°C)&quot;)</span>
+<span class="c1"># set layout</span>
+<span class="n">layout</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Layout</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">go</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">Title</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Monthly average surface temperature deviation (ref. 1951-1980) in &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">country_filter</span><span class="p">),</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
+                   <span class="n">yaxis_title</span><span class="o">=</span><span class="s2">&quot;Temperature (°C)&quot;</span><span class="p">)</span>
 
-<span class="c1"># fig = go.Figure(data=bar_plots, layout=layout)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">bar_plots</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="n">layout</span><span class="p">)</span>
 
-<span class="c1"># # In local IDE use fig.show() - use iplot(fig) to procude local script for running figure functions</span>
-<span class="c1"># #fig.show(filename=&#39;basic-line2&#39;, include_plotlyjs=False, output_type=&#39;div&#39;)</span>
-<span class="c1"># pyo.iplot(fig, filename=&#39;temperature-evolution&#39;)</span>
+<span class="c1"># In local IDE use fig.show() - use iplot(fig) to procude local script for running figure functions</span>
+<span class="c1"># fig.show(filename=&#39;basic-line2&#39;, include_plotlyjs=False, output_type=&#39;div&#39;)</span>
+<span class="n">pyo</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;temperature-evolution&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<img alt="../_images/plotly_temp.png" src="../_images/plotly_temp.png" />
 </div>
 <div class="section" id="interactive-map-applications">
 <h3>Interactive map applications<a class="headerlink" href="#interactive-map-applications" title="Permalink to this headline">¶</a></h3>
-<p><em>plotly</em> uses <a class="reference external" href="https://en.wikipedia.org/wiki/GeoJSON"><em>GeoJSON</em></a> data formats (an open standard for simple geospatial objects) to implement them into interactive maps. The developers provide many examples in their documentation and the below code block replicates a map representing unemployment rates in the United States. More examples are available at the <a class="reference external" href="https://plotly.com/python/maps/">developer’s web site</a>.</p>
+<p><em>plotly</em> uses the <a class="reference external" href="https://en.wikipedia.org/wiki/GeoJSON">GeoJSON</a> data format (an open standard for simple geospatial objects) in interactive maps. The developers provide many examples in their documentation and the below code block replicates a map representing unemployment rates in the United States. More examples are available at the <a class="reference external" href="https://plotly.com/python/maps/">developer’s website</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.offline</span> <span class="k">as</span> <span class="nn">pyo</span>
@@ -1305,30 +1332,31 @@
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="c1"># pyo.init_notebook_mode()  # only necessary in jupyter</span>
-<span class="c1"># with urlopen(&#39;https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json&#39;) as response:</span>
-<span class="c1">#     counties = json.load(response)</span>
+<span class="n">pyo</span><span class="o">.</span><span class="n">init_notebook_mode</span><span class="p">()</span>  <span class="c1"># only necessary in jupyter</span>
+<span class="k">with</span> <span class="n">urlopen</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
+    <span class="n">counties</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 
 
-<span class="c1"># df = pd.read_csv(&quot;https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv&quot;, dtype={&quot;fips&quot;: str})</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;fips&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">})</span>
 
-<span class="c1"># import plotly.express as px</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 
-<span class="c1"># fig = px.choropleth_mapbox(df, geojson=counties, locations=&#39;fips&#39;, color=&#39;unemp&#39;,</span>
-<span class="c1">#                            color_continuous_scale=&quot;Viridis&quot;,</span>
-<span class="c1">#                            range_color=(0, 12),</span>
-<span class="c1">#                            mapbox_style=&quot;carto-positron&quot;,</span>
-<span class="c1">#                            zoom=2, center = {&quot;lat&quot;: 35.0, &quot;lon&quot;: -90.0},</span>
-<span class="c1">#                            opacity=0.5,</span>
-<span class="c1">#                            labels={&#39;unemp&#39;:&#39;Unemployment rate (%)&#39;}</span>
-<span class="c1">#                           )</span>
-<span class="c1"># fig.update_layout(margin={&quot;r&quot;:0,&quot;t&quot;:0,&quot;l&quot;:0,&quot;b&quot;:0})</span>
-<span class="c1"># fig.show()</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">choropleth_mapbox</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">geojson</span><span class="o">=</span><span class="n">counties</span><span class="p">,</span> <span class="n">locations</span><span class="o">=</span><span class="s1">&#39;fips&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;unemp&#39;</span><span class="p">,</span>
+                           <span class="n">color_continuous_scale</span><span class="o">=</span><span class="s2">&quot;Viridis&quot;</span><span class="p">,</span>
+                           <span class="n">range_color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span>
+                           <span class="n">mapbox_style</span><span class="o">=</span><span class="s2">&quot;carto-positron&quot;</span><span class="p">,</span>
+                           <span class="n">zoom</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">center</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;lat&quot;</span><span class="p">:</span> <span class="mf">35.0</span><span class="p">,</span> <span class="s2">&quot;lon&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">90.0</span><span class="p">},</span>
+                           <span class="n">opacity</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                           <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;unemp&#39;</span><span class="p">:</span><span class="s1">&#39;Unemployment rate (%)&#39;</span><span class="p">}</span>
+                          <span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">margin</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;r&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;t&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;l&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">})</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Many more maps are available and some of the require a <em>Mapbox</em> account and the creation of a public token (read more at <a class="reference external" href="https://plotly.com/python/mapbox-layers/">plotly.com</a>).</p>
+<img alt="../_images/plotly_unemp.png" src="../_images/plotly_unemp.png" />
+<p>Many more maps are available - some of them require a <em>Mapbox</em> account and the creation of a public token (read more at <a class="reference external" href="https://plotly.com/python/mapbox-layers/">plotly.com</a>).</p>
 </div>
 </div>
 </div>

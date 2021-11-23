@@ -299,6 +299,8 @@ Make sure to install the `atom-python-virtualenv` package (see the section on {r
 
 ```{image} ../img/python/atom-enable-env.png
 ```
+
+To run a Python script press cd`Ctrl` + `Shift` + `B`
 ````
 
 ## More Console Options
