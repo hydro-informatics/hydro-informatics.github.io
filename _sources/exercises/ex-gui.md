@@ -16,9 +16,7 @@ Get ready by cloning the exercise repository:
 git clone https://github.com/Ecohydraulics/Exercise-gui.git
 ```
 
-```{figure} ../img/hello-gui.png
-:alt: graphical user interface illustration
-:name: hello-gui
+```{figure} ../img/python/hello-gui.png
 ```
 
 Before getting started with the exercise, make sure to copy the code from the [sediment transport exercise](https://github.com/Ecohydraulics/Exercise-SedimentTransport) into the `sediment_transport` sub-folder of the GUI exercise repository (i.e., overwrite *bedload.py*, *fun.py*, *grains.py*, *hec.py*, *.py*, *main.py*, and *mpm.py* with your code). If the file names are different from the default names used in the sediment transport exercise, adapt the `__init__.py` file in the `sediment_transport` sub-folder. Thus, we created a module called `sediment_transport`, where the `main.py` file requires some modifications.
