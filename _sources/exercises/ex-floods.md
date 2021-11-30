@@ -93,23 +93,25 @@ hf.draw_map()` # only runs in JupyterLab
 ```
 
 ## Load Data with *pandas*
-Create a new *Python* file (e.g., `discharge_analysis.py`) and import *pandas* as `pd` at the beginning. Read the provided flow data series file `"Wasserburg_Inn_6343100_Q_Day.csv"` with `pd.read_csv`.
+Create a new *Python* file (e.g., `discharge_analysis.py`) and import *pandas* as `pd` at the beginning. Read the provided flow data series file `"daily-flow-series.csv"` with `pd.read_csv`.
 The header (column names) is in row 36, but we do not use the column names from the *csv* file and overwrite them with the `names` argument (`"Date"` and `"Q (CMS)"` (for Cubic Meters per Second)). Alternatively, we could use the `skiprows` argument to indicate where the data content starts in the file.
 With `sep=";"`, we indicate that columns are separated by a semicolon. The `usecols=[0, 2]` argument specifies that we only want to read columns 0 (date) and 2 (discharge) because the information content of column 1 (time) is not relevant for daily discharge. The `parse_dates=[0]` argument lets *pandas* know that column 0 contains date-formatted values. Alternatively, we could use a `dtype={"Date": ... }` dictionary to specify the data formats of columns. However, using `dtype` would require importing `datetime` and induce unnecessary complexity. In addition, the `index_col` argument defines the column indices, which need to have a date format for the later analyses. In addition, use the optional keyword argument `encoding="latin1"` because the provided data file contains some special characters that cannot be recognized with the standard `utf-8` encoding.
 
 ```python
 import pandas as pd
-df = pd.read_csv("flow-data/Wasserburg_Inn_6343100_Q_Day.csv",
+df = pd.read_csv("flow-data/daily-flow-series.csv",
                  header=36,
                  sep=";",
                  names=["Date", "Q (CMS)"],
                  usecols=[0, 2],
                  parse_dates=[0],
-                 encoding="latin1",
-                 index_col=["Date"])
+                 index_col="Date")
 ```
 
-Did everything work? Verify the loaded `data_series` with `print(data_series.head()`
+Did everything work? Verify the loaded `data_series` with `print(data_series.head())`
+
+
+If your CSV file has special characters (e.g. <sup>3</sup>), you may need to use the optional keyword argument `encoding="latin1"` because some special characters cannot be recognized with the standard `utf-8` encoding.
 
 ### Plot the Data
 
@@ -117,7 +119,7 @@ Plotting data is not the focus of this exercise and for this reason, there is a 
 
 ```python
 from plot_discharge import plot_discharge
-plot_discharge(df.index, df["Q (CMS)"], title="Wasserburg a. Inn 1826 - 2016")
+plot_discharge(df.index, df["Q (CMS)"], title="Daily Flows 1826 - 2016")
 ```
 
 On a side note, `plot_discharge` uses the {ref}`matplotlib` library.
@@ -141,7 +143,7 @@ print(annual_max_df.head()
 
 Optionally, plot the annual maxima with:
 ```python
-plot_discharge(annual_max_df["year"], annual_max_df["Q (CMS)"], title="Wasserburg a. Inn 1826 - 2016 (annual)")
+plot_discharge(annual_max_df["year"], annual_max_df["Q (CMS)"], title="Annual Flows 1826 - 2016")
 ```
 
 ```{note}
