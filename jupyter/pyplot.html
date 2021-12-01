@@ -58,7 +58,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Code Style and Conventions" href="pystyle.html" />
-    <link rel="prev" title="Workbooks (xlsx) and JSON" href="xml.html" />
+    <link rel="prev" title="Structured Data (XML, xlsx &amp; JSON)" href="xml.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -258,7 +258,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="xml.html">
-     Workbooks (xlsx) and JSON
+     Structured Data (XML, xlsx &amp; JSON)
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -1154,7 +1154,7 @@
 </div>
 <div class="section" id="plotting-with-pandas">
 <span id="pandas-plot"></span><h2>Plotting with <em>pandas</em><a class="headerlink" href="#plotting-with-pandas" title="Permalink to this headline">¶</a></h2>
-<p>Plotting with <em>matplotlib</em> can be daunting, not because the library is poorly documented (the complete opposite is the case), but because <em>matplotlib</em> is very extensive. <em>pandas</em> brings remedy with simplified commands for high-quality plots. The simplest way to plot a <em>pandas</em> data frame is <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html"><code class="docutils literal notranslate"><span class="pre">pd.DataFrame.plot(x=&quot;col1&quot;,</span> <span class="pre">y=&quot;col2&quot;)</span></code></a>. The following example illustrates this fundamentally simple usage with a river discharge series stored in a workbook (<a class="reference external" href="https://raw.githubusercontent.com/hydro-informatics/jupyter-python-course/main/data/example_flow_gauge.xlsx">download example_flow_gauge.xlsx</a>)…</p>
+<p>Plotting with <em>matplotlib</em> can be daunting, not because the library is poorly documented (the complete opposite is the case), but because <em>matplotlib</em> is very extensive. <em>pandas</em> brings remedy with simplified commands for high-quality plots. The simplest way to plot a <em>pandas</em> data frame is <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html"><code class="docutils literal notranslate"><span class="pre">pd.DataFrame.plot(x=&quot;col1&quot;,</span> <span class="pre">y=&quot;col2&quot;)</span></code></a>. The following example illustrates this fundamentally simple usage with a river discharge series stored in a workbook (<a class="reference external" href="https://raw.githubusercontent.com/hydro-informatics/jupyter-python-course/main/data/example_flow_gauge.xlsx">download example_flow_gauge.xlsx</a>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flow_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;data/example_flow_gauge.xlsx&#39;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Mean Monthly CMS&#39;</span><span class="p">)</span>
@@ -1410,7 +1410,7 @@
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Workbooks (xlsx) and JSON</p>
+            <p class="prev-next-title">Structured Data (XML, xlsx &amp; JSON)</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="pystyle.html" title="next page">

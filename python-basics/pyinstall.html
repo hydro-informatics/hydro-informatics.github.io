@@ -256,7 +256,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/xml.html">
-     Workbooks (xlsx) and JSON
+     Structured Data (XML, xlsx &amp; JSON)
     </a>
    </li>
    <li class="toctree-l2">
@@ -842,8 +842,8 @@
 <span id="pip-quick"></span><h3>Quick Guide<a class="headerlink" href="#quick-guide" title="Permalink to this headline">¶</a></h3>
 <p>Consider installing, creating, and activating a new virtual environment for working with the contents of this eBook as explained in the following platform-dependent paragraphs.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="ae463dc4-b204-4096-917d-45dcfe0af7ff" name="ea03bc35-37af-439d-bd73-539d25419b3c" type="radio">
-</input><label class="tabbed-label" for="ae463dc4-b204-4096-917d-45dcfe0af7ff">
+<input checked="checked" id="d2a8a900-a2a0-40bd-b7b0-8e3c6cb9f246" name="fa1cf377-4788-4519-adc2-2aec804d7ea3" type="radio">
+</input><label class="tabbed-label" for="d2a8a900-a2a0-40bd-b7b0-8e3c6cb9f246">
 Linux</label><div class="tabbed-content docutils">
 <p>To avoid affecting the system’s Python interpreter, set up a virtual environment with <em>venv</em>. The first step is to make sure that Python3 and <em>venv</em> are installed on the system:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">python3</span> <span class="n">python3</span><span class="o">-</span><span class="n">venv</span>
@@ -914,8 +914,8 @@ Python 3.X.X (default, MMM DD YYYY, hh:mm:ss)
 </div>
 <p>Recall that newer <em>Linux</em> versions may not differentiate between <em>Python2</em> and <em>Python3</em> (i.e., use <code class="docutils literal notranslate"><span class="pre">python</span></code> rather than <code class="docutils literal notranslate"><span class="pre">python3</span></code>).</p>
 </div>
-<input id="67a02ce3-28be-4601-ae35-d3922036f772" name="ea03bc35-37af-439d-bd73-539d25419b3c" type="radio">
-</input><label class="tabbed-label" for="67a02ce3-28be-4601-ae35-d3922036f772">
+<input id="1630de67-8d81-4325-8547-e0505f6f6b48" name="fa1cf377-4788-4519-adc2-2aec804d7ea3" type="radio">
+</input><label class="tabbed-label" for="1630de67-8d81-4325-8547-e0505f6f6b48">
 Windows</label><div class="tabbed-content docutils">
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -976,15 +976,15 @@ Windows</label><div class="tabbed-content docutils">
 <span id="pip-install-pckg"></span><h3>Manage pip (Install, Uninstall, or Upgrade) Modules or Packages<a class="headerlink" href="#manage-pip-install-uninstall-or-upgrade-modules-or-packages" title="Permalink to this headline">¶</a></h3>
 <p>More than 300,000 projects live on <a class="reference external" href="https://pypi.org/">pypi.org</a> and there are packages available for many purposes. To find suitable packages visit <a class="reference external" href="https://pypi.org/search/">https://pypi.org/search/</a>. To install (i.e., add) one of these <code class="docutils literal notranslate"><span class="pre">pip</span></code>/<code class="docutils literal notranslate"><span class="pre">pip3</span></code> packages use:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="d8d8f84a-6090-44b7-b639-64c60764a3b8" name="e25845df-ab1c-4714-9922-c8fb3ff9c33d" type="radio">
-</input><label class="tabbed-label" for="d8d8f84a-6090-44b7-b639-64c60764a3b8">
+<input checked="checked" id="088a22f2-9a9f-424d-b3e9-4bf84341cf3d" name="0833e623-fc10-4521-8470-9ac2264e5447" type="radio">
+</input><label class="tabbed-label" for="088a22f2-9a9f-424d-b3e9-4bf84341cf3d">
 Linux Terminal</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
 </div>
 </div>
-<input id="fac07aee-bca0-4cc6-a441-eda79c4f72ec" name="e25845df-ab1c-4714-9922-c8fb3ff9c33d" type="radio">
-</input><label class="tabbed-label" for="fac07aee-bca0-4cc6-a441-eda79c4f72ec">
+<input id="54c19ef1-9a64-4d18-9cd6-17d940fe7a68" name="0833e623-fc10-4521-8470-9ac2264e5447" type="radio">
+</input><label class="tabbed-label" for="54c19ef1-9a64-4d18-9cd6-17d940fe7a68">
 Windows Command Prompt</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
@@ -997,15 +997,15 @@ Windows Command Prompt</label><div class="tabbed-content docutils">
 </div>
 <p>To remove (i.e., uninstall) a <code class="docutils literal notranslate"><span class="pre">pip</span></code>/<code class="docutils literal notranslate"><span class="pre">pip3</span></code>-installed package use:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="02de1a4f-3c5a-4bdf-8eb1-d48f6933ba65" name="3beaa5e0-6502-47cb-825e-ad3a9bf2aa1e" type="radio">
-</input><label class="tabbed-label" for="02de1a4f-3c5a-4bdf-8eb1-d48f6933ba65">
+<input checked="checked" id="677130aa-0cc6-4936-8db2-7c6a063f4b50" name="66632754-a590-4009-9714-5b6611e60826" type="radio">
+</input><label class="tabbed-label" for="677130aa-0cc6-4936-8db2-7c6a063f4b50">
 Linux Terminal</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">uninstall</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
 </div>
 </div>
-<input id="28a09b9e-e9c9-4253-84a3-7cc71ddb63d2" name="3beaa5e0-6502-47cb-825e-ad3a9bf2aa1e" type="radio">
-</input><label class="tabbed-label" for="28a09b9e-e9c9-4253-84a3-7cc71ddb63d2">
+<input id="2da8de67-d3b0-4107-abe2-4586b2cf479a" name="66632754-a590-4009-9714-5b6611e60826" type="radio">
+</input><label class="tabbed-label" for="2da8de67-d3b0-4107-abe2-4586b2cf479a">
 Windows Command Prompt</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">uninstall</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
@@ -1014,15 +1014,15 @@ Windows Command Prompt</label><div class="tabbed-content docutils">
 </div>
 <p>To upgrade (update) a package that lives in a local user environment use:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="69743e44-2624-475a-85c2-af90f05b2bd3" name="2b73ad1f-d162-45a3-b883-0bb6c3b20cf9" type="radio">
-</input><label class="tabbed-label" for="69743e44-2624-475a-85c2-af90f05b2bd3">
+<input checked="checked" id="482bf14c-6d8b-4461-9fa9-ebb199e5a2ee" name="4e381379-0a31-4b64-8452-d6f28e02dac9" type="radio">
+</input><label class="tabbed-label" for="482bf14c-6d8b-4461-9fa9-ebb199e5a2ee">
 Linux Terminal</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
 </div>
 </div>
-<input id="897806d1-d68d-4878-929c-d415d11580bf" name="2b73ad1f-d162-45a3-b883-0bb6c3b20cf9" type="radio">
-</input><label class="tabbed-label" for="897806d1-d68d-4878-929c-d415d11580bf">
+<input id="1dbe54ec-1ba2-4652-b9f7-a7441a68895d" name="4e381379-0a31-4b64-8452-d6f28e02dac9" type="radio">
+</input><label class="tabbed-label" for="1dbe54ec-1ba2-4652-b9f7-a7441a68895d">
 Windows Command Prompt</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="o">--</span><span class="n">user</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
@@ -1104,13 +1104,13 @@ Windows Command Prompt</label><div class="tabbed-content docutils">
 <span id="ipython-config"></span><h3>JupyterLab<a class="headerlink" href="#jupyterlab" title="Permalink to this headline">¶</a></h3>
 <p>The following descriptions require that <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a> is installed for locally editing <em>Jupyter</em> notebooks (<em>.ipynb</em> files), <em>Python</em> scripts (<em>.py</em> files), and folders.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="f2fe67b5-9406-488d-a719-e4062cf5c6aa" name="2558542f-d989-4e5a-bf41-6b779b1b6069" type="radio">
-</input><label class="tabbed-label" for="f2fe67b5-9406-488d-a719-e4062cf5c6aa">
+<input checked="checked" id="e5338bc9-f981-4ed3-a3a6-8c67b7711cb1" name="23b0b4f9-92ee-4b06-ba2d-964cf34b40dd" type="radio">
+</input><label class="tabbed-label" for="e5338bc9-f981-4ed3-a3a6-8c67b7711cb1">
 Linux</label><div class="tabbed-content docutils">
 <p>Start <em>JupyterLab</em> by typing <code class="docutils literal notranslate"><span class="pre">jupyter-lab</span></code> in <em>Terminal</em>.</p>
 </div>
-<input id="0f8e6644-ea19-4a0a-bff3-ed9b9c3a63a6" name="2558542f-d989-4e5a-bf41-6b779b1b6069" type="radio">
-</input><label class="tabbed-label" for="0f8e6644-ea19-4a0a-bff3-ed9b9c3a63a6">
+<input id="077f8d91-0cc8-45db-94ec-6750dc9f78aa" name="23b0b4f9-92ee-4b06-ba2d-964cf34b40dd" type="radio">
+</input><label class="tabbed-label" for="077f8d91-0cc8-45db-94ec-6750dc9f78aa">
 Windows</label><div class="tabbed-content docutils">
 <p>Start <em>JupyterLab</em> by typing <code class="docutils literal notranslate"><span class="pre">jupyter-lab</span></code> in <em>Anaconda Prompt</em>.</p>
 </div>
@@ -1162,8 +1162,8 @@ Windows</label><div class="tabbed-content docutils">
 <span id="atom-setup"></span><h3>Atom and Python<a class="headerlink" href="#atom-and-python" title="Permalink to this headline">¶</a></h3>
 <p>Depending on your platform make sure that all requirements are installed to configure <em>Atom</em>s <code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code> package:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="5343b0c2-3d7b-400b-a139-6238c55c4217" name="d22def68-4f54-4a18-b553-fb8267077aa8" type="radio">
-</input><label class="tabbed-label" for="5343b0c2-3d7b-400b-a139-6238c55c4217">
+<input checked="checked" id="a93306e1-306a-4919-bf11-5c07baf05266" name="2bedea05-cf4b-42c3-82dc-cf007b734148" type="radio">
+</input><label class="tabbed-label" for="a93306e1-306a-4919-bf11-5c07baf05266">
 Linux</label><div class="tabbed-content docutils">
 <div class="admonition-requirements admonition">
 <p class="admonition-title">Requirements</p>
@@ -1194,8 +1194,8 @@ Linux</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="aa2a495e-e199-4aa4-ab36-955c72617dc5" name="d22def68-4f54-4a18-b553-fb8267077aa8" type="radio">
-</input><label class="tabbed-label" for="aa2a495e-e199-4aa4-ab36-955c72617dc5">
+<input id="d2cf61f8-7be3-498d-91f4-7e3a8c7be7b8" name="2bedea05-cf4b-42c3-82dc-cf007b734148" type="radio">
+</input><label class="tabbed-label" for="d2cf61f8-7be3-498d-91f4-7e3a8c7be7b8">
 Windows</label><div class="tabbed-content docutils">
 <div class="admonition-requirements admonition">
 <p class="admonition-title">Requirements</p>
