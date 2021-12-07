@@ -333,7 +333,7 @@ In QGIS' **Plugins** menu, click on **BASEmesh 2** > **QUALITY MESHING** to open
   * Ignore all BASEMENT 2.8 options.
 * Settings frame: keep defaults.
 * Output frame:
-  * Click on the **Browse...** button and define a **2dm** file name in the `/Project Home/` directory, such as **prepro-tutorial_quality-mesh-interp.2dm**.
+  * Click on the **Browse...** button and define a **2dm** file name in the `/Project Home/` directory, such as **prepro-tutorial_quality-mesh.2dm**.
 * Click on the **Run** button to create the quality mesh.
 
 
