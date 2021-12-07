@@ -1159,11 +1159,11 @@ Error: You cannot print a nonexistent property.
 <td><p><code class="docutils literal notranslate"><span class="pre">^=</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">object.__ixor__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>`</p></td>
-<td><p>`</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">|</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">object.__or__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
 <td><p></p></td>
-<td><p>`</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">|=</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object.__ior__(self,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -1231,8 +1231,8 @@ Error: You cannot print a nonexistent property.
 </tr>
 </tbody>
 </table>
-<p>A rather old (<em>Python</em> 2-based), but a comprehensive and inclusive summary of magic methods is provided by <a class="reference external" href="https://rszalski.github.io/magicmethods/">Rafe Kettler</a>.</p>
-<p>Still, you may wonder how, in practice, does a class look like that is capable of using, for example, the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator with an <code class="docutils literal notranslate"><span class="pre">__add__</span></code> method? Let’s define another child of the <code class="docutils literal notranslate"><span class="pre">Fish</span></code> class to build a swarm:</p>
+<p>A comprehensive and inclusive summary of magic methods is provided in the <a class="reference external" href="https://docs.python.org/3/reference/datamodel.html#emulating-numeric-types">Python docs</a>.</p>
+<p>Still, you may wonder how, in practice, does a class look like that is capable of using, for example, the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator with an <code class="docutils literal notranslate"><span class="pre">__add__</span></code> method? To this end, let’s define another child of the <code class="docutils literal notranslate"><span class="pre">Fish</span></code> class to build a swarm:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Mackerel</span><span class="p">(</span><span class="n">Fish</span><span class="p">):</span>
@@ -1267,12 +1267,12 @@ Error: You cannot print a nonexistent property.
 </div>
 <div class="section" id="custom-python-class-template">
 <span id="template"></span><h2>Custom Python Class Template<a class="headerlink" href="#custom-python-class-template" title="Permalink to this headline">¶</a></h2>
-<p>This section features a couple of examples with options for implementing public and non-public properties and customizations of <em>magic</em> methods to enable the use of operators such as <code class="docutils literal notranslate"><span class="pre">+</span></code> or <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code> with custom classes. There are many options for writing custom classes and all custom classes should at least incorporate the following methods:</p>
+<p>This section features a template for a custom Python3 class. The template can be extended with public and non-public properties, and customizations of magic methods to enable the use of operators such as <code class="docutils literal notranslate"><span class="pre">+</span></code> or <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code>. Ultimately, there are many options for writing a custom class, but all custom classes should at least incorporate the following methods:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">__init__(self,</span> <span class="pre">[...)</span></code> is the (magic) class initializer, which is called when an instance of the class is created. More precisely, it is called along with the <code class="docutils literal notranslate"><span class="pre">__new__(cls,</span> <span class="pre">[...)</span></code> method, which is rarely used (read more at <a class="reference external" href="https://docs.python.org/3/reference/datamodel.html?highlight=__new__%20method#object.__new__">python.org</a>). The initializer gets the arguments passed with which the object was called. For example, when <code class="docutils literal notranslate"><span class="pre">var</span> <span class="pre">=</span> <span class="pre">MyClass(1,</span> <span class="pre">'vanilla'</span> <span class="pre">)</span></code>, the <code class="docutils literal notranslate"><span class="pre">__init__(self,</span> <span class="pre">[...)</span></code> method receives <code class="docutils literal notranslate"><span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">'vanilla'</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__init__(self,</span> <span class="pre">[...)</span></code> is the (magic) class initializer, which is called when an instance of the class is created. More precisely, it is called along with the <code class="docutils literal notranslate"><span class="pre">__new__(cls,</span> <span class="pre">[...)</span></code> method, which, in contrast, is rarely used (read more at <a class="reference external" href="https://docs.python.org/3/reference/datamodel.html?highlight=__new__%20method#object.__new__">python.org</a>). The initializer gets the arguments passed with which the object was called. For example, when <code class="docutils literal notranslate"><span class="pre">var</span> <span class="pre">=</span> <span class="pre">MyClass(1,</span> <span class="pre">'vanilla'</span> <span class="pre">)</span></code>, the <code class="docutils literal notranslate"><span class="pre">__init__(self,</span> <span class="pre">[...)</span></code> method receives <code class="docutils literal notranslate"><span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">'vanilla'</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">__call__(self,</span> <span class="pre">[...)</span></code> enables to call a class instance directly. For example, <code class="docutils literal notranslate"><span class="pre">var('cherry')</span></code> (corresponds to <code class="docutils literal notranslate"><span class="pre">var.__call__('cherry')</span></code>) may be used to change from <code class="docutils literal notranslate"><span class="pre">'vanilla'</span></code> to <code class="docutils literal notranslate"><span class="pre">'cherry'</span></code>.</p></li>
 </ul>
-<p>Thus, a robust class skeleton to start with looks like this:</p>
+<p>Thus, a robust class template skeleton looks like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">NewClass</span><span class="p">:</span>
@@ -1292,7 +1292,7 @@ Error: You cannot print a nonexistent property.
 </div>
 </div>
 </div>
-<p>Understanding the power and structure of classes and object orientation takes time and requires practicing. The next chapters on Graphical User Interfaces and Geospatial Python provide some more examples of classes to get more familiar with the concept.</p>
+<p>Understanding the power and structure of classes and object orientation takes time and requires practice. To this end, the chapters on <a class="reference internal" href="gui.html#chpt-gui"><span class="std std-ref">Graphical User Interfaces</span></a> and <a class="reference internal" href="../geopy/geo-python.html#sec-geo-python"><span class="std std-ref">Geospatial Python</span></a> provide more examples of classes to familiarize with the concepts.</p>
 <div class="admonition-exercise admonition">
 <p class="admonition-title">Exercise</p>
 <p>Familiarize with object orientation in the <a class="reference internal" href="../exercises/ex-sediment.html#ex-py-sediment"><span class="std std-ref">Sediment transport (1d) exercise</span></a>.</p>
