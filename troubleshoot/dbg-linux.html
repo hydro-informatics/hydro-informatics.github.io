@@ -823,10 +823,10 @@
 <p>Read this entire section before taking action. Otherwise, you risk to unnecessarily allocate disk space.</p>
 </div>
 <p>In general, keep the system clean after updating it through typing in <em>Terminal</em>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">clean</span>
-<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">autoclean</span>
-<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">autoremove</span>
-<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">autoremove</span> <span class="o">--</span><span class="n">purge</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">clean</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">autoclean</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">autoremove</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">autoremove</span> <span class="o">--</span><span class="n">purge</span>
 <span class="n">sudo</span> <span class="n">apt</span> <span class="n">autoremove</span>
 </pre></div>
 </div>
@@ -903,8 +903,8 @@
 <h3><code class="docutils literal notranslate"><span class="pre">tkinter</span></code> Imports Fail (No Module Named Tkinter)<a class="headerlink" href="#tkinter-imports-fail-no-module-named-tkinter" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">tkinter</span></code> is sometimes still only installed for <em>Python2</em> on <em>Linux</em>, while we want to use it with <em>Python3</em>. To ensure that <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> for <em>Python3</em> is installed, install via *Terminal:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">python3-tk</span></code>  or</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">python3.X-tk</span></code> (replace <code class="docutils literal notranslate"><span class="pre">X</span></code> with your <em>Python</em> version) or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">python3-tk</span></code>  or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">python3.X-tk</span></code> (replace <code class="docutils literal notranslate"><span class="pre">X</span></code> with your <em>Python</em> version) or</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">tk8.6-dev</span></code> to install the library only (this should be sufficient).</p></li>
 </ul>
 <p>If the above comments do not work, make sure that the <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> repository is available to your system: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">add-apt-repository</span> <span class="pre">ppa:deadsnakes/ppa</span></code> (the repository address may change and depends on your <em>Linux</em> and <em>Python</em> versions).</p>

@@ -1,5 +1,5 @@
+(ex-gui)=
 # Create a GUI
-
 
 ```{admonition} Goals
 This exercise features the creation of a {ref}`chpt-gui` based on the instructions in this eBook.

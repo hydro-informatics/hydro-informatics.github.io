@@ -13,10 +13,10 @@ Read this entire section before taking action. Otherwise, you risk to unnecessar
 In general, keep the system clean after updating it through typing in *Terminal*:
 
 ```
-sudo apt-get clean
-sudo apt-get autoclean
-sudo apt-get autoremove
-sudo apt-get autoremove --purge
+sudo apt clean
+sudo apt autoclean
+sudo apt autoremove
+sudo apt autoremove --purge
 sudo apt autoremove
 ```
 
@@ -100,8 +100,8 @@ sudo chmod -R 777 /directory/
 
 `tkinter` is sometimes still only installed for *Python2* on *Linux*, while we want to use it with *Python3*. To ensure that `tkinter` for *Python3* is installed, install via *Terminal:
 
- * `sudo apt-get install python3-tk`  or
- * `sudo apt-get install python3.X-tk` (replace `X` with your *Python* version) or
+ * `sudo apt install python3-tk`  or
+ * `sudo apt install python3.X-tk` (replace `X` with your *Python* version) or
  * `sudo apt install tk8.6-dev` to install the library only (this should be sufficient).
 
  If the above comments do not work, make sure that the `tkinter` repository is available to your system: `sudo add-apt-repository ppa:deadsnakes/ppa` (the repository address may change and depends on your *Linux* and *Python* versions).
