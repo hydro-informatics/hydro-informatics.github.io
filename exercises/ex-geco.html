@@ -748,7 +748,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#available-data-and-code-structure">
-   Available data and code structure
+   Available Data and Code Structure
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -850,12 +850,12 @@
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#run-the-usable-habitat-area-calculation-code">
-     Run the Usable Habitat Area calculation code
+     Run the Usable Habitat Area Calculation Code
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id7">
-     Result interpretation
+     Result Interpretation
     </a>
    </li>
   </ul>
@@ -886,23 +886,23 @@
 </pre></div>
 </div>
 <div class="figure align-default" id="fish">
-<img alt="fish Sacramento succer south yuba river" src="https://github.com/Ecohydraulics/media/raw/master/jpg/yuba-fish.jpg" />
+<img alt="fish Sacramento succer south yuba river" src="https://github.com/Ecohydraulics/media/raw/main/jpg/yuba-fish.jpg" />
 <p class="caption"><span class="caption-number">Fig. 20 </span><span class="caption-text">Sacramento suckers in the South Yuba River (source: Sebastian Schwindt 2019).</span><a class="headerlink" href="#fish" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="what-is-habitat-suitability">
 <h2>What is Habitat Suitability?<a class="headerlink" href="#what-is-habitat-suitability" title="Permalink to this headline">¶</a></h2>
 <p>Fish and other aquatic species rest, orient, and reproduce in a fluvial environment that represents their physical habitat. Throughout their different life stages, different fish have specific physical habitat preferences which are defined, for instance, as a function of water depth, flow velocity, and grain size of the riverbed. The so-called <em>Habitat Suitability Index <em><span class="math notranslate nohighlight">\(HSI\)</span></em></em> can be calculated for hydraulic (water depth or flow velocity) and morphological (e.g., grain size or cover in the form of large wood) parameters individually to describe the quality of physical habitat for a fish and at a specific life stage. The figure below shows exemplary <span class="math notranslate nohighlight">\(HSI\)</span> curves for the fry, juvenile, and adult life stages of rainbow trout as a function of water depth. The <span class="math notranslate nohighlight">\(HSI\)</span> curves look different in every river and should be established individually by an aquatic ecologist.</p>
 <div class="figure align-default" id="hsi-image">
-<img alt="HSI curves examples trout" src="https://github.com/Ecohydraulics/media/raw/master/png/hsi-curves.png" />
+<img alt="HSI curves examples trout" src="https://github.com/Ecohydraulics/media/raw/main/png/hsi-curves.png" />
 <p class="caption"><span class="caption-number">Fig. 21 </span><span class="caption-text">Habitat Suitability Index <span class="math notranslate nohighlight">\(HSI\)</span> curves for the fry, juvenile, and adult life stages of rainbow trout in a cobble-bed river. Take care: HSI curves look different in any river and need to be established by an aquatic ecologist.</span><a class="headerlink" href="#hsi-image" title="Permalink to this image">¶</a></p>
 </div>
 <p>The <span class="math notranslate nohighlight">\(HSI\)</span> concept also accounts for the so-called cover habitat in the form of the <em>cover Habitat Suitability Index</em> <span class="math notranslate nohighlight">\(HSI_{cov}\)</span>. Cover habitat is the result of local turbulence caused by roughness elements such as wood, boulders, or bridge piers. However, in this exercise, we will only deal with hydraulic habitat characteristics (not cover habitat).</p>
-<p><img alt="cover-habitat" src="https://github.com/Ecohydraulics/media/raw/master/jpg/neckar-fish-cover.jpg" /><br>
+<p><img alt="cover-habitat" src="https://github.com/Ecohydraulics/media/raw/main/jpg/neckar-fish-cover.jpg" /><br>
 <em>Adult trout swimming in cover habitat created by a bridge pier in the upper Neckar River.</em></p>
 <p>The combination of multiple <span class="math notranslate nohighlight">\(HSI\)</span> values (e.g., water depth-related <span class="math notranslate nohighlight">\(HSI_{h}\)</span>, flow velocity-related <span class="math notranslate nohighlight">\(HSI_{u}\)</span>, grain size-related <span class="math notranslate nohighlight">\(HSI_{d}\)</span>, and/or cover <span class="math notranslate nohighlight">\(HSI_{cov}\)</span>) results in the <strong>combined Habitat Suitability Index</strong> <span class="math notranslate nohighlight">\(cHSI\)</span>. There are various calculation methods for combining different <span class="math notranslate nohighlight">\(HSI_{par}\)</span> values into one <span class="math notranslate nohighlight">\(cHSI\)</span> value, where the geometric mean and the product are the most widely used deterministic combination methods: <a name="combine-methods"></a></p>
 <ul class="simple">
 <li><p>Geometric mean:  <span class="math notranslate nohighlight">\(cHSI = (\prod_{par} HSI_{par})^{1/n}\)</span>
-<br>For example, the combination of the water depth-related <span class="math notranslate nohighlight">\(HSI_{h}\)</span> and flow velocity-related <span class="math notranslate nohighlight">\(HSI_{u}\)</span> with the geometric mean method is: <span class="math notranslate nohighlight">\(cHSI = (HSI_{h} \cdot HSI_{u})^{1/2}\)</span></p></li>
+<br>For instance, the combination of the water depth-related <span class="math notranslate nohighlight">\(HSI_{h}\)</span> and flow velocity-related <span class="math notranslate nohighlight">\(HSI_{u}\)</span> with the geometric mean method is: <span class="math notranslate nohighlight">\(cHSI = (HSI_{h} \cdot HSI_{u})^{1/2}\)</span></p></li>
 <li><p>Product:  <span class="math notranslate nohighlight">\(cHSI = \prod_{par} HSI_{par}\)</span>
 <br>For example, the combination of the water depth-related <span class="math notranslate nohighlight">\(HSI_{h}\)</span> and flow velocity-related <span class="math notranslate nohighlight">\(HSI_{u}\)</span> with the product method is: <span class="math notranslate nohighlight">\(cHSI = (HSI_{h} \cdot HSI_{u})\)</span></p></li>
 </ul>
@@ -933,10 +933,10 @@
 <p>This exercise demonstrates the use of 2d hydrodynamic modeling results to algorithmically evaluate usable habitat area based on the calculation of geospatially explicit <span class="math notranslate nohighlight">\(cHSI\)</span> values.</p>
 </div>
 <div class="section" id="available-data-and-code-structure">
-<h2>Available data and code structure<a class="headerlink" href="#available-data-and-code-structure" title="Permalink to this headline">¶</a></h2>
+<h2>Available Data and Code Structure<a class="headerlink" href="#available-data-and-code-structure" title="Permalink to this headline">¶</a></h2>
 <p>The following flow chart illustrates the provided code and data. Functions, methods, and files to be created in this exercise are highlighted in bold, italic, <em>YELLOW</em>-ish font.</p>
 <div class="figure align-default" id="uml">
-<img alt="HSI curves examples trout" src="https://github.com/Ecohydraulics/Exercise-geco/raw/master/graphs/geo_eco_uml.png" />
+<img alt="HSI curves examples trout" src="https://github.com/Ecohydraulics/Exercise-geco/raw/main/graphs/geo_eco_uml.png" />
 <p class="caption"><span class="caption-number">Fig. 22 </span><span class="caption-text">Structure of the provided template file tree and their relations.</span><a class="headerlink" href="#uml" title="Permalink to this image">¶</a></p>
 </div>
 <p>The provided QGIS project file <code class="docutils literal notranslate"><span class="pre">visualize_with_QGIS.qgz</span></code> helps to verify input raster datasets and results.</p>
@@ -1098,7 +1098,7 @@ Next, load the <code class="docutils literal notranslate"><span class="pre">osge
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 </pre></div>
 </div>
-<p>Then we can rewrite the <code class="docutils literal notranslate"><span class="pre">__truediv__</span></code> method:</p>
+<p>Then rewrite the <code class="docutils literal notranslate"><span class="pre">__truediv__</span></code> method:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__truediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Raster</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Raster</span><span class="p">:</span>
         <span class="n">f_ending</span> <span class="o">=</span> <span class="s2">&quot;__div</span><span class="si">%s</span><span class="s2">__.tif&quot;</span> <span class="o">%</span> <span class="n">create_random_string</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">Raster</span><span class="p">(</span><span class="n">file_name</span><span class="o">=</span><span class="n">cache_folder</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="n">f_ending</span><span class="p">,</span>
@@ -1384,12 +1384,12 @@ Next, load the <code class="docutils literal notranslate"><span class="pre">osge
 <h3>Run the HSI and cHSI Code<a class="headerlink" href="#run-the-hsi-and-chsi-code" title="Permalink to this headline">¶</a></h3>
 <p>A successful run of the script <code class="docutils literal notranslate"><span class="pre">create_hsi_rasters.py</span></code> should look like this (in <em>PyCharm</em>):</p>
 <div class="figure align-default" id="run-chsi">
-<img alt="run execute script calculation combined habitat suitability index raster map" src="https://github.com/Ecohydraulics/Exercise-geco/raw/master/graphs/run_create_chsi_rasters.png" />
+<img alt="run execute script calculation combined habitat suitability index raster map" src="https://github.com/Ecohydraulics/Exercise-geco/raw/main/graphs/run_create_chsi_rasters.png" />
 <p class="caption"><span class="caption-number">Fig. 23 </span><span class="caption-text">A Windows Python console running the above-created scripts.</span><a class="headerlink" href="#run-chsi" title="Permalink to this image">¶</a></p>
 </div>
 <p>Plotted in QGIS, the <span class="math notranslate nohighlight">\(cHSI\)</span> <a class="reference internal" href="../documentation/glossary.html#term-GeoTIFF"><span class="xref std std-term">GeoTIFF</span></a> raster should look like this:</p>
 <div class="figure align-default" id="chsi-results">
-<img alt="chsi calculation" src="https://github.com/Ecohydraulics/Exercise-geco/raw/master/graphs/ex-chsi.png" />
+<img alt="chsi calculation" src="https://github.com/Ecohydraulics/Exercise-geco/raw/main/graphs/ex-chsi.png" />
 <p class="caption"><span class="caption-number">Fig. 24 </span><span class="caption-text">The cHSI raster plotted in QGIS, where poor physical habitat quality (cHSI close to 0.0) is colored in red and high physical habitat quality (cHSI close to 1.0) is colored in green.</span><a class="headerlink" href="#chsi-results" title="Permalink to this image">¶</a></p>
 </div>
 </div>
@@ -1477,7 +1477,7 @@ Next, load the <code class="docutils literal notranslate"><span class="pre">osge
 <p class="admonition-title">Note</p>
 <p>In practice, many mistakes are made due to the incorrect use of area units, which is often not obvious at first because of the size of geospatial data (several gigabytes). There are many units of length and area (meters, feet, acre, hectare, km<span class="math notranslate nohighlight">\(^2\)</span>) and a difference of an order of magnitude is sometimes only noticed when a critical reviewer or a local expert becomes suspicious. In the application shown here, we use the information of the length units only to output the total area with a correct reference to the area units (m<span class="math notranslate nohighlight">\(^2\)</span>) on the console, but in practice, this information can save a career.</p>
 </div>
-<p>To determine the habitat area, the area of each polygon must be calculated. For this purpose, add a new field to the <code class="docutils literal notranslate"><span class="pre">layer</span></code> in the <em>Attribute Table</em>, name it <code class="docutils literal notranslate"><span class="pre">&quot;area&quot;</span></code>, and assign a <code class="docutils literal notranslate"><span class="pre">geo.ogr.OFTReal</span></code> (numeric) data type (recall how to <a class="reference external" href="geopy/geo-shp.html#add-field">create a field an data types explained in the lecture notes</a>).
+<p>To determine the habitat area, the area of each polygon must be calculated. For this purpose, add a new field to the <code class="docutils literal notranslate"><span class="pre">layer</span></code> in the <em>Attribute Table</em>, name it <code class="docutils literal notranslate"><span class="pre">&quot;area&quot;</span></code>, and assign a <code class="docutils literal notranslate"><span class="pre">geo.ogr.OFTReal</span></code> (numeric) data type (recall how to <a class="reference internal" href="../jupyter/geo-shp.html#add-field"><span class="std std-ref">create a field an data types</span></a>).
 Then, create a void <a class="reference internal" href="../jupyter/pybase.html#list"><span class="std std-ref">List</span></a> called <code class="docutils literal notranslate"><span class="pre">poly_size</span></code>, in which we will write the area of all polygons that have a field value of <code class="docutils literal notranslate"><span class="pre">1</span></code>. To access the individual polygons (features) of the <code class="docutils literal notranslate"><span class="pre">layer</span></code>, iterate through all features using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, which:</p>
 <ul class="simple">
 <li><p>Extracts the polygon of every <code class="docutils literal notranslate"><span class="pre">feature</span></code> using <code class="docutils literal notranslate"><span class="pre">polygon</span> <span class="pre">=</span> <span class="pre">feature.GetGeometryRef()</span></code></p></li>
@@ -1526,20 +1526,20 @@ Then, create a void <a class="reference internal" href="../jupyter/pybase.html#l
 </div>
 </div>
 <div class="section" id="run-the-usable-habitat-area-calculation-code">
-<h3>Run the Usable Habitat Area calculation code<a class="headerlink" href="#run-the-usable-habitat-area-calculation-code" title="Permalink to this headline">¶</a></h3>
+<h3>Run the Usable Habitat Area Calculation Code<a class="headerlink" href="#run-the-usable-habitat-area-calculation-code" title="Permalink to this headline">¶</a></h3>
 <p>A successful run of the script <code class="docutils literal notranslate"><span class="pre">calculate_habitat_area.py</span></code> should look like this (in <em>PyCharm</em>):</p>
 <div class="figure align-default" id="ran-chsi">
-<img alt="calculate usable habitat area Python gdal" src="https://github.com/Ecohydraulics/Exercise-geco/raw/master/graphs/run_habitat_area.png" />
+<img alt="calculate usable habitat area Python gdal" src="https://github.com/Ecohydraulics/Exercise-geco/raw/main/graphs/run_habitat_area.png" />
 <p class="caption"><span class="caption-number">Fig. 25 </span><span class="caption-text">Successful run of the <em>calculate_habitat_area.py</em> script.</span><a class="headerlink" href="#ran-chsi" title="Permalink to this image">¶</a></p>
 </div>
 <p>Plotted in QGIS, the <em>habitat-area</em> shapefile looks like this (use <em>Categorized</em> symbology):</p>
 <div class="figure align-default" id="uha-results">
-<img alt="calculate usable habitat area Python gdal map raster QGIS" src="https://github.com/Ecohydraulics/Exercise-geco/raw/master/graphs/ex-uha.png" />
+<img alt="calculate usable habitat area Python gdal map raster QGIS" src="https://github.com/Ecohydraulics/Exercise-geco/raw/main/graphs/ex-uha.png" />
 <p class="caption"><span class="caption-number">Fig. 26 </span><span class="caption-text">The habitat-area shapefile plotted in QGIS with Categorized symbology, where the usable habitat area <span class="math notranslate nohighlight">\(UHA\)</span> (<span class="math notranslate nohighlight">\(cHSI &gt;\)</span> 0.4) is delineated by the hatched purple patches and their dashed outlines.</span><a class="headerlink" href="#uha-results" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="id7">
-<h3>Result interpretation<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<h3>Result Interpretation<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <p>The <span class="math notranslate nohighlight">\(UHA\)</span> of the analyzed river section represents a very small share of the total wetted area, which can be interpreted as an ecologically poor status of the river. However, a glance at a map and the simulation files of the Flaz example of BASEMENT suggests that at a discharge of 50 m<span class="math notranslate nohighlight">\(^3\)</span>/s, a flood situation can be assumed. As during floods, there are generally higher flow velocities, which are out-of-favor of juvenile fish, the small usable habitat area is finally not surprising.</p>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>

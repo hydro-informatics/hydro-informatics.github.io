@@ -7,7 +7,7 @@ This exercise features the creation of a {ref}`chpt-gui` based on the instructio
 
 ```{admonition} Requirements
 :class: attention
-*Python* libraries: *tkinter*, {ref}`numpy`, and {ref}`pandas`. Read and understand the creation of {ref}`chpt-gui`. Accomplish the [sediment transport exercise](https://github.com/Ecohydraulics/Exercise-SedimentTransport).
+*Python* libraries: *tkinter*, {ref}`numpy`, and {ref}`pandas`. Read and understand the creation of {ref}`chpt-gui`. Accomplish the {ref}`sediment transport exercise](https://github.com/Ecohydraulics/Exercise-SedimentTransport).
 ```
 
 Get ready by cloning the exercise repository:
@@ -19,13 +19,13 @@ git clone https://github.com/Ecohydraulics/Exercise-gui.git
 ```{figure} ../img/python/hello-gui.png
 ```
 
-Before getting started with the exercise, make sure to copy the code from the [sediment transport exercise](https://github.com/Ecohydraulics/Exercise-SedimentTransport) into the `sediment_transport` sub-folder of the GUI exercise repository (i.e., overwrite *bedload.py*, *fun.py*, *grains.py*, *hec.py*, *.py*, *main.py*, and *mpm.py* with your code). If the file names are different from the default names used in the sediment transport exercise, adapt the `__init__.py` file in the `sediment_transport` sub-folder. Thus, we created a module called `sediment_transport`, where the `main.py` file requires some modifications.
+Before getting started with the exercise, make sure to copy the code from the {ref}`Python sediment transport exercise <ex-py-sediment>` into the `sediment_transport` sub-folder of the GUI exercise repository (i.e., overwrite *bedload.py*, *fun.py*, *grains.py*, *hec.py*, *.py*, *main.py*, and *mpm.py* with your code). If the file names are different from the default names used in the sediment transport exercise, adapt the `__init__.py` file in the `sediment_transport` sub-folder. Thus, we created a module called `sediment_transport`, where the `main.py` file requires some modifications.
 
 * Remove the `get_char_grain_size` function (will be replaced in the GUI).
 * Add three optional arguments to the `main()` function:
-    - `grain_file` to enable the selection of a user-defined *csv* file for `"grains.csv"`
-    - `hec_file` to enable the selection of a user-defined workbook for *HEC-RAS* output.
-    - `out_folder` to enable the definition of a user-defined output directory for the bed load results workbook.
+  - `grain_file` to enable the selection of a user-defined *csv* file for `"grains.csv"`
+  - `hec_file` to enable the selection of a user-defined workbook for *HEC-RAS* output.
+  - `out_folder` to enable the definition of a user-defined output directory for the bed load results workbook.
 
 * Modify the calls in the `main` function:
 
@@ -40,7 +40,7 @@ def main(D_char, hec_file, out_folder):
 
 
 
-## Make the application frame
+## Make the Application Frame
 
 Create a new *Python* file, call it `gui.py` and import the following libraries:
 
@@ -105,7 +105,7 @@ To relax the layout, we will use x and y pads later for the widgets (buttons, la
       self.pady = 5
 ```
 
-### Create child widgets (Buttons, Labels and Combobox)
+### Create Child Widgets (Buttons, Labels and Combobox)
 
 To enable the selection of grain and *HEC-RAS* output data files, we will use `tk.Button`s and `tk.Label`s will inform the user about selected files and directories. A `tk.WIDGET` (button, label, etc.) can be created either directly without instantiating an object (e.g., `tk.Button(...).grid(...)`) or as an object (e.g., `a_button = tk.Button(...)`) that can be configured later on (e.g., `a_button.grid(...)` or `a_button.configure(...)`).
 
@@ -197,7 +197,7 @@ Add a `ttk.Combobox` that lists grain sizes and lets the user choose which value
       self.cbx_D_char['values'] = [""]
 ```
 
-### Add methods (commands) called through widgets
+### Add Methods (Commands) and Call them with Widgets
 
 The above-defined buttons call methods to open file names and directories (as *string*). As file selection dialogues are required twice (grains and *HEC-RAS* data), it makes sense to have a general function for selecting files. Therefore, add a new method to `SediApp` and call it `select_file`. The method uses  `askopenfilename` from `tkinter.filedialog` and takes two input arguments. The first argument (`description`) should be a (very) short description of the file to select. The second argument (`file_type`) represents the file type (ending) that the user should look for. Both arguments are bound as a {ref}`tuple` into a {ref}`list` of `filetypes` that `askopenfilename` uses to narrow down and clarify file selection options.
 
@@ -274,13 +274,13 @@ Before running the bed load computation, we need to make sure that a grain size 
         return True
 ```
 
-### Define the run program method
+### Define the Run Program Method
 
 To finalize the app, add a `self.run_program` method corresponding to the `command` function of the `"Compute"` button (`self.b_run`) . The `run_program` method must ensure that the user has specified the necessary files and folders by calling the `valid_selections` method (and return `-1` otherwise). Then, the characteristic grain size selected by the user in the combobox is determined by `self.cbx_D_char.get()`. If the provided grain `csv` file has no valid numeric entry for the selected characteristic grain size, `run_program`  should fall into a `ValueError` statement and inform the user about the issue in a `showinfo` box.
 
 An `askokcancel` pop-up window (from `tkinter.messagebox`) asks the user to press *OK*/*Cancel* to run/abort the program. If the user clicks *OK*, the pop-up window returns `True` and starts the bed load computation through the `main()` function of `sed` (see above import of the `sediment_transport` module).
 
-After the successful run of the program, the `run_program` method sets the foreground (text) color of the `self.b_run` button to `"forest green"` and adds the text `"Success: Created %s" % str(self.out_folder + "/bed_load_mpm.xlsx")` to `self.run_label` (defined in the `__init__` method). The `webbrowser` module's `open` method opens the newly produced [Meyer-Peter & Müller (1948)](https://github.com/Ecohydraulics/Exercise-SedimentTransport#mpm) bed load transport workbook (result of `sed.main(...)`).
+After the successful run of the program, the `run_program` method sets the foreground (text) color of the `self.b_run` button to `"forest green"` and adds the text `"Success: Created %s" % str(self.out_folder + "/bed_load_mpm.xlsx")` to `self.run_label` (defined in the `__init__` method). The `webbrowser` module's `open` method opens the newly produced {cite:t}`meyer-peter_formulas_1948` bed load transport workbook (result of `sed.main(...)`).
 
 ```python
     def run_program(self):
@@ -301,8 +301,8 @@ After the successful run of the program, the `run_program` method sets the foreg
             webbrowser.open(self.out_folder + "/bed_load_mpm.xlsx")
 ```
 
-## Make the script stand-alone
-To create the window, make `gui.py` stand-alone executable by adding the following statement to the file bottom (recall the [stand-alone descriptions](../jupyter/pypckg.html#standalone):
+## Make the Script Stand-alone
+To create the window, make `gui.py` stand-alone executable by adding the following statement to the file bottom (recall the {ref}`stand-alone descriptions <standalone>`):
 
 ```python
 if __name__ == '__main__':
@@ -311,15 +311,16 @@ if __name__ == '__main__':
 
 
 ## Launch the GUI
-Run the *gui.py* script (e.g., in {ref}`pycharm`  right-click in the `gui.py` script and click `> Run 'gui'`). If the script crashes or raises error messages, trace them back, and fix the issues. Otherwise, a `tkinter` window opens:
 
-![guistart](https://github.com/Ecohydraulics/Exercise-gui/raw/master/graphs/gui-start.png)
+Run the *gui.py* script (e.g., in {ref}`PyCharm <pycharm>`  right-click in the `gui.py` script and click `> Run 'gui'`). If the script crashes or raises error messages, trace them back, and fix the issues. Otherwise, a `tkinter` window opens:
 
-Use the buttons to select a grain `csv` file (e.g., [grains.csv](https://github.com/Ecohydraulics/Exercise-SedimentTransport/raw/master/grains.csv) from the sediment transport exercise), a *HEC-RAS* output `xlsx` workbook (e.g., [HEC-RAS/output.xlsx](https://github.com/Ecohydraulics/Exercise-SedimentTransport/raw/master/HEC-RAS/output.xlsx) from the sediment transport exercise), and define an output directory (e.g., *.../Exercise-gui/*). Make sure to select a characteristic grain size in the combobox (e.g., `D84`) and click on the `Compute` button.
+![guistart](https://github.com/Ecohydraulics/Exercise-gui/raw/main/graphs/gui-start.png)
+
+Use the buttons to select a grain `csv` file (e.g., [grains.csv](https://github.com/Ecohydraulics/Exercise-SedimentTransport/raw/main/grains.csv) from the sediment transport exercise), a *HEC-RAS* output `xlsx` workbook (e.g., [HEC-RAS/output.xlsx](https://github.com/Ecohydraulics/Exercise-SedimentTransport/raw/main/HEC-RAS/output.xlsx) from the sediment transport exercise), and define an output directory (e.g., *.../Exercise-gui/*). Make sure to select a characteristic grain size in the combobox (e.g., `D84`) and click on the `Compute` button.
 
 After a successful run, the file `bed_load_mpm.xlsx` opens, the `Compute` button turns green, and the label below the button confirms the successful run (otherwise traceback errors and fix them). The GUI should now look like this:
 
-![guiend](https://github.com/Ecohydraulics/Exercise-gui/raw/master/graphs/gui-end.png)
+![guiend](https://github.com/Ecohydraulics/Exercise-gui/raw/main/graphs/gui-end.png)
 
 
 ```{admonition} Homework

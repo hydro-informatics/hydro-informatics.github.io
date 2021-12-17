@@ -16,7 +16,7 @@ Get ready by cloning the exercise repository:
 git clone https://github.com/Ecohydraulics/Exercise-SedimentTransport.git
 ```
 
-```{figure} https://github.com/Ecohydraulics/media/raw/master/jpg/arbogne.jpg
+```{figure} https://github.com/Ecohydraulics/media/raw/main/jpg/arbogne.jpg
 :alt: arbogne Switzerland Fribourg
 :name: arbogne
 
@@ -42,7 +42,7 @@ where
   - $b$ (channel base width) and $m$ (bank slope) are illustrated in the figure below to calculate the depth-dependent water surface width $B=b+2\cdot h\cdot m$.
 
 
-```{figure} https://github.com/Ecohydraulics/media/raw/master/png/flow-cs.png
+```{figure} https://github.com/Ecohydraulics/media/raw/main/png/flow-cs.png
 :alt: 1d hydraulics parameters
 :name: cs-sed
 ```
@@ -53,7 +53,7 @@ This exercise uses one-dimensional (1d) cross-section averaged hydraulic data pr
 
 Fluvial {term}`Sediment transport` can be distinguished into two modes: (1) {term}`Suspended load` and (2) {term}`Bedload` (see {numref}`Fig. %s <transport-modes>`). Finer particles with a weight that can be carried by the fluid (water) are transported as {term}`Suspended load`. Coarser particles rolling, sliding, and jumping on the channel bed are transported as {term}`Bedload`. There is another type of transport, the so-called wash load, which is finer than the coarse {term}`Bedload`, but too heavy (large) to be transported in suspension {cite:p}`einstein_bed-load_1950`.
 
-```{figure} https://github.com/Ecohydraulics/media/raw/master/png/sediment-transport.png
+```{figure} https://github.com/Ecohydraulics/media/raw/main/png/sediment-transport.png
 :alt: 1d sediment transport
 :name: transport-modes
 
@@ -62,7 +62,7 @@ Two modes of sediment transport (source: {cite:p}`schwindt_hydro-morphological_2
 
 In the following, we will look at the {term}`Bedload` transport mode. In this case, a sediment particle located in or on the riverbed is mobilized by shear forces of the water as soon as they exceed a critical value (see figure below). In river hydraulics, the so-called dimensionless bed shear stress or *Shields* stress {cite:p}`shields_anwendung_1936` is often used as the threshold value for the mobilization of sediment from the riverbed (see {numref}`Fig. %s <bedload-uptake>`). This exercise uses one of the dimensionless bed shear stress approaches and the next section provides more explanations.
 
-```{figure} https://github.com/Ecohydraulics/media/raw/master/png/sediment-uptake.png
+```{figure} https://github.com/Ecohydraulics/media/raw/main/png/sediment-uptake.png
 :alt: sediment uptake mobilization
 :name: bedload-uptake
 
@@ -70,7 +70,7 @@ The principle of sediment mobilization.
 ```
 
 (mpm)=
-### The Meyer-Peter and Müller (1948) formula
+### The Meyer-Peter and Müller (1948) Formula
 
 The {cite:t}`meyer-peter_formulas_1948` formula for estimating {term}`Bedload` transport was published by Swiss researchers Eugen Meyer-Peter (founder of the [Laboratory of Hydraulics, Hydrology and Glaciology (VAW)](https://vaw.ethz.ch/en/) and Robert Müller. Their study began one year after the establishment of the VAW in 1931 when Robert Müller was appointed assistant to Eugen Meyer-Peter. The two scientists worked in collaboration with Henry Favre and Albert Einstein's son Hans Albert. In 1934, the laboratory published for the first time a formula for the calculation of {term}`Bedload` transport and its fundamental relationship between observed $\tau_{x}$ and critical $\tau_{x,cr}$ dimensionless bed shear stresses is used until today. The dimensionless {term}`Bedload` transport rate $\Phi_b$ according to {cite:t}`meyer-peter_formulas_1948` is:
 
@@ -88,7 +88,7 @@ The other parameters are:
 
 The *Meyer-Peter & Müller* formula applies (like any other {term}`Sediment transport` formula) only to certain rivers that have the following characteristics (range of validity):
 * 0.4 $\cdot$ 10$^{-3}$ m $< D_{char}$ < 28.6 $\cdot$ 10$^{-3}$ m
-* 10$^{-4}$ m $< Fr <$ 639 ($Fr$ denotes the dimensionless [*Froude* number](https://en.wikipedia.org/wiki/Froude_number)
+* 10$^{-4}$ m $< Fr <$ 639 ($Fr$ denotes the dimensionless [{term}`Froude number`](https://en.wikipedia.org/wiki/Froude_number)
 * 0.0004 $< S_{e} <$ 0.02
 * 0.0002 m$^3$/(s $\cdot$ m) $< q <$ 2.0 m$^3$/(s $\cdot$ m) ($q$ is the unit discharge, i.e., $q=Q/[0. 5\cdot (b + B)]$)
 * 0.25 $< s <$ 3.2
@@ -111,7 +111,7 @@ where $b_{eff}$ is the hydraulically active channel width of the flow cross-sect
 
 ## Code
 
-### Set the frame
+### Set the Frame
 The object-oriented code will use custom classes that we will call within a **`main.py`** script. Create the following **additional scripts**, which will contain the custom classes and functions to control logging.
 
 * `fun.py` will contain logging functions.
@@ -122,7 +122,7 @@ The object-oriented code will use custom classes that we will call within a **`m
 
 We will create the classes and functions in the indicated scripts according to the following flow chart:
 
-```{figure} https://github.com/Ecohydraulics/Exercise-SedimentTransport/raw/master/graphs/uml.png
+```{figure} https://github.com/Ecohydraulics/Exercise-SedimentTransport/raw/main/graphs/uml.png
 :alt: sediment transport calculation python code structure
 :name: structure
 ```
@@ -151,10 +151,10 @@ if __name__ == '__main__':
 
 ```
 
-### Logging functions
+### Logging Functions
 The `fun.py` script will contain two functions:
 
-1. `start_logging` to setup logging formats and a log file name as described on the [debugging page](../jupyter/pyerror.html#logging), and
+1. `start_logging` to setup logging formats and a log file name as described in the section on {ref}`logging <logging>`, and
 1. `log_actions`, which is a function wrapper for the `main()` (`main.py`) functions to log script execution messages.
 
 The `start_logging` function should look like this (change the log file name if desired):
@@ -204,7 +204,7 @@ Now, we can log messages at different levels (info, warning, error, or others) i
 
 ### Read grain size data
 
-Sediment grain size classes (ranging from $D_{16}$ to $D_{max}$) are provided in the file [`grains.csv`](https://github.com/Ecohydraulics/Exercise-SedimentTransport/raw/master/grains.csv) (`delimiter=","`) and can be customized.
+Sediment grain size classes (ranging from $D_{16}$ to $D_{max}$) are provided in the file [`grains.csv`](https://github.com/Ecohydraulics/Exercise-SedimentTransport/raw/main/grains.csv) (`delimiter=","`) and can be customized.
 
 Write a `GrainReader` class that uses the `read_csv` method from {ref}`pandas` to read the grain size distribution from `grains.csv`. Write the class in a separate *Python* script (e.g., `grains.py` as indicated in the above figure):
 
@@ -252,9 +252,9 @@ def main():
 ```
 
 
-### Read HEC-RAS input data
+### Read HEC-RAS Input Data
 
-The provided *HEC-RAS* dataset is stored in the *xlsx* workbook [`HEC-RAS/output.xlsx`](https://github.com/Ecohydraulics/Exercise-SedimentTransport/raw/master/HEC-RAS/output.xlsx) and contains the following output:
+The provided *HEC-RAS* dataset is stored in the *xlsx* workbook [`HEC-RAS/output.xlsx`](https://github.com/Ecohydraulics/Exercise-SedimentTransport/raw/main/HEC-RAS/output.xlsx) and contains the following output:
 
 | **Col.No.** | **Alphabetic Col.** | **Variable** | **Type/Unit** |**Description** |
 |-------------|---------------------|--------------|---------------|----------------|
@@ -266,7 +266,7 @@ The provided *HEC-RAS* dataset is stored in the *xlsx* workbook [`HEC-RAS/output
 | Col. 06 | F  | W.S. Elev  | [m a.s.l.]  | Water surface elevation (level)           |
 | Col. 07 | G  | Vel Chnl   | [m]  | Flow velocity main channel   |
 | Col. 08 | H  | Flow Area   | [m²]  | Wetted cross section area *A* (see above)   |
-| Col. 09 | I  | Froude\# Chl    | [-] | *Froude number* of the channel (if 1, computation error do not use!) |
+| Col. 09 | I  | Froude\# Chl    | [-] | {term}`Froude number` of the channel (if 1, computation error - do not use!) |
 | Col. 10 | J  | Hydr Radius        | [m]  | Hydraulic radius  |
 | Col. 11 | K  | Hydr Depth        | [m]  | Water depth (active cross-section average)   |
 | Col. 12 | L  | E.G. Slope          | [m/m]    | Energy Gradeline slope  |
@@ -382,7 +382,7 @@ class MPM(BedCore):
         self.compute_phi()
 ```
 
-Add the `check_validity` method to verify if the provided cross-section characteristics fall into the range of validity of the Meyer-Peter & Müller formula (i.e., slope, grain size, ratio of discharge and water depth, and *Froude* number):
+Add the `check_validity` method to verify if the provided cross-section characteristics fall into the range of validity of the Meyer-Peter & Müller formula (i.e., slope, grain size, ratio of discharge and water depth, and {term}`Froude number`):
 
 ```python
     def check_validity(self, Fr):
@@ -399,7 +399,7 @@ Add the `check_validity` method to verify if the provided cross-section characte
 ```
 
 ```{note}
-The here shown `check_validity` method takes the *Froude* number as input argument. Alternatively, assign the *Froude* number already in `__init__` and use `self.Fr`.
+The here shown `check_validity` method takes the {term}`Froude number` as input argument. Alternatively, assign the {term}`Froude number` already in `__init__` and use `self.Fr`.
 ```
 
 To calculate dimensionless {term}`Bedload` transport $\Phi_b$ according to Meyer-Peter & Müller, implement a `compute_phi` method that uses the `compute_tau_x` method from `BedCore`:
@@ -486,7 +486,7 @@ def main():
     mpm_results.to_excel(os.path.abspath("..") + "\\bed_load_mpm.xlsx")
 ```
 
-## Launch and debug
+## Launch and Debug
 
 In your IDE, run the script (e.g., in {ref}`pycharm`, right-click in the `main.py` script and click `> Run 'main'`). If the script crashes or raises error messages, trace them back, and fix the issues. Add `try` - `except` statements where necessary and recall the [debugging instructions](../jupyter/pyerror).
 
@@ -539,7 +539,7 @@ The logfile should look similar to this:
 There are many possible solutions to this exercise and any solution that results in the same outcome (workbook and logfile) is valid. The key challenge is to use an object-oriented approach with at least one class inheriting from another class.
 ```
 
-```{admonition} Homework
+```{admonition} Homeworks
 * HOMEWORK 1: Implement the Parker-Wong correction {cite:p}`wong_reanalysis_2006` for the {cite:t}`meyer-peter_formulas_1948` formula:$\Phi_{b,pw} \approx 4.93 \cdot (\tau_{x} - \tau_{x,cr})^{1.6}$. Implement the formula in the `MPM` class either use an optional keyword argument in `compute_phi` or a new method.
 
 * HOMEWORK 2: Use the `openpyxl` library to add a background color to the headers of output tables.

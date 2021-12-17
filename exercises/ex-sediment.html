@@ -758,7 +758,7 @@
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#the-meyer-peter-and-muller-1948-formula">
-     The Meyer-Peter and Müller (1948) formula
+     The Meyer-Peter and Müller (1948) Formula
     </a>
    </li>
   </ul>
@@ -770,12 +770,12 @@
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#set-the-frame">
-     Set the frame
+     Set the Frame
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#logging-functions">
-     Logging functions
+     Logging Functions
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -785,7 +785,7 @@
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#read-hec-ras-input-data">
-     Read HEC-RAS input data
+     Read HEC-RAS Input Data
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -802,7 +802,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#launch-and-debug">
-   Launch and debug
+   Launch and Debug
   </a>
  </li>
 </ul>
@@ -831,7 +831,7 @@
 </pre></div>
 </div>
 <div class="figure align-default" id="arbogne">
-<img alt="arbogne Switzerland Fribourg" src="https://github.com/Ecohydraulics/media/raw/master/jpg/arbogne.jpg" />
+<img alt="arbogne Switzerland Fribourg" src="https://github.com/Ecohydraulics/media/raw/main/jpg/arbogne.jpg" />
 <p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">The Arbogne River in Switzerland (source: Sebastian Schwindt 2013).</span><a class="headerlink" href="#arbogne" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="theory">
@@ -856,7 +856,7 @@ u = 1/n_m \cdot S_{e}^{1/2} \cdot R_{h}^{2/3}
 </li>
 </ul>
 <div class="figure align-default" id="cs-sed">
-<img alt="1d hydraulics parameters" src="https://github.com/Ecohydraulics/media/raw/master/png/flow-cs.png" />
+<img alt="1d hydraulics parameters" src="https://github.com/Ecohydraulics/media/raw/main/png/flow-cs.png" />
 </div>
 <p>This exercise uses one-dimensional (1d) cross-section averaged hydraulic data produced with the US Army Corps of Engineers’ HEC-RAS software <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id579">USACoEngineeers16</a>]</span>, which solves the Manning-Strickler formula numerically for any flow cross-section shape. In this exercise, <em>HEC-RAS</em> provides the hydraulic data needed to determine the <a class="reference internal" href="../documentation/glossary.html#term-Sediment-transport"><span class="xref std std-term">Sediment transport</span></a> capacity of a channel cross-section, although no explanations for creating, running, and exporting data from <em>HEC-RAS</em> models are given.</p>
 </div>
@@ -864,17 +864,17 @@ u = 1/n_m \cdot S_{e}^{1/2} \cdot R_{h}^{2/3}
 <h3>Sediment Transport<a class="headerlink" href="#sediment-transport" title="Permalink to this headline">¶</a></h3>
 <p>Fluvial <a class="reference internal" href="../documentation/glossary.html#term-Sediment-transport"><span class="xref std std-term">Sediment transport</span></a> can be distinguished into two modes: (1) <a class="reference internal" href="../documentation/glossary.html#term-Suspended-load"><span class="xref std std-term">Suspended load</span></a> and (2) <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> (see <a class="reference internal" href="#transport-modes"><span class="std std-numref">Fig. 12</span></a>). Finer particles with a weight that can be carried by the fluid (water) are transported as <a class="reference internal" href="../documentation/glossary.html#term-Suspended-load"><span class="xref std std-term">Suspended load</span></a>. Coarser particles rolling, sliding, and jumping on the channel bed are transported as <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a>. There is another type of transport, the so-called wash load, which is finer than the coarse <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a>, but too heavy (large) to be transported in suspension <span id="id2">[<a class="reference internal" href="../documentation/bibliography.html#id176">Ein50</a>]</span>.</p>
 <div class="figure align-default" id="transport-modes">
-<img alt="1d sediment transport" src="https://github.com/Ecohydraulics/media/raw/master/png/sediment-transport.png" />
+<img alt="1d sediment transport" src="https://github.com/Ecohydraulics/media/raw/main/png/sediment-transport.png" />
 <p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">Two modes of sediment transport (source: <span id="id3">[<a class="reference internal" href="../documentation/bibliography.html#id520">Sch17</a>]</span>).</span><a class="headerlink" href="#transport-modes" title="Permalink to this image">¶</a></p>
 </div>
 <p>In the following, we will look at the <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> transport mode. In this case, a sediment particle located in or on the riverbed is mobilized by shear forces of the water as soon as they exceed a critical value (see figure below). In river hydraulics, the so-called dimensionless bed shear stress or <em>Shields</em> stress <span id="id4">[<a class="reference internal" href="../documentation/bibliography.html#id533">Shi36</a>]</span> is often used as the threshold value for the mobilization of sediment from the riverbed (see <a class="reference internal" href="#bedload-uptake"><span class="std std-numref">Fig. 13</span></a>). This exercise uses one of the dimensionless bed shear stress approaches and the next section provides more explanations.</p>
 <div class="figure align-default" id="bedload-uptake">
-<img alt="sediment uptake mobilization" src="https://github.com/Ecohydraulics/media/raw/master/png/sediment-uptake.png" />
+<img alt="sediment uptake mobilization" src="https://github.com/Ecohydraulics/media/raw/main/png/sediment-uptake.png" />
 <p class="caption"><span class="caption-number">Fig. 13 </span><span class="caption-text">The principle of sediment mobilization.</span><a class="headerlink" href="#bedload-uptake" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="the-meyer-peter-and-muller-1948-formula">
-<span id="mpm"></span><h3>The Meyer-Peter and Müller (1948) formula<a class="headerlink" href="#the-meyer-peter-and-muller-1948-formula" title="Permalink to this headline">¶</a></h3>
+<span id="mpm"></span><h3>The Meyer-Peter and Müller (1948) Formula<a class="headerlink" href="#the-meyer-peter-and-muller-1948-formula" title="Permalink to this headline">¶</a></h3>
 <p>The <span id="id5">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula for estimating <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> transport was published by Swiss researchers Eugen Meyer-Peter (founder of the <a class="reference external" href="https://vaw.ethz.ch/en/">Laboratory of Hydraulics, Hydrology and Glaciology (VAW)</a> and Robert Müller. Their study began one year after the establishment of the VAW in 1931 when Robert Müller was appointed assistant to Eugen Meyer-Peter. The two scientists worked in collaboration with Henry Favre and Albert Einstein’s son Hans Albert. In 1934, the laboratory published for the first time a formula for the calculation of <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> transport and its fundamental relationship between observed <span class="math notranslate nohighlight">\(\tau_{x}\)</span> and critical <span class="math notranslate nohighlight">\(\tau_{x,cr}\)</span> dimensionless bed shear stresses is used until today. The dimensionless <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> transport rate <span class="math notranslate nohighlight">\(\Phi_b\)</span> according to <span id="id6">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> is:</p>
 <div class="math notranslate nohighlight" id="equation-eq-py-mpm">
 <span class="eqno">(1)<a class="headerlink" href="#equation-eq-py-mpm" title="Permalink to this equation">¶</a></span>\[
@@ -893,7 +893,7 @@ u = 1/n_m \cdot S_{e}^{1/2} \cdot R_{h}^{2/3}
 <p>The <em>Meyer-Peter &amp; Müller</em> formula applies (like any other <a class="reference internal" href="../documentation/glossary.html#term-Sediment-transport"><span class="xref std std-term">Sediment transport</span></a> formula) only to certain rivers that have the following characteristics (range of validity):</p>
 <ul class="simple">
 <li><p>0.4 <span class="math notranslate nohighlight">\(\cdot\)</span> 10<span class="math notranslate nohighlight">\(^{-3}\)</span> m <span class="math notranslate nohighlight">\(&lt; D_{char}\)</span> &lt; 28.6 <span class="math notranslate nohighlight">\(\cdot\)</span> 10<span class="math notranslate nohighlight">\(^{-3}\)</span> m</p></li>
-<li><p>10<span class="math notranslate nohighlight">\(^{-4}\)</span> m <span class="math notranslate nohighlight">\(&lt; Fr &lt;\)</span> 639 (<span class="math notranslate nohighlight">\(Fr\)</span> denotes the dimensionless <a class="reference external" href="https://en.wikipedia.org/wiki/Froude_number"><em>Froude</em> number</a></p></li>
+<li><p>10<span class="math notranslate nohighlight">\(^{-4}\)</span> m <span class="math notranslate nohighlight">\(&lt; Fr &lt;\)</span> 639 (<span class="math notranslate nohighlight">\(Fr\)</span> denotes the dimensionless <a class="reference external" href="https://en.wikipedia.org/wiki/Froude_number"><a class="reference internal" href="../documentation/glossary.html#term-Froude-number"><span class="xref std std-term">Froude number</span></a></a></p></li>
 <li><p>0.0004 <span class="math notranslate nohighlight">\(&lt; S_{e} &lt;\)</span> 0.02</p></li>
 <li><p>0.0002 m<span class="math notranslate nohighlight">\(^3\)</span>/(s <span class="math notranslate nohighlight">\(\cdot\)</span> m) <span class="math notranslate nohighlight">\(&lt; q &lt;\)</span> 2.0 m<span class="math notranslate nohighlight">\(^3\)</span>/(s <span class="math notranslate nohighlight">\(\cdot\)</span> m) (<span class="math notranslate nohighlight">\(q\)</span> is the unit discharge, i.e., <span class="math notranslate nohighlight">\(q=Q/[0. 5\cdot (b + B)]\)</span>)</p></li>
 <li><p>0.25 <span class="math notranslate nohighlight">\(&lt; s &lt;\)</span> 3.2</p></li>
@@ -915,7 +915,7 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
 <div class="section" id="code">
 <h2>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="set-the-frame">
-<h3>Set the frame<a class="headerlink" href="#set-the-frame" title="Permalink to this headline">¶</a></h3>
+<h3>Set the Frame<a class="headerlink" href="#set-the-frame" title="Permalink to this headline">¶</a></h3>
 <p>The object-oriented code will use custom classes that we will call within a <strong><code class="docutils literal notranslate"><span class="pre">main.py</span></code></strong> script. Create the following <strong>additional scripts</strong>, which will contain the custom classes and functions to control logging.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">fun.py</span></code> will contain logging functions.</p></li>
@@ -926,7 +926,7 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
 </ul>
 <p>We will create the classes and functions in the indicated scripts according to the following flow chart:</p>
 <div class="figure align-default" id="structure">
-<img alt="sediment transport calculation python code structure" src="https://github.com/Ecohydraulics/Exercise-SedimentTransport/raw/master/graphs/uml.png" />
+<img alt="sediment transport calculation python code structure" src="https://github.com/Ecohydraulics/Exercise-SedimentTransport/raw/main/graphs/uml.png" />
 </div>
 <p>To start with the <code class="docutils literal notranslate"><span class="pre">main.py</span></code> script, add a <code class="docutils literal notranslate"><span class="pre">main</span></code> function as well as a <code class="docutils literal notranslate"><span class="pre">get_char_grain_size</span></code> and a <code class="docutils literal notranslate"><span class="pre">calculate_mpm</span></code> function. Moreover, make the script <em>stand-alone</em> executable:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is main.py</span>
@@ -952,10 +952,10 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
 </div>
 </div>
 <div class="section" id="logging-functions">
-<h3>Logging functions<a class="headerlink" href="#logging-functions" title="Permalink to this headline">¶</a></h3>
+<h3>Logging Functions<a class="headerlink" href="#logging-functions" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">fun.py</span></code> script will contain two functions:</p>
 <ol class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">start_logging</span></code> to setup logging formats and a log file name as described on the <a class="reference external" href="../jupyter/pyerror.html#logging">debugging page</a>, and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">start_logging</span></code> to setup logging formats and a log file name as described in the section on <a class="reference internal" href="../jupyter/pyerror.html#logging"><span class="std std-ref">logging</span></a>, and</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">log_actions</span></code>, which is a function wrapper for the <code class="docutils literal notranslate"><span class="pre">main()</span></code> (<code class="docutils literal notranslate"><span class="pre">main.py</span></code>) functions to log script execution messages.</p></li>
 </ol>
 <p>The <code class="docutils literal notranslate"><span class="pre">start_logging</span></code> function should look like this (change the log file name if desired):</p>
@@ -998,7 +998,7 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
 </div>
 <div class="section" id="read-grain-size-data">
 <h3>Read grain size data<a class="headerlink" href="#read-grain-size-data" title="Permalink to this headline">¶</a></h3>
-<p>Sediment grain size classes (ranging from <span class="math notranslate nohighlight">\(D_{16}\)</span> to <span class="math notranslate nohighlight">\(D_{max}\)</span>) are provided in the file <a class="reference external" href="https://github.com/Ecohydraulics/Exercise-SedimentTransport/raw/master/grains.csv"><code class="docutils literal notranslate"><span class="pre">grains.csv</span></code></a> (<code class="docutils literal notranslate"><span class="pre">delimiter=&quot;,&quot;</span></code>) and can be customized.</p>
+<p>Sediment grain size classes (ranging from <span class="math notranslate nohighlight">\(D_{16}\)</span> to <span class="math notranslate nohighlight">\(D_{max}\)</span>) are provided in the file <a class="reference external" href="https://github.com/Ecohydraulics/Exercise-SedimentTransport/raw/main/grains.csv"><code class="docutils literal notranslate"><span class="pre">grains.csv</span></code></a> (<code class="docutils literal notranslate"><span class="pre">delimiter=&quot;,&quot;</span></code>) and can be customized.</p>
 <p>Write a <code class="docutils literal notranslate"><span class="pre">GrainReader</span></code> class that uses the <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> method from <a class="reference internal" href="../jupyter/pynum.html#pandas"><span class="std std-ref">Pandas</span></a> to read the grain size distribution from <code class="docutils literal notranslate"><span class="pre">grains.csv</span></code>. Write the class in a separate <em>Python</em> script (e.g., <code class="docutils literal notranslate"><span class="pre">grains.py</span></code> as indicated in the above figure):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">GrainReader</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">csv_file_name</span><span class="o">=</span><span class="s2">&quot;grains.csv&quot;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">):</span>
@@ -1040,8 +1040,8 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
 </div>
 </div>
 <div class="section" id="read-hec-ras-input-data">
-<h3>Read HEC-RAS input data<a class="headerlink" href="#read-hec-ras-input-data" title="Permalink to this headline">¶</a></h3>
-<p>The provided <em>HEC-RAS</em> dataset is stored in the <em>xlsx</em> workbook <a class="reference external" href="https://github.com/Ecohydraulics/Exercise-SedimentTransport/raw/master/HEC-RAS/output.xlsx"><code class="docutils literal notranslate"><span class="pre">HEC-RAS/output.xlsx</span></code></a> and contains the following output:</p>
+<h3>Read HEC-RAS Input Data<a class="headerlink" href="#read-hec-ras-input-data" title="Permalink to this headline">¶</a></h3>
+<p>The provided <em>HEC-RAS</em> dataset is stored in the <em>xlsx</em> workbook <a class="reference external" href="https://github.com/Ecohydraulics/Exercise-SedimentTransport/raw/main/HEC-RAS/output.xlsx"><code class="docutils literal notranslate"><span class="pre">HEC-RAS/output.xlsx</span></code></a> and contains the following output:</p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p><strong><a class="reference external" href="http://Col.No">Col.No</a>.</strong></p></th>
@@ -1104,7 +1104,7 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
 <td><p>I</p></td>
 <td><p>Froude# Chl</p></td>
 <td><p>[-]</p></td>
-<td><p><em>Froude number</em> of the channel (if 1, computation error do not use!)</p></td>
+<td><p><a class="reference internal" href="../documentation/glossary.html#term-Froude-number"><span class="xref std std-term">Froude number</span></a> of the channel (if 1, computation error - do not use!)</p></td>
 </tr>
 <tr class="row-odd"><td><p>Col. 10</p></td>
 <td><p>J</p></td>
@@ -1226,7 +1226,7 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
         <span class="bp">self</span><span class="o">.</span><span class="n">compute_phi</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Add the <code class="docutils literal notranslate"><span class="pre">check_validity</span></code> method to verify if the provided cross-section characteristics fall into the range of validity of the Meyer-Peter &amp; Müller formula (i.e., slope, grain size, ratio of discharge and water depth, and <em>Froude</em> number):</p>
+<p>Add the <code class="docutils literal notranslate"><span class="pre">check_validity</span></code> method to verify if the provided cross-section characteristics fall into the range of validity of the Meyer-Peter &amp; Müller formula (i.e., slope, grain size, ratio of discharge and water depth, and <a class="reference internal" href="../documentation/glossary.html#term-Froude-number"><span class="xref std std-term">Froude number</span></a>):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">check_validity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Fr</span><span class="p">):</span>
         <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Se</span> <span class="o">&lt;</span> <span class="mf">0.0004</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Se</span> <span class="o">&gt;</span> <span class="mf">0.02</span><span class="p">):</span>
             <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Warning: Slope out of validity range.&#39;</span><span class="p">)</span>
@@ -1242,7 +1242,7 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The here shown <code class="docutils literal notranslate"><span class="pre">check_validity</span></code> method takes the <em>Froude</em> number as input argument. Alternatively, assign the <em>Froude</em> number already in <code class="docutils literal notranslate"><span class="pre">__init__</span></code> and use <code class="docutils literal notranslate"><span class="pre">self.Fr</span></code>.</p>
+<p>The here shown <code class="docutils literal notranslate"><span class="pre">check_validity</span></code> method takes the <a class="reference internal" href="../documentation/glossary.html#term-Froude-number"><span class="xref std std-term">Froude number</span></a> as input argument. Alternatively, assign the <a class="reference internal" href="../documentation/glossary.html#term-Froude-number"><span class="xref std std-term">Froude number</span></a> already in <code class="docutils literal notranslate"><span class="pre">__init__</span></code> and use <code class="docutils literal notranslate"><span class="pre">self.Fr</span></code>.</p>
 </div>
 <p>To calculate dimensionless <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> transport <span class="math notranslate nohighlight">\(\Phi_b\)</span> according to Meyer-Peter &amp; Müller, implement a <code class="docutils literal notranslate"><span class="pre">compute_phi</span></code> method that uses the <code class="docutils literal notranslate"><span class="pre">compute_tau_x</span></code> method from <code class="docutils literal notranslate"><span class="pre">BedCore</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>   <span class="k">def</span> <span class="nf">compute_phi</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1324,7 +1324,7 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
 </div>
 </div>
 <div class="section" id="launch-and-debug">
-<h2>Launch and debug<a class="headerlink" href="#launch-and-debug" title="Permalink to this headline">¶</a></h2>
+<h2>Launch and Debug<a class="headerlink" href="#launch-and-debug" title="Permalink to this headline">¶</a></h2>
 <p>In your IDE, run the script (e.g., in <a class="reference internal" href="../get-started/ide.html#pycharm"><span class="std std-ref">PyCharm with Anaconda</span></a>, right-click in the <code class="docutils literal notranslate"><span class="pre">main.py</span></code> script and click <code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">Run</span> <span class="pre">'main'</span></code>). If the script crashes or raises error messages, trace them back, and fix the issues. Add <code class="docutils literal notranslate"><span class="pre">try</span></code> - <code class="docutils literal notranslate"><span class="pre">except</span></code> statements where necessary and recall the <a class="reference internal" href="../jupyter/pyerror.html"><span class="doc std std-doc">debugging instructions</span></a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1447,8 +1447,8 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
 <p class="admonition-title">Note</p>
 <p>There are many possible solutions to this exercise and any solution that results in the same outcome (workbook and logfile) is valid. The key challenge is to use an object-oriented approach with at least one class inheriting from another class.</p>
 </div>
-<div class="admonition-homework admonition">
-<p class="admonition-title">Homework</p>
+<div class="admonition-homeworks admonition">
+<p class="admonition-title">Homeworks</p>
 <ul class="simple">
 <li><p>HOMEWORK 1: Implement the Parker-Wong correction <span id="id11">[<a class="reference internal" href="../documentation/bibliography.html#id627">WP06</a>]</span> for the <span id="id12">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula:<span class="math notranslate nohighlight">\(\Phi_{b,pw} \approx 4.93 \cdot (\tau_{x} - \tau_{x,cr})^{1.6}\)</span>. Implement the formula in the <code class="docutils literal notranslate"><span class="pre">MPM</span></code> class either use an optional keyword argument in <code class="docutils literal notranslate"><span class="pre">compute_phi</span></code> or a new method.</p></li>
 <li><p>HOMEWORK 2: Use the <code class="docutils literal notranslate"><span class="pre">openpyxl</span></code> library to add a background color to the headers of output tables.</p></li>

@@ -16,7 +16,7 @@ Get ready by cloning the exercise repository:
 git clone https://github.com/Ecohydraulics/Exercise-SequentPeak.git
 ```
 
-```{figure} https://github.com/Ecohydraulics/media/raw/master/jpg/new_bullards_bar.jpg
+```{figure} https://github.com/Ecohydraulics/media/raw/main/jpg/new_bullards_bar.jpg
 :alt: New Bullards Bar Dam California USA Yuba River
 :name: new-bullards
 
@@ -30,7 +30,7 @@ Seasonal storage reservoirs retain water during wet months (e.g., monsoon, or ra
 The necessary storage volume is determined from historical inflow measurements and target discharge volumes (e.g., agriculture, drinking water, hydropower, or ecological residual water quantities).
 The sequent peak algorithm {cite:p}`potter1977` based on {cite:t}`rippl1883` is a decades-old procedure for determining the necessary seasonal storage volume based on a storage volume curve (***SD curve***). The below figure shows an exemplary $SD$ curve with volume peaks (local maxima) approximately every 6 months and local volume minima between the peaks. The volume between the last local maximum and the lowest following local minimum determines the required storage volume (see the bright-blue line in the figure).
 
-```{figure} https://github.com/Ecohydraulics/media/raw/master/png/sequent_peak.png
+```{figure} https://github.com/Ecohydraulics/media/raw/main/png/sequent_peak.png
 :alt: sequent peak algorithm
 :name: sequentpeak
 
@@ -245,7 +245,7 @@ The new `def sequent_peak(in_vol_series, out_vol_target):` function needs to:
     1. Write two functions, which consecutively find local maxima and then local minima located between the extrema (HOMEWORK!) OR use `from scipy.signal import find_peaks` to find the indices (positions) - consider to write a `find_seasonal_extrema(storage_line)` function.
 * Make sure that the curves and extrema are correct by copying the provided `plot_storage_curve` curve to your script ([available in the exercise repository](https://raw.githubusercontent.com/Ecohydraulics/Exercise-SequentPeak/master/plot_function.py)) and using it as follows:<br>`plot_storage_curve(storage_line, seas_min_index, seas_max_index, seas_min_vol, seas_max_vol)`
 
-```{figure} https://github.com/Ecohydraulics/media/raw/master/png/storage_curve.png
+```{figure} https://github.com/Ecohydraulics/media/raw/main/png/storage_curve.png
 :alt: sequent peak storage difference sd curve
 :name: SDline
 

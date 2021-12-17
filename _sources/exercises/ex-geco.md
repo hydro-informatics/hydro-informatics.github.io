@@ -16,7 +16,7 @@ Get ready by cloning the exercise repository:
 git clone https://github.com/Ecohydraulics/Exercise-geco.git
 ```
 
-```{figure} https://github.com/Ecohydraulics/media/raw/master/jpg/yuba-fish.jpg
+```{figure} https://github.com/Ecohydraulics/media/raw/main/jpg/yuba-fish.jpg
 :alt: fish Sacramento succer south yuba river
 :name: fish
 
@@ -28,7 +28,7 @@ Sacramento suckers in the South Yuba River (source: Sebastian Schwindt 2019).
 
 Fish and other aquatic species rest, orient, and reproduce in a fluvial environment that represents their physical habitat. Throughout their different life stages, different fish have specific physical habitat preferences which are defined, for instance, as a function of water depth, flow velocity, and grain size of the riverbed. The so-called *Habitat Suitability Index *$HSI$** can be calculated for hydraulic (water depth or flow velocity) and morphological (e.g., grain size or cover in the form of large wood) parameters individually to describe the quality of physical habitat for a fish and at a specific life stage. The figure below shows exemplary $HSI$ curves for the fry, juvenile, and adult life stages of rainbow trout as a function of water depth. The $HSI$ curves look different in every river and should be established individually by an aquatic ecologist.
 
-```{figure} https://github.com/Ecohydraulics/media/raw/master/png/hsi-curves.png
+```{figure} https://github.com/Ecohydraulics/media/raw/main/png/hsi-curves.png
 :alt: HSI curves examples trout
 :name: hsi-image
 
@@ -37,13 +37,13 @@ Habitat Suitability Index $HSI$ curves for the fry, juvenile, and adult life sta
 
 The $HSI$ concept also accounts for the so-called cover habitat in the form of the *cover Habitat Suitability Index* $HSI_{cov}$. Cover habitat is the result of local turbulence caused by roughness elements such as wood, boulders, or bridge piers. However, in this exercise, we will only deal with hydraulic habitat characteristics (not cover habitat).
 
-![cover-habitat](https://github.com/Ecohydraulics/media/raw/master/jpg/neckar-fish-cover.jpg)<br>
+![cover-habitat](https://github.com/Ecohydraulics/media/raw/main/jpg/neckar-fish-cover.jpg)<br>
 *Adult trout swimming in cover habitat created by a bridge pier in the upper Neckar River.*
 
 The combination of multiple $HSI$ values (e.g., water depth-related $HSI_{h}$, flow velocity-related $HSI_{u}$, grain size-related $HSI_{d}$, and/or cover $HSI_{cov}$) results in the **combined Habitat Suitability Index** $cHSI$. There are various calculation methods for combining different $HSI_{par}$ values into one $cHSI$ value, where the geometric mean and the product are the most widely used deterministic combination methods: <a name="combine-methods"></a>
 
 * Geometric mean:  $cHSI = (\prod_{par} HSI_{par})^{1/n}$
-  <br>For example, the combination of the water depth-related $HSI_{h}$ and flow velocity-related $HSI_{u}$ with the geometric mean method is: $cHSI = (HSI_{h} \cdot HSI_{u})^{1/2}$
+  <br>For instance, the combination of the water depth-related $HSI_{h}$ and flow velocity-related $HSI_{u}$ with the geometric mean method is: $cHSI = (HSI_{h} \cdot HSI_{u})^{1/2}$
 * Product:  $cHSI = \prod_{par} HSI_{par}$
   <br>For example, the combination of the water depth-related $HSI_{h}$ and flow velocity-related $HSI_{u}$ with the product method is: $cHSI = (HSI_{h} \cdot HSI_{u})$
 
@@ -73,11 +73,11 @@ Sustainable river management involves the challenge of designing an aquatic habi
 This exercise demonstrates the use of 2d hydrodynamic modeling results to algorithmically evaluate usable habitat area based on the calculation of geospatially explicit $cHSI$ values.
 
 
-## Available data and code structure
+## Available Data and Code Structure
 
 The following flow chart illustrates the provided code and data. Functions, methods, and files to be created in this exercise are highlighted in bold, italic, *YELLOW*-ish font.
 
-```{figure} https://github.com/Ecohydraulics/Exercise-geco/raw/master/graphs/geo_eco_uml.png
+```{figure} https://github.com/Ecohydraulics/Exercise-geco/raw/main/graphs/geo_eco_uml.png
 :alt: HSI curves examples trout
 :name: uml
 
@@ -262,7 +262,7 @@ Then you have a point. The above-described approach implements the `_make_raster
 from __future__ import annotations
 ```
 
-Then we can rewrite the `__truediv__` method:
+Then rewrite the `__truediv__` method:
 
 ```python
     def __truediv__(self, other: Raster) -> Raster:
@@ -563,7 +563,7 @@ def main():
 
 A successful run of the script `create_hsi_rasters.py` should look like this (in *PyCharm*):
 
-```{figure} https://github.com/Ecohydraulics/Exercise-geco/raw/master/graphs/run_create_chsi_rasters.png
+```{figure} https://github.com/Ecohydraulics/Exercise-geco/raw/main/graphs/run_create_chsi_rasters.png
 :alt: run execute script calculation combined habitat suitability index raster map
 :name: run-chsi
 
@@ -572,7 +572,7 @@ A Windows Python console running the above-created scripts.
 
 Plotted in QGIS, the $cHSI$ {term}`GeoTIFF` raster should look like this:
 
-```{figure} https://github.com/Ecohydraulics/Exercise-geco/raw/master/graphs/ex-chsi.png
+```{figure} https://github.com/Ecohydraulics/Exercise-geco/raw/main/graphs/ex-chsi.png
 :alt: chsi calculation
 :name: chsi-results
 
@@ -673,7 +673,7 @@ def calculate_habitat_area(layer, epsg):
 In practice, many mistakes are made due to the incorrect use of area units, which is often not obvious at first because of the size of geospatial data (several gigabytes). There are many units of length and area (meters, feet, acre, hectare, km$^2$) and a difference of an order of magnitude is sometimes only noticed when a critical reviewer or a local expert becomes suspicious. In the application shown here, we use the information of the length units only to output the total area with a correct reference to the area units (m$^2$) on the console, but in practice, this information can save a career.
 ```
 
-To determine the habitat area, the area of each polygon must be calculated. For this purpose, add a new field to the `layer` in the *Attribute Table*, name it `"area"`, and assign a `geo.ogr.OFTReal` (numeric) data type (recall how to [create a field an data types explained in the lecture notes](geopy/geo-shp.html#add-field)).
+To determine the habitat area, the area of each polygon must be calculated. For this purpose, add a new field to the `layer` in the *Attribute Table*, name it `"area"`, and assign a `geo.ogr.OFTReal` (numeric) data type (recall how to {ref}`create a field an data types <add-field>`).
 Then, create a void {ref}`list` called `poly_size`, in which we will write the area of all polygons that have a field value of `1`. To access the individual polygons (features) of the `layer`, iterate through all features using a `for` loop, which:
 
 * Extracts the polygon of every `feature` using `polygon = feature.GetGeometryRef()`
@@ -723,11 +723,11 @@ def calculate_habitat_area(layer, epsg):
 To calculate other geometry attributes than the polygon area (e.g., envelope extents, derive a convex hull, or get the length of lines), refer to the {ref}`calc` section and use those functions in lieu of `polygon.GetArea()`.
 ```
 
-### Run the Usable Habitat Area calculation code
+### Run the Usable Habitat Area Calculation Code
 
 A successful run of the script `calculate_habitat_area.py` should look like this (in *PyCharm*):
 
-```{figure} https://github.com/Ecohydraulics/Exercise-geco/raw/master/graphs/run_habitat_area.png
+```{figure} https://github.com/Ecohydraulics/Exercise-geco/raw/main/graphs/run_habitat_area.png
 :alt: calculate usable habitat area Python gdal
 :name: ran-chsi
 
@@ -736,14 +736,14 @@ Successful run of the *calculate_habitat_area.py* script.
 
 Plotted in QGIS, the *habitat-area* shapefile looks like this (use *Categorized* symbology):
 
-```{figure} https://github.com/Ecohydraulics/Exercise-geco/raw/master/graphs/ex-uha.png
+```{figure} https://github.com/Ecohydraulics/Exercise-geco/raw/main/graphs/ex-uha.png
 :alt: calculate usable habitat area Python gdal map raster QGIS
 :name: uha-results
 
 The habitat-area shapefile plotted in QGIS with Categorized symbology, where the usable habitat area $UHA$ ($cHSI >$ 0.4) is delineated by the hatched purple patches and their dashed outlines.
 ```
 
-### Result interpretation
+### Result Interpretation
 The $UHA$ of the analyzed river section represents a very small share of the total wetted area, which can be interpreted as an ecologically poor status of the river. However, a glance at a map and the simulation files of the Flaz example of BASEMENT suggests that at a discharge of 50 m$^3$/s, a flood situation can be assumed. As during floods, there are generally higher flow velocities, which are out-of-favor of juvenile fish, the small usable habitat area is finally not surprising.
 
 

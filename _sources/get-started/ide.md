@@ -216,8 +216,14 @@ The following (additional) packages are useful for working with the contents of 
 * `language-restructuredtext` (optional) for writing documentations with [reStructuredText](https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html).
 * `language-tex` (optional) to write reports or presentations with [LaTex](https://www.latex-project.org/)
 * `platformio-ide-terminal` (*platformio-ide*) adds a terminal window to *Atom*
+* `python-debugger` enables debugging of Python code
 * `python-docstring` facilitates inline documentation of Python code
+* `python-indent` facilitates indentation of code blocks
 * `python-requirements` enables to install required packages for running Python code
+* for Python code formatting, definitions, refactoring (renaming), and many more, *ONE* of the following options may be used (avoid installing multiple packages that do the same job):
+  - `python-tools`
+  - `python-black`
+  - [`atom-beautify`](https://atom.io/packages/atom-beautify) - make sure to also [`pip install yapf`](https://github.com/google/yapf), and [`pip install --upgrade autopep8`](https://github.com/hhatto/autopep8) and define the autopep8 script directory as autopep8 interpreter of the package settings (e.g., on Linux set `/home/user/venv/vflussenv/bin/autopep8` in *Atom* > *Edit* > *Preferences* > *Packages* > *Atom Beautify* > *Settings* > *Executables* > *autopep8* > **Binary/Script Path**)
 * `script` enables to run Python and many other code types ([read the docs](https://atom.io/packages/script)); after the installation, running a code (Python) file can be triggered by clicking on the **Packages** top menu > **Script**  > **Run Script**.
 
 ### Spell Checking

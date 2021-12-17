@@ -16,7 +16,7 @@ Get ready by cloning the exercise repository:
 git clone https://github.com/Ecohydraulics/Exercise-ManningStrickler.git
 ```
 
-```{figure} https://github.com/Ecohydraulics/media/raw/master/jpg/hydraulics-1d.jpg
+```{figure} https://github.com/Ecohydraulics/media/raw/main/jpg/hydraulics-1d.jpg
 :alt: Rhone Switzerland Pfynnwald
 :name: rhone
 
@@ -46,7 +46,7 @@ where:
 
 The hydraulic radius $R_{h}$ is the ratio of wetted area $A$ and wetted perimeter $P$. Both $A$ and $P$ can be calculated as a function of the water depth $h$ and the channel base width $b$. Many channel cross-sections can be approximated with a trapezoidal shape, where the water surface width $B=b+2\cdot h\cdot m$ (with $m$ being the bank slope as indicated in the figure below).
 
-```{figure} https://github.com/Ecohydraulics/media/raw/master/png/flow-cs.png
+```{figure} https://github.com/Ecohydraulics/media/raw/main/png/flow-cs.png
 :alt: 1d hydraulics parameters
 :name: 1d-cross-section
 ```

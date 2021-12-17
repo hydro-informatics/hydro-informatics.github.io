@@ -315,7 +315,7 @@ Sharing data between the host system (e.g., *Windows 10*) and the guest system (
   * Check the *Make Permanent* box
 * Click OK on both pop-up windows.
 
-![share-folder](https://github.com/Ecohydraulics/media/raw/master/png/vm-share-folder.png)
+![share-folder](https://github.com/Ecohydraulics/media/raw/main/png/vm-share-folder.png)
 
 The shared folder will then be visible in the *Files* (*Activities* > *Filing cabinet symbol*) on the left (e.g., as *sf_shared*).
 

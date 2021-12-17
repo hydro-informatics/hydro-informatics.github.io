@@ -991,8 +991,8 @@ The <em>Jupyter</em> kernels support the three core programming languages <stron
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <div class="tabbed-set docutils">
-<input checked="checked" id="59aa5642-d955-48b6-9db3-613c985134cb" name="d6e88e24-6625-4d80-ae63-b64be7cef969" type="radio">
-</input><label class="tabbed-label" for="59aa5642-d955-48b6-9db3-613c985134cb">
+<input checked="checked" id="34014775-e6a1-458f-928d-38572ab5e640" name="faab8abd-965f-47ef-bfdb-980bf4382e29" type="radio">
+</input><label class="tabbed-label" for="34014775-e6a1-458f-928d-38572ab5e640">
 Linux</label><div class="tabbed-content docutils">
 <p><strong>Linux</strong> users find installers for various distributions at <a class="reference external" href="https://atom.io/">atom.io</a>. <strong>Debian</strong> (<strong>Ubuntu</strong>), <strong>Red Hat</strong> / <strong>CentOS</strong>, <strong>Fedora</strong>, and <strong>SUSE</strong> find easy installation guides at <a class="reference external" href="https://flight-manual.atom.io/getting-started/sections/installing-atom/">https://flight-manual.atom.io</a>.</p>
 <p>The short version for <strong>Debian</strong> (<strong>Ubuntu</strong>) is:</p>
@@ -1011,8 +1011,8 @@ Linux</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="9dd5e961-d0c7-4197-bf24-694eb4326be3" name="d6e88e24-6625-4d80-ae63-b64be7cef969" type="radio">
-</input><label class="tabbed-label" for="9dd5e961-d0c7-4197-bf24-694eb4326be3">
+<input id="bf1fdd1a-73af-41ca-83d6-3c7cba61301f" name="faab8abd-965f-47ef-bfdb-980bf4382e29" type="radio">
+</input><label class="tabbed-label" for="bf1fdd1a-73af-41ca-83d6-3c7cba61301f">
 Windows</label><div class="tabbed-content docutils">
 <p><strong>Windows</strong> users can download <em>Atom</em> from <a class="reference external" href="https://atom.io/">atom.io</a> and install the executable.</p>
 </div>
@@ -1034,8 +1034,17 @@ Windows</label><div class="tabbed-content docutils">
 <li><p><code class="docutils literal notranslate"><span class="pre">language-restructuredtext</span></code> (optional) for writing documentations with <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html">reStructuredText</a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">language-tex</span></code> (optional) to write reports or presentations with <a class="reference external" href="https://www.latex-project.org/">LaTex</a></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code> (<em>platformio-ide</em>) adds a terminal window to <em>Atom</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python-debugger</span></code> enables debugging of Python code</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">python-docstring</span></code> facilitates inline documentation of Python code</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python-indent</span></code> facilitates indentation of code blocks</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">python-requirements</span></code> enables to install required packages for running Python code</p></li>
+<li><p>for Python code formatting, definitions, refactoring (renaming), and many more, <em>ONE</em> of the following options may be used (avoid installing multiple packages that do the same job):</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">python-tools</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python-black</span></code></p></li>
+<li><p><a class="reference external" href="https://atom.io/packages/atom-beautify"><code class="docutils literal notranslate"><span class="pre">atom-beautify</span></code></a> - make sure to also <a class="reference external" href="https://github.com/google/yapf"><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">yapf</span></code></a>, and <a class="reference external" href="https://github.com/hhatto/autopep8"><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--upgrade</span> <span class="pre">autopep8</span></code></a> and define the autopep8 script directory as autopep8 interpreter of the package settings (e.g., on Linux set <code class="docutils literal notranslate"><span class="pre">/home/user/venv/vflussenv/bin/autopep8</span></code> in <em>Atom</em> &gt; <em>Edit</em> &gt; <em>Preferences</em> &gt; <em>Packages</em> &gt; <em>Atom Beautify</em> &gt; <em>Settings</em> &gt; <em>Executables</em> &gt; <em>autopep8</em> &gt; <strong>Binary/Script Path</strong>)</p></li>
+</ul>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">script</span></code> enables to run Python and many other code types (<a class="reference external" href="https://atom.io/packages/script">read the docs</a>); after the installation, running a code (Python) file can be triggered by clicking on the <strong>Packages</strong> top menu &gt; <strong>Script</strong>  &gt; <strong>Run Script</strong>.</p></li>
 </ul>
 </div>
@@ -1069,8 +1078,8 @@ Windows</label><div class="tabbed-content docutils">
 <p>To enable Python compatibility, first, visit the <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Python (Installation)</span></a> section and install <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> for your system (i.e., either in a virtual or conda environment).</p>
 </div>
 <div class="tabbed-set docutils">
-<input checked="checked" id="3f64f355-0d3f-47f8-a93a-e889a0083c77" name="b86eb68b-846f-498f-8564-6e1128fca2c6" type="radio">
-</input><label class="tabbed-label" for="3f64f355-0d3f-47f8-a93a-e889a0083c77">
+<input checked="checked" id="200b1787-81f1-48e2-813d-a556acdd965d" name="c2a35331-4be4-438e-a0de-9cc51c1f3f50" type="radio">
+</input><label class="tabbed-label" for="200b1787-81f1-48e2-813d-a556acdd965d">
 Linux</label><div class="tabbed-content docutils">
 <p>Open Terminal and activate the environment where <code class="docutils literal notranslate"><span class="pre">flusstools</span></code> is installed. For instance, if <code class="docutils literal notranslate"><span class="pre">flusstools</span></code> is installed in a virtual environment called <code class="docutils literal notranslate"><span class="pre">vflussenv</span></code> that lives in the user home directory (<code class="docutils literal notranslate"><span class="pre">/home/USER/</span></code>) according to the Python installation instructions in this eBook (see <a class="reference internal" href="../python-basics/pyinstall.html#pip-quick"><span class="std std-ref">pip quick guide</span></a>), activate the environment as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~</span>
@@ -1078,8 +1087,8 @@ Linux</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="6b402419-5b87-4663-8f98-cecbd5c2c4e9" name="b86eb68b-846f-498f-8564-6e1128fca2c6" type="radio">
-</input><label class="tabbed-label" for="6b402419-5b87-4663-8f98-cecbd5c2c4e9">
+<input id="3c0fdb0c-6e4e-4fd7-9ec6-a321ff2aaa24" name="c2a35331-4be4-438e-a0de-9cc51c1f3f50" type="radio">
+</input><label class="tabbed-label" for="3c0fdb0c-6e4e-4fd7-9ec6-a321ff2aaa24">
 Windows</label><div class="tabbed-content docutils">
 <p>Open Anaconda Prompt and activate <code class="docutils literal notranslate"><span class="pre">flussenv</span></code> (given that <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> is installed according to the <a class="reference internal" href="../python-basics/pyinstall.html#conda-quick"><span class="std std-ref">conda quick guide</span></a>):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">flussenv</span>
@@ -1093,8 +1102,8 @@ Windows</label><div class="tabbed-content docutils">
 </div>
 <p><em>Atom</em> should open and provide the option to select a folder where a Python project will live or is already living. After selecting a folder, start editing your Python (<code class="docutils literal notranslate"><span class="pre">.py</span></code>) files. For running Python scripts, there are two options:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="256d02be-a043-4346-b0b6-2af1d4a6ddb8" name="5cdbce2d-14ff-4227-a36f-0866201bfaa7" type="radio">
-</input><label class="tabbed-label" for="256d02be-a043-4346-b0b6-2af1d4a6ddb8">
+<input checked="checked" id="e198c6df-9501-46ba-9abe-dd9b95d21f22" name="e97c9dd5-7415-43d5-bd6b-1ee6a8e4d738" type="radio">
+</input><label class="tabbed-label" for="e198c6df-9501-46ba-9abe-dd9b95d21f22">
 Option 1: Use Script Package</label><div class="tabbed-content docutils">
 <p>first set up the <em>Script</em> package:</p>
 <ul class="simple">
@@ -1112,8 +1121,8 @@ Option 1: Use Script Package</label><div class="tabbed-content docutils">
 <li><p>Or press <code class="docutils literal notranslate"><span class="pre">Alt</span></code> + <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Shift</span></code> + <code class="docutils literal notranslate"><span class="pre">B</span></code></p></li>
 </ul>
 </div>
-<input id="1039d1b3-53c5-4ab5-9493-f47ee92938e1" name="5cdbce2d-14ff-4227-a36f-0866201bfaa7" type="radio">
-</input><label class="tabbed-label" for="1039d1b3-53c5-4ab5-9493-f47ee92938e1">
+<input id="38846297-77ce-468b-b6ce-7a411707d8f9" name="e97c9dd5-7415-43d5-bd6b-1ee6a8e4d738" type="radio">
+</input><label class="tabbed-label" for="38846297-77ce-468b-b6ce-7a411707d8f9">
 Option 2: Use atom-python-virtualenv Package</label><div class="tabbed-content docutils">
 <p>Make sure to install the <code class="docutils literal notranslate"><span class="pre">atom-python-virtualenv</span></code> package (see the section on <a class="reference internal" href="#atom-packages"><span class="std std-ref">installing Atom packages</span></a>) and select <code class="docutils literal notranslate"><span class="pre">vflussenv</span></code> from the status bar at the bottom of the window as indicated in the below figure.</p>
 <img alt="../_images/atom-enable-env.png" src="../_images/atom-enable-env.png" />
