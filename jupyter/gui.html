@@ -905,7 +905,7 @@
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <ul class="simple">
-<li><p>All GUI codes featured in this chapter can be downloaded from the <a class="reference external" href="https://github.com/hydro-informatics/material-py-codes/raw/main/gui/">course respository</a>.</p></li>
+<li><p>All GUI codes featured in this chapter can be downloaded from the <a class="reference external" href="https://github.com/hydro-informatics/jupyter-python-course/tree/main/gui">course respository</a>.</p></li>
 <li><p>Consider using another IDE than Jupyter (e.g., PyCharm, Atom, or Spyder) for running the code blocks provided in this notebook.</p></li>
 </ul>
 </div>
@@ -1023,7 +1023,7 @@
 <p>There are many more widgets than labels and buttons and the below figure features some of them including:</p>
 <ul class="simple">
 <li><p>A definition of the GUI window name with <code class="docutils literal notranslate"><span class="pre">master.title(&quot;Window</span> <span class="pre">name&quot;)</span></code></p></li>
-<li><p>A definition of the GUI window icon (ICO) with <code class="docutils literal notranslate"><span class="pre">master.iconbitmap(&quot;directory/icon_file.ico&quot;)</span></code></p></li>
+<li><p>A definition of the GUI window icon (ICO) with <code class="docutils literal notranslate"><span class="pre">master.iconbitmap(&quot;directory/icon-file.ico&quot;)</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">tk.Menu</span></code> with drop-down cascade</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">tk.Label</span></code> (see above)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">tk.Button</span></code> (see above)</p></li>
@@ -1034,7 +1034,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">tk.PhotoImage</span></code> to display a sub-sampled image in the GUI</p></li>
 </ul>
 <p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-elements.png" /></p>
-<p>The next block features the code that creates the <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> widgets in the figure (the <a class="reference external" href="https://github.com/hydro-informatics/material-py-codes/raw/main/gui/start_gui.py">script</a>, <a class="reference external" href="https://github.com/hydro-informatics/material-py-codes/raw/main/gui/sunny_image.gif">image</a> and <a class="reference external" href="https://github.com/hydro-informatics/material-py-codes/raw/main/gui/gui_icon.ico">icon</a> are available at the course repository):</p>
+<p>The next block features the code that creates the <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> widgets in the figure (the <a class="reference external" href="https://raw.githubusercontent.com/hydro-informatics/jupyter-python-course/main/gui/start_gui.py">script</a>, <a class="reference external" href="https://raw.githubusercontent.com/hydro-informatics/jupyter-python-course/main/gui/sunny-image.gif">image</a> and <a class="reference external" href="https://raw.githubusercontent.com/hydro-informatics/jupyter-python-course/main/gui/gui-icon.ico">icon</a> are available at the course repository):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
@@ -1047,7 +1047,7 @@
         <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Master Title&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">iconbitmap</span><span class="p">(</span><span class="s2">&quot;gui/sample_icon.ico&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">iconbitmap</span><span class="p">(</span><span class="s2">&quot;gui/sample-icon.ico&quot;</span><span class="p">)</span>
 
         <span class="c1"># Set geometry: upper-left corner of the window</span>
         <span class="n">ww</span> <span class="o">=</span> <span class="mi">628</span>  <span class="c1"># width</span>
@@ -1104,7 +1104,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">cbutton</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">E</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dx</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dy</span><span class="p">)</span>
 
         <span class="c1"># Image</span>
-        <span class="n">logo</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">PhotoImage</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s2">&quot;gui</span><span class="se">\\</span><span class="s2">sunny_image.gif&quot;</span><span class="p">)</span>
+        <span class="n">logo</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">PhotoImage</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s2">&quot;gui/sunny-image.gif&quot;</span><span class="p">)</span>
         <span class="n">logo</span> <span class="o">=</span> <span class="n">logo</span><span class="o">.</span><span class="n">subsample</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># controls size</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">l_img</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">master</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="n">logo</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">l_img</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">logo</span>
@@ -1134,7 +1134,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">tk.IntVar()</span></code> is a numeric <em>integer</em> variable</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">tk.StringVar()</span></code> is a <em>string</em> (i.e., typically some text)</p></li>
 </ul>
-<p>How does Python know when to retrieve a user-defined value? Typically, we want to evaluate user-defined values when we call a function that receives user-defined values as input arguments. Default, predefined default values in a script can be set with <code class="docutils literal notranslate"><span class="pre">VARIABLE.set()</span></code> and the user settings can be retrieved with <code class="docutils literal notranslate"><span class="pre">VARIABLE.get()</span></code>. The following <a class="reference external" href="https://github.com/hydro-informatics/material-py-codes/raw/main/gui/variable_gui.py">script</a> and the <a class="reference external" href="https://github.com/hydro-informatics/material-py-codes/raw/main/gui/gui_icon.ico">icon</a> are available at the course repository.</p>
+<p>How does Python know when to retrieve a user-defined value? Typically, we want to evaluate user-defined values when we call a function that receives user-defined values as input arguments. Default, predefined default values in a script can be set with <code class="docutils literal notranslate"><span class="pre">VARIABLE.set()</span></code> and the user settings can be retrieved with <code class="docutils literal notranslate"><span class="pre">VARIABLE.get()</span></code>. The following <a class="reference external" href="https://raw.githubusercontent.com/hydro-informatics/jupyter-python-course/main/gui/variable_gui.py">script</a> and the <a class="reference external" href="https://raw.githubusercontent.com/hydro-informatics/jupyter-python-course/main/gui/sample-icon.ico">icon</a> are available at the course repository.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tkinter.messagebox</span> <span class="kn">import</span> <span class="n">showinfo</span>
@@ -1145,7 +1145,7 @@
         <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;GUI with variables&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">iconbitmap</span><span class="p">(</span><span class="s2">&quot;gui/sample_icon.ico&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">iconbitmap</span><span class="p">(</span><span class="s2">&quot;gui/sample-icon.ico&quot;</span><span class="p">)</span>
 
         <span class="c1"># Set geometry: upper-left corner of the window</span>
         <span class="n">ww</span> <span class="o">=</span> <span class="mi">628</span>  <span class="c1"># width</span>

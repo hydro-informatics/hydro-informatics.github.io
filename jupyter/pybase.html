@@ -809,6 +809,11 @@
      Dictionary
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sets">
+     Sets
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -924,8 +929,8 @@
 <h3>Text<a class="headerlink" href="#text" title="Permalink to this headline">¶</a></h3>
 <p>Text variables in <em>Python</em> are <em>strings</em> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) that consist of multiple <em>characters</em> (<code class="docutils literal notranslate"><span class="pre">chr</span></code>):</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="d65f0730-7e65-46f3-b65d-7926ef236326" name="15eb8a3a-1bf3-4ec6-b0c6-d8d2f33a7702" type="radio">
-</input><label class="tabbed-label" for="d65f0730-7e65-46f3-b65d-7926ef236326">
+<input checked="checked" id="5c3227e6-ceb3-4b8c-b499-700791d97979" name="440debc4-f01a-47d5-8d5f-e547df61647e" type="radio">
+</input><label class="tabbed-label" for="5c3227e6-ceb3-4b8c-b499-700791d97979">
 Rendered table</label><div class="tabbed-content docutils">
 <table class="colwidths-auto table">
 <thead>
@@ -954,8 +959,8 @@ Rendered table</label><div class="tabbed-content docutils">
 </tbody>
 </table>
 </div>
-<input id="1ecdba53-5f73-40be-90f8-14785fa33b59" name="15eb8a3a-1bf3-4ec6-b0c6-d8d2f33a7702" type="radio">
-</input><label class="tabbed-label" for="1ecdba53-5f73-40be-90f8-14785fa33b59">
+<input id="c66c9096-e33d-46a1-8cdd-b2051c248502" name="440debc4-f01a-47d5-8d5f-e547df61647e" type="radio">
+</input><label class="tabbed-label" for="c66c9096-e33d-46a1-8cdd-b2051c248502">
 Source code</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>| Type | Example     | Description                        |
 |------|:-----------:|------------------------------------|
@@ -1161,6 +1166,42 @@ Source code</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
+</div>
+</div>
+<div class="section" id="sets">
+<span id="pyset"></span><h3>Sets<a class="headerlink" href="#sets" title="Permalink to this headline">¶</a></h3>
+<p>A Python set is a mutable object that is instantiated with curly brackets. Sets are unordered (in contrast to lists and tuples), and therefore, useful for mathematical operations, such as the union, intersection, difference, or symmetric difference of sets of elements. The below code block features the instantiation of two sets and the application of mathematical operators.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ice_shop_a</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;vanilla&quot;</span><span class="p">,</span> <span class="s2">&quot;chocolate&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">}</span>
+<span class="n">ice_shop_b</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;chocolate&quot;</span><span class="p">,</span> <span class="s2">&quot;vanilla&quot;</span><span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ice shops united: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ice_shop_a</span> <span class="o">|</span> <span class="n">ice_shop_b</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Both shops intersectedly offer: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ice_shop_a</span> <span class="o">&amp;</span> <span class="n">ice_shop_b</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This is what shop a has, but not shop b: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ice_shop_a</span> <span class="o">-</span> <span class="n">ice_shop_b</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This is what shop b has, but not shop a: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ice_shop_b</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">ice_shop_a</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This is what is unique to both shops (symmetric difference): &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ice_shop_a</span> <span class="o">^</span> <span class="n">ice_shop_b</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ice shops united: {&#39;blue&#39;, &#39;green&#39;, &#39;vanilla&#39;, &#39;chocolate&#39;}
+Both shops intersectedly offer: {&#39;chocolate&#39;, &#39;vanilla&#39;}
+This is what shop a has, but not shop b: {&#39;green&#39;}
+This is what shop b has, but not shop a: {&#39;blue&#39;}
+This is what is unique to both shops (symmetric difference): {&#39;green&#39;, &#39;blue&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>How to initialize an empty set</p>
+<p>Writing <code class="docutils literal notranslate"><span class="pre">new_variable</span> <span class="pre">=</span> <span class="pre">{}</span></code> instantiates an empty <strong>dictionary</strong>, not a set. Thus, to initialize an empty set, write <code class="docutils literal notranslate"><span class="pre">new_set</span> <span class="pre">=</span> <span class="pre">set()</span></code>.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Frozensets</p>
+<p>A frozenset can be created with <code class="docutils literal notranslate"><span class="pre">frozenset(set)</span></code> and has the characteristics of a set, but its elements cannot be modified once assigned. Similar to tuples that are immutable lists, frozensets are immutable sets. Why can it make sense to use a frozenset? Because a set is mutable and unhashable, which is why it cannot be used as dictionary keys as opposed to frozensets that are hashable and can be used as keys to a dictionary.</p>
 </div>
 </div>
 </div>
