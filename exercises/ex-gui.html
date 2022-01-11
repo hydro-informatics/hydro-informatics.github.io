@@ -746,7 +746,7 @@
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#set-window-geometry">
-     Set window geometry
+     Set Window Geometry
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -795,7 +795,10 @@
 </div>
 <div class="attention admonition">
 <p class="admonition-title">Requirements</p>
-<p><em>Python</em> libraries: <em>tkinter</em>, <a class="reference internal" href="../jupyter/pynum.html#numpy"><span class="std std-ref">NumPy</span></a>, and <a class="reference internal" href="../jupyter/pynum.html#pandas"><span class="std std-ref">Pandas</span></a>. Read and understand the creation of <a class="reference internal" href="../jupyter/gui.html#chpt-gui"><span class="std std-ref">Graphical User Interfaces (GUIs)</span></a>. Accomplish the {ref}`sediment transport exercise](<a class="reference external" href="https://github.com/Ecohydraulics/Exercise-SedimentTransport">https://github.com/Ecohydraulics/Exercise-SedimentTransport</a>).</p>
+<ul class="simple">
+<li><p>Python libraries: <a class="reference internal" href="../jupyter/gui.html#chpt-gui"><span class="std std-ref">tkinter</span></a>, <a class="reference internal" href="../jupyter/pynum.html#numpy"><span class="std std-ref">NumPy</span></a>, and <a class="reference internal" href="../jupyter/pynum.html#pandas"><span class="std std-ref">Pandas</span></a>. Read and understand the creation of <a class="reference internal" href="../jupyter/gui.html#chpt-gui"><span class="std std-ref">Graphical User Interfaces (GUIs)</span></a>.</p></li>
+<li><p>Accomplish the <a class="reference internal" href="ex-sediment.html#ex-py-sediment"><span class="std std-ref">sediment transport exercise</span></a>.</p></li>
+</ul>
 </div>
 <p>Get ready by cloning the exercise repository:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ecohydraulics</span><span class="o">/</span><span class="n">Exercise</span><span class="o">-</span><span class="n">gui</span><span class="o">.</span><span class="n">git</span>
@@ -826,7 +829,7 @@
 </div>
 <div class="section" id="make-the-application-frame">
 <h2>Make the Application Frame<a class="headerlink" href="#make-the-application-frame" title="Permalink to this headline">¶</a></h2>
-<p>Create a new <em>Python</em> file, call it <code class="docutils literal notranslate"><span class="pre">gui.py</span></code> and import the following libraries:</p>
+<p>Create a new Python file, call it <code class="docutils literal notranslate"><span class="pre">gui.py</span></code> and import the following libraries:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>  <span class="c1"># standard widgets (Label, Button, etc.)</span>
 <span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">ttk</span>  <span class="c1"># for Combobox widget</span>
@@ -846,7 +849,7 @@
 </pre></div>
 </div>
 <div class="section" id="set-window-geometry">
-<h3>Set window geometry<a class="headerlink" href="#set-window-geometry" title="Permalink to this headline">¶</a></h3>
+<h3>Set Window Geometry<a class="headerlink" href="#set-window-geometry" title="Permalink to this headline">¶</a></h3>
 <p>The initialization of the <code class="docutils literal notranslate"><span class="pre">tk.Frame</span></code> parent class is the first and most important step that we have already implemented above. Next, define a window title and a window icon (use for example the provided icon <code class="docutils literal notranslate"><span class="pre">graphs/icon.ico</span></code> in the exercise repository):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
       <span class="o">...</span>
@@ -854,9 +857,9 @@
       <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">iconbitmap</span><span class="p">(</span><span class="s2">&quot;graphs/icon.ico&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Make sure to get the icon path right. Otherwise, the app may crash.</p>
+<div class="error admonition">
+<p class="admonition-title">TclError: bitmap “graphs/icon.ico” not defined</p>
+<p>If you get this error message or similar, make sure the icon path is correct. In addition, recall that some recent versions versions of <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> cannot open icons because of an unknown error that might stem from relative path definitions in the library. Therefore, if you are sure the path is correct and the error message <code class="docutils literal notranslate"><span class="pre">TclError:</span> <span class="pre">bitmap</span> <span class="pre">&quot;graphs/icon.ico&quot;</span> <span class="pre">not</span> <span class="pre">defined</span></code> persists, the only solution might be to comment out the line <code class="docutils literal notranslate"><span class="pre">self.master.iconbitmap(&quot;graphs/icon.ico&quot;)</span></code>.</p>
 </div>
 <p>Assign a window geometry with window width and height, as well as <em>x</em> and <em>y</em> position on the screen in pixel units:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>

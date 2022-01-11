@@ -1024,12 +1024,6 @@
 <ul class="simple">
 <li><p>A definition of the GUI window name with <code class="docutils literal notranslate"><span class="pre">master.title(&quot;Window</span> <span class="pre">name&quot;)</span></code></p></li>
 <li><p>A definition of the GUI window icon (ICO) with <code class="docutils literal notranslate"><span class="pre">master.iconbitmap(&quot;directory/icon-file.ico&quot;)</span></code></p></li>
-</ul>
-<div class="warning admonition">
-<p class="admonition-title">Issues with window icons</p>
-<p>Some recent versions versions of <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> cannot open icons because of an unknown error that might stem from relative path definitions in the library. Therefore, if you get an error message such as <code class="docutils literal notranslate"><span class="pre">TclError:</span> <span class="pre">bitmap</span> <span class="pre">&quot;gui/sample-icon.ico&quot;</span> <span class="pre">not</span> <span class="pre">defined</span></code>, the only solution might be to comment out the line <code class="docutils literal notranslate"><span class="pre">self.master.iconbitmap(&quot;gui/sample-icon.ico&quot;)</span></code>.</p>
-</div>
-<ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">tk.Menu</span></code> with drop-down cascade</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">tk.Label</span></code> (see above)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">tk.Button</span></code> (see above)</p></li>

@@ -7,7 +7,8 @@ This exercise features the creation of a {ref}`chpt-gui` based on the instructio
 
 ```{admonition} Requirements
 :class: attention
-*Python* libraries: *tkinter*, {ref}`numpy`, and {ref}`pandas`. Read and understand the creation of {ref}`chpt-gui`. Accomplish the {ref}`sediment transport exercise](https://github.com/Ecohydraulics/Exercise-SedimentTransport).
+* Python libraries: {ref}`tkinter <chpt-gui>`, {ref}`numpy`, and {ref}`pandas`. Read and understand the creation of {ref}`chpt-gui`.
+* Accomplish the {ref}`sediment transport exercise <ex-py-sediment>`.
 ```
 
 Get ready by cloning the exercise repository:
@@ -42,7 +43,7 @@ def main(D_char, hec_file, out_folder):
 
 ## Make the Application Frame
 
-Create a new *Python* file, call it `gui.py` and import the following libraries:
+Create a new Python file, call it `gui.py` and import the following libraries:
 
 ```python
 import os
@@ -67,7 +68,7 @@ class SediApp(tk.Frame):
         tk.Frame.__init__(self, master)
 ```
 
-### Set window geometry
+### Set Window Geometry
 
 The initialization of the `tk.Frame` parent class is the first and most important step that we have already implemented above. Next, define a window title and a window icon (use for example the provided icon `graphs/icon.ico` in the exercise repository):
 
@@ -78,8 +79,9 @@ The initialization of the `tk.Frame` parent class is the first and most importan
       self.master.iconbitmap("graphs/icon.ico")
 ```
 
-```{note}
-Make sure to get the icon path right. Otherwise, the app may crash.
+```{admonition} TclError: bitmap "graphs/icon.ico" not defined
+:class: error
+If you get this error message or similar, make sure the icon path is correct. In addition, recall that some recent versions versions of `tkinter` cannot open icons because of an unknown error that might stem from relative path definitions in the library. Therefore, if you are sure the path is correct and the error message `TclError: bitmap "graphs/icon.ico" not defined` persists, the only solution might be to comment out the line `self.master.iconbitmap("graphs/icon.ico")`.
 ```
 
 Assign a window geometry with window width and height, as well as *x* and *y* position on the screen in pixel units:
