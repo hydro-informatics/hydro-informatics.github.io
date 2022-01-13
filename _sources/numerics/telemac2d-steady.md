@@ -201,17 +201,17 @@ Telemac2d comes with three solvers for approximating the depth-averaged {term}`N
 
 In addition, a type of discretization has to be specified with the **DISCRETIZATIONS IN SPACE** keyword, which is a list of five integer values. The five list elements define spatial discretization schemes for (1) velocity, (2) depth, (3) tracers, (4) $k-\epsilon$ turbulence, and (5) $\tilde{\nu}$ advection (Spalart-Allmaras), respectively. The minimum length of the keyword list is 2 (for velocity and depth) and all other elements are optional. The list elements may take the following values defining spatial discretization:
 
-* `11` (**default**) activates triangular discretization in space (i.e., 3-node triangles),
-* `12` activates quasi-bubble discretization with 4-node triangles, and
-* `13` activates quadratic discretization with 6-node triangles.
+* `11` (**default**) activates (linear) triangular discretization in space (i.e., 3-node triangles),
+* `12` activates quasi-bubble discretization with 4-nodes, and
+* `13` activates quadratic discretization with 6-nodes.
 
-The {{ tm2d }} recommend using the default value of `DISCRETIZATIONS IN SPACE : 11;11` that assigns a linear discretization for velocity and water depth (computationally fastest). The option `12;11` may be used to reduce free surface instabilities or oscillations (e.g., along with steep bathymetry gradients). The option `13;11` increases the accuracy of results, the computation time, memory usage, and it is currently not available in Telemac2d.
+The {{ tm2d }} recommend using **the default value of `DISCRETIZATIONS IN SPACE : 11;11`** that assigns a linear discretization for velocity and water depth, which **is computationally fast but potentially unstable**. The option `12;11` may be used to reduce free surface instabilities or oscillations (e.g., along with steep bathymetry gradients). The option `13;11` increases the accuracy of results, the computation time, memory usage, and it is currently not available in Telemac2d.
 
-In addition, the **FREE SURFACE GRADIENT** keyword can be defined for increasing the stability of a model. Its default value is `1.0`, but it can be reduced close to zero to achieve stability. The developers propose a minimum value of `0.`, but this would lead to non-meaningful results, which is why this eBook recommends a value slightly larger than zero. For instance, the following keyword combination may reduce surface instabilities (also referred to as *wiggles* or *oscillations*):
+In addition, the **FREE SURFACE GRADIENT** keyword can be defined for increasing the stability of a model. Its default value is `1.0`, but it can be reduced close to zero to achieve stability. The developers propose a minimum value of `0.`, but more realistic results can be yielded by setting this keyword to slightly more than zero (e.g., `0.1`). For instance, the following keyword combination may reduce surface instabilities (also referred to as *wiggles* or *oscillations*):
 
 ```fortran
 DISCRETIZATIONS IN SPACE : 12;11
-FREE SURFACE GRADIENT : 0.03
+FREE SURFACE GRADIENT : 0.1
 ```
 
 By default {term}`Advection` is activated through the keyword `ADVECTION : YES` and it can be deactivated for particular terms only:
@@ -413,7 +413,7 @@ Telemac2d will print out warning messages when convergence could not be reached 
 
 **The following descriptions refer to section 7.5 in the {{ tm2d }}.**
 
-The **TIDAL FLATS (default: `YES`)** keyword applies to the **finite elements scheme only ({ref}`EQUATIONS keyword <tm2d-numerical>`)** and can be ignored with finite volumes. The term *tidal* may be slightly confusing because tidal flats can occur beyond coastal regions: Tidal flats can occur wherever there are flow transitions, such as when fast-flowing water enters a backwater zone. Flow transitions occur in almost all environments more complex than a square-like flume, and therefore, the activation of tidal flats in Telemac2d models is highly recommended. Though activating tidal flats leads to longer computation times, in most cases a calculation with tidal flats provides physically reasonable results.
+The **TIDAL FLATS (default: `YES`)** keyword applies to the **finite elements scheme only ({ref}`EQUATIONS keyword <tm2d-numerical>`)** and can be ignored with finite volumes. The term *tidal* may be slightly confusing because tidal flats can occur beyond coastal regions: Tidal flats can occur wherever wetting and drying of grid cells may occur or at flow transitions (e.g., when fast-flowing water enters a backwater zone). Wetting and drying, and flow transitions occur in almost all environments more complex than a square-like flume, and therefore, the activation of tidal flats in Telemac2d models is highly recommended. Though activating tidal flats leads to longer computation times, in most cases a calculation with tidal flats provides physically reasonable results.
 
 The **TIDAL FLATS** keyword is linked with a couple of other Telemac2d keywords driving model stability and physical meaningfulness. The following keyword setups may be generally applied to (quasi) steady, real-world rivers and channels (as opposed to lab flumes with simplified geometries):
 

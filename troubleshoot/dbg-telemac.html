@@ -799,6 +799,11 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discretization-scheme">
+     Discretization Scheme
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#exceeding-maximum-iterations">
      Exceeding Maximum Iterations
     </a>
@@ -1012,7 +1017,7 @@
 </div>
 <div class="section" id="tidal-flats">
 <h3>Tidal Flats<a class="headerlink" href="#tidal-flats" title="Permalink to this headline">¶</a></h3>
-<p>The simulation of dam breaks or flood hydrographs may cause issues leading to model instability. While the <a class="reference internal" href="../numerics/telemac2d-steady.html#tm2d-tidal"><span class="std std-ref">Tidal Flats</span></a> section in the Telemac2d steady modeling tutorial suggests physically and computationally meaningful keyword option combinations, section 16.5 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac2d/user/telemac2d_user_v8p2.pdf">Telemac2d manual</a> recommends using the following settings in the steering file as conservative choices from the BAW’s Wesel example (similar to <code class="docutils literal notranslate"><span class="pre">/telemac/v8p2/examples/telemac2d/wesel/</span></code>).</p>
+<p>Wetting and drying of grid cells, for instance, during a simulation of dam breaks or flood hydrographs, may lead to model instability. While the <a class="reference internal" href="../numerics/telemac2d-steady.html#tm2d-tidal"><span class="std std-ref">Tidal Flats</span></a> section in the Telemac2d steady modeling tutorial suggests physically and computationally meaningful keyword option combinations, section 16.5 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac2d/user/telemac2d_user_v8p2.pdf">Telemac2d manual</a> recommends using the following settings in the steering file as conservative choices from the BAW’s Wesel example (similar to <code class="docutils literal notranslate"><span class="pre">/telemac/v8p2/examples/telemac2d/wesel/</span></code>).</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">VELOCITY</span> <span class="n">PROFILES</span> <span class="p">:</span> <span class="mi">4</span><span class="p">;</span><span class="mi">0</span>
 <span class="n">TURBULENCE</span> <span class="n">MODEL</span> <span class="p">:</span> <span class="mi">1</span>
 <span class="n">VELOCITY</span> <span class="n">DIFFUSIVITY</span> <span class="p">:</span> <span class="mf">2.</span>
@@ -1030,6 +1035,10 @@
 <span class="n">CONTINUITY</span> <span class="n">CORRECTION</span> <span class="p">:</span> <span class="n">YES</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="discretization-scheme">
+<h3>Discretization Scheme<a class="headerlink" href="#discretization-scheme" title="Permalink to this headline">¶</a></h3>
+<p>The default setting of <code class="docutils literal notranslate"><span class="pre">DISCRETIZATIONS</span> <span class="pre">IN</span> <span class="pre">SPACE</span> <span class="pre">:</span> <span class="pre">11;11</span></code> assigns a linear discretization for velocity and water depth, which is computationally fast but potentially unstable (read more in the section on <a class="reference internal" href="../numerics/telemac2d-steady.html#tm2d-numerical"><span class="std std-ref">general Telemac2d parameters</span></a>). To overcome stability issues related to the discretization scheme, consider using <code class="docutils literal notranslate"><span class="pre">DISCRETIZATIONS</span> <span class="pre">IN</span> <span class="pre">SPACE</span> <span class="pre">:</span> <span class="pre">12;11</span></code>. In addition, setting <code class="docutils literal notranslate"><span class="pre">FREE</span> <span class="pre">SURFACE</span> <span class="pre">GRADIENT</span> <span class="pre">COMPATIBILITY</span> <span class="pre">:</span> <span class="pre">0.01</span></code> (i.e., close to zero) may aid in troubleshooting stability issues related to the discretization of velocity and depth.</p>
 </div>
 <div class="section" id="exceeding-maximum-iterations">
 <h3>Exceeding Maximum Iterations<a class="headerlink" href="#exceeding-maximum-iterations" title="Permalink to this headline">¶</a></h3>

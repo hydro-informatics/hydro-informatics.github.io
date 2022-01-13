@@ -82,7 +82,7 @@ DURATION : 5000
 DESIRED COURANT NUMBER : 0.9
 ```
 
-Note that the **TIME STEP** is still required because the **GRAPHIC PRINTOUT PERIOD** is a multiple of the defined **TIME STEP**. 
+Note that the **TIME STEP** is still required because the **GRAPHIC PRINTOUT PERIOD** is a multiple of the defined **TIME STEP**.
 
 ```{admonition} Use the DURATION keyword
 A variable timestep calculation may run eternally. Assigning the **DURATION** keyword avoids such eternal runs.
@@ -119,7 +119,7 @@ LIMIT VALUES : -1000;9000;-1000;1000;-1000;1000;-1000;1000 / default mins and ma
 
 ### Tidal Flats
 
-The simulation of dam breaks or flood hydrographs may cause issues leading to model instability. While the {ref}`tm2d-tidal` section in the Telemac2d steady modeling tutorial suggests physically and computationally meaningful keyword option combinations, section 16.5 in the {{ tm2d }} recommends using the following settings in the steering file as conservative choices from the BAW's Wesel example (similar to `/telemac/v8p2/examples/telemac2d/wesel/`).
+Wetting and drying of grid cells, for instance, during a simulation of dam breaks or flood hydrographs, may lead to model instability. While the {ref}`tm2d-tidal` section in the Telemac2d steady modeling tutorial suggests physically and computationally meaningful keyword option combinations, section 16.5 in the {{ tm2d }} recommends using the following settings in the steering file as conservative choices from the BAW's Wesel example (similar to `/telemac/v8p2/examples/telemac2d/wesel/`).
 
 ```fortran
 VELOCITY PROFILES : 4;0
@@ -138,6 +138,10 @@ PRECONDITIONING : 2
 SOLVER ACCURACY : 1.E-5
 CONTINUITY CORRECTION : YES
 ```
+
+### Discretization Scheme
+
+The default setting of `DISCRETIZATIONS IN SPACE : 11;11` assigns a linear discretization for velocity and water depth, which is computationally fast but potentially unstable (read more in the section on {ref}`general Telemac2d parameters <tm2d-numerical>`). To overcome stability issues related to the discretization scheme, consider using `DISCRETIZATIONS IN SPACE : 12;11`. In addition, setting `FREE SURFACE GRADIENT COMPATIBILITY : 0.01` (i.e., close to zero) may aid in troubleshooting stability issues related to the discretization of velocity and depth.
 
 
 ### Exceeding Maximum Iterations
