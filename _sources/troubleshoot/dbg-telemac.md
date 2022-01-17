@@ -159,15 +159,16 @@ GRACJG (BIEF) : EXCEEDING MAXIMUM ITERATIONS:    50 RELATIVE PRECISION:  NaN
 GRACJG (BIEF) : EXCEEDING MAXIMUM ITERATIONS:    50 RELATIVE PRECISION:  NaN
 ```
 
-To troubleshoot the `EXCEEDING MAXIMUM ITERATIONS` warnings, try the following options:
+`EXCEEDING MAXIMUM ITERATIONS` warnings may occur when using **SCHEME FOR ADVECTION OF [...]** keywords with the values `3`, `4`, `5`, `13`, or `14`. The reason is that these schemes yield {term}`CFL` conditions of less than 1 by triggering iterative, adaptive timestepping. To troubleshoot `EXCEEDING MAXIMUM ITERATIONS` warnings, try the following options:
 
 *	Decrease the timestep gradually.
-*	Decrease the solver accuracy (e.g. from `1.E-8` to `1.E-6`),
+*	Decrease the solver accuracy (e.g. from `1.E-8` to `1.E-6`).
+* Use other values for `SCHEME FOR ADVECTION OF [...]`.
 *	Increase the `MAXIMUM NUMBER OF ITERATIONS FOR SOLVER` keyword value, but do not exceed `200`.
 *	Change the `VELOCITY PROFILE` type (read this eBook's instructions for {ref}`2d <tm2d-bounds>` or {ref}`3d  <tm3d-slf-boundaries>`).
 *	Cold starts (i.e., {ref}`defining initial conditions with the INITIAL CONDITIONS keyword in the steering file <tm2d-init>`) may not converge. Therefore, either
-  *	increase the `PRESCRIBED FLOWRATES` gradually (or in a {ref}`liquid boundary file <tm2d-liq-file>`), or
-  *	{ref}`create an initial conditions Selafin file <bk-create-slf>`, assigning a water depth at the inlet nodes.
+    -	increase the `PRESCRIBED FLOWRATES` gradually (or in a {ref}`liquid boundary file <tm2d-liq-file>`), or
+    -	{ref}`create an initial conditions Selafin file <bk-create-slf>`, assigning a water depth at the inlet nodes.
 
 
 ## Computation Speed

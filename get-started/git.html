@@ -387,6 +387,18 @@
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  Data Science
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../datascience/data-science.html">
+   Data Science
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Numerical Modeling
  </span>
 </p>
@@ -784,7 +796,7 @@
 <span id="chpt-git"></span><h1>Version Control : git<a class="headerlink" href="#version-control-git" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="the-concept">
 <h2>The Concept<a class="headerlink" href="#the-concept" title="Permalink to this headline">¶</a></h2>
-<p><strong>git is</strong> a fast, scalable, distributed <strong>revision (version) control system</strong>, originally developed by <em>Linus Torvalds</em>  (<a class="reference external" href="https://git.kernel.org/">read more about the git kernel</a>). <em>git</em> enables to coordinate work among collaborators beyond programming, in any set of files. Its support of non-linear workflows, speed, and data integrity make git an indispensable tool in many industries and research. Before starting to read this <em>git</em> tutorial, have a look at the schematic functioning of repositories hosted with <em>git</em>.</p>
+<p><strong>git is a fast, scalable, distributed revision (version) control system</strong>, originally developed by <em>Linus Torvalds</em>  (<a class="reference external" href="https://git.kernel.org/">read more about the git kernel</a>). <em>git</em> enables to coordinate work among collaborators beyond programming, in any set of files. Its support of non-linear workflows, speed, and data integrity make git an indispensable tool in many industries and research. Before starting to read this <em>git</em> tutorial, have a look at the schematic functioning of repositories hosted with <em>git</em>.</p>
 <div class="figure align-default" id="id1">
 <img alt="git-scheme" src="../_images/git-scheme.png" />
 <p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">The concept of git and basic vocabulary. The REMOTE frame is online (i.e., someone else’s computer) and the LOCAL frame is what happens on a personal computer, which is connected to the internet. Repositories can be newly created or forked remotely. Remote repositories can be cloned locally, modified locally, and local changes can be pushed to a remote repository. Collaborators want to make sure to regularly pull changes of a remote repository. Working with and on different branches becomes increasingly important with the number of developers and for the moment we just need to remember that we start working in the master branch (i.e., upstream origin / HEAD = main).</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
@@ -794,25 +806,25 @@
 <span id="dl"></span><h2>Install git<a class="headerlink" href="#install-git" title="Permalink to this headline">¶</a></h2>
 <p>The materials provided with this eBook are best downloaded and updated using <em>git</em>-able environments (avoid downloading materials as <em>zip</em> file).</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="f57c252d-ac12-4e77-8e60-6322f074f6a5" name="40c15e54-2cf4-4668-9d12-ade6e7654a06" type="radio">
-</input><label class="tabbed-label" for="f57c252d-ac12-4e77-8e60-6322f074f6a5">
+<input checked="checked" id="f31fc3a7-104a-4114-a228-c7febe6bebc4" name="cb8efde5-676b-4f72-8076-d9db87ab2e65" type="radio">
+</input><label class="tabbed-label" for="f31fc3a7-104a-4114-a228-c7febe6bebc4">
 Linux</label><div class="tabbed-content docutils">
 <p>You are already good to go - git is an integral feature of most Linux distributions.</p>
 </div>
-<input id="448530f3-af55-4da2-a836-f9729edb4488" name="40c15e54-2cf4-4668-9d12-ade6e7654a06" type="radio">
-</input><label class="tabbed-label" for="448530f3-af55-4da2-a836-f9729edb4488">
+<input id="9d026507-21e3-4e8d-a26a-bfec44f89ec9" name="cb8efde5-676b-4f72-8076-d9db87ab2e65" type="radio">
+</input><label class="tabbed-label" for="9d026507-21e3-4e8d-a26a-bfec44f89ec9">
 Windows</label><div class="tabbed-content docutils">
-<p>Download and install <a class="reference external" href="https://git-scm.com/downloads"><em>Git Bash</em></a> and use it for example <a class="reference external" href="https://www.jetbrains.com/pycharm/">PyCharm’s Community Edition</a> or <a class="reference external" href="https://atom.io">Atom</a>.</p>
+<p>Download and install <a class="reference external" href="https://git-scm.com/downloads">Git Bash</a> and use it for example <a class="reference external" href="https://www.jetbrains.com/pycharm/">PyCharm’s Community Edition</a> or <a class="reference external" href="https://atom.io">Atom</a>.</p>
 </div>
-<input id="bbedefc0-b96d-42b5-b761-8039accc5822" name="40c15e54-2cf4-4668-9d12-ade6e7654a06" type="radio">
-</input><label class="tabbed-label" for="bbedefc0-b96d-42b5-b761-8039accc5822">
+<input id="a48cccb3-171d-4b4f-8a8e-fd7d32fda1fb" name="cb8efde5-676b-4f72-8076-d9db87ab2e65" type="radio">
+</input><label class="tabbed-label" for="a48cccb3-171d-4b4f-8a8e-fd7d32fda1fb">
 macOS</label><div class="tabbed-content docutils">
 <p>macOS users may use <a class="reference external" href="https://developer.apple.com/xcode/">Homebrew</a> for installing git, but there are other options, such as <a class="reference external" href="https://developer.apple.com/xcode/">Xcode</a>.</p>
 <p>To use Homebrew for installing git, start with installing Homebrew through the <a class="reference external" href="https://support.apple.com/guide/terminal/open-or-quit-terminal-apd5265185d-f365-44cb-8b09-71a064a42125/mac">macOS Terminal</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</span>
 </pre></div>
 </div>
-<p>The installation of Homebrew may take a while. After the installation, make sure to export required PATH variable (copy line-by-line):</p>
+<p>The installation of Homebrew may take a while. After the installation, make sure to export the required PATH variable (copy line-by-line):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>echo &#39;eval $(/opt/homebrew/bin/brew shellenv)&#39; &gt;&gt; /Users/$USER/.zprofile
 eval $(/opt/homebrew/bin/brew shellenv)
 </pre></div>

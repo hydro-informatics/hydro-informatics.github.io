@@ -3,7 +3,7 @@
 
 ## The Concept
 
-**git is** a fast, scalable, distributed **revision (version) control system**, originally developed by *Linus Torvalds*  ([read more about the git kernel](https://git.kernel.org/)). *git* enables to coordinate work among collaborators beyond programming, in any set of files. Its support of non-linear workflows, speed, and data integrity make git an indispensable tool in many industries and research. Before starting to read this *git* tutorial, have a look at the schematic functioning of repositories hosted with *git*.
+**git is a fast, scalable, distributed revision (version) control system**, originally developed by *Linus Torvalds*  ([read more about the git kernel](https://git.kernel.org/)). *git* enables to coordinate work among collaborators beyond programming, in any set of files. Its support of non-linear workflows, speed, and data integrity make git an indispensable tool in many industries and research. Before starting to read this *git* tutorial, have a look at the schematic functioning of repositories hosted with *git*.
 
 ```{figure} ../img/git-scheme.png
 :alt: git-scheme
@@ -20,7 +20,7 @@ You are already good to go - git is an integral feature of most Linux distributi
 ````
 
 ````{tabbed} Windows
-Download and install [*Git Bash*](https://git-scm.com/downloads) and use it for example [PyCharm's Community Edition](https://www.jetbrains.com/pycharm/) or [Atom](https://atom.io).
+Download and install [Git Bash](https://git-scm.com/downloads) and use it for example [PyCharm's Community Edition](https://www.jetbrains.com/pycharm/) or [Atom](https://atom.io).
 ````
 
 ````{tabbed} macOS
@@ -32,7 +32,7 @@ To use Homebrew for installing git, start with installing Homebrew through the [
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-The installation of Homebrew may take a while. After the installation, make sure to export required PATH variable (copy line-by-line):
+The installation of Homebrew may take a while. After the installation, make sure to export the required PATH variable (copy line-by-line):
 
 ```
 echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> /Users/$USER/.zprofile

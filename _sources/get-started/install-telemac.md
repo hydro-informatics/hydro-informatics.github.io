@@ -63,8 +63,9 @@ The Austrian engineering office *Flussplan* provides a Docker container of TELEM
 ```{admonition} SVN is about to be replaced by GIT (v8p3)
 :class: important
 
-The newest release of TELEMAC (v8p3) is provided on [gitlab](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/tree/main) with the version control system {ref}`git <chpt-git>` rather than the previously used `svn` version control. Currently, both `git` and `svn` work and the following installation tutorial refers to the established `svn` system. However, also the instructions in this eBook will be updated with the upcoming TELEMAC versions to the usage of `git`.
+The newest release of TELEMAC (v8p3) is provided on [gitlab](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/tree/main) with the version control system {ref}`git <chpt-git>` rather than the previously used `svn` version control. Currently, both `git` and `svn` work and the following installation tutorial refers to the established `svn` system. Also the instructions in this eBook will be updated with the upcoming TELEMAC versions to the usage of `git`.
 
+If you are concerned about the functionality of TELEMAC itself depending on whether downloading it with `git` or `svn`, no worry, there is none.
 ```
 
 Working with TELEMAC requires some software for downloading source files, compiling, and running the program. The mandatory software prerequisites for installing TELEMAC on [Debian Linux](https://www.debian.org/) are:
