@@ -1,14 +1,14 @@
 (data-science)=
-# Welcome
+# Coming soon
 
-Coming soon ...
+The chapter is currently developed by [Ricardo Barros](https://github.com/ricardovobarros).
 
 ```{admonition} Requirements
 :class: attention
 Python: {ref}`numpy`, {ref}`pandas`, {ref}`gdal`.
 ```
 
-First reference to {ref}`Figure <fig-datascience-dummy>`.
+References to development figures {ref}`Figure <fig-datascience-dummy>`.
 
 ```{figure} ../img/datascience/dummy.jpg
 :alt: datascience

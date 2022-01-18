@@ -417,7 +417,7 @@ To calculate dimensionless {term}`Bedload` transport $\Phi_b$ according to Meyer
             self.phi = np.nan
 ```
 
-With the `MPM` class defined, we can now fill the `calculate_mpm` function in the `main.py` script. The function should create a *pandas* data frame with columns of dimensionless {term}`Bedload` transport $$ and dimensional {term}`Bedload` transport $Q_{b}$ associated with a channel profile (`"River Sta"`) and flow scenario (`"Profile" > "Scenario"`).
+With the `MPM` class defined, we can now fill the `calculate_mpm` function in the `main.py` script. The function should create a *pandas* data frame with columns of dimensionless {term}`Bedload` transport $ \Phi $ and dimensional {term}`Bedload` transport $Q_{b}$ associated with a channel profile (`"River Sta"`) and flow scenario (`"Profile" > "Scenario"`).
 
 The following code block illustrates an example for the `calculate_mpm` function that creates the *pandas* data frame from a {ref}`dict` (`mpm_dict`). The illustrative function creates the *dictionary* with void value lists, extracts hydraulic data from the *HEC-RAS* data frame, and loops over the `"River Sta"` entries. The loop checks if the `"River Sta"` entries are valid (i.e., not `"Nan"`) because empty rows that *HEC-RAS* automatically adds between output profiles should not be analyzed. If the check was successful, the loop appends the profile, scenario, and discharge directly to `mpm_dict`. The section-wise {term}`Bedload` transport results from `MPM` objects. After the loop, the function returns `mpm_dict` as a `pd.DataFrame` object.
 
