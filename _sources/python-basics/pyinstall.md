@@ -439,7 +439,6 @@ Read more about the integration of Python and environments in Atom in the sectio
 
 
 (ide-setup)=
-
 ### PyCharm Python Projects
 
 After the successful installation of {ref}`pycharm`, use a *conda* (or *pip*) environment as interpreter. The following steps guide through the setup of *PyCharm* for using *conda* environments.

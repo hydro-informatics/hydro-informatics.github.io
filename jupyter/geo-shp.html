@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shapefile (Vector Dataset) Handling &#8212; Hydro-Informatics</title>
+    <title>Shapefile (Vector) Handling &#8212; Hydro-Informatics</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -57,7 +57,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Raster (Gridded) Dataset Handling" href="geo-raster.html" />
+    <link rel="next" title="Raster (Grid) Handling" href="geo-raster.html" />
     <link rel="prev" title="Geospatial Open Source Python Libraries" href="../geopy/geo-pckg.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -349,17 +349,17 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Shapefile (Vector Dataset) Handling
+     Shapefile (Vector) Handling
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="geo-raster.html">
-     Raster (Gridded) Dataset Handling
+     Raster (Grid) Handling
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="geo-convert.html">
-     Raster to Vector Conversion and Vice Versa
+     Vectorize and Rasterize
     </a>
    </li>
    <li class="toctree-l2">
@@ -815,10 +815,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#build-shapefile-from-json">
-   Build Shapefile from
-   <em>
-    JSON
-   </em>
+   Build Shapefile from JSON
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -854,16 +851,19 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="shapefile-vector-dataset-handling">
-<span id="chpt-shp"></span><h1>Shapefile (Vector Dataset) Handling<a class="headerlink" href="#shapefile-vector-dataset-handling" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="shapefile-vector-handling">
+<span id="chpt-shp"></span><h1>Shapefile (Vector) Handling<a class="headerlink" href="#shapefile-vector-handling" title="Permalink to this headline">¶</a></h1>
 <p>This section introduces geospatial analysis of shapefiles with gdal, ogr, and osr. For interactive reading and executing code blocks <a class="reference external" href="https://mybinder.org/v2/gh/hydro-informatics/jupyter-python-course/main?filepath=jupyter"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> and find <em>geo01-shp.ipynb</em>, or install <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Python</span></a> and <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a> locally.</p>
 <div class="admonition-requirements admonition">
 <p class="admonition-title">Requirements</p>
-<p>Make sure to understand <a class="reference internal" href="../geopy/geospatial-data.html#shp"><span class="std std-ref">shapefiles</span></a> and <a class="reference internal" href="../geopy/geospatial-data.html#vector"><span class="std std-ref">vector data</span></a> before reading this section.</p>
+<ul class="simple">
+<li><p>Make sure to understand <a class="reference internal" href="../geopy/geospatial-data.html#shp"><span class="std std-ref">shapefiles</span></a> and <a class="reference internal" href="../geopy/geospatial-data.html#vector"><span class="std std-ref">vector data</span></a></p></li>
+<li><p>Accomplish the <a class="reference internal" href="../geopy/use-qgis.html#qgis-tutorial"><span class="std std-ref">QGIS tutorial</span></a></p></li>
+</ul>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>The core functions featured in this section are also implemented in <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Use flusstools</p>
+<p>The core functions featured in this section are also implemented in <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a>. To use those functions, make sure flusstools is installed and import it as follows: <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">flusstools</span> <span class="pre">import</span> <span class="pre">geotools</span></code>. Some of the functions shown in this tutorial can then be used with <code class="docutils literal notranslate"><span class="pre">geotools.function_name()</span></code>.</p>
 </div>
 <div class="section" id="load-an-existing-shapefile">
 <h2>Load an Existing Shapefile<a class="headerlink" href="#load-an-existing-shapefile" title="Permalink to this headline">¶</a></h2>
@@ -1062,7 +1062,7 @@ The command <code class="docutils literal notranslate"><span class="pre">shp_dri
 </div>
 </div>
 <div class="section" id="transform-re-project-a-shapefile">
-<h2>Transform (Re-project) a Shapefile<a class="headerlink" href="#transform-re-project-a-shapefile" title="Permalink to this headline">¶</a></h2>
+<span id="reproject-shp"></span><h2>Transform (Re-project) a Shapefile<a class="headerlink" href="#transform-re-project-a-shapefile" title="Permalink to this headline">¶</a></h2>
 <p>A re-projection may be needed, for instance, to use a shapefile in <code class="docutils literal notranslate"><span class="pre">EPSG:4326</span></code> (e.g., created with QGIS) in a web-GIS application (e.g., open street maps) that typically uses <code class="docutils literal notranslate"><span class="pre">EPSG:3857</span></code>. To apply a different projection to geometric objects of a shapefile, it is not enough to simply rewrite the <code class="docutils literal notranslate"><span class="pre">.prj</span></code> file. Therefore, the following example shows the re-projection of the <code class="docutils literal notranslate"><span class="pre">countries.shp</span></code> shapefile from the <a class="reference external" href="http://naciscdn.org/naturalearth/packages/Natural_Earth_quick_start.zip">Natural Earth quick start kit</a>. The following workflow performs the reprojection:</p>
 <ul class="simple">
 <li><p>Save shapefile to transform is located in the subdirectory <code class="docutils literal notranslate"><span class="pre">geodata/shapefiles/countries.shp</span></code> and open it in the Python script as described above.</p></li>
@@ -1366,7 +1366,7 @@ The command <code class="docutils literal notranslate"><span class="pre">shp_dri
 </div>
 </div>
 <div class="section" id="build-shapefile-from-json">
-<span id="json-create"></span><h2>Build Shapefile from <em>JSON</em><a class="headerlink" href="#build-shapefile-from-json" title="Permalink to this headline">¶</a></h2>
+<span id="json-create"></span><h2>Build Shapefile from JSON<a class="headerlink" href="#build-shapefile-from-json" title="Permalink to this headline">¶</a></h2>
 <p>Loading geometry data from in-line defined variables is cumbersome in practice, where geospatial data are often provided on public platforms (e.g., land use or cover).  The following example uses a JSON file generated with map service data from the <a class="reference external" href="https://udo.lubw.baden-wuerttemberg.de/">Baden-Württemberg State Institute for the Environment, Survey and Nature Conservation (LUBW)</a>, where polygon nodes are stored in WKB polygon geometry format  (<code class="docutils literal notranslate"><span class="pre">&quot;MultiPolygon</span> <span class="pre">(((node1_x</span> <span class="pre">node1_y,</span> <span class="pre">nodej_x,</span> <span class="pre">nodej_y,</span> <span class="pre">...</span> <span class="pre">...)))&quot;</span></code>):</p>
 <ul class="simple">
 <li><p>The JSON file (<a class="reference external" href="https://raw.githubusercontent.com/hydro-informatics/jupyter-python-course/main/geodata/json/hq100-dreisam.json">download hq100-dreisam.json</a> and save it to a subdirectory called <code class="docutils literal notranslate"><span class="pre">/geodata/json/</span></code>)is read with <a class="reference internal" href="pynum.html#pandas"><span class="std std-ref">Pandas</span></a> and the shapefile is created, as before, with the <code class="docutils literal notranslate"><span class="pre">create_shp</span></code> function.</p></li>
@@ -1540,7 +1540,7 @@ Tip: To create a tight hull (e.g., of a point cloud), look for <code class="docu
 <span class="n">polygon</span><span class="o">.</span><span class="n">AddGeometry</span><span class="p">(</span><span class="n">triangle</span><span class="p">)</span>
 
 <span class="c1">#geojson = poly.ExportToJson()</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/pitillal-triangle.kml&quot;</span><span class="p">,</span> <span class="s2">&quot;w+&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">gjson</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/pitillal-triangle.kml&quot;</span><span class="p">,</span> <span class="s2">&quot;w+&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">gjson</span><span class="p">:</span>
     <span class="n">gjson</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">polygon</span><span class="o">.</span><span class="n">ExportToKML</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -1590,7 +1590,7 @@ Tip: To create a tight hull (e.g., of a point cloud), look for <code class="docu
     <a class='right-next' id="next-link" href="geo-raster.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Raster (Gridded) Dataset Handling</p>
+        <p class="prev-next-title">Raster (Grid) Handling</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
