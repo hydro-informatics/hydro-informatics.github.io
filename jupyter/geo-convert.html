@@ -876,7 +876,10 @@
 <p>The <code class="docutils literal notranslate"><span class="pre">raster2line</span></code> function is also implemented in the <a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/flusstools-pckg/main/flusstools/geotools/geotools.py"><code class="docutils literal notranslate"><span class="pre">flusstools.geotools.geotools</span></code></a> script.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">raster2line</span><span class="p">(</span><span class="n">raster_file_name</span><span class="p">,</span> <span class="n">out_shp_fn</span><span class="p">,</span> <span class="n">pixel_value</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flusstools.geotools</span> <span class="kn">import</span> <span class="n">raster2array</span>
+
+
+<span class="k">def</span> <span class="nf">raster2line</span><span class="p">(</span><span class="n">raster_file_name</span><span class="p">,</span> <span class="n">out_shp_fn</span><span class="p">,</span> <span class="n">pixel_value</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert a raster to a line shapefile, where pixel_value determines line start and end points</span>
 <span class="sd">    :param raster_file_name: STR of input raster file name, including directory; must end on &quot;.tif&quot;</span>
@@ -939,8 +942,8 @@
 <p>The <code class="docutils literal notranslate"><span class="pre">raster2line()</span></code> function can be called as follows to convert the least cost path from pixel (raster) to line (vector) format:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">source_raster_fn</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span>  <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/rasters/least_cost.tif&quot;</span>
-<span class="n">target_shp_fn</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/shapefiles/least_cost.shp&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">source_raster_fn</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span>  <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/rasters/least-cost.tif&quot;</span>
+<span class="n">target_shp_fn</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/shapefiles/least-cost.shp&quot;</span>
 <span class="n">pixel_value</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">raster2line</span><span class="p">(</span><span class="n">source_raster_fn</span><span class="p">,</span> <span class="n">target_shp_fn</span><span class="p">,</span> <span class="n">pixel_value</span><span class="p">)</span>
 </pre></div>

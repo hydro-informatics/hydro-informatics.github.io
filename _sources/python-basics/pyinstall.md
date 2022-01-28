@@ -41,12 +41,6 @@ sudo apt install python3-pip python3-tk tk8.6-dev
 python3 -m pip install --upgrade pip
 ```
 
-Install *numpy* with:
-
-```
-pip install numpy
-```
-
 ```{admonition} python vs. python3
 :class: attention
 Python2 experienced its *sunset* in January 2020, but some systems still use Python2 as default for the `python` command and require a distinguished call of Python3 with the `python3` command.
@@ -78,6 +72,13 @@ Double-check that the environment is activated:
 which python
 ```
 
+
+Install *numpy* with:
+
+```
+pip3 install numpy
+```
+
 Then, install *QGIS* and *GDAL* for *Linux* (this should work with any *Debian* architecture) and make sure to use the correct `pip` command at the end (i.e., it might be necessary to replace `pip3` with `pip`):
 
 ```
@@ -98,12 +99,11 @@ Install gdal for the *vflussenv* Python environment:
 pip3 install GDAL==$(gdal-config --version)
 ```
 
-<span style="color: #e1aea3 ">
-If the above line ultimately fails (i.e., does not end with **Successfully installed GDAL-X.X.X**, which override previous errors such as `invalid command 'bdist_wheel'`), try:
+<span style="color: #bb533d ">
+If the above line ultimately fails (i.e., does not end with <b>Successfully installed GDAL-X.X.X</b>, which override previous errors such as <i>invalid command 'bdist_wheel'</i>), try:</br></br>
 
-```
-pip3 install GDAL==$(gdal-config --version) --global-option=build_ext --global-option="-I/usr/include/gdal/"
-```
+<i><b>pip3 install GDAL==$(gdal-config --version) --global-option=build_ext --global-option="-I/usr/include/gdal/"</i></b></br>
+
 </span>
 
 Now, install *flusstools* with:
@@ -180,7 +180,7 @@ python -m pip install pandas plotting matplotlib plotly
 
 Try the following not cross-platform verified solution: Install {ref}`qgis-install` and use its *Python* terminal for installing *flusstools*:
 
-* Start *QGIS* as **Administrator** (the following steps will fail if you are not running QGIS as administrator)
+* Start QGIS as **Administrator** (the following steps will fail if you are not running QGIS as administrator)
 * Go to **Plugins** > **Python Console**
 * In the *Python Console* tap:
   * `import pip`
@@ -266,6 +266,8 @@ Anaconda and conda environments are preferable with *Windows* systems for workin
 (conda-quick)=
 ### Quick Guide
 
+The quick guide to installing Python with Anaconda on Windows is accompanied by a video embedded below the numbered workflow (though the number steps reduced since the video was published):
+
 1. Download the *flussenv* [environment file](https://raw.githubusercontent.com/Ecohydraulics/flusstools-pckg/main/environment.yml) (right-click > *Save Link as ...* > select target directory). If needed, copy the file contents of `environment.yml` in a local text editor, such as {ref}`npp`, and save the file for example in a directory called *C:/temp/*).
 1. Open a command line
    * On *Windows*: *Anaconda Prompt* (`Windows` key > type `Anaconda Prompt` > hit `Enter`).
@@ -273,8 +275,11 @@ Anaconda and conda environments are preferable with *Windows* systems for workin
 1. Navigate to the download directory where `environment.yml` is located (use [`cd`](https://www.digitalcitizen.life/command-prompt-how-use-basic-commands) to navigate, for example, to `cd C:/temp/`).
 1. Enter `conda env create -f environment.yml` (this creates an environment called `flussenv`). <br> *... takes a while ...*
 1. Activate *flussenv*: `conda activate flussenv`
-1. Install *numpy*: `pip install numpy`
 1. Install *flusstools*: `pip install flusstools`
+
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/cbIPRGOUAVA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+
 
 ### Create and Install
 
@@ -463,7 +468,7 @@ Setup the `flussenv` conda environment for the new project.
 ```
 
 * Verify that the project interpreter is correctly defined:
-  * Click on *PyCharm*'s **File** menu and select **Settings...**
+  * Click on PyCharm's **File** menu and select **Settings...**
   * In the *Settings* window go to **Project: [NAME]** > **Project Interpreter**
   * Make sure that the above-created `flussenv` *conda* environment is defined as *Project Interpreter*.
 

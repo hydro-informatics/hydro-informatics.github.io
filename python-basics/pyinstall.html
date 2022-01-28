@@ -357,7 +357,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/geo-convert.html">
-     Raster to Vector Conversion and Vice Versa
+     Vectorize and Rasterize
     </a>
    </li>
    <li class="toctree-l2">
@@ -854,8 +854,8 @@
 <span id="pip-quick"></span><h3>Quick Guide<a class="headerlink" href="#quick-guide" title="Permalink to this headline">¶</a></h3>
 <p>Consider installing, creating, and activating a new virtual environment for working with the contents of this eBook as explained in the following platform-dependent paragraphs.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="e9ccc43a-6205-42ef-9a03-ba02add60290" name="bbc73144-b4a7-4fbd-9abe-f9eeffff1568" type="radio">
-</input><label class="tabbed-label" for="e9ccc43a-6205-42ef-9a03-ba02add60290">
+<input checked="checked" id="34296337-fd1f-4abc-8acb-e73e511b2aa6" name="9f60d0ce-8bf4-4e80-8ad8-8e543150c66c" type="radio">
+</input><label class="tabbed-label" for="34296337-fd1f-4abc-8acb-e73e511b2aa6">
 Linux</label><div class="tabbed-content docutils">
 <p>To avoid affecting the system’s Python interpreter, set up a virtual environment with <em>venv</em>. The first step is to make sure that Python3 and <em>venv</em> are installed on the system:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">python3</span> <span class="n">python3</span><span class="o">-</span><span class="n">venv</span>
@@ -864,10 +864,6 @@ Linux</label><div class="tabbed-content docutils">
 <p>Next, make sure that <code class="docutils literal notranslate"><span class="pre">pip3</span></code> and <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> are installed and up to date:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">python3</span><span class="o">-</span><span class="n">pip</span> <span class="n">python3</span><span class="o">-</span><span class="n">tk</span> <span class="n">tk8</span><span class="mf">.6</span><span class="o">-</span><span class="n">dev</span>
 <span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
-</pre></div>
-</div>
-<p>Install <em>numpy</em> with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">numpy</span>
 </pre></div>
 </div>
 <div class="attention admonition">
@@ -893,6 +889,10 @@ This behavior is more and more deprecated and most up-to-date systems will autom
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">which</span> <span class="n">python</span>
 </pre></div>
 </div>
+<p>Install <em>numpy</em> with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">numpy</span>
+</pre></div>
+</div>
 <p>Then, install <em>QGIS</em> and <em>GDAL</em> for <em>Linux</em> (this should work with any <em>Debian</em> architecture) and make sure to use the correct <code class="docutils literal notranslate"><span class="pre">pip</span></code> command at the end (i.e., it might be necessary to replace <code class="docutils literal notranslate"><span class="pre">pip3</span></code> with <code class="docutils literal notranslate"><span class="pre">pip</span></code>):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">add</span><span class="o">-</span><span class="n">apt</span><span class="o">-</span><span class="n">repository</span> <span class="n">ppa</span><span class="p">:</span><span class="n">ubuntugis</span><span class="o">/</span><span class="n">ubuntugis</span><span class="o">-</span><span class="n">unstable</span> <span class="o">&amp;&amp;</span> <span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
 <span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">libgeos</span><span class="o">-</span><span class="n">dev</span> <span class="n">gdal</span><span class="o">-</span><span class="nb">bin</span> <span class="n">libgdal</span><span class="o">-</span><span class="n">dev</span>
@@ -907,11 +907,9 @@ This behavior is more and more deprecated and most up-to-date systems will autom
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>pip3 install GDAL==$(gdal-config --version)
 </pre></div>
 </div>
-<span style="color: #e1aea3 ">
-If the above line ultimately fails (i.e., does not end with **Successfully installed GDAL-X.X.X**, which override previous errors such as `invalid command 'bdist_wheel'`), try:
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>pip3 install GDAL==$(gdal-config --version) --global-option=build_ext --global-option=&quot;-I/usr/include/gdal/&quot;
-</pre></div>
-</div>
+<span style="color: #bb533d ">
+If the above line ultimately fails (i.e., does not end with <b>Successfully installed GDAL-X.X.X</b>, which override previous errors such as <i>invalid command 'bdist_wheel'</i>), try:</br></br>
+<p><i><b>pip3 install GDAL==$(gdal-config –version) –global-option=build_ext –global-option=“-I/usr/include/gdal/”</i></b></br></p>
 </span>
 <p>Now, install <em>flusstools</em> with:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">flusstools</span>
@@ -926,8 +924,8 @@ Python 3.X.X (default, MMM DD YYYY, hh:mm:ss)
 </div>
 <p>Recall that newer <em>Linux</em> versions may not differentiate between <em>Python2</em> and <em>Python3</em> (i.e., use <code class="docutils literal notranslate"><span class="pre">python</span></code> rather than <code class="docutils literal notranslate"><span class="pre">python3</span></code>).</p>
 </div>
-<input id="5280d092-6586-4ec5-ab87-1f616bc96314" name="bbc73144-b4a7-4fbd-9abe-f9eeffff1568" type="radio">
-</input><label class="tabbed-label" for="5280d092-6586-4ec5-ab87-1f616bc96314">
+<input id="b18ecd7f-f59e-4f9a-bc45-819265e54a57" name="9f60d0ce-8bf4-4e80-8ad8-8e543150c66c" type="radio">
+</input><label class="tabbed-label" for="b18ecd7f-f59e-4f9a-bc45-819265e54a57">
 Windows</label><div class="tabbed-content docutils">
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -969,7 +967,7 @@ Windows</label><div class="tabbed-content docutils">
 <p class="admonition-title">For geospatial analyses …</p>
 <p>Try the following not cross-platform verified solution: Install <a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a> and use its <em>Python</em> terminal for installing <em>flusstools</em>:</p>
 <ul class="simple">
-<li><p>Start <em>QGIS</em> as <strong>Administrator</strong> (the following steps will fail if you are not running QGIS as administrator)</p></li>
+<li><p>Start QGIS as <strong>Administrator</strong> (the following steps will fail if you are not running QGIS as administrator)</p></li>
 <li><p>Go to <strong>Plugins</strong> &gt; <strong>Python Console</strong></p></li>
 <li><p>In the <em>Python Console</em> tap:</p>
 <ul>
@@ -988,15 +986,15 @@ Windows</label><div class="tabbed-content docutils">
 <span id="pip-install-pckg"></span><h3>Manage pip (Install, Uninstall, or Upgrade) Modules or Packages<a class="headerlink" href="#manage-pip-install-uninstall-or-upgrade-modules-or-packages" title="Permalink to this headline">¶</a></h3>
 <p>More than 300,000 projects live on <a class="reference external" href="https://pypi.org/">pypi.org</a> and there are packages available for many purposes. To find suitable packages visit <a class="reference external" href="https://pypi.org/search/">https://pypi.org/search/</a>. To install (i.e., add) one of these <code class="docutils literal notranslate"><span class="pre">pip</span></code>/<code class="docutils literal notranslate"><span class="pre">pip3</span></code> packages use:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="349d7411-f388-497e-bbb5-f059751f4f39" name="317e1d25-1a75-468f-8b6b-d0a1f64c9d06" type="radio">
-</input><label class="tabbed-label" for="349d7411-f388-497e-bbb5-f059751f4f39">
+<input checked="checked" id="0bec706d-78f2-495a-a1c7-7041d7ba86d9" name="d956a6da-70fb-4a96-a5fb-eff715ee128b" type="radio">
+</input><label class="tabbed-label" for="0bec706d-78f2-495a-a1c7-7041d7ba86d9">
 Linux Terminal</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
 </div>
 </div>
-<input id="f4afe4ed-6412-46f8-b9b9-99655a82da18" name="317e1d25-1a75-468f-8b6b-d0a1f64c9d06" type="radio">
-</input><label class="tabbed-label" for="f4afe4ed-6412-46f8-b9b9-99655a82da18">
+<input id="b4c363f6-df31-4378-b4c3-eb3eab616462" name="d956a6da-70fb-4a96-a5fb-eff715ee128b" type="radio">
+</input><label class="tabbed-label" for="b4c363f6-df31-4378-b4c3-eb3eab616462">
 Windows Command Prompt</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
@@ -1009,15 +1007,15 @@ Windows Command Prompt</label><div class="tabbed-content docutils">
 </div>
 <p>To remove (i.e., uninstall) a <code class="docutils literal notranslate"><span class="pre">pip</span></code>/<code class="docutils literal notranslate"><span class="pre">pip3</span></code>-installed package use:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="1555376a-48fe-4c50-9969-3c834c14c2de" name="efed2ac0-b7ca-4ec3-bfb1-22558989ea41" type="radio">
-</input><label class="tabbed-label" for="1555376a-48fe-4c50-9969-3c834c14c2de">
+<input checked="checked" id="2abdb0ec-5a65-4f08-96f0-0a5432a9a6f5" name="dafcf2cf-ce4a-4182-83c9-d999c8444120" type="radio">
+</input><label class="tabbed-label" for="2abdb0ec-5a65-4f08-96f0-0a5432a9a6f5">
 Linux Terminal</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">uninstall</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
 </div>
 </div>
-<input id="93ee9534-8596-412f-ae6b-70a74f7ab365" name="efed2ac0-b7ca-4ec3-bfb1-22558989ea41" type="radio">
-</input><label class="tabbed-label" for="93ee9534-8596-412f-ae6b-70a74f7ab365">
+<input id="4b0e0d94-445e-4536-bc18-0e17e932cf16" name="dafcf2cf-ce4a-4182-83c9-d999c8444120" type="radio">
+</input><label class="tabbed-label" for="4b0e0d94-445e-4536-bc18-0e17e932cf16">
 Windows Command Prompt</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">uninstall</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
@@ -1026,15 +1024,15 @@ Windows Command Prompt</label><div class="tabbed-content docutils">
 </div>
 <p>To upgrade (update) a package that lives in a local user environment use:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="9cc93fff-3f0a-4003-88e2-6e778a01711e" name="7b9cbc0d-bc21-4e8f-9db5-5afbf4343aba" type="radio">
-</input><label class="tabbed-label" for="9cc93fff-3f0a-4003-88e2-6e778a01711e">
+<input checked="checked" id="1dd603e3-8431-41f7-b64c-0504864372d2" name="9f8e537a-0667-4f78-839d-a5526374cde2" type="radio">
+</input><label class="tabbed-label" for="1dd603e3-8431-41f7-b64c-0504864372d2">
 Linux Terminal</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
 </div>
 </div>
-<input id="36cf9baa-26c2-4711-af9e-a61f5b7fdbbf" name="7b9cbc0d-bc21-4e8f-9db5-5afbf4343aba" type="radio">
-</input><label class="tabbed-label" for="36cf9baa-26c2-4711-af9e-a61f5b7fdbbf">
+<input id="92b99ca4-d56f-4e27-a87e-3fe90e72c701" name="9f8e537a-0667-4f78-839d-a5526374cde2" type="radio">
+</input><label class="tabbed-label" for="92b99ca4-d56f-4e27-a87e-3fe90e72c701">
 Windows Command Prompt</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="o">--</span><span class="n">user</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
@@ -1057,6 +1055,7 @@ Windows Command Prompt</label><div class="tabbed-content docutils">
 </div>
 <div class="section" id="conda-quick">
 <span id="id1"></span><h3>Quick Guide<a class="headerlink" href="#conda-quick" title="Permalink to this headline">¶</a></h3>
+<p>The quick guide to installing Python with Anaconda on Windows is accompanied by a video embedded below the numbered workflow (though the number steps reduced since the video was published):</p>
 <ol class="simple">
 <li><p>Download the <em>flussenv</em> <a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/flusstools-pckg/main/environment.yml">environment file</a> (right-click &gt; <em>Save Link as …</em> &gt; select target directory). If needed, copy the file contents of <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> in a local text editor, such as <a class="reference internal" href="../get-started/others.html#npp"><span class="std std-ref">NotepadPlusPlus (Text Editor)</span></a>, and save the file for example in a directory called <em>C:/temp/</em>).</p></li>
 <li><p>Open a command line</p>
@@ -1068,9 +1067,10 @@ Windows Command Prompt</label><div class="tabbed-content docutils">
 <li><p>Navigate to the download directory where <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> is located (use <a class="reference external" href="https://www.digitalcitizen.life/command-prompt-how-use-basic-commands"><code class="docutils literal notranslate"><span class="pre">cd</span></code></a> to navigate, for example, to <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">C:/temp/</span></code>).</p></li>
 <li><p>Enter <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">environment.yml</span></code> (this creates an environment called <code class="docutils literal notranslate"><span class="pre">flussenv</span></code>). <br> <em>… takes a while …</em></p></li>
 <li><p>Activate <em>flussenv</em>: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">flussenv</span></code></p></li>
-<li><p>Install <em>numpy</em>: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">numpy</span></code></p></li>
 <li><p>Install <em>flusstools</em>: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">flusstools</span></code></p></li>
 </ol>
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/cbIPRGOUAVA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 </div>
 <div class="section" id="create-and-install">
 <h3>Create and Install<a class="headerlink" href="#create-and-install" title="Permalink to this headline">¶</a></h3>
@@ -1116,13 +1116,13 @@ Windows Command Prompt</label><div class="tabbed-content docutils">
 <span id="ipython-config"></span><h3>JupyterLab<a class="headerlink" href="#jupyterlab" title="Permalink to this headline">¶</a></h3>
 <p>The following descriptions require that <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a> is installed for locally editing <em>Jupyter</em> notebooks (<em>.ipynb</em> files), <em>Python</em> scripts (<em>.py</em> files), and folders.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="70fcffcf-a82d-43e3-8f7d-e9e216276151" name="fadb4ad1-7fc3-4092-90c0-1bd4fe335ed8" type="radio">
-</input><label class="tabbed-label" for="70fcffcf-a82d-43e3-8f7d-e9e216276151">
+<input checked="checked" id="312325ad-d544-44c6-80c4-2c26d5cf7a3f" name="2a9b5b82-f218-45a0-bb65-8594ae1a107e" type="radio">
+</input><label class="tabbed-label" for="312325ad-d544-44c6-80c4-2c26d5cf7a3f">
 Linux</label><div class="tabbed-content docutils">
 <p>Start <em>JupyterLab</em> by typing <code class="docutils literal notranslate"><span class="pre">jupyter-lab</span></code> in <em>Terminal</em>.</p>
 </div>
-<input id="c0882d35-8fa1-4be3-b61d-d362cb9faba5" name="fadb4ad1-7fc3-4092-90c0-1bd4fe335ed8" type="radio">
-</input><label class="tabbed-label" for="c0882d35-8fa1-4be3-b61d-d362cb9faba5">
+<input id="9ee82295-7165-4119-ba7b-65433a4d1504" name="2a9b5b82-f218-45a0-bb65-8594ae1a107e" type="radio">
+</input><label class="tabbed-label" for="9ee82295-7165-4119-ba7b-65433a4d1504">
 Windows</label><div class="tabbed-content docutils">
 <p>Start <em>JupyterLab</em> by typing <code class="docutils literal notranslate"><span class="pre">jupyter-lab</span></code> in <em>Anaconda Prompt</em>.</p>
 </div>
@@ -1174,8 +1174,8 @@ Windows</label><div class="tabbed-content docutils">
 <span id="atom-setup"></span><h3>Atom and Python<a class="headerlink" href="#atom-and-python" title="Permalink to this headline">¶</a></h3>
 <p>Depending on your platform make sure that all requirements are installed to configure <em>Atom</em>s <code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code> package:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="2e0a4fd3-17a1-47bb-af8b-30a35290ac37" name="d9e3981a-f2d3-455a-93ff-a228a3c15514" type="radio">
-</input><label class="tabbed-label" for="2e0a4fd3-17a1-47bb-af8b-30a35290ac37">
+<input checked="checked" id="1dba2cfc-13e0-40c6-8c0f-a61fab4fe04b" name="4fe7f029-d7a8-4915-a02c-4d388a4346d7" type="radio">
+</input><label class="tabbed-label" for="1dba2cfc-13e0-40c6-8c0f-a61fab4fe04b">
 Linux</label><div class="tabbed-content docutils">
 <div class="admonition-requirements admonition">
 <p class="admonition-title">Requirements</p>
@@ -1206,8 +1206,8 @@ Linux</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="b19257eb-1073-49a7-afae-5a83af19d9fd" name="d9e3981a-f2d3-455a-93ff-a228a3c15514" type="radio">
-</input><label class="tabbed-label" for="b19257eb-1073-49a7-afae-5a83af19d9fd">
+<input id="19f6303d-c4a1-4132-bcaa-565cb71850c3" name="4fe7f029-d7a8-4915-a02c-4d388a4346d7" type="radio">
+</input><label class="tabbed-label" for="19f6303d-c4a1-4132-bcaa-565cb71850c3">
 Windows</label><div class="tabbed-content docutils">
 <div class="admonition-requirements admonition">
 <p class="admonition-title">Requirements</p>
@@ -1265,7 +1265,7 @@ Windows</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p>Verify that the project interpreter is correctly defined:</p>
 <ul>
-<li><p>Click on <em>PyCharm</em>’s <strong>File</strong> menu and select <strong>Settings…</strong></p></li>
+<li><p>Click on PyCharm’s <strong>File</strong> menu and select <strong>Settings…</strong></p></li>
 <li><p>In the <em>Settings</em> window go to <strong>Project: [NAME]</strong> &gt; <strong>Project Interpreter</strong></p></li>
 <li><p>Make sure that the above-created <code class="docutils literal notranslate"><span class="pre">flussenv</span></code> <em>conda</em> environment is defined as <em>Project Interpreter</em>.</p></li>
 </ul>

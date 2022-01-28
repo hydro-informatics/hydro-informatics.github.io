@@ -1266,7 +1266,7 @@
     <span class="n">sr</span><span class="o">.</span><span class="n">ImportFromWkt</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">GetProjection</span><span class="p">())</span>
     <span class="c1"># auto-detect epsg</span>
     <span class="n">auto_detect</span> <span class="o">=</span> <span class="n">sr</span><span class="o">.</span><span class="n">AutoIdentifyEPSG</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">auto_detect</span> <span class="ow">is</span> <span class="ow">not</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">auto_detect</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">sr</span> <span class="o">=</span> <span class="n">sr</span><span class="o">.</span><span class="n">FindMatches</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Find matches returns list of tuple of SpatialReferences</span>
         <span class="n">sr</span><span class="o">.</span><span class="n">AutoIdentifyEPSG</span><span class="p">()</span>
     <span class="c1"># assign input SpatialReference</span>
@@ -1515,7 +1515,7 @@ Target EPSG: 3857
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">subprocess</span><span class="o">,</span> <span class="nn">os</span>
 
 <span class="n">cmd_create_slope</span> <span class="o">=</span> <span class="s2">&quot;gdaldem slope </span><span class="si">{0}</span><span class="s2">/geodata/rasters/dem.tif </span><span class="si">{0}</span><span class="s2">/geodata/rasters/slope-percent.tif -p&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">))</span>
-<span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">cmd_create_slope</span><span class="p">)</span>
+<span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">cmd_create_slope</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1534,7 +1534,7 @@ Target EPSG: 3857
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cmd_create_aspect</span> <span class="o">=</span> <span class="s2">&quot;gdaldem aspect </span><span class="si">{0}</span><span class="s2">/geodata/rasters/dem.tif </span><span class="si">{0}</span><span class="s2">/geodata/rasters/slope-aspect.tif&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">))</span>
-<span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">cmd_create_aspect</span><span class="p">)</span>
+<span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">cmd_create_aspect</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1701,8 +1701,8 @@ Target EPSG: 3857
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.graph</span> <span class="kn">import</span> <span class="n">route_through_array</span>
 
 <span class="c1"># define raster input and out names</span>
-<span class="n">in_raster_name</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/raster/slope-percent.tif&quot;</span>
-<span class="n">out_raster_name</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/raster/least_cost.tif&quot;</span>
+<span class="n">in_raster_name</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/rasters/slope-percent.tif&quot;</span>
+<span class="n">out_raster_name</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/rasters/least_cost.tif&quot;</span>
 <span class="c1"># define coordinates of points 1 and 2 (in EPSG:6418)</span>
 <span class="n">point_1_coord</span> <span class="o">=</span> <span class="p">(</span><span class="mf">6749261.94092826917767525</span><span class="p">,</span> <span class="mf">2206970.35179582564160228</span><span class="p">)</span>  
 <span class="n">point_2_coord</span> <span class="o">=</span> <span class="p">(</span><span class="mf">6749016.82820663042366505</span><span class="p">,</span> <span class="mf">2207050.61491037486121058</span><span class="p">)</span>
