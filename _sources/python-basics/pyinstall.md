@@ -378,13 +378,13 @@ Package Controls
   ```
 
   ```{note}
-  The `default_profile` is part of the default *Jupyter* installation and it is normally not necessary to create it manually. The [*IPython* docs](https://ipython.org/ipython-doc/stable/config/intro.html) provide more detail about custom settings and modifying profiles on any platform.
+  The `default_profile` is part of the default *Jupyter* installation and it is normally not necessary to create it manually. The [IPython docs](https://ipython.org/ipython-doc/stable/config/intro.html) provide more detail about custom settings and modifying profiles on any platform.
   ```
 
 (atom-setup)=
 ### Atom and Python
 
-Depending on your platform make sure that all requirements are installed to configure *Atom*s `platformio-ide-terminal` package:
+Depending on your platform make sure that all requirements are installed to configure Atom's `platformio-ide-terminal` package:
 
 
 ````{tabbed} Linux
@@ -400,9 +400,9 @@ Depending on your platform make sure that all requirements are installed to conf
 
 When *flusstools* and its requirements are correctly installed launch `platformio-ide-terminal` (in *Atom* go to **Packages** (top menu) > **platformio-ide-terminal** > **New Terminal**).
 
-In the opening *Terminal*:
+In the opened Terminal take the following actions:
 
-* Optionally activate the *vflussenv* environment (skip this step if you installed *flusstools* in your system *Python* interpreter):
+* Optionally activate the *vflussenv* environment (skip this step if you installed *flusstools* in your system Python interpreter):
 ```
 cd ~/where/vflussenv-lives
 source vflussenv/bin/activate
@@ -446,7 +446,7 @@ Read more about the integration of Python and environments in Atom in the sectio
 (ide-setup)=
 ### PyCharm Python Projects
 
-After the successful installation of {ref}`pycharm`, use a *conda* (or *pip*) environment as interpreter. The following steps guide through the setup of *PyCharm* for using *conda* environments.
+After the successful installation of {ref}`pycharm`, use a *conda* (or *pip*) environment as interpreter. The following steps guide through the setup of PyCharm for using *conda* environments.
 
 * Launch *PyCharm* and create a new project.
 
@@ -480,5 +480,5 @@ Verify the correct setup of the Project Interpreter.
 
 ```{admonition} Struggling with setting up PyCharm?
 :class: tip, dropdown
-*PyCharm* and *Anaconda* are designed for working hand-in-hand and the developers provide an [up-to-date documentation](https://docs.anaconda.com/anaconda/user-guide/tasks/pycharm/) for setting up *PyCharm* to work with *conda* environments.
+PyCharm and Anaconda are designed for working hand-in-hand and the developers provide an [up-to-date documentation](https://docs.anaconda.com/anaconda/user-guide/tasks/pycharm/) for setting up PyCharm to work with *conda* environments.
 ```

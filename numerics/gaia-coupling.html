@@ -349,17 +349,17 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/geo-shp.html">
-     Shapefile (Vector Dataset) Handling
+     Shapefile (Vector) Handling
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/geo-raster.html">
-     Raster (Gridded) Dataset Handling
+     Raster (Grid) Handling
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/geo-convert.html">
-     Raster to Vector Conversion and Vice Versa
+     Vectorize and Rasterize
     </a>
    </li>
    <li class="toctree-l2">
@@ -395,7 +395,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../datascience/data-science.html">
-   Data Science
+   Coming soon
   </a>
  </li>
 </ul>
@@ -830,10 +830,10 @@
 </div>
 <div class="section" id="sediment-transport-gaia-and-sisyphe">
 <span id="gaia-seditrans"></span><h2>Sediment Transport, Gaia, and Sisyphe<a class="headerlink" href="#sediment-transport-gaia-and-sisyphe" title="Permalink to this headline">¶</a></h2>
-<p>TELEMAC has a dedicated module called Gaia for modeling morphodynamics. Gaia enables modeling sediment transport and morphological evolution (i.e., <a class="reference internal" href="../documentation/glossary.html#term-Topographic-change"><span class="xref std std-term">Topographic change</span></a>) in rivers, lakes, and estuaries. It comes with particular routines to consider a spatio-temporal variation of grain sizes, grading curves, and riverbed layering for simulating sediment transport in the form of <strong><a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> (coarse sediment)</strong> and/or <strong><a class="reference internal" href="../documentation/glossary.html#term-Suspended-load"><span class="xref std std-term">Suspended load</span></a> (fine sediment)</strong>. <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> is calculated by solving semi-empiric equations, such as the <span id="id1">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula (read more later in this tutorial). <a class="reference internal" href="../documentation/glossary.html#term-Suspended-load"><span class="xref std std-term">Suspended load</span></a> is modeled by solving the <a class="reference internal" href="../documentation/glossary.html#term-Advection"><span class="xref std std-term">Advection</span></a>-<a class="reference internal" href="../documentation/glossary.html#term-Diffusion"><span class="xref std std-term">Diffusion</span></a> equations, require closures for sediment erosion and deposition fluxes. <a class="reference internal" href="#bl-vs-sl"><span class="std std-numref">Figure 145</span></a> qualitatively illustrates the two basic modes of sediment transport in the form of suspended load and bedload.</p>
+<p>TELEMAC has a dedicated module called Gaia for modeling morphodynamics. Gaia enables modeling sediment transport and morphological evolution (i.e., <a class="reference internal" href="../documentation/glossary.html#term-Topographic-change"><span class="xref std std-term">Topographic change</span></a>) in rivers, lakes, and estuaries. It comes with particular routines to consider a spatio-temporal variation of grain sizes, grading curves, and riverbed layering for simulating sediment transport in the form of <strong><a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> (coarse sediment)</strong> and/or <strong><a class="reference internal" href="../documentation/glossary.html#term-Suspended-load"><span class="xref std std-term">Suspended load</span></a> (fine sediment)</strong>. <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> is calculated by solving semi-empiric equations, such as the <span id="id1">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span> formula (read more later in this tutorial). <a class="reference internal" href="../documentation/glossary.html#term-Suspended-load"><span class="xref std std-term">Suspended load</span></a> is modeled by solving the <a class="reference internal" href="../documentation/glossary.html#term-Advection"><span class="xref std std-term">Advection</span></a>-<a class="reference internal" href="../documentation/glossary.html#term-Diffusion"><span class="xref std std-term">Diffusion</span></a> equations, require closures for sediment erosion and deposition fluxes. <a class="reference internal" href="#bl-vs-sl"><span class="std std-numref">Figure 144</span></a> qualitatively illustrates the two basic modes of sediment transport in the form of suspended load and bedload.</p>
 <div class="figure align-default" id="bl-vs-sl">
 <img alt="sediment transport bedload suspended load" src="https://github.com/Ecohydraulics/media/raw/master/png/sediment-transport.png" />
-<p class="caption"><span class="caption-number">Fig. 145 </span><span class="caption-text">Qualitative representation of two modes of sediment transport. On the left: suspended load in the form of fine particles moving with the bulk flow; on the right: bedload in the form of particles rolling, jumping, or sliding on the riverbed.</span><a class="headerlink" href="#bl-vs-sl" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 144 </span><span class="caption-text">Qualitative representation of two modes of sediment transport. On the left: suspended load in the form of fine particles moving with the bulk flow; on the right: bedload in the form of particles rolling, jumping, or sliding on the riverbed.</span><a class="headerlink" href="#bl-vs-sl" title="Permalink to this image">¶</a></p>
 </div>
 <p>Sediment is further distinguished between very fine, <strong>cohesive</strong> sediment and coarser, <strong>non-cohesive</strong> sediment. In addition, Gaia accounts for bed evolution through an iterative solution of the <a class="reference internal" href="../documentation/glossary.html#term-Exner-equation"><span class="xref std std-term">Exner equation</span></a> <span id="id2">[<a class="reference internal" href="../documentation/bibliography.html#id182">Exn25</a>]</span> for mass conversation.</p>
 <p>The recruitment of sediment for both suspended load and bedload transport requires a detailed look at the riverbed, which will be provided later in the section on the definition of <a class="reference internal" href="gaia-basics.html#gaia-active-lyr"><span class="std std-ref">the riverbed composition and the active layer</span></a>.</p>

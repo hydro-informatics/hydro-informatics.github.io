@@ -20,13 +20,16 @@ git clone https://github.com/Ecohydraulics/Exercise-geco.git
 :alt: fish Sacramento succer south yuba river
 :name: fish
 
-Sacramento suckers in the South Yuba River (source: Sebastian Schwindt 2019).
+
 ```
+
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/8LO1KeYNSXA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Sacramento suckers in the South Yuba River (source: Sebastian Schwindt <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>).</p>
 
 
 ## What is Habitat Suitability?
 
-Fish and other aquatic species rest, orient, and reproduce in a fluvial environment that represents their physical habitat. Throughout their different life stages, different fish have specific physical habitat preferences which are defined, for instance, as a function of water depth, flow velocity, and grain size of the riverbed. The so-called *Habitat Suitability Index *$HSI$** can be calculated for hydraulic (water depth or flow velocity) and morphological (e.g., grain size or cover in the form of large wood) parameters individually to describe the quality of physical habitat for a fish and at a specific life stage. The figure below shows exemplary $HSI$ curves for the fry, juvenile, and adult life stages of rainbow trout as a function of water depth. The $HSI$ curves look different in every river and should be established individually by an aquatic ecologist.
+Fish and other aquatic species rest, orient, and reproduce in a fluvial environment that represents their physical habitat. Throughout their different life stages, different fish have specific physical habitat preferences which are defined, for instance, as a function of water depth, flow velocity, and grain size of the riverbed. The so-called *Habitat Suitability Index* $HSI$ can be calculated for hydraulic (water depth or flow velocity) and morphological (e.g., grain size or cover in the form of large wood) parameters individually to describe the quality of physical habitat for a fish and at a specific life stage. The figure below shows exemplary $HSI$ curves for the fry, juvenile, and adult life stages of rainbow trout as a function of water depth. The $HSI$ curves look different in every river and should be established individually by an aquatic ecologist.
 
 ```{figure} https://github.com/Ecohydraulics/media/raw/main/png/hsi-curves.png
 :alt: HSI curves examples trout

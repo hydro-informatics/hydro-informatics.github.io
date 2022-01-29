@@ -31,7 +31,7 @@ Bedload
 
   Read more about the calculation of bedload in this eBook in the {ref}`Python exercises <mpm>` or the {ref}`Telemac2d-Gaia tutorial <tm-gaia>`. In numerical models, bedload transport is often computed using the {term}`Exner equation`.
 
-  ```{image} https://github.com/Ecohydraulics/media/raw/master/png/sediment-uptake.png
+  ```{image} https://github.com/Ecohydraulics/media/raw/main/png/sediment-uptake.png
   ```
 
   In addition, the term *traveling bedload* refers to a transport mode that is similar to wash load, but without suspended load {cite:p}`yu_effect_2009,piton_sediment_2016`.
@@ -216,7 +216,7 @@ Saint-Venant equations
 Sediment transport
   Fluvial sediment transport encompasses two modes of particle displacement: (1) suspended load and (2) bedload (see figure below). Finer particles with a weight that can be carried by the fluid (water) are transported as {term}`Suspended load`. Coarser particles rolling, sliding, and jumping on the channel bed are transported as {term}`Bedload`. There is third type of transport, the so-called wash load, which is finer than the coarse bed load, but too heavy (large) to be transported in suspension {cite:p}`einstein_bed-load_1950`. The units for sediment transport are for an integral flow cross-section kg$^3\cdot$s$^{-1}$ or per unit width kg$^3\cdot$s$^{-1}$m$^{-1}$.
 
-  ```{image} https://github.com/Ecohydraulics/media/raw/master/png/sediment-transport.png
+  ```{image} https://github.com/Ecohydraulics/media/png/sediment-transport.png
   ```
 
   *French: Transport solide <br>German: Sedimenttransport*
