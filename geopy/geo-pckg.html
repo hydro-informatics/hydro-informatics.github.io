@@ -55,7 +55,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Shapefile (Vector Dataset) Handling" href="../jupyter/geo-shp.html" />
+    <link rel="next" title="Shapefile (Vector) Handling" href="../jupyter/geo-shp.html" />
     <link rel="prev" title="Geospatial Python" href="geo-python.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -347,17 +347,17 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/geo-shp.html">
-     Shapefile (Vector Dataset) Handling
+     Shapefile (Vector) Handling
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/geo-raster.html">
-     Raster (Gridded) Dataset Handling
+     Raster (Grid) Handling
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/geo-convert.html">
-     Raster to Vector Conversion and Vice Versa
+     Vectorize and Rasterize
     </a>
    </li>
    <li class="toctree-l2">
@@ -752,8 +752,8 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gdal-includes-ogr-and-osr">
-   gdal (Includes ogr and osr)
+  <a class="reference internal nav-link" href="#osgeo-and-gdal-including-ogr-and-osr">
+   OSGeo and GDAL Including ogr and osr
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -804,26 +804,38 @@
 <p class="admonition-title">arcpy / ArcGIS</p>
 <p>The proprietary license-requiring <code class="docutils literal notranslate"><span class="pre">arcpy</span></code> package is briefly described in the chapter on <a class="reference internal" href="../jupyter/geo-arcpy.html#chpt-arcpy"><span class="std std-ref">The Commercial arcpy Library</span></a>. However, this eBook strongly recommends using the open-source <code class="docutils literal notranslate"><span class="pre">gdal</span></code> library and its derivatives.</p>
 </div>
-<div class="section" id="gdal-includes-ogr-and-osr">
-<span id="gdal"></span><h2>gdal (Includes ogr and osr)<a class="headerlink" href="#gdal-includes-ogr-and-osr" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference external" href="https://gdal.org/">gdal</a> library for raster data handling incorporates <a class="reference external" href="https://gdal.org/faq.html?highlight=ogr">ogr</a> for vector data handling and <a class="reference external" href="https://gdal.org/python/osgeo.osr-module.html">osr</a> for spatial referencing. GDAL and OGR are managed and developed by the <a class="reference external" href="http://www.osgeo.org/">OSGeo Project</a>, which is part of the Open Source Geospatial Foundation -  the developers of <a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a>. <code class="docutils literal notranslate"><span class="pre">gdal</span></code> provides many functions to convert geospatial data (file types, projections, derive geometries), where <code class="docutils literal notranslate"><span class="pre">gdal</span></code> itself handles <a class="reference internal" href="geospatial-data.html#raster"><span class="std std-ref">Gridded Cell (Raster) Data</span></a> and its <code class="docutils literal notranslate"><span class="pre">ogr</span></code> module handles <a class="reference internal" href="geospatial-data.html#vector"><span class="std std-ref">Vector Data</span></a>. The tutorials in this eBook build on <code class="docutils literal notranslate"><span class="pre">gdal</span></code> and <code class="docutils literal notranslate"><span class="pre">ogr</span></code> (including <code class="docutils literal notranslate"><span class="pre">osr</span></code> for spatial referencing), which is why it is important to get the installation of <code class="docutils literal notranslate"><span class="pre">gdal</span></code> right.</p>
-<p><strong>Linux</strong> users may follow the instructions for installing <code class="docutils literal notranslate"><span class="pre">gdal</span></code> and <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> with <a class="reference internal" href="../python-basics/pyinstall.html#pip-env"><span class="std std-ref">pip and venv</span></a>.</p>
-<p><strong>Windows</strong> users preferably install <code class="docutils literal notranslate"><span class="pre">gdal</span></code> and <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> in a <a class="reference internal" href="../python-basics/pyinstall.html#conda-env"><span class="std std-ref">conda environment</span></a> through Anaconda.</p>
+<div class="section" id="osgeo-and-gdal-including-ogr-and-osr">
+<span id="gdal"></span><h2>OSGeo and GDAL Including ogr and osr<a class="headerlink" href="#osgeo-and-gdal-including-ogr-and-osr" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://gdal.org/">gdal</a> library for <a class="reference internal" href="geospatial-data.html#raster"><span class="std std-ref">raster data handling</span></a> comes along with <a class="reference external" href="https://gdal.org/faq.html?highlight=ogr">ogr</a> for <a class="reference internal" href="geospatial-data.html#vector"><span class="std std-ref">vector data handling</span></a>, and <a class="reference external" href="https://gdal.org/python/osgeo.osr-module.html">osr</a> for geospatial referencing. GDAL and OGR are managed and developed by the <a class="reference external" href="http://www.osgeo.org/">OSGeo Project</a>, which is part of the Open Source Geospatial Foundation - the developers of <a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a>.</p>
+<p>The tutorials in this eBook build on <code class="docutils literal notranslate"><span class="pre">gdal</span></code> and <code class="docutils literal notranslate"><span class="pre">ogr</span></code> (including <code class="docutils literal notranslate"><span class="pre">osr</span></code> for spatial referencing), which is why it is important to get the installation of <code class="docutils literal notranslate"><span class="pre">GDAL</span></code> right:</p>
+<ul class="simple">
+<li><p><strong>Linux</strong> users may follow the instructions for installing <code class="docutils literal notranslate"><span class="pre">gdal</span></code> and <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> with <a class="reference internal" href="../python-basics/pyinstall.html#pip-env"><span class="std std-ref">pip and venv</span></a>.</p></li>
+<li><p><strong>Windows</strong> users preferably install <code class="docutils literal notranslate"><span class="pre">gdal</span></code> and <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> in a <a class="reference internal" href="../python-basics/pyinstall.html#conda-env"><span class="std std-ref">conda environment</span></a> through Anaconda.</p></li>
+</ul>
+<div class="important admonition">
+<p class="admonition-title">Import GDAL, ogr, and osr from OSGeo</p>
+<p>Importing <code class="docutils literal notranslate"><span class="pre">gdal</span></code>, <code class="docutils literal notranslate"><span class="pre">ogr</span></code>, and <code class="docutils literal notranslate"><span class="pre">osr</span></code> directly (e.g., <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">gdal</span></code>) is deprecated since GDAL v3. Therefore, <code class="docutils literal notranslate"><span class="pre">gdal</span></code>, <code class="docutils literal notranslate"><span class="pre">ogr</span></code>, and <code class="docutils literal notranslate"><span class="pre">osr</span></code> must be imported from <code class="docutils literal notranslate"><span class="pre">osgeo</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">gdal</span>
+<span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">osr</span>
+<span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">ogr</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="geojson">
 <span id="geojson-pckg"></span><h2>geojson<a class="headerlink" href="#geojson" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="https://pypi.org/project/geojson/">geojson</a> library is the most direct option for handling <a class="reference internal" href="geospatial-data.html#geojson"><span class="std std-ref">GeoJSON</span></a> data and is also already installed along with <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a>.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="dcebb37b-301c-40ef-9b39-efa35b624365" name="4fe2ca91-3c87-4a04-b1dc-d19c81c02f63" type="radio">
-</input><label class="tabbed-label" for="dcebb37b-301c-40ef-9b39-efa35b624365">
+<input checked="checked" id="36fd2334-a82f-4817-b41d-827f7e7c3666" name="ebbf2136-54dd-4dbe-8f4c-39498469c25d" type="radio">
+</input><label class="tabbed-label" for="36fd2334-a82f-4817-b41d-827f7e7c3666">
 Linux / pip</label><div class="tabbed-content docutils">
 <p>To install <code class="docutils literal notranslate"><span class="pre">geojson</span></code>, open <em>Terminal</em> and type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">geojson</span>
 </pre></div>
 </div>
 </div>
-<input id="f8e1576e-5412-4849-9a5a-204e02772edd" name="4fe2ca91-3c87-4a04-b1dc-d19c81c02f63" type="radio">
-</input><label class="tabbed-label" for="f8e1576e-5412-4849-9a5a-204e02772edd">
+<input id="e29f6a04-a363-4512-b3ac-59fc43fabd0f" name="ebbf2136-54dd-4dbe-8f4c-39498469c25d" type="radio">
+</input><label class="tabbed-label" for="e29f6a04-a363-4512-b3ac-59fc43fabd0f">
 Windows / conda</label><div class="tabbed-content docutils">
 <p>To install <code class="docutils literal notranslate"><span class="pre">geojson</span></code> for Python Anaconda, open <a class="reference internal" href="../python-basics/pyinstall.html#install-pckg"><span class="std std-ref">Anaconda Prompt</span></a> and type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">geojson</span>
@@ -836,16 +848,16 @@ Windows / conda</label><div class="tabbed-content docutils">
 <span id="descartes"></span><h2>Descartes Labs<a class="headerlink" href="#descartes-labs" title="Permalink to this headline">¶</a></h2>
 <p>Even though of proprietary origin, the <a class="reference external" href="https://docs.descarteslabs.com/api.html"><code class="docutils literal notranslate"><span class="pre">descarteslabs</span></code></a> library (developed and maintained by <a class="reference external" href="https://www.descarteslabs.com/">Descartes Labs</a>) comes with many open-sourced functions. Moreover, Descartes Labs hosts the showcase platform <a class="reference external" href="https://search.descarteslabs.com/">GeoVisual Search</a> with juicy illustrations of artificial intelligence (AI) applications in geoscience. Note that <code class="docutils literal notranslate"><span class="pre">descarteslabs</span></code> is not installed along with <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a>.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="c3a0186e-23b9-43a8-9fa5-9d235ee80e5b" name="abf8ea7a-8b34-45da-af85-3990bf27ad15" type="radio">
-</input><label class="tabbed-label" for="c3a0186e-23b9-43a8-9fa5-9d235ee80e5b">
+<input checked="checked" id="89a2b5d1-7e36-44f6-a2a1-1d0df11c53b2" name="d5a1c8c5-002b-4479-a5fd-9597609bbf59" type="radio">
+</input><label class="tabbed-label" for="89a2b5d1-7e36-44f6-a2a1-1d0df11c53b2">
 Linux / pip</label><div class="tabbed-content docutils">
-<p>To install <code class="docutils literal notranslate"><span class="pre">descarteslabs</span></code>, open <em>Terminal</em> and type:</p>
+<p>To install <code class="docutils literal notranslate"><span class="pre">descarteslabs</span></code>, open Terminal and type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">descarteslabs</span>
 </pre></div>
 </div>
 </div>
-<input id="006de0ee-c343-482e-b327-6c457e4b437b" name="abf8ea7a-8b34-45da-af85-3990bf27ad15" type="radio">
-</input><label class="tabbed-label" for="006de0ee-c343-482e-b327-6c457e4b437b">
+<input id="d3370157-ac56-4f5d-827b-6e49252625dc" name="d5a1c8c5-002b-4479-a5fd-9597609bbf59" type="radio">
+</input><label class="tabbed-label" for="d3370157-ac56-4f5d-827b-6e49252625dc">
 Windows / conda</label><div class="tabbed-content docutils">
 <p>To install <code class="docutils literal notranslate"><span class="pre">descarteslabs</span></code> for Python, open <a class="reference internal" href="../python-basics/pyinstall.html#install-pckg"><span class="std std-ref">Anaconda Prompt</span></a> and type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">descartes</span>
@@ -868,16 +880,16 @@ Windows / conda</label><div class="tabbed-content docutils">
 <h2>shapely<a class="headerlink" href="#shapely" title="Permalink to this headline">¶</a></h2>
 <p>A preferable and very well documented package for <a class="reference internal" href="geospatial-data.html#shp"><span class="std std-ref">Shapefile</span></a> handling is <a class="reference external" href="https://shapely.readthedocs.io/"><code class="docutils literal notranslate"><span class="pre">shapely</span></code></a>. <code class="docutils literal notranslate"><span class="pre">shapely</span></code> is already installed along with <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a>.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="cf04d518-7f62-4651-bea1-71b274ac0a83" name="ac53663c-6916-4d6b-a8de-f7d8d6c82e2d" type="radio">
-</input><label class="tabbed-label" for="cf04d518-7f62-4651-bea1-71b274ac0a83">
+<input checked="checked" id="3aef067f-5138-43e2-83ec-913ebd2e4c3d" name="aea10056-f4e8-452b-a7d6-e0bf74cb12dc" type="radio">
+</input><label class="tabbed-label" for="3aef067f-5138-43e2-83ec-913ebd2e4c3d">
 Linux / pip</label><div class="tabbed-content docutils">
-<p>To install <code class="docutils literal notranslate"><span class="pre">shapely</span></code>, open <em>Terminal</em> and type:</p>
+<p>To install <code class="docutils literal notranslate"><span class="pre">shapely</span></code>, open Terminal and type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">Shapely</span>
 </pre></div>
 </div>
 </div>
-<input id="6bc75b44-770d-43fa-8481-503f546cb770" name="ac53663c-6916-4d6b-a8de-f7d8d6c82e2d" type="radio">
-</input><label class="tabbed-label" for="6bc75b44-770d-43fa-8481-503f546cb770">
+<input id="45086cc6-975d-431e-88f5-9a81b938d820" name="aea10056-f4e8-452b-a7d6-e0bf74cb12dc" type="radio">
+</input><label class="tabbed-label" for="45086cc6-975d-431e-88f5-9a81b938d820">
 Windows / conda</label><div class="tabbed-content docutils">
 <p>To install <code class="docutils literal notranslate"><span class="pre">shapely</span></code> for Python Anaconda, open <a class="reference internal" href="../python-basics/pyinstall.html#install-pckg"><span class="std std-ref">Anaconda Prompt</span></a> and type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">shapely</span>
@@ -890,16 +902,16 @@ Windows / conda</label><div class="tabbed-content docutils">
 <h2>pyshp<a class="headerlink" href="#pyshp" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://pypi.org/project/pyshp/">pyshp</a> is another <a class="reference internal" href="geospatial-data.html#shp"><span class="std std-ref">shapefile</span></a> handling package, which builds on pure Python code (rather than wrappers) to simplify direct dealing with shapefiles in Python. <code class="docutils literal notranslate"><span class="pre">pyshp</span></code> is already installed along with <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a>.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="21dfaa63-a0b5-4f4f-917a-aa51057e911d" name="7f06afca-42db-4c2b-bcd8-3344a344162c" type="radio">
-</input><label class="tabbed-label" for="21dfaa63-a0b5-4f4f-917a-aa51057e911d">
+<input checked="checked" id="e64e6d84-5476-4454-ac07-981c9691544f" name="d78fc3db-12a5-4ef3-900b-a7dbb1847cc6" type="radio">
+</input><label class="tabbed-label" for="e64e6d84-5476-4454-ac07-981c9691544f">
 Linux / pip</label><div class="tabbed-content docutils">
-<p>To install <code class="docutils literal notranslate"><span class="pre">pyshp</span></code>, open <em>Terminal</em> and type:</p>
+<p>To install <code class="docutils literal notranslate"><span class="pre">pyshp</span></code>, open Terminal and type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pyshp</span>
 </pre></div>
 </div>
 </div>
-<input id="51f4b4bb-cf58-445e-92e9-3ba39ec0c529" name="7f06afca-42db-4c2b-bcd8-3344a344162c" type="radio">
-</input><label class="tabbed-label" for="51f4b4bb-cf58-445e-92e9-3ba39ec0c529">
+<input id="deb29afd-406b-492b-b4f9-ff8a3ba56401" name="d78fc3db-12a5-4ef3-900b-a7dbb1847cc6" type="radio">
+</input><label class="tabbed-label" for="deb29afd-406b-492b-b4f9-ff8a3ba56401">
 Windows / conda</label><div class="tabbed-content docutils">
 <p>To install <code class="docutils literal notranslate"><span class="pre">pyshp</span></code> for Python Anaconda, open <a class="reference internal" href="../python-basics/pyinstall.html#install-pckg"><span class="std std-ref">Anaconda Prompt</span></a> and type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">pyshp</span>
@@ -960,7 +972,7 @@ Windows / conda</label><div class="tabbed-content docutils">
     <a class='right-next' id="next-link" href="../jupyter/geo-shp.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Shapefile (Vector Dataset) Handling</p>
+        <p class="prev-next-title">Shapefile (Vector) Handling</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

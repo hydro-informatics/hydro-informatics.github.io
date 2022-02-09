@@ -347,17 +347,17 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/geo-shp.html">
-     Shapefile (Vector Dataset) Handling
+     Shapefile (Vector) Handling
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/geo-raster.html">
-     Raster (Gridded) Dataset Handling
+     Raster (Grid) Handling
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/geo-convert.html">
-     Raster to Vector Conversion and Vice Versa
+     Vectorize and Rasterize
     </a>
    </li>
    <li class="toctree-l2">
@@ -906,7 +906,7 @@
 <p class="admonition-title">Note</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">gdal.ogr</span></code> driver name for shapefile handling is <code class="docutils literal notranslate"><span class="pre">ogr.GetDriverByName('GeoJSON')</span></code>.</p>
 </div>
-<p><a class="reference external" href="https://geojson.org/"><em>GeoJSON</em></a> is an open format for representing geographic data with simple feature access standards, where <em>JSON</em> denotes <em>JavaScript Object Orientation</em> (read more about <a class="reference internal" href="../jupyter/xml.html#json"><span class="std std-ref">JSON</span></a> file manipulation in the Python basics). The GeoJSON file name ending is <code class="docutils literal notranslate"><span class="pre">.geojson</span></code> and a file typically has the following structure:</p>
+<p><a class="reference external" href="https://geojson.org/">GeoJSON</a> is an open format for representing geographic data with simple feature access standards, where <em>JSON</em> denotes <em>JavaScript Object Orientation</em> (read more about <a class="reference internal" href="../jupyter/xml.html#json"><span class="std std-ref">JSON</span></a> file manipulation in the Python basics). The GeoJSON file name ending is <code class="docutils literal notranslate"><span class="pre">.geojson</span></code> and a file typically has the following structure:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;FeatureCollection&quot;</span><span class="p">,</span>
   <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">[</span>
@@ -924,7 +924,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>While GeoJSON metadata can provide height information (<code class="docutils literal notranslate"><span class="pre">z</span></code> values) as a <code class="docutils literal notranslate"><span class="pre">properties</span></code> value, there is a more suitable offspring to encode geospatial topology in the form of the still rather young <a class="reference external" href="https://github.com/topojson/topojson/wiki"><em>TopoJSON</em></a> format. To manipulate GeoJSON files with Python, go to the <a class="reference internal" href="geo-pckg.html#geojson-pckg"><span class="std std-ref">geojson</span></a> section. To build a customized GeoJSON file, visit <a class="reference external" href="https://geojson.io/">geojson.io</a></p>
+<p>While GeoJSON metadata can provide height information (<code class="docutils literal notranslate"><span class="pre">z</span></code> values) as a <code class="docutils literal notranslate"><span class="pre">properties</span></code> value, there is a more suitable offspring to encode geospatial topology in the form of the still rather young <a class="reference external" href="https://github.com/topojson/topojson/wiki">TopoJSON</a> format. To manipulate GeoJSON files with Python, go to the <a class="reference internal" href="geo-pckg.html#geojson-pckg"><span class="std std-ref">geojson</span></a> section. To build a customized GeoJSON file, visit <a class="reference external" href="https://geojson.io/">geojson.io</a></p>
 </div>
 </div>
 <div class="section" id="gridded-cell-raster-data">

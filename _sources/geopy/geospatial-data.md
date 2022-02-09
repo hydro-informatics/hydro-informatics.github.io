@@ -91,7 +91,7 @@ Illustration of a TIN.
 The `gdal.ogr` driver name for shapefile handling is `ogr.GetDriverByName('GeoJSON')`.
 ```
 
-[*GeoJSON*](https://geojson.org/) is an open format for representing geographic data with simple feature access standards, where *JSON* denotes *JavaScript Object Orientation* (read more about {ref}`json` file manipulation in the Python basics). The GeoJSON file name ending is `.geojson` and a file typically has the following structure:
+[GeoJSON](https://geojson.org/) is an open format for representing geographic data with simple feature access standards, where *JSON* denotes *JavaScript Object Orientation* (read more about {ref}`json` file manipulation in the Python basics). The GeoJSON file name ending is `.geojson` and a file typically has the following structure:
 
 ```json
 {
@@ -111,7 +111,7 @@ The `gdal.ogr` driver name for shapefile handling is `ogr.GetDriverByName('GeoJS
 }
 ```
 
-While GeoJSON metadata can provide height information (`z` values) as a `properties` value, there is a more suitable offspring to encode geospatial topology in the form of the still rather young [*TopoJSON*](https://github.com/topojson/topojson/wiki) format. To manipulate GeoJSON files with Python, go to the {ref}`geojson-pckg` section. To build a customized GeoJSON file, visit [geojson.io](https://geojson.io/)
+While GeoJSON metadata can provide height information (`z` values) as a `properties` value, there is a more suitable offspring to encode geospatial topology in the form of the still rather young [TopoJSON](https://github.com/topojson/topojson/wiki) format. To manipulate GeoJSON files with Python, go to the {ref}`geojson-pckg` section. To build a customized GeoJSON file, visit [geojson.io](https://geojson.io/)
 
 (raster)=
 ## Gridded Cell (Raster) Data

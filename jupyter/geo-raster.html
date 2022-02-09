@@ -886,7 +886,7 @@
 <div class="admonition-get-started admonition">
 <p class="admonition-title">Get started</p>
 <ul class="simple">
-<li><p>While <code class="docutils literal notranslate"><span class="pre">gdal</span></code>’s <code class="docutils literal notranslate"><span class="pre">ogr</span></code> module is useful for shapefile handling, raster data are best handled by <code class="docutils literal notranslate"><span class="pre">gdal</span></code> itself.</p></li>
+<li><p>While OSGeo’s <code class="docutils literal notranslate"><span class="pre">ogr</span></code> module is useful for shapefile handling, raster data are best handled by <code class="docutils literal notranslate"><span class="pre">gdal</span></code>.</p></li>
 <li><p>Download sample raster datasets from <a class="reference external" href="https://github.com/RiverArchitect/SampleData/archive/master.zip">River Architect</a>. In particular, this section uses <a class="reference internal" href="../documentation/glossary.html#term-GeoTIFF"><span class="xref std std-term">GeoTIFF</span></a> raster data located in <a class="reference external" href="https://github.com/RiverArchitect/SampleData/tree/master/01_Conditions/2100_sample"><code class="docutils literal notranslate"><span class="pre">RiverArchitect/SampleData/01_Conditions/2100_sample/</span></code></a>.</p></li>
 <li><p>The functions featured in this section are introduced are partially also implemented in <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a>. To use those functions, make sure flusstools is installed and import it as follows: <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">flusstools</span> <span class="pre">import</span> <span class="pre">geotools</span></code>. Some of the functions shown in this tutorial can then be used with <code class="docutils literal notranslate"><span class="pre">geotools.function_name()</span></code>.</p></li>
 </ul>
@@ -904,7 +904,7 @@
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gdal</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">gdal</span>
 
 
 <span class="k">def</span> <span class="nf">open_raster</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">band_number</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
@@ -1106,7 +1106,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">osr</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">osr</span>
 
 
 <span class="k">def</span> <span class="nf">create_raster</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">raster_array</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">epsg</span><span class="o">=</span><span class="mi">4326</span><span class="p">,</span> <span class="n">pixel_width</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pixel_height</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>

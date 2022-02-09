@@ -867,10 +867,10 @@
 </div>
 <div class="section" id="load-an-existing-shapefile">
 <h2>Load an Existing Shapefile<a class="headerlink" href="#load-an-existing-shapefile" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">gdal</span></code>’s <code class="docutils literal notranslate"><span class="pre">ogr</span></code> module is an excellent source for handling shapefiles. After importing the libraries, the correct driver for handling shapefiles (<code class="docutils literal notranslate"><span class="pre">&quot;ESRI</span> <span class="pre">Shapefile&quot;</span></code>) with Python needs to be called. Next, with the driver object (<code class="docutils literal notranslate"><span class="pre">ogr.GetDriverByName(&quot;SHAPEFILE&quot;)</span></code>), we can open (instantiate) a shapefile (object with <code class="docutils literal notranslate"><span class="pre">shp_driver.Open(&quot;SHAPEFILE&quot;)</span></code>), which contains layer information. It is precisely the layer information (i.e., references to shapefile attributes) that we want to work with. Therefore we have to instantiate a shapefile layer object with <code class="docutils literal notranslate"><span class="pre">shp_dataset.GetLayer()</span></code>.</p>
+<p>OSGeo’s <code class="docutils literal notranslate"><span class="pre">ogr</span></code> module is an excellent source for handling shapefiles. After importing the libraries, the correct driver for handling shapefiles (<code class="docutils literal notranslate"><span class="pre">&quot;ESRI</span> <span class="pre">Shapefile&quot;</span></code>) with Python needs to be called. Next, with the driver object (<code class="docutils literal notranslate"><span class="pre">ogr.GetDriverByName(&quot;SHAPEFILE&quot;)</span></code>), we can open (instantiate) a shapefile (object with <code class="docutils literal notranslate"><span class="pre">shp_driver.Open(&quot;SHAPEFILE&quot;)</span></code>), which contains layer information. It is precisely the layer information (i.e., references to shapefile attributes) that we want to work with. Therefore we have to instantiate a shapefile layer object with <code class="docutils literal notranslate"><span class="pre">shp_dataset.GetLayer()</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gdal</span> <span class="kn">import</span> <span class="n">ogr</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">ogr</span>
 <span class="n">shp_driver</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">GetDriverByName</span><span class="p">(</span><span class="s2">&quot;ESRI Shapefile&quot;</span><span class="p">)</span>
 <span class="n">shp_dataset</span> <span class="o">=</span> <span class="n">shp_driver</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="s2">&quot;geodata/shapefiles/cities.shp&quot;</span><span class="p">)</span>
 <span class="n">shp_layer</span> <span class="o">=</span> <span class="n">shp_dataset</span><span class="o">.</span><span class="n">GetLayer</span><span class="p">()</span>
@@ -882,6 +882,10 @@
 <p class="admonition-title">Tip</p>
 <p>To get a full list of supported <code class="docutils literal notranslate"><span class="pre">ogr</span></code> drivers (e.g., for <code class="docutils literal notranslate"><span class="pre">DXF</span></code>, <code class="docutils literal notranslate"><span class="pre">ESRIJSON</span></code>, <code class="docutils literal notranslate"><span class="pre">GPS</span></code>, <code class="docutils literal notranslate"><span class="pre">PDF</span></code>, <code class="docutils literal notranslate"><span class="pre">SQLite</span></code>, <code class="docutils literal notranslate"><span class="pre">XLSX</span></code>, and many more), <a class="reference external" href="https://raw.githubusercontent.com/hydro-informatics/material-py-codes/main/geo/get_ogr_drivers.py">download the script <code class="docutils literal notranslate"><span class="pre">get_ogr_drivers.py</span></code></a> from hydro-informatics on Github.</p>
 </div>
+<div class="important admonition">
+<p class="admonition-title">Do not use <strong>from gdal import ogr</strong></p>
+<p>Importing <code class="docutils literal notranslate"><span class="pre">ogr</span></code> with <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">gdal</span> <span class="pre">import</span> <span class="pre">ogr</span></code> is deprecated since GDAL v3. Therefore, <code class="docutils literal notranslate"><span class="pre">ogr</span></code> must be imported from <code class="docutils literal notranslate"><span class="pre">osgeo</span></code>.</p>
+</div>
 </div>
 <div class="section" id="create-a-new-shapefile">
 <span id="create-shp"></span><h2>Create a New Shapefile<a class="headerlink" href="#create-a-new-shapefile" title="Permalink to this headline">¶</a></h2>
@@ -889,7 +893,7 @@
 The command <code class="docutils literal notranslate"><span class="pre">shp_driver.CreateDataSource(SHP-FILE-DIR)</span></code> creates a new shapefile and the rest of the function adds a layer to the shapefile if the optional keyword arguments <code class="docutils literal notranslate"><span class="pre">layer_name</span></code> and <code class="docutils literal notranslate"><span class="pre">layer_type</span></code> are provided. Both optional keywords must be <em>string</em>s, where <code class="docutils literal notranslate"><span class="pre">layer_name</span></code> can be any name for the new layer. <code class="docutils literal notranslate"><span class="pre">layer_type</span></code> must be either <code class="docutils literal notranslate"><span class="pre">&quot;point&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;line&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;polygon&quot;</span></code> to create a point, (poly)line, or polygon shapefile, respectively. The function uses the <code class="docutils literal notranslate"><span class="pre">geometry_dict</span></code> <em>dictionary</em> to assign the correct <code class="docutils literal notranslate"><span class="pre">ogr.SHP-TYPE</span></code> to the layer. There are more options for extending the <code class="docutils literal notranslate"><span class="pre">create_shp(...)</span></code> function listed on <a class="reference external" href="https://pcjericks.github.io/py-gdalogr-cookbook/geometry.html"><em>pcjerick</em>’s Github pages</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gdal</span> <span class="kn">import</span> <span class="n">ogr</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">ogr</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
 
@@ -1039,7 +1043,7 @@ The command <code class="docutils literal notranslate"><span class="pre">shp_dri
 <p>An offline alternative for generating a <code class="docutils literal notranslate"><span class="pre">.prj</span></code> file is the <code class="docutils literal notranslate"><span class="pre">osr</span></code> library that comes along with <code class="docutils literal notranslate"><span class="pre">gdal</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gdal</span> <span class="kn">import</span> <span class="n">osr</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">osr</span>
 
 <span class="k">def</span> <span class="nf">get_wkt</span><span class="p">(</span><span class="n">epsg</span><span class="p">,</span> <span class="n">wkt_format</span><span class="o">=</span><span class="s2">&quot;esriwkt&quot;</span><span class="p">):</span>
     <span class="n">default</span> <span class="o">=</span> <span class="s1">&#39;GEOGCS[&quot;GCS_WGS_1984&quot;,DATUM[&quot;D_WGS_1984&quot;,SPHEROID[&quot;WGS_1984&quot;,6378137,298.257223563]],PRIMEM[&quot;Greenwich&quot;,0],UNIT[&quot;Degree&quot;,0.017453292519943295],UNIT[&quot;Meter&quot;,1]]&#39;</span>
@@ -1095,8 +1099,8 @@ The command <code class="docutils literal notranslate"><span class="pre">shp_dri
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gdal</span> <span class="kn">import</span> <span class="n">ogr</span>
-<span class="kn">from</span> <span class="nn">gdal</span> <span class="kn">import</span> <span class="n">osr</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">ogr</span>
+<span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">osr</span>
 
 <span class="n">shp_driver</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">GetDriverByName</span><span class="p">(</span><span class="s2">&quot;ESRI Shapefile&quot;</span><span class="p">)</span>
 
@@ -1428,7 +1432,7 @@ The command <code class="docutils literal notranslate"><span class="pre">shp_dri
 <p>Also <em>GeoJSON</em> data can be used to create an <code class="docutils literal notranslate"><span class="pre">ogr.Geometry</span></code> with <code class="docutils literal notranslate"><span class="pre">ogr.createFromGeoJson(FILENAME)</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gdal</span> <span class="kn">import</span> <span class="n">ogr</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">ogr</span>
 <span class="n">geojson_data</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;{&quot;type&quot;:&quot;Point&quot;,&quot;coordinates&quot;:[1013452.282805,6231540.674235]}&quot;&quot;&quot;</span>
 <span class="n">point</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">CreateGeometryFromJson</span><span class="p">(</span><span class="n">geojson_data</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;X=</span><span class="si">%d</span><span class="s2">, Y=</span><span class="si">%d</span><span class="s2"> (EPSG:3857)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">GetX</span><span class="p">(),</span> <span class="n">point</span><span class="o">.</span><span class="n">GetY</span><span class="p">()))</span>

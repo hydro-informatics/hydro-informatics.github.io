@@ -94,7 +94,7 @@ BASEmesh is only one (very well working) mesh generator for QGIS and {numref}`Ta
 ## Basemaps for QGIS (Google or Open Street Maps Worldmap Tiles)
 
 ```{note}
-A fast internet connection is required for adding online base maps.
+A fast internet connection is required for adding online basemaps.
 ```
 
 To add a base map (e.g., satellite data, streets, or administrative boundaries), go to the **Browser**, right-click on **XYZ Tiles**, select **New Connection...**, add a name, and a URL of an online base map. Once the new connection is added, it can be added to a *QGIS* project by drag and drop just like any other geodata layer. The below figure illustrates the procedure of adding a new connection and its XYZ tiles as a layer to the project. To overlay multiple basemaps (or any other layer), **right-click on a layer**, then **Layer Properties** > **Transparency** > modify the **Opacity** (e.g., to 50%).
@@ -138,7 +138,7 @@ Start with loading satellite imagery and a street basemap (see above) in the lay
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/k2LqPM6wicA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 
-* In the *QGIS* top menu go to **Layer** > **Create Layer** > **New Shapefile Layer**
+* In the QGIS top menu go to **Layer** > **Create Layer** > **New Shapefile Layer**
   * Define a filename (e.g., **gauges.shp** - may not be longer than 13 characters), for instance, in a folder called *qgis-exercise*.
   * Geometry type: `MultiPoint`
   * Additional dimensions: `Z(+M Values)`
@@ -222,7 +222,7 @@ If the *Crayfish* plugin is installed, an additional *Rasterize* tool will show 
 
 ```{admonition} File conversion with Python
 :class: tip
-The conversion between geospatial data types can be facilitated by using *Python*. Read the section on {ref}`py-conversion` to learn more.
+The conversion between geospatial data types can be facilitated by using Python. Read the section on {ref}`py-conversion` to learn more.
 ```
 
 ```{admonition} Raster to (polygon/line/point) Vector
@@ -249,13 +249,13 @@ Start with opening **Raster Calculator** from QGIS menu bar (**Raster** > **Rast
 
 ```{admonition} Batch-process geodata
 :class: tip
-To implement a tailored raster calculator for batch-processing of raster files with *Python* read the {ref}`py-raster-calculator` section in the {ref}`ex-geco` exercise.
+To implement a tailored raster calculator for batch-processing of raster files with Python read the {ref}`py-raster-calculator` section in the {ref}`ex-geco` exercise.
 ```
 
 (make-xyz)=
 ### Raster to XYZ
 
-Scientific data formats, such as {term}`HDF`, work best with raw geospatial datasets like `*.xyz` files. A `.*xyz` file contains s only X, Y, and Z coordinates of points (i.e., point clouds) with or without a simple header. For instance, this eBook uses `*.xyz` data for the elevation interpolation of a computational mesh for the scientific numerical modeling software {ref}?`chpt-telemac`. To generate a `*.xyz` from a {term}`GeoTIFF` raster use the following workflow:
+Scientific data formats, such as {term}`HDF`, work best with raw geospatial datasets like `*.xyz` files. A `.*xyz` file contains s only X, Y, and Z coordinates of points (i.e., point clouds) with or without a simple header. For instance, this eBook uses `*.xyz` data for the elevation interpolation of a computational mesh for the scientific numerical modeling software {ref}`chpt-telemac`. To generate a `*.xyz` from a {term}`GeoTIFF` raster use the following workflow:
 
 * In the **Layers** panel make sure to have raster layer imported for conversion and **identify its No-Data** value (**Layer Properties** > **Information** > **Bands** section > **No-Data** field show by default `-9999` in QGIS).
 * In QGIS top menu go to **Raster** > **Conversion** > **Translate (Convert Format)...**

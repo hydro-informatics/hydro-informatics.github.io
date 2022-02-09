@@ -810,6 +810,11 @@
      Jupyter on Linux
     </a>
    </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-debugger-for-jupyter">
+     A Debugger for Jupyter
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
@@ -884,8 +889,8 @@
 <p class="admonition-title">Use Anaconda on Windows</p>
 <p>Anaconda works well on Windows, but Linux (or also macOS) users will have a better experience with advanced text editors such as <a class="reference internal" href="#install-atom"><span class="std std-ref">Atom</span></a>.</p>
 </div>
-<p><em>Anaconda</em> is a Python and <em>R</em> distribution that enables the usage of a couple of IDEs such as <a class="reference external" href="https://www.jetbrains.com/pycharm/"><em>PyCharm</em></a>, <a class="reference external" href="https://www.spyder-ide.org/"><em>Spyder</em></a>, or <a class="reference external" href="https://jupyter.org/"><em>JupyterLab (Notebook)</em></a>.</p>
-<p>The very first step to getting started with <em>Anaconda</em> consists in downloading and installing <a class="reference external" href="https://www.anaconda.com/products/individual"><em>Anaconda</em></a> where students may use the individual license for educational training purposes (note that a commercial license needs to be purchased for for-profit organizations). On Windows, <em>Anaconda</em> should be installed in the <em>LOCAL</em> user folder (e.g., <em>C:\users&lt;your-user-name&gt;\AppData\Local</em>). <em>Linux</em> or <em>macOS</em> users find download and installation instructions directly at the developer’s website, tailored for their specific distribution, even though they might be better of with <a class="reference internal" href="#install-atom"><span class="std std-ref">Atom</span></a>.</p>
+<p><em>Anaconda</em> is a Python and <em>R</em> distribution that enables the usage of a couple of IDEs such as <a class="reference external" href="https://www.jetbrains.com/pycharm/">PyCharm</a>, <a class="reference external" href="https://www.spyder-ide.org/">Spyder</a>, or <a class="reference external" href="https://jupyter.org/">JupyterLab (Notebook)</a>.</p>
+<p>The very first step to getting started with Anaconda consists in downloading and installing <a class="reference external" href="https://www.anaconda.com/products/individual">Anaconda</a> where students may use the individual license for educational training purposes (note that a commercial license needs to be purchased for for-profit organizations). On Windows, Anaconda should be installed in the <em>LOCAL</em> user folder (e.g., <em>C:\users&lt;your-user-name&gt;\AppData\Local</em>). <em>Linux</em> or <em>macOS</em> users find download and installation instructions directly at the developer’s website, tailored for their specific distribution, even though they might be better of with <a class="reference internal" href="#install-atom"><span class="std std-ref">Atom</span></a>.</p>
 <p>After the successful installation of <em>Anaconda</em>, IDEs for Python programming or <em>markdown</em> editing can be directly installed by launching the <strong>Anaconda navigator</strong>. <strong><code class="docutils literal notranslate"><span class="pre">conda</span></code></strong> environments can be created later, following the instructions in the <a class="reference internal" href="../python-basics/pyinstall.html#conda-env"><span class="std std-ref">conda env (Windows Preference)</span></a> section.</p>
 <p>Learn more about installing Anaconda (with Python) and this eBook’s support package called <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> in the <a class="reference internal" href="../python-basics/pyinstall.html#conda-quick"><span class="std std-ref">Python conda quick guide</span></a> section and in the video below.</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/cbIPRGOUAVA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -904,13 +909,13 @@
 <div class="section" id="pycharm-with-anaconda">
 <span id="pycharm"></span><h2>PyCharm with Anaconda<a class="headerlink" href="#pycharm-with-anaconda" title="Permalink to this headline">¶</a></h2>
 <p><em>Jetbrains</em> <a class="reference external" href="https://www.jetbrains.com/pycharm/"><em>PyCharm (Community Edition)</em></a> is an open-access IDE for non-commercial use. Alternatives are <a class="reference external" href="https://www.spyder-ide.org/"><em>Spyder IDE</em></a> (for Python) or <a class="reference external" href="https://rstudio.com/"><em>RStudio</em></a> (<em>R</em> and Python). However, before launching any project in an IDE, the installation of an interpreter (e.g., Python or <em>R</em>) is necessary (we already installed an interpreter with <em>Anaconda</em>).</p>
-<p><em>PyCharm</em> is available as an <em>Anaconda Navigator</em> (i.e., <em>Anaconda</em>’s graphical user interface) module. To enable <em>PyCharm</em> in <em>Anaconda</em>, download <em>PyCharm</em> from the <a class="reference external" href="https://www.jetbrains.com/pycharm/promo/anaconda/">developer’s website</a> and install <em>PyCharm</em>. A reboot may be required after the installation.</p>
-<p>After the installation of <em>PyCharm</em> for <em>Anaconda</em>, open <em>Anaconda Navigator</em>:</p>
+<p>PyCharm is available as a module within Anaconda Navigator (i.e., Anaconda’s graphical user interface). To enable PyCharm in Anaconda, download PyCharm from the <a class="reference external" href="https://www.jetbrains.com/pycharm/promo/anaconda/">developer’s website</a> and install PyCharm. A reboot may be required after the installation.</p>
+<p>After the installation of PyCharm for Anaconda, open Anaconda Navigator:</p>
 <ol class="simple">
-<li><p>Open <em>Anaconda Navigator</em> and make sure to be in the <em>Home</em> tab.</p></li>
-<li><p>If the installation of <em>PyCharm</em> was successful, click on the <em>Launch</em> button to open <em>PyCharm</em>.</p></li>
-<li><p>In <em>PyCharm</em> click on <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">Create</span> <span class="pre">New</span> <span class="pre">Project</span></code></p></li>
-<li><p>Option 1 (preferred): Use the <a class="reference external" href="https://docs.anaconda.com/anaconda/user-guide/tasks/pycharm/">developer’s up-to-date documentation</a> for setting up <em>PyCharm</em> with <em>Anaconda</em>.</p></li>
+<li><p>Open Anaconda Navigator and make sure to be in the <em>Home</em> tab.</p></li>
+<li><p>If the installation of PyCharm was successful, click on the <em>Launch</em> button to open PyCharm.</p></li>
+<li><p>In PyCharm click on <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">Create</span> <span class="pre">New</span> <span class="pre">Project</span></code></p></li>
+<li><p>Option 1 (preferred): Use the <a class="reference external" href="https://docs.anaconda.com/anaconda/user-guide/tasks/pycharm/">developer’s up-to-date documentation</a> for setting up PyCharm with Anaconda.</p></li>
 <li><p>Option 2 (quick to read, but may fail): A window will open - enter:</p></li>
 </ol>
 <ul class="simple">
@@ -927,30 +932,28 @@
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="jupyterlab">
 <span id="jupyter"></span><h1>JupyterLab<a class="headerlink" href="#jupyterlab" title="Permalink to this headline">¶</a></h1>
-<p><em>Jupyter</em> is a spin-off of <a class="reference external" href="https://ipython.org/">IPython</a>, which is “a rich architecture for interactive computing”.</p>
-<p><em>JupyterLab</em> is a product of the nonprofit organization <a class="reference external" href="https://jupyter.org/"><em>Project Jupyter</em></a>, which develops “open-source software, open-standards, and services for interactive computing across dozens of programming languages”. A <em>Jupyter</em> notebook (<em>.ipynb</em> file) enables the combination of markdown text blocks with executable code blocks. Essentially, a <em>Jupyter</em> notebook is a <em>JavaScript Object Notation</em> (<a class="reference external" href="https://www.json.org/json-en.html"><em>JSON</em></a> file. The structure of <em>JSON</em> files enables the easy export of <em>.ipynb</em>  notebooks to many other open standard output formats such as <em>HTML</em>, <a class="reference external" href="https://latex-project.org/"><em>LaTeX</em></a>, <em>markdown</em>, Python, <em>presentation slides</em>, or <em>PDF</em>.
-The <em>Jupyter</em> kernels support the three core programming languages <strong>Ju</strong>lia, <strong>Pyt</strong>hon and <strong>R</strong>, and many more <em>Jupyter</em> kernels (currently 49) for other programming languages exist.</p>
+<p><em>Jupyter</em> is a spin-off of <a class="reference external" href="https://ipython.org/">IPython</a>, which is “a rich architecture for interactive computing”. <em>JupyterLab</em> is a product of the nonprofit organization <a class="reference external" href="https://jupyter.org/"><em>Project Jupyter</em></a>, which develops “open-source software, open-standards, and services for interactive computing across dozens of programming languages”. A <em>Jupyter</em> notebook (<em>.ipynb</em> file) enables the combination of markdown text blocks with executable code blocks. Essentially, a Jupyter Notebook is a <em>JavaScript Object Notation</em> (<a class="reference external" href="https://www.json.org/json-en.html">JSON</a> file. The structure of JSON files enables the easy export of <em>.ipynb</em>  notebooks to many other open standard output formats such as HTML, <a class="reference external" href="https://latex-project.org/">LaTeX</a>, <em>Markdown</em>, Python, presentation slides, or <em>PDF</em>. The <strong>Jupyter</strong> kernels support the three core programming languages <strong>Ju</strong>lia, <strong>Pyt</strong>hon and <strong>R</strong>, and many more <em>Jupyter</em> kernels (currently 49) for other programming languages exist.</p>
 <div class="tip admonition">
 <p class="admonition-title">Working with Jupyter</p>
 <p>Get familiar with <em>JupyterLab</em>, by creating files, adding new <em>Markdown</em> or Python cells, and running cells. The essentials of <em>markdown</em> are explained in the <a class="reference internal" href="../documentation/documentation.html#markdown"><span class="std std-ref">Markdown</span></a> section (short read). Learning Python is more than a short read and the <a class="reference internal" href="../python-basics/python.html#about-python"><span class="std std-ref">Python Basics chapter</span></a> provides some insights (takes time).</p>
 </div>
 <div class="section" id="jupyter-on-windows">
 <span id="install-jupyter-windows"></span><h2>Jupyter on Windows<a class="headerlink" href="#jupyter-on-windows" title="Permalink to this headline">¶</a></h2>
-<p><em>Anaconda Navigator</em> alternatively provides the application <em>Jupyter Notebook</em>. However, <em>JupyterLab</em> is the <em>Project Jupyter</em>’s next-generation user interface, which is more flexible and powerful. This is why this website refers to <em>JupyterLab</em> rather than the <em>Jupyter Notebook</em> app. The following sections explain how to install it on your Windows computer, either by using the graphical user interface of <em>Anaconda Navigator</em>, or the conda prompt command line (recommended).</p>
+<p>Anaconda Navigator alternatively provides the application Jupyter Notebook. However, <em>JupyterLab</em> is the <em>Project Jupyter</em>’s next-generation user interface, which is more flexible and powerful. This is why this website refers to JupyterLab rather than the Jupyter Notebook app. The following sections explain how to install it on your Windows computer, either by using the graphical user interface of Anaconda Navigator, or the conda prompt command line (recommended).</p>
 <div class="section" id="via-anaconda-navigator">
 <h3>Via Anaconda Navigator<a class="headerlink" href="#via-anaconda-navigator" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
-<li><p>Open <em>Anaconda Navigator</em> and make sure to be in the <em>Home</em> tab.</p></li>
-<li><p>Look for <em>JupyterLab</em> and click on the <em>Install</em> button (if already installed, there is only a <em>Launch</em> button visible).</p></li>
-<li><p>After successful installation, open <em>JupyterLab</em>, by clicking on the <em>Launch</em> button.</p></li>
-<li><p><em>JupyterLab</em> opens in the default web browser, where <em>Jupyter</em> notebooks (<em>.ipynb</em>) or Python files can be created and edited.</p></li>
+<li><p>Open Anaconda Navigator and make sure to be in the <em>Home</em> tab.</p></li>
+<li><p>Look for JupyterLab and click on the <em>Install</em> button (if already installed, there is only a <em>Launch</em> button visible).</p></li>
+<li><p>After successful installation, open JupyterLab, by clicking on the <em>Launch</em> button.</p></li>
+<li><p>JupyterLab opens in the default web browser, where Jupyter notebooks (<em>.ipynb</em>) or Python files can be created and edited.</p></li>
 </ol>
 </div>
 <div class="section" id="via-anaconda-prompt-recommended">
 <h3>Via Anaconda Prompt (Recommended)<a class="headerlink" href="#via-anaconda-prompt-recommended" title="Permalink to this headline">¶</a></h3>
-<p>Open <em>Anaconda Prompt</em>, which represents a <em>Terminal</em> window with a black background and a blinking cursor.</p>
-<p>If you are working with <em>Miniconda</em>, install the <em>Jupyter Notebook</em> app by typing <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">jupyter</span></code> and confirm with <code class="docutils literal notranslate"><span class="pre">y</span></code> when <em>Anaconda Prompt</em> asks <code class="docutils literal notranslate"><span class="pre">Proceed</span> <span class="pre">([y]/n)?</span></code>.</p>
-<p>To <strong>start</strong> <em>JupyterLab</em> and open, create, or modify <em>Jupyter</em> notebooks, type:</p>
+<p>Open Anaconda Prompt, which represents a Terminal window with a black background and a blinking cursor.</p>
+<p>If you are working with <em>Miniconda</em>, install the Jupyter Notebook app by typing <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">jupyter</span></code> and confirm with <code class="docutils literal notranslate"><span class="pre">y</span></code> when Anaconda Prompt asks <code class="docutils literal notranslate"><span class="pre">Proceed</span> <span class="pre">([y]/n)?</span></code>.</p>
+<p>To <strong>start</strong> JupyterLab and open, create, or modify Jupyter notebooks, type:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">lab</span>
 </pre></div>
 </div>
@@ -958,17 +961,17 @@ The <em>Jupyter</em> kernels support the three core programming languages <stron
 </div>
 <div class="section" id="extensions-and-spellchecker">
 <h3>Extensions and Spellchecker<a class="headerlink" href="#extensions-and-spellchecker" title="Permalink to this headline">¶</a></h3>
-<p>Many additional features for <em>JupyterLab</em> are available through <a class="reference external" href="https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/install.html"><em>nbextensions</em></a>, which can be installed through <em>Anaconda Prompt</em>:</p>
+<p>Many additional features for JupyterLab are available through <a class="reference external" href="https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/install.html"><em>nbextensions</em></a>, which can be installed through Anaconda Prompt:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">jupyter_contrib_nbextensions</span>
 </pre></div>
 </div>
-<p>When reading through the Python tutorials on this website, you will probably find one or another spelling mistake (please <a href="mailto:sebastian.schwindt[AT]iws.uni-stuttgart.de?subject=HYPY%20Spelling%20mistake">report mistakes!</a>). In particular, the Python sections may be affected because they were created with <em>Jupyter Lab</em>, where there is no spell checker pre-installed. To avoid at least the most unpleasant errors you can install a spellchecker in <em>jupyter</em>. One solution is to install <a class="reference external" href="https://github.com/ijmbarr/jupyterlab_spellchecker"><em>&#64;ijmbbarr</em></a>s spellchecker, which requires installing <em>nodejs</em> (through <em>Anaconda Prompt</em> and in addition to <em>nbextensions</em>):</p>
+<p>When reading through the Python tutorials on this website, you will probably find one or another spelling mistake (please <a href="mailto:sebastian.schwindt[AT]iws.uni-stuttgart.de?subject=HYPY%20Spelling%20mistake">report mistakes!</a>). In particular, the Python sections may be affected because they were created with JupyterLab, where there is no spell checker pre-installed. To avoid at least the most unpleasant errors you can install a spellchecker in Jupyter. One solution is to install <a class="reference external" href="https://github.com/ijmbarr/jupyterlab_spellchecker">&#64;ijmbbarr</a>s spellchecker, which requires installing <em>nodejs</em> (through Anaconda Prompt and in addition to <em>nbextensions</em>):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">nodejs</span>
 <span class="n">jupyter</span> <span class="n">labextension</span> <span class="n">install</span> <span class="nd">@ijmbarr</span><span class="o">/</span><span class="n">jupyterlab_spellchecker</span>
 </pre></div>
 </div>
 <p>The spellchecker uses <a class="reference external" href="https://github.com/cfinke/Typo.js">Typo.js</a> as a dictionary and only identifies misspelled words without proposing corrections. More details on spellchecking are available at the <a class="reference external" href="https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/spellchecker/README.html">developer’s website</a>.</p>
-<p>In the case that several warning messages occur when starting <em>JupyterLab</em> (such as <code class="docutils literal notranslate"><span class="pre">[W</span> <span class="pre">18:49:22.283</span> <span class="pre">NotebookApp]</span> <span class="pre">Config</span> <span class="pre">option</span> <span class="pre">template_path</span> <span class="pre">not</span> <span class="pre">recognized</span> <span class="pre">by</span> <span class="pre">LenvsHTMLExporter.</span> <span class="pre">Did</span> <span class="pre">you</span> <span class="pre">mean</span> <span class="pre">one</span> <span class="pre">of:</span> <span class="pre">template_file,</span> <span class="pre">template_name,</span> <span class="pre">template_paths?</span></code>), downgrade <em>jupyter notebook</em> from version 6.x to 5.6.1 (there is currently an issue with the <code class="docutils literal notranslate"><span class="pre">temp_path</span></code> variable):</p>
+<p>In the case that several warning messages occur when starting JupyterLab (such as <code class="docutils literal notranslate"><span class="pre">[W</span> <span class="pre">18:49:22.283</span> <span class="pre">NotebookApp]</span> <span class="pre">Config</span> <span class="pre">option</span> <span class="pre">template_path</span> <span class="pre">not</span> <span class="pre">recognized</span> <span class="pre">by</span> <span class="pre">LenvsHTMLExporter.</span> <span class="pre">Did</span> <span class="pre">you</span> <span class="pre">mean</span> <span class="pre">one</span> <span class="pre">of:</span> <span class="pre">template_file,</span> <span class="pre">template_name,</span> <span class="pre">template_paths?</span></code>), downgrade Jupyter Notebook from version 6.x to 5.6.1 (there is currently an issue with the <code class="docutils literal notranslate"><span class="pre">temp_path</span></code> variable):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="s2">&quot;nbconvert=5.6.1&quot;</span>
 </pre></div>
 </div>
@@ -976,7 +979,7 @@ The <em>Jupyter</em> kernels support the three core programming languages <stron
 </div>
 <div class="section" id="jupyter-on-linux">
 <span id="install-jupyter-linux"></span><h2>Jupyter on Linux<a class="headerlink" href="#jupyter-on-linux" title="Permalink to this headline">¶</a></h2>
-<p>To install <em>JupyterLab</em> on <em>Linux</em>, open <em>Terminal</em> and make sure that <code class="docutils literal notranslate"><span class="pre">pip</span></code>/<code class="docutils literal notranslate"><span class="pre">pip3</span></code> is installed:</p>
+<p>To install JupyterLab on Linux, open Terminal and make sure that <code class="docutils literal notranslate"><span class="pre">pip</span></code>/<code class="docutils literal notranslate"><span class="pre">pip3</span></code> is installed:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">python3</span> <span class="n">python3</span><span class="o">-</span><span class="n">pip</span> <span class="n">python3</span><span class="o">-</span><span class="n">venv</span>
 </pre></div>
 </div>
@@ -989,25 +992,29 @@ The <em>Jupyter</em> kernels support the three core programming languages <stron
 <p class="admonition-title">Note</p>
 <p>It might be necessary to replace <code class="docutils literal notranslate"><span class="pre">pip</span></code> with <code class="docutils literal notranslate"><span class="pre">pip3</span></code> (depending on the <em>Linux</em> distribution).</p>
 </div>
-<p>To start <em>JupyterLab</em> tap:</p>
+<p>To start JupyterLab tap:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span><span class="o">-</span><span class="n">lab</span>
 </pre></div>
 </div>
-<p>The command <code class="docutils literal notranslate"><span class="pre">jupyter-lab</span></code> starts a localhost server that runs <em>JupyterLab</em>, which will open up in a web browser like an interactive website.</p>
+<p>The command <code class="docutils literal notranslate"><span class="pre">jupyter-lab</span></code> starts a localhost server that runs JupyterLab, which will open up in a web browser like an interactive website.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Closing <em>Terminal</em> will also terminate the localhost that runs <em>JupyterLab</em>. Thus, do not close <em>Terminal</em> as long as you are working with <em>JupyterLab</em>, in particular, when there are unsaved books.</p>
+<p>Closing <em>Terminal</em> will also terminate the localhost that runs JupyterLab. Thus, do not close Terminal as long as you are working with JupyterLab, in particular, when there are unsaved books.</p>
 </div>
+</div>
+<div class="section" id="a-debugger-for-jupyter">
+<h2>A Debugger for Jupyter<a class="headerlink" href="#a-debugger-for-jupyter" title="Permalink to this headline">¶</a></h2>
+<p>To better understand and troubleshoot code crashes, a debugger represents a great relief. Unfortunately, debugging in Jupyter can cause some headache in the absence of an inherent debugging tool. To get a debugger working with Jupyter, check out <a class="reference external" href="https://blog.jupyter.org/a-visual-debugger-for-jupyter-914e61716559">this blog entry from Jupyter Project</a>.</p>
 </div>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="atom">
 <span id="install-atom"></span><h1>Atom<a class="headerlink" href="#atom" title="Permalink to this headline">¶</a></h1>
-<p><em>Atom</em> is a hackable text editor that is compatible with almost any programming language. While its bare installation has little functionality, the omni-compatibility can be enabled by installing desired packages (e.g., for Python, <em>Markdown</em>, or <em>LaTex</em>). Another big advantage of <em>Atom</em> is the availability of powerful spell checker packages.</p>
+<p><em>Atom</em> is a hackable text editor that is compatible with almost any programming language. While its bare installation has little functionality, the omni-compatibility can be enabled by installing desired packages (e.g., for Python, <em>Markdown</em>, or <em>LaTex</em>). Another big advantage of Atom is the availability of powerful spell checker packages.</p>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <div class="tabbed-set docutils">
-<input checked="checked" id="17f6e61c-53f6-433e-b86e-d369e6a51085" name="24a9fad5-0df1-467d-8baa-a8968df878dc" type="radio">
-</input><label class="tabbed-label" for="17f6e61c-53f6-433e-b86e-d369e6a51085">
+<input checked="checked" id="08755e60-0786-4bf1-ab32-cb112329495e" name="8495564e-5cb0-4cdd-98fa-9a88745a82fb" type="radio">
+</input><label class="tabbed-label" for="08755e60-0786-4bf1-ab32-cb112329495e">
 Linux</label><div class="tabbed-content docutils">
 <p><strong>Linux</strong> users find installers for various distributions at <a class="reference external" href="https://atom.io/">atom.io</a>. <strong>Debian</strong> (<strong>Ubuntu</strong>), <strong>Red Hat</strong> / <strong>CentOS</strong>, <strong>Fedora</strong>, and <strong>SUSE</strong> find easy installation guides at <a class="reference external" href="https://flight-manual.atom.io/getting-started/sections/installing-atom/">https://flight-manual.atom.io</a>.</p>
 <p>The short version for <strong>Debian</strong> (<strong>Ubuntu</strong>) is:</p>
@@ -1026,8 +1033,8 @@ Linux</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="2e9e425f-2ff0-4490-815b-4a461d244d22" name="24a9fad5-0df1-467d-8baa-a8968df878dc" type="radio">
-</input><label class="tabbed-label" for="2e9e425f-2ff0-4490-815b-4a461d244d22">
+<input id="de321a42-289c-430e-b384-6be6d792ef95" name="8495564e-5cb0-4cdd-98fa-9a88745a82fb" type="radio">
+</input><label class="tabbed-label" for="de321a42-289c-430e-b384-6be6d792ef95">
 Windows</label><div class="tabbed-content docutils">
 <p><strong>Windows</strong> users can download <em>Atom</em> from <a class="reference external" href="https://atom.io/">atom.io</a> and install the executable.</p>
 </div>
@@ -1093,8 +1100,8 @@ Windows</label><div class="tabbed-content docutils">
 <p>To enable Python compatibility, first, visit the <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Python (Installation)</span></a> section and install <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> for your system (i.e., either in a virtual or conda environment).</p>
 </div>
 <div class="tabbed-set docutils">
-<input checked="checked" id="a6ebac5d-339b-4907-99ef-f57777b22263" name="982b38dd-5486-40f9-b702-14cb5b334c73" type="radio">
-</input><label class="tabbed-label" for="a6ebac5d-339b-4907-99ef-f57777b22263">
+<input checked="checked" id="90bbebd1-b24a-4441-b758-cef21419d50c" name="7b8c5d50-d919-4e86-b951-da18c10e6741" type="radio">
+</input><label class="tabbed-label" for="90bbebd1-b24a-4441-b758-cef21419d50c">
 Linux</label><div class="tabbed-content docutils">
 <p>Open Terminal and activate the environment where <code class="docutils literal notranslate"><span class="pre">flusstools</span></code> is installed. For instance, if <code class="docutils literal notranslate"><span class="pre">flusstools</span></code> is installed in a virtual environment called <code class="docutils literal notranslate"><span class="pre">vflussenv</span></code> that lives in the user home directory (<code class="docutils literal notranslate"><span class="pre">/home/USER/</span></code>) according to the Python installation instructions in this eBook (see <a class="reference internal" href="../python-basics/pyinstall.html#pip-quick"><span class="std std-ref">pip quick guide</span></a>), activate the environment as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~</span>
@@ -1102,8 +1109,8 @@ Linux</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="88ddcded-252f-4d12-b74c-e15990c04222" name="982b38dd-5486-40f9-b702-14cb5b334c73" type="radio">
-</input><label class="tabbed-label" for="88ddcded-252f-4d12-b74c-e15990c04222">
+<input id="5b1da432-40be-416b-8494-8274af93f35b" name="7b8c5d50-d919-4e86-b951-da18c10e6741" type="radio">
+</input><label class="tabbed-label" for="5b1da432-40be-416b-8494-8274af93f35b">
 Windows</label><div class="tabbed-content docutils">
 <p>Open Anaconda Prompt and activate <code class="docutils literal notranslate"><span class="pre">flussenv</span></code> (given that <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> is installed according to the <a class="reference internal" href="../python-basics/pyinstall.html#conda-quick"><span class="std std-ref">conda quick guide</span></a>):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">flussenv</span>
@@ -1117,8 +1124,8 @@ Windows</label><div class="tabbed-content docutils">
 </div>
 <p><em>Atom</em> should open and provide the option to select a folder where a Python project will live or is already living. After selecting a folder, start editing your Python (<code class="docutils literal notranslate"><span class="pre">.py</span></code>) files. For running Python scripts, there are two options:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="eb698083-b896-4051-ac2f-5eca49e9b7d4" name="394052a5-399a-46a5-ade7-48c4f632d949" type="radio">
-</input><label class="tabbed-label" for="eb698083-b896-4051-ac2f-5eca49e9b7d4">
+<input checked="checked" id="e5ca7d89-2b7b-41ca-898a-9424622865a2" name="b86541f9-0c21-4b07-943b-a455771974b9" type="radio">
+</input><label class="tabbed-label" for="e5ca7d89-2b7b-41ca-898a-9424622865a2">
 Option 1: Use Script Package</label><div class="tabbed-content docutils">
 <p>first set up the <em>Script</em> package:</p>
 <ul class="simple">
@@ -1136,8 +1143,8 @@ Option 1: Use Script Package</label><div class="tabbed-content docutils">
 <li><p>Or press <code class="docutils literal notranslate"><span class="pre">Alt</span></code> + <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Shift</span></code> + <code class="docutils literal notranslate"><span class="pre">B</span></code></p></li>
 </ul>
 </div>
-<input id="3d94a36d-8ec6-4220-b216-29fdfbe576e8" name="394052a5-399a-46a5-ade7-48c4f632d949" type="radio">
-</input><label class="tabbed-label" for="3d94a36d-8ec6-4220-b216-29fdfbe576e8">
+<input id="48454516-f46b-4528-9c6c-4c41c35c6c57" name="b86541f9-0c21-4b07-943b-a455771974b9" type="radio">
+</input><label class="tabbed-label" for="48454516-f46b-4528-9c6c-4c41c35c6c57">
 Option 2: Use atom-python-virtualenv Package</label><div class="tabbed-content docutils">
 <p>Make sure to install the <code class="docutils literal notranslate"><span class="pre">atom-python-virtualenv</span></code> package (see the section on <a class="reference internal" href="#atom-packages"><span class="std std-ref">installing Atom packages</span></a>) and select <code class="docutils literal notranslate"><span class="pre">vflussenv</span></code> from the status bar at the bottom of the window as indicated in the below figure.</p>
 <img alt="../_images/atom-enable-env.png" src="../_images/atom-enable-env.png" />

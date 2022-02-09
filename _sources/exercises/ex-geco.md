@@ -16,13 +16,6 @@ Get ready by cloning the exercise repository:
 git clone https://github.com/Ecohydraulics/Exercise-geco.git
 ```
 
-```{figure} https://github.com/Ecohydraulics/media/raw/main/jpg/yuba-fish.jpg
-:alt: fish Sacramento succer south yuba river
-:name: fish
-
-
-```
-
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/8LO1KeYNSXA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sacramento suckers in the South Yuba River (source: Sebastian Schwindt <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>).</p>
 

@@ -8,14 +8,26 @@ The proprietary license-requiring `arcpy` package is briefly described in the ch
 ```
 
 (gdal)=
-## gdal (Includes ogr and osr)
+## OSGeo and GDAL Including ogr and osr
 
-The [gdal](https://gdal.org/) library for raster data handling incorporates [ogr](https://gdal.org/faq.html?highlight=ogr) for vector data handling and [osr](https://gdal.org/python/osgeo.osr-module.html) for spatial referencing. GDAL and OGR are managed and developed by the [OSGeo Project](http://www.osgeo.org/), which is part of the Open Source Geospatial Foundation -  the developers of {ref}`qgis-install`. `gdal` provides many functions to convert geospatial data (file types, projections, derive geometries), where `gdal` itself handles {ref}`raster` and its `ogr` module handles {ref}`vector`. The tutorials in this eBook build on `gdal` and `ogr` (including `osr` for spatial referencing), which is why it is important to get the installation of `gdal` right.
+The [gdal](https://gdal.org/) library for {ref}`raster data handling <raster>` comes along with [ogr](https://gdal.org/faq.html?highlight=ogr) for {ref}`vector data handling <vector>`, and [osr](https://gdal.org/python/osgeo.osr-module.html) for geospatial referencing. GDAL and OGR are managed and developed by the [OSGeo Project](http://www.osgeo.org/), which is part of the Open Source Geospatial Foundation - the developers of {ref}`qgis-install`.
 
-**Linux** users may follow the instructions for installing `gdal` and {{ ft_url }} with {ref}`pip and venv <pip-env>`.
+The tutorials in this eBook build on `gdal` and `ogr` (including `osr` for spatial referencing), which is why it is important to get the installation of `GDAL` right:
 
-**Windows** users preferably install `gdal` and {{ ft_url }} in a {ref}`conda environment <conda-env>` through Anaconda.
+* **Linux** users may follow the instructions for installing `gdal` and {{ ft_url }} with {ref}`pip and venv <pip-env>`.
+* **Windows** users preferably install `gdal` and {{ ft_url }} in a {ref}`conda environment <conda-env>` through Anaconda.
 
+````{admonition} Import GDAL, ogr, and osr from OSGeo
+:class: important
+
+Importing `gdal`, `ogr`, and `osr` directly (e.g., `import gdal`) is deprecated since GDAL v3. Therefore, `gdal`, `ogr`, and `osr` must be imported from `osgeo`:
+
+```python
+from osgeo import gdal
+from osgeo import osr
+from osgeo import ogr
+```
+````
 
 (geojson-pckg)=
 ## geojson
@@ -42,7 +54,7 @@ conda install -c conda-forge geojson
 Even though of proprietary origin, the [`descarteslabs`](https://docs.descarteslabs.com/api.html) library (developed and maintained by [Descartes Labs](https://www.descarteslabs.com/)) comes with many open-sourced functions. Moreover, Descartes Labs hosts the showcase platform [GeoVisual Search](https://search.descarteslabs.com/) with juicy illustrations of artificial intelligence (AI) applications in geoscience. Note that `descarteslabs` is not installed along with {{ ft_url }}.
 
 ````{tabbed} Linux / pip
-To install `descarteslabs`, open *Terminal* and type:
+To install `descarteslabs`, open Terminal and type:
 
 ```python
 pip install descarteslabs
@@ -74,7 +86,7 @@ Note that the `conda base` environment includes `PIL` (test with `import PIL`), 
 A preferable and very well documented package for {ref}`shp` handling is [`shapely`](https://shapely.readthedocs.io/). `shapely` is already installed along with {{ ft_url }}.
 
 ````{tabbed} Linux / pip
-To install `shapely`, open *Terminal* and type:
+To install `shapely`, open Terminal and type:
 
 ```python
 pip install Shapely
@@ -90,12 +102,11 @@ conda install -c conda-forge shapely
 ````
 
 
-
 ## pyshp
 [pyshp](https://pypi.org/project/pyshp/) is another {ref}`shapefile <shp>` handling package, which builds on pure Python code (rather than wrappers) to simplify direct dealing with shapefiles in Python. `pyshp` is already installed along with {{ ft_url }}.
 
 ````{tabbed} Linux / pip
-To install `pyshp`, open *Terminal* and type:
+To install `pyshp`, open Terminal and type:
 
 ```python
 pip install pyshp
@@ -119,8 +130,8 @@ Besides the above-mentioned packages, there are other useful libraries for geosp
  * [django](https://docs.djangoproject.com/en/3.0/ref/contrib/gis/) as a geographic web frame and for database connections.
  * [**`geopandas`**](https://geopandas.org/) enables the application of {ref}`pandas` data frame operations to geospatial datasets.
  * [NetworkX](https://networkx.github.io/documentation/stable/index.html) for network analyses such as finding a least-cost / shortest path between two points.
-  * [owslib](http://geopython.github.io/OWSLib/) to connect with *Open Geospatial Consortium* (OGC) web services.
-  * [postgresql](https://www.postgresqltutorial.com/postgresql-python/) for SQL database connections.
+ * [owslib](http://geopython.github.io/OWSLib/) to connect with *Open Geospatial Consortium* (OGC) web services.
+ * [postgresql](https://www.postgresqltutorial.com/postgresql-python/) for SQL database connections.
  * [**`rasterio`**](https://rasterio.readthedocs.io/en/latest/) for processing raster data as {ref}`numpy` arrays.
  * [**`rasterstats`**](https://pythonhosted.org/rasterstats/) produces zonal statistics of rasters and can interact with {ref}`geojson` files.
  * [**`sckit-image`**](https://scikit-image.org/) for machine learning applied to georeferenced images.

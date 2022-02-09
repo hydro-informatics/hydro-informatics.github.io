@@ -29,9 +29,9 @@ For code documentation, examples, and the best learning experience in the Python
 Anaconda works well on Windows, but Linux (or also macOS) users will have a better experience with advanced text editors such as {ref}`Atom <install-atom>`.
 ```
 
-*Anaconda* is a Python and *R* distribution that enables the usage of a couple of IDEs such as [*PyCharm*](https://www.jetbrains.com/pycharm/), [*Spyder*](https://www.spyder-ide.org/), or [*JupyterLab (Notebook)*](https://jupyter.org/).
+*Anaconda* is a Python and *R* distribution that enables the usage of a couple of IDEs such as [PyCharm](https://www.jetbrains.com/pycharm/), [Spyder](https://www.spyder-ide.org/), or [JupyterLab (Notebook)](https://jupyter.org/).
 
-The very first step to getting started with *Anaconda* consists in downloading and installing [*Anaconda*](https://www.anaconda.com/products/individual) where students may use the individual license for educational training purposes (note that a commercial license needs to be purchased for for-profit organizations). On Windows, *Anaconda* should be installed in the *LOCAL* user folder (e.g., *C:\users\<your-user-name>\AppData\Local*). *Linux* or *macOS* users find download and installation instructions directly at the developer's website, tailored for their specific distribution, even though they might be better of with {ref}`install-atom`.
+The very first step to getting started with Anaconda consists in downloading and installing [Anaconda](https://www.anaconda.com/products/individual) where students may use the individual license for educational training purposes (note that a commercial license needs to be purchased for for-profit organizations). On Windows, Anaconda should be installed in the *LOCAL* user folder (e.g., *C:\users\<your-user-name>\AppData\Local*). *Linux* or *macOS* users find download and installation instructions directly at the developer's website, tailored for their specific distribution, even though they might be better of with {ref}`install-atom`.
 
 After the successful installation of *Anaconda*, IDEs for Python programming or *markdown* editing can be directly installed by launching the **Anaconda navigator**. **`conda`** environments can be created later, following the instructions in the {ref}`conda-env` section.
 
@@ -55,14 +55,14 @@ To work with *Jupyter* notebooks (open, create, or modify), type `jupyter lab` (
 
 *Jetbrains* [*PyCharm (Community Edition)*](https://www.jetbrains.com/pycharm/) is an open-access IDE for non-commercial use. Alternatives are [*Spyder IDE*](https://www.spyder-ide.org/) (for Python) or [*RStudio*](https://rstudio.com/) (*R* and Python). However, before launching any project in an IDE, the installation of an interpreter (e.g., Python or *R*) is necessary (we already installed an interpreter with *Anaconda*).
 
-*PyCharm* is available as an *Anaconda Navigator* (i.e., *Anaconda*'s graphical user interface) module. To enable *PyCharm* in *Anaconda*, download *PyCharm* from the [developer's website](https://www.jetbrains.com/pycharm/promo/anaconda/) and install *PyCharm*. A reboot may be required after the installation.
+PyCharm is available as a module within Anaconda Navigator (i.e., Anaconda's graphical user interface). To enable PyCharm in Anaconda, download PyCharm from the [developer's website](https://www.jetbrains.com/pycharm/promo/anaconda/) and install PyCharm. A reboot may be required after the installation.
 
-After the installation of *PyCharm* for *Anaconda*, open *Anaconda Navigator*:
+After the installation of PyCharm for Anaconda, open Anaconda Navigator:
 
-1. Open *Anaconda Navigator* and make sure to be in the *Home* tab.
-1. If the installation of *PyCharm* was successful, click on the *Launch* button to open *PyCharm*.
-1. In *PyCharm* click on `+ Create New Project`
-1. Option 1 (preferred): Use the [developer's up-to-date documentation](https://docs.anaconda.com/anaconda/user-guide/tasks/pycharm/) for setting up *PyCharm* with *Anaconda*.
+1. Open Anaconda Navigator and make sure to be in the *Home* tab.
+1. If the installation of PyCharm was successful, click on the *Launch* button to open PyCharm.
+1. In PyCharm click on `+ Create New Project`
+1. Option 1 (preferred): Use the [developer's up-to-date documentation](https://docs.anaconda.com/anaconda/user-guide/tasks/pycharm/) for setting up PyCharm with Anaconda.
 1. Option 2 (quick to read, but may fail): A window will open - enter:
   - *Location* - Select a local directory for the project (e.g., *C:/hydro/project*)
   - *Project Interpreter* - Check the `Existing interpreter` box and select an existing interpreter.
@@ -78,10 +78,7 @@ All set - you are ready to edit Python (`.py`), markdown (`.md` for documentatio
 (jupyter)=
 # JupyterLab
 
-*Jupyter* is a spin-off of [IPython](https://ipython.org/), which is "a rich architecture for interactive computing".
-
-*JupyterLab* is a product of the nonprofit organization [*Project Jupyter*](https://jupyter.org/), which develops "open-source software, open-standards, and services for interactive computing across dozens of programming languages". A *Jupyter* notebook (*.ipynb* file) enables the combination of markdown text blocks with executable code blocks. Essentially, a *Jupyter* notebook is a *JavaScript Object Notation* ([*JSON*](https://www.json.org/json-en.html) file. The structure of *JSON* files enables the easy export of *.ipynb*  notebooks to many other open standard output formats such as *HTML*, [*LaTeX*](https://latex-project.org/), *markdown*, Python, *presentation slides*, or *PDF*.
-The *Jupyter* kernels support the three core programming languages **Ju**lia, **Pyt**hon and **R**, and many more *Jupyter* kernels (currently 49) for other programming languages exist.
+*Jupyter* is a spin-off of [IPython](https://ipython.org/), which is "a rich architecture for interactive computing". *JupyterLab* is a product of the nonprofit organization [*Project Jupyter*](https://jupyter.org/), which develops "open-source software, open-standards, and services for interactive computing across dozens of programming languages". A *Jupyter* notebook (*.ipynb* file) enables the combination of markdown text blocks with executable code blocks. Essentially, a Jupyter Notebook is a *JavaScript Object Notation* ([JSON](https://www.json.org/json-en.html) file. The structure of JSON files enables the easy export of *.ipynb*  notebooks to many other open standard output formats such as HTML, [LaTeX](https://latex-project.org/), *Markdown*, Python, presentation slides, or *PDF*. The **Jupyter** kernels support the three core programming languages **Ju**lia, **Pyt**hon and **R**, and many more *Jupyter* kernels (currently 49) for other programming languages exist.
 
 
 ```{admonition} Working with Jupyter
@@ -92,23 +89,23 @@ Get familiar with *JupyterLab*, by creating files, adding new *Markdown* or Pyth
 (install-jupyter-windows)=
 ## Jupyter on Windows
 
-*Anaconda Navigator* alternatively provides the application *Jupyter Notebook*. However, *JupyterLab* is the *Project Jupyter*'s next-generation user interface, which is more flexible and powerful. This is why this website refers to *JupyterLab* rather than the *Jupyter Notebook* app. The following sections explain how to install it on your Windows computer, either by using the graphical user interface of *Anaconda Navigator*, or the conda prompt command line (recommended).
+Anaconda Navigator alternatively provides the application Jupyter Notebook. However, *JupyterLab* is the *Project Jupyter*'s next-generation user interface, which is more flexible and powerful. This is why this website refers to JupyterLab rather than the Jupyter Notebook app. The following sections explain how to install it on your Windows computer, either by using the graphical user interface of Anaconda Navigator, or the conda prompt command line (recommended).
 
 ### Via Anaconda Navigator
 
-1. Open *Anaconda Navigator* and make sure to be in the *Home* tab.
-1. Look for *JupyterLab* and click on the *Install* button (if already installed, there is only a *Launch* button visible).
-1. After successful installation, open *JupyterLab*, by clicking on the *Launch* button.
-1. *JupyterLab* opens in the default web browser, where *Jupyter* notebooks (*.ipynb*) or Python files can be created and edited.
+1. Open Anaconda Navigator and make sure to be in the *Home* tab.
+1. Look for JupyterLab and click on the *Install* button (if already installed, there is only a *Launch* button visible).
+1. After successful installation, open JupyterLab, by clicking on the *Launch* button.
+1. JupyterLab opens in the default web browser, where Jupyter notebooks (*.ipynb*) or Python files can be created and edited.
 
 
 ### Via Anaconda Prompt (Recommended)
 
-Open *Anaconda Prompt*, which represents a *Terminal* window with a black background and a blinking cursor.
+Open Anaconda Prompt, which represents a Terminal window with a black background and a blinking cursor.
 
-If you are working with *Miniconda*, install the *Jupyter Notebook* app by typing `conda install jupyter` and confirm with `y` when *Anaconda Prompt* asks `Proceed ([y]/n)?`.
+If you are working with *Miniconda*, install the Jupyter Notebook app by typing `conda install jupyter` and confirm with `y` when Anaconda Prompt asks `Proceed ([y]/n)?`.
 
-To **start** *JupyterLab* and open, create, or modify *Jupyter* notebooks, type:
+To **start** JupyterLab and open, create, or modify Jupyter notebooks, type:
 
 ```
 jupyter lab
@@ -118,13 +115,13 @@ If the command fails, try either `jupyter-lab` or start Jupyter notebook by typi
 
 ### Extensions and Spellchecker
 
-Many additional features for *JupyterLab* are available through [*nbextensions*](https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/install.html), which can be installed through *Anaconda Prompt*:
+Many additional features for JupyterLab are available through [*nbextensions*](https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/install.html), which can be installed through Anaconda Prompt:
 
 ```
 conda install -c conda-forge jupyter_contrib_nbextensions
 ```
 
-When reading through the Python tutorials on this website, you will probably find one or another spelling mistake (please <a href="mailto:sebastian.schwindt[AT]iws.uni-stuttgart.de?subject=HYPY%20Spelling%20mistake">report mistakes!</a>). In particular, the Python sections may be affected because they were created with *Jupyter Lab*, where there is no spell checker pre-installed. To avoid at least the most unpleasant errors you can install a spellchecker in *jupyter*. One solution is to install [*@ijmbbarr*](https://github.com/ijmbarr/jupyterlab_spellchecker)s spellchecker, which requires installing *nodejs* (through *Anaconda Prompt* and in addition to *nbextensions*):
+When reading through the Python tutorials on this website, you will probably find one or another spelling mistake (please <a href="mailto:sebastian.schwindt[AT]iws.uni-stuttgart.de?subject=HYPY%20Spelling%20mistake">report mistakes!</a>). In particular, the Python sections may be affected because they were created with JupyterLab, where there is no spell checker pre-installed. To avoid at least the most unpleasant errors you can install a spellchecker in Jupyter. One solution is to install [@ijmbbarr](https://github.com/ijmbarr/jupyterlab_spellchecker)s spellchecker, which requires installing *nodejs* (through Anaconda Prompt and in addition to *nbextensions*):
 
 ```
 conda install -c conda-forge nodejs
@@ -133,7 +130,7 @@ jupyter labextension install @ijmbarr/jupyterlab_spellchecker
 
 The spellchecker uses [Typo.js](https://github.com/cfinke/Typo.js) as a dictionary and only identifies misspelled words without proposing corrections. More details on spellchecking are available at the [developer's website](https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/spellchecker/README.html).
 
-In the case that several warning messages occur when starting *JupyterLab* (such as `[W 18:49:22.283 NotebookApp] Config option template_path not recognized by LenvsHTMLExporter. Did you mean one of: template_file, template_name, template_paths?`), downgrade *jupyter notebook* from version 6.x to 5.6.1 (there is currently an issue with the `temp_path` variable):
+In the case that several warning messages occur when starting JupyterLab (such as `[W 18:49:22.283 NotebookApp] Config option template_path not recognized by LenvsHTMLExporter. Did you mean one of: template_file, template_name, template_paths?`), downgrade Jupyter Notebook from version 6.x to 5.6.1 (there is currently an issue with the `temp_path` variable):
 
 ```
 conda install "nbconvert=5.6.1"
@@ -142,7 +139,7 @@ conda install "nbconvert=5.6.1"
 (install-jupyter-linux)=
 ## Jupyter on Linux
 
-To install *JupyterLab* on *Linux*, open *Terminal* and make sure that `pip`/`pip3` is installed:
+To install JupyterLab on Linux, open Terminal and make sure that `pip`/`pip3` is installed:
 
 ```
 sudo apt install python3 python3-pip python3-venv
@@ -159,22 +156,26 @@ pip install --user jupyterlab
 It might be necessary to replace `pip` with `pip3` (depending on the *Linux* distribution).
 ```
 
-To start *JupyterLab* tap:
+To start JupyterLab tap:
 
 ```
 jupyter-lab
 ```
 
-The command `jupyter-lab` starts a localhost server that runs *JupyterLab*, which will open up in a web browser like an interactive website.
+The command `jupyter-lab` starts a localhost server that runs JupyterLab, which will open up in a web browser like an interactive website.
 
 ```{warning}
-Closing *Terminal* will also terminate the localhost that runs *JupyterLab*. Thus, do not close *Terminal* as long as you are working with *JupyterLab*, in particular, when there are unsaved books.
+Closing *Terminal* will also terminate the localhost that runs JupyterLab. Thus, do not close Terminal as long as you are working with JupyterLab, in particular, when there are unsaved books.
 ```
+
+## A Debugger for Jupyter
+
+To better understand and troubleshoot code crashes, a debugger represents a great relief. Unfortunately, debugging in Jupyter can cause some headache in the absence of an inherent debugging tool. To get a debugger working with Jupyter, check out [this blog entry from Jupyter Project](https://blog.jupyter.org/a-visual-debugger-for-jupyter-914e61716559).
 
 (install-atom)=
 # Atom
 
-*Atom* is a hackable text editor that is compatible with almost any programming language. While its bare installation has little functionality, the omni-compatibility can be enabled by installing desired packages (e.g., for Python, *Markdown*, or *LaTex*). Another big advantage of *Atom* is the availability of powerful spell checker packages.
+*Atom* is a hackable text editor that is compatible with almost any programming language. While its bare installation has little functionality, the omni-compatibility can be enabled by installing desired packages (e.g., for Python, *Markdown*, or *LaTex*). Another big advantage of Atom is the availability of powerful spell checker packages.
 
 ## Installation
 

@@ -349,17 +349,17 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/geo-shp.html">
-     Shapefile (Vector Dataset) Handling
+     Shapefile (Vector) Handling
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/geo-raster.html">
-     Raster (Gridded) Dataset Handling
+     Raster (Grid) Handling
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/geo-convert.html">
-     Raster to Vector Conversion and Vice Versa
+     Vectorize and Rasterize
     </a>
    </li>
    <li class="toctree-l2">
@@ -395,7 +395,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../datascience/data-science.html">
-   Data Science
+   Coming soon
   </a>
  </li>
 </ul>
@@ -933,7 +933,7 @@
 <span id="basemap"></span><h2>Basemaps for QGIS (Google or Open Street Maps Worldmap Tiles)<a class="headerlink" href="#basemaps-for-qgis-google-or-open-street-maps-worldmap-tiles" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>A fast internet connection is required for adding online base maps.</p>
+<p>A fast internet connection is required for adding online basemaps.</p>
 </div>
 <p>To add a base map (e.g., satellite data, streets, or administrative boundaries), go to the <strong>Browser</strong>, right-click on <strong>XYZ Tiles</strong>, select <strong>New Connection…</strong>, add a name, and a URL of an online base map. Once the new connection is added, it can be added to a <em>QGIS</em> project by drag and drop just like any other geodata layer. The below figure illustrates the procedure of adding a new connection and its XYZ tiles as a layer to the project. To overlay multiple basemaps (or any other layer), <strong>right-click on a layer</strong>, then <strong>Layer Properties</strong> &gt; <strong>Transparency</strong> &gt; modify the <strong>Opacity</strong> (e.g., to 50%).</p>
 <div class="figure align-default" id="id3">
@@ -987,7 +987,7 @@
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/k2LqPM6wicA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 <ul class="simple">
-<li><p>In the <em>QGIS</em> top menu go to <strong>Layer</strong> &gt; <strong>Create Layer</strong> &gt; <strong>New Shapefile Layer</strong></p>
+<li><p>In the QGIS top menu go to <strong>Layer</strong> &gt; <strong>Create Layer</strong> &gt; <strong>New Shapefile Layer</strong></p>
 <ul>
 <li><p>Define a filename (e.g., <strong>gauges.shp</strong> - may not be longer than 13 characters), for instance, in a folder called <em>qgis-exercise</em>.</p></li>
 <li><p>Geometry type: <code class="docutils literal notranslate"><span class="pre">MultiPoint</span></code></p></li>
@@ -1094,7 +1094,7 @@
 </ul>
 <div class="tip admonition">
 <p class="admonition-title">File conversion with Python</p>
-<p>The conversion between geospatial data types can be facilitated by using <em>Python</em>. Read the section on <a class="reference internal" href="../jupyter/geo-convert.html#py-conversion"><span class="std std-ref">Raster to Vector Conversion and Vice Versa</span></a> to learn more.</p>
+<p>The conversion between geospatial data types can be facilitated by using Python. Read the section on <a class="reference internal" href="../jupyter/geo-convert.html#py-conversion"><span class="std std-ref">Vectorize and Rasterize</span></a> to learn more.</p>
 </div>
 <div class="admonition-raster-to-polygon-line-point-vector admonition">
 <p class="admonition-title">Raster to (polygon/line/point) Vector</p>
@@ -1119,12 +1119,12 @@
 </ul>
 <div class="tip admonition">
 <p class="admonition-title">Batch-process geodata</p>
-<p>To implement a tailored raster calculator for batch-processing of raster files with <em>Python</em> read the <a class="reference internal" href="../exercises/ex-geco.html#py-raster-calculator"><span class="std std-ref">Create and Combine HSI Rasters</span></a> section in the <a class="reference internal" href="../exercises/ex-geco.html#ex-geco"><span class="std std-ref">Script a Habitat Suitability Map</span></a> exercise.</p>
+<p>To implement a tailored raster calculator for batch-processing of raster files with Python read the <a class="reference internal" href="../exercises/ex-geco.html#py-raster-calculator"><span class="std std-ref">Create and Combine HSI Rasters</span></a> section in the <a class="reference internal" href="../exercises/ex-geco.html#ex-geco"><span class="std std-ref">Script a Habitat Suitability Map</span></a> exercise.</p>
 </div>
 </div>
 <div class="section" id="raster-to-xyz">
 <span id="make-xyz"></span><h3>Raster to XYZ<a class="headerlink" href="#raster-to-xyz" title="Permalink to this headline">¶</a></h3>
-<p>Scientific data formats, such as <a class="reference internal" href="../documentation/glossary.html#term-HDF"><span class="xref std std-term">HDF</span></a>, work best with raw geospatial datasets like <code class="docutils literal notranslate"><span class="pre">*.xyz</span></code> files. A <code class="docutils literal notranslate"><span class="pre">.*xyz</span></code> file contains s only X, Y, and Z coordinates of points (i.e., point clouds) with or without a simple header. For instance, this eBook uses <code class="docutils literal notranslate"><span class="pre">*.xyz</span></code> data for the elevation interpolation of a computational mesh for the scientific numerical modeling software {ref}?<code class="docutils literal notranslate"><span class="pre">chpt-telemac</span></code>. To generate a <code class="docutils literal notranslate"><span class="pre">*.xyz</span></code> from a <a class="reference internal" href="../documentation/glossary.html#term-GeoTIFF"><span class="xref std std-term">GeoTIFF</span></a> raster use the following workflow:</p>
+<p>Scientific data formats, such as <a class="reference internal" href="../documentation/glossary.html#term-HDF"><span class="xref std std-term">HDF</span></a>, work best with raw geospatial datasets like <code class="docutils literal notranslate"><span class="pre">*.xyz</span></code> files. A <code class="docutils literal notranslate"><span class="pre">.*xyz</span></code> file contains s only X, Y, and Z coordinates of points (i.e., point clouds) with or without a simple header. For instance, this eBook uses <code class="docutils literal notranslate"><span class="pre">*.xyz</span></code> data for the elevation interpolation of a computational mesh for the scientific numerical modeling software <a class="reference internal" href="../numerics/telemac.html#chpt-telemac"><span class="std std-ref">TELEMAC</span></a>. To generate a <code class="docutils literal notranslate"><span class="pre">*.xyz</span></code> from a <a class="reference internal" href="../documentation/glossary.html#term-GeoTIFF"><span class="xref std std-term">GeoTIFF</span></a> raster use the following workflow:</p>
 <ul class="simple">
 <li><p>In the <strong>Layers</strong> panel make sure to have raster layer imported for conversion and <strong>identify its No-Data</strong> value (<strong>Layer Properties</strong> &gt; <strong>Information</strong> &gt; <strong>Bands</strong> section &gt; <strong>No-Data</strong> field show by default <code class="docutils literal notranslate"><span class="pre">-9999</span></code> in QGIS).</p></li>
 <li><p>In QGIS top menu go to <strong>Raster</strong> &gt; <strong>Conversion</strong> &gt; <strong>Translate (Convert Format)…</strong></p></li>
