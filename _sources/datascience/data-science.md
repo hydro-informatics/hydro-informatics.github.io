@@ -1,5 +1,5 @@
 (data-science)=
-# Coming soon
+# Basics (Coming soon)
 
 The chapter is currently developed by [Ricardo Barros](https://github.com/ricardovobarros).
 
