@@ -58,12 +58,12 @@ Remember where the downloaded Linux *.ISO* file is stored.
 The Linux **Mint** Hydro-informatics (**Hyfo**) VM facilitates working with the contents of this eBook and it is available upon email request. Read more in the next paragraphs OR {ref}`create your own VM and jump over this section <vm-create>`.
 
 ### About the Mint Hyfo VM
-To shorten the long path of installing many hydroinformatics applications, many tutorials in this eBook can be leveraged with a tailored virtual Linux Mint 20.2 machine that is available upon email request. The Linux Mint VM comes with the following pre-installed software:
+To shorten the long path of installing many hydroinformatics applications, many tutorials in this eBook can be leveraged with a tailored virtual Linux Mint 20.3 (last updated on February 16, 2022) machine that is available upon email request. The Linux Mint VM comes with the following pre-installed software:
 
 * {ref}`Atom IDE <install-atom>` (all-in-one IDE for Python scripting and editing markdown, restructuredtext, or LaTeX files)
 * {ref}`JupyterLab <install-jupyter-linux>` (start in Terminal with `jupyter-lab`)
 * {ref}`QGIS <qgis-install>`
-* {ref}`TELEMAC v8p2r1 <telemac-install>` (dynamically compiled stand-alone installation with parallel libraries enabled)
+* {ref}`TELEMAC v8p3r0 <telemac-install>` (stand-alone installation with parallel libraries enabled)
 
 Note that Python, LibreOffice, and Firefox are pre-installed in Linux Mint. To get the download link for the Linux Mint VM appliance (`MintHyfo.ova`), <a href="mailto:sebastian.schwindt[AT]iws.uni-stuttgart.de?subject=Please%20Send%20Hydroinformatics%20VM%20download%20link">email Sebastian</a>. Note that the hydro-informatics.com {ref}`license` and {ref}`disclaimer` apply in addition and on top of any software that comes with the virtual disk image.
 
@@ -88,13 +88,18 @@ Once imported, start the **Mint Hyfo** VM and familiarize yourself with the Mint
   * the **Terminal** and `sudo apt install SOFTWARE-NAME`
   * your **user name** on the VM is: **hymo**
   * your **user password** is: `hxroot`
-* Regularly run **system updates**. For this purpose, check if the shield-icon on the bottom right is marked with an orange dot. If this is the case, double-click on the shields icon and click on **Install Updates**. The password is the same as above (`hxroot`).
+* The first step after the first start of the *Mint Hyfo* VM is to run an update (should be regularly repreated...):
+  - Open **Terminal**
+  - Type `sudo apt update` (recall the sudo password is `hxroot`)
+  - Type `sudo apt full-upgrade`
+  - Type `sudo apt autoremove` (removes outdated packages)
+  - **Alternatively**, check if the shield-icon on the bottom right is marked with an orange dot. If this is the case, double-click on the shields icon and click on **Install Updates** (recall the password is `hxroot`).
 * To transfer data from the host system (e.g., your Windows) to the Mint Hyfo VM, enable folder sharing as described in the below section on {ref}`folder sharing <vm-share>`. *Note that you will not need to add your user name to the VM's vboxsf group (i.e., <s>`sudo usermod -aG vboxsf hymo`</s>).*
-* The TELEMAC installation lives in the home directory (`cd ~/telemac/v8p2`); it is dynamically compiled with parallelization enabled through `openmpi`, but without the AED2 and MED file libraries. To run TELEMAC  use:
+* The TELEMAC installation lives in the home directory (`cd ~/telemac/v8p3`); it is dynamically compiled with parallelization enabled through `openmpi`, but without the AED2 and MED file libraries. To run TELEMAC  use:
 
 ```
-cd ~/telemac/v8p2/configs
-source pysource.hyfo-dyn.sh
+cd ~/telemac/v8p3/configs
+source pysource.hyfo.sh
 config.py
 ```
 

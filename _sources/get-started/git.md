@@ -16,7 +16,10 @@ The concept of git and basic vocabulary. The REMOTE frame is online (i.e., someo
 The materials provided with this eBook are best downloaded and updated using *git*-able environments (avoid downloading materials as *zip* file).
 
 ````{tabbed} Linux
-You are already good to go - git is an integral feature of most Linux distributions.
+Although git is an integral feature of most Linux distributions, Debian users might still need to install it. For this purpse, open Terminal and tap:
+```
+sudo apt install git
+```
 ````
 
 ````{tabbed} Windows
