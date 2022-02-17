@@ -58,7 +58,7 @@ Remember where the downloaded Linux *.ISO* file is stored.
 The Linux **Mint** Hydro-informatics (**Hyfo**) VM facilitates working with the contents of this eBook and it is available upon email request. Read more in the next paragraphs OR {ref}`create your own VM and jump over this section <vm-create>`.
 
 ### About the Mint Hyfo VM
-To shorten the long path of installing many hydroinformatics applications, many tutorials in this eBook can be leveraged with a tailored virtual Linux Mint 20.3 (last updated on February 16, 2022) machine that is available upon email request. The Linux Mint VM comes with the following pre-installed software:
+To shorten the long path of installing many hydroinformatics applications, many tutorials in this eBook can be leveraged with a tailored virtual Linux Mint 20.3 (last updated on February, 2022) machine that is available upon email request. The Linux Mint VM comes with the following pre-installed software:
 
 * {ref}`Atom IDE <install-atom>` (all-in-one IDE for Python scripting and editing markdown, restructuredtext, or LaTeX files)
 * {ref}`JupyterLab <install-jupyter-linux>` (start in Terminal with `jupyter-lab`)

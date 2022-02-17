@@ -7,6 +7,7 @@ The chapter is currently developed by [Ricardo Barros](https://github.com/ricard
 :class: attention
 Python: {ref}`numpy`, {ref}`pandas`, {ref}`gdal`.
 ```
+some change
 
 References to development figures {ref}`Figure <fig-datascience-dummy>`.
 
