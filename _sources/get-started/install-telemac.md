@@ -123,12 +123,16 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 None of the three library imports should return an `ImportError` message. To learn more about Python read the section on {ref}`sec-pypckg`.
 
-
+(tm-git-requirements)=
 ### GIT
 
 ***Estimated duration: Less than 5 minutes.***
 
-The installation of the git version control system and its usage is described in the {ref}`git section of this eBook <dl>` .
+The installation of the git version control system and its usage is extensivly described in the {ref}`git section of this eBook <dl>`. In addition to the git functionalities described in the git section, the following are needed to manage large files that come along with TELEMAC:
+
+```
+sudo apt install git-all git-lfs
+```
 
 ### GNU Fortran 95 Compiler (gfortran)
 
@@ -186,6 +190,17 @@ git clone https://gitlab.pam-retd.fr/otm/telemac-mascaret.git v8p3
 
 This will have downloaded TELEMAC v8p3 to the directory `/home/USER-NAME/telemac/v8p3`.
 
+````{admonition} There are many (experimental) branches of TELEMAC available
+:class: tip
+
+The TELEMAC git repository povides many other TELEMAC versions in the form of development or old-version branches. For instance, the following clones the `upwind_gaia` branch to a local subfolder called `telemac/gaia-upwind`. After cloning this single branch, compiling TELEMAC can be done as described in the following.
+
+```
+git clone –branch upwind_gaia –single-branch https://gitlab.pam-retd.fr/otm/telemac-mascaret.git telemac/gaia-upwind
+```
+
+Read more about cloning single TELEMAC branches in the [TELEMAC wiki](http://wiki.opentelemac.org/doku.php?id=telemac-mascaret_git_repository).
+````
 
 ## Recommended Prerequisites (Parallelism and Compilers)
 
@@ -576,9 +591,9 @@ telemac2d.py t2d_gouttedo.cas
 ```
 
 ```{admonition} Examples are not working with v8p3 git clone
-:class: error
+:class: attention, dropdown
 
-An error in the TELEMAC git repository makes that running most `/examples/` will crash. **Worry not!** Your installation is most likely OK if the installation finished without errors and the `config.py` runs smmoothly. Read more and follow the issue in the [TELEMAC forum](http://www.opentelemac.co.uk/index.php/assistance/forum5/12-linux-version/13603-error-in-t2dgeo?start=10#39815).
+If running any test case provided in the `/examples/` folder crashes, **worry not!**. Your installation is most likely OK if the installation finished without errors and the `config.py` runs smmoothly. However, for being able to run the examples, you will need to install {ref}`all git requirements (cf. above descriptions) <tm-git-requirements>`, re-download the TELEMAC git repository, and re-compile TELEMAC (basically: start over, beginning with the {ref}`git section <tm-git-requirements>`).
 ```
 
 
@@ -589,7 +604,7 @@ sudo apt update
 sudo apt install htop
 ```
 
-Start *htop*'s CPU monitor with:
+Start htop's CPU monitor with:
 
 ```
 htop

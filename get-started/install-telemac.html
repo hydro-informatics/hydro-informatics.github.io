@@ -1140,9 +1140,12 @@
 <p>None of the three library imports should return an <code class="docutils literal notranslate"><span class="pre">ImportError</span></code> message. To learn more about Python read the section on <a class="reference internal" href="../jupyter/pypckg.html#sec-pypckg"><span class="std std-ref">Packages, Modules and Libraries</span></a>.</p>
 </div>
 <div class="section" id="git">
-<h3>GIT<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h3>
+<span id="tm-git-requirements"></span><h3>GIT<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h3>
 <p><em><strong>Estimated duration: Less than 5 minutes.</strong></em></p>
-<p>The installation of the git version control system and its usage is described in the <a class="reference internal" href="git.html#dl"><span class="std std-ref">git section of this eBook</span></a> .</p>
+<p>The installation of the git version control system and its usage is extensivly described in the <a class="reference internal" href="git.html#dl"><span class="std std-ref">git section of this eBook</span></a>. In addition to the git functionalities described in the git section, the following are needed to manage large files that come along with TELEMAC:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">git</span><span class="o">-</span><span class="nb">all</span> <span class="n">git</span><span class="o">-</span><span class="n">lfs</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="gnu-fortran-95-compiler-gfortran">
 <h3>GNU Fortran 95 Compiler (gfortran)<a class="headerlink" href="#gnu-fortran-95-compiler-gfortran" title="Permalink to this headline">¶</a></h3>
@@ -1185,6 +1188,14 @@ To enable parallelism, a <em>C</em> compiler is required for recognition of the 
 </pre></div>
 </div>
 <p>This will have downloaded TELEMAC v8p3 to the directory <code class="docutils literal notranslate"><span class="pre">/home/USER-NAME/telemac/v8p3</span></code>.</p>
+<div class="tip admonition">
+<p class="admonition-title">There are many (experimental) branches of TELEMAC available</p>
+<p>The TELEMAC git repository povides many other TELEMAC versions in the form of development or old-version branches. For instance, the following clones the <code class="docutils literal notranslate"><span class="pre">upwind_gaia</span></code> branch to a local subfolder called <code class="docutils literal notranslate"><span class="pre">telemac/gaia-upwind</span></code>. After cloning this single branch, compiling TELEMAC can be done as described in the following.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>git clone –branch upwind_gaia –single-branch https://gitlab.pam-retd.fr/otm/telemac-mascaret.git telemac/gaia-upwind
+</pre></div>
+</div>
+<p>Read more about cloning single TELEMAC branches in the <a class="reference external" href="http://wiki.opentelemac.org/doku.php?id=telemac-mascaret_git_repository">TELEMAC wiki</a>.</p>
+</div>
 </div>
 </div>
 <div class="section" id="recommended-prerequisites-parallelism-and-compilers">
@@ -1518,16 +1529,16 @@ When <code class="docutils literal notranslate"><span class="pre">config.py</spa
 <span class="n">telemac2d</span><span class="o">.</span><span class="n">py</span> <span class="n">t2d_gouttedo</span><span class="o">.</span><span class="n">cas</span>
 </pre></div>
 </div>
-<div class="error admonition">
+<div class="attention dropdown admonition">
 <p class="admonition-title">Examples are not working with v8p3 git clone</p>
-<p>An error in the TELEMAC git repository makes that running most <code class="docutils literal notranslate"><span class="pre">/examples/</span></code> will crash. <strong>Worry not!</strong> Your installation is most likely OK if the installation finished without errors and the <code class="docutils literal notranslate"><span class="pre">config.py</span></code> runs smmoothly. Read more and follow the issue in the <a class="reference external" href="http://www.opentelemac.co.uk/index.php/assistance/forum5/12-linux-version/13603-error-in-t2dgeo?start=10#39815">TELEMAC forum</a>.</p>
+<p>If running any test case provided in the <code class="docutils literal notranslate"><span class="pre">/examples/</span></code> folder crashes, <strong>worry not!</strong>. Your installation is most likely OK if the installation finished without errors and the <code class="docutils literal notranslate"><span class="pre">config.py</span></code> runs smmoothly. However, for being able to run the examples, you will need to install <a class="reference internal" href="#tm-git-requirements"><span class="std std-ref">all git requirements (cf. above descriptions)</span></a>, re-download the TELEMAC git repository, and re-compile TELEMAC (basically: start over, beginning with the <a class="reference internal" href="#tm-git-requirements"><span class="std std-ref">git section</span></a>).</p>
 </div>
 <p>To test if parallelism works, install <em>htop</em> to visualize CPU usage:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
 <span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">htop</span>
 </pre></div>
 </div>
-<p>Start <em>htop</em>’s CPU monitor with:</p>
+<p>Start htop’s CPU monitor with:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">htop</span>
 </pre></div>
 </div>
