@@ -216,7 +216,7 @@ Saint-Venant equations
 Sediment transport
   Fluvial sediment transport encompasses two modes of particle displacement: (1) suspended load and (2) bedload (see figure below). Finer particles with a weight that can be carried by the fluid (water) are transported as {term}`Suspended load`. Coarser particles rolling, sliding, and jumping on the channel bed are transported as {term}`Bedload`. There is third type of transport, the so-called wash load, which is finer than the coarse bed load, but too heavy (large) to be transported in suspension {cite:p}`einstein_bed-load_1950`. The units for sediment transport are for an integral flow cross-section kg$^3\cdot$s$^{-1}$ or per unit width kg$^3\cdot$s$^{-1}$m$^{-1}$.
 
-  ```{image} https://github.com/Ecohydraulics/media/png/sediment-transport.png
+  ```{image} https://github.com/Ecohydraulics/media/raw/main/png/sediment-transport.png
   ```
 
   *French: Transport solide <br>German: Sedimenttransport*
