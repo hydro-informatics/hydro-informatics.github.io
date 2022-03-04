@@ -3,7 +3,7 @@
 ***<span style="color: #707070 "> The educational platform and eBook for Data Analysis & Programming, Geospatial Analysis, and Modeling Tools in Water Resources Engineering & Research. </span>***
 
 ```{image} img/icons/banner-logo.jpg
-:alt: hydro-informatics github sebastian schwindt
+:alt: hydro-informatics github sebastian schwindt ricardo barros
 ```
 
 ## Preface

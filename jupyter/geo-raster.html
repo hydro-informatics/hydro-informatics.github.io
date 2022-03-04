@@ -38,12 +38,15 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe,.cell"
@@ -473,8 +476,8 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/jupyter-example.html">
-     Exercise 1
+    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
+     Support Vector Machine
     </a>
    </li>
   </ul>
@@ -756,7 +759,7 @@
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
-  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a> and Ricardo Barros
 </div>
 
 </div>
@@ -796,7 +799,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -852,7 +855,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -953,7 +956,111 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Raster (Grid) Handling</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-raster">
+   Load raster
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#open-existing-raster-data">
+     Open Existing Raster Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#raster-band-statistics-and-toolbox-scripts">
+     Raster Band Statistics and Toolbox Scripts
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-and-save-a-raster-from-array">
+   Create and Save a Raster (from Array)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#raster-drivers">
+     Raster Drivers
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#raster-data-types">
+     Raster Data Types
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-a-raster-array-to-raster">
+     Create a Raster (Array to Raster)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#raster-calculus-raster-band-to-array">
+     Raster Calculus (Raster / Band to Array)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reproject-a-raster">
+     Reproject a Raster
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#application-example-with-zonal-statistics">
+   Application Example with Zonal Statistics
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#clip-a-raster">
+   Clip a Raster
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#slope-aspect-maps-and-built-in-command-line-scripts">
+   Slope / Aspect Maps and Built-in Command Line Scripts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#least-cost-path-between-pixels-and-another-way-of-reprojection">
+   Least Cost Path between Pixels (and another Way of Reprojection)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ecohydraulic-background">
+     Ecohydraulic Background
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#functions-and-libraries-involved">
+     Functions and Libraries Involved
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#application">
+     Application
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="raster-grid-handling">
@@ -1469,7 +1576,7 @@ Target EPSG: 3857
 <p>The <em>River Architect</em> dataset includes a slackwater zone and zonal statistics help to identify the mean water depth and flow velocity of slackwaters, which are a so-called morphological unit (<a class="reference internal" href="geo-shp.html#create-shp"><span class="std std-ref">recall the create-shapefile section</span></a>).</p>
 <div class="admonition-background admonition">
 <p class="admonition-title">Background</p>
-<p>Instream morphological units aid to describe the geospatial organization of fluvial landforms, which play an important role in ecohydraulic analyses and river restoration. For instance, <em>pool</em> units describe deep water zones with low flow velocity, <em>riffle</em> units are typically characterized by shallow water depths and high velocity, and <em>slackwater</em> units are shallow flow zones with low flow velocity (many juvenile fish love slackwaters). <span id="id2">Wyrick and Pasternack [<a class="reference internal" href="../documentation/bibliography.html#id960">WP14</a>]</span> introduce the delineation of morphological units and an open-access summary can be found in the <a class="reference external" href="https://ars.els-cdn.com/content/image/1-s2.0-S235271101930281X-mmc1.pdf">Appendix Sect. 5</a> in <span id="id3">Schwindt <em>et al.</em> [<a class="reference internal" href="../documentation/bibliography.html#id1230">SLPR20</a>]</span>.</p>
+<p>Instream morphological units aid to describe the geospatial organization of fluvial landforms, which play an important role in ecohydraulic analyses and river restoration. For instance, <em>pool</em> units describe deep water zones with low flow velocity, <em>riffle</em> units are typically characterized by shallow water depths and high velocity, and <em>slackwater</em> units are shallow flow zones with low flow velocity (many juvenile fish love slackwaters). <span id="id2">Wyrick and Pasternack [<a class="reference internal" href="../documentation/bibliography.html#id962">WP14</a>]</span> introduce the delineation of morphological units and an open-access summary can be found in the <a class="reference external" href="https://ars.els-cdn.com/content/image/1-s2.0-S235271101930281X-mmc1.pdf">Appendix Sect. 5</a> in <span id="id3">Schwindt <em>et al.</em> [<a class="reference internal" href="../documentation/bibliography.html#id1232">SLPR20</a>]</span>.</p>
 </div>
 <p>To analyze a visually apparent slackwater unit, we can draw a polygon in a new shapefile that delineates morphological units. The following figures guide through the creation of a polygon shapefile and the delineation of the riffle with QGIS. Start with opening QGIS and create a new project. Import the water depth and flow velocity rasters showing the slow and shallow water zone. Then follow the workflow in the illustrations below.</p>
 <p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-create-shp.png" />
@@ -1835,8 +1942,8 @@ Target EPSG: 3857
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="geo-shp.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -1853,19 +1960,17 @@ Target EPSG: 3857
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Sebastian Schwindt<br/>
-        
-            &copy; Copyright 2022.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Sebastian Schwindt, Ricardo Barros<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
 </main>
 
 

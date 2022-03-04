@@ -38,12 +38,15 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe,.cell"
@@ -473,8 +476,8 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/jupyter-example.html">
-     Exercise 1
+    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
+     Support Vector Machine
     </a>
    </li>
   </ul>
@@ -756,7 +759,7 @@
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
-  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a> and Ricardo Barros
 </div>
 
 </div>
@@ -796,7 +799,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -827,7 +830,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -872,7 +875,55 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Version Control : git</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-concept">
+   The Concept
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#install-git">
+   Install git
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-a-repository">
+   Create a Repository
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#clone-download-a-repository">
+   Clone (Download) a Repository
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pull-update-re-download-a-local-repository">
+   Pull (Update/Re-Download) a Local Repository
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#update-a-remote-repository-push-local-changes">
+   Update a Remote Repository (Push Local Changes)
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="version-control-git">
@@ -889,21 +940,21 @@
 <span id="dl"></span><h2>Install git<a class="headerlink" href="#install-git" title="Permalink to this headline">¶</a></h2>
 <p>The materials provided with this eBook are best downloaded and updated using <em>git</em>-able environments (avoid downloading materials as <em>zip</em> file).</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="208e8c3a-99a2-4ee8-b6ea-caf537c24c48" name="3834a40f-b83d-454e-9755-cb13e4e6bea2" type="radio">
-</input><label class="tabbed-label" for="208e8c3a-99a2-4ee8-b6ea-caf537c24c48">
+<input checked="checked" id="56d3bdde-3b65-4850-be08-81c399032973" name="63800375-e654-4642-bea1-9eff3b7bd757" type="radio">
+</input><label class="tabbed-label" for="56d3bdde-3b65-4850-be08-81c399032973">
 Linux</label><div class="tabbed-content docutils">
 <p>Although git is an integral feature of most Linux distributions, Debian users might still need to install it. For this purpse, open Terminal and tap:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">git</span>
 </pre></div>
 </div>
 </div>
-<input id="acd1a624-56d6-42f7-913d-292e3ea5a213" name="3834a40f-b83d-454e-9755-cb13e4e6bea2" type="radio">
-</input><label class="tabbed-label" for="acd1a624-56d6-42f7-913d-292e3ea5a213">
+<input id="73ab4549-99bb-4d40-93b5-a237cfc7b578" name="63800375-e654-4642-bea1-9eff3b7bd757" type="radio">
+</input><label class="tabbed-label" for="73ab4549-99bb-4d40-93b5-a237cfc7b578">
 Windows</label><div class="tabbed-content docutils">
 <p>Download and install <a class="reference external" href="https://git-scm.com/downloads">Git Bash</a> and use it for example <a class="reference external" href="https://www.jetbrains.com/pycharm/">PyCharm’s Community Edition</a> or <a class="reference external" href="https://atom.io">Atom</a>.</p>
 </div>
-<input id="2a05d2bf-7cdf-4cee-aaf2-83541d7319f7" name="3834a40f-b83d-454e-9755-cb13e4e6bea2" type="radio">
-</input><label class="tabbed-label" for="2a05d2bf-7cdf-4cee-aaf2-83541d7319f7">
+<input id="7d5ade0b-152a-4ebb-bdf3-75fda445dd95" name="63800375-e654-4642-bea1-9eff3b7bd757" type="radio">
+</input><label class="tabbed-label" for="7d5ade0b-152a-4ebb-bdf3-75fda445dd95">
 macOS</label><div class="tabbed-content docutils">
 <p>macOS users may use <a class="reference external" href="https://developer.apple.com/xcode/">Homebrew</a> for installing git, but there are other options, such as <a class="reference external" href="https://developer.apple.com/xcode/">Xcode</a>.</p>
 <p>To use Homebrew for installing git, start with installing Homebrew through the <a class="reference external" href="https://support.apple.com/guide/terminal/open-or-quit-terminal-apd5265185d-f365-44cb-8b09-71a064a42125/mac">macOS Terminal</a>:</p>
@@ -1011,8 +1062,8 @@ eval $(/opt/homebrew/bin/brew shellenv)
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="../python-basics/pyinstall.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -1029,19 +1080,17 @@ eval $(/opt/homebrew/bin/brew shellenv)
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Sebastian Schwindt<br/>
-        
-            &copy; Copyright 2022.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Sebastian Schwindt, Ricardo Barros<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
 </main>
 
 

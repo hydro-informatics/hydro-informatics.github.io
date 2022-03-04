@@ -38,14 +38,17 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe,.cell"
@@ -475,8 +478,8 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/jupyter-example.html">
-     Exercise 1
+    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
+     Support Vector Machine
     </a>
    </li>
   </ul>
@@ -758,7 +761,7 @@
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
-  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a> and Ricardo Barros
 </div>
 
 </div>
@@ -798,7 +801,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -854,7 +857,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -944,7 +947,100 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>The Commercial arcpy Library</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#background">
+   Background
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#use-arcpy-with-external-ides">
+   Use
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     arcpy
+    </span>
+   </code>
+   with External IDEs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setup-interpreter">
+     Setup Interpreter
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-arcpy-and-its-modules">
+     Import arcpy and its Modules
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setup-arcpy-workspace">
+     Setup arcpy Workspace
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-spatial-extents">
+     Set Spatial Extents
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#checkout-licenses">
+     Checkout Licenses
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#track-errors">
+     Track Errors
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spatial-analyst-raster-operations">
+   Spatial Analyst &amp; Raster Operations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basics">
+     Basics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cell-statistics">
+     Cell Statistics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shapefile-operations">
+   Shapefile Operations
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="the-commercial-arcpy-library">
@@ -1150,7 +1246,7 @@ In addition, we need a Spatial Analyst license to run this script. Therefore, it
 <div class="section" id="shapefile-operations">
 <h2>Shapefile Operations<a class="headerlink" href="#shapefile-operations" title="Permalink to this headline">¶</a></h2>
 <p>The geospatial <a class="reference internal" href="geo-shp.html#chpt-shp"><span class="std std-ref">shapefile</span></a> vector format is an Esri invention. No wonder, <code class="docutils literal notranslate"><span class="pre">arcpy</span></code> is good at handling this vector data format. In hydraulic engineering, however, we usually create (draw) shapefiles manually either directly with ArcGIS or its open-source competitor <a class="reference external" href="https://www.qgis.org/">QGIS</a> to delineate, for example, particular flow regions. Examples can be found <a class="reference internal" href="../numerics/basement.html#chpt-basement"><span class="std std-ref">in the BASEMENT tutorial</span></a> (explore the creation of elevation point, boundary polygon, and breakline polyline shapefiles). In codes, the processing of shapefiles only becomes important in the analysis of the output of numerical models (e.g., to classify morphological unit features, exactly calculate patch areas, or automatically place reinforcements in construction plans). At this stage, raster data (output of numerical models) must first be converted into shapefiles. This is why this tutorial starts with the conversion of raster data to shapefiles along with the illustration of other functions such as calculating patch area and accessing shapefile attribute tables.</p>
-<p>Rasters can be converted to polygon and other shapefile types (e.g., point). The following example features the conversion of a raster to a polygon shapefile. It uses an integer raster of all pixels where the flow depth and velocity are smaller than 1.4 m and 0.15 m/s, respectively. Such shallow and slow-flow regions are called <em>slackwater</em> (according to <span id="id1">Wyrick and Pasternack [<a class="reference internal" href="../documentation/bibliography.html#id960">WP14</a>]</span>). Because slackwater is designated preferred habitat of some aquatic species, we are wondering now how much slackwater area the numerical model predicts in the simulated river section. For this purpose, we convert the slackwater raster to a shapefile and calculate the surface area of the shapefile with the following <code class="docutils literal notranslate"><span class="pre">arcpy</span></code> methods:</p>
+<p>Rasters can be converted to polygon and other shapefile types (e.g., point). The following example features the conversion of a raster to a polygon shapefile. It uses an integer raster of all pixels where the flow depth and velocity are smaller than 1.4 m and 0.15 m/s, respectively. Such shallow and slow-flow regions are called <em>slackwater</em> (according to <span id="id1">Wyrick and Pasternack [<a class="reference internal" href="../documentation/bibliography.html#id962">WP14</a>]</span>). Because slackwater is designated preferred habitat of some aquatic species, we are wondering now how much slackwater area the numerical model predicts in the simulated river section. For this purpose, we convert the slackwater raster to a shapefile and calculate the surface area of the shapefile with the following <code class="docutils literal notranslate"><span class="pre">arcpy</span></code> methods:</p>
 <ul class="simple">
 <li><p>Convert the raster to a shapefile with <a class="reference external" href="https://pro.arcgis.com/en/pro-app/tool-reference/conversion/raster-to-polygon.htm"><code class="docutils literal notranslate"><span class="pre">arcpy.RasterToPolygon_conversion()</span></code></a> with arguments:</p>
 <ul>
@@ -1238,8 +1334,8 @@ In addition, we need a Spatial Analyst license to run this script. Therefore, it
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="geo-convert.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -1256,19 +1352,17 @@ In addition, we need a Spatial Analyst license to run this script. Therefore, it
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Sebastian Schwindt<br/>
-        
-            &copy; Copyright 2022.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Sebastian Schwindt, Ricardo Barros<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
 </main>
 
 

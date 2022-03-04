@@ -38,14 +38,17 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe,.cell"
@@ -475,8 +478,8 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/jupyter-example.html">
-     Exercise 1
+    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
+     Support Vector Machine
     </a>
    </li>
   </ul>
@@ -758,7 +761,7 @@
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
-  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a> and Ricardo Barros
 </div>
 
 </div>
@@ -798,7 +801,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -829,7 +832,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -886,17 +889,77 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Suspended Load</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#additional-sediment-parameters">
+   Additional Sediment Parameters
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deposition-parameters">
+     Deposition Parameters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erosion-parameters">
+     Erosion Parameters
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#suspended-load-formulae">
+   Suspended Load Formulae
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#initial-and-boundary-conditions">
+   Initial and Boundary Conditions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#boundary-prescriptions">
+   Boundary Prescriptions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numerical-parameters">
+   Numerical Parameters
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-applications">
+   Example Applications
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="suspended-load">
 <span id="gaia-sl"></span><h1>Suspended Load<a class="headerlink" href="#suspended-load" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference internal" href="../documentation/glossary.html#term-Suspended-load"><span class="xref std std-term">Suspended load</span></a> refers to fine particle (<span class="math notranslate nohighlight">\(\lesssim\)</span> 1-2 mm) displacement in the water column. The TELEMAC software suite uses the hydrodynamic Telemac2d/3d models to simulate <a class="reference internal" href="../documentation/glossary.html#term-Suspended-load"><span class="xref std std-term">Suspended load</span></a> by solving the <a class="reference internal" href="../documentation/glossary.html#term-Advection"><span class="xref std std-term">Advection</span></a>-<a class="reference internal" href="../documentation/glossary.html#term-Diffusion"><span class="xref std std-term">Diffusion</span></a> equations with tracer concentrations. This is why suspended load modeling requires an open boundary <code class="docutils literal notranslate"><span class="pre">LICBOR</span></code> type for tracers (e.g., <code class="docutils literal notranslate"><span class="pre">4</span></code> or <code class="docutils literal notranslate"><span class="pre">5</span></code>) as described in the <a class="reference internal" href="gaia-basics.html#gaia-bc"><span class="std std-ref">setup of the boundaries-gaia.cli</span></a> file.</p>
 <p>To activate the simulation of suspended load, add the following to the Gaia steering file:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">continued</span><span class="p">:</span> <span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
-<span class="o">/</span> <span class="p">...</span>
-<span class="o">/</span> <span class="n">SUSPENDED</span> <span class="n">LOAD</span>
-<span class="n">SUSPENSION</span> <span class="n">FOR</span> <span class="k">ALL </span><span class="n">SANDS</span> <span class="p">:</span> <span class="n">YES</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">continued</span><span class="p">:</span><span class="w"> </span><span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="n">SUSPENDED</span><span class="w"> </span><span class="n">LOAD</span><span class="w"></span>
+<span class="n">SUSPENSION</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="k">ALL </span><span class="n">SANDS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">YES</span><span class="w"></span>
 </pre></div>
 </div>
 <div class="section" id="additional-sediment-parameters">
@@ -911,22 +974,22 @@
 q_{s,dep} = w_{s} \cdot c_{mud} \cdot \left[1 - \left(\frac{\sqrt{\tau / \rho_{w}}}{u_{cr}}\right)^{2} \right]
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(c_{mud}\)</span> is the concentration of mud in g/l (i.e., g m<span class="math notranslate nohighlight">\(^{-3}\)</span>), <span class="math notranslate nohighlight">\(\tau\)</span> is dimensional bed shear stress (N<span class="math notranslate nohighlight">\(\cdot\)</span>m<span class="math notranslate nohighlight">\(^{-2}\)</span>), and <span class="math notranslate nohighlight">\(u_{cr}\)</span> is the critical shear velocity for mud deposition (m s<span class="math notranslate nohighlight">\(^{-1}\)</span>).</p>
-<p>The settling velocity is computed as <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id153">Dey14</a>]</span>:</p>
+<p>The settling velocity is computed as <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id155">Dey14</a>]</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eq-ws">
 <span class="eqno">(15)<a class="headerlink" href="#equation-eq-ws" title="Permalink to this equation">¶</a></span>\[
 w_{s} = \sqrt{\frac{4}{3}\cdot \frac{(s-1)\cdot g\cdot h}{C_{D}}}
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(C_{D}\)</span> is the dimensionless drag coefficient that is a function of the <a class="reference internal" href="../documentation/glossary.html#term-Reynolds-number"><span class="xref std std-term">Reynolds number</span></a> <span class="math notranslate nohighlight">\(Re\)</span>. The fundamental equation for calculating the drag coefficient stems from <span id="id2">Stokes [<a class="reference internal" href="../documentation/bibliography.html#id1397">Sto50</a>]</span>:</p>
+<p>where <span class="math notranslate nohighlight">\(C_{D}\)</span> is the dimensionless drag coefficient that is a function of the <a class="reference internal" href="../documentation/glossary.html#term-Reynolds-number"><span class="xref std std-term">Reynolds number</span></a> <span class="math notranslate nohighlight">\(Re\)</span>. The fundamental equation for calculating the drag coefficient stems from <span id="id2">Stokes [<a class="reference internal" href="../documentation/bibliography.html#id1399">Sto50</a>]</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eq-cd-stokes">
 <span class="eqno">(16)<a class="headerlink" href="#equation-eq-cd-stokes" title="Permalink to this equation">¶</a></span>\[
 C_{D} = \frac{24}{Re}
 \]</div>
-<p>Experimental data have shown that <span id="id3">Stokes [<a class="reference internal" href="../documentation/bibliography.html#id1397">Sto50</a>]</span>’ original equation requires adaptations for high <a class="reference internal" href="../documentation/glossary.html#term-Reynolds-number"><span class="xref std std-term">Reynolds number</span></a>s (<span class="math notranslate nohighlight">\(Re &gt;\)</span> 10-100) <span id="id4">[<a class="reference internal" href="../documentation/bibliography.html#id500">Rou39</a>]</span>. Gaia comes with integrated algorithms for calculating the settling velocity <span class="math notranslate nohighlight">\(w_{s}\)</span> and the drag coefficient <span class="math notranslate nohighlight">\(C_{D}\)</span> as a function of the grain size. To take advantage of Gaia’s integrated routines for calculating <span class="math notranslate nohighlight">\(w_{s}\)</span>, either do not use the CLASSES SETTLING VELOCITIES keyword in the Gaia steering file, or set its per-class values to <code class="docutils literal notranslate"><span class="pre">-9</span></code>. Detailed information on the calculation of settling velocities for particular cases (e.g., suspended load calculation for other suspended material than mineral sediment) can be found, for example, in <span id="id5">Dey [<a class="reference internal" href="../documentation/bibliography.html#id153">Dey14</a>]</span> (book section 1.7). Gaia’s settling velocity algorithm is located in the file <em><a class="reference external" href="http://docs.opentelemac.org/doxydocs/v8p2r0/html/settling__vel_8f_source.html">settling_vel.f</a></em>.</p>
+<p>Experimental data have shown that <span id="id3">Stokes [<a class="reference internal" href="../documentation/bibliography.html#id1399">Sto50</a>]</span>’ original equation requires adaptations for high <a class="reference internal" href="../documentation/glossary.html#term-Reynolds-number"><span class="xref std std-term">Reynolds number</span></a>s (<span class="math notranslate nohighlight">\(Re &gt;\)</span> 10-100) <span id="id4">[<a class="reference internal" href="../documentation/bibliography.html#id502">Rou39</a>]</span>. Gaia comes with integrated algorithms for calculating the settling velocity <span class="math notranslate nohighlight">\(w_{s}\)</span> and the drag coefficient <span class="math notranslate nohighlight">\(C_{D}\)</span> as a function of the grain size. To take advantage of Gaia’s integrated routines for calculating <span class="math notranslate nohighlight">\(w_{s}\)</span>, either do not use the CLASSES SETTLING VELOCITIES keyword in the Gaia steering file, or set its per-class values to <code class="docutils literal notranslate"><span class="pre">-9</span></code>. Detailed information on the calculation of settling velocities for particular cases (e.g., suspended load calculation for other suspended material than mineral sediment) can be found, for example, in <span id="id5">Dey [<a class="reference internal" href="../documentation/bibliography.html#id155">Dey14</a>]</span> (book section 1.7). Gaia’s settling velocity algorithm is located in the file <em><a class="reference external" href="http://docs.opentelemac.org/doxydocs/v8p2r0/html/settling__vel_8f_source.html">settling_vel.f</a></em>.</p>
 <p>The critical shear velocity <span class="math notranslate nohighlight">\(u_{cr}\)</span> for mud deposition can be defined with the <strong>CLASSES CRITICAL SHEAR VELOCITY FOR MUD DEPOSITION</strong> keyword (default is <code class="docutils literal notranslate"><span class="pre">1000.</span></code> m s<span class="math notranslate nohighlight">\(^{-1}\)</span>). The fundamental definition of shear-related sediment mobility stems from the <a class="reference internal" href="../documentation/glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a>, which refers to sediment <em>erosion</em> (i.e., the mobilization of an immobile grain), against the critical shear <em>velocity</em> for mud referring to <em>deposition</em>. Since an onset (initialization) energy must be overcome in the erosion process, the shear threshold for erosion is higher than for deposition. Vice versa, the critical shear stress for deposition is smaller than the shear stress for erosion.</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">continued</span><span class="p">:</span> <span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
-<span class="o">/</span> <span class="p">...</span>
-<span class="n">CLASSES</span> <span class="n">SETTLING</span> <span class="n">VELOCITIES</span> <span class="p">:</span> <span class="o">-</span><span class="mi">9</span><span class="p">;</span><span class="o">-</span><span class="mi">9</span><span class="p">;</span><span class="o">-</span><span class="mi">9</span>
-<span class="n">CLASSES</span> <span class="k">CRITICAL </span><span class="n">SHEAR</span> <span class="n">VELOCITY</span> <span class="n">FOR</span> <span class="n">MUD</span> <span class="n">DEPOSITION</span> <span class="p">:</span> <span class="mi">1000</span><span class="p">;</span><span class="mi">1000</span><span class="p">;</span><span class="mi">1000</span> <span class="o">/</span> <span class="n">N</span> <span class="n">per</span> <span class="n">m2</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">continued</span><span class="p">:</span><span class="w"> </span><span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+<span class="n">CLASSES</span><span class="w"> </span><span class="n">SETTLING</span><span class="w"> </span><span class="n">VELOCITIES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="o">-</span><span class="mi">9</span><span class="p">;</span><span class="o">-</span><span class="mi">9</span><span class="p">;</span><span class="o">-</span><span class="mi">9</span><span class="w"></span>
+<span class="n">CLASSES</span><span class="w"> </span><span class="k">CRITICAL </span><span class="n">SHEAR</span><span class="w"> </span><span class="n">VELOCITY</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">MUD</span><span class="w"> </span><span class="n">DEPOSITION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="mi">1000</span><span class="p">;</span><span class="mi">1000</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="n">per</span><span class="w"> </span><span class="n">m2</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -937,11 +1000,11 @@ C_{D} = \frac{24}{Re}
 <span class="eqno">(17)<a class="headerlink" href="#equation-eq-gaia-erosion" title="Permalink to this equation">¶</a></span>\[\begin{split}
 q_{s,e} = \begin{cases} M\cdot \left(\frac{\tau}{\tau_{cr}} - 1\right) &amp; \mbox{ if } \tau &gt; \tau_{cr} \\ 0 &amp; \mbox{ if } \tau \leq \tau_{cr}\end{cases}
 \end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(M\)</span> denotes the <span id="id6">Krone [<a class="reference internal" href="../documentation/bibliography.html#id1396">Kro62</a>]</span> – <span id="id7">Partheniades [<a class="reference internal" href="../documentation/bibliography.html#id1395">Par65</a>]</span> erosion constant (in kg m<span class="math notranslate nohighlight">\(^{-2}\)</span> s<span class="math notranslate nohighlight">\(^{-1}\)</span>), which can be defined in Gaia with the <strong>LAYERS PARTHENIADES CONSTANT</strong> keyword (default value: <code class="docutils literal notranslate"><span class="pre">1.E-03</span></code>). Moreover, <span class="math notranslate nohighlight">\(\tau_{cr}\)</span> for mud erosion can be defined with the <strong>LAYERS CRITICAL EROSION SHEAR STRESS OF THE MUD</strong> keyword (default is <code class="docutils literal notranslate"><span class="pre">0.01;0.02;0.03;...</span></code>) in N<span class="math notranslate nohighlight">\(\cdot\)</span>m<span class="math notranslate nohighlight">\(^{-2}\)</span> (not used here).</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">continued</span><span class="p">:</span> <span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
-<span class="o">/</span> <span class="p">...</span>
-<span class="n">LAYERS</span> <span class="n">PARTHENIADES</span> <span class="n">CONSTANT</span> <span class="p">:</span> <span class="mf">1.E-03</span> <span class="o">/</span> <span class="n">in</span> <span class="n">kg</span> <span class="n">per</span> <span class="n">m2</span> <span class="n">per</span> <span class="n">s</span>
-<span class="o">/</span> <span class="n">LAYERS</span> <span class="k">CRITICAL </span><span class="n">EROSION</span> <span class="n">SHEAR</span> <span class="n">STRESS</span> <span class="n">OF</span> <span class="n">THE</span> <span class="n">MUD</span> <span class="p">:</span> <span class="mf">0.01</span><span class="p">;</span><span class="mf">0.1</span><span class="p">;</span><span class="mf">0.1</span> <span class="o">/</span> <span class="n">in</span> <span class="n">N</span> <span class="n">per</span> <span class="n">m2</span>
+<p>where <span class="math notranslate nohighlight">\(M\)</span> denotes the <span id="id6">Krone [<a class="reference internal" href="../documentation/bibliography.html#id1398">Kro62</a>]</span> – <span id="id7">Partheniades [<a class="reference internal" href="../documentation/bibliography.html#id1397">Par65</a>]</span> erosion constant (in kg m<span class="math notranslate nohighlight">\(^{-2}\)</span> s<span class="math notranslate nohighlight">\(^{-1}\)</span>), which can be defined in Gaia with the <strong>LAYERS PARTHENIADES CONSTANT</strong> keyword (default value: <code class="docutils literal notranslate"><span class="pre">1.E-03</span></code>). Moreover, <span class="math notranslate nohighlight">\(\tau_{cr}\)</span> for mud erosion can be defined with the <strong>LAYERS CRITICAL EROSION SHEAR STRESS OF THE MUD</strong> keyword (default is <code class="docutils literal notranslate"><span class="pre">0.01;0.02;0.03;...</span></code>) in N<span class="math notranslate nohighlight">\(\cdot\)</span>m<span class="math notranslate nohighlight">\(^{-2}\)</span> (not used here).</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">continued</span><span class="p">:</span><span class="w"> </span><span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+<span class="n">LAYERS</span><span class="w"> </span><span class="n">PARTHENIADES</span><span class="w"> </span><span class="n">CONSTANT</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.E-03</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">kg</span><span class="w"> </span><span class="n">per</span><span class="w"> </span><span class="n">m2</span><span class="w"> </span><span class="n">per</span><span class="w"> </span><span class="n">s</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="n">LAYERS</span><span class="w"> </span><span class="k">CRITICAL </span><span class="n">EROSION</span><span class="w"> </span><span class="n">SHEAR</span><span class="w"> </span><span class="n">STRESS</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">THE</span><span class="w"> </span><span class="n">MUD</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">;</span><span class="mf">0.1</span><span class="p">;</span><span class="mf">0.1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="n">per</span><span class="w"> </span><span class="n">m2</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -950,21 +1013,21 @@ q_{s,e} = \begin{cases} M\cdot \left(\frac{\tau}{\tau_{cr}} - 1\right) &amp; \mb
 <span id="gaia-sl-formulae"></span><h2>Suspended Load Formulae<a class="headerlink" href="#suspended-load-formulae" title="Permalink to this headline">¶</a></h2>
 <p>The sediment transport formulae for suspended load modeling can be defined with the <strong>SUSPENSION TRANSPORT FORMULA FOR ALL SANDS</strong> keyword, which accepts an integer number defining a formula for calculating the equilibrium near-bed concentration <span class="math notranslate nohighlight">\(c_{eq}\)</span> in <strong>g/l</strong> (i.e., gram per 10<span class="math notranslate nohighlight">\(^{-3}\)</span> m<span class="math notranslate nohighlight">\(^3\)</span>). The calculated <span class="math notranslate nohighlight">\(c_{eq}\)</span> values align with the later <a class="reference internal" href="#gaia-ic-sl"><span class="std std-ref">definition of initial and boundary conditions</span></a> for suspended load. The following integer numbers can be used for calculating <span class="math notranslate nohighlight">\(c_{eq}\)</span> with the SUSPENSION TRANSPORT FORMULA FOR ALL SANDS keyword:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> for the <span id="id8">Zyserman and Fredsøe [<a class="reference internal" href="../documentation/bibliography.html#id1393">ZF94</a>]</span> formula:</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> for the <span id="id8">Zyserman and Fredsøe [<a class="reference internal" href="../documentation/bibliography.html#id1395">ZF94</a>]</span> formula:</p>
 <ul>
 <li><p>uses a skin friction correction (cf. <a class="reference internal" href="gaia-bedload.html#c-friction"><span class="std std-ref">bedload corrections</span></a>) for the <a class="reference internal" href="../documentation/glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a></p></li>
 <li><p>default and <strong>used in this tutorial</strong></p></li>
 <li><p>is defined in <code class="docutils literal notranslate"><span class="pre">/telemac/v8p2/sources/gaia/</span></code><strong><a class="reference external" href="http://docs.opentelemac.org/doxydocs/v8p2r0/html/suspension__fredsoe__gaia_8f.html">suspension_fredsoe_gaia.f</a></strong></p></li>
 </ul>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> for the <span id="id9">Bijker [<a class="reference internal" href="../documentation/bibliography.html#id1394">Bij92</a>]</span> formula:</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> for the <span id="id9">Bijker [<a class="reference internal" href="../documentation/bibliography.html#id1396">Bij92</a>]</span> formula:</p>
 <ul>
 <li><p>calculates suspended load concentration as a function of bedload and a reference skin-friction elevation</p></li>
 <li><p>requires that <a class="reference internal" href="gaia-bedload.html#gaia-bl"><span class="std std-ref">bedload calculation</span></a> is activated</p></li>
 <li><p>is defined in <code class="docutils literal notranslate"><span class="pre">/telemac/v8p2/sources/gaia/</span></code><strong><a class="reference external" href="http://docs.opentelemac.org/doxydocs/v8p2r0/html/suspension__bijker__gaia_8f.html">suspension_bijker_gaia.f</a></strong></p></li>
 </ul>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">3</span></code> for the <span id="id10">Van Rijn [<a class="reference internal" href="../documentation/bibliography.html#id589">VR84a</a>]</span> formula:</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">3</span></code> for the <span id="id10">Van Rijn [<a class="reference internal" href="../documentation/bibliography.html#id591">VR84a</a>]</span> formula:</p>
 <ul>
 <li><p>counterpart of the <a class="reference internal" href="gaia-bedload.html#gaia-rijn"><span class="std std-ref">van Rijn (1984)</span></a> formula for bedload</p></li>
 <li><p>uses a skin friction correction (cf. <a class="reference internal" href="gaia-bedload.html#c-friction"><span class="std std-ref">bedload corrections</span></a>) for the <a class="reference internal" href="../documentation/glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a></p></li>
@@ -972,7 +1035,7 @@ q_{s,e} = \begin{cases} M\cdot \left(\frac{\tau}{\tau_{cr}} - 1\right) &amp; \mb
 <li><p>is defined in <code class="docutils literal notranslate"><span class="pre">/telemac/v8p2/sources/gaia/</span></code><strong><a class="reference external" href="http://docs.opentelemac.org/doxydocs/v8p2r0/html/suspension__vanrijn__gaia_8f.html">suspension_vanrijn_gaia.f</a></strong></p></li>
 </ul>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">4</span></code> for the <span id="id11">Soulsby [<a class="reference internal" href="../documentation/bibliography.html#id1386">Sou97</a>]</span>-<span id="id12">Rijn and C [<a class="reference internal" href="../documentation/bibliography.html#id1381">RC07</a>]</span> formula:</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">4</span></code> for the <span id="id11">Soulsby [<a class="reference internal" href="../documentation/bibliography.html#id1388">Sou97</a>]</span>-<span id="id12">Rijn and C [<a class="reference internal" href="../documentation/bibliography.html#id1383">RC07</a>]</span> formula:</p>
 <ul>
 <li><p>uses an orbital velocity of waves (i.e., suggested application: coastal/marine regions)</p></li>
 <li><p>read more about suspended load and waves in section 5.1 of the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a></p></li>
@@ -988,9 +1051,9 @@ q_{s,e} = \begin{cases} M\cdot \left(\frac{\tau}{\tau_{cr}} - 1\right) &amp; \mb
 <p>The setup of initial and boundary conditions described in this eBook requires TELEMAC v8p2 or later. Earlier versions, such as v8p1, will not recognize the keywords for initial conditions.</p>
 </div>
 <p>Gaia enables a class-wise definition of initial concentrations for suspended load following the order of <a class="reference internal" href="gaia-basics.html#gaia-sed"><span class="std std-ref">sediment class definitions</span></a>. The following list definition sets the initial concentration for the 0.5-mm sediment class (<a class="reference internal" href="gaia-basics.html#gaia-sed"><span class="std std-ref">recall its definition</span></a>) to 0.6 <strong>g/l</strong> (i.e., 0.0006 gram per m<span class="math notranslate nohighlight">\(^3\)</span>) and 0.0 g/l for the 0.02-m and 0.1-m sediment size classes. The definition of initial suspended sediment concentrations can be overridden in 2d at boundary nodes by setting the <strong>EQUILIBRIUM INFLOW CONCENTRATION</strong> keyword to <code class="docutils literal notranslate"><span class="pre">YES</span></code> (requires that the <a class="reference internal" href="gaia-basics.html#gaia-bc"><span class="std std-ref">tracer boundary</span></a> is set to <code class="docutils literal notranslate"><span class="pre">5</span></code>).</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">continued</span><span class="p">:</span> <span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
-<span class="o">/</span> <span class="p">...</span>
-<span class="n">INITIAL</span> <span class="n">SUSPENDED</span> <span class="n">SEDIMENTS</span> <span class="n">CONCENTRATION</span> <span class="n">VALUES</span> <span class="p">:</span> <span class="mf">6.E-04</span><span class="p">;</span><span class="mf">0.</span><span class="p">;</span><span class="mf">0.</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">continued</span><span class="p">:</span><span class="w"> </span><span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+<span class="n">INITIAL</span><span class="w"> </span><span class="n">SUSPENDED</span><span class="w"> </span><span class="n">SEDIMENTS</span><span class="w"> </span><span class="n">CONCENTRATION</span><span class="w"> </span><span class="n">VALUES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">6.E-04</span><span class="p">;</span><span class="mf">0.</span><span class="p">;</span><span class="mf">0.</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Read more about the definition of initial conditions in section 2.1.1 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a>.</p>
@@ -998,10 +1061,10 @@ q_{s,e} = \begin{cases} M\cdot \left(\frac{\tau}{\tau_{cr}} - 1\right) &amp; \mb
 <div class="section" id="boundary-prescriptions">
 <span id="gaia-bc-sl"></span><h2>Boundary Prescriptions<a class="headerlink" href="#boundary-prescriptions" title="Permalink to this headline">¶</a></h2>
 <p>The per-sediment class suspended load concentrations can be prescribed similar to the initial concentrations with the <strong>PRESCRIBED SUSPENDED SEDIMENTS CONCENTRATION VALUES</strong> keyword. Alternatively, the <strong>EQUILIBRIUM INFLOW CONCENTRATION</strong> keyword may be used, though <strong>none of these keywords is used in this tutorial</strong>.</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">continued</span><span class="p">:</span> <span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
-<span class="o">/</span> <span class="p">...</span>
-<span class="o">/</span> <span class="n">PRESCRIBED</span> <span class="n">SUSPENDED</span> <span class="n">SEDIMENTS</span> <span class="n">CONCENTRATION</span> <span class="n">VALUES</span> <span class="p">:</span> <span class="mf">6.E-04</span><span class="p">;</span><span class="mf">0.</span><span class="p">;</span><span class="mf">0.</span>
-<span class="o">/</span> <span class="n">EQUILIBRIUM</span> <span class="n">INFLOW</span> <span class="n">CONCENTRATION</span> <span class="p">:</span> <span class="n">YES</span> <span class="o">/</span> <span class="nb">not </span><span class="n">used</span> <span class="n">in</span>  <span class="n">this</span> <span class="n">tutorial</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">continued</span><span class="p">:</span><span class="w"> </span><span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="n">PRESCRIBED</span><span class="w"> </span><span class="n">SUSPENDED</span><span class="w"> </span><span class="n">SEDIMENTS</span><span class="w"> </span><span class="n">CONCENTRATION</span><span class="w"> </span><span class="n">VALUES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">6.E-04</span><span class="p">;</span><span class="mf">0.</span><span class="p">;</span><span class="mf">0.</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="n">EQUILIBRIUM</span><span class="w"> </span><span class="n">INFLOW</span><span class="w"> </span><span class="n">CONCENTRATION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">YES</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">not </span><span class="n">used</span><span class="w"> </span><span class="n">in</span><span class="w">  </span><span class="n">this</span><span class="w"> </span><span class="n">tutorial</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Gaia can be run with liquid boundary files for assigning time-dependent suspended load fluxes (the outflow should be kept in equilibrium). Solid flux time series can be implemented using the already applied <code class="docutils literal notranslate"><span class="pre">455</span></code>-<code class="docutils literal notranslate"><span class="pre">5</span></code> upstream boundary type, analogous to the descriptions of the <a class="reference internal" href="telemac2d-unsteady.html#tm2d-liq-file"><span class="std std-ref">Telemac2d unsteady boundary setup</span></a>. More information about suspended load boundary conditions can be found in section 2.1.2 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a>.</p>
@@ -1020,10 +1083,10 @@ q_{s,e} = \begin{cases} M\cdot \left(\frac{\tau}{\tau_{cr}} - 1\right) &amp; \mb
 </ul>
 <p>The options <code class="docutils literal notranslate"><span class="pre">4</span></code> and <code class="docutils literal notranslate"><span class="pre">14</span></code> can be defined along with the keyword definition <code class="docutils literal notranslate"><span class="pre">CONTINUITY</span> <span class="pre">CORRECTION</span> <span class="pre">:</span> <span class="pre">YES</span></code> that enables a correction of vertical convection velocities. This setting avoids overestimating suspended load, especially in deep waters, but it is not used in this tutorial.</p>
 <p>The <strong>SCHEME OPTION FOR ADVECTION OF SUSPENDED SEDIMENTS</strong> can be additionally defined to either use a  <strong>strong (default of <code class="docutils literal notranslate"><span class="pre">1</span></code>)</strong> or a <strong>weak (<code class="docutils literal notranslate"><span class="pre">2</span></code>)</strong> form for advection. A weak form decreases <a class="reference internal" href="../documentation/glossary.html#term-Diffusion"><span class="xref std std-term">Diffusion</span></a>, is more conservative, and increases computation time (read more in the <a class="reference internal" href="telemac2d-steady.html#tm2d-fe"><span class="std std-ref">Telemac2d steady section</span></a>).</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">continued</span><span class="p">:</span> <span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
-<span class="o">/</span> <span class="p">...</span>
-<span class="n">SCHEME</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">SUSPENDED</span> <span class="n">SEDIMENTS</span> <span class="p">:</span> <span class="mi">14</span>
-<span class="o">/</span> <span class="n">CONTINUITY</span> <span class="n">CORRECTION</span> <span class="p">:</span> <span class="n">YES</span> <span class="o">/</span> <span class="k">use </span><span class="n">when</span> <span class="n">SCHEME</span> <span class="k">is </span><span class="mi">4</span> <span class="nb">or </span><span class="mi">14</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">continued</span><span class="p">:</span><span class="w"> </span><span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+<span class="n">SCHEME</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">ADVECTION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">SUSPENDED</span><span class="w"> </span><span class="n">SEDIMENTS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="n">CONTINUITY</span><span class="w"> </span><span class="n">CORRECTION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">YES</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">use </span><span class="n">when</span><span class="w"> </span><span class="n">SCHEME</span><span class="w"> </span><span class="k">is </span><span class="mi">4</span><span class="w"> </span><span class="nb">or </span><span class="mi">14</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Read more about the definition of initial conditions in section 2.1.5 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a>.</p>
@@ -1065,8 +1128,8 @@ q_{s,e} = \begin{cases} M\cdot \left(\frac{\tau}{\tau_{cr}} - 1\right) &amp; \mb
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="gaia-bedload.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -1083,19 +1146,17 @@ q_{s,e} = \begin{cases} M\cdot \left(\frac{\tau}{\tau_{cr}} - 1\right) &amp; \mb
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Sebastian Schwindt<br/>
-        
-            &copy; Copyright 2022.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Sebastian Schwindt, Ricardo Barros<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
 </main>
 
 

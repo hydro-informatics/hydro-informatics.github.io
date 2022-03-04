@@ -38,12 +38,15 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe,.cell"
@@ -473,8 +476,8 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/jupyter-example.html">
-     Exercise 1
+    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
+     Support Vector Machine
     </a>
    </li>
   </ul>
@@ -756,7 +759,7 @@
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
-  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a> and Ricardo Barros
 </div>
 
 </div>
@@ -796,7 +799,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -852,7 +855,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -924,7 +927,82 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Hello Data Types</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-python-environment">
+   Load Python Environment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-first-lines-of-code">
+   The First Lines of Code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-variables-and-data-types">
+   Python Variables and Data Types
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#text">
+     Text
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#boolean">
+     Boolean
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numbers-numeric">
+     Numbers (Numeric)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#list">
+     List
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tuple">
+     Tuple
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dictionary">
+     Dictionary
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sets">
+     Sets
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#operators">
+   Operators
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="hello-data-types">
@@ -1024,8 +1102,8 @@
 <h3>Text<a class="headerlink" href="#text" title="Permalink to this headline">¶</a></h3>
 <p>Text variables in <em>Python</em> are <em>strings</em> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) that consist of multiple <em>characters</em> (<code class="docutils literal notranslate"><span class="pre">chr</span></code>):</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="3e0c943d-ab8a-4c49-8598-f087ad5e0a02" name="372d4fec-a6a9-48fc-8390-798034f3fab5" type="radio">
-</input><label class="tabbed-label" for="3e0c943d-ab8a-4c49-8598-f087ad5e0a02">
+<input checked="checked" id="b7021e85-4224-4154-b620-4431c867ece7" name="24c85f0e-d3e6-46df-89d0-9b700b4a662b" type="radio">
+</input><label class="tabbed-label" for="b7021e85-4224-4154-b620-4431c867ece7">
 Rendered table</label><div class="tabbed-content docutils">
 <table class="colwidths-auto table">
 <thead>
@@ -1054,8 +1132,8 @@ Rendered table</label><div class="tabbed-content docutils">
 </tbody>
 </table>
 </div>
-<input id="bc9ae91b-888e-4d99-b969-cb2ff1c4635e" name="372d4fec-a6a9-48fc-8390-798034f3fab5" type="radio">
-</input><label class="tabbed-label" for="bc9ae91b-888e-4d99-b969-cb2ff1c4635e">
+<input id="9d66291c-9864-4d03-badd-0d5a55f39fc6" name="24c85f0e-d3e6-46df-89d0-9b700b4a662b" type="radio">
+</input><label class="tabbed-label" for="9d66291c-9864-4d03-badd-0d5a55f39fc6">
 Source code</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>| Type | Example     | Description                        |
 |------|:-----------:|------------------------------------|
@@ -1346,8 +1424,8 @@ This is what is unique to both shops (symmetric difference): {&#39;green&#39;, &
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="../python-basics/python.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -1364,19 +1442,17 @@ This is what is unique to both shops (symmetric difference): {&#39;green&#39;, &
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Sebastian Schwindt<br/>
-        
-            &copy; Copyright 2022.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Sebastian Schwindt, Ricardo Barros<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
 </main>
 
 

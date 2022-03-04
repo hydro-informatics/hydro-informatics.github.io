@@ -38,12 +38,15 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe,.cell"
@@ -56,7 +59,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="BASEMENT" href="basement.html" />
-    <link rel="prev" title="Exercise 1" href="../datascience/jupyter-example.html" />
+    <link rel="prev" title="Support Vector Machine" href="../datascience/morphology-predictor-svm.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -473,8 +476,8 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/jupyter-example.html">
-     Exercise 1
+    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
+     Support Vector Machine
     </a>
    </li>
   </ul>
@@ -756,7 +759,7 @@
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
-  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a> and Ricardo Barros
 </div>
 
 </div>
@@ -796,7 +799,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -827,7 +830,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -857,14 +860,47 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Principles</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-setup">
+   Model Setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calibration-and-validation">
+   Calibration and Validation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-to-do-with-numerical-model-results">
+   What to do with Numerical Model Results?
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="principles">
 <h1>Principles<a class="headerlink" href="#principles" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="model-setup">
 <h2>Model Setup<a class="headerlink" href="#model-setup" title="Permalink to this headline">¶</a></h2>
-<p>Numerical models in water resources engineering approximate the motion of fluids through iterative solutions of the <a class="reference internal" href="../documentation/glossary.html#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a>. The role of numerical models is becoming more and more important where models are distinguished regarding simplification hypotheses (e.g., for dimensions or fluid characteristics). Purely hydrodynamic models simulate the motion of water and have high accuracy for simulating flow phenomena, but major challenges remain for morphodynamic modeling. While one-dimensional (<strong>1d</strong> cross-section-averaged) modeling is slowly abandoned for its incapacity to account for complex flow phenomena in natural rivers, two-dimensional (<strong>2d</strong>) and three-dimensional (<strong>3d</strong>) models are becoming more and more popular. Still, there are challenges in model choices and understanding numerical models. In this context, <span id="id1">Mosselman and Le [<a class="reference internal" href="../documentation/bibliography.html#id1167">ML16</a>]</span> highlight five widespread and common problems in the creation and interpretation of numerical models. These five mistakes are:</p>
+<p>Numerical models in water resources engineering approximate the motion of fluids through iterative solutions of the <a class="reference internal" href="../documentation/glossary.html#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a>. The role of numerical models is becoming more and more important where models are distinguished regarding simplification hypotheses (e.g., for dimensions or fluid characteristics). Purely hydrodynamic models simulate the motion of water and have high accuracy for simulating flow phenomena, but major challenges remain for morphodynamic modeling. While one-dimensional (<strong>1d</strong> cross-section-averaged) modeling is slowly abandoned for its incapacity to account for complex flow phenomena in natural rivers, two-dimensional (<strong>2d</strong>) and three-dimensional (<strong>3d</strong>) models are becoming more and more popular. Still, there are challenges in model choices and understanding numerical models. In this context, <span id="id1">Mosselman and Le [<a class="reference internal" href="../documentation/bibliography.html#id1169">ML16</a>]</span> highlight five widespread and common problems in the creation and interpretation of numerical models. These five mistakes are:</p>
 <ol class="simple">
 <li><p>Preparation: One-dimensional (1d), two-dimensional (2d), and three-dimensional (3d) models require similar input data (flow series, stage-discharge relation, roughness, digital elevation model, grain sizes). What varies are the computation (3d &gt; 2d &gt; 1d) and the calibration (1d &gt; 2d &gt; 3d) efforts.</p></li>
 <li><p>Grid setup: The model boundaries need to be at an adequate distance to the area of interest. An inflow boundary should only be along the permanently wetted riverbed and the most upstream 1-2% of the modeled channel bed should have a non-erosive constraint assigned to the cells. Otherwise, the model may be unstable because of locally very high velocity and erosion rates close to the inflow boundary.</p></li>
@@ -927,14 +963,14 @@
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="../datascience/jupyter-example.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../datascience/morphology-predictor-svm.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Exercise 1</p>
+            <p class="prev-next-title">Support Vector Machine</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="basement.html" title="next page">
@@ -945,19 +981,17 @@
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Sebastian Schwindt<br/>
-        
-            &copy; Copyright 2022.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Sebastian Schwindt, Ricardo Barros<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
 </main>
 
 

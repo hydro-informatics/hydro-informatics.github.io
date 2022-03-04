@@ -38,14 +38,17 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe,.cell"
@@ -475,8 +478,8 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/jupyter-example.html">
-     Exercise 1
+    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
+     Support Vector Machine
     </a>
    </li>
   </ul>
@@ -758,7 +761,7 @@
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
-  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a> and Ricardo Barros
 </div>
 
 </div>
@@ -798,7 +801,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -829,7 +832,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -963,7 +966,144 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Script a Habitat Suitability Map</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-habitat-suitability">
+   What is Habitat Suitability?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#available-data-and-code-structure">
+   Available Data and Code Structure
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#two-dimensional-2d-hydrodynamic-modelling-folder-basement">
+     Two-dimensional (2d) Hydrodynamic Modelling (Folder:
+     <em>
+      BASEMENT
+     </em>
+     )
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#habitat-suitability-index-hsi-curves-folder-habitat">
+     Habitat Suitability Index HSI Curves (folder:
+     <strong>
+      habitat
+     </strong>
+     )
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code">
+     Code
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-and-combine-hsi-rasters">
+   Create and Combine HSI Rasters
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#complete-the-init-method-of-the-raster-class-raster-py">
+     Complete the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       __init__
+      </span>
+     </code>
+     Method of the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Raster
+      </span>
+     </code>
+     Class (
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       raster.py
+      </span>
+     </code>
+     )
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#complete-magic-methods-of-the-raster-class-raster-py">
+     Complete Magic Methods of the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Raster
+      </span>
+     </code>
+     Class (
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       raster.py
+      </span>
+     </code>
+     )
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#write-hsi-and-chsi-raster-creation-script">
+     Write HSI and cHSI Raster Creation Script
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#run-the-hsi-and-chsi-code">
+     Run the HSI and cHSI Code
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#result-interpretation">
+     Result Interpretation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculate-usable-habitat-area-uha">
+   Calculate Usable Habitat Area UHA
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#write-the-code">
+     Write the Code
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#run-the-usable-habitat-area-calculation-code">
+     Run the Usable Habitat Area Calculation Code
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     Result Interpretation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="script-a-habitat-suitability-map">
@@ -1000,7 +1140,7 @@
 <br>For example, the combination of the water depth-related <span class="math notranslate nohighlight">\(HSI_{h}\)</span> and flow velocity-related <span class="math notranslate nohighlight">\(HSI_{u}\)</span> with the product method is: <span class="math notranslate nohighlight">\(cHSI = (HSI_{h} \cdot HSI_{u})\)</span></p></li>
 </ul>
 <p>Therefore, if the pixel-based <span class="math notranslate nohighlight">\(HSI\)</span> values for water depth and flow velocity are known from a two-dimensional (2d) hydrodynamic model, then for each pixel the <span class="math notranslate nohighlight">\(cHSI\)</span> value can be calculated either as the product or geometric mean of the single-parameter <span class="math notranslate nohighlight">\(HSI_{par}\)</span> rasters.</p>
-<p>This habitat assessment concept was introduced by <span id="id1">Bovee [<a class="reference internal" href="../documentation/bibliography.html#id833">Bov86</a>]</span> and <span id="id2">Stalnaker <em>et al.</em> [<a class="reference internal" href="../documentation/bibliography.html#id792">SLH+95</a>]</span> (<a class="reference external" href="https://apps.dtic.mil/sti/pdfs/ADA322762.pdf">direct download</a>). However, these authors built their usable (physical) habitat assessment based on one-dimensional (1d) numerical models that were commonly used in the last millennium. Today, 2d numerical models are the state-of-the-art to determine physical habitat geospatially explicit based on pixel-based <span class="math notranslate nohighlight">\(cHSI\)</span> values. There are two different options for calculating the usable habitat area (<span class="math notranslate nohighlight">\(UHA\)</span>) based on pixel-based <span class="math notranslate nohighlight">\(cHSI\)</span> values (and even more options can be found in the scientific literature). <a name="uha-methods"></a></p>
+<p>This habitat assessment concept was introduced by <span id="id1">Bovee [<a class="reference internal" href="../documentation/bibliography.html#id835">Bov86</a>]</span> and <span id="id2">Stalnaker <em>et al.</em> [<a class="reference internal" href="../documentation/bibliography.html#id794">SLH+95</a>]</span> (<a class="reference external" href="https://apps.dtic.mil/sti/pdfs/ADA322762.pdf">direct download</a>). However, these authors built their usable (physical) habitat assessment based on one-dimensional (1d) numerical models that were commonly used in the last millennium. Today, 2d numerical models are the state-of-the-art to determine physical habitat geospatially explicit based on pixel-based <span class="math notranslate nohighlight">\(cHSI\)</span> values. There are two different options for calculating the usable habitat area (<span class="math notranslate nohighlight">\(UHA\)</span>) based on pixel-based <span class="math notranslate nohighlight">\(cHSI\)</span> values (and even more options can be found in the scientific literature). <a name="uha-methods"></a></p>
 <ol class="simple">
 <li><p>Use a threshold value above which a pixel is classified as a usable habitat.</p>
 <ul class="simple">
@@ -1018,10 +1158,10 @@
 </ol>
 <div class="attention admonition">
 <p class="admonition-title">Weighted Usable Area (WUA) vs. UHA</p>
-<p>Some authors (e.g., <span id="id3">Yao <em>et al.</em> [<a class="reference internal" href="../documentation/bibliography.html#id1034">YBR18</a>]</span>, <span id="id4">Tuhtan <em>et al.</em> [<a class="reference internal" href="../documentation/bibliography.html#id1150">TNW12</a>]</span>) incorrectly refer to this weighting as Weighted Usable Area (<em>WUA</em>), which conflicts with the original definition of <em>WUA</em> <span id="id5">[<a class="reference internal" href="../documentation/bibliography.html#id833">Bov86</a>]</span>.</p>
+<p>Some authors (e.g., <span id="id3">Yao <em>et al.</em> [<a class="reference internal" href="../documentation/bibliography.html#id1036">YBR18</a>]</span>, <span id="id4">Tuhtan <em>et al.</em> [<a class="reference internal" href="../documentation/bibliography.html#id1152">TNW12</a>]</span>) incorrectly refer to this weighting as Weighted Usable Area (<em>WUA</em>), which conflicts with the original definition of <em>WUA</em> <span id="id5">[<a class="reference internal" href="../documentation/bibliography.html#id835">Bov86</a>]</span>.</p>
 <p>The threshold method is preferable over the weighting method because the <span class="math notranslate nohighlight">\(HSI\)</span>  has the unit of <em>Index</em> and is therefore not dimensionless. As a result, unrealistic units of <em>Index</em> areas (e.g., <em>Index</em>-m<span class="math notranslate nohighlight">\(^2\)</span>) are created in the weighting method, which is also introducing non-measurable uncertainty.</p>
 </div>
-<p>An alternative to the deterministic calculation of the <span class="math notranslate nohighlight">\(HSI\)</span> and <span class="math notranslate nohighlight">\(cHSI\)</span> values of a pixel is a fuzzy logic approach <span id="id6">[<a class="reference internal" href="../documentation/bibliography.html#id1172">NSW13</a>]</span>. In the fuzzy logic approach, pixels are classified, for instance, as <em>low</em>, <em>medium</em>, or <em>high</em> habitat quality as a function of the associated water depth or flow velocity using categorical (<em>low</em>, <em>medium</em>, or <em>high</em>), expert assessment-based <span class="math notranslate nohighlight">\(HSI\)</span> curves. The <span class="math notranslate nohighlight">\(cHSI\)</span> value results from the center of gravity of superimposed membership functions of considered parameters (e.g., water depth and flow velocity).</p>
+<p>An alternative to the deterministic calculation of the <span class="math notranslate nohighlight">\(HSI\)</span> and <span class="math notranslate nohighlight">\(cHSI\)</span> values of a pixel is a fuzzy logic approach <span id="id6">[<a class="reference internal" href="../documentation/bibliography.html#id1174">NSW13</a>]</span>. In the fuzzy logic approach, pixels are classified, for instance, as <em>low</em>, <em>medium</em>, or <em>high</em> habitat quality as a function of the associated water depth or flow velocity using categorical (<em>low</em>, <em>medium</em>, or <em>high</em>), expert assessment-based <span class="math notranslate nohighlight">\(HSI\)</span> curves. The <span class="math notranslate nohighlight">\(cHSI\)</span> value results from the center of gravity of superimposed membership functions of considered parameters (e.g., water depth and flow velocity).</p>
 <p>Sustainable river management involves the challenge of designing an aquatic habitat for target fish species at different life stages. The concept of usable physical habitat area represents a powerful tool to leverage the assessment of the ecological integrity of river management and engineering measures. For example, by calculating the usable habitat area before and after the implementation of measures, valuable conclusions can be drawn about the ecological integrity of restoration efforts.</p>
 <p>This exercise demonstrates the use of 2d hydrodynamic modeling results to algorithmically evaluate usable habitat area based on the calculation of geospatially explicit <span class="math notranslate nohighlight">\(cHSI\)</span> values.</p>
 </div>
@@ -1669,8 +1809,8 @@ Then, create a void <a class="reference internal" href="../jupyter/pybase.html#l
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="geo-exercises.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -1687,19 +1827,17 @@ Then, create a void <a class="reference internal" href="../jupyter/pybase.html#l
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Sebastian Schwindt<br/>
-        
-            &copy; Copyright 2022.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Sebastian Schwindt, Ricardo Barros<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
 </main>
 
 

@@ -38,12 +38,15 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe,.cell"
@@ -473,8 +476,8 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/jupyter-example.html">
-     Exercise 1
+    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
+     Support Vector Machine
     </a>
    </li>
   </ul>
@@ -756,7 +759,7 @@
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
-  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a> and Ricardo Barros
 </div>
 
 </div>
@@ -796,7 +799,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -827,7 +830,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -948,7 +951,131 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>How to Markdown and Document</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#document-your-work">
+   Document Your Work
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-to-document">
+   What to Document?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#present-your-software-or-project">
+     Present Your Software or Project
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#requirements">
+     Requirements
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#installation">
+     Installation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#usage">
+     Usage
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#troubleshooting">
+     Troubleshooting
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#contributing">
+     Contributing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#markdown">
+   Markdown
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#markdown-editors-ides">
+     Markdown Editors (IDEs)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#markdown-command-overview-and-image-implementation">
+     Markdown Command Overview and Image Implementation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#itemization-un-numbered-lists">
+     Itemization (Un-numbered Lists)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tables">
+     Tables
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#math-expressions-equations">
+     Math Expressions: Equations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#html-markdown">
+   Html - Markdown
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#greek-letters">
+     Greek Letters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arrows-and-operators">
+     Arrows and Operators
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#miscellaneous-symbols">
+     Miscellaneous Symbols
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wikis">
+   Wikis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#restructuredtext-sphinx-and-readthedocs">
+   reStructuredText, Sphinx, and readthedocs
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="how-to-markdown-and-document">
@@ -1004,8 +1131,8 @@ So if you have made an ingenious discovery, you want to make sure you document i
 <span id="id1"></span><h2>Markdown<a class="headerlink" href="#markdown" title="Permalink to this headline">¶</a></h2>
 <p>For writing a documentation of a code or project in web-publish-ready format, cross-platform typesetting is needed. For this purpose, <em>Markdown</em> represents a good choice (among others, such as <a class="reference internal" href="#rst"><span class="std std-ref">reStructuredText</span></a>). <em>Markdown</em> was created in 2004 and is a simple markup language that is intuitive and easy to learn. Markup languages structure the content of plain text documents regarding the way a document is displayed to end-users (<a class="reference internal" href="glossary.html#term-Rich-Text-Format"><span class="xref std std-term">Rich Text Format</span></a>). Other popular markup languages are for example <a class="reference external" href="https://en.wikipedia.org/wiki/TeX">TeX</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/XML">XML (Extensible Markup Language)</a>. <em>Markdown</em> became a popular tool for writing syntactically distinguishable computer text that is then translated into <a class="reference internal" href="glossary.html#term-Rich-Text-Format"><span class="xref std std-term">Rich Text Format</span></a> flavor. Here is an example of how <em>Markdown</em> works:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="8315e841-1d2c-4df1-a34c-e3c2844c0f54" name="57411148-5830-47af-8d13-d8443275e641" type="radio">
-</input><label class="tabbed-label" for="8315e841-1d2c-4df1-a34c-e3c2844c0f54">
+<input checked="checked" id="15df8fca-27c9-4c0d-9871-cae42d22e1df" name="67e91faa-b756-4cae-8b61-aabfdceffaa6" type="radio">
+</input><label class="tabbed-label" for="15df8fca-27c9-4c0d-9871-cae42d22e1df">
 Raw Markdown</label><div class="tabbed-content docutils">
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># Better than Word-like rich text editors</span>
 <span class="ge">*OS*</span>-independent functionality:
@@ -1016,8 +1143,8 @@ Raw Markdown</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="60b7d9f4-0a77-4cd5-a4e1-8dc0abd0d51e" name="57411148-5830-47af-8d13-d8443275e641" type="radio">
-</input><label class="tabbed-label" for="60b7d9f4-0a77-4cd5-a4e1-8dc0abd0d51e">
+<input id="f5942a0c-9a31-4ce0-a1d0-ba429ce5636f" name="67e91faa-b756-4cae-8b61-aabfdceffaa6" type="radio">
+</input><label class="tabbed-label" for="f5942a0c-9a31-4ce0-a1d0-ba429ce5636f">
 Rendered</label><div class="tabbed-content docutils">
 <p><strong>Better than Word-like rich text editors</strong></p>
 <p><em>OS</em>-independent functionality:</p>
@@ -1112,8 +1239,8 @@ Rendered</label><div class="tabbed-content docutils">
 <h3>Itemization (Un-numbered Lists)<a class="headerlink" href="#itemization-un-numbered-lists" title="Permalink to this headline">¶</a></h3>
 <p>Itemized list section can be produced using <code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">+</span></code>, or <code class="docutils literal notranslate"><span class="pre">-</span></code> symbols with tabs that determine the list indentation:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="5d33b95d-9a3b-4e8b-a10b-237cda3e19b3" name="8fe01d84-ed03-43ce-8d47-8fcb272a1d26" type="radio">
-</input><label class="tabbed-label" for="5d33b95d-9a3b-4e8b-a10b-237cda3e19b3">
+<input checked="checked" id="2bf14b26-34cc-4404-b014-f864caa5c2a2" name="0d58eeb5-0e21-49bb-ba86-c655ca052d6e" type="radio">
+</input><label class="tabbed-label" for="2bf14b26-34cc-4404-b014-f864caa5c2a2">
 Raw Markdown</label><div class="tabbed-content docutils">
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="k">*</span> level 1 item
     <span class="k">-</span> level 2 item
@@ -1123,8 +1250,8 @@ Raw Markdown</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="240b7806-db04-4cd7-b8b8-20107f9cb8df" name="8fe01d84-ed03-43ce-8d47-8fcb272a1d26" type="radio">
-</input><label class="tabbed-label" for="240b7806-db04-4cd7-b8b8-20107f9cb8df">
+<input id="88fc395e-d549-4348-afbb-52d70c52db38" name="0d58eeb5-0e21-49bb-ba86-c655ca052d6e" type="radio">
+</input><label class="tabbed-label" for="88fc395e-d549-4348-afbb-52d70c52db38">
 Rendered</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p>level 1 item</p>
@@ -1146,8 +1273,8 @@ Rendered</label><div class="tabbed-content docutils">
 <h3>Tables<a class="headerlink" href="#tables" title="Permalink to this headline">¶</a></h3>
 <p>Table columns are separated by a <code class="docutils literal notranslate"><span class="pre">|</span></code> sign. The first row determines row headers and the second row the alignment through the use of <code class="docutils literal notranslate"><span class="pre">:</span></code> (see below example).</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="965f4dd2-927d-4d38-a3e1-4c838e20fd7e" name="e111fda2-2c26-4716-b8aa-928e1cb4381f" type="radio">
-</input><label class="tabbed-label" for="965f4dd2-927d-4d38-a3e1-4c838e20fd7e">
+<input checked="checked" id="6d400cec-c6d1-4815-b027-9a3dd49aafd7" name="59c49bb7-180c-40a7-8c89-6a9861b2adcf" type="radio">
+</input><label class="tabbed-label" for="6d400cec-c6d1-4815-b027-9a3dd49aafd7">
 Raw Markdown</label><div class="tabbed-content docutils">
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>| Fruit | Kingdom | Genus |
 |-------|:-------:|------:|
@@ -1156,8 +1283,8 @@ Raw Markdown</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="2751e119-aab2-489c-b523-e891d1799803" name="e111fda2-2c26-4716-b8aa-928e1cb4381f" type="radio">
-</input><label class="tabbed-label" for="2751e119-aab2-489c-b523-e891d1799803">
+<input id="bc98c9ab-ae39-4be5-83f1-778eb87cc9aa" name="59c49bb7-180c-40a7-8c89-6a9861b2adcf" type="radio">
+</input><label class="tabbed-label" for="bc98c9ab-ae39-4be5-83f1-778eb87cc9aa">
 Rendered</label><div class="tabbed-content docutils">
 <table class="colwidths-auto table">
 <thead>
@@ -1707,8 +1834,8 @@ Rendered</label><div class="tabbed-content docutils">
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="../numerics/gaia-run.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -1725,19 +1852,17 @@ Rendered</label><div class="tabbed-content docutils">
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Sebastian Schwindt<br/>
-        
-            &copy; Copyright 2022.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Sebastian Schwindt, Ricardo Barros<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
 </main>
 
 

@@ -38,12 +38,15 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <link rel="canonical" href="https://hydro-informatics.com/genindex.html" />
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="#" />
@@ -464,8 +467,8 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="datascience/jupyter-example.html">
-     Exercise 1
+    <a class="reference internal" href="datascience/morphology-predictor-svm.html">
+     Support Vector Machine
     </a>
    </li>
   </ul>
@@ -747,7 +750,7 @@
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
-  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a> and Ricardo Barros
 </div>
 
 </div>
@@ -801,14 +804,24 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
         </div>
     </div>
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
 
@@ -860,6 +873,8 @@
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="documentation/glossary.html#term-Boussinesq"><strong>Boussinesq</strong></a>
+</li>
+      <li><a href="documentation/glossary.html#term-Braiding"><strong>Braiding</strong></a>
 </li>
   </ul></td>
 </tr></table>
@@ -997,11 +1012,13 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="documentation/glossary.html#term-Rating-curve"><strong>Rating curve</strong></a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="documentation/glossary.html#term-Reynolds-number"><strong>Reynolds number</strong></a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="documentation/glossary.html#term-Rich-Text-Format"><strong>Rich Text Format</strong></a>
+</li>
+      <li><a href="documentation/glossary.html#term-Riffle-pool"><strong>Riffle pool</strong></a>
 </li>
   </ul></td>
 </tr></table>
@@ -1010,6 +1027,8 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="documentation/glossary.html#term-Saint-Venant-equations"><strong>Saint-Venant equations</strong></a>
+</li>
+      <li><a href="documentation/glossary.html#term-Sand-bed"><strong>Sand bed</strong></a>
 </li>
       <li><a href="documentation/glossary.html#term-Sediment-transport"><strong>Sediment transport</strong></a>
 </li>
@@ -1028,6 +1047,8 @@
       <li><a href="documentation/glossary.html#term-SRS"><strong>SRS</strong></a>
 </li>
       <li><a href="documentation/glossary.html#term-Stage-discharge-relation"><strong>Stage-discharge relation</strong></a>
+</li>
+      <li><a href="documentation/glossary.html#term-Step-pool"><strong>Step pool</strong></a>
 </li>
       <li><a href="documentation/glossary.html#term-STL"><strong>STL</strong></a>
 </li>
@@ -1060,23 +1081,21 @@
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Sebastian Schwindt<br/>
-        
-            &copy; Copyright 2022.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Sebastian Schwindt, Ricardo Barros<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
 </main>
 
 

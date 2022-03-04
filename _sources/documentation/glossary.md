@@ -41,6 +41,16 @@ Bedload
 Boussinesq
   The Boussinesq approximation of the {term}`Continuity equation` assumes that density variations can be neglected except for the gravity term (i.e., in the vertical momentum equations). In addition, the Boussinesq approximation assumes that a fluid is incompressible and that wave motion is inviscid {cite:p}`spiegel1960`.
 
+Braiding
+  A braiding river morphology refers to anabranched channel networks with high {term}`bedload <Bedload>` supply, mostly located in moderately steep mid-land to mountain rivers {cite:p}`leopold_river_1957, rosgen_classification_1994`.
+
+  ```{figure} ../img/nature/devoll-alluvial-braided-2021.jpg
+  :alt: river geomorphology anabranch tresse zopfform
+  :name: braided-channel
+
+  A braided-channel section of the Devolli River (Albania). Source: Sebastian Schwindt (2021)
+  ```
+
 CFL
   In the field of hydrodynamics, the abbreviation CFL commonly refers to the **Courant-Friedrichs-Lewy** condition, which represents a convergence criterion for the numerical solution to the *Navier-Stokes* partial differential equations. The CFL applies to explicit time integration schemes that may become unstable for large time steps as a function of the size of mesh cells. Today, most numerical software uses an internal value for the CFL to adaptively calculate the maximum time step that is required for the stability of explicit solvers. In 2d modelling, the CFL condition is defined as $c_{cfl}={u_x \cdot \Delta t}/\Delta x + {u_y \cdot \Delta t}/\Delta y$, where $\Delta t$ is the time step, $\Delta x$ and $\Delta y$ are grid cell sizes in $x$ and $y$ directions of the coordinate reference system, and $u_x$ and $u_y$ are the flow velocities in the $x$ and $y$ directions. An explicit solver is assumed to be stable when $c_{cfl} \leq c_{cfl, crit}$, where the critical value $c_{cfl, crit}$ for the CFL condition must be smaller than 1.0. To this end, numerical modelling software, such as BASEMENT, uses a default value of $c_{cfl, crit} = 0.9$.
 
@@ -208,10 +218,30 @@ Reynolds number
 Rich Text Format
   The proprietary Rich Text Format (RTF) wraps raw text in functional blocks that enable graphically flavored *Word*-like processors to identify document properties such as font size and type. Common RTFs are, for instance, *docx* or *odf* and enable exchanging text files between different *Word*-like processors on different operating systems.
 
+Riffle pool
+  Riffle-pool (or pool-riffle) sequences are a sequence of fast-flowing, shallow flow units and deeper, slower flowing units of a river, where the dimensions of one unit correspond approximately to one channel width {cite:p}`lisle1979sorting`. The maintenance of riffle-pool channels requires sufficient sediment supply during smaller floods and a velocity reversal when those floods occur {cite:p}`caamano_unifying_2009`.
+
+    ```{figure} ../img/nature/pool-riffle.jpg
+  :alt: riffle pool bedform gravel bed
+  :name: riffle-pool
+
+  A pool-riffle sequence at the American River close to Sacramento (CA, USA). Source: Sebastian Schwindt (2018)
+  ```
+
 Saint-Venant equations
   The French mathematician Adhémar Jean Claude Barré de Saint-Venant introduced dimensional simplifications of the {term}`Navier-Stokes equations`. For simple cross-sections, the one-dimensional (1d), cross-section averaged Saint-Venant equations can be applied, and represent the baseline for the Manning-Strickler Formula (cf. the {ref}`1d Hydraulics Python exercise <ex-1d-hydraulics>`). The two-dimensional (2d), depth-averaged Saint-Venant equations are more frequently referred to as the {term}`Shallow water equations`, which imply a hydrostatic pressure distribution {cite:p}`graf_hydraulique_2011`.
 
   *French: Équations (de Barré) de Saint-Venant <br>German: Saint-Venant-Gleichungen*
+
+Sand bed
+  Sand bed rivers are characterized by the abundance of fine sediment and sand bars. Compared with a gravel bed, a sand bed tends to have higher suspended load. This type of morphology is often observed lowland and coastal regions where the the hypothetic energy grade is low is less intense than in steeper regions {cite:p}`kleinhans2005, zyserman1994`.
+
+  ```{figure} ../img/nature/sand-bed.jpg
+  :alt: sandbed dunes anti-dunes
+  :name: sand-bed
+
+  Dune bedforms of a sand bed in a side channel of the Inn River in Bavaria, Germany. Source. Sebastian Schwindt (2022)
+  ```
 
 Sediment transport
   Fluvial sediment transport encompasses two modes of particle displacement: (1) suspended load and (2) bedload (see figure below). Finer particles with a weight that can be carried by the fluid (water) are transported as {term}`Suspended load`. Coarser particles rolling, sliding, and jumping on the channel bed are transported as {term}`Bedload`. There is third type of transport, the so-called wash load, which is finer than the coarse bed load, but too heavy (large) to be transported in suspension {cite:p}`einstein_bed-load_1950`. The units for sediment transport are for an integral flow cross-section kg$^3\cdot$s$^{-1}$ or per unit width kg$^3\cdot$s$^{-1}$m$^{-1}$.
@@ -268,7 +298,10 @@ SRS
 Stage-discharge relation
   A stage-discharge relation (also referred to as **rating curve**) plots discharge (in m$^3$/s or CFS) as a function of water surface elevation function (in m above sea level or ft) at a specific river cross-section. Most stream gauging stations have a regularly calibrated stage-discharge relation that is often maintained by a state authority. This is why, it is mostly state authorities that provide stage-discharge functions for their gauging stations online, such as the state of Bavaria at the [Mühldorf am Inn gauge](https://www.hnd.bayern.de/pegel/donau_bis_passau/muehldorf-18004506/abflusstafel?).
 
-  *French: Courbe d'étalonnage / Courbe hauteur-débit / Courbe de tarage <br>German: Wasserstands-Abfluss Beziehung, bzw. Abflusskurve / Abflussschlüsselkurve*
+  *French: Courbe d'étalonnage / Courbe hauteur-débit / Courbe de tarage <br>German: Wasserstands-Abfluss Beziehung, bzw. Abflusskurve / Abflussschlüsselkurve / Eichkurve*
+
+Step pool
+  Step pools are a type of river bed morphology found in step regions such as mountains. They are often composed of high gradients (exceeding 2%) and rough geological formation (Cobble and bedrock) {cite:p}`gonda2008characteristics`.
 
 STL
   The Standard Tessellation Language (STL) file format is native to a three-dimensional (3d) printing CAD software type called [stereolithography](https://en.wikipedia.org/wiki/Stereolithography). An STL file describes 3d structures in the form of unstructured triangulated surfaces with arbitrary units.

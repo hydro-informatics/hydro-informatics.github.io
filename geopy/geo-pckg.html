@@ -38,12 +38,15 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe,.cell"
@@ -473,8 +476,8 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/jupyter-example.html">
-     Exercise 1
+    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
+     Support Vector Machine
     </a>
    </li>
   </ul>
@@ -756,7 +759,7 @@
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
-  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a> and Ricardo Barros
 </div>
 
 </div>
@@ -796,7 +799,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -827,7 +830,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -877,7 +880,60 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Geospatial Open Source Python Libraries</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#osgeo-and-gdal-including-ogr-and-osr">
+   OSGeo and GDAL Including ogr and osr
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#geojson">
+   geojson
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#descartes-labs">
+   Descartes Labs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-imaging-library-pil-pillow">
+   Python Imaging Library (PIL) / pillow
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shapely">
+   shapely
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pyshp">
+   pyshp
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-packages">
+   Other packages
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="geospatial-open-source-python-libraries">
@@ -909,16 +965,16 @@
 <span id="geojson-pckg"></span><h2>geojson<a class="headerlink" href="#geojson" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="https://pypi.org/project/geojson/">geojson</a> library is the most direct option for handling <a class="reference internal" href="geospatial-data.html#geojson"><span class="std std-ref">GeoJSON</span></a> data and is also already installed along with <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a>.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="ec3b9ba2-ad1c-47c5-9ca0-097437dc05f4" name="f4d11563-8d31-4ebe-9132-ee8a8890e888" type="radio">
-</input><label class="tabbed-label" for="ec3b9ba2-ad1c-47c5-9ca0-097437dc05f4">
+<input checked="checked" id="75497299-ffa0-4209-aa2d-7fce4210cda6" name="a6f48436-6678-436b-8d20-bfb571078bcd" type="radio">
+</input><label class="tabbed-label" for="75497299-ffa0-4209-aa2d-7fce4210cda6">
 Linux / pip</label><div class="tabbed-content docutils">
 <p>To install <code class="docutils literal notranslate"><span class="pre">geojson</span></code>, open <em>Terminal</em> and type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">geojson</span>
 </pre></div>
 </div>
 </div>
-<input id="ca284646-2efe-4e06-8ca9-3e308ef0e662" name="f4d11563-8d31-4ebe-9132-ee8a8890e888" type="radio">
-</input><label class="tabbed-label" for="ca284646-2efe-4e06-8ca9-3e308ef0e662">
+<input id="018b4e65-f4ae-4e08-80b2-59c54dc99765" name="a6f48436-6678-436b-8d20-bfb571078bcd" type="radio">
+</input><label class="tabbed-label" for="018b4e65-f4ae-4e08-80b2-59c54dc99765">
 Windows / conda</label><div class="tabbed-content docutils">
 <p>To install <code class="docutils literal notranslate"><span class="pre">geojson</span></code> for Python Anaconda, open <a class="reference internal" href="../python-basics/pyinstall.html#install-pckg"><span class="std std-ref">Anaconda Prompt</span></a> and type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">geojson</span>
@@ -931,16 +987,16 @@ Windows / conda</label><div class="tabbed-content docutils">
 <span id="descartes"></span><h2>Descartes Labs<a class="headerlink" href="#descartes-labs" title="Permalink to this headline">¶</a></h2>
 <p>Even though of proprietary origin, the <a class="reference external" href="https://docs.descarteslabs.com/api.html"><code class="docutils literal notranslate"><span class="pre">descarteslabs</span></code></a> library (developed and maintained by <a class="reference external" href="https://www.descarteslabs.com/">Descartes Labs</a>) comes with many open-sourced functions. Moreover, Descartes Labs hosts the showcase platform <a class="reference external" href="https://search.descarteslabs.com/">GeoVisual Search</a> with juicy illustrations of artificial intelligence (AI) applications in geoscience. Note that <code class="docutils literal notranslate"><span class="pre">descarteslabs</span></code> is not installed along with <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a>.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="73d812ea-18a4-4b91-902f-eba0c971abbe" name="1bd22fba-f2a4-4020-83a1-7c495d6fd132" type="radio">
-</input><label class="tabbed-label" for="73d812ea-18a4-4b91-902f-eba0c971abbe">
+<input checked="checked" id="0372dc22-2610-451f-8e1d-fbbe9c0a62b9" name="dcaae9f4-946d-4230-9848-8c944fa3a124" type="radio">
+</input><label class="tabbed-label" for="0372dc22-2610-451f-8e1d-fbbe9c0a62b9">
 Linux / pip</label><div class="tabbed-content docutils">
 <p>To install <code class="docutils literal notranslate"><span class="pre">descarteslabs</span></code>, open Terminal and type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">descarteslabs</span>
 </pre></div>
 </div>
 </div>
-<input id="34cb4c08-3b23-465c-9f2d-e9c99ed7c713" name="1bd22fba-f2a4-4020-83a1-7c495d6fd132" type="radio">
-</input><label class="tabbed-label" for="34cb4c08-3b23-465c-9f2d-e9c99ed7c713">
+<input id="f7ac55dd-e114-4db4-911b-a39f9276e0ff" name="dcaae9f4-946d-4230-9848-8c944fa3a124" type="radio">
+</input><label class="tabbed-label" for="f7ac55dd-e114-4db4-911b-a39f9276e0ff">
 Windows / conda</label><div class="tabbed-content docutils">
 <p>To install <code class="docutils literal notranslate"><span class="pre">descarteslabs</span></code> for Python, open <a class="reference internal" href="../python-basics/pyinstall.html#install-pckg"><span class="std std-ref">Anaconda Prompt</span></a> and type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">descartes</span>
@@ -963,16 +1019,16 @@ Windows / conda</label><div class="tabbed-content docutils">
 <h2>shapely<a class="headerlink" href="#shapely" title="Permalink to this headline">¶</a></h2>
 <p>A preferable and very well documented package for <a class="reference internal" href="geospatial-data.html#shp"><span class="std std-ref">Shapefile</span></a> handling is <a class="reference external" href="https://shapely.readthedocs.io/"><code class="docutils literal notranslate"><span class="pre">shapely</span></code></a>. <code class="docutils literal notranslate"><span class="pre">shapely</span></code> is already installed along with <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a>.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="01b392cb-67bf-4312-be3e-df021daa8267" name="99c0ce18-ac85-496a-bab6-125eef0f89e7" type="radio">
-</input><label class="tabbed-label" for="01b392cb-67bf-4312-be3e-df021daa8267">
+<input checked="checked" id="d48f860e-f344-48d8-b3dc-12582073c809" name="17139a32-50fb-478d-9a74-ee07cdace15f" type="radio">
+</input><label class="tabbed-label" for="d48f860e-f344-48d8-b3dc-12582073c809">
 Linux / pip</label><div class="tabbed-content docutils">
 <p>To install <code class="docutils literal notranslate"><span class="pre">shapely</span></code>, open Terminal and type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">Shapely</span>
 </pre></div>
 </div>
 </div>
-<input id="22f143f2-442a-4721-8454-5e41338e11bc" name="99c0ce18-ac85-496a-bab6-125eef0f89e7" type="radio">
-</input><label class="tabbed-label" for="22f143f2-442a-4721-8454-5e41338e11bc">
+<input id="6f8c69a2-0401-4cd4-87eb-fb850fb2377d" name="17139a32-50fb-478d-9a74-ee07cdace15f" type="radio">
+</input><label class="tabbed-label" for="6f8c69a2-0401-4cd4-87eb-fb850fb2377d">
 Windows / conda</label><div class="tabbed-content docutils">
 <p>To install <code class="docutils literal notranslate"><span class="pre">shapely</span></code> for Python Anaconda, open <a class="reference internal" href="../python-basics/pyinstall.html#install-pckg"><span class="std std-ref">Anaconda Prompt</span></a> and type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">shapely</span>
@@ -985,16 +1041,16 @@ Windows / conda</label><div class="tabbed-content docutils">
 <h2>pyshp<a class="headerlink" href="#pyshp" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://pypi.org/project/pyshp/">pyshp</a> is another <a class="reference internal" href="geospatial-data.html#shp"><span class="std std-ref">shapefile</span></a> handling package, which builds on pure Python code (rather than wrappers) to simplify direct dealing with shapefiles in Python. <code class="docutils literal notranslate"><span class="pre">pyshp</span></code> is already installed along with <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a>.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="d647a118-9f53-4ed4-82d3-0b303c59b7ab" name="8567761b-ea00-4616-8659-02f2a75970dd" type="radio">
-</input><label class="tabbed-label" for="d647a118-9f53-4ed4-82d3-0b303c59b7ab">
+<input checked="checked" id="94f38385-58c0-4eee-ba49-e4613a7d917b" name="d5be2855-4dbf-4b67-bbb8-e055e2fd707a" type="radio">
+</input><label class="tabbed-label" for="94f38385-58c0-4eee-ba49-e4613a7d917b">
 Linux / pip</label><div class="tabbed-content docutils">
 <p>To install <code class="docutils literal notranslate"><span class="pre">pyshp</span></code>, open Terminal and type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pyshp</span>
 </pre></div>
 </div>
 </div>
-<input id="4b563004-5584-465d-8f06-8a11049de095" name="8567761b-ea00-4616-8659-02f2a75970dd" type="radio">
-</input><label class="tabbed-label" for="4b563004-5584-465d-8f06-8a11049de095">
+<input id="2427672f-cb31-4555-af4b-79460ac9d95f" name="d5be2855-4dbf-4b67-bbb8-e055e2fd707a" type="radio">
+</input><label class="tabbed-label" for="2427672f-cb31-4555-af4b-79460ac9d95f">
 Windows / conda</label><div class="tabbed-content docutils">
 <p>To install <code class="docutils literal notranslate"><span class="pre">pyshp</span></code> for Python Anaconda, open <a class="reference internal" href="../python-basics/pyinstall.html#install-pckg"><span class="std std-ref">Anaconda Prompt</span></a> and type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">pyshp</span>
@@ -1042,8 +1098,8 @@ Windows / conda</label><div class="tabbed-content docutils">
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="geo-python.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -1060,19 +1116,17 @@ Windows / conda</label><div class="tabbed-content docutils">
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Sebastian Schwindt<br/>
-        
-            &copy; Copyright 2022.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Sebastian Schwindt, Ricardo Barros<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
 </main>
 
 

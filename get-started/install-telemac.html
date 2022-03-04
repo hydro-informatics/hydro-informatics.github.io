@@ -38,12 +38,15 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe,.cell"
@@ -473,8 +476,8 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/jupyter-example.html">
-     Exercise 1
+    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
+     Support Vector Machine
     </a>
    </li>
   </ul>
@@ -756,7 +759,7 @@
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
-  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a> and Ricardo Barros
 </div>
 
 </div>
@@ -796,7 +799,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -827,7 +830,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -1009,7 +1012,192 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>TELEMAC (Installation)</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preface">
+   Preface
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#good-to-know">
+     Good to Know
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#two-installation-options">
+     Two Installation Options
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stand-alone-installation-of-telemac">
+   Stand-alone Installation of TELEMAC
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prerequisites">
+     Prerequisites
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python3">
+     Python3
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#git">
+     GIT
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gnu-fortran-95-compiler-gfortran">
+     GNU Fortran 95 Compiler (gfortran)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compilers-and-other-essentials">
+     Compilers and Other Essentials
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#download-telemac">
+     Download TELEMAC
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recommended-prerequisites-parallelism-and-compilers">
+   Recommended Prerequisites (Parallelism and Compilers)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parallelism-install-mpi">
+     Parallelism: Install MPI
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parallelism-install-metis">
+     Parallelism: Install Metis
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hdf5-and-med-format-handlers">
+     Hdf5 and MED Format Handlers
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aed2">
+     AED2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compile-telemac">
+   Compile TELEMAC
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adapt-and-verify-configuration-file-systel-cfg">
+     Adapt and Verify Configuration File (systel.*.cfg)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setup-python-source-file">
+     Setup Python Source File
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compile">
+     Compile
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#test-telemac">
+     Test TELEMAC
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#run-sample-cases-examples">
+     Run Sample Cases (Examples)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#utilities-pre-post-processing">
+   Utilities (Pre- &amp; Post-processing)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bluekenue-windows-or-linux-wine">
+     BlueKenue (Windows or Linux+Wine)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fudaa-prepro-linux-and-windows">
+     Fudaa-PrePro (Linux and Windows)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#salome-hydro-linux">
+   SALOME-HYDRO (Linux)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Prerequisites
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#debian-10-buster-users">
+     Debian 10 (buster) Users
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-salome-hydro">
+     Install SALOME-HYDRO
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#paraview-paravis-through-salome-hydro">
+     ParaView (ParaVis) through SALOME-HYDRO
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#start-salome-hydro">
+     Start SALOME-HYDRO
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#qgis-linux-and-windows">
+     QGIS (Linux and Windows)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="telemac-installation">
@@ -1370,20 +1558,20 @@ The installation of <em>hdf5</em> on Linux is also documented in the <a class="r
 <p>The configuration file will tell the compiler how flags are defined and where optional software lives. Here, we use the configuration file <code class="docutils literal notranslate"><span class="pre">systel.cis-debian.cfg</span></code>, which lives in <code class="docutils literal notranslate"><span class="pre">~/telemac/v8p3/configs/</span></code>. In particular, we are interested in the following section of the file:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="cp"># _____                          ___________________________________</span>
 <span class="cp"># ____/ Debian gfortran openMPI /__________________________________/</span>
-<span class="p">[</span><span class="n">debgfopenmpi</span><span class="p">]</span>
+<span class="p">[</span><span class="n">debgfopenmpi</span><span class="p">]</span><span class="w"></span>
 <span class="cp">#</span>
-<span class="n">par_cmdexec</span><span class="p">:</span>   <span class="o">&lt;</span><span class="n">config</span><span class="o">&gt;/</span><span class="n">partel</span> <span class="o">&lt;</span> <span class="n">partel</span><span class="p">.</span><span class="n">par</span> <span class="o">&gt;&gt;</span> <span class="o">&lt;</span><span class="n">partel</span><span class="p">.</span><span class="nb">log</span><span class="o">&gt;</span>
+<span class="n">par_cmdexec</span><span class="p">:</span><span class="w">   </span><span class="o">&lt;</span><span class="n">config</span><span class="o">&gt;/</span><span class="n">partel</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">partel</span><span class="p">.</span><span class="n">par</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">partel</span><span class="p">.</span><span class="nb">log</span><span class="o">&gt;</span><span class="w"></span>
 <span class="cp">#</span>
-<span class="n">mpi_cmdexec</span><span class="p">:</span>   <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">mpiexec</span> <span class="o">-</span><span class="n">wdir</span> <span class="o">&lt;</span><span class="n">wdir</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">n</span> <span class="o">&lt;</span><span class="n">ncsize</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">exename</span><span class="o">&gt;</span>
-<span class="n">mpi_hosts</span><span class="p">:</span>
+<span class="n">mpi_cmdexec</span><span class="p">:</span><span class="w">   </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">mpiexec</span><span class="w"> </span><span class="o">-</span><span class="n">wdir</span><span class="w"> </span><span class="o">&lt;</span><span class="n">wdir</span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;</span><span class="n">ncsize</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">exename</span><span class="o">&gt;</span><span class="w"></span>
+<span class="n">mpi_hosts</span><span class="p">:</span><span class="w"></span>
 <span class="cp">#</span>
-<span class="n">cmd_obj</span><span class="p">:</span>    <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">mpif90</span> <span class="o">-</span><span class="n">c</span> <span class="o">-</span><span class="n">O3</span> <span class="o">-</span><span class="n">DHAVE_MPI</span> <span class="o">-</span><span class="n">fconvert</span><span class="o">=</span><span class="n">big</span><span class="o">-</span><span class="n">endian</span> <span class="o">-</span><span class="n">frecord</span><span class="o">-</span><span class="n">marker</span><span class="o">=</span><span class="mi">4</span> <span class="o">&lt;</span><span class="n">mods</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">incs</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">f95name</span><span class="o">&gt;</span>
-<span class="n">cmd_lib</span><span class="p">:</span>    <span class="n">ar</span> <span class="n">cru</span> <span class="o">&lt;</span><span class="n">libname</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">objs</span><span class="o">&gt;</span>
-<span class="n">cmd_exe</span><span class="p">:</span>    <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">mpif90</span> <span class="o">-</span><span class="n">fconvert</span><span class="o">=</span><span class="n">big</span><span class="o">-</span><span class="n">endian</span> <span class="o">-</span><span class="n">frecord</span><span class="o">-</span><span class="n">marker</span><span class="o">=</span><span class="mi">4</span> <span class="o">-</span><span class="n">lpthread</span> <span class="o">-</span><span class="n">v</span> <span class="o">-</span><span class="n">lm</span> <span class="o">-</span><span class="n">o</span> <span class="o">&lt;</span><span class="n">exename</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">objs</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">libs</span><span class="o">&gt;</span>
+<span class="n">cmd_obj</span><span class="p">:</span><span class="w">    </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">mpif90</span><span class="w"> </span><span class="o">-</span><span class="n">c</span><span class="w"> </span><span class="o">-</span><span class="n">O3</span><span class="w"> </span><span class="o">-</span><span class="n">DHAVE_MPI</span><span class="w"> </span><span class="o">-</span><span class="n">fconvert</span><span class="o">=</span><span class="n">big</span><span class="o">-</span><span class="n">endian</span><span class="w"> </span><span class="o">-</span><span class="n">frecord</span><span class="o">-</span><span class="n">marker</span><span class="o">=</span><span class="mi">4</span><span class="w"> </span><span class="o">&lt;</span><span class="n">mods</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">incs</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">f95name</span><span class="o">&gt;</span><span class="w"></span>
+<span class="n">cmd_lib</span><span class="p">:</span><span class="w">    </span><span class="n">ar</span><span class="w"> </span><span class="n">cru</span><span class="w"> </span><span class="o">&lt;</span><span class="n">libname</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">objs</span><span class="o">&gt;</span><span class="w"></span>
+<span class="n">cmd_exe</span><span class="p">:</span><span class="w">    </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">mpif90</span><span class="w"> </span><span class="o">-</span><span class="n">fconvert</span><span class="o">=</span><span class="n">big</span><span class="o">-</span><span class="n">endian</span><span class="w"> </span><span class="o">-</span><span class="n">frecord</span><span class="o">-</span><span class="n">marker</span><span class="o">=</span><span class="mi">4</span><span class="w"> </span><span class="o">-</span><span class="n">lpthread</span><span class="w"> </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="o">-</span><span class="n">lm</span><span class="w"> </span><span class="o">-</span><span class="n">o</span><span class="w"> </span><span class="o">&lt;</span><span class="n">exename</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">objs</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">libs</span><span class="o">&gt;</span><span class="w"></span>
 <span class="cp">#</span>
-<span class="n">mods_all</span><span class="p">:</span>   <span class="o">-</span><span class="n">I</span> <span class="o">&lt;</span><span class="n">config</span><span class="o">&gt;</span>
+<span class="n">mods_all</span><span class="p">:</span><span class="w">   </span><span class="o">-</span><span class="n">I</span><span class="w"> </span><span class="o">&lt;</span><span class="n">config</span><span class="o">&gt;</span><span class="w"></span>
 <span class="cp">#</span>
-<span class="n">libs_all</span><span class="p">:</span>   <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">openmpi</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libmpi</span><span class="p">.</span><span class="n">so</span><span class="p">.</span><span class="mi">4</span><span class="mf">0.20</span><span class="p">.</span><span class="mi">3</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">telemac</span><span class="o">/</span><span class="n">metis</span><span class="o">-</span><span class="mf">5.1</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libmetis</span><span class="p">.</span><span class="n">a</span>
+<span class="n">libs_all</span><span class="p">:</span><span class="w">   </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">openmpi</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libmpi</span><span class="p">.</span><span class="n">so</span><span class="p">.</span><span class="mi">4</span><span class="mf">0.20</span><span class="p">.</span><span class="mi">3</span><span class="w"> </span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">telemac</span><span class="o">/</span><span class="n">metis</span><span class="o">-</span><span class="mf">5.1</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libmetis</span><span class="p">.</span><span class="n">a</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The configuration file contains other configurations such as a <em>scalar</em> or a <em>debug</em> configuration for compiling TELEMAC. Here, we only use the <em>Debian gfortran open MPI</em> section that has the configuration name <code class="docutils literal notranslate"><span class="pre">[debgfopenmpi]</span></code>. To verify if this section if correctly defined, check where the following libraries live on your system (use Terminal and <code class="docutils literal notranslate"><span class="pre">cd</span></code> + <code class="docutils literal notranslate"><span class="pre">ls</span></code> commands or Debian’s <em>File</em> browser):</p>
@@ -1807,8 +1995,8 @@ To enable <em>MED</em> file handling, <em>MED</em> coupling is necessary, which 
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="install-openfoam.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -1825,19 +2013,17 @@ To enable <em>MED</em> file handling, <em>MED</em> coupling is necessary, which 
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Sebastian Schwindt<br/>
-        
-            &copy; Copyright 2022.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Sebastian Schwindt, Ricardo Barros<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
 </main>
 
 

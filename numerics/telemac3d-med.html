@@ -38,14 +38,17 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe,.cell"
@@ -475,8 +478,8 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/jupyter-example.html">
-     Exercise 1
+    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
+     Support Vector Machine
     </a>
    </li>
   </ul>
@@ -758,7 +761,7 @@
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
-  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a> and Ricardo Barros
 </div>
 
 </div>
@@ -798,7 +801,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -829,7 +832,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -1009,7 +1012,190 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Steady 3d (MED and Salome)</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#salome-hydro">
+   SALOME-HYDRO
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hydro-module">
+   HYDRO Module
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-contours-polyline">
+     Create Contours (Polyline)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-natural-object">
+     Create Natural Object
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-calculation-case">
+     Create Calculation Case
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#geometry-module">
+   GEOMETRY Module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mesh-module">
+   Mesh Module
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#two-dimensional-2d-mesh-of-the-flume">
+     Two-dimensional (2d) Mesh of the Flume
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#one-dimensional-1d-meshes-of-boundary-edges">
+     One-dimensional (1d) Meshes of Boundary Edges
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compute-mesh">
+     Compute Mesh
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#verify-mesh">
+     Verify Mesh
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#export-med-file">
+   Export MED File
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#boundary-conditions">
+   Boundary Conditions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basic-setup-with-the-hydrosolver-module">
+     Basic Setup with the HydroSolver Module
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modify-the-boundary-file">
+     Modify the Boundary File
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simulation-steering-case-file-cas">
+   Simulation Steering Case File (CAS)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#overview-manual-cas-file-setup-recommended">
+     Overview: Manual CAS File Setup (Recommended)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#computation-environment">
+     Computation Environment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#general-parameters">
+     General Parameters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#vertical-3d-parameters">
+     Vertical (3d) Parameters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numerical-parameters">
+     Numerical Parameters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hydrodynamic-parameters">
+     Hydrodynamic Parameters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#turbulence">
+     Turbulence
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hydrosolver-cas-file-setup-unstable">
+     <em>
+      HydroSolver
+     </em>
+     CAS File Setup (Unstable)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#run-simulation-compute">
+   Run Simulation (Compute)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stand-alone-telemac-installation">
+     Stand-alone TELEMAC installation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#salome-hydro-hydrosolver">
+     SALOME-HYDRO &amp; HydroSolver
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#post-processing-with-salome-and-paravis">
+   Post-Processing with SALOME and ParaVis
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-results-med-file">
+     Load Results (MED file)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#export-data">
+     Export Data
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="steady-3d-med-and-salome">
@@ -1045,21 +1231,21 @@
 <h2>HYDRO Module<a class="headerlink" href="#hydro-module" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="create-contours-polyline">
 <h3>Create Contours (Polyline)<a class="headerlink" href="#create-contours-polyline" title="Permalink to this headline">¶</a></h3>
-<p>After starting SALOME-HYDRO, activate the <em>HYDRO</em> module, then find the <em>Object Browser</em> on the right side of the window and the <strong>POLYLINE</strong> folder symbol (<a class="reference internal" href="#hydro-startup"><span class="std std-numref">Fig. 89</span></a>).</p>
+<p>After starting SALOME-HYDRO, activate the <em>HYDRO</em> module, then find the <em>Object Browser</em> on the right side of the window and the <strong>POLYLINE</strong> folder symbol (<a class="reference internal" href="#hydro-startup"><span class="std std-numref">Fig. 90</span></a>).</p>
 <div class="figure align-default" id="hydro-startup">
 <img alt="telemac3d salome hydro start" src="../_images/sah-startup.png" />
-<p class="caption"><span class="caption-number">Fig. 89 </span><span class="caption-text">The empty viewport (OCC scene) of the HYDRO module.</span><a class="headerlink" href="#hydro-startup" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 90 </span><span class="caption-text">The empty viewport (OCC scene) of the HYDRO module.</span><a class="headerlink" href="#hydro-startup" title="Permalink to this image">¶</a></p>
 </div>
 <p>Right-click on the <em>POLYLINE</em> folder, select <strong>Create polyline</strong> and a popup window will open. In the popup window:</p>
 <ul class="simple">
 <li><p>For <strong>Name</strong> enter: <code class="docutils literal notranslate"><span class="pre">Contour</span></code></p></li>
-<li><p>Click on the <em>Insert new section</em> button (<a class="reference internal" href="#create-polyline-menu"><span class="std std-numref">Fig. 90</span></a>)</p></li>
+<li><p>Click on the <em>Insert new section</em> button (<a class="reference internal" href="#create-polyline-menu"><span class="std std-numref">Fig. 91</span></a>)</p></li>
 </ul>
 <div class="figure align-default" id="create-polyline-menu">
 <img alt="telemac salome hydro polyline" src="../_images/sah-hydro-create-polyline.png" />
-<p class="caption"><span class="caption-number">Fig. 90 </span><span class="caption-text">Create a new Polyline in SALOME-HYDRO.</span><a class="headerlink" href="#create-polyline-menu" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 91 </span><span class="caption-text">Create a new Polyline in SALOME-HYDRO.</span><a class="headerlink" href="#create-polyline-menu" title="Permalink to this image">¶</a></p>
 </div>
-<p>Define a new Polyline section (<a class="reference internal" href="#create-polyline-section"><span class="std std-numref">Fig. 91</span></a>):</p>
+<p>Define a new Polyline section (<a class="reference internal" href="#create-polyline-section"><span class="std std-numref">Fig. 92</span></a>):</p>
 <ul class="simple">
 <li><p>For <strong>Name</strong> enter: <code class="docutils literal notranslate"><span class="pre">Section_1</span></code></p></li>
 <li><p>For <strong>Type</strong> select <strong>Polyline</strong></p></li>
@@ -1068,65 +1254,65 @@
 </ul>
 <div class="figure align-default" id="create-polyline-section">
 <img alt="telemac salome create polyline" src="../_images/sah-create-polyline.png" />
-<p class="caption"><span class="caption-number">Fig. 91 </span><span class="caption-text">Add Polyline element.</span><a class="headerlink" href="#create-polyline-section" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 92 </span><span class="caption-text">Add Polyline element.</span><a class="headerlink" href="#create-polyline-section" title="Permalink to this image">¶</a></p>
 </div>
 <ul class="simple">
-<li><p>Click on the <em>Addition mode</em> button (<a class="reference internal" href="#sh-addition-mode"><span class="std std-numref">Fig. 92</span></a>) to draw a polygon: Start with the first point in the upper left corner and move in clock-wise direction to draw the other three points.</p></li>
+<li><p>Click on the <em>Addition mode</em> button (<a class="reference internal" href="#sh-addition-mode"><span class="std std-numref">Fig. 93</span></a>) to draw a polygon: Start with the first point in the upper left corner and move in clock-wise direction to draw the other three points.</p></li>
 </ul>
 <div class="figure align-default" id="sh-addition-mode">
 <img alt="telemac salome hydro polygon addition" src="../_images/sah-polyline-addition.png" />
-<p class="caption"><span class="caption-number">Fig. 92 </span><span class="caption-text">Enable the Addition mode.</span><a class="headerlink" href="#sh-addition-mode" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 93 </span><span class="caption-text">Enable the Addition mode.</span><a class="headerlink" href="#sh-addition-mode" title="Permalink to this image">¶</a></p>
 </div>
 <ul class="simple">
-<li><p>The polygon should show up in the viewport as shown below (qualitative match with <a class="reference internal" href="#sh-draw-polyline"><span class="std std-numref">Fig. 93</span></a> is sufficient, but the drawing direction shown in <a class="reference internal" href="#sh-polyline-dir"><span class="std std-numref">Fig. 94</span></a>)</p></li>
+<li><p>The polygon should show up in the viewport as shown below (qualitative match with <a class="reference internal" href="#sh-draw-polyline"><span class="std std-numref">Fig. 94</span></a> is sufficient, but the drawing direction shown in <a class="reference internal" href="#sh-polyline-dir"><span class="std std-numref">Fig. 95</span></a>)</p></li>
 </ul>
 <div class="figure align-default" id="sh-draw-polyline">
 <img alt="telemac salome hydro polygon qualitative" src="../_images/sah-polyline-draw.png" />
-<p class="caption"><span class="caption-number">Fig. 93 </span><span class="caption-text">The final sketch of the Polyline.</span><a class="headerlink" href="#sh-draw-polyline" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 94 </span><span class="caption-text">The final sketch of the Polyline.</span><a class="headerlink" href="#sh-draw-polyline" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-default" id="sh-polyline-dir">
 <img alt="telemac salome hydro polygon qualitative" src="../_images/sah-polyline-draw-dir.png" />
-<p class="caption"><span class="caption-number">Fig. 94 </span><span class="caption-text">The drawing direction of the Polyline.</span><a class="headerlink" href="#sh-polyline-dir" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 95 </span><span class="caption-text">The drawing direction of the Polyline.</span><a class="headerlink" href="#sh-polyline-dir" title="Permalink to this image">¶</a></p>
 </div>
 <ul class="simple">
 <li><p>Press <strong>Apply and close</strong></p></li>
 </ul>
-<p>In the viewport, right-click on the polyline &gt; <strong>Edit polyline</strong> (<a class="reference internal" href="#sh-edit-polyline"><span class="std std-numref">Fig. 95</span></a>) and select <strong>Modification mode</strong>.</p>
+<p>In the viewport, right-click on the polyline &gt; <strong>Edit polyline</strong> (<a class="reference internal" href="#sh-edit-polyline"><span class="std std-numref">Fig. 96</span></a>) and select <strong>Modification mode</strong>.</p>
 <div class="figure align-default" id="sh-edit-polyline">
 <img alt="telemac salome hydro edit polygon" src="../_images/sah-polyline-edit.png" />
-<p class="caption"><span class="caption-number">Fig. 95 </span><span class="caption-text">The Edit polyline menu.</span><a class="headerlink" href="#sh-edit-polyline" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 96 </span><span class="caption-text">The Edit polyline menu.</span><a class="headerlink" href="#sh-edit-polyline" title="Permalink to this image">¶</a></p>
 </div>
-<p>In the popup window, modify the points so that a 500-m long and 100-m wide rectangle occurs as illustrated in <a class="reference internal" href="#sh-edit-polyline-coords"><span class="std std-numref">Fig. 96</span></a> (the section <em>Index</em> numbers will change, so pay attention to not create crossing lines).</p>
+<p>In the popup window, modify the points so that a 500-m long and 100-m wide rectangle occurs as illustrated in <a class="reference internal" href="#sh-edit-polyline-coords"><span class="std std-numref">Fig. 97</span></a> (the section <em>Index</em> numbers will change, so pay attention to not create crossing lines).</p>
 <div class="figure align-default" id="sh-edit-polyline-coords">
 <img alt="telemac salome hydro edit polygon modification" src="../_images/sah-polyline-edit-popup.png" />
-<p class="caption"><span class="caption-number">Fig. 96 </span><span class="caption-text">Edit the X and the Y coordinates of the polylines.</span><a class="headerlink" href="#sh-edit-polyline-coords" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 97 </span><span class="caption-text">Edit the X and the Y coordinates of the polylines.</span><a class="headerlink" href="#sh-edit-polyline-coords" title="Permalink to this image">¶</a></p>
 </div>
-<p>To get the data table (<em>Section</em> / <em>Index</em>) visible in the lower part of the popup window, highlight the four edges of the polygon in the viewport with the mouse. <a class="reference internal" href="#sh-fin-polyline"><span class="std std-numref">Figure 97</span></a> shows the finally edited polyline that now forms a rectangle.</p>
+<p>To get the data table (<em>Section</em> / <em>Index</em>) visible in the lower part of the popup window, highlight the four edges of the polygon in the viewport with the mouse. <a class="reference internal" href="#sh-fin-polyline"><span class="std std-numref">Figure 98</span></a> shows the finally edited polyline that now forms a rectangle.</p>
 <div class="figure align-default" id="sh-fin-polyline">
 <img alt="telemac salome hydro edit polygon" src="../_images/sah-polyline-edited.png" />
-<p class="caption"><span class="caption-number">Fig. 97 </span><span class="caption-text">The finalized polyline.</span><a class="headerlink" href="#sh-fin-polyline" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 98 </span><span class="caption-text">The finalized polyline.</span><a class="headerlink" href="#sh-fin-polyline" title="Permalink to this image">¶</a></p>
 </div>
 <div class="tip dropdown admonition">
 <p class="admonition-title">Save the project</p>
-<p>Save the project by clicking on the <strong>File</strong> (top menu) &gt; <strong>Save As…</strong> (<a class="reference internal" href="#sh-save-project-menu"><span class="std std-numref">Fig. 98</span></a>). In the popup window (<a class="reference internal" href="#sh-save-project"><span class="std std-numref">Fig. 99</span></a>), select the simulation target folder and define a name such as <em>flume3d</em>. Press <strong>Save</strong> to save the project in <a class="reference internal" href="../documentation/glossary.html#term-HDF"><span class="xref std std-term">HDF</span></a> format and regularly press the save button (disk symbol) in the next steps to avoid losing work. Thus, the project can be saved, closed, and re-opened any time.</p>
+<p>Save the project by clicking on the <strong>File</strong> (top menu) &gt; <strong>Save As…</strong> (<a class="reference internal" href="#sh-save-project-menu"><span class="std std-numref">Fig. 99</span></a>). In the popup window (<a class="reference internal" href="#sh-save-project"><span class="std std-numref">Fig. 100</span></a>), select the simulation target folder and define a name such as <em>flume3d</em>. Press <strong>Save</strong> to save the project in <a class="reference internal" href="../documentation/glossary.html#term-HDF"><span class="xref std std-term">HDF</span></a> format and regularly press the save button (disk symbol) in the next steps to avoid losing work. Thus, the project can be saved, closed, and re-opened any time.</p>
 <div class="figure align-default" id="sh-save-project-menu">
 <img alt="telemac salome hydro save study as hdf" src="../_images/save-study-as.png" />
-<p class="caption"><span class="caption-number">Fig. 98 </span><span class="caption-text">The <em>Save As…</em> menu for saving the project.</span><a class="headerlink" href="#sh-save-project-menu" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 99 </span><span class="caption-text">The <em>Save As…</em> menu for saving the project.</span><a class="headerlink" href="#sh-save-project-menu" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-default" id="sh-save-project">
 <img alt="telemac salome hydro save study hdf" src="../_images/save-study-props.png" />
-<p class="caption"><span class="caption-number">Fig. 99 </span><span class="caption-text">Navigate to a target directory and save the project.</span><a class="headerlink" href="#sh-save-project" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 100 </span><span class="caption-text">Navigate to a target directory and save the project.</span><a class="headerlink" href="#sh-save-project" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
 <div class="section" id="create-natural-object">
 <h3>Create Natural Object<a class="headerlink" href="#create-natural-object" title="Permalink to this headline">¶</a></h3>
-<p>From the <em>HYDRO</em> top menu, select <strong>Create immersible zone</strong> (<a class="reference internal" href="#imm-zone-menu"><span class="std std-numref">Fig. 100</span></a>) to define a wetted area for the later created mesh.</p>
+<p>From the <em>HYDRO</em> top menu, select <strong>Create immersible zone</strong> (<a class="reference internal" href="#imm-zone-menu"><span class="std std-numref">Fig. 101</span></a>) to define a wetted area for the later created mesh.</p>
 <div class="figure align-default" id="imm-zone-menu">
 <img alt="telemac salome hydro create immersible zone" src="../_images/sah-nat-immersible-zone.png" />
-<p class="caption"><span class="caption-number">Fig. 100 </span><span class="caption-text">Initiate a <em>Create immersible zone</em>.</span><a class="headerlink" href="#imm-zone-menu" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 101 </span><span class="caption-text">Initiate a <em>Create immersible zone</em>.</span><a class="headerlink" href="#imm-zone-menu" title="Permalink to this image">¶</a></p>
 </div>
-<p>In the popup window (<a class="reference internal" href="#imm-zone-tab1"><span class="std std-numref">Fig. 101</span></a>), make the following settings:</p>
+<p>In the popup window (<a class="reference internal" href="#imm-zone-tab1"><span class="std std-numref">Fig. 102</span></a>), make the following settings:</p>
 <ul class="simple">
 <li><p><strong>Name:</strong> <code class="docutils literal notranslate"><span class="pre">wetted_contour</span></code></p></li>
 <li><p><strong>Polyline:</strong> Select the previously created <code class="docutils literal notranslate"><span class="pre">Contour</span></code> rectangle (double-click in the field).</p></li>
@@ -1134,7 +1320,7 @@
 </ul>
 <div class="figure align-default" id="imm-zone-tab1">
 <img alt="telemac salome hydro create wetted area zone" src="../_images/sah-nat-wetted-zone.png" />
-<p class="caption"><span class="caption-number">Fig. 101 </span><span class="caption-text">Define the <em>Create immersible zone</em>.</span><a class="headerlink" href="#imm-zone-tab1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 102 </span><span class="caption-text">Define the <em>Create immersible zone</em>.</span><a class="headerlink" href="#imm-zone-tab1" title="Permalink to this image">¶</a></p>
 </div>
 <ul class="simple">
 <li><p>Press <strong>Apply and close</strong>.</p></li>
@@ -1147,7 +1333,7 @@
 <div class="section" id="create-calculation-case">
 <h3>Create Calculation Case<a class="headerlink" href="#create-calculation-case" title="Permalink to this headline">¶</a></h3>
 <p>One or more calculation cases can be created to define elements for the later simulation. Here, define one calculation case, by clicking on the <strong>HYDRO</strong> top-menu &gt; <strong>Create calculation case</strong>. A popup window opens and guides through setting up the calculation case.</p>
-<p><strong>Step 1 (<a class="reference internal" href="#calc-case-tab1"><span class="std std-numref">Fig. 102</span></a>):</strong> Define the framework:</p>
+<p><strong>Step 1 (<a class="reference internal" href="#calc-case-tab1"><span class="std std-numref">Fig. 103</span></a>):</strong> Define the framework:</p>
 <ul class="simple">
 <li><p><strong>Name</strong>: <code class="docutils literal notranslate"><span class="pre">Hydrodynamic</span></code></p></li>
 <li><p><strong>Limits</strong>: <code class="docutils literal notranslate"><span class="pre">Contour</span></code></p></li>
@@ -1157,32 +1343,32 @@
 </ul>
 <div class="figure align-default" id="calc-case-tab1">
 <img alt="telemac salome hydro contour create" src="../_images/sah-create-calc-case-popup.png" />
-<p class="caption"><span class="caption-number">Fig. 102 </span><span class="caption-text">Create a calculation case.</span><a class="headerlink" href="#calc-case-tab1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 103 </span><span class="caption-text">Create a calculation case.</span><a class="headerlink" href="#calc-case-tab1" title="Permalink to this image">¶</a></p>
 </div>
-<p><strong>Step 2 (<a class="reference internal" href="#calc-case-tab2"><span class="std std-numref">Fig. 103</span></a>):</strong> <strong>Include &gt;&gt;</strong>  <code class="docutils literal notranslate"><span class="pre">wetted_contour_Outer</span></code>and press <strong>Next &gt;</strong>.</p>
+<p><strong>Step 2 (<a class="reference internal" href="#calc-case-tab2"><span class="std std-numref">Fig. 104</span></a>):</strong> <strong>Include &gt;&gt;</strong>  <code class="docutils literal notranslate"><span class="pre">wetted_contour_Outer</span></code>and press <strong>Next &gt;</strong>.</p>
 <div class="figure align-default" id="calc-case-tab2">
 <img alt="telemac salome hydro contour zone" src="../_images/sah-create-calc-case-groups.png" />
-<p class="caption"><span class="caption-number">Fig. 103 </span><span class="caption-text">Include the polyline as wetted contour line.</span><a class="headerlink" href="#calc-case-tab2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 104 </span><span class="caption-text">Include the polyline as wetted contour line.</span><a class="headerlink" href="#calc-case-tab2" title="Permalink to this image">¶</a></p>
 </div>
-<p><strong>Step 3 (<a class="reference internal" href="#calc-case-tab3"><span class="std std-numref">Fig. 104</span></a>):</strong> Leave the boundary polygons window as-is and just click <strong>Next &gt;</strong></p>
+<p><strong>Step 3 (<a class="reference internal" href="#calc-case-tab3"><span class="std std-numref">Fig. 105</span></a>):</strong> Leave the boundary polygons window as-is and just click <strong>Next &gt;</strong></p>
 <div class="figure align-default" id="calc-case-tab3">
 <img alt="telemac salome hydro contour boundary" src="../_images/sah-create-calc-case-bc.png" />
-<p class="caption"><span class="caption-number">Fig. 104 </span><span class="caption-text">The empty boundary polygon window (leave <em>as-is</em>).</span><a class="headerlink" href="#calc-case-tab3" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 105 </span><span class="caption-text">The empty boundary polygon window (leave <em>as-is</em>).</span><a class="headerlink" href="#calc-case-tab3" title="Permalink to this image">¶</a></p>
 </div>
-<p><strong>Step 4 (<a class="reference internal" href="#calc-case-tab4"><span class="std std-numref">Fig. 105</span></a>):</strong> Omit the definition of a <span id="id1">Strickler [<a class="reference internal" href="../documentation/bibliography.html#id558">Str23</a>]</span> table and press <strong>Next &gt;</strong>.</p>
+<p><strong>Step 4 (<a class="reference internal" href="#calc-case-tab4"><span class="std std-numref">Fig. 106</span></a>):</strong> Omit the definition of a <span id="id1">Strickler [<a class="reference internal" href="../documentation/bibliography.html#id560">Str23</a>]</span> table and press <strong>Next &gt;</strong>.</p>
 <div class="figure align-default" id="calc-case-tab4">
 <img alt="telemac salome hydro contour strickler" src="../_images/sah-create-calc-case-strickler.png" />
-<p class="caption"><span class="caption-number">Fig. 105 </span><span class="caption-text">Skip the definition of a <em>Strickler</em> table, which may be useful to define zones with different roughness attributes.</span><a class="headerlink" href="#calc-case-tab4" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 106 </span><span class="caption-text">Skip the definition of a <em>Strickler</em> table, which may be useful to define zones with different roughness attributes.</span><a class="headerlink" href="#calc-case-tab4" title="Permalink to this image">¶</a></p>
 </div>
-<p><strong>Step 5 (<a class="reference internal" href="#calc-case-tab5"><span class="std std-numref">Fig. 106</span></a>):</strong> Finalize the calculation case creation by clicking on the <strong>Finish</strong> button.</p>
+<p><strong>Step 5 (<a class="reference internal" href="#calc-case-tab5"><span class="std std-numref">Fig. 107</span></a>):</strong> Finalize the calculation case creation by clicking on the <strong>Finish</strong> button.</p>
 <div class="figure align-default" id="calc-case-tab5">
 <img alt="telemac salome hydro calculation case" src="../_images/sah-create-calc-case-finish.png" />
-<p class="caption"><span class="caption-number">Fig. 106 </span><span class="caption-text">Finalize the calculation case.</span><a class="headerlink" href="#calc-case-tab5" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 107 </span><span class="caption-text">Finalize the calculation case.</span><a class="headerlink" href="#calc-case-tab5" title="Permalink to this image">¶</a></p>
 </div>
-<p>Export the calculation case by right-clicking on the <strong>Hydrodynamic</strong> calculation case in the <em>Object Browser</em>, then <strong>Export calculation case</strong> (<a class="reference internal" href="#calc-case-export"><span class="std std-numref">Fig. 107</span></a>). As a result, a <em>Geometry</em> entry becomes visible in the <em>Object Browser</em>.</p>
+<p>Export the calculation case by right-clicking on the <strong>Hydrodynamic</strong> calculation case in the <em>Object Browser</em>, then <strong>Export calculation case</strong> (<a class="reference internal" href="#calc-case-export"><span class="std std-numref">Fig. 108</span></a>). As a result, a <em>Geometry</em> entry becomes visible in the <em>Object Browser</em>.</p>
 <div class="figure align-default" id="calc-case-export">
 <img alt="telemac salome hydro calculation case export menu" src="../_images/sah-export-calc-case-menu.png" />
-<p class="caption"><span class="caption-number">Fig. 107 </span><span class="caption-text">Export the calculation case.</span><a class="headerlink" href="#calc-case-export" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 108 </span><span class="caption-text">Export the calculation case.</span><a class="headerlink" href="#calc-case-export" title="Permalink to this image">¶</a></p>
 </div>
 <div class="tip dropdown admonition">
 <p class="admonition-title">Save the project</p>
@@ -1192,17 +1378,17 @@
 </div>
 <div class="section" id="geometry-module">
 <span id="sh-geo2d"></span><h2>GEOMETRY Module<a class="headerlink" href="#geometry-module" title="Permalink to this headline">¶</a></h2>
-<p>This section guides through the creation of a rectangular geometry surface representing a flume and its boundaries defined with edges (lines). To get ready, activate the <strong>Geometry</strong> module, right-click on <em>HYDRO_Hydrodynamic_1</em>, and select <strong>Show Only</strong> (<a class="reference internal" href="#calc-case-geometry"><span class="std std-numref">Fig. 108</span></a>).</p>
+<p>This section guides through the creation of a rectangular geometry surface representing a flume and its boundaries defined with edges (lines). To get ready, activate the <strong>Geometry</strong> module, right-click on <em>HYDRO_Hydrodynamic_1</em>, and select <strong>Show Only</strong> (<a class="reference internal" href="#calc-case-geometry"><span class="std std-numref">Fig. 109</span></a>).</p>
 <div class="figure align-default" id="calc-case-geometry">
 <img alt="telemac salome hydro calculation case exported geometry" src="../_images/sah-exported-calc-case-geometry.png" />
-<p class="caption"><span class="caption-number">Fig. 108 </span><span class="caption-text">The Geometry module in the Object Browser.</span><a class="headerlink" href="#calc-case-geometry" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 109 </span><span class="caption-text">The Geometry module in the Object Browser.</span><a class="headerlink" href="#calc-case-geometry" title="Permalink to this image">¶</a></p>
 </div>
 <div class="note admonition">
 <p class="admonition-title">The Surface group in earlier versions of SALOME-HYDRO</p>
 <p>Earlier versions of <em>SALOME-HYDRO</em> will also require to create a surface group, which already exists in this case with <code class="docutils literal notranslate"><span class="pre">Hydrodynamic_Reg_1</span></code>.</p>
 </div>
 <p>Right-click on <em>HYDRO_Hydrodynamic_1</em> and select <strong>Create Group</strong> from the context menu.
-The four boundary edges of the surface will represent an upstream (inflow), a downstream (outflow), a left wall, and a right wall of the flume. To create the four boundary edges repeat the following steps for every edge (<a class="reference internal" href="#group-upstream"><span class="std std-numref">Fig. 109</span></a>):</p>
+The four boundary edges of the surface will represent an upstream (inflow), a downstream (outflow), a left wall, and a right wall of the flume. To create the four boundary edges repeat the following steps for every edge (<a class="reference internal" href="#group-upstream"><span class="std std-numref">Fig. 110</span></a>):</p>
 <ul class="simple">
 <li><p><strong>Shape Type</strong> (radio buttons in the upper part): select <em>Edge</em> (line symbol)</p></li>
 <li><p><strong>Name</strong>: <code class="docutils literal notranslate"><span class="pre">upstream</span></code> (then <code class="docutils literal notranslate"><span class="pre">downstream</span></code>, <code class="docutils literal notranslate"><span class="pre">leftwall</span></code>, and <code class="docutils literal notranslate"><span class="pre">rightwall</span></code>)</p></li>
@@ -1211,22 +1397,22 @@ The four boundary edges of the surface will represent an upstream (inflow), a do
 </ul>
 <div class="figure align-default" id="group-upstream">
 <img alt="telemac salome geometry group faces" src="../_images/geo-create-group-upstream.png" />
-<p class="caption"><span class="caption-number">Fig. 109 </span><span class="caption-text">Define the upstream edge of the surface.</span><a class="headerlink" href="#group-upstream" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 110 </span><span class="caption-text">Define the upstream edge of the surface.</span><a class="headerlink" href="#group-upstream" title="Permalink to this image">¶</a></p>
 </div>
 <ul class="simple">
-<li><p>For defining the other edges (<code class="docutils literal notranslate"><span class="pre">downstream</span></code>, <code class="docutils literal notranslate"><span class="pre">leftwall</span></code>, and <code class="docutils literal notranslate"><span class="pre">rightwall</span></code>), use the indications in <a class="reference internal" href="#rectangular-flume"><span class="std std-numref">Fig. 110</span></a>.</p></li>
+<li><p>For defining the other edges (<code class="docutils literal notranslate"><span class="pre">downstream</span></code>, <code class="docutils literal notranslate"><span class="pre">leftwall</span></code>, and <code class="docutils literal notranslate"><span class="pre">rightwall</span></code>), use the indications in <a class="reference internal" href="#rectangular-flume"><span class="std std-numref">Fig. 111</span></a>.</p></li>
 </ul>
 <div class="figure align-default" id="rectangular-flume">
 <img alt="telemac salome rectangular flume" src="../_images/tm-rectangular-flume.png" />
-<p class="caption"><span class="caption-number">Fig. 110 </span><span class="caption-text">Boundaries of the rectangular flume.</span><a class="headerlink" href="#rectangular-flume" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 111 </span><span class="caption-text">Boundaries of the rectangular flume.</span><a class="headerlink" href="#rectangular-flume" title="Permalink to this image">¶</a></p>
 </div>
 <ul class="simple">
 <li><p>Click <strong>Apply</strong> to create the edge boundary and proceed with the next. After the last (fourth) edge, click <strong>Apply and Close</strong>.</p></li>
 </ul>
-<p>Ultimately, the <em>Geometry</em> block in the <em>Object Browser</em> should look as shown in <a class="reference internal" href="#groups-ob"><span class="std std-numref">Fig. 111</span></a>.</p>
+<p>Ultimately, the <em>Geometry</em> block in the <em>Object Browser</em> should look as shown in <a class="reference internal" href="#groups-ob"><span class="std std-numref">Fig. 112</span></a>.</p>
 <div class="figure align-default" id="groups-ob">
 <img alt="telemac salome geometry group object browser" src="../_images/geo-created-groups-ob.png" />
-<p class="caption"><span class="caption-number">Fig. 111 </span><span class="caption-text">The created groups in the object browser.</span><a class="headerlink" href="#groups-ob" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 112 </span><span class="caption-text">The created groups in the object browser.</span><a class="headerlink" href="#groups-ob" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="mesh-module">
@@ -1234,10 +1420,10 @@ The four boundary edges of the surface will represent an upstream (inflow), a do
 <p>To work with the geometry in a numerical model, the geometry needs to be defined as a triangular computational mesh that Telemac3d will extrapolate to a tetrahedral mesh. The <em>Mesh</em> module in <em>SALOME-HYDRO</em> enables the creation of a mesh with just a view clicks. The mesh is generated first for the surface (2d), then for every boundary edge (1d), and eventually computed and verified. To get ready, activate the <strong>Mesh</strong> module from the top menu.</p>
 <div class="section" id="two-dimensional-2d-mesh-of-the-flume">
 <h3>Two-dimensional (2d) Mesh of the Flume<a class="headerlink" href="#two-dimensional-2d-mesh-of-the-flume" title="Permalink to this headline">¶</a></h3>
-<p><strong>Highlight <em>HYDRO_Hydrodynamic_1</em></strong>  in the <em>Object Browser</em>. Then, go to the <strong>Mesh</strong> top menu (do not confuse with the <em>Mesh</em> module), and select <strong>Create Mesh</strong> (<a class="reference internal" href="#create-mesh-menu"><span class="std std-numref">Fig. 112</span></a>).</p>
+<p><strong>Highlight <em>HYDRO_Hydrodynamic_1</em></strong>  in the <em>Object Browser</em>. Then, go to the <strong>Mesh</strong> top menu (do not confuse with the <em>Mesh</em> module), and select <strong>Create Mesh</strong> (<a class="reference internal" href="#create-mesh-menu"><span class="std std-numref">Fig. 113</span></a>).</p>
 <div class="figure align-default" id="create-mesh-menu">
 <img alt="telemac salome mesh create" src="../_images/mes-01-create-mesh.png" />
-<p class="caption"><span class="caption-number">Fig. 112 </span><span class="caption-text">The Create Mesh menu in SALOME-HYDRO.</span><a class="headerlink" href="#create-mesh-menu" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 113 </span><span class="caption-text">The Create Mesh menu in SALOME-HYDRO.</span><a class="headerlink" href="#create-mesh-menu" title="Permalink to this image">¶</a></p>
 </div>
 <p>In the <strong>Create mesh</strong> popup window set the following:</p>
 <ul class="simple">
@@ -1248,7 +1434,7 @@ The four boundary edges of the surface will represent an upstream (inflow), a do
 <ul>
 <li><p>Choose <em>Netgen 1D-2D</em> for <strong>Algorithm</strong></p></li>
 <li><p>Find the cogwheel symbol behind the <strong>Hypothesis</strong> field and click on it to construct hypotheses for <strong>Netgen 2D Parameters</strong>.</p></li>
-<li><p>In the <strong>Hypothesis Construction</strong> popup window (<a class="reference internal" href="#hypothesis-construction"><span class="std std-numref">Fig. 113</span></a>):</p>
+<li><p>In the <strong>Hypothesis Construction</strong> popup window (<a class="reference internal" href="#hypothesis-construction"><span class="std std-numref">Fig. 114</span></a>):</p>
 <ul>
 <li><p>Define <strong>Name</strong> as <code class="docutils literal notranslate"><span class="pre">NETGEN</span> <span class="pre">2D</span> <span class="pre">Parameters</span> <span class="pre">10_30</span></code></p></li>
 <li><p>Set <strong>Max. Size</strong> to <code class="docutils literal notranslate"><span class="pre">30</span></code></p></li>
@@ -1259,24 +1445,24 @@ The four boundary edges of the surface will represent an upstream (inflow), a do
 </li>
 </ul>
 </li>
-<li><p>Back in the <strong>Create mesh</strong> window (<a class="reference internal" href="#create-mesh"><span class="std std-numref">Fig. 114</span></a>), set the just created <em>NETGEN 2D Parameters 10_30</em> as <strong>Hypothesis</strong>.</p></li>
+<li><p>Back in the <strong>Create mesh</strong> window (<a class="reference internal" href="#create-mesh"><span class="std std-numref">Fig. 115</span></a>), set the just created <em>NETGEN 2D Parameters 10_30</em> as <strong>Hypothesis</strong>.</p></li>
 <li><p>Click on <strong>Apply and Close</strong> (<strong>Create mesh</strong> popup window)</p></li>
 </ul>
 <div class="figure align-default" id="hypothesis-construction">
 <img alt="telemac salome mesh create netgen 2d hypothesis" src="../_images/mes-02-create-mesh-netgen2d-hypo.png" />
-<p class="caption"><span class="caption-number">Fig. 113 </span><span class="caption-text">Construct NETGEN 2D Hypothesis.</span><a class="headerlink" href="#hypothesis-construction" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 114 </span><span class="caption-text">Construct NETGEN 2D Hypothesis.</span><a class="headerlink" href="#hypothesis-construction" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-default" id="create-mesh">
 <img alt="telemac salome mesh create netgen 1d-2d" src="../_images/mes-03-create-mesh-netgen2d.png" />
-<p class="caption"><span class="caption-number">Fig. 114 </span><span class="caption-text">The Create Mesh menu with define hypothesis.</span><a class="headerlink" href="#create-mesh" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 115 </span><span class="caption-text">The Create Mesh menu with define hypothesis.</span><a class="headerlink" href="#create-mesh" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="one-dimensional-1d-meshes-of-boundary-edges">
 <h3>One-dimensional (1d) Meshes of Boundary Edges<a class="headerlink" href="#one-dimensional-1d-meshes-of-boundary-edges" title="Permalink to this headline">¶</a></h3>
-<p>The 1d meshes of the boundary edges will represent sub-meshes of the 2d mesh. To create the sub-meshes, <strong>highlight</strong> the previously created <strong>Mesh_Hn_1</strong> in the <em>Object Browser</em> (click on it), then go to the <strong>Mesh</strong> top menu and select <strong>Create Sub-Mesh</strong> (<a class="reference internal" href="#create-submesh-menu"><span class="std std-numref">Fig. 115</span></a>).</p>
+<p>The 1d meshes of the boundary edges will represent sub-meshes of the 2d mesh. To create the sub-meshes, <strong>highlight</strong> the previously created <strong>Mesh_Hn_1</strong> in the <em>Object Browser</em> (click on it), then go to the <strong>Mesh</strong> top menu and select <strong>Create Sub-Mesh</strong> (<a class="reference internal" href="#create-submesh-menu"><span class="std std-numref">Fig. 116</span></a>).</p>
 <div class="figure align-default" id="create-submesh-menu">
 <img alt="telemac salome mesh create" src="../_images/mes-04-create-submesh-menu.png" />
-<p class="caption"><span class="caption-number">Fig. 115 </span><span class="caption-text">The Create Sub-mesh menu.</span><a class="headerlink" href="#create-submesh-menu" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 116 </span><span class="caption-text">The Create Sub-mesh menu.</span><a class="headerlink" href="#create-submesh-menu" title="Permalink to this image">¶</a></p>
 </div>
 <p>In the <strong>Create sub-mesh</strong> popup window, start with creating the upstream boundary edge’s mesh:</p>
 <ul class="simple">
@@ -1287,7 +1473,7 @@ The four boundary edges of the surface will represent an upstream (inflow), a do
 <ul>
 <li><p>Choose <code class="docutils literal notranslate"><span class="pre">Wire</span> <span class="pre">Discretisation</span></code> for <strong>Algorithm</strong></p></li>
 <li><p>Find the cogwheel symbol behind the <strong>Hypothesis</strong> field and click on it to construct hypotheses for <strong>Number of Segments</strong>.</p></li>
-<li><p>In the <strong>Hypothesis Construction</strong> popup window (<a class="reference internal" href="#hypothesis-construct-segment"><span class="std std-numref">Fig. 116</span></a>):</p>
+<li><p>In the <strong>Hypothesis Construction</strong> popup window (<a class="reference internal" href="#hypothesis-construct-segment"><span class="std std-numref">Fig. 117</span></a>):</p>
 <ul>
 <li><p>Define <strong>Name</strong> as <code class="docutils literal notranslate"><span class="pre">Segments_10</span></code></p></li>
 <li><p>Set <strong>Number of Segments</strong> to <code class="docutils literal notranslate"><span class="pre">10</span></code></p></li>
@@ -1296,20 +1482,20 @@ The four boundary edges of the surface will represent an upstream (inflow), a do
 </li>
 </ul>
 </li>
-<li><p>Back in the <strong>Create Mesh</strong> window (<a class="reference internal" href="#wire-discretisation"><span class="std std-numref">Fig. 117</span></a>), set the just created <em>Segments10</em> as <strong>Hypothesis</strong>.</p></li>
+<li><p>Back in the <strong>Create Mesh</strong> window (<a class="reference internal" href="#wire-discretisation"><span class="std std-numref">Fig. 118</span></a>), set the just created <em>Segments10</em> as <strong>Hypothesis</strong>.</p></li>
 <li><p>Click on <strong>Apply</strong> in the <strong>Create sub-mesh</strong> popup window, which will remain open for the definition of the three other boundary edge’s meshes.</p></li>
 </ul>
 <div class="figure align-default" id="hypothesis-construct-segment">
 <img alt="telemac salome submesh create number of segments hypothesis" src="../_images/mes-05-create-submesh-hypo.png" />
-<p class="caption"><span class="caption-number">Fig. 116 </span><span class="caption-text">Construct Segment hypothesis.</span><a class="headerlink" href="#hypothesis-construct-segment" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 117 </span><span class="caption-text">Construct Segment hypothesis.</span><a class="headerlink" href="#hypothesis-construct-segment" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-default" id="wire-discretisation">
 <img alt="telemac salome submesh create wire discretisation" src="../_images/mes-06-create-submesh-seg10us.png" />
-<p class="caption"><span class="caption-number">Fig. 117 </span><span class="caption-text">Assign a wire discretisation to the submesh.</span><a class="headerlink" href="#wire-discretisation" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 118 </span><span class="caption-text">Assign a wire discretisation to the submesh.</span><a class="headerlink" href="#wire-discretisation" title="Permalink to this image">¶</a></p>
 </div>
 <p><strong>Repeat</strong> the above steps for creating sub-meshes for the downstream, left wall, and right wall edges, but with different construction hypotheses.</p>
 <ul class="simple">
-<li><p>For the downstream sub-mesh use <strong>Name</strong> <code class="docutils literal notranslate"><span class="pre">downstream</span></code> and construct the following hypothesis (<a class="reference internal" href="#hypothesis-construct-arith"><span class="std std-numref">Fig. 118</span></a>):</p>
+<li><p>For the downstream sub-mesh use <strong>Name</strong> <code class="docutils literal notranslate"><span class="pre">downstream</span></code> and construct the following hypothesis (<a class="reference internal" href="#hypothesis-construct-arith"><span class="std std-numref">Fig. 119</span></a>):</p>
 <ul>
 <li><p>Type: <strong>Number of Segments</strong></p></li>
 <li><p>Define <strong>Name</strong> as <code class="docutils literal notranslate"><span class="pre">Segments_05</span></code></p></li>
@@ -1317,7 +1503,7 @@ The four boundary edges of the surface will represent an upstream (inflow), a do
 <li><p>Set <strong>Type of distribution</strong> to  <code class="docutils literal notranslate"><span class="pre">Equidistant</span> <span class="pre">distribution</span></code>.</p></li>
 </ul>
 </li>
-<li><p>For the left wall sub-mesh (<a class="reference internal" href="#wire-discretisation-arith"><span class="std std-numref">Fig. 119</span></a>) use <strong>Name</strong> <code class="docutils literal notranslate"><span class="pre">leftwall</span></code> and construct the following hypothesis:</p>
+<li><p>For the left wall sub-mesh (<a class="reference internal" href="#wire-discretisation-arith"><span class="std std-numref">Fig. 120</span></a>) use <strong>Name</strong> <code class="docutils literal notranslate"><span class="pre">leftwall</span></code> and construct the following hypothesis:</p>
 <ul>
 <li><p>Type: <strong>Arithmetic Progression 1D</strong></p></li>
 <li><p>Define <strong>Name</strong> as <code class="docutils literal notranslate"><span class="pre">Arithmetic1d10_30</span></code></p></li>
@@ -1328,11 +1514,11 @@ The four boundary edges of the surface will represent an upstream (inflow), a do
 </ul>
 <div class="figure align-default" id="hypothesis-construct-arith">
 <img alt="telemac salome submesh create arithmetic progression hypothesis" src="../_images/mes-09-create-submesh-hypoarith1030.png" />
-<p class="caption"><span class="caption-number">Fig. 118 </span><span class="caption-text">Construct an Arithmetic hypothesis.</span><a class="headerlink" href="#hypothesis-construct-arith" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 119 </span><span class="caption-text">Construct an Arithmetic hypothesis.</span><a class="headerlink" href="#hypothesis-construct-arith" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-default" id="wire-discretisation-arith">
 <img alt="telemac salome submesh create wire discretisation arithmetic" src="../_images/mes-10-create-submesh-arith1030lw.png" />
-<p class="caption"><span class="caption-number">Fig. 119 </span><span class="caption-text">Assign the wire discretisation algorithm and the arithmetic hypothesis.</span><a class="headerlink" href="#wire-discretisation-arith" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 120 </span><span class="caption-text">Assign the wire discretisation algorithm and the arithmetic hypothesis.</span><a class="headerlink" href="#wire-discretisation-arith" title="Permalink to this image">¶</a></p>
 </div>
 <ul class="simple">
 <li><p>For the right wall sub-mesh use <strong>Name</strong> <code class="docutils literal notranslate"><span class="pre">rightwall</span></code> and construct the following hypothesis:</p>
@@ -1356,45 +1542,45 @@ The four boundary edges of the surface will represent an upstream (inflow), a do
 </div>
 <div class="section" id="compute-mesh">
 <h3>Compute Mesh<a class="headerlink" href="#compute-mesh" title="Permalink to this headline">¶</a></h3>
-<p>In the <strong>Object Browser</strong>, extend (un-collapse) the new <em>Mesh</em> block, <strong>right-click</strong> on <strong>Mesh_Hn_1</strong>, and select <strong>Compute</strong> (<a class="reference internal" href="#compute-menu"><span class="std std-numref">Fig. 120</span></a>).</p>
+<p>In the <strong>Object Browser</strong>, extend (un-collapse) the new <em>Mesh</em> block, <strong>right-click</strong> on <strong>Mesh_Hn_1</strong>, and select <strong>Compute</strong> (<a class="reference internal" href="#compute-menu"><span class="std std-numref">Fig. 121</span></a>).</p>
 <div class="figure align-default" id="compute-menu">
 <img alt="telemac salome compute mesh menu" src="../_images/mes-13-start-compute.png" />
-<p class="caption"><span class="caption-number">Fig. 120 </span><span class="caption-text">The Compute entry in the Mesh context menu (object browser).</span><a class="headerlink" href="#compute-menu" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 121 </span><span class="caption-text">The Compute entry in the Mesh context menu (object browser).</span><a class="headerlink" href="#compute-menu" title="Permalink to this image">¶</a></p>
 </div>
-<p>This will automatically also compute all sub-meshes. After the successful computation of the mesh, <em>SALOME-HYDRO</em> informs about the mesh properties in a popup window (<a class="reference internal" href="#compute-popup"><span class="std std-numref">Fig. 121</span></a>).</p>
+<p>This will automatically also compute all sub-meshes. After the successful computation of the mesh, <em>SALOME-HYDRO</em> informs about the mesh properties in a popup window (<a class="reference internal" href="#compute-popup"><span class="std std-numref">Fig. 122</span></a>).</p>
 <div class="figure align-default" id="compute-popup">
 <img alt="smesh compute netgen 2d 3d" src="../_images/mes-14-end-compute.png" />
-<p class="caption"><span class="caption-number">Fig. 121 </span><span class="caption-text">Illustration of a successful mesh computation (numbers of elements, nodes, edges, faces, and volumes may slightly vary).</span><a class="headerlink" href="#compute-popup" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 122 </span><span class="caption-text">Illustration of a successful mesh computation (numbers of elements, nodes, edges, faces, and volumes may slightly vary).</span><a class="headerlink" href="#compute-popup" title="Permalink to this image">¶</a></p>
 </div>
-<p>In the viewport (<em>VTK scene</em> tab in <a class="reference internal" href="#mesh-viewport"><span class="std std-numref">Fig. 122</span></a>), find the <strong>-OZ</strong> button to switch to plane view. If the mesh is not visible even though the computation was successful, right-click on the mesh in the <em>Object Browser</em> and click on <strong>Show</strong>.</p>
+<p>In the viewport (<em>VTK scene</em> tab in <a class="reference internal" href="#mesh-viewport"><span class="std std-numref">Fig. 123</span></a>), find the <strong>-OZ</strong> button to switch to plane view. If the mesh is not visible even though the computation was successful, right-click on the mesh in the <em>Object Browser</em> and click on <strong>Show</strong>.</p>
 <div class="figure align-default" id="mesh-viewport">
 <img alt="smesh show only" src="../_images/mes-15-gotoOZ.png" />
-<p class="caption"><span class="caption-number">Fig. 122 </span><span class="caption-text">The computed mesh in the VTK scene viewport.</span><a class="headerlink" href="#mesh-viewport" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 123 </span><span class="caption-text">The computed mesh in the VTK scene viewport.</span><a class="headerlink" href="#mesh-viewport" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="verify-mesh">
 <h3>Verify Mesh<a class="headerlink" href="#verify-mesh" title="Permalink to this headline">¶</a></h3>
 <p><em><strong>Orientation of faces and volumes</strong></em></p>
-<p>This step will ensure that the mesh is correctly oriented for the simulation with Telemac3d. In the <em>Object Browser</em>, highlight <em>Mesh_Hn_1</em> and then go to the <strong>Modification</strong> top menu &gt; <strong>Orientation</strong>. In the popup window (<a class="reference internal" href="#modify-orient"><span class="std std-numref">Fig. 123</span></a>), check the <strong>Apply to all</strong> box. Click the <strong>Apply and close</strong> button. The mesh should have changed from darker blue to a lighter tone of blue (if the inverse is the case, repeat the application of the orientation tool).</p>
+<p>This step will ensure that the mesh is correctly oriented for the simulation with Telemac3d. In the <em>Object Browser</em>, highlight <em>Mesh_Hn_1</em> and then go to the <strong>Modification</strong> top menu &gt; <strong>Orientation</strong>. In the popup window (<a class="reference internal" href="#modify-orient"><span class="std std-numref">Fig. 124</span></a>), check the <strong>Apply to all</strong> box. Click the <strong>Apply and close</strong> button. The mesh should have changed from darker blue to a lighter tone of blue (if the inverse is the case, repeat the application of the orientation tool).</p>
 <div class="figure align-default" id="modify-orient">
 <img alt="mesh modification orientation" src="../_images/mes-16-mod-orient.png" />
-<p class="caption"><span class="caption-number">Fig. 123 </span><span class="caption-text">The Modification of orientation window.</span><a class="headerlink" href="#modify-orient" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 124 </span><span class="caption-text">The Modification of orientation window.</span><a class="headerlink" href="#modify-orient" title="Permalink to this image">¶</a></p>
 </div>
 <p><em><strong>Identify and reconcile over-constraint elements</strong></em></p>
-<p>In the <em>Object Browser</em>, <strong>highlight <em>Mesh_Hn_1</em></strong>. Then go to the <strong>Controls</strong> top menu &gt; <strong>Face Controls</strong> &gt; <strong>Over-constraint faces</strong>. Over-constrained triangles in the <em>Mesh_Hn_1</em> will turn red in the viewport (<em>VTK scene:1</em>) and at the bottom of the viewport, the note <em>Over-constrained faces: 3</em> will appear (<a class="reference internal" href="#problem-edges"><span class="std std-numref">Fig. 124</span></a>).</p>
+<p>In the <em>Object Browser</em>, <strong>highlight <em>Mesh_Hn_1</em></strong>. Then go to the <strong>Controls</strong> top menu &gt; <strong>Face Controls</strong> &gt; <strong>Over-constraint faces</strong>. Over-constrained triangles in the <em>Mesh_Hn_1</em> will turn red in the viewport (<em>VTK scene:1</em>) and at the bottom of the viewport, the note <em>Over-constrained faces: 3</em> will appear (<a class="reference internal" href="#problem-edges"><span class="std std-numref">Fig. 125</span></a>).</p>
 <div class="figure align-default" id="problem-edges">
 <img alt="mesh over constrained constraint faces" src="../_images/mes-17-mod-over-const.png" />
-<p class="caption"><span class="caption-number">Fig. 124 </span><span class="caption-text">Overconstrained faces (red elements) highlighted in the viewport.</span><a class="headerlink" href="#problem-edges" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 125 </span><span class="caption-text">Overconstrained faces (red elements) highlighted in the viewport.</span><a class="headerlink" href="#problem-edges" title="Permalink to this image">¶</a></p>
 </div>
-<p>To reconcile the edge cause the triangle’s over-constrain, go to the <strong>Modification</strong> top menu &gt; <strong>Diagonal inversion</strong> (<a class="reference internal" href="#diagonal-inv"><span class="std std-numref">Fig. 125</span></a>), and select the internal edge of the concerned triangles.</p>
+<p>To reconcile the edge cause the triangle’s over-constrain, go to the <strong>Modification</strong> top menu &gt; <strong>Diagonal inversion</strong> (<a class="reference internal" href="#diagonal-inv"><span class="std std-numref">Fig. 126</span></a>), and select the internal edge of the concerned triangles.</p>
 <div class="figure align-default" id="diagonal-inv">
 <img alt="mesh over-constrained diagonal inversion internal edges triangle" src="../_images/mes-18-mod-over-const-edge-select.png" />
-<p class="caption"><span class="caption-number">Fig. 125 </span><span class="caption-text">Define edges between neighboring triangles to reconcile by diagonal inversion.</span><a class="headerlink" href="#diagonal-inv" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 126 </span><span class="caption-text">Define edges between neighboring triangles to reconcile by diagonal inversion.</span><a class="headerlink" href="#diagonal-inv" title="Permalink to this image">¶</a></p>
 </div>
-<p>Over-constrained triangles might be hidden by the axes arrows in the corner. Thus, pay attention to sufficiently zoom into the corner (<a class="reference internal" href="#diagonal-inv-zoom"><span class="std std-numref">Fig. 126</span></a>) unless the <em>Over-constrained faces</em> notification in the viewport shows <strong>0</strong>.</p>
+<p>Over-constrained triangles might be hidden by the axes arrows in the corner. Thus, pay attention to sufficiently zoom into the corner (<a class="reference internal" href="#diagonal-inv-zoom"><span class="std std-numref">Fig. 127</span></a>) unless the <em>Over-constrained faces</em> notification in the viewport shows <strong>0</strong>.</p>
 <div class="figure align-default" id="diagonal-inv-zoom">
 <img alt="mesh over-constrained diagonal inversion hidden edges faces" src="../_images/mes-19-mod-over-const-edge-hidden.png" />
-<p class="caption"><span class="caption-number">Fig. 126 </span><span class="caption-text">Zoom into the axis corners to view slightly hidden triangles for diagonal inversion.</span><a class="headerlink" href="#diagonal-inv-zoom" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 127 </span><span class="caption-text">Zoom into the axis corners to view slightly hidden triangles for diagonal inversion.</span><a class="headerlink" href="#diagonal-inv-zoom" title="Permalink to this image">¶</a></p>
 </div>
 <div class="tip dropdown admonition">
 <p class="admonition-title">Save the project</p>
@@ -1404,31 +1590,31 @@ The four boundary edges of the surface will represent an upstream (inflow), a do
 </div>
 <div class="section" id="export-med-file">
 <span id="med-export"></span><h2>Export MED File<a class="headerlink" href="#export-med-file" title="Permalink to this headline">¶</a></h2>
-<p>Exporting the mesh to a MED file requires the definition of mesh groups. To do so, highlight <em>Mesh_Hn_1</em> in the object browser and right-click on it. Select <strong>Create Groups from Geometry</strong> from the mesh context menu (<a class="reference internal" href="#groups-from-geo-menu"><span class="std std-numref">Fig. 127</span></a>).</p>
+<p>Exporting the mesh to a MED file requires the definition of mesh groups. To do so, highlight <em>Mesh_Hn_1</em> in the object browser and right-click on it. Select <strong>Create Groups from Geometry</strong> from the mesh context menu (<a class="reference internal" href="#groups-from-geo-menu"><span class="std std-numref">Fig. 128</span></a>).</p>
 <div class="figure align-default" id="groups-from-geo-menu">
 <img alt="mesh export create groups context menu" src="../_images/mes-20-create-group-menu.png" />
-<p class="caption"><span class="caption-number">Fig. 127 </span><span class="caption-text">Select the Create Groups from Geometry in the Mesh context menu.</span><a class="headerlink" href="#groups-from-geo-menu" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 128 </span><span class="caption-text">Select the Create Groups from Geometry in the Mesh context menu.</span><a class="headerlink" href="#groups-from-geo-menu" title="Permalink to this image">¶</a></p>
 </div>
-<p>In the popup window, select all groups and sub shapes of the <em>FLUME</em> geometry and all groups of <strong>mesh elements</strong> and <strong>mesh nodes</strong>. For selecting multiple geometries, hold down the <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> (<code class="docutils literal notranslate"><span class="pre">Strg</span></code>) and <code class="docutils literal notranslate"><span class="pre">Shift</span></code> keys on the keyboard and select the geometry/mesh groups. The tool will automatically add all nodes selected (<a class="reference internal" href="#select-geo-groups"><span class="std std-numref">Fig. 128</span></a>). Press <strong>Apply and close</strong> to finalize the creation of groups.</p>
+<p>In the popup window, select all groups and sub shapes of the <em>FLUME</em> geometry and all groups of <strong>mesh elements</strong> and <strong>mesh nodes</strong>. For selecting multiple geometries, hold down the <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> (<code class="docutils literal notranslate"><span class="pre">Strg</span></code>) and <code class="docutils literal notranslate"><span class="pre">Shift</span></code> keys on the keyboard and select the geometry/mesh groups. The tool will automatically add all nodes selected (<a class="reference internal" href="#select-geo-groups"><span class="std std-numref">Fig. 129</span></a>). Press <strong>Apply and close</strong> to finalize the creation of groups.</p>
 <div class="figure align-default" id="select-geo-groups">
 <img alt="mesh export create groups select" src="../_images/mes-21-create-group.png" />
-<p class="caption"><span class="caption-number">Fig. 128 </span><span class="caption-text">Select geometry elements to create groups.</span><a class="headerlink" href="#select-geo-groups" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 129 </span><span class="caption-text">Select geometry elements to create groups.</span><a class="headerlink" href="#select-geo-groups" title="Permalink to this image">¶</a></p>
 </div>
-<p>Verify the created groups by right-clicking on the top of the project tree in the <em>Object Browser</em> and selecting <em>Show only</em> with the option <em>Auto Color</em> (<a class="reference internal" href="#verify-groups"><span class="std std-numref">Fig. 129</span></a>).</p>
+<p>Verify the created groups by right-clicking on the top of the project tree in the <em>Object Browser</em> and selecting <em>Show only</em> with the option <em>Auto Color</em> (<a class="reference internal" href="#verify-groups"><span class="std std-numref">Fig. 130</span></a>).</p>
 <div class="figure align-default" id="verify-groups">
 <img alt="mesh export create groups final control" src="../_images/mes-21-final-groups.png" />
-<p class="caption"><span class="caption-number">Fig. 129 </span><span class="caption-text">Make sure that the Mesh in the object browser contains Groups of Nodes, Edges, and Faces.</span><a class="headerlink" href="#verify-groups" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 130 </span><span class="caption-text">Make sure that the Mesh in the object browser contains Groups of Nodes, Edges, and Faces.</span><a class="headerlink" href="#verify-groups" title="Permalink to this image">¶</a></p>
 </div>
 <div class="important admonition">
 <p class="admonition-title">Unique elements only</p>
 <p>Make sure that every group element is unique within every group. If an element appears twice in one group, the next step (export mesh) will through a warning message about double-defined group elements, which will lead to an error later.</p>
 </div>
-<p>If the groups seems correct (see above figure), export them with <strong>File</strong> (top menu) &gt; <strong>Export</strong> &gt; <strong>MED</strong> (<a class="reference internal" href="#export-mesh-menu"><span class="std std-numref">Fig. 130</span></a>).</p>
+<p>If the groups seems correct (see above figure), export them with <strong>File</strong> (top menu) &gt; <strong>Export</strong> &gt; <strong>MED</strong> (<a class="reference internal" href="#export-mesh-menu"><span class="std std-numref">Fig. 131</span></a>).</p>
 <div class="figure align-default" id="export-mesh-menu">
 <img alt="mesh export med context menu" src="../_images/mes-22-export-med-menu.png" />
-<p class="caption"><span class="caption-number">Fig. 130 </span><span class="caption-text">The Export mesh to MED file context menu.</span><a class="headerlink" href="#export-mesh-menu" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 131 </span><span class="caption-text">The Export mesh to MED file context menu.</span><a class="headerlink" href="#export-mesh-menu" title="Permalink to this image">¶</a></p>
 </div>
-<p>In the <strong>Export mesh</strong> popup window (<a class="reference internal" href="#export-mesh"><span class="std std-numref">Fig. 131</span></a>), define:</p>
+<p>In the <strong>Export mesh</strong> popup window (<a class="reference internal" href="#export-mesh"><span class="std std-numref">Fig. 132</span></a>), define:</p>
 <ul class="simple">
 <li><p><strong>File name</strong> <code class="docutils literal notranslate"><span class="pre">Mesh_Hn_1</span></code> (or whatever you prefer)</p></li>
 <li><p><strong>Files of type</strong> <code class="docutils literal notranslate"><span class="pre">MED</span> <span class="pre">4.1</span> <span class="pre">files</span></code> <br><em>Note: The installation of TELEMAC described in the <a class="reference internal" href="../get-started/install-telemac.html#med-hdf"><span class="std std-ref">TELEMAC installation chapter</span></a> requires to use <strong><code class="docutils literal notranslate"><span class="pre">MED</span> <span class="pre">3.2</span> <span class="pre">files</span></code></strong>.</em></p></li>
@@ -1438,7 +1624,7 @@ The four boundary edges of the surface will represent an upstream (inflow), a do
 </ul>
 <div class="figure align-default" id="export-mesh">
 <img alt="telemac salome save med file" src="../_images/mes-23-export-med.png" />
-<p class="caption"><span class="caption-number">Fig. 131 </span><span class="caption-text">The Export mesh popup window.</span><a class="headerlink" href="#export-mesh" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 132 </span><span class="caption-text">The Export mesh popup window.</span><a class="headerlink" href="#export-mesh" title="Permalink to this image">¶</a></p>
 </div>
 <div class="tip dropdown admonition">
 <p class="admonition-title">Save the project</p>
@@ -1449,17 +1635,17 @@ The four boundary edges of the surface will represent an upstream (inflow), a do
 <h2>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="basic-setup-with-the-hydrosolver-module">
 <h3>Basic Setup with the HydroSolver Module<a class="headerlink" href="#basic-setup-with-the-hydrosolver-module" title="Permalink to this headline">¶</a></h3>
-<p>Activate the <strong>HydroSolver</strong> module from the top menu and click on the <em>Edit boundary conditions file</em> button to create a new boundary condition file (<a class="reference internal" href="#bc-file-menu"><span class="std std-numref">Fig. 132</span></a>).</p>
+<p>Activate the <strong>HydroSolver</strong> module from the top menu and click on the <em>Edit boundary conditions file</em> button to create a new boundary condition file (<a class="reference internal" href="#bc-file-menu"><span class="std std-numref">Fig. 133</span></a>).</p>
 <div class="figure align-default" id="bc-file-menu">
 <img alt="telemac salome hydrosolver create edit boundary conditions menu" src="../_images/hs01-edit-bc.png" />
-<p class="caption"><span class="caption-number">Fig. 132 </span><span class="caption-text">The Edit boundary conditions file button in the HydroSolver module.</span><a class="headerlink" href="#bc-file-menu" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 133 </span><span class="caption-text">The Edit boundary conditions file button in the HydroSolver module.</span><a class="headerlink" href="#bc-file-menu" title="Permalink to this image">¶</a></p>
 </div>
 <p>In the opening popup window, select the just exported <strong>MED</strong> file containing the mesh and leave the <em>Boundary conditions file</em> field in the <em>Input files</em> frame free. In the <strong>Output files</strong> frame, click on <strong>…</strong> and define a boundary conditions file (e.g., <code class="docutils literal notranslate"><span class="pre">flume3d_bc.bnd</span></code>).</p>
 <div class="attention admonition">
 <p class="admonition-title">Put all files in 1 folder</p>
 <p>Make sure that all model files (<em>MED</em>, <em>BND</em>, and others such as the later defined <code class="docutils literal notranslate"><span class="pre">*.cas</span></code> file) are all located in the same folder.</p>
 </div>
-<p>Make the following definitions in the <strong>Boundary conditions</strong> frame (<a class="reference internal" href="#bc-define"><span class="std std-numref">Fig. 133</span></a>):</p>
+<p>Make the following definitions in the <strong>Boundary conditions</strong> frame (<a class="reference internal" href="#bc-define"><span class="std std-numref">Fig. 134</span></a>):</p>
 <ul class="simple">
 <li><p>Group <strong>Hydrodynamic_wetted_contour_Outer</strong>: Set <strong>Preset</strong> to <strong>Custom</strong> and all values to <code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
 <li><p>Group <strong>downstream</strong>: Set <strong>Preset</strong> to <strong>Prescribed H / free T</strong></p></li>
@@ -1469,7 +1655,7 @@ The four boundary edges of the surface will represent an upstream (inflow), a do
 </ul>
 <div class="figure align-default" id="bc-define">
 <img alt="telemac salome hydrosolver create edit boundary conditions" src="../_images/hs02-create-bc.png" />
-<p class="caption"><span class="caption-number">Fig. 133 </span><span class="caption-text">Define wall and liquid boundary conditions in the BND file.</span><a class="headerlink" href="#bc-define" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 134 </span><span class="caption-text">Define wall and liquid boundary conditions in the BND file.</span><a class="headerlink" href="#bc-define" title="Permalink to this image">¶</a></p>
 </div>
 <p>Then click on <strong>Apply and Close</strong>.</p>
 </div>
@@ -1536,100 +1722,100 @@ The four boundary edges of the surface will represent an upstream (inflow), a do
 <p class="admonition-title">Tip</p>
 <p>To facilitate setting up the steering (CAS) file for this tutorial, <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady3d-med-tutorial/t3d_template.cas">download the template</a> (right-click on the link &gt; <em>Save Link As…</em> &gt; navigate to the local tutorial folder), which contains more descriptions and options for simulation parameters.</p>
 </div>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">t3d_flume</span><span class="p">.</span><span class="n">cas</span>
-<span class="o">/------------------------------------------------------------------/</span>
-<span class="o">/</span>			<span class="n">COMPUTATION</span> <span class="n">ENVIRONMENT</span>
-<span class="o">/------------------------------------------------------------------/</span>
-<span class="n">TITLE</span> <span class="p">:</span> <span class="s1">&#39;TELEMAC 3D FLUME&#39;</span>
-<span class="n">MASS</span><span class="o">-</span><span class="n">BALANCE</span> <span class="p">:</span> <span class="n">YES</span>
-<span class="o">/</span>
-<span class="n">BOUNDARY</span> <span class="n">CONDITIONS</span> <span class="k">FILE</span> <span class="p">:</span> <span class="n">flume3d_bc</span><span class="p">.</span><span class="n">bnd</span>
-<span class="n">GEOMETRY</span> <span class="k">FILE</span>            <span class="p">:</span> <span class="n">Mesh_Hn_1</span><span class="p">.</span><span class="n">med</span>
-<span class="n">GEOMETRY</span> <span class="k">FILE FORMAT</span> 	 <span class="p">:</span> <span class="s1">&#39;MED&#39;</span>
-<span class="mi">3</span><span class="n">D</span> <span class="k">RESULT FILE</span>           <span class="p">:</span> <span class="n">r3d_canal</span><span class="o">-</span><span class="n">t3d</span><span class="p">.</span><span class="n">med</span>
-<span class="mi">3</span><span class="n">D</span> <span class="k">RESULT FILE FORMAT</span>    <span class="p">:</span> <span class="s1">&#39;MED&#39;</span>
-<span class="mi">2</span><span class="n">D</span> <span class="k">RESULT FILE</span>           <span class="p">:</span> <span class="n">r2d3d_canal</span><span class="o">-</span><span class="n">t3d</span><span class="p">.</span><span class="n">med</span>
-<span class="mi">2</span><span class="n">D</span> <span class="k">RESULT FILE FORMAT</span>    <span class="p">:</span> <span class="s1">&#39;MED&#39;</span>
-<span class="o">/</span>
-<span class="n">VARIABLES</span> <span class="n">FOR</span> <span class="mi">2</span><span class="n">D</span> <span class="n">GRAPHIC</span> <span class="n">PRINTOUTS</span> <span class="p">:</span> <span class="n">U</span><span class="p">,</span><span class="n">V</span><span class="p">,</span><span class="n">H</span>
-<span class="n">VARIABLES</span> <span class="n">FOR</span> <span class="mi">3</span><span class="n">D</span> <span class="n">GRAPHIC</span> <span class="n">PRINTOUTS</span> <span class="p">:</span> <span class="n">Z</span><span class="p">,</span><span class="n">U</span><span class="p">,</span><span class="n">V</span><span class="p">,</span><span class="n">W</span>
-<span class="o">/</span>
-<span class="o">/------------------------------------------------------------------/</span>
-<span class="o">/</span>			<span class="n">GENERAL</span> <span class="n">PARAMETERS</span>
-<span class="o">/------------------------------------------------------------------/</span>
-<span class="nb">TIME </span><span class="n">STEP</span> <span class="p">:</span> <span class="mf">1.</span>
-<span class="n">NUMBER</span> <span class="n">OF</span> <span class="nb">TIME </span><span class="n">STEPS</span> <span class="p">:</span> <span class="mi">5000</span>
-<span class="n">GRAPHIC</span> <span class="n">PRINTOUT</span> <span class="n">PERIOD</span> <span class="p">:</span> <span class="mi">100</span>
-<span class="n">LISTING</span> <span class="n">PRINTOUT</span> <span class="n">PERIOD</span> <span class="p">:</span> <span class="mi">100</span>
-<span class="o">/</span>
-<span class="o">/------------------------------------------------------------------/</span>
-<span class="o">/</span>			<span class="n">VERTICAL</span>
-<span class="o">/------------------------------------------------------------------/</span>
-<span class="o">/</span> <span class="n">vertical</span> <span class="n">cell</span> <span class="n">height</span> <span class="n">defined</span> <span class="n">by</span> <span class="n">initial</span> <span class="n">condition</span> <span class="n">x</span> <span class="n">no</span><span class="p">.</span> <span class="n">of</span> <span class="n">levels</span>
-<span class="o">/</span> <span class="n">default</span> <span class="nb">and </span><span class="n">minimum</span> <span class="k">is </span><span class="mi">2</span><span class="p">,</span> <span class="n">upward</span> <span class="n">vertical</span> <span class="n">direction</span>
-<span class="n">NUMBER</span> <span class="n">OF</span> <span class="n">HORIZONTAL</span> <span class="n">LEVELS</span> <span class="p">:</span> <span class="mi">5</span>
-<span class="o">/</span>
-<span class="o">/------------------------------------------------------------------/</span>
-<span class="o">/</span>			<span class="n">NUMERICAL</span> <span class="n">PARAMETERS</span>
-<span class="o">/------------------------------------------------------------------/</span>
-<span class="o">/</span>
-<span class="o">/</span> <span class="n">ADVECTION</span><span class="o">-</span><span class="n">DIFFUSION</span>
-<span class="o">/------------------------------------------------------------------</span>
-<span class="n">SCHEME</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">VELOCITIES</span> <span class="p">:</span> <span class="mi">5</span>
-<span class="n">SCHEME</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">K</span><span class="o">-</span><span class="nb">EPSILON</span> <span class="p">:</span> <span class="mi">5</span>
-<span class="n">SCHEME</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">TRACERS</span> <span class="p">:</span> <span class="mi">5</span>
-<span class="o">/</span> <span class="n">scheme</span> <span class="k">options</span> <span class="o">-</span> <span class="k">use </span><span class="mi">2</span> <span class="n">for</span> <span class="n">disabling</span> <span class="n">tidal</span> <span class="n">flats</span> <span class="nb">and </span><span class="n">increase</span> <span class="n">speed</span>
-<span class="n">SCHEME</span> <span class="n">OPTION</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">VELOCITIES</span> <span class="p">:</span> <span class="mi">4</span>
-<span class="n">SCHEME</span> <span class="n">OPTION</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">K</span><span class="o">-</span><span class="nb">EPSILON</span> <span class="p">:</span> <span class="mi">4</span>
-<span class="n">SCHEME</span> <span class="n">OPTION</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">TRACERS</span> <span class="p">:</span> <span class="mi">4</span>
-<span class="o">/</span>
-<span class="n">SUPG</span> <span class="n">OPTION</span> <span class="p">:</span> <span class="mi">2</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">2</span>  <span class="o">/</span> <span class="n">classic</span> <span class="n">supg</span> <span class="n">for</span> <span class="n">U</span> <span class="nb">and </span><span class="n">V</span>  <span class="n">see</span> <span class="n">docs</span> <span class="n">sec</span> <span class="mf">6.2</span><span class="p">.</span><span class="mi">2</span>
-<span class="o">/</span>
-<span class="o">/</span> <span class="n">PROPAGATION</span> <span class="n">HEIGHT</span> <span class="nb">AND </span><span class="n">STABILITY</span>
-<span class="o">/</span> <span class="o">------------------------------------------------------------------</span>
-<span class="n">IMPLICITATION</span> <span class="n">FOR</span> <span class="n">DEPTH</span> <span class="p">:</span> <span class="mf">0.55</span> <span class="o">/</span> <span class="n">should</span> <span class="n">be</span> <span class="n">between</span> <span class="mf">0.55</span> <span class="nb">and </span><span class="mf">0.6</span>
-<span class="n">IMPLICITATION</span> <span class="n">FOR</span> <span class="n">VELOCITIES</span> <span class="p">:</span> <span class="mf">0.55</span> <span class="o">/</span> <span class="n">should</span> <span class="n">be</span> <span class="n">between</span> <span class="mf">0.55</span> <span class="nb">and </span><span class="mf">0.6</span>
-<span class="n">IMPLICITATION</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="p">:</span> <span class="mf">1.</span>
-<span class="n">FREE</span> <span class="n">SURFACE</span> <span class="n">GRADIENT</span> <span class="n">COMPATIBILITY</span> <span class="p">:</span> <span class="mf">0.1</span>  <span class="o">/</span> <span class="n">default</span> <span class="mf">1.</span>
-<span class="o">/</span>
-<span class="o">/------------------------------------------------------------------/</span>
-<span class="o">/</span>			<span class="n">HYDRODYNAMICS</span>
-<span class="o">/------------------------------------------------------------------/</span>
-<span class="o">/</span>
-<span class="o">/</span> <span class="n">HYDRODYNAMIC</span> <span class="n">SOLVER</span>
-<span class="o">/------------------------------------------------------------------</span>
-<span class="n">NON</span><span class="o">-</span><span class="n">HYDROSTATIC</span> <span class="n">VERSION</span> <span class="p">:</span> <span class="n">YES</span> <span class="o">/</span> <span class="k">use </span><span class="n">default</span> <span class="n">solver</span> <span class="n">number</span> <span class="mi">7</span> <span class="p">(</span><span class="n">GMRES</span><span class="p">)</span>
-<span class="n">MAXIMUM</span> <span class="n">NUMBER</span> <span class="n">OF</span> <span class="n">ITERATIONS</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">VELOCITIES</span> <span class="p">:</span> <span class="mi">100</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="mi">60</span>
-<span class="o">/</span>
-<span class="o">/</span> <span class="n">BOUNDARY</span> <span class="n">CONDITIONS</span>
-<span class="o">/------------------------------------------------------------------</span>
-<span class="o">/</span> <span class="k">Use </span><span class="n">Nikuradse</span> <span class="n">roughness</span> <span class="n">law</span> <span class="o">-</span> <span class="k">all </span><span class="n">others</span> <span class="n">are</span> <span class="nb">not </span><span class="mi">3</span><span class="n">D</span> <span class="n">compatible</span>
-<span class="n">LAW</span> <span class="n">OF</span> <span class="n">BOTTOM</span> <span class="n">FRICTION</span> <span class="p">:</span> <span class="mi">5</span>
-<span class="n">LAW</span> <span class="n">OF</span> <span class="n">FRICTION</span> <span class="n">ON</span> <span class="n">LATERAL</span> <span class="n">BOUNDARIES</span> <span class="p">:</span> <span class="mi">5</span>  <span class="o">/</span> <span class="n">for</span> <span class="n">natural</span> <span class="n">banks</span> <span class="o">-</span> <span class="mi">0</span> <span class="n">for</span> <span class="n">symmetry</span>
-<span class="n">FRICTION</span> <span class="n">COEFFICIENT</span> <span class="n">FOR</span> <span class="n">THE</span> <span class="n">BOTTOM</span> <span class="p">:</span> <span class="mf">0.1</span> <span class="o">/</span> <span class="mi">3</span> <span class="n">times</span> <span class="n">d90</span> <span class="n">according</span> <span class="n">to</span> <span class="n">van</span> <span class="n">Rijn</span>
-<span class="o">/</span>
-<span class="o">/</span> <span class="n">Liquid</span> <span class="n">boundaries</span>
-<span class="n">PRESCRIBED</span> <span class="n">FLOWRATES</span>  <span class="p">:</span> <span class="mi">5</span><span class="mf">0.</span><span class="p">;</span><span class="mi">5</span><span class="mf">0.</span>
-<span class="n">PRESCRIBED</span> <span class="n">ELEVATIONS</span> <span class="p">:</span> <span class="mf">2.</span><span class="p">;</span><span class="mf">0.</span>
-<span class="o">/</span>
-<span class="o">/</span> <span class="n">INITIAL</span> <span class="n">CONDITIONS</span>
-<span class="o">/</span> <span class="o">------------------------------------------------------------------</span>
-<span class="n">INITIAL</span> <span class="n">CONDITIONS</span> <span class="p">:</span> <span class="s1">&#39;CONSTANT ELEVATION&#39;</span>
-<span class="n">INITIAL</span> <span class="n">ELEVATION</span> <span class="p">:</span> <span class="mi">50</span> <span class="o">/</span> <span class="n">corresponds</span> <span class="n">to</span> <span class="n">depth</span> <span class="n">here</span> <span class="o">-</span> <span class="nb">not </span><span class="n">so</span> <span class="n">in</span> <span class="n">the</span> <span class="n">boundary</span> <span class="k">file</span>
-<span class="n">INITIAL</span> <span class="n">GUESS</span> <span class="n">FOR</span> <span class="n">DEPTH</span> <span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="kt">INTEGER </span><span class="n">for</span> <span class="n">speeding</span> <span class="n">up</span> <span class="n">calculations</span>
-<span class="o">/</span>
-<span class="o">/</span> <span class="k">Type </span><span class="n">of</span> <span class="n">velocity</span> <span class="n">profile</span> <span class="n">can</span> <span class="n">be</span> <span class="mi">0</span><span class="o">-</span><span class="n">user</span> <span class="n">defined</span><span class="p">)</span> <span class="mi">1</span><span class="o">-</span><span class="n">constant</span> <span class="p">(</span><span class="n">default</span><span class="p">),</span> <span class="mi">2</span><span class="o">-</span><span class="nb">Log</span>
-<span class="n">VELOCITY</span> <span class="n">PROFILE</span> <span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">horizontal</span> <span class="n">profile</span>
-<span class="n">VELOCITY</span> <span class="n">VERTICAL</span> <span class="n">PROFILES</span> <span class="p">:</span> <span class="mi">2</span><span class="p">;</span><span class="mi">2</span>
-<span class="o">/</span>
-<span class="o">/------------------------------------------------------------------/</span>
-<span class="o">/</span>			<span class="n">TURBULENCE</span>
-<span class="o">/------------------------------------------------------------------/</span>
-<span class="o">/</span> <span class="n">in</span> <span class="mi">3</span><span class="n">d</span> <span class="k">use </span><span class="mi">3</span><span class="o">-</span><span class="n">k</span><span class="o">-</span><span class="nb">epsilon </span><span class="n">model</span><span class="p">,</span> <span class="n">alternatively</span> <span class="mi">5</span><span class="o">-</span><span class="n">Spalart</span><span class="o">-</span><span class="n">Allmaras</span> <span class="nb">or </span><span class="mi">4</span><span class="o">-</span><span class="n">Smagorinsky</span> <span class="n">for</span> <span class="n">highly</span> <span class="n">non</span><span class="o">-</span><span class="n">linear</span> <span class="n">flow</span>
-<span class="n">HORIZONTAL</span> <span class="n">TURBULENCE</span> <span class="n">MODEL</span> <span class="p">:</span> <span class="mi">3</span>
-<span class="n">VERTICAL</span> <span class="n">TURBULENCE</span> <span class="n">MODEL</span> <span class="p">:</span> <span class="mi">3</span>
-<span class="o">/</span>
-<span class="p">&amp;</span><span class="n">ETA</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">t3d_flume</span><span class="p">.</span><span class="n">cas</span><span class="w"></span>
+<span class="o">/------------------------------------------------------------------/</span><span class="w"></span>
+<span class="o">/</span><span class="w">			</span><span class="n">COMPUTATION</span><span class="w"> </span><span class="n">ENVIRONMENT</span><span class="w"></span>
+<span class="o">/------------------------------------------------------------------/</span><span class="w"></span>
+<span class="n">TITLE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;TELEMAC 3D FLUME&#39;</span><span class="w"></span>
+<span class="n">MASS</span><span class="o">-</span><span class="n">BALANCE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">YES</span><span class="w"></span>
+<span class="o">/</span><span class="w"></span>
+<span class="n">BOUNDARY</span><span class="w"> </span><span class="n">CONDITIONS</span><span class="w"> </span><span class="k">FILE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">flume3d_bc</span><span class="p">.</span><span class="n">bnd</span><span class="w"></span>
+<span class="n">GEOMETRY</span><span class="w"> </span><span class="k">FILE</span><span class="w">            </span><span class="p">:</span><span class="w"> </span><span class="n">Mesh_Hn_1</span><span class="p">.</span><span class="n">med</span><span class="w"></span>
+<span class="n">GEOMETRY</span><span class="w"> </span><span class="k">FILE FORMAT</span><span class="w"> 	 </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;MED&#39;</span><span class="w"></span>
+<span class="mi">3</span><span class="n">D</span><span class="w"> </span><span class="k">RESULT FILE</span><span class="w">           </span><span class="p">:</span><span class="w"> </span><span class="n">r3d_canal</span><span class="o">-</span><span class="n">t3d</span><span class="p">.</span><span class="n">med</span><span class="w"></span>
+<span class="mi">3</span><span class="n">D</span><span class="w"> </span><span class="k">RESULT FILE FORMAT</span><span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;MED&#39;</span><span class="w"></span>
+<span class="mi">2</span><span class="n">D</span><span class="w"> </span><span class="k">RESULT FILE</span><span class="w">           </span><span class="p">:</span><span class="w"> </span><span class="n">r2d3d_canal</span><span class="o">-</span><span class="n">t3d</span><span class="p">.</span><span class="n">med</span><span class="w"></span>
+<span class="mi">2</span><span class="n">D</span><span class="w"> </span><span class="k">RESULT FILE FORMAT</span><span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;MED&#39;</span><span class="w"></span>
+<span class="o">/</span><span class="w"></span>
+<span class="n">VARIABLES</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="mi">2</span><span class="n">D</span><span class="w"> </span><span class="n">GRAPHIC</span><span class="w"> </span><span class="n">PRINTOUTS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">U</span><span class="p">,</span><span class="n">V</span><span class="p">,</span><span class="n">H</span><span class="w"></span>
+<span class="n">VARIABLES</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="mi">3</span><span class="n">D</span><span class="w"> </span><span class="n">GRAPHIC</span><span class="w"> </span><span class="n">PRINTOUTS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Z</span><span class="p">,</span><span class="n">U</span><span class="p">,</span><span class="n">V</span><span class="p">,</span><span class="n">W</span><span class="w"></span>
+<span class="o">/</span><span class="w"></span>
+<span class="o">/------------------------------------------------------------------/</span><span class="w"></span>
+<span class="o">/</span><span class="w">			</span><span class="n">GENERAL</span><span class="w"> </span><span class="n">PARAMETERS</span><span class="w"></span>
+<span class="o">/------------------------------------------------------------------/</span><span class="w"></span>
+<span class="nb">TIME </span><span class="n">STEP</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.</span><span class="w"></span>
+<span class="n">NUMBER</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="nb">TIME </span><span class="n">STEPS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="w"></span>
+<span class="n">GRAPHIC</span><span class="w"> </span><span class="n">PRINTOUT</span><span class="w"> </span><span class="n">PERIOD</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w"></span>
+<span class="n">LISTING</span><span class="w"> </span><span class="n">PRINTOUT</span><span class="w"> </span><span class="n">PERIOD</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w"></span>
+<span class="o">/</span><span class="w"></span>
+<span class="o">/------------------------------------------------------------------/</span><span class="w"></span>
+<span class="o">/</span><span class="w">			</span><span class="n">VERTICAL</span><span class="w"></span>
+<span class="o">/------------------------------------------------------------------/</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="n">vertical</span><span class="w"> </span><span class="n">cell</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="n">defined</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">initial</span><span class="w"> </span><span class="n">condition</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">no</span><span class="p">.</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">levels</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="nb">and </span><span class="n">minimum</span><span class="w"> </span><span class="k">is </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">upward</span><span class="w"> </span><span class="n">vertical</span><span class="w"> </span><span class="n">direction</span><span class="w"></span>
+<span class="n">NUMBER</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">HORIZONTAL</span><span class="w"> </span><span class="n">LEVELS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w"></span>
+<span class="o">/</span><span class="w"></span>
+<span class="o">/------------------------------------------------------------------/</span><span class="w"></span>
+<span class="o">/</span><span class="w">			</span><span class="n">NUMERICAL</span><span class="w"> </span><span class="n">PARAMETERS</span><span class="w"></span>
+<span class="o">/------------------------------------------------------------------/</span><span class="w"></span>
+<span class="o">/</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="n">ADVECTION</span><span class="o">-</span><span class="n">DIFFUSION</span><span class="w"></span>
+<span class="o">/------------------------------------------------------------------</span><span class="w"></span>
+<span class="n">SCHEME</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">ADVECTION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">VELOCITIES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w"></span>
+<span class="n">SCHEME</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">ADVECTION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">K</span><span class="o">-</span><span class="nb">EPSILON</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w"></span>
+<span class="n">SCHEME</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">ADVECTION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">TRACERS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="n">scheme</span><span class="w"> </span><span class="k">options</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">use </span><span class="mi">2</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="n">disabling</span><span class="w"> </span><span class="n">tidal</span><span class="w"> </span><span class="n">flats</span><span class="w"> </span><span class="nb">and </span><span class="n">increase</span><span class="w"> </span><span class="n">speed</span><span class="w"></span>
+<span class="n">SCHEME</span><span class="w"> </span><span class="n">OPTION</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">ADVECTION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">VELOCITIES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w"></span>
+<span class="n">SCHEME</span><span class="w"> </span><span class="n">OPTION</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">ADVECTION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">K</span><span class="o">-</span><span class="nb">EPSILON</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w"></span>
+<span class="n">SCHEME</span><span class="w"> </span><span class="n">OPTION</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">ADVECTION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">TRACERS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w"></span>
+<span class="o">/</span><span class="w"></span>
+<span class="n">SUPG</span><span class="w"> </span><span class="n">OPTION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">2</span><span class="w">  </span><span class="o">/</span><span class="w"> </span><span class="n">classic</span><span class="w"> </span><span class="n">supg</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="nb">and </span><span class="n">V</span><span class="w">  </span><span class="n">see</span><span class="w"> </span><span class="n">docs</span><span class="w"> </span><span class="n">sec</span><span class="w"> </span><span class="mf">6.2</span><span class="p">.</span><span class="mi">2</span><span class="w"></span>
+<span class="o">/</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="n">PROPAGATION</span><span class="w"> </span><span class="n">HEIGHT</span><span class="w"> </span><span class="nb">AND </span><span class="n">STABILITY</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="o">------------------------------------------------------------------</span><span class="w"></span>
+<span class="n">IMPLICITATION</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">DEPTH</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.55</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">between</span><span class="w"> </span><span class="mf">0.55</span><span class="w"> </span><span class="nb">and </span><span class="mf">0.6</span><span class="w"></span>
+<span class="n">IMPLICITATION</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">VELOCITIES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.55</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">between</span><span class="w"> </span><span class="mf">0.55</span><span class="w"> </span><span class="nb">and </span><span class="mf">0.6</span><span class="w"></span>
+<span class="n">IMPLICITATION</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">DIFFUSION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.</span><span class="w"></span>
+<span class="n">FREE</span><span class="w"> </span><span class="n">SURFACE</span><span class="w"> </span><span class="n">GRADIENT</span><span class="w"> </span><span class="n">COMPATIBILITY</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="w">  </span><span class="o">/</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="mf">1.</span><span class="w"></span>
+<span class="o">/</span><span class="w"></span>
+<span class="o">/------------------------------------------------------------------/</span><span class="w"></span>
+<span class="o">/</span><span class="w">			</span><span class="n">HYDRODYNAMICS</span><span class="w"></span>
+<span class="o">/------------------------------------------------------------------/</span><span class="w"></span>
+<span class="o">/</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="n">HYDRODYNAMIC</span><span class="w"> </span><span class="n">SOLVER</span><span class="w"></span>
+<span class="o">/------------------------------------------------------------------</span><span class="w"></span>
+<span class="n">NON</span><span class="o">-</span><span class="n">HYDROSTATIC</span><span class="w"> </span><span class="n">VERSION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">YES</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">use </span><span class="n">default</span><span class="w"> </span><span class="n">solver</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="p">(</span><span class="n">GMRES</span><span class="p">)</span><span class="w"></span>
+<span class="n">MAXIMUM</span><span class="w"> </span><span class="n">NUMBER</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">ITERATIONS</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">DIFFUSION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">VELOCITIES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="k">is </span><span class="mi">60</span><span class="w"></span>
+<span class="o">/</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="n">BOUNDARY</span><span class="w"> </span><span class="n">CONDITIONS</span><span class="w"></span>
+<span class="o">/------------------------------------------------------------------</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="k">Use </span><span class="n">Nikuradse</span><span class="w"> </span><span class="n">roughness</span><span class="w"> </span><span class="n">law</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">all </span><span class="n">others</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="nb">not </span><span class="mi">3</span><span class="n">D</span><span class="w"> </span><span class="n">compatible</span><span class="w"></span>
+<span class="n">LAW</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">BOTTOM</span><span class="w"> </span><span class="n">FRICTION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w"></span>
+<span class="n">LAW</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">FRICTION</span><span class="w"> </span><span class="n">ON</span><span class="w"> </span><span class="n">LATERAL</span><span class="w"> </span><span class="n">BOUNDARIES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">  </span><span class="o">/</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="n">natural</span><span class="w"> </span><span class="n">banks</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="n">symmetry</span><span class="w"></span>
+<span class="n">FRICTION</span><span class="w"> </span><span class="n">COEFFICIENT</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">THE</span><span class="w"> </span><span class="n">BOTTOM</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="n">d90</span><span class="w"> </span><span class="n">according</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">van</span><span class="w"> </span><span class="n">Rijn</span><span class="w"></span>
+<span class="o">/</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="n">Liquid</span><span class="w"> </span><span class="n">boundaries</span><span class="w"></span>
+<span class="n">PRESCRIBED</span><span class="w"> </span><span class="n">FLOWRATES</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="mf">0.</span><span class="p">;</span><span class="mi">5</span><span class="mf">0.</span><span class="w"></span>
+<span class="n">PRESCRIBED</span><span class="w"> </span><span class="n">ELEVATIONS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.</span><span class="p">;</span><span class="mf">0.</span><span class="w"></span>
+<span class="o">/</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="n">INITIAL</span><span class="w"> </span><span class="n">CONDITIONS</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="o">------------------------------------------------------------------</span><span class="w"></span>
+<span class="n">INITIAL</span><span class="w"> </span><span class="n">CONDITIONS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;CONSTANT ELEVATION&#39;</span><span class="w"></span>
+<span class="n">INITIAL</span><span class="w"> </span><span class="n">ELEVATION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">corresponds</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">depth</span><span class="w"> </span><span class="n">here</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">not </span><span class="n">so</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">boundary</span><span class="w"> </span><span class="k">file</span>
+<span class="n">INITIAL</span><span class="w"> </span><span class="n">GUESS</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">DEPTH</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="kt">INTEGER </span><span class="n">for</span><span class="w"> </span><span class="n">speeding</span><span class="w"> </span><span class="n">up</span><span class="w"> </span><span class="n">calculations</span><span class="w"></span>
+<span class="o">/</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="k">Type </span><span class="n">of</span><span class="w"> </span><span class="n">velocity</span><span class="w"> </span><span class="n">profile</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="mi">0</span><span class="o">-</span><span class="n">user</span><span class="w"> </span><span class="n">defined</span><span class="p">)</span><span class="w"> </span><span class="mi">1</span><span class="o">-</span><span class="n">constant</span><span class="w"> </span><span class="p">(</span><span class="n">default</span><span class="p">),</span><span class="w"> </span><span class="mi">2</span><span class="o">-</span><span class="nb">Log</span>
+<span class="n">VELOCITY</span><span class="w"> </span><span class="n">PROFILE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">horizontal</span><span class="w"> </span><span class="n">profile</span><span class="w"></span>
+<span class="n">VELOCITY</span><span class="w"> </span><span class="n">VERTICAL</span><span class="w"> </span><span class="n">PROFILES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="mi">2</span><span class="w"></span>
+<span class="o">/</span><span class="w"></span>
+<span class="o">/------------------------------------------------------------------/</span><span class="w"></span>
+<span class="o">/</span><span class="w">			</span><span class="n">TURBULENCE</span><span class="w"></span>
+<span class="o">/------------------------------------------------------------------/</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="mi">3</span><span class="n">d</span><span class="w"> </span><span class="k">use </span><span class="mi">3</span><span class="o">-</span><span class="n">k</span><span class="o">-</span><span class="nb">epsilon </span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">alternatively</span><span class="w"> </span><span class="mi">5</span><span class="o">-</span><span class="n">Spalart</span><span class="o">-</span><span class="n">Allmaras</span><span class="w"> </span><span class="nb">or </span><span class="mi">4</span><span class="o">-</span><span class="n">Smagorinsky</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="n">highly</span><span class="w"> </span><span class="n">non</span><span class="o">-</span><span class="n">linear</span><span class="w"> </span><span class="n">flow</span><span class="w"></span>
+<span class="n">HORIZONTAL</span><span class="w"> </span><span class="n">TURBULENCE</span><span class="w"> </span><span class="n">MODEL</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w"></span>
+<span class="n">VERTICAL</span><span class="w"> </span><span class="n">TURBULENCE</span><span class="w"> </span><span class="n">MODEL</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w"></span>
+<span class="o">/</span><span class="w"></span>
+<span class="p">&amp;</span><span class="n">ETA</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1724,11 +1910,11 @@ The four boundary edges of the surface will represent an upstream (inflow), a do
 <p>In river analyses, the non-hydrostatic version of TELEMAC should be used through the following keyword: <code class="docutils literal notranslate"><span class="pre">NON-HYDROSTATIC</span> <span class="pre">VERSION</span> <span class="pre">:</span> <span class="pre">YES</span></code>.</p>
 <p>Depending on the type of analysis, the solver-related parameters of <code class="docutils literal notranslate"><span class="pre">SOLVER</span></code>, <code class="docutils literal notranslate"><span class="pre">SOLVER</span> <span class="pre">OPTIONS</span></code>, <code class="docutils literal notranslate"><span class="pre">MAXIMUM</span> <span class="pre">NUMBER</span> <span class="pre">OF</span> <span class="pre">ITERATION</span></code>, <code class="docutils literal notranslate"><span class="pre">ACCURACY</span></code>, and <code class="docutils literal notranslate"><span class="pre">PRECONDITIONING</span></code> may be modified. The provided <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady3d-med-tutorial/t3d_template.cas">t3d_template.cas</a> includes solver keywords and comments for modifications, but the default options already provide a coherent a stable setup. Read more about solver parameters in section 6.5 of the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac3d/user/telemac3d_user_v8p2.pdf">Telemac3d manual</a>.</p>
 <p>Parameters for <strong>Boundary Conditions</strong> enable the definition of roughness laws and properties of liquid boundaries.</p>
-<p>With respect to roughness, TELEMAC developers recommend using the <span id="id2">Nikuradse [<a class="reference internal" href="../documentation/bibliography.html#id417">Nik33</a>]</span> roughness law in 3d (number <code class="docutils literal notranslate"><span class="pre">5</span></code>), because all others are not meaningful or not integrally implemented in the 3d version. To apply the <span id="id3">Nikuradse [<a class="reference internal" href="../documentation/bibliography.html#id417">Nik33</a>]</span> roughness law to the bottom and the boundaries use:</p>
+<p>With respect to roughness, TELEMAC developers recommend using the <span id="id2">Nikuradse [<a class="reference internal" href="../documentation/bibliography.html#id419">Nik33</a>]</span> roughness law in 3d (number <code class="docutils literal notranslate"><span class="pre">5</span></code>), because all others are not meaningful or not integrally implemented in the 3d version. To apply the <span id="id3">Nikuradse [<a class="reference internal" href="../documentation/bibliography.html#id419">Nik33</a>]</span> roughness law to the bottom and the boundaries use:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">LAW</span> <span class="pre">OF</span> <span class="pre">BOTTOM</span> <span class="pre">FRICTION</span></code>: <code class="docutils literal notranslate"><span class="pre">5</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">LAW</span> <span class="pre">OF</span> <span class="pre">FRICTION</span> <span class="pre">ON</span> <span class="pre">LATERAL</span> <span class="pre">BOUNDARIES</span></code>: <code class="docutils literal notranslate"><span class="pre">5</span></code>, which can well be applied to model natural banks, or set to <code class="docutils literal notranslate"><span class="pre">0</span></code> (no-slip) for symmetry.<br>*Note that the <a class="reference internal" href="#bnd-mod"><span class="std std-ref">boundary conditions file</span></a> sets the <code class="docutils literal notranslate"><span class="pre">LIUBOR</span></code> and <code class="docutils literal notranslate"><span class="pre">LIVBOR</span></code> for the <code class="docutils literal notranslate"><span class="pre">leftwall</span></code> and <code class="docutils literal notranslate"><span class="pre">rightwall</span></code> boundary edges to zero, to enable friction.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">FRICTION</span> <span class="pre">COEFFICIENT</span> <span class="pre">FOR</span> <span class="pre">THE</span> <span class="pre">BOTTOM</span></code>: <code class="docutils literal notranslate"><span class="pre">0.1</span></code> corresponds to 3 times a hypothetical <em>d90</em> (grain diameter of which 90% of the surface grain mixture are finer) according to <span id="id4">[<a class="reference internal" href="../documentation/bibliography.html#id1354">vR19</a>]</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FRICTION</span> <span class="pre">COEFFICIENT</span> <span class="pre">FOR</span> <span class="pre">THE</span> <span class="pre">BOTTOM</span></code>: <code class="docutils literal notranslate"><span class="pre">0.1</span></code> corresponds to 3 times a hypothetical <em>d90</em> (grain diameter of which 90% of the surface grain mixture are finer) according to <span id="id4">[<a class="reference internal" href="../documentation/bibliography.html#id1356">vR19</a>]</span>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">FRICTION</span> <span class="pre">COEFFICIENT</span> <span class="pre">FOR</span> <span class="pre">LATERAL</span> <span class="pre">SOLID</span> <span class="pre">BOUNDARIES</span></code>: <code class="docutils literal notranslate"><span class="pre">0.1</span></code> corresponds to 3 times a hypothetical <em>d90</em>, similar as for the bottom.</p></li>
 </ul>
 <p>The liquid boundary definitions for <code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">FLOWRATES</span></code> and <code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">ELEVATIONS</span></code> correspond to the definitions of the <strong>downstream</strong> boundary edge in line 2 and the <strong>upstream</strong> boundary edge in line 3 (see <a class="reference internal" href="#bnd-mod"><span class="std std-ref">boundary definitions section</span></a>). From the boundary file, TELEMAC will understand the <strong>downstream</strong> boundary as edge number <strong>1</strong> (first list element) and the <strong>upstream</strong> boundary as edge number <strong>2</strong> (second list element). Hence:</p>
@@ -1741,11 +1927,11 @@ The four boundary edges of the surface will represent an upstream (inflow), a do
 <p>Instead of a list in the steering <code class="docutils literal notranslate"><span class="pre">*.cas</span></code> file, the liquid boundary conditions can also be defined with a liquid boundary condition file in <em>ASCII</em> text format. For this purpose, a <code class="docutils literal notranslate"><span class="pre">LIQUID</span> <span class="pre">BOUNDARIES</span> <span class="pre">FILE</span></code> or a <code class="docutils literal notranslate"><span class="pre">STAGE-DISCHARGE</span> <span class="pre">CURVES</span> <span class="pre">FILE</span></code> (sections 4.3.8 and 4.3.10 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac3d/user/telemac3d_user_v8p2.pdf">Telemac3d manual</a>, respectively can be defined. The <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady3d-med-tutorial/t3d_template.cas">t3d_template.cas</a> steering file includes these keywords in the <em>COMPUTATION ENVIRONMENT</em> section, though they are disabled through the <code class="docutils literal notranslate"><span class="pre">/</span></code> character at the beginning of the line. A liquid boundary file (<em>QSL</em>) may look like this:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="cp"># t3d_canal.qsl</span>
 <span class="cp"># time-dependent inflow upstream-discharge Q(2) and outflow downstream-depth SL(1)</span>
-<span class="n">T</span>           <span class="n">Q</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>     <span class="n">SL</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">s</span>           <span class="n">m3</span><span class="o">/</span><span class="n">s</span>     <span class="n">m</span>
-<span class="mf">0.</span>            <span class="mf">0.</span>     <span class="mf">5.0</span>
-<span class="mi">50</span><span class="mf">0.</span>        <span class="mi">10</span><span class="mf">0.</span>     <span class="mf">5.0</span>
-<span class="mi">500</span><span class="mf">0.</span>       <span class="mi">15</span><span class="mf">0.</span>     <span class="mf">5.0</span>
+<span class="n">T</span><span class="w">           </span><span class="n">Q</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w">     </span><span class="n">SL</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="n">s</span><span class="w">           </span><span class="n">m3</span><span class="o">/</span><span class="n">s</span><span class="w">     </span><span class="n">m</span><span class="w"></span>
+<span class="mf">0.</span><span class="w">            </span><span class="mf">0.</span><span class="w">     </span><span class="mf">5.0</span><span class="w"></span>
+<span class="mi">50</span><span class="mf">0.</span><span class="w">        </span><span class="mi">10</span><span class="mf">0.</span><span class="w">     </span><span class="mf">5.0</span><span class="w"></span>
+<span class="mi">500</span><span class="mf">0.</span><span class="w">       </span><span class="mi">15</span><span class="mf">0.</span><span class="w">     </span><span class="mf">5.0</span><span class="w"></span>
 </pre></div>
 </div>
 <div class="admonition tip">
@@ -1774,12 +1960,12 @@ The <strong>initial conditions</strong> describe the condition at the beginning 
 </div>
 <div class="section" id="turbulence">
 <h3>Turbulence<a class="headerlink" href="#turbulence" title="Permalink to this headline">¶</a></h3>
-<p>The fundamental principles of turbulence and its application to the <a class="reference internal" href="../documentation/glossary.html#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a> are explained in the <a class="reference internal" href="telemac2d-steady.html#tm2d-turbulence"><span class="std std-ref">steady Telemac2d tutorial</span></a>. In 3d, TELEMAC developers recommend using either the <span class="math notranslate nohighlight">\(k-\epsilon\)</span> model (<code class="docutils literal notranslate"><span class="pre">3</span></code>) or the <span id="id5">Spalart and Allmaras [<a class="reference internal" href="../documentation/bibliography.html#id1361">SA92</a>]</span> model (<code class="docutils literal notranslate"><span class="pre">5</span></code>) in lieu of the mixing length model (<code class="docutils literal notranslate"><span class="pre">2</span></code>):</p>
+<p>The fundamental principles of turbulence and its application to the <a class="reference internal" href="../documentation/glossary.html#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a> are explained in the <a class="reference internal" href="telemac2d-steady.html#tm2d-turbulence"><span class="std std-ref">steady Telemac2d tutorial</span></a>. In 3d, TELEMAC developers recommend using either the <span class="math notranslate nohighlight">\(k-\epsilon\)</span> model (<code class="docutils literal notranslate"><span class="pre">3</span></code>) or the <span id="id5">Spalart and Allmaras [<a class="reference internal" href="../documentation/bibliography.html#id1363">SA92</a>]</span> model (<code class="docutils literal notranslate"><span class="pre">5</span></code>) in lieu of the mixing length model (<code class="docutils literal notranslate"><span class="pre">2</span></code>):</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">HORIZONTAL</span> <span class="pre">TURBULENCE</span> <span class="pre">MODEL</span></code>: <code class="docutils literal notranslate"><span class="pre">3</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">VERTICAL</span> <span class="pre">TURBULENCE</span> <span class="pre">MODEL</span></code>: <code class="docutils literal notranslate"><span class="pre">3</span></code></p></li>
 </ul>
-<p>If the <code class="docutils literal notranslate"><span class="pre">VERTICAL</span> <span class="pre">TURBULENCE</span> <span class="pre">MODEL</span></code> is set to <code class="docutils literal notranslate"><span class="pre">2</span></code> (<code class="docutils literal notranslate"><span class="pre">'MIXING</span> <span class="pre">LENGTH'</span></code>), a <code class="docutils literal notranslate"><span class="pre">MIXING</span> <span class="pre">LENGTH</span> <span class="pre">MODEL</span></code> can be assigned. The default is <code class="docutils literal notranslate"><span class="pre">1</span></code>, which is preferable for strong tidal influences and a value of <code class="docutils literal notranslate"><span class="pre">3</span></code> sets the length for computing vertical diffusivity to <span id="id6">Nezu and Nakagawa [<a class="reference internal" href="../documentation/bibliography.html#id1360">NN93</a>]</span>.</p>
+<p>If the <code class="docutils literal notranslate"><span class="pre">VERTICAL</span> <span class="pre">TURBULENCE</span> <span class="pre">MODEL</span></code> is set to <code class="docutils literal notranslate"><span class="pre">2</span></code> (<code class="docutils literal notranslate"><span class="pre">'MIXING</span> <span class="pre">LENGTH'</span></code>), a <code class="docutils literal notranslate"><span class="pre">MIXING</span> <span class="pre">LENGTH</span> <span class="pre">MODEL</span></code> can be assigned. The default is <code class="docutils literal notranslate"><span class="pre">1</span></code>, which is preferable for strong tidal influences and a value of <code class="docutils literal notranslate"><span class="pre">3</span></code> sets the length for computing vertical diffusivity to <span id="id6">Nezu and Nakagawa [<a class="reference internal" href="../documentation/bibliography.html#id1362">NN93</a>]</span>.</p>
 <p>Read more about turbulence in TELEMAC in section 5.2 and the mixing length in section 5.2.2 of the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/telemac3d/user/telemac3d_user_v8p2.pdf">Telemac3d manual</a>.</p>
 </div>
 <div class="section" id="hydrosolver-cas-file-setup-unstable">
@@ -1819,39 +2005,39 @@ The <strong>initial conditions</strong> describe the condition at the beginning 
 </pre></div>
 </div>
 <p>As a result, a successful computation should end with the following lines (or similar) in <em>Terminal</em>:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">[...]</span>
-<span class="n">BOUNDARY</span> <span class="n">FLUXES</span> <span class="n">FOR</span> <span class="n">WATER</span> <span class="n">IN</span> <span class="n">M3</span><span class="o">/</span><span class="n">S</span> <span class="p">(</span> <span class="o">&gt;</span><span class="mi">0</span> <span class="p">:</span> <span class="n">ENTERING</span> <span class="p">)</span>
-<span class="n">FLUX</span> <span class="n">BOUNDARY</span>      <span class="mi">1</span>                          <span class="p">:</span>    <span class="o">-</span><span class="mi">4</span><span class="mf">9.85411</span>
-<span class="n">FLUX</span> <span class="n">BOUNDARY</span>      <span class="mi">2</span>                          <span class="p">:</span>     <span class="mi">5</span><span class="mf">0.00000</span>
-<span class="o">--------------------------------------------------------------------------------</span>
-                <span class="k">FINAL </span><span class="n">MASS</span> <span class="n">BALANCE</span>
-<span class="n">T</span> <span class="o">=</span>        <span class="mi">500</span><span class="mf">0.0000</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">[...]</span><span class="w"></span>
+<span class="n">BOUNDARY</span><span class="w"> </span><span class="n">FLUXES</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">WATER</span><span class="w"> </span><span class="n">IN</span><span class="w"> </span><span class="n">M3</span><span class="o">/</span><span class="n">S</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">&gt;</span><span class="mi">0</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ENTERING</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="n">FLUX</span><span class="w"> </span><span class="n">BOUNDARY</span><span class="w">      </span><span class="mi">1</span><span class="w">                          </span><span class="p">:</span><span class="w">    </span><span class="o">-</span><span class="mi">4</span><span class="mf">9.85411</span><span class="w"></span>
+<span class="n">FLUX</span><span class="w"> </span><span class="n">BOUNDARY</span><span class="w">      </span><span class="mi">2</span><span class="w">                          </span><span class="p">:</span><span class="w">     </span><span class="mi">5</span><span class="mf">0.00000</span><span class="w"></span>
+<span class="o">--------------------------------------------------------------------------------</span><span class="w"></span>
+<span class="w">                </span><span class="k">FINAL </span><span class="n">MASS</span><span class="w"> </span><span class="n">BALANCE</span><span class="w"></span>
+<span class="n">T</span><span class="w"> </span><span class="o">=</span><span class="w">        </span><span class="mi">500</span><span class="mf">0.0000</span><span class="w"></span>
 
-<span class="o">---</span> <span class="n">WATER</span> <span class="o">---</span>
-<span class="n">INITIAL</span> <span class="n">MASS</span>                        <span class="p">:</span>     <span class="mi">250000</span><span class="mf">0.</span>
-<span class="k">FINAL </span><span class="n">MASS</span>                          <span class="p">:</span>     <span class="mi">10034</span><span class="mf">3.0</span>
-<span class="n">MASS</span> <span class="n">LEAVING</span> <span class="n">THE</span> <span class="n">DOMAIN</span> <span class="p">(</span><span class="nb">OR </span><span class="n">SOURCE</span><span class="p">)</span> <span class="p">:</span>     <span class="mi">238421</span><span class="mf">7.</span>
-<span class="n">MASS</span> <span class="n">LOSS</span>                           <span class="p">:</span>     <span class="mi">1544</span><span class="mf">0.06</span>
+<span class="o">---</span><span class="w"> </span><span class="n">WATER</span><span class="w"> </span><span class="o">---</span><span class="w"></span>
+<span class="n">INITIAL</span><span class="w"> </span><span class="n">MASS</span><span class="w">                        </span><span class="p">:</span><span class="w">     </span><span class="mi">250000</span><span class="mf">0.</span><span class="w"></span>
+<span class="k">FINAL </span><span class="n">MASS</span><span class="w">                          </span><span class="p">:</span><span class="w">     </span><span class="mi">10034</span><span class="mf">3.0</span><span class="w"></span>
+<span class="n">MASS</span><span class="w"> </span><span class="n">LEAVING</span><span class="w"> </span><span class="n">THE</span><span class="w"> </span><span class="n">DOMAIN</span><span class="w"> </span><span class="p">(</span><span class="nb">OR </span><span class="n">SOURCE</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w">     </span><span class="mi">238421</span><span class="mf">7.</span><span class="w"></span>
+<span class="n">MASS</span><span class="w"> </span><span class="n">LOSS</span><span class="w">                           </span><span class="p">:</span><span class="w">     </span><span class="mi">1544</span><span class="mf">0.06</span><span class="w"></span>
 
- <span class="k">END </span><span class="n">OF</span> <span class="nb">TIME </span><span class="n">LOOP</span>
+<span class="w"> </span><span class="k">END </span><span class="n">OF</span><span class="w"> </span><span class="nb">TIME </span><span class="n">LOOP</span><span class="w"></span>
 
- <span class="n">EXITING</span> <span class="n">MPI</span>
-                     <span class="o">*************************************</span><span class="k">STOP </span><span class="mi">0</span>
-                     <span class="o">*</span>    <span class="k">END </span><span class="n">OF</span> <span class="k">MEMORY </span><span class="n">ORGANIZATION</span><span class="p">:</span>    <span class="o">*</span>
-                     <span class="o">*************************************</span>
+<span class="w"> </span><span class="n">EXITING</span><span class="w"> </span><span class="n">MPI</span><span class="w"></span>
+<span class="w">                     </span><span class="o">*************************************</span><span class="k">STOP </span><span class="mi">0</span><span class="w"></span>
+<span class="w">                     </span><span class="o">*</span><span class="w">    </span><span class="k">END </span><span class="n">OF</span><span class="w"> </span><span class="k">MEMORY </span><span class="n">ORGANIZATION</span><span class="p">:</span><span class="w">    </span><span class="o">*</span><span class="w"></span>
+<span class="w">                     </span><span class="o">*************************************</span><span class="w"></span>
 
- <span class="n">CORRECT</span> <span class="k">END </span><span class="n">OF</span> <span class="n">RUN</span>
+<span class="w"> </span><span class="n">CORRECT</span><span class="w"> </span><span class="k">END </span><span class="n">OF</span><span class="w"> </span><span class="n">RUN</span><span class="w"></span>
 
- <span class="n">ELAPSE</span> <span class="nb">TIME</span> <span class="p">:</span>
-                             <span class="mi">44</span>  <span class="n">SECONDS</span>
-<span class="p">...</span> <span class="n">merging</span> <span class="n">separated</span> <span class="k">result </span><span class="n">files</span>
+<span class="w"> </span><span class="n">ELAPSE</span><span class="w"> </span><span class="nb">TIME</span><span class="w"> </span><span class="p">:</span><span class="w"></span>
+<span class="w">                             </span><span class="mi">44</span><span class="w">  </span><span class="n">SECONDS</span><span class="w"></span>
+<span class="p">...</span><span class="w"> </span><span class="n">merging</span><span class="w"> </span><span class="n">separated</span><span class="w"> </span><span class="k">result </span><span class="n">files</span><span class="w"></span>
 
-<span class="p">...</span> <span class="n">handling</span> <span class="k">result </span><span class="n">files</span>
-        <span class="n">moving</span><span class="p">:</span> <span class="n">r3d_canal</span><span class="o">-</span><span class="n">t3d</span><span class="p">.</span><span class="n">med</span>
-        <span class="n">moving</span><span class="p">:</span> <span class="n">r2d3d_canal</span><span class="o">-</span><span class="n">t3d</span><span class="p">.</span><span class="n">med</span>
-<span class="p">...</span> <span class="n">deleting</span> <span class="n">working</span> <span class="n">dir</span>
+<span class="p">...</span><span class="w"> </span><span class="n">handling</span><span class="w"> </span><span class="k">result </span><span class="n">files</span><span class="w"></span>
+<span class="w">        </span><span class="n">moving</span><span class="p">:</span><span class="w"> </span><span class="n">r3d_canal</span><span class="o">-</span><span class="n">t3d</span><span class="p">.</span><span class="n">med</span><span class="w"></span>
+<span class="w">        </span><span class="n">moving</span><span class="p">:</span><span class="w"> </span><span class="n">r2d3d_canal</span><span class="o">-</span><span class="n">t3d</span><span class="p">.</span><span class="n">med</span><span class="w"></span>
+<span class="p">...</span><span class="w"> </span><span class="n">deleting</span><span class="w"> </span><span class="n">working</span><span class="w"> </span><span class="n">dir</span><span class="w"></span>
 
-<span class="n">My</span> <span class="n">work</span> <span class="k">is </span><span class="n">done</span>
+<span class="n">My</span><span class="w"> </span><span class="n">work</span><span class="w"> </span><span class="k">is </span><span class="n">done</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Thus, Telemac3d produced the files <code class="docutils literal notranslate"><span class="pre">r3d_canal-t3d.med</span></code> and <code class="docutils literal notranslate"><span class="pre">r2d3d_canal-t3d.med</span></code>, which can now be analyzed in the <a class="reference internal" href="#sh-postproc"><span class="std std-ref">post-processing with SALOME</span></a>.</p>
@@ -1888,58 +2074,58 @@ The <strong>initial conditions</strong> describe the condition at the beginning 
 <p>Both the 3d (<code class="docutils literal notranslate"><span class="pre">r3d_canal-t3d.med</span></code>) and 2d (<code class="docutils literal notranslate"><span class="pre">r2d3d_canal-t3d.med</span></code>) results files can be loaded the same way and data export works similarly. Thus, the following sections illustrate loading and extracting data from the 3d (<code class="docutils literal notranslate"><span class="pre">r3d_canal-t3d.med</span></code>) results file only.</p>
 <div class="section" id="load-results-med-file">
 <h3>Load Results (MED file)<a class="headerlink" href="#load-results-med-file" title="Permalink to this headline">¶</a></h3>
-<p>To open a results (or any other) <em>MED</em> file, right-click on the <strong>builtin:</strong> symbol in the <strong>Pipeline Browser</strong> on the top-left of the window and select <strong>Open</strong> (<a class="reference internal" href="#pv-open"><span class="std std-numref">Fig. 134</span></a>).</p>
+<p>To open a results (or any other) <em>MED</em> file, right-click on the <strong>builtin:</strong> symbol in the <strong>Pipeline Browser</strong> on the top-left of the window and select <strong>Open</strong> (<a class="reference internal" href="#pv-open"><span class="std std-numref">Fig. 135</span></a>).</p>
 <div class="figure align-default" id="pv-open">
 <img alt="telemac salome open med file pipelinebrowser" src="../_images/pv01-open.png" />
-<p class="caption"><span class="caption-number">Fig. 134 </span><span class="caption-text">The Open entry in the context menu of the builtin: element in ParaVis’ Pipeline Browser.</span><a class="headerlink" href="#pv-open" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 135 </span><span class="caption-text">The Open entry in the context menu of the builtin: element in ParaVis’ Pipeline Browser.</span><a class="headerlink" href="#pv-open" title="Permalink to this image">¶</a></p>
 </div>
-<p>In the popup window (<a class="reference internal" href="#pv-open-res"><span class="std std-numref">Fig. 135</span></a>), use the frames on the left to navigate to the folder where the simulation and its results live. Select <code class="docutils literal notranslate"><span class="pre">r3d_canal-t3d.med</span></code> and click <strong>OK</strong>.</p>
+<p>In the popup window (<a class="reference internal" href="#pv-open-res"><span class="std std-numref">Fig. 136</span></a>), use the frames on the left to navigate to the folder where the simulation and its results live. Select <code class="docutils literal notranslate"><span class="pre">r3d_canal-t3d.med</span></code> and click <strong>OK</strong>.</p>
 <div class="figure align-default" id="pv-open-res">
 <img alt="telemac salome open 3d med file" src="../_images/pv02-open-res3d.png" />
-<p class="caption"><span class="caption-number">Fig. 135 </span><span class="caption-text">Select the results MED file in the Open File window.</span><a class="headerlink" href="#pv-open-res" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 136 </span><span class="caption-text">Select the results MED file in the Open File window.</span><a class="headerlink" href="#pv-open-res" title="Permalink to this image">¶</a></p>
 </div>
-<p>The file <code class="docutils literal notranslate"><span class="pre">r3d_canal-t3d.med</span></code> appears in the <em>Pipeline Browser</em> (<a class="reference internal" href="#pv-apply-results"><span class="std std-numref">Fig. 136</span></a>). Click on the green <strong>Apply</strong> button in the <em>Properties</em> tab.</p>
+<p>The file <code class="docutils literal notranslate"><span class="pre">r3d_canal-t3d.med</span></code> appears in the <em>Pipeline Browser</em> (<a class="reference internal" href="#pv-apply-results"><span class="std std-numref">Fig. 137</span></a>). Click on the green <strong>Apply</strong> button in the <em>Properties</em> tab.</p>
 <div class="figure align-default" id="pv-apply-results">
 <img alt="telemac salome apply 3d med file" src="../_images/pv05-apply3d.png" />
-<p class="caption"><span class="caption-number">Fig. 136 </span><span class="caption-text">The results MED file in the Pipeline Browser and the Apply button.</span><a class="headerlink" href="#pv-apply-results" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 137 </span><span class="caption-text">The results MED file in the Pipeline Browser and the Apply button.</span><a class="headerlink" href="#pv-apply-results" title="Permalink to this image">¶</a></p>
 </div>
-<p>The model block (i.e., the flume, or channel - <em>French: canal</em>) becomes visible in the viewport. Click on the block in the viewport (left mouse button), hold down and move the mouse to get an impression of the flume. To visualize the results, find the variable drop-down menu in the upper part of the window (initially shows <strong>Solid Color</strong>), and select <strong>VELOCITY U</strong> (<a class="reference internal" href="#select-u"><span class="std std-numref">Fig. 137</span></a>).</p>
+<p>The model block (i.e., the flume, or channel - <em>French: canal</em>) becomes visible in the viewport. Click on the block in the viewport (left mouse button), hold down and move the mouse to get an impression of the flume. To visualize the results, find the variable drop-down menu in the upper part of the window (initially shows <strong>Solid Color</strong>), and select <strong>VELOCITY U</strong> (<a class="reference internal" href="#select-u"><span class="std std-numref">Fig. 138</span></a>).</p>
 <div class="figure align-default" id="select-u">
 <img alt="telemac salome load results velocity" src="../_images/pv06-vis-u.png" />
-<p class="caption"><span class="caption-number">Fig. 137 </span><span class="caption-text">Load the VELOCITY U data in ParaVis.</span><a class="headerlink" href="#select-u" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 138 </span><span class="caption-text">Load the VELOCITY U data in ParaVis.</span><a class="headerlink" href="#select-u" title="Permalink to this image">¶</a></p>
 </div>
-<p>Click on the <em>Play</em> <strong>&gt;</strong> button (top-right of the window, indicated by the mouse cursor in <a class="reference internal" href="#pv-play"><span class="std std-numref">Fig. 138</span></a>) to animate the results illustration to the last time step (<em>50</em> - which is the result of <code class="docutils literal notranslate"><span class="pre">5000</span></code> times steps divided by the graphical printout period of <code class="docutils literal notranslate"><span class="pre">100</span></code>).</p>
+<p>Click on the <em>Play</em> <strong>&gt;</strong> button (top-right of the window, indicated by the mouse cursor in <a class="reference internal" href="#pv-play"><span class="std std-numref">Fig. 139</span></a>) to animate the results illustration to the last time step (<em>50</em> - which is the result of <code class="docutils literal notranslate"><span class="pre">5000</span></code> times steps divided by the graphical printout period of <code class="docutils literal notranslate"><span class="pre">100</span></code>).</p>
 <div class="figure align-default" id="pv-play">
 <img alt="telemac salome visualize results" src="../_images/pv07-vis-ut.png" />
-<p class="caption"><span class="caption-number">Fig. 138 </span><span class="caption-text">The VELOCITY U parameter at the final time step plotted in the ParaView scene.</span><a class="headerlink" href="#pv-play" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 139 </span><span class="caption-text">The VELOCITY U parameter at the final time step plotted in the ParaView scene.</span><a class="headerlink" href="#pv-play" title="Permalink to this image">¶</a></p>
 </div>
-<p>Set the visualization to <strong>Surface with Edges</strong> (instead of <em>Surface</em>), next to the <em>VELOCITY U</em> drop-down menu, and export the current visualization by click on the <strong>Capture screenshot …</strong> button in the viewport (<a class="reference internal" href="#pv-screenshot"><span class="std std-numref">Fig. 139</span></a>).</p>
+<p>Set the visualization to <strong>Surface with Edges</strong> (instead of <em>Surface</em>), next to the <em>VELOCITY U</em> drop-down menu, and export the current visualization by click on the <strong>Capture screenshot …</strong> button in the viewport (<a class="reference internal" href="#pv-screenshot"><span class="std std-numref">Fig. 140</span></a>).</p>
 <div class="figure align-default" id="pv-screenshot">
 <img alt="telemac salome save screenshot surface with edges" src="../_images/pv08-save-screenshot-with-edges.png" />
-<p class="caption"><span class="caption-number">Fig. 139 </span><span class="caption-text">Make a screenshot of the ParaView scene showing the VELOCITY U visualization and the 3d mesh.</span><a class="headerlink" href="#pv-screenshot" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 140 </span><span class="caption-text">Make a screenshot of the ParaView scene showing the VELOCITY U visualization and the 3d mesh.</span><a class="headerlink" href="#pv-screenshot" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="export-data">
 <h3>Export Data<a class="headerlink" href="#export-data" title="Permalink to this headline">¶</a></h3>
-<p>To export data from a results file, go to <strong>File</strong> &gt; *<em>Save Data…</em> (<a class="reference internal" href="#pv-save-data-menu"><span class="std std-numref">Fig. 140</span></a>).</p>
+<p>To export data from a results file, go to <strong>File</strong> &gt; *<em>Save Data…</em> (<a class="reference internal" href="#pv-save-data-menu"><span class="std std-numref">Fig. 141</span></a>).</p>
 <div class="figure align-default" id="pv-save-data-menu">
 <img alt="telemac3d salome save export data" src="../_images/pv10-data-save.png" />
-<p class="caption"><span class="caption-number">Fig. 140 </span><span class="caption-text">The Save Data… entry in ParaVis’ File menu.</span><a class="headerlink" href="#pv-save-data-menu" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 141 </span><span class="caption-text">The Save Data… entry in ParaVis’ File menu.</span><a class="headerlink" href="#pv-save-data-menu" title="Permalink to this image">¶</a></p>
 </div>
-<p>In the popup window (<a class="reference internal" href="#pv-save-data"><span class="std std-numref">Fig. 141</span></a>) define a file name and ending, which can be either <a class="reference internal" href="../documentation/glossary.html#term-CSV"><span class="xref std std-term">CSV</span></a> (including <code class="docutils literal notranslate"><span class="pre">*.tsv</span></code>) or <em>txt</em>. The selected ending will call the appropriate assistant to define export details. In this example, use <a class="reference internal" href="../documentation/glossary.html#term-CSV"><span class="xref std std-term">CSV</span></a> by typing <code class="docutils literal notranslate"><span class="pre">flume3d-export.csv</span></code>.</p>
+<p>In the popup window (<a class="reference internal" href="#pv-save-data"><span class="std std-numref">Fig. 142</span></a>) define a file name and ending, which can be either <a class="reference internal" href="../documentation/glossary.html#term-CSV"><span class="xref std std-term">CSV</span></a> (including <code class="docutils literal notranslate"><span class="pre">*.tsv</span></code>) or <em>txt</em>. The selected ending will call the appropriate assistant to define export details. In this example, use <a class="reference internal" href="../documentation/glossary.html#term-CSV"><span class="xref std std-term">CSV</span></a> by typing <code class="docutils literal notranslate"><span class="pre">flume3d-export.csv</span></code>.</p>
 <div class="figure align-default" id="pv-save-data">
 <img alt="telemac3d salome save export data csv paravis" src="../_images/pv11-export-data-csv.png" />
-<p class="caption"><span class="caption-number">Fig. 141 </span><span class="caption-text">Export the model results to a <a class="reference internal" href="../documentation/glossary.html#term-CSV"><span class="xref std std-term">CSV</span></a> file.</span><a class="headerlink" href="#pv-save-data" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 142 </span><span class="caption-text">Export the model results to a <a class="reference internal" href="../documentation/glossary.html#term-CSV"><span class="xref std std-term">CSV</span></a> file.</span><a class="headerlink" href="#pv-save-data" title="Permalink to this image">¶</a></p>
 </div>
-<p>After clicking <strong>OK</strong>, the <strong>Configure Writer (CSVWriter)</strong> window (<a class="reference internal" href="#pv-csv-config"><span class="std std-numref">Fig. 142</span></a>) opens. Select relevant data (e.g., <code class="docutils literal notranslate"><span class="pre">U</span></code>, <code class="docutils literal notranslate"><span class="pre">V</span></code>, <code class="docutils literal notranslate"><span class="pre">W</span></code>, and <code class="docutils literal notranslate"><span class="pre">Z</span></code>) by checking the <strong>Choose Arrays to Write</strong> box and enable <strong>Add Time</strong>. Click <strong>OK</strong> to finalize the data export.</p>
+<p>After clicking <strong>OK</strong>, the <strong>Configure Writer (CSVWriter)</strong> window (<a class="reference internal" href="#pv-csv-config"><span class="std std-numref">Fig. 143</span></a>) opens. Select relevant data (e.g., <code class="docutils literal notranslate"><span class="pre">U</span></code>, <code class="docutils literal notranslate"><span class="pre">V</span></code>, <code class="docutils literal notranslate"><span class="pre">W</span></code>, and <code class="docutils literal notranslate"><span class="pre">Z</span></code>) by checking the <strong>Choose Arrays to Write</strong> box and enable <strong>Add Time</strong>. Click <strong>OK</strong> to finalize the data export.</p>
 <div class="figure align-default" id="pv-csv-config">
 <img alt="telemac3d salome export data csv paravis configure" src="../_images/pv12-export-data-csv-config.png" />
-<p class="caption"><span class="caption-number">Fig. 142 </span><span class="caption-text">Configure the CSV Writer for exporting relevant data such as ELEVATION Z and 3d VELOCITY (U, V, and W).</span><a class="headerlink" href="#pv-csv-config" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 143 </span><span class="caption-text">Configure the CSV Writer for exporting relevant data such as ELEVATION Z and 3d VELOCITY (U, V, and W).</span><a class="headerlink" href="#pv-csv-config" title="Permalink to this image">¶</a></p>
 </div>
-<p><a class="reference internal" href="#pv-csv-exported"><span class="std std-numref">Figure 143</span></a> shows an example for an exported <a class="reference internal" href="../documentation/glossary.html#term-CSV"><span class="xref std std-term">CSV</span></a> file.</p>
+<p><a class="reference internal" href="#pv-csv-exported"><span class="std std-numref">Figure 144</span></a> shows an example for an exported <a class="reference internal" href="../documentation/glossary.html#term-CSV"><span class="xref std std-term">CSV</span></a> file.</p>
 <div class="figure align-default" id="pv-csv-exported">
 <img alt="telemac3d salome exported data csv file" src="../_images/pv13-exported-csv.png" />
-<p class="caption"><span class="caption-number">Fig. 143 </span><span class="caption-text">An example of an exported CSV file containing timesteps, elevation, point coordinates, and 3d velocities.</span><a class="headerlink" href="#pv-csv-exported" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 144 </span><span class="caption-text">An example of an exported CSV file containing timesteps, elevation, point coordinates, and 3d velocities.</span><a class="headerlink" href="#pv-csv-exported" title="Permalink to this image">¶</a></p>
 </div>
 <p>Recall that many other variables can be exported by defining them in the <code class="docutils literal notranslate"><span class="pre">*.cas</span></code> file as above described in the <a class="reference internal" href="#tm3d-comp-env"><span class="std std-ref">computational environment</span></a>. A full list of 2d and 3d output parameters in available sections 3.13 and 3.12, respectively, of the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p1r1/documentation/telemac3d/user/telemac3d_user_v8p1.pdf">Telemac3d docs</a>.</p>
 <div class="tip admonition">
@@ -1972,8 +2158,8 @@ The <strong>initial conditions</strong> describe the condition at the beginning 
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="telemac3d-slf.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -1990,19 +2176,17 @@ The <strong>initial conditions</strong> describe the condition at the beginning 
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Sebastian Schwindt<br/>
-        
-            &copy; Copyright 2022.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Sebastian Schwindt, Ricardo Barros<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
 </main>
 
 

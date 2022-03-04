@@ -1,0 +1,2352 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Support Vector Machine &#8212; Hydro-Informatics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://hydro-informatics.com/datascience/morphology-predictor-svm.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Principles" href="../numerics/numerical-modeling.html" />
+    <link rel="prev" title="Exercises (Coming soon)" href="exercises.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/icon.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Get Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../lectures/classroom.html">
+   The Virtual Classroom
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/principles.html">
+     Principles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/lectures.html">
+     Lectures and Exercises
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lectures/take_seat.html">
+     Take a Seat
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../get-started/software.html">
+   Software Resources
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/vm.html">
+     Virtual Machines and Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/ide.html">
+     Integrated Development Environments (IDEs)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python-basics/pyinstall.html">
+     Python (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/git.html">
+     Version Control : git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/geo.html">
+     Geospatial Software
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-openfoam.html">
+     OpenFOAM (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/install-telemac.html">
+     TELEMAC (Installation)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../get-started/others.html">
+     Other Software Resources
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Python Basics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/python.html">
+   First Steps
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pybase.html">
+     Hello Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyerror.html">
+     Errors, Logging, and Debugging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyloop.html">
+     Loops and Conditional Statements
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/modularize.html">
+   Object Orientation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyfun.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pypckg.html">
+     Packages, Modules and Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/classes.html">
+     Object Orientation and Classes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python-basics/data-handling.html">
+   Data and File Handling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pynum.html">
+     Data Files, NumPy &amp; Pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/xml.html">
+     Structured Data (XML, xlsx &amp; JSON)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/pyplot.html">
+     Plotting
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../jupyter/pystyle.html">
+   Code Style and Conventions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../jupyter/gui.html">
+   Graphical User Interfaces (GUIs)
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/python-exercises.html">
+   Python Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-ms.html">
+     1d Hydraulics (Manning-Strickler Formula)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sp.html">
+     Reservoir Volume (Sequent Peak Algorithm)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-floods.html">
+     Flood Return Periods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-sediment.html">
+     1d Sediment Transport
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-gui.html">
+     Create a GUI
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Geospatial Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/geospatial-data.html">
+   Geospatial Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/use-qgis.html">
+   QGIS Tutorial
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../geopy/geo-python.html">
+   Geospatial Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/geo-pckg.html">
+     Geospatial Open Source Python Libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-shp.html">
+     Shapefile (Vector) Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-raster.html">
+     Raster (Grid) Handling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-convert.html">
+     Vectorize and Rasterize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jupyter/geo-arcpy.html">
+     The Commercial arcpy Library
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/geo-exercises.html">
+   Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-geco.html">
+     Script a Habitat Suitability Map
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Data Science
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="data-science.html">
+   Basics (Coming soon)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="py-requirements.html">
+     Python Requirements
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="data-prepro.html">
+     Data Pre-Processing
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="data-types.html">
+       The Nature of Data
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="data-cleaning.html">
+       Dataset Cleaning
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="dimensional-analysis.html">
+       Dimensional Analysis
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="theory.html">
+     Theory
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="techniques.html">
+       Fundamental Techniques
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="calibration.html">
+       Model Calibration
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="validation.html">
+       Model Validation
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="exercises.html">
+   Exercises (Coming soon)
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Support Vector Machine
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Numerical Modeling
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numerics/numerical-modeling.html">
+   Principles
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerics/basement.html">
+   BASEMENT
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/pre-qgis-bm.html">
+     Pre-processing with QGIS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/basement2d.html">
+     Steady 2d Simulation and Post-processing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerics/telemac.html">
+   TELEMAC
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerics/pre-slf-tm.html">
+     Pre-processing
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../numerics/telemac2d.html">
+     Telemac2d
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+    <label for="toctree-checkbox-15">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac2d-steady.html">
+       Steady 2d
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac2d-unsteady.html">
+       Unsteady 2d
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../numerics/telemac3d.html">
+     Telemac3d
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+    <label for="toctree-checkbox-16">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac3d-slf.html">
+       Steady 3d (SLF - Selafin)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/telemac3d-med.html">
+       Steady 3d (MED and Salome)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../numerics/telemac-gaia.html">
+     Gaia (Morphodynamics)
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+    <label for="toctree-checkbox-17">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/gaia-coupling.html">
+       Introduction and Coupling
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/gaia-basics.html">
+       Basic Setup of Gaia
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/gaia-bedload.html">
+       Bedload
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/gaia-suspended.html">
+       Suspended Load
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../numerics/gaia-run.html">
+       Run and Analyze
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Documentation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/documentation.html">
+   How to Markdown and Document
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/glossary.html">
+   Glossary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/notation.html">
+   Notation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation/bibliography.html">
+   References
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/docs-exercises.html">
+   Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+  <label for="toctree-checkbox-18">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/ex-git.html">
+     Git and Markdown
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Troubleshoot
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
+   Programming Tools and IDEs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+  <label for="toctree-checkbox-19">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
+     Debugging Anaconda
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-python.html">
+     Debugging Python Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
+     Debugging Jupyter
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
+   Numerical Models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
+  <label for="toctree-checkbox-20">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
+     Debugging BASEMENT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
+     Debugging TELEMAC
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-os.html">
+   Operating Systems (Linux and VMs)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/>
+  <label for="toctree-checkbox-21">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
+     Debugging Debian Linux
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
+     Debugging Virtual Machines
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Disclaimer and License
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/license.html">
+   License
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../terms/disclaimer.html">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a> and Ricardo Barros
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/datascience/morphology-predictor-svm.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/hydro-informatics/jupyter-python-course"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/hydro-informatics/jupyter-python-course/main/v2/gh/hydro-informatics/jupyter-python-course/main?urlpath=lab/tree/datascience/morphology-predictor-svm.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com//github/hydro-informatics/jupyter-python-course/blob/main/datascience/morphology-predictor-svm.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Support Vector Machine
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#theory">
+     Theory
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pre-processing">
+   Pre Processing
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-data">
+     Load Data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#remove-nan-values">
+     Remove NaN Values
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#search-for-outliers">
+     Search for Outliers
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#remove-outliers">
+     Remove Outliers
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#verify-class-proportions">
+     Verify Class Proportions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#derive-new-predictors">
+     Derive New Predictors
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#verify-multicollinearity">
+     Verify Multicollinearity
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#variance-inflation-factor">
+     Variance Inflation Factor
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#remove-features-to-reduce-vif">
+     Remove Features to Reduce VIF
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#train-an-test-the-model">
+   Train an Test the model
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#split-test-and-training-datasets">
+     Split Test and Training Datasets
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Support Vector Machine
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#k-fold-cross-validation">
+     k-fold Cross Validation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#choose-optimum-parameter">
+     Choose Optimum Parameter
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#train-optimum-hypothesis-model">
+     Train Optimum Hypothesis Model
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#performance-evaluation">
+     Performance Evaluation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Support Vector Machine</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Support Vector Machine
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#theory">
+     Theory
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pre-processing">
+   Pre Processing
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-data">
+     Load Data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#remove-nan-values">
+     Remove NaN Values
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#search-for-outliers">
+     Search for Outliers
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#remove-outliers">
+     Remove Outliers
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#verify-class-proportions">
+     Verify Class Proportions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#derive-new-predictors">
+     Derive New Predictors
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#verify-multicollinearity">
+     Verify Multicollinearity
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#variance-inflation-factor">
+     Variance Inflation Factor
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#remove-features-to-reduce-vif">
+     Remove Features to Reduce VIF
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#train-an-test-the-model">
+   Train an Test the model
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#split-test-and-training-datasets">
+     Split Test and Training Datasets
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Support Vector Machine
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#k-fold-cross-validation">
+     k-fold Cross Validation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#choose-optimum-parameter">
+     Choose Optimum Parameter
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#train-optimum-hypothesis-model">
+     Train Optimum Hypothesis Model
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#performance-evaluation">
+     Performance Evaluation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="support-vector-machine">
+<h1>Support Vector Machine<a class="headerlink" href="#support-vector-machine" title="Permalink to this headline">¶</a></h1>
+<p>Understand how to use Support Vector Machine (SVM) to classify riverbed morphology types.</p>
+<div class="admonition-goals admonition">
+<p class="admonition-title">Goals</p>
+<ul class="simple">
+<li><p>Pre Process dataset consisting of five morphological feactures and five river bed morphology classes.</p></li>
+<li><p>Use Variance Inflation Index (VIF) to evaluate Multicollinearity among features.</p></li>
+<li><p>Train and test Support Vector Machine (SVM) model to classify river bed morphology using Radial Basis Function (RBF) kernel.</p></li>
+</ul>
+</div>
+<div class="attention admonition">
+<p class="admonition-title">Requirements</p>
+<p>Read and understand data handling with <a class="reference internal" href="../jupyter/pynum.html#numpy"><span class="std std-ref">NumPy</span></a>, <a class="reference internal" href="../jupyter/pynum.html#pandas"><span class="std std-ref">Pandas</span></a>, <a class="reference internal" href="../jupyter/pyplot.html#matplotlib"><span class="std std-ref">Matplotlib</span></a> , <a class="reference internal" href="../jupyter/pyfun.html#chpt-functions"><span class="std std-ref">functions</span></a> as well as basic statistics knowledge.</p>
+</div>
+<p>Click <strong><a class="reference external" href="https://github.com/ricardovobarros/hydro-informatics/tree/main/morphology_predictor">here</a></strong> to get the Jupyter notebook of this case study and try yourself.</p>
+<div class="section" id="theory">
+<h2>Theory<a class="headerlink" href="#theory" title="Permalink to this headline">¶</a></h2>
+<p>Identifying river bed morphology provides essential insights for the:</p>
+<ul class="simple">
+<li><p>Management of water resources.</p></li>
+<li><p>Construction along the river banks.</p></li>
+<li><p>Hazards mitigation such as floods.</p></li>
+</ul>
+<p>In addition, bed morphology is a important predictor of <a class="reference internal" href="../documentation/glossary.html#term-Sediment-transport"><span class="xref std std-term">sediment transport</span></a>, which impacts for example physical habitat of river ecosystems and energy production <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id1402">RPVTP16</a>]</span>.</p>
+<p>Classifying river bed can be challenging because there is no stream equal to another. Stream channel formation depends on many variables, and the same combination of these variables is improbable. Yet, river bed morphology can show similar characteristics under similar physical conditions. One type of river morphology classification is divided as follows (click on the types to know more about them):</p>
+<ul class="simple">
+<li><p><strong><a class="reference internal" href="../documentation/glossary.html#term-Step-pool"><span class="xref std std-term">Step pool</span></a></strong></p></li>
+<li><p><strong><a class="reference internal" href="../documentation/glossary.html#term-Plane-bed"><span class="xref std std-term">Plane bed</span></a></strong></p></li>
+<li><p><strong><a class="reference internal" href="../documentation/glossary.html#term-Riffle-pool"><span class="xref std std-term">Riffle pool</span></a></strong></p></li>
+<li><p><strong><a class="reference internal" href="../documentation/glossary.html#term-Braiding"><span class="xref std std-term">Braiding</span></a></strong></p></li>
+<li><p><strong><a class="reference internal" href="../documentation/glossary.html#term-Sand-bed"><span class="xref std std-term">Sand bed</span></a></strong></p></li>
+</ul>
+<p>These classes of river bed morphology are found commonly gradually along a river, where <em>Steep-pool</em> is mostly found <a class="reference external" href="http://www.texasthestateofwater.org/screening/html/gloassary.htm">upstream</a>, and <em>Sand-bed</em> is mostly found <a class="reference external" href="http://www.texasthestateofwater.org/screening/html/gloassary.htm">downstrem</a>. The other classes are commonly observed in between. The <a class="reference internal" href="#fig-bed-morphology"><span class="std std-ref">Figure below</span></a> illustrates how these five types of river bed morphology looks like.</p>
+<div class="figure align-default" id="fig-bed-morphology">
+<img alt="riverbed morphologies" src="../_images/morphology-overview.jpg" />
+<p class="caption"><span class="caption-number">Fig. 27 </span><span class="caption-text">a)~A colluvial headwater stream (Furtschaglbach, Austria), b)~a cascade stream (Torrent des Favrands, France), c)~a bedrock stream (Anse St-Jean, Qu’ebec, Canada), d) a step-pool stream (Dessoubre, France), e) a plane-bed stream (Dranse, Switzerland), f)~a riffle-pool stream (Le diable, Qu’ebec, Canada), g)~a braided stream (Jenbach, Germany). Source: <span id="id2">Schwindt [<a class="reference internal" href="../documentation/bibliography.html#id522">Sch17</a>]</span></span><a class="headerlink" href="#fig-bed-morphology" title="Permalink to this image">¶</a></p>
+</div>
+<p>Although rivers present a natural transition of bed morphology, experts have to classify river morphology visually through imagery (e.g., <a class="reference external" href="https://ncert.nic.in/textbook/pdf/kegy306.pdf">airborne photography</a>) or visiting the site. Such methods can be costly due to special equipment and team transportation.</p>
+<p>An interesting alternative for classifying river bed morphology is using features that can be collected or estimated through, for example, satellite imagery, <a class="reference external" href="https://en.wikipedia.org/wiki/Rain_gauge">rain gauges</a>, or <a class="reference external" href="https://pubs.er.usgs.gov/publication/tm3A8">discharge gaging stations</a>. Collecting data through automated methods prevents teams from dislocating and allows access to a higher volume of updated data.</p>
+<p>The following case study trains and tests a SVM model that classifies river bed morphology through features that can be collected or derived from remote equipment.</p>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="pre-processing">
+<h1>Pre Processing<a class="headerlink" href="#pre-processing" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="load-data">
+<h2>Load Data<a class="headerlink" href="#load-data" title="Permalink to this headline">¶</a></h2>
+<p><strong>Dataset source:</strong> <a class="reference external" href="https://en.bedloadweb.com/">https://en.bedloadweb.com/</a></p>
+<ul class="simple">
+<li><p>Each sample is derived from the cross-sections of distinct location of 146 different natural rivers around the globe.</p></li>
+<li><p>The dataset is composed  by the characteristic diameters of samples collected at the same site where the parameters were collected. However, in this case study, only the following physical attributes were used to train the SVM model:</p>
+<ul>
+<li><p><strong>W</strong>: Channel width [m]</p></li>
+<li><p><strong>S</strong>: Channel slope [m]</p></li>
+<li><p><strong>Q</strong>: Discharge [m³/s]</p></li>
+<li><p><strong>U</strong>: Mean velocity [m\s]</p></li>
+<li><p><strong>H</strong>: Hight [m]</p></li>
+</ul>
+</li>
+</ul>
+<p>In the machine learning context, parameters used to predict river bed morphology are also called features.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">data</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;bedload_dataset&quot;</span><span class="p">)</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>W</th>
+      <th>S</th>
+      <th>Q</th>
+      <th>U</th>
+      <th>H</th>
+      <th>Morphology</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>65.23</td>
+      <td>0.004100</td>
+      <td>319.98</td>
+      <td>2.90</td>
+      <td>1.69</td>
+      <td>Riffle-pool</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3.30</td>
+      <td>0.018000</td>
+      <td>1.08</td>
+      <td>1.00</td>
+      <td>0.32</td>
+      <td>Riffle-pool</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>7.00</td>
+      <td>0.001500</td>
+      <td>3.96</td>
+      <td>0.73</td>
+      <td>0.78</td>
+      <td>Riffle-pool</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>166.12</td>
+      <td>0.000680</td>
+      <td>1124.18</td>
+      <td>1.78</td>
+      <td>3.81</td>
+      <td>Riffle-pool</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>8.38</td>
+      <td>0.013018</td>
+      <td>2.50</td>
+      <td>0.83</td>
+      <td>0.38</td>
+      <td>Riffle-pool</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1062</th>
+      <td>102.00</td>
+      <td>0.000960</td>
+      <td>171.00</td>
+      <td>1.40</td>
+      <td>1.20</td>
+      <td>Braiding</td>
+    </tr>
+    <tr>
+      <th>1063</th>
+      <td>8.40</td>
+      <td>0.025000</td>
+      <td>3.34</td>
+      <td>1.20</td>
+      <td>0.33</td>
+      <td>Braiding</td>
+    </tr>
+    <tr>
+      <th>1064</th>
+      <td>101.00</td>
+      <td>0.000440</td>
+      <td>260.00</td>
+      <td>1.50</td>
+      <td>1.80</td>
+      <td>Braiding</td>
+    </tr>
+    <tr>
+      <th>1065</th>
+      <td>7.50</td>
+      <td>0.025000</td>
+      <td>2.15</td>
+      <td>0.96</td>
+      <td>0.30</td>
+      <td>Braiding</td>
+    </tr>
+    <tr>
+      <th>1066</th>
+      <td>16.90</td>
+      <td>0.008000</td>
+      <td>12.00</td>
+      <td>1.53</td>
+      <td>0.46</td>
+      <td>Braiding</td>
+    </tr>
+  </tbody>
+</table>
+<p>1067 rows × 6 columns</p>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="remove-nan-values">
+<h2>Remove NaN Values<a class="headerlink" href="#remove-nan-values" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dataset essencial info</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">info</span><span class="p">(),</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+<span class="c1"># remove rows that contains at least one NaN value</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+<span class="c1"># verify that all NaN values were removed</span>
+<span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">column</span><span class="p">,</span><span class="s2">&quot;:&quot;</span><span class="p">,</span><span class="n">data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">())</span>
+    
+<span class="c1"># verify final shape of the dataset  </span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 1067 entries, 0 to 1066
+Data columns (total 6 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   W           1067 non-null   float64
+ 1   S           1067 non-null   float64
+ 2   Q           1067 non-null   float64
+ 3   U           1067 non-null   float64
+ 4   H           1067 non-null   float64
+ 5   Morphology  1067 non-null   object 
+dtypes: float64(5), object(1)
+memory usage: 50.1+ KB
+None 
+
+None
+W : False
+S : False
+Q : False
+U : False
+H : False
+Morphology : False
+(1067, 6)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="search-for-outliers">
+<h2>Search for Outliers<a class="headerlink" href="#search-for-outliers" title="Permalink to this headline">¶</a></h2>
+<p>Eventually an equipment may fail and measure a absurd value. This unrealistic measurements (i.e., outliers) may affect the performce of the model. Thus, recognizing and removing them is a essencial step.</p>
+<p>Visualizing the plotted features in a scatter plot can be helpful to spot outliers candidates. The following chunk of code plots the scatter of each feature and marks the expected value and the distance of 2 standard devitions from it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1</span> <span class="kn">import</span> <span class="n">host_subplot</span>
+<span class="kn">import</span> <span class="nn">mpl_toolkits.axisartist</span> <span class="k">as</span> <span class="nn">AA</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="c1"># visualize scatter of the features </span>
+<span class="n">host</span> <span class="o">=</span> <span class="n">host_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">axes_class</span><span class="o">=</span><span class="n">AA</span><span class="o">.</span><span class="n">Axes</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">right</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+
+<span class="n">labels</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;crimson&quot;</span><span class="p">,</span> <span class="s2">&quot;purple&quot;</span><span class="p">,</span> <span class="s2">&quot;limegreen&quot;</span><span class="p">,</span> <span class="s2">&quot;gold&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">]</span>
+
+<span class="n">width</span><span class="o">=</span><span class="mf">0.5</span>
+
+<span class="n">std_store</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">mean_store</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">labels</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">host</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>        
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">host</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+        <span class="n">new_fixed_axis</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_grid_helper</span><span class="p">()</span><span class="o">.</span><span class="n">new_fixed_axis</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">[</span><span class="s2">&quot;right&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_fixed_axis</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span>
+                                            <span class="n">axes</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                                            <span class="n">offset</span><span class="o">=</span><span class="p">(</span><span class="mi">60</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">[</span><span class="s2">&quot;right&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">toggle</span><span class="p">(</span><span class="nb">all</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">i</span> <span class="o">+</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">width</span><span class="o">-</span><span class="n">width</span><span class="o">/</span><span class="mf">2.</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span><span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">mean</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">i</span><span class="o">-</span><span class="n">width</span><span class="o">/</span><span class="mf">2.</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="n">width</span><span class="o">/</span><span class="mf">2.</span><span class="p">],[</span><span class="n">mean</span><span class="p">,</span><span class="n">mean</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">],</span> <span class="p">[</span><span class="n">mean</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">std</span><span class="p">,</span> <span class="n">mean</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">std</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>    
+        
+
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/morphology-predictor-svm_6_0.png" src="../_images/morphology-predictor-svm_6_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="remove-outliers">
+<h2>Remove Outliers<a class="headerlink" href="#remove-outliers" title="Permalink to this headline">¶</a></h2>
+<p>Outliers can be removed manually or in a automatically. Two examples of such approachs are:</p>
+<ul class="simple">
+<li><p>Manual (i.e., expert judgment): identify the outliers of the features and revome them by setting limits to their interval.</p></li>
+<li><p>Automated: assuming a probability distribution and setting limits based on low probability of accurance of a feature.</p></li>
+</ul>
+<p>The following code chunck allows to choose between manual (expert) or automated methods. The manual outiler removal is <em>hard coded</em> because the limits should be given by experts.</p>
+<p>In the automated approach (below else statment), <a class="reference external" href="https://en.wikipedia.org/wiki/Normal_distribution">gaussian distribition</a> is stablished that data points with <a class="reference external" href="https://en.wikipedia.org/wiki/Standard_score">z score</a> grater than 4 (four) are removed. Data points with z score less or equal to four have 99.9% change of been inside the interval enclosed by four standard deviations away from the expected value. Thus, a sample that has 0.01% change of happenning is considered automatically an outlier and removed from the dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">zscore</span>
+<span class="c1"># choose the method to remove outliers</span>
+<span class="c1"># remove_method = &quot;expert_analysis&quot;</span>
+<span class="n">remove_method</span> <span class="o">=</span> <span class="s2">&quot;zscore&quot;</span>
+
+<span class="k">if</span> <span class="s2">&quot;expert&quot;</span> <span class="ow">in</span> <span class="n">remove_method</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;qs&quot;</span><span class="p">]</span><span class="o">&lt;</span><span class="mf">0.02</span><span class="p">)</span> <span class="o">&amp;</span>
+                    <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Q&quot;</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">2000</span><span class="p">)</span> <span class="o">&amp;</span>
+                    <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;W&quot;</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">250</span><span class="p">)]</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">zscore</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">!=</span><span class="s2">&quot;Morphology&quot;</span><span class="p">]))</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+    
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>W</th>
+      <th>S</th>
+      <th>Q</th>
+      <th>U</th>
+      <th>H</th>
+      <th>Morphology</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>65.23</td>
+      <td>0.004100</td>
+      <td>319.98</td>
+      <td>2.90</td>
+      <td>1.69</td>
+      <td>Riffle-pool</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3.30</td>
+      <td>0.018000</td>
+      <td>1.08</td>
+      <td>1.00</td>
+      <td>0.32</td>
+      <td>Riffle-pool</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>7.00</td>
+      <td>0.001500</td>
+      <td>3.96</td>
+      <td>0.73</td>
+      <td>0.78</td>
+      <td>Riffle-pool</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>166.12</td>
+      <td>0.000680</td>
+      <td>1124.18</td>
+      <td>1.78</td>
+      <td>3.81</td>
+      <td>Riffle-pool</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>8.38</td>
+      <td>0.013018</td>
+      <td>2.50</td>
+      <td>0.83</td>
+      <td>0.38</td>
+      <td>Riffle-pool</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1062</th>
+      <td>102.00</td>
+      <td>0.000960</td>
+      <td>171.00</td>
+      <td>1.40</td>
+      <td>1.20</td>
+      <td>Braiding</td>
+    </tr>
+    <tr>
+      <th>1063</th>
+      <td>8.40</td>
+      <td>0.025000</td>
+      <td>3.34</td>
+      <td>1.20</td>
+      <td>0.33</td>
+      <td>Braiding</td>
+    </tr>
+    <tr>
+      <th>1064</th>
+      <td>101.00</td>
+      <td>0.000440</td>
+      <td>260.00</td>
+      <td>1.50</td>
+      <td>1.80</td>
+      <td>Braiding</td>
+    </tr>
+    <tr>
+      <th>1065</th>
+      <td>7.50</td>
+      <td>0.025000</td>
+      <td>2.15</td>
+      <td>0.96</td>
+      <td>0.30</td>
+      <td>Braiding</td>
+    </tr>
+    <tr>
+      <th>1066</th>
+      <td>16.90</td>
+      <td>0.008000</td>
+      <td>12.00</td>
+      <td>1.53</td>
+      <td>0.46</td>
+      <td>Braiding</td>
+    </tr>
+  </tbody>
+</table>
+<p>1038 rows × 6 columns</p>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="verify-class-proportions">
+<h2>Verify Class Proportions<a class="headerlink" href="#verify-class-proportions" title="Permalink to this headline">¶</a></h2>
+<p>Some relevant points to consider about the number of sample of each class:</p>
+<ul class="simple">
+<li><p>Each combinaiton of model/problem demands a different minimum number  of samples to have <a class="reference external" href="https://en.wikipedia.org/wiki/Statistical_significance">statistical significance</a>. It is not a trivial task to identify the minimun number of samples that yield a trustworth model. However, to represent a class proprely (whatever that means) the <a class="reference external" href="https://www.investopedia.com/terms/f/frequencydistribution.asp#:~:text=A%20frequency%20distribution%20is%20a,observations%20within%20a%20given%20interval.&amp;text=The%20intervals%20must%20be%20mutually,used%20within%20a%20statistical%20context.">frenquecy distribution</a> of each feature must be similar to the <a class="reference external" href="https://www.bmj.com/about-bmj/resources-readers/publications/statistics-square-one/3-populations-and-samples">population</a> frequency distribution. In addition, having more than <a class="reference external" href="https://math.stackexchange.com/questions/1287990/estimating-population-standard-deviation-with-sample-standard-deviation">30 samples</a> when dealing with normal distributed variables is a rule of thumb.</p></li>
+<li><p>Ideally, the classes in a classificaiton problem should be represented by a similar quantity of samples. An unbalanced dataset may produce a model that gives preference to classifying correctly the class with larger number of samples. This is a consequence of using accuracy as the performance metric, which is computed through total number of correct predictons (<span class="math notranslate nohighlight">\(accuracy =  n_{correct\_prediction}/ n_{of\_samples}\)</span>). By preferencing the total number of correct predictons over a balanced one, accuracy masks the importance of getting the under-represented classes correctly.</p></li>
+<li><p>When solutions for unbaleced sample as collecting more data or generating new data (<a class="reference external" href="https://en.wikipedia.org/wiki/Monte_Carlo_method">e.g., Monte Carlo</a>) are not available, <a class="reference external" href="https://en.wikipedia.org/wiki/Precision_and_recall">precision</a> is an better choice to measure the peformance of a model, instead of accuracy.</p></li>
+<li><p>Another approch to deal with unbalanced dataset is to use <a class="reference external" href="https://www.kdnuggets.com/2019/11/machine-learning-what-why-how-weighting.html">weighting</a>. That means giving weights to increase the importance of under-represented classes correctly. In classification problems, testing different combination of weight yield the <a class="reference external" href="https://www.analyticsvidhya.com/blog/2020/06/auc-roc-curve-machine-learning/#:~:text=Like%20I%20said%20before%2C%20the,the%20One%20vs%20All%20technique.">ROC curve</a>, which shows the effect of varying weights on the performence of a model.</p></li>
+</ul>
+<p>In the present case study, the samples can be considered balaced, except for the class Sand bed (see output below). However, weighting and ROC curves are not contamplated here. If sensitivity and specificity of the Sand bed class are acepptable, when classifying testing data, the model could be used without the need of using these techniques.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;Morphology&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Step-pool      247
+Plane Bed      243
+Riffle-pool    241
+Braiding       228
+Sand bed        79
+Name: Morphology, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="derive-new-predictors">
+<h2>Derive New Predictors<a class="headerlink" href="#derive-new-predictors" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes it is possible to compute new meaningful features from the existing ones. For instance, known predictors for morphology are the following:</p>
+<ul class="simple">
+<li><p>the product of slope S (-), velocity U (m/s), and Depth H  (m)</p></li>
+<li><p>the ratio of discharge (m³/s) and width (m) (i.e. Q/W)</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Deriving new features from existing ones through simple operations may create correlated features, which produce unreliable models.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">pandas.core.common</span> <span class="kn">import</span> <span class="n">SettingWithCopyWarning</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">SettingWithCopyWarning</span><span class="p">)</span>
+
+<span class="c1"># compute new columns for the new features SUH and Q/W</span>
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;SUH&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s2">&quot;S&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s2">&quot;U&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s2">&quot;H&quot;</span><span class="p">])</span>
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;Q/W&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s2">&quot;Q&quot;</span><span class="p">]</span><span class="o">/</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s2">&quot;W&quot;</span><span class="p">])</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>W</th>
+      <th>S</th>
+      <th>Q</th>
+      <th>U</th>
+      <th>H</th>
+      <th>Morphology</th>
+      <th>SUH</th>
+      <th>Q/W</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>65.23</td>
+      <td>0.004100</td>
+      <td>319.98</td>
+      <td>2.90</td>
+      <td>1.69</td>
+      <td>Riffle-pool</td>
+      <td>0.020094</td>
+      <td>4.905412</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3.30</td>
+      <td>0.018000</td>
+      <td>1.08</td>
+      <td>1.00</td>
+      <td>0.32</td>
+      <td>Riffle-pool</td>
+      <td>0.005760</td>
+      <td>0.327273</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>7.00</td>
+      <td>0.001500</td>
+      <td>3.96</td>
+      <td>0.73</td>
+      <td>0.78</td>
+      <td>Riffle-pool</td>
+      <td>0.000854</td>
+      <td>0.565714</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>166.12</td>
+      <td>0.000680</td>
+      <td>1124.18</td>
+      <td>1.78</td>
+      <td>3.81</td>
+      <td>Riffle-pool</td>
+      <td>0.004612</td>
+      <td>6.767277</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>8.38</td>
+      <td>0.013018</td>
+      <td>2.50</td>
+      <td>0.83</td>
+      <td>0.38</td>
+      <td>Riffle-pool</td>
+      <td>0.004106</td>
+      <td>0.298329</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1062</th>
+      <td>102.00</td>
+      <td>0.000960</td>
+      <td>171.00</td>
+      <td>1.40</td>
+      <td>1.20</td>
+      <td>Braiding</td>
+      <td>0.001613</td>
+      <td>1.676471</td>
+    </tr>
+    <tr>
+      <th>1063</th>
+      <td>8.40</td>
+      <td>0.025000</td>
+      <td>3.34</td>
+      <td>1.20</td>
+      <td>0.33</td>
+      <td>Braiding</td>
+      <td>0.009900</td>
+      <td>0.397619</td>
+    </tr>
+    <tr>
+      <th>1064</th>
+      <td>101.00</td>
+      <td>0.000440</td>
+      <td>260.00</td>
+      <td>1.50</td>
+      <td>1.80</td>
+      <td>Braiding</td>
+      <td>0.001188</td>
+      <td>2.574257</td>
+    </tr>
+    <tr>
+      <th>1065</th>
+      <td>7.50</td>
+      <td>0.025000</td>
+      <td>2.15</td>
+      <td>0.96</td>
+      <td>0.30</td>
+      <td>Braiding</td>
+      <td>0.007200</td>
+      <td>0.286667</td>
+    </tr>
+    <tr>
+      <th>1066</th>
+      <td>16.90</td>
+      <td>0.008000</td>
+      <td>12.00</td>
+      <td>1.53</td>
+      <td>0.46</td>
+      <td>Braiding</td>
+      <td>0.005630</td>
+      <td>0.710059</td>
+    </tr>
+  </tbody>
+</table>
+<p>1038 rows × 8 columns</p>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="verify-multicollinearity">
+<h2>Verify Multicollinearity<a class="headerlink" href="#verify-multicollinearity" title="Permalink to this headline">¶</a></h2>
+<p>Correlated features may produce unreliable models. For instance, lets consider a scientist that wants to use machine learning (ML) models to predict the number of  german turists that get sun burn in Brazil during their vacation and she wants to use sun radiation intensity and number of sold ice creams as features. She may find that both feature are relevant to sun burn, probably because the number of sold icecreams and sun intensity are correlated. Thus, the scientist has no way to know what is the real importance of each feature in predicting sun burn because the features grow and decrease together.</p>
+<p>By the way, ice scream and sun burn have no causality bond, but that is another subject.</p>
+<p>Therefore, its of stream relevance to study the correlation among the features (origin from the prefix “Multi”) to consider eliminating the correlated ones and, consequently, producing a more reliable model. One way to visually spot correllinearity is plotting the combination of two variables in a scatter plot (see below).</p>
+<p>Whith the figure below, it is easy to spot for example that:</p>
+<ul class="simple">
+<li><p>There is a strong linear correlation between the feature <code class="docutils literal notranslate"><span class="pre">H</span></code> and <code class="docutils literal notranslate"><span class="pre">Q/w</span></code>.</p></li>
+<li><p>There is no linear correlation between <code class="docutils literal notranslate"><span class="pre">W</span></code> and <code class="docutils literal notranslate"><span class="pre">U</span></code>.</p></li>
+<li><p>Velocity (<code class="docutils literal notranslate"><span class="pre">U</span></code>) distribuiton is approximatally normal (see main diagonal).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1"># plot scatter of the 2d (two dimensinal) combination of features</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">!=</span><span class="s2">&quot;Morphology&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/morphology-predictor-svm_14_0.png" src="../_images/morphology-predictor-svm_14_0.png" />
+</div>
+</div>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Heat_map#:~:text=A%20heat%20map%20">Heatmaps</a> are also a efficient method to viasulize the linear correlation among the features. In additon, computing <a class="reference external" href="https://en.wikiversity.org/wiki/Correlation#:~:text=Linear%20correlation%20refers%20to%20straight,late%2019th%20century%5B1%5D.">linear correlation</a> allows quantitative analysis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">seaborn</span> <span class="kn">import</span> <span class="n">heatmap</span>
+
+<span class="c1"># verify linear coorralation </span>
+<span class="n">feature_corr_df</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">!=</span><span class="s2">&quot;Morphology&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">feature_corr_df</span><span class="p">)</span> 
+<span class="n">mask</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">triu_indices_from</span><span class="p">(</span><span class="n">mask</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">feature_corr_df</span><span class="p">,</span> 
+            <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1"># print value inside the grid</span>
+            <span class="n">mask</span><span class="o">=</span><span class="n">mask</span> <span class="c1"># mask values (boolean matrix)</span>
+           <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+</pre></div>
+</div>
+<img alt="../_images/morphology-predictor-svm_16_1.png" src="../_images/morphology-predictor-svm_16_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="variance-inflation-factor">
+<h2>Variance Inflation Factor<a class="headerlink" href="#variance-inflation-factor" title="Permalink to this headline">¶</a></h2>
+<p>A straghtforward method to evaluate <a class="reference external" href="https://towardsdatascience.com/statistics-in-python-collinearity-and-multicollinearity-4cc4dcd82b3f">multicollinerity</a> is computing the Variance Inflation Factor (VFI) for each feature. VIF quantifies the correlation among features.</p>
+<p>The first step to compute VIF is treating a feacture as <a class="reference external" href="https://www.scribbr.com/methodology/independent-and-dependent-variables/#:~:text=The%20independent%20variable%20is%20the,changes%20in%20the%20independent%20variable.">depedent variable</a> and fit a <a class="reference external" href="https://www.youtube.com/watch?v=nk2CQITm_eo">linear regression model</a> using the other features as <a class="reference external" href="https://www.scribbr.com/methodology/independent-and-dependent-variables/#:~:text=The%20independent%20variable%20is%20the,changes%20in%20the%20independent%20variable.">independent variables</a>. Second, store the corresponding squared erros <code class="docutils literal notranslate"><span class="pre">R²</span></code> yielded by the linear model.</p>
+<p>Finally, VIF can be computed for each feature by the following equation:</p>
+<div class="math notranslate nohighlight">
+\[
+VIF_{feature(n)} = 1/(1-R^2_{feature(n)})
+\]</div>
+<p><span class="math notranslate nohighlight">\(VIF_{feature(n)}\)</span> is the variance inflation factor of the <span class="math notranslate nohighlight">\(n_{th}\)</span> feature, and
+<span class="math notranslate nohighlight">\(R^2_{feature(n)}\)</span> is the mean square error (MSE) resulting from the linear regression of the <span class="math notranslate nohighlight">\(n_{th}\)</span> feature.</p>
+<p>Note that the smaller the R (better linear regression model), the grather is the inflation. In other words, big values of VIF indicates high correlation of the feature under evaluation with <em>at least</em> one of the other features. Still, it is not possible to say, with VIF alone, which <em>other feature</em> is causing VIF  to inflate.</p>
+<p>As rule of thumb, VIF grater the 10 (ten) inidicates a unsuitable set of features to produce a reliable ML model. Ideally, the VIFs should stay under 5 (five), which is considered moderate correlation <span id="id3">[<a class="reference internal" href="../documentation/bibliography.html#id1404">Fra10</a>]</span>. However, these references are not set in stone. VIF equals or grater than 10 still can yield good models.</p>
+<p>Further analysis to study the impact of high VIF on correlated features can be carried out by removing each feature at a time and seeing how this affect variation of <a class="reference external" href="https://en.wikipedia.org/wiki/Standard_error">standard error</a> and <a class="reference external" href="https://www.youtube.com/watch?v=Cba9LJ9lS8s&amp;t=53s">p-value</a> of the model.</p>
+<p>In the present case study, 2 features present VIF &gt;10 (H, Q/W) (see output below).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="c1"># compute VIF for the features</span>
+<span class="k">def</span> <span class="nf">calculate_vif</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">features</span><span class="p">):</span>
+    <span class="n">vif</span><span class="p">,</span> <span class="n">tolerance</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{}</span>
+    
+    <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>        
+        <span class="c1"># extract all the other features you will regress against</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">features</span> <span class="k">if</span> <span class="n">f</span> <span class="o">!=</span> <span class="n">feature</span><span class="p">]</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">X</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span>
+        
+        <span class="c1"># extract r-squared from the fit</span>
+        <span class="n">r2</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+        <span class="c1"># compute VIF</span>
+        <span class="n">vif</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">r2</span><span class="p">)</span>
+    <span class="c1"># return VIF DataFrame</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;VIF&#39;</span><span class="p">:</span> <span class="n">vif</span><span class="p">})</span>
+
+<span class="c1"># call fuction calculate_vif with features as input</span>
+<span class="n">calculate_vif</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> 
+              <span class="n">features</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span> <span class="o">!=</span> <span class="s2">&quot;Morphology&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>VIF</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>H</th>
+      <td>14.721236</td>
+    </tr>
+    <tr>
+      <th>Q</th>
+      <td>9.278038</td>
+    </tr>
+    <tr>
+      <th>Q/W</th>
+      <td>27.648327</td>
+    </tr>
+    <tr>
+      <th>S</th>
+      <td>2.983335</td>
+    </tr>
+    <tr>
+      <th>SUH</th>
+      <td>3.028896</td>
+    </tr>
+    <tr>
+      <th>U</th>
+      <td>6.515027</td>
+    </tr>
+    <tr>
+      <th>W</th>
+      <td>4.691707</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="remove-features-to-reduce-vif">
+<h2>Remove Features to Reduce VIF<a class="headerlink" href="#remove-features-to-reduce-vif" title="Permalink to this headline">¶</a></h2>
+<p>Here, try-error approach is carried out to bring VIFs below 5. Removing <code class="docutils literal notranslate"><span class="pre">H</span></code> and <code class="docutils literal notranslate"><span class="pre">Q</span></code> is enough to reduce the VIFs of the remaining features to values below 5. The removed variables are been “represented” in the new created features <code class="docutils literal notranslate"><span class="pre">Q/W</span></code> and <code class="docutils literal notranslate"><span class="pre">SUH</span></code>. Thus, although their are been removed, they still “bring new information” to the final model.</p>
+<p>Combining correlated features to procduce a new one, and later removing them, is a common approach to reduz VIFs. <a class="reference external" href="https://www.youtube.com/watch?v=FgakZw6K1QQ">Principal componant analysis (PCA)</a> is also an effective method for reducing dimensionality (i.e., number of features) to increase reliability on a model, but at the same time minimizing information loss.</p>
+<p>Hovewer, since good values of VIF were reached here by removing some of the features, no further analisys is necessary.</p>
+<p>Finally, the features that are used to train and test the SVM model are shown by the output of the code chunk below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># try and error approach removing features get VIFs &lt; 10 </span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span> <span class="o">!=</span><span class="s2">&quot;H&quot;</span><span class="p">)</span><span class="o">&amp;</span>
+                                <span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span> <span class="o">!=</span><span class="s2">&quot;Q&quot;</span><span class="p">)</span>
+                               <span class="p">]</span>
+               <span class="p">]</span>
+
+<span class="c1"># compute VIF again to verify if VIFs are less than 5</span>
+<span class="n">calculate_vif</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> 
+              <span class="n">features</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span> <span class="o">!=</span> <span class="s2">&quot;Morphology&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>VIF</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Q/W</th>
+      <td>3.628840</td>
+    </tr>
+    <tr>
+      <th>S</th>
+      <td>2.451387</td>
+    </tr>
+    <tr>
+      <th>SUH</th>
+      <td>2.855595</td>
+    </tr>
+    <tr>
+      <th>U</th>
+      <td>4.778947</td>
+    </tr>
+    <tr>
+      <th>W</th>
+      <td>1.872494</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="train-an-test-the-model">
+<h1>Train an Test the model<a class="headerlink" href="#train-an-test-the-model" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="split-test-and-training-datasets">
+<h2>Split Test and Training Datasets<a class="headerlink" href="#split-test-and-training-datasets" title="Permalink to this headline">¶</a></h2>
+<p>Choosing the share for data to compose testing dataset is commonly a heuristic choice. Here, 33% of the data is stored to test the final hyphotesis.</p>
+<p>Note that inside the split datasets the index of the samples (rows of the tabular data) have their correposponding class inside teh <em>target datasets</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span> 
+
+
+<span class="c1"># split dataframes with features and labels only</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;Morphology&quot;</span><span class="p">]</span>
+<span class="n">predictors</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span> <span class="o">!=</span> <span class="s2">&quot;Morphology&quot;</span><span class="p">]]</span>
+
+<span class="c1"># split testing set as 33% of the data</span>
+<span class="c1"># X correspond to the featues (matrix form)</span>
+<span class="c1"># y corresponf to the labels (vector form)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">predictors</span><span class="p">,</span>  
+                                                    <span class="n">labels</span><span class="p">,</span>
+                                                    <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> 
+                                                    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span> <span class="c1"># seed for random selection of data</span>
+                                                   <span class="p">)</span>
+
+<span class="c1"># visualize training and testing sets</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TRAINING DATASET PREDICTORS&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">head</span><span class="p">(),</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;dataframe size&quot;</span><span class="p">,</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------------------------------------------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TRAINING DATASET TARGET&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------------------------------------------------------------------------------------</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TESTING DATASET PREDICTORS&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;dataframe size&quot;</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------------------------------------------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TESTING DATASET TARGET&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y_test</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Vector size&quot;</span><span class="p">,</span> <span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TRAINING DATASET PREDICTORS
+          W        S     U       SUH       Q/W
+256    6.91  0.01100  1.02  0.003366  0.277858
+397   88.09  0.00210  1.99  0.008149  3.889545
+586   14.02  0.02070  1.34  0.022190  1.078459
+526  218.00  0.00041  0.52  0.000175  0.541284
+9      8.00  0.02000  1.18  0.007316  0.370000 
+
+dataframe size (726, 5) 
+
+------------------------------------------
+TRAINING DATASET TARGET
+256      Plane Bed
+397      Plane Bed
+586      Step-pool
+526       Sand bed
+9      Riffle-pool
+          ...     
+89     Riffle-pool
+337      Plane Bed
+476      Plane Bed
+123    Riffle-pool
+876       Braiding
+Name: Morphology, Length: 726, dtype: object 
+
+
+------------------------------------------------------------------------------------
+
+TESTING DATASET PREDICTORS
+          W        S     U       SUH       Q/W
+203    2.57  0.01040  1.58  0.008216  0.793774
+937  105.00  0.00096  1.90  0.002918  3.076190
+546   93.00  0.00050  1.10  0.001320  2.688172
+214   53.04  0.00380  1.44  0.004596  1.211916
+312    6.28  0.02020  0.34  0.001511  0.074841
+dataframe size (312, 5) 
+
+------------------------------------------
+TESTING DATASET TARGET
+203    Riffle-pool
+937       Braiding
+546       Sand bed
+214    Riffle-pool
+312      Plane Bed
+Name: Morphology, dtype: object
+Vector size (312,)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>Support Vector Machine<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>Support Vector Machine (SVM) are learning algorithms that search for a hyperplane that optimally separate classes. To find a optimal separation, the algorithms try to maximize the distance from the hyperplane (i.e., margin) to the closest data points. The data points near to the limits of the margin are also denominatesd as support vectors because they work as a refference to <em>draw</em> the hyperpalne (Figure below).</p>
+<div class="figure align-default" id="svm-margin-morphology">
+<img alt="datascience" src="../_images/svm-margin.jpg" />
+<p class="caption"><span class="caption-number">Fig. 28 </span><span class="caption-text">Illustration of a hyperplane and margins of support vector machine. Source: Ricardo Barros</span><a class="headerlink" href="#svm-margin-morphology" title="Permalink to this image">¶</a></p>
+</div>
+<p>As a example, lets assume that two above classes are linear separable. We can define the regions that contain each class through the following hyperplane:</p>
+<p><span class="math notranslate nohighlight">\( \vec{w}  \vec{X} + b &gt; 1 \)</span> –&gt; <strong>Class Red</strong>, and
+<span class="math notranslate nohighlight">\( \vec{w}  \vec{X} + b &lt; 1 \)</span> –&gt; <strong>Class Blue</strong></p>
+<p>where <span class="math notranslate nohighlight">\(\vec{w}\)</span> is the vector of weights,
+<span class="math notranslate nohighlight">\(\vec{X}\)</span> is the matrix of features,
+<span class="math notranslate nohighlight">\(b\)</span> is the independent variable (also called bias), and the value  <span class="math notranslate nohighlight">\(1\)</span> is chosen for further simplication reasons since <span class="math notranslate nohighlight">\(b\)</span> can assume any value.</p>
+<p>After some steps (which are not discussed here), we can compute the optimal hyperplane by minimazing the following expression:</p>
+<p><span class="math notranslate nohighlight">\(min (0.5 \vec{w^t} \vec{w}) \)</span></p>
+<p>where <span class="math notranslate nohighlight">\(\vec{w^t}\)</span> is the tranposed weight vector.</p>
+<p>In the real world, however, it is common to find problems where classes are not linearlly separable. In this situations, kernels can applied. Kernels are functions that transform <span class="math notranslate nohighlight">\(\vec{X}\)</span> to a matrix with higher dimensions by combining the available features to create new features (i.e., new dimensions).</p>
+<p>Here, the kernel <a class="reference external" href="https://towardsdatascience.com/radial-basis-function-rbf-kernel-the-go-to-kernel-acf0d22c798a">Radius Base Function (RBF)</a> is applied. RBF is a popular kernel because it transforms the <span class="math notranslate nohighlight">\(\vec{X}\)</span> into a infinite dimesion matrix without paying the price of overfiting.</p>
+<div class="hint admonition">
+<p class="admonition-title">See also </p>
+<ul class="simple">
+<li><p>For a more detailed article on <em>SVM</em> click <a class="reference external" href="https://www.analyticsvidhya.com/blog/2021/10/support-vector-machinessvm-a-complete-guide-for-beginners/">here</a></p></li>
+<li><p>For a complete MIT leacture on <em>SVM</em> click <a class="reference external" href="https://www.youtube.com/watch?v=eHsErlPJWUU">here</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="k-fold-cross-validation">
+<h2>k-fold Cross Validation<a class="headerlink" href="#k-fold-cross-validation" title="Permalink to this headline">¶</a></h2>
+<p>SVMs copposed with RBF kernel can be validade by tuning two parameters:</p>
+<ul class="simple">
+<li><p><strong>C</strong>: determines how much are the margins permissive. It differentiate between hard margin (i.e., marging that allows a few or any penetration of data points) and soft margin (i.e., margin that allows penetration of data points inside the margin). The higher the <strong>C</strong>, the harder the margin.</p></li>
+<li><p><strong>Gamma</strong>: determines the region of similarity among samples. It is the only variable of the RBF kernel. The higher gamma is, the broader is the influnce of a labeled sample in classifying a new sample.</p></li>
+</ul>
+<p>Hard margins can also be interpreted as the sensibility the hyperplane has when fitting through the data. The harder the margin, the more the hyperplane twist itself to not allow any data point to penetrate the margin.</p>
+<p>Here, <em>C</em> was defined through try-error approach and gamma through five-fold <a class="reference external" href="https://machinelearningmastery.com/k-fold-cross-validation/#:~:text=Cross%2Dvalidation%20is%20a%20resampling,k%2Dfold%20cross%2Dvalidation.">cross-validation</a>. The chunck of code below prints the validation and training error curves by varying <em>gamma</em>.</p>
+<div class="hint admonition">
+<p class="admonition-title">See also </p>
+<ul class="simple">
+<li><p>For a <em>C</em> and <em>gamma</em> search code example click <a class="reference external" href="https://scikit-learn.org/stable/auto_examples/svm/plot_rbf_parameters.html#:~:text=Intuitively%2C%20the%20gamma%20parameter%20defines,the%20model%20as%20support%20vectors.">here</a></p></li>
+</ul>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span> 
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">validation_curve</span> 
+
+
+<span class="c1"># define C, gamma range, kernel and number of cross-val. folds</span>
+<span class="n">gamma_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span> 
+<span class="n">C</span><span class="o">=</span><span class="mi">500</span> <span class="c1"># chosen hyperparameter through tunnig</span>
+<span class="n">kernel</span> <span class="o">=</span> <span class="s2">&quot;rbf&quot;</span> <span class="c1"># radius base function</span>
+<span class="n">n_of_folds</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># Peform 5-fold cross-validation and save training and validation error</span>
+<span class="n">train_scores</span><span class="p">,</span> <span class="n">test_scores</span> <span class="o">=</span> <span class="n">validation_curve</span><span class="p">(</span><span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span> <span class="o">=</span> <span class="n">kernel</span><span class="p">,</span> 
+                                                 <span class="n">C</span><span class="o">=</span><span class="n">C</span><span class="p">),</span>
+                                             <span class="n">X_train</span><span class="p">,</span>
+                                             <span class="n">y_train</span><span class="p">,</span>
+                                             <span class="n">param_name</span><span class="o">=</span><span class="s2">&quot;gamma&quot;</span><span class="p">,</span>
+                                             <span class="n">param_range</span><span class="o">=</span><span class="n">gamma_range</span><span class="p">,</span>
+                                             <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;accuracy&quot;</span><span class="p">,</span>
+                                             <span class="n">cv</span><span class="o">=</span><span class="n">n_of_folds</span>
+                                            <span class="p">)</span>
+
+<span class="c1"># convert accuracy into error</span>
+<span class="n">train_error</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">train_scores</span>
+<span class="n">validation_error</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">test_scores</span>
+
+<span class="c1"># compute 5-fold cross-validation mean and std of error </span>
+<span class="n">train_error_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">train_error</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">train_error_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">train_error</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">validation_error_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">validation_error</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">validation_error_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">validation_error</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1">#-------------------------------------------------------------------</span>
+
+<span class="c1"># train and validation error visualization</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Validation Curve with SVM&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\gamma$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Error (1-accuracy)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+<span class="n">lw</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span>
+    <span class="n">param_range</span><span class="p">,</span> <span class="n">train_error_mean</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Training error&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;darkorange&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="n">lw</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+    <span class="n">param_range</span><span class="p">,</span>
+    <span class="n">train_error_mean</span> <span class="o">-</span> <span class="n">train_error_std</span><span class="p">,</span>
+    <span class="n">train_error_mean</span> <span class="o">+</span> <span class="n">train_error_std</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;darkorange&quot;</span><span class="p">,</span>
+    <span class="n">lw</span><span class="o">=</span><span class="n">lw</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span>
+    <span class="n">param_range</span><span class="p">,</span> <span class="n">validation_error_mean</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Cross-validation error&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;navy&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="n">lw</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+    <span class="n">param_range</span><span class="p">,</span>
+    <span class="n">validation_error_mean</span> <span class="o">-</span> <span class="n">validation_error_std</span><span class="p">,</span>
+    <span class="n">validation_error_mean</span> <span class="o">+</span> <span class="n">validation_error_std</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;navy&quot;</span><span class="p">,</span>
+    <span class="n">lw</span><span class="o">=</span><span class="n">lw</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/morphology-predictor-svm_26_0.png" src="../_images/morphology-predictor-svm_26_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="choose-optimum-parameter">
+<h2>Choose Optimum Parameter<a class="headerlink" href="#choose-optimum-parameter" title="Permalink to this headline">¶</a></h2>
+<p>The code below allows to visualize the quantitatively the validation curve above (blue curve) and saves the gamma that yields the lowest error <strong>(gamma_opt)</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># save optimal gamma</span>
+<span class="n">index_min</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">validation_error_mean</span><span class="p">)),</span> <span class="n">key</span><span class="o">=</span><span class="n">validation_error_mean</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">)</span>
+<span class="n">validation_error_min</span> <span class="o">=</span> <span class="n">validation_error_mean</span><span class="p">[</span><span class="n">index_min</span><span class="p">]</span>
+<span class="n">gamma_opt</span> <span class="o">=</span> <span class="n">param_range</span><span class="p">[</span><span class="n">index_min</span><span class="p">]</span> <span class="c1"># gamma that gives minimun validation error</span>
+
+<span class="c1"># visualize error evolution with gamma </span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Mean validation error&quot;</span><span class="p">,</span><span class="s2">&quot;gamma&quot;</span><span class="p">]</span>
+<span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">validation_error_mean</span><span class="p">,</span> <span class="n">param_range</span><span class="p">])</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">array</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">),</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Minimun mean validation error:&quot;</span><span class="p">,</span> <span class="n">validation_error_min</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;optimal gamma:&quot;</span><span class="p">,</span> <span class="n">gamma_opt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Mean validation error        gamma
+0                0.575739     0.000010
+1                0.524856     0.000046
+2                0.471101     0.000215
+3                0.446311     0.001000
+4                0.388474     0.004642
+5                0.341606     0.021544
+6                0.294709     0.100000
+7                0.254861     0.464159
+8                0.318262     2.154435
+9                0.391252    10.000000
+10               0.409173    46.415888
+11               0.515144   215.443469
+12               0.637789  1000.000000 
+
+Minimun mean validation error: 0.2548606518658479
+optimal gamma: 0.46415888336127725
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="train-optimum-hypothesis-model">
+<h2>Train Optimum Hypothesis Model<a class="headerlink" href="#train-optimum-hypothesis-model" title="Permalink to this headline">¶</a></h2>
+<p>After defining the gamma the yields the lowest validation error <strong>(gamma_opt)</strong>, we can train the optimal hypothesis <strong>(h_opt)</strong> model on the entire training dataset.</p>
+<p>In addition, we can evaluate the accuracy of the model by using it to classify the testing dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># train optimal model and evaluate accuracy </span>
+<span class="n">h_opt</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="n">kernel</span><span class="p">,</span>
+            <span class="n">gamma</span><span class="o">=</span><span class="n">gamma_opt</span><span class="p">,</span>
+            <span class="n">C</span><span class="o">=</span><span class="n">C</span><span class="p">)</span> <span class="c1"># instantiate optimal model </span>
+<span class="n">h_opt</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span> <span class="c1"># train the model with entire training set</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error (1-Accuracy) of h_opt on testing data: </span><span class="se">\n</span><span class="s2"> --&gt;&gt;&quot;</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span> <span class="n">h_opt</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">))</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error (1-Accuracy) of h_opt on testing data: 
+ --&gt;&gt; 0.19551282051282048
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="performance-evaluation">
+<h2>Performance Evaluation<a class="headerlink" href="#performance-evaluation" title="Permalink to this headline">¶</a></h2>
+<p>Finally, the confusion matrix is generated to avaluate the optial hypothrsis model performance when classifying the samples with distinct morphologies.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">plot_confusion_matrix</span> 
+
+<span class="c1">#plot confusion matrix</span>
+<span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">h_opt</span><span class="p">,</span> <span class="c1"># trained optimal hypothesis model</span>
+                      <span class="n">X_test</span><span class="p">,</span> 
+                      <span class="n">y_test</span><span class="p">,</span>
+                     <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/morphology-predictor-svm_32_0.png" src="../_images/morphology-predictor-svm_32_0.png" />
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "hydro-informatics/jupyter-python-course",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./datascience"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="exercises.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Exercises (Coming soon)</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../numerics/numerical-modeling.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Principles</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Sebastian Schwindt, Ricardo Barros<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

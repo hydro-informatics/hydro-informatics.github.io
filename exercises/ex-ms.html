@@ -38,14 +38,17 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe,.cell"
@@ -475,8 +478,8 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/jupyter-example.html">
-     Exercise 1
+    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
+     Support Vector Machine
     </a>
    </li>
   </ul>
@@ -758,7 +761,7 @@
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
-  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a> and Ricardo Barros
 </div>
 
 </div>
@@ -798,7 +801,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -829,7 +832,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -869,7 +872,50 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>1d Hydraulics (Manning-Strickler Formula)</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#theoretical-background">
+   Theoretical background
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculate-the-discharge">
+   Calculate the discharge
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functionalize">
+   Functionalize
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#flexibilize">
+   Flexibilize
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#invert-the-function">
+   Invert the function
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="d-hydraulics-manning-strickler-formula">
@@ -892,7 +938,7 @@
 </div>
 <div class="section" id="theoretical-background">
 <span id="calc-1d-hyd"></span><h2>Theoretical background<a class="headerlink" href="#theoretical-background" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Manning_formula">Gauckler-Manning-Strickler formula</a> <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id330">KC08</a>]</span> (or <em>Strickler formula</em> in Europe) relates water depth and flow velocity of open channel flow based on the assumption of one-dimensional (cross-section-averaged) flow characteristics. The <em>Strickler formula</em> results from a heavy simplification of the <a class="reference internal" href="../documentation/glossary.html#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a> and the <a class="reference internal" href="../documentation/glossary.html#term-Continuity-equation"><span class="xref std std-term">Continuity equation</span></a> <span id="id2">[<a class="reference internal" href="../documentation/bibliography.html#id330">KC08</a>]</span>. Even though one-dimensional (1d) approaches have largely been replaced by at least two-dimensional (2d) numerical models today, the 1d Strickler formula is still frequently used as a first approximation for boundary conditions.</p>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Manning_formula">Gauckler-Manning-Strickler formula</a> <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id332">KC08</a>]</span> (or <em>Strickler formula</em> in Europe) relates water depth and flow velocity of open channel flow based on the assumption of one-dimensional (cross-section-averaged) flow characteristics. The <em>Strickler formula</em> results from a heavy simplification of the <a class="reference internal" href="../documentation/glossary.html#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a> and the <a class="reference internal" href="../documentation/glossary.html#term-Continuity-equation"><span class="xref std std-term">Continuity equation</span></a> <span id="id2">[<a class="reference internal" href="../documentation/bibliography.html#id332">KC08</a>]</span>. Even though one-dimensional (1d) approaches have largely been replaced by at least two-dimensional (2d) numerical models today, the 1d Strickler formula is still frequently used as a first approximation for boundary conditions.</p>
 <p>The basic shape of the <em>Strickler formula</em> is:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -905,7 +951,7 @@ u = k_{st}\cdot S^{1/2} \cdot R_{h}^{2/3}
 <ul>
 <li><p><span class="math notranslate nohighlight">\(k_{st}\)</span> <span class="math notranslate nohighlight">\(\approx\)</span> 20 (<span class="math notranslate nohighlight">\(n_m \approx\)</span> 0.05) for rough, complex, and near-natural rivers</p></li>
 <li><p><span class="math notranslate nohighlight">\(k_{st}\)</span> <span class="math notranslate nohighlight">\(\approx\)</span> 90 (<span class="math notranslate nohighlight">\(n_m \approx\)</span> 0.011) for smooth, concrete-lined channels</p></li>
-<li><p><span class="math notranslate nohighlight">\(k_{st}\)</span> <span class="math notranslate nohighlight">\(\approx\)</span> 26/<span class="math notranslate nohighlight">\(D_{90}^{1/6}\)</span> (approximation based on the grain size <span class="math notranslate nohighlight">\(D_{90}\)</span>, where 90% of the surface sediment grains are smaller, according to <span id="id3">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id387">MPM48</a>]</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(k_{st}\)</span> <span class="math notranslate nohighlight">\(\approx\)</span> 26/<span class="math notranslate nohighlight">\(D_{90}^{1/6}\)</span> (approximation based on the grain size <span class="math notranslate nohighlight">\(D_{90}\)</span>, where 90% of the surface sediment grains are smaller, according to <span id="id3">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id389">MPM48</a>]</span></p></li>
 </ul>
 </li>
 <li><p><span class="math notranslate nohighlight">\(S\)</span> is the hypothetic energy slope (m/m), which can be assumed to correspond to the channel slope for steady, uniform flow conditions.</p></li>
@@ -952,12 +998,12 @@ Q = u \cdot A = k_{st} \cdot S^{1/2}\cdot R_{h}^{2/3} \cdot A
 </div>
 <div class="section" id="invert-the-function">
 <h2>Invert the function<a class="headerlink" href="#invert-the-function" title="Permalink to this headline">¶</a></h2>
-<p>The backward solution to the <em>Manning-Strickler</em> formula is a non-linear problem if the channel is not rectangular. This is why an iterative approximation is needed and here, we use the <em>Newton-Raphson</em> scheme <span id="id4">[<a class="reference internal" href="../documentation/bibliography.html#id11">AK87</a>]</span> for this purpose (see also the <a class="reference external" href="https://ilias3.uni-stuttgart.de">the University of Stuttgart’s ILIAS platform</a>).</p>
+<p>The backward solution to the <em>Manning-Strickler</em> formula is a non-linear problem if the channel is not rectangular. This is why an iterative approximation is needed and here, we use the <em>Newton-Raphson</em> scheme <span id="id4">[<a class="reference internal" href="../documentation/bibliography.html#id13">AK87</a>]</span> for this purpose (see also the <a class="reference external" href="https://ilias3.uni-stuttgart.de">the University of Stuttgart’s ILIAS platform</a>).</p>
 <div class="tip admonition">
 <p class="admonition-title">Absolute Values</p>
 <p>The absolute value of a parameter can be easily accessed through the built-in <code class="docutils literal notranslate"><span class="pre">abs()</span></code> method in <em>Python3</em>.</p>
 </div>
-<p>Use a Newton-Raphson solution scheme <span id="id5">[<a class="reference internal" href="../documentation/bibliography.html#id438">Pai92</a>]</span> to interpolate the water depth <code class="docutils literal notranslate"><span class="pre">h</span></code> for a given discharge <code class="docutils literal notranslate"><span class="pre">Q</span></code> of a trapezoidal channel.</p>
+<p>Use a Newton-Raphson solution scheme <span id="id5">[<a class="reference internal" href="../documentation/bibliography.html#id440">Pai92</a>]</span> to interpolate the water depth <code class="docutils literal notranslate"><span class="pre">h</span></code> for a given discharge <code class="docutils literal notranslate"><span class="pre">Q</span></code> of a trapezoidal channel.</p>
 <ul class="simple">
 <li><p>Write a new function <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">interpolate_h(Q,</span> <span class="pre">b,</span> <span class="pre">m,</span> <span class="pre">S,</span> <span class="pre">**kwargs):</span></code></p></li>
 <li><p>Define an initial guess of <code class="docutils literal notranslate"><span class="pre">h</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">h</span> <span class="pre">=</span> <span class="pre">1.0</span></code>) and an initial error margin (e.g., <code class="docutils literal notranslate"><span class="pre">eps</span> <span class="pre">=</span> <span class="pre">1.0</span></code>)</p></li>
@@ -1002,8 +1048,8 @@ Q = u \cdot A = k_{st} \cdot S^{1/2}\cdot R_{h}^{2/3} \cdot A
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="python-exercises.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -1020,19 +1066,17 @@ Q = u \cdot A = k_{st} \cdot S^{1/2}\cdot R_{h}^{2/3} \cdot A
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Sebastian Schwindt<br/>
-        
-            &copy; Copyright 2022.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Sebastian Schwindt, Ricardo Barros<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
 </main>
 
 

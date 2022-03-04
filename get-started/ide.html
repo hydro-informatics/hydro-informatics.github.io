@@ -38,12 +38,15 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe,.cell"
@@ -473,8 +476,8 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/jupyter-example.html">
-     Exercise 1
+    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
+     Support Vector Machine
     </a>
    </li>
   </ul>
@@ -756,7 +759,7 @@
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
-  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a> and Ricardo Barros
 </div>
 
 </div>
@@ -796,7 +799,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -827,7 +830,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -947,7 +950,130 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Integrated Development Environments (IDEs)</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Integrated Development Environments (IDEs)
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#anaconda">
+   Anaconda
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#anaconda-navigator">
+     Anaconda Navigator
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#miniconda">
+     Miniconda
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pycharm-with-anaconda">
+     PyCharm with Anaconda
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jupyterlab">
+   JupyterLab
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jupyter-on-windows">
+     Jupyter on Windows
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#via-anaconda-navigator">
+       Via Anaconda Navigator
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#via-anaconda-prompt-recommended">
+       Via Anaconda Prompt (Recommended)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#extensions-and-spellchecker">
+       Extensions and Spellchecker
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jupyter-on-linux">
+     Jupyter on Linux
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-debugger-for-jupyter">
+     A Debugger for Jupyter
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#atom">
+   Atom
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#installation">
+     Installation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#atom-packages">
+     Atom Packages
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#get-useful-atom-packages">
+       Get Useful Atom Packages
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#spell-checking">
+       Spell Checking
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#usage-with-python">
+     Usage with Python
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#more-console-options">
+     More Console Options
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="integrated-development-environments-ides">
@@ -1096,8 +1222,8 @@
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <div class="tabbed-set docutils">
-<input checked="checked" id="cc6ea173-b02a-4b16-8e95-24ee9023af97" name="87fc513f-1bde-42be-90c4-b4df66c02507" type="radio">
-</input><label class="tabbed-label" for="cc6ea173-b02a-4b16-8e95-24ee9023af97">
+<input checked="checked" id="4112c22d-674c-40f4-bca9-843a621f1f04" name="0530fe47-cd6d-4e7b-858d-001f6cef99eb" type="radio">
+</input><label class="tabbed-label" for="4112c22d-674c-40f4-bca9-843a621f1f04">
 Linux</label><div class="tabbed-content docutils">
 <p><strong>Linux</strong> users find installers for various distributions at <a class="reference external" href="https://atom.io/">atom.io</a>. <strong>Debian</strong> (<strong>Ubuntu</strong>), <strong>Red Hat</strong> / <strong>CentOS</strong>, <strong>Fedora</strong>, and <strong>SUSE</strong> find easy installation guides at <a class="reference external" href="https://flight-manual.atom.io/getting-started/sections/installing-atom/">https://flight-manual.atom.io</a>.</p>
 <p>The short version for <strong>Debian</strong> (<strong>Ubuntu</strong>) is:</p>
@@ -1116,8 +1242,8 @@ Linux</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="b948ea94-2905-4490-8896-d64bcb126007" name="87fc513f-1bde-42be-90c4-b4df66c02507" type="radio">
-</input><label class="tabbed-label" for="b948ea94-2905-4490-8896-d64bcb126007">
+<input id="ba19835b-e8e2-40ea-b20c-58220d594046" name="0530fe47-cd6d-4e7b-858d-001f6cef99eb" type="radio">
+</input><label class="tabbed-label" for="ba19835b-e8e2-40ea-b20c-58220d594046">
 Windows</label><div class="tabbed-content docutils">
 <p><strong>Windows</strong> users can download <em>Atom</em> from <a class="reference external" href="https://atom.io/">atom.io</a> and install the executable.</p>
 </div>
@@ -1183,8 +1309,8 @@ Windows</label><div class="tabbed-content docutils">
 <p>To enable Python compatibility, first, visit the <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Python (Installation)</span></a> section and install <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> for your system (i.e., either in a virtual or conda environment).</p>
 </div>
 <div class="tabbed-set docutils">
-<input checked="checked" id="f6b6e898-1388-4398-a64e-deb3a717166c" name="760e048b-9ec1-4238-8daf-bce5d589fe1f" type="radio">
-</input><label class="tabbed-label" for="f6b6e898-1388-4398-a64e-deb3a717166c">
+<input checked="checked" id="f4ffa824-efef-4f0b-9d23-eb8c07614834" name="b4ea44c7-01cf-495f-aa7c-04fc6fb5d5c0" type="radio">
+</input><label class="tabbed-label" for="f4ffa824-efef-4f0b-9d23-eb8c07614834">
 Linux</label><div class="tabbed-content docutils">
 <p>Open Terminal and activate the environment where <code class="docutils literal notranslate"><span class="pre">flusstools</span></code> is installed. For instance, if <code class="docutils literal notranslate"><span class="pre">flusstools</span></code> is installed in a virtual environment called <code class="docutils literal notranslate"><span class="pre">vflussenv</span></code> that lives in the user home directory (<code class="docutils literal notranslate"><span class="pre">/home/USER/</span></code>) according to the Python installation instructions in this eBook (see <a class="reference internal" href="../python-basics/pyinstall.html#pip-quick"><span class="std std-ref">pip quick guide</span></a>), activate the environment as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~</span>
@@ -1192,8 +1318,8 @@ Linux</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="43646b54-da4e-4f17-a464-cecd03daf1a0" name="760e048b-9ec1-4238-8daf-bce5d589fe1f" type="radio">
-</input><label class="tabbed-label" for="43646b54-da4e-4f17-a464-cecd03daf1a0">
+<input id="4c907eff-0fc2-41b8-832a-87920ffabeae" name="b4ea44c7-01cf-495f-aa7c-04fc6fb5d5c0" type="radio">
+</input><label class="tabbed-label" for="4c907eff-0fc2-41b8-832a-87920ffabeae">
 Windows</label><div class="tabbed-content docutils">
 <p>Open Anaconda Prompt and activate <code class="docutils literal notranslate"><span class="pre">flussenv</span></code> (given that <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> is installed according to the <a class="reference internal" href="../python-basics/pyinstall.html#conda-quick"><span class="std std-ref">conda quick guide</span></a>):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">flussenv</span>
@@ -1207,8 +1333,8 @@ Windows</label><div class="tabbed-content docutils">
 </div>
 <p><em>Atom</em> should open and provide the option to select a folder where a Python project will live or is already living. After selecting a folder, start editing your Python (<code class="docutils literal notranslate"><span class="pre">.py</span></code>) files. For running Python scripts, there are two options:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="d4bf1ab8-a9f8-436c-8f23-c3cfe6f6575a" name="bedb7ca4-16ec-4f6d-a961-c1119e3d67ba" type="radio">
-</input><label class="tabbed-label" for="d4bf1ab8-a9f8-436c-8f23-c3cfe6f6575a">
+<input checked="checked" id="315554d5-b048-466e-8cac-61173d31b464" name="3d816b0e-3195-469b-b8b4-7f656c9975c4" type="radio">
+</input><label class="tabbed-label" for="315554d5-b048-466e-8cac-61173d31b464">
 Option 1: Use Script Package</label><div class="tabbed-content docutils">
 <p>first set up the <em>Script</em> package:</p>
 <ul class="simple">
@@ -1226,8 +1352,8 @@ Option 1: Use Script Package</label><div class="tabbed-content docutils">
 <li><p>Or press <code class="docutils literal notranslate"><span class="pre">Alt</span></code> + <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Shift</span></code> + <code class="docutils literal notranslate"><span class="pre">B</span></code></p></li>
 </ul>
 </div>
-<input id="d48f038f-5917-4c27-94bd-e9515880a82e" name="bedb7ca4-16ec-4f6d-a961-c1119e3d67ba" type="radio">
-</input><label class="tabbed-label" for="d48f038f-5917-4c27-94bd-e9515880a82e">
+<input id="c8dea4b4-49fc-448a-832c-be9d2f380e51" name="3d816b0e-3195-469b-b8b4-7f656c9975c4" type="radio">
+</input><label class="tabbed-label" for="c8dea4b4-49fc-448a-832c-be9d2f380e51">
 Option 2: Use atom-python-virtualenv Package</label><div class="tabbed-content docutils">
 <p>Make sure to install the <code class="docutils literal notranslate"><span class="pre">atom-python-virtualenv</span></code> package (see the section on <a class="reference internal" href="#atom-packages"><span class="std std-ref">installing Atom packages</span></a>) and select <code class="docutils literal notranslate"><span class="pre">vflussenv</span></code> from the status bar at the bottom of the window as indicated in the below figure.</p>
 <img alt="../_images/atom-enable-env.png" src="../_images/atom-enable-env.png" />
@@ -1263,8 +1389,8 @@ Option 2: Use atom-python-virtualenv Package</label><div class="tabbed-content d
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="vm.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -1281,19 +1407,17 @@ Option 2: Use atom-python-virtualenv Package</label><div class="tabbed-content d
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Sebastian Schwindt<br/>
-        
-            &copy; Copyright 2022.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Sebastian Schwindt, Ricardo Barros<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
 </main>
 
 

@@ -38,14 +38,17 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe,.cell"
@@ -475,8 +478,8 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/jupyter-example.html">
-     Exercise 1
+    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
+     Support Vector Machine
     </a>
    </li>
   </ul>
@@ -758,7 +761,7 @@
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
-  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a>
+  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a> and Ricardo Barros
 </div>
 
 </div>
@@ -798,7 +801,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -829,7 +832,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -876,7 +879,57 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Basic Setup of Gaia</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#general-parameters">
+   General Parameters
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#boundary-conditions">
+   Boundary Conditions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#riverbed-composition">
+   Riverbed Composition
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sediment-classes">
+     Sediment Classes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#active-layer">
+     Active Layer
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bedload-vs-suspended-load">
+   Bedload vs. Suspended Load
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="basic-setup-of-gaia">
@@ -885,14 +938,14 @@
 <div class="section" id="general-parameters">
 <span id="gaia-gen"></span><h2>General Parameters<a class="headerlink" href="#general-parameters" title="Permalink to this headline">¶</a></h2>
 <p>The general parameters defining mandatory input and output files resemble those of the hydrodynamic steering file. The input files can even be the same used in the hydrodynamics steering file. For instance, <strong>define</strong> the <strong><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/qgismesh.slf">qgismesh.slf</a></strong> from the <a class="reference internal" href="pre-slf-tm.html#slf-prepro-tm"><span class="std std-ref">pre-processing</span></a> <strong>as geometry file</strong>. In addition, add <strong>boundaries-gaia.cli</strong> as <strong>BOUNDARY CONDITIONS FILE</strong>, which will be explained in the section on <a class="reference internal" href="#gaia-bc"><span class="std std-ref">boundary conditions for Gaia</span></a>. The Gaia <strong>RESULTS FILE</strong> keyword should also differ from the RESULTS FILE keyword in the hydrodynamic steering file.</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
-<span class="o">/</span>
-<span class="o">/</span> <span class="n">COMPUTATION</span> <span class="n">ENVIRONMENT</span>
-<span class="o">/</span>
-<span class="n">GEOMETRY</span> <span class="k">FILE</span> <span class="p">:</span> <span class="n">qgismesh</span><span class="p">.</span><span class="n">slf</span>
-<span class="n">BOUNDARY</span> <span class="n">CONDITIONS</span> <span class="k">FILE</span> <span class="p">:</span> <span class="n">boundaries</span><span class="o">-</span><span class="n">gaia</span><span class="p">.</span><span class="n">cli</span>
-<span class="n">RESULTS</span> <span class="k">FILE</span> <span class="p">:</span> <span class="n">rGaia</span><span class="o">-</span><span class="n">steady2d</span><span class="p">.</span><span class="n">slf</span>
-<span class="n">MASS</span><span class="o">-</span><span class="n">BALANCE</span> <span class="p">:</span> <span class="n">YES</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span><span class="w"></span>
+<span class="o">/</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="n">COMPUTATION</span><span class="w"> </span><span class="n">ENVIRONMENT</span><span class="w"></span>
+<span class="o">/</span><span class="w"></span>
+<span class="n">GEOMETRY</span><span class="w"> </span><span class="k">FILE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">qgismesh</span><span class="p">.</span><span class="n">slf</span><span class="w"></span>
+<span class="n">BOUNDARY</span><span class="w"> </span><span class="n">CONDITIONS</span><span class="w"> </span><span class="k">FILE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">boundaries</span><span class="o">-</span><span class="n">gaia</span><span class="p">.</span><span class="n">cli</span><span class="w"></span>
+<span class="n">RESULTS</span><span class="w"> </span><span class="k">FILE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">rGaia</span><span class="o">-</span><span class="n">steady2d</span><span class="p">.</span><span class="n">slf</span><span class="w"></span>
+<span class="n">MASS</span><span class="o">-</span><span class="n">BALANCE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">YES</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Graphical output variables related to sediment transport can be defined with the <strong>VARIABLES FOR GRAPHIC PRINTOUTS</strong> keyword for <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> and/or <a class="reference internal" href="../documentation/glossary.html#term-Suspended-load"><span class="xref std std-term">Suspended load</span></a> and the following list-options:</p>
@@ -910,9 +963,9 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">TOB</span></code> for bed shear stress in (N<span class="math notranslate nohighlight">\(\cdot\)</span>m<span class="math notranslate nohighlight">\(^{-2}\)</span>)</p></li>
 </ul>
 <p>The parameters <code class="docutils literal notranslate"><span class="pre">M</span></code> and <code class="docutils literal notranslate"><span class="pre">QSBL</span></code> will result in the same output if no suspended load is simulated. To output multiple parameters, <strong>set</strong> the <strong>VARIABLES FOR GRAPHIC PRINTOUTS</strong> keyword for this tutorial as follows:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">continued</span><span class="p">:</span> <span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
-<span class="o">/</span> <span class="p">...</span>
-<span class="n">VARIABLES</span> <span class="n">FOR</span> <span class="n">GRAPHIC</span> <span class="n">PRINTOUTS</span> <span class="p">:</span> <span class="n">B</span><span class="p">,</span><span class="n">E</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="n">MU</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">QSBL</span><span class="p">,</span><span class="n">TOB</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">continued</span><span class="p">:</span><span class="w"> </span><span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+<span class="n">VARIABLES</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">GRAPHIC</span><span class="w"> </span><span class="n">PRINTOUTS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">B</span><span class="p">,</span><span class="n">E</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="n">MU</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">QSBL</span><span class="p">,</span><span class="n">TOB</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1095,8 +1148,8 @@ View the cross-comparison Table of Boundary variables and types in Telemac2d/3d 
 <p>The prescription of time-dependent solid flowrates with a liquid boundaries file can be achieved with <code class="docutils literal notranslate"><span class="pre">LIEBOR=5</span></code> and following the descriptions in the <a class="reference internal" href="telemac2d-unsteady.html#tm2d-liq-file"><span class="std std-ref">unsteady (quasi-steady) tutorial</span></a>.</p>
 <p>The below boxes feature the setup of the <strong>boundaries.cli</strong> and <strong>boundaries-gaia.cli</strong> files for this tutorial according to the above descriptions.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="fae8301f-f755-47c3-8b39-8929a851c9e8" name="ae119ba8-dbda-44cd-a9c1-436233c27757" type="radio">
-</input><label class="tabbed-label" for="fae8301f-f755-47c3-8b39-8929a851c9e8">
+<input checked="checked" id="9e073ef2-4f03-40c3-bf65-f4380fbd17b3" name="00dccfce-aea8-442f-98d2-87afdff53f51" type="radio">
+</input><label class="tabbed-label" for="9e073ef2-4f03-40c3-bf65-f4380fbd17b3">
 Upstream boundary</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">go</span> <span class="n">to</span> <span class="n">line</span> <span class="mi">7</span><span class="p">]</span>
 <span class="mi">4</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>         <span class="mi">144</span>           <span class="mi">7</span>   <span class="c1"># upstream (144 - 32)</span>
@@ -1121,8 +1174,8 @@ Upstream boundary</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="62dc26bb-49ad-4d69-bc96-9af90785df6e" name="ae119ba8-dbda-44cd-a9c1-436233c27757" type="radio">
-</input><label class="tabbed-label" for="62dc26bb-49ad-4d69-bc96-9af90785df6e">
+<input id="7bccca99-75f1-4cad-9306-3cc9c62844ca" name="00dccfce-aea8-442f-98d2-87afdff53f51" type="radio">
+</input><label class="tabbed-label" for="7bccca99-75f1-4cad-9306-3cc9c62844ca">
 Downstream boundary</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">go</span> <span class="n">to</span> <span class="n">line</span> <span class="mi">312</span><span class="p">]</span>
 <span class="mi">5</span> <span class="mi">4</span> <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>          <span class="mi">34</span>         <span class="mi">312</span>   <span class="c1"># downstream (34 - 5)</span>
@@ -1155,14 +1208,14 @@ transport mechanisms that apply to the simulation. This tutorial deals with non-
 <p>Gaia considers sediment with grain diameters of less than 60<span class="math notranslate nohighlight">\(\cdot\)</span>10<span class="math notranslate nohighlight">\(^{-6}\)</span>m to 100<span class="math notranslate nohighlight">\(\cdot\)</span>10<span class="math notranslate nohighlight">\(^{-6}\)</span>m being cohesive. To model such fine sediment, where capillary forces may have significant effects on erosion, adaptations in the boundary conditions file and types are required. In the cohesive sediment case, the <strong>TYPE OF SEDIMENT</strong> keyword is <code class="docutils literal notranslate"><span class="pre">CO</span></code>. Read more about modeling cohesive sediment in section 3.3.3 of the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a>.</p>
 </div>
 <p>Gaia enables the differentiation between classes of sediment diameters with the <strong>CLASSES SEDIMENT DIAMETERS</strong> keyword. This tutorial features the implementation of three sediment classes in the form of sand (0.0005 m), gravel (0.02 m), and cobble (0.1 m) and assigns a grain density (<strong>CLASSES SEDIMENT DENSITY</strong>) of 2680 kg m<span class="math notranslate nohighlight">\(^{-3}\)</span> to the three classes. The grain sizes correspond to representative mean (average) diameters for every class. The <strong>CLASSES INITIAL FRACTION</strong> keyword is a list assigning a fraction (i.e., the share of the total sediment) to each of the three classes. Make sure that the <strong>sum of all fractions is exactly 1.0</strong>. Moreover, as <em>INITIAL</em> already suggests, the here defined fractions correspond to the initial state and Gaia will re-mix the sediment fractions as a function of erosion and deposition of sediment size classes.</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">continued</span><span class="p">:</span> <span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
-<span class="o">/</span>
-<span class="o">/</span> <span class="n">PHYSICAL</span> <span class="n">PARAMETERS</span> <span class="n">FOR</span> <span class="n">SEDIMENT</span>
-<span class="o">/</span>
-<span class="n">CLASSES</span> <span class="k">TYPE </span><span class="n">OF</span> <span class="n">SEDIMENT</span> <span class="p">:</span> <span class="n">NCO</span><span class="p">;</span><span class="n">NCO</span><span class="p">;</span><span class="n">NCO</span>
-<span class="n">CLASSES</span> <span class="n">SEDIMENT</span> <span class="n">DIAMETERS</span> <span class="p">:</span> <span class="mf">0.0005</span><span class="p">;</span><span class="mf">0.02</span><span class="p">;</span><span class="mf">0.1</span> <span class="o">/</span> <span class="n">in</span> <span class="n">m</span>
-<span class="n">CLASSES</span> <span class="n">SEDIMENT</span> <span class="n">DENSITY</span> <span class="p">:</span> <span class="mi">2680</span><span class="p">;</span><span class="mi">2680</span><span class="p">;</span><span class="mi">2680</span> <span class="o">/</span> <span class="n">in</span> <span class="n">kg</span> <span class="n">per</span> <span class="n">m3</span>
-<span class="n">CLASSES</span> <span class="n">INITIAL</span> <span class="nb">FRACTION</span> <span class="p">:</span> <span class="mf">0.1</span><span class="p">;</span><span class="mf">0.65</span><span class="p">;</span><span class="mf">0.25</span> <span class="o">/</span> <span class="n">must</span> <span class="nb">sum </span><span class="n">up</span> <span class="n">to</span> <span class="mf">1.0</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">continued</span><span class="p">:</span><span class="w"> </span><span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span><span class="w"></span>
+<span class="o">/</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="n">PHYSICAL</span><span class="w"> </span><span class="n">PARAMETERS</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">SEDIMENT</span><span class="w"></span>
+<span class="o">/</span><span class="w"></span>
+<span class="n">CLASSES</span><span class="w"> </span><span class="k">TYPE </span><span class="n">OF</span><span class="w"> </span><span class="n">SEDIMENT</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">NCO</span><span class="p">;</span><span class="n">NCO</span><span class="p">;</span><span class="n">NCO</span><span class="w"></span>
+<span class="n">CLASSES</span><span class="w"> </span><span class="n">SEDIMENT</span><span class="w"> </span><span class="n">DIAMETERS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.0005</span><span class="p">;</span><span class="mf">0.02</span><span class="p">;</span><span class="mf">0.1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">m</span><span class="w"></span>
+<span class="n">CLASSES</span><span class="w"> </span><span class="n">SEDIMENT</span><span class="w"> </span><span class="n">DENSITY</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2680</span><span class="p">;</span><span class="mi">2680</span><span class="p">;</span><span class="mi">2680</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">kg</span><span class="w"> </span><span class="n">per</span><span class="w"> </span><span class="n">m3</span><span class="w"></span>
+<span class="n">CLASSES</span><span class="w"> </span><span class="n">INITIAL</span><span class="w"> </span><span class="nb">FRACTION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">;</span><span class="mf">0.65</span><span class="p">;</span><span class="mf">0.25</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">must</span><span class="w"> </span><span class="nb">sum </span><span class="n">up</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="mf">1.0</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The particle size classes can also be assigned specific <a class="reference internal" href="../documentation/glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a> values (<strong>CLASSES CRITICAL SHEAR STRESS</strong>) or settling velocities (<strong>CLASSES SETTLING VELOCITIES</strong>), for example, to impose no-erosion or no-deposition conditions. Note that the SISYPHE keyword NUMBER OF SIZE-CLASSES OF BED MATERIAL is obsolete in Gaia.</p>
@@ -1174,31 +1227,31 @@ transport mechanisms that apply to the simulation. This tutorial deals with non-
 </div>
 <div class="section" id="active-layer">
 <span id="gaia-active-lyr"></span><h3>Active Layer<a class="headerlink" href="#active-layer" title="Permalink to this headline">¶</a></h3>
-<p>The <a class="reference internal" href="#gaia-bc"><span class="std std-ref">boundary conditions</span></a> of a model define sediment supply (inflow) and outflow rates, which may stem from gauging stations, measurements, or watershed soil loss models, such as the Revised Universal Soil Loss Equation (RUSLE) <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id1388">Ren97</a>]</span>. Sediment that just passes through the model and merely settles from time to time before being mobilized again (by <span id="id2">Einstein [<a class="reference internal" href="../documentation/bibliography.html#id176">Ein50</a>]</span>s theory) is referred to as wash load or traveling bedload <span id="id3">[<a class="reference internal" href="../documentation/bibliography.html#id458">PR17</a>]</span>. However, sediment can also be recruited (eroded) from the riverbed or deposited on the riverbed within the model boundaries. To tell a morphodynamic model to what depths it can erode (e.g., because bedrock or concrete is present below), active layers can be defined. In addition, multiple active layers can be defined, for example, to implement sediment stratification in the riverbed with respect to grain sizes. Grain size stratification plays a role especially when the riverbed is armored, which means that the uppermost sediment layer is significantly coarser than deeper sediment layers <span id="id4">[<a class="reference internal" href="../documentation/bibliography.html#id1369">Hir71</a>]</span>. <strong>Above the active layer</strong> of the riverbed <strong>is the mixing layer</strong>, which is in direct contact with the bulk water flow. <a class="reference internal" href="#active-layers"><span class="std std-numref">Figure 146</span></a> qualitatively illustrates this concept, where the uppermost layer corresponds to the mixing layer and the lower sublayers constitute the active layer of the riverbed.</p>
+<p>The <a class="reference internal" href="#gaia-bc"><span class="std std-ref">boundary conditions</span></a> of a model define sediment supply (inflow) and outflow rates, which may stem from gauging stations, measurements, or watershed soil loss models, such as the Revised Universal Soil Loss Equation (RUSLE) <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id1390">Ren97</a>]</span>. Sediment that just passes through the model and merely settles from time to time before being mobilized again (by <span id="id2">Einstein [<a class="reference internal" href="../documentation/bibliography.html#id178">Ein50</a>]</span>s theory) is referred to as wash load or traveling bedload <span id="id3">[<a class="reference internal" href="../documentation/bibliography.html#id460">PR17</a>]</span>. However, sediment can also be recruited (eroded) from the riverbed or deposited on the riverbed within the model boundaries. To tell a morphodynamic model to what depths it can erode (e.g., because bedrock or concrete is present below), active layers can be defined. In addition, multiple active layers can be defined, for example, to implement sediment stratification in the riverbed with respect to grain sizes. Grain size stratification plays a role especially when the riverbed is armored, which means that the uppermost sediment layer is significantly coarser than deeper sediment layers <span id="id4">[<a class="reference internal" href="../documentation/bibliography.html#id1371">Hir71</a>]</span>. <strong>Above the active layer</strong> of the riverbed <strong>is the mixing layer</strong>, which is in direct contact with the bulk water flow. <a class="reference internal" href="#active-layers"><span class="std std-numref">Figure 147</span></a> qualitatively illustrates this concept, where the uppermost layer corresponds to the mixing layer and the lower sublayers constitute the active layer of the riverbed.</p>
 <div class="figure align-default" id="active-layers">
 <img alt="active mixing layer riverbed hyporheic zone" src="../_images/active-layers-web.jpg" />
-<p class="caption"><span class="caption-number">Fig. 146 </span><span class="caption-text">Qualitative illustration of the active layer in the form of multiple sublayers of the riverbed. In this illustration, the uppermost layer corresponds to the mixing layer (Figure conceptually adapted from <span id="id5">Du Boys [<a class="reference internal" href="../documentation/bibliography.html#id168">DB79</a>]</span> and <span id="id6">Church and Haschenburger [<a class="reference internal" href="../documentation/bibliography.html#id124">CH17</a>]</span>).</span><a class="headerlink" href="#active-layers" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 147 </span><span class="caption-text">Qualitative illustration of the active layer in the form of multiple sublayers of the riverbed. In this illustration, the uppermost layer corresponds to the mixing layer (Figure conceptually adapted from <span id="id5">Du Boys [<a class="reference internal" href="../documentation/bibliography.html#id170">DB79</a>]</span> and <span id="id6">Church and Haschenburger [<a class="reference internal" href="../documentation/bibliography.html#id126">CH17</a>]</span>).</span><a class="headerlink" href="#active-layers" title="Permalink to this image">¶</a></p>
 </div>
-<p>The active layer concept was initially introduced by <span id="id7">Du Boys [<a class="reference internal" href="../documentation/bibliography.html#id168">DB79</a>]</span> as a sequence of layers of the riverbed, which are moving at different speeds (the deeper the layer, the slower). <span id="id8">Du Boys [<a class="reference internal" href="../documentation/bibliography.html#id168">DB79</a>]</span> described that the thickness of every layer was equal to the diameter of representative grain size and that the active bed (i.e., the sum of all moving layers) can be up to 10 times the representative grain size (i.e., approximately 10 grain diameters) <span id="id9">[<a class="reference internal" href="../documentation/bibliography.html#id1390">FC11</a>, <a class="reference internal" href="../documentation/bibliography.html#id1389">RBKR13</a>]</span>. <span id="id10">Hirano [<a class="reference internal" href="../documentation/bibliography.html#id1369">Hir71</a>]</span> picked up on this concept and characterized the active layer as an exchange layer with a thickness of multiple times the <span class="math notranslate nohighlight">\(D_{50}\)</span>, between an immobile sublayer and a fully mobile layer in the bulk flow along the riverbed. Several processes (e.g., hydraulic shear, grain collision, or sorting) dominate within the exchange layer and the thickness of the exchange layer has been defined differently by several authors. One reason for the different definitions of the active layer thickness is that it also depends on the proportion of fine sediment contents. The difference between coarse and fine sediment is that it might build up bedforms such as ripples or dunes. Thus, in the presence of fine sediments, such as sand (diameter smaller than 1-2 mm), only models accounting for bedforms in the active layer can reproduce bed aggradation or degradation and grain sorting effects <span id="id11">[<a class="reference internal" href="../documentation/bibliography.html#id1391">Blo08</a>]</span>. However, a model considering bedforms composed of fine sediments describes the active layer as a function of (0.5 times) the height of dunes (i.e., mega ripples) <span id="id12">[<a class="reference internal" href="../documentation/bibliography.html#id1392">Kle05</a>]</span>, which contrasts with the definition of the active layer thickness as a multiple of a grain diameter (e.g., 3<span class="math notranslate nohighlight">\(\cdot D_{50}\)</span>). Thus, there are <strong>two</strong> competing parametric and <strong>conceptual definitions of the active layer</strong>, which is why <span id="id13">Church and Haschenburger [<a class="reference internal" href="../documentation/bibliography.html#id124">CH17</a>]</span> propose the following terminology that is adapted in this eBook:</p>
+<p>The active layer concept was initially introduced by <span id="id7">Du Boys [<a class="reference internal" href="../documentation/bibliography.html#id170">DB79</a>]</span> as a sequence of layers of the riverbed, which are moving at different speeds (the deeper the layer, the slower). <span id="id8">Du Boys [<a class="reference internal" href="../documentation/bibliography.html#id170">DB79</a>]</span> described that the thickness of every layer was equal to the diameter of representative grain size and that the active bed (i.e., the sum of all moving layers) can be up to 10 times the representative grain size (i.e., approximately 10 grain diameters) <span id="id9">[<a class="reference internal" href="../documentation/bibliography.html#id1392">FC11</a>, <a class="reference internal" href="../documentation/bibliography.html#id1391">RBKR13</a>]</span>. <span id="id10">Hirano [<a class="reference internal" href="../documentation/bibliography.html#id1371">Hir71</a>]</span> picked up on this concept and characterized the active layer as an exchange layer with a thickness of multiple times the <span class="math notranslate nohighlight">\(D_{50}\)</span>, between an immobile sublayer and a fully mobile layer in the bulk flow along the riverbed. Several processes (e.g., hydraulic shear, grain collision, or sorting) dominate within the exchange layer and the thickness of the exchange layer has been defined differently by several authors. One reason for the different definitions of the active layer thickness is that it also depends on the proportion of fine sediment contents. The difference between coarse and fine sediment is that it might build up bedforms such as ripples or dunes. Thus, in the presence of fine sediments, such as sand (diameter smaller than 1-2 mm), only models accounting for bedforms in the active layer can reproduce bed aggradation or degradation and grain sorting effects <span id="id11">[<a class="reference internal" href="../documentation/bibliography.html#id1393">Blo08</a>]</span>. However, a model considering bedforms composed of fine sediments describes the active layer as a function of (0.5 times) the height of dunes (i.e., mega ripples) <span id="id12">[<a class="reference internal" href="../documentation/bibliography.html#id1394">Kle05</a>]</span>, which contrasts with the definition of the active layer thickness as a multiple of a grain diameter (e.g., 3<span class="math notranslate nohighlight">\(\cdot D_{50}\)</span>). Thus, there are <strong>two</strong> competing parametric and <strong>conceptual definitions of the active layer</strong>, which is why <span id="id13">Church and Haschenburger [<a class="reference internal" href="../documentation/bibliography.html#id126">CH17</a>]</span> propose the following terminology that is adapted in this eBook:</p>
 <ul class="simple">
 <li><p>The <strong>active layer describes the immediately mobile riverbed</strong> where <strong>real-time</strong>, <strong>dynamic</strong> particle displacement happens. Its thickness is a multiple of the characteristic grain diameter.</p></li>
 <li><p>The <strong>disturbance layer encompasses sand wave progression</strong> in the form of <strong>scour and fill</strong> on an <strong>event scale</strong>. Its thickness is 0.5 times the dune (or ripple) height.</p></li>
 </ul>
 <p>Though Gaia accepts only an <strong>ACTIVE LAYER THICKNESS</strong> keyword, it may refer to the <em>active layer</em> as a multiple of the representative grain size, or when fine sediment is present (<span class="math notranslate nohighlight">\(\geq\)</span> 20%), to the <em>disturbance layer</em> with a thickness of 0.5 times the dune height. When the riverbed is composed not of cobble and gravel and a small share of fine sediment (approximately between 1% and 20%), the active layer thickness should be generously assumed with a multiple (2-3 times) of the cobble size.</p>
 <p>Moreover, the thickness of the active layer is a user-defined <strong>target</strong> value in Gaia. Thus, Gaia will iterate based on hydrodynamics and sediment characteristics toward the user-defined active layer thickness. In particular, Gaia erodes the user-defined <a class="reference internal" href="#gaia-sed"><span class="std std-ref">sediment size classes</span></a> from the active layer as a function of hydrodynamics computed with Telemac2d/3d. The eroded sediment is then transported in the form of <a class="reference internal" href="gaia-bedload.html#gaia-bl"><span class="std std-ref">bedload</span></a> or <a class="reference internal" href="gaia-suspended.html#gaia-sl"><span class="std std-ref">suspended load</span></a>. To this end, Gaia creates the active layer with the user-defined sediment classes at the surface of the riverbed at the beginning of a simulation. During the simulation, Gaia not only erodes the sediment but also redeposits it depending on hydrodynamics and sediment characteristics, and it modifies the user-defined initial values of sediment class fractions. Thus, Gaia changes the active layer during the simulation in space and in time and it uses the <strong>ACTIVE LAYER THICKNESS</strong> as target value (not as a forced constant).</p>
-<p>The riverbed can be stratified into several sublayers (cf. <a class="reference internal" href="#active-layers"><span class="std std-numref">Fig. 146</span></a>) by defining the <strong>NUMBER OF LAYERS FOR INITIAL STRATIFICATION</strong> keyword (integer). Gaia then vertically divides the riverbed into the number of user-defined layers plus one, where the plus-one layer corresponds to the active layer. In addition, the thickness of the riverbed layers can be defined with the <strong>LAYERS INITIAL THICKNESS</strong> keyword. If the <strong>ACTIVE LAYER THICKNESS</strong> is larger than the riverbed’s <strong>LAYERS INITIAL THICKNESS</strong>, Gaia will mix the stratified layers down to the <strong>ACTIVE LAYER THICKNESS</strong>. However, the active layer thickness is not a forced value in Gaia. Thus, if the active layer thickness is larger than the riverbed layer thickness, Gaia will not erode beyond the riverbed layer thickness.</p>
+<p>The riverbed can be stratified into several sublayers (cf. <a class="reference internal" href="#active-layers"><span class="std std-numref">Fig. 147</span></a>) by defining the <strong>NUMBER OF LAYERS FOR INITIAL STRATIFICATION</strong> keyword (integer). Gaia then vertically divides the riverbed into the number of user-defined layers plus one, where the plus-one layer corresponds to the active layer. In addition, the thickness of the riverbed layers can be defined with the <strong>LAYERS INITIAL THICKNESS</strong> keyword. If the <strong>ACTIVE LAYER THICKNESS</strong> is larger than the riverbed’s <strong>LAYERS INITIAL THICKNESS</strong>, Gaia will mix the stratified layers down to the <strong>ACTIVE LAYER THICKNESS</strong>. However, the active layer thickness is not a forced value in Gaia. Thus, if the active layer thickness is larger than the riverbed layer thickness, Gaia will not erode beyond the riverbed layer thickness.</p>
 <div class="admonition-what-happens-when-gaia-has-to-deposit-sediment admonition">
 <p class="admonition-title">What happens when Gaia has to deposit sediment?</p>
 <p>Sediment deposition at a grid node corresponds to a mass flux into the active layer. Because Gaia is programmed to conserve the mass of the active layer, a portion corresponding to the volume of deposition is passed to the riverbed. Thus, Gaia changes the composition of the active layer and the riverbed layers below the active layer when sediment deposits.</p>
 </div>
 <p>In this tutorial, a sand, gravel, and cobble sediment mix is used with an <strong>ACTIVE LAYER THICKNESS</strong> of 3 <span class="math notranslate nohighlight">\(\cdot D_{90}\)</span> (of cobble). The riverbed is initially stratified into three sublayers (plus the 0.3-m thick active layer) and the initial thickness of the riverbed layers is assumed with 1.5 m with the following keyword definitions in the Gaia steering file:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">continued</span><span class="p">:</span> <span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
-<span class="o">/</span>
-<span class="o">/</span> <span class="p">...</span>
-<span class="o">/</span> <span class="n">RIVERBED</span> <span class="n">LAYERS</span>
-<span class="n">ACTIVE</span> <span class="n">LAYER</span> <span class="n">THICKNESS</span> <span class="p">:</span> <span class="mf">0.3</span> <span class="o">/</span> <span class="n">multiple</span> <span class="n">of</span> <span class="n">D90</span> <span class="o">-</span> <span class="n">default</span> <span class="k">is </span><span class="mi">10000</span>
-<span class="n">NUMBER</span> <span class="n">OF</span> <span class="n">LAYERS</span> <span class="n">FOR</span> <span class="n">INITIAL</span> <span class="n">STRATIFICATION</span> <span class="p">:</span> <span class="mi">3</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="mi">1</span>
-<span class="n">LAYERS</span> <span class="n">INITIAL</span> <span class="n">THICKNESS</span> <span class="p">:</span> <span class="mf">1.5</span> <span class="o">/</span> <span class="n">m</span> <span class="o">-</span> <span class="n">default</span> <span class="k">is </span><span class="mi">100</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">continued</span><span class="p">:</span><span class="w"> </span><span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span><span class="w"></span>
+<span class="o">/</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+<span class="o">/</span><span class="w"> </span><span class="n">RIVERBED</span><span class="w"> </span><span class="n">LAYERS</span><span class="w"></span>
+<span class="n">ACTIVE</span><span class="w"> </span><span class="n">LAYER</span><span class="w"> </span><span class="n">THICKNESS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">multiple</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">D90</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="k">is </span><span class="mi">10000</span><span class="w"></span>
+<span class="n">NUMBER</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">LAYERS</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">INITIAL</span><span class="w"> </span><span class="n">STRATIFICATION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="k">is </span><span class="mi">1</span><span class="w"></span>
+<span class="n">LAYERS</span><span class="w"> </span><span class="n">INITIAL</span><span class="w"> </span><span class="n">THICKNESS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="k">is </span><span class="mi">100</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Gaia derives mixed cohesive and non-cohesive sediment beds from the composition of the active layer. Non-cohesive sediment in the form of gravel and cobble is transported as bedload and sand is transported in suspension. Cohesive sediment is purely transported as suspended load. The <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a> provides more information on the transport of mixed (cohesive and non-cohesive) sediment in section 3.2.1. In addition, riverbed consolidation can be simulated by defining the <strong>BED MODEL</strong> keyword with <code class="docutils literal notranslate"><span class="pre">2</span></code> (cf. <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a>, section 3.3).</p>
@@ -1239,8 +1292,8 @@ transport mechanisms that apply to the simulation. This tutorial deals with non-
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="gaia-coupling.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -1257,19 +1310,17 @@ transport mechanisms that apply to the simulation. This tutorial deals with non-
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Sebastian Schwindt<br/>
-        
-            &copy; Copyright 2022.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Sebastian Schwindt, Ricardo Barros<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
 </main>
 
 
