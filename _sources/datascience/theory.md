@@ -1,3 +1,3 @@
-# Theory
+# Techniques
 
 Lorem ipsum

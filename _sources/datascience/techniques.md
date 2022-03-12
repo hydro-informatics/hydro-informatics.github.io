@@ -1,3 +1,3 @@
-# Fundamental Techniques
+# Overview of Fundamental Techniques
 
 Lorem ipsum

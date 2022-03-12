@@ -301,7 +301,7 @@ Stage-discharge relation
   *French: Courbe d'étalonnage / Courbe hauteur-débit / Courbe de tarage <br>German: Wasserstands-Abfluss Beziehung, bzw. Abflusskurve / Abflussschlüsselkurve / Eichkurve*
 
 Step pool
-  Step pools are a type of river bed morphology found in step regions such as mountains. They are often composed of high gradients (exceeding 2%) and rough geological formation (Cobble and bedrock) {cite:p}`gonda2008characteristics`.
+  Step pools are a type of morphological units, typically  found in steep mountain rivers. They are characterized by high gradients (exceeding 2%) and a rough surface composed of cobble and bedrock {cite:p}`gonda2008characteristics`.
 
 STL
   The Standard Tessellation Language (STL) file format is native to a three-dimensional (3d) printing CAD software type called [stereolithography](https://en.wikipedia.org/wiki/Stereolithography). An STL file describes 3d structures in the form of unstructured triangulated surfaces with arbitrary units.

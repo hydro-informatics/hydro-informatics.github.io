@@ -38,15 +38,14 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/tabs.js"></script>
-    <script>let toggleHintShow = 'Click to show';</script>
-    <script>let toggleHintHide = 'Click to hide';</script>
-    <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe,.cell"
@@ -58,7 +57,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Theory" href="theory.html" />
+    <link rel="next" title="Techniques" href="theory.html" />
     <link rel="prev" title="Dataset Cleaning" href="data-cleaning.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -436,48 +435,31 @@
      </li>
     </ul>
    </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="theory.html">
-     Theory
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-    <label for="toctree-checkbox-11">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="techniques.html">
-       Fundamental Techniques
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="calibration.html">
-       Model Calibration
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="validation.html">
-       Model Validation
-      </a>
-     </li>
-    </ul>
-   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="exercises.html">
-   Exercises (Coming soon)
+  <a class="reference internal" href="theory.html">
+   Techniques
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="techniques.html">
+     Overview of Fundamental Techniques
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="calibrate-validate.html">
+     Model Calibration and Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="morphology-predictor-svm.html">
-     Support Vector Machine
+     Support Vector Machine (SVM)
     </a>
    </li>
   </ul>
@@ -498,8 +480,8 @@
   <a class="reference internal" href="../numerics/basement.html">
    BASEMENT
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -520,8 +502,8 @@
   <a class="reference internal" href="../numerics/telemac.html">
    TELEMAC
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-  <label for="toctree-checkbox-14">
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -535,8 +517,8 @@
     <a class="reference internal" href="../numerics/telemac2d.html">
      Telemac2d
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-    <label for="toctree-checkbox-15">
+    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+    <label for="toctree-checkbox-14">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -557,8 +539,8 @@
     <a class="reference internal" href="../numerics/telemac3d.html">
      Telemac3d
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-    <label for="toctree-checkbox-16">
+    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+    <label for="toctree-checkbox-15">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -579,8 +561,8 @@
     <a class="reference internal" href="../numerics/telemac-gaia.html">
      Gaia (Morphodynamics)
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
-    <label for="toctree-checkbox-17">
+    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+    <label for="toctree-checkbox-16">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -645,8 +627,8 @@
   <a class="reference internal" href="../exercises/docs-exercises.html">
    Exercises
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
-  <label for="toctree-checkbox-18">
+  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+  <label for="toctree-checkbox-17">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -669,8 +651,8 @@
   <a class="reference internal" href="../troubleshoot/dbg-programming.html">
    Programming Tools and IDEs
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
-  <label for="toctree-checkbox-19">
+  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+  <label for="toctree-checkbox-18">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -696,8 +678,8 @@
   <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
    Numerical Models
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
-  <label for="toctree-checkbox-20">
+  <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+  <label for="toctree-checkbox-19">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -718,8 +700,8 @@
   <a class="reference internal" href="../troubleshoot/dbg-os.html">
    Operating Systems (Linux and VMs)
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/>
-  <label for="toctree-checkbox-21">
+  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
+  <label for="toctree-checkbox-20">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -799,7 +781,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -830,31 +812,90 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+        <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mathematical-model-description">
+   Mathematical Model Description
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#similitude-concepts">
+   Similitude Concepts
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Dimensional Analysis</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                    </div>
-                </div>
-            </div>
-            
+        
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="dimensional-analysis">
 <h1>Dimensional Analysis<a class="headerlink" href="#dimensional-analysis" title="Permalink to this headline">¶</a></h1>
-<p>Lorem ipsum</p>
-<p><em>To do for Sebastian</em>:</p>
-<p>Implement scaling theory according to <span id="id1">Barenblatt [<a class="reference internal" href="../documentation/bibliography.html#id43">Bar87</a>]</span>, <span id="id2">Barenblatt [<a class="reference internal" href="../documentation/bibliography.html#id42">Bar96</a>]</span>, and <span id="id3">Yalin [<a class="reference internal" href="../documentation/bibliography.html#id639">Yal71</a>]</span>.</p>
+<p>This section introduces the scaling theory according to <span id="id1">Barenblatt [<a class="reference internal" href="../documentation/bibliography.html#id43">Bar87</a>]</span>, <span id="id2">Barenblatt [<a class="reference internal" href="../documentation/bibliography.html#id42">Bar96</a>]</span>, and <span id="id3">Yalin [<a class="reference internal" href="../documentation/bibliography.html#id639">Yal71</a>]</span>.</p>
+<div class="section" id="mathematical-model-description">
+<h2>Mathematical Model Description<a class="headerlink" href="#mathematical-model-description" title="Permalink to this headline">¶</a></h2>
+<p>River hydrodynamics can be expressed by a simplified expression of the one-dimensional <a class="reference internal" href="../documentation/glossary.html#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a> for incompressible fluids, assuming hydrostatic pressure distribution <span id="id4">[<a class="reference internal" href="../documentation/bibliography.html#id223">GA11</a>, <a class="reference internal" href="../documentation/bibliography.html#id332">KC08</a>]</span>). This results in the Saint-Venant shallow water equations as used in some hydraulic computer models (e.g., HEC-RAS or BASEMENT1D <span id="id5">[<a class="reference internal" href="../documentation/bibliography.html#id581">USACoEngineeers16</a>, <a class="reference internal" href="../documentation/bibliography.html#id593">VAW17</a>]</span>. This shallow water equation consists of five terms <span id="id6">[<a class="reference internal" href="../documentation/bibliography.html#id287">JVBVdB+94</a>]</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+	\overbrace{\frac{1}{g} \frac{\partial u}{\partial t}}^{I}  +  \overbrace{\frac{u}{g} \frac{\partial u}{\partial x}}^{II}  +  \overbrace{\frac{\partial h}{\partial x}}^{III}  +  \overbrace{\frac{\partial z}{\partial x}}^{IV}   =  \overbrace{-\frac{u\left| u \right|}{C^2 h}}^{V = S_e}
+\]</div>
+<p>The five terms can be related separately to each other for the derivation of scale factors<span class="math notranslate nohighlight">\(\lambda\)</span>. Thus, equating the scales of the terms I and II results in <span id="id7">[<a class="reference internal" href="../documentation/bibliography.html#id153">DV93</a>]</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+	\frac{\lambda_u}{\lambda_t} = \frac{\lambda_u^2}{\lambda_l} \Longrightarrow \lambda_l = \lambda_u \cdot \lambda_t
+\]</div>
+<p>where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\lambda_u\)</span> <span class="math notranslate nohighlight">\(\equiv\)</span> velocity scale and</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda_t\)</span> &amp; <span class="math notranslate nohighlight">\(\equiv\)</span> &amp; time scale.</p></li>
+</ul>
+<p>Postulating that the gravity scale <span class="math notranslate nohighlight">\(\lambda_g\)</span> is unity, the comparison of the scales of terms II and V results in:</p>
+<div class="math notranslate nohighlight">
+\[
+	\frac{\lambda_u^2}{\lambda_l} = \frac{\lambda_u^2}{\lambda_C^2 \cdot \lambda_h} \Longrightarrow \lambda_C^2 = \sqrt{\frac{\lambda_l}{\lambda_h}}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda_C\)</span> <span class="math notranslate nohighlight">\(\equiv\)</span> Ch’ezy roughness scale.</p>
+</div>
+<div class="section" id="similitude-concepts">
+<h2>Similitude Concepts<a class="headerlink" href="#similitude-concepts" title="Permalink to this headline">¶</a></h2>
+<p>The similarity of the Froude number in a scaled model and a prototype is achieved based on the Froude condition, which results from equating the scales of terms II and III in the above equation <span id="id8">[<a class="reference internal" href="../documentation/bibliography.html#id153">DV93</a>]</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+	\frac{\lambda_u^2}{\lambda_l} = \frac{\lambda_h}{\lambda_l} \Longrightarrow \lambda_u = \sqrt{\lambda_h}.
+\]</div>
+<p>The similarity of sediment transport is of particular interest in this study and requires that the scales of the <a class="reference internal" href="../documentation/glossary.html#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">dimensionless bed shear stress</span></a> <span class="math notranslate nohighlight">\(\tau_{*}\)</span> and of the <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">bed load transport intensity</span></a> <span class="math notranslate nohighlight">\(\Phi_b\)</span> are unity (i.e., <span class="math notranslate nohighlight">\(\lambda_{\tau_*}\)</span>=1 and <span class="math notranslate nohighlight">\(\lambda_{\Phi_}\)</span>=1 <span id="id9">[<a class="reference internal" href="../documentation/bibliography.html#id153">DV93</a>]</span>).
+With respect to the shear velocity <span class="math notranslate nohighlight">\(u_*\)</span> = <span class="math notranslate nohighlight">\(\sqrt{\tau/\rho_f}\)</span> = <span class="math notranslate nohighlight">\(\sqrt{\tau_*(s-1)gD}\)</span> and the requirement of <span class="math notranslate nohighlight">\(\lambda_{\tau_*}\)</span>=1, the similarity of sediment transport is given when <span id="id10">[<a class="reference internal" href="../documentation/bibliography.html#id287">JVBVdB+94</a>]</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+	\lambda_u^2 \approx \lambda_s \cdot \lambda_{D}
+\]</div>
+<p>where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\lambda_s\)</span> <span class="math notranslate nohighlight">\(\equiv\)</span> scale of relative sediment density</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda_{D}\)</span> <span class="math notranslate nohighlight">\(\equiv\)</span> scale of grain diameter.</p></li>
+</ul>
+<p>The similarity of unitary sediment transport (i.e., per unit width) can be verified based on the scale <span class="math notranslate nohighlight">\(\lambda_{q_b}\)</span>, which is derived from the <a class="reference internal" href="../documentation/glossary.html#term-Exner-equation"><span class="xref std std-term">Exner equation</span></a>:
+$<span class="math notranslate nohighlight">\(
+	\frac{\partial z}{\partial t} = -\frac{1}{1-\zeta} \cdot \frac{\partial q_s}{\partial x}
+\)</span><span class="math notranslate nohighlight">\(
+With respect to the scale considerations above, \)</span>\lambda_{q_b}<span class="math notranslate nohighlight">\( is derived as:
+\)</span><span class="math notranslate nohighlight">\(
+	\frac{\lambda_l}{\lambda_t} = \frac{\lambda_{q_b}}{\lambda_l} \Rightarrow \lambda_{q_b} =\frac{\lambda_l^2}{\lambda_t} = \lambda_l^{3/2}
+\)</span>$</p>
+<p><span class="math notranslate nohighlight">\(\lambda_{q_b}\)</span> refers to volumetric fluxes. The scale of the mass flow rate <span class="math notranslate nohighlight">\(\lambda_{\dot{q}_b}\)</span> can be computed by multiplying the above equation by the sediment density <span class="math notranslate nohighlight">\(\rho_s\)</span>. Postulating the density scale of <span class="math notranslate nohighlight">\(\lambda_{s}\)</span>=1, the mass flow rate scale is also <span class="math notranslate nohighlight">\(\lambda_{\dot{q}_b}= \lambda_l^{3/2}\)</span>.
+The boundary conditions imposed by the feasibility of the laboratory experiments entail that the densities of the sediment in nature and in the model are similar (i.e., <span class="math notranslate nohighlight">\(\lambda_s\)</span>=1). Thus, the Froude similarity (<span class="math notranslate nohighlight">\(\lambda_u = \sqrt{\lambda_h}\)</span>) and the similarity of sediment transport (<span class="math notranslate nohighlight">\(\lambda_u = \sqrt{\lambda_{D}}\)</span>) require that <span class="math notranslate nohighlight">\(\lambda_{D}\)</span>=<span class="math notranslate nohighlight">\(\lambda_h\)</span> (i.e., the same geometric scales apply to the grain diameter as well as to the water depth) <span id="id11">[<a class="reference internal" href="../documentation/bibliography.html#id287">JVBVdB+94</a>]</span>. This condition can be considered as fulfilled in this study, as of coarse sediments in the shape of gravel are used for the experiments.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -879,8 +920,8 @@
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
+        
+            <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="data-cleaning.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -892,22 +933,24 @@
     <a class='right-next' id="next-link" href="theory.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Theory</p>
+        <p class="prev-next-title">Techniques</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+        
         </div>
     </div>
     <footer class="footer">
-  <p>
-    
-      By Sebastian Schwindt, Ricardo Barros<br/>
-    
-        &copy; Copyright 2022.<br/>
-  </p>
-</footer>
+    <div class="container">
+      <p>
+        
+          By Sebastian Schwindt, Ricardo Barros<br/>
+        
+            &copy; Copyright 2022.<br/>
+      </p>
+    </div>
+  </footer>
 </main>
 
 
