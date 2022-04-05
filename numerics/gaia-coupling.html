@@ -395,7 +395,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../datascience/data-science.html">
-   Basics (Coming soon)
+   Fundamentals (Coming soon)
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
   <label for="toctree-checkbox-9">
@@ -435,37 +435,32 @@
      </li>
     </ul>
    </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../datascience/theory.html">
-     Theory
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../datascience/theory.html">
+   Techniques (Coming soon)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../datascience/techniques.html">
+     Overview of Fundamental Techniques
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-    <label for="toctree-checkbox-11">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/techniques.html">
-       Fundamental Techniques
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/calibration.html">
-       Model Calibration
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/validation.html">
-       Model Validation
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
-       Support Vector Machine (SVM)
-      </a>
-     </li>
-    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../datascience/calibrate-validate.html">
+     Model Calibration and Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
+     Support Vector Machine (SVM)
+    </a>
    </li>
   </ul>
  </li>
@@ -903,7 +898,7 @@
 <span id="gaia-seditrans"></span><h2>Sediment Transport, Gaia, and Sisyphe<a class="headerlink" href="#sediment-transport-gaia-and-sisyphe" title="Permalink to this headline">¶</a></h2>
 <p>TELEMAC has a dedicated module called Gaia for modeling morphodynamics. Gaia enables modeling sediment transport and morphological evolution (i.e., <a class="reference internal" href="../documentation/glossary.html#term-Topographic-change"><span class="xref std std-term">Topographic change</span></a>) in rivers, lakes, and estuaries. It comes with particular routines to consider a spatio-temporal variation of grain sizes, grading curves, and riverbed layering for simulating sediment transport in the form of <strong><a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> (coarse sediment)</strong> and/or <strong><a class="reference internal" href="../documentation/glossary.html#term-Suspended-load"><span class="xref std std-term">Suspended load</span></a> (fine sediment)</strong>. <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> is calculated by solving semi-empiric equations, such as the <span id="id1">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id389">MPM48</a>]</span> formula (read more later in this tutorial). <a class="reference internal" href="../documentation/glossary.html#term-Suspended-load"><span class="xref std std-term">Suspended load</span></a> is modeled by solving the <a class="reference internal" href="../documentation/glossary.html#term-Advection"><span class="xref std std-term">Advection</span></a>-<a class="reference internal" href="../documentation/glossary.html#term-Diffusion"><span class="xref std std-term">Diffusion</span></a> equations, require closures for sediment erosion and deposition fluxes. <a class="reference internal" href="#bl-vs-sl"><span class="std std-numref">Figure 145</span></a> qualitatively illustrates the two basic modes of sediment transport in the form of suspended load and bedload.</p>
 <div class="figure align-default" id="bl-vs-sl">
-<img alt="sediment transport bedload suspended load" src="https://github.com/Ecohydraulics/media/raw/master/png/sediment-transport.png" />
+<img alt="sediment transport bedload suspended load" src="https://github.com/Ecohydraulics/media/raw/main/png/sediment-transport.png" />
 <p class="caption"><span class="caption-number">Fig. 145 </span><span class="caption-text">Qualitative representation of two modes of sediment transport. On the left: suspended load in the form of fine particles moving with the bulk flow; on the right: bedload in the form of particles rolling, jumping, or sliding on the riverbed.</span><a class="headerlink" href="#bl-vs-sl" title="Permalink to this image">¶</a></p>
 </div>
 <p>Sediment is further distinguished between very fine, <strong>cohesive</strong> sediment and coarser, <strong>non-cohesive</strong> sediment. In addition, Gaia accounts for bed evolution through an iterative solution of the <a class="reference internal" href="../documentation/glossary.html#term-Exner-equation"><span class="xref std std-term">Exner equation</span></a> <span id="id2">[<a class="reference internal" href="../documentation/bibliography.html#id184">Exn25</a>]</span> for mass conversation.</p>
@@ -915,7 +910,7 @@ The difference between Gaia and SISYPHE<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">To get specifications beyond the features presented here in the TELEMAC documentation and the TELEMAC forum, it is useful to know that there has been a predecessor module of Gaia called SISYPHE. SISYPHE and its routines are still available in recent TELEMAC versions in addition to and through Gaia. Although the use of SISYPHE routines through Gaia with functional enhancements require adjustments of some keywords. Read more in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a> in Appendix 8.1 and in the <a class="reference external" href="http://svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/sources/gaia/gaia.dico">gaia.dico</a> file (lives in the TELEMAC installation directory: <code class="docutils literal notranslate"><span class="pre">telemac/v8p2/sources/gaia/gaia.dico</span></code>).</p>
+<p class="card-text">To get specifications beyond the features presented here in the TELEMAC documentation and the TELEMAC forum, it is useful to know that there has been a predecessor module of Gaia called SISYPHE. SISYPHE and its routines are still available in recent TELEMAC versions in addition to and through Gaia. Although the use of SISYPHE routines through Gaia with functional enhancements require adjustments of some keywords. Read more in the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p3r1/documentation/gaia/user/gaia_user_v8p3.pdf">Gaia manual</a> in Appendix 8.1 and in the <a class="reference external" href="http://svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/sources/gaia/gaia.dico">gaia.dico</a> file (lives in the TELEMAC installation directory: <code class="docutils literal notranslate"><span class="pre">telemac/v8p2/sources/gaia/gaia.dico</span></code>).</p>
 </div>
 </details></div>
 <div class="section" id="coupling-telemac-and-gaia">
@@ -932,7 +927,7 @@ The difference between Gaia and SISYPHE<div class="summary-down docutils">
 <p><em>Application range:</em> Most river models, and in particular, lake or oceanic models.</p>
 </dd>
 </dl>
-<p>Gaia is designed as a de-coupled model where the morphodynamic calculation frequency is a function of a <em>coupling period</em> parameter (read more in section 5.1.2 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a>). Note that the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a> (section 1.1.3) says that Gaia is decoupled, though it successively solves hydrodynamics and morphodynamics for every timestep. Moreover, the coupling period is currently only a user-defined parameter with reference to SISYPHE, which can be modified in the hydrodynamic steering file with:</p>
+<p>Gaia is designed as a de-coupled model where the morphodynamic calculation frequency is a function of a <em>coupling period</em> parameter (read more in section 5.1.2 in the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p3r1/documentation/gaia/user/gaia_user_v8p3.pdf">Gaia manual</a>). Note that the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p3r1/documentation/gaia/user/gaia_user_v8p3.pdf">Gaia manual</a> (section 1.1.3) says that Gaia is decoupled, though it successively solves hydrodynamics and morphodynamics for every timestep. Moreover, the coupling period is currently only a user-defined parameter with reference to SISYPHE, which can be modified in the hydrodynamic steering file with:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">steady2d</span><span class="o">-</span><span class="n">gaia</span><span class="p">.</span><span class="n">cas</span>
 <span class="o">/</span><span class="p">...</span>
 <span class="n">COUPLING</span> <span class="n">PERIOD</span> <span class="n">FOR</span> <span class="n">SISYPHE</span> <span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="kt">integer</span>

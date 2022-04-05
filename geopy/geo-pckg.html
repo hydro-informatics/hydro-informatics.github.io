@@ -393,7 +393,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../datascience/data-science.html">
-   Basics (Coming soon)
+   Fundamentals (Coming soon)
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
   <label for="toctree-checkbox-9">
@@ -433,37 +433,32 @@
      </li>
     </ul>
    </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../datascience/theory.html">
-     Theory
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../datascience/theory.html">
+   Techniques (Coming soon)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../datascience/techniques.html">
+     Overview of Fundamental Techniques
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-    <label for="toctree-checkbox-11">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/techniques.html">
-       Fundamental Techniques
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/calibration.html">
-       Model Calibration
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/validation.html">
-       Model Validation
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
-       Support Vector Machine (SVM)
-      </a>
-     </li>
-    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../datascience/calibrate-validate.html">
+     Model Calibration and Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
+     Support Vector Machine (SVM)
+    </a>
    </li>
   </ul>
  </li>
@@ -897,16 +892,16 @@
 <span id="geojson-pckg"></span><h2>geojson<a class="headerlink" href="#geojson" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="https://pypi.org/project/geojson/">geojson</a> library is the most direct option for handling <a class="reference internal" href="geospatial-data.html#geojson"><span class="std std-ref">GeoJSON</span></a> data and is also already installed along with <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a>.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="5d161324-81ad-4268-ac94-0a1cb5ec69e0" name="9d2df73f-59bb-458d-ad35-6d182856f979" type="radio">
-</input><label class="tabbed-label" for="5d161324-81ad-4268-ac94-0a1cb5ec69e0">
+<input checked="checked" id="6dc06b05-380f-4f28-a95e-5eba102d4ed3" name="8f6d536e-c016-4905-a347-d54bf9f606f1" type="radio">
+</input><label class="tabbed-label" for="6dc06b05-380f-4f28-a95e-5eba102d4ed3">
 Linux / pip</label><div class="tabbed-content docutils">
 <p>To install <code class="docutils literal notranslate"><span class="pre">geojson</span></code>, open <em>Terminal</em> and type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">geojson</span>
 </pre></div>
 </div>
 </div>
-<input id="eca83d0d-d6e9-4043-a0a9-1eceb7b9c371" name="9d2df73f-59bb-458d-ad35-6d182856f979" type="radio">
-</input><label class="tabbed-label" for="eca83d0d-d6e9-4043-a0a9-1eceb7b9c371">
+<input id="403ed6f5-65ad-4268-8620-30dd413d2825" name="8f6d536e-c016-4905-a347-d54bf9f606f1" type="radio">
+</input><label class="tabbed-label" for="403ed6f5-65ad-4268-8620-30dd413d2825">
 Windows / conda</label><div class="tabbed-content docutils">
 <p>To install <code class="docutils literal notranslate"><span class="pre">geojson</span></code> for Python Anaconda, open <a class="reference internal" href="../python-basics/pyinstall.html#install-pckg"><span class="std std-ref">Anaconda Prompt</span></a> and type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">geojson</span>
@@ -919,16 +914,16 @@ Windows / conda</label><div class="tabbed-content docutils">
 <span id="descartes"></span><h2>Descartes Labs<a class="headerlink" href="#descartes-labs" title="Permalink to this headline">¶</a></h2>
 <p>Even though of proprietary origin, the <a class="reference external" href="https://docs.descarteslabs.com/api.html"><code class="docutils literal notranslate"><span class="pre">descarteslabs</span></code></a> library (developed and maintained by <a class="reference external" href="https://www.descarteslabs.com/">Descartes Labs</a>) comes with many open-sourced functions. Moreover, Descartes Labs hosts the showcase platform <a class="reference external" href="https://search.descarteslabs.com/">GeoVisual Search</a> with juicy illustrations of artificial intelligence (AI) applications in geoscience. Note that <code class="docutils literal notranslate"><span class="pre">descarteslabs</span></code> is not installed along with <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a>.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="8e530b35-8095-4a4a-872b-049dcf0fbcfd" name="10737c57-def4-4939-8f35-f01fcc77d2a1" type="radio">
-</input><label class="tabbed-label" for="8e530b35-8095-4a4a-872b-049dcf0fbcfd">
+<input checked="checked" id="30629d03-55eb-4db8-9696-b04241898670" name="7e0ba6c6-9d43-4d04-90dc-7f1bc7348bb0" type="radio">
+</input><label class="tabbed-label" for="30629d03-55eb-4db8-9696-b04241898670">
 Linux / pip</label><div class="tabbed-content docutils">
 <p>To install <code class="docutils literal notranslate"><span class="pre">descarteslabs</span></code>, open Terminal and type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">descarteslabs</span>
 </pre></div>
 </div>
 </div>
-<input id="7d66ceac-3fe1-4e1c-8019-2a88910870a7" name="10737c57-def4-4939-8f35-f01fcc77d2a1" type="radio">
-</input><label class="tabbed-label" for="7d66ceac-3fe1-4e1c-8019-2a88910870a7">
+<input id="9e57eaea-cb42-4083-aaf1-80164d22d7a6" name="7e0ba6c6-9d43-4d04-90dc-7f1bc7348bb0" type="radio">
+</input><label class="tabbed-label" for="9e57eaea-cb42-4083-aaf1-80164d22d7a6">
 Windows / conda</label><div class="tabbed-content docutils">
 <p>To install <code class="docutils literal notranslate"><span class="pre">descarteslabs</span></code> for Python, open <a class="reference internal" href="../python-basics/pyinstall.html#install-pckg"><span class="std std-ref">Anaconda Prompt</span></a> and type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">descartes</span>
@@ -951,16 +946,16 @@ Windows / conda</label><div class="tabbed-content docutils">
 <h2>shapely<a class="headerlink" href="#shapely" title="Permalink to this headline">¶</a></h2>
 <p>A preferable and very well documented package for <a class="reference internal" href="geospatial-data.html#shp"><span class="std std-ref">Shapefile</span></a> handling is <a class="reference external" href="https://shapely.readthedocs.io/"><code class="docutils literal notranslate"><span class="pre">shapely</span></code></a>. <code class="docutils literal notranslate"><span class="pre">shapely</span></code> is already installed along with <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a>.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="0bb75149-dc37-4eac-94ca-178f23476cbc" name="0210f68c-1aed-4ff1-939d-b70b5cbce7ba" type="radio">
-</input><label class="tabbed-label" for="0bb75149-dc37-4eac-94ca-178f23476cbc">
+<input checked="checked" id="d4150306-66f6-4136-b160-6b50952476a8" name="dcc768c3-f2cb-4260-9513-c983bf49239d" type="radio">
+</input><label class="tabbed-label" for="d4150306-66f6-4136-b160-6b50952476a8">
 Linux / pip</label><div class="tabbed-content docutils">
 <p>To install <code class="docutils literal notranslate"><span class="pre">shapely</span></code>, open Terminal and type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">Shapely</span>
 </pre></div>
 </div>
 </div>
-<input id="a422eab6-62a4-4ebb-9bf4-129c5de1ce5c" name="0210f68c-1aed-4ff1-939d-b70b5cbce7ba" type="radio">
-</input><label class="tabbed-label" for="a422eab6-62a4-4ebb-9bf4-129c5de1ce5c">
+<input id="311fc150-eae7-42c9-bc26-c58a2cdeea13" name="dcc768c3-f2cb-4260-9513-c983bf49239d" type="radio">
+</input><label class="tabbed-label" for="311fc150-eae7-42c9-bc26-c58a2cdeea13">
 Windows / conda</label><div class="tabbed-content docutils">
 <p>To install <code class="docutils literal notranslate"><span class="pre">shapely</span></code> for Python Anaconda, open <a class="reference internal" href="../python-basics/pyinstall.html#install-pckg"><span class="std std-ref">Anaconda Prompt</span></a> and type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">shapely</span>
@@ -973,16 +968,16 @@ Windows / conda</label><div class="tabbed-content docutils">
 <h2>pyshp<a class="headerlink" href="#pyshp" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://pypi.org/project/pyshp/">pyshp</a> is another <a class="reference internal" href="geospatial-data.html#shp"><span class="std std-ref">shapefile</span></a> handling package, which builds on pure Python code (rather than wrappers) to simplify direct dealing with shapefiles in Python. <code class="docutils literal notranslate"><span class="pre">pyshp</span></code> is already installed along with <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a>.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="1328ad77-5e95-4aec-8ae8-9eacaad4b9a6" name="43c3f483-9e72-432a-9a30-4e5fe7e1db13" type="radio">
-</input><label class="tabbed-label" for="1328ad77-5e95-4aec-8ae8-9eacaad4b9a6">
+<input checked="checked" id="bf07b710-a1c4-4e6c-9460-162c53333f5b" name="ebf0b0e8-3834-45ac-9279-70d9445da0f9" type="radio">
+</input><label class="tabbed-label" for="bf07b710-a1c4-4e6c-9460-162c53333f5b">
 Linux / pip</label><div class="tabbed-content docutils">
 <p>To install <code class="docutils literal notranslate"><span class="pre">pyshp</span></code>, open Terminal and type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pyshp</span>
 </pre></div>
 </div>
 </div>
-<input id="d2d7b49a-7fdc-4d74-80b0-8d82d0f11ca4" name="43c3f483-9e72-432a-9a30-4e5fe7e1db13" type="radio">
-</input><label class="tabbed-label" for="d2d7b49a-7fdc-4d74-80b0-8d82d0f11ca4">
+<input id="e723ce12-aa95-4b83-a7af-f745b6a51fbf" name="ebf0b0e8-3834-45ac-9279-70d9445da0f9" type="radio">
+</input><label class="tabbed-label" for="e723ce12-aa95-4b83-a7af-f745b6a51fbf">
 Windows / conda</label><div class="tabbed-content docutils">
 <p>To install <code class="docutils literal notranslate"><span class="pre">pyshp</span></code> for Python Anaconda, open <a class="reference internal" href="../python-basics/pyinstall.html#install-pckg"><span class="std std-ref">Anaconda Prompt</span></a> and type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">pyshp</span>

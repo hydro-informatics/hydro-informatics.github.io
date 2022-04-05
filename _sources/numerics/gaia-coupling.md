@@ -18,7 +18,7 @@ A hydro-morphodynamic simulation implies modeling runoff-driven **{term}`Sedimen
 
 TELEMAC has a dedicated module called Gaia for modeling morphodynamics. Gaia enables modeling sediment transport and morphological evolution (i.e., {term}`Topographic change`) in rivers, lakes, and estuaries. It comes with particular routines to consider a spatio-temporal variation of grain sizes, grading curves, and riverbed layering for simulating sediment transport in the form of **{term}`Bedload` (coarse sediment)** and/or **{term}`Suspended load` (fine sediment)**. {term}`Bedload` is calculated by solving semi-empiric equations, such as the {cite:t}`meyer-peter_formulas_1948` formula (read more later in this tutorial). {term}`Suspended load` is modeled by solving the {term}`Advection`-{term}`Diffusion` equations, require closures for sediment erosion and deposition fluxes. {numref}`Figure %s <bl-vs-sl>` qualitatively illustrates the two basic modes of sediment transport in the form of suspended load and bedload.
 
-```{figure} https://github.com/Ecohydraulics/media/raw/master/png/sediment-transport.png
+```{figure} https://github.com/Ecohydraulics/media/raw/main/png/sediment-transport.png
 :alt: sediment transport bedload suspended load
 :name: bl-vs-sl
 

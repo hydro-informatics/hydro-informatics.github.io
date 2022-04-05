@@ -393,7 +393,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../datascience/data-science.html">
-   Basics (Coming soon)
+   Fundamentals (Coming soon)
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
   <label for="toctree-checkbox-9">
@@ -433,37 +433,32 @@
      </li>
     </ul>
    </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../datascience/theory.html">
-     Theory
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../datascience/theory.html">
+   Techniques (Coming soon)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../datascience/techniques.html">
+     Overview of Fundamental Techniques
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-    <label for="toctree-checkbox-11">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/techniques.html">
-       Fundamental Techniques
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/calibration.html">
-       Model Calibration
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/validation.html">
-       Model Validation
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
-       Support Vector Machine (SVM)
-      </a>
-     </li>
-    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../datascience/calibrate-validate.html">
+     Model Calibration and Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
+     Support Vector Machine (SVM)
+    </a>
    </li>
   </ul>
  </li>
@@ -992,8 +987,8 @@ So if you have made an ingenious discovery, you want to make sure you document i
 <span id="id1"></span><h2>Markdown<a class="headerlink" href="#markdown" title="Permalink to this headline">¶</a></h2>
 <p>For writing a documentation of a code or project in web-publish-ready format, cross-platform typesetting is needed. For this purpose, <em>Markdown</em> represents a good choice (among others, such as <a class="reference internal" href="#rst"><span class="std std-ref">reStructuredText</span></a>). <em>Markdown</em> was created in 2004 and is a simple markup language that is intuitive and easy to learn. Markup languages structure the content of plain text documents regarding the way a document is displayed to end-users (<a class="reference internal" href="glossary.html#term-Rich-Text-Format"><span class="xref std std-term">Rich Text Format</span></a>). Other popular markup languages are for example <a class="reference external" href="https://en.wikipedia.org/wiki/TeX">TeX</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/XML">XML (Extensible Markup Language)</a>. <em>Markdown</em> became a popular tool for writing syntactically distinguishable computer text that is then translated into <a class="reference internal" href="glossary.html#term-Rich-Text-Format"><span class="xref std std-term">Rich Text Format</span></a> flavor. Here is an example of how <em>Markdown</em> works:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="6a9327b6-9c71-4826-83cb-086ad9c0c263" name="989ae6d7-71c3-4564-a426-1759d017538e" type="radio">
-</input><label class="tabbed-label" for="6a9327b6-9c71-4826-83cb-086ad9c0c263">
+<input checked="checked" id="31b3e8e0-2d82-4265-9753-845e2cd55a8f" name="c97ca3b5-f135-4095-8056-899912fcd714" type="radio">
+</input><label class="tabbed-label" for="31b3e8e0-2d82-4265-9753-845e2cd55a8f">
 Raw Markdown</label><div class="tabbed-content docutils">
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># Better than Word-like rich text editors</span>
 <span class="ge">*OS*</span>-independent functionality:
@@ -1004,8 +999,8 @@ Raw Markdown</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="00b5eab8-9211-4468-9e19-45fce3bc0c68" name="989ae6d7-71c3-4564-a426-1759d017538e" type="radio">
-</input><label class="tabbed-label" for="00b5eab8-9211-4468-9e19-45fce3bc0c68">
+<input id="1634a276-5ca1-41d1-8b6d-883e32ec8981" name="c97ca3b5-f135-4095-8056-899912fcd714" type="radio">
+</input><label class="tabbed-label" for="1634a276-5ca1-41d1-8b6d-883e32ec8981">
 Rendered</label><div class="tabbed-content docutils">
 <p><strong>Better than Word-like rich text editors</strong></p>
 <p><em>OS</em>-independent functionality:</p>
@@ -1100,8 +1095,8 @@ Rendered</label><div class="tabbed-content docutils">
 <h3>Itemization (Un-numbered Lists)<a class="headerlink" href="#itemization-un-numbered-lists" title="Permalink to this headline">¶</a></h3>
 <p>Itemized list section can be produced using <code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">+</span></code>, or <code class="docutils literal notranslate"><span class="pre">-</span></code> symbols with tabs that determine the list indentation:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="245fe415-b537-451f-aabe-cdd96e59f652" name="779ddde6-6b8a-4bb5-9cd0-cd7d743768b7" type="radio">
-</input><label class="tabbed-label" for="245fe415-b537-451f-aabe-cdd96e59f652">
+<input checked="checked" id="fa61cd41-ada3-4a41-82e7-95925ad07cbc" name="205ce75b-038b-4a4c-adf3-4f1720be121c" type="radio">
+</input><label class="tabbed-label" for="fa61cd41-ada3-4a41-82e7-95925ad07cbc">
 Raw Markdown</label><div class="tabbed-content docutils">
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="k">*</span> level 1 item
     <span class="k">-</span> level 2 item
@@ -1111,8 +1106,8 @@ Raw Markdown</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="65fc6ca6-ea49-4cf0-81f7-19c894f4a0b3" name="779ddde6-6b8a-4bb5-9cd0-cd7d743768b7" type="radio">
-</input><label class="tabbed-label" for="65fc6ca6-ea49-4cf0-81f7-19c894f4a0b3">
+<input id="55b4eaf1-de6d-4a6e-8d4d-98f737c125c2" name="205ce75b-038b-4a4c-adf3-4f1720be121c" type="radio">
+</input><label class="tabbed-label" for="55b4eaf1-de6d-4a6e-8d4d-98f737c125c2">
 Rendered</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p>level 1 item</p>
@@ -1134,8 +1129,8 @@ Rendered</label><div class="tabbed-content docutils">
 <h3>Tables<a class="headerlink" href="#tables" title="Permalink to this headline">¶</a></h3>
 <p>Table columns are separated by a <code class="docutils literal notranslate"><span class="pre">|</span></code> sign. The first row determines row headers and the second row the alignment through the use of <code class="docutils literal notranslate"><span class="pre">:</span></code> (see below example).</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="ec568387-b04f-404f-8612-6536c79eef42" name="c90161f9-8205-4a23-ab92-22c2a6196021" type="radio">
-</input><label class="tabbed-label" for="ec568387-b04f-404f-8612-6536c79eef42">
+<input checked="checked" id="74b4a482-5494-4f35-b47c-f7ced7b63edd" name="02b7fcef-3d68-4758-b8fc-3e40831e3cc5" type="radio">
+</input><label class="tabbed-label" for="74b4a482-5494-4f35-b47c-f7ced7b63edd">
 Raw Markdown</label><div class="tabbed-content docutils">
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>| Fruit | Kingdom | Genus |
 |-------|:-------:|------:|
@@ -1144,8 +1139,8 @@ Raw Markdown</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="1e657560-a0b3-435e-8827-cb095ef2e07b" name="c90161f9-8205-4a23-ab92-22c2a6196021" type="radio">
-</input><label class="tabbed-label" for="1e657560-a0b3-435e-8827-cb095ef2e07b">
+<input id="41dc1b77-3684-4508-ac47-b3ec3c141c4c" name="02b7fcef-3d68-4758-b8fc-3e40831e3cc5" type="radio">
+</input><label class="tabbed-label" for="41dc1b77-3684-4508-ac47-b3ec3c141c4c">
 Rendered</label><div class="tabbed-content docutils">
 <table class="colwidths-auto table">
 <thead>

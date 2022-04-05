@@ -373,7 +373,7 @@ Every solver keyword can take an integer value between `1` and `8`, where `1`-`6
 * `7` sets the *Generalised Minimum RESidual* (**GMRES**) method, and
 * `8` sets the Yale University direct solver (YSMP) that is not compatible with parallelism.
 
-The **GMRES method may be enabled with the finite element scheme** where the following solver options for the {term}`Krylov space`:
+The **GMRES method may be enabled with the finite element scheme** with the following solver options for the {term}`Krylov space`:
 
 ```fortran
 SOLVER OPTION : 2 / hydrodynamic propagation

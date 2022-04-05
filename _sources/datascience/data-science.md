@@ -1,4 +1,4 @@
 (data-science)=
-# Basics (Coming soon)
+# Fundamentals (Coming soon)
 
 This chapter is currently developed by [Ricardo Barros](https://github.com/ricardovobarros).

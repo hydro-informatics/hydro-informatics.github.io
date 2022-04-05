@@ -395,7 +395,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../datascience/data-science.html">
-   Basics (Coming soon)
+   Fundamentals (Coming soon)
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
   <label for="toctree-checkbox-9">
@@ -435,37 +435,32 @@
      </li>
     </ul>
    </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../datascience/theory.html">
-     Theory
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../datascience/theory.html">
+   Techniques (Coming soon)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../datascience/techniques.html">
+     Overview of Fundamental Techniques
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-    <label for="toctree-checkbox-11">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/techniques.html">
-       Fundamental Techniques
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/calibration.html">
-       Model Calibration
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/validation.html">
-       Model Validation
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
-       Support Vector Machine (SVM)
-      </a>
-     </li>
-    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../datascience/calibrate-validate.html">
+     Model Calibration and Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
+     Support Vector Machine (SVM)
+    </a>
    </li>
   </ul>
  </li>
@@ -889,7 +884,7 @@
 </div>
 <div class="section" id="additional-sediment-parameters">
 <span id="gaia-sl-sed"></span><h2>Additional Sediment Parameters<a class="headerlink" href="#additional-sediment-parameters" title="Permalink to this headline">¶</a></h2>
-<p>Fine sediment mixtures involving very fine cohesive particles (less than 0.06-0.1 mm) are referred to as <strong>mud</strong> in Gaia and so do the keywords in the following paragraphs. More information about mud-related keywords can be found in section 4.2 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a>.</p>
+<p>Fine sediment mixtures involving very fine cohesive particles (less than 0.06-0.1 mm) are referred to as <strong>mud</strong> in Gaia and so do the keywords in the following paragraphs. More information about mud-related keywords can be found in section 4.2 in the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p3r1/documentation/gaia/user/gaia_user_v8p3.pdf">Gaia manual</a>.</p>
 <div class="section" id="deposition-parameters">
 <h3>Deposition Parameters<a class="headerlink" href="#deposition-parameters" title="Permalink to this headline">¶</a></h3>
 <p>For suspended load, the definition of additional sediment properties for every sediment class is required (or enabled).</p>
@@ -963,7 +958,7 @@ q_{s,e} = \begin{cases} M\cdot \left(\frac{\tau}{\tau_{cr}} - 1\right) &amp; \mb
 <li><p><code class="docutils literal notranslate"><span class="pre">4</span></code> for the <span id="id11">Soulsby [<a class="reference internal" href="../documentation/bibliography.html#id1388">Sou97</a>]</span>-<span id="id12">Rijn and C [<a class="reference internal" href="../documentation/bibliography.html#id1383">RC07</a>]</span> formula:</p>
 <ul>
 <li><p>uses an orbital velocity of waves (i.e., suggested application: coastal/marine regions)</p></li>
-<li><p>read more about suspended load and waves in section 5.1 of the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a></p></li>
+<li><p>read more about suspended load and waves in section 5.1 of the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p3r1/documentation/gaia/user/gaia_user_v8p3.pdf">Gaia manual</a></p></li>
 <li><p>is defined in <code class="docutils literal notranslate"><span class="pre">/telemac/v8p2/sources/gaia/</span></code><strong><a class="reference external" href="http://docs.opentelemac.org/doxydocs/v8p2r0/html/suspension__sandflow__gaia_8f.html">suspension_sandflow_gaia.f</a></strong></p></li>
 </ul>
 </li>
@@ -981,7 +976,7 @@ q_{s,e} = \begin{cases} M\cdot \left(\frac{\tau}{\tau_{cr}} - 1\right) &amp; \mb
 <span class="n">INITIAL</span> <span class="n">SUSPENDED</span> <span class="n">SEDIMENTS</span> <span class="n">CONCENTRATION</span> <span class="n">VALUES</span> <span class="p">:</span> <span class="mf">6.E-04</span><span class="p">;</span><span class="mf">0.</span><span class="p">;</span><span class="mf">0.</span>
 </pre></div>
 </div>
-<p>Read more about the definition of initial conditions in section 2.1.1 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a>.</p>
+<p>Read more about the definition of initial conditions in section 2.1.1 in the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p3r1/documentation/gaia/user/gaia_user_v8p3.pdf">Gaia manual</a>.</p>
 </div>
 <div class="section" id="boundary-prescriptions">
 <span id="gaia-bc-sl"></span><h2>Boundary Prescriptions<a class="headerlink" href="#boundary-prescriptions" title="Permalink to this headline">¶</a></h2>
@@ -992,7 +987,7 @@ q_{s,e} = \begin{cases} M\cdot \left(\frac{\tau}{\tau_{cr}} - 1\right) &amp; \mb
 <span class="o">/</span> <span class="n">EQUILIBRIUM</span> <span class="n">INFLOW</span> <span class="n">CONCENTRATION</span> <span class="p">:</span> <span class="n">YES</span> <span class="o">/</span> <span class="nb">not </span><span class="n">used</span> <span class="n">in</span>  <span class="n">this</span> <span class="n">tutorial</span>
 </pre></div>
 </div>
-<p>Gaia can be run with liquid boundary files for assigning time-dependent suspended load fluxes (the outflow should be kept in equilibrium). Solid flux time series can be implemented using the already applied <code class="docutils literal notranslate"><span class="pre">455</span></code>-<code class="docutils literal notranslate"><span class="pre">5</span></code> upstream boundary type, analogous to the descriptions of the <a class="reference internal" href="telemac2d-unsteady.html#tm2d-liq-file"><span class="std std-ref">Telemac2d unsteady boundary setup</span></a>. More information about suspended load boundary conditions can be found in section 2.1.2 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a>.</p>
+<p>Gaia can be run with liquid boundary files for assigning time-dependent suspended load fluxes (the outflow should be kept in equilibrium). Solid flux time series can be implemented using the already applied <code class="docutils literal notranslate"><span class="pre">455</span></code>-<code class="docutils literal notranslate"><span class="pre">5</span></code> upstream boundary type, analogous to the descriptions of the <a class="reference internal" href="telemac2d-unsteady.html#tm2d-liq-file"><span class="std std-ref">Telemac2d unsteady boundary setup</span></a>. More information about suspended load boundary conditions can be found in section 2.1.2 in the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p3r1/documentation/gaia/user/gaia_user_v8p3.pdf">Gaia manual</a>.</p>
 </div>
 <div class="section" id="numerical-parameters">
 <h2>Numerical Parameters<a class="headerlink" href="#numerical-parameters" title="Permalink to this headline">¶</a></h2>
@@ -1003,7 +998,7 @@ q_{s,e} = \begin{cases} M\cdot \left(\frac{\tau}{\tau_{cr}} - 1\right) &amp; \mb
 <li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> for the non-conservative <em>Streamline Upwind Petrov Galerkin</em> (SUPG) scheme that uses the <a class="reference internal" href="../documentation/glossary.html#term-CFL"><span class="xref std std-term">CFL</span></a> condition and is less diffusive than the <em>Characteristics</em> (<code class="docutils literal notranslate"><span class="pre">1</span></code>) scheme.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">3</span></code> or <code class="docutils literal notranslate"><span class="pre">4</span></code> for the conservative form of the <a class="reference internal" href="../documentation/glossary.html#term-Continuity-equation"><span class="xref std std-term">Continuity equation</span></a> (<em>Conservative N-scheme</em>) and with timestep reduction based on the <a class="reference internal" href="../documentation/glossary.html#term-CFL"><span class="xref std std-term">CFL</span></a> condition. This option should not be used in the presence of tidal flats (use <code class="docutils literal notranslate"><span class="pre">13</span></code> or <code class="docutils literal notranslate"><span class="pre">14</span></code>).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">5</span></code> for the mass-conservative PSI distributive scheme (<strong>default</strong>), which corrects fluxes according to tracer concentrations and is less diffusive than <code class="docutils literal notranslate"><span class="pre">4</span></code> or <code class="docutils literal notranslate"><span class="pre">14</span></code>; thus, the computation time with <code class="docutils literal notranslate"><span class="pre">5</span></code> is longer than with <code class="docutils literal notranslate"><span class="pre">4</span></code> or <code class="docutils literal notranslate"><span class="pre">14</span></code>. This option should not be used in the presence of tidal flats.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">13</span></code> and <code class="docutils literal notranslate"><span class="pre">14</span></code> for the <em>Edge-based N-scheme</em> (NERD), which is similar to <code class="docutils literal notranslate"><span class="pre">3</span></code> and <code class="docutils literal notranslate"><span class="pre">4</span></code>, but adapted to tidal flats. <strong>Option <code class="docutils literal notranslate"><span class="pre">14</span></code> is used in this tutorial</strong> according to the recommendation in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">13</span></code> and <code class="docutils literal notranslate"><span class="pre">14</span></code> for the <em>Edge-based N-scheme</em> (NERD), which is similar to <code class="docutils literal notranslate"><span class="pre">3</span></code> and <code class="docutils literal notranslate"><span class="pre">4</span></code>, but adapted to tidal flats. <strong>Option <code class="docutils literal notranslate"><span class="pre">14</span></code> is used in this tutorial</strong> according to the recommendation in the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p3r1/documentation/gaia/user/gaia_user_v8p3.pdf">Gaia manual</a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">15</span></code> for the mass-conservative <em>ERIA scheme</em> that works with tidal flats.</p></li>
 </ul>
 <p>The options <code class="docutils literal notranslate"><span class="pre">4</span></code> and <code class="docutils literal notranslate"><span class="pre">14</span></code> can be defined along with the keyword definition <code class="docutils literal notranslate"><span class="pre">CONTINUITY</span> <span class="pre">CORRECTION</span> <span class="pre">:</span> <span class="pre">YES</span></code> that enables a correction of vertical convection velocities. This setting avoids overestimating suspended load, especially in deep waters, but it is not used in this tutorial.</p>
@@ -1014,7 +1009,7 @@ q_{s,e} = \begin{cases} M\cdot \left(\frac{\tau}{\tau_{cr}} - 1\right) &amp; \mb
 <span class="o">/</span> <span class="n">CONTINUITY</span> <span class="n">CORRECTION</span> <span class="p">:</span> <span class="n">YES</span> <span class="o">/</span> <span class="k">use </span><span class="n">when</span> <span class="n">SCHEME</span> <span class="k">is </span><span class="mi">4</span> <span class="nb">or </span><span class="mi">14</span>
 </pre></div>
 </div>
-<p>Read more about the definition of initial conditions in section 2.1.5 in the <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a>.</p>
+<p>Read more about the definition of initial conditions in section 2.1.5 in the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p3r1/documentation/gaia/user/gaia_user_v8p3.pdf">Gaia manual</a>.</p>
 </div>
 <div class="section" id="example-applications">
 <h2>Example Applications<a class="headerlink" href="#example-applications" title="Permalink to this headline">¶</a></h2>
@@ -1024,7 +1019,7 @@ q_{s,e} = \begin{cases} M\cdot \left(\frac{\tau}{\tau_{cr}} - 1\right) &amp; \mb
 <li><p>2d model of cohesive mud: <strong>mud_conservation-t2d/</strong></p></li>
 <li><p>3d model of combined cohesive and non-cohesive suspended transport: <strong>hippodrome-t2d/</strong></p></li>
 <li><p>3d model of non-cohesive suspended transport with skin friction correction: <strong>lyn-t3d/</strong></p></li>
-<li><p>3d model of cohesive suspended transport with rouse vertical profile (cf. <a class="reference external" href="http://ot-svn-public:telemac1*&#64;svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/documentation/gaia/user/gaia_user_v8p2.pdf">Gaia manual</a>, section 2.1.2): <strong>rouse-t3d/</strong></p></li>
+<li><p>3d model of cohesive suspended transport with rouse vertical profile (cf. <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p3r1/documentation/gaia/user/gaia_user_v8p3.pdf">Gaia manual</a>, section 2.1.2): <strong>rouse-t3d/</strong></p></li>
 <li><p>3d model of a tidal flume with cohesive sediment: <strong>tidal_flats-t3d/</strong></p></li>
 <li><p>Coupling with waves: <strong>sandpit-t2d/</strong></p></li>
 </ul>
