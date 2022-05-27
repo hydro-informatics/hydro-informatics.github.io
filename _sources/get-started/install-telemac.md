@@ -721,20 +721,23 @@ org.fudaa.fudaa.tr.TrSupervisor $1 $2 $3 $4 $5 $6 $7 $8 $9
 (salome-hydro)=
 ## SALOME-HYDRO (Linux)
 
-SALOME-HYDRO is a spinoff of SALOME ([see description in the modular installation](#salome) with full capacities to create and run a numerical model with TELEMAC. The program is distributed on [salome-platform.org](https://www.salome-platform.org/contributions/edf_products/downloads/) as specific EDF contribution.
+SALOME-HYDRO is a spinoff of SALOME ([see description in the modular installation](#salome) with full capacities to create and run a numerical model with TELEMAC. The program is distributed on [salome-platform.org](https://www.salome-platform.org/?page_id=318) as specific EDF contribution.
 
-```{admonition} Linux
-SALOME-HYDRO also works on *Windows* platforms, but most applications and support is provided for *Debian Linux*.
-```
+````{admonition} Tips for working with SALOME-HYDRO
+:class: tip
+
+* SALOME-HYDRO also works on *Windows* platforms, but most applications and support is provided for *Debian Linux*.
+* It might be useful to understand French, for instance, to explore the [Salome Youtube channel](https://www.youtube.com/channel/UCokrSqnpG3sLXkagZwUmuXg)
 
 ```{admonition} Outdated library links of the SALOME-HYDRO installer
 :class: error
 On any system that is not Debian 9 (stretch), SALOME-HYDRO can only be used as a pre-processor (Geometry & Mesh modules) and as a post-processor (ParaVis module) for med-file handling. The *HydroSolver* module that potentially enables running TELEMAC does not work properly with Debian 10 or any system that is not Debian 9. Therefore, the  {ref}`modular-install` is still required to run models developed with SALOME-HYDRO.
 ```
+````
 
 ### Prerequisites
 
-* Download the installer from the [developer's website](https://www.salome-platform.org/contributions/edf_products/downloads/) or use the newer version provided through the [TELEMAC user Forum](http://www.opentelemac.org/index.php/kunena/other/12263-hydrosalome-z-interpolation#34100) (registration required)
+* Download the installer from the [developer's website](https://www.salome-platform.org/?page_id=318) or use the newer version provided through the [TELEMAC user Forum](http://www.opentelemac.org/index.php/kunena/other/12263-hydrosalome-z-interpolation#34100) (registration required)
 <!-- [Salome-Hydro V2_2](https://drive.google.com/file/d/1Bimoy9d9dqgQDbMW_kJxilw5JEoMvZ0Q/view) -->
 * Install required packages (verify the latest version of `libssl` and if necessary, correct version)
 

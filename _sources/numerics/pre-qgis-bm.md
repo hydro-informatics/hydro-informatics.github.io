@@ -357,6 +357,20 @@ The *BASEmesh* plugin's **Interpolation** tool projects bottom elevation data on
 * In the **Output** frame click on the **Browse** button to define an output mesh name in the `/Project Home/` directory, for example, **prepro-tutorial_quality-mesh-interp.2dm**
 * Click **Run** to create the height-interpolated mesh.
 
+```{admonition} Error with BASEmesh v2.0.9 - Interpolation via DEM not working
+:class: error
+
+Since BASEmesh v2.0.9, the **Interpolation** window does not detect any **Raster layer** (nothing can be selected from the dropdown menu). A functional work-around is to convert the DEM raster into a mesh file:
+
+1. Convert the DEM into a point shapefile (**raster to vector**) and make sure the point's attribute table is filled with elevations.
+2. Use the **TIN Mesh Creation** tool to generate a TIN elevation mesh with elevation data.
+3. In BASEmesh's **Interpolation** tool, select the option **Interpolation via elevation Mesh** and select the TIN elevation mesh created before.
+4. Click **Run** to continue with the tutorial.
+
+To find the above-mentioned conversion tools, go to QGIS **Processing** top menu > **Toolbox** and enter the tool names in the *search...* field.
+
+```
+
 ```{figure} ../img/qgis/bm-mesh-interpolation.png
 :alt: qgis quality mesh interpolation basement
 :name: qgis-qualm-interp

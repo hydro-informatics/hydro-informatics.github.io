@@ -1244,6 +1244,17 @@ As featured in the <a class="reference internal" href="../geopy/use-qgis.html#qg
 <li><p>In the <strong>Output</strong> frame click on the <strong>Browse</strong> button to define an output mesh name in the <code class="docutils literal notranslate"><span class="pre">/Project</span> <span class="pre">Home/</span></code> directory, for example, <strong>prepro-tutorial_quality-mesh-interp.2dm</strong></p></li>
 <li><p>Click <strong>Run</strong> to create the height-interpolated mesh.</p></li>
 </ul>
+<div class="error admonition">
+<p class="admonition-title">Error with BASEmesh v2.0.9 - Interpolation via DEM not working</p>
+<p>Since BASEmesh v2.0.9, the <strong>Interpolation</strong> window does not detect any <strong>Raster layer</strong> (nothing can be selected from the dropdown menu). A functional work-around is to convert the DEM raster into a mesh file:</p>
+<ol class="simple">
+<li><p>Convert the DEM into a point shapefile (<strong>raster to vector</strong>) and make sure the point’s attribute table is filled with elevations.</p></li>
+<li><p>Use the <strong>TIN Mesh Creation</strong> tool to generate a TIN elevation mesh with elevation data.</p></li>
+<li><p>In BASEmesh’s <strong>Interpolation</strong> tool, select the option <strong>Interpolation via elevation Mesh</strong> and select the TIN elevation mesh created before.</p></li>
+<li><p>Click <strong>Run</strong> to continue with the tutorial.</p></li>
+</ol>
+<p>To find the above-mentioned conversion tools, go to QGIS <strong>Processing</strong> top menu &gt; <strong>Toolbox</strong> and enter the tool names in the <em>search…</em> field.</p>
+</div>
 <div class="figure align-default" id="qgis-qualm-interp">
 <img alt="qgis quality mesh interpolation basement" src="../_images/bm-mesh-interpolation.png" />
 <p class="caption"><span class="caption-number">Fig. 39 </span><span class="caption-text">BASEmesh’s Z-value (height) interpolation tool and setup to assign bottom elevation values to the quality mesh.</span><a class="headerlink" href="#qgis-qualm-interp" title="Permalink to this image">¶</a></p>
