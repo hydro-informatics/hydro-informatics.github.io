@@ -14,11 +14,11 @@ The analysis of hydro-environments with TELEMAC involves pre-processing for abst
 * Setup a purely hydrodynamic, steady Telemac2d simulation in the {ref}`steady 2d tutorial <telemac2d-steady>` (Selafin `*.slf*` geometry). **Recommended as a second tutorial for beginners.**
 * Apply quasi-steady (near-census unsteady) flow conditions (e.g., important for modeling a flood hydrograph) in the {ref}`unsteady Telemac2d tutorial <chpt-unsteady>`. This tutorial builds on top of the steady Telemac2d tutorial.
 * Setup a purely hydrodynamic 3d model in the {ref}`Telemac3d (Selafin) tutorial <chpt-telemac3d-slf>` with the standard Selafin (`*.slf`) format.
-* Setup a purely hydrodynamic 3d model in the {ref}`Telemac3d (MED and Salome) tutorial <chpt-telemac3d-med>` with the MED geometry format using SALOME-HYDRO. **Recommended for experienced Linux users and when computational performance is critical.**
+* Setup a purely hydrodynamic 3d model in the {ref}`Telemac3d (MED and Salome) tutorial <chpt-telemac3d-med>` with the MED geometry format using SALOME (***Outdated workflow***).
 * Couple hydrodynamics (i.e., Telemac2d or Telemac3d) with morphodynamics (i.e., {term}`Sediment transport`) in the {ref}`Gaia tutorial <tm-gaia>`.
 
 
-The tutorials build on the user manuals provided by the TELEMAC developers at [http://wiki.opentelemac.org](http://wiki.opentelemac.org/doku.php?id=documentation_v8p2r0).
+The tutorials build on the user manuals provided by the TELEMAC developers at [http://wiki.opentelemac.org](http://wiki.opentelemac.org/doku.php?id=documentation_v8p3r0).
 
 
 ### Pre-processing
@@ -27,7 +27,7 @@ Pre-processing involves abstracting the river landscape into a computational mes
 
 * {ref}`qgis-install` and the BASEmesh plugin, which are illustrated in the {ref}`QGIS pre-processing tutorial <slf-prepro-tm>` (**the Author's preferred choice**).
 * The National Research Council Canada's {ref}`Blue Kenue <bluekenue>` GUI software (primarily for *Windows*).
-* {ref}`SALOME-HYDRO <salome-hydro>` for generating computational meshes in the MED files format (here illustrated in the {ref}`chpt-telemac3d` tutorial).
+* {ref}`SALOME <salome-install>` for generating computational meshes in the MED files format.
 
 ### Model Setup and Run
 
@@ -48,11 +48,11 @@ For any TELEMAC simulation, the following input files are **mandatory**:
 * Geometry file
   + File formats: `*.slf` ([selafin](https://gdal.org/drivers/vector/selafin.html) or `*.med` (MED file library from the [salome-platform](https://www.salome-platform.org)
   + Prepare `*.slf` geometries with {ref}`QGIS <qgis-tutorial>`or {ref}`Blue Kenue <bluekenue>` (read more in the {ref}`TELEMAC pre-processing tutorial <bk-create-slf>`).
-  + Prepare `*.med` geometries with {ref}`SALOME-HYDRO <salome-hydro>`.
+  + Prepare `*.med` geometries with {ref}`SALOME <salome-install>`.
 * Boundary conditions
   + File format: `*.cli` (with `*.slf`) or `*.bnd`/`*.bcd` (with `*.med`)
   + Prepare `*.cli` files with {ref}`Fudaa PrePro <fudaa>` or {ref}`Blue Kenue <bluekenue>` (read more in the {ref}`TELEMAC pre-processing tutorial <bk-bc>`).
-  + Prepare `*.bnd`/`*.bcd` files either with {ref}`SALOME-HYDRO <salome-hydro>` or with a text editor (read more in the {ref}`Telemac3d (MED) tutorial <bnd-mod>`).
+  + Prepare `*.bnd`/`*.bcd` files either with {ref}`SALOME <salome-install>` or with a text editor (read more in the {ref}`Telemac3d (MED) tutorial <bnd-mod>`).
 
 There are many more files that are not computationally mandatory for every TELEMAC simulation, but essential for particular scenarios (e.g., unsteady flows) and modules (e.g., sediment transport with Gaia). Such **optional** files include:
 
@@ -101,7 +101,7 @@ GEOMETRY FILE            : 't2d_channel.slf'
 GEOMETRY FILE FORMAT     : SLF / or MED with SALOME preferably for 3D
 ```
 
-*MED* files are typically processed with either {ref}`SALOME <salome-install>` or ref}`SALOME-HYDRO <salome-hydro>`, which are featured in the {ref}`Telemac3d (MED) <chpt-telemac3d-med>` tutorial.
+*MED* files are typically processed with either {ref}`SALOME <salome-install>`, which are featured in the {ref}`Telemac3d (MED) <chpt-telemac3d-med>` tutorial.
 
 
 ### Boundary Conditions (CLI or BND/BCD) and Liquid Boundary (QSL) Files
@@ -116,7 +116,7 @@ The boundary file in `*.cli` format contains information about inflow and outflo
 ```
 
 
-`*.bnd`/`*.bcd` files can be created and edited either with {ref}`SALOME-HYDRO <salome-hydro>` or a text editor (read more in the {ref}`Telemac3d (MED) tutorial <bnd-mod>`). The following block box shows how a `*.bnd` boundary file for a simple block geometry may look like.
+`*.bnd`/`*.bcd` files can be created and edited either with {ref}`SALOME <salome-install>` or a text editor (read more in the {ref}`Telemac3d (MED) tutorial <bnd-mod>`). The following block box shows how a `*.bnd` boundary file for a simple block geometry may look like.
 
 ```
 4
@@ -183,7 +183,7 @@ FRICTION DATA FILE       : 'friction.tbl'
 
 
 A restart file stems from a previous TELEMAC simulation and does not need to exist at the beginning. A good option for visualizing the results file is the {ref}`PostTelemac plugin <tm-qgis-plugins>` in QGIS.
-Restart files in MED format are typically processed with the ParaVis module in {ref}`SALOME <salome-install>` or ref}`SALOME-HYDRO <salome-hydro>`, which is featured in the {ref}`Telemac3d (MED) <chpt-telemac3d-med>` tutorial.
+Restart files in MED format are typically processed with the ParaVis module in {ref}`SALOME <salome-install>`, which is featured in the {ref}`Telemac3d (MED) <chpt-telemac3d-med>` tutorial.
 
 The results/restart file can be define in the steering file as follows:
 ```

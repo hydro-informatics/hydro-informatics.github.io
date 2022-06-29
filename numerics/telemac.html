@@ -904,17 +904,17 @@
 <li><p>Setup a purely hydrodynamic, steady Telemac2d simulation in the <a class="reference internal" href="telemac2d-steady.html#telemac2d-steady"><span class="std std-ref">steady 2d tutorial</span></a> (Selafin <code class="docutils literal notranslate"><span class="pre">*.slf*</span></code> geometry). <strong>Recommended as a second tutorial for beginners.</strong></p></li>
 <li><p>Apply quasi-steady (near-census unsteady) flow conditions (e.g., important for modeling a flood hydrograph) in the <a class="reference internal" href="telemac2d-unsteady.html#chpt-unsteady"><span class="std std-ref">unsteady Telemac2d tutorial</span></a>. This tutorial builds on top of the steady Telemac2d tutorial.</p></li>
 <li><p>Setup a purely hydrodynamic 3d model in the <a class="reference internal" href="telemac3d-slf.html#chpt-telemac3d-slf"><span class="std std-ref">Telemac3d (Selafin) tutorial</span></a> with the standard Selafin (<code class="docutils literal notranslate"><span class="pre">*.slf</span></code>) format.</p></li>
-<li><p>Setup a purely hydrodynamic 3d model in the <a class="reference internal" href="telemac3d-med.html#chpt-telemac3d-med"><span class="std std-ref">Telemac3d (MED and Salome) tutorial</span></a> with the MED geometry format using SALOME-HYDRO. <strong>Recommended for experienced Linux users and when computational performance is critical.</strong></p></li>
+<li><p>Setup a purely hydrodynamic 3d model in the <a class="reference internal" href="telemac3d-med.html#chpt-telemac3d-med"><span class="std std-ref">Telemac3d (MED and Salome) tutorial</span></a> with the MED geometry format using SALOME (<em><strong>Outdated workflow</strong></em>).</p></li>
 <li><p>Couple hydrodynamics (i.e., Telemac2d or Telemac3d) with morphodynamics (i.e., <a class="reference internal" href="../documentation/glossary.html#term-Sediment-transport"><span class="xref std std-term">Sediment transport</span></a>) in the <a class="reference internal" href="telemac-gaia.html#tm-gaia"><span class="std std-ref">Gaia tutorial</span></a>.</p></li>
 </ul>
-<p>The tutorials build on the user manuals provided by the TELEMAC developers at <a class="reference external" href="http://wiki.opentelemac.org/doku.php?id=documentation_v8p2r0">http://wiki.opentelemac.org</a>.</p>
+<p>The tutorials build on the user manuals provided by the TELEMAC developers at <a class="reference external" href="http://wiki.opentelemac.org/doku.php?id=documentation_v8p3r0">http://wiki.opentelemac.org</a>.</p>
 <div class="section" id="pre-processing">
 <h3>Pre-processing<a class="headerlink" href="#pre-processing" title="Permalink to this headline">¶</a></h3>
 <p>Pre-processing involves abstracting the river landscape into a computational mesh (grid) with boundary conditions. Many software tools can be used for this purpose such as:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a> and the BASEmesh plugin, which are illustrated in the <a class="reference internal" href="pre-slf-tm.html#slf-prepro-tm"><span class="std std-ref">QGIS pre-processing tutorial</span></a> (<strong>the Author’s preferred choice</strong>).</p></li>
 <li><p>The National Research Council Canada’s <a class="reference internal" href="../get-started/install-telemac.html#bluekenue"><span class="std std-ref">Blue Kenue</span></a> GUI software (primarily for <em>Windows</em>).</p></li>
-<li><p><a class="reference internal" href="../get-started/install-telemac.html#salome-hydro"><span class="std std-ref">SALOME-HYDRO</span></a> for generating computational meshes in the MED files format (here illustrated in the <a class="reference internal" href="telemac3d.html#chpt-telemac3d"><span class="std std-ref">Telemac3d</span></a> tutorial).</p></li>
+<li><p><a class="reference internal" href="../get-started/install-openfoam.html#salome-install"><span class="std std-ref">SALOME</span></a> for generating computational meshes in the MED files format.</p></li>
 </ul>
 </div>
 <div class="section" id="model-setup-and-run">
@@ -940,14 +940,14 @@
 <ul>
 <li><p>File formats: <code class="docutils literal notranslate"><span class="pre">*.slf</span></code> (<a class="reference external" href="https://gdal.org/drivers/vector/selafin.html">selafin</a> or <code class="docutils literal notranslate"><span class="pre">*.med</span></code> (MED file library from the <a class="reference external" href="https://www.salome-platform.org">salome-platform</a></p></li>
 <li><p>Prepare <code class="docutils literal notranslate"><span class="pre">*.slf</span></code> geometries with <a class="reference internal" href="../geopy/use-qgis.html#qgis-tutorial"><span class="std std-ref">QGIS</span></a>or <a class="reference internal" href="../get-started/install-telemac.html#bluekenue"><span class="std std-ref">Blue Kenue</span></a> (read more in the <a class="reference internal" href="pre-slf-tm.html#bk-create-slf"><span class="std std-ref">TELEMAC pre-processing tutorial</span></a>).</p></li>
-<li><p>Prepare <code class="docutils literal notranslate"><span class="pre">*.med</span></code> geometries with <a class="reference internal" href="../get-started/install-telemac.html#salome-hydro"><span class="std std-ref">SALOME-HYDRO</span></a>.</p></li>
+<li><p>Prepare <code class="docutils literal notranslate"><span class="pre">*.med</span></code> geometries with <a class="reference internal" href="../get-started/install-openfoam.html#salome-install"><span class="std std-ref">SALOME</span></a>.</p></li>
 </ul>
 </li>
 <li><p>Boundary conditions</p>
 <ul>
 <li><p>File format: <code class="docutils literal notranslate"><span class="pre">*.cli</span></code> (with <code class="docutils literal notranslate"><span class="pre">*.slf</span></code>) or <code class="docutils literal notranslate"><span class="pre">*.bnd</span></code>/<code class="docutils literal notranslate"><span class="pre">*.bcd</span></code> (with <code class="docutils literal notranslate"><span class="pre">*.med</span></code>)</p></li>
 <li><p>Prepare <code class="docutils literal notranslate"><span class="pre">*.cli</span></code> files with <a class="reference internal" href="../get-started/install-telemac.html#fudaa"><span class="std std-ref">Fudaa PrePro</span></a> or <a class="reference internal" href="../get-started/install-telemac.html#bluekenue"><span class="std std-ref">Blue Kenue</span></a> (read more in the <a class="reference internal" href="pre-slf-tm.html#bk-bc"><span class="std std-ref">TELEMAC pre-processing tutorial</span></a>).</p></li>
-<li><p>Prepare <code class="docutils literal notranslate"><span class="pre">*.bnd</span></code>/<code class="docutils literal notranslate"><span class="pre">*.bcd</span></code> files either with <a class="reference internal" href="../get-started/install-telemac.html#salome-hydro"><span class="std std-ref">SALOME-HYDRO</span></a> or with a text editor (read more in the <a class="reference internal" href="telemac3d-med.html#bnd-mod"><span class="std std-ref">Telemac3d (MED) tutorial</span></a>).</p></li>
+<li><p>Prepare <code class="docutils literal notranslate"><span class="pre">*.bnd</span></code>/<code class="docutils literal notranslate"><span class="pre">*.bcd</span></code> files either with <a class="reference internal" href="../get-started/install-openfoam.html#salome-install"><span class="std std-ref">SALOME</span></a> or with a text editor (read more in the <a class="reference internal" href="telemac3d-med.html#bnd-mod"><span class="std std-ref">Telemac3d (MED) tutorial</span></a>).</p></li>
 </ul>
 </li>
 </ul>
@@ -1005,7 +1005,7 @@
 <span class="n">GEOMETRY</span> <span class="n">FILE</span> <span class="n">FORMAT</span>     <span class="p">:</span> <span class="n">SLF</span> <span class="o">/</span> <span class="ow">or</span> <span class="n">MED</span> <span class="k">with</span> <span class="n">SALOME</span> <span class="n">preferably</span> <span class="k">for</span> <span class="mi">3</span><span class="n">D</span>
 </pre></div>
 </div>
-<p><em>MED</em> files are typically processed with either <a class="reference internal" href="../get-started/install-openfoam.html#salome-install"><span class="std std-ref">SALOME</span></a> or ref}<code class="docutils literal notranslate"><span class="pre">SALOME-HYDRO</span> <span class="pre">&lt;salome-hydro&gt;</span></code>, which are featured in the <a class="reference internal" href="telemac3d-med.html#chpt-telemac3d-med"><span class="std std-ref">Telemac3d (MED)</span></a> tutorial.</p>
+<p><em>MED</em> files are typically processed with either <a class="reference internal" href="../get-started/install-openfoam.html#salome-install"><span class="std std-ref">SALOME</span></a>, which are featured in the <a class="reference internal" href="telemac3d-med.html#chpt-telemac3d-med"><span class="std std-ref">Telemac3d (MED)</span></a> tutorial.</p>
 </div>
 <div class="section" id="boundary-conditions-cli-or-bnd-bcd-and-liquid-boundary-qsl-files">
 <h3>Boundary Conditions (CLI or BND/BCD) and Liquid Boundary (QSL) Files<a class="headerlink" href="#boundary-conditions-cli-or-bnd-bcd-and-liquid-boundary-qsl-files" title="Permalink to this headline">¶</a></h3>
@@ -1016,7 +1016,7 @@
   <span class="o">...</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">*.bnd</span></code>/<code class="docutils literal notranslate"><span class="pre">*.bcd</span></code> files can be created and edited either with <a class="reference internal" href="../get-started/install-telemac.html#salome-hydro"><span class="std std-ref">SALOME-HYDRO</span></a> or a text editor (read more in the <a class="reference internal" href="telemac3d-med.html#bnd-mod"><span class="std std-ref">Telemac3d (MED) tutorial</span></a>). The following block box shows how a <code class="docutils literal notranslate"><span class="pre">*.bnd</span></code> boundary file for a simple block geometry may look like.</p>
+<p><code class="docutils literal notranslate"><span class="pre">*.bnd</span></code>/<code class="docutils literal notranslate"><span class="pre">*.bcd</span></code> files can be created and edited either with <a class="reference internal" href="../get-started/install-openfoam.html#salome-install"><span class="std std-ref">SALOME</span></a> or a text editor (read more in the <a class="reference internal" href="telemac3d-med.html#bnd-mod"><span class="std std-ref">Telemac3d (MED) tutorial</span></a>). The following block box shows how a <code class="docutils literal notranslate"><span class="pre">*.bnd</span></code> boundary file for a simple block geometry may look like.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">4</span>
 <span class="mi">5</span> <span class="mi">4</span> <span class="mi">4</span> <span class="mi">4</span> <span class="n">downstream</span>
 <span class="mi">4</span> <span class="mi">5</span> <span class="mi">5</span> <span class="mi">4</span> <span class="n">upstream</span>
@@ -1073,7 +1073,7 @@
 <div class="section" id="the-results-restart-file-slf-or-med">
 <h3>The Results/Restart file (SLF or MED)<a class="headerlink" href="#the-results-restart-file-slf-or-med" title="Permalink to this headline">¶</a></h3>
 <p>A restart file stems from a previous TELEMAC simulation and does not need to exist at the beginning. A good option for visualizing the results file is the <a class="reference internal" href="pre-slf-tm.html#tm-qgis-plugins"><span class="std std-ref">PostTelemac plugin</span></a> in QGIS.
-Restart files in MED format are typically processed with the ParaVis module in <a class="reference internal" href="../get-started/install-openfoam.html#salome-install"><span class="std std-ref">SALOME</span></a> or ref}<code class="docutils literal notranslate"><span class="pre">SALOME-HYDRO</span> <span class="pre">&lt;salome-hydro&gt;</span></code>, which is featured in the <a class="reference internal" href="telemac3d-med.html#chpt-telemac3d-med"><span class="std std-ref">Telemac3d (MED)</span></a> tutorial.</p>
+Restart files in MED format are typically processed with the ParaVis module in <a class="reference internal" href="../get-started/install-openfoam.html#salome-install"><span class="std std-ref">SALOME</span></a>, which is featured in the <a class="reference internal" href="telemac3d-med.html#chpt-telemac3d-med"><span class="std std-ref">Telemac3d (MED)</span></a> tutorial.</p>
 <p>The results/restart file can be define in the steering file as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">steering</span><span class="o">.</span><span class="n">cas</span>
 <span class="n">RESULTS</span> <span class="n">FILE</span>             <span class="p">:</span> <span class="s1">&#39;t2d_channel_output.slf&#39;</span>

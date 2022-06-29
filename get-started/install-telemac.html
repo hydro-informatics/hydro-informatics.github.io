@@ -827,16 +827,11 @@
      Good to Know
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#two-installation-options">
-     Two Installation Options
-    </a>
-   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#stand-alone-installation-of-telemac">
-   Stand-alone Installation of TELEMAC
+  <a class="reference internal nav-link" href="#telemac-installation-workflow">
+   TELEMAC Installation Workflow
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -936,6 +931,11 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#qgis-linux-and-windows">
+     QGIS (Linux and Windows)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#bluekenue-windows-or-linux-wine">
      BlueKenue (Windows or Linux+Wine)
     </a>
@@ -943,43 +943,6 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#fudaa-prepro-linux-and-windows">
      Fudaa-PrePro (Linux and Windows)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#salome-hydro-linux">
-   SALOME-HYDRO (Linux)
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Prerequisites
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#debian-10-buster-users">
-     Debian 10 (buster) Users
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#install-salome-hydro">
-     Install SALOME-HYDRO
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#paraview-paravis-through-salome-hydro">
-     ParaView (ParaVis) through SALOME-HYDRO
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#start-salome-hydro">
-     Start SALOME-HYDRO
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#qgis-linux-and-windows">
-     QGIS (Linux and Windows)
     </a>
    </li>
   </ul>
@@ -1000,7 +963,7 @@
 <div class="admonition-requirements admonition">
 <p class="admonition-title">Requirements</p>
 <p>This tutorial guides through the installation of <a class="reference external" href="http://www.opentelemac.org/">open TELEMAC-MASCARET</a> on <a class="reference external" href="https://www.debian.org/">Debian Linux</a>.</p>
-<p>Account for approximately two hours for installing TELEMAC and make sure to have a stable internet connection.</p>
+<p>Account for approximately 1-2 hours for installing TELEMAC and make sure to have a stable internet connection (&gt;1.4 GB file download).</p>
 </div>
 <div class="section" id="preface">
 <h2>Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
@@ -1022,57 +985,11 @@
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="two-installation-options">
-<h3>Two Installation Options<a class="headerlink" href="#two-installation-options" title="Permalink to this headline">¶</a></h3>
-<p>This page describes two ways for installing TELEMAC:</p>
-<ul class="simple">
-<li><p>Option 1 (<strong>recommended</strong>): <a class="reference internal" href="#modular-install"><span class="std std-ref">Stand-alone installation</span></a> of TELEMAC</p>
-<ul>
-<li><p>Every software and packages needed to run a TELEMAC model is installed manually</p></li>
-<li><p><strong>Advantages</strong>:</p>
-<ul>
-<li><p>Full control over modules to be installed (high flexibility)</p></li>
-<li><p>Latest version of TELEMAC is installed and can be regularly updated</p></li>
-<li><p>Up-to-date compilers and all libraries are exactly matching the system.</p></li>
-</ul>
-</li>
-<li><p><strong>Disadvantages</strong>:</p>
-<ul>
-<li><p>The variety of install options may cause errors when incompatible packages are combined</p></li>
-<li><p>Challenging installation of optional modules such as AED2, HPC and parallelism</p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Option 2: <a class="reference internal" href="#salome-hydro"><span class="std std-ref">Installation of TELEMAC within the SALOME-HYDRO</span></a> software suite.</p>
-<ul>
-<li><p>All pre-processing tasks are managed with SALOME-HYDRO</p></li>
-<li><p>TELEMAC is launched through the HYDRO-SOLVER module</p></li>
-<li><p>Post-processing is performed with ParaView</p></li>
-<li><p><strong>Advantages</strong>:</p>
-<ul>
-<li><p>All-in-one solution for pre-processing</p></li>
-<li><p>Integrated HPC installation of TELEMAC v8p3</p></li>
-<li><p>Efficient for MED-file handling</p></li>
-</ul>
-</li>
-<li><p><strong>Disadvantages</strong>:</p>
-<ul>
-<li><p>Common input geometry file formats such as <em>SLF</em> (selafin) require additional software</p></li>
-<li><p>Only works without errors on old <em>Debian 9 (stretch)</em></p></li>
-<li><p>The pre-compiled version of TELEMAC and other modules were built with outdated gfortran compilers that cannot run on up-to-date systems.</p></li>
-<li><p>Often problems with the GUI and high risk of simulation crashes because of invalid library links.</p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>So what option to choose? To leverage the full capacities of TELEMAC, use both: <a class="reference internal" href="#salome-hydro"><span class="std std-ref">SALOME-HYDRO (Linux)</span></a> is a powerful pre-processor for preparing simulations and the <a class="reference internal" href="#modular-install"><span class="std std-ref">Stand-alone Installation of TELEMAC</span></a> enables maximum flexibility, system integrity, and computational stability.</p>
+<p>TELEMAC is also available through the SALOME-HYDRO software suite, which is a spinoff of SALOME. However, the principal functionalities of SALOME-HYDRO will migrate to a new QGIS plugin. Therefore, this eBook recommends installing TELEMAC independently from any pre- or post-processing software.</p>
 </div>
 </div>
-<div class="section" id="stand-alone-installation-of-telemac">
-<span id="modular-install"></span><h2>Stand-alone Installation of TELEMAC<a class="headerlink" href="#stand-alone-installation-of-telemac" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="telemac-installation-workflow">
+<span id="modular-install"></span><h2>TELEMAC Installation Workflow<a class="headerlink" href="#telemac-installation-workflow" title="Permalink to this headline">¶</a></h2>
 <div class="admonition-telemac-docker-image admonition">
 <p class="admonition-title">TELEMAC Docker image</p>
 <p>The Austrian engineering office <em>Flussplan</em> provides a Docker container of TELEMAC v8 on their <a class="reference external" href="https://github.com/flussplan/docker-telemac">docker-telemac GitHub repository</a>. Note that a Docker container represents an easy-to-install virtual environment that leverages cross-platform compatibility, but affects computational performance. If you have the proprietary Docker software installed and computational performance is not the primary concern for your models, Flussplan’s Docker container might be a good choice. For instance, purely hydrodynamic models with small numbers of grid nodes and without additional TELEMAC module implications will efficiently run in the Docker container.</p>
@@ -1165,19 +1082,24 @@ To enable parallelism, a <em>C</em> compiler is required for recognition of the 
 </div>
 <div class="section" id="download-telemac">
 <h3>Download TELEMAC<a class="headerlink" href="#download-telemac" title="Permalink to this headline">¶</a></h3>
-<p><em><strong>Estimated duration: 15-30 minutes.</strong></em></p>
-<p>We will need more packages to enable parallelism and compiling, but before installing them, download the latest version of TELEMAC with git. The developers (irregularly) inform about the newest public release on <a class="reference external" href="http://www.opentelemac.org/index.php/latest-news-development-and-distribution">their website</a> and the latest absolute latest release can be read from the <a class="reference external" href="http://svn.opentelemac.org/svn/opentelemac/tags/">svn-tags website</a> (use with passwords in the below command line block). To download TELEMAC, open Terminal in the <em>Home</em> directory (either use <code class="docutils literal notranslate"><span class="pre">cd</span></code> or use the <em>Files</em> browser to navigate to the <em>Home</em> directory and right-click in the empty space to open Terminal) and type (enter <code class="docutils literal notranslate"><span class="pre">no</span></code> when asked for password encryption):</p>
+<p><em><strong>Estimated duration: 25-40 minutes (large downloads).</strong></em></p>
+<p>Before getting more packages to enable parallelism and compiling, download the latest version of TELEMAC with git in which additional packages will be embedded. To download (i.e., <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code>) TELEMAC, open Terminal in the <code class="docutils literal notranslate"><span class="pre">/home/USERNAME/</span></code> directory (either tap <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~</span></code> or use the <em>File</em> browser to navigate to your <code class="docutils literal notranslate"><span class="pre">home</span></code> directory and right-click in the empty space to open Terminal). The following installation instructions assume that you are installing TELEMAC in the directory <code class="docutils literal notranslate"><span class="pre">/home/USERNAME/telemac/</span></code>, which can be created in Terminal with the command <code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">/home/USERNAME/telemac/</span></code> (corresponds to <code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">~/telemac/</span></code>) - do not forget to change directory into that folder (e.g., <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/telemac</span></code>). You may want to choose another directory and adapt the installation directories accordingly. Now, to download TELEMAC into this directory, type (enter <code class="docutils literal notranslate"><span class="pre">no</span></code> when asked for password encryption):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">gitlab</span><span class="o">.</span><span class="n">pam</span><span class="o">-</span><span class="n">retd</span><span class="o">.</span><span class="n">fr</span><span class="o">/</span><span class="n">otm</span><span class="o">/</span><span class="n">telemac</span><span class="o">-</span><span class="n">mascaret</span><span class="o">.</span><span class="n">git</span> <span class="n">v8p3</span>
 </pre></div>
 </div>
-<p>This will have downloaded TELEMAC v8p3 to the directory <code class="docutils literal notranslate"><span class="pre">/home/USER-NAME/telemac/v8p3</span></code>.</p>
-<div class="tip admonition">
+<p>This will have downloaded TELEMAC v8p3 to the directory <code class="docutils literal notranslate"><span class="pre">/home/USERNAME/telemac/v8p3</span></code>.</p>
+<div class="tip dropdown admonition">
 <p class="admonition-title">There are many (experimental) branches of TELEMAC available</p>
 <p>The TELEMAC git repository povides many other TELEMAC versions in the form of development or old-version branches. For instance, the following clones the <code class="docutils literal notranslate"><span class="pre">upwind_gaia</span></code> branch to a local subfolder called <code class="docutils literal notranslate"><span class="pre">telemac/gaia-upwind</span></code>. After cloning this single branch, compiling TELEMAC can be done as described in the following.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>git clone –branch upwind_gaia –single-branch https://gitlab.pam-retd.fr/otm/telemac-mascaret.git telemac/gaia-upwind
 </pre></div>
 </div>
 <p>Read more about cloning single TELEMAC branches in the <a class="reference external" href="http://wiki.opentelemac.org/doku.php?id=telemac-mascaret_git_repository">TELEMAC wiki</a>.</p>
+</div>
+<p>After downloading (cloning) the TELEMAC repository, switch to (check out) the latest version:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">v8p3</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">tags</span><span class="o">/</span><span class="n">v8p3r0</span>
+</pre></div>
 </div>
 </div>
 </div>
@@ -1188,20 +1110,16 @@ To enable parallelism, a <em>C</em> compiler is required for recognition of the 
 <li><p>Install packages for parallelism to enable a substantial acceleration of simulations:</p>
 <ul>
 <li><p>MPI distribution</p></li>
-<li><p>Metis 5.1.x</p></li>
+<li><p>Metis 5.1.0</p></li>
 </ul>
 </li>
 <li><p>For the MED file format (input mesh and computation results):</p>
 <ul>
 <li><p>Hdf5</p></li>
-<li><p>MEDFichier</p></li>
+<li><p>MEDFichier 3.2.0</p></li>
 </ul>
 </li>
 </ul>
-<div class="tip admonition">
-<p class="admonition-title">Use SALOME-HYDRO’s MED, Metis, and AED2 libraries</p>
-<p>The newest versions of Hdf5, MEDFichier, Metis, AED2, and many more are included and compiled in the <a class="reference external" href="#salome-hydro">SALOME-HYDRO</a> installer. Thus, consider installing SALOME-HYDRO before installing TELEMAC and just copy relevant, compiled libraries from the directory <code class="docutils literal notranslate"><span class="pre">~/SALOME-HYDRO/Salome-V2_2-s9/prerequisites/</span></code> to <code class="docutils literal notranslate"><span class="pre">~/telemac/v8p3/optionals/</span></code>. In this case, it is sufficient to install <em>open MPI</em> as below described and then go directly to the <a class="reference internal" href="#compile-tm"><span class="std std-ref">Compile TELEMAC</span></a> section, where the optionals-folder names need to be adapted.</p>
-</div>
 <div class="section" id="parallelism-install-mpi">
 <span id="mpi"></span><h3>Parallelism: Install MPI<a class="headerlink" href="#parallelism-install-mpi" title="Permalink to this headline">¶</a></h3>
 <p><em><strong>Estimated duration: 5 minutes.</strong></em></p>
@@ -1279,7 +1197,7 @@ To enable parallelism, a <em>C</em> compiler is required for recognition of the 
 </pre></div>
 </div>
 <p>Configure and compile <em>hdf5</em> (enter every command one-by-one):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">configure</span> <span class="o">--</span><span class="n">prefix</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">USER</span><span class="o">-</span><span class="n">NAME</span><span class="o">/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p3</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">hdf5</span> <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">parallel</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">configure</span> <span class="o">--</span><span class="n">prefix</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">USERNAME</span><span class="o">/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p3</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">hdf5</span> <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">parallel</span>
 <span class="n">make</span>
 <span class="n">make</span> <span class="n">install</span>
 </pre></div>
@@ -1300,12 +1218,12 @@ The installation of <em>hdf5</em> on Linux is also documented in the <a class="r
 </pre></div>
 </div>
 <p>To compile the <em>med file</em> library type:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">configure</span> <span class="o">--</span><span class="n">prefix</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">USER</span><span class="o">-</span><span class="n">NAME</span><span class="o">/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p3</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">med</span><span class="o">-</span><span class="mf">3.2.0</span> <span class="o">--</span><span class="k">with</span><span class="o">-</span><span class="n">hdf5</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">USER</span><span class="o">-</span><span class="n">NAME</span><span class="o">/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p3</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">hdf5</span> <span class="o">--</span><span class="n">disable</span><span class="o">-</span><span class="n">python</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">configure</span> <span class="o">--</span><span class="n">prefix</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">USERNAME</span><span class="o">/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p3</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">med</span><span class="o">-</span><span class="mf">3.2.0</span> <span class="o">--</span><span class="k">with</span><span class="o">-</span><span class="n">hdf5</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">USERNAME</span><span class="o">/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p3</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">hdf5</span> <span class="o">--</span><span class="n">disable</span><span class="o">-</span><span class="n">python</span>
 <span class="n">make</span>
 <span class="n">make</span> <span class="n">install</span>
 </pre></div>
 </div>
-<p>The flag <code class="docutils literal notranslate"><span class="pre">--prefix</span></code> sets the installation directory and <code class="docutils literal notranslate"><span class="pre">--width-hdf5</span></code> tells the med library where it can find the <em>hdf5</em> library. Thus, adapt <code class="docutils literal notranslate"><span class="pre">/home/USER-NAME/telemac/v8p3/optionals/hdf5</span></code> to your local <code class="docutils literal notranslate"><span class="pre">&lt;install_path&gt;</span></code> of the <em>hdf5</em> library. Both flags to not accept relative paths (<code class="docutils literal notranslate"><span class="pre">~/telemac/...</span></code>), and therefore, we need to use the absolute paths (<code class="docutils literal notranslate"><span class="pre">home/USER-NAME/telemac/...</span></code>) here.</p>
+<p>The flag <code class="docutils literal notranslate"><span class="pre">--prefix</span></code> sets the installation directory and <code class="docutils literal notranslate"><span class="pre">--width-hdf5</span></code> tells the med library where it can find the <em>hdf5</em> library. Thus, adapt <code class="docutils literal notranslate"><span class="pre">/home/USERNAME/telemac/v8p3/optionals/hdf5</span></code> to your local <code class="docutils literal notranslate"><span class="pre">&lt;install_path&gt;</span></code> of the <em>hdf5</em> library. Both flags to not accept relative paths (<code class="docutils literal notranslate"><span class="pre">~/telemac/...</span></code>), and therefore, we need to use the absolute paths (<code class="docutils literal notranslate"><span class="pre">home/USERNAME/telemac/...</span></code>) here.</p>
 <div class="note dropdown admonition">
 <p class="admonition-title">Why <em>–disable-python</em>?</p>
 <p>We need to disable Python for the <em>med file</em> library because this feature would require <em>SWIG</em> version 2.0 and it is not compatible with the current versions of <em>SWIG</em> (4.x). Because <em>SWIG</em> has no full backward compatibility, the only option we have is to disable Python integrity for the <em>med file</em> library. Otherwise, Python integrity could be implemented by installing Python developer kits ( <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">python3-dev</span></code>  and  <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">python3.7-dev</span></code> ) and using the configuration <code class="docutils literal notranslate"><span class="pre">./configure</span> <span class="pre">--with-hdf5=/home/USER-NAME/Telemac/hdf5</span> <span class="pre">PYTHON_LDFLAGS='-lpython3.7m'</span> <span class="pre">--with-swig=yes</span></code>. To find out what version of Python is installed, type <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-V</span></code>.</p>
@@ -1313,7 +1231,7 @@ The installation of <em>hdf5</em> on Linux is also documented in the <a class="r
 <p>The installation of the <em>med file</em> library on Linux is also documented in the <a class="reference external" href="http://wiki.opentelemac.org/doku.php?id=installation_linux_med">opentelemac wiki</a>.</p>
 <div class="attention dropdown admonition">
 <p class="admonition-title">Permission denied?</p>
-<p>If you consistently get <em><strong>permission denied</strong></em> messages, unlock all read and write rights for the <code class="docutils literal notranslate"><span class="pre">telemac</span></code> directory with the following command: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">-R</span> <span class="pre">777</span>&#160; <span class="pre">/home/USER-NAME/telemac</span></code> (replace <code class="docutils literal notranslate"><span class="pre">USER-NAME</span></code> with the user for whom TELEMAC is installed).</p>
+<p>If you consistently get <em><strong>permission denied</strong></em> messages, unlock all read and write rights for the <code class="docutils literal notranslate"><span class="pre">telemac</span></code> directory with the following command: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">-R</span> <span class="pre">777</span>&#160; <span class="pre">/home/USERNAME/telemac</span></code> (replace <code class="docutils literal notranslate"><span class="pre">USERNAME</span></code> with the user for whom TELEMAC is installed).</p>
 </div>
 <p>Finally, <strong>remove the <code class="docutils literal notranslate"><span class="pre">temp</span></code> folder</strong> to avoid storing garbage:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p3</span><span class="o">/</span><span class="n">optionals</span>
@@ -1344,7 +1262,7 @@ The installation of <em>hdf5</em> on Linux is also documented in the <a class="r
 <p class="admonition-title">Facilitate compiling with our templates</p>
 <p>To facilitate setting up the <code class="docutils literal notranslate"><span class="pre">systel</span></code> file, use our template (no by-default AED2):</p>
 <ul class="simple">
-<li><p>Right-click on <a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/main/debian/systel.cis-debian.cfg">this download</a> &gt; <em>Save Link As…</em> &gt; <code class="docutils literal notranslate"><span class="pre">~/telemac/v8p3/configs/systel.cis-debian.cfg</span></code> &gt; <em>Replace Existing</em>.</p></li>
+<li><p>Right-click on <a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/main/debian/systel.cis-debian.cfg">this download for Debian 10 (Buster)</a> &gt; <em>Save Link As…</em> &gt; <code class="docutils literal notranslate"><span class="pre">~/telemac/v8p3/configs/systel.cis-debian.cfg</span></code> &gt; <em>Replace Existing</em> (also works with Linux Mint 20.3 (Una)).</p></li>
 <li><p>Make sure to verify the  directories described in this section and replace the <code class="docutils literal notranslate"><span class="pre">USER-NAME</span></code> with your user name in the downloaded <code class="docutils literal notranslate"><span class="pre">systel.cis-debian.cfg</span></code> file.</p></li>
 <li><p>To use <em>AED2</em>, <a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/main/debian/systel.cis-debian-aed2.cfg">download systel.cis-debian-aed2.cfg</a>.</p></li>
 <li><p>For <strong>dynamic</strong> compiling, <a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/main/debian/systel.cis-debian-dyn.cfg">download systel.cis-debian-dyn.cfg</a> (rather than the above <em>systel.cis-debian.cfg</em> file).</p></li>
@@ -1559,6 +1477,21 @@ When <code class="docutils literal notranslate"><span class="pre">config.py</spa
 </div>
 <div class="section" id="utilities-pre-post-processing">
 <h2>Utilities (Pre- &amp; Post-processing)<a class="headerlink" href="#utilities-pre-post-processing" title="Permalink to this headline">¶</a></h2>
+<div class="note admonition">
+<p class="admonition-title">More Pre- and Post-processing Software</p>
+<p>More software for dealing with Telemac pre- and post-processing is available in the form of <a class="reference internal" href="install-openfoam.html#salome-install"><span class="std std-ref">SALOME</span></a> and ParaView.</p>
+</div>
+<div class="section" id="qgis-linux-and-windows">
+<span id="qgis-telemac"></span><h3>QGIS (Linux and Windows)<a class="headerlink" href="#qgis-linux-and-windows" title="Permalink to this headline">¶</a></h3>
+<p><em><strong>Estimated duration: 5-10 minutes (depends on connection speed).</strong></em></p>
+<p>QGIS is a powerful tool for viewing, creating, and editing geospatial data that can be useful in pre- and post-processing. Detailed installation guidelines are provided in the <a class="reference internal" href="geo.html#qgis-install"><span class="std std-ref">QGIS</span></a> installation instructions and the <a class="reference internal" href="../geopy/use-qgis.html#qgis-tutorial"><span class="std std-ref">QGIS tutorial</span></a>in this eBook. For working with TELEMAC, consider installing the following <strong>QGIS Plugins</strong> (<em>Plugins</em> &gt; <em>Manage and Install Plugins…</em>):</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../numerics/pre-qgis-bm.html#get-basemesh"><span class="std std-ref">BASEmesh</span></a> enables to create a <a class="reference internal" href="../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> file that can be converted to a selafin geometry for TELEMAC (read more in the <a class="reference internal" href="../numerics/pre-slf-tm.html#tm-qgis-prepro"><span class="std std-ref">QGIS pre-processing tutorial for TELEMAC</span></a>).</p></li>
+<li><p><em>PostTelemac</em> visualizes <code class="docutils literal notranslate"><span class="pre">*.slf</span></code> (and others such as <code class="docutils literal notranslate"><span class="pre">*.res</span></code>) geometry files at different time steps.</p></li>
+<li><p><em>DEMto3D</em> enables to export <em>STL</em> geometry files for working with <em>SALOME</em> and creating 3D meshes.</p></li>
+</ul>
+<p>Note that <em>DEMto3D</em> will be available in the <em>Raster</em> menu: <em>DEMto3D</em> &gt; <em>DEM 3D printing</em>.</p>
+</div>
 <div class="section" id="bluekenue-windows-or-linux-wine">
 <span id="bluekenue"></span><h3>BlueKenue (Windows or Linux+Wine)<a class="headerlink" href="#bluekenue-windows-or-linux-wine" title="Permalink to this headline">¶</a></h3>
 <p><em><strong>Estimated duration: 10 minutes.</strong></em></p>
@@ -1631,142 +1564,6 @@ java -Xmx2048m -Xms512m -cp &quot;$(pwd)/Fudaa-Prepro-1.4.2-SNAPSHOT.jar&quot;
 org.fudaa.fudaa.tr.TrSupervisor $1 $2 $3 $4 $5 $6 $7 $8 $9
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="salome-hydro-linux">
-<span id="salome-hydro"></span><h2>SALOME-HYDRO (Linux)<a class="headerlink" href="#salome-hydro-linux" title="Permalink to this headline">¶</a></h2>
-<p>SALOME-HYDRO is a spinoff of SALOME (<a class="reference external" href="#salome">see description in the modular installation</a> with full capacities to create and run a numerical model with TELEMAC. The program is distributed on <a class="reference external" href="https://www.salome-platform.org/?page_id=318">salome-platform.org</a> as specific EDF contribution.</p>
-<div class="tip admonition">
-<p class="admonition-title">Tips for working with SALOME-HYDRO</p>
-<ul class="simple">
-<li><p>SALOME-HYDRO also works on <em>Windows</em> platforms, but most applications and support is provided for <em>Debian Linux</em>.</p></li>
-<li><p>It might be useful to understand French, for instance, to explore the <a class="reference external" href="https://www.youtube.com/channel/UCokrSqnpG3sLXkagZwUmuXg">Salome Youtube channel</a></p></li>
-</ul>
-<div class="error admonition">
-<p class="admonition-title">Outdated library links of the SALOME-HYDRO installer</p>
-<p>On any system that is not Debian 9 (stretch), SALOME-HYDRO can only be used as a pre-processor (Geometry &amp; Mesh modules) and as a post-processor (ParaVis module) for med-file handling. The <em>HydroSolver</em> module that potentially enables running TELEMAC does not work properly with Debian 10 or any system that is not Debian 9. Therefore, the  <a class="reference internal" href="#modular-install"><span class="std std-ref">Stand-alone Installation of TELEMAC</span></a> is still required to run models developed with SALOME-HYDRO.</p>
-</div>
-</div>
-<div class="section" id="id1">
-<h3>Prerequisites<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p>Download the installer from the <a class="reference external" href="https://www.salome-platform.org/?page_id=318">developer’s website</a> or use the newer version provided through the <a class="reference external" href="http://www.opentelemac.org/index.php/kunena/other/12263-hydrosalome-z-interpolation#34100">TELEMAC user Forum</a> (registration required)</p></li>
-</ul>
-<!-- [Salome-Hydro V2_2](https://drive.google.com/file/d/1Bimoy9d9dqgQDbMW_kJxilw5JEoMvZ0Q/view) -->
-<ul class="simple">
-<li><p>Install required packages (verify the latest version of <code class="docutils literal notranslate"><span class="pre">libssl</span></code> and if necessary, correct version)</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">openmpi</span><span class="o">-</span><span class="n">common</span> <span class="n">gfortran</span> <span class="n">mpi</span><span class="o">-</span><span class="n">default</span><span class="o">-</span><span class="n">dev</span> <span class="n">zlib1g</span><span class="o">-</span><span class="n">dev</span> <span class="n">libnuma</span><span class="o">-</span><span class="n">dev</span> <span class="n">xterm</span> <span class="n">net</span><span class="o">-</span><span class="n">tools</span>
-</pre></div>
-</div>
-<!-- sudo apt install libssl1.1 libssl-dev  -->
-<ul class="simple">
-<li><p>Install earlier versions of <code class="docutils literal notranslate"><span class="pre">libssl</span></code>:</p>
-<ul>
-<li><p>Open the list of sources <br> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">editor</span> <span class="pre">/etc/apt/sources.list</span></code></p></li>
-<li><p><strong>Ubuntu users</strong>: In <em>sources.list</em>, add <em>Ubuntu’s Bionic</em> security as source with<br> <code class="docutils literal notranslate"><span class="pre">deb</span> <span class="pre">http://security.ubuntu.com/ubuntu</span> <span class="pre">bionic-security</span> <span class="pre">main</span></code> <br> Using <em>Nano</em> as text editor, copy the above line into <em>sources.list</em>, then press <code class="docutils literal notranslate"><span class="pre">CTRL</span></code>+<code class="docutils literal notranslate"><span class="pre">O</span></code>, confirm writing with <code class="docutils literal notranslate"><span class="pre">Enter</span></code>, then press <code class="docutils literal notranslate"><span class="pre">CTRL</span></code>+<code class="docutils literal notranslate"><span class="pre">X</span></code> to exit <em>Nano</em>.</p></li>
-<li><p><strong>Debian users</strong>: In <em>sources.list</em>, add <em>Debian Stretch</em> source with<br> <code class="docutils literal notranslate"><span class="pre">deb</span> <span class="pre">http://deb.debian.org/debian/</span> <span class="pre">stretch</span> <span class="pre">main</span> <span class="pre">contrib</span> <span class="pre">non-free</span></code> <br> <code class="docutils literal notranslate"><span class="pre">deb-src</span> <span class="pre">http://deb.debian.org/debian</span> <span class="pre">stretch</span> <span class="pre">main</span> <span class="pre">contrib</span> <span class="pre">non-free</span></code><br> Using <em>Nano</em> as text editor, copy the above lines into <em>source.list</em>, then press <code class="docutils literal notranslate"><span class="pre">CTRL</span></code>+<code class="docutils literal notranslate"><span class="pre">O</span></code>, confirm writing with <code class="docutils literal notranslate"><span class="pre">Enter</span></code>, then press <code class="docutils literal notranslate"><span class="pre">CTRL</span></code>+<code class="docutils literal notranslate"><span class="pre">X</span></code> to exit <em>Nano</em>.</p></li>
-<li><p>Back in Terminal tap <br> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">update</span> <span class="pre">&amp;&amp;</span> <span class="pre">apt-cache</span> <span class="pre">policy</span> <span class="pre">libssl1.0-dev</span></code> <br> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">libssl1.0-dev</span> <span class="pre">libopenblas-dev</span> <span class="pre">libgeos-dev</span> <span class="pre">unixodbc-dev</span> <span class="pre">libnetcdf-dev</span> <span class="pre">libhdf4-0-alt</span> <span class="pre">libpq-dev</span> <span class="pre">qt5ct</span> <span class="pre">libgfortran3</span></code></p></li>
-</ul>
-</li>
-<li><p><strong>Debian 9 users</strong> will need to add and install <em>nvidia</em> drivers as described in the virtual machine / <em>Debian Linux</em> installation section to <a class="reference internal" href="vm.html#opengl"><span class="std std-ref">Enable OpenGL</span></a>.</p></li>
-</ul>
-</div>
-<div class="section" id="debian-10-buster-users">
-<h3>Debian 10 (buster) Users<a class="headerlink" href="#debian-10-buster-users" title="Permalink to this headline">¶</a></h3>
-<div class="warning admonition">
-<p class="admonition-title">Potentially harmful action</p>
-<p>The following steps for renaming system libraries are potentially harmful to your system. <strong>Only continue if you absolutely know what you are doing.</strong> Otherwise, go back to the <a class="reference internal" href="#modular-install"><span class="std std-ref">Stand-alone Installation of TELEMAC</span></a> section.</p>
-</div>
-<p>SALOME-HYDRO is using some outdated libraries, which require that newer versions (e.g., of the <em>openmpi</em> library) must be copied and the copies must be renamed to match the outdated library names. Therefore, open Terminal and tap:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi</span><span class="o">.</span><span class="n">so</span><span class="mf">.40</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi</span><span class="o">.</span><span class="n">so</span><span class="mf">.20</span>
-<span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libicui18n</span><span class="o">.</span><span class="n">so</span><span class="mf">.63</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libicui18n</span><span class="o">.</span><span class="n">so</span><span class="mf">.57</span>
-<span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libicuuc</span><span class="o">.</span><span class="n">so</span><span class="mf">.63</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libicuuc</span><span class="o">.</span><span class="n">so</span><span class="mf">.57</span>
-<span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libicudata</span><span class="o">.</span><span class="n">so</span><span class="mf">.63</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libicudata</span><span class="o">.</span><span class="n">so</span><span class="mf">.57</span>
-<span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libnetcdf</span><span class="o">.</span><span class="n">so</span><span class="mf">.13</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libnetcdf</span><span class="o">.</span><span class="n">so</span><span class="mf">.11</span>
-<span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_usempif08</span><span class="o">.</span><span class="n">so</span><span class="mf">.40</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_usempif08</span><span class="o">.</span><span class="n">so</span><span class="mf">.20</span>
-<span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_java</span><span class="o">.</span><span class="n">so</span><span class="mf">.40</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_java</span><span class="o">.</span><span class="n">so</span><span class="mf">.20</span>
-<span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_cxx</span><span class="o">.</span><span class="n">so</span><span class="mf">.40</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_cxx</span><span class="o">.</span><span class="n">so</span><span class="mf">.20</span>
-<span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_mpifh</span><span class="o">.</span><span class="n">so</span><span class="mf">.40</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_mpifh</span><span class="o">.</span><span class="n">so</span><span class="mf">.20</span>
-<span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_usempi_ignore_tkr</span><span class="o">.</span><span class="n">so</span><span class="mf">.40</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmpi_usempi_ignore_tkr</span><span class="o">.</span><span class="n">so</span><span class="mf">.20</span>
-</pre></div>
-</div>
-<p>In addition, the <em>Qt</em> library of the SALOME-HYDRO installer is targeting out-dated libraries on <em>Debian 10</em>. To troubleshoot this issue, open the file explorer and:</p>
-<ul class="simple">
-<li><p>Go to the directory <code class="docutils literal notranslate"><span class="pre">/usr/lib/x86_64-linux-gnu/</span></code></p></li>
-<li><p>Find, highlight, and copy all <strong>lib</strong> files that contain the string <strong>libQt5</strong> (or even just <strong>Qt5</strong>).</p></li>
-<li><p>Paste the copied <strong>Qt5</strong> library files into <code class="docutils literal notranslate"><span class="pre">/SALOME-HYDRO/Salome-V2_2/prerequisites/Qt-591/lib/</span></code> (confirm <strong>replace existing files</strong>).</p></li>
-</ul>
-<p>Both procedures for copying library files are anything but a coherent solution. However, it is currently the only way to get SALOME-HYDRO working on <em>Debian 10</em>.</p>
-</div>
-<div class="section" id="install-salome-hydro">
-<h3>Install SALOME-HYDRO<a class="headerlink" href="#install-salome-hydro" title="Permalink to this headline">¶</a></h3>
-<p>Open the Terminal, <code class="docutils literal notranslate"><span class="pre">cd</span></code> into the directory where you downloaded <strong>Salome-V1_1_univ_3.run</strong> (or <strong>Salome-HYDRO-V2_2-s9.run</strong>),  and tap:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chmod</span> <span class="mi">775</span> <span class="n">Salome</span><span class="o">-</span><span class="n">HYDRO</span><span class="o">-</span><span class="n">V2_2</span><span class="o">-</span><span class="n">S9</span><span class="o">.</span><span class="n">run</span>
-<span class="o">./</span><span class="n">Salome</span><span class="o">-</span><span class="n">HYDRO</span><span class="o">-</span><span class="n">V2_2</span><span class="o">-</span><span class="n">S9</span><span class="o">.</span><span class="n">run</span>
-</pre></div>
-</div>
-<p>During the installation process, define a convenient installation directory such as <strong>/home/salome-hydro/</strong>. The installer guides through the installation and prompts how to launch the program at the end.</p>
-<div class="admonition attention">
-<p class="admonition-title">Attention</p>
-<p>If you get error messages such as <code class="docutils literal notranslate"><span class="pre">./create_appli_V1_1_univ.sh/xml:</span> <span class="pre">line</span> <span class="pre">[...]:</span> <span class="pre">No</span> <span class="pre">such</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">directory.</span></code>, there is probably an issue with the version of Python. In this case, run <code class="docutils literal notranslate"><span class="pre">update-alternatives</span> <span class="pre">--install</span> <span class="pre">/usr/bin/python</span> <span class="pre">python</span> <span class="pre">/usr/bin/python2.7</span> <span class="pre">1</span></code> and re-try.</p>
-</div>
-<p>Try to launch SALOME-HYDRO:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">salome</span><span class="o">-</span><span class="n">hydro</span><span class="o">/</span><span class="n">appli_V2_2</span><span class="o">/</span>
-<span class="o">./</span><span class="n">salome</span>
-</pre></div>
-</div>
-<p>If there are issues such as  <code class="docutils literal notranslate"><span class="pre">Kernel/Session</span></code> in the <code class="docutils literal notranslate"><span class="pre">Naming</span> <span class="pre">Service</span></code> (<code class="docutils literal notranslate"><span class="pre">[Errno</span> <span class="pre">3]</span> <span class="pre">No</span> <span class="pre">such</span> <span class="pre">process</span></code> … <code class="docutils literal notranslate"><span class="pre">RuntimeError:</span> <span class="pre">Process</span> <span class="pre">NUMBER</span> <span class="pre">for</span> <span class="pre">Kernel/Session</span> <span class="pre">not</span> <span class="pre">found</span></code>), go to the <a class="reference internal" href="../troubleshoot/dbg-telemac.html#salome-dbg"><span class="std std-ref">troubleshooting page</span></a>.</p>
-<p>If the program is not showing up properly (e.g., empty menu items), read more about Qt GUI support on the <a class="reference internal" href="../troubleshoot/dbg-telemac.html#qt-dbg"><span class="std std-ref">troubleshooting page</span></a>.</p>
-<!--
-```{tip}
-**Set a keyboard shortcut to start SALOME-HYDRO on Debian Linux**: Go to *Activities*, tap *keyboard*, and select *Keyboard* from the list (do not click on *Tweaks*). In the *Keyboard* window, scroll to the bottom and click on the `+` sign to define a new shortcut. In the popup window use, for example, SALOME-HYDRO as *Name*, in the *Command* box tap `/home/salome-hydro/appli_V1_1_univ/salome` (or where ever SALOME-HYDRO is installed), and define a *Shortcut*, such as `CTRL` + `Alt` + `S`.
-```
-
-```{figure} ../img/sah-keyboard-shortcut.png
-:alt: salome-hydro shortcut
-
-Define a keyboard shortcut to start SALOME-HYDRO.
-```
--->
-</div>
-<div class="section" id="paraview-paravis-through-salome-hydro">
-<span id="paravis-salome"></span><h3>ParaView (ParaVis) through SALOME-HYDRO<a class="headerlink" href="#paraview-paravis-through-salome-hydro" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://www.paraview.org">ParaView</a> serves for the visualization of model results in the SALOME-HYDRO modelling chain. The built-in module <em>ParaViS</em> essentially corresponds to ParaView, but the separate usage of ParaView enables a better experience for post-processing of results. The installation of SALOME-HYDRO already involves an older version of ParaView that is able to manipulate <em>MED</em> files. To start ParaView through SALOME-HYDRO, open Terminal, <code class="docutils literal notranslate"><span class="pre">cd</span></code> to the directory where SALOME-HYDRO is installed, launch the environment, and then launch ParaView:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">slome</span><span class="o">-</span><span class="n">hydro</span><span class="o">/</span><span class="n">appli_V2_2</span><span class="o">/</span>
-<span class="o">.</span> <span class="n">env</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">envProducts</span><span class="o">.</span><span class="n">sh</span>
-<span class="o">./</span><span class="n">runRemote</span><span class="o">.</span><span class="n">sh</span> <span class="n">paraview</span>
-</pre></div>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>If the <em>ParaVis</em> module continuously crashes in SALOME-HYDRO, consider to install the latest version of <a class="reference external" href="../get-started/install-openfoam.html#salome"><em>SALOME</em></a> (e.g., as described with the installation of <em>OpenFOAM</em>).</p>
-</div>
-<p>Alternatively, ParaView is freely available on the <a class="reference external" href="https://www.paraview.org/download/">developer’s website</a> and the latest stable release can be installed on <em>Debian Linux</em>, through the Terminal:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">paraview</span>
-</pre></div>
-</div>
-<p>In this case, to run ParaView tap <code class="docutils literal notranslate"><span class="pre">paraview</span></code> in Terminal. If you are using a virtual machine, start ParaView with the <code class="docutils literal notranslate"><span class="pre">--mesa-llvm</span></code> flag (i.e., <code class="docutils literal notranslate"><span class="pre">paraview</span> <span class="pre">--mesa-llvm</span></code>).
-To enable <em>MED</em> file handling, <em>MED</em> coupling is necessary, which requires to follow the installation instructions on <a class="reference external" href="https://docs.salome-platform.org/7/dev/MEDCoupling/install.html">docs.salome-platform.org</a>.</p>
-</div>
-<div class="section" id="start-salome-hydro">
-<h3>Start SALOME-HYDRO<a class="headerlink" href="#start-salome-hydro" title="Permalink to this headline">¶</a></h3>
-<p>To start SALOME-HYDRO, open Terminal and tap:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">salome</span><span class="o">-</span><span class="n">hydro</span><span class="o">/</span><span class="n">appli_V1_1_univ</span><span class="o">/</span><span class="n">salome</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="qgis-linux-and-windows">
-<span id="qgis-telemac"></span><h3>QGIS (Linux and Windows)<a class="headerlink" href="#qgis-linux-and-windows" title="Permalink to this headline">¶</a></h3>
-<p><em><strong>Estimated duration: 5-10 minutes (depends on connection speed).</strong></em></p>
-<p><em>QGIS</em> is a powerful tool for viewing, creating, and editing geospatial data that can be useful in Pre- and post-processing. Detailed installation guidelines are provided in the <a class="reference internal" href="geo.html#qgis-install"><span class="std std-ref">QGIS</span></a> installation instructions in this eBook.</p>
-<p>For working with TELEMAC, consider installing the following <strong>QGIS Plugins</strong> (<em>Plugins</em> &gt; <em>Manage and Install Plugins…</em>):</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="../numerics/pre-qgis-bm.html#get-basemesh"><span class="std std-ref">BASEmesh</span></a> enables to create a <a class="reference internal" href="../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> file that can be converted to a selafin geometry for TELEMAC (read more in the <a class="reference internal" href="../numerics/pre-slf-tm.html#tm-qgis-prepro"><span class="std std-ref">QGIS pre-processing tutorial for TELEMAC</span></a>).</p></li>
-<li><p><em>PostTelemac</em> visualizes <code class="docutils literal notranslate"><span class="pre">*.slf</span></code> (and others such as <code class="docutils literal notranslate"><span class="pre">*.res</span></code>) geometry files at different time steps.</p></li>
-<li><p><em>DEMto3D</em> enables to export <em>STL</em> geometry files for working with <em>SALOME</em> and creating 3D meshes.</p></li>
-</ul>
-<p>Note that <em>DEMto3D</em> will be available in the <em>Raster</em> menu: <em>DEMto3D</em> &gt; <em>DEM 3D printing</em>.</p>
 </div>
 </div>
 </div>

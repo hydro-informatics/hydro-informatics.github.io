@@ -4,7 +4,7 @@
 ```{admonition} Requirements
 This tutorial guides through the installation of [open TELEMAC-MASCARET](http://www.opentelemac.org/) on [Debian Linux](https://www.debian.org/).
 
-Account for approximately two hours for installing TELEMAC and make sure to have a stable internet connection.
+Account for approximately 1-2 hours for installing TELEMAC and make sure to have a stable internet connection (>1.4 GB file download).
 ```
 
 ## Preface
@@ -30,37 +30,10 @@ config.py
 ```
 ````
 
-### Two Installation Options
-
-This page describes two ways for installing TELEMAC:
-
-* Option 1 (**recommended**): {ref}`Stand-alone installation <modular-install>` of TELEMAC
-  * Every software and packages needed to run a TELEMAC model is installed manually
-  * **Advantages**:
-    - Full control over modules to be installed (high flexibility)
-    - Latest version of TELEMAC is installed and can be regularly updated
-    - Up-to-date compilers and all libraries are exactly matching the system.
-  * **Disadvantages**:
-    - The variety of install options may cause errors when incompatible packages are combined
-    - Challenging installation of optional modules such as AED2, HPC and parallelism
-* Option 2: {ref}`Installation of TELEMAC within the SALOME-HYDRO <salome-hydro>` software suite.
-  * All pre-processing tasks are managed with SALOME-HYDRO
-  * TELEMAC is launched through the HYDRO-SOLVER module
-  * Post-processing is performed with ParaView
-  * **Advantages**:
-    - All-in-one solution for pre-processing
-    - Integrated HPC installation of TELEMAC v8p3
-    - Efficient for MED-file handling
-  * **Disadvantages**:
-    - Common input geometry file formats such as *SLF* (selafin) require additional software
-    - Only works without errors on old *Debian 9 (stretch)*
-    - The pre-compiled version of TELEMAC and other modules were built with outdated gfortran compilers that cannot run on up-to-date systems.
-    - Often problems with the GUI and high risk of simulation crashes because of invalid library links.
-
-So what option to choose? To leverage the full capacities of TELEMAC, use both: {ref}`salome-hydro` is a powerful pre-processor for preparing simulations and the {ref}`modular-install` enables maximum flexibility, system integrity, and computational stability.
+TELEMAC is also available through the SALOME-HYDRO software suite, which is a spinoff of SALOME. However, the principal functionalities of SALOME-HYDRO will migrate to a new QGIS plugin. Therefore, this eBook recommends installing TELEMAC independently from any pre- or post-processing software.
 
 (modular-install)=
-## Stand-alone Installation of TELEMAC
+## TELEMAC Installation Workflow
 
 ```{admonition} TELEMAC Docker image
 The Austrian engineering office *Flussplan* provides a Docker container of TELEMAC v8 on their [docker-telemac GitHub repository](https://github.com/flussplan/docker-telemac). Note that a Docker container represents an easy-to-install virtual environment that leverages cross-platform compatibility, but affects computational performance. If you have the proprietary Docker software installed and computational performance is not the primary concern for your models, Flussplan's Docker container might be a good choice. For instance, purely hydrodynamic models with small numbers of grid nodes and without additional TELEMAC module implications will efficiently run in the Docker container.
@@ -180,18 +153,18 @@ sudo apt install -y cmake build-essential dialog vim
 
 ### Download TELEMAC
 
-***Estimated duration: 15-30 minutes.***
+***Estimated duration: 25-40 minutes (large downloads).***
 
-We will need more packages to enable parallelism and compiling, but before installing them, download the latest version of TELEMAC with git. The developers (irregularly) inform about the newest public release on [their website](http://www.opentelemac.org/index.php/latest-news-development-and-distribution) and the latest absolute latest release can be read from the [svn-tags website](http://svn.opentelemac.org/svn/opentelemac/tags/) (use with passwords in the below command line block). To download TELEMAC, open Terminal in the *Home* directory (either use `cd` or use the *Files* browser to navigate to the *Home* directory and right-click in the empty space to open Terminal) and type (enter `no` when asked for password encryption):
+Before getting more packages to enable parallelism and compiling, download the latest version of TELEMAC with git in which additional packages will be embedded. To download (i.e., `git clone`) TELEMAC, open Terminal in the `/home/USERNAME/` directory (either tap `cd ~` or use the *File* browser to navigate to your `home` directory and right-click in the empty space to open Terminal). The following installation instructions assume that you are installing TELEMAC in the directory `/home/USERNAME/telemac/`, which can be created in Terminal with the command `mkdir /home/USERNAME/telemac/` (corresponds to `mkdir ~/telemac/`) - do not forget to change directory into that folder (e.g., `cd ~/telemac`). You may want to choose another directory and adapt the installation directories accordingly. Now, to download TELEMAC into this directory, type (enter `no` when asked for password encryption):
 
 ```
 git clone https://gitlab.pam-retd.fr/otm/telemac-mascaret.git v8p3
 ```
 
-This will have downloaded TELEMAC v8p3 to the directory `/home/USER-NAME/telemac/v8p3`.
+This will have downloaded TELEMAC v8p3 to the directory `/home/USERNAME/telemac/v8p3`.
 
 ````{admonition} There are many (experimental) branches of TELEMAC available
-:class: tip
+:class: tip, dropdown
 
 The TELEMAC git repository povides many other TELEMAC versions in the form of development or old-version branches. For instance, the following clones the `upwind_gaia` branch to a local subfolder called `telemac/gaia-upwind`. After cloning this single branch, compiling TELEMAC can be done as described in the following.
 
@@ -202,21 +175,24 @@ git clone –branch upwind_gaia –single-branch https://gitlab.pam-retd.fr/otm/
 Read more about cloning single TELEMAC branches in the [TELEMAC wiki](http://wiki.opentelemac.org/doku.php?id=telemac-mascaret_git_repository).
 ````
 
+After downloading (cloning) the TELEMAC repository, switch to (check out) the latest version:
+
+```
+cd v8p3
+git checkout tags/v8p3r0
+```
+
+
 ## Recommended Prerequisites (Parallelism and Compilers)
 
 This section guides through the installation of additional packages required for parallelism. Make sure that Terminal recognizes `gcc`, which should be included in the *Debian* base installation (verify with `gcc --help`). This section includes installation for:
 
 * Install packages for parallelism to enable a substantial acceleration of simulations:
     + MPI distribution
-    + Metis 5.1.x
+    + Metis 5.1.0
 * For the MED file format (input mesh and computation results):
     + Hdf5
-    + MEDFichier
-
-```{admonition} Use SALOME-HYDRO's MED, Metis, and AED2 libraries
-:class: tip
-The newest versions of Hdf5, MEDFichier, Metis, AED2, and many more are included and compiled in the [SALOME-HYDRO](#salome-hydro) installer. Thus, consider installing SALOME-HYDRO before installing TELEMAC and just copy relevant, compiled libraries from the directory `~/SALOME-HYDRO/Salome-V2_2-s9/prerequisites/` to `~/telemac/v8p3/optionals/`. In this case, it is sufficient to install *open MPI* as below described and then go directly to the {ref}`compile-tm` section, where the optionals-folder names need to be adapted.
-```
+    + MEDFichier 3.2.0
 
 (mpi)=
 ### Parallelism: Install MPI
@@ -324,7 +300,7 @@ cd hdf5-1.8.21
 Configure and compile *hdf5* (enter every command one-by-one):
 
 ```
-./configure --prefix=/home/USER-NAME/telemac/v8p3/optionals/hdf5 --enable-parallel
+./configure --prefix=/home/USERNAME/telemac/v8p3/optionals/hdf5 --enable-parallel
 make
 make install
 ```
@@ -352,12 +328,12 @@ cd med-3.2.0
 To compile the *med file* library type:
 
 ```
-./configure --prefix=/home/USER-NAME/telemac/v8p3/optionals/med-3.2.0 --with-hdf5=/home/USER-NAME/telemac/v8p3/optionals/hdf5 --disable-python
+./configure --prefix=/home/USERNAME/telemac/v8p3/optionals/med-3.2.0 --with-hdf5=/home/USERNAME/telemac/v8p3/optionals/hdf5 --disable-python
 make
 make install
 ```
 
-The flag `--prefix` sets the installation directory and `--width-hdf5` tells the med library where it can find the *hdf5* library. Thus, adapt `/home/USER-NAME/telemac/v8p3/optionals/hdf5` to your local `<install_path>` of the *hdf5* library. Both flags to not accept relative paths (`~/telemac/...`), and therefore, we need to use the absolute paths (`home/USER-NAME/telemac/...`) here.
+The flag `--prefix` sets the installation directory and `--width-hdf5` tells the med library where it can find the *hdf5* library. Thus, adapt `/home/USERNAME/telemac/v8p3/optionals/hdf5` to your local `<install_path>` of the *hdf5* library. Both flags to not accept relative paths (`~/telemac/...`), and therefore, we need to use the absolute paths (`home/USERNAME/telemac/...`) here.
 
 ```{admonition} Why *--disable-python*?
 :class: note, dropdown
@@ -369,7 +345,7 @@ The installation of the *med file* library on Linux is also documented in the [o
 
 ```{admonition} Permission denied?
 :class: attention, dropdown
-If you consistently get ***permission denied*** messages, unlock all read and write rights for the `telemac` directory with the following command: `sudo -R 777  /home/USER-NAME/telemac` (replace `USER-NAME` with the user for whom TELEMAC is installed).
+If you consistently get ***permission denied*** messages, unlock all read and write rights for the `telemac` directory with the following command: `sudo -R 777  /home/USERNAME/telemac` (replace `USERNAME` with the user for whom TELEMAC is installed).
 ```
 
 Finally, **remove the `temp` folder** to avoid storing garbage:
@@ -405,7 +381,7 @@ make
 :class: tip
 To facilitate setting up the `systel` file, use our template (no by-default AED2):
 
-* Right-click on [this download](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/main/debian/systel.cis-debian.cfg) > *Save Link As...* > `~/telemac/v8p3/configs/systel.cis-debian.cfg` > *Replace Existing*.
+* Right-click on [this download for Debian 10 (Buster)](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/main/debian/systel.cis-debian.cfg) > *Save Link As...* > `~/telemac/v8p3/configs/systel.cis-debian.cfg` > *Replace Existing* (also works with Linux Mint 20.3 (Una)).
 * Make sure to verify the  directories described in this section and replace the `USER-NAME` with your user name in the downloaded `systel.cis-debian.cfg` file.
 * To use *AED2*, [download systel.cis-debian-aed2.cfg](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/main/debian/systel.cis-debian-aed2.cfg).
 * For **dynamic** compiling, [download systel.cis-debian-dyn.cfg](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/main/debian/systel.cis-debian-dyn.cfg) (rather than the above *systel.cis-debian.cfg* file).
@@ -650,6 +626,25 @@ The `validate_telemac.py` script may fail to run when not all modules are instal
 
 ## Utilities (Pre- & Post-processing)
 
+```{admonition} More Pre- and Post-processing Software
+:class: note
+
+More software for dealing with Telemac pre- and post-processing is available in the form of {ref}`SALOME <salome-install>` and ParaView.
+```
+
+(qgis-telemac)=
+### QGIS (Linux and Windows)
+
+***Estimated duration: 5-10 minutes (depends on connection speed).***
+
+QGIS is a powerful tool for viewing, creating, and editing geospatial data that can be useful in pre- and post-processing. Detailed installation guidelines are provided in the {ref}`qgis-install` installation instructions and the {ref}`QGIS tutorial <qgis-tutorial>`in this eBook. For working with TELEMAC, consider installing the following **QGIS Plugins** (*Plugins* > *Manage and Install Plugins...*):
+
+* {ref}`BASEmesh <get-basemesh>` enables to create a {term}`SMS 2dm` file that can be converted to a selafin geometry for TELEMAC (read more in the {ref}`QGIS pre-processing tutorial for TELEMAC <tm-qgis-prepro>`).
+* *PostTelemac* visualizes `*.slf` (and others such as `*.res`) geometry files at different time steps.
+* *DEMto3D* enables to export *STL* geometry files for working with *SALOME* and creating 3D meshes.
+
+Note that *DEMto3D* will be available in the *Raster* menu: *DEMto3D* > *DEM 3D printing*.
+
 (bluekenue)=
 ### BlueKenue (Windows or Linux+Wine)
 
@@ -717,155 +712,3 @@ cd `dirname $0`
 java -Xmx2048m -Xms512m -cp "$(pwd)/Fudaa-Prepro-1.4.2-SNAPSHOT.jar"
 org.fudaa.fudaa.tr.TrSupervisor $1 $2 $3 $4 $5 $6 $7 $8 $9
 ```
-
-(salome-hydro)=
-## SALOME-HYDRO (Linux)
-
-SALOME-HYDRO is a spinoff of SALOME ([see description in the modular installation](#salome) with full capacities to create and run a numerical model with TELEMAC. The program is distributed on [salome-platform.org](https://www.salome-platform.org/?page_id=318) as specific EDF contribution.
-
-````{admonition} Tips for working with SALOME-HYDRO
-:class: tip
-
-* SALOME-HYDRO also works on *Windows* platforms, but most applications and support is provided for *Debian Linux*.
-* It might be useful to understand French, for instance, to explore the [Salome Youtube channel](https://www.youtube.com/channel/UCokrSqnpG3sLXkagZwUmuXg)
-
-```{admonition} Outdated library links of the SALOME-HYDRO installer
-:class: error
-On any system that is not Debian 9 (stretch), SALOME-HYDRO can only be used as a pre-processor (Geometry & Mesh modules) and as a post-processor (ParaVis module) for med-file handling. The *HydroSolver* module that potentially enables running TELEMAC does not work properly with Debian 10 or any system that is not Debian 9. Therefore, the  {ref}`modular-install` is still required to run models developed with SALOME-HYDRO.
-```
-````
-
-### Prerequisites
-
-* Download the installer from the [developer's website](https://www.salome-platform.org/?page_id=318) or use the newer version provided through the [TELEMAC user Forum](http://www.opentelemac.org/index.php/kunena/other/12263-hydrosalome-z-interpolation#34100) (registration required)
-<!-- [Salome-Hydro V2_2](https://drive.google.com/file/d/1Bimoy9d9dqgQDbMW_kJxilw5JEoMvZ0Q/view) -->
-* Install required packages (verify the latest version of `libssl` and if necessary, correct version)
-
-```
-sudo apt install openmpi-common gfortran mpi-default-dev zlib1g-dev libnuma-dev xterm net-tools
-```
-
-<!-- sudo apt install libssl1.1 libssl-dev  -->
-
-* Install earlier versions of `libssl`:
-  * Open the list of sources <br> `sudo editor /etc/apt/sources.list`
-  * **Ubuntu users**: In *sources.list*, add *Ubuntu's Bionic* security as source with<br> `deb http://security.ubuntu.com/ubuntu bionic-security main` <br> Using *Nano* as text editor, copy the above line into *sources.list*, then press `CTRL`+`O`, confirm writing with `Enter`, then press `CTRL`+`X` to exit *Nano*.
-  * **Debian users**: In *sources.list*, add *Debian Stretch* source with<br> `deb http://deb.debian.org/debian/ stretch main contrib non-free` <br> `deb-src http://deb.debian.org/debian stretch main contrib non-free`<br> Using *Nano* as text editor, copy the above lines into *source.list*, then press `CTRL`+`O`, confirm writing with `Enter`, then press `CTRL`+`X` to exit *Nano*.
-  * Back in Terminal tap <br> `sudo apt update && apt-cache policy libssl1.0-dev` <br> `sudo apt install libssl1.0-dev libopenblas-dev libgeos-dev unixodbc-dev libnetcdf-dev libhdf4-0-alt libpq-dev qt5ct libgfortran3`
-
-* **Debian 9 users** will need to add and install *nvidia* drivers as described in the virtual machine / *Debian Linux* installation section to {ref}`opengl`.
-
-### Debian 10 (buster) Users
-
-```{admonition} Potentially harmful action
-:class: warning
-The following steps for renaming system libraries are potentially harmful to your system. **Only continue if you absolutely know what you are doing.** Otherwise, go back to the {ref}`modular-install` section.
-```
-
-SALOME-HYDRO is using some outdated libraries, which require that newer versions (e.g., of the *openmpi* library) must be copied and the copies must be renamed to match the outdated library names. Therefore, open Terminal and tap:
-
-```
-sudo cp /usr/lib/x86_64-linux-gnu/libmpi.so.40 /usr/lib/x86_64-linux-gnu/libmpi.so.20
-sudo cp /usr/lib/x86_64-linux-gnu/libicui18n.so.63 /usr/lib/x86_64-linux-gnu/libicui18n.so.57
-sudo cp /usr/lib/x86_64-linux-gnu/libicuuc.so.63 /usr/lib/x86_64-linux-gnu/libicuuc.so.57
-sudo cp /usr/lib/x86_64-linux-gnu/libicudata.so.63 /usr/lib/x86_64-linux-gnu/libicudata.so.57
-sudo cp /usr/lib/x86_64-linux-gnu/libnetcdf.so.13 /usr/lib/x86_64-linux-gnu/libnetcdf.so.11
-sudo cp /usr/lib/x86_64-linux-gnu/libmpi_usempif08.so.40 /usr/lib/x86_64-linux-gnu/libmpi_usempif08.so.20
-sudo cp /usr/lib/x86_64-linux-gnu/libmpi_java.so.40 /usr/lib/x86_64-linux-gnu/libmpi_java.so.20
-sudo cp /usr/lib/x86_64-linux-gnu/libmpi_cxx.so.40 /usr/lib/x86_64-linux-gnu/libmpi_cxx.so.20
-sudo cp /usr/lib/x86_64-linux-gnu/libmpi_mpifh.so.40 /usr/lib/x86_64-linux-gnu/libmpi_mpifh.so.20
-sudo cp /usr/lib/x86_64-linux-gnu/libmpi_usempi_ignore_tkr.so.40 /usr/lib/x86_64-linux-gnu/libmpi_usempi_ignore_tkr.so.20
-```
-
-In addition, the *Qt* library of the SALOME-HYDRO installer is targeting out-dated libraries on *Debian 10*. To troubleshoot this issue, open the file explorer and:
-
-* Go to the directory `/usr/lib/x86_64-linux-gnu/`
-* Find, highlight, and copy all **lib** files that contain the string **libQt5** (or even just **Qt5**).
-* Paste the copied **Qt5** library files into `/SALOME-HYDRO/Salome-V2_2/prerequisites/Qt-591/lib/` (confirm **replace existing files**).
-
-Both procedures for copying library files are anything but a coherent solution. However, it is currently the only way to get SALOME-HYDRO working on *Debian 10*.
-
-### Install SALOME-HYDRO
-
-Open the Terminal, `cd` into the directory where you downloaded **Salome-V1_1_univ_3.run** (or **Salome-HYDRO-V2_2-s9.run**),  and tap:
-
-```
-chmod 775 Salome-HYDRO-V2_2-S9.run
-./Salome-HYDRO-V2_2-S9.run
-```
-
-During the installation process, define a convenient installation directory such as **/home/salome-hydro/**. The installer guides through the installation and prompts how to launch the program at the end.
-
-```{attention}
-If you get error messages such as `./create_appli_V1_1_univ.sh/xml: line [...]: No such file or directory.`, there is probably an issue with the version of Python. In this case, run `update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1` and re-try.
-```
-
-Try to launch SALOME-HYDRO:
-
-```
-cd /home/salome-hydro/appli_V2_2/
-./salome
-```
-
-If there are issues such as  `Kernel/Session` in the `Naming Service` (`[Errno 3] No such process` ... `RuntimeError: Process NUMBER for Kernel/Session not found`), go to the {ref}`troubleshooting page <salome-dbg>`.
-
-If the program is not showing up properly (e.g., empty menu items), read more about Qt GUI support on the {ref}`troubleshooting page <qt-dbg>`.
-
-<!--
-```{tip}
-**Set a keyboard shortcut to start SALOME-HYDRO on Debian Linux**: Go to *Activities*, tap *keyboard*, and select *Keyboard* from the list (do not click on *Tweaks*). In the *Keyboard* window, scroll to the bottom and click on the `+` sign to define a new shortcut. In the popup window use, for example, SALOME-HYDRO as *Name*, in the *Command* box tap `/home/salome-hydro/appli_V1_1_univ/salome` (or where ever SALOME-HYDRO is installed), and define a *Shortcut*, such as `CTRL` + `Alt` + `S`.
-```
-
-```{figure} ../img/sah-keyboard-shortcut.png
-:alt: salome-hydro shortcut
-
-Define a keyboard shortcut to start SALOME-HYDRO.
-```
--->
-
-(paravis-salome)=
-### ParaView (ParaVis) through SALOME-HYDRO
-
-[ParaView](https://www.paraview.org) serves for the visualization of model results in the SALOME-HYDRO modelling chain. The built-in module *ParaViS* essentially corresponds to ParaView, but the separate usage of ParaView enables a better experience for post-processing of results. The installation of SALOME-HYDRO already involves an older version of ParaView that is able to manipulate *MED* files. To start ParaView through SALOME-HYDRO, open Terminal, `cd` to the directory where SALOME-HYDRO is installed, launch the environment, and then launch ParaView:
-
-```
-cd /home/slome-hydro/appli_V2_2/
-. env.d/envProducts.sh
-./runRemote.sh paraview
-```
-
-```{tip}
-If the *ParaVis* module continuously crashes in SALOME-HYDRO, consider to install the latest version of [*SALOME*](../get-started/install-openfoam.html#salome) (e.g., as described with the installation of *OpenFOAM*).
-```
-
-Alternatively, ParaView is freely available on the [developer's website](https://www.paraview.org/download/) and the latest stable release can be installed on *Debian Linux*, through the Terminal:
-
-```
-sudo apt install paraview
-```
-
-In this case, to run ParaView tap `paraview` in Terminal. If you are using a virtual machine, start ParaView with the `--mesa-llvm` flag (i.e., `paraview --mesa-llvm`).
-To enable *MED* file handling, *MED* coupling is necessary, which requires to follow the installation instructions on [docs.salome-platform.org](https://docs.salome-platform.org/7/dev/MEDCoupling/install.html).
-
-### Start SALOME-HYDRO
-
-To start SALOME-HYDRO, open Terminal and tap:
-
-```
-/home/salome-hydro/appli_V1_1_univ/salome
-```
-
-(qgis-telemac)=
-### QGIS (Linux and Windows)
-
-***Estimated duration: 5-10 minutes (depends on connection speed).***
-
-*QGIS* is a powerful tool for viewing, creating, and editing geospatial data that can be useful in Pre- and post-processing. Detailed installation guidelines are provided in the {ref}`qgis-install` installation instructions in this eBook.
-
-For working with TELEMAC, consider installing the following **QGIS Plugins** (*Plugins* > *Manage and Install Plugins...*):
-
-* {ref}`BASEmesh <get-basemesh>` enables to create a {term}`SMS 2dm` file that can be converted to a selafin geometry for TELEMAC (read more in the {ref}`QGIS pre-processing tutorial for TELEMAC <tm-qgis-prepro>`).
-* *PostTelemac* visualizes `*.slf` (and others such as `*.res`) geometry files at different time steps.
-* *DEMto3D* enables to export *STL* geometry files for working with *SALOME* and creating 3D meshes.
-
-Note that *DEMto3D* will be available in the *Raster* menu: *DEMto3D* > *DEM 3D printing*.

@@ -1,3 +1,11 @@
 # Overview of Fundamental Techniques
 
-Lorem ipsum
+
+## Bayesian Inference
+
+coming
+
+### Rejection Sampling
+
+
+later

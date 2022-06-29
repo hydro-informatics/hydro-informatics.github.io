@@ -1,6 +1,13 @@
 (chpt-telemac3d-med)=
 # Steady 3d (MED and Salome)
 
+```{admonition} About SALOME-HYDRO
+:class: important
+
+This tutorial uses the SALOME-HYDRO software that is available at [https://www.salome-platform.org/?page_id=318](https://www.salome-platform.org/?page_id=318). This eBook does not feature the installation of SALOME-HYDRO and this tutorial is kept alive for the records, though rumor has it that SALOME-HYDRO will be essentially replaced by a QGIS plugin in the future.
+```
+
+
 ```{image} ../img/salome/telemac3d-header.png
 :alt: telemac3d salome med results
 ```
@@ -10,9 +17,9 @@ This tutorial describes setting up and running a simple three-dimensional (3d) m
 ```{admonition} Requirements
 This tutorial is designed for **advanced beginners** and the case featured in this tutorial was established on *Debian Linux* (*buster*) with:
 
-* {ref}`SALOME-HYDRO v2_2 <salome-hydro>`
+* SALOME-HYDRO
 * {ref}`SALOME 9.6.0 <salome-install>`, and
-* TELEMAC v8p2r0 ({ref}`stand-alone installation <modular-install>`).
+* TELEMAC ({ref}`stand-alone installation <modular-install>`).
 ```
 
 ```{admonition} Download supplemental tutorial materials
@@ -31,9 +38,6 @@ With *SALOME-HYDRO* being installed in a directory called **/home/salome-hydro/a
 /home/salome-hydro/appli_V2_2/salome
 ```
 
-```{admonition} Detailed installtion instructions
-Read more about the installation, requirements, and launching (starting) *SALOME-HYDRO* in the {ref}`TELEMAC installation chapter <salome-hydro>`.
-```
 
 ## HYDRO Module
 
