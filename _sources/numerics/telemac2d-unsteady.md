@@ -24,7 +24,7 @@ The discretization of a natural hydrograph into steps of steady flows (qualitati
 
 This tutorial shows how a quasi-steady discharge hydrograph can be implemented in a hydrodynamic Telemac2d simulation through the definition of an inflow sequence (red circles in {numref}`Fig. %s <unsteady-hydrograph>`). The tutorial builds on the steady simulation of a discharge of 35 m$^3$/s and requires the following data from the {ref}`pre-processing <slf-prepro-tm>` and {ref}`steady2d <telemac2d-steady>` tutorials, which can be downloaded by clicking on the filenames:
 
-* The computational mesh [qgismesh.slf](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf) file.
+* The computational mesh [qgismesh.slf](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf) file  (uses **EPSG:6173** - ETRS 89 / UTM zone 33N).
 * The boundary definitions [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/boundaries.cli) file.
 * The results file [r2dsteady.slf](https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/r2dsteady.slf) of the {ref}`dry initialized steady 2d simulation <tm2d-dry>` ending at `T=15000` for 35 m$^3$/s.
 
@@ -360,6 +360,13 @@ The results of the unsteady simulation can be visualized and snapshots exported 
 
 The unsteady (quasi-steady) simulation results file r2dunsteady.slf imported as mesh layer in QGIS and super-positioned on google satellite imagery {cite:p}`googlesat`.
 ```
+
+```{admonition} r2dunsteady.slf (results file) not correctly showing in QGIS
+:class: error, dropdown
+
+Is the results file `r2dunsteady.slf` not showing up in QGIS? Make sure to import it with its correct georeference: **EPSG:6173** (ETRS 89 / UTM zone 33N).
+```
+
 
 The simulation output parameters (e.g., `U`, `V`, or `Q`) and the timestep shown can be controlled in the layer properties of the `r2dunsteady` layer (double-click on it in the *Layers* panel).
 

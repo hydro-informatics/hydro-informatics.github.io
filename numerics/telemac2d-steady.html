@@ -982,7 +982,7 @@
 <h2>Get Started<a class="headerlink" href="#get-started" title="Permalink to this headline">¶</a></h2>
 <p>This section builds on the SELAFIN (<code class="docutils literal notranslate"><span class="pre">*.slf</span></code>) geometry and the Conlim (<code class="docutils literal notranslate"><span class="pre">*.cli</span></code>) boundary condition files that result from the <a class="reference internal" href="pre-slf-tm.html#slf-prepro-tm"><span class="std std-ref">TELEMAC pre-processing tutorial</span></a>. Both files can also be downloaded from the supplemental materials repository of this eBook:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf">Download qgismesh.slf</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf">Download qgismesh.slf</a> (uses <strong>EPSG:6173</strong> - ETRS 89 / UTM zone 33N).</p></li>
 <li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-slf/boundaries.cli">Download boundaries.cli</a>.</p></li>
 </ul>
 <p>Consider saving both files in a new folder, such as <code class="docutils literal notranslate"><span class="pre">/steady2d-tutorial/</span></code> that will contain all model files.</p>
@@ -1620,6 +1620,10 @@ Expand to see exemplary values for Manning roughness<div class="summary-down doc
 <div class="figure align-default" id="open-post-tm">
 <img alt="qgis load open PostTelemac plugin" src="../_images/load-tm-plugin.png" />
 <p class="caption"><span class="caption-number">Fig. 80 </span><span class="caption-text">Open the PostTelemac plugin in QGIS.</span><a class="headerlink" href="#open-post-tm" title="Permalink to this image">¶</a></p>
+</div>
+<div class="error dropdown admonition">
+<p class="admonition-title">r2dsteady.slf (results file) not correctly showing in QGIS</p>
+<p>Is the results file <code class="docutils literal notranslate"><span class="pre">r2dsteady.slf</span></code> not showing up in QGIS? Make sure to import it with its correct georeference: <strong>EPSG:6173</strong> (ETRS 89 / UTM zone 33N).</p>
 </div>
 <p>The PostTelemac plugin typically opens as a frame at the bottom-right of the QGIS window (maybe hard to find the first time). Detach the PostTelemac plugin from the main QGIS window by clicking on the resize window button in the top-right corner of the PostTelemac plugin frame (next to the <em>close</em> cross). In the detached window load the model results as follows (also indicated in <a class="reference internal" href="#post-tm"><span class="std std-numref">Fig. 81</span></a>):</p>
 <ul class="simple">

@@ -579,7 +579,7 @@ The height-interpolated mesh in the 2D View (1) with indication of drag and drop
 Download the BOTTOM mesh and the SELAFIN object from the supplemental materials repository:
 
 * [Download BOTTOM.t3s](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/BOTTOM.t3s);
-* [Download qgismesh.slf](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf).
+* [Download qgismesh.slf](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf) (**EPSG:6173** - ETRS 89 / UTM zone 33N).
 ```
 
 (bk-bc)=

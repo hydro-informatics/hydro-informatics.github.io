@@ -1538,7 +1538,7 @@
 <p>Download the BOTTOM mesh and the SELAFIN object from the supplemental materials repository:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-slf/BOTTOM.t3s">Download BOTTOM.t3s</a>;</p></li>
-<li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf">Download qgismesh.slf</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf">Download qgismesh.slf</a> (<strong>EPSG:6173</strong> - ETRS 89 / UTM zone 33N).</p></li>
 </ul>
 </div>
 </div>
@@ -1572,8 +1572,8 @@
 </div>
 <p>The upstream (inflow) liquid boundary will constitute an <strong>Open boundary with prescribed Q</strong> (discharge) and the downstream outflow (liquid) boundary will constitute an <strong>Open boundary with prescribed Q and H</strong> (i.e., prescribed <a class="reference internal" href="../documentation/glossary.html#term-Rating-curve"><span class="xref std std-term">Rating curve</span></a> / <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a>). These types of boundary conditions are commonly used in practice, with the downstream boundary typically chosen to be at a gauging station where a <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a> (<a class="reference internal" href="../documentation/glossary.html#term-Rating-curve"><span class="xref std std-term">Rating curve</span></a>) has been calibrated with historic data. To assign the two liquid boundary lines, zoom into the downstream and upstream regions indicated in  <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 75</span></a> and create both boundaries as follows (toggle tabs):</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="015d42d1-042e-4ab0-8f1c-ee8c79e8f1dd" name="c1afaf77-f485-49ee-9cc6-3d0a12e29cfd" type="radio">
-</input><label class="tabbed-label" for="015d42d1-042e-4ab0-8f1c-ee8c79e8f1dd">
+<input checked="checked" id="213c4415-684e-4c53-9c93-65be5f3ea927" name="c89cb7bb-8173-4183-b551-5e99c26c5718" type="radio">
+</input><label class="tabbed-label" for="213c4415-684e-4c53-9c93-65be5f3ea927">
 Upstream boundary</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p>Zoom into the <strong>upstream</strong> region indicated in  <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 75</span></a>.</p></li>
@@ -1595,8 +1595,8 @@ Upstream boundary</label><div class="tabbed-content docutils">
 <p class="caption"><span class="caption-number">Fig. 76 </span><span class="caption-text">The upstream boundary definition. Double-click on a node at one bank, then hold the <strong>Shift</strong> key and double-click on a node at the other bank to highlight the inflow (purple) line. Note that BOTTOM_BC might appear with the name <em>boundaries</em> if the object was saved as <em>boundaries.bc2</em>.</span><a class="headerlink" href="#bk-boundary-us" title="Permalink to this image">¶</a></p>
 </div>
 </div>
-<input id="53a5d97a-6c4a-4bf5-bfa2-da381df3dabf" name="c1afaf77-f485-49ee-9cc6-3d0a12e29cfd" type="radio">
-</input><label class="tabbed-label" for="53a5d97a-6c4a-4bf5-bfa2-da381df3dabf">
+<input id="1e5ca513-08ee-4ea3-a1d5-6352b7071e0f" name="c89cb7bb-8173-4183-b551-5e99c26c5718" type="radio">
+</input><label class="tabbed-label" for="1e5ca513-08ee-4ea3-a1d5-6352b7071e0f">
 Downstream boundary</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p>Zoom into the <strong>downstream</strong> region indicated in <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 75</span></a>.</p></li>

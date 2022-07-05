@@ -15,7 +15,7 @@ The case featured in this tutorial was established with the following software:
 
 This section builds on the SELAFIN (`*.slf`) geometry and the Conlim (`*.cli`) boundary condition files that result from the {ref}`TELEMAC pre-processing tutorial <slf-prepro-tm>`. Both files can also be downloaded from the supplemental materials repository of this eBook:
 
-* [Download qgismesh.slf](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf).
+* [Download qgismesh.slf](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf) (uses **EPSG:6173** - ETRS 89 / UTM zone 33N).
 * [Download boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/boundaries.cli).
 
 Consider saving both files in a new folder, such as `/steady2d-tutorial/` that will contain all model files.
@@ -729,6 +729,12 @@ Launch QGIS, {ref}`create a new QGIS project <qgis-project>`, set the project {t
 :name: open-post-tm
 
 Open the PostTelemac plugin in QGIS.
+```
+
+```{admonition} r2dsteady.slf (results file) not correctly showing in QGIS
+:class: error, dropdown
+
+Is the results file `r2dsteady.slf` not showing up in QGIS? Make sure to import it with its correct georeference: **EPSG:6173** (ETRS 89 / UTM zone 33N).
 ```
 
 The PostTelemac plugin typically opens as a frame at the bottom-right of the QGIS window (maybe hard to find the first time). Detach the PostTelemac plugin from the main QGIS window by clicking on the resize window button in the top-right corner of the PostTelemac plugin frame (next to the *close* cross). In the detached window load the model results as follows (also indicated in {numref}`Fig. %s <post-tm>`):

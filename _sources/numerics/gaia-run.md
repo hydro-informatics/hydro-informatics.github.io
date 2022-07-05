@@ -187,6 +187,12 @@ Double-click on *r2dsteady-gaia.slf* or *rGaia-steady2d.slf* to open their **Mes
 The mesh Layer Properties window with the Source tab for selecting Gaia output variables. The screenshot indicates steps for visualization of *qs bedload* at the simulation end time (red boxes). In addition, plot color ranges can be adapted in the Symbology tab (dashed red box).
 ```
 
+```{admonition} rGaia-steady2d.slf (results file) not correctly showing in QGIS
+:class: error, dropdown
+
+Is the results file `rGaia-steady2d.slf` not showing up in QGIS? Make sure to import it with its correct georeference: **EPSG:6173** (ETRS 89 / UTM zone 33N).
+```
+
 Note that only parameters defined with the **VARIABLES FOR GRAPHIC PRINTOUTS** keywords in the hydrodynamic ({ref}`steady2d-gaia.cas <tm2d-gen>`) and morphodynamic ({ref}`gaia-morphodynamics.cas <gaia-gen>`) steering files can be plotted in QGIS.
 
 To export a video of the simulation results, use the *Crayfish* plugin:
