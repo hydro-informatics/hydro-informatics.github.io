@@ -59,8 +59,8 @@ The conversion between geospatial data types and numerical (computational) grids
 In the context of river analysis, the following plugins are recommended and used at multiple places on this website:
 
 * The *Crayfish* plugin for post-processing of numerical model output.
-* The *BASEmesh* plugin provides routines for creating computational meshes for numerical simulations with {ref}`chpt-basement`.
-* The *PostTelemac* plugin enables geospatial visualization and conversions of numerical model results produced tiwht {ref}`chpt-telemac`.
+* The *BASEmesh2* plugin provides routines for creating computational meshes for numerical simulations with {ref}`chpt-basement`.
+* The *PostTelemac* plugin enables geospatial visualization and conversions of numerical model results produced with {ref}`chpt-telemac`.
 
 BASEmesh is only one (very well working) mesh generator for QGIS and {numref}`Tab. %s <tab-mesh-plugins>` lists of other plugins for generating computational meshes for numerical models along with target file formats and models
 

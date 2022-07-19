@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fundamentals (Coming soon) &#8212; Hydro-Informatics</title>
+    <title>Process Drone (UAV) Imagery &#8212; Hydro-Informatics</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -44,6 +44,8 @@
     <script src="../_static/tabs.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe,.cell"
@@ -51,12 +53,12 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://hydro-informatics.com/datascience/data-science.html" />
+    <link rel="canonical" href="https://hydro-informatics.com/geopy/drone-processing.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Python Requirements" href="py-requirements.html" />
-    <link rel="prev" title="Script a Habitat Suitability Map" href="../exercises/ex-geco.html" />
+    <link rel="next" title="Geospatial Python" href="geo-python.html" />
+    <link rel="prev" title="QGIS Tutorial" href="use-qgis.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -319,19 +321,24 @@
   Geospatial Analysis
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/geospatial-data.html">
+  <a class="reference internal" href="geospatial-data.html">
    Geospatial Data
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/use-qgis.html">
+  <a class="reference internal" href="use-qgis.html">
    QGIS Tutorial
   </a>
  </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Process Drone (UAV) Imagery
+  </a>
+ </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../geopy/geo-python.html">
+  <a class="reference internal" href="geo-python.html">
    Geospatial Python
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
@@ -341,13 +348,8 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/geo-pckg.html">
+    <a class="reference internal" href="geo-pckg.html">
      Geospatial Open Source Python Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/drone-processing.html">
-     Process Drone Data
     </a>
    </li>
    <li class="toctree-l2">
@@ -395,24 +397,24 @@
   Data Science
  </span>
 </p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../datascience/data-science.html">
    Fundamentals (Coming soon)
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
   <label for="toctree-checkbox-9">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="py-requirements.html">
+    <a class="reference internal" href="../datascience/py-requirements.html">
      Python Requirements
     </a>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="data-prepro.html">
+    <a class="reference internal" href="../datascience/data-prepro.html">
      Data Pre-Processing
     </a>
     <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
@@ -422,17 +424,17 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="data-types.html">
+      <a class="reference internal" href="../datascience/data-types.html">
        The Nature of Data
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="data-cleaning.html">
+      <a class="reference internal" href="../datascience/data-cleaning.html">
        Dataset Cleaning
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="dimensional-analysis.html">
+      <a class="reference internal" href="../datascience/dimensional-analysis.html">
        Dimensional Analysis
       </a>
      </li>
@@ -441,7 +443,7 @@
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="theory.html">
+  <a class="reference internal" href="../datascience/theory.html">
    Techniques (Coming soon)
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
@@ -451,17 +453,17 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="techniques.html">
+    <a class="reference internal" href="../datascience/techniques.html">
      Overview of Fundamental Techniques
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="calibrate-validate.html">
+    <a class="reference internal" href="../datascience/calibrate-validate.html">
      Model Calibration and Validation
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="morphology-predictor-svm.html">
+    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
      Support Vector Machine (SVM)
     </a>
    </li>
@@ -779,7 +781,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/datascience/data-science.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/geopy/drone-processing.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -817,6 +819,56 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#acquire-aerial-drone-imagery">
+   Acquire Aerial Drone Imagery
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metashape">
+   Metashape
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-a-new-project">
+     Create a New Project
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-images">
+     Load Images
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#align-images">
+     Align Images
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-dense-point-cloud">
+     Build Dense Point Cloud
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-dem">
+     Create DEM
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-a-mesh">
+     Create a Mesh
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -825,10 +877,124 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="fundamentals-coming-soon">
-<span id="data-science"></span><h1>Fundamentals (Coming soon)<a class="headerlink" href="#fundamentals-coming-soon" title="Permalink to this headline">¶</a></h1>
-<p>This chapter is currently developed by <a class="reference external" href="https://github.com/ricardovobarros">Ricardo Barros</a>.</p>
-<div class="toctree-wrapper compound">
+  <div class="tex2jax_ignore mathjax_ignore section" id="process-drone-uav-imagery">
+<h1>Process Drone (UAV) Imagery<a class="headerlink" href="#process-drone-uav-imagery" title="Permalink to this headline">¶</a></h1>
+<div class="important admonition">
+<p class="admonition-title">This tutorial exceptionally requires proprietary software</p>
+<p>This section features data extraction with <em>Agisoft</em>’s proprietary <em>Metashape</em> software (Professional Edition). For educational test and trial purposes, <a class="reference external" href="https://www.agisoft.com/downloads/installer/">download Agisoft Metashape</a> with the 30-day trial license. The software works on Windows, macOS, and Linux. Note that this tutorial builds on Metashape version 1.8.3.</p>
+</div>
+<div class="section" id="acquire-aerial-drone-imagery">
+<h2>Acquire Aerial Drone Imagery<a class="headerlink" href="#acquire-aerial-drone-imagery" title="Permalink to this headline">¶</a></h2>
+<p>Collecting aerial imagery has become amazingly easy thanks to autopilot-controlled drones. Today, most drones come with programs for shooting aerial imagery and Structure-from-Motion (SfM)-based digital elevation models (<a class="reference internal" href="../documentation/glossary.html#term-DEM"><span class="xref std std-term">DEM</span></a>s). Since drone control is model-dependent (e.g., we use a <a class="reference external" href="https://dl.djicdn.com/downloads/phantom_4_rtk/20200721/Phantom_4_RTK_User_Manual_v2.4_EN.pdf">dji Phantom 4 RTK</a> drone for aerial surveys), this tutorial only describes basic settings for shooting aerial imagery and focuses on image processing to create DEMs.</p>
+<p>Recommendations for survey flights with drones:</p>
+<ul class="simple">
+<li><p>Use pre-defined terrestrial survey modes for sufficient overlapping</p></li>
+<li><p>Preferably work with orthoimagery; only use 3d mode when strong winds are blowing</p></li>
+<li><p>Account for approximately 20-30 minutes flight time per battery (approx. 2 hours recharging), which means that 8 batteries allow a smooth mapping</p></li>
+<li><p>Ground control points may be omitted if RTK data is available, but we recommend using ground control points</p></li>
+</ul>
+<p>In addition, an imagery-based DEM can also be built for shallow, clear waters (i.e., bathymetries) but other measurement techniques (e.g., <a class="reference internal" href="../documentation/glossary.html#term-Lidar"><span class="xref std std-term">Lidar</span></a> or <a class="reference internal" href="../documentation/glossary.html#term-Sonar"><span class="xref std std-term">Sonar</span></a>) are required for deeper waters (&gt; 0.5 m water depth). Also, imagery-based bathymetry should be validated or corrected with local DGPS or total station measurements.</p>
+</div>
+<div class="section" id="metashape">
+<h2>Metashape<a class="headerlink" href="#metashape" title="Permalink to this headline">¶</a></h2>
+<p>The below figure shows the Metashape interface at program startup, ready for playing with drone imagery and SfM.</p>
+<div class="figure align-default" id="meta-startup">
+<img alt="metashape agisoft gui interface" src="../_images/metashape-startup.png" />
+<p class="caption"><span class="caption-number">Fig. 20 </span><span class="caption-text">The initial Metashape interface.</span><a class="headerlink" href="#meta-startup" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="create-a-new-project">
+<h3>Create a New Project<a class="headerlink" href="#create-a-new-project" title="Permalink to this headline">¶</a></h3>
+<p>To get started, <strong>create</strong> a <strong>new project</strong> and <strong>save</strong> it (as <code class="docutils literal notranslate"><span class="pre">.psx</span></code> file) preferably one folder level above the images directory. Next, familiarize with the interface and explore the numerous workflows provided in the <strong>Workflow</strong> menu.</p>
+<div class="tip admonition">
+<p class="admonition-title">Metashape workflows</p>
+<p>Metashape has multiple built-in workflows that enable us to intuitively navigate through the creation of imagery-based SfM products. We will use some of these workflows in the following to derive a <a class="reference internal" href="../documentation/glossary.html#term-DEM"><span class="xref std std-term">DEM</span></a>.</p>
+</div>
+</div>
+<div class="section" id="load-images">
+<h3>Load Images<a class="headerlink" href="#load-images" title="Permalink to this headline">¶</a></h3>
+<p>Images may be loaded file-by-file, or much easier, from an entire directory. To add a directory (i.e., folder) containing aerial imagery from a single-camera drone, go to the <strong>Workflow</strong> menu &gt; <strong>Add folder</strong> &gt; <strong>Select folder containing images</strong> &gt; <strong>Single cameras</strong>.</p>
+</div>
+<div class="section" id="align-images">
+<h3>Align Images<a class="headerlink" href="#align-images" title="Permalink to this headline">¶</a></h3>
+<p>When the drone flies over terrains, it sometimes needs to change its direction or position, but it always <em>knows</em> where it is (absolutely or relative to a ground station) if RTK-GPS data is available. As a result, the images may have been taken at different angles and different positions. To merge the images into one big picture of the terrain, the images need to be aligned by matching points that are visible on multiple images. The big picture can be created with Metashape’s alignment tool: go to <strong>Workflow</strong> &gt; <strong>Align Fotos</strong> and consider the following settings in the popup window (see figure below) with the <strong>Advanced</strong> frame expanded:</p>
+<ul class="simple">
+<li><p>Set the <strong>Accuracy</strong> to <strong>high</strong> for an acceptable equilibrium of resolution and computing time. Note that any additional increase in accuracy results in one order of magnitude longer computations times.</p></li>
+<li><p>In <strong>Reference preselection</strong> select <strong>Source</strong> and make sure to use GPS data.</p></li>
+<li><p><strong>Advanced</strong> frame:</p>
+<ul>
+<li><p>the <strong>Key point limit</strong> option enables defining <strong>characteristic points</strong> (i.e., points that the alignment algorithm can clearly identify on multiple images): make sure to enable identification of 10.000 to 40.000 characteristic points.</p></li>
+<li><p>the <strong>Tie point limit</strong> defines a minimum number for tie points (i.e., points that the alignment algorithm identifies on two neighboring images): make sure to enable identification of at least 1.000 to 5.000 tie points.</p></li>
+<li><p>use the <strong>enable exclusion of stationary points</strong> option, which makes sure that pixels that have the same (color) characteristics on all images (i.e., that are stationary) are excluded from the alignment identification. Thus, for instance, dirt spots on the camera lens will be excluded as alignment key points.</p></li>
+<li><p>Enable <strong>adaptive camera fitting model</strong> for uncorrected camera distortion.</p></li>
+</ul>
+</li>
+<li><p>Leave <strong>all other default</strong> fields as-is and click on <strong>OK</strong> to start the alignment. Depending on the quantity and size of images as well as the calculation capacity of your computer, the alignment takes 5-30 minutes.</p></li>
+</ul>
+<div class="figure align-default" id="meta-align">
+<img alt="metashape align fotos images pictures" src="../_images/metashape-align.png" />
+<p class="caption"><span class="caption-number">Fig. 21 </span><span class="caption-text">The align fotos popup window in Metashape.</span><a class="headerlink" href="#meta-align" title="Permalink to this image">¶</a></p>
+</div>
+<p>When the alignment is accomplished, produce a <strong>coarse point cloud</strong> (select from the <strong>Tools</strong> menu). A qualitatively good coarse point cloud is characterized by at least 100 tie points per m<span class="math notranslate nohighlight">\(^2\)</span> or more than 50.000 tie points per 100 images (with a resolution of 4605x3227). In addition, <strong>verify errors</strong> with a click on the <strong>Reference</strong> ribbon (typically at the bottom left of the Metashape window). The longitude/latitude error should be <span class="math notranslate nohighlight">\(\leq\)</span> 2 cm.</p>
+</div>
+<div class="section" id="build-dense-point-cloud">
+<h3>Build Dense Point Cloud<a class="headerlink" href="#build-dense-point-cloud" title="Permalink to this headline">¶</a></h3>
+<p>When the quality is sufficient and the error is acceptably low, proceed with building a <strong>dense point cloud</strong> (select from the <strong>Workflow</strong> menu). In the dense point cloud popup window (see also figure below), make the following settings:</p>
+<ul class="simple">
+<li><p>Set the <strong>quality</strong> to <strong>high</strong></p></li>
+<li><p>Choose <strong>depth filling</strong> as a function of vegetation density:</p>
+<ul>
+<li><p>if no to very little vegetation, select <strong>moderate / agressive</strong></p></li>
+<li><p>if vegetation is present, a good performance (point cloud quality vs. computing time) can be achieved by choosing the <strong>mild</strong> option</p></li>
+<li><p>in the case of very dense vegetation, depth filling may be <strong>deactivated</strong> though this can lead to <strong>very long computing times</strong></p></li>
+</ul>
+</li>
+<li><p>Click <strong>OK</strong> to create the dense point cloud (may take again 5-30 minutes)</p></li>
+</ul>
+<div class="figure align-default" id="meta-dense-cloud">
+<img alt="metashape dense point cloud" src="../_images/metashape-dense-cloud.png" />
+<p class="caption"><span class="caption-number">Fig. 22 </span><span class="caption-text">The dense point cloud popup dialogue in Metashape.</span><a class="headerlink" href="#meta-dense-cloud" title="Permalink to this image">¶</a></p>
+</div>
+<p>The <strong>quality</strong> of the dense point cloud can be considered good if the process found:</p>
+<ul class="simple">
+<li><p>At least 20 to 30 neighbors.</p></li>
+<li><p>Approximately 10 million points per 100 images (with a resolution of 4605x3227).</p></li>
+</ul>
+</div>
+<div class="section" id="create-dem">
+<h3>Create DEM<a class="headerlink" href="#create-dem" title="Permalink to this headline">¶</a></h3>
+<p>The dense or coarse point cloud can be used with many other workflows and the creation of a <a class="reference internal" href="../documentation/glossary.html#term-DEM"><span class="xref std std-term">DEM</span></a> is only one option. To create a DEM, go to <strong>Workflow</strong> &gt; <strong>Build DEM</strong> and consider the following aspects in the build DEM popup window (see figure below):</p>
+<ul class="simple">
+<li><p>Projection:</p>
+<ul>
+<li><p>use a <strong>geographic</strong> type for projection onto a <a class="reference internal" href="../documentation/glossary.html#term-GeoTIFF"><span class="xref std std-term">GeoTIFF</span></a> raster, which is compatible with most GIS software, such as <a class="reference internal" href="use-qgis.html#qgis-tutorial"><span class="std std-ref">QGIS</span></a>.</p></li>
+<li><p>Metashape’s default projection is <code class="docutils literal notranslate"><span class="pre">EPSG:4326</span></code> (read more in the section on <a class="reference internal" href="geospatial-data.html#prj"><span class="std std-ref">projections in this eBook</span></a>), which corresponds to the projection commonly used with aerial imagery interfaces (e.g., <em>GoogleEarth</em>).</p></li>
+</ul>
+</li>
+<li><p>Source data:</p>
+<ul>
+<li><p>the <strong>tie points</strong> option leads to the <strong>lowest resolution</strong>.</p></li>
+<li><p>the <strong>depth maps</strong> option is a <strong>good compromise</strong> between resolution and computing time.</p></li>
+<li><p>the <strong>dense cloud</strong> option leads to the <strong>best quality</strong> but also a very long computing time.</p></li>
+</ul>
+</li>
+<li><p>Advanced frame: keep automatically proposed values to ensure consistency.</p></li>
+</ul>
+<p>The <strong>OK</strong> button launches the DEM creation, which may take again 5-30 minutes.</p>
+<div class="figure align-default" id="meta-dem">
+<img alt="metashape dem dgm digital elevation model geotiff" src="../_images/metashape-dem.png" />
+<p class="caption"><span class="caption-number">Fig. 23 </span><span class="caption-text">The DEM creation popup dialogue in Metashape.</span><a class="headerlink" href="#meta-dem" title="Permalink to this image">¶</a></p>
+</div>
+<p>Finally, export the DEM with a <strong>right-click</strong> on the <strong>DEM</strong> in the <strong>Workspace</strong> (if the DEM is not visible, expand the <strong>Chunk 1</strong> entry - or whatever name it has - in the Workspace) and select <strong>Export DEM…</strong>. We recommend to save the DEM in <a class="reference internal" href="../documentation/glossary.html#term-GeoTIFF"><span class="xref std std-term">GeoTIFF</span></a> (<strong>.tif</strong>) format, which is compatible with <a class="reference internal" href="use-qgis.html#qgis-tutorial"><span class="std std-ref">QGIS</span></a>. If <code class="docutils literal notranslate"><span class="pre">.tif</span></code> was selected, a popup window for exporting the DEM opens. In the popup window, check the <strong>export world file</strong> option and keep all other defaults (optionally, create a <code class="docutils literal notranslate"><span class="pre">.kml</span></code> file for working with <em>GoogleEarth</em>). The world file will be important for QGIS (and any other GIS software) to know where the DEM is geographically located with respect to the selected projection.</p>
+</div>
+<div class="section" id="create-a-mesh">
+<h3>Create a Mesh<a class="headerlink" href="#create-a-mesh" title="Permalink to this headline">¶</a></h3>
+<p>Similar to the DEM workflow, Metashape provides a workflow for creating a mesh (<strong>Workflow</strong> &gt; <strong>Build Mesh</strong>) in the form of a triangulated irregular network (<a class="reference internal" href="geospatial-data.html#tin"><span class="std std-ref">TIN</span></a>). The <strong>Source data</strong> options are similar to the ones in the DEM workflow, with an additional option of using the DEM for meshing. Also for a mesh, <strong>High</strong> quality and face counts result in the best representation of the terrain and high computing costs. If the goal of the mesh generation is its usage with a numerical model, lower quality and face counts might be a good choice to keep the time for running the numerical model low. The mesh generation takes again 5-30 minutes.</p>
+<div class="figure align-default" id="meta-mesh">
+<img alt="metashape mesh creation stl numerical model" src="../_images/metashape-mesh.png" />
+<p class="caption"><span class="caption-number">Fig. 24 </span><span class="caption-text">The mesh creation popup dialogue in Metashape.</span><a class="headerlink" href="#meta-mesh" title="Permalink to this image">¶</a></p>
+</div>
+<p>Once the mesh creation is finished, it can be exported with a right-click on the <strong>3D Model</strong> entry in the <strong>Workspace</strong> and a left-click on <strong>Export Model…</strong>. If the 3D Model is not visible in the Workspace, expand the <strong>Chunk 1</strong> entry (or whatever name it has). For use with a numerical model (e.g., OpenFOAM), the STL (<code class="docutils literal notranslate"><span class="pre">.stl</span></code>) format is a good choice.</p>
+</div>
 </div>
 </div>
 
@@ -845,7 +1011,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./datascience"
+            path: "./geopy"
         },
         predefinedOutput: true
     }
@@ -857,17 +1023,17 @@
         
             <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="../exercises/ex-geco.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="use-qgis.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Script a Habitat Suitability Map</p>
+            <p class="prev-next-title">QGIS Tutorial</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="py-requirements.html" title="next page">
+    <a class='right-next' id="next-link" href="geo-python.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Python Requirements</p>
+        <p class="prev-next-title">Geospatial Python</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

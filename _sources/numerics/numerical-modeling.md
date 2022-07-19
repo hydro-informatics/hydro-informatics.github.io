@@ -16,7 +16,7 @@ This chapter introduces open-access and open-source software with extensive tuto
 * **TELEMAC (open source)**<br>Open TELEMAC-MASCARET is a powerful software suite for a large variety of **rivers, lakes, and even ocean deltas**.
   * Get an overview of files and model options in the {ref}`TELEMAC introduction <chpt-telemac>` section.
   * The {ref}`chpt-telemac2d` tutorial introduces 2d hydrodynamic modelling with standard *SLF* (selafin) geometry files.
-  * The {ref}`chpt-telemac3d-med` tutorial introduces 3d hydrodynamic modeling based on the highly efficient *MED* file library and using the {ref}`salome-hydro` software suite.
+  * The {ref}`chpt-telemac3d-med` tutorial introduces 3d hydrodynamic modeling based on the highly efficient *MED* file library.
 
 **OpenFOAM** represents another powerful modeling tool, which **is recommended here for modeling flow-structure interactions**, but not particularly featured in this eBook. OpenFOAM developers provide detailed documentation with high-quality tutorials on their website. Especially, their [3-week tutorial](https://wiki.openfoam.com/index.php?title=%223_weeks%22_series) is a very good start into OpenFOAM modeling for PhD students or engineers. On {ref}`Debian Linux / Ubuntu / Mint <linux-install>`, preferably install OpenFOAM from the [Ubuntu repository](https://develop.openfoam.com/Development/openfoam/-/wikis/precompiled/debian#ubuntu).
 

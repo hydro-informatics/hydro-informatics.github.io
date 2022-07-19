@@ -1,5 +1,5 @@
 (basement2d)=
-# Steady 2d Simulation and Post-processing
+# Run and Check a Steady 2d Simulation
 
 In addition to the {term}`SMS 2dm` file from the {ref}`qgis-prepro-bm` tutorial, the numerical engine of BASEMENT needs a model setup file (**model.json**) and a simulation file (**simulation.json**), which both are created automatically by BASEMENT.
 

@@ -55,7 +55,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Steady 2d Simulation and Post-processing" href="basement2d.html" />
+    <link rel="next" title="Run and Check a Steady 2d Simulation" href="basement2d.html" />
     <link rel="prev" title="BASEMENT" href="basement.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -346,6 +346,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/drone-processing.html">
+     Process Drone Data
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/geo-shp.html">
      Shapefile (Vector) Handling
     </a>
@@ -491,7 +496,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="basement2d.html">
-     Steady 2d Simulation and Post-processing
+     Run and Check a Steady 2d Simulation
     </a>
    </li>
   </ul>
@@ -911,12 +916,12 @@ As featured in the <a class="reference internal" href="../geopy/use-qgis.html#qg
 <ul class="simple">
 <li><p>In the QGIS top menu go to <strong>Project</strong> &gt; <strong>Properties</strong>.</p></li>
 <li><p>Activate the <strong>CRS</strong> tab.</p></li>
-<li><p>Enter <code class="docutils literal notranslate"><span class="pre">Germany_Zone_4</span></code> and select the CRS shown in <a class="reference internal" href="#qgis-crs"><span class="std std-numref">Fig. 28</span></a>.</p></li>
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">Germany_Zone_4</span></code> and select the CRS shown in <a class="reference internal" href="#qgis-crs"><span class="std std-numref">Fig. 33</span></a>.</p></li>
 <li><p>Click <strong>Apply</strong> and <strong>OK</strong>.</p></li>
 </ul>
 <div class="figure align-default" id="qgis-crs">
 <img alt="qgis set coordinate reference system crs germany zone_4 Inn river" src="../_images/inn-crs.png" />
-<p class="caption"><span class="caption-number">Fig. 28 </span><span class="caption-text">Define Germany_Zone_4 as project CRS.</span><a class="headerlink" href="#qgis-crs" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 33 </span><span class="caption-text">Define Germany_Zone_4 as project CRS.</span><a class="headerlink" href="#qgis-crs" title="Permalink to this image">¶</a></p>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Save the project…</p>
@@ -929,7 +934,7 @@ As featured in the <a class="reference internal" href="../geopy/use-qgis.html#qg
 <ul class="simple">
 <li><p>Load the <em>QGIS</em> plugin manager: <strong>Plugins</strong> menu &gt; <strong>Manage and Install Plugins</strong>.</p></li>
 <li><p>Go to the <strong>Settings</strong> tab.</p></li>
-<li><p>Scroll to the bottom (<strong>Plugin Repositories</strong> listbox in <a class="reference internal" href="#qgis-plugins"><span class="std std-numref">Fig. 29</span></a>), click on <strong>Add…</strong>.</p></li>
+<li><p>Scroll to the bottom (<strong>Plugin Repositories</strong> listbox in <a class="reference internal" href="#qgis-plugins"><span class="std std-numref">Fig. 34</span></a>), click on <strong>Add…</strong>.</p></li>
 <li><p>In the popup window enter:</p>
 <ul>
 <li><p>a name for the new repository, for instance, <code class="docutils literal notranslate"><span class="pre">BASEmesh</span> <span class="pre">Plugin</span> <span class="pre">Repository</span></code></p></li>
@@ -941,17 +946,17 @@ As featured in the <a class="reference internal" href="../geopy/use-qgis.html#qg
 </ul>
 <div class="figure align-default" id="qgis-plugins">
 <img alt="qgis basement plugins" src="../_images/bm-plugin.png" />
-<p class="caption"><span class="caption-number">Fig. 29 </span><span class="caption-text">Add the BASEMENT repository to QGIS’ Plugins Manager.</span><a class="headerlink" href="#qgis-plugins" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 34 </span><span class="caption-text">Add the BASEMENT repository to QGIS’ Plugins Manager.</span><a class="headerlink" href="#qgis-plugins" title="Permalink to this image">¶</a></p>
 </div>
 <ul class="simple">
 <li><p>Still in the <strong>Plugins</strong> popup window go back to the <strong>All</strong> tab an enter <code class="docutils literal notranslate"><span class="pre">basemesh</span></code> in the search field.</p></li>
 <li><p>Find the <strong>newest BASEmesh</strong> (i.e., <strong>Available version</strong> &gt;= 2.0.0) plugin and click on <strong>Install Plugin</strong>.</p></li>
 <li><p>After the successful installation <strong>Close</strong> the <strong>Plugins</strong> popup window.</p></li>
-<li><p>Verify that the <em>BASEmesh 2</em> plugin is now available in the QGIS’ <strong>Plugins</strong> menu (see <a class="reference internal" href="#qgis-pluggedin"><span class="std std-numref">Fig. 30</span></a>).</p></li>
+<li><p>Verify that the <em>BASEmesh 2</em> plugin is now available in the QGIS’ <strong>Plugins</strong> menu (see <a class="reference internal" href="#qgis-pluggedin"><span class="std std-numref">Fig. 35</span></a>).</p></li>
 </ul>
 <div class="figure align-default" id="qgis-pluggedin">
 <img alt="qgis basement plugins" src="../_images/bm-pluggedin.png" />
-<p class="caption"><span class="caption-number">Fig. 30 </span><span class="caption-text">The BASEmesh 2 plugin is available in QGIS’ Plugins menu after the successful installation.</span><a class="headerlink" href="#qgis-pluggedin" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 35 </span><span class="caption-text">The BASEmesh 2 plugin is available in QGIS’ Plugins menu after the successful installation.</span><a class="headerlink" href="#qgis-pluggedin" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
@@ -972,10 +977,10 @@ As featured in the <a class="reference internal" href="../geopy/use-qgis.html#qg
 <p class="admonition-title">What are QGIS panels again?</p>
 <p>Learn more in the <em>QGIS</em> tutorial on <a class="reference internal" href="../geopy/use-qgis.html#qgis-tbx-install"><span class="std std-ref">Panels, Toolbars, and Plugins</span></a>.</p>
 </div>
-<p>The DEM should now be displayed on the map (if not: right-click on the DEM layer and click on <strong>Zoom to Layer(s)</strong> in the context menu) as shown in <a class="reference internal" href="#qgis-dem-basemap"><span class="std std-numref">Fig. 31</span></a>.</p>
+<p>The DEM should now be displayed on the map (if not: right-click on the DEM layer and click on <strong>Zoom to Layer(s)</strong> in the context menu) as shown in <a class="reference internal" href="#qgis-dem-basemap"><span class="std std-numref">Fig. 36</span></a>.</p>
 <div class="figure align-default" id="qgis-dem-basemap">
 <img alt="qgis import raster DEM basemap" src="../_images/dem-basemap.png" />
-<p class="caption"><span class="caption-number">Fig. 31 </span><span class="caption-text">The imported DEM on a Google Satellite imagery basemap (source: Google / GeoBasis-DEBKG 2019). The flow direction is from left to right following the <strong>Q</strong> arrow.</span><a class="headerlink" href="#qgis-dem-basemap" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 36 </span><span class="caption-text">The imported DEM on a Google Satellite imagery basemap (source: Google / GeoBasis-DEBKG 2019). The flow direction is from left to right following the <strong>Q</strong> arrow.</span><a class="headerlink" href="#qgis-dem-basemap" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="create-2dm-mesh">
@@ -989,10 +994,10 @@ As featured in the <a class="reference internal" href="../geopy/use-qgis.html#qg
 <p>These shapefiles enable to generate a <a class="reference internal" href="#qualm"><span class="std std-ref">Quality Mesh</span></a>. Ultimately, height information is <a class="reference internal" href="#qualm-interp"><span class="std std-ref">interpolated to the quality mesh</span></a> and the resulting mesh is saved as <a class="reference internal" href="../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> file. The next sections walk through the procedure step by step with detailed explanations. Additional materials and intermediate data products are provided in the supplemental data repository (<a class="reference external" href="https://github.com/hydro-informatics/materials-bm">materials-bm</a>) for this tutorial.</p>
 <div class="section" id="model-boundary-and-breaklines">
 <span id="boundary"></span><h3>Model Boundary and Breaklines<a class="headerlink" href="#model-boundary-and-breaklines" title="Permalink to this headline">¶</a></h3>
-<p>The model boundary defines the model extent and can be divided into regions with different characteristics (e.g., roughness values) through breaklines. Breaklines indicate, for instance, channel banks and the riverbed (main channel), and need to be inside the DEM extents. Boundary lines and breaklines are stored in a <a class="reference internal" href="../geopy/use-qgis.html#create-line-shp"><span class="std std-ref">Line Shapefile</span></a> that BASEmesh uses to find both model boundaries and internal breaklines between model regions. For this purpose, <a class="reference internal" href="../geopy/use-qgis.html#create-line-shp"><span class="std std-ref">Create a Line Shapefile</span></a> with <strong>one Text Field</strong> called <strong>LineType</strong> and call it <strong>breaklines.shp</strong> (<strong>Layer</strong> &gt; <strong>Create Layer</strong> &gt; <strong>New Shapefile Layer</strong>). Click on QGIS’ <strong>Layers</strong> menu &gt; <strong>Create Layer</strong> &gt; <strong>New Shapefile Layer…</strong> (see <a class="reference internal" href="#qgis-new-lyr"><span class="std std-numref">Fig. 32</span></a>). Make sure to select <code class="docutils literal notranslate"><span class="pre">ESRI:</span> <span class="pre">31494</span> <span class="pre">-</span> <span class="pre">Germany_Zone_4</span></code> as <a class="reference internal" href="../documentation/glossary.html#term-CRS"><span class="xref std std-term">CRS</span></a> <img alt="../_images/sym-crs.png" src="../_images/sym-crs.png" />.</p>
+<p>The model boundary defines the model extent and can be divided into regions with different characteristics (e.g., roughness values) through breaklines. Breaklines indicate, for instance, channel banks and the riverbed (main channel), and need to be inside the DEM extents. Boundary lines and breaklines are stored in a <a class="reference internal" href="../geopy/use-qgis.html#create-line-shp"><span class="std std-ref">Line Shapefile</span></a> that BASEmesh uses to find both model boundaries and internal breaklines between model regions. For this purpose, <a class="reference internal" href="../geopy/use-qgis.html#create-line-shp"><span class="std std-ref">Create a Line Shapefile</span></a> with <strong>one Text Field</strong> called <strong>LineType</strong> and call it <strong>breaklines.shp</strong> (<strong>Layer</strong> &gt; <strong>Create Layer</strong> &gt; <strong>New Shapefile Layer</strong>). Click on QGIS’ <strong>Layers</strong> menu &gt; <strong>Create Layer</strong> &gt; <strong>New Shapefile Layer…</strong> (see <a class="reference internal" href="#qgis-new-lyr"><span class="std std-numref">Fig. 37</span></a>). Make sure to select <code class="docutils literal notranslate"><span class="pre">ESRI:</span> <span class="pre">31494</span> <span class="pre">-</span> <span class="pre">Germany_Zone_4</span></code> as <a class="reference internal" href="../documentation/glossary.html#term-CRS"><span class="xref std std-term">CRS</span></a> <img alt="../_images/sym-crs.png" src="../_images/sym-crs.png" />.</p>
 <div class="figure align-default" id="qgis-new-lyr">
 <img alt="qgis new layer basemesh" src="../_images/create-shp-layer.png" />
-<p class="caption"><span class="caption-number">Fig. 32 </span><span class="caption-text">Create a new shapefile from QGIS’ Layers menu.</span><a class="headerlink" href="#qgis-new-lyr" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 37 </span><span class="caption-text">Create a new shapefile from QGIS’ Layers menu.</span><a class="headerlink" href="#qgis-new-lyr" title="Permalink to this image">¶</a></p>
 </div>
 <p>It is important that the lines do not overlap to avoid ambiguous or missing definitions of regions and to ensure that all boundary lines form closed regions (areas). Therefore, activate snapping:</p>
 <ul class="simple">
@@ -1005,7 +1010,7 @@ As featured in the <a class="reference internal" href="../geopy/use-qgis.html#qg
 </ul>
 </li>
 </ul>
-<p>Next, start to edit <strong>breaklines.shp</strong> by clicking on the yellow pen <img alt="../_images/yellow-pen.png" src="../_images/yellow-pen.png" /> and draw the lines indicated in <a class="reference internal" href="#breaklines"><span class="std std-numref">Fig. 33</span></a> by activating <strong>Add Line Feature</strong> <img alt="../_images/sym-add-line.png" src="../_images/sym-add-line.png" />.</p>
+<p>Next, start to edit <strong>breaklines.shp</strong> by clicking on the yellow pen <img alt="../_images/yellow-pen.png" src="../_images/yellow-pen.png" /> and draw the lines indicated in <a class="reference internal" href="#breaklines"><span class="std std-numref">Fig. 38</span></a> by activating <strong>Add Line Feature</strong> <img alt="../_images/sym-add-line.png" src="../_images/sym-add-line.png" />.</p>
 <ul class="simple">
 <li><p><strong>Boundaries of the</strong> model at the left and the right <strong>floodplain limits</strong>:</p>
 <ul>
@@ -1014,7 +1019,7 @@ As featured in the <a class="reference internal" href="../geopy/use-qgis.html#qg
 <li><p>Do not cross the river (wetted area indicated by the satellite imagery basemap).</p></li>
 <li><p><strong>Finalize</strong> every line with a <strong>right-click</strong>.</p></li>
 <li><p>For the <strong>LineType</strong> field use text values such as <strong>boundary left/right floodplain</strong>.</p></li>
-<li><p>Refer to the <strong>red lines in <a class="reference internal" href="#breaklines"><span class="std std-numref">Fig. 33</span></a></strong>.</p></li>
+<li><p>Refer to the <strong>red lines in <a class="reference internal" href="#breaklines"><span class="std std-numref">Fig. 38</span></a></strong>.</p></li>
 </ul>
 </li>
 <li><p><strong>Breaklines of the left bank (LB) and right bank (RB)</strong>:</p>
@@ -1022,7 +1027,7 @@ As featured in the <a class="reference internal" href="../geopy/use-qgis.html#qg
 <li><p>Draw lines along the wetted main channel indicated in the satellite imagery basemap.</p></li>
 <li><p>Make sure that line ends perfectly coincide with the before-created floodplain boundary lines (this is where snapping helps); thus, the main channel’s hard breaklines and the floodplain boundary lines need to enclose the floodplains without any gap between the lines.</p></li>
 <li><p>For the <strong>LineType</strong> field use text values such as <strong>hardline LB/RB</strong>.</p></li>
-<li><p>Refer to the <strong>yellow-orange lines in <a class="reference internal" href="#breaklines"><span class="std std-numref">Fig. 33</span></a></strong> (note the delineation of the small tributaries in the top left at the left bank and in the bottom right at the right bank).</p></li>
+<li><p>Refer to the <strong>yellow-orange lines in <a class="reference internal" href="#breaklines"><span class="std std-numref">Fig. 38</span></a></strong> (note the delineation of the small tributaries in the top left at the left bank and in the bottom right at the right bank).</p></li>
 </ul>
 </li>
 <li><p><strong>Breaklines of gravel banks</strong>:</p>
@@ -1030,7 +1035,7 @@ As featured in the <a class="reference internal" href="../geopy/use-qgis.html#qg
 <li><p>Draw lines along the gravel banks that are visible in the satellite imagery basemap in the main channel.</p></li>
 <li><p>Make sure that the line ends perfectly coincide with the before-created main channel breaklines (hardlines); thus, the main channel’s hard breaklines and the gravel bank breaklines need to enclose the gravel banks without any gap between the lines.</p></li>
 <li><p>For the <strong>LineType</strong> field use text values such as <strong>hardline gravel bank</strong>.</p></li>
-<li><p>Refer to the <strong>green-ish lines in <a class="reference internal" href="#breaklines"><span class="std std-numref">Fig. 33</span></a></strong>.</p></li>
+<li><p>Refer to the <strong>green-ish lines in <a class="reference internal" href="#breaklines"><span class="std std-numref">Fig. 38</span></a></strong>.</p></li>
 </ul>
 </li>
 <li><p>Optional: <strong>Breaklines of block ramps</strong>:</p>
@@ -1038,22 +1043,22 @@ As featured in the <a class="reference internal" href="../geopy/use-qgis.html#qg
 <li><p>Find the rough block ramps (effervescing waters) in the satellite imagery basemap and delineate them by drawing lines across the wetted main channel.</p></li>
 <li><p>Make sure that the line ends perfectly coincide with the main channel breaklines; thus, the main channel’s hard breaklines and the block ramp breaklines need to enclose the block ramps without any gap between the lines.</p></li>
 <li><p>For the <strong>LineType</strong> field use text values such as <strong>hardline sss</strong> (or anything else - the example refers to the German word <u>S</u>chütt<u>s</u>tein<u>s</u>chwelle).</p></li>
-<li><p>Refer to the <strong>blue lines in <a class="reference internal" href="#breaklines"><span class="std std-numref">Fig. 33</span></a></strong>.</p></li>
+<li><p>Refer to the <strong>blue lines in <a class="reference internal" href="#breaklines"><span class="std std-numref">Fig. 38</span></a></strong>.</p></li>
 </ul>
 </li>
 <li><p>Optional: <strong>Breakline of a sandbank</strong>:</p>
 <ul>
-<li><p>Find the sandbank deposit in the upper left corner in <a class="reference internal" href="#breaklines"><span class="std std-numref">Fig. 33</span></a> on the satellite imagery basemap and delineate it by drawing a smoothly curved line.</p></li>
+<li><p>Find the sandbank deposit in the upper left corner in <a class="reference internal" href="#breaklines"><span class="std std-numref">Fig. 38</span></a> on the satellite imagery basemap and delineate it by drawing a smoothly curved line.</p></li>
 <li><p>Make sure that the line ends perfectly coincide with the main channel breaklines and embrace a closed area without any gap between the lines.</p></li>
 <li><p>For the <strong>LineType</strong> field use text values such as <strong>hardline sand</strong>.</p></li>
-<li><p>Refer to the <strong>purple line</strong> in the upper left corner <strong>in <a class="reference internal" href="#breaklines"><span class="std std-numref">Fig. 33</span></a></strong>.</p></li>
+<li><p>Refer to the <strong>purple line</strong> in the upper left corner <strong>in <a class="reference internal" href="#breaklines"><span class="std std-numref">Fig. 38</span></a></strong>.</p></li>
 </ul>
 </li>
 </ul>
 <p>To <strong>correct drawing errors</strong> use the <strong>Vertex Tool</strong> <img alt="../_images/sym-vertex-tool.png" src="../_images/sym-vertex-tool.png" />. Finally, save the new lines (edits of <strong>breaklines.shp</strong>) by clicking on the <strong>Save Layer Edits</strong> <img alt="../_images/sym-save-edits.png" src="../_images/sym-save-edits.png" /> symbol. <strong>Stop (Toggle) Editing</strong> by clicking again on the yellow pen <img alt="../_images/yellow-pen.png" src="../_images/yellow-pen.png" /> symbol.</p>
 <div class="figure align-default" id="breaklines">
 <img alt="qgis basement basemesh draw breaklines boundaries" src="../_images/breaklines.png" />
-<p class="caption"><span class="caption-number">Fig. 33 </span><span class="caption-text">Boundary and breaklines to draw in <strong>breaklines.shp</strong>. Left and right banks and floodplains are orientated in the flow direction (<strong>Q</strong> arrow).</span><a class="headerlink" href="#breaklines" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 38 </span><span class="caption-text">Boundary and breaklines to draw in <strong>breaklines.shp</strong>. Left and right banks and floodplains are orientated in the flow direction (<strong>Q</strong> arrow).</span><a class="headerlink" href="#breaklines" title="Permalink to this image">¶</a></p>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Troubles with drawing boundaries and breaklines?</p>
@@ -1072,7 +1077,7 @@ As featured in the <a class="reference internal" href="../geopy/use-qgis.html#qg
 <p>The liquid boundaries define where hydraulic conditions, such as a given discharge or stage-discharge relationship, apply at the model inflow (upstream) and outflow (downstream) limits. Thus, a functional river model requires at least one inflow boundary (line) where mass flow into the model and one outflow boundary (line) where mass fluxes leave the model. For this purpose, <a class="reference internal" href="../geopy/use-qgis.html#create-line-shp"><span class="std std-ref">Create a Line Shapefile</span></a> called <strong>liquid-boundaries.shp</strong> and define <strong>two text data fields</strong> named <strong>type</strong> and <strong>stringdef</strong>. Make sure that <strong>snapping</strong> is still <strong>enabled</strong> (as above explained in the <a class="reference internal" href="#boundary"><span class="std std-ref">Model Boundary and Breaklines</span></a> section) and <strong>Toggle (Start) Editing</strong> <img alt="../_images/yellow-pen.png" src="../_images/yellow-pen.png" /> the new <strong>liquid-boundaries.shp</strong>. Then draw two lines:</p>
 <ul class="simple">
 <li><p>Activate <strong>Add Line Feature</strong> <img alt="../_images/sym-add-line.png" src="../_images/sym-add-line.png" />.</p></li>
-<li><p>Draw an inflow boundary line (see also <a class="reference internal" href="#inflow-boundary"><span class="std std-numref">Fig. 34</span></a>):</p>
+<li><p>Draw an inflow boundary line (see also <a class="reference internal" href="#inflow-boundary"><span class="std std-numref">Fig. 39</span></a>):</p>
 <ul>
 <li><p>Zoom to the inflow region of the DEM limits, where there is a <strong>gap between</strong> the above-created <strong>floodplain boundary breaklines</strong>.</p></li>
 <li><p>Start drawing a line on the left bank (left side of the below figure) and moved Eastwards (i.e., to the right) to make seven more points across the river.</p></li>
@@ -1085,10 +1090,10 @@ As featured in the <a class="reference internal" href="../geopy/use-qgis.html#qg
 </ul>
 <div class="figure align-default" id="inflow-boundary">
 <img alt="qgis basemesh draw inflow boundary line" src="../_images/inflow-boundary.png" />
-<p class="caption"><span class="caption-number">Fig. 34 </span><span class="caption-text">The inflow boundary line is drawn from the left to the right (i.e., the upstream flow is coming from the right-hand side of the inflow boundary line). The sequence of buttons to use is highlighted by the red boxes.</span><a class="headerlink" href="#inflow-boundary" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 39 </span><span class="caption-text">The inflow boundary line is drawn from the left to the right (i.e., the upstream flow is coming from the right-hand side of the inflow boundary line). The sequence of buttons to use is highlighted by the red boxes.</span><a class="headerlink" href="#inflow-boundary" title="Permalink to this image">¶</a></p>
 </div>
 <ul class="simple">
-<li><p>Next, draw an outflow boundary line (see also <a class="reference internal" href="#outflow-boundary"><span class="std std-numref">Fig. 35</span></a>):</p>
+<li><p>Next, draw an outflow boundary line (see also <a class="reference internal" href="#outflow-boundary"><span class="std std-numref">Fig. 40</span></a>):</p>
 <ul>
 <li><p>Zoom to the outflow region of the DEM limits, where there is a <strong>gap between</strong> the above-created <strong>floodplain boundary breaklines</strong>.</p></li>
 <li><p>Start drawing a line on the left bank (top of the below figure) and move Southwestwards (i.e., to the bottom) to make seven more points across the river.</p></li>
@@ -1101,7 +1106,7 @@ As featured in the <a class="reference internal" href="../geopy/use-qgis.html#qg
 </ul>
 <div class="figure align-default" id="outflow-boundary">
 <img alt="qgis basemesh draw outflow boundary line" src="../_images/outflow-boundary.png" />
-<p class="caption"><span class="caption-number">Fig. 35 </span><span class="caption-text">The outflow boundary line is drawn from the top to the bottom (i.e., the upstream flow is coming from the right hand-side of the outflow boundary line).</span><a class="headerlink" href="#outflow-boundary" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 40 </span><span class="caption-text">The outflow boundary line is drawn from the top to the bottom (i.e., the upstream flow is coming from the right hand-side of the outflow boundary line).</span><a class="headerlink" href="#outflow-boundary" title="Permalink to this image">¶</a></p>
 </div>
 <div class="important admonition">
 <p class="admonition-title">Constraints of inflow and outflow boundaries</p>
@@ -1119,7 +1124,7 @@ As featured in the <a class="reference internal" href="../geopy/use-qgis.html#qg
 </div>
 <div class="section" id="region-markers">
 <span id="regions"></span><h3>Region Markers<a class="headerlink" href="#region-markers" title="Permalink to this headline">¶</a></h3>
-<p>Region markers are placed inside regions defined by boundary lines and breaklines. Every region marker (i.e., a point somewhere in the region area) assigns, for instance, a material identifier (MATIDs) and a maximum mesh cell area. The latter option enables to define small mesh cells (mesh areas) in the active channel bed and can larger cell areas in the floodplain regions. <a class="reference internal" href="../geopy/use-qgis.html#create-point-shp"><span class="std std-ref">Create a Point Shapefile</span></a> named <strong>raster-points.shp</strong> with the following definitions (see also <a class="reference internal" href="#qgis-reg-lyr"><span class="std std-numref">Fig. 36</span></a>):</p>
+<p>Region markers are placed inside regions defined by boundary lines and breaklines. Every region marker (i.e., a point somewhere in the region area) assigns, for instance, a material identifier (MATIDs) and a maximum mesh cell area. The latter option enables to define small mesh cells (mesh areas) in the active channel bed and can larger cell areas in the floodplain regions. <a class="reference internal" href="../geopy/use-qgis.html#create-point-shp"><span class="std std-ref">Create a Point Shapefile</span></a> named <strong>raster-points.shp</strong> with the following definitions (see also <a class="reference internal" href="#qgis-reg-lyr"><span class="std std-numref">Fig. 41</span></a>):</p>
 <ul class="simple">
 <li><p>Define the <strong>File name</strong> as <strong>region-points.shp</strong> (or similar)</p></li>
 <li><p>Ensure the <strong>Geometry type</strong> is <strong>Point</strong></p></li>
@@ -1135,7 +1140,7 @@ As featured in the <a class="reference internal" href="../geopy/use-qgis.html#qg
 </ul>
 <div class="figure align-default" id="qgis-reg-lyr">
 <img alt="basement mesh qgis region layer points" src="../_images/bm-region-pts-create.png" />
-<p class="caption"><span class="caption-number">Fig. 36 </span><span class="caption-text">Definitions and fields to be added to the region-points shapefile.</span><a class="headerlink" href="#qgis-reg-lyr" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 41 </span><span class="caption-text">Definitions and fields to be added to the region-points shapefile.</span><a class="headerlink" href="#qgis-reg-lyr" title="Permalink to this image">¶</a></p>
 </div>
 <p>Consider to <strong>deactivate snapping</strong> for drawing the region markers to avoid that region markers coincide with any line. Then, <strong>Toggle (Start) Editing</strong> <img alt="../_images/yellow-pen.png" src="../_images/yellow-pen.png" /> the new <strong>region-points.shp</strong> file and activate <strong>Add Point Feature</strong> <img alt="../_images/sym-add-point.png" src="../_images/sym-add-point.png" />. Draw one point in every area section that is enclosed by breaklines and (liquid) boundary lines. Depending on the apparent area type from the satellite imagery basemap, assign one of the five regions listed in <a class="reference internal" href="#region-defs"><span class="std std-numref">Tab. 3</span></a> to every point.</p>
 <table class="table" id="region-defs">
@@ -1181,10 +1186,10 @@ As featured in the <a class="reference internal" href="../geopy/use-qgis.html#qg
 </tr>
 </tbody>
 </table>
-<p>After drawing a point in every closed area, save the region point markers (edits of <strong>region-points.shp</strong>) by clicking on the <strong>Save Layer Edits</strong> <img alt="../_images/sym-save-edits.png" src="../_images/sym-save-edits.png" /> symbol. <strong>Stop (Toggle) Editing</strong> by clicking again on the yellow pen <img alt="../_images/yellow-pen.png" src="../_images/yellow-pen.png" /> symbol. <a class="reference internal" href="#qgis-reg-pts"><span class="std std-numref">Figure 37</span></a> shows an example for region marker points within the areas delineated by the breaklines.</p>
+<p>After drawing a point in every closed area, save the region point markers (edits of <strong>region-points.shp</strong>) by clicking on the <strong>Save Layer Edits</strong> <img alt="../_images/sym-save-edits.png" src="../_images/sym-save-edits.png" /> symbol. <strong>Stop (Toggle) Editing</strong> by clicking again on the yellow pen <img alt="../_images/yellow-pen.png" src="../_images/yellow-pen.png" /> symbol. <a class="reference internal" href="#qgis-reg-pts"><span class="std std-numref">Figure 42</span></a> shows an example for region marker points within the areas delineated by the breaklines.</p>
 <div class="figure align-default" id="qgis-reg-pts">
 <img alt="basemesh region points" src="../_images/bm-region-pts-map.png" />
-<p class="caption"><span class="caption-number">Fig. 37 </span><span class="caption-text">Example for region point markers in the project boundaries.</span><a class="headerlink" href="#qgis-reg-pts" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 42 </span><span class="caption-text">Example for region point markers in the project boundaries.</span><a class="headerlink" href="#qgis-reg-pts" title="Permalink to this image">¶</a></p>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Troubles with drawing the region marker points?</p>
@@ -1194,7 +1199,7 @@ As featured in the <a class="reference internal" href="../geopy/use-qgis.html#qg
 <div class="section" id="create-a-quality-mesh">
 <span id="qualm"></span><h3>Create a Quality Mesh<a class="headerlink" href="#create-a-quality-mesh" title="Permalink to this headline">¶</a></h3>
 <p><em>BASEmesh</em>’s quality mesh tool creates a computationally efficient triangular mesh based on <span id="id1">Shewchuk [<a class="reference internal" href="../documentation/bibliography.html#id1341">She96</a>]</span> and within the above-defined model boundaries. The tool associates mesh properties with the regions shapefile ([see above section on <a class="reference internal" href="#regions"><span class="std std-ref">Region Markers</span></a>), but it does not include elevation data. Thus, after generating a quality mesh, elevation information needs to be added. This section explains the quality mesh generation and the next section features the interpolation of bottom elevations.</p>
-<p>In QGIS’ <strong>Plugins</strong> menu, click on <strong>BASEmesh 2</strong> &gt; <strong>QUALITY MESHING</strong> to open the quality mesh tool. Make the following settings in the popup window (see also <a class="reference internal" href="#qgis-qualm"><span class="std std-numref">Fig. 38</span></a>):</p>
+<p>In QGIS’ <strong>Plugins</strong> menu, click on <strong>BASEmesh 2</strong> &gt; <strong>QUALITY MESHING</strong> to open the quality mesh tool. Make the following settings in the popup window (see also <a class="reference internal" href="#qgis-qualm"><span class="std std-numref">Fig. 43</span></a>):</p>
 <ul class="simple">
 <li><p>Triangulation constraints frame:</p>
 <ul>
@@ -1230,13 +1235,13 @@ As featured in the <a class="reference internal" href="../geopy/use-qgis.html#qg
 </ul>
 <div class="figure align-default" id="qgis-qualm">
 <img alt="basement qgis quality mesh tin" src="../_images/bm-quality-meshing-success.png" />
-<p class="caption"><span class="caption-number">Fig. 38 </span><span class="caption-text">Definitions to be made in BASEmesh’s Quality meshing tool.</span><a class="headerlink" href="#qgis-qualm" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 43 </span><span class="caption-text">Definitions to be made in BASEmesh’s Quality meshing tool.</span><a class="headerlink" href="#qgis-qualm" title="Permalink to this image">¶</a></p>
 </div>
 <p>Quality meshing may take time. After a successful mesh generation the file <strong>prepro-tutorial_quality-mesh-interp.2dm</strong> will have been generated.</p>
 </div>
 <div class="section" id="interpolate-bottom-elevation-to-quality-mesh">
 <span id="qualm-interp"></span><h3>Interpolate Bottom Elevation to Quality Mesh<a class="headerlink" href="#interpolate-bottom-elevation-to-quality-mesh" title="Permalink to this headline">¶</a></h3>
-<p>The <em>BASEmesh</em> plugin’s <strong>Interpolation</strong> tool projects bottom elevation data onto the quality mesh by interpolation from another mesh or a <a class="reference internal" href="../documentation/glossary.html#term-DEM"><span class="xref std std-term">DEM</span></a> <a class="reference internal" href="../geopy/geospatial-data.html#raster"><span class="std std-ref">Gridded Cell (Raster) Data</span></a>. Here, we use the <a class="reference internal" href="#get-dem"><span class="std std-ref">above-introduced DEM GeoTIFF</span></a>. To run the interpolation, open <em>BASEmesh</em>’s <strong>Interpolation</strong> tool (<em>QGIS</em> <strong>Plugins</strong> menu &gt; <strong>BASEmesh 2</strong> &gt; <strong>Interpolation</strong>) and make the following settings (see also <a class="reference internal" href="#qgis-qualm-interp"><span class="std std-numref">Fig. 39</span></a>):</p>
+<p>The <em>BASEmesh</em> plugin’s <strong>Interpolation</strong> tool projects bottom elevation data onto the quality mesh by interpolation from another mesh or a <a class="reference internal" href="../documentation/glossary.html#term-DEM"><span class="xref std std-term">DEM</span></a> <a class="reference internal" href="../geopy/geospatial-data.html#raster"><span class="std std-ref">Gridded Cell (Raster) Data</span></a>. Here, we use the <a class="reference internal" href="#get-dem"><span class="std std-ref">above-introduced DEM GeoTIFF</span></a>. To run the interpolation, open <em>BASEmesh</em>’s <strong>Interpolation</strong> tool (<em>QGIS</em> <strong>Plugins</strong> menu &gt; <strong>BASEmesh 2</strong> &gt; <strong>Interpolation</strong>) and make the following settings (see also <a class="reference internal" href="#qgis-qualm-interp"><span class="std std-numref">Fig. 44</span></a>):</p>
 <ul class="simple">
 <li><p>In the <strong>Mesh layer to interpolate</strong> frame, select <strong>prepro-tutorial_quality-mesh</strong>.</p></li>
 <li><p>In the <strong>Basic</strong> tab find the <strong>Elevation source</strong> frame and activate the <strong>Activation via DEM (Raster)</strong> radio button.</p></li>
@@ -1257,12 +1262,12 @@ As featured in the <a class="reference internal" href="../geopy/use-qgis.html#qg
 </div>
 <div class="figure align-default" id="qgis-qualm-interp">
 <img alt="qgis quality mesh interpolation basement" src="../_images/bm-mesh-interpolation.png" />
-<p class="caption"><span class="caption-number">Fig. 39 </span><span class="caption-text">BASEmesh’s Z-value (height) interpolation tool and setup to assign bottom elevation values to the quality mesh.</span><a class="headerlink" href="#qgis-qualm-interp" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 44 </span><span class="caption-text">BASEmesh’s Z-value (height) interpolation tool and setup to assign bottom elevation values to the quality mesh.</span><a class="headerlink" href="#qgis-qualm-interp" title="Permalink to this image">¶</a></p>
 </div>
-<p>After the elevation interpolation, verify that the elevations are correctly assigned (i.e., the <strong>Bed Elevation</strong> should have taken values between <strong>367</strong> and <strong>387</strong> m a.s.l.). To modify the layer visualization (symbology) double-click on the new <strong>prepro-tutorial_quality-mesh-interp</strong> and go to the <strong>Symbology</strong> ribbon. Select <strong>Graduated</strong> at the very top of the window, set the <strong>Value</strong> to Z, <strong>Method</strong> to COLOR, choose a color ramp, and click on the <strong>classify</strong> bottom (lower part of the window). Click on <strong>Apply</strong> and <strong>OK</strong> to close the symbology settings. <a class="reference internal" href="#qgis-verify-qualm"><span class="std std-numref">Figure 40</span></a> shows an example visualization of the height-interpolated mesh.</p>
+<p>After the elevation interpolation, verify that the elevations are correctly assigned (i.e., the <strong>Bed Elevation</strong> should have taken values between <strong>367</strong> and <strong>387</strong> m a.s.l.). To modify the layer visualization (symbology) double-click on the new <strong>prepro-tutorial_quality-mesh-interp</strong> and go to the <strong>Symbology</strong> ribbon. Select <strong>Graduated</strong> at the very top of the window, set the <strong>Value</strong> to Z, <strong>Method</strong> to COLOR, choose a color ramp, and click on the <strong>classify</strong> bottom (lower part of the window). Click on <strong>Apply</strong> and <strong>OK</strong> to close the symbology settings. <a class="reference internal" href="#qgis-verify-qualm"><span class="std std-numref">Figure 45</span></a> shows an example visualization of the height-interpolated mesh.</p>
 <div class="figure align-default" id="qgis-verify-qualm">
 <img alt="basemesh verify interpolated quality mesh" src="../_images/bm-mesh-interp-success.png" />
-<p class="caption"><span class="caption-number">Fig. 40 </span><span class="caption-text">Verify elevation interpolation using graduated color ramps.</span><a class="headerlink" href="#qgis-verify-qualm" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 45 </span><span class="caption-text">Verify elevation interpolation using graduated color ramps.</span><a class="headerlink" href="#qgis-verify-qualm" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
@@ -1307,7 +1312,7 @@ As featured in the <a class="reference internal" href="../geopy/use-qgis.html#qg
     <a class='right-next' id="next-link" href="basement2d.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Steady 2d Simulation and Post-processing</p>
+        <p class="prev-next-title">Run and Check a Steady 2d Simulation</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

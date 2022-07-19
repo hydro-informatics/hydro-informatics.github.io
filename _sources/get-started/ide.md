@@ -121,7 +121,7 @@ Many additional features for JupyterLab are available through [*nbextensions*](h
 conda install -c conda-forge jupyter_contrib_nbextensions
 ```
 
-When reading through the Python tutorials on this website, you will probably find one or another spelling mistake (please <a href="mailto:sebastian.schwindt[AT]iws.uni-stuttgart.de?subject=HYPY%20Spelling%20mistake">report mistakes!</a>). In particular, the Python sections may be affected because they were created with JupyterLab, where there is no spell checker pre-installed. To avoid at least the most unpleasant errors you can install a spellchecker in Jupyter. One solution is to install [@ijmbbarr](https://github.com/ijmbarr/jupyterlab_spellchecker)s spellchecker, which requires installing *nodejs* (through Anaconda Prompt and in addition to *nbextensions*):
+When reading through the Python tutorials on this website, you will probably find one or another spelling mistake (please <a href="mailto:sebastian.schwindt[AT]iws.uni-stuttgart.de?subject=hydroinformatics%20spelling%20mistake">report mistakes!</a>). In particular, the Python sections may be affected because they were created with JupyterLab, where there is no spell checker pre-installed. To avoid at least the most unpleasant errors you can install a spellchecker in Jupyter. One solution is to install [@ijmbbarr](https://github.com/ijmbarr/jupyterlab_spellchecker)s spellchecker, which requires installing *nodejs* (through Anaconda Prompt and in addition to *nbextensions*):
 
 ```
 conda install -c conda-forge nodejs
@@ -172,10 +172,47 @@ Closing *Terminal* will also terminate the localhost that runs JupyterLab. Thus,
 
 To better understand and troubleshoot code crashes, a debugger represents a great relief. Unfortunately, debugging in Jupyter can cause some headache in the absence of an inherent debugging tool. To get a debugger working with Jupyter, check out [this blog entry from Jupyter Project](https://blog.jupyter.org/a-visual-debugger-for-jupyter-914e61716559).
 
+
+(install-sublime)=
+# Sublime
+
+Sublime is one of the most popular editors for multiple (computer) languages. However, it is commericial software that is only free to use during an evluation period without time limit. Read more about it at [sublimetext.com](https://www.sublimetext.com).
+
+To install it on Debian Linux platforms, open Terminal and tap (source: https://www.sublimetext.com/docs):
+
+```
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/sublimehq-archive.gpg
+```
+
+Then select the stable channel (the dev channel has more features but also more bugs):
+
+```
+echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+```
+
+Finally, update `apt` and install Sublime:
+
+```
+sudo apt update
+sudo apt install sublime-text
+```
+
+If an error message occurs, make sure `apt` works with `https` sources:
+
+```
+sudo apt install apt-transport-https
+```
+
 (install-atom)=
 # Atom
 
 *Atom* is a hackable text editor that is compatible with almost any programming language. While its bare installation has little functionality, the omni-compatibility can be enabled by installing desired packages (e.g., for Python, *Markdown*, or *LaTex*). Another big advantage of Atom is the availability of powerful spell checker packages.
+
+```{admonition} Atom will sunset on December 15, 2022
+:class: warning
+
+The Atom developers at *GitHub* (i.e., Microsoft) anounced that they sunset (archive) Atom on December 15, 2022 [read more](https://github.blog/2022-06-08-sunsetting-atom/). That means, no updates and no maintenance are available as of December 15, 2022, but Atom can still be downloaded. It is not yet clear if Atom will reach its end of life or if some one will take up the maintenance and development of Atom.
+```
 
 ## Installation
 

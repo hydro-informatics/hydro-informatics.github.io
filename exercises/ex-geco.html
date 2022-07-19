@@ -348,6 +348,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../geopy/drone-processing.html">
+     Process Drone Data
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../jupyter/geo-shp.html">
      Shapefile (Vector) Handling
     </a>
@@ -493,7 +498,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../numerics/basement2d.html">
-     Steady 2d Simulation and Post-processing
+     Run and Check a Steady 2d Simulation
     </a>
    </li>
   </ul>
@@ -970,7 +975,7 @@
 <p>Fish and other aquatic species rest, orient, and reproduce in a fluvial environment that represents their physical habitat. Throughout their different life stages, different fish have specific physical habitat preferences which are defined, for instance, as a function of water depth, flow velocity, and grain size of the riverbed. The so-called <em>Habitat Suitability Index</em> <span class="math notranslate nohighlight">\(HSI\)</span> can be calculated for hydraulic (water depth or flow velocity) and morphological (e.g., grain size or cover in the form of large wood) parameters individually to describe the quality of physical habitat for a fish and at a specific life stage. The figure below shows exemplary <span class="math notranslate nohighlight">\(HSI\)</span> curves for the fry, juvenile, and adult life stages of rainbow trout as a function of water depth. The <span class="math notranslate nohighlight">\(HSI\)</span> curves look different in every river and should be established individually by an aquatic ecologist.</p>
 <div class="figure align-default" id="hsi-image">
 <img alt="HSI curves examples trout" src="https://github.com/Ecohydraulics/media/raw/main/png/hsi-curves.png" />
-<p class="caption"><span class="caption-number">Fig. 20 </span><span class="caption-text">Habitat Suitability Index <span class="math notranslate nohighlight">\(HSI\)</span> curves for the fry, juvenile, and adult life stages of rainbow trout in a cobble-bed river. Take care: HSI curves look different in any river and need to be established by an aquatic ecologist.</span><a class="headerlink" href="#hsi-image" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 25 </span><span class="caption-text">Habitat Suitability Index <span class="math notranslate nohighlight">\(HSI\)</span> curves for the fry, juvenile, and adult life stages of rainbow trout in a cobble-bed river. Take care: HSI curves look different in any river and need to be established by an aquatic ecologist.</span><a class="headerlink" href="#hsi-image" title="Permalink to this image">¶</a></p>
 </div>
 <p>The <span class="math notranslate nohighlight">\(HSI\)</span> concept also accounts for the so-called cover habitat in the form of the <em>cover Habitat Suitability Index</em> <span class="math notranslate nohighlight">\(HSI_{cov}\)</span>. Cover habitat is the result of local turbulence caused by roughness elements such as wood, boulders, or bridge piers. However, in this exercise, we will only deal with hydraulic habitat characteristics (not cover habitat).</p>
 <p><img alt="cover-habitat" src="https://github.com/Ecohydraulics/media/raw/main/jpg/neckar-fish-cover.jpg" /><br>
@@ -1013,7 +1018,7 @@
 <p>The following flow chart illustrates the provided code and data. Functions, methods, and files to be created in this exercise are highlighted in bold, italic, <em>YELLOW</em>-ish font.</p>
 <div class="figure align-default" id="uml">
 <img alt="HSI curves examples trout" src="https://github.com/Ecohydraulics/Exercise-geco/raw/main/graphs/geo_eco_uml.png" />
-<p class="caption"><span class="caption-number">Fig. 21 </span><span class="caption-text">Structure of the provided template file tree and their relations.</span><a class="headerlink" href="#uml" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 26 </span><span class="caption-text">Structure of the provided template file tree and their relations.</span><a class="headerlink" href="#uml" title="Permalink to this image">¶</a></p>
 </div>
 <p>The provided QGIS project file <code class="docutils literal notranslate"><span class="pre">visualize_with_QGIS.qgz</span></code> helps to verify input raster datasets and results.</p>
 <div class="section" id="two-dimensional-2d-hydrodynamic-modelling-folder-basement">
@@ -1461,12 +1466,12 @@ Next, load the <code class="docutils literal notranslate"><span class="pre">osge
 <p>A successful run of the script <code class="docutils literal notranslate"><span class="pre">create_hsi_rasters.py</span></code> should look like this (in <em>PyCharm</em>):</p>
 <div class="figure align-default" id="run-chsi">
 <img alt="run execute script calculation combined habitat suitability index raster map" src="https://github.com/Ecohydraulics/Exercise-geco/raw/main/graphs/run_create_chsi_rasters.png" />
-<p class="caption"><span class="caption-number">Fig. 22 </span><span class="caption-text">A Windows Python console running the above-created scripts.</span><a class="headerlink" href="#run-chsi" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 27 </span><span class="caption-text">A Windows Python console running the above-created scripts.</span><a class="headerlink" href="#run-chsi" title="Permalink to this image">¶</a></p>
 </div>
 <p>Plotted in QGIS, the <span class="math notranslate nohighlight">\(cHSI\)</span> <a class="reference internal" href="../documentation/glossary.html#term-GeoTIFF"><span class="xref std std-term">GeoTIFF</span></a> raster should look like this:</p>
 <div class="figure align-default" id="chsi-results">
 <img alt="chsi calculation" src="https://github.com/Ecohydraulics/Exercise-geco/raw/main/graphs/ex-chsi.png" />
-<p class="caption"><span class="caption-number">Fig. 23 </span><span class="caption-text">The cHSI raster plotted in QGIS, where poor physical habitat quality (cHSI close to 0.0) is colored in red and high physical habitat quality (cHSI close to 1.0) is colored in green.</span><a class="headerlink" href="#chsi-results" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 28 </span><span class="caption-text">The cHSI raster plotted in QGIS, where poor physical habitat quality (cHSI close to 0.0) is colored in red and high physical habitat quality (cHSI close to 1.0) is colored in green.</span><a class="headerlink" href="#chsi-results" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="result-interpretation">
@@ -1606,12 +1611,12 @@ Then, create a void <a class="reference internal" href="../jupyter/pybase.html#l
 <p>A successful run of the script <code class="docutils literal notranslate"><span class="pre">calculate_habitat_area.py</span></code> should look like this (in <em>PyCharm</em>):</p>
 <div class="figure align-default" id="ran-chsi">
 <img alt="calculate usable habitat area Python gdal" src="https://github.com/Ecohydraulics/Exercise-geco/raw/main/graphs/run_habitat_area.png" />
-<p class="caption"><span class="caption-number">Fig. 24 </span><span class="caption-text">Successful run of the <em>calculate_habitat_area.py</em> script.</span><a class="headerlink" href="#ran-chsi" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 29 </span><span class="caption-text">Successful run of the <em>calculate_habitat_area.py</em> script.</span><a class="headerlink" href="#ran-chsi" title="Permalink to this image">¶</a></p>
 </div>
 <p>Plotted in QGIS, the <em>habitat-area</em> shapefile looks like this (use <em>Categorized</em> symbology):</p>
 <div class="figure align-default" id="uha-results">
 <img alt="calculate usable habitat area Python gdal map raster QGIS" src="https://github.com/Ecohydraulics/Exercise-geco/raw/main/graphs/ex-uha.png" />
-<p class="caption"><span class="caption-number">Fig. 25 </span><span class="caption-text">The habitat-area shapefile plotted in QGIS with Categorized symbology, where the usable habitat area <span class="math notranslate nohighlight">\(UHA\)</span> (<span class="math notranslate nohighlight">\(cHSI &gt;\)</span> 0.4) is delineated by the hatched purple patches and their dashed outlines.</span><a class="headerlink" href="#uha-results" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 30 </span><span class="caption-text">The habitat-area shapefile plotted in QGIS with Categorized symbology, where the usable habitat area <span class="math notranslate nohighlight">\(UHA\)</span> (<span class="math notranslate nohighlight">\(cHSI &gt;\)</span> 0.4) is delineated by the hatched purple patches and their dashed outlines.</span><a class="headerlink" href="#uha-results" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="id7">
