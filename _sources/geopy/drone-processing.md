@@ -135,3 +135,9 @@ The mesh creation popup dialogue in Metashape.
 
 Once the mesh creation is finished, it can be exported with a right-click on the **3D Model** entry in the **Workspace** and a left-click on **Export Model...**. If the 3D Model is not visible in the Workspace, expand the **Chunk 1** entry (or whatever name it has). For use with a numerical model (e.g., OpenFOAM), the STL (`.stl`) format is a good choice.
 
+
+```{admonition} Take advantage of Metashapes Python bindings
+:class: tip
+
+Metashape comes with Python script than enable automation of calls to workflows with varying parameters. To get started with Python, have a look at the {ref}`Python tutorials <about-python>` in this eBook and Agisoft's [Python reference guide](https://www.agisoft.com/pdf/metashape_python_api_1_5_0.pdf).
+```
