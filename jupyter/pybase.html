@@ -330,6 +330,11 @@
    QGIS Tutorial
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/drone-processing.html">
+   Process Drone (UAV) Imagery
+  </a>
+ </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../geopy/geo-python.html">
    Geospatial Python
@@ -343,11 +348,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../geopy/geo-pckg.html">
      Geospatial Open Source Python Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/drone-processing.html">
-     Process Drone Data
     </a>
    </li>
    <li class="toctree-l2">
@@ -924,7 +924,7 @@
 </div>
 <div class="section" id="load-python-environment">
 <h2>Load Python Environment<a class="headerlink" href="#load-python-environment" title="Permalink to this headline">¶</a></h2>
-<p>These pages are written with <a class="reference external" href="https://jupyter.org/"><em>JupyterLab</em></a> <img alt="https://jupyter.org/assets/main-logo.svg" src="https://jupyter.org/assets/main-logo.svg" />. For the best learning experience make sure to read about <a class="reference internal" href="../get-started/ide.html#sec-ide"><span class="std std-ref">Integrated Development Environments (IDEs)</span></a> before starting this tutorial.</p>
+<p>These pages are written with <a class="reference external" href="https://jupyter.org/"><em>JupyterLab</em></a> <img alt="https://jupyter.org/assets/homepage/main-logo.svg" src="https://jupyter.org/assets/homepage/main-logo.svg" />. For the best learning experience make sure to read about <a class="reference internal" href="../get-started/ide.html#sec-ide"><span class="std std-ref">Integrated Development Environments (IDEs)</span></a> before starting this tutorial.</p>
 </div>
 <div class="section" id="the-first-lines-of-code">
 <h2>The First Lines of Code<a class="headerlink" href="#the-first-lines-of-code" title="Permalink to this headline">¶</a></h2>
@@ -946,7 +946,14 @@
 <li><p>The Python console is now ready to use.</p></li>
 </ul>
 </li>
-<li><p>With <strong>Atom</strong> (Windows / Linux / macOS):</p>
+<li><p>With <strong>Jupyter</strong> (cross-platform):</p>
+<ul>
+<li><p>Open a Terminal following the above descriptions</p></li>
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">jupyter-lab</span></code> (or <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code>, or <code class="docutils literal notranslate"><span class="pre">jupyterlab</span></code>, or <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code> depending on your installation) &gt; Jupyter opens in your web browser</p></li>
+<li><p>Navigate to a local copy of this Jupyter notebook and run any code block (click on a code block and hit the run triangle button in the top menu).</p></li>
+</ul>
+</li>
+<li><p>With Atom (Windows / Linux / macOS - sunset software!):</p>
 <ul>
 <li><p>Make sure the <em>flusstools</em> environment is installed for your platform (read <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">how to get it</span></a> )</p></li>
 <li><p>In Atom, install and enable the <code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code> (<a class="reference internal" href="../python-basics/pyinstall.html#atom-setup"><span class="std std-ref">read more</span></a>)</p></li>
@@ -954,13 +961,6 @@
 <li><p>Windows + Anaconda users: enter <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">flussenv</span></code></p></li>
 <li><p>Linux + pip/venv users: make sure where your <code class="docutils literal notranslate"><span class="pre">vflussenv</span></code> lives and tap <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">vflussenv/bin/activate</span></code> (<a class="reference internal" href="../python-basics/pyinstall.html#pip-quick"><span class="std std-ref">read more</span></a>)</p></li>
 <li><p>All platforms: tap <code class="docutils literal notranslate"><span class="pre">python</span></code> - the console is now ready to use.</p></li>
-</ul>
-</li>
-<li><p>With <strong>Jupyter</strong> (cross-platform):</p>
-<ul>
-<li><p>Open a Terminal following the above descriptions</p></li>
-<li><p>Enter <code class="docutils literal notranslate"><span class="pre">jupyter-lab</span></code> (or <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code>, or <code class="docutils literal notranslate"><span class="pre">jupyterlab</span></code>, or <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code> depending on your installation) &gt; Jupyter opens in your web browser</p></li>
-<li><p>Navigate to a local copy of this Jupyter notebook and run any code block (click on a code block and hit the run triangle button in the top menu).</p></li>
 </ul>
 </li>
 </ul>
@@ -978,7 +978,7 @@
 <li><p>Expand the project branch (if not yet done: on the left side of the window)</p></li>
 <li><p>Right-click in the project folder, select <code class="docutils literal notranslate"><span class="pre">New</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">File</span></code> and name the new <em>Python</em> (<code class="docutils literal notranslate"><span class="pre">.py</span></code>) file (e.g., <code class="docutils literal notranslate"><span class="pre">icecream_tutorial.py</span></code>).</p></li>
 <li><p>Copy the above <code class="docutils literal notranslate"><span class="pre">print(&quot;...&quot;)</span></code> code into the new Python file and save it.</p></li>
-<li><p>Right-click in the Python file, then <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">icecream_tutorial.py</span></code> (alternatively: press the <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Shift</span></code> + <code class="docutils literal notranslate"><span class="pre">F10</span></code>keys).</p></li>
+<li><p>Right-click in the Python file, then <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">icecream_tutorial.py</span></code> (alternatively: press the <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Shift</span></code> + <code class="docutils literal notranslate"><span class="pre">F10</span></code> keys).</p></li>
 <li><p>Now, the <em>Python Console</em> should pop up at the bottom of the window and it will print the text in the above <code class="docutils literal notranslate"><span class="pre">print</span></code> command.</p></li>
 </ul>
 <p>In any <strong>other (IDE) Terminal</strong>, <code class="docutils literal notranslate"><span class="pre">cd</span></code> to the directory where the Python file (<code class="docutils literal notranslate"><span class="pre">icecream_tutorial.py</span></code>) lives, then enter <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">icecream_tutorial.py</span></code> and hit <code class="docutils literal notranslate"><span class="pre">Enter</span></code>.</p>
@@ -1012,8 +1012,8 @@
 <h3>Text<a class="headerlink" href="#text" title="Permalink to this headline">¶</a></h3>
 <p>Text variables in <em>Python</em> are <em>strings</em> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) that consist of multiple <em>characters</em> (<code class="docutils literal notranslate"><span class="pre">chr</span></code>):</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="f6789c8f-b8c0-480b-8ec2-22b56c684c3f" name="c2fa73d3-c1d8-47be-aef9-223fbbd5ab57" type="radio">
-</input><label class="tabbed-label" for="f6789c8f-b8c0-480b-8ec2-22b56c684c3f">
+<input checked="checked" id="6732a49e-60fd-4077-a03a-0a06022dcc8f" name="d36bb57e-8185-4622-9879-b608bcc673de" type="radio">
+</input><label class="tabbed-label" for="6732a49e-60fd-4077-a03a-0a06022dcc8f">
 Rendered table</label><div class="tabbed-content docutils">
 <table class="colwidths-auto table">
 <thead>
@@ -1042,8 +1042,8 @@ Rendered table</label><div class="tabbed-content docutils">
 </tbody>
 </table>
 </div>
-<input id="58633880-658d-4b2e-a9fd-0832c9bddcf2" name="c2fa73d3-c1d8-47be-aef9-223fbbd5ab57" type="radio">
-</input><label class="tabbed-label" for="58633880-658d-4b2e-a9fd-0832c9bddcf2">
+<input id="e550ade4-8913-4851-9217-7de2fb5c2a7a" name="d36bb57e-8185-4622-9879-b608bcc673de" type="radio">
+</input><label class="tabbed-label" for="e550ade4-8913-4851-9217-7de2fb5c2a7a">
 Source code</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>| Type | Example     | Description                        |
 |------|:-----------:|------------------------------------|

@@ -332,6 +332,11 @@
    QGIS Tutorial
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/drone-processing.html">
+   Process Drone (UAV) Imagery
+  </a>
+ </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../geopy/geo-python.html">
    Geospatial Python
@@ -345,11 +350,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../geopy/geo-pckg.html">
      Geospatial Open Source Python Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/drone-processing.html">
-     Process Drone Data
     </a>
    </li>
    <li class="toctree-l2">
@@ -1131,7 +1131,7 @@
 <p>The model <strong>output</strong> can be defined with the following keywords:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">RESULTS</span> <span class="pre">FILE</span> <span class="pre">:</span> <span class="pre">r2dsteady.slf</span></code> - can be either a <em>MED</em> file or a <em>SLF</em> file</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">VARIABLES</span> <span class="pre">FOR</span> <span class="pre">GRAPHIC</span> <span class="pre">PRINTOUTS</span></code>:  <code class="docutils literal notranslate"><span class="pre">U,V,H,S,Q,F</span></code> - many more options can be found in section 1.317 (page 85) of the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p3r1/documentation/telemac2d/reference/telemac2d_reference_v8p3.pdf">Telemac2d reference manual</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VARIABLES</span> <span class="pre">FOR</span> <span class="pre">GRAPHIC</span> <span class="pre">PRINTOUTS</span></code> (i.e., output parameters):  <code class="docutils literal notranslate"><span class="pre">U,V,H,S,Q,F</span></code> - many more options can be found in section 1.317 (page 85) of the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p3r1/documentation/telemac2d/reference/telemac2d_reference_v8p3.pdf">Telemac2d reference manual</a>.</p></li>
 </ul>
 <p>The velocities (<code class="docutils literal notranslate"><span class="pre">U</span></code> and <code class="docutils literal notranslate"><span class="pre">V</span></code>), the water depth (<code class="docutils literal notranslate"><span class="pre">H</span></code>), and the discharge (<code class="docutils literal notranslate"><span class="pre">Q</span></code>) are standard variables that should be used in every simulation. In particular, the discharge (<code class="docutils literal notranslate"><span class="pre">Q</span></code>) is required to check when (steady) s converge at the inflow and outflow boundaries. Moreover, the discharge (<code class="docutils literal notranslate"><span class="pre">Q</span></code>) enables to trace integrated fluxes along any user-defined line in the model. The procedure for verifying and identify discharges is described in the <a class="reference internal" href="#verify-steady-tm2d"><span class="std std-ref">discharge verification</span></a> section in the post-processing.</p>
 <p>The time variables (<code class="docutils literal notranslate"><span class="pre">TIME</span> <span class="pre">STEP</span></code> and <code class="docutils literal notranslate"><span class="pre">NUMBER</span> <span class="pre">OF</span> <span class="pre">TIME</span> <span class="pre">STEPS</span></code>) define the simulation length and the printout periods (<code class="docutils literal notranslate"><span class="pre">GRAPHIC</span> <span class="pre">PRINTOUT</span> <span class="pre">PERIOD</span></code> and <code class="docutils literal notranslate"><span class="pre">LISTING</span> <span class="pre">PRINTOUT</span> <span class="pre">PERIOD</span></code>) define the result output frequency. The <strong>smaller the printout period</strong>, <strong>the longer will take the simulation</strong> because writing results is one of the most time-consuming processes in numerical modeling. The printout periods (frequencies) refer to a multiple of the <code class="docutils literal notranslate"><span class="pre">TIME</span> <span class="pre">STEPS</span></code> parameter and need to be a smaller number than the <code class="docutils literal notranslate"><span class="pre">NUMBER</span> <span class="pre">OF</span> <span class="pre">TIME</span> <span class="pre">STEPS</span></code>. Read more about timestep parameters in the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p3r1/documentation/telemac2d/user/telemac2d_user_v8p3.pdf">Telemac2d manual</a> in sections 5 and 12.4.2.</p>

@@ -161,7 +161,7 @@ The general parameters define the computation environment starting with a simula
 The model **output** can be defined with the following keywords:
 
 * `RESULTS FILE : r2dsteady.slf` - can be either a *MED* file or a *SLF* file
-* `VARIABLES FOR GRAPHIC PRINTOUTS`:  `U,V,H,S,Q,F` - many more options can be found in section 1.317 (page 85) of the {{ tm2dref }}.
+* `VARIABLES FOR GRAPHIC PRINTOUTS` (i.e., output parameters):  `U,V,H,S,Q,F` - many more options can be found in section 1.317 (page 85) of the {{ tm2dref }}.
 
 The velocities (`U` and `V`), the water depth (`H`), and the discharge (`Q`) are standard variables that should be used in every simulation. In particular, the discharge (`Q`) is required to check when (steady) s converge at the inflow and outflow boundaries. Moreover, the discharge (`Q`) enables to trace integrated fluxes along any user-defined line in the model. The procedure for verifying and identify discharges is described in the {ref}`discharge verification <verify-steady-tm2d>` section in the post-processing.
 
