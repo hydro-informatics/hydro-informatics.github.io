@@ -4,7 +4,7 @@ This section lists open-source packages for geospatial file manipulation with Py
 
 ```{admonition} arcpy / ArcGIS
 :class: attention
-The proprietary license-requiring `arcpy` package is briefly described in the chapter on {ref}`chpt-arcpy`. However, this eBook strongly recommends using the open-source `gdal` library and its derivatives.
+The proprietary license-requiring `arcpy` package is briefly described in the chapter on the commercial {ref}`arcpy library <chpt-arcpy>`. However, this eBook strongly recommends using the open-source libraries, such as `gdal`.
 ```
 
 (gdal)=

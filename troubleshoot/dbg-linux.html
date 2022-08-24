@@ -330,6 +330,11 @@
    QGIS Tutorial
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/drone-processing.html">
+   Process Drone (UAV) Imagery
+  </a>
+ </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../geopy/geo-python.html">
    Geospatial Python
@@ -343,11 +348,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../geopy/geo-pckg.html">
      Geospatial Open Source Python Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/drone-processing.html">
-     Process Drone Data
     </a>
    </li>
    <li class="toctree-l2">
@@ -879,9 +879,21 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#qgis-and-lastools">
-   QGIS and LAStools
+  <a class="reference internal nav-link" href="#qgis">
+   QGIS
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gpg-error-public-key-not-available-apt-update">
+     GPG error - public key not available (APT UPDATE)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lastools">
+     LAStools
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -1031,8 +1043,30 @@ sudo apt-add-repository https://dl.winehq.org/wine-builds/debian/
 </div>
 </div>
 </div>
-<div class="section" id="qgis-and-lastools">
-<h2>QGIS and LAStools<a class="headerlink" href="#qgis-and-lastools" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="qgis">
+<h2>QGIS<a class="headerlink" href="#qgis" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="gpg-error-public-key-not-available-apt-update">
+<h3>GPG error - public key not available (APT UPDATE)<a class="headerlink" href="#gpg-error-public-key-not-available-apt-update" title="Permalink to this headline">¶</a></h3>
+<p>Occasionally (literally…), the GPG key of the QGIS repositories become invalid, which results in an error when using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+
+<span class="p">[</span><span class="o">...</span><span class="p">]</span>
+
+<span class="n">W</span><span class="p">:</span> <span class="n">An</span> <span class="n">error</span> <span class="n">occurred</span> <span class="n">during</span> <span class="n">the</span> <span class="n">signature</span> <span class="n">verification</span><span class="o">.</span> <span class="n">The</span> <span class="n">repository</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">updated</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">previous</span> <span class="n">index</span> <span class="n">files</span> <span class="n">will</span> <span class="n">be</span> <span class="n">used</span><span class="o">.</span> <span class="n">GPG</span> <span class="n">error</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">ubuntugis</span><span class="o">.</span><span class="n">qgis</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">ubuntugis</span> <span class="n">focal</span> <span class="n">InRelease</span><span class="p">:</span> <span class="n">The</span> <span class="n">following</span> <span class="n">signatures</span> <span class="n">couldn</span><span class="s1">&#39;t be verified because the public key is not available: NO_PUBKEY D155B8E6A419C5BE</span>
+
+<span class="n">W</span><span class="p">:</span> <span class="n">Failed</span> <span class="n">to</span> <span class="n">fetch</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">qgis</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">ubuntugis</span><span class="o">/</span><span class="n">dists</span><span class="o">/</span><span class="n">focal</span><span class="o">/</span><span class="n">InRelease</span>  <span class="n">The</span> <span class="n">following</span> <span class="n">signatures</span> <span class="n">couldn</span><span class="s1">&#39;t be verified because the public key is not available: NO_PUBKEY D155B8E6A419C5BE</span>
+
+<span class="p">[</span><span class="o">...</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>To troubleshoot  this error, note the unavailable key (i.e., <code class="docutils literal notranslate"><span class="pre">D155B8E6A419C5BE</span></code> in the above example) and then update the unavailable key:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">key</span> <span class="n">adv</span> <span class="o">--</span><span class="n">keyserver</span> <span class="n">hkp</span><span class="p">:</span><span class="o">//</span><span class="n">keyserver</span><span class="o">.</span><span class="n">ubuntu</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">80</span> <span class="o">--</span><span class="n">recv</span><span class="o">-</span><span class="n">keys</span> <span class="n">D155B8E6A419C5BE</span>
+</pre></div>
+</div>
+<p>To test if the key update worked, tap <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">update</span></code></p>
+</div>
+<div class="section" id="lastools">
+<h3>LAStools<a class="headerlink" href="#lastools" title="Permalink to this headline">¶</a></h3>
 <p>To get LAStools working in QGIS on Ubuntu (make sure to have <a class="reference internal" href="../get-started/vm.html#wine"><span class="std std-ref">Install &amp; Use Windows Applications (Wine)</span></a> installed):</p>
 <ul class="simple">
 <li><p>Download the LAStools (ZIP) from <a class="reference external" href="http://rapidlasso.com/LAStools">http://rapidlasso.com/LAStools</a> and extract the ZIP file</p></li>
@@ -1055,6 +1089,7 @@ line 188:         if (True):</p></li>
 </ul>
 <p>To troubleshoot LAStools installation in QGIS read <a class="reference external" href="https://rapidlasso.com/2013/09/29/how-to-install-lastools-toolbox-in-qgis/">this proposition on rapidlasso.com</a>.</p>
 <p>Read more about running <a class="reference external" href="https://gis.stackexchange.com/questions/138149/wine-lastools-in-qgis-2-8-1-ubuntu-14-04">LAStools on Ubuntu</a>.</p>
+</div>
 </div>
 </div>
 

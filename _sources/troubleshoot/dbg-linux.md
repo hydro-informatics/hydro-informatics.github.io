@@ -148,7 +148,35 @@ If a 64-bit *msi* or other installer / application is not working as desired, tr
 WINEARCH=win64 WINEPREFIX=/home/YOUR-USER-NAME/.wine64 wineboot -u
 ```
 
-## QGIS and LAStools
+## QGIS 
+
+### GPG error - public key not available (APT UPDATE)
+
+Occasionally (literally...), the GPG key of the QGIS repositories become invalid, which results in an error when using:
+
+```
+sudo apt update
+
+[...]
+
+W: An error occurred during the signature verification. The repository is not updated and the previous index files will be used. GPG error: https://ubuntugis.qgis.org/ubuntugis focal InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY D155B8E6A419C5BE
+
+W: Failed to fetch https://qgis.org/ubuntugis/dists/focal/InRelease  The following signatures couldn't be verified because the public key is not available: NO_PUBKEY D155B8E6A419C5BE
+
+[...]
+```
+
+To troubleshoot  this error, note the unavailable key (i.e., `D155B8E6A419C5BE` in the above example) and then update the unavailable key:
+
+
+```
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D155B8E6A419C5BE
+```
+
+To test if the key update worked, tap `sudo apt update`
+
+
+### LAStools
 
 To get LAStools working in QGIS on Ubuntu (make sure to have {ref}`wine` installed):
 

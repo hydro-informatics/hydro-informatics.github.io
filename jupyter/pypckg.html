@@ -330,6 +330,11 @@
    QGIS Tutorial
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/drone-processing.html">
+   Process Drone (UAV) Imagery
+  </a>
+ </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../geopy/geo-python.html">
    Geospatial Python
@@ -343,11 +348,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../geopy/geo-pckg.html">
      Geospatial Open Source Python Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/drone-processing.html">
-     Process Drone Data
     </a>
    </li>
    <li class="toctree-l2">
@@ -1053,7 +1053,7 @@
 </div>
 <div class="section" id="make-script-stand-alone">
 <span id="standalone"></span><h3>Make Script Stand-alone<a class="headerlink" href="#make-script-stand-alone" title="Permalink to this headline">¶</a></h3>
-<p>As an alternative, we can append the call to items in <a class="reference external" href="https://github.com/hydro-informatics/icecream/raw/master/single-scripts/icecreamdialogue.py"><code class="docutils literal notranslate"><span class="pre">icecreamdialogue.py</span></code></a> in the script and run it as a stand-alone script by adding an <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(__name__</span> <span class="pre">==</span> <span class="pre">'__main__'):</span></code> block:</p>
+<p>As an alternative, we can append the call to items in <a class="reference external" href="https://github.com/hydro-informatics/icecream/raw/master/single-scripts/icecreamdialogue.py"><code class="docutils literal notranslate"><span class="pre">icecreamdialogue.py</span></code></a> in the script and run it as a stand-alone script by adding an <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;:</span></code> block:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># icecreamdialogue_standalone.py</span>
@@ -1062,7 +1062,7 @@
 <span class="n">welcome_msg</span> <span class="o">=</span> <span class="s2">&quot;Hi, I only have &quot;</span> <span class="o">+</span> <span class="n">flavors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;. How many scoops do you want?&quot;</span>
 
 
-<span class="k">if</span> <span class="p">(</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">):</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">welcome_msg</span><span class="p">)</span>
     <span class="n">scoops_wanted</span> <span class="o">=</span> <span class="mi">2</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;That makes </span><span class="si">{0}</span><span class="s2"> please&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">price_scoops</span><span class="p">[</span><span class="n">scoops_wanted</span><span class="p">]))</span>
@@ -1070,7 +1070,7 @@
 </div>
 </div>
 </div>
-<p>Now we can run <a class="reference external" href="https://github.com/hydro-informatics/icecream/raw/master/single-scripts/icecreamdialogue_standalone.py"><code class="docutils literal notranslate"><span class="pre">icecreamdialogue_standalone.py</span></code></a> in a terminal (e.g., Linux Terminal, <em>PyCharm</em>’s <em>Terminal</em> tab at the bottom of the window, or in Atom using <code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code>).</p>
+<p>Now we can run <a class="reference external" href="https://github.com/hydro-informatics/icecream/raw/master/single-scripts/icecreamdialogue_standalone.py"><code class="docutils literal notranslate"><span class="pre">icecreamdialogue_standalone.py</span></code></a> in a terminal (e.g., Linux Terminal, PyCharm’s Terminal tab at the bottom of the window, or in Atom using <code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code>).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">temp</span>\ <span class="n">python</span> <span class="n">icecreamdialogue_standalone</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
@@ -1091,7 +1091,7 @@
     <span class="nb">print</span><span class="p">(</span><span class="n">welcome_msg</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;That makes </span><span class="si">{0}</span><span class="s2"> please&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">price_scoops</span><span class="p">[</span><span class="n">scoops_wanted</span><span class="p">]))</span>
 
-<span class="k">if</span> <span class="p">(</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">):</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="c1"># import the terminal function emulator sys</span>
     <span class="kn">import</span> <span class="nn">sys</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span> <span class="c1"># make sure input is provided</span>

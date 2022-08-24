@@ -332,6 +332,11 @@
    QGIS Tutorial
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/drone-processing.html">
+   Process Drone (UAV) Imagery
+  </a>
+ </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../geopy/geo-python.html">
    Geospatial Python
@@ -345,11 +350,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../geopy/geo-pckg.html">
      Geospatial Open Source Python Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/drone-processing.html">
-     Process Drone Data
     </a>
    </li>
    <li class="toctree-l2">
@@ -1073,7 +1073,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code> defines the access type and it can take the following values:</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;r&quot;</span></code> - read-only (default value if no <code class="docutils literal notranslate"><span class="pre">&quot;mode&quot;</span></code> value is provided); the file cannot be modified nor overwritten.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">rb&quot;</span></code> - read-only in binary format; the binary format is advantageous if the file is not a text file but media such as pictures or videos.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;rb&quot;</span></code> - read-only in binary format; the binary format is advantageous if the file is not a text file but media such as pictures or videos.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;r+&quot;</span></code> - read and write.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;w&quot;</span></code> - write-only; a new file is created if a file with the provided <code class="docutils literal notranslate"><span class="pre">file-name</span></code> does not yet exist.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;wb&quot;</span></code> - write-only in binary mode.</p></li>
@@ -1182,9 +1182,9 @@ With <code class="docutils literal notranslate"><span class="pre">open(&quot;dat
 </div>
 <div class="section" id="modify-existing-files">
 <h2>Modify Existing Files<a class="headerlink" href="#modify-existing-files" title="Permalink to this headline">¶</a></h2>
-<p>Existing text files can be opened and modified in either <code class="docutils literal notranslate"><span class="pre">mode=&quot;r+&quot;</span></code> (pretending that information needs to be read before it is modified) or <code class="docutils literal notranslate"><span class="pre">mode=&quot;a+&quot;</span></code>. Recall that <code class="docutils literal notranslate"><span class="pre">&quot;r+&quot;</span></code> will place the pointer at the beginning of the file and <code class="docutils literal notranslate"><span class="pre">&quot;a+&quot;</span></code> will place the pointer at the end of the file. Thus, if we want to modify lines or entries of an existing file, <code class="docutils literal notranslate"><span class="pre">&quot;r+&quot;</span></code> is the good choice and if we want to append data at the end of the file, <code class="docutils literal notranslate"><span class="pre">&quot;a+&quot;</span></code> is the good choice (<code class="docutils literal notranslate"><span class="pre">+</span></code> is not strictly needed in the case of <code class="docutils literal notranslate"><span class="pre">&quot;a+&quot;</span></code>). This section shows two examples: (1) modification of existing data in a file using <code class="docutils literal notranslate"><span class="pre">&quot;r+&quot;</span></code>, and (2) appending data to an existing file using <code class="docutils literal notranslate"><span class="pre">&quot;a+&quot;</span></code>.</p>
+<p>Existing text files can be opened and modified in either <code class="docutils literal notranslate"><span class="pre">mode=&quot;r+&quot;</span></code> (pretending that information needs to be read before it is modified) or <code class="docutils literal notranslate"><span class="pre">mode=&quot;a+&quot;</span></code>. Recall that <code class="docutils literal notranslate"><span class="pre">&quot;r+&quot;</span></code> will place the pointer at the beginning of the file and <code class="docutils literal notranslate"><span class="pre">&quot;a+&quot;</span></code> will place the pointer at the end of the file. Thus, if we want to modify lines or entries of an existing file, <code class="docutils literal notranslate"><span class="pre">&quot;r+&quot;</span></code> is the good choice and if we want to append data at the end of the file, <code class="docutils literal notranslate"><span class="pre">&quot;a&quot;</span></code> is the good choice (<code class="docutils literal notranslate"><span class="pre">+</span></code> is not strictly needed in the case of <code class="docutils literal notranslate"><span class="pre">&quot;a&quot;</span></code>). This section shows two examples: (1) modification of existing data in a file using <code class="docutils literal notranslate"><span class="pre">&quot;r+&quot;</span></code>, and (2) appending data to an existing file using <code class="docutils literal notranslate"><span class="pre">&quot;a&quot;</span></code>.</p>
 <dl class="simple myst">
-<dt>Example 1 - Replace data in an existing file with <code class="docutils literal notranslate"><span class="pre">&quot;r+&quot;</span></code></dt><dd><p>In the previous code block, we eliminated all measurements that were smaller than 1 <em>mm</em> because of the precision of the measurement device. However, we have retained all other values with two-digit accuracy - an accuracy that is not given. Consequently, all decimal places in the measurements must also be eliminated. To achieve this, we have to round all measured values with Python’s built-in round function (<code class="docutils literal notranslate"><span class="pre">round(number,</span> <span class="pre">n-digits</span></code>) to zero decimal places (i.e., <code class="docutils literal notranslate"><span class="pre">n-digits</span> <span class="pre">=</span> <span class="pre">0</span></code>).
+<dt>Example 1 - Replace data in an existing file with <code class="docutils literal notranslate"><span class="pre">&quot;r+&quot;</span></code></dt><dd><p>In the previous code block, we eliminated all measurements that were smaller than 1 <em>mm</em> because of the precision of the measurement device. However, we have retained all other values with two-digit accuracy - an accuracy that is not given. Consequently, all decimal places in the measurements must also be eliminated. To achieve this, we have to round all measured values with Python’s built-in round function (<code class="docutils literal notranslate"><span class="pre">round(number,</span> <span class="pre">n-digits)</span></code>) to zero decimal places (i.e., <code class="docutils literal notranslate"><span class="pre">n-digits</span> <span class="pre">=</span> <span class="pre">0</span></code>).
 In this example (featured in the below code block), an exception <code class="docutils literal notranslate"><span class="pre">IOError</span></code> is raised when the file <code class="docutils literal notranslate"><span class="pre">&quot;data/modified-data.csv&quot;</span></code> does not exist (or if it is locked by another software). An <code class="docutils literal notranslate"><span class="pre">if</span></code> statement ensures that rounding the data is only attempted if the file exists.
 The overwriting procedure first reads all lines of the file into the <code class="docutils literal notranslate"><span class="pre">lines</span></code> variable. After reading all lines, the pointer is at the end of the file, and <code class="docutils literal notranslate"><span class="pre">file.seek(0)</span></code> puts the pointer back to position 0 (i.e., at the beginning of the file). <code class="docutils literal notranslate"><span class="pre">file.truncate()</span></code> purges the file. Thus, the original file is blank for a moment and all file contents are stored in the <code class="docutils literal notranslate"><span class="pre">lines</span></code> variable. Rounding the data happens within a <em>for-loop</em> that:</p>
 <ul class="simple">
@@ -1252,22 +1252,16 @@ This example uses the <code class="docutils literal notranslate"><span class="pr
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/schwindt/github/hyhome/jupyter
-The file does not exist.
-</pre></div>
-</div>
-</div>
 </div>
 <div class="admonition-challenge admonition">
 <p class="admonition-title">Challenge</p>
-<p>The expression <code class="docutils literal notranslate"><span class="pre">(&quot;,</span> <span class="pre">&quot;.join([str(e)</span> <span class="pre">for</span> <span class="pre">e</span> <span class="pre">in</span> <span class="pre">a_list])</span> <span class="pre">+</span> <span class="pre">'\n'</span></code> is a recurring expression in many of the above-shown code blocks. How does a function look like that automatically generates this expression for lists of different data types?</p>
+<p>The expression <code class="docutils literal notranslate"><span class="pre">&quot;,</span> <span class="pre">&quot;.join([str(e)</span> <span class="pre">for</span> <span class="pre">e</span> <span class="pre">in</span> <span class="pre">a_list])</span> <span class="pre">+</span> <span class="pre">'\n'</span></code> is a recurring expression in many of the above-shown code blocks. How does a function look like that automatically generates this expression for lists of different data types?</p>
 </div>
 </div>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="numpy">
 <span id="id1"></span><h1>NumPy<a class="headerlink" href="#numpy" title="Permalink to this headline">¶</a></h1>
-<p><em>NumPy</em> provides high-level mathematical functions for linear algebra including operations on multi-dimensional arrays and matrices. The open-source <em>NumPy</em> (for <em>Numerical Python</em>) library is written in Python* and <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C</a>, and comes with comprehensive documentation (<a class="reference external" href="https://numpy.org/doc/">download the latest version on the developer’s web site</a> or <a class="reference external" href="https://numpy.org/devdocs/user/quickstart.html">read the developer’s online tutorial</a>).</p>
+<p><em>NumPy</em> provides high-level mathematical functions for linear algebra including operations on multi-dimensional arrays and matrices. The open-source <em>NumPy</em> (for <em>Numerical Python</em>) library is written in Python and <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C</a>, and comes with comprehensive documentation (<a class="reference external" href="https://numpy.org/doc/">download the latest version on the developer’s web site</a> or <a class="reference external" href="https://numpy.org/devdocs/user/quickstart.html">read the developer’s online tutorial</a>).</p>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p><em>NumPy</em> can be installed through <em>Anaconda</em> (<a class="reference internal" href="../python-basics/pyinstall.html#install-pckg"><span class="std std-ref">recall instructions</span></a>) and the developers recommend using a scientific Python distribution (<em>Anaconda</em>) with <a class="reference external" href="https://www.scipy.org/install.html"><em>SciPy Stack</em></a>.</p>
@@ -1679,7 +1673,7 @@ Mean value along axis 1 (rows): [4.25       2.5        6.25       4.33333333 6.7
 </tbody>
 </table>
 <hr class="docutils" />
-<p>Generate and plot histrograms</p>
+<p>Generate and plot histograms</p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Function</p></th>
@@ -2354,11 +2348,11 @@ dtype: float64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fun.converter</span> <span class="kn">import</span> <span class="n">feet_to_meter</span>
 
 <span class="c1"># create data frame with random integers</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;Feets&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">6</span><span class="p">),</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;Feet&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">6</span><span class="p">),</span>
                    <span class="s2">&quot;Meters&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">})</span>
 
 <span class="c1"># apply feet_to_meter to the Meters columns of the data frame</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Meters&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Feets&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">feet_to_meter</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Meters&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Feet&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">feet_to_meter</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
