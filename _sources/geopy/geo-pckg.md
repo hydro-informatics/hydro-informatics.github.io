@@ -7,6 +7,9 @@ This section lists open-source packages for geospatial file manipulation with Py
 The proprietary license-requiring `arcpy` package is briefly described in the chapter on the commercial {ref}`arcpy library <chpt-arcpy>`. However, this eBook strongly recommends using the open-source libraries, such as `gdal`.
 ```
 
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/iQaJztGhp7w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Watch this section as a video on the <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@Hydro-Morphodynamics channel on YouTube</a>.</p>
+
 (gdal)=
 ## OSGeo and GDAL Including ogr and osr
 
@@ -16,6 +19,23 @@ The tutorials in this eBook build on `gdal` and `ogr` (including `osr` for spati
 
 * **Linux** users may follow the instructions for installing `gdal` and {{ ft_url }} with {ref}`pip and venv <pip-env>`.
 * **Windows** users preferably install `gdal` and {{ ft_url }} in a {ref}`conda environment <conda-env>` through Anaconda.
+
+
+Select your platform for more specific installation instructions:
+
+````{tabbed} Linux / pip
+
+GDAL requires sudo-installation. Find more details in the {ref}`Python installation instructions <pip-env>` of this eBook.
+
+````
+
+````{tabbed} Windows / conda
+To install `GDAL` for Python through {ref}`Anaconda Prompt <install-pckg>` enter:
+
+```python
+conda install -c conda-forge gdal
+```
+````
 
 ````{admonition} Import GDAL, ogr, and osr from OSGeo
 :class: important
