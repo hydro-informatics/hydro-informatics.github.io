@@ -330,6 +330,11 @@
    QGIS Tutorial
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/drone-processing.html">
+   Process Drone (UAV) Imagery
+  </a>
+ </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../geopy/geo-python.html">
    Geospatial Python
@@ -343,11 +348,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../geopy/geo-pckg.html">
      Geospatial Open Source Python Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/drone-processing.html">
-     Process Drone Data
     </a>
    </li>
    <li class="toctree-l2">
@@ -829,7 +829,12 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#issues-starting-jupyter-lab">
-   Issues starting Jupyter Lab
+   Issues Starting Jupyter Lab
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jupyter-does-not-recognize-installed-packages-in-conda-env">
+   Jupyter Does not Recognize Installed Packages in Conda Env
   </a>
  </li>
 </ul>
@@ -854,9 +859,9 @@
 </div>
 </div>
 <div class="section" id="issues-starting-jupyter-lab">
-<h2>Issues starting Jupyter Lab<a class="headerlink" href="#issues-starting-jupyter-lab" title="Permalink to this headline">¶</a></h2>
-<p>For some reasons, the <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code> command does not work in another <em>conda</em> environment than <em>base</em>, or on <em>Linux</em> environments. In these cases, open <em>Anaconda Prompt</em> (and activate the concerned environment), or <em>Linux Terminal</em> and tap:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">jupyterlab</span>
+<h2>Issues Starting Jupyter Lab<a class="headerlink" href="#issues-starting-jupyter-lab" title="Permalink to this headline">¶</a></h2>
+<p>For some reasons, the <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code> or <code class="docutils literal notranslate"><span class="pre">jupyter-lab</span></code> commands do not work in another <em>conda</em> environment than <em>base</em>, or on <em>Linux</em> environments. In these cases, open <em>Anaconda Prompt</em> (and activate the concerned environment), or <em>Linux Terminal</em> and tap:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">jupyter</span><span class="o">-</span><span class="n">lab</span>
 </pre></div>
 </div>
 <p>Alternatively, <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">jupyterlab</span></code> (or <code class="docutils literal notranslate"><span class="pre">pip3</span> <span class="pre">install</span> <span class="pre">jupyterlab</span></code>) works just as well.</p>
@@ -865,6 +870,23 @@
 </pre></div>
 </div>
 <p>Make sure to replace <code class="docutils literal notranslate"><span class="pre">USER-NAME</span></code> with your local user name and <code class="docutils literal notranslate"><span class="pre">python3.X</span></code> with the installed version of <em>Python</em> (e.g., <code class="docutils literal notranslate"><span class="pre">python3.7</span></code>).</p>
+</div>
+<div class="section" id="jupyter-does-not-recognize-installed-packages-in-conda-env">
+<h2>Jupyter Does not Recognize Installed Packages in Conda Env<a class="headerlink" href="#jupyter-does-not-recognize-installed-packages-in-conda-env" title="Permalink to this headline">¶</a></h2>
+<p>If you launch Jupyter from within a conda environment and the jupyter notebooks are not able to import the packages installed in the environment, you will need to install the <strong>ipykernel</strong> for the particular environment, too. For instance, this error applies when the import <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">osgeo</span> <span class="pre">import</span> <span class="pre">gdal</span></code> in a jupyter notebook Python code cell started from the active <code class="docutils literal notranslate"><span class="pre">flussenv</span></code> environment results in an <code class="docutils literal notranslate"><span class="pre">ImportError</span></code>. To troubleshoot this error:</p>
+<ul class="simple">
+<li><p>Shutdown Jupyter(Lab)</p></li>
+<li><p>In Anaconda prompt, make sure the target environment is activated (e.g., <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">flussenv</span></code>)</p></li>
+<li><p>Verify if <code class="docutils literal notranslate"><span class="pre">ipykernel</span></code> is installed by typing <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">list</span></code></p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">ipykernel</span></code> is not installed, type <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">anaconda</span> <span class="pre">ipykernel</span></code> to install it</p></li>
+<li><p>Add a new kernel with:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">ipython</span> <span class="pre">kernel</span> <span class="pre">install</span> <span class="pre">--user</span> <span class="pre">--name=KERNEL_NAME</span></code></p></li>
+<li><p>Replace <code class="docutils literal notranslate"><span class="pre">KERNEL_NAME</span></code> with the name you want to use (e.g., <code class="docutils literal notranslate"><span class="pre">fluss_kernel</span></code>)</p></li>
+</ul>
+</li>
+<li><p>Re-run <code class="docutils literal notranslate"><span class="pre">jupyter-lab</span></code> to select the new kernel from the top menu (<strong>Kernel</strong> &gt; <strong>Change Kernel…</strong>)</p></li>
+</ul>
 </div>
 </div>
 

@@ -277,6 +277,16 @@ The quick guide to installing Python with Anaconda on Windows is accompanied by 
 1. Activate *flussenv*: `conda activate flussenv`
 1. Install *flusstools*: `pip install flusstools`
 
+
+To make the new *flussenv* and its libraries available for JupyterLab, add a new kernel with the activated *flussenv* in Anaconda Prompt:
+
+```
+ipython kernel install --user --name=fluss_kernel
+```
+
+When running Jupyter, the `fluss_kernel` will be available in the top menu **Kernel** > **Change Kernel...**
+
+
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/cbIPRGOUAVA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 
