@@ -58,7 +58,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Raster (Grid) Handling" href="geo-raster.html" />
-    <link rel="prev" title="Process Drone Data" href="../geopy/drone-processing.html" />
+    <link rel="prev" title="Geospatial Open Source Python Libraries" href="../geopy/geo-pckg.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -332,6 +332,11 @@
    QGIS Tutorial
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/drone-processing.html">
+   Process Drone (UAV) Imagery
+  </a>
+ </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../geopy/geo-python.html">
    Geospatial Python
@@ -345,11 +350,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../geopy/geo-pckg.html">
      Geospatial Open Source Python Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/drone-processing.html">
-     Process Drone Data
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -1176,7 +1176,7 @@ The command <code class="docutils literal notranslate"><span class="pre">shp_dri
 <span class="n">shp_driver</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">GetDriverByName</span><span class="p">(</span><span class="s2">&quot;ESRI Shapefile&quot;</span><span class="p">)</span>
 
 <span class="c1"># open input shapefile and layer</span>
-<span class="n">in_shp</span> <span class="o">=</span> <span class="n">shp_driver</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/shapefiles/countries.shp&quot;</span><span class="p">)</span>
+<span class="n">in_shp</span> <span class="o">=</span> <span class="n">shp_driver</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/shapefiles/countries.shp&quot;</span><span class="p">)</span>
 <span class="n">in_shp_lyr</span> <span class="o">=</span> <span class="n">in_shp</span><span class="o">.</span><span class="n">GetLayer</span><span class="p">()</span>
 
 <span class="c1"># get input SpatialReference</span>
@@ -1194,7 +1194,7 @@ The command <code class="docutils literal notranslate"><span class="pre">shp_dri
 <span class="n">coord_trans</span> <span class="o">=</span> <span class="n">osr</span><span class="o">.</span><span class="n">CoordinateTransformation</span><span class="p">(</span><span class="n">in_sr</span><span class="p">,</span> <span class="n">out_sr</span><span class="p">)</span>
 
 <span class="c1"># create output shapefile and get layer</span>
-<span class="n">out_shp</span> <span class="o">=</span> <span class="n">create_shp</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/shapefiles/countries-web.shp&quot;</span><span class="p">,</span> <span class="n">layer_name</span><span class="o">=</span><span class="s2">&quot;basemap&quot;</span><span class="p">,</span> <span class="n">layer_type</span><span class="o">=</span><span class="s2">&quot;line&quot;</span><span class="p">)</span>
+<span class="n">out_shp</span> <span class="o">=</span> <span class="n">create_shp</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/shapefiles/countries-web.shp&quot;</span><span class="p">,</span> <span class="n">layer_name</span><span class="o">=</span><span class="s2">&quot;basemap&quot;</span><span class="p">,</span> <span class="n">layer_type</span><span class="o">=</span><span class="s2">&quot;line&quot;</span><span class="p">)</span>
 <span class="n">out_shp_lyr</span> <span class="o">=</span> <span class="n">out_shp</span><span class="o">.</span><span class="n">GetLayer</span><span class="p">()</span>
 
 <span class="c1"># look up layer (features) definitions in input shapefile</span>
@@ -1266,7 +1266,7 @@ The command <code class="docutils literal notranslate"><span class="pre">shp_dri
 <div class="section" id="add-fields-and-point-features-to-a-shapefile">
 <span id="add-field"></span><h2>Add Fields and Point Features to a Shapefile<a class="headerlink" href="#add-fields-and-point-features-to-a-shapefile" title="Permalink to this headline">¶</a></h2>
 <p>A shapefile feature can be a point, a line, or a polygon, which has field attributes (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;id&quot;=1</span></code> to describe that this is polygon number 1 or associated to an <code class="docutils literal notranslate"><span class="pre">id</span></code> block 1). Field attributes can be more than just an <em>ID</em>entifier and include, for example, the polygon area or city labels as in the above-shown example illustrating <em>cities.shp</em> (<code class="docutils literal notranslate"><span class="pre">shp_driver.Open(&quot;geodata/shapefiles/cities.shp&quot;)</span></code>).</p>
-<p>To <strong>create a point shapefile</strong>, we can use the above-introduced <code class="docutils literal notranslate"><span class="pre">create_shp</span></code> function (or <code class="docutils literal notranslate"><span class="pre">flusstools.geotools.create_shp(shp_file_dir=&quot;&quot;)</span></code>) and set the projection with the <code class="docutils literal notranslate"><span class="pre">get_epsg_code()</span></code> function (also above introduced). The following code block shows the usage of both functions to create a <em>river.shp</em> point shapefile that contains three points located at three rivers in central Europe. The code block also illustrates the creation of a field in the attribute table and the creation of three point features. Here is how the code works:</p>
+<p>To <strong>create a point shapefile</strong>, we can use the above-introduced <code class="docutils literal notranslate"><span class="pre">create_shp</span></code> function (or <code class="docutils literal notranslate"><span class="pre">flusstools.geotools.create_shp(shp_file_dir=&quot;&quot;)</span></code>) and set the projection with the <code class="docutils literal notranslate"><span class="pre">get_wkt()</span></code> function (also above introduced). The following code block shows the usage of both functions to create a <em>river.shp</em> point shapefile that contains three points located at three rivers in central Europe. The code block also illustrates the creation of a field in the attribute table and the creation of three point features. Here is how the code works:</p>
 <ul class="simple">
 <li><p>The shapefile is located in the <code class="docutils literal notranslate"><span class="pre">rivers_pts</span></code> variable. Note that the <code class="docutils literal notranslate"><span class="pre">layer_type</span></code> already determines the type of geometries that can be used in the shapefile. For instance, adding a line or polygon feature to an <code class="docutils literal notranslate"><span class="pre">ogr.wkbPoint</span></code> layer will result in an <code class="docutils literal notranslate"><span class="pre">ERROR</span> <span class="pre">1</span></code> message.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">basemap</span></code> (layer) is attributed to the variable <code class="docutils literal notranslate"><span class="pre">lyr</span> <span class="pre">=</span> <span class="pre">river_pts.GetLayer()</span></code>.</p></li>
@@ -1300,7 +1300,7 @@ The command <code class="docutils literal notranslate"><span class="pre">shp_dri
 
 <span class="c1"># create .prj file for the shapefile for web application references</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">shp_dir</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.shp&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.prj&quot;</span><span class="p">,</span> <span class="s2">&quot;w+&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">prj</span><span class="p">:</span>
-    <span class="n">prj</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">get_esriwkt</span><span class="p">(</span><span class="mi">3857</span><span class="p">))</span>
+    <span class="n">prj</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">get_wkt</span><span class="p">(</span><span class="mi">3857</span><span class="p">))</span>
 
 <span class="c1"># get basemap layer</span>
 <span class="n">lyr</span> <span class="o">=</span> <span class="n">river_pts</span><span class="o">.</span><span class="n">GetLayer</span><span class="p">()</span>
@@ -1339,7 +1339,7 @@ The command <code class="docutils literal notranslate"><span class="pre">shp_dri
 </div>
 <div class="section" id="multiline-polyline-shapefile">
 <span id="line-create"></span><h2>Multiline (Polyline) Shapefile<a class="headerlink" href="#multiline-polyline-shapefile" title="Permalink to this headline">¶</a></h2>
-<p>Similar to the procedure for creating and adding points to a new point shapefile, a (multi) line (or polyline) can be added to a shapefile. The <code class="docutils literal notranslate"><span class="pre">create_shp</span></code> function creates a multi-line shapefile when the layer type is defined as <code class="docutils literal notranslate"><span class="pre">&quot;line&quot;</span></code> (<code class="docutils literal notranslate"><span class="pre">flusstools.geotools.create_shp(shp_file_dir=&quot;&quot;,</span> <span class="pre">layer_type=&quot;line&quot;)</span></code>). The coordinate system is created with the above-defined <code class="docutils literal notranslate"><span class="pre">get_gps_code</span></code> function.</p>
+<p>Similar to the procedure for creating and adding points to a new point shapefile, a (multi) line (or polyline) can be added to a shapefile. The <code class="docutils literal notranslate"><span class="pre">create_shp</span></code> function creates a multi-line shapefile when the layer type is defined as <code class="docutils literal notranslate"><span class="pre">&quot;line&quot;</span></code> (<code class="docutils literal notranslate"><span class="pre">flusstools.geotools.create_shp(shp_file_dir=&quot;&quot;,</span> <span class="pre">layer_type=&quot;line&quot;)</span></code>). The coordinate system is created with the above-defined <code class="docutils literal notranslate"><span class="pre">get_wkt()</span></code> function.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>The term <em>multi-line</em> is used in <em>OGC</em> and <code class="docutils literal notranslate"><span class="pre">ogr</span></code>, while <em>polyline</em> is used in Esri GIS environments.</p>
@@ -1347,7 +1347,7 @@ The command <code class="docutils literal notranslate"><span class="pre">shp_dri
 <p>The following code block uses the coordinates of cities along the Rhine River, stored in a <em>dictionary</em> named <code class="docutils literal notranslate"><span class="pre">station_names</span></code>. The city names are not used and only the coordinates are appended with <code class="docutils literal notranslate"><span class="pre">line.AddPoint(X,</span> <span class="pre">Y)</span></code>. As before, a field is created to give the river a name. The actual line feature is again created as a child of the layer with <code class="docutils literal notranslate"><span class="pre">line_feature</span> <span class="pre">=</span> <span class="pre">ogr.Feature(lyr.GetLayerDefn())</span></code>. Running this code block produces a line that approximately follows the Rhine River between France and Germany.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shp_dir</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/shapefiles/rhine_proxy.shp&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shp_dir</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/shapefiles/rhine_proxy.shp&quot;</span>
 <span class="n">rhine_line</span> <span class="o">=</span> <span class="n">create_shp</span><span class="p">(</span><span class="n">shp_dir</span><span class="p">,</span> <span class="n">layer_name</span><span class="o">=</span><span class="s2">&quot;basemap&quot;</span><span class="p">,</span> <span class="n">layer_type</span><span class="o">=</span><span class="s2">&quot;line&quot;</span><span class="p">)</span>
 
 <span class="c1"># create .prj file for the shapefile for web application references</span>
@@ -1369,7 +1369,7 @@ The command <code class="docutils literal notranslate"><span class="pre">shp_dri
 <span class="k">for</span> <span class="n">stn</span> <span class="ow">in</span> <span class="n">station_names</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
     <span class="n">line</span><span class="o">.</span><span class="n">AddPoint</span><span class="p">(</span><span class="n">stn</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">stn</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
-<span class="c1"># create field named &quot;rives&quot;</span>
+<span class="c1"># create field named &quot;river&quot;</span>
 <span class="n">field_name</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">FieldDefn</span><span class="p">(</span><span class="s2">&quot;river&quot;</span><span class="p">,</span> <span class="n">ogr</span><span class="o">.</span><span class="n">OFTString</span><span class="p">)</span>
 <span class="n">lyr</span><span class="o">.</span><span class="n">CreateField</span><span class="p">(</span><span class="n">field_name</span><span class="p">)</span>
 
@@ -1400,7 +1400,7 @@ The command <code class="docutils literal notranslate"><span class="pre">shp_dri
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shp_dir</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/shapefiles/iws_va.shp&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shp_dir</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/shapefiles/va4wasserbau.shp&quot;</span>
 <span class="n">va_geo</span> <span class="o">=</span> <span class="n">create_shp</span><span class="p">(</span><span class="n">shp_dir</span><span class="p">,</span> <span class="n">layer_name</span><span class="o">=</span><span class="s2">&quot;basemap&quot;</span><span class="p">,</span> <span class="n">layer_type</span><span class="o">=</span><span class="s2">&quot;polygon&quot;</span><span class="p">)</span>
 
 <span class="c1"># create .prj file for the shapefile for GIS map applications</span>
@@ -1452,12 +1452,12 @@ The command <code class="docutils literal notranslate"><span class="pre">shp_dri
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;area&quot;</span></code> (a real number field, in which the polygon area is calculated in m<sup>2</sup> using <code class="docutils literal notranslate"><span class="pre">polygon.GetArea()</span></code>).</p></li>
 </ul>
 </li>
-<li><p>The polygon geometries are derived from the WKB*formatted definitions in the <code class="docutils literal notranslate"><span class="pre">&quot;wkb_geom&quot;</span></code> field of the pandas dataframe object <code class="docutils literal notranslate"><span class="pre">dreisam_inundation</span></code>.</p></li>
+<li><p>The polygon geometries are derived from the WKB-formatted definitions in the <code class="docutils literal notranslate"><span class="pre">&quot;wkb_geom&quot;</span></code> field of the pandas dataframe object <code class="docutils literal notranslate"><span class="pre">dreisam_inundation</span></code>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get data from json file</span>
-<span class="n">dreisam_inundation</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/json/hq100-dreisam.json&quot;</span><span class="p">)</span>
+<span class="n">dreisam_inundation</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/json/hq100-dreisam.json&quot;</span><span class="p">)</span>
 
 <span class="c1"># create shapefile</span>
 <span class="n">shp_dir</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/shapefiles/dreisam_hq100.shp&quot;</span>
@@ -1655,11 +1655,11 @@ Tip: To create a tight hull (e.g., of a point cloud), look for <code class="docu
         
             <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="../geopy/drone-processing.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../geopy/geo-pckg.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Process Drone Data</p>
+            <p class="prev-next-title">Geospatial Open Source Python Libraries</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="geo-raster.html" title="next page">

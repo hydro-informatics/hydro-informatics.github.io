@@ -330,6 +330,11 @@
    QGIS Tutorial
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/drone-processing.html">
+   Process Drone (UAV) Imagery
+  </a>
+ </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../geopy/geo-python.html">
    Geospatial Python
@@ -343,11 +348,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../geopy/geo-pckg.html">
      Geospatial Open Source Python Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/drone-processing.html">
-     Process Drone Data
     </a>
    </li>
    <li class="toctree-l2">
@@ -897,8 +897,8 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#application-example-with-zonal-statistics">
-   Application Example with Zonal Statistics
+  <a class="reference internal nav-link" href="#zonal-statistics-for-morphological-units">
+   Zonal Statistics for Morphological Units
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -1451,8 +1451,8 @@ Target EPSG: 3857
 </div>
 </div>
 </div>
-<div class="section" id="application-example-with-zonal-statistics">
-<span id="zonal"></span><h2>Application Example with Zonal Statistics<a class="headerlink" href="#application-example-with-zonal-statistics" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="zonal-statistics-for-morphological-units">
+<span id="zonal"></span><h2>Zonal Statistics for Morphological Units<a class="headerlink" href="#zonal-statistics-for-morphological-units" title="Permalink to this headline">¶</a></h2>
 <p>In hydraulic and geospatial analyses, the question of statistical values of certain areas of one or more rasters often arises. For instance, we may be interested in mean values and standard deviations in specific zones of a water body. For this purpose, <em>Zonal statistics</em> enable the delineation of an area of a raster by using a polygon shapefile.</p>
 <p>The <em>River Architect</em> dataset includes a slackwater zone and zonal statistics help to identify the mean water depth and flow velocity of slackwaters, which are a so-called morphological unit (<a class="reference internal" href="geo-shp.html#create-shp"><span class="std std-ref">recall the create-shapefile section</span></a>).</p>
 <div class="admonition-background admonition">
@@ -1476,7 +1476,7 @@ Target EPSG: 3857
 <span class="c1"># make file names</span>
 <span class="n">h_file</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/geodata/rasters/h001000.tif&quot;</span>
 <span class="n">u_file</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/geodata/rasters/u001000.tif&quot;</span>
-<span class="n">zone</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/geodata/rasters/slackw-poly.shp&quot;</span>
+<span class="n">zone</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/geodata/shapefiles/slackw-poly.shp&quot;</span>
 
 <span class="c1"># get water depth stats in zone</span>
 <span class="n">h_stats</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">zonal_stats</span><span class="p">(</span><span class="n">zone</span><span class="p">,</span> <span class="n">h_file</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;min&quot;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">,</span> <span class="s2">&quot;median&quot;</span><span class="p">,</span> <span class="s2">&quot;majority&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">])</span>
@@ -1547,7 +1547,7 @@ Target EPSG: 3857
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rasterstats</span> <span class="k">as</span> <span class="nn">rs</span>
 
-<span class="n">h_file</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/geodata/river-architect/h001000.tif&quot;</span>
+<span class="n">h_file</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/geodata/rasters/h001000.tif&quot;</span>
 <span class="n">h_stats</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">zonal_stats</span><span class="p">(</span><span class="n">zone</span><span class="p">,</span> <span class="n">h_file</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="s2">&quot;count&quot;</span><span class="p">,</span>
                          <span class="n">add_stats</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;original&quot;</span><span class="p">:</span> <span class="n">original</span><span class="p">},</span>
                          <span class="n">raster_out</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
