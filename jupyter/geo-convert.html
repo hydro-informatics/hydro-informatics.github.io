@@ -330,6 +330,11 @@
    QGIS Tutorial
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/drone-processing.html">
+   Process Drone (UAV) Imagery
+  </a>
+ </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../geopy/geo-python.html">
    Geospatial Python
@@ -343,11 +348,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../geopy/geo-pckg.html">
      Geospatial Open Source Python Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/drone-processing.html">
-     Process Drone Data
     </a>
    </li>
    <li class="toctree-l2">
@@ -902,6 +902,11 @@
 <li><p>To use those functions, make sure flusstools is installed and import it as follows: <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">flusstools</span> <span class="pre">import</span> <span class="pre">geotools</span></code>. Some of the functions shown in this tutorial can then be used with <code class="docutils literal notranslate"><span class="pre">geotools.function_name()</span></code>.</p></li>
 </ul>
 </div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Watch this section as a video</p>
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/gsurU_DDhBc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Watch this section as a video on the <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@Hydro-Morphodynamics channel on YouTube</a>.</p>
+</div>
 <div class="section" id="import-relevant-libraries">
 <h2>Import relevant Libraries<a class="headerlink" href="#import-relevant-libraries" title="Permalink to this headline">¶</a></h2>
 <p>Make sure to import the relevant packages for handling rasters, shapefiles, and geospatial references:</p>
@@ -919,7 +924,7 @@
 <h2>Vectorize<a class="headerlink" href="#vectorize" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="raster-to-line">
 <span id="raster2line"></span><h3>Raster to Line<a class="headerlink" href="#raster-to-line" title="Permalink to this headline">¶</a></h3>
-<p>In this section, we convert the <a class="reference internal" href="geo-raster.html#leastcost"><span class="std std-ref">least cost path</span></a> raster dataset (<em>least_cost.tif</em>) into a (poly) line shapefile. For this purpose, we first write a function called <code class="docutils literal notranslate"><span class="pre">offset2coords()</span></code>, which represents the inverse of the <a class="reference internal" href="geo-raster.html#lc-fun"><span class="std std-ref">coords2offset()</span></a> function, and converts x/y offset (in <em>integer</em> pixel numbers) to coordinates of a geospatial dataset’s geo-transformation:</p>
+<p>In this section, we convert the <a class="reference internal" href="geo-raster.html#leastcost"><span class="std std-ref">least cost path</span></a> raster dataset (<a class="reference external" href="https://github.com/hydro-informatics/jupyter-python-course/raw/main/geodata/rasters/least-cost.tif">least_cost.tif</a>) into a (poly) line shapefile. For this purpose, we first write a function called <code class="docutils literal notranslate"><span class="pre">offset2coords()</span></code>, which represents the inverse of the <a class="reference internal" href="geo-raster.html#lc-fun"><span class="std std-ref">coords2offset()</span></a> function, and converts x/y offset (in <em>integer</em> pixel numbers) to coordinates of a geospatial dataset’s geo-transformation:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">offset2coords</span><span class="p">(</span><span class="n">geo_transform</span><span class="p">,</span> <span class="n">offset_x</span><span class="p">,</span> <span class="n">offset_y</span><span class="p">):</span>
@@ -1143,7 +1148,7 @@
 <p class="admonition-title">Note</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Polygonize</span></code> can also be run from <a class="reference internal" href="geo-raster.html#terminal"><span class="std std-ref">terminal/Anaconda prompt</span></a> by typing <a class="reference external" href="https://gdal.org/programs/gdal_polygonize.html"><code class="docutils literal notranslate"><span class="pre">gdal_polygonize</span></code></a>.</p></li>
-<li><p>Both the <code class="docutils literal notranslate"><span class="pre">float2int()</span></code> and the <code class="docutils literal notranslate"><span class="pre">raster2polygon()</span></code> functions are also available in flusstools with <code class="docutils literal notranslate"><span class="pre">geotools.float2int()</span></code> and `geotools.raster2polygon() respectively (<a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/flusstools-pckg/main/flusstools/geotools/geotools.py">have a look at the geotools.py script</a>).</p></li>
+<li><p>Both the <code class="docutils literal notranslate"><span class="pre">float2int()</span></code> and the <code class="docutils literal notranslate"><span class="pre">raster2polygon()</span></code> functions are also available in flusstools with <code class="docutils literal notranslate"><span class="pre">flusstools.geotools.float2int()</span></code> and <code class="docutils literal notranslate"><span class="pre">flusstools.geotools.raster2polygon()</span></code> respectively (<a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/flusstools-pckg/main/flusstools/geotools/geotools.py">have a look at the geotools.py script</a>).</p></li>
 </ul>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">raster2polygon()</span></code> function can be implemented, for example, to convert the water depth raster for 1000 CFS (<em>h001000.tif</em> from the <a class="reference external" href="https://github.com/RiverArchitect/SampleData/tree/master/01_Conditions/2100_sample"><em>River Architect</em> sample datasets</a>) to a polygon shapefile:</p>
@@ -1186,8 +1191,8 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">dataset=target_ds</span></code> (target raster dataset),</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">bands=[1]</span></code> (<em>list(integer)</em> - increase to defined more raster bands and assign other values, for example, from other fields of the source shapefile),</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">layer=source_lyr</span></code> (layer with features to burn to the raster),</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pfnTransformer=None</span></code> (<a class="reference external" href="https://gdal.org/python/osgeo.gdal-module.html#RasterizeLayer">read more in the gdal docs</a>),</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pTransformArg=None</span></code> (<a class="reference external" href="https://gdal.org/python/osgeo.gdal-module.html#RasterizeLayer">read more in the gdal docs</a>),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pfnTransformer=None</span></code> (<a class="reference external" href="https://gdal.org/api/python/osgeo.gdal.html?highlight=rasterize#osgeo.gdal.Rasterize">read more in the gdal docs</a>),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pTransformArg=None</span></code> (<a class="reference external" href="https://gdal.org/api/python/osgeo.gdal.html?highlight=rasterize#osgeo.gdal.Rasterize">read more in the gdal docs</a>),</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">burn_values=[0]</span></code> (a default value that is burned to the raster),</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">options=[&quot;ALL_TOUCHED=TRUE&quot;]</span></code> defines that all pixels touched by a polygon get the polygon’s field value - if not set: only pixels that are entirely in the polygon get a value assigned,</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">options=[&quot;ATTRIBUTE=&quot;</span> <span class="pre">+</span> <span class="pre">str(kwargs.get(&quot;field_name&quot;))]</span></code> defines the field name with values to burn.</p></li>
@@ -1243,7 +1248,7 @@
     <span class="c1"># RasterizeLayer(Dataset dataset, int bands, Layer layer, pfnTransformer=None, pTransformArg=None,</span>
     <span class="c1"># int burn_values=0, options=None, GDALProgressFunc callback=0, callback_data=None)</span>
     <span class="n">gdal</span><span class="o">.</span><span class="n">RasterizeLayer</span><span class="p">(</span><span class="n">target_ds</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">source_lyr</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">burn_values</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                                <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ALL_TOUCHED=TRUE&quot;</span><span class="p">,</span> <span class="s2">&quot;ATTRIBUTE=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;field_name&quot;</span><span class="p">))])</span>
+                        <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ALL_TOUCHED=TRUE&quot;</span><span class="p">,</span> <span class="s2">&quot;ATTRIBUTE=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;field_name&quot;</span><span class="p">))])</span>
 
     <span class="c1"># release raster band</span>
     <span class="n">band</span><span class="o">.</span><span class="n">FlushCache</span><span class="p">()</span>
@@ -1255,7 +1260,7 @@
 <p class="admonition-title">Tip</p>
 <p><code class="docutils literal notranslate"><span class="pre">Rasterize</span></code> can also be run from <a class="reference internal" href="geo-raster.html#terminal"><span class="std std-ref">terminal/Anaconda prompt</span></a> with <a class="reference external" href="https://gdal.org/programs/gdal_rasterize.html"><code class="docutils literal notranslate"><span class="pre">gdal_rasterize</span></code></a>.</p>
 </div>
-<p>Finally, the <code class="docutils literal notranslate"><span class="pre">rasterize()</span></code> function can be called to convert the polygonized water depth polygon shapefile (<em>/geodata/shapefiles/h_poly_cls.shp</em>) back to a raster (this is practically useless but an illustrative exercise). Pay attention to the data type, which is <code class="docutils literal notranslate"><span class="pre">gdal.GDT_Int32</span></code> in combination with the correctly defined <code class="docutils literal notranslate"><span class="pre">field_name</span></code> argument.</p>
+<p>Finally, the <code class="docutils literal notranslate"><span class="pre">rasterize()</span></code> function can be called to convert the polygonized water depth polygon shapefile <em>/geodata/shapefiles/h_poly_cls.shp</em> (<a class="reference external" href="https://github.com/hydro-informatics/jupyter-python-course/raw/main/geodata/shapefiles/h_poly_cls.zip">download it as a zip file</a>) back to a raster (this is practically useless but an illustrative exercise). Pay attention to the data type, which is <code class="docutils literal notranslate"><span class="pre">gdal.GDT_Int32</span></code> in combination with the correctly defined <code class="docutils literal notranslate"><span class="pre">field_name</span></code> argument.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">src_shp</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/geodata/shapefiles/h_poly_cls.shp&quot;</span>
