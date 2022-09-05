@@ -56,6 +56,18 @@ CFL
 
   *French: Nombre de Courant <br>German: CFL-Zahl*
 
+Clogging
+  Riverbed clogging describes the sedimentation of the porous coarse sediment matrix of the hyporheic zone under and along gravel-cobble-bed rivers. We differentiate between external and internal clogging: external clogging affects surficial layers and is a direct consequence of the deposition of fine, cohesive sediment; internal clogging occurs in deeper layers of the hyporheic zone and is the consequence of spontaneous percolation or grain sorting at the surface {cite:p}`berkman_effect_1987,schaelchli_clogging_1992`.
+
+  ```{figure} ../img/nature/outer-clogging.jpg
+  :alt: riverbed clogging siltation colmation colmatation Kolmation
+  :name: outer-clogging
+
+  Example of outer riverbed clogging of a coarse sediment matrix with fine muddy sediment. Picture: Sebastian Schwindt (2021).
+  ```
+
+  *French: Colmation/colmatation <br>German: Kolmation*
+
 Continuity equation
   The differential form of the continuity equation is $\frac{\partial \psi}{\partial t}+\mathbf{u} \cdot \nabla \psi = 0$ where $\psi$ is a constant of the particle/substance in consideration and $\mathbf{u}$ is the fluid velocity vector. The $\nabla$ operator is literally a vector of partial differential operators $\frac{\partial}{\partial x_i}$ where $x_i$ refers to the dimensions of the flow field. In the case of steady flow (no variability in time) the advection equation becomes $\mathbf{u} \cdot \nabla \psi = 0$ {cite:p}`kundu_fluid_2008`.
 
@@ -164,6 +176,9 @@ Geomorphic heterogeneity
 HDF
   The [Hierarchical Data Format (HDF)](https://www.hdfgroup.org/) provides the `*.h5` (HDF4) and `*.h5` (HDF5) file formats that store large datasets in an organized manner. HDF is often used with high-performance computing (HPC) applications, such as numerical models, to store large amounts of data output. This eBook impinges on HDF datasets in the {ref}`chpt-basement` tutorial where {term}`xdmf` files represent the model output, and in the {ref}`chpt-telemac` tutorials. In particular, TELEMAC builds on mesh and boundary files of the EnSim Core that is described in the user manual of the pre- and post-processing software [Blue Kenue](https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/2011_UserManual.pdf)<sup>TM</sup> (the newest [Blue Kenue installer](https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/Installer/BlueKenue_3.12.0-alpha+20201006_64bit.msi) contains an updated version of the user manual). Understanding the HDF format significantly facilitates troubleshooting structural errors of computational meshes for numerical models.
 
+Hyporheic zone
+  The hyporheic zone is the space under and along rivers where surface water and groundwater exchange takes place. The exchange processes of a functional, non-{term}`clogged <Clogging>` hyporheic zone are important for the ecosystem, in particular for fish spawning {cite:p}`boulton_hyporheic_1998`.
+
 Krylov space
   Krylov (sub) spaces are used in numerical approximation schemes for finding solutions to sparse (many zero entries), high-dimensional linear systems {cite:p}`bunch1974`. To this end, Krylov (sub) space methods use Gaussian elimination (e.g., {term}`LU decomposition`) to speed up calculations {cite:p}`gutknecht2007`.
 
@@ -233,6 +248,9 @@ Riffle pool
 
 River corridor
   The river corridor embraces the active river channel(s), floodplains, and the hyporheic zone underneath {cite:p}`wohlegu2022`.
+
+Riverbed clogging
+  See {term}`Clogging`.
 
 Saint-Venant equations
   The French mathematician Adhémar Jean Claude Barré de Saint-Venant introduced dimensional simplifications of the {term}`Navier-Stokes equations`. For simple cross-sections, the one-dimensional (1d), cross-section averaged Saint-Venant equations can be applied, and represent the baseline for the Manning-Strickler Formula (cf. the {ref}`1d Hydraulics Python exercise <ex-1d-hydraulics>`). The two-dimensional (2d), depth-averaged Saint-Venant equations are more frequently referred to as the {term}`Shallow water equations`, which imply a hydrostatic pressure distribution {cite:p}`graf_hydraulique_2011`.
