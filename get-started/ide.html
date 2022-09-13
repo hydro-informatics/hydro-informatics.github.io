@@ -330,6 +330,11 @@
    QGIS Tutorial
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/drone-processing.html">
+   Process Drone (UAV) Imagery
+  </a>
+ </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../geopy/geo-python.html">
    Geospatial Python
@@ -343,11 +348,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../geopy/geo-pckg.html">
      Geospatial Open Source Python Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/drone-processing.html">
-     Process Drone Data
     </a>
    </li>
    <li class="toctree-l2">
@@ -1085,7 +1085,7 @@
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="sublime">
 <span id="install-sublime"></span><h1>Sublime<a class="headerlink" href="#sublime" title="Permalink to this headline">¶</a></h1>
-<p>Sublime is one of the most popular editors for multiple (computer) languages. However, it is commericial software that is only free to use during an evluation period without time limit. Read more about it at <a class="reference external" href="https://www.sublimetext.com">sublimetext.com</a>.</p>
+<p>Sublime is one of the most popular editors for multiple (computer) languages. However, it is commercial software that is only free to use during an evaluation period without time limit. Read more about it at <a class="reference external" href="https://www.sublimetext.com">sublimetext.com</a>.</p>
 <p>To install it on Debian Linux platforms, open Terminal and tap (source: <a class="reference external" href="https://www.sublimetext.com/docs">https://www.sublimetext.com/docs</a>):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="o">-</span><span class="n">qO</span> <span class="o">-</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">sublimetext</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">sublimehq</span><span class="o">-</span><span class="n">pub</span><span class="o">.</span><span class="n">gpg</span> <span class="o">|</span> <span class="n">gpg</span> <span class="o">--</span><span class="n">dearmor</span> <span class="o">|</span> <span class="n">sudo</span> <span class="n">tee</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">trusted</span><span class="o">.</span><span class="n">gpg</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">sublimehq</span><span class="o">-</span><span class="n">archive</span><span class="o">.</span><span class="n">gpg</span>
 </pre></div>
@@ -1103,19 +1103,21 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">apt</span><span class="o">-</span><span class="n">transport</span><span class="o">-</span><span class="n">https</span>
 </pre></div>
 </div>
+<p>When working with sublime, consider using an advanced spell check package, such as <a class="reference external" href="https://packagecontrol.io/packages/LanguageTool">LanguageTool</a>. More useful packages for sublime can be found at <a class="reference external" href="https://packagecontrol.io">packagecontrol.io</a>. Packages can also be found by hitting the <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">Shift</span></code> + <code class="docutils literal notranslate"><span class="pre">P</span></code> keys (in Sublime) to open <em>Package Control</em>. Then, type <code class="docutils literal notranslate"><span class="pre">install</span></code> and enter the name of the package you are looking for in the box.</p>
+<p>To enable modification of user settings, go to <strong>Preferences</strong> (top menu bar) &gt; <strong>Settings</strong> and save the opening settings file either as <code class="docutils literal notranslate"><span class="pre">~./config/sublime-text/Packages/Default/Preferences.sublime-settings</span></code> (recommended for first-time saving) or  <code class="docutils literal notranslate"><span class="pre">~./config/sublime-text/Packages/User/Preferences.sublime-settings</span></code>. Then, edit the desired settings: for instance, look for <code class="docutils literal notranslate"><span class="pre">spell_check</span></code> and set it to <code class="docutils literal notranslate"><span class="pre">true</span></code> to default-enable spell checking. Save the <code class="docutils literal notranslate"><span class="pre">.sublime-settings</span></code> file to apply changes.</p>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="atom">
 <span id="install-atom"></span><h1>Atom<a class="headerlink" href="#atom" title="Permalink to this headline">¶</a></h1>
 <p><em>Atom</em> is a hackable text editor that is compatible with almost any programming language. While its bare installation has little functionality, the omni-compatibility can be enabled by installing desired packages (e.g., for Python, <em>Markdown</em>, or <em>LaTex</em>). Another big advantage of Atom is the availability of powerful spell checker packages.</p>
 <div class="warning admonition">
 <p class="admonition-title">Atom will sunset on December 15, 2022</p>
-<p>The Atom developers at <em>GitHub</em> (i.e., Microsoft) anounced that they sunset (archive) Atom on December 15, 2022 <a class="reference external" href="https://github.blog/2022-06-08-sunsetting-atom/">read more</a>. That means, no updates and no maintenance are available as of December 15, 2022, but Atom can still be downloaded. It is not yet clear if Atom will reach its end of life or if some one will take up the maintenance and development of Atom.</p>
+<p>The Atom developers at <em>GitHub</em> (i.e., Microsoft) announced that they sunset (archive) Atom on December 15, 2022 <a class="reference external" href="https://github.blog/2022-06-08-sunsetting-atom/">read more</a>. That means, no updates and no maintenance are available as of December 15, 2022, but Atom can still be downloaded. It is not yet clear if Atom will reach its end of life or if some one will take up the maintenance and development of Atom.</p>
 </div>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <div class="tabbed-set docutils">
-<input checked="checked" id="2f32155f-1d30-4905-b43d-ba17f57ebe27" name="86003898-5bc3-4be1-9cc5-a3de4dc6af17" type="radio">
-</input><label class="tabbed-label" for="2f32155f-1d30-4905-b43d-ba17f57ebe27">
+<input checked="checked" id="936405d1-4b6c-4271-bdd5-7a3581681992" name="3a11baa0-a6d5-485e-8f5d-7adf17c4ab6d" type="radio">
+</input><label class="tabbed-label" for="936405d1-4b6c-4271-bdd5-7a3581681992">
 Linux</label><div class="tabbed-content docutils">
 <p><strong>Linux</strong> users find installers for various distributions at <a class="reference external" href="https://atom.io/">atom.io</a>. <strong>Debian</strong> (<strong>Ubuntu</strong>), <strong>Red Hat</strong> / <strong>CentOS</strong>, <strong>Fedora</strong>, and <strong>SUSE</strong> find easy installation guides at <a class="reference external" href="https://flight-manual.atom.io/getting-started/sections/installing-atom/">https://flight-manual.atom.io</a>.</p>
 <p>The short version for <strong>Debian</strong> (<strong>Ubuntu</strong>) is:</p>
@@ -1134,8 +1136,8 @@ Linux</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="bc4ccda0-34f2-4330-9a37-202c290542e9" name="86003898-5bc3-4be1-9cc5-a3de4dc6af17" type="radio">
-</input><label class="tabbed-label" for="bc4ccda0-34f2-4330-9a37-202c290542e9">
+<input id="71ec7a71-b11e-4a8f-b538-69a871702367" name="3a11baa0-a6d5-485e-8f5d-7adf17c4ab6d" type="radio">
+</input><label class="tabbed-label" for="71ec7a71-b11e-4a8f-b538-69a871702367">
 Windows</label><div class="tabbed-content docutils">
 <p><strong>Windows</strong> users can download <em>Atom</em> from <a class="reference external" href="https://atom.io/">atom.io</a> and install the executable.</p>
 </div>
@@ -1201,8 +1203,8 @@ Windows</label><div class="tabbed-content docutils">
 <p>To enable Python compatibility, first, visit the <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Python (Installation)</span></a> section and install <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> for your system (i.e., either in a virtual or conda environment).</p>
 </div>
 <div class="tabbed-set docutils">
-<input checked="checked" id="def66f77-3ddd-421f-9e7e-7c4024fe9b8b" name="078402ba-3d31-4eb2-a1f7-24aabe817177" type="radio">
-</input><label class="tabbed-label" for="def66f77-3ddd-421f-9e7e-7c4024fe9b8b">
+<input checked="checked" id="28b76566-074e-405c-bb99-2f44e3b4fb8b" name="5d713e5e-77a5-462a-831b-394f120e3a9a" type="radio">
+</input><label class="tabbed-label" for="28b76566-074e-405c-bb99-2f44e3b4fb8b">
 Linux</label><div class="tabbed-content docutils">
 <p>Open Terminal and activate the environment where <code class="docutils literal notranslate"><span class="pre">flusstools</span></code> is installed. For instance, if <code class="docutils literal notranslate"><span class="pre">flusstools</span></code> is installed in a virtual environment called <code class="docutils literal notranslate"><span class="pre">vflussenv</span></code> that lives in the user home directory (<code class="docutils literal notranslate"><span class="pre">/home/USER/</span></code>) according to the Python installation instructions in this eBook (see <a class="reference internal" href="../python-basics/pyinstall.html#pip-quick"><span class="std std-ref">pip quick guide</span></a>), activate the environment as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~</span>
@@ -1210,8 +1212,8 @@ Linux</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="5c0b699e-0d5e-4d30-8b88-580baa6965dc" name="078402ba-3d31-4eb2-a1f7-24aabe817177" type="radio">
-</input><label class="tabbed-label" for="5c0b699e-0d5e-4d30-8b88-580baa6965dc">
+<input id="981c53e0-bf61-4ddf-87cf-fa362af78797" name="5d713e5e-77a5-462a-831b-394f120e3a9a" type="radio">
+</input><label class="tabbed-label" for="981c53e0-bf61-4ddf-87cf-fa362af78797">
 Windows</label><div class="tabbed-content docutils">
 <p>Open Anaconda Prompt and activate <code class="docutils literal notranslate"><span class="pre">flussenv</span></code> (given that <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> is installed according to the <a class="reference internal" href="../python-basics/pyinstall.html#conda-quick"><span class="std std-ref">conda quick guide</span></a>):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">flussenv</span>
@@ -1225,8 +1227,8 @@ Windows</label><div class="tabbed-content docutils">
 </div>
 <p><em>Atom</em> should open and provide the option to select a folder where a Python project will live or is already living. After selecting a folder, start editing your Python (<code class="docutils literal notranslate"><span class="pre">.py</span></code>) files. For running Python scripts, there are two options:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="8036e675-f682-4518-8897-0aaa2d11a642" name="46abd1ea-349c-4c8f-8e65-7f0e1e405b99" type="radio">
-</input><label class="tabbed-label" for="8036e675-f682-4518-8897-0aaa2d11a642">
+<input checked="checked" id="234f26e4-2c34-4e2d-bba6-0662df1e6978" name="2275bb06-df72-4ca4-8197-ccc39cc192e3" type="radio">
+</input><label class="tabbed-label" for="234f26e4-2c34-4e2d-bba6-0662df1e6978">
 Option 1: Use Script Package</label><div class="tabbed-content docutils">
 <p>first set up the <em>Script</em> package:</p>
 <ul class="simple">
@@ -1244,8 +1246,8 @@ Option 1: Use Script Package</label><div class="tabbed-content docutils">
 <li><p>Or press <code class="docutils literal notranslate"><span class="pre">Alt</span></code> + <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Shift</span></code> + <code class="docutils literal notranslate"><span class="pre">B</span></code></p></li>
 </ul>
 </div>
-<input id="1037b083-2d75-45ca-8751-786c416ef791" name="46abd1ea-349c-4c8f-8e65-7f0e1e405b99" type="radio">
-</input><label class="tabbed-label" for="1037b083-2d75-45ca-8751-786c416ef791">
+<input id="e9fdc5cd-fe94-4d17-ad0f-5467a8106991" name="2275bb06-df72-4ca4-8197-ccc39cc192e3" type="radio">
+</input><label class="tabbed-label" for="e9fdc5cd-fe94-4d17-ad0f-5467a8106991">
 Option 2: Use atom-python-virtualenv Package</label><div class="tabbed-content docutils">
 <p>Make sure to install the <code class="docutils literal notranslate"><span class="pre">atom-python-virtualenv</span></code> package (see the section on <a class="reference internal" href="#atom-packages"><span class="std std-ref">installing Atom packages</span></a>) and select <code class="docutils literal notranslate"><span class="pre">vflussenv</span></code> from the status bar at the bottom of the window as indicated in the below figure.</p>
 <img alt="../_images/atom-enable-env.png" src="../_images/atom-enable-env.png" />

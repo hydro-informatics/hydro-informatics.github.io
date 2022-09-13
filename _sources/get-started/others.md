@@ -21,6 +21,16 @@ For more installation options (e.g., for other Linux platforms, macOS, or Window
 Make sure to follow the non-commercial desktop-use installation instructions on [https://www.onlyoffice.com](https://www.onlyoffice.com/desktop.aspx). Other versions are not for free.
 ```
 
+Many plugins for enriching Only Office are available on GitHub. To install them, download/clone the plugins (as zip file) from GitHub. Make sure to unzip the repository and package the following files and folders into one `.zip` file: `config.json`, `scripts/`, `pluginCode.js`, `licenses/`, `resources/`, `translations/`, `LICENSE`. Some of these files or directories might not be available in all plugin repos, which you may want to omit in these cases. Also, the `pluginCode.js` file might be hidden in the `scripts/` folder and if this is the case, copy the `.js` file (e.g., `scripts/pluginName.js`) into the head folder and rename it to `pluginCode.js`. Then rename the zip archive to `name.plugin` (replace the `name` of the plugin), open Only Office, go to the **Plugins** tab, **Settings**, and use the **Add** button to locate and add the plugin.
+
+
+Here is a list of hydro-informatics.com's favorite plugins:
+
+* [Word counter](https://www.onlyoffice.com/en/app-directory/word-counter) helps to count the number of characters, words, spaces, etc. Get it at [GitHub.com/ONLYOFFICE/plugin-wordscounter](https://github.com/ONLYOFFICE/plugin-wordscounter).
+* [LanguageTool](https://www.onlyoffice.com/app-directory/languagetool) checks your writing in many languages, including spell and grammar checks. The plugin is based on the [LanguageTool](https://languagetool.org/) spell checker. Get it at [GitHub.com/ONLYOFFICE/plugin-languagetool](https://github.com/ONLYOFFICE/plugin-languagetool).
+* [SDKJS](https://github.com/ONLYOFFICE/sdkjs-plugins) enables embedding (YouTube) videos, photo editing, graph generation with Draw.io, organization of lessons, and tweaks into a couple of translators ([read more](https://www.onlyoffice.com/blog/2022/08/best-onlyoffice-plugins-for-online-educators/)). Note: this plugin requires some more tweaking and you may prefer to install singular sdkjs plugins by searching them with your favorite search engine.
+
+
 ### Libre Office
 
 [LibreOffice][libreoffice] is completely free to use (see their [license terms](https://www.libreoffice.org/about-us/licenses)) and works on most popular platforms. However, it is less intuitive to use than, for instance, Only Office.

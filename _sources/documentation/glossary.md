@@ -99,6 +99,14 @@ DEM
 
   Ultimately, there are many options for *correct* DEM-terminology depending on the region where you are. Now, what is the correct term in which language? There is no universal answer to this question and a good choice is to be patient with the communication partner.
 
+
+Diadromous
+  Diadromous fish {term}`guilds <Guild>` migrate between the sea and freshwater in their life cycle, as opposed to {term}`potamodromous fish <Potamodromous>` that only migrates in freshwater regions. Within diadromous fish guilds, further distinction is made between sub-guilds {cite:p}`myers_fish_1949`:
+  
+  * *Anadromous* fish live in the seas and migrate to freshwaters, mainly for reproduction. Examples for anadromous fish are sea trout (*Salmo trutta trutta*) or Pacific salmon (*Oncorhynchus*).
+  * *Catadromous* fish live in freshwaters and migrate to the sea for reproduction. An example for catadromous fish is American eel (*Anguilla rostrata*).
+  * *Amphidromous* fish migrate regularly between the sea and freshwaters. An example for amphidromous fish is round goby (*Neogobius melanostomus*) {cite:p}`lecaudey_fish_2019`.
+
 Diffusion
   Diffusion is the result of random motion of particles, driven by differences in concentration (e.g., dissipation of highly concentrated particles towards regions of low concentration). Mathematically, diffusion is described by $\frac{\partial \psi}{\partial t} = \nabla \cdot (D \nabla \psi)$ where $\psi$ is a constant of the particle/substance in consideration; $D$ is a diffusion coefficient (or diffusivity) in m$^2$/s, which is a proportionality constant between molecular flux and the gradient of a substance (or species). The $\nabla$ (*nabla*) operator is a vector of partial differentials $\frac{\partial}{\partial x_i}$ where $x_i$ refers to the dimensions of the flow field {cite:p}`kundu_fluid_2008`.
 
@@ -173,6 +181,11 @@ GeoTIFF
 Geomorphic heterogeneity
   Geomorphic heterogeneity describes the spatial pattern of gemorphic units (e.g., {term}`Riffle pool`) within the {term}`River corridor`. It describes the non-uniformity of a river compared with a monotonous trapezoidal or rectangular artificial channel {cite:p}`wohlegu2022`.
 
+Guild
+  An ecological guild describes a group of species that share common ecosystem resources. Species in a guild are not necessarily related to each other, nor do they necessarily use similar ecological niches. The term guild was introduced by {cite:t}`root_niche_1967` and is used in ecohydraulics to describe (physical) habitat preferences of fish species and their lifestages. For instance, we may differentiate between {term}`reophilic <Reophile>` and {term}`limnophilous <Limnophile>` fish guilds. In addition, we can distinguish between fish {term}`spawning guilds <Spawning guild>`, and {term}`potamodromous <Potamodromous>`, {term}`oceanmodromous <Oceanodromous>` and {term}`diadromous <Diadromous>` migration guilds.
+
+  *French: Guilde (f) <br>German: Gilde (w)*
+
 HDF
   The [Hierarchical Data Format (HDF)](https://www.hdfgroup.org/) provides the `*.h5` (HDF4) and `*.h5` (HDF5) file formats that store large datasets in an organized manner. HDF is often used with high-performance computing (HPC) applications, such as numerical models, to store large amounts of data output. This eBook impinges on HDF datasets in the {ref}`chpt-basement` tutorial where {term}`xdmf` files represent the model output, and in the {ref}`chpt-telemac` tutorials. In particular, TELEMAC builds on mesh and boundary files of the EnSim Core that is described in the user manual of the pre- and post-processing software [Blue Kenue](https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/2011_UserManual.pdf)<sup>TM</sup> (the newest [Blue Kenue installer](https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/Installer/BlueKenue_3.12.0-alpha+20201006_64bit.msi) contains an updated version of the user manual). Understanding the HDF format significantly facilitates troubleshooting structural errors of computational meshes for numerical models.
 
@@ -190,6 +203,11 @@ IAHR
 Lidar
   Light Detection and Ranging (*LiDAR* or *lidar*) uses laser pulses to measure earth surface properties such as canopy or terrain elevation. The laser pulses are sent from a remote sensing platform (fix station or airborne) to surfaces, which reflect the pulses with different speed (time-of-flight informs about terrain elevation) and energy pattern (leaves behave differently than rock). In its raw form, lidar data is a point cloud with various, geo-referenced information about the reflected signal. Lidar point clouds for end users are typically stored in *las* format or compressed *laz* format. *las*-formatted data are much faster to process, but also much larger than *laz*-formatted data. For this reason, lidar data are preferably transferred in *laz* format, while the *las* format is preferably used for processing lidar data.
 
+Limnophile
+  The term limnophile is used as a noun in reference to species that prefer to live in calm waters. Thus, limnophilous species, such as common rudd (*Scardinius erythrophthalmus*), colonize slow-flowing to stagnant fresh water regions. Unlike limnophilous species, reophilic species prefer fast flowing regions (see also {term}`Reophile`).
+
+  *French: inconnue <br>German: Limnophil*
+
 LU decomposition
   A lower-upper (LU) decomposition applies to the solution of linear systems (matrices) by re-organizing a matrix of equations into an upper and a lower triangular matrix. Thus, LU decomposition is a form of Gaussian elimination, which is typically applied in numerical analysis (e.g., {ref}`Telemac2d <tm2d-solver-pars>`) or machine learning.
 
@@ -203,6 +221,9 @@ Navier-Stokes equations
   A theoretical, exact solution of the Navier-Stokes equations would yield a perfect description of many natural processes. However, the underlying system equations involves more unknown parameters than equations. For this reason, rigorous simplifications (e.g., the {term}`Shallow water equations`) and numerical approximations with considerably larger computational effort than for an analytical solution are necessary for the solution of the Navier-Stokes equations. Simplification hypotheses are, for example, a hydrostatic pressure distribution (leading to the shallow water equations) or the assumption that a fluid is incompressible.
 
   *French: Équations de Navier-Stokes <br>German: Navier-Stokes-Gleichungen*
+
+Oceanodromous
+  Oceanodromous {term}`fish guilds <Guild>` exclusively live in oceans. while oceanodromous fish may encounter {term}`diadromous fish <Diadromous>` (migrate from the sea to freshwaters), they will very likely never meet {term}`potamodromous <Potamodromous>` fish {cite:p}`myers_fish_1949`. Examples for oceanmodromous fish are Atlantic mackerels (*Scomber scombrus*) or Atlantic herring (*Clupea harengus*).
 
 Operating System
   An Operating System (OS) manages the hardware of a computer, software (resources), and services for any program you want to install.
@@ -219,8 +240,16 @@ Plane bed
   Example of a plane bed river section at the Drance (VS, Switzerland). Picture: Sebastian Schwindt (2016).
   ```
 
+Potamodromous
+  Potamodromous {term}`fish guilds <Guild>` live and migrate in freshwater regions. Their migration is mostly due to reproduction. The difference with {term}`diadromous fish <Diadromous>` is that those migrate from the sea to freshwater regions. In addition, potamodromous fish will very likely never meet {term}`oceanmodromous <Oceanodromous>` fish {cite:p}`myers_fish_1949`. Examples for potamodromous fish are eal (*Anguilla anguilla*) and river trout (*Salmo trutta fario*).
+
 Rating curve
   See {term}`Stage-discharge relation`.
+
+Reophile
+  The term reophile is used as a noun in reference to species that prefer to live in fast-flowing water. In addition, a distinction is made between reophilic A and B species. Reophilic A species (e.g., brown/river trout *Salmo trutta (fario)* or minnow *Phoxinus phoxinus*) colonize the main stream of a river at all lifestages. Reophilic B species (e.g., gudgeon *Gobio gobio*) occupy calmer flow regions (e.g., oxbows) in some lifestages. Unlike reophilic species, limnophilic species (e.g., common rudd *Scardinius erythrophthalmus*) prefer calm (stagnant) flow regions (see also {term}`Limnophile`).
+
+  *French: inconnue <br>German: Reophil*
 
 Reynolds number
   The Reynolds number $Re$ relates viscous forces to inertia and is a key parameter for flow turbulence {cite:p}`chow59`:
@@ -304,6 +333,9 @@ Shields parameter
   ```
 
   Beyond grain size and local hydrodynamics, $\tau_{x,cr}$ is also a function of global channel roughness and slope, relative submergence and bedload transport intensity {cite:p}`wilcock_critical_1993,gregoretti_inception_2008,lamb_is_2008,recking_bed-load_2008,ferguson_river_2012`.
+
+Spawning guild
+  Different groups of fish (i.e., {term}`fish guilds <Guild>`) have different practices and preference for spawning their eggs. In ecohydraulics, a distinction is made, for instance,  between {term}`fish guilds <Guild>` that prefer to build nests in the surface of the riverbed (*lithophilous*) or glue their eggs to sediment (*psamnophilous*) or plants (*phytophilous*). Also, *pelagophilous* fish release their eggs into the free-flowing water.
 
 Suspended load
   Suspended load is a special type of {term}`Sediment transport` describing the displacement of fine particles with the bulk flow.

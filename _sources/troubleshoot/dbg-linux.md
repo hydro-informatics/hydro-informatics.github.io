@@ -166,7 +166,7 @@ W: Failed to fetch https://qgis.org/ubuntugis/dists/focal/InRelease  The followi
 [...]
 ```
 
-To troubleshoot  this error, note the unavailable key (i.e., `D155B8E6A419C5BE` in the above example) and then update the unavailable key:
+To troubleshoot this error, note the unavailable key (i.e., `D155B8E6A419C5BE` in the above example) and then update the unavailable key:
 
 
 ```

@@ -176,7 +176,7 @@ To better understand and troubleshoot code crashes, a debugger represents a grea
 (install-sublime)=
 # Sublime
 
-Sublime is one of the most popular editors for multiple (computer) languages. However, it is commericial software that is only free to use during an evluation period without time limit. Read more about it at [sublimetext.com](https://www.sublimetext.com).
+Sublime is one of the most popular editors for multiple (computer) languages. However, it is commercial software that is only free to use during an evaluation period without time limit. Read more about it at [sublimetext.com](https://www.sublimetext.com).
 
 To install it on Debian Linux platforms, open Terminal and tap (source: https://www.sublimetext.com/docs):
 
@@ -203,6 +203,10 @@ If an error message occurs, make sure `apt` works with `https` sources:
 sudo apt install apt-transport-https
 ```
 
+When working with sublime, consider using an advanced spell check package, such as [LanguageTool](https://packagecontrol.io/packages/LanguageTool). More useful packages for sublime can be found at [packagecontrol.io](https://packagecontrol.io). Packages can also be found by hitting the `CTRL` + `Shift` + `P` keys (in Sublime) to open *Package Control*. Then, type `install` and enter the name of the package you are looking for in the box.
+
+To enable modification of user settings, go to **Preferences** (top menu bar) > **Settings** and save the opening settings file either as `~./config/sublime-text/Packages/Default/Preferences.sublime-settings` (recommended for first-time saving) or  `~./config/sublime-text/Packages/User/Preferences.sublime-settings`. Then, edit the desired settings: for instance, look for `spell_check` and set it to `true` to default-enable spell checking. Save the `.sublime-settings` file to apply changes.
+
 (install-atom)=
 # Atom
 
@@ -211,7 +215,7 @@ sudo apt install apt-transport-https
 ```{admonition} Atom will sunset on December 15, 2022
 :class: warning
 
-The Atom developers at *GitHub* (i.e., Microsoft) anounced that they sunset (archive) Atom on December 15, 2022 [read more](https://github.blog/2022-06-08-sunsetting-atom/). That means, no updates and no maintenance are available as of December 15, 2022, but Atom can still be downloaded. It is not yet clear if Atom will reach its end of life or if some one will take up the maintenance and development of Atom.
+The Atom developers at *GitHub* (i.e., Microsoft) announced that they sunset (archive) Atom on December 15, 2022 [read more](https://github.blog/2022-06-08-sunsetting-atom/). That means, no updates and no maintenance are available as of December 15, 2022, but Atom can still be downloaded. It is not yet clear if Atom will reach its end of life or if some one will take up the maintenance and development of Atom.
 ```
 
 ## Installation
