@@ -88,6 +88,10 @@ BASEmesh is only one (very well working) mesh generator for QGIS and {numref}`Ta
   - {ref}`chpt-basement`, Hydro FT/AS (proprietary), indirectly: {ref}`chpt-telemac`
   - `*.2dm` (conversion to `.slf` possible with Crayfish)
   - Tweaks into multiple mesh algorithms (among others: {cite:t}`shewchuk1996`)
+* - DEMto3D
+  - Raster to STL (style) files for Blender
+  - `*.geo`, `*.stl`, `*.msh`
+  - Create digital twins in Blender
 ```
 
 (basemap)=

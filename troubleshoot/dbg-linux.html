@@ -895,6 +895,11 @@
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#d-graphics-drivers">
+   3D Graphics Drivers
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -1090,6 +1095,44 @@ line 188:         if (True):</p></li>
 <p>To troubleshoot LAStools installation in QGIS read <a class="reference external" href="https://rapidlasso.com/2013/09/29/how-to-install-lastools-toolbox-in-qgis/">this proposition on rapidlasso.com</a>.</p>
 <p>Read more about running <a class="reference external" href="https://gis.stackexchange.com/questions/138149/wine-lastools-in-qgis-2-8-1-ubuntu-14-04">LAStools on Ubuntu</a>.</p>
 </div>
+</div>
+<div class="section" id="d-graphics-drivers">
+<h2>3D Graphics Drivers<a class="headerlink" href="#d-graphics-drivers" title="Permalink to this headline">¶</a></h2>
+<p>GPU intense software requiring strong graphics performance, such as the Unreal Engine, will require newest graphics cards and drivers. The default graphics drivers may not be able to satisfy the needs for such appliances. Latest releases of graphics drivers can be installed through proprietary drivers (e.g., nVidia’s proprietary drivers to replace nouveau drivers).</p>
+<p>Here is one option to update nVidia graphic drivers, though be aware that this action can substantially harm your system (it may not reboot) if you are not running an Ubuntu Linux (derivative) with an appropriate nVidia graphics card. So if you are OK with this warning:</p>
+<ul class="simple">
+<li><p>Open Terminal:</p></li>
+<li><p>Find the appropriate driver for your system with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">search</span> <span class="pre">nvidia-driver</span></code>  (OR search for a driver package: <code class="docutils literal notranslate"><span class="pre">apt-cache</span> <span class="pre">search</span> <span class="pre">nvidia-driver</span></code>)</p></li>
+<li><p>Check latest driver releases</p>
+<ul>
+<li><p>in nvidia drivers: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-cache</span> <span class="pre">search</span> <span class="pre">'nvidia-driver-'</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">'^nvidia-driver-[[:digit:]]*'</span></code></p></li>
+<li><p>in dkms: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-cache</span> <span class="pre">search</span> <span class="pre">'nvidia-dkms-'</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">'^nvidia-dkms-[[:digit:]]*'</span></code></p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">...</span><span class="p">]</span>
+<span class="n">nvidia</span><span class="o">-</span><span class="n">dkms</span><span class="o">-</span><span class="mi">470</span> <span class="o">-</span> <span class="n">NVIDIA</span> <span class="n">DKMS</span> <span class="n">package</span>
+<span class="n">nvidia</span><span class="o">-</span><span class="n">dkms</span><span class="o">-</span><span class="mi">470</span><span class="o">-</span><span class="n">server</span> <span class="o">-</span> <span class="n">NVIDIA</span> <span class="n">DKMS</span> <span class="n">package</span>
+<span class="n">nvidia</span><span class="o">-</span><span class="n">dkms</span><span class="o">-</span><span class="mi">495</span> <span class="o">-</span> <span class="n">Transitional</span> <span class="n">package</span> <span class="k">for</span> <span class="n">nvidia</span><span class="o">-</span><span class="n">dkms</span><span class="o">-</span><span class="mi">510</span>
+<span class="n">nvidia</span><span class="o">-</span><span class="n">dkms</span><span class="o">-</span><span class="mi">510</span> <span class="o">-</span> <span class="n">NVIDIA</span> <span class="n">DKMS</span> <span class="n">package</span>
+<span class="n">nvidia</span><span class="o">-</span><span class="n">dkms</span><span class="o">-</span><span class="mi">510</span><span class="o">-</span><span class="n">server</span> <span class="o">-</span> <span class="n">NVIDIA</span> <span class="n">DKMS</span> <span class="n">package</span>
+<span class="n">nvidia</span><span class="o">-</span><span class="n">dkms</span><span class="o">-</span><span class="mi">515</span> <span class="o">-</span> <span class="n">NVIDIA</span> <span class="n">DKMS</span> <span class="n">package</span>
+<span class="n">nvidia</span><span class="o">-</span><span class="n">dkms</span><span class="o">-</span><span class="mi">515</span><span class="o">-</span><span class="n">server</span> <span class="o">-</span> <span class="n">NVIDIA</span> <span class="n">DKMS</span> <span class="n">package</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>in this example, the newest driver is <code class="docutils literal notranslate"><span class="pre">nvidia-driver-515</span></code> (with <code class="docutils literal notranslate"><span class="pre">nvidia-dkms-515</span></code>), which we note down to install them two steps later</p></li>
+<li><p>Update package information and your system:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">full</span><span class="o">-</span><span class="n">upgrade</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Install the latest driver with: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">nvidia-driver-515</span> <span class="pre">nvidia-dkms-515</span></code></p></li>
+<li><p>Reboot your system: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">shutdown</span> <span class="pre">-r</span> <span class="pre">now</span></code></p></li>
+<li><p>Verify installation (in Terminal: <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code></p></li>
+</ul>
 </div>
 </div>
 

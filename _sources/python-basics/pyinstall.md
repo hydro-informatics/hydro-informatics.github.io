@@ -193,6 +193,16 @@ Alternatively, find the *OSGeo4W* from the *Windows* start menu and type `py3_en
 
 The import of *flusstools* should not return any import error. If there is an import error, find out the troublesome package's name and re-install it. In particular, the installation of *GDAL* may be challenging when working with `pip`, in particular on *Windows*. To learn more about the installation of *GDAL* visit the [Download > Binaries section on the developer's website](https://gdal.org/download.html#binaries).
 
+### Ipykernel (JupyterLab) for FlussTools
+
+To use the new *vflussenv* in {ref}`Jupyter Lab <jupyter>`, a new *ipykernel* needs to be created as follows:
+
+* Activate the environment (in Terminal): `source path/to/vflussenv/bin/activate` (change path to where you installed `vflussenv`)
+* Install *ipykernel*: `pip install ipykernel`
+* Create a new *ipykernel*: `python -m ipykernel install --user --name=fluss_kernel`
+* Now the new kernel called *fluss_kernel* (referring to *vflussenv*) is available in Jupyter Lab (**Kernel** > **Change Kernel...**)
+
+
 (pip-install-pckg)=
 ### Manage pip (Install, Uninstall, or Upgrade) Modules or Packages
 
@@ -343,10 +353,24 @@ The following descriptions require that {ref}`jupyter` is installed for locally 
 
 ````{tabbed} Linux
 Start *JupyterLab* by typing `jupyter-lab` in *Terminal*.
+
+If you are working with *vflussenv*, you may need to add the environment and its packages to a new ipykernel:
+
+* Activate the environment (in Terminal): `source ~/venv/vflussenv/bin/activate` (change path to where you installed `vflussenv`)
+* Install *ipykernel*: `pip install ipykernel`
+* Create a new *ipykernel*: `python -m ipykernel install --user --name=fluss_kernel`
+* Now the new kernel called *fluss_kernel* (referring to *vflussenv*) is available in Jupyter Lab (**Kernel** > **Change Kernel...**)
+
 ````
 
 ````{tabbed} Windows
 Start *JupyterLab* by typing `jupyter-lab` in *Anaconda Prompt*.
+
+If you are working with *flussenv*, you may need to add the environment and its packages to a new ipykernel:
+
+* Activate the environment (in Anaconda Prompt): `conda activate flussenv` (make sure `flusstools` is pip-installed, otherwise `conda install -c anaconda ipykernel`)
+* Create a new *ipykernel*: `ipykernel install --user --name=fluss_kernel`
+* Now the new kernel called *fluss_kernel* is available in Jupyter Lab (**Kernel** > **Change Kernel...**)
 ````
 
 Setup Styles

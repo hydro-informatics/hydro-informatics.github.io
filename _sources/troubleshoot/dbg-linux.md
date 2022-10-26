@@ -195,3 +195,44 @@ To get LAStools working in QGIS on Ubuntu (make sure to have {ref}`wine` install
 To troubleshoot LAStools installation in QGIS read [this proposition on rapidlasso.com](https://rapidlasso.com/2013/09/29/how-to-install-lastools-toolbox-in-qgis/).
 
 Read more about running [LAStools on Ubuntu](https://gis.stackexchange.com/questions/138149/wine-lastools-in-qgis-2-8-1-ubuntu-14-04).
+
+## 3D Graphics Drivers
+
+GPU intense software requiring strong graphics performance, such as the Unreal Engine, will require newest graphics cards and drivers. The default graphics drivers may not be able to satisfy the needs for such appliances. Latest releases of graphics drivers can be installed through proprietary drivers (e.g., nVidia's proprietary drivers to replace nouveau drivers).
+
+Here is one option to update nVidia graphic drivers, though be aware that this action can substantially harm your system (it may not reboot) if you are not running an Ubuntu Linux (derivative) with an appropriate nVidia graphics card. So if you are OK with this warning:
+
+* Open Terminal:
+
+* Find the appropriate driver for your system with `sudo apt search nvidia-driver`  (OR search for a driver package: `apt-cache search nvidia-driver`)
+
+* Check latest driver releases
+  * in nvidia drivers: `sudo apt-cache search 'nvidia-driver-' | grep '^nvidia-driver-[[:digit:]]*'`
+  * in dkms: `sudo apt-cache search 'nvidia-dkms-' | grep '^nvidia-dkms-[[:digit:]]*'`
+
+```
+[...]
+nvidia-dkms-470 - NVIDIA DKMS package
+nvidia-dkms-470-server - NVIDIA DKMS package
+nvidia-dkms-495 - Transitional package for nvidia-dkms-510
+nvidia-dkms-510 - NVIDIA DKMS package
+nvidia-dkms-510-server - NVIDIA DKMS package
+nvidia-dkms-515 - NVIDIA DKMS package
+nvidia-dkms-515-server - NVIDIA DKMS package
+```
+  * in this example, the newest driver is `nvidia-driver-515` (with `nvidia-dkms-515`), which we note down to install them two steps later
+
+* Update package information and your system:
+
+```
+sudo apt update
+sudo apt full-upgrade
+```
+
+* Install the latest driver with: `sudo apt install nvidia-driver-515 nvidia-dkms-515`
+
+* Reboot your system: `sudo shutdown -r now`
+
+* Verify installation (in Terminal: `nvidia-smi`
+
+

@@ -833,6 +833,11 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ipykernel-jupyterlab-for-flusstools">
+     Ipykernel (JupyterLab) for FlussTools
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#manage-pip-install-uninstall-or-upgrade-modules-or-packages">
      Manage pip (Install, Uninstall, or Upgrade) Modules or Packages
     </a>
@@ -925,8 +930,8 @@
 <span id="pip-quick"></span><h3>Quick Guide<a class="headerlink" href="#quick-guide" title="Permalink to this headline">¶</a></h3>
 <p>Consider installing, creating, and activating a new virtual environment for working with the contents of this eBook as explained in the following platform-dependent paragraphs.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="18fd4e25-4bdd-4879-b9a5-0a897acde896" name="a48d7062-f8d6-495c-9fc9-3ccc9f1942f8" type="radio">
-</input><label class="tabbed-label" for="18fd4e25-4bdd-4879-b9a5-0a897acde896">
+<input checked="checked" id="c0f59695-37a4-4fb3-b78a-2c9f51f498ad" name="0eb5347e-68cd-430a-89a3-9dfb62f81b26" type="radio">
+</input><label class="tabbed-label" for="c0f59695-37a4-4fb3-b78a-2c9f51f498ad">
 Linux</label><div class="tabbed-content docutils">
 <p>To avoid affecting the system’s Python interpreter, set up a virtual environment with <em>venv</em>. The first step is to make sure that Python3 and <em>venv</em> are installed on the system:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">python3</span> <span class="n">python3</span><span class="o">-</span><span class="n">venv</span>
@@ -995,8 +1000,8 @@ Python 3.X.X (default, MMM DD YYYY, hh:mm:ss)
 </div>
 <p>Recall that newer <em>Linux</em> versions may not differentiate between <em>Python2</em> and <em>Python3</em> (i.e., use <code class="docutils literal notranslate"><span class="pre">python</span></code> rather than <code class="docutils literal notranslate"><span class="pre">python3</span></code>).</p>
 </div>
-<input id="94a520e4-afab-46b7-a42e-e01662f966e0" name="a48d7062-f8d6-495c-9fc9-3ccc9f1942f8" type="radio">
-</input><label class="tabbed-label" for="94a520e4-afab-46b7-a42e-e01662f966e0">
+<input id="57abf707-e691-4332-a2c1-e16624f862d0" name="0eb5347e-68cd-430a-89a3-9dfb62f81b26" type="radio">
+</input><label class="tabbed-label" for="57abf707-e691-4332-a2c1-e16624f862d0">
 Windows</label><div class="tabbed-content docutils">
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -1053,19 +1058,29 @@ Windows</label><div class="tabbed-content docutils">
 </div>
 <p>The import of <em>flusstools</em> should not return any import error. If there is an import error, find out the troublesome package’s name and re-install it. In particular, the installation of <em>GDAL</em> may be challenging when working with <code class="docutils literal notranslate"><span class="pre">pip</span></code>, in particular on <em>Windows</em>. To learn more about the installation of <em>GDAL</em> visit the <a class="reference external" href="https://gdal.org/download.html#binaries">Download &gt; Binaries section on the developer’s website</a>.</p>
 </div>
+<div class="section" id="ipykernel-jupyterlab-for-flusstools">
+<h3>Ipykernel (JupyterLab) for FlussTools<a class="headerlink" href="#ipykernel-jupyterlab-for-flusstools" title="Permalink to this headline">¶</a></h3>
+<p>To use the new <em>vflussenv</em> in <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">Jupyter Lab</span></a>, a new <em>ipykernel</em> needs to be created as follows:</p>
+<ul class="simple">
+<li><p>Activate the environment (in Terminal): <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">path/to/vflussenv/bin/activate</span></code> (change path to where you installed <code class="docutils literal notranslate"><span class="pre">vflussenv</span></code>)</p></li>
+<li><p>Install <em>ipykernel</em>: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">ipykernel</span></code></p></li>
+<li><p>Create a new <em>ipykernel</em>: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">ipykernel</span> <span class="pre">install</span> <span class="pre">--user</span> <span class="pre">--name=fluss_kernel</span></code></p></li>
+<li><p>Now the new kernel called <em>fluss_kernel</em> (referring to <em>vflussenv</em>) is available in Jupyter Lab (<strong>Kernel</strong> &gt; <strong>Change Kernel…</strong>)</p></li>
+</ul>
+</div>
 <div class="section" id="manage-pip-install-uninstall-or-upgrade-modules-or-packages">
 <span id="pip-install-pckg"></span><h3>Manage pip (Install, Uninstall, or Upgrade) Modules or Packages<a class="headerlink" href="#manage-pip-install-uninstall-or-upgrade-modules-or-packages" title="Permalink to this headline">¶</a></h3>
 <p>More than 300,000 projects live on <a class="reference external" href="https://pypi.org/">pypi.org</a> and there are packages available for many purposes. To find suitable packages visit <a class="reference external" href="https://pypi.org/search/">https://pypi.org/search/</a>. To install (i.e., add) one of these <code class="docutils literal notranslate"><span class="pre">pip</span></code>/<code class="docutils literal notranslate"><span class="pre">pip3</span></code> packages use:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="bf78fca5-7c1d-44a8-9ee6-f6d2f9cb9209" name="8d063223-1b51-41d0-81d3-ccd6b4802795" type="radio">
-</input><label class="tabbed-label" for="bf78fca5-7c1d-44a8-9ee6-f6d2f9cb9209">
+<input checked="checked" id="f36cc959-b10f-438a-92e2-369c755dee56" name="9e92c0a7-e9a2-4314-be88-e124bc9c69c1" type="radio">
+</input><label class="tabbed-label" for="f36cc959-b10f-438a-92e2-369c755dee56">
 Linux Terminal</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
 </div>
 </div>
-<input id="bfcbbde8-5b58-491f-b243-406b27c4e8c5" name="8d063223-1b51-41d0-81d3-ccd6b4802795" type="radio">
-</input><label class="tabbed-label" for="bfcbbde8-5b58-491f-b243-406b27c4e8c5">
+<input id="57ed9379-1a3b-47f5-a76f-f8679bc20de7" name="9e92c0a7-e9a2-4314-be88-e124bc9c69c1" type="radio">
+</input><label class="tabbed-label" for="57ed9379-1a3b-47f5-a76f-f8679bc20de7">
 Windows Command Prompt</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
@@ -1078,15 +1093,15 @@ Windows Command Prompt</label><div class="tabbed-content docutils">
 </div>
 <p>To remove (i.e., uninstall) a <code class="docutils literal notranslate"><span class="pre">pip</span></code>/<code class="docutils literal notranslate"><span class="pre">pip3</span></code>-installed package use:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="17336978-ecef-448a-848e-8578c0eea715" name="4d8cf062-cd5b-49e6-9be2-cc870f6e4943" type="radio">
-</input><label class="tabbed-label" for="17336978-ecef-448a-848e-8578c0eea715">
+<input checked="checked" id="0120ef53-0135-40ac-88fe-a7455da95346" name="a7947706-ae5b-422e-b576-de2711bbfe28" type="radio">
+</input><label class="tabbed-label" for="0120ef53-0135-40ac-88fe-a7455da95346">
 Linux Terminal</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">uninstall</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
 </div>
 </div>
-<input id="4e31eccb-92e2-4a3b-9df1-fb2932c1b20c" name="4d8cf062-cd5b-49e6-9be2-cc870f6e4943" type="radio">
-</input><label class="tabbed-label" for="4e31eccb-92e2-4a3b-9df1-fb2932c1b20c">
+<input id="2a01957c-886d-4f7a-ab60-091030d0228d" name="a7947706-ae5b-422e-b576-de2711bbfe28" type="radio">
+</input><label class="tabbed-label" for="2a01957c-886d-4f7a-ab60-091030d0228d">
 Windows Command Prompt</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">uninstall</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
@@ -1095,15 +1110,15 @@ Windows Command Prompt</label><div class="tabbed-content docutils">
 </div>
 <p>To upgrade (update) a package that lives in a local user environment use:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="c073771f-ec1c-4383-ac7e-69d3018cb636" name="cca01839-5121-4101-aa73-5744cbdabf24" type="radio">
-</input><label class="tabbed-label" for="c073771f-ec1c-4383-ac7e-69d3018cb636">
+<input checked="checked" id="edd407a2-1649-49bc-bace-643682c8defe" name="45c68546-91d0-4adc-b057-8dca2da1ab2b" type="radio">
+</input><label class="tabbed-label" for="edd407a2-1649-49bc-bace-643682c8defe">
 Linux Terminal</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
 </div>
 </div>
-<input id="982cc191-97e7-45f8-adcb-646e7711365d" name="cca01839-5121-4101-aa73-5744cbdabf24" type="radio">
-</input><label class="tabbed-label" for="982cc191-97e7-45f8-adcb-646e7711365d">
+<input id="de756e09-6270-4a3c-b4aa-3a0342314a1a" name="45c68546-91d0-4adc-b057-8dca2da1ab2b" type="radio">
+</input><label class="tabbed-label" for="de756e09-6270-4a3c-b4aa-3a0342314a1a">
 Windows Command Prompt</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="o">--</span><span class="n">user</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
@@ -1192,15 +1207,28 @@ Windows Command Prompt</label><div class="tabbed-content docutils">
 <span id="ipython-config"></span><h3>JupyterLab<a class="headerlink" href="#jupyterlab" title="Permalink to this headline">¶</a></h3>
 <p>The following descriptions require that <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a> is installed for locally editing <em>Jupyter</em> notebooks (<em>.ipynb</em> files), <em>Python</em> scripts (<em>.py</em> files), and folders.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="b0610192-4217-42ec-a77b-688b49eee0b5" name="b9e907e3-315d-43ad-afa7-8eb166cd7388" type="radio">
-</input><label class="tabbed-label" for="b0610192-4217-42ec-a77b-688b49eee0b5">
+<input checked="checked" id="1bc5a79d-f409-45d5-9248-eabab2f9dc0c" name="e72baf45-e637-4e00-8dea-ff8bdaa56322" type="radio">
+</input><label class="tabbed-label" for="1bc5a79d-f409-45d5-9248-eabab2f9dc0c">
 Linux</label><div class="tabbed-content docutils">
 <p>Start <em>JupyterLab</em> by typing <code class="docutils literal notranslate"><span class="pre">jupyter-lab</span></code> in <em>Terminal</em>.</p>
+<p>If you are working with <em>vflussenv</em>, you may need to add the environment and its packages to a new ipykernel:</p>
+<ul class="simple">
+<li><p>Activate the environment (in Terminal): <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">~/venv/vflussenv/bin/activate</span></code> (change path to where you installed <code class="docutils literal notranslate"><span class="pre">vflussenv</span></code>)</p></li>
+<li><p>Install <em>ipykernel</em>: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">ipykernel</span></code></p></li>
+<li><p>Create a new <em>ipykernel</em>: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">ipykernel</span> <span class="pre">install</span> <span class="pre">--user</span> <span class="pre">--name=fluss_kernel</span></code></p></li>
+<li><p>Now the new kernel called <em>fluss_kernel</em> (referring to <em>vflussenv</em>) is available in Jupyter Lab (<strong>Kernel</strong> &gt; <strong>Change Kernel…</strong>)</p></li>
+</ul>
 </div>
-<input id="57a4f35c-1b20-4e08-8865-d5f369a0c0fb" name="b9e907e3-315d-43ad-afa7-8eb166cd7388" type="radio">
-</input><label class="tabbed-label" for="57a4f35c-1b20-4e08-8865-d5f369a0c0fb">
+<input id="5f102b1d-51b9-4849-9f19-9053862b99a0" name="e72baf45-e637-4e00-8dea-ff8bdaa56322" type="radio">
+</input><label class="tabbed-label" for="5f102b1d-51b9-4849-9f19-9053862b99a0">
 Windows</label><div class="tabbed-content docutils">
 <p>Start <em>JupyterLab</em> by typing <code class="docutils literal notranslate"><span class="pre">jupyter-lab</span></code> in <em>Anaconda Prompt</em>.</p>
+<p>If you are working with <em>flussenv</em>, you may need to add the environment and its packages to a new ipykernel:</p>
+<ul class="simple">
+<li><p>Activate the environment (in Anaconda Prompt): <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">flussenv</span></code> (make sure <code class="docutils literal notranslate"><span class="pre">flusstools</span></code> is pip-installed, otherwise <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">anaconda</span> <span class="pre">ipykernel</span></code>)</p></li>
+<li><p>Create a new <em>ipykernel</em>: <code class="docutils literal notranslate"><span class="pre">ipykernel</span> <span class="pre">install</span> <span class="pre">--user</span> <span class="pre">--name=fluss_kernel</span></code></p></li>
+<li><p>Now the new kernel called <em>fluss_kernel</em> is available in Jupyter Lab (<strong>Kernel</strong> &gt; <strong>Change Kernel…</strong>)</p></li>
+</ul>
 </div>
 </div>
 <dl class="simple myst">
@@ -1250,8 +1278,8 @@ Windows</label><div class="tabbed-content docutils">
 <span id="atom-setup"></span><h3>Atom and Python<a class="headerlink" href="#atom-and-python" title="Permalink to this headline">¶</a></h3>
 <p>Depending on your platform make sure that all requirements are installed to configure Atom’s <code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code> package:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="e33fe75d-0667-429d-ab88-d373eeebfe32" name="877188f1-869c-42eb-9258-991523b53625" type="radio">
-</input><label class="tabbed-label" for="e33fe75d-0667-429d-ab88-d373eeebfe32">
+<input checked="checked" id="9b2866f4-3e23-46e2-a69c-0ddb27a72d35" name="c1064f23-a584-4755-a22d-a98a686a95df" type="radio">
+</input><label class="tabbed-label" for="9b2866f4-3e23-46e2-a69c-0ddb27a72d35">
 Linux</label><div class="tabbed-content docutils">
 <div class="admonition-requirements admonition">
 <p class="admonition-title">Requirements</p>
@@ -1282,8 +1310,8 @@ Linux</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="2bf35485-4b42-475b-b49e-11754d632429" name="877188f1-869c-42eb-9258-991523b53625" type="radio">
-</input><label class="tabbed-label" for="2bf35485-4b42-475b-b49e-11754d632429">
+<input id="db7c940a-d0ca-44de-8483-ed71ffef6e19" name="c1064f23-a584-4755-a22d-a98a686a95df" type="radio">
+</input><label class="tabbed-label" for="db7c940a-d0ca-44de-8483-ed71ffef6e19">
 Windows</label><div class="tabbed-content docutils">
 <div class="admonition-requirements admonition">
 <p class="admonition-title">Requirements</p>

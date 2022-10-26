@@ -12,6 +12,7 @@ Use {ref}`qgis-install` to display geospatial data and to create maps in *PDF* o
 Geospatial data can be retrieved for various purposes from different sources. Here are some of them:
 
 * Geographical, atlas map-like data are provided by [naturalearthdata.com](https://www.naturalearthdata.com) (e.g., with their 227-mb [Natural Earth quick start kit](http://naciscdn.org/naturalearth/packages/Natural_Earth_quick_start.zip)).
+* [OpenStreetMap](https://www.openstreetmap.org) data extractions are available at [https://download.geofabrik.de/](https://download.geofabrik.de/)
 * Satellite imagery is available at
     - the [USGS' Earth Explorer](https://earthexplorer.usgs.gov/)
     - the [eesa's copernicus open access hub](https://scihub.copernicus.eu/dhus/#/home) (Sentinel-2)

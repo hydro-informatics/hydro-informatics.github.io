@@ -28,6 +28,7 @@ Here is a list of hydro-informatics.com's favorite plugins:
 
 * [Word counter](https://www.onlyoffice.com/en/app-directory/word-counter) helps to count the number of characters, words, spaces, etc. Get it at [GitHub.com/ONLYOFFICE/plugin-wordscounter](https://github.com/ONLYOFFICE/plugin-wordscounter).
 * [LanguageTool](https://www.onlyoffice.com/app-directory/languagetool) checks your writing in many languages, including spell and grammar checks. The plugin is based on the [LanguageTool](https://languagetool.org/) spell checker. Get it at [GitHub.com/ONLYOFFICE/plugin-languagetool](https://github.com/ONLYOFFICE/plugin-languagetool).
+* [Draw.io](https://www.onlyoffice.com/blog/2022/03/onlyoffice-integrates-draw-io/) aids in creating professional diagrams and graphs for any Only Office document. Get it at [GitHub.com/ONLYOFFICE/plugin-drawio](https://github.com/ONLYOFFICE/plugin-drawio).
 * [SDKJS](https://github.com/ONLYOFFICE/sdkjs-plugins) enables embedding (YouTube) videos, photo editing, graph generation with Draw.io, organization of lessons, and tweaks into a couple of translators ([read more](https://www.onlyoffice.com/blog/2022/08/best-onlyoffice-plugins-for-online-educators/)). Note: this plugin requires some more tweaking and you may prefer to install singular sdkjs plugins by searching them with your favorite search engine.
 
 
