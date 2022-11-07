@@ -37,7 +37,7 @@ sudo apt install python3 python3-venv
 Next, make sure that `pip3` and `tkinter` are installed and up to date:
 
 ```
-sudo apt install python3-pip python3-tk tk8.6-dev
+sudo apt install python3-pip python3-dev python3-tk tk8.6-dev
 python3 -m pip install --upgrade pip
 ```
 
@@ -73,10 +73,11 @@ which python
 ```
 
 
-Install *numpy* with:
+Install *numpy* and *wheel* with:
 
 ```
 pip3 install numpy
+pip3 install wheel
 ```
 
 Then, install *QGIS* and *GDAL* for *Linux* (this should work with any *Debian* architecture) and make sure to use the correct `pip` command at the end (i.e., it might be necessary to replace `pip3` with `pip`):
@@ -99,12 +100,19 @@ Install gdal for the *vflussenv* Python environment:
 pip3 install GDAL==$(gdal-config --version)
 ```
 
-<span style="color: #bb533d ">
+
+````{admonition} Resolve persisting GDAL installation errors
+:class: error, dropdown
 If the above line ultimately fails (i.e., does not end with <b>Successfully installed GDAL-X.X.X</b>, which override previous errors such as <i>invalid command 'bdist_wheel'</i>), try:</br></br>
 
-<i><b>pip3 install GDAL==$(gdal-config --version) --global-option=build_ext --global-option="-I/usr/include/gdal/"</i></b></br>
 
-</span>
+```
+pip3 install GDAL==$(gdal-config --version) --global-option=build_ext --global-option="-I/usr/include/gdal/"
+```
+
+Another option is to delete all files in `/home/USERNAME/.cache/pip`. To see the hidden `.cache/` directory, press CTRL + H. After deleting the files, start over with the installation.</br>
+
+````
 
 Now, install *flusstools* with:
 
@@ -198,8 +206,8 @@ The import of *flusstools* should not return any import error. If there is an im
 To use the new *vflussenv* in {ref}`Jupyter Lab <jupyter>`, a new *ipykernel* needs to be created as follows:
 
 * Activate the environment (in Terminal): `source path/to/vflussenv/bin/activate` (change path to where you installed `vflussenv`)
-* Install *ipykernel*: `pip install ipykernel`
-* Create a new *ipykernel*: `python -m ipykernel install --user --name=fluss_kernel`
+* Install *ipykernel* and make sure *jupyter* is installed: `pip3 install ipykernel jupyter jupyterlab`
+* Create a new *ipykernel*: `python3 -m ipykernel install --user --name=fluss_kernel`
 * Now the new kernel called *fluss_kernel* (referring to *vflussenv*) is available in Jupyter Lab (**Kernel** > **Change Kernel...**)
 
 
@@ -224,6 +232,21 @@ python -m pip install --user PACKAGE_NAME
 ```{note}
 The `--user` flag is only required if you are not working in a virtual environment. Otherwise, normal users can only manage packages in the local user directory (on *Windows*: `C\Users\USER-NAME\`); system packages can only be managed by administrators (on *Linux* with the `sudo` command).
 ```
+
+Here is a list of additional useful packages for data analysis:
+
+* scipy including pandas, matplotlib, and numpy
+* [fitter](https://fitter.readthedocs.io) through `pip3 install fitter` (check best fitting statistic distribution in scipy.stats)
+* [missingno](https://github.com/ResidentMario/missingno) through `pip3 install missingno`
+* [openpyxl](https://openpyxl.readthedocs.io/) through `pip3 install openpyxl` for workbook file handling
+* [scikit-posthocs](https://scikit-posthocs.readthedocs.io) through `pip3 install scikit-posthocs` for non-parametric post-ANOVA (e.g. Kruskal-Wallis) treatment
+* [seaborn](https://seaborn.pydata.org/installing.html) through `pip3 install seaborn`
+* [sklearn](https://scikit-learn.org/stable/install.html) through `pip3 install -U scikit-learn`
+* [statsmodels](https://www.statsmodels.org/0.9.0/install.html) through `pip3 install statsmodels`
+
+
+To install all-in-one, tap: `pip3 install -U fitter missingno seaborn scikit-learn statsmodels openpyxl`
+
 
 To remove (i.e., uninstall) a `pip`/`pip3`-installed package use:
 
@@ -380,7 +403,7 @@ Setup Styles
   ```{figure} ../img/jupyter-illu.png
   :alt: pyc-prj-setup
 
-  JupyterLab in Dark theme appearance with a Jupyter notebook (xml.ipynb) opened showing the combination of a markdown cell (Charts(plots) and a Python3 cell.
+  JupyterLab in Dark theme appearance with a Jupyter notebook (xml.ipynb) opened showing the combination of a markdown cell (Charts (plots) and a Python3 cell).
   ```
 
 Package Controls
