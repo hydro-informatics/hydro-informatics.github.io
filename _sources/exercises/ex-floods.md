@@ -215,5 +215,5 @@ After all, there is already software that calculates return periods, freely avai
 
 
 ```{admonition} Homework
-Use the formulae in the provided workbook (ILIAS) to implement the Gumbel distribution for extrapolating a 200, 500, and 1000-years flood. Interpolations discharges of 2, 5, 10, 20, and 50-year flow events. *Use loops and functions!*
+Use the formulae in the our [Gumble-template workbook](https://github.com/Ecohydraulics/Exercise-FloodReturn/raw/main/flow-data/flood-statistics-gumble-template.xlsx) to implement the Gumbel distribution for extrapolating a 200, 500, and 1000-years flood. Interpolations discharges of 2, 5, 10, 20, and 50-year flow events. *Use loops and functions!*
 ```
