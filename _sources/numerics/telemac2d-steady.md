@@ -889,9 +889,12 @@ Alternatively, download the modified files:
 * [boundaries-dry.cli](https://github.com/hydro-informatics/telemac/raw/main/steady2d-dry/boundaries-dry.cli)
 * [steady2d-initdry.cas](https://github.com/hydro-informatics/telemac/raw/main/steady2d-dry/steady2d-dry.cas)
 
-Re-{ref}`run Telemac2d <tm2d-run>` and open the resulting `r2d...slf` file in QGIS. The following video features the flow velocity vector evolution during the dry-initialized model run:
+Re-{ref}`run Telemac2d <tm2d-run>` and open the resulting `r2d...slf` file in QGIS. The following video features the flow velocity vector evolution during the dry-initialized model run.
 
+```{admonition} Flow velocity vector evolution during the dry-initialized model run
+:class: tip
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/hh843xrLycI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Sebastian Schwindt <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+```
 
 Compare the results of the dry and wet model initializations with regard to the following questions:
 
