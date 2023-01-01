@@ -88,7 +88,7 @@ The other parameters are:
 
 The *Meyer-Peter & Müller* formula applies (like any other {term}`Sediment transport` formula) only to certain rivers that have the following characteristics (range of validity):
 * 0.4 $\cdot$ 10$^{-3}$ m $< D_{char}$ < 28.6 $\cdot$ 10$^{-3}$ m
-* 10$^{-4}$ m $< Fr <$ 639 ($Fr$ denotes the dimensionless [{term}`Froude number`](https://en.wikipedia.org/wiki/Froude_number)
+* 10$^{-4}$ m $< Fr <$ 639 ($Fr$ denotes the dimensionless [{term}`Froude number`](https://en.wikipedia.org/wiki/Froude_number))
 * 0.0004 $< S_{e} <$ 0.02
 * 0.0002 m$^3$/(s $\cdot$ m) $< q <$ 2.0 m$^3$/(s $\cdot$ m) ($q$ is the unit discharge, i.e., $q=Q/[0. 5\cdot (b + B)]$)
 * 0.25 $< s <$ 3.2

@@ -332,6 +332,11 @@
    QGIS Tutorial
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/drone-processing.html">
+   Process Drone (UAV) Imagery
+  </a>
+ </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../geopy/geo-python.html">
    Geospatial Python
@@ -345,11 +350,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../geopy/geo-pckg.html">
      Geospatial Open Source Python Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/drone-processing.html">
-     Process Drone Data
     </a>
    </li>
    <li class="toctree-l2">
@@ -1716,7 +1716,7 @@ The four boundary edges of the surface will represent an upstream (inflow), a do
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">LAW</span> <span class="pre">OF</span> <span class="pre">BOTTOM</span> <span class="pre">FRICTION</span></code>: <code class="docutils literal notranslate"><span class="pre">5</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">LAW</span> <span class="pre">OF</span> <span class="pre">FRICTION</span> <span class="pre">ON</span> <span class="pre">LATERAL</span> <span class="pre">BOUNDARIES</span></code>: <code class="docutils literal notranslate"><span class="pre">5</span></code>, which can well be applied to model natural banks, or set to <code class="docutils literal notranslate"><span class="pre">0</span></code> (no-slip) for symmetry.<br>*Note that the <a class="reference internal" href="#bnd-mod"><span class="std std-ref">boundary conditions file</span></a> sets the <code class="docutils literal notranslate"><span class="pre">LIUBOR</span></code> and <code class="docutils literal notranslate"><span class="pre">LIVBOR</span></code> for the <code class="docutils literal notranslate"><span class="pre">leftwall</span></code> and <code class="docutils literal notranslate"><span class="pre">rightwall</span></code> boundary edges to zero, to enable friction.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">FRICTION</span> <span class="pre">COEFFICIENT</span> <span class="pre">FOR</span> <span class="pre">THE</span> <span class="pre">BOTTOM</span></code>: <code class="docutils literal notranslate"><span class="pre">0.1</span></code> corresponds to 3 times a hypothetical <em>d90</em> (grain diameter of which 90% of the surface grain mixture are finer) according to <span id="id4">[<a class="reference internal" href="../documentation/bibliography.html#id1356">vR19</a>]</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FRICTION</span> <span class="pre">COEFFICIENT</span> <span class="pre">FOR</span> <span class="pre">THE</span> <span class="pre">BOTTOM</span></code>: <code class="docutils literal notranslate"><span class="pre">0.1</span></code> corresponds to 3 times a hypothetical <em>d90</em> (grain diameter of which 90% of the surface grain mixture are finer) according to <span id="id4">[<a class="reference internal" href="../documentation/bibliography.html#id1355">vR19</a>]</span>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">FRICTION</span> <span class="pre">COEFFICIENT</span> <span class="pre">FOR</span> <span class="pre">LATERAL</span> <span class="pre">SOLID</span> <span class="pre">BOUNDARIES</span></code>: <code class="docutils literal notranslate"><span class="pre">0.1</span></code> corresponds to 3 times a hypothetical <em>d90</em>, similar as for the bottom.</p></li>
 </ul>
 <p>The liquid boundary definitions for <code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">FLOWRATES</span></code> and <code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">ELEVATIONS</span></code> correspond to the definitions of the <strong>downstream</strong> boundary edge in line 2 and the <strong>upstream</strong> boundary edge in line 3 (see <a class="reference internal" href="#bnd-mod"><span class="std std-ref">boundary definitions section</span></a>). From the boundary file, TELEMAC will understand the <strong>downstream</strong> boundary as edge number <strong>1</strong> (first list element) and the <strong>upstream</strong> boundary as edge number <strong>2</strong> (second list element). Hence:</p>
@@ -1762,12 +1762,12 @@ The <strong>initial conditions</strong> describe the condition at the beginning 
 </div>
 <div class="section" id="turbulence">
 <h3>Turbulence<a class="headerlink" href="#turbulence" title="Permalink to this headline">¶</a></h3>
-<p>The fundamental principles of turbulence and its application to the <a class="reference internal" href="../documentation/glossary.html#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a> are explained in the <a class="reference internal" href="telemac2d-steady.html#tm2d-turbulence"><span class="std std-ref">steady Telemac2d tutorial</span></a>. In 3d, TELEMAC developers recommend using either the <span class="math notranslate nohighlight">\(k-\epsilon\)</span> model (<code class="docutils literal notranslate"><span class="pre">3</span></code>) or the <span id="id5">Spalart and Allmaras [<a class="reference internal" href="../documentation/bibliography.html#id1363">SA92</a>]</span> model (<code class="docutils literal notranslate"><span class="pre">5</span></code>) in lieu of the mixing length model (<code class="docutils literal notranslate"><span class="pre">2</span></code>):</p>
+<p>The fundamental principles of turbulence and its application to the <a class="reference internal" href="../documentation/glossary.html#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a> are explained in the <a class="reference internal" href="telemac2d-steady.html#tm2d-turbulence"><span class="std std-ref">steady Telemac2d tutorial</span></a>. In 3d, TELEMAC developers recommend using either the <span class="math notranslate nohighlight">\(k-\epsilon\)</span> model (<code class="docutils literal notranslate"><span class="pre">3</span></code>) or the <span id="id5">Spalart and Allmaras [<a class="reference internal" href="../documentation/bibliography.html#id1362">SA92</a>]</span> model (<code class="docutils literal notranslate"><span class="pre">5</span></code>) in lieu of the mixing length model (<code class="docutils literal notranslate"><span class="pre">2</span></code>):</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">HORIZONTAL</span> <span class="pre">TURBULENCE</span> <span class="pre">MODEL</span></code>: <code class="docutils literal notranslate"><span class="pre">3</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">VERTICAL</span> <span class="pre">TURBULENCE</span> <span class="pre">MODEL</span></code>: <code class="docutils literal notranslate"><span class="pre">3</span></code></p></li>
 </ul>
-<p>If the <code class="docutils literal notranslate"><span class="pre">VERTICAL</span> <span class="pre">TURBULENCE</span> <span class="pre">MODEL</span></code> is set to <code class="docutils literal notranslate"><span class="pre">2</span></code> (<code class="docutils literal notranslate"><span class="pre">'MIXING</span> <span class="pre">LENGTH'</span></code>), a <code class="docutils literal notranslate"><span class="pre">MIXING</span> <span class="pre">LENGTH</span> <span class="pre">MODEL</span></code> can be assigned. The default is <code class="docutils literal notranslate"><span class="pre">1</span></code>, which is preferable for strong tidal influences and a value of <code class="docutils literal notranslate"><span class="pre">3</span></code> sets the length for computing vertical diffusivity to <span id="id6">Nezu and Nakagawa [<a class="reference internal" href="../documentation/bibliography.html#id1362">NN93</a>]</span>.</p>
+<p>If the <code class="docutils literal notranslate"><span class="pre">VERTICAL</span> <span class="pre">TURBULENCE</span> <span class="pre">MODEL</span></code> is set to <code class="docutils literal notranslate"><span class="pre">2</span></code> (<code class="docutils literal notranslate"><span class="pre">'MIXING</span> <span class="pre">LENGTH'</span></code>), a <code class="docutils literal notranslate"><span class="pre">MIXING</span> <span class="pre">LENGTH</span> <span class="pre">MODEL</span></code> can be assigned. The default is <code class="docutils literal notranslate"><span class="pre">1</span></code>, which is preferable for strong tidal influences and a value of <code class="docutils literal notranslate"><span class="pre">3</span></code> sets the length for computing vertical diffusivity to <span id="id6">Nezu and Nakagawa [<a class="reference internal" href="../documentation/bibliography.html#id1361">NN93</a>]</span>.</p>
 <p>Read more about turbulence in TELEMAC in section 5.2 and the mixing length in section 5.2.2 of the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p3r1/documentation/telemac3d/user/telemac3d_user_v8p3.pdf">Telemac3d manual</a>.</p>
 </div>
 <div class="section" id="hydrosolver-cas-file-setup-unstable">
@@ -1987,7 +1987,7 @@ The <strong>initial conditions</strong> describe the condition at the beginning 
         
           By Sebastian Schwindt, Ricardo Barros<br/>
         
-            &copy; Copyright 2022.<br/>
+            &copy; Copyright 2023.<br/>
       </p>
     </div>
   </footer>

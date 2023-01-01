@@ -332,6 +332,11 @@
    QGIS Tutorial
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../geopy/drone-processing.html">
+   Process Drone (UAV) Imagery
+  </a>
+ </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../geopy/geo-python.html">
    Geospatial Python
@@ -345,11 +350,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../geopy/geo-pckg.html">
      Geospatial Open Source Python Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/drone-processing.html">
-     Process Drone Data
     </a>
    </li>
    <li class="toctree-l2">
@@ -1294,7 +1294,7 @@
 <p>To enhance the visualization of the new (flow velocity) raster, double-click on the new raster in the <strong>Layers</strong> panel and switch to the <strong>Symbology</strong> tab. Select <strong>Singleband pseudocolor</strong> for <strong>Render type</strong> (in the top region of the window) and a <strong>Color ramp</strong>. To suppress zero-value pixels, double-click on the <strong>Color</strong> of the <strong>0</strong>-<strong>Value</strong> field, and in the <strong>Select color</strong> window reduce the <strong>Opacity</strong> to <strong>0<span class="math notranslate nohighlight">\(%\)</span></strong>. <a class="reference internal" href="#bm-exported-u-raster"><span class="std std-numref">Figure 60</span></a> shows an example visualization of the exported flow velocity raster.</p>
 <div class="figure align-default" id="bm-exported-u-raster">
 <img alt="basement output rasterize mesh geotiff visualization singleband pseudocolor" src="../_images/bm-exported-u.png" />
-<p class="caption"><span class="caption-number">Fig. 60 </span><span class="caption-text">A Singleband pseudocolor (Layer Properties &gt; Symbology) represents the exported GeoTIFF flow velocity raster with a <em>Reds</em> color ramp and zero-value pixels set to zero-opacity, superpositioned on google satellite imagery <span id="id2">[<a class="reference internal" href="../documentation/bibliography.html#id1370">Goond</a>]</span>.</span><a class="headerlink" href="#bm-exported-u-raster" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 60 </span><span class="caption-text">A Singleband pseudocolor (Layer Properties &gt; Symbology) represents the exported GeoTIFF flow velocity raster with a <em>Reds</em> color ramp and zero-value pixels set to zero-opacity, superpositioned on google satellite imagery <span id="id2">[<a class="reference internal" href="../documentation/bibliography.html#id1369">Goond</a>]</span>.</span><a class="headerlink" href="#bm-exported-u-raster" title="Permalink to this image">¶</a></p>
 </div>
 <div class="admonition-analyze-geodata-results-with-python admonition">
 <p class="admonition-title">Analyze geodata results with Python</p>
@@ -1403,8 +1403,8 @@
 </ul>
 <p>In detail, this looks as follows:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="5242130c-f7ea-4c5b-98f6-daba4304e528" name="8d8d83d2-2d9c-4692-a06f-470afd7fcd39" type="radio">
-</input><label class="tabbed-label" for="5242130c-f7ea-4c5b-98f6-daba4304e528">
+<input checked="checked" id="18a0718e-ea17-4c0b-abe3-9b683bebc629" name="ffe05012-7a59-4c8a-9804-dd3cfe48b0a1" type="radio">
+</input><label class="tabbed-label" for="18a0718e-ea17-4c0b-abe3-9b683bebc629">
 Windows / conda</label><div class="tabbed-content docutils">
 <p>Launch <em>Windows</em> or <em>Anaconda Prompt</em> and tap (requires that the conda environment <a class="reference internal" href="../python-basics/pyinstall.html#conda-quick"><span class="std std-ref">flussenv</span></a> is installed):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">flussenv</span>
@@ -1413,8 +1413,8 @@ Windows / conda</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="095ad316-a439-4b9e-a0ca-a62a26fefafb" name="8d8d83d2-2d9c-4692-a06f-470afd7fcd39" type="radio">
-</input><label class="tabbed-label" for="095ad316-a439-4b9e-a0ca-a62a26fefafb">
+<input id="fc09175a-f85a-42ad-b8f7-9b61cf550620" name="ffe05012-7a59-4c8a-9804-dd3cfe48b0a1" type="radio">
+</input><label class="tabbed-label" for="fc09175a-f85a-42ad-b8f7-9b61cf550620">
 Linux / pip</label><div class="tabbed-content docutils">
 <p>Launch <em>Linux Terminal</em> and tap (requires that the pip environment <a class="reference internal" href="../python-basics/pyinstall.html#pip-quick"><span class="std std-ref">vflussenv</span></a> is installed in the HOME directory):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~</span>
@@ -1506,7 +1506,7 @@ Linux / pip</label><div class="tabbed-content docutils">
         
           By Sebastian Schwindt, Ricardo Barros<br/>
         
-            &copy; Copyright 2022.<br/>
+            &copy; Copyright 2023.<br/>
       </p>
     </div>
   </footer>
