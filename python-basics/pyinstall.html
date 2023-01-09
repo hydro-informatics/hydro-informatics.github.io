@@ -930,8 +930,8 @@
 <span id="pip-quick"></span><h3>Quick Guide<a class="headerlink" href="#quick-guide" title="Permalink to this headline">¶</a></h3>
 <p>Consider installing, creating, and activating a new virtual environment for working with the contents of this eBook as explained in the following platform-dependent paragraphs.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="407dc29c-27f0-4a65-9dcb-7651074d3732" name="0f2c6d9b-d250-448a-8ead-2fb1c8797ca1" type="radio">
-</input><label class="tabbed-label" for="407dc29c-27f0-4a65-9dcb-7651074d3732">
+<input checked="checked" id="c0642097-2f85-4c7e-9499-bf6443f99b18" name="5f77ba18-1756-457d-962f-5e97a74765d2" type="radio">
+</input><label class="tabbed-label" for="c0642097-2f85-4c7e-9499-bf6443f99b18">
 Linux</label><div class="tabbed-content docutils">
 <p>To avoid affecting the system’s Python interpreter, set up a virtual environment with <em>venv</em>. The first step is to make sure that Python3 and <em>venv</em> are installed on the system:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">python3</span> <span class="n">python3</span><span class="o">-</span><span class="n">venv</span>
@@ -987,12 +987,8 @@ This behavior is more and more deprecated and most up-to-date systems will autom
 <div class="error dropdown admonition">
 <p class="admonition-title">Resolve persisting GDAL installation errors</p>
 <p>If the above line ultimately fails (i.e., does not end with <b>Successfully installed GDAL-X.X.X</b>, which override previous errors such as <i>invalid command ‘bdist_wheel’</i>), try:</br></br></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>pip3 install GDAL==$(gdal-config --version) --global-option=build_ext --global-option=&quot;-I/usr/include/gdal/&quot;
-</pre></div>
-</div>
+<p><code class="docutils literal notranslate"><span class="pre">pip3</span> <span class="pre">install</span> <span class="pre">GDAL==$(gdal-config</span> <span class="pre">--version)</span> <span class="pre">--global-option=build_ext</span> <span class="pre">--global-option=&quot;-I/usr/include/gdal/&quot;</span></code></p>
 <p>Another option is to delete all files in <code class="docutils literal notranslate"><span class="pre">/home/USERNAME/.cache/pip</span></code>. To see the hidden <code class="docutils literal notranslate"><span class="pre">.cache/</span></code> directory, press CTRL + H. After deleting the files, start over with the installation.</br></p>
-</div>
-</div>
 </div>
 <p>Now, install <em>flusstools</em> with:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">flusstools</span>
@@ -1006,74 +1002,62 @@ Python 3.X.X (default, MMM DD YYYY, hh:mm:ss)
 </pre></div>
 </div>
 <p>Recall that newer <em>Linux</em> versions may not differentiate between <em>Python2</em> and <em>Python3</em> (i.e., use <code class="docutils literal notranslate"><span class="pre">python</span></code> rather than <code class="docutils literal notranslate"><span class="pre">python3</span></code>).</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-````{tabbed} Windows
-
-```{warning}
-Because GDAL can currently not be directly installed with `pip` on *Windows*, trying to set up the computational environment with `pip` on *Windows* will very likely fail. **Windows users preferably use {ref}`conda-env`**, but can alternatively continue with a virtual *pip* environment for learning *Python* basics. In this case, geospatial programming contents require an installation of {ref}`qgis-install`, which comes with a built-in *Python* terminal for algorithmic geospatial analyses.
-```
-
-Make sure that {{ getpy }} (&gt;= version 3.4) installed. In addition, install *virtualenv* (in the following, alternatively use `py` instead of `python`, if `python` returns errors):
-
-```
-python -m pip install --upgrade pip
-python -m pip install --user virtualenv numpy
-```
-
-Then go to the directory wherever you want to install a new virtual environment called *vflussenv* and create the new virtual environment:
-
-
-```
-cd DIR\TO\ENV
-python -m venv vflussenv
-```
-
-Then activate the new environment:
-
-```
-.\vflussenv\Scripts\activate
-```
-
-Double-check that the environment is activated (should return something like `.../DIR/TO/ENV/bin/python.exe`) and upgrade `pip` in the environment:
-
-```
-where python
-python -m pip install --upgrade pip
-```
-
-Because of issues in the latest version of GDAL, pip-*Windows* users must use *conda* to get *gdal*:
-
-```
-python -m pip install conda
-conda install -c conda-forge gdal
-```
-
-```{admonition} GDAL Error: Setup script exited with error: Microsoft Visual C++ 14.0
-:class: error, dropdown
- Currently, there is an issue with installing GDAL when *Microsoft Visual C++* is missing or outdated. Thus, to enable the installation of GDAL on *Windows*, first download and install **Microsoft Visual C++** from [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/).
-```
-
-Finally, install *flusstools* and its dependencies with:
-
-```
-python -m pip install pandas plotting matplotlib plotly
-```
-
-```{admonition} For geospatial analyses ...
-:class: note
-
-Try the following not cross-platform verified solution: Install {ref}`qgis-install` and use its *Python* terminal for installing *flusstools*:
-
-* Start QGIS as **Administrator** (the following steps will fail if you are not running QGIS as administrator)
-* Go to **Plugins** &gt; **Python Console**
-* In the *Python Console* tap:
-  * `import pip`
-  * `pip.main([&quot;install&quot;, &quot;flusstools&quot;])`
-
-Alternatively, find the *OSGeo4W* from the *Windows* start menu and type `py3_env` followed by `python -m pip install flusstools`. **Preferably use a {ref}`conda-env`.**
-```
-
+</div>
+<input id="d5944904-908f-4f67-997e-2faef107ffe2" name="5f77ba18-1756-457d-962f-5e97a74765d2" type="radio">
+</input><label class="tabbed-label" for="d5944904-908f-4f67-997e-2faef107ffe2">
+Windows</label><div class="tabbed-content docutils">
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Because GDAL can currently not be directly installed with <code class="docutils literal notranslate"><span class="pre">pip</span></code> on <em>Windows</em>, trying to set up the computational environment with <code class="docutils literal notranslate"><span class="pre">pip</span></code> on <em>Windows</em> will very likely fail. <strong>Windows users preferably use <a class="reference internal" href="#conda-env"><span class="std std-ref">conda env (Windows Preference)</span></a></strong>, but can alternatively continue with a virtual <em>pip</em> environment for learning <em>Python</em> basics. In this case, geospatial programming contents require an installation of <a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a>, which comes with a built-in <em>Python</em> terminal for algorithmic geospatial analyses.</p>
+</div>
+<p>Make sure that <a class="reference external" href="https://www.python.org/downloads/">Python</a> (&gt;= version 3.4) installed. In addition, install <em>virtualenv</em> (in the following, alternatively use <code class="docutils literal notranslate"><span class="pre">py</span></code> instead of <code class="docutils literal notranslate"><span class="pre">python</span></code>, if <code class="docutils literal notranslate"><span class="pre">python</span></code> returns errors):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="n">virtualenv</span> <span class="n">numpy</span>
 </pre></div>
+</div>
+<p>Then go to the directory wherever you want to install a new virtual environment called <em>vflussenv</em> and create the new virtual environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">DIR</span>\<span class="n">TO</span>\<span class="n">ENV</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">vflussenv</span>
+</pre></div>
+</div>
+<p>Then activate the new environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span>\<span class="n">vflussenv</span>\<span class="n">Scripts</span>\<span class="n">activate</span>
+</pre></div>
+</div>
+<p>Double-check that the environment is activated (should return something like <code class="docutils literal notranslate"><span class="pre">.../DIR/TO/ENV/bin/python.exe</span></code>) and upgrade <code class="docutils literal notranslate"><span class="pre">pip</span></code> in the environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">where</span> <span class="n">python</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
+</pre></div>
+</div>
+<p>Because of issues in the latest version of GDAL, pip-<em>Windows</em> users must use <em>conda</em> to get <em>gdal</em>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">conda</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">gdal</span>
+</pre></div>
+</div>
+<div class="error dropdown admonition">
+<p class="admonition-title">GDAL Error: Setup script exited with error: Microsoft Visual C++ 14.0</p>
+<p>Currently, there is an issue with installing GDAL when <em>Microsoft Visual C++</em> is missing or outdated. Thus, to enable the installation of GDAL on <em>Windows</em>, first download and install <strong>Microsoft Visual C++</strong> from <a class="reference external" href="https://visualstudio.microsoft.com/visual-cpp-build-tools/">Microsoft C++ Build Tools</a>.</p>
+</div>
+<p>Finally, install <em>flusstools</em> and its dependencies with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">pandas</span> <span class="n">plotting</span> <span class="n">matplotlib</span> <span class="n">plotly</span>
+</pre></div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">For geospatial analyses …</p>
+<p>Try the following not cross-platform verified solution: Install <a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a> and use its <em>Python</em> terminal for installing <em>flusstools</em>:</p>
+<ul class="simple">
+<li><p>Start QGIS as <strong>Administrator</strong> (the following steps will fail if you are not running QGIS as administrator)</p></li>
+<li><p>Go to <strong>Plugins</strong> &gt; <strong>Python Console</strong></p></li>
+<li><p>In the <em>Python Console</em> tap:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">pip</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pip.main([&quot;install&quot;,</span> <span class="pre">&quot;flusstools&quot;])</span></code></p></li>
+</ul>
+</li>
+</ul>
+<p>Alternatively, find the <em>OSGeo4W</em> from the <em>Windows</em> start menu and type <code class="docutils literal notranslate"><span class="pre">py3_env</span></code> followed by <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">flusstools</span></code>. <strong>Preferably use a <a class="reference internal" href="#conda-env"><span class="std std-ref">conda env (Windows Preference)</span></a>.</strong></p>
+</div>
+</div>
 </div>
 <p>The import of <em>flusstools</em> should not return any import error. If there is an import error, find out the troublesome package’s name and re-install it. In particular, the installation of <em>GDAL</em> may be challenging when working with <code class="docutils literal notranslate"><span class="pre">pip</span></code>, in particular on <em>Windows</em>. To learn more about the installation of <em>GDAL</em> visit the <a class="reference external" href="https://gdal.org/download.html#binaries">Download &gt; Binaries section on the developer’s website</a>.</p>
 </div>
@@ -1091,15 +1075,15 @@ Alternatively, find the *OSGeo4W* from the *Windows* start menu and type `py3_en
 <span id="pip-install-pckg"></span><h3>Manage pip (Install, Uninstall, or Upgrade) Modules or Packages<a class="headerlink" href="#manage-pip-install-uninstall-or-upgrade-modules-or-packages" title="Permalink to this headline">¶</a></h3>
 <p>More than 300,000 projects live on <a class="reference external" href="https://pypi.org/">pypi.org</a> and there are packages available for many purposes. To find suitable packages visit <a class="reference external" href="https://pypi.org/search/">https://pypi.org/search/</a>. To install (i.e., add) one of these <code class="docutils literal notranslate"><span class="pre">pip</span></code>/<code class="docutils literal notranslate"><span class="pre">pip3</span></code> packages use:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="af7f5515-111a-4e15-b6f1-a026c084c025" name="8e30384e-1e08-401e-b4bc-c62030c4200b" type="radio">
-</input><label class="tabbed-label" for="af7f5515-111a-4e15-b6f1-a026c084c025">
+<input checked="checked" id="3516c415-0728-4229-8987-c26e9085ad8a" name="e932f097-a05b-41a8-8b33-1fc629fc173f" type="radio">
+</input><label class="tabbed-label" for="3516c415-0728-4229-8987-c26e9085ad8a">
 Linux Terminal</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
 </div>
 </div>
-<input id="f2f09bef-70b1-4909-9d35-2d4fb8dab43c" name="8e30384e-1e08-401e-b4bc-c62030c4200b" type="radio">
-</input><label class="tabbed-label" for="f2f09bef-70b1-4909-9d35-2d4fb8dab43c">
+<input id="10b12041-dde0-4610-8cda-e1db3db8650b" name="e932f097-a05b-41a8-8b33-1fc629fc173f" type="radio">
+</input><label class="tabbed-label" for="10b12041-dde0-4610-8cda-e1db3db8650b">
 Windows Command Prompt</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
@@ -1124,15 +1108,15 @@ Windows Command Prompt</label><div class="tabbed-content docutils">
 <p>To install all-in-one, tap: <code class="docutils literal notranslate"><span class="pre">pip3</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">fitter</span> <span class="pre">missingno</span> <span class="pre">seaborn</span> <span class="pre">scikit-learn</span> <span class="pre">statsmodels</span> <span class="pre">openpyxl</span></code></p>
 <p>To remove (i.e., uninstall) a <code class="docutils literal notranslate"><span class="pre">pip</span></code>/<code class="docutils literal notranslate"><span class="pre">pip3</span></code>-installed package use:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="77761a55-ac54-474e-9d7e-286c5bea37e7" name="ead47478-32e5-4c1d-8630-d956f88e731c" type="radio">
-</input><label class="tabbed-label" for="77761a55-ac54-474e-9d7e-286c5bea37e7">
+<input checked="checked" id="b20061c0-9bc5-4cf8-bd4c-f6caf7272a86" name="747f812c-6168-4366-91c1-97b4a9a69b30" type="radio">
+</input><label class="tabbed-label" for="b20061c0-9bc5-4cf8-bd4c-f6caf7272a86">
 Linux Terminal</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">uninstall</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
 </div>
 </div>
-<input id="7eb96fd7-ea95-4f8c-b468-0caded711f9c" name="ead47478-32e5-4c1d-8630-d956f88e731c" type="radio">
-</input><label class="tabbed-label" for="7eb96fd7-ea95-4f8c-b468-0caded711f9c">
+<input id="b0aae5d2-dc6c-4169-af86-6164518d2ae4" name="747f812c-6168-4366-91c1-97b4a9a69b30" type="radio">
+</input><label class="tabbed-label" for="b0aae5d2-dc6c-4169-af86-6164518d2ae4">
 Windows Command Prompt</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">uninstall</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
@@ -1141,15 +1125,15 @@ Windows Command Prompt</label><div class="tabbed-content docutils">
 </div>
 <p>To upgrade (update) a package that lives in a local user environment use:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="09f24074-1b0b-419a-9715-634d26cd442a" name="1f2e13e1-58f7-4f7f-b0bc-82fa44cbd9b1" type="radio">
-</input><label class="tabbed-label" for="09f24074-1b0b-419a-9715-634d26cd442a">
+<input checked="checked" id="aefd5f94-0a18-4b80-9bc0-ede18927192b" name="f47e4aba-1f2a-4886-ba6c-c499ba574014" type="radio">
+</input><label class="tabbed-label" for="aefd5f94-0a18-4b80-9bc0-ede18927192b">
 Linux Terminal</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
 </div>
 </div>
-<input id="d0d72531-dd99-486c-bab7-bada15a6ee9f" name="1f2e13e1-58f7-4f7f-b0bc-82fa44cbd9b1" type="radio">
-</input><label class="tabbed-label" for="d0d72531-dd99-486c-bab7-bada15a6ee9f">
+<input id="87699c1b-1b1d-4696-98dd-7119cc6b5dff" name="f47e4aba-1f2a-4886-ba6c-c499ba574014" type="radio">
+</input><label class="tabbed-label" for="87699c1b-1b1d-4696-98dd-7119cc6b5dff">
 Windows Command Prompt</label><div class="tabbed-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="o">--</span><span class="n">user</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
@@ -1238,8 +1222,8 @@ Windows Command Prompt</label><div class="tabbed-content docutils">
 <span id="ipython-config"></span><h3>JupyterLab<a class="headerlink" href="#jupyterlab" title="Permalink to this headline">¶</a></h3>
 <p>The following descriptions require that <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a> is installed for locally editing <em>Jupyter</em> notebooks (<em>.ipynb</em> files), <em>Python</em> scripts (<em>.py</em> files), and folders.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="14afaddf-eca1-4c59-92f1-4499c6725a2d" name="a315ef3c-ddff-44a4-a4d9-b5f239b1908e" type="radio">
-</input><label class="tabbed-label" for="14afaddf-eca1-4c59-92f1-4499c6725a2d">
+<input checked="checked" id="cb7f5a27-ab92-4673-a893-c15b3ac37e32" name="40c16736-0127-40d5-a880-b76f3b7d8b7a" type="radio">
+</input><label class="tabbed-label" for="cb7f5a27-ab92-4673-a893-c15b3ac37e32">
 Linux</label><div class="tabbed-content docutils">
 <p>Start <em>JupyterLab</em> by typing <code class="docutils literal notranslate"><span class="pre">jupyter-lab</span></code> in <em>Terminal</em>.</p>
 <p>If you are working with <em>vflussenv</em>, you may need to add the environment and its packages to a new ipykernel:</p>
@@ -1250,8 +1234,8 @@ Linux</label><div class="tabbed-content docutils">
 <li><p>Now the new kernel called <em>fluss_kernel</em> (referring to <em>vflussenv</em>) is available in Jupyter Lab (<strong>Kernel</strong> &gt; <strong>Change Kernel…</strong>)</p></li>
 </ul>
 </div>
-<input id="06f9d722-5f7c-47e4-89e6-6a77e3a203a1" name="a315ef3c-ddff-44a4-a4d9-b5f239b1908e" type="radio">
-</input><label class="tabbed-label" for="06f9d722-5f7c-47e4-89e6-6a77e3a203a1">
+<input id="a6929e26-1b92-4434-bc64-09e3e7f62414" name="40c16736-0127-40d5-a880-b76f3b7d8b7a" type="radio">
+</input><label class="tabbed-label" for="a6929e26-1b92-4434-bc64-09e3e7f62414">
 Windows</label><div class="tabbed-content docutils">
 <p>Start <em>JupyterLab</em> by typing <code class="docutils literal notranslate"><span class="pre">jupyter-lab</span></code> in <em>Anaconda Prompt</em>.</p>
 <p>If you are working with <em>flussenv</em>, you may need to add the environment and its packages to a new ipykernel:</p>
@@ -1309,8 +1293,8 @@ Windows</label><div class="tabbed-content docutils">
 <span id="atom-setup"></span><h3>Atom and Python<a class="headerlink" href="#atom-and-python" title="Permalink to this headline">¶</a></h3>
 <p>Depending on your platform make sure that all requirements are installed to configure Atom’s <code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code> package:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="4b2d0b1b-73ad-4d33-8332-1df07573223f" name="b2d9b4f0-f86c-4414-803d-5a3a878d5268" type="radio">
-</input><label class="tabbed-label" for="4b2d0b1b-73ad-4d33-8332-1df07573223f">
+<input checked="checked" id="8c41a538-bdf1-48a5-b83c-c89d46ffc19f" name="d4858dcd-475c-42c1-aec2-6a49e66b5a26" type="radio">
+</input><label class="tabbed-label" for="8c41a538-bdf1-48a5-b83c-c89d46ffc19f">
 Linux</label><div class="tabbed-content docutils">
 <div class="admonition-requirements admonition">
 <p class="admonition-title">Requirements</p>
@@ -1341,8 +1325,8 @@ Linux</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="cc75a024-b106-4cbb-9f55-49d54f37d7c0" name="b2d9b4f0-f86c-4414-803d-5a3a878d5268" type="radio">
-</input><label class="tabbed-label" for="cc75a024-b106-4cbb-9f55-49d54f37d7c0">
+<input id="d7ad0d6d-890b-4080-8250-da47129e3a97" name="d4858dcd-475c-42c1-aec2-6a49e66b5a26" type="radio">
+</input><label class="tabbed-label" for="d7ad0d6d-890b-4080-8250-da47129e3a97">
 Windows</label><div class="tabbed-content docutils">
 <div class="admonition-requirements admonition">
 <p class="admonition-title">Requirements</p>

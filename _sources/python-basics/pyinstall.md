@@ -101,18 +101,17 @@ pip3 install GDAL==$(gdal-config --version)
 ```
 
 
-````{admonition} Resolve persisting GDAL installation errors
+```{admonition} Resolve persisting GDAL installation errors
 :class: error, dropdown
 If the above line ultimately fails (i.e., does not end with <b>Successfully installed GDAL-X.X.X</b>, which override previous errors such as <i>invalid command 'bdist_wheel'</i>), try:</br></br>
 
 
-```
-pip3 install GDAL==$(gdal-config --version) --global-option=build_ext --global-option="-I/usr/include/gdal/"
-```
+`pip3 install GDAL==$(gdal-config --version) --global-option=build_ext --global-option="-I/usr/include/gdal/"`
+
 
 Another option is to delete all files in `/home/USERNAME/.cache/pip`. To see the hidden `.cache/` directory, press CTRL + H. After deleting the files, start over with the installation.</br>
 
-````
+```
 
 Now, install *flusstools* with:
 
@@ -128,9 +127,9 @@ Python 3.X.X (default, MMM DD YYYY, hh:mm:ss)
 [GCC 9.X.X on linux]
 >>> import flusstools as ft
 ```
+
 Recall that newer *Linux* versions may not differentiate between *Python2* and *Python3* (i.e., use `python` rather than `python3`).
 ````
-
 ````{tabbed} Windows
 
 ```{warning}
