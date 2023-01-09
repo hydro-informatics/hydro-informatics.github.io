@@ -12,8 +12,8 @@ Large datasets, such as airborne imagery and hydro-meteorological datasets colle
 
 ```{admonition} What is hydro-informatics.com?
 :class: tip
-The term hydroinformatics (or hydro-informatics) refers to a sub-discipline of informatics and has its origins in computational hydraulics. Hydroinformatics involves numerical modeling as well as data science methods for the efficient and sustainable use of water resources (definition derived from the {term}`IAHR`'s and IWA [Joint Committee on Hydroinformatics](https://www.iahr.org/index/committe/15)).
-The syllable *hydro* goes back to the Greek word for *water* and the term *informatics* can be used as a synonym for studying computational systems. To this end, the *hydro-informatics.com* eBook features the use of *hydroinformatics* to leverage studies of river ecosystems with regards to hydraulic engineering, ecohydraulics, geomorphology, geo-informatics, and hydrology.
+The term hydroinformatics (or hydro-informatics) refers to a sub-discipline of hydraulics, environmental engineering, and informatics and has its origins in computational hydraulics. The syllable *hydro* goes back to the Greek word for *water* and the term *informatics* can be used as a synonym for studying computational systems. Hydroinformatics involves numerical modeling as well as data science methods for the efficient and sustainable use of water resources (definition derived from the {term}`IAHR`'s and IWA [Joint Committee on Hydroinformatics](https://www.iahr.org/index/committe/15)). In addition, {cite:t}`abbott_central_1991` emphasizes that "*hydroinformatics is the technology of applying computational hydraulics within society*". Bearing this context in mind, the main purpose of this eBook is to make computational hydraulics knowledge freely available to society.
+
 ```
 
 ## Contents

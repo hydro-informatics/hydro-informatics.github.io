@@ -1116,7 +1116,7 @@
 <p><a class="reference internal" href="#tm-shapefiles"><span class="std std-numref">Figure 69</span></a> provides an overview of the shapefiles to be drawn for generating a quality mesh with the BASEmesh plugin.</p>
 <div class="figure align-default" id="tm-shapefiles">
 <img alt="qgis telemac basemesh point line shapefiles" src="../_images/tm-prepro-illu.png" />
-<p class="caption"><span class="caption-number">Fig. 69 </span><span class="caption-text">The breaklines, liquid boundaries, and region points shapefile to draw for creating a 2dm quality mesh with the BASEmesh plugin (background map: <span id="id1">Google [<a class="reference internal" href="../documentation/bibliography.html#id1369">Goond</a>]</span> satellite imagery).</span><a class="headerlink" href="#tm-shapefiles" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 69 </span><span class="caption-text">The breaklines, liquid boundaries, and region points shapefile to draw for creating a 2dm quality mesh with the BASEmesh plugin (background map: <span id="id1">Google [<a class="reference internal" href="../documentation/bibliography.html#id1370">Goond</a>]</span> satellite imagery).</span><a class="headerlink" href="#tm-shapefiles" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="breaklines-and-model-outline">
 <span id="tm-bm-breaklines"></span><h3>Breaklines and Model Outline<a class="headerlink" href="#breaklines-and-model-outline" title="Permalink to this headline">¶</a></h3>
@@ -1259,7 +1259,7 @@
 </div>
 <div class="section" id="quality-meshing-2dm">
 <span id="tm-qualm"></span><h2>Quality Meshing (*.2dm)<a class="headerlink" href="#quality-meshing-2dm" title="Permalink to this headline">¶</a></h2>
-<p><em>BASEmesh</em>’s quality mesh tool creates a computationally efficient triangular mesh based on <span id="id2">Shewchuk [<a class="reference internal" href="../documentation/bibliography.html#id1340">She96</a>]</span> and within the above-defined model boundaries. The tool associates mesh properties with the regions shapefile, but it does not include elevation data. Thus, after generating a quality mesh in <a class="reference internal" href="../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> format, elevation information needs to be added with the BlueKenue<sup>TM</sup> software. To generate the quality mesh, open BASEmesh’s <strong>QUALITY MESHING</strong> tool (QGIS’ <strong>Plugins</strong> &gt; <strong>BASEmesh 2</strong> &gt; <strong>QUALITY MESHING</strong>). Make the following settings in the popup window (see also <a class="reference internal" href="#fig-tm-qualm"><span class="std std-numref">Fig. 71</span></a>):</p>
+<p><em>BASEmesh</em>’s quality mesh tool creates a computationally efficient triangular mesh based on <span id="id2">Shewchuk [<a class="reference internal" href="../documentation/bibliography.html#id1341">She96</a>]</span> and within the above-defined model boundaries. The tool associates mesh properties with the regions shapefile, but it does not include elevation data. Thus, after generating a quality mesh in <a class="reference internal" href="../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> format, elevation information needs to be added with the BlueKenue<sup>TM</sup> software. To generate the quality mesh, open BASEmesh’s <strong>QUALITY MESHING</strong> tool (QGIS’ <strong>Plugins</strong> &gt; <strong>BASEmesh 2</strong> &gt; <strong>QUALITY MESHING</strong>). Make the following settings in the popup window (see also <a class="reference internal" href="#fig-tm-qualm"><span class="std std-numref">Fig. 71</span></a>):</p>
 <ul class="simple">
 <li><p>Triangulation constraints frame:</p>
 <ul>
@@ -1372,7 +1372,7 @@
 <p class="admonition-title">Skip this section if you created a <em>.2dm</em> quality mesh with BASEMESH</p>
 <p>This is an optional section for users who do not want to use QGIS and the BASEmesh plugin for meshing. Generating a mesh with BlueKenue<sup>TM</sup> can be useful, for instance, to produce a computational grid that has triangular cells oriented parallel to the riverbanks (i.e., a channel sub-mesh). Otherwise, <strong>if the <code class="docutils literal notranslate"><span class="pre">*.2dm</span></code> mesh file was created</strong> with QGIS, <strong>jump to the section on creating a <a class="reference internal" href="#bk-create-slf"><span class="std std-ref">Selafin Object</span></a></strong>.</p>
 </div>
-<p>This section features the basic mesh generation with BlueKenue<sup>TM</sup>. The Baxter tutorial <span id="id3">[<a class="reference internal" href="../documentation/bibliography.html#id1344">GML13</a>]</span> provides more details with detailed screenshots.</p>
+<p>This section features the basic mesh generation with BlueKenue<sup>TM</sup>. The Baxter tutorial <span id="id3">[<a class="reference internal" href="../documentation/bibliography.html#id1345">GML13</a>]</span> provides more details with detailed screenshots.</p>
 <div class="section" id="draw-model-boundary-closed-line">
 <h3>Draw Model Boundary (Closed Line)<a class="headerlink" href="#draw-model-boundary-closed-line" title="Permalink to this headline">¶</a></h3>
 <p>Delineate the model boundary (outline) with a closed line object (see also <a class="reference internal" href="#bk-model-outline"><span class="std std-numref">Fig. 73</span></a>):</p>
@@ -1577,8 +1577,8 @@
 </div>
 <p>The upstream (inflow) liquid boundary will constitute an <strong>Open boundary with prescribed Q</strong> (discharge) and the downstream outflow (liquid) boundary will constitute an <strong>Open boundary with prescribed Q and H</strong> (i.e., prescribed <a class="reference internal" href="../documentation/glossary.html#term-Rating-curve"><span class="xref std std-term">Rating curve</span></a> / <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a>). These types of boundary conditions are commonly used in practice, with the downstream boundary typically chosen to be at a gauging station where a <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a> (<a class="reference internal" href="../documentation/glossary.html#term-Rating-curve"><span class="xref std std-term">Rating curve</span></a>) has been calibrated with historic data. To assign the two liquid boundary lines, zoom into the downstream and upstream regions indicated in  <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 80</span></a> and create both boundaries as follows (toggle tabs):</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="56754f8e-1233-46b3-b573-c6058cf0759b" name="06940acd-4495-42ee-9232-5995d57c214c" type="radio">
-</input><label class="tabbed-label" for="56754f8e-1233-46b3-b573-c6058cf0759b">
+<input checked="checked" id="5dfedf97-a1d6-4a44-a007-c639c9f0fdcc" name="2a6c1c05-6dc5-48ff-937b-5369f763061f" type="radio">
+</input><label class="tabbed-label" for="5dfedf97-a1d6-4a44-a007-c639c9f0fdcc">
 Upstream boundary</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p>Zoom into the <strong>upstream</strong> region indicated in  <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 80</span></a>.</p></li>
@@ -1600,8 +1600,8 @@ Upstream boundary</label><div class="tabbed-content docutils">
 <p class="caption"><span class="caption-number">Fig. 81 </span><span class="caption-text">The upstream boundary definition. Double-click on a node at one bank, then hold the <strong>Shift</strong> key and double-click on a node at the other bank to highlight the inflow (purple) line. Note that BOTTOM_BC might appear with the name <em>boundaries</em> if the object was saved as <em>boundaries.bc2</em>.</span><a class="headerlink" href="#bk-boundary-us" title="Permalink to this image">¶</a></p>
 </div>
 </div>
-<input id="a7c4917d-673a-473b-a366-4496bb59d97f" name="06940acd-4495-42ee-9232-5995d57c214c" type="radio">
-</input><label class="tabbed-label" for="a7c4917d-673a-473b-a366-4496bb59d97f">
+<input id="f4176390-1e17-4ed0-96ed-4d8712a5e59a" name="2a6c1c05-6dc5-48ff-937b-5369f763061f" type="radio">
+</input><label class="tabbed-label" for="f4176390-1e17-4ed0-96ed-4d8712a5e59a">
 Downstream boundary</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p>Zoom into the <strong>downstream</strong> region indicated in <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 80</span></a>.</p></li>
