@@ -823,16 +823,21 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#anaconda-navigator-does-not-start-up">
-   <em>
-    Anaconda Navigator
-   </em>
-   does not start up
+  <a class="reference internal nav-link" href="#conda-environment-creation-never-finishes">
+   Conda environment creation never finishes
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#conda-package-installation-fails">
    Conda package installation fails
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#anaconda-navigator-does-not-start-up">
+   <em>
+    Anaconda Navigator
+   </em>
+   does not start up
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -862,6 +867,31 @@
   <div class="tex2jax_ignore mathjax_ignore section" id="debugging-anaconda">
 <h1>Debugging Anaconda<a class="headerlink" href="#debugging-anaconda" title="Permalink to this headline">¶</a></h1>
 <p>Sometimes packages will not install as wanted (resulting in import errors, <em>Anaconda Navigator</em> is not behaving as expected or does not start up at all. This page summarizes remedies for such problems.</p>
+<div class="section" id="conda-environment-creation-never-finishes">
+<h2>Conda environment creation never finishes<a class="headerlink" href="#conda-environment-creation-never-finishes" title="Permalink to this headline">¶</a></h2>
+<p><strong>Phenomenon</strong>: creating a conda environment with and environment file (<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">environment.yml</span></code>) results in quasi-eternal loading without the environment being installed even after several hours.</p>
+<p><strong>Fix</strong>: Before creating the environment, set the installation priority to strict (answer adapted from <a class="reference external" href="https://stackoverflow.com/questions/63734508/stuck-at-solving-environment-on-anaconda">https://stackoverflow.com/questions/63734508/stuck-at-solving-environment-on-anaconda</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">config</span> <span class="o">--</span><span class="nb">set</span> <span class="n">channel_priority</span> <span class="n">strict</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="conda-package-installation-fails">
+<h2>Conda package installation fails<a class="headerlink" href="#conda-package-installation-fails" title="Permalink to this headline">¶</a></h2>
+<p><strong>Phenomenon</strong>: Installation of a Python library or package through Anaconda Prompt fails.</p>
+<p><strong>Fix</strong>: Several reason may cause that installing new packages fails in <em>Anaconda Prompt</em> or <em>Linux</em> / <em>macOS</em> <em>Terminal</em>:</p>
+<ul class="simple">
+<li><p>Make sure to close all <em>Python</em>-dependent applications (e.g., <em>Jupyter</em> or <em>PyCharm</em>) before installing.</p></li>
+<li><p>Conflict solving activates:</p>
+<ul>
+<li><p>Wait until conflicts are parsed (and solved)</p></li>
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">update</span> <span class="pre">conda</span></code></p></li>
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">update</span> <span class="pre">anaconda</span></code></p></li>
+<li><p>Restart <em>Terminal</em> or <em>Anaconda Prompt</em></p></li>
+<li><p>Try to re-install the package prompted.</p></li>
+</ul>
+</li>
+</ul>
+</div>
 <div class="section" id="anaconda-navigator-does-not-start-up">
 <h2><em>Anaconda Navigator</em> does not start up<a class="headerlink" href="#anaconda-navigator-does-not-start-up" title="Permalink to this headline">¶</a></h2>
 <p>The most common problems for <em>Anaconda</em> not starting up are listed in the <a class="reference external" href="https://docs.anaconda.com/anaconda/navigator/troubleshooting/">developer’s docs</a> and include:</p>
@@ -905,22 +935,6 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">uninstall</span> <span class="pre">PyQt5</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">PyQt5</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pyqtwebengine</span></code></p></li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="section" id="conda-package-installation-fails">
-<h2>Conda package installation fails<a class="headerlink" href="#conda-package-installation-fails" title="Permalink to this headline">¶</a></h2>
-<p>Several reason may cause that installing new packages fails in <em>Anaconda Prompt</em> or <em>Linux</em> / <em>macOS</em> <em>Terminal</em>.</p>
-<ul class="simple">
-<li><p>Make sure to close all <em>Python</em>-dependent applications (e.g., <em>Jupyter</em> or <em>PyCharm</em>) before installing.</p></li>
-<li><p>Conflict solving activates:</p>
-<ul>
-<li><p>Wait until conflicts are parsed (and solved)</p></li>
-<li><p>Enter <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">update</span> <span class="pre">conda</span></code></p></li>
-<li><p>Enter <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">update</span> <span class="pre">anaconda</span></code></p></li>
-<li><p>Restart <em>Terminal</em> or <em>Anaconda Prompt</em></p></li>
-<li><p>Try to re-install the package prompted.</p></li>
 </ul>
 </li>
 </ul>

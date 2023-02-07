@@ -1007,7 +1007,7 @@
 </div>
 <p>Working with TELEMAC requires some software for downloading source files, compiling, and running the program. The mandatory software prerequisites for installing TELEMAC on <a class="reference external" href="https://www.debian.org/">Debian Linux</a> are:</p>
 <ul class="simple">
-<li><p>Python 3.7 (and more recent) with <a class="reference internal" href="../jupyter/pynum.html#numpy"><span class="std std-ref">NumPy &gt;=1.8</span></a></p></li>
+<li><p>Python 3.7 (and more recent) with <a class="reference internal" href="../jupyter/pynum.html#numpy"><span class="std std-ref">NumPy &gt;=1.15</span></a></p></li>
 <li><p>GNU Fortran 95 compiler (<em>gfortran</em>)</p></li>
 </ul>
 <div class="attention admonition">
@@ -1491,6 +1491,7 @@ When <code class="docutils literal notranslate"><span class="pre">config.py</spa
 <p><em><strong>Estimated duration: 5-10 minutes (depends on connection speed).</strong></em></p>
 <p>QGIS is a powerful tool for viewing, creating, and editing geospatial data that can be useful in pre- and post-processing. Detailed installation guidelines are provided in the <a class="reference internal" href="geo.html#qgis-install"><span class="std std-ref">QGIS</span></a> installation instructions and the <a class="reference internal" href="../geopy/use-qgis.html#qgis-tutorial"><span class="std std-ref">QGIS tutorial</span></a>in this eBook. For working with TELEMAC, consider installing the following <strong>QGIS Plugins</strong> (<em>Plugins</em> &gt; <em>Manage and Install Plugins…</em>):</p>
 <ul class="simple">
+<li><p><a class="reference external" href="https://plugins.qgis.org/plugins/telemac_tools/">Telemac Tools</a> is an experimental mesh generator plugin for <code class="docutils literal notranslate"><span class="pre">*.slf</span></code> files developed by <em>Artelia</em>. Make sure to check the <strong>experimental plugins</strong> box in the <strong>Settings</strong> of QGIS’ plugins window.</p></li>
 <li><p><a class="reference internal" href="../numerics/pre-qgis-bm.html#get-basemesh"><span class="std std-ref">BASEmesh</span></a> enables to create a <a class="reference internal" href="../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> file that can be converted to a selafin geometry for TELEMAC (read more in the <a class="reference internal" href="../numerics/pre-slf-tm.html#tm-qgis-prepro"><span class="std std-ref">QGIS pre-processing tutorial for TELEMAC</span></a>).</p></li>
 <li><p><em>PostTelemac</em> visualizes <code class="docutils literal notranslate"><span class="pre">*.slf</span></code> (and others such as <code class="docutils literal notranslate"><span class="pre">*.res</span></code>) geometry files at different time steps.</p></li>
 <li><p><em>DEMto3D</em> enables to export <em>STL</em> geometry files for working with <em>SALOME</em> and creating 3D meshes.</p></li>

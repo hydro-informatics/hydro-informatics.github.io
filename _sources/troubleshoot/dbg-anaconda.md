@@ -2,6 +2,34 @@
 
 Sometimes packages will not install as wanted (resulting in import errors, *Anaconda Navigator* is not behaving as expected or does not start up at all. This page summarizes remedies for such problems.
 
+## Conda environment creation never finishes
+
+**Phenomenon**: creating a conda environment with and environment file (`conda env create -f environment.yml`) results in quasi-eternal loading without the environment being installed even after several hours.
+
+**Fix**: Before creating the environment, set the installation priority to strict (answer adapted from [https://stackoverflow.com/questions/63734508/stuck-at-solving-environment-on-anaconda](https://stackoverflow.com/questions/63734508/stuck-at-solving-environment-on-anaconda)):
+
+
+```
+conda config --set channel_priority strict
+```
+
+
+## Conda package installation fails
+
+**Phenomenon**: Installation of a Python library or package through Anaconda Prompt fails.
+
+**Fix**: Several reason may cause that installing new packages fails in *Anaconda Prompt* or *Linux* / *macOS* *Terminal*:
+
+* Make sure to close all *Python*-dependent applications (e.g., *Jupyter* or *PyCharm*) before installing.
+* Conflict solving activates:
+	- Wait until conflicts are parsed (and solved)
+	- Enter `conda update conda`
+	- Enter `conda update anaconda`
+	- Restart *Terminal* or *Anaconda Prompt*
+	- Try to re-install the package prompted.
+
+
+
 ## *Anaconda Navigator* does not start up
 
 The most common problems for *Anaconda* not starting up are listed in the [developer's docs](https://docs.anaconda.com/anaconda/navigator/troubleshooting/) and include:
@@ -32,17 +60,6 @@ Other, bug-fixes, not listed on the above-metioned developer's website are:
 	- `pip install PyQt5`
 	- `pip install pyqtwebengine`
 
-
-## Conda package installation fails
-Several reason may cause that installing new packages fails in *Anaconda Prompt* or *Linux* / *macOS* *Terminal*.
-
-* Make sure to close all *Python*-dependent applications (e.g., *Jupyter* or *PyCharm*) before installing.
-* Conflict solving activates:
-	- Wait until conflicts are parsed (and solved)
-	- Enter `conda update conda`
-	- Enter `conda update anaconda`
-	- Restart *Terminal* or *Anaconda Prompt*
-	- Try to re-install the package prompted.
 
 ## Large storage size of *Anaconda*
 

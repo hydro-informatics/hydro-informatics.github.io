@@ -49,7 +49,7 @@ The newest release of TELEMAC (v8p3) is provided on [gitlab](https://gitlab.pam-
 
 Working with TELEMAC requires some software for downloading source files, compiling, and running the program. The mandatory software prerequisites for installing TELEMAC on [Debian Linux](https://www.debian.org/) are:
 
-* Python 3.7 (and more recent) with {ref}`NumPy >=1.8 <numpy>`
+* Python 3.7 (and more recent) with {ref}`NumPy >=1.15 <numpy>`
 * GNU Fortran 95 compiler (*gfortran*)
 
 ````{admonition} Admin (sudo) rights required
@@ -639,6 +639,7 @@ More software for dealing with Telemac pre- and post-processing is available in 
 
 QGIS is a powerful tool for viewing, creating, and editing geospatial data that can be useful in pre- and post-processing. Detailed installation guidelines are provided in the {ref}`qgis-install` installation instructions and the {ref}`QGIS tutorial <qgis-tutorial>`in this eBook. For working with TELEMAC, consider installing the following **QGIS Plugins** (*Plugins* > *Manage and Install Plugins...*):
 
+* [Telemac Tools](https://plugins.qgis.org/plugins/telemac_tools/) is an experimental mesh generator plugin for `*.slf` files developed by *Artelia*. Make sure to check the **experimental plugins** box in the **Settings** of QGIS' plugins window.
 * {ref}`BASEmesh <get-basemesh>` enables to create a {term}`SMS 2dm` file that can be converted to a selafin geometry for TELEMAC (read more in the {ref}`QGIS pre-processing tutorial for TELEMAC <tm-qgis-prepro>`).
 * *PostTelemac* visualizes `*.slf` (and others such as `*.res`) geometry files at different time steps.
 * *DEMto3D* enables to export *STL* geometry files for working with *SALOME* and creating 3D meshes.
