@@ -888,6 +888,11 @@
    Create Layout and PDF / JPG (or other) Maps
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pyqgis-qgis-and-python">
+   PyQGIS: QGIS and Python
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -906,7 +911,7 @@
 <p>This tutorial is designed for <strong>beginners</strong> and has embedded videos featuring the text descriptions in every section. Before diving into this tutorial make sure to install <a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a>.</p>
 </div>
 <p>To get ready, watch the following video and/or make sure to install <a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a> (detailed instructions).</p>
-<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/_0_NOKi-RxY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Sebastian Schwindt <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/_0_NOKi-RxY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Sebastian Schwindt <a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
 <div class="attention dropdown admonition">
 <p class="admonition-title">If you read: <em>Videos not showing up (Firefox Can’t Open This Page)</em>…</p>
 <p>If videos are not displaying, this might be caused by strict privacy settings. To resolve the issue, either open the video links by clicking on the <strong>Open Site in New Window</strong> button or by changing browser privacy settings (e.g., in <a class="reference external" href="https://support.mozilla.org/en-US/questions/1108783">Mozilla Firefox</a>).</p>
@@ -940,7 +945,7 @@
 <li><p><strong>Save</strong> the project as <strong>qgis-project.qgz</strong> in a new <strong>qgis-exercise</strong> folder</p></li>
 </ul>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/7_3QqbFonLg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>All files created in this tutorial can be downloaded <a class="reference external" href="https://github.com/Ecohydraulics/qgis-tutorial">here</a>.</p>
@@ -1017,7 +1022,7 @@
 <p class="caption"><span class="caption-number">Fig. 19 </span><span class="caption-text">Add a base map to QGIS: (1) locate the Browser (2) right-click on XYZ-Tiles and select New Connection… (3) enter a Name and a URL (see below table) for the new connection, click OK (4) drag and drop the new tile (here: Google Satellite) into the Layers Panel.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/GJsiEdMzCeQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
 <p>The following URL can be used for retrieving online XYZ tiles (more URLs can be found on the internet).</p>
 <table class="colwidths-auto table">
 <thead>
@@ -1061,7 +1066,7 @@
 <span id="create-point-shp"></span><h3>Create a Point Shapefile<a class="headerlink" href="#create-a-point-shapefile" title="Permalink to this headline">¶</a></h3>
 <p>Start with loading satellite imagery and a street basemap (see above) in the layers pane. Zoom on central Europe and roughly locate Stuttgart in Southwest Germany. Find the heavily impaired Neckar River in the North of Stuttgart and move in the upstream direction (i.e., Eastern direction), pass the cities of Esslingen and Plochingen until you get to the confluence of the Neckar and the Fils rivers. From there, follow the Fils River in the upstream direction for a couple of hundred meters and locate the PEGELHAUS (i.e., a gauging station at the Fils River - <a class="reference external" href="https://www.hvz.baden-wuerttemberg.de/pegel.html?id=00025">click to visit</a>). To facilitate finding the gauging station in the future, we will now create a point shapefile as explained in the following video and the analogous instructions below the video.</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/k2LqPM6wicA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
 <ul class="simple">
 <li><p>In the QGIS top menu go to <strong>Layer</strong> &gt; <strong>Create Layer</strong> &gt; <strong>New Shapefile Layer</strong></p>
 <ul>
@@ -1104,13 +1109,13 @@
 <span id="create-line-shp"></span><h3>Create a Line Shapefile<a class="headerlink" href="#create-a-line-shapefile" title="Permalink to this headline">¶</a></h3>
 <p>Create a <strong>Line Shapefile</strong> called <strong>CenterLine.shp</strong> to draw a centerline of the Fils <span class="math notranslate nohighlight">\(\pm\)</span> 200 m around the PEGELHAUS gauge, similar to the above-created point shapefile. Add one <em>text</em> field and call it <code class="docutils literal notranslate"><span class="pre">RiverName</span></code>. Then draw a line along the Fils River starting 200 m upstream and ending 200 m downstream of the PEGELHAUS by following the river on the <strong>OpenStreetMap</strong> layer. See more in the following video.</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/yNuiIlPsguQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
 </div>
 <div class="section" id="create-a-polygon-shapefile">
 <span id="create-polygon-shp"></span><h3>Create a Polygon Shapefile<a class="headerlink" href="#create-a-polygon-shapefile" title="Permalink to this headline">¶</a></h3>
 <p>To delineate different zones of roughness (e.g., as needed for a two-dimensional numerical model), create a <strong>Polygon Shapefile</strong> called <strong>FlowAreas.shp</strong>. The file will contain polygons zoning the considered section of the Fils into the floodplain and main channel bed. Name the first field <code class="docutils literal notranslate"><span class="pre">AreaType</span></code> (type: <em>Text</em>) and the second field <code class="docutils literal notranslate"><span class="pre">ManningN</span></code> (type: <em>Decimal Number</em>). See more in the following video and the instructions below the video.</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/zTrowT0ULfo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
 <p>To draw the polygons:</p>
 <ul class="simple">
 <li><p>Enable snapping to avoid gaps between the floodplain and main channel polygons</p>
@@ -1142,7 +1147,7 @@
 <h2>Conversion: Rasterize (Polygon to Raster)<a class="headerlink" href="#conversion-rasterize-polygon-to-raster" title="Permalink to this headline">¶</a></h2>
 <p>Many numerical models required that roughness is provided in <a class="reference internal" href="geospatial-data.html#raster"><span class="std std-ref">Gridded Cell (Raster) Data</span></a> format. To this end, this section features the conversion of the above-created polygon shapefile (<em>FlowAreas.shp</em>) to a roughness <a class="reference internal" href="geospatial-data.html#raster"><span class="std std-ref">Gridded Cell (Raster) Data</span></a>. The following video and the instructions below the video describe how the conversion works.</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/IRLwYSUnjcE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
 <p>To convert a geospatial vector dataset, use the <em>Rasterize</em> tool:</p>
 <ul class="simple">
 <li><p>In the QGIS menu bar make sure to enable the <em>Processing Toolbox</em> panel (<strong>View</strong> &gt; <strong>Panels</strong> &gt; <strong>Processing Toolbox</strong>)</p></li>
@@ -1183,7 +1188,7 @@
 <h3>QGIS Raster Calculator (Map Algebra)<a class="headerlink" href="#qgis-raster-calculator-map-algebra" title="Permalink to this headline">¶</a></h3>
 <p>Some models preferably (default use) Manning’s <em>n</em>, others use the Strickler roughness coefficient <span class="math notranslate nohighlight">\(k_{st}\)</span>, which is the inverse of Manning’s <em>n</em> (i.e., <span class="math notranslate nohighlight">\(k_{st} = 1/n\)</span> - read more about roughness coefficients in the <a class="reference internal" href="../exercises/ex-ms.html#ex-1d-hydraulics"><span class="std std-ref">1d Hydraulics (Manning-Strickler Formula)</span></a> exercise). Thus, transforming a Strickler roughness raster into a Manning roughness raster requires performing an algebraic raster (pixel-by-pixel) operation. The next video and the instructions below the video feature the usage of the QGIS <strong>Raster Calculator</strong> to perform such algebraic operations.</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/DOkV03uij9k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
 <p>Start with opening <strong>Raster Calculator</strong> from QGIS menu bar (<strong>Raster</strong> &gt; <strong>Raster Calculator…</strong>). Then, convert the above-created <em>roughness.tif</em> raster of Manning’s <em>n</em> values to a Strickler roughness raster:</p>
 <ul class="simple">
 <li><p>Define an <strong>Output layer</strong> (e.g., <em>qgis-exercise/roughness-stickler.tif</em>) and keep the <strong>Output format</strong> of <strong><a class="reference internal" href="../documentation/glossary.html#term-GeoTIFF"><span class="xref std std-term">GeoTIFF</span></a></strong>.</p></li>
@@ -1239,7 +1244,7 @@
 <h2>Create Layout and PDF / JPG (or other) Maps<a class="headerlink" href="#create-layout-and-pdf-jpg-or-other-maps" title="Permalink to this headline">¶</a></h2>
 <p>Georeferenced images in <a class="reference internal" href="../documentation/glossary.html#term-GeoTIFF"><span class="xref std std-term">GeoTIFF</span></a> or other raster formats, possibly with super-positioned shapefiles on top, are handy and flexible for use with geospatial software, such as QGIS, but not appropriate for presentations or reports. For presentation purposes, geospatial imagery or maps should preferably be exported to common formats, such as the <strong>P</strong>ortable <strong>D</strong>ocument <strong>F</strong>ormat (PDF) or <strong>JPEG/JPG</strong>. To create commonly formatted maps with QGIS, first, a new (print) layout needs to be created, which can then be exported to a common map format (e.g., along with a legend, a scale bar, and a North arrow). The following video and the descriptions below the video guide through the map creation process with QGIS.</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/hmTByzVPVF0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
 <p>Start with creating a new print layout by clicking on the <strong>Project</strong> drop-down menu, then select <strong>New Print Layout</strong>. In the new print layout prepare the map and export the map as follows:</p>
 <ul class="simple">
 <li><p>Set a <strong>Layout title</strong> (e.g., <em>exercise-layout</em>).</p></li>
@@ -1274,6 +1279,77 @@
 </li>
 </ul>
 <p>QGIS has many other capacities, but this fundamental tutorial should have provided you with the necessary knowledge to leverage the power of QGIS for many applications.</p>
+</div>
+<div class="section" id="pyqgis-qgis-and-python">
+<span id="pygis"></span><h2>PyQGIS: QGIS and Python<a class="headerlink" href="#pyqgis-qgis-and-python" title="Permalink to this headline">¶</a></h2>
+<p>The QGIS graphical user interface (GUI) provides a Python command line (<strong>Plugins</strong> &gt; <strong>Python Console</strong>), which enables to automate almost any mouse click in the GUI. This Python command line is referred to as <strong>PyQGIS</strong> and the <a class="reference external" href="https://docs.qgis.org/latest/en/docs/pyqgis_developer_cookbook/intro.html">QGIS developer docs</a> provide instructions on how to import and run standalone Python scripts outside of the QGIS GUI. Here is the basic Python template to run a PyQGIS script:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># define qgis installation location</span>
+<span class="n">QgsApplication</span><span class="o">.</span><span class="n">setPrefixPath</span><span class="p">(</span><span class="s2">&quot;/path/to/qgis/installation&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+
+<span class="c1"># instantiate a QgsApplication, where the second argument (False) disables the GUI</span>
+<span class="n">qgs</span> <span class="o">=</span> <span class="n">QgsApplication</span><span class="p">([],</span> <span class="kc">False</span><span class="p">)</span>
+
+
+<span class="c1"># load providers</span>
+<span class="n">qgs</span><span class="o">.</span><span class="n">initQgis</span><span class="p">()</span>
+
+<span class="c1"># HERE GOES YOUR CUSTOM CODE</span>
+
+<span class="c1"># exit the QGIS application to remove the provider and layer registries from memory</span>
+<span class="n">qgs</span><span class="o">.</span><span class="n">exitQgis</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>However, when opening your system’s terminal or Anaconda Prompt to run a PyQGIS code, you may get stuck on the first line of code already: <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">qgis.core</span> <span class="pre">import</span> <span class="pre">*</span></code> yields <code class="docutils literal notranslate"><span class="pre">ImportError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">qgis.core</span></code>. According to the <a class="reference external" href="https://docs.qgis.org/latest/en/docs/pyqgis_developer_cookbook/intro.html">QGIS developer docs</a>, this error happens because your system’s Python does not know where the PyQGIS environment lives. To make your terminal recognize PyQGIS, take the following action according to your system:</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="3b00175c-211c-4cae-a933-6b22a22a1799" name="e496c133-4ff8-4fee-85ba-cf0575adb790" type="radio">
+</input><label class="tabbed-label" for="3b00175c-211c-4cae-a933-6b22a22a1799">
+Linux</label><div class="tabbed-content docutils">
+<p>Open Terminal and install <code class="docutils literal notranslate"><span class="pre">python-qgis</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">qgis</span>
+</pre></div>
+</div>
+<p>After the successful installation, try if you can now import <code class="docutils literal notranslate"><span class="pre">qgis.core</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>USER@computer:~$ python
+Python 3.8.10 (default, Nov 14 2022, 12:59:47) 
+[GCC 9.4.0] on linux
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; from qgis.core import *
+&gt;&gt;&gt; exit()
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">qgis.core</span> <span class="pre">import</span> <span class="pre">*</span></code> did not throw any error, you are all set and can stop reading. <strong>Otherwise</strong>, find and open your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> file (Debian/Ubuntu/Mint: <code class="docutils literal notranslate"><span class="pre">/home/USERNAME/.bashrc</span></code>). Note that files starting with a <code class="docutils literal notranslate"><span class="pre">.</span></code> name are hidden on Linux and become visible by toggling with simultaneously pressing the <code class="docutils literal notranslate"><span class="pre">CTRL</span></code>+<code class="docutils literal notranslate"><span class="pre">H</span></code> keys.</p>
+<p>At the bottom of <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> add the following</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">PYTHONPATH</span><span class="o">=/&lt;</span><span class="n">qgispath</span><span class="o">&gt;/</span><span class="n">share</span><span class="o">/</span><span class="n">qgis</span><span class="o">/</span><span class="n">python</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">&lt;qgispath&gt;</span></code> expression should be replaced by the location where the PyQGIS environment lives. To find out where that is, tap (in Terminal):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dpkg</span><span class="o">-</span><span class="n">query</span> <span class="o">-</span><span class="n">L</span> <span class="n">python</span><span class="o">-</span><span class="n">qgis</span>
+</pre></div>
+</div>
+<p>This points to where PyQGIS lives, which, on Ubuntu/Mint typically is: <code class="docutils literal notranslate"><span class="pre">/usr/lib/python3/dist-packages/</span></code></p>
+<p>Thus, in this case add to <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">PYTHONPATH</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">/</span><span class="n">dist</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>Afterward, log out and re-login to your system (i.e., reload <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>). The command <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">qgis.core</span> <span class="pre">import</span> <span class="pre">*</span></code> should now work in Python.</p>
+</div>
+<input id="118add47-fd45-4f2f-966d-7d8cd19d0312" name="e496c133-4ff8-4fee-85ba-cf0575adb790" type="radio">
+</input><label class="tabbed-label" for="118add47-fd45-4f2f-966d-7d8cd19d0312">
+Windows</label><div class="tabbed-content docutils">
+<p>Make sure your system knows the where PyGIS lives by adding the following line to the Environment Variables (Windows 10: <strong>My Computer</strong> &gt; <strong>Properties</strong> &gt; <strong>Advanced System Settings</strong> &gt; <strong>Environment Variables</strong>). Replace <code class="docutils literal notranslate"><span class="pre">&lt;qgispath&gt;</span></code> with the path where QGIS lives on your system.</p>
+<ul class="simple">
+<li><p>Variable name = PYTHONPATH</p></li>
+<li><p>Variable value = C:&lt;qgispath&gt;\python</p></li>
+</ul>
+<p>Or use the Windows prompt:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="n">PYTHONPATH</span><span class="o">=</span><span class="n">C</span><span class="p">:</span>\<span class="o">&lt;</span><span class="n">qgispath</span><span class="o">&gt;</span>\<span class="n">python</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 

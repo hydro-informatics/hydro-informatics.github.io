@@ -7,7 +7,7 @@ This tutorial is designed for **beginners** and has embedded videos featuring th
 
 To get ready, watch the following video and/or make sure to install {ref}`qgis-install` (detailed instructions).
 
-<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/_0_NOKi-RxY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Sebastian Schwindt <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/_0_NOKi-RxY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Sebastian Schwindt <a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
 
 ```{admonition} If you read: *Videos not showing up (Firefox Can’t Open This Page)*...
 :class: attention, dropdown
@@ -35,7 +35,7 @@ Once you installed QGIS, launch the program and walk through the following steps
 - **Save** the project as **qgis-project.qgz** in a new **qgis-exercise** folder
 
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/7_3QqbFonLg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
 
 
 ```{hint}
@@ -110,7 +110,7 @@ Add a base map to QGIS: (1) locate the Browser (2) right-click on XYZ-Tiles and 
 ```
 
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/GJsiEdMzCeQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
 
 
 The following URL can be used for retrieving online XYZ tiles (more URLs can be found on the internet).
@@ -140,7 +140,7 @@ This section guides through the creation of a point, a line, and a polygon {ref}
 Start with loading satellite imagery and a street basemap (see above) in the layers pane. Zoom on central Europe and roughly locate Stuttgart in Southwest Germany. Find the heavily impaired Neckar River in the North of Stuttgart and move in the upstream direction (i.e., Eastern direction), pass the cities of Esslingen and Plochingen until you get to the confluence of the Neckar and the Fils rivers. From there, follow the Fils River in the upstream direction for a couple of hundred meters and locate the PEGELHAUS (i.e., a gauging station at the Fils River - [click to visit](https://www.hvz.baden-wuerttemberg.de/pegel.html?id=00025)). To facilitate finding the gauging station in the future, we will now create a point shapefile as explained in the following video and the analogous instructions below the video.
 
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/k2LqPM6wicA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
 
 * In the QGIS top menu go to **Layer** > **Create Layer** > **New Shapefile Layer**
   * Define a filename (e.g., **gauges.shp** - may not be longer than 13 characters), for instance, in a folder called *qgis-exercise*.
@@ -169,7 +169,7 @@ Start with loading satellite imagery and a street basemap (see above) in the lay
 Create a **Line Shapefile** called **CenterLine.shp** to draw a centerline of the Fils $\pm$ 200 m around the PEGELHAUS gauge, similar to the above-created point shapefile. Add one *text* field and call it `RiverName`. Then draw a line along the Fils River starting 200 m upstream and ending 200 m downstream of the PEGELHAUS by following the river on the **OpenStreetMap** layer. See more in the following video.
 
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/yNuiIlPsguQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
 
 (create-polygon-shp)=
 ### Create a Polygon Shapefile
@@ -177,7 +177,7 @@ Create a **Line Shapefile** called **CenterLine.shp** to draw a centerline of th
 To delineate different zones of roughness (e.g., as needed for a two-dimensional numerical model), create a **Polygon Shapefile** called **FlowAreas.shp**. The file will contain polygons zoning the considered section of the Fils into the floodplain and main channel bed. Name the first field `AreaType` (type: *Text*) and the second field `ManningN` (type: *Decimal Number*). See more in the following video and the instructions below the video.
 
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/zTrowT0ULfo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
 
 To draw the polygons:
 
@@ -201,7 +201,7 @@ To draw the polygons:
 Many numerical models required that roughness is provided in {ref}`raster` format. To this end, this section features the conversion of the above-created polygon shapefile (*FlowAreas.shp*) to a roughness {ref}`raster`. The following video and the instructions below the video describe how the conversion works.
 
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/IRLwYSUnjcE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
 
 To convert a geospatial vector dataset, use the *Rasterize* tool:
 
@@ -240,7 +240,7 @@ The inverse operation of *Rasterize* is called **Raster to Vector**, which is do
 Some models preferably (default use) Manning's *n*, others use the Strickler roughness coefficient $k_{st}$, which is the inverse of Manning's *n* (i.e., $k_{st} = 1/n$ - read more about roughness coefficients in the {ref}`ex-1d-hydraulics` exercise). Thus, transforming a Strickler roughness raster into a Manning roughness raster requires performing an algebraic raster (pixel-by-pixel) operation. The next video and the instructions below the video feature the usage of the QGIS **Raster Calculator** to perform such algebraic operations.
 
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/DOkV03uij9k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
 
 Start with opening **Raster Calculator** from QGIS menu bar (**Raster** > **Raster Calculator...**). Then, convert the above-created *roughness.tif* raster of Manning's *n* values to a Strickler roughness raster:
 
@@ -299,7 +299,7 @@ Georeferenced images in {term}`GeoTIFF` or other raster formats, possibly with s
 
 
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/hmTByzVPVF0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
 
 Start with creating a new print layout by clicking on the **Project** drop-down menu, then select **New Print Layout**. In the new print layout prepare the map and export the map as follows:
 
@@ -323,3 +323,92 @@ Start with creating a new print layout by clicking on the **Project** drop-down 
   * Optional, for SVG-vector graphs: **Layout** > **Export as SVG**
 
 QGIS has many other capacities, but this fundamental tutorial should have provided you with the necessary knowledge to leverage the power of QGIS for many applications.
+
+(pygis)=
+## PyQGIS: QGIS and Python
+
+The QGIS graphical user interface (GUI) provides a Python command line (**Plugins** > **Python Console**), which enables to automate almost any mouse click in the GUI. This Python command line is referred to as **PyQGIS** and the [QGIS developer docs](https://docs.qgis.org/latest/en/docs/pyqgis_developer_cookbook/intro.html) provide instructions on how to import and run standalone Python scripts outside of the QGIS GUI. Here is the basic Python template to run a PyQGIS script:
+
+
+```python
+from qgis.core import *
+
+# define qgis installation location
+QgsApplication.setPrefixPath("/path/to/qgis/installation", True)
+
+
+# instantiate a QgsApplication, where the second argument (False) disables the GUI
+qgs = QgsApplication([], False)
+
+
+# load providers
+qgs.initQgis()
+
+# HERE GOES YOUR CUSTOM CODE
+
+# exit the QGIS application to remove the provider and layer registries from memory
+qgs.exitQgis()
+```
+
+However, when opening your system's terminal or Anaconda Prompt to run a PyQGIS code, you may get stuck on the first line of code already: `from qgis.core import *` yields `ImportError: No module named qgis.core`. According to the [QGIS developer docs](https://docs.qgis.org/latest/en/docs/pyqgis_developer_cookbook/intro.html), this error happens because your system's Python does not know where the PyQGIS environment lives. To make your terminal recognize PyQGIS, take the following action according to your system:
+
+````{tabbed} Linux
+
+Open Terminal and install `python-qgis`:
+
+```
+sudo apt install python-qgis
+```
+
+After the successful installation, try if you can now import `qgis.core`:
+
+```
+USER@computer:~$ python
+Python 3.8.10 (default, Nov 14 2022, 12:59:47) 
+[GCC 9.4.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from qgis.core import *
+>>> exit()
+```
+
+If `from qgis.core import *` did not throw any error, you are all set and can stop reading. **Otherwise**, find and open your `.bashrc` file (Debian/Ubuntu/Mint: `/home/USERNAME/.bashrc`). Note that files starting with a `.` name are hidden on Linux and become visible by toggling with simultaneously pressing the `CTRL`+`H` keys.
+
+At the bottom of `.bashrc` add the following
+
+```
+export PYTHONPATH=/<qgispath>/share/qgis/python
+```
+
+The `<qgispath>` expression should be replaced by the location where the PyQGIS environment lives. To find out where that is, tap (in Terminal):
+
+```
+dpkg-query -L python-qgis
+```
+
+This points to where PyQGIS lives, which, on Ubuntu/Mint typically is: `/usr/lib/python3/dist-packages/`
+
+Thus, in this case add to `.bashrc`:
+
+```
+export PYTHONPATH=/usr/lib/python3/dist-packages/
+```
+
+Afterward, log out and re-login to your system (i.e., reload `.bashrc`). The command `from qgis.core import *` should now work in Python.
+
+````
+````{tabbed} Windows
+
+Make sure your system knows the where PyGIS lives by adding the following line to the Environment Variables (Windows 10: **My Computer** > **Properties** > **Advanced System Settings** > **Environment Variables**). Replace `<qgispath>` with the path where QGIS lives on your system.
+
+* Variable name = PYTHONPATH
+* Variable value = C:\<qgispath>\python
+
+Or use the Windows prompt:
+
+```
+set PYTHONPATH=C:\<qgispath>\python
+```
+
+````
+
+

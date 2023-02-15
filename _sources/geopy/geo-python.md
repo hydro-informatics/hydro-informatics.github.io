@@ -20,3 +20,9 @@ Make sure you understand the basics of Python, especially {ref}`var`, {ref}`sec-
 The descriptions of open source packages for geospatial data handling build on explanations from [Michael Diener's Python Geospatial Analysis Cookbook](https://github.com/mdiener21/python-geospatial-analysis-cookbook) (open access under MIT license). Therefore, if you want to learn more details about any here information provided, take a look at this comprehensive e-book.
 
 Another excellent source of inspiration with many open-sourced examples is [*pcjericks* GitHub repository *py-gdalogr-cookbook*](https://pcjericks.github.io/py-gdalogr-cookbook/).
+
+```{admonition} How to use PyQGIS (QGIS Python environment)
+:class: tip, dropdown
+
+To enable working with QGIS commands in standalone Python scripts through `from qgis.core import *`, have a look at the {ref}`PyQGIS section <pygis>` at the bottom of the QGIS tutorial in this eBook.
+```
