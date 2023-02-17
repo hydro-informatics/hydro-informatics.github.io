@@ -289,14 +289,14 @@ To verify the successful installation, make sure that the file `~/telemac-mascar
 
 **HDF5** is a portable file format that incorporates metadata and communicates efficiently with *C/C++* and *Fortran* on small laptops as well as massively parallel systems. The *hdf5* file library is provided by the [HDFgroup.org](https://portal.hdfgroup.org/).
 
-We will install here version `1.8.21`. Do not try to use any other *hdf5* version because those will not work with the *med file* library (next step). The following code block downloads and unzips the *hdf-5-1.8.21* archive in the above-created (metis) `temp/` folder (run in Terminal as normal user - not as root):
+We will install here version `1.10.3`. Do not try to use any other *hdf5* version because those will not work with the *med file* library (next step). The following code block downloads and unzips the *hdf-5-1.10.3* archive in the above-created (metis) `temp/` folder (run in Terminal as normal user - not as root):
 
 ```
 cd ~/telemac-mascaret/optionals/temp
-wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.21/src/hdf5-1.8.21.tar.gz
-gunzip hdf5-1.8.21.tar.gz
-tar -xvf hdf5-1.8.21.tar
-cd hdf5-1.8.21
+wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.3/src/hdf5-1.10.3.tar.gz
+gunzip hdf5-1.10.3.tar.gz
+tar -xvf hdf5-1.10.3.tar
+cd hdf5-1.10.3
 ```
 
 Configure and compile *hdf5* (enter every command one-by-one):
@@ -310,27 +310,28 @@ make install
 The flag `--prefix=/home/USERNAME/telemac-mascaret/optionals/hdf5` determines the installation directory for the *hdf5* library, which we will need in the next step for installing the *med file* library. The absolute path `/home/USERNAME/` is required because `--prefix` does not accept a relative path.
 The installation of *hdf5* on Linux is also documented in the [Telemac wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_hdf5).
 
-***MED FILE LIBRARY:*** The *med file* library is provided by [salome-platform.org](https://salome-platform.org/) and we need to use the file ([med-3.2.0.tar.gz](http://files.salome-platform.org/Salome/other/med-3.2.0.tar.gz) to ensure compatibility with *hdf5*. So do not try to use any other *med file* library version because those will not work properly with the *hdf5* file library. Moreover, the *med file* library requires that *zlib* is installed. To install *zlib* open Terminal and type:
+***MED FILE LIBRARY:*** The *med file* library is provided by [salome-platform.org](https://salome-platform.org/) and we need to use the file ([med-4.0.0.tar.gz](http://files.salome-platform.org/Salome/other/med-4.0.0.tar.gz) to ensure compatibility with *hdf5*. So do not try to use any other *med file* library version because those will not work properly with the *hdf5* file library. Moreover, the *med file* library requires that *zlib* is installed. To install *zlib* open Terminal and type:
 
 ```
 sudo apt-cache search zlib | grep -i zlib
 sudo apt install zlib1g zlib1g-dev
 ```
 
-The following command block, switches to the above-created `temp` folder, downloads, and unzips the *med-3.2.0* archive (run in Terminal as ***normal user*** - ***not as root***):
+The following command block, switches to the above-created `temp` folder, downloads, and unzips the *med-4.0.0* archive (run in Terminal as ***normal user*** - ***not as root***):
+
 
 ```
 cd ~/telemac-mascaret/optionals/temp
-wget http://files.salome-platform.org/Salome/other/med-3.2.0.tar.gz
-gunzip med-3.2.0.tar.gz
-tar -xvf med-3.2.0.tar
-cd med-3.2.0
+wget http://files.salome-platform.org/Salome/other/med-4.0.0.tar.gz
+gunzip med-4.0.0.tar.gz
+tar -xvf med-4.0.0.tar
+cd med-4.0.0
 ```
 
 To compile the *med file* library type:
 
 ```
-./configure --prefix=/home/USERNAME/telemac-mascaret/optionals/med-3.2.0 --with-hdf5=/home/USERNAME/telemac-mascaret/optionals/hdf5 --disable-python
+./configure --prefix=/home/USERNAME/telemac-mascaret/optionals/med-4.4.0 --with-hdf5=/home/USERNAME/telemac-mascaret/optionals/hdf5 --disable-python
 make
 make install
 ```
