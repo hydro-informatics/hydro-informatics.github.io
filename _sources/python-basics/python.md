@@ -6,7 +6,7 @@
 ```{admonition} Watch this section and the Python tutorials in video formats
 :class: tip, dropdown
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/Hcdizd-699I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Watch this section as a video on the <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>Watch this section as a video on the <a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
 ```
 
 ## About Python

@@ -37,8 +37,11 @@ After the successful installation of *Anaconda*, IDEs for Python programming or 
 
 Learn more about installing Anaconda (with Python) and this eBook's support package called {{ ft_url }} in the {ref}`Python conda quick guide <conda-quick>` section and in the video below.
 
+```{admonition} Python Anaconda Installation Video on YouTube
+:class: tip, dropdown
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/cbIPRGOUAVA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
+```
 
 ## Miniconda
 

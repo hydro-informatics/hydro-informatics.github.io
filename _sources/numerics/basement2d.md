@@ -397,9 +397,10 @@ The open-source [Crayfish](https://www.lutraconsulting.co.uk/projects/crayfish/)
 
 The first time that a video is exported, Crayfish will require the definition of an **FFmpeg video encoder** and guide through the installation (if required). Follow the instructions and re-start exporting the video.
 
- The resulting video export may look like this:
+ ```{admonition} The resulting video export may look like this:
 
- <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/AYG0i1becyI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Sebastian Schwindt <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+ <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/AYG0i1becyI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Sebastian Schwindt <a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
+ ```
 
 ```{admonition} Make animations of other parameters
 :class: note
