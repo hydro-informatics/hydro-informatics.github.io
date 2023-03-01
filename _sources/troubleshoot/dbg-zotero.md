@@ -2,12 +2,12 @@
 
 ## Auto-merge Multiple Duplicates
 
-Merging duplicates in Zotero can be done by a mouse-click, but only by a mouse-click and item-by-item. This can take a lot of time when merging large libraries. Here is a workaround to auto-merge multiple duplicates in Zotero.
+Merging duplicates in Zotero can be done by a mouse click, but only by a mouse click and item-by-item. This can take a lot of time when merging large libraries. Here is a workaround to auto-merge multiple duplicates in Zotero.
 
 ```{admonition} Make sure all duplicates have the same Item Type
 :class: important
 
-To make the following auto-merge code work smoothly, go over your duplicate items and look for any marked duplicates that have different item types. Next, harmonize the item types of duplicate pairs (i.e., change the Item Type of one of the concerned entries).
+To make the following auto-merge code work smoothly, go over your duplicate items and look for any marked duplicates that have different item types. Next, harmonize the item types of duplicate pairs (i.e., change the Item Type of one of the concerned entries). This is a bit tedious, but does not take too long and much faster than merging each duplicate additionally by mouse click.
 ```
 
 * Open the Zotero application on your computer (not in the browser)

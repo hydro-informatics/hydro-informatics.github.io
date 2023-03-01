@@ -723,6 +723,23 @@
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../troubleshoot/dbg-scilife.html">
+   Science Life Hacks
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/>
+  <label for="toctree-checkbox-21">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../troubleshoot/dbg-zotero.html">
+     Zotero Utilities
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -1057,8 +1074,11 @@
   <div class="tex2jax_ignore mathjax_ignore section" id="data-files-numpy-pandas">
 <h1>Data Files, NumPy &amp; Pandas<a class="headerlink" href="#data-files-numpy-pandas" title="Permalink to this headline">¶</a></h1>
 <p>Basic (text) file handling, <em>NumPy</em>, <em>pandas</em>, and <em>DateTime</em>. For interactive reading and executing code blocks <a class="reference external" href="https://mybinder.org/v2/gh/hydro-informatics/jupyter-python-course/main"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> and find <em>b06-pybum.ipynb</em> or <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Python (Installation)</span></a> locally along with <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a>.</p>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Watch this section in video format</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/fEYXfwvQfmo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Watch this section as a video on the <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>Watch this section as a video on the <a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics channel on YouTube</a>.</p>
+</div>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="load-and-write-basic-data-files">
 <h1>Load and Write Basic Data Files<a class="headerlink" href="#load-and-write-basic-data-files" title="Permalink to this headline">¶</a></h1>
@@ -1264,8 +1284,11 @@ This example uses the <code class="docutils literal notranslate"><span class="pr
 <div class="tex2jax_ignore mathjax_ignore section" id="numpy">
 <span id="id1"></span><h1>NumPy<a class="headerlink" href="#numpy" title="Permalink to this headline">¶</a></h1>
 <p><em>NumPy</em> provides high-level mathematical functions for linear algebra including operations on multi-dimensional arrays and matrices. The open-source <em>NumPy</em> (for <em>Numerical Python</em>) library is written in Python and <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C</a>, and comes with comprehensive documentation (<a class="reference external" href="https://numpy.org/doc/">download the latest version on the developer’s web site</a> or <a class="reference external" href="https://numpy.org/devdocs/user/quickstart.html">read the developer’s online tutorial</a>).</p>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Watch the NumPy section in video format</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/P2t0z-t-l7w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Watch this section as a video on the <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>Watch this section as a video on the <a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics channel on YouTube</a>.</p>
+</div>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p><em>NumPy</em> can be installed through <em>Anaconda</em> (<a class="reference internal" href="../python-basics/pyinstall.html#install-pckg"><span class="std std-ref">recall instructions</span></a>) and the developers recommend using a scientific Python distribution (<em>Anaconda</em>) with <a class="reference external" href="https://www.scipy.org/install.html"><em>SciPy Stack</em></a>.</p>
@@ -1723,8 +1746,12 @@ Mean value along axis 1 (rows): [4.25       2.5        6.25       4.33333333 6.7
 <div class="tex2jax_ignore mathjax_ignore section" id="pandas">
 <span id="id3"></span><h1>Pandas<a class="headerlink" href="#pandas" title="Permalink to this headline">¶</a></h1>
 <p><em>pandas</em> is a powerful library for data analyses and manipulation with Python. It can handle <em>NumPy</em> arrays, and both packages jointly represent a powerful data processing engine. The power of <em>pandas</em> lies in processing data frames, data labeling (e.g., workbook-like column names), and flexible file handling functions (e.g., the built-in <code class="docutils literal notranslate"><span class="pre">read_csv(csv-file)</span></code> function). While <em>NumPy</em> arrays enable calculations with multidimensional arrays (beyond 2-dimensional tables) and low memory consumption, <em>pandas</em> <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>s efficiently process and label tabular data with more than ~100,000 rows. Because of its labelling capacity, <em>pandas</em> also finds broad application in machine learning. In summary, <em>pandas</em>’ functionality builds on top of <em>NumPy</em> and both libraries are maintained by the <a class="reference external" href="https://www.scipy.org/"><em>SciPy</em></a> (<em>Scientific computing tools for Python</em>) community that also produces <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> (see the <a class="reference internal" href="pyplot.html#matplotlib"><span class="std std-ref">plotting section</span></a>) and <em>IPython</em> (<em>Jupyter</em>’s <em>Python</em> kernel).</p>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Watch the pandas section on YouTube</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/ruB-r-0Vyjc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Watch this section as a video on the <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@Hydro-Morphodynamics channel on YouTube</a>.</p><div class="section" id="id4">
+<p>Watch this section as a video on the <a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics channel on YouTube</a>.</p>
+</div>
+<div class="section" id="id4">
 <h2>Installation<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p><em>pandas</em> can be installed through <em>Anaconda</em> (<a class="reference internal" href="../python-basics/pyinstall.html#install-pckg"><span class="std std-ref">recall instructions</span></a>) and the developers recommend using a scientific Python distribution (<em>Anaconda</em>) with <a class="reference external" href="https://www.scipy.org/install.html"><em>SciPy Stack</em></a>.</p>
 <p>The provided <em>Anaconda</em> <a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/flusstools-pckg/main/environment.yml">environment.yml (<code class="docutils literal notranslate"><span class="pre">flussenv</span></code>)</a> already includes <em>pandas</em> (more information in the <a class="reference internal" href="../python-basics/pyinstall.html#conda-env"><span class="std std-ref">installation</span></a> section). Similarly, Linux users will have <em>pandas</em> installed in a virtual environment (e.g., <code class="docutils literal notranslate"><span class="pre">vflussenv</span></code>) with <em>pip</em> (recall <a class="reference internal" href="../python-basics/pyinstall.html#pip-quick"><span class="std std-ref">pip-installing flusstools</span></a>). Otherwise, to install <em>pandas</em> in any other <em>conda</em> environment, open <em>Anaconda Prompt</em> (<em>Start</em> &gt; type <em>Anaconda Prompt</em>) and type:</p>
