@@ -811,7 +811,7 @@ Graphic printouts, just like all other data printouts, are time consuming and wi
 
 Telemac3d will add *Horizontal levels* (i.e., layers) that correspond to copies of the 2d-mesh to build a 3d-mesh of prisms (default) or tetrahedrons. These parameters can be defined with:
 
-* `NUMBER OF HORIZONTAL LEVELS`: `5` where the default and minimum is `2` and the horizontal levels point in upward vertical direction. The thickness of vertical layers results from the water depth, which can be user-defined through the `INITIAL ELEVATION` parameter (see [initial conditions](#inc)).
+* `NUMBER OF HORIZONTAL LEVELS`: `5` where the default and minimum is `2` and the horizontal levels point in upward vertical direction. The thickness of vertical layers results from the water depth, which can be user-defined through the `INITIAL ELEVATION` parameter (see {ref}`initial conditions <init-3d-med>`).
 * `MESH TRANSFORMATION`: `1` is the kind of level for the distribution (default is `1`, a homogenous sigma distribution). For unsteady simulations, set this value to `2` (or `0` - calcot) and implement a `ZSTAR` array in a user Fortran file (`USER_MESH_TRANSFORM` subroutine).
 * `ELEMENT`: `'PRISM'` (default) and prisms can optionally split into tetrahedrons by settings this parameter to `'TETRAHEDRON'` (can potentially crash the simulation).
 
@@ -902,9 +902,11 @@ With a prescribed flow rate, a horizontal and a vertical velocity profile can be
 
 Read more about options for defining velocity profiles in section 4.3.12 of the {{ tm3d }}.
 
-<a name="inc"></a>
+
 The **initial conditions** describe the condition at the beginning of the simulation. This tutorial uses a constant elevation (corresponding to a constant water depth) of `2.`, and enables using an initial guess for the water depth to speed up the simulation:
 
+````{admonition} Initial conditions for Telemac 3d (med)
+:name: init-3d-med
 * `INITIAL CONDITIONS`: `'CONSTANT ELEVATION'` can alternatively be set to `'CONSTANT DEPTH'`
 * `INITIAL ELEVATION`: `50.` corresponds to depth here, but would be different in an external liquid boundary file (see above).
 * `INITIAL DEPTH`: ` 2.` is not used in this tutorial.
@@ -916,6 +918,7 @@ In this scenario, `INITIAL ELEVATION`: `50` makes that the computational mesh is
 
 Read more about the initial conditions in section 4.2 of the {{ tm3d }}.
 
+````
 
 ### Turbulence
 

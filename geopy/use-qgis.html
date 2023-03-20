@@ -1,911 +1,549 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>QGIS Tutorial &#8212; Hydro-Informatics</title>
-    
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script src="../_static/tabs.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'geopy/use-qgis';</script>
     <link rel="canonical" href="https://hydro-informatics.com/geopy/use-qgis.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Process Drone (UAV) Imagery" href="drone-processing.html" />
     <link rel="prev" title="Geospatial Data" href="geospatial-data.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/icon.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Get Started
- </span>
-</p>
+    
+    
+    <img src="../_static/icon.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/icon.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../lectures/classroom.html">
-   The Virtual Classroom
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/principles.html">
-     Principles
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/lectures.html">
-     Lectures and Exercises
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/take_seat.html">
-     Take a Seat
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../get-started/software.html">
-   Software Resources
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/vm.html">
-     Virtual Machines and Linux
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/ide.html">
-     Integrated Development Environments (IDEs)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../python-basics/pyinstall.html">
-     Python (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/git.html">
-     Version Control : git
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/geo.html">
-     Geospatial Software
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/install-openfoam.html">
-     OpenFOAM (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/install-telemac.html">
-     TELEMAC (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/others.html">
-     Other Software Resources
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/classroom.html">The Virtual Classroom</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/principles.html">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/lectures.html">Lectures and Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/take_seat.html">Take a Seat</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Python Basics
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../get-started/software.html">Software Resources</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/vm.html">Virtual Machines and Linux</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../get-started/ide.html">Integrated Development Environments (IDEs)</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../python-basics/pyinstall.html">Python (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/git.html">Version Control : git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/geo.html">Geospatial Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/install-openfoam.html">OpenFOAM (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/install-telemac.html">TELEMAC (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/others.html">Other Software Resources</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Basics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/python.html">
-   First Steps
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pybase.html">
-     Hello Data Types
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyerror.html">
-     Errors, Logging, and Debugging
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyloop.html">
-     Loops and Conditional Statements
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/modularize.html">
-   Object Orientation
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyfun.html">
-     Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pypckg.html">
-     Packages, Modules and Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/classes.html">
-     Object Orientation and Classes
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/data-handling.html">
-   Data and File Handling
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pynum.html">
-     Data Files, NumPy &amp; Pandas
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/xml.html">
-     Structured Data (XML, xlsx &amp; JSON)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyplot.html">
-     Plotting
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../jupyter/pystyle.html">
-   Code Style and Conventions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../jupyter/gui.html">
-   Graphical User Interfaces (GUIs)
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/python-exercises.html">
-   Python Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-ms.html">
-     1d Hydraulics (Manning-Strickler Formula)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-sp.html">
-     Reservoir Volume (Sequent Peak Algorithm)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-floods.html">
-     Flood Return Periods
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-sediment.html">
-     1d Sediment Transport
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-gui.html">
-     Create a GUI
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/python.html">First Steps</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pybase.html">Hello Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyerror.html">Errors, Logging, and Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyloop.html">Loops and Conditional Statements</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Geospatial Analysis
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/modularize.html">Object Orientation</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyfun.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pypckg.html">Packages, Modules and Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/classes.html">Object Orientation and Classes</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/data-handling.html">Data and File Handling</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pynum.html">Data Files, NumPy &amp; Pandas</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/xml.html">Structured Data (XML, xlsx &amp; JSON)</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyplot.html">Plotting</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/pystyle.html">Code Style and Conventions</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/gui.html">Graphical User Interfaces (GUIs)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/python-exercises.html">Python Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-ms.html">1d Hydraulics (Manning-Strickler Formula)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-sp.html">Reservoir Volume (Sequent Peak Algorithm)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-floods.html">Flood Return Periods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-sediment.html">1d Sediment Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-gui.html">Create a GUI</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Geospatial Analysis</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="geospatial-data.html">
-   Geospatial Data
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   QGIS Tutorial
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="drone-processing.html">
-   Process Drone (UAV) Imagery
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="geo-python.html">
-   Geospatial Python
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="geo-pckg.html">
-     Geospatial Open Source Python Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-shp.html">
-     Shapefile (Vector) Handling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-raster.html">
-     Raster (Grid) Handling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-convert.html">
-     Vectorize and Rasterize
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-arcpy.html">
-     The Commercial arcpy Library
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/geo-exercises.html">
-   Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-geco.html">
-     Script a Habitat Suitability Map
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="geospatial-data.html">Geospatial Data</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">QGIS Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drone-processing.html">Process Drone (UAV) Imagery</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="geo-python.html">Geospatial Python</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="geo-pckg.html">Geospatial Open Source Python Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-shp.html">Shapefile (Vector) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-raster.html">Raster (Grid) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-convert.html">Vectorize and Rasterize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-arcpy.html">The Commercial arcpy Library</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Data Science
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../datascience/data-science.html">
-   Fundamentals (Coming soon)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/py-requirements.html">
-     Python Requirements
-    </a>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../datascience/data-prepro.html">
-     Data Pre-Processing
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-    <label for="toctree-checkbox-10">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/data-types.html">
-       The Nature of Data
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/data-cleaning.html">
-       Dataset Cleaning
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/dimensional-analysis.html">
-       Dimensional Analysis
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../datascience/theory.html">
-   Techniques (Coming soon)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/techniques.html">
-     Overview of Fundamental Techniques
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/calibrate-validate.html">
-     Model Calibration and Validation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
-     Support Vector Machine (SVM)
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/geo-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-geco.html">Script a Habitat Suitability Map</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Numerical Modeling
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../numerics/numerical-modeling.html">
-   Principles
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../numerics/basement.html">
-   BASEMENT
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/pre-qgis-bm.html">
-     Pre-processing with QGIS
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/basement2d.html">
-     Run and Check a Steady 2d Simulation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../numerics/telemac.html">
-   TELEMAC
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/pre-slf-tm.html">
-     Pre-processing
-    </a>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac2d.html">
-     Telemac2d
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-    <label for="toctree-checkbox-14">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac2d-steady.html">
-       Steady 2d
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac2d-unsteady.html">
-       Unsteady 2d
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac3d.html">
-     Telemac3d
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-    <label for="toctree-checkbox-15">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac3d-slf.html">
-       Steady 3d (SLF - Selafin)
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac3d-med.html">
-       Steady 3d (MED and Salome)
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac-gaia.html">
-     Gaia (Morphodynamics)
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-    <label for="toctree-checkbox-16">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-coupling.html">
-       Introduction and Coupling
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-basics.html">
-       Basic Setup of Gaia
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-bedload.html">
-       Bedload
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-suspended.html">
-       Suspended Load
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-run.html">
-       Run and Analyze
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
+</li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Documentation
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Modeling</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/documentation.html">
-   How to Markdown and Document
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/glossary.html">
-   Glossary
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/notation.html">
-   Notation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/bibliography.html">
-   References
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/docs-exercises.html">
-   Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
-  <label for="toctree-checkbox-17">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-git.html">
-     Git and Markdown
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../numerics/numerical-modeling.html">Principles</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerics/basement.html">BASEMENT</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/pre-qgis-bm.html">Pre-processing with QGIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/basement2d.html">Run and Check a Steady 2d Simulation</a></li>
+
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Troubleshoot
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
-   Programming Tools and IDEs
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
-  <label for="toctree-checkbox-18">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
-     Debugging Anaconda
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-python.html">
-     Debugging Python Code
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
-     Debugging Jupyter
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
-   Numerical Models
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
-  <label for="toctree-checkbox-19">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
-     Debugging BASEMENT
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
-     Debugging TELEMAC
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-os.html">
-   Operating Systems (Linux and VMs)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
-  <label for="toctree-checkbox-20">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
-     Debugging Debian Linux
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
-     Debugging Virtual Machines
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerics/telemac.html">TELEMAC</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/pre-slf-tm.html">Pre-processing</a></li>
+
+
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac2d.html">Telemac2d</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac2d-steady.html">Steady 2d</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac2d-unsteady.html">Unsteady 2d</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Disclaimer and License
- </span>
-</p>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac3d.html">Telemac3d</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac3d-slf.html">Steady 3d (SLF - Selafin)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac3d-med.html">Steady 3d (MED and Salome)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac-gaia.html">Gaia (Morphodynamics)</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-coupling.html">Introduction and Coupling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-basics.html">Basic Setup of Gaia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-bedload.html">Bedload</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-suspended.html">Suspended Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-run.html">Run and Analyze</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerics/openfoam/of-intro.html">OpenFOAM</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase.html">Multiphase Solver (interFoam Tutorial)</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-mesh.html">Geometry and Mesh Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-setup.html">Case set-up</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-run.html">Run OpenFOAM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-post.html">Post-processing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Science</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../terms/license.html">
-   License
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../terms/disclaimer.html">
-   Disclaimer
-  </a>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/data-science.html">Fundamentals (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/py-requirements.html">Python Requirements</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../datascience/data-prepro.html">Data Pre-Processing</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/data-types.html">The Nature of Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/data-cleaning.html">Dataset Cleaning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/dimensional-analysis.html">Dimensional Analysis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/theory.html">Techniques (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/techniques.html">Overview of Fundamental Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/calibrate-validate.html">Model Calibration and Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/morphology-predictor-svm.html">Support Vector Machine (SVM)</a></li>
+
+
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../documentation/documentation.html">How to Markdown and Document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/notation.html">Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/bibliography.html">References</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/docs-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-git.html">Git and Markdown</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Troubleshoot</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-programming.html">Programming Tools and IDEs</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-anaconda.html">Debugging Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-python.html">Debugging Python Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-jupyter.html">Debugging Jupyter</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">Numerical Models</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-basement.html">Debugging BASEMENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-telemac.html">Debugging TELEMAC</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-os.html">Operating Systems (Linux and VMs)</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-linux.html">Debugging Debian Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-vm.html">Debugging Virtual Machines</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-scilife.html">Science Life Hacks</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-zotero.html">Zotero Utilities</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Disclaimer and License</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../terms/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terms/disclaimer.html">Disclaimer</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a> and Ricardo Barros
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/geopy/use-qgis.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/hydro-informatics/jupyter-python-course"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
         
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/hydro-informatics/jupyter-python-course" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/geopy/use-qgis.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-        </div>
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>QGIS Tutorial</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#first-project">
-   First Project
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#panels-toolbars-and-plugins">
-   Panels, Toolbars, and Plugins
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#basemaps-for-qgis-google-or-open-street-maps-worldmap-tiles">
-   Basemaps for QGIS (Google or Open Street Maps Worldmap Tiles)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-a-shapefile">
-   Create a Shapefile
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#create-a-point-shapefile">
-     Create a Point Shapefile
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#create-a-line-shapefile">
-     Create a Line Shapefile
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#create-a-polygon-shapefile">
-     Create a Polygon Shapefile
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#conversion-rasterize-polygon-to-raster">
-   Conversion: Rasterize (Polygon to Raster)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#working-with-rasters">
-   Working with Rasters
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#qgis-raster-calculator-map-algebra">
-     QGIS Raster Calculator (Map Algebra)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#raster-to-xyz">
-     Raster to XYZ
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-layout-and-pdf-jpg-or-other-maps">
-   Create Layout and PDF / JPG (or other) Maps
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pyqgis-qgis-and-python">
-   PyQGIS: QGIS and Python
-  </a>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-project">First Project</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#panels-toolbars-and-plugins">Panels, Toolbars, and Plugins</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basemaps-for-qgis-google-or-open-street-maps-worldmap-tiles">Basemaps for QGIS (Google or Open Street Maps Worldmap Tiles)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-shapefile">Create a Shapefile</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-point-shapefile">Create a Point Shapefile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-line-shapefile">Create a Line Shapefile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-polygon-shapefile">Create a Polygon Shapefile</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-rasterize-polygon-to-raster">Conversion: Rasterize (Polygon to Raster)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-rasters">Working with Rasters</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qgis-raster-calculator-map-algebra">QGIS Raster Calculator (Map Algebra)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-to-xyz">Raster to XYZ</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-layout-and-pdf-jpg-or-other-maps">Create Layout and PDF / JPG (or other) Maps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyqgis-qgis-and-python">PyQGIS: QGIS and Python</a></li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="qgis-tutorial">
-<span id="id1"></span><h1>QGIS Tutorial<a class="headerlink" href="#qgis-tutorial" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="qgis-tutorial">
+<span id="id1"></span><h1>QGIS Tutorial<a class="headerlink" href="#qgis-tutorial" title="Permalink to this headline">#</a></h1>
 <div class="admonition-requirements admonition">
 <p class="admonition-title">Requirements</p>
 <p>This tutorial is designed for <strong>beginners</strong> and has embedded videos featuring the text descriptions in every section. Before diving into this tutorial make sure to install <a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a>.</p>
@@ -916,8 +554,8 @@
 <p class="admonition-title">If you read: <em>Videos not showing up (Firefox Can’t Open This Page)</em>…</p>
 <p>If videos are not displaying, this might be caused by strict privacy settings. To resolve the issue, either open the video links by clicking on the <strong>Open Site in New Window</strong> button or by changing browser privacy settings (e.g., in <a class="reference external" href="https://support.mozilla.org/en-US/questions/1108783">Mozilla Firefox</a>).</p>
 </div>
-<div class="section" id="first-project">
-<span id="qgis-project"></span><h2>First Project<a class="headerlink" href="#first-project" title="Permalink to this headline">¶</a></h2>
+<section id="first-project">
+<span id="qgis-project"></span><h2>First Project<a class="headerlink" href="#first-project" title="Permalink to this headline">#</a></h2>
 <p>Once you installed QGIS, launch the program and walk through the following steps to make fundamental settings:</p>
 <ul class="simple">
 <li><p>Open <em>QGIS</em></p></li>
@@ -948,26 +586,31 @@
 <p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
-<p>All files created in this tutorial can be downloaded <a class="reference external" href="https://github.com/Ecohydraulics/qgis-tutorial">here</a>.</p>
+<p>All files created in this tutorial can be downloaded from the <a class="reference external" href="https://github.com/Ecohydraulics/qgis-tutorial">QGIS tutorial repository</a>.</p>
 </div>
-</div>
-<div class="section" id="panels-toolbars-and-plugins">
-<span id="qgis-tbx-install"></span><h2>Panels, Toolbars, and Plugins<a class="headerlink" href="#panels-toolbars-and-plugins" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="panels-toolbars-and-plugins">
+<span id="qgis-tbx-install"></span><h2>Panels, Toolbars, and Plugins<a class="headerlink" href="#panels-toolbars-and-plugins" title="Permalink to this headline">#</a></h2>
 <p>Follow the below illustrated instructions to enable the <em>QGIS</em> <em>Toolbox</em>.</p>
-<div class="figure align-default" id="qgis-tbx">
+<figure class="align-default" id="qgis-tbx">
 <img alt="enable QGIS toolbox" src="../_images/qgis-tbx.png" />
-<p class="caption"><span class="caption-number">Fig. 18 </span><span class="caption-text">Open QGIS’ Toolbox window from the main menu.</span><a class="headerlink" href="#qgis-tbx" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 18 </span><span class="caption-text">Open QGIS’ Toolbox window from the main menu.</span><a class="headerlink" href="#qgis-tbx" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>The conversion between geospatial data types and numerical (computational) grids can be facilitated with plugins. To install any plugin in <em>QGIS</em>, go to the <code class="docutils literal notranslate"><span class="pre">Plugins</span></code> menu &gt; <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">and</span> <span class="pre">Install</span> <span class="pre">Plugins...</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">All</span></code> tab &gt; <code class="docutils literal notranslate"><span class="pre">Search...</span></code> for a relevant plugin and install it.</p>
 <p>In the context of river analysis, the following plugins are recommended and used at multiple places on this website:</p>
+<div class="admonition-qgis-plugins-for-hydro-informatics admonition" id="qgis-plugins">
+<p class="admonition-title">QGIS plugins for hydro-informatics</p>
 <ul class="simple">
 <li><p>The <em>Crayfish</em> plugin for post-processing of numerical model output.</p></li>
 <li><p>The <em>BASEmesh2</em> plugin provides routines for creating computational meshes for numerical simulations with <a class="reference internal" href="../numerics/basement.html#chpt-basement"><span class="std std-ref">BASEMENT</span></a>.</p></li>
 <li><p>The <em>PostTelemac</em> plugin enables geospatial visualization and conversions of numerical model results produced with <a class="reference internal" href="../numerics/telemac.html#chpt-telemac"><span class="std std-ref">TELEMAC</span></a>.</p></li>
 </ul>
+</div>
 <p>BASEmesh is only one (very well working) mesh generator for QGIS and <a class="reference internal" href="#tab-mesh-plugins"><span class="std std-numref">Tab. 2</span></a> lists of other plugins for generating computational meshes for numerical models along with target file formats and models</p>
 <table class="table" id="tab-mesh-plugins">
-<caption><span class="caption-number">Table 2 </span><span class="caption-text">A list of QGIS mesh generator plugins.</span><a class="headerlink" href="#tab-mesh-plugins" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-number">Table 2 </span><span class="caption-text">A list of QGIS mesh generator plugins.</span><a class="headerlink" href="#tab-mesh-plugins" title="Permalink to this table">#</a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 25%" />
@@ -1000,7 +643,7 @@
 <tr class="row-odd"><td><p><a class="reference external" href="https://github.com/jdugge/MeshTools">MeshTools</a></p></td>
 <td><p><a class="reference internal" href="../numerics/basement.html#chpt-basement"><span class="std std-ref">BASEMENT</span></a>, Hydro FT/AS (proprietary), indirectly: <a class="reference internal" href="../numerics/telemac.html#chpt-telemac"><span class="std std-ref">TELEMAC</span></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">*.2dm</span></code> (conversion to <code class="docutils literal notranslate"><span class="pre">.slf</span></code> possible with Crayfish)</p></td>
-<td><p>Tweaks into multiple mesh algorithms (among others: <span id="id2">Shewchuk [<a class="reference internal" href="../documentation/bibliography.html#id1341">She96</a>]</span>)</p></td>
+<td><p>Tweaks into multiple mesh algorithms (among others: <span id="id2">Shewchuk [<a class="reference internal" href="../documentation/bibliography.html#id1341" title="Jonathan Richard Shewchuk. Triangle: Engineering a 2D quality mesh generator and Delaunay triangulator. In Ming C. Lin and Dinesh Manocha, editors, Applied Computational Geometry Towards Geometric Engineering, Lecture Notes in Computer Science, 203–222. Berlin, Heidelberg, 1996. Springer. URL: https://link.springer.com/chapter/10.1007/BFb0014497, doi:10.1007/BFb0014497.">She96</a>]</span>)</p></td>
 </tr>
 <tr class="row-even"><td><p>DEMto3D</p></td>
 <td><p>Raster to STL (style) files for Blender</p></td>
@@ -1009,18 +652,20 @@
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="basemaps-for-qgis-google-or-open-street-maps-worldmap-tiles">
-<span id="basemap"></span><h2>Basemaps for QGIS (Google or Open Street Maps Worldmap Tiles)<a class="headerlink" href="#basemaps-for-qgis-google-or-open-street-maps-worldmap-tiles" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="basemaps-for-qgis-google-or-open-street-maps-worldmap-tiles">
+<span id="basemap"></span><h2>Basemaps for QGIS (Google or Open Street Maps Worldmap Tiles)<a class="headerlink" href="#basemaps-for-qgis-google-or-open-street-maps-worldmap-tiles" title="Permalink to this headline">#</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>A fast internet connection is required for adding online basemaps.</p>
 </div>
 <p>To add a base map (e.g., satellite data, streets, or administrative boundaries), go to the <strong>Browser</strong>, right-click on <strong>XYZ Tiles</strong>, select <strong>New Connection…</strong>, add a name, and a URL of an online base map. Once the new connection is added, it can be added to a <em>QGIS</em> project by drag and drop just like any other geodata layer. The below figure illustrates the procedure of adding a new connection and its XYZ tiles as a layer to the project. To overlay multiple basemaps (or any other layer), <strong>right-click on a layer</strong>, then <strong>Layer Properties</strong> &gt; <strong>Transparency</strong> &gt; modify the <strong>Opacity</strong> (e.g., to 50%).</p>
-<div class="figure align-default" id="id3">
+<figure class="align-default" id="id3">
 <img alt="basemap" src="../_images/qgis-basemap.png" />
-<p class="caption"><span class="caption-number">Fig. 19 </span><span class="caption-text">Add a base map to QGIS: (1) locate the Browser (2) right-click on XYZ-Tiles and select New Connection… (3) enter a Name and a URL (see below table) for the new connection, click OK (4) drag and drop the new tile (here: Google Satellite) into the Layers Panel.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 19 </span><span class="caption-text">Add a base map to QGIS: (1) locate the Browser (2) right-click on XYZ-Tiles and select New Connection… (3) enter a Name and a URL (see below table) for the new connection, click OK (4) drag and drop the new tile (here: Google Satellite) into the Layers Panel.</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/GJsiEdMzCeQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
 <p>The following URL can be used for retrieving online XYZ tiles (more URLs can be found on the internet).</p>
@@ -1054,16 +699,16 @@
 </tr>
 </tbody>
 </table>
-<div class="admonition">
+<div class="tip admonition">
 <p class="admonition-title">Coordinate reference systems of basemaps</p>
 <p>Most basemaps are provided in the <code class="docutils literal notranslate"><span class="pre">EPSG:3857</span> <span class="pre">-WGS84</span> <span class="pre">/</span> <span class="pre">Pseudo</span> <span class="pre">Mercator</span></code> coordinate system (CRS). To use custom geodata products, make sure that all other layers have the same coordinate system. Read more about coordinate systems and projections in the <a class="reference internal" href="geospatial-data.html#geospatial-data"><span class="std std-ref">Geospatial Data</span></a> and <a class="reference internal" href="../jupyter/geo-shp.html#prj-shp"><span class="std std-ref">shapefile projection</span></a> sections.</p>
 </div>
-</div>
-<div class="section" id="create-a-shapefile">
-<h2>Create a Shapefile<a class="headerlink" href="#create-a-shapefile" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="create-a-shapefile">
+<h2>Create a Shapefile<a class="headerlink" href="#create-a-shapefile" title="Permalink to this headline">#</a></h2>
 <p>This section guides through the creation of a point, a line, and a polygon <a class="reference internal" href="geospatial-data.html#shp"><span class="std std-ref">Shapefile</span></a> (vector data). To read more about such vector data and other spatially explicit data types, read the section on <a class="reference internal" href="geospatial-data.html#geospatial-data"><span class="std std-ref">Geospatial Data</span></a>.</p>
-<div class="section" id="create-a-point-shapefile">
-<span id="create-point-shp"></span><h3>Create a Point Shapefile<a class="headerlink" href="#create-a-point-shapefile" title="Permalink to this headline">¶</a></h3>
+<section id="create-a-point-shapefile">
+<span id="create-point-shp"></span><h3>Create a Point Shapefile<a class="headerlink" href="#create-a-point-shapefile" title="Permalink to this headline">#</a></h3>
 <p>Start with loading satellite imagery and a street basemap (see above) in the layers pane. Zoom on central Europe and roughly locate Stuttgart in Southwest Germany. Find the heavily impaired Neckar River in the North of Stuttgart and move in the upstream direction (i.e., Eastern direction), pass the cities of Esslingen and Plochingen until you get to the confluence of the Neckar and the Fils rivers. From there, follow the Fils River in the upstream direction for a couple of hundred meters and locate the PEGELHAUS (i.e., a gauging station at the Fils River - <a class="reference external" href="https://www.hvz.baden-wuerttemberg.de/pegel.html?id=00025">click to visit</a>). To facilitate finding the gauging station in the future, we will now create a point shapefile as explained in the following video and the analogous instructions below the video.</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/k2LqPM6wicA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
@@ -1104,15 +749,15 @@
 </li>
 <li><p>Verify the point settings in the <strong>Attribute Table</strong> (right-click on the <em>gauges</em> layer and select <strong>Attribute Table</strong>).</p></li>
 </ul>
-</div>
-<div class="section" id="create-a-line-shapefile">
-<span id="create-line-shp"></span><h3>Create a Line Shapefile<a class="headerlink" href="#create-a-line-shapefile" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="create-a-line-shapefile">
+<span id="create-line-shp"></span><h3>Create a Line Shapefile<a class="headerlink" href="#create-a-line-shapefile" title="Permalink to this headline">#</a></h3>
 <p>Create a <strong>Line Shapefile</strong> called <strong>CenterLine.shp</strong> to draw a centerline of the Fils <span class="math notranslate nohighlight">\(\pm\)</span> 200 m around the PEGELHAUS gauge, similar to the above-created point shapefile. Add one <em>text</em> field and call it <code class="docutils literal notranslate"><span class="pre">RiverName</span></code>. Then draw a line along the Fils River starting 200 m upstream and ending 200 m downstream of the PEGELHAUS by following the river on the <strong>OpenStreetMap</strong> layer. See more in the following video.</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/yNuiIlPsguQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
-</div>
-<div class="section" id="create-a-polygon-shapefile">
-<span id="create-polygon-shp"></span><h3>Create a Polygon Shapefile<a class="headerlink" href="#create-a-polygon-shapefile" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="create-a-polygon-shapefile">
+<span id="create-polygon-shp"></span><h3>Create a Polygon Shapefile<a class="headerlink" href="#create-a-polygon-shapefile" title="Permalink to this headline">#</a></h3>
 <p>To delineate different zones of roughness (e.g., as needed for a two-dimensional numerical model), create a <strong>Polygon Shapefile</strong> called <strong>FlowAreas.shp</strong>. The file will contain polygons zoning the considered section of the Fils into the floodplain and main channel bed. Name the first field <code class="docutils literal notranslate"><span class="pre">AreaType</span></code> (type: <em>Text</em>) and the second field <code class="docutils literal notranslate"><span class="pre">ManningN</span></code> (type: <em>Decimal Number</em>). See more in the following video and the instructions below the video.</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/zTrowT0ULfo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
@@ -1141,10 +786,10 @@
 <li><p>After drawing all polygons, <strong>Save edits</strong> and <strong>Toggle Editing</strong> (deactivate).</p></li>
 <li><p>To improve the visualization, modify the <strong>Symbology</strong> to <strong>Categorized</strong> as a function of the <code class="docutils literal notranslate"><span class="pre">AreaType</span></code> field: Keep <strong>Random Colors</strong> &gt; Click on <strong>Classify</strong> &gt; <strong>Apply</strong> and if you like the visualization, click <strong>OK</strong>.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="conversion-rasterize-polygon-to-raster">
-<h2>Conversion: Rasterize (Polygon to Raster)<a class="headerlink" href="#conversion-rasterize-polygon-to-raster" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="conversion-rasterize-polygon-to-raster">
+<h2>Conversion: Rasterize (Polygon to Raster)<a class="headerlink" href="#conversion-rasterize-polygon-to-raster" title="Permalink to this headline">#</a></h2>
 <p>Many numerical models required that roughness is provided in <a class="reference internal" href="geospatial-data.html#raster"><span class="std std-ref">Gridded Cell (Raster) Data</span></a> format. To this end, this section features the conversion of the above-created polygon shapefile (<em>FlowAreas.shp</em>) to a roughness <a class="reference internal" href="geospatial-data.html#raster"><span class="std std-ref">Gridded Cell (Raster) Data</span></a>. The following video and the instructions below the video describe how the conversion works.</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/IRLwYSUnjcE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
@@ -1181,11 +826,11 @@
 <p class="admonition-title">Raster to (polygon/line/point) Vector</p>
 <p>The inverse operation of <em>Rasterize</em> is called <strong>Raster to Vector</strong>, which is documented at <a class="reference external" href="https://docs.qgis.org/3.16/en/docs/training_manual/complete_analysis/raster_to_vector.html">https://docs.qgis.org</a>.</p>
 </div>
-</div>
-<div class="section" id="working-with-rasters">
-<h2>Working with Rasters<a class="headerlink" href="#working-with-rasters" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="qgis-raster-calculator-map-algebra">
-<h3>QGIS Raster Calculator (Map Algebra)<a class="headerlink" href="#qgis-raster-calculator-map-algebra" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="working-with-rasters">
+<h2>Working with Rasters<a class="headerlink" href="#working-with-rasters" title="Permalink to this headline">#</a></h2>
+<section id="qgis-raster-calculator-map-algebra">
+<h3>QGIS Raster Calculator (Map Algebra)<a class="headerlink" href="#qgis-raster-calculator-map-algebra" title="Permalink to this headline">#</a></h3>
 <p>Some models preferably (default use) Manning’s <em>n</em>, others use the Strickler roughness coefficient <span class="math notranslate nohighlight">\(k_{st}\)</span>, which is the inverse of Manning’s <em>n</em> (i.e., <span class="math notranslate nohighlight">\(k_{st} = 1/n\)</span> - read more about roughness coefficients in the <a class="reference internal" href="../exercises/ex-ms.html#ex-1d-hydraulics"><span class="std std-ref">1d Hydraulics (Manning-Strickler Formula)</span></a> exercise). Thus, transforming a Strickler roughness raster into a Manning roughness raster requires performing an algebraic raster (pixel-by-pixel) operation. The next video and the instructions below the video feature the usage of the QGIS <strong>Raster Calculator</strong> to perform such algebraic operations.</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/DOkV03uij9k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
@@ -1202,9 +847,9 @@
 <p class="admonition-title">Batch-process geodata</p>
 <p>To implement a tailored raster calculator for batch-processing of raster files with Python read the <a class="reference internal" href="../exercises/ex-geco.html#py-raster-calculator"><span class="std std-ref">Create and Combine HSI Rasters</span></a> section in the <a class="reference internal" href="../exercises/ex-geco.html#ex-geco"><span class="std std-ref">Script a Habitat Suitability Map</span></a> exercise.</p>
 </div>
-</div>
-<div class="section" id="raster-to-xyz">
-<span id="make-xyz"></span><h3>Raster to XYZ<a class="headerlink" href="#raster-to-xyz" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="raster-to-xyz">
+<span id="make-xyz"></span><h3>Raster to XYZ<a class="headerlink" href="#raster-to-xyz" title="Permalink to this headline">#</a></h3>
 <p>Scientific data formats, such as <a class="reference internal" href="../documentation/glossary.html#term-HDF"><span class="xref std std-term">HDF</span></a>, work best with raw geospatial datasets like <code class="docutils literal notranslate"><span class="pre">*.xyz</span></code> files. A <code class="docutils literal notranslate"><span class="pre">.*xyz</span></code> file contains s only X, Y, and Z coordinates of points (i.e., point clouds) with or without a simple header. For instance, this eBook uses <code class="docutils literal notranslate"><span class="pre">*.xyz</span></code> data for the elevation interpolation of a computational mesh for the scientific numerical modeling software <a class="reference internal" href="../numerics/telemac.html#chpt-telemac"><span class="std std-ref">TELEMAC</span></a>. To generate a <code class="docutils literal notranslate"><span class="pre">*.xyz</span></code> from a <a class="reference internal" href="../documentation/glossary.html#term-GeoTIFF"><span class="xref std std-term">GeoTIFF</span></a> raster use the following workflow:</p>
 <ul class="simple">
 <li><p>In the <strong>Layers</strong> panel make sure to have raster layer imported for conversion and <strong>identify its No-Data</strong> value (<strong>Layer Properties</strong> &gt; <strong>Information</strong> &gt; <strong>Bands</strong> section &gt; <strong>No-Data</strong> field show by default <code class="docutils literal notranslate"><span class="pre">-9999</span></code> in QGIS).</p></li>
@@ -1238,10 +883,10 @@
 </pre></div>
 </div>
 <p>Save the changes. The <code class="docutils literal notranslate"><span class="pre">*.xyz</span></code> file is now slim and ready to use, for instance, for the <a class="reference internal" href="../numerics/pre-slf-tm.html#get-dem-xyz"><span class="std std-ref">TELEMAC pre-processing</span></a>.</p>
-</div>
-</div>
-<div class="section" id="create-layout-and-pdf-jpg-or-other-maps">
-<h2>Create Layout and PDF / JPG (or other) Maps<a class="headerlink" href="#create-layout-and-pdf-jpg-or-other-maps" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="create-layout-and-pdf-jpg-or-other-maps">
+<h2>Create Layout and PDF / JPG (or other) Maps<a class="headerlink" href="#create-layout-and-pdf-jpg-or-other-maps" title="Permalink to this headline">#</a></h2>
 <p>Georeferenced images in <a class="reference internal" href="../documentation/glossary.html#term-GeoTIFF"><span class="xref std std-term">GeoTIFF</span></a> or other raster formats, possibly with super-positioned shapefiles on top, are handy and flexible for use with geospatial software, such as QGIS, but not appropriate for presentations or reports. For presentation purposes, geospatial imagery or maps should preferably be exported to common formats, such as the <strong>P</strong>ortable <strong>D</strong>ocument <strong>F</strong>ormat (PDF) or <strong>JPEG/JPG</strong>. To create commonly formatted maps with QGIS, first, a new (print) layout needs to be created, which can then be exported to a common map format (e.g., along with a legend, a scale bar, and a North arrow). The following video and the descriptions below the video guide through the map creation process with QGIS.</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/hmTByzVPVF0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
@@ -1279,9 +924,9 @@
 </li>
 </ul>
 <p>QGIS has many other capacities, but this fundamental tutorial should have provided you with the necessary knowledge to leverage the power of QGIS for many applications.</p>
-</div>
-<div class="section" id="pyqgis-qgis-and-python">
-<span id="pygis"></span><h2>PyQGIS: QGIS and Python<a class="headerlink" href="#pyqgis-qgis-and-python" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="pyqgis-qgis-and-python">
+<span id="pygis"></span><h2>PyQGIS: QGIS and Python<a class="headerlink" href="#pyqgis-qgis-and-python" title="Permalink to this headline">#</a></h2>
 <p>The QGIS graphical user interface (GUI) provides a Python command line (<strong>Plugins</strong> &gt; <strong>Python Console</strong>), which enables to automate almost any mouse click in the GUI. This Python command line is referred to as <strong>PyQGIS</strong> and the <a class="reference external" href="https://docs.qgis.org/latest/en/docs/pyqgis_developer_cookbook/intro.html">QGIS developer docs</a> provide instructions on how to import and run standalone Python scripts outside of the QGIS GUI. Here is the basic Python template to run a PyQGIS script:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="o">*</span>
 
@@ -1303,10 +948,10 @@
 </pre></div>
 </div>
 <p>However, when opening your system’s terminal or Anaconda Prompt to run a PyQGIS code, you may get stuck on the first line of code already: <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">qgis.core</span> <span class="pre">import</span> <span class="pre">*</span></code> yields <code class="docutils literal notranslate"><span class="pre">ImportError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">qgis.core</span></code>. According to the <a class="reference external" href="https://docs.qgis.org/latest/en/docs/pyqgis_developer_cookbook/intro.html">QGIS developer docs</a>, this error happens because your system’s Python does not know where the PyQGIS environment lives. To make your terminal recognize PyQGIS, take the following action according to your system:</p>
-<div class="tabbed-set docutils">
-<input checked="checked" id="3b00175c-211c-4cae-a933-6b22a22a1799" name="e496c133-4ff8-4fee-85ba-cf0575adb790" type="radio">
-</input><label class="tabbed-label" for="3b00175c-211c-4cae-a933-6b22a22a1799">
-Linux</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
+Linux</label><div class="sd-tab-content docutils">
 <p>Open Terminal and install <code class="docutils literal notranslate"><span class="pre">python-qgis</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">qgis</span>
 </pre></div>
@@ -1336,9 +981,9 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 </div>
 <p>Afterward, log out and re-login to your system (i.e., reload <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>). The command <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">qgis.core</span> <span class="pre">import</span> <span class="pre">*</span></code> should now work in Python.</p>
 </div>
-<input id="118add47-fd45-4f2f-966d-7d8cd19d0312" name="e496c133-4ff8-4fee-85ba-cf0575adb790" type="radio">
-</input><label class="tabbed-label" for="118add47-fd45-4f2f-966d-7d8cd19d0312">
-Windows</label><div class="tabbed-content docutils">
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
+Windows</label><div class="sd-tab-content docutils">
 <p>Make sure your system knows the where PyGIS lives by adding the following line to the Environment Variables (Windows 10: <strong>My Computer</strong> &gt; <strong>Properties</strong> &gt; <strong>Advanced System Settings</strong> &gt; <strong>Environment Variables</strong>). Replace <code class="docutils literal notranslate"><span class="pre">&lt;qgispath&gt;</span></code> with the path where QGIS lives on your system.</p>
 <ul class="simple">
 <li><p>Variable name = PYTHONPATH</p></li>
@@ -1350,8 +995,8 @@ Windows</label><div class="tabbed-content docutils">
 </div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1365,7 +1010,7 @@ Windows</label><div class="tabbed-content docutils">
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./geopy"
         },
         predefinedOutput: true
@@ -1373,46 +1018,115 @@ Windows</label><div class="tabbed-content docutils">
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="geospatial-data.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Geospatial Data</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="geospatial-data.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Geospatial Data</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="drone-processing.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="drone-processing.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Process Drone (UAV) Imagery</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-        
-        </div>
-    </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Sebastian Schwindt, Ricardo Barros<br/>
-        
-            &copy; Copyright 2023.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-project">First Project</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#panels-toolbars-and-plugins">Panels, Toolbars, and Plugins</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basemaps-for-qgis-google-or-open-street-maps-worldmap-tiles">Basemaps for QGIS (Google or Open Street Maps Worldmap Tiles)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-shapefile">Create a Shapefile</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-point-shapefile">Create a Point Shapefile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-line-shapefile">Create a Line Shapefile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-polygon-shapefile">Create a Polygon Shapefile</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-rasterize-polygon-to-raster">Conversion: Rasterize (Polygon to Raster)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-rasters">Working with Rasters</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qgis-raster-calculator-map-algebra">QGIS Raster Calculator (Map Algebra)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-to-xyz">Raster to XYZ</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-layout-and-pdf-jpg-or-other-maps">Create Layout and PDF / JPG (or other) Maps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyqgis-qgis-and-python">PyQGIS: QGIS and Python</a></li>
+</ul>
+  </nav></div>
 
-      </div>
-    </div>
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By Sebastian Schwindt, Beatriz Negreiros, Federica Scolari, Ricardo Barros
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

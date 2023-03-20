@@ -618,8 +618,8 @@ Even though the liquid boundaries are already defined in QGIS (see the {ref}`QGI
 
 The upstream (inflow) liquid boundary will constitute an **Open boundary with prescribed Q** (discharge) and the downstream outflow (liquid) boundary will constitute an **Open boundary with prescribed Q and H** (i.e., prescribed {term}`Rating curve` / {term}`Stage-discharge relation`). These types of boundary conditions are commonly used in practice, with the downstream boundary typically chosen to be at a gauging station where a {term}`Stage-discharge relation` ({term}`Rating curve`) has been calibrated with historic data. To assign the two liquid boundary lines, zoom into the downstream and upstream regions indicated in  {numref}`Fig. %s <bk-bc-types>` and create both boundaries as follows (toggle tabs):
 
-
-````{tabbed} Upstream boundary
+`````{tab-set}
+````{tab-item} Upstream boundary
 * Zoom into the **upstream** region indicated in  {numref}`Fig. %s <bk-bc-types>`.
 * Locate the main channel banks corresponding to the breaklines drawn in QGIS ({ref}`see above <tm-bm-breaklines>`) or BlueKenue<sup>TM</sup> ({ref}`see above <bk-draw-ol>`).
 * **Double-click** on a **node at one bank** of the model outline (no matter what bank), then **hold** the **Shift** key and **double-click** on a **node at the other bank** to highlight the inflow (purple) line (see {numref}`Fig. %s <bk-boundary-us>`).
@@ -640,7 +640,7 @@ The upstream boundary definition. Double-click on a node at one bank, then hold 
 ```
 ````
 
-````{tabbed} Downstream boundary
+````{tab-item} Downstream boundary
 * Zoom into the **downstream** region indicated in {numref}`Fig. %s <bk-bc-types>`.
 * Locate the main channel banks corresponding to the breaklines drawn in QGIS ({ref}`see above <tm-bm-breaklines>`) or BlueKenue<sup>TM</sup> ({ref}`see above <bk-draw-ol>`), which are indicated by the red-dotted lines in {numref}`Fig. %s <bk-boundary-ds>`.
 * **Double-click** on a **node at one bank** of the model outline (no matter what bank), then **hold** the **Shift** key and **double-click** on a **node at the other bank** to highlight the outflow (purple) line (see {numref}`Fig. %s <bk-boundary-ds>`).
@@ -658,6 +658,7 @@ The upstream boundary definition. Double-click on a node at one bank, then hold 
 The downstream boundary definition. Double-click on a node at one bank, then hold the **Shift** key and double-click on a node at the other bank to highlight the outflow (purple) line. Note that BOTTOM_BC might appear with the name *boundaries* if the object was saved as *boundaries.bc2*.
 ```
 ````
+`````
 
 Ultimately, TELEMAC will need a **`*.cli` file (*Conlim Table*)** that can be created by
 * highlighting the **boundaries (LIHBOR)** entry of the **boundaries** (or BOTTOM_BC) object in the **Data Items** tree and

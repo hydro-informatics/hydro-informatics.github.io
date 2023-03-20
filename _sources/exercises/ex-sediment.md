@@ -78,9 +78,11 @@ $$
 \Phi_b \approx 8 \cdot (\tau_{x} - \tau_{x,cr})^{3/2}
 $$ (eq-py-mpm)
 
-where <a name="taux"></a>
+```{admonition} Bed shear stress
+:name: taux
 * $\tau_{x,cr}$ $\approx$ 0.047 (up to 0.07 in mountain rivers), and
 * $\tau_{x}$ = $R_{h} \cdot S_{e} / [(s - 1) \cdot D_{char}]$
+```
 
 The other parameters are:
 * $s$ $\approx$ 2.68, the dimensionless ratio of sediment grain density $\rho_{s}$ ($\approx$ 2680 kg/m³) and water density $\rho_{w}$ ($\approx$ 1000 kg/m³);
@@ -94,17 +96,23 @@ The *Meyer-Peter & Müller* formula applies (like any other {term}`Sediment tran
 * 0.25 $< s <$ 3.2
 
 The dimensionless expression for {term}`Bedload` $\Phi_b$ was used to enable information transfer between different channels across scales by preserving geometric, kinematic, and dynamic similarity. The set of dimensionless parameters used results from [Buckingham's $\Pi$ theorem](https://pint.readthedocs.io/en/stable/pitheorem.html) {cite:p}`buckingham_model_1915`.
-Therefore, to add dimensions to $\Phi_b$, it needs to be multiplied with the same set of parameters used for deriving the dimensionless expression from *Meyer-Peter & Müller*. Their set of parameters involves the characteristic grain size $D_{char}$, the grain density $\rho_{s}$, and the gravitational acceleration $g$. Thus, the dimensional unit {term}`Bedload` is (in kg/s and meter width, i.e., kg/(s$\cdot$m): <a name="qb"></a>
+Therefore, to add dimensions to $\Phi_b$, it needs to be multiplied with the same set of parameters used for deriving the dimensionless expression from *Meyer-Peter & Müller*. Their set of parameters involves the characteristic grain size $D_{char}$, the grain density $\rho_{s}$, and the gravitational acceleration $g$. Thus, the dimensional unit {term}`Bedload` is (in kg/s and meter width, i.e., kg/(s$\cdot$m):
 
+```{admonition} Dimensional unit bedload
+:name: qb
 $$
 q_{b} = \Phi_b \cdot ((s-1) \cdot g \cdot D_{char}^{3})^{1/2} \cdot \rho_{s}
 $$
+```
 
 The cross-section averaged {term}`Bedload` $Q_{b}$ (kg/s) is then:
 
+```{admonition} Dimensionless cross-section-averaged bedload
+:name: qbx
 $$
 Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_{char}^{3}]^{1/2} \cdot \rho_{s}
 $$
+```
 
 where $b_{eff}$ is the hydraulically active channel width of the flow cross-section (e.g., for a trapezoid $b_{eff} = 0.5 \cdot (b + B)$).
 
@@ -170,7 +178,7 @@ def start_logging():
 
 ```
 
-The `log_actions` wrapper function follows the instructions from the [functions page](../jupyter/pyfun.html#wrappers):
+The `log_actions` wrapper function follows the instructions from the {ref}`functions theory section <wrappers>`:
 
 ```python
 def log_actions(fun):
@@ -336,7 +344,7 @@ class BedCore:
 Import `fun` (the script with logging functions) to enable the usage of `logging.warning(...)` messages in the methods of `BedCore` and its child classes.
 ```
 
-Add a method to convert the dimensionless {term}`Bedload` transport $\Phi_b$ into a dimensional value (kg/s). In addition to the variables defined in the `__init__` method, the `add_dimensions` method will require the effective channel width $b_{eff}$ ([recall the above descriptions](#qb):
+Add a method to convert the dimensionless {term}`Bedload` transport $\Phi_b$ into a dimensional value (kg/s). In addition to the variables defined in the `__init__` method, the `add_dimensions` method will require the effective channel width $b_{eff}$ ({ref}`recall the above calculus <qb>`):
 
 ```python
     def add_dimensions(self, b):
@@ -347,7 +355,7 @@ Add a method to convert the dimensionless {term}`Bedload` transport $\Phi_b$ int
             return np.nan
 ```
 
-Many {term}`Bedload` transport formulae involve the dimensionless bed shear stress [$\tau_{x}$ (see above formula)](#taux) associated with a set of cross-section averaged hydraulic parameters. Therefore, implement the calculation method `compute_tau_x` in `BedCore`:
+Many {term}`Bedload` transport formulae involve the dimensionless bed shear stress [$\tau_{x}$ (see above {ref}`definitions <taux>`) associated with a set of cross-section averaged hydraulic parameters. Therefore, implement the calculation method `compute_tau_x` in `BedCore`:
 
 ```python
     def compute_tau_x(self):
@@ -360,7 +368,7 @@ Many {term}`Bedload` transport formulae involve the dimensionless bed shear stre
 
 ### Write a Meyer-Peter & Müller Bedload Assessment Class
 
-Create a new script (e.g., `mpm.py`) and implement a `MPM` class (**M**eyer-**P**eter & **M**üller) that inherits from the `BedCore` class. The `__init__` method of `MPM` should initialize `BedCore` and overwrite (recall {ref}`polymorphism`) relevant parameters to the calculation of {term}`Bedload` according to Meyer-Peter & Müller (1948). Moreover, the initialization of an `MPM` object should go along with a check of the validity and the calculation of the dimensionless {term}`Bedload` transport $\Phi_b$ ([see above explanations](#mpm)):
+Create a new script (e.g., `mpm.py`) and implement a `MPM` class (**M**eyer-**P**eter & **M**üller) that inherits from the `BedCore` class. The `__init__` method of `MPM` should initialize `BedCore` and overwrite (recall {ref}`polymorphism`) relevant parameters to the calculation of {term}`Bedload` according to Meyer-Peter & Müller (1948). Moreover, the initialization of an `MPM` object should go along with a check of the validity and the calculation of the dimensionless {term}`Bedload` transport $\Phi_b$ (see above {ref}`explanations of MPM <mpm>`):
 
 ```python
 from bedload import *

@@ -1,867 +1,537 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>1d Hydraulics (Manning-Strickler Formula) &#8212; Hydro-Informatics</title>
-    
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script src="../_static/tabs.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'exercises/ex-ms';</script>
     <link rel="canonical" href="https://hydro-informatics.com/exercises/ex-ms.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Reservoir Volume (Sequent Peak Algorithm)" href="ex-sp.html" />
     <link rel="prev" title="Python Exercises" href="python-exercises.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/icon.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Get Started
- </span>
-</p>
+    
+    
+    <img src="../_static/icon.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/icon.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../lectures/classroom.html">
-   The Virtual Classroom
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/principles.html">
-     Principles
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/lectures.html">
-     Lectures and Exercises
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/take_seat.html">
-     Take a Seat
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../get-started/software.html">
-   Software Resources
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/vm.html">
-     Virtual Machines and Linux
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/ide.html">
-     Integrated Development Environments (IDEs)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../python-basics/pyinstall.html">
-     Python (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/git.html">
-     Version Control : git
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/geo.html">
-     Geospatial Software
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/install-openfoam.html">
-     OpenFOAM (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/install-telemac.html">
-     TELEMAC (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/others.html">
-     Other Software Resources
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/classroom.html">The Virtual Classroom</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/principles.html">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/lectures.html">Lectures and Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/take_seat.html">Take a Seat</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Python Basics
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../get-started/software.html">Software Resources</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/vm.html">Virtual Machines and Linux</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../get-started/ide.html">Integrated Development Environments (IDEs)</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../python-basics/pyinstall.html">Python (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/git.html">Version Control : git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/geo.html">Geospatial Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/install-openfoam.html">OpenFOAM (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/install-telemac.html">TELEMAC (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/others.html">Other Software Resources</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Basics</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/python.html">
-   First Steps
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pybase.html">
-     Hello Data Types
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyerror.html">
-     Errors, Logging, and Debugging
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyloop.html">
-     Loops and Conditional Statements
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/modularize.html">
-   Object Orientation
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyfun.html">
-     Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pypckg.html">
-     Packages, Modules and Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/classes.html">
-     Object Orientation and Classes
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/data-handling.html">
-   Data and File Handling
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pynum.html">
-     Data Files, NumPy &amp; Pandas
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/xml.html">
-     Structured Data (XML, xlsx &amp; JSON)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyplot.html">
-     Plotting
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../jupyter/pystyle.html">
-   Code Style and Conventions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../jupyter/gui.html">
-   Graphical User Interfaces (GUIs)
-  </a>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="python-exercises.html">
-   Python Exercises
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     1d Hydraulics (Manning-Strickler Formula)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="ex-sp.html">
-     Reservoir Volume (Sequent Peak Algorithm)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="ex-floods.html">
-     Flood Return Periods
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="ex-sediment.html">
-     1d Sediment Transport
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="ex-gui.html">
-     Create a GUI
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/python.html">First Steps</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pybase.html">Hello Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyerror.html">Errors, Logging, and Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyloop.html">Loops and Conditional Statements</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Geospatial Analysis
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/geospatial-data.html">
-   Geospatial Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/use-qgis.html">
-   QGIS Tutorial
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/drone-processing.html">
-   Process Drone (UAV) Imagery
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../geopy/geo-python.html">
-   Geospatial Python
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/geo-pckg.html">
-     Geospatial Open Source Python Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-shp.html">
-     Shapefile (Vector) Handling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-raster.html">
-     Raster (Grid) Handling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-convert.html">
-     Vectorize and Rasterize
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-arcpy.html">
-     The Commercial arcpy Library
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="geo-exercises.html">
-   Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="ex-geco.html">
-     Script a Habitat Suitability Map
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/modularize.html">Object Orientation</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyfun.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pypckg.html">Packages, Modules and Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/classes.html">Object Orientation and Classes</a></li>
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Data Science
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../datascience/data-science.html">
-   Fundamentals (Coming soon)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/py-requirements.html">
-     Python Requirements
-    </a>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../datascience/data-prepro.html">
-     Data Pre-Processing
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-    <label for="toctree-checkbox-10">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/data-types.html">
-       The Nature of Data
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/data-cleaning.html">
-       Dataset Cleaning
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/dimensional-analysis.html">
-       Dimensional Analysis
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../datascience/theory.html">
-   Techniques (Coming soon)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/techniques.html">
-     Overview of Fundamental Techniques
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/calibrate-validate.html">
-     Model Calibration and Validation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
-     Support Vector Machine (SVM)
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/data-handling.html">Data and File Handling</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pynum.html">Data Files, NumPy &amp; Pandas</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/xml.html">Structured Data (XML, xlsx &amp; JSON)</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyplot.html">Plotting</a></li>
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Numerical Modeling
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../numerics/numerical-modeling.html">
-   Principles
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../numerics/basement.html">
-   BASEMENT
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/pre-qgis-bm.html">
-     Pre-processing with QGIS
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/basement2d.html">
-     Run and Check a Steady 2d Simulation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../numerics/telemac.html">
-   TELEMAC
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/pre-slf-tm.html">
-     Pre-processing
-    </a>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac2d.html">
-     Telemac2d
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-    <label for="toctree-checkbox-14">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac2d-steady.html">
-       Steady 2d
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac2d-unsteady.html">
-       Unsteady 2d
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac3d.html">
-     Telemac3d
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-    <label for="toctree-checkbox-15">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac3d-slf.html">
-       Steady 3d (SLF - Selafin)
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac3d-med.html">
-       Steady 3d (MED and Salome)
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac-gaia.html">
-     Gaia (Morphodynamics)
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-    <label for="toctree-checkbox-16">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-coupling.html">
-       Introduction and Coupling
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-basics.html">
-       Basic Setup of Gaia
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-bedload.html">
-       Bedload
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-suspended.html">
-       Suspended Load
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-run.html">
-       Run and Analyze
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/pystyle.html">Code Style and Conventions</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/gui.html">Graphical User Interfaces (GUIs)</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="python-exercises.html">Python Exercises</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">1d Hydraulics (Manning-Strickler Formula)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex-sp.html">Reservoir Volume (Sequent Peak Algorithm)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex-floods.html">Flood Return Periods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex-sediment.html">1d Sediment Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex-gui.html">Create a GUI</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Documentation
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/documentation.html">
-   How to Markdown and Document
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/glossary.html">
-   Glossary
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/notation.html">
-   Notation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/bibliography.html">
-   References
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="docs-exercises.html">
-   Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
-  <label for="toctree-checkbox-17">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="ex-git.html">
-     Git and Markdown
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Troubleshoot
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Geospatial Analysis</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
-   Programming Tools and IDEs
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
-  <label for="toctree-checkbox-18">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
-     Debugging Anaconda
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-python.html">
-     Debugging Python Code
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
-     Debugging Jupyter
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
-   Numerical Models
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
-  <label for="toctree-checkbox-19">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
-     Debugging BASEMENT
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
-     Debugging TELEMAC
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-os.html">
-   Operating Systems (Linux and VMs)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
-  <label for="toctree-checkbox-20">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
-     Debugging Debian Linux
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
-     Debugging Virtual Machines
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/geospatial-data.html">Geospatial Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/use-qgis.html">QGIS Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/drone-processing.html">Process Drone (UAV) Imagery</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../geopy/geo-python.html">Geospatial Python</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geopy/geo-pckg.html">Geospatial Open Source Python Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-shp.html">Shapefile (Vector) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-raster.html">Raster (Grid) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-convert.html">Vectorize and Rasterize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-arcpy.html">The Commercial arcpy Library</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Disclaimer and License
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="geo-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="ex-geco.html">Script a Habitat Suitability Map</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Modeling</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../terms/license.html">
-   License
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../terms/disclaimer.html">
-   Disclaimer
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../numerics/numerical-modeling.html">Principles</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerics/basement.html">BASEMENT</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/pre-qgis-bm.html">Pre-processing with QGIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/basement2d.html">Run and Check a Steady 2d Simulation</a></li>
+
+
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerics/telemac.html">TELEMAC</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/pre-slf-tm.html">Pre-processing</a></li>
+
+
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac2d.html">Telemac2d</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac2d-steady.html">Steady 2d</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac2d-unsteady.html">Unsteady 2d</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac3d.html">Telemac3d</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac3d-slf.html">Steady 3d (SLF - Selafin)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac3d-med.html">Steady 3d (MED and Salome)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac-gaia.html">Gaia (Morphodynamics)</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-coupling.html">Introduction and Coupling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-basics.html">Basic Setup of Gaia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-bedload.html">Bedload</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-suspended.html">Suspended Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-run.html">Run and Analyze</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerics/openfoam/of-intro.html">OpenFOAM</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase.html">Multiphase Solver (interFoam Tutorial)</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-mesh.html">Geometry and Mesh Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-setup.html">Case set-up</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-run.html">Run OpenFOAM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-post.html">Post-processing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/data-science.html">Fundamentals (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/py-requirements.html">Python Requirements</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../datascience/data-prepro.html">Data Pre-Processing</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/data-types.html">The Nature of Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/data-cleaning.html">Dataset Cleaning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/dimensional-analysis.html">Dimensional Analysis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/theory.html">Techniques (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/techniques.html">Overview of Fundamental Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/calibrate-validate.html">Model Calibration and Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/morphology-predictor-svm.html">Support Vector Machine (SVM)</a></li>
+
+
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../documentation/documentation.html">How to Markdown and Document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/notation.html">Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/bibliography.html">References</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="docs-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="ex-git.html">Git and Markdown</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Troubleshoot</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-programming.html">Programming Tools and IDEs</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-anaconda.html">Debugging Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-python.html">Debugging Python Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-jupyter.html">Debugging Jupyter</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">Numerical Models</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-basement.html">Debugging BASEMENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-telemac.html">Debugging TELEMAC</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-os.html">Operating Systems (Linux and VMs)</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-linux.html">Debugging Debian Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-vm.html">Debugging Virtual Machines</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-scilife.html">Science Life Hacks</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-zotero.html">Zotero Utilities</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Disclaimer and License</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../terms/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terms/disclaimer.html">Disclaimer</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a> and Ricardo Barros
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/exercises/ex-ms.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/hydro-informatics/jupyter-python-course"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
         
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/hydro-informatics/jupyter-python-course" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/exercises/ex-ms.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-        </div>
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>1d Hydraulics (Manning-Strickler Formula)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#theoretical-background">
-   Theoretical background
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#calculate-the-discharge">
-   Calculate the discharge
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#functionalize">
-   Functionalize
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#flexibilize">
-   Flexibilize
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#invert-the-function">
-   Invert the function
-  </a>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#theoretical-background">Theoretical background</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-the-discharge">Calculate the discharge</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functionalize">Functionalize</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flexibilize">Flexibilize</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#invert-the-function">Invert the function</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="d-hydraulics-manning-strickler-formula">
-<span id="ex-1d-hydraulics"></span><h1>1d Hydraulics (Manning-Strickler Formula)<a class="headerlink" href="#d-hydraulics-manning-strickler-formula" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="d-hydraulics-manning-strickler-formula">
+<span id="ex-1d-hydraulics"></span><h1>1d Hydraulics (Manning-Strickler Formula)<a class="headerlink" href="#d-hydraulics-manning-strickler-formula" title="Permalink to this headline">#</a></h1>
 <div class="admonition-goals admonition">
 <p class="admonition-title">Goals</p>
 <p>Write a basic script and use loops. Write a function and parse optional keyword arguments (<code class="docutils literal notranslate"><span class="pre">**kwargs</span></code>).</p>
@@ -874,13 +544,15 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ecohydraulics</span><span class="o">/</span><span class="n">Exercise</span><span class="o">-</span><span class="n">ManningStrickler</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
-<div class="figure align-default" id="rhone">
+<figure class="align-default" id="rhone">
 <img alt="Rhone Switzerland Pfynnwald" src="https://github.com/Ecohydraulics/media/raw/main/jpg/hydraulics-1d.jpg" />
-<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">The Rhone River in Switzerland (source: Sebastian Schwindt 2014).</span><a class="headerlink" href="#rhone" title="Permalink to this image">¶</a></p>
-</div>
-<div class="section" id="theoretical-background">
-<span id="calc-1d-hyd"></span><h2>Theoretical background<a class="headerlink" href="#theoretical-background" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Manning_formula">Gauckler-Manning-Strickler formula</a> <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id333">KC08</a>]</span> (or <em>Strickler formula</em> in Europe) relates water depth and flow velocity of open channel flow based on the assumption of one-dimensional (cross-section-averaged) flow characteristics. The <em>Strickler formula</em> results from a heavy simplification of the <a class="reference internal" href="../documentation/glossary.html#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a> and the <a class="reference internal" href="../documentation/glossary.html#term-Continuity-equation"><span class="xref std std-term">Continuity equation</span></a> <span id="id2">[<a class="reference internal" href="../documentation/bibliography.html#id333">KC08</a>]</span>. Even though one-dimensional (1d) approaches have largely been replaced by at least two-dimensional (2d) numerical models today, the 1d Strickler formula is still frequently used as a first approximation for boundary conditions.</p>
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">The Rhone River in Switzerland (source: Sebastian Schwindt 2014).</span><a class="headerlink" href="#rhone" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="theoretical-background">
+<span id="calc-1d-hyd"></span><h2>Theoretical background<a class="headerlink" href="#theoretical-background" title="Permalink to this headline">#</a></h2>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Manning_formula">Gauckler-Manning-Strickler formula</a> <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id333" title="P.K. Kundu and I.M. Cohen. Fluid Mechanics. Elsevier Inc., San Diego, CA, USA, 4th edition, 2008. ISBN 978-0-12-373735-9.">KC08</a>]</span> (or <em>Strickler formula</em> in Europe) relates water depth and flow velocity of open channel flow based on the assumption of one-dimensional (cross-section-averaged) flow characteristics. The <em>Strickler formula</em> results from a heavy simplification of the <a class="reference internal" href="../documentation/glossary.html#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a> and the <a class="reference internal" href="../documentation/glossary.html#term-Continuity-equation"><span class="xref std std-term">Continuity equation</span></a> <span id="id2">[<a class="reference internal" href="../documentation/bibliography.html#id333" title="P.K. Kundu and I.M. Cohen. Fluid Mechanics. Elsevier Inc., San Diego, CA, USA, 4th edition, 2008. ISBN 978-0-12-373735-9.">KC08</a>]</span>. Even though one-dimensional (1d) approaches have largely been replaced by at least two-dimensional (2d) numerical models today, the 1d Strickler formula is still frequently used as a first approximation for boundary conditions.</p>
 <p>The basic shape of the <em>Strickler formula</em> is:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -893,16 +565,16 @@ u = k_{st}\cdot S^{1/2} \cdot R_{h}^{2/3}
 <ul>
 <li><p><span class="math notranslate nohighlight">\(k_{st}\)</span> <span class="math notranslate nohighlight">\(\approx\)</span> 20 (<span class="math notranslate nohighlight">\(n_m \approx\)</span> 0.05) for rough, complex, and near-natural rivers</p></li>
 <li><p><span class="math notranslate nohighlight">\(k_{st}\)</span> <span class="math notranslate nohighlight">\(\approx\)</span> 90 (<span class="math notranslate nohighlight">\(n_m \approx\)</span> 0.011) for smooth, concrete-lined channels</p></li>
-<li><p><span class="math notranslate nohighlight">\(k_{st}\)</span> <span class="math notranslate nohighlight">\(\approx\)</span> 26/<span class="math notranslate nohighlight">\(D_{90}^{1/6}\)</span> (approximation based on the grain size <span class="math notranslate nohighlight">\(D_{90}\)</span>, where 90% of the surface sediment grains are smaller, according to <span id="id3">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id390">MPM48</a>]</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(k_{st}\)</span> <span class="math notranslate nohighlight">\(\approx\)</span> 26/<span class="math notranslate nohighlight">\(D_{90}^{1/6}\)</span> (approximation based on the grain size <span class="math notranslate nohighlight">\(D_{90}\)</span>, where 90% of the surface sediment grains are smaller, according to <span id="id3">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id390" title="E Meyer-Peter and R Müller. Formulas for Bed-Load transport. IAHSR, appendix 2, 2nd meeting:39–65, 1948. URL: http://resolver.tudelft.nl/uuid:4fda9b61-be28-4703-ab06-43cdc2a21bd7.">MPM48</a>]</span></p></li>
 </ul>
 </li>
 <li><p><span class="math notranslate nohighlight">\(S\)</span> is the hypothetic energy slope (m/m), which can be assumed to correspond to the channel slope for steady, uniform flow conditions.</p></li>
 <li><p><span class="math notranslate nohighlight">\(R_{h}\)</span> is the hydraulic radius in (m)</p></li>
 </ul>
 <p>The hydraulic radius <span class="math notranslate nohighlight">\(R_{h}\)</span> is the ratio of wetted area <span class="math notranslate nohighlight">\(A\)</span> and wetted perimeter <span class="math notranslate nohighlight">\(P\)</span>. Both <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(P\)</span> can be calculated as a function of the water depth <span class="math notranslate nohighlight">\(h\)</span> and the channel base width <span class="math notranslate nohighlight">\(b\)</span>. Many channel cross-sections can be approximated with a trapezoidal shape, where the water surface width <span class="math notranslate nohighlight">\(B=b+2\cdot h\cdot m\)</span> (with <span class="math notranslate nohighlight">\(m\)</span> being the bank slope as indicated in the figure below).</p>
-<div class="figure align-default" id="d-cross-section">
+<figure class="align-default" id="d-cross-section">
 <img alt="1d hydraulics parameters" src="https://github.com/Ecohydraulics/media/raw/main/png/flow-cs.png" />
-</div>
+</figure>
 <p>Thus, <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(P\)</span> result from the following formulas:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -917,35 +589,35 @@ P = b + 2h\cdot (m^2 + 1)^{1/2}
 \[
 Q = u \cdot A = k_{st} \cdot S^{1/2}\cdot R_{h}^{2/3} \cdot A
 \]</div>
-</div>
-<div class="section" id="calculate-the-discharge">
-<h2>Calculate the discharge<a class="headerlink" href="#calculate-the-discharge" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="calculate-the-discharge">
+<h2>Calculate the discharge<a class="headerlink" href="#calculate-the-discharge" title="Permalink to this headline">#</a></h2>
 <p>Write a script that prints the discharge as a function of the channel base width <span class="math notranslate nohighlight">\(b\)</span>, bank slope <span class="math notranslate nohighlight">\(m\)</span>, water depth <span class="math notranslate nohighlight">\(h\)</span>, the slope <span class="math notranslate nohighlight">\(S\)</span>, and the <em>Strickler</em> coefficient <span class="math notranslate nohighlight">\(k_{st}\)</span>.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Use <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">math</span> <span class="pre">as</span> <span class="pre">m</span></code> to calculate square roots (<code class="docutils literal notranslate"><span class="pre">m.sqrt</span></code>). Powers are calculated with the <code class="docutils literal notranslate"><span class="pre">**</span></code> operator (e.g., <span class="math notranslate nohighlight">\(m^2\)</span>  corresponds to <code class="docutils literal notranslate"><span class="pre">m**2</span></code>).</p>
 </div>
-</div>
-<div class="section" id="functionalize">
-<h2>Functionalize<a class="headerlink" href="#functionalize" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="functionalize">
+<h2>Functionalize<a class="headerlink" href="#functionalize" title="Permalink to this headline">#</a></h2>
 <p>Cast the calculation into a function (e.g., <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">calc_discharge(b,</span> <span class="pre">h,</span> <span class="pre">k_st,</span> <span class="pre">m,</span> <span class="pre">S):</span> <span class="pre">...</span></code>) that returns the discharge <span class="math notranslate nohighlight">\(Q\)</span>.</p>
-</div>
-<div class="section" id="flexibilize">
-<h2>Flexibilize<a class="headerlink" href="#flexibilize" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="flexibilize">
+<h2>Flexibilize<a class="headerlink" href="#flexibilize" title="Permalink to this headline">#</a></h2>
 <p>Make the function more flexible through the implementation of (optional) <a class="reference internal" href="../jupyter/pyfun.html#kwargs"><span class="std std-ref"> keyword arguments</span></a> so that a user can optionally either provide the <span class="math notranslate nohighlight">\(D_{90}\)</span> (<code class="docutils literal notranslate"><span class="pre">D90</span></code>), the <em>Strickler</em> coefficient <span class="math notranslate nohighlight">\(k_{st}\)</span> (<code class="docutils literal notranslate"><span class="pre">k_st</span></code>), or <em>Manning’s</em> <span class="math notranslate nohighlight">\(n_m\)</span> (<code class="docutils literal notranslate"><span class="pre">n_m</span></code>).</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>In the code, only use <em>Manning’s</em> <span class="math notranslate nohighlight">\(n_m\)</span> and parse <code class="docutils literal notranslate"><span class="pre">kwargs.items()</span></code> to find out the <code class="docutils literal notranslate"><span class="pre">kwargs</span></code> provided by a user.</p>
 </div>
-</div>
-<div class="section" id="invert-the-function">
-<h2>Invert the function<a class="headerlink" href="#invert-the-function" title="Permalink to this headline">¶</a></h2>
-<p>The backward solution to the <em>Manning-Strickler</em> formula is a non-linear problem if the channel is not rectangular. This is why an iterative approximation is needed and here, we use the <em>Newton-Raphson</em> scheme <span id="id4">[<a class="reference internal" href="../documentation/bibliography.html#id14">AK87</a>]</span> for this purpose (see also the <a class="reference external" href="https://ilias3.uni-stuttgart.de">the University of Stuttgart’s ILIAS platform</a>).</p>
+</section>
+<section id="invert-the-function">
+<h2>Invert the function<a class="headerlink" href="#invert-the-function" title="Permalink to this headline">#</a></h2>
+<p>The backward solution to the <em>Manning-Strickler</em> formula is a non-linear problem if the channel is not rectangular. This is why an iterative approximation is needed and here, we use the <em>Newton-Raphson</em> scheme <span id="id4">[<a class="reference internal" href="../documentation/bibliography.html#id14" title="A.A. Akanbi and N.D. Katopodes. Model for flood propagation on initially dry land. Journal of Hydraulic Engineering, 114(7):689–706, 1987. doi:10.1061/(ASCE)0733-9429(1988)114:7(689).">AK87</a>]</span> for this purpose (see also the <a class="reference external" href="https://ilias3.uni-stuttgart.de">the University of Stuttgart’s ILIAS platform</a>).</p>
 <div class="tip admonition">
 <p class="admonition-title">Absolute Values</p>
 <p>The absolute value of a parameter can be easily accessed through the built-in <code class="docutils literal notranslate"><span class="pre">abs()</span></code> method in <em>Python3</em>.</p>
 </div>
-<p>Use a Newton-Raphson solution scheme <span id="id5">[<a class="reference internal" href="../documentation/bibliography.html#id441">Pai92</a>]</span> to interpolate the water depth <code class="docutils literal notranslate"><span class="pre">h</span></code> for a given discharge <code class="docutils literal notranslate"><span class="pre">Q</span></code> of a trapezoidal channel.</p>
+<p>Use a Newton-Raphson solution scheme <span id="id5">[<a class="reference internal" href="../documentation/bibliography.html#id441" title="John N Paine. Open-Channel Flow Algorithm in Newton-Raphson Form. Journal of Irrigation and Drainage Engineering, 118(2):306–319, 1992.">Pai92</a>]</span> to interpolate the water depth <code class="docutils literal notranslate"><span class="pre">h</span></code> for a given discharge <code class="docutils literal notranslate"><span class="pre">Q</span></code> of a trapezoidal channel.</p>
 <ul class="simple">
 <li><p>Write a new function <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">interpolate_h(Q,</span> <span class="pre">b,</span> <span class="pre">m,</span> <span class="pre">S,</span> <span class="pre">**kwargs):</span></code></p></li>
 <li><p>Define an initial guess of <code class="docutils literal notranslate"><span class="pre">h</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">h</span> <span class="pre">=</span> <span class="pre">1.0</span></code>) and an initial error margin (e.g., <code class="docutils literal notranslate"><span class="pre">eps</span> <span class="pre">=</span> <span class="pre">1.0</span></code>)</p></li>
@@ -965,8 +637,8 @@ Q = u \cdot A = k_{st} \cdot S^{1/2}\cdot R_{h}^{2/3} \cdot A
 <li><p>Implement an emergency stop to avoid endless iterations - the Newton-Raphson scheme is not always stable!</p></li>
 <li><p>Return <code class="docutils literal notranslate"><span class="pre">h</span></code> and <code class="docutils literal notranslate"><span class="pre">eps</span></code> (or calculated discharge <code class="docutils literal notranslate"><span class="pre">Qk</span></code>)</p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -980,7 +652,7 @@ Q = u \cdot A = k_{st} \cdot S^{1/2}\cdot R_{h}^{2/3} \cdot A
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./exercises"
         },
         predefinedOutput: true
@@ -988,46 +660,103 @@ Q = u \cdot A = k_{st} \cdot S^{1/2}\cdot R_{h}^{2/3} \cdot A
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="python-exercises.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Python Exercises</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="python-exercises.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Python Exercises</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="ex-sp.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="ex-sp.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Reservoir Volume (Sequent Peak Algorithm)</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-        
-        </div>
-    </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Sebastian Schwindt, Ricardo Barros<br/>
-        
-            &copy; Copyright 2023.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#theoretical-background">Theoretical background</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-the-discharge">Calculate the discharge</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functionalize">Functionalize</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flexibilize">Flexibilize</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#invert-the-function">Invert the function</a></li>
+</ul>
+  </nav></div>
 
-      </div>
-    </div>
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By Sebastian Schwindt, Beatriz Negreiros, Federica Scolari, Ricardo Barros
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

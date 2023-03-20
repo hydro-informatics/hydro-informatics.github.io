@@ -1,980 +1,574 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>TELEMAC (Installation) &#8212; Hydro-Informatics</title>
-    
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script src="../_static/tabs.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'get-started/install-telemac';</script>
     <link rel="canonical" href="https://hydro-informatics.com/get-started/install-telemac.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Other Software Resources" href="others.html" />
     <link rel="prev" title="OpenFOAM (Installation)" href="install-openfoam.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/icon.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Get Started
- </span>
-</p>
+    
+    
+    <img src="../_static/icon.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/icon.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../lectures/classroom.html">
-   The Virtual Classroom
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/principles.html">
-     Principles
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/lectures.html">
-     Lectures and Exercises
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/take_seat.html">
-     Take a Seat
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="software.html">
-   Software Resources
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="vm.html">
-     Virtual Machines and Linux
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="ide.html">
-     Integrated Development Environments (IDEs)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../python-basics/pyinstall.html">
-     Python (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="git.html">
-     Version Control : git
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="geo.html">
-     Geospatial Software
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="install-openfoam.html">
-     OpenFOAM (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     TELEMAC (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="others.html">
-     Other Software Resources
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/classroom.html">The Virtual Classroom</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/principles.html">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/lectures.html">Lectures and Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/take_seat.html">Take a Seat</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Python Basics
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/python.html">
-   First Steps
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pybase.html">
-     Hello Data Types
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyerror.html">
-     Errors, Logging, and Debugging
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyloop.html">
-     Loops and Conditional Statements
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/modularize.html">
-   Object Orientation
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyfun.html">
-     Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pypckg.html">
-     Packages, Modules and Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/classes.html">
-     Object Orientation and Classes
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/data-handling.html">
-   Data and File Handling
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pynum.html">
-     Data Files, NumPy &amp; Pandas
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/xml.html">
-     Structured Data (XML, xlsx &amp; JSON)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyplot.html">
-     Plotting
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../jupyter/pystyle.html">
-   Code Style and Conventions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../jupyter/gui.html">
-   Graphical User Interfaces (GUIs)
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/python-exercises.html">
-   Python Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-ms.html">
-     1d Hydraulics (Manning-Strickler Formula)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-sp.html">
-     Reservoir Volume (Sequent Peak Algorithm)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-floods.html">
-     Flood Return Periods
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-sediment.html">
-     1d Sediment Transport
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-gui.html">
-     Create a GUI
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="software.html">Software Resources</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="vm.html">Virtual Machines and Linux</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="ide.html">Integrated Development Environments (IDEs)</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../python-basics/pyinstall.html">Python (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git.html">Version Control : git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geo.html">Geospatial Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install-openfoam.html">OpenFOAM (Installation)</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">TELEMAC (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="others.html">Other Software Resources</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Geospatial Analysis
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/geospatial-data.html">
-   Geospatial Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/use-qgis.html">
-   QGIS Tutorial
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/drone-processing.html">
-   Process Drone (UAV) Imagery
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../geopy/geo-python.html">
-   Geospatial Python
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/geo-pckg.html">
-     Geospatial Open Source Python Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-shp.html">
-     Shapefile (Vector) Handling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-raster.html">
-     Raster (Grid) Handling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-convert.html">
-     Vectorize and Rasterize
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-arcpy.html">
-     The Commercial arcpy Library
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/geo-exercises.html">
-   Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-geco.html">
-     Script a Habitat Suitability Map
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Data Science
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Basics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../datascience/data-science.html">
-   Fundamentals (Coming soon)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/py-requirements.html">
-     Python Requirements
-    </a>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../datascience/data-prepro.html">
-     Data Pre-Processing
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-    <label for="toctree-checkbox-10">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/data-types.html">
-       The Nature of Data
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/data-cleaning.html">
-       Dataset Cleaning
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/dimensional-analysis.html">
-       Dimensional Analysis
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../datascience/theory.html">
-   Techniques (Coming soon)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/techniques.html">
-     Overview of Fundamental Techniques
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/calibrate-validate.html">
-     Model Calibration and Validation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
-     Support Vector Machine (SVM)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/python.html">First Steps</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pybase.html">Hello Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyerror.html">Errors, Logging, and Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyloop.html">Loops and Conditional Statements</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Numerical Modeling
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../numerics/numerical-modeling.html">
-   Principles
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../numerics/basement.html">
-   BASEMENT
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/pre-qgis-bm.html">
-     Pre-processing with QGIS
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/basement2d.html">
-     Run and Check a Steady 2d Simulation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../numerics/telemac.html">
-   TELEMAC
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/pre-slf-tm.html">
-     Pre-processing
-    </a>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac2d.html">
-     Telemac2d
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-    <label for="toctree-checkbox-14">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac2d-steady.html">
-       Steady 2d
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac2d-unsteady.html">
-       Unsteady 2d
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac3d.html">
-     Telemac3d
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-    <label for="toctree-checkbox-15">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac3d-slf.html">
-       Steady 3d (SLF - Selafin)
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac3d-med.html">
-       Steady 3d (MED and Salome)
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac-gaia.html">
-     Gaia (Morphodynamics)
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-    <label for="toctree-checkbox-16">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-coupling.html">
-       Introduction and Coupling
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-basics.html">
-       Basic Setup of Gaia
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-bedload.html">
-       Bedload
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-suspended.html">
-       Suspended Load
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-run.html">
-       Run and Analyze
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/modularize.html">Object Orientation</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyfun.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pypckg.html">Packages, Modules and Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/classes.html">Object Orientation and Classes</a></li>
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Documentation
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/documentation.html">
-   How to Markdown and Document
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/glossary.html">
-   Glossary
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/notation.html">
-   Notation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/bibliography.html">
-   References
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/docs-exercises.html">
-   Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
-  <label for="toctree-checkbox-17">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-git.html">
-     Git and Markdown
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/data-handling.html">Data and File Handling</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pynum.html">Data Files, NumPy &amp; Pandas</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/xml.html">Structured Data (XML, xlsx &amp; JSON)</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyplot.html">Plotting</a></li>
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Troubleshoot
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
-   Programming Tools and IDEs
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
-  <label for="toctree-checkbox-18">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
-     Debugging Anaconda
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-python.html">
-     Debugging Python Code
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
-     Debugging Jupyter
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
-   Numerical Models
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
-  <label for="toctree-checkbox-19">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
-     Debugging BASEMENT
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
-     Debugging TELEMAC
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-os.html">
-   Operating Systems (Linux and VMs)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
-  <label for="toctree-checkbox-20">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
-     Debugging Debian Linux
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
-     Debugging Virtual Machines
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/pystyle.html">Code Style and Conventions</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/gui.html">Graphical User Interfaces (GUIs)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/python-exercises.html">Python Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-ms.html">1d Hydraulics (Manning-Strickler Formula)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-sp.html">Reservoir Volume (Sequent Peak Algorithm)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-floods.html">Flood Return Periods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-sediment.html">1d Sediment Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-gui.html">Create a GUI</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Disclaimer and License
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Geospatial Analysis</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../terms/license.html">
-   License
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../terms/disclaimer.html">
-   Disclaimer
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/geospatial-data.html">Geospatial Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/use-qgis.html">QGIS Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/drone-processing.html">Process Drone (UAV) Imagery</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../geopy/geo-python.html">Geospatial Python</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geopy/geo-pckg.html">Geospatial Open Source Python Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-shp.html">Shapefile (Vector) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-raster.html">Raster (Grid) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-convert.html">Vectorize and Rasterize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-arcpy.html">The Commercial arcpy Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/geo-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-geco.html">Script a Habitat Suitability Map</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../numerics/numerical-modeling.html">Principles</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerics/basement.html">BASEMENT</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/pre-qgis-bm.html">Pre-processing with QGIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/basement2d.html">Run and Check a Steady 2d Simulation</a></li>
+
+
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerics/telemac.html">TELEMAC</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/pre-slf-tm.html">Pre-processing</a></li>
+
+
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac2d.html">Telemac2d</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac2d-steady.html">Steady 2d</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac2d-unsteady.html">Unsteady 2d</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac3d.html">Telemac3d</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac3d-slf.html">Steady 3d (SLF - Selafin)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac3d-med.html">Steady 3d (MED and Salome)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac-gaia.html">Gaia (Morphodynamics)</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-coupling.html">Introduction and Coupling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-basics.html">Basic Setup of Gaia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-bedload.html">Bedload</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-suspended.html">Suspended Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-run.html">Run and Analyze</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerics/openfoam/of-intro.html">OpenFOAM</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase.html">Multiphase Solver (interFoam Tutorial)</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-mesh.html">Geometry and Mesh Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-setup.html">Case set-up</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-run.html">Run OpenFOAM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-post.html">Post-processing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/data-science.html">Fundamentals (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/py-requirements.html">Python Requirements</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../datascience/data-prepro.html">Data Pre-Processing</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/data-types.html">The Nature of Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/data-cleaning.html">Dataset Cleaning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/dimensional-analysis.html">Dimensional Analysis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/theory.html">Techniques (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/techniques.html">Overview of Fundamental Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/calibrate-validate.html">Model Calibration and Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/morphology-predictor-svm.html">Support Vector Machine (SVM)</a></li>
+
+
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../documentation/documentation.html">How to Markdown and Document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/notation.html">Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/bibliography.html">References</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/docs-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-git.html">Git and Markdown</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Troubleshoot</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-programming.html">Programming Tools and IDEs</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-anaconda.html">Debugging Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-python.html">Debugging Python Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-jupyter.html">Debugging Jupyter</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">Numerical Models</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-basement.html">Debugging BASEMENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-telemac.html">Debugging TELEMAC</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-os.html">Operating Systems (Linux and VMs)</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-linux.html">Debugging Debian Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-vm.html">Debugging Virtual Machines</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-scilife.html">Science Life Hacks</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-zotero.html">Zotero Utilities</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Disclaimer and License</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../terms/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terms/disclaimer.html">Disclaimer</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a> and Ricardo Barros
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/get-started/install-telemac.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/hydro-informatics/jupyter-python-course"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
         
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/hydro-informatics/jupyter-python-course" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/get-started/install-telemac.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-        </div>
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>TELEMAC (Installation)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#preface">
-   Preface
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#good-to-know">
-     Good to Know
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#telemac-installation-workflow">
-   TELEMAC Installation Workflow
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#prerequisites">
-     Prerequisites
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#python3">
-     Python3
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#git">
-     GIT
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gnu-fortran-95-compiler-gfortran">
-     GNU Fortran 95 Compiler (gfortran)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#compilers-and-other-essentials">
-     Compilers and Other Essentials
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#download-telemac">
-     Download TELEMAC
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#recommended-prerequisites-parallelism-and-compilers">
-   Recommended Prerequisites (Parallelism and Compilers)
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#parallelism-install-mpi">
-     Parallelism: Install MPI
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#parallelism-install-metis">
-     Parallelism: Install Metis
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hdf5-and-med-format-handlers">
-     Hdf5 and MED Format Handlers
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#aed2">
-     AED2
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#compile-telemac">
-   Compile TELEMAC
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#adapt-and-verify-configuration-file-systel-cfg">
-     Adapt and Verify Configuration File (systel.*.cfg)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#setup-python-source-file">
-     Setup Python Source File
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#compile">
-     Compile
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#test-telemac">
-     Test TELEMAC
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#run-sample-cases-examples">
-     Run Sample Cases (Examples)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#utilities-pre-post-processing">
-   Utilities (Pre- &amp; Post-processing)
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#qgis-linux-and-windows">
-     QGIS (Linux and Windows)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#bluekenue-windows-or-linux-wine">
-     BlueKenue (Windows or Linux+Wine)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#fudaa-prepro-linux-and-windows">
-     Fudaa-PrePro (Linux and Windows)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preface">Preface</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#good-to-know">Good to Know</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#telemac-installation-workflow">TELEMAC Installation Workflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python3">Python3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git">GIT</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gnu-fortran-95-compiler-gfortran">GNU Fortran 95 Compiler (gfortran)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compilers-and-other-essentials">Compilers and Other Essentials</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-telemac">Download TELEMAC</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-prerequisites-parallelism-and-compilers">Recommended Prerequisites (Parallelism and Compilers)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallelism-install-mpi">Parallelism: Install MPI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallelism-install-metis">Parallelism: Install Metis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hdf5-and-med-format-handlers">Hdf5 and MED Format Handlers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aed2">AED2</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compile-telemac">Compile TELEMAC</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adapt-and-verify-configuration-file-systel-cfg">Adapt and Verify Configuration File (systel.*.cfg)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-python-source-file">Setup Python Source File</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compile">Compile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-telemac">Test TELEMAC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-sample-cases-examples">Run Sample Cases (Examples)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilities-pre-post-processing">Utilities (Pre- &amp; Post-processing)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qgis-linux-and-windows">QGIS (Linux and Windows)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bluekenue-windows-or-linux-wine">BlueKenue (Windows or Linux+Wine)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fudaa-prepro-linux-and-windows">Fudaa-PrePro (Linux and Windows)</a></li>
+</ul>
+</li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="telemac-installation">
-<span id="telemac-install"></span><h1>TELEMAC (Installation)<a class="headerlink" href="#telemac-installation" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="telemac-installation">
+<span id="telemac-install"></span><h1>TELEMAC (Installation)<a class="headerlink" href="#telemac-installation" title="Permalink to this headline">#</a></h1>
 <div class="admonition-requirements admonition">
 <p class="admonition-title">Requirements</p>
 <p>This tutorial guides through the installation of <a class="reference external" href="http://www.opentelemac.org/">open TELEMAC-MASCARET</a> on <a class="reference external" href="https://www.debian.org/">Debian Linux</a>.</p>
 <p>Account for approximately 1-2 hours for installing TELEMAC and make sure to have a stable internet connection (&gt;1.4 GB file download).</p>
 </div>
-<div class="section" id="preface">
-<h2>Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
+<section id="preface">
+<h2>Preface<a class="headerlink" href="#preface" title="Permalink to this headline">#</a></h2>
 <p>This page only guides through the <strong>installation</strong> of TELEMAC. A tutorial for running hydro(-morpho)dynamic models with TELEMAC is currently under construction for this eBook.</p>
-<div class="section" id="good-to-know">
-<h3>Good to Know<a class="headerlink" href="#good-to-know" title="Permalink to this headline">¶</a></h3>
+<section id="good-to-know">
+<h3>Good to Know<a class="headerlink" href="#good-to-know" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Installing TELEMAC on a <a class="reference internal" href="vm.html#chpt-vm-linux"><span class="std std-ref">Virtual Machine (VM)</span></a> is useful for getting started with TELEMAC and its sample cases, but not recommended for running a real-world numerical model (limited performance of VMs).</p></li>
 <li><p>Familiarize with the <a class="reference internal" href="vm.html#linux-terminal"><span class="std std-ref">Linux Terminal</span></a> to understand the underpinnings for compiling TELEMAC.</p></li>
@@ -991,16 +585,16 @@
 </div>
 </div>
 <p>TELEMAC is also available through the SALOME-HYDRO software suite, which is a spinoff of SALOME. However, the principal functionalities of SALOME-HYDRO will migrate to a new QGIS plugin. Therefore, this eBook recommends installing TELEMAC independently from any pre- or post-processing software.</p>
-</div>
-</div>
-<div class="section" id="telemac-installation-workflow">
-<span id="modular-install"></span><h2>TELEMAC Installation Workflow<a class="headerlink" href="#telemac-installation-workflow" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="telemac-installation-workflow">
+<span id="modular-install"></span><h2>TELEMAC Installation Workflow<a class="headerlink" href="#telemac-installation-workflow" title="Permalink to this headline">#</a></h2>
 <div class="note dropdown admonition">
 <p class="admonition-title">TELEMAC Docker image</p>
 <p>The Austrian engineering office <em>Flussplan</em> provides a Docker container of TELEMAC v8 on their <a class="reference external" href="https://github.com/flussplan/docker-telemac">docker-telemac GitHub repository</a>. Note that a Docker container represents an easy-to-install virtual environment that leverages cross-platform compatibility, but affects computational performance. If you have the proprietary Docker software installed and computational performance is not the primary concern for your models, Flussplan’s Docker container might be a good choice. For instance, purely hydrodynamic models with small numbers of grid nodes and without additional TELEMAC module implications will efficiently run in the Docker container.</p>
 </div>
-<div class="section" id="prerequisites">
-<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
+<section id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">#</a></h3>
 <div class="note dropdown admonition">
 <p class="admonition-title">Old SVN has been replaced by GIT (since v8p3)</p>
 <p>The newest release of TELEMAC (v8p3) is provided on <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/tree/main">gitlab</a> with the version control system <a class="reference internal" href="git.html#chpt-git"><span class="std std-ref">git</span></a> rather than the previously used <code class="docutils literal notranslate"><span class="pre">svn</span></code> version control.</p>
@@ -1014,9 +608,9 @@
 <p class="admonition-title">Admin (sudo) rights required</p>
 <p>Superuser (<code class="docutils literal notranslate"><span class="pre">sudo</span></code> for <strong>su</strong>per <strong>do</strong>ers list) rights are required for many actions described in this workflow. Read more about how to set up and grant <code class="docutils literal notranslate"><span class="pre">sudo</span></code> rights for a user account on <em>Debian Linux</em> in the tutorial for setting up <a class="reference internal" href="vm.html#user-rights"><span class="std std-ref">Debian Linux</span></a>.</p>
 </div>
-</div>
-<div class="section" id="python3">
-<h3>Python3<a class="headerlink" href="#python3" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="python3">
+<h3>Python3<a class="headerlink" href="#python3" title="Permalink to this headline">#</a></h3>
 <p><em><strong>Estimated duration: 5-8 minutes.</strong></em></p>
 <p>The high-level programing language <em>Python3</em> is pre-installed on Debian Linux 10.x and needed to launch the compiler script for TELEMAC. To launch <em>Python3</em>, open Terminal and type <code class="docutils literal notranslate"><span class="pre">python3</span></code>. To exit Python, type <code class="docutils literal notranslate"><span class="pre">exit()</span></code>.</p>
 <p>TELEMAC requires the <a class="reference external" href="https://numpy.org/">NumPy</a> Python library that comes along with <a class="reference external" href="https://scipy.org/">SciPy</a> and <a class="reference external" href="https://matplotlib.org/">matplotlib</a>.</p>
@@ -1043,17 +637,17 @@
 </pre></div>
 </div>
 <p>None of the three library imports should return an <code class="docutils literal notranslate"><span class="pre">ImportError</span></code> message. To learn more about Python read the section on <a class="reference internal" href="../jupyter/pypckg.html#sec-pypckg"><span class="std std-ref">Packages, Modules and Libraries</span></a>.</p>
-</div>
-<div class="section" id="git">
-<span id="tm-git-requirements"></span><h3>GIT<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="git">
+<span id="tm-git-requirements"></span><h3>GIT<a class="headerlink" href="#git" title="Permalink to this headline">#</a></h3>
 <p><em><strong>Estimated duration: Less than 5 minutes.</strong></em></p>
 <p>The installation of the git version control system and its usage is extensively described in the <a class="reference internal" href="git.html#dl"><span class="std std-ref">git section of this eBook</span></a>. In addition to the git functionalities described in the git section, the following are needed to manage large files that come along with TELEMAC:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">git</span><span class="o">-</span><span class="nb">all</span> <span class="n">git</span><span class="o">-</span><span class="n">lfs</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="gnu-fortran-95-compiler-gfortran">
-<h3>GNU Fortran 95 Compiler (gfortran)<a class="headerlink" href="#gnu-fortran-95-compiler-gfortran" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="gnu-fortran-95-compiler-gfortran">
+<h3>GNU Fortran 95 Compiler (gfortran)<a class="headerlink" href="#gnu-fortran-95-compiler-gfortran" title="Permalink to this headline">#</a></h3>
 <p><em><strong>Estimated duration: 3-10 minutes.</strong></em></p>
 <p>The Fortran 95 compiler is needed to compile TELEMAC through a Python3 script, which requires that <code class="docutils literal notranslate"><span class="pre">gfortran</span></code> is installed. The Debian Linux retrieves <code class="docutils literal notranslate"><span class="pre">gfortran</span></code> from the standard package repositories. Thus, to install the Fortran 95 compiler, open Terminal and type:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">gfortran</span>
@@ -1076,17 +670,17 @@
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="compilers-and-other-essentials">
-<h3>Compilers and Other Essentials<a class="headerlink" href="#compilers-and-other-essentials" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="compilers-and-other-essentials">
+<h3>Compilers and Other Essentials<a class="headerlink" href="#compilers-and-other-essentials" title="Permalink to this headline">#</a></h3>
 <p><em><strong>Estimated duration: 2-5 minutes.</strong></em>
 To enable parallelism, a <em>C</em> compiler is required for recognition of the command <code class="docutils literal notranslate"><span class="pre">cmake</span></code> in Terminal. Moreover, we will need <code class="docutils literal notranslate"><span class="pre">build-essential</span></code> for building packages and create a comfortable environment for <code class="docutils literal notranslate"><span class="pre">dialog</span></code>ues. <a class="reference external" href="https://www.vim.org/">VIM</a> is a text editor that we will use for bash file editing. Therefore, open Terminal (as root/superuser, i.e., type <code class="docutils literal notranslate"><span class="pre">su</span></code>) and type:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">cmake</span> <span class="n">build</span><span class="o">-</span><span class="n">essential</span> <span class="n">dialog</span> <span class="n">vim</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="download-telemac">
-<h3>Download TELEMAC<a class="headerlink" href="#download-telemac" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="download-telemac">
+<h3>Download TELEMAC<a class="headerlink" href="#download-telemac" title="Permalink to this headline">#</a></h3>
 <p><em><strong>Estimated duration: 25-40 minutes (large downloads).</strong></em></p>
 <p>Before getting more packages to enable parallelism and compiling, download the latest version of TELEMAC with git in which additional packages will be embedded. To download (i.e., <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code>) TELEMAC, open Terminal, which will by default start in your home directory (<code class="docutils literal notranslate"><span class="pre">/home/USERNAME/</span></code>). The following instructions assume you want to install TELEMAC directly in your home directory. However, it might make sense to create a new sub-folder (e.g., called <code class="docutils literal notranslate"><span class="pre">/modeling</span></code>) to better organize your system (<code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">~/modeling/</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/modeling</span></code>). To download TELEMAC into the home (or a new) directory, type (enter <code class="docutils literal notranslate"><span class="pre">no</span></code> when asked for password encryption):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">gitlab</span><span class="o">.</span><span class="n">pam</span><span class="o">-</span><span class="n">retd</span><span class="o">.</span><span class="n">fr</span><span class="o">/</span><span class="n">otm</span><span class="o">/</span><span class="n">telemac</span><span class="o">-</span><span class="n">mascaret</span><span class="o">.</span><span class="n">git</span>
@@ -1106,10 +700,10 @@ To enable parallelism, a <em>C</em> compiler is required for recognition of the 
 <span class="n">git</span> <span class="n">checkout</span> <span class="n">tags</span><span class="o">/</span><span class="n">v8p4r0</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="recommended-prerequisites-parallelism-and-compilers">
-<h2>Recommended Prerequisites (Parallelism and Compilers)<a class="headerlink" href="#recommended-prerequisites-parallelism-and-compilers" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="recommended-prerequisites-parallelism-and-compilers">
+<h2>Recommended Prerequisites (Parallelism and Compilers)<a class="headerlink" href="#recommended-prerequisites-parallelism-and-compilers" title="Permalink to this headline">#</a></h2>
 <p>This section guides through the installation of additional packages required for parallelism. Make sure that Terminal recognizes <code class="docutils literal notranslate"><span class="pre">gcc</span></code>, which should be included in the <em>Debian</em> base installation (verify with <code class="docutils literal notranslate"><span class="pre">gcc</span> <span class="pre">--help</span></code>). This section includes installation for:</p>
 <ul class="simple">
 <li><p>Install packages for parallelism to enable a substantial acceleration of simulations:</p>
@@ -1125,8 +719,8 @@ To enable parallelism, a <em>C</em> compiler is required for recognition of the 
 </ul>
 </li>
 </ul>
-<div class="section" id="parallelism-install-mpi">
-<span id="mpi"></span><h3>Parallelism: Install MPI<a class="headerlink" href="#parallelism-install-mpi" title="Permalink to this headline">¶</a></h3>
+<section id="parallelism-install-mpi">
+<span id="mpi"></span><h3>Parallelism: Install MPI<a class="headerlink" href="#parallelism-install-mpi" title="Permalink to this headline">#</a></h3>
 <p><em><strong>Estimated duration: 5 minutes.</strong></em></p>
 <p>TELEMAC’s parallelism modules require that the <em>Message Passing Interface</em> (<a class="reference internal" href="../documentation/glossary.html#term-MPI"><span class="xref std std-term">MPI</span></a>) standard is installed either through the <em>MPICH</em> or the <em>Open MPI</em> library. Here, we opt for <em>Open MPI</em>, which can be installed via Terminal:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">libopenmpi</span><span class="o">-</span><span class="n">dev</span> <span class="n">openmpi</span><span class="o">-</span><span class="nb">bin</span>
@@ -1141,9 +735,9 @@ To enable parallelism, a <em>C</em> compiler is required for recognition of the 
 <p class="admonition-title">How to use MPICH in lieu of Open MPI</p>
 <p>This tutorial uses the configuration file <code class="docutils literal notranslate"><span class="pre">systel.cis-debian.cfg</span></code>, which includes parallelism compiling options that build on <em>Open MPI</em>. Other configuration files (e.g., <code class="docutils literal notranslate"><span class="pre">systel.cis-ubuntu.cfg</span></code>) use <em>MPICH</em> instead of <em>Open MPI</em>. To use those configuration files, install <em>MPICH</em> with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">mpich</span></code>.</p>
 </div>
-</div>
-<div class="section" id="parallelism-install-metis">
-<span id="metis"></span><h3>Parallelism: Install Metis<a class="headerlink" href="#parallelism-install-metis" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="parallelism-install-metis">
+<span id="metis"></span><h3>Parallelism: Install Metis<a class="headerlink" href="#parallelism-install-metis" title="Permalink to this headline">#</a></h3>
 <p><em><strong>Estimated duration: 10-15 minutes.</strong></em></p>
 <p>Metis is a software package for partitioning unstructured graphs, partitioning meshes, and computing fill-reducing orderings of sparse matrices by George Karypis. TELEMAC uses <em>Metis</em> as a part of <em>Partel</em> to split the mesh into multiple parts for parallel runs. Learn more about <em>Metis</em> and potentially newer versions than <code class="docutils literal notranslate"><span class="pre">5.1.0</span></code> (used in the following) on the <a class="reference external" href="http://glaros.dtc.umn.edu/gkhome/metis/metis/download">Karypis Lab website</a> or reading the <a class="reference external" href="http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/manual.pdf">PDF manual</a>.</p>
 <p>Download the <em>Metis</em> archive and unpack it in a temporary (<code class="docutils literal notranslate"><span class="pre">temp</span></code>) directory. The following code block changes to the <code class="docutils literal notranslate"><span class="pre">optionals</span></code> directory (<code class="docutils literal notranslate"><span class="pre">cd</span></code>) of TELEMAC, creates the <code class="docutils literal notranslate"><span class="pre">temp</span></code> folder with <code class="docutils literal notranslate"><span class="pre">mkdir</span></code>, downloads, and unzips the <em>Metis</em> archive (run in Terminal as <em><strong>normal user</strong></em> - <em><strong>not as root</strong></em>):</p>
@@ -1188,9 +782,9 @@ To enable parallelism, a <em>C</em> compiler is required for recognition of the 
 </pre></div>
 </div>
 <p>To verify the successful installation, make sure that the file <code class="docutils literal notranslate"><span class="pre">~/telemac-mascaret/optionals/metis-5.1.0/build/lib/libmetis.a</span></code> exists (i.e., <code class="docutils literal notranslate"><span class="pre">&lt;install_path&gt;/lib/libmetis.a</span></code> ). The installation of <em>Metis</em> on Linux is also documented in the <a class="reference external" href="http://wiki.opentelemac.org/doku.php?id=installation_linux_metis">opentelemac wiki</a>.</p>
-</div>
-<div class="section" id="hdf5-and-med-format-handlers">
-<span id="med-hdf"></span><h3>Hdf5 and MED Format Handlers<a class="headerlink" href="#hdf5-and-med-format-handlers" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="hdf5-and-med-format-handlers">
+<span id="med-hdf"></span><h3>Hdf5 and MED Format Handlers<a class="headerlink" href="#hdf5-and-med-format-handlers" title="Permalink to this headline">#</a></h3>
 <p><em><strong>Estimated duration: 15-25 minutes (building libraries takes time).</strong></em></p>
 <p><strong>HDF5</strong> is a portable file format that incorporates metadata and communicates efficiently with <em>C/C++</em> and <em>Fortran</em> on small laptops as well as massively parallel systems. The <em>hdf5</em> file library is provided by the <a class="reference external" href="https://portal.hdfgroup.org/">HDFgroup.org</a>.</p>
 <p>We will install here version <code class="docutils literal notranslate"><span class="pre">1.10.3</span></code>. Do not try to use any other <em>hdf5</em> version because those will not work with the <em>med file</em> library (next step). The following code block downloads and unzips the <em>hdf-5-1.10.3</em> archive in the above-created (metis) <code class="docutils literal notranslate"><span class="pre">temp/</span></code> folder (run in Terminal as normal user - not as root):</p>
@@ -1243,9 +837,9 @@ The installation of <em>hdf5</em> on Linux is also documented in the <a class="r
 <span class="n">sudo</span> <span class="n">rm</span> <span class="o">-</span><span class="n">r</span> <span class="n">temp</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="aed2">
-<h3>AED2<a class="headerlink" href="#aed2" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="aed2">
+<h3>AED2<a class="headerlink" href="#aed2" title="Permalink to this headline">#</a></h3>
 <p><em><strong>Estimated duration: &lt; 5 minutes.</strong></em></p>
 <p>To use TELEMAC’s water quality (<em><strong>waqtel</strong></em>) module, the <em>AED2</em> is (partially) required. In some versions of TELEMAC, the make files for installing <em>AED2</em> are provided with the <code class="docutils literal notranslate"><span class="pre">svn</span></code> repository in the <em>optionals</em> folder. Otherwise, download and unpack the <em>aed2</em> folder from the manual installation sources on <a class="reference external" href="http://www.opentelemac.org/index.php/component/jdownloads/summary/39-manual-installation-sources/2126-aed2?Itemid=54">opentelemac.org</a>. Then, to install <em>AED2</em>, <em>cd</em> to the <em>aed2</em> folder and run <code class="docutils literal notranslate"><span class="pre">make</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">-</span><span class="n">mascaret</span><span class="o">/</span><span class="n">optionals</span><span class="o">/</span><span class="n">aed2</span>
@@ -1256,12 +850,12 @@ The installation of <em>hdf5</em> on Linux is also documented in the <a class="r
 <p class="admonition-title">Note</p>
 <p><em>AED2</em> is not needed for the tutorials on this website and the installation of this module can be skipped.</p>
 </div>
-</div>
-</div>
-<div class="section" id="compile-telemac">
-<span id="compile-tm"></span><h2>Compile TELEMAC<a class="headerlink" href="#compile-telemac" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="adapt-and-verify-configuration-file-systel-cfg">
-<h3>Adapt and Verify Configuration File (systel.*.cfg)<a class="headerlink" href="#adapt-and-verify-configuration-file-systel-cfg" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="compile-telemac">
+<span id="compile-tm"></span><h2>Compile TELEMAC<a class="headerlink" href="#compile-telemac" title="Permalink to this headline">#</a></h2>
+<section id="adapt-and-verify-configuration-file-systel-cfg">
+<h3>Adapt and Verify Configuration File (systel.*.cfg)<a class="headerlink" href="#adapt-and-verify-configuration-file-systel-cfg" title="Permalink to this headline">#</a></h3>
 <p><em><strong>Estimated duration: 15-20 minutes.</strong></em></p>
 <div class="tip admonition">
 <p class="admonition-title">Facilitate compiling with our templates</p>
@@ -1278,18 +872,18 @@ The installation of <em>hdf5</em> on Linux is also documented in the <a class="r
 <span class="cp"># ____/ Debian gfortran openMPI /__________________________________/</span>
 <span class="p">[</span><span class="n">debgfopenmpi</span><span class="p">]</span>
 <span class="cp">#</span>
-<span class="n">par_cmdexec</span><span class="p">:</span>   <span class="o">&lt;</span><span class="n">config</span><span class="o">&gt;/</span><span class="n">partel</span> <span class="o">&lt;</span> <span class="n">partel</span><span class="p">.</span><span class="n">par</span> <span class="o">&gt;&gt;</span> <span class="o">&lt;</span><span class="n">partel</span><span class="p">.</span><span class="nb">log</span><span class="o">&gt;</span>
+<span class="n">par_cmdexec</span><span class="p">:</span><span class="w">   </span><span class="o">&lt;</span><span class="n">config</span><span class="o">&gt;/</span><span class="n">partel</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">partel</span><span class="p">.</span><span class="n">par</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">partel</span><span class="p">.</span><span class="nb">log</span><span class="o">&gt;</span>
 <span class="cp">#</span>
-<span class="n">mpi_cmdexec</span><span class="p">:</span>   <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">mpiexec</span> <span class="o">-</span><span class="n">wdir</span> <span class="o">&lt;</span><span class="n">wdir</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">n</span> <span class="o">&lt;</span><span class="n">ncsize</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">exename</span><span class="o">&gt;</span>
+<span class="n">mpi_cmdexec</span><span class="p">:</span><span class="w">   </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">mpiexec</span><span class="w"> </span><span class="o">-</span><span class="n">wdir</span><span class="w"> </span><span class="o">&lt;</span><span class="n">wdir</span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;</span><span class="n">ncsize</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">exename</span><span class="o">&gt;</span>
 <span class="n">mpi_hosts</span><span class="p">:</span>
 <span class="cp">#</span>
-<span class="n">cmd_obj</span><span class="p">:</span>    <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">mpif90</span> <span class="o">-</span><span class="n">c</span> <span class="o">-</span><span class="n">O3</span> <span class="o">-</span><span class="n">DHAVE_MPI</span> <span class="o">-</span><span class="n">fconvert</span><span class="o">=</span><span class="n">big</span><span class="o">-</span><span class="n">endian</span> <span class="o">-</span><span class="n">frecord</span><span class="o">-</span><span class="n">marker</span><span class="o">=</span><span class="mi">4</span> <span class="o">&lt;</span><span class="n">mods</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">incs</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">f95name</span><span class="o">&gt;</span>
-<span class="n">cmd_lib</span><span class="p">:</span>    <span class="n">ar</span> <span class="n">cru</span> <span class="o">&lt;</span><span class="n">libname</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">objs</span><span class="o">&gt;</span>
-<span class="n">cmd_exe</span><span class="p">:</span>    <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">mpif90</span> <span class="o">-</span><span class="n">fconvert</span><span class="o">=</span><span class="n">big</span><span class="o">-</span><span class="n">endian</span> <span class="o">-</span><span class="n">frecord</span><span class="o">-</span><span class="n">marker</span><span class="o">=</span><span class="mi">4</span> <span class="o">-</span><span class="n">lpthread</span> <span class="o">-</span><span class="n">v</span> <span class="o">-</span><span class="n">lm</span> <span class="o">-</span><span class="n">o</span> <span class="o">&lt;</span><span class="n">exename</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">objs</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">libs</span><span class="o">&gt;</span>
+<span class="n">cmd_obj</span><span class="p">:</span><span class="w">    </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">mpif90</span><span class="w"> </span><span class="o">-</span><span class="n">c</span><span class="w"> </span><span class="o">-</span><span class="n">O3</span><span class="w"> </span><span class="o">-</span><span class="n">DHAVE_MPI</span><span class="w"> </span><span class="o">-</span><span class="n">fconvert</span><span class="o">=</span><span class="n">big</span><span class="o">-</span><span class="n">endian</span><span class="w"> </span><span class="o">-</span><span class="n">frecord</span><span class="o">-</span><span class="n">marker</span><span class="o">=</span><span class="mi">4</span><span class="w"> </span><span class="o">&lt;</span><span class="n">mods</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">incs</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">f95name</span><span class="o">&gt;</span>
+<span class="n">cmd_lib</span><span class="p">:</span><span class="w">    </span><span class="n">ar</span><span class="w"> </span><span class="n">cru</span><span class="w"> </span><span class="o">&lt;</span><span class="n">libname</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">objs</span><span class="o">&gt;</span>
+<span class="n">cmd_exe</span><span class="p">:</span><span class="w">    </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">mpif90</span><span class="w"> </span><span class="o">-</span><span class="n">fconvert</span><span class="o">=</span><span class="n">big</span><span class="o">-</span><span class="n">endian</span><span class="w"> </span><span class="o">-</span><span class="n">frecord</span><span class="o">-</span><span class="n">marker</span><span class="o">=</span><span class="mi">4</span><span class="w"> </span><span class="o">-</span><span class="n">lpthread</span><span class="w"> </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="o">-</span><span class="n">lm</span><span class="w"> </span><span class="o">-</span><span class="n">o</span><span class="w"> </span><span class="o">&lt;</span><span class="n">exename</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">objs</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">libs</span><span class="o">&gt;</span>
 <span class="cp">#</span>
-<span class="n">mods_all</span><span class="p">:</span>   <span class="o">-</span><span class="n">I</span> <span class="o">&lt;</span><span class="n">config</span><span class="o">&gt;</span>
+<span class="n">mods_all</span><span class="p">:</span><span class="w">   </span><span class="o">-</span><span class="n">I</span><span class="w"> </span><span class="o">&lt;</span><span class="n">config</span><span class="o">&gt;</span>
 <span class="cp">#</span>
-<span class="n">libs_all</span><span class="p">:</span>   <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">openmpi</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libmpi</span><span class="p">.</span><span class="n">so</span><span class="p">.</span><span class="mi">4</span><span class="mf">0.20</span><span class="p">.</span><span class="mi">3</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">telemac</span><span class="o">/</span><span class="n">metis</span><span class="o">-</span><span class="mf">5.1</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libmetis</span><span class="p">.</span><span class="n">a</span>
+<span class="n">libs_all</span><span class="p">:</span><span class="w">   </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">openmpi</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libmpi</span><span class="p">.</span><span class="n">so</span><span class="p">.</span><span class="mi">4</span><span class="mf">0.20</span><span class="p">.</span><span class="mi">3</span><span class="w"> </span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">telemac</span><span class="o">/</span><span class="n">metis</span><span class="o">-</span><span class="mf">5.1</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libmetis</span><span class="p">.</span><span class="n">a</span>
 </pre></div>
 </div>
 <p>The configuration file contains other configurations such as a <em>scalar</em> or a <em>debug</em> configuration for compiling TELEMAC. Here, we only use the <em>Debian gfortran open MPI</em> section that has the configuration name <code class="docutils literal notranslate"><span class="pre">[debgfopenmpi]</span></code>. To verify if this section if correctly defined, check where the following libraries live on your system (use Terminal and <code class="docutils literal notranslate"><span class="pre">cd</span></code> + <code class="docutils literal notranslate"><span class="pre">ls</span></code> commands or Debian’s <em>File</em> browser):</p>
@@ -1306,10 +900,12 @@ The installation of <em>hdf5</em> on Linux is also documented in the <a class="r
 <span class="n">vim</span> <span class="n">systel</span><span class="o">.</span><span class="n">cis</span><span class="o">-</span><span class="n">debian</span><span class="o">.</span><span class="n">cfg</span>
 </pre></div>
 </div>
-<p>Make the following adaptations in <em>Debian gfortran open MPI</em> section to enable parallelism:<a name="parcmd"></a></p>
+<div class="admonition-enable-parallelism admonition" id="parcmd">
+<p class="admonition-title">Enable Parallelism</p>
+<p>Make the following adaptations in <em>Debian gfortran open MPI</em> section to enable parallelism:</p>
 <ul class="simple">
 <li><p>Remove <code class="docutils literal notranslate"><span class="pre">par_cmdexec</span></code> from the configuration file; that means delete the line (otherwise, parallel processing will crash with a message that says <em>cannot find PARTEL.PAR</em>):<br><code class="docutils literal notranslate"><span class="pre">par_cmdexec:</span>&#160;&#160; <span class="pre">&lt;config&gt;/partel</span> <span class="pre">&lt;</span> <span class="pre">PARTEL.PAR</span> <span class="pre">&gt;&gt;</span> <span class="pre">&lt;partel.log&gt;</span></code></p></li>
-<li><p>Find <code class="docutils literal notranslate"><span class="pre">libs_all</span></code> to add and adapt:</p>
+<li><p>Find <code class="docutils literal notranslate"><span class="pre">libs_all</span></code> to add and adapt the following items:</p>
 <ul>
 <li><p><em>metis</em> (all <em>metis</em>-related directories to <code class="docutils literal notranslate"><span class="pre">/home/USERNAME/telemac-mascaret/optionals/metis-5.1.0/build/lib/libmetis.a</span></code>).</p></li>
 <li><p><em>openmpi</em> (correct the library file to <code class="docutils literal notranslate"><span class="pre">/usr/lib/x86_64-linux-gnu/openmpi/libmpi.so.40.20.3</span></code> or wherever <code class="docutils literal notranslate"><span class="pre">libmpi.so.xx.xx.x</span></code> lives on your machine).</p></li>
@@ -1336,8 +932,9 @@ The installation of <em>hdf5</em> on Linux is also documented in the <a class="r
 </div>
 <p>An additional keyword in the configurations is <code class="docutils literal notranslate"><span class="pre">options:</span></code> that accepts multiple keywords including <code class="docutils literal notranslate"><span class="pre">mpi</span></code>, <code class="docutils literal notranslate"><span class="pre">api</span></code> (<em>TelApy</em> - <em>TELEMAC’s Python API</em>), <code class="docutils literal notranslate"><span class="pre">hpc</span></code>, and <code class="docutils literal notranslate"><span class="pre">dyn</span></code> or <code class="docutils literal notranslate"><span class="pre">static</span></code>.  The provided <code class="docutils literal notranslate"><span class="pre">cfg</span></code> file primarily uses the <code class="docutils literal notranslate"><span class="pre">mpi</span></code> keyword. To use other installation options (e.g., HPC or dynamic), read the instructions for HPC installation on <a class="reference external" href="http://wiki.opentelemac.org/doku.php?id=installation_on_linux">opentelemac.org</a> and have a look at the most advanced default config file from EDF (<code class="docutils literal notranslate"><span class="pre">~/telemac-mascaret/configs/systel.edf.cfg</span></code>).</p>
 </div>
-<div class="section" id="setup-python-source-file">
-<h3>Setup Python Source File<a class="headerlink" href="#setup-python-source-file" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="setup-python-source-file">
+<h3>Setup Python Source File<a class="headerlink" href="#setup-python-source-file" title="Permalink to this headline">#</a></h3>
 <p><em><strong>Estimated duration: 15-20 minutes.</strong></em></p>
 <div class="tip admonition">
 <p class="admonition-title">Facilitate setting up the pysource with our templates</p>
@@ -1400,9 +997,9 @@ export AEDHOME=$SYSTEL/aed2
 export LD_LIBRARY_PATH=$AEDHOME/obj:$LD_LIBRARY_PATH
 </pre></div>
 </div>
-</div>
-<div class="section" id="compile">
-<h3>Compile<a class="headerlink" href="#compile" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="compile">
+<h3>Compile<a class="headerlink" href="#compile" title="Permalink to this headline">#</a></h3>
 <p><em><strong>Estimated duration: 20-30 minutes (compiling takes time).</strong></em></p>
 <p>The compiler is called through Python and the above-created bash script ( <code class="docutils literal notranslate"><span class="pre">pysource.openmpi.sh</span></code> ). Thus, the Python source file <code class="docutils literal notranslate"><span class="pre">pysource.openmpi.sh</span></code> knows where helper programs and libraries are located, and it knows the configuration to be used. With the Python source file, compiling TELEMAC becomes an easy task in Terminal. First, load the Python source file <code class="docutils literal notranslate"><span class="pre">pysource.openmpi.sh</span></code> as source in Terminal, and then, test if it is correctly configured by running <code class="docutils literal notranslate"><span class="pre">config.py</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">-</span><span class="n">mascaret</span><span class="o">/</span><span class="n">configs</span>
@@ -1420,9 +1017,9 @@ When <code class="docutils literal notranslate"><span class="pre">config.py</spa
 <p class="admonition-title">Troubleshoot errors in the compiling process</p>
 <p>If an error occurred in the compiling process, traceback error messages and identify the component that did not work. Revise setting up the concerned component in this workflow very thoroughly. Do not try to re-invent the wheel - the most likely problem is a tiny little detail in the files that you created on your own. Troubleshooting may be a tough task, in particular, because you need to put into question your own work.</p>
 </div>
-</div>
-<div class="section" id="test-telemac">
-<span id="testrun"></span><h3>Test TELEMAC<a class="headerlink" href="#test-telemac" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="test-telemac">
+<span id="testrun"></span><h3>Test TELEMAC<a class="headerlink" href="#test-telemac" title="Permalink to this headline">#</a></h3>
 <p><em><strong>Estimated duration: 5-10 minutes.</strong></em></p>
 <p>Once Terminal was closed or any clean system start-up requires to load the TELEMAC source environment in Terminal before running TELEMAC:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">-</span><span class="n">mascaret</span><span class="o">/</span><span class="n">configs</span>
@@ -1455,7 +1052,7 @@ When <code class="docutils literal notranslate"><span class="pre">config.py</spa
 </div>
 <div class="note dropdown admonition">
 <p class="admonition-title">Cannot find &lt;&lt;PARTEL.PAR&gt;&gt;?</p>
-<p>If there is an error message such as <strong><code class="docutils literal notranslate"><span class="pre">Cannot</span> <span class="pre">find</span> <span class="pre">&lt;&lt;</span> <span class="pre">PARTEL.PAR</span> <span class="pre">&gt;&gt;</span></code></strong> … <strong><code class="docutils literal notranslate"><span class="pre">TypeError:</span> <span class="pre">can</span> <span class="pre">only</span> <span class="pre">concatenate</span> <span class="pre">str</span> <span class="pre">(not</span> <span class="pre">...)</span> <span class="pre">to</span> <span class="pre">str</span></code></strong>, make sure that <code class="docutils literal notranslate"><span class="pre">par_cmdexec</span></code> is removed from the configuration file (<a class="reference external" href="#parcmd">see above</a>).</p>
+<p>If there is an error message such as <strong><code class="docutils literal notranslate"><span class="pre">Cannot</span> <span class="pre">find</span> <span class="pre">&lt;&lt;</span> <span class="pre">PARTEL.PAR</span> <span class="pre">&gt;&gt;</span></code></strong> … <strong><code class="docutils literal notranslate"><span class="pre">TypeError:</span> <span class="pre">can</span> <span class="pre">only</span> <span class="pre">concatenate</span> <span class="pre">str</span> <span class="pre">(not</span> <span class="pre">...)</span> <span class="pre">to</span> <span class="pre">str</span></code></strong>, make sure that <code class="docutils literal notranslate"><span class="pre">par_cmdexec</span></code> is removed from the configuration file (<a class="reference internal" href="#parcmd"><span class="std std-ref">see above</span></a>).</p>
 </div>
 <p>When the computation is running, observe the CPU charge. If the CPUs are all working with different percentages, the parallel version is working well.</p>
 <p>TELEMAC should startup, run the example case, and again end with the phrase <code class="docutils literal notranslate"><span class="pre">My</span> <span class="pre">work</span> <span class="pre">is</span> <span class="pre">done</span></code>. To assess the efficiency of the number of CPUs used, vary <code class="docutils literal notranslate"><span class="pre">ncsize</span></code>. For instance, the <em>donau</em> example (<code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/telemac-mascaret/examples/telemac2d/donau</span></code>) ran with <code class="docutils literal notranslate"><span class="pre">telemac2d.py</span> <span class="pre">t2d_donau.cas</span> <span class="pre">--ncsize=4</span></code> may take approximately 1.5 minutes, while <code class="docutils literal notranslate"><span class="pre">telemac2d.py</span> <span class="pre">t2d_donau.cas</span> <span class="pre">--ncsize=2</span></code> (i.e., half the number of CPUs) takes approximately 2.5 minutes. The computing time may differ depending on your hardware, but note that doubling the number of CPUs does not cut the calculation time by a factor of two. So to optimize system resources, it can be reasonable to start several simulation cases on fewer cores than one simulation on multiple cores.</p>
@@ -1463,9 +1060,9 @@ When <code class="docutils literal notranslate"><span class="pre">config.py</spa
 <p class="admonition-title">Troubleshoot <em>No such file or directory</em></p>
 <p>If you interrupted the Terminal session and get an error message such as <code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">such</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">directory</span></code>, you may need to re-define (re-load) the Python source file: In Terminal go (<code class="docutils literal notranslate"><span class="pre">cd</span></code>) to <code class="docutils literal notranslate"><span class="pre">~/telemac-mascaret/configs</span></code>, type <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">pysource.openmpi.sh</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">config.py</span></code>, and then go back to the <code class="docutils literal notranslate"><span class="pre">examples</span></code> folder to re-run the example.</p>
 </div>
-</div>
-<div class="section" id="run-sample-cases-examples">
-<h3>Run Sample Cases (Examples)<a class="headerlink" href="#run-sample-cases-examples" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="run-sample-cases-examples">
+<h3>Run Sample Cases (Examples)<a class="headerlink" href="#run-sample-cases-examples" title="Permalink to this headline">#</a></h3>
 <p>TELEMAC comes with many application examples in the sub-directory <code class="docutils literal notranslate"><span class="pre">~/telemac-mascaret/examples/</span></code>. To generate the documentation and verify the TELEMAC installation, load the TELEMAC environment and validate it:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">-</span><span class="n">mascaret</span><span class="o">/</span><span class="n">configs</span><span class="o">/</span>
 <span class="n">source</span> <span class="n">pysource</span><span class="o">.</span><span class="n">openmpi</span><span class="o">.</span><span class="n">sh</span>
@@ -1478,16 +1075,16 @@ When <code class="docutils literal notranslate"><span class="pre">config.py</spa
 <p class="admonition-title">Note</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">validate_telemac.py</span></code> script may fail to run when not all modules are installed (e.g., <em>Hermes</em> is missing).</p>
 </div>
-</div>
-</div>
-<div class="section" id="utilities-pre-post-processing">
-<h2>Utilities (Pre- &amp; Post-processing)<a class="headerlink" href="#utilities-pre-post-processing" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="utilities-pre-post-processing">
+<h2>Utilities (Pre- &amp; Post-processing)<a class="headerlink" href="#utilities-pre-post-processing" title="Permalink to this headline">#</a></h2>
 <div class="note admonition">
 <p class="admonition-title">More Pre- and Post-processing Software</p>
 <p>More software for dealing with Telemac pre- and post-processing is available in the form of <a class="reference internal" href="install-openfoam.html#salome-install"><span class="std std-ref">SALOME</span></a> and ParaView.</p>
 </div>
-<div class="section" id="qgis-linux-and-windows">
-<span id="qgis-telemac"></span><h3>QGIS (Linux and Windows)<a class="headerlink" href="#qgis-linux-and-windows" title="Permalink to this headline">¶</a></h3>
+<section id="qgis-linux-and-windows">
+<span id="qgis-telemac"></span><h3>QGIS (Linux and Windows)<a class="headerlink" href="#qgis-linux-and-windows" title="Permalink to this headline">#</a></h3>
 <p><em><strong>Estimated duration: 5-10 minutes (depends on connection speed).</strong></em></p>
 <p>QGIS is a powerful tool for viewing, creating, and editing geospatial data that can be useful in pre- and post-processing. Detailed installation guidelines are provided in the <a class="reference internal" href="geo.html#qgis-install"><span class="std std-ref">QGIS</span></a> installation instructions and the <a class="reference internal" href="../geopy/use-qgis.html#qgis-tutorial"><span class="std std-ref">QGIS tutorial</span></a>in this eBook. For working with TELEMAC, consider installing the following <strong>QGIS Plugins</strong> (<em>Plugins</em> &gt; <em>Manage and Install Plugins…</em>):</p>
 <ul class="simple">
@@ -1497,12 +1094,12 @@ When <code class="docutils literal notranslate"><span class="pre">config.py</spa
 <li><p><em>DEMto3D</em> enables to export <em>STL</em> geometry files for working with <em>SALOME</em> and creating 3D meshes.</p></li>
 </ul>
 <p>Note that <em>DEMto3D</em> will be available in the <em>Raster</em> menu: <em>DEMto3D</em> &gt; <em>DEM 3D printing</em>.</p>
-</div>
-<div class="section" id="bluekenue-windows-or-linux-wine">
-<span id="bluekenue"></span><h3>BlueKenue (Windows or Linux+Wine)<a class="headerlink" href="#bluekenue-windows-or-linux-wine" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="bluekenue-windows-or-linux-wine">
+<span id="bluekenue"></span><h3>BlueKenue (Windows or Linux+Wine)<a class="headerlink" href="#bluekenue-windows-or-linux-wine" title="Permalink to this headline">#</a></h3>
 <p><em><strong>Estimated duration: 10 minutes.</strong></em></p>
 <p><a class="reference external" href="https://nrc.canada.ca/en/research-development/products-services/software-applications/blue-kenuetm-software-tool-hydraulic-modellers">BlueKenue</a><sup>TM</sup> is a pre- and post-processing software provided by the <a class="reference external" href="https://nrc.canada.ca/en">National Research Council Canada</a>, which is compatible with TELEMAC. It provides similar functions as the <a class="reference external" href="http://www.opentelemac.org/index.php/latest-news-development-and-distribution/240-fudaa-mascaret-3-6">Fudaa</a> software featured by the TELEMAC developers and additionally comes with a powerful mesh generator. It is in particular for the mesh generator that you want to install BlueKenue<sup>TM</sup>. The only drawback is that BlueKenue<sup>TM</sup> is designed for <em>Windows</em>. So there are two options for installing BlueKenue<sup>TM</sup>:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>TELEMAC is running on a Debian Linux VM and your host system is <em>Windows</em>:<br><a class="reference external" href="https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/Installer/BlueKenue_3.12.0-alpha+20201006_64bit.msi">Download</a> (login details in the <a class="reference external" href="http://www.opentelemac.org/index.php/assistance/forum5/blue-kenue">Telemac Forum</a>) and install BlueKenue<sup>TM</sup> on <em>Windows</em> and use the <a class="reference internal" href="vm.html#vm-share"><span class="std std-ref">shared folder</span></a> of the VM to transfer mesh files.</p></li>
 <li><p>Use <a class="reference external" href="https://wiki.debian.org/Wine"><em>Wine</em></a> (compatibility layer in <em>Linux</em> that enables running <em>Windows</em> applications) to install BlueKenue<sup>TM</sup> on <em>Linux</em>.</p></li>
 </ol>
@@ -1537,9 +1134,9 @@ When <code class="docutils literal notranslate"><span class="pre">config.py</spa
 </li>
 </ul>
 <p>The Canadian Hydrological Model Stewardship (CHyMS) provides more guidance for installing BlueKenue<sup>TM</sup> on other platforms than <em>Windows</em> on their <a class="reference external" href="https://chyms.nrc.gc.ca/docs/FAQ.html">FAQ</a> page in the troubleshooting section (<a class="reference external" href="https://chyms.nrc.gc.ca/docs/FAQ.html#troubleshooting-how-run-on-another-os">direct link to <em>how to run Blue Kenue on another operating system</em></a>).</p>
-</div>
-<div class="section" id="fudaa-prepro-linux-and-windows">
-<span id="fudaa"></span><h3>Fudaa-PrePro (Linux and Windows)<a class="headerlink" href="#fudaa-prepro-linux-and-windows" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="fudaa-prepro-linux-and-windows">
+<span id="fudaa"></span><h3>Fudaa-PrePro (Linux and Windows)<a class="headerlink" href="#fudaa-prepro-linux-and-windows" title="Permalink to this headline">#</a></h3>
 <p><em><strong>Estimated duration: 5-15 minutes (upper time limit if java needs to be installed).</strong></em></p>
 <p>Get ready with the pre- and post-processing software Fudaa-PrePro:</p>
 <ul class="simple">
@@ -1570,9 +1167,9 @@ java -Xmx2048m -Xms512m -cp &quot;$(pwd)/Fudaa-Prepro-1.4.2-SNAPSHOT.jar&quot;
 org.fudaa.fudaa.tr.TrSupervisor $1 $2 $3 $4 $5 $6 $7 $8 $9
 </pre></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1586,7 +1183,7 @@ org.fudaa.fudaa.tr.TrSupervisor $1 $2 $3 $4 $5 $6 $7 $8 $9
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./get-started"
         },
         predefinedOutput: true
@@ -1594,46 +1191,132 @@ org.fudaa.fudaa.tr.TrSupervisor $1 $2 $3 $4 $5 $6 $7 $8 $9
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="install-openfoam.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">OpenFOAM (Installation)</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="install-openfoam.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">OpenFOAM (Installation)</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="others.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="others.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Other Software Resources</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-        
-        </div>
-    </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Sebastian Schwindt, Ricardo Barros<br/>
-        
-            &copy; Copyright 2023.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preface">Preface</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#good-to-know">Good to Know</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#telemac-installation-workflow">TELEMAC Installation Workflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python3">Python3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git">GIT</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gnu-fortran-95-compiler-gfortran">GNU Fortran 95 Compiler (gfortran)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compilers-and-other-essentials">Compilers and Other Essentials</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-telemac">Download TELEMAC</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-prerequisites-parallelism-and-compilers">Recommended Prerequisites (Parallelism and Compilers)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallelism-install-mpi">Parallelism: Install MPI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallelism-install-metis">Parallelism: Install Metis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hdf5-and-med-format-handlers">Hdf5 and MED Format Handlers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aed2">AED2</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compile-telemac">Compile TELEMAC</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adapt-and-verify-configuration-file-systel-cfg">Adapt and Verify Configuration File (systel.*.cfg)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-python-source-file">Setup Python Source File</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compile">Compile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-telemac">Test TELEMAC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-sample-cases-examples">Run Sample Cases (Examples)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilities-pre-post-processing">Utilities (Pre- &amp; Post-processing)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qgis-linux-and-windows">QGIS (Linux and Windows)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bluekenue-windows-or-linux-wine">BlueKenue (Windows or Linux+Wine)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fudaa-prepro-linux-and-windows">Fudaa-PrePro (Linux and Windows)</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
 
-      </div>
-    </div>
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By Sebastian Schwindt, Beatriz Negreiros, Federica Scolari, Ricardo Barros
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

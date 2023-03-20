@@ -1,0 +1,1115 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Geometry and Mesh Generation &#8212; Hydro-Informatics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'numerics/openfoam/of-tutorial-multiphase-mesh';</script>
+    <link rel="canonical" href="https://hydro-informatics.com/numerics/openfoam/of-tutorial-multiphase-mesh.html" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Case set-up" href="of-tutorial-multiphase-setup.html" />
+    <link rel="prev" title="Multiphase Solver (interFoam Tutorial)" href="of-tutorial-multiphase.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/icon.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/icon.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lectures/classroom.html">The Virtual Classroom</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/principles.html">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/lectures.html">Lectures and Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/take_seat.html">Take a Seat</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../get-started/software.html">Software Resources</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../get-started/vm.html">Virtual Machines and Linux</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../get-started/ide.html">Integrated Development Environments (IDEs)</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../python-basics/pyinstall.html">Python (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get-started/git.html">Version Control : git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get-started/geo.html">Geospatial Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get-started/install-openfoam.html">OpenFOAM (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get-started/install-telemac.html">TELEMAC (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get-started/others.html">Other Software Resources</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Basics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../python-basics/python.html">First Steps</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/pybase.html">Hello Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/pyerror.html">Errors, Logging, and Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/pyloop.html">Loops and Conditional Statements</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../python-basics/modularize.html">Object Orientation</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/pyfun.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/pypckg.html">Packages, Modules and Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/classes.html">Object Orientation and Classes</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../python-basics/data-handling.html">Data and File Handling</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/pynum.html">Data Files, NumPy &amp; Pandas</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/xml.html">Structured Data (XML, xlsx &amp; JSON)</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/pyplot.html">Plotting</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../jupyter/pystyle.html">Code Style and Conventions</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../../jupyter/gui.html">Graphical User Interfaces (GUIs)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../exercises/python-exercises.html">Python Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../exercises/ex-ms.html">1d Hydraulics (Manning-Strickler Formula)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../exercises/ex-sp.html">Reservoir Volume (Sequent Peak Algorithm)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../exercises/ex-floods.html">Flood Return Periods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../exercises/ex-sediment.html">1d Sediment Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../exercises/ex-gui.html">Create a GUI</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Geospatial Analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../geopy/geospatial-data.html">Geospatial Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geopy/use-qgis.html">QGIS Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geopy/drone-processing.html">Process Drone (UAV) Imagery</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../geopy/geo-python.html">Geospatial Python</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../geopy/geo-pckg.html">Geospatial Open Source Python Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/geo-shp.html">Shapefile (Vector) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/geo-raster.html">Raster (Grid) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/geo-convert.html">Vectorize and Rasterize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/geo-arcpy.html">The Commercial arcpy Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../exercises/geo-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../exercises/ex-geco.html">Script a Habitat Suitability Map</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Modeling</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../numerical-modeling.html">Principles</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../basement.html">BASEMENT</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pre-qgis-bm.html">Pre-processing with QGIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basement2d.html">Run and Check a Steady 2d Simulation</a></li>
+
+
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../telemac.html">TELEMAC</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pre-slf-tm.html">Pre-processing</a></li>
+
+
+<li class="toctree-l2 has-children"><a class="reference internal" href="../telemac2d.html">Telemac2d</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../telemac2d-steady.html">Steady 2d</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../telemac2d-unsteady.html">Unsteady 2d</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../telemac3d.html">Telemac3d</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../telemac3d-slf.html">Steady 3d (SLF - Selafin)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../telemac3d-med.html">Steady 3d (MED and Salome)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../telemac-gaia.html">Gaia (Morphodynamics)</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../gaia-coupling.html">Introduction and Coupling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gaia-basics.html">Basic Setup of Gaia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gaia-bedload.html">Bedload</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gaia-suspended.html">Suspended Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gaia-run.html">Run and Analyze</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="of-intro.html">OpenFOAM</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="of-tutorial-multiphase.html">Multiphase Solver (interFoam Tutorial)</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Geometry and Mesh Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="of-tutorial-multiphase-setup.html">Case set-up</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="of-tutorial-multiphase-run.html">Run OpenFOAM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="of-tutorial-multiphase-post.html">Post-processing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../datascience/data-science.html">Fundamentals (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../datascience/py-requirements.html">Python Requirements</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../datascience/data-prepro.html">Data Pre-Processing</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../datascience/data-types.html">The Nature of Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datascience/data-cleaning.html">Dataset Cleaning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datascience/dimensional-analysis.html">Dimensional Analysis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../datascience/theory.html">Techniques (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../datascience/techniques.html">Overview of Fundamental Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../datascience/calibrate-validate.html">Model Calibration and Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../datascience/morphology-predictor-svm.html">Support Vector Machine (SVM)</a></li>
+
+
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/documentation.html">How to Markdown and Document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/notation.html">Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/bibliography.html">References</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../exercises/docs-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../exercises/ex-git.html">Git and Markdown</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Troubleshoot</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../troubleshoot/dbg-programming.html">Programming Tools and IDEs</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-anaconda.html">Debugging Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-python.html">Debugging Python Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-jupyter.html">Debugging Jupyter</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../troubleshoot/dbg-numerical-models.html">Numerical Models</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-basement.html">Debugging BASEMENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-telemac.html">Debugging TELEMAC</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../troubleshoot/dbg-os.html">Operating Systems (Linux and VMs)</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-linux.html">Debugging Debian Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-vm.html">Debugging Virtual Machines</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../troubleshoot/dbg-scilife.html">Science Life Hacks</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-zotero.html">Zotero Utilities</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Disclaimer and License</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../terms/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../terms/disclaimer.html">Disclaimer</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/hydro-informatics/jupyter-python-course" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/numerics/openfoam/of-tutorial-multiphase-mesh.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Geometry and Mesh Generation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creation-of-the-background-hex-mesh">Creation of the Background Hex Mesh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#surfacefeaturesdict">SurfaceFeaturesDict</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decomposepardict">decomposeParDict</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#snappyhexmesh">SnappyHexMesh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-meshing-blockmesh">Run Meshing (blockMesh)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mesh-visualization">Mesh Visualization</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <p>This chapter is developed by <a class="reference external" href="https://www.iws.uni-stuttgart.de/institut/team/Scolari/">Federica Scolari</a>.</p>
+<section class="tex2jax_ignore mathjax_ignore" id="geometry-and-mesh-generation">
+<h1>Geometry and Mesh Generation<a class="headerlink" href="#geometry-and-mesh-generation" title="Permalink to this headline">#</a></h1>
+<p>The mesh is an essential part of the numerical solution and must meet certain criteria in order to guarantee a valid and precise solution. The following section describes the the <a class="reference external" href="https://www.openfoam.com/documentation/user-guide/4-mesh-generation-and-conversion/4.4-mesh-generation-with-the-snappyhexmesh-utility">snappyHexMesh utility</a> for creating 3D meshes containing hexahedral and split-hexahedral cells from triangulated surface geometries.</p>
+<p>Further details regarding the mesh specification and validity constraints can be found in <a class="reference external" href="https://www.openfoam.com/documentation/user-guide/4-mesh-generation-and-conversion/4.1-mesh-description#x11-290004.1">Chapter 4</a> of the <a class="reference external" href="https://foam.sourceforge.net/docs/Guides-a4/OpenFOAMUserGuide-A4.pdf">OpenFOAM User Guide</a>. In order to run snappyHexMesh, in addition to an existing geometry base mesh, the following files are required:</p>
+<figure class="align-default" id="of-folder-structure">
+<img alt="openfoam" src="../../_images/folder-structure.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 163 </span><span class="caption-text">Case directory containing the files necessary to run snappyHexMesh.</span><a class="headerlink" href="#of-folder-structure" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The following sections describe the steps that need to be followed.</p>
+<section id="creation-of-the-background-hex-mesh">
+<h2>Creation of the Background Hex Mesh<a class="headerlink" href="#creation-of-the-background-hex-mesh" title="Permalink to this headline">#</a></h2>
+<p>Before being able to run snappyHexMesh, a background mesh characterized by hexahedral cells has to be created. This mesh needs to contain the entire region that wants to be meshes with snappyHexMesh, as shown in the figure below.</p>
+<figure class="align-default" id="of-block-mesh-init">
+<img alt="openfoam" src="../../_images/block-mesh-init.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 164 </span><span class="caption-text">Background mesh created with blockMesh containing the structure to be meshed.</span><a class="headerlink" href="#of-block-mesh-init" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>In the <em>blockMeshDict</em> file the following need to be added:</p>
+<ul class="simple">
+<li><p>The scaling factor for the vertex coordinates.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">convertToMeters</span> <span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Coordinates of the vertices of the background mesh.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">vertices</span>
+        <span class="p">(</span>
+            <span class="p">(</span> <span class="o">-</span><span class="mf">30.0</span> <span class="o">-</span><span class="mf">25.0</span> <span class="o">-</span><span class="mf">25.0</span> <span class="p">)</span>   <span class="o">//</span><span class="n">vertex</span> <span class="n">number</span> <span class="mi">0</span>
+            <span class="p">(</span> <span class="mf">70.0</span> <span class="o">-</span><span class="mf">25.0</span> <span class="o">-</span><span class="mf">25.0</span> <span class="p">)</span>   <span class="o">//</span><span class="n">vertex</span> <span class="n">number</span> <span class="mi">1</span>
+            <span class="p">(</span> <span class="mf">70.0</span> <span class="mf">25.0</span> <span class="o">-</span><span class="mf">25.0</span> <span class="p">)</span>   <span class="o">//</span><span class="n">vertex</span> <span class="n">number</span> <span class="mi">2</span>
+            <span class="p">(</span> <span class="o">-</span><span class="mf">30.0</span> <span class="mf">25.0</span> <span class="o">-</span><span class="mf">25.0</span> <span class="p">)</span>   <span class="o">//</span><span class="n">vertex</span> <span class="n">number</span> <span class="mi">3</span>
+            <span class="p">(</span> <span class="o">-</span><span class="mf">30.0</span> <span class="o">-</span><span class="mf">25.0</span> <span class="mf">25.0</span> <span class="p">)</span>   <span class="o">//</span><span class="n">vertex</span> <span class="n">number</span> <span class="mi">4</span>
+            <span class="p">(</span> <span class="mf">70.0</span> <span class="o">-</span><span class="mf">25.0</span> <span class="mf">25.0</span> <span class="p">)</span>   <span class="o">//</span><span class="n">vertex</span> <span class="n">number</span> <span class="mi">5</span>
+            <span class="p">(</span> <span class="mf">70.0</span> <span class="mf">25.0</span> <span class="mf">25.0</span> <span class="p">)</span>   <span class="o">//</span><span class="n">vertex</span> <span class="n">number</span> <span class="mi">6</span>
+            <span class="p">(</span> <span class="o">-</span><span class="mf">30.0</span> <span class="mf">25.0</span> <span class="mf">25.0</span> <span class="p">)</span>   <span class="o">//</span><span class="n">vertex</span> <span class="n">number</span> <span class="mi">7</span>
+        <span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The coordinates of the vertices are indicated following the order presented below.</p></li>
+</ul>
+<figure class="align-default" id="of-block-mesh-vertexorder">
+<img alt="openfoam" src="../../_images/block-mesh-vertexorder.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 165 </span><span class="caption-text">Background mesh indicating the order in which the vertices are written in the block-meshDict file.</span><a class="headerlink" href="#of-block-mesh-vertexorder" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>Ordered list of vertex labels and mesh size.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">blocks</span>
+        <span class="p">(</span>
+            <span class="nb">hex</span> <span class="p">(</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span><span class="p">)</span>   <span class="o">//</span> <span class="n">vertex</span> <span class="n">numbers</span>
+            <span class="p">(</span><span class="mi">400</span> <span class="mi">200</span> <span class="mi">200</span><span class="p">)</span>   <span class="o">//</span> <span class="n">number</span> <span class="n">of</span> <span class="n">cells</span> <span class="ow">in</span> <span class="n">each</span> <span class="n">direction</span>
+            <span class="n">simpleGrading</span> <span class="p">(</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="n">cell</span> <span class="n">expansion</span> <span class="n">ratios</span>
+        <span class="p">);</span>
+</pre></div>
+</div>
+<p>For further details regarding the blockMesh utility please refer to <a class="reference external" href="https://www.openfoam.com/documentation/user-guide/4-mesh-generation-and-conversion/4.3-mesh-generation-with-the-blockmesh-utility">blockMesh</a> in the <a class="reference external" href="https://foam.sourceforge.net/docs/Guides-a4/OpenFOAMUserGuide-A4.pdf">OpenFOAM User Guide</a>.</p>
+</section>
+<hr class="docutils" />
+<section id="surfacefeaturesdict">
+<h2>SurfaceFeaturesDict<a class="headerlink" href="#surfacefeaturesdict" title="Permalink to this headline">#</a></h2>
+<p>The surfaceFeaturesDict extracts and write all surface features to file. In this file all the STL files that have been saved in the triSurface folder have to be added as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">Air</span>
+    <span class="p">{</span>
+        <span class="n">surfaces</span>
+            <span class="p">(</span><span class="s2">&quot;Air.stl&quot;</span><span class="p">);</span>
+        <span class="n">includedAngle</span>   <span class="mi">180</span><span class="p">;</span>
+
+    <span class="o">//</span> <span class="n">Write</span> <span class="n">features</span> <span class="n">to</span> <span class="n">obj</span> <span class="nb">format</span> <span class="k">for</span> <span class="n">postprocessing</span>
+        <span class="n">writeObj</span>                <span class="n">yes</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>The complete version of the surfaceFeaturesDict for the current tutorial is saved in the case folder.</p>
+</section>
+<hr class="docutils" />
+<section id="decomposepardict">
+<h2>decomposeParDict<a class="headerlink" href="#decomposepardict" title="Permalink to this headline">#</a></h2>
+<p>The decomposeParDict is used to decompose a mesh and fields of a case for parallel execution. When running in parallel, the geometry has to first be segmented into individual geometries for each MPI process. The <em>numberOfSubdomains</em> entry is mandatory, and the <em>Method</em> defines the decomposition method type. Several decomposition methods are available. Therefore, the <em>decomposeParDict</em> file shown below presents only one option as example.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">numberOfSubdomains</span> <span class="mi">8</span><span class="p">;</span>
+    <span class="n">method</span>          <span class="n">simple</span><span class="p">;</span>
+
+    <span class="n">simpleCoeffs</span>
+    <span class="p">{</span>
+        <span class="n">n</span>               <span class="p">(</span><span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span><span class="p">);</span>
+        <span class="n">delta</span>           <span class="mf">0.001</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">hierarchicalCoeffs</span>
+    <span class="p">{</span>
+        <span class="n">n</span>               <span class="p">(</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="n">delta</span>           <span class="mf">0.001</span><span class="p">;</span>
+        <span class="n">order</span>           <span class="n">xyz</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">manualCoeffs</span>
+    <span class="p">{</span>
+        <span class="n">dataFile</span>        <span class="s2">&quot;&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">distributed</span>     <span class="n">no</span><span class="p">;</span>
+
+    <span class="n">roots</span>           <span class="p">(</span> <span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="snappyhexmesh">
+<h2>SnappyHexMesh<a class="headerlink" href="#snappyhexmesh" title="Permalink to this headline">#</a></h2>
+<p>The snappyHexMeshDict dictionary contains a series of commands that control the various steps of the meshing process. The main ones are summarized below:</p>
+<ul class="simple">
+<li><p><em>castellatedMesh</em>: to enable the creation of the castellated mesh.</p></li>
+<li><p><em>snap</em>: to enable the surface snapping stage.</p></li>
+<li><p><em>addLayers</em>: to enable the surface layer insertion.</p></li>
+<li><p><em>geometry</em>: sub-dictionary of all surface geometry used.</p></li>
+<li><p><em>castellatedMeshControls</em>: sub-dictionary of controls for castellated mesh.</p></li>
+<li><p><em>snapControls</em>: sub-dictionary of controls for surface snapping.</p></li>
+<li><p><em>addLayersControls</em>:  sub-dictionary of controls for layer addition.</p></li>
+<li><p><em>meshQualityControls</em>: sub-dictionary of controls for mesh quality.</p></li>
+<li><p><em>mergeTolerance</em>: merge tolerance as a fraction of the initial bounding mesh.</p></li>
+</ul>
+<p>The key steps involved when running snappyHexMesh are:</p>
+<ul class="simple">
+<li><p><em>Castellation</em>: The cells which are beyond a region defined by a predefined point are removed</p></li>
+<li><p><em>Snapping</em>: Reconstructs the cells to move the edges from inside the region to the required boundary</p></li>
+<li><p><em>Layering</em>: Creates additional layers in the boundary region.</p></li>
+</ul>
+<p>For this example the <em>add Layers</em> option, which enables the addition of viscous
+layers, was set to <em>false</em>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*--------------------------------*-</span> <span class="n">C</span><span class="o">++</span> <span class="o">-*----------------------------------*</span>\
+<span class="o">|</span> <span class="o">=========</span>                 <span class="o">|</span>                                                 <span class="o">|</span>
+<span class="o">|</span> \\      <span class="o">/</span>  <span class="n">F</span> <span class="n">ield</span>         <span class="o">|</span> <span class="n">OpenFOAM</span><span class="p">:</span> <span class="n">The</span> <span class="n">Open</span> <span class="n">Source</span> <span class="n">CFD</span> <span class="n">Toolbox</span>           <span class="o">|</span>
+<span class="o">|</span>  \\    <span class="o">/</span>   <span class="n">O</span> <span class="n">peration</span>     <span class="o">|</span> <span class="n">Version</span><span class="p">:</span>  <span class="mf">2.2.0</span>                                 <span class="o">|</span>
+<span class="o">|</span>   \\  <span class="o">/</span>    <span class="n">A</span> <span class="n">nd</span>           <span class="o">|</span> <span class="n">Web</span><span class="p">:</span>      <span class="n">www</span><span class="o">.</span><span class="n">OpenFOAM</span><span class="o">.</span><span class="n">org</span>                      <span class="o">|</span>
+<span class="o">|</span>    \\<span class="o">/</span>     <span class="n">M</span> <span class="n">anipulation</span>  <span class="o">|</span>                                                 <span class="o">|</span>
+\<span class="o">*---------------------------------------------------------------------------*/</span>
+<span class="n">FoamFile</span>
+<span class="p">{</span>
+    <span class="nb">format</span>      <span class="n">ascii</span><span class="p">;</span>
+    <span class="k">class</span>       <span class="nc">dictionary</span><span class="p">;</span>
+    <span class="nb">object</span>      <span class="n">snappyHexMeshDict</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="o">//</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">//</span>
+
+<span class="o">//</span> <span class="n">Which</span> <span class="n">of</span> <span class="n">the</span> <span class="n">steps</span> <span class="n">to</span> <span class="n">run</span>
+<span class="n">castellatedMesh</span> <span class="n">true</span><span class="p">;</span>    <span class="o">//</span> <span class="n">make</span> <span class="n">basic</span> <span class="n">mesh</span> 
+<span class="n">snap</span>            <span class="n">true</span><span class="p">;</span>    <span class="o">//</span> <span class="n">decide</span> <span class="n">to</span> <span class="n">snap</span> <span class="n">back</span> <span class="n">to</span> <span class="n">surface</span> 
+<span class="n">addLayers</span>       <span class="n">false</span><span class="p">;</span>   <span class="o">//</span> <span class="n">decide</span> <span class="n">to</span> <span class="n">add</span> <span class="n">viscous</span> <span class="n">layers</span> 
+</pre></div>
+</div>
+<p>The <strong>GEOMETRY sub-dictionary</strong> lists all the surfaces used by snappyHexMeshDict, with the exception of the blockMesh geometry. Additionally, it defines a name for each of them to be used as a reference as shown in the example below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">geometry</span> <span class="o">//</span> <span class="n">Load</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">STL</span> <span class="n">files</span> <span class="n">here</span>
+<span class="p">{</span>
+  <span class="n">Air</span><span class="o">.</span><span class="n">stl</span> <span class="p">{</span><span class="nb">type</span> <span class="n">triSurfaceMesh</span><span class="p">;</span> <span class="n">name</span> <span class="n">Air</span><span class="p">;}</span>
+  <span class="n">Concrete</span><span class="o">-</span><span class="n">sides</span><span class="o">.</span><span class="n">stl</span> <span class="p">{</span><span class="nb">type</span> <span class="n">triSurfaceMesh</span><span class="p">;</span> <span class="n">name</span> <span class="n">Concrete</span><span class="o">-</span><span class="n">sides</span><span class="p">;}</span>
+  <span class="n">Gravel</span><span class="o">-</span><span class="n">bottom</span><span class="o">.</span><span class="n">stl</span> <span class="p">{</span><span class="nb">type</span> <span class="n">triSurfaceMesh</span><span class="p">;</span> <span class="n">name</span> <span class="n">Gravel</span><span class="o">-</span><span class="n">bottom</span><span class="p">;}</span>
+  <span class="n">Inlet</span><span class="o">.</span><span class="n">stl</span> <span class="p">{</span><span class="nb">type</span> <span class="n">triSurfaceMesh</span><span class="p">;</span> <span class="n">name</span> <span class="n">Inlet</span><span class="p">;}</span>
+  <span class="n">Obstacle</span><span class="o">.</span><span class="n">stl</span> <span class="p">{</span><span class="nb">type</span> <span class="n">triSurfaceMesh</span><span class="p">;</span> <span class="n">name</span> <span class="n">Obstacle</span><span class="p">;}</span>
+  <span class="n">Outlet</span><span class="o">.</span><span class="n">stl</span> <span class="p">{</span><span class="nb">type</span> <span class="n">triSurfaceMesh</span><span class="p">;</span> <span class="n">name</span> <span class="n">Outlet</span><span class="p">;}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The <strong>CastellatedMeshControls</strong> settings then allow the definition of themesh refinement. The level of refinement can be set in the <em>features</em>, <em>refinementSurfaces</em> and <em>refinementRegions</em> sections. Starting from level 0, which corresponds to no refinement, each subsequentrefinement level divides the cell in 4 parts.</p>
+<figure class="align-default" id="of-refinement-levels">
+<img alt="openfoam" src="../../_images/refinement-levels.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 166 </span><span class="caption-text">Example of different mesh refinement levels.</span><a class="headerlink" href="#of-refinement-levels" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Additionally, the following are set:</p>
+<ul class="simple">
+<li><p><em>maxGlobalCells</em>: defines the overall number of cells limit.</p></li>
+<li><p><em>maxLocalCells</em>: this setting is used in the case of parallel running and defines the maximum number   of cells for each processor.</p></li>
+<li><p><em>nCellsBetweenLevels</em>: avoids having sudden cell size changes, meaning consecutiverefinement level changes close together.</p></li>
+</ul>
+<p>For all further details regarding the settings please refer to the <a class="reference external" href="https://www.openfoam.com/documentation/guides/latest/doc/guide-meshing-snappyhexmesh-castellation.html#meshing-snappyhexmesh-global-castellation">castellation and refinement</a> section of the <a class="reference external" href="https://foam.sourceforge.net/docs/Guides-a4/OpenFOAMUserGuide-A4.pdf">OpenFOAM User Guide</a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">castellatedMeshControls</span>
+<span class="p">{</span>
+    <span class="n">maxLocalCells</span> <span class="mi">50000000</span><span class="p">;</span>  <span class="o">//</span><span class="nb">max</span> <span class="n">cells</span> <span class="n">per</span> <span class="n">CPU</span> <span class="n">core</span>
+    <span class="n">maxGlobalCells</span> <span class="mi">500000000</span><span class="p">;</span> <span class="o">//</span><span class="nb">max</span> <span class="n">cells</span> <span class="n">to</span> <span class="n">use</span> <span class="n">before</span> <span class="n">mesh</span> <span class="n">deletion</span> <span class="n">step</span>
+    <span class="n">minRefinementCells</span> <span class="mi">0</span><span class="p">;</span>  <span class="o">//</span><span class="n">was</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">zero</span> <span class="n">means</span> <span class="n">no</span> <span class="n">bad</span> <span class="n">cells</span> <span class="n">are</span> <span class="n">allowed</span> <span class="n">during</span> <span class="n">refinement</span> <span class="n">stages</span>
+    <span class="n">nCellsBetweenLevels</span> <span class="mi">3</span><span class="p">;</span>  <span class="o">//</span> <span class="n">expansion</span> <span class="n">factor</span> <span class="n">between</span> <span class="n">each</span> <span class="n">high</span> <span class="o">&amp;</span> <span class="n">low</span> <span class="n">refinement</span> <span class="n">zone</span>
+
+    <span class="o">//</span> <span class="n">Explicit</span> <span class="n">feature</span> <span class="n">edge</span> <span class="n">refinement</span>
+    <span class="o">//</span> <span class="o">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+
+    <span class="n">features</span> <span class="o">//</span> <span class="n">taken</span> <span class="kn">from</span> <span class="nn">STL</span> <span class="kn">from</span> <span class="nn">each</span> <span class="o">.</span><span class="n">eMesh</span> <span class="n">file</span> <span class="n">created</span> <span class="n">by</span> <span class="s2">&quot;SurfaceFeatureExtract&quot;</span> <span class="n">command</span>
+    <span class="p">(</span>
+      <span class="p">{</span><span class="n">file</span> <span class="s2">&quot;Air.eMesh&quot;</span><span class="p">;</span> <span class="n">level</span> <span class="mi">0</span><span class="p">;}</span>
+      <span class="p">{</span><span class="n">file</span> <span class="s2">&quot;Concrete-sides.eMesh&quot;</span><span class="p">;</span> <span class="n">level</span> <span class="mi">0</span><span class="p">;}</span>
+      <span class="p">{</span><span class="n">file</span> <span class="s2">&quot;Gravel-bottom.eMesh&quot;</span><span class="p">;</span> <span class="n">level</span> <span class="mi">0</span><span class="p">;}</span>
+      <span class="p">{</span><span class="n">file</span> <span class="s2">&quot;Inlet.eMesh&quot;</span><span class="p">;</span> <span class="n">level</span> <span class="mi">0</span><span class="p">;}</span>
+      <span class="p">{</span><span class="n">file</span> <span class="s2">&quot;Obstacle.eMesh&quot;</span><span class="p">;</span> <span class="n">level</span> <span class="mi">0</span><span class="p">;}</span>
+      <span class="p">{</span><span class="n">file</span> <span class="s2">&quot;Outlet.eMesh&quot;</span><span class="p">;</span> <span class="n">level</span> <span class="mi">0</span><span class="p">;}</span>
+    <span class="p">);</span>
+
+    <span class="o">//</span> <span class="n">Surface</span> <span class="n">based</span> <span class="n">refinement</span>
+    <span class="o">//</span> <span class="o">~~~~~~~~~~~~~~~~~~~~~~~~</span>
+
+    <span class="n">refinementSurfaces</span> <span class="o">//</span> <span class="n">Surface</span><span class="o">-</span><span class="n">wise</span> <span class="nb">min</span> <span class="ow">and</span> <span class="nb">max</span> <span class="n">refinement</span> <span class="n">level</span>
+    <span class="p">{</span>
+      <span class="n">Air</span> <span class="p">{</span><span class="n">level</span> <span class="p">(</span><span class="mi">0</span> <span class="mi">0</span><span class="p">);}</span>
+      <span class="n">Concrete</span><span class="o">-</span><span class="n">sides</span> <span class="p">{</span><span class="n">level</span> <span class="p">(</span><span class="mi">1</span> <span class="mi">3</span><span class="p">);}</span>
+      <span class="n">Gravel</span><span class="o">-</span><span class="n">bottom</span> <span class="p">{</span><span class="n">level</span> <span class="p">(</span><span class="mi">2</span> <span class="mi">3</span><span class="p">);}</span>
+      <span class="n">Inlet</span> <span class="p">{</span><span class="n">level</span> <span class="p">(</span><span class="mi">1</span> <span class="mi">3</span><span class="p">);}</span>
+      <span class="n">Obstacle</span> <span class="p">{</span><span class="n">level</span> <span class="p">(</span><span class="mi">3</span> <span class="mi">3</span><span class="p">);}</span>
+      <span class="n">Outlet</span> <span class="p">{</span><span class="n">level</span> <span class="p">(</span><span class="mi">2</span> <span class="mi">3</span><span class="p">);}</span>
+    <span class="p">}</span>
+
+    <span class="n">resolveFeatureAngle</span> <span class="mi">30</span><span class="p">;</span>  <span class="o">//</span> <span class="n">Resolve</span> <span class="n">sharp</span> <span class="n">angles</span> <span class="o">//</span> <span class="n">Default</span> <span class="mi">30</span>
+    <span class="n">refinementRegions</span>        <span class="o">//</span> <span class="n">In</span> <span class="n">descending</span> <span class="n">levels</span> <span class="n">of</span> <span class="n">fineness</span>
+    <span class="n">allowFreeStandingZoneFaces</span> <span class="n">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In the <em>refinementSurfaces</em> section shown in the example here above, different refinement levels were set for each constituent element. A detailed example of the resulting refinement for the Gravel-bottom and Obstacle elements is shown below:</p>
+<figure class="align-default" id="of-obstacle-refinement">
+<img alt="openfoam" src="../../_images/obstacle-refinement.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 167 </span><span class="caption-text">Resulting refinement for the <strong>Obstacle</strong> and <strong>Gravel-Bottom</strong> elements composing the mesh.</span><a class="headerlink" href="#of-obstacle-refinement" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Once the feature and surface splitting process is complete, the cell removal process takes place. The latter requires one or more regions wrapped entirely by a bounding surface belonging to the domain. In order to specify the region in which the cells have to be kept, the <em>locationInMesh</em> keyword needs to be defined. This vector simply defines the region that wants to be retained.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">locationInMesh</span> <span class="p">(</span><span class="mf">43.359</span> <span class="mi">5</span> <span class="mf">2.5803</span><span class="p">);</span>  <span class="o">//</span><span class="n">to</span> <span class="n">decide</span> <span class="n">which</span> <span class="n">side</span> <span class="n">of</span> <span class="n">mesh</span> <span class="n">to</span> <span class="n">keep</span> <span class="o">**</span>
+
+</pre></div>
+</div>
+<p>After having completed the cell splitting and cell removal processes, the <strong>Snapping</strong> process can take place. This task deals with moving the cell vertex points on the surface to create a conforming mesh, meaning to conform the input geometry. below is a list of the keywords to be set:</p>
+<ul class="simple">
+<li><p><em>nSmoothpatch</em>: defines the number of smoothing iterations along the surface.</p></li>
+<li><p><em>tolerance</em>: specifies the region along the surface within which the points are attracted by the surface.</p></li>
+<li><p><em>nSolverIter</em>: defines the number of mesh displacement iterations.</p></li>
+<li><p><em>nRelaxIter</em>: defines the umber of relaxation iterations during the snapping.</p></li>
+<li><p><em>nFeatureSnapIter</em>: defines the number of relaxation iterations used for snapping onto the features.</p></li>
+<li><p><em>implicitFeatureSnap</em>: if enabled, activates the implicit feature specification.</p></li>
+<li><p><em>explicitFeatureSnap</em>: if enabled, it snaps the mesh onto the features defined in the <em>eMesh</em> files.</p></li>
+<li><p><em>multiRegionFeatureSnap</em>: if also <em>explicitFeatureSnap</em> is enabled, the features between multiple surfaces will be captured.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>// Settings for the snapping.
+snapControls
+{
+    nSmoothPatch    3;
+    // nSmoothInternal $nSmoothPatch;
+    tolerance       1.0;
+    nSolveIter      600;
+    nRelaxIter      5;
+
+    // Feature snapping
+
+        nFeatureSnapIter 10; // default is 10
+        implicitFeatureSnap false; // default is false - detects without doing surfaceFeatureExtract
+        explicitFeatureSnap true; // default is true
+        multiRegionFeatureSnap true; // deafault is false - detects features between multiple surfaces
+}
+</pre></div>
+</div>
+<p>In the case in which some irregular cells are present along the boundaries in the mesh obtained with the snapping stage, it is possible to introduce additional layers composed of hexahedral cells along the boundary. This stage  includes shrinking the existing mesh in order to insert the layer of cells.</p>
+<p>The user can choose between 4 different layer thickness parameters: <em>expansionRatio</em>, <em>finalLayerThickness</em>, <em>firstLayerThickness</em>, <em>thickness</em>. In this case the user must specify only two to avoid an over-specification of the problem.</p>
+<p>below some keywords are explained. For further details please refer to the <a class="reference external" href="https://www.openfoam.com/documentation/guides/latest/doc/guide-meshing-snappyhexmesh-layers.html#snappyhexmesh-layers-relativeSizes">layer addition</a> section of the <a class="reference external" href="https://foam.sourceforge.net/docs/Guides-a4/OpenFOAMUserGuide-A4.pdf">OpenFOAM User Guide</a>.</p>
+<ul class="simple">
+<li><p><em>expansionRatio</em>: necessary in order to calculate the relative size to the prescribed thickness of either first or final layer.</p></li>
+<li><p><em>minThickness</em>: indicates the minimum thickness of the layer.</p></li>
+<li><p><em>featureAngle</em>: represents the value above which the mesh is not extruded.</p></li>
+<li><p><em>nRelaxIter</em>: indicates the number of relaxation steps.</p></li>
+<li><p><em>minMedialAxisAngle</em>: indicates the minimum angle to select the medial axis points</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Settings</span> <span class="k">for</span> <span class="n">the</span> <span class="n">layer</span> <span class="n">addition</span><span class="o">.</span>
+
+<span class="n">addLayersControls</span> 
+<span class="o">//</span><span class="n">add</span> <span class="n">the</span> <span class="n">PATCH</span> <span class="n">names</span> <span class="kn">from</span> <span class="nn">inside</span> <span class="n">the</span> <span class="n">STL</span> <span class="n">file</span> <span class="n">so</span> <span class="n">STLpatchName</span><span class="o">-</span><span class="n">insideSTLName</span>
+ <span class="p">{</span>
+    <span class="n">relativeSizes</span> <span class="n">false</span><span class="p">;</span> 
+    <span class="n">layers</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+
+    <span class="n">expansionRatio</span> <span class="mf">1.0</span><span class="p">;</span>
+    <span class="n">finalLayerThickness</span> <span class="mf">0.3</span><span class="p">;</span> 
+    <span class="n">minThickness</span> <span class="mf">0.25</span><span class="p">;</span> 
+    <span class="n">nGrow</span> <span class="mi">0</span><span class="p">;</span> 
+
+    <span class="o">//</span> <span class="n">Advanced</span> <span class="n">settings</span>
+
+    <span class="n">featureAngle</span> <span class="mi">150</span><span class="p">;</span>
+    <span class="n">nRelaxIter</span> <span class="mi">3</span>  
+    <span class="n">nSmoothSurfaceNormals</span> <span class="mi">50</span><span class="p">;</span>
+    <span class="n">nSmoothNormals</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="n">nSmoothThickness</span> <span class="mi">10</span><span class="p">;</span> 
+    <span class="n">maxFaceThicknessRatio</span> <span class="mf">0.5</span><span class="p">;</span> 
+    <span class="n">maxThicknessToMedialRatio</span> <span class="mf">0.3</span><span class="p">;</span> 
+    <span class="n">minMedianAxisAngle</span> <span class="mi">90</span><span class="p">;</span> 
+    <span class="n">nBufferCellsNoExtrude</span> <span class="mi">0</span><span class="p">;</span>   
+    <span class="n">nLayerIter</span> <span class="mi">50</span><span class="p">;</span> 
+    <span class="n">NnRelaxedIter</span> <span class="mi">20</span><span class="p">;</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+<p>The final part of the <em>snappyHexMeshDict</em> file deals with the <strong>Mesh Quality</strong>. In this section, the values of the extrema encountered in during the meshing process are defined. The purpose is to ensure the adequate quality of the  resulting mesh. The keywords that can be defined are summarized below:</p>
+<ul class="simple">
+<li><p><em>maxNonOrtho</em>: maximum face non-orthogonality angle</p></li>
+<li><p><em>maxBoundarySkewness</em>: maximum boundary skewness</p></li>
+<li><p><em>maxInternalSkewness</em>: maximum internal face skewness</p></li>
+<li><p><em>maxConcave</em>: maximum cell concavity</p></li>
+<li><p><em>minVol</em>: minimum cell pyramid volume</p></li>
+<li><p><em>minTetQuality</em>: minimum tetrahedron quality</p></li>
+<li><p><em>minArea</em>: minimum face area</p></li>
+<li><p><em>minDeterminant</em>: minimum cell determinant</p></li>
+<li><p><em>minFaceWeight</em>: minimum face interpolation weight</p></li>
+<li><p><em>nSmoothScale</em>: smoothing iterations</p></li>
+<li><p><em>errorReduction</em>: error reduction</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Generic</span> <span class="n">mesh</span> <span class="n">quality</span> <span class="n">settings</span>
+
+<span class="n">meshQualityControls</span>
+<span class="p">{</span>
+    <span class="n">maxNonOrtho</span> <span class="mi">65</span><span class="p">;</span>
+    <span class="n">maxBoundarySkewness</span> <span class="mi">20</span><span class="p">;</span>
+    <span class="n">maxInternalSkewness</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="n">maxConcave</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="n">minVol</span> <span class="mf">1e-13</span><span class="p">;</span>
+    <span class="n">minTetQuality</span> <span class="mf">1e-15</span><span class="p">;</span>
+    <span class="n">minArea</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="n">minTwist</span> <span class="mf">0.02</span><span class="p">;</span>
+    <span class="n">minDeterminant</span> <span class="mf">0.001</span><span class="p">;</span>
+    <span class="n">minFaceWeight</span> <span class="mf">0.05</span><span class="p">;</span>
+    <span class="n">minVolRatio</span> <span class="mf">0.01</span><span class="p">;</span>
+    <span class="n">minTriangleTwist</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+    <span class="o">//</span> <span class="n">Advanced</span>
+    <span class="n">nSmoothScale</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="n">errorReduction</span> <span class="mf">0.75</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">debug</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="n">mergeTolerance</span> <span class="mf">1E-6</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="run-meshing-blockmesh">
+<h2>Run Meshing (blockMesh)<a class="headerlink" href="#run-meshing-blockmesh" title="Permalink to this headline">#</a></h2>
+<p>Once the necessary keywords have been defined in the required dictionaries, the final step consists in <strong>running the commands</strong> in the terminal in the following order:</p>
+<ul class="simple">
+<li><p>Run the<code class="docutils literal notranslate"><span class="pre">blockMesh</span></code> command to create the background mesh:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>user@user123:~/OpenFOAM-9/channel/Mesh$ blockMesh
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Run the <code class="docutils literal notranslate"><span class="pre">surfaceFeatures</span></code> command to create the <em>.obj</em> and <em>.eMesh</em> files from the initially imported STL files. These files are stored in the <em>extendedFeatureEdgeMesh</em> folder (channel/constant/extendedFeatureEdgeMesh).</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>user@user123:~/OpenFOAM-9/channel/Mesh$ surfaceFeatures
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>In the case of parallel runs, run the<code class="docutils literal notranslate"><span class="pre">decomposePar</span></code> command to decompose the geometry into individual geometries for each MPI process.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>user@user123:~/OpenFOAM-9/channel/Mesh$ decomposePar
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Run the <code class="docutils literal notranslate"><span class="pre">snappyHexMesh</span></code> command to generate the mesh:</p>
+<ul>
+<li><p>In the case of parallel runs (substitute “x” with the number of cores):</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>user@user123:~/OpenFOAM-9/channel/Mesh$ mpirun -np x snappyHexMesh -parallel
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>* Alternatively:
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>user@user123:~/OpenFOAM-9/channel/Mesh$ snappyHexMesh
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>In the case of parallel runs, run the <code class="docutils literal notranslate"><span class="pre">reconstructParMesh</span></code> command to reconstruct the geometry.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>user@user123:~/OpenFOAM-9/channel/Mesh$ reconstructparMesh -constant
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Finally, the quality of the generated mesh can be analyzed by typing <code class="docutils literal notranslate"><span class="pre">checkMesh</span></code>.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>user@user123:~/OpenFOAM-9/channel/Mesh$ checkMesh
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>In the case of a successful mesh generation, this should return the following:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">Checking</span> <span class="n">topology</span><span class="o">...</span>
+    <span class="n">Boundary</span> <span class="n">definition</span> <span class="n">OK</span><span class="o">.</span>
+    <span class="n">Cell</span> <span class="n">to</span> <span class="n">face</span> <span class="n">addressing</span> <span class="n">OK</span><span class="o">.</span>
+    <span class="n">Point</span> <span class="n">usage</span> <span class="n">OK</span><span class="o">.</span>
+    <span class="n">Upper</span> <span class="n">triangular</span> <span class="n">ordering</span> <span class="n">OK</span><span class="o">.</span>
+    <span class="n">Face</span> <span class="n">vertices</span> <span class="n">OK</span><span class="o">.</span>
+    <span class="n">Number</span> <span class="n">of</span> <span class="n">regions</span><span class="p">:</span> <span class="mi">1</span> <span class="p">(</span><span class="n">OK</span><span class="p">)</span><span class="o">.</span>
+
+  <span class="n">Checking</span> <span class="n">patch</span> <span class="n">topology</span> <span class="k">for</span> <span class="n">multiply</span> <span class="n">connected</span> <span class="n">surfaces</span><span class="o">...</span>
+                   <span class="n">Patch</span>    <span class="n">Faces</span>   <span class="n">Points</span>                  <span class="n">Surface</span> <span class="n">topology</span>
+                     <span class="n">Air</span>    <span class="mi">12879</span>    <span class="mi">13927</span>  <span class="n">ok</span> <span class="p">(</span><span class="n">non</span><span class="o">-</span><span class="n">closed</span> <span class="n">singly</span> <span class="n">connected</span><span class="p">)</span>
+          <span class="n">Concrete</span><span class="o">-</span><span class="n">sides</span>   <span class="mi">103621</span>   <span class="mi">109304</span>  <span class="n">ok</span> <span class="p">(</span><span class="n">non</span><span class="o">-</span><span class="n">closed</span> <span class="n">singly</span> <span class="n">connected</span><span class="p">)</span>
+           <span class="n">Gravel</span><span class="o">-</span><span class="n">bottom</span>   <span class="mi">132062</span>   <span class="mi">136819</span>  <span class="n">ok</span> <span class="p">(</span><span class="n">non</span><span class="o">-</span><span class="n">closed</span> <span class="n">singly</span> <span class="n">connected</span><span class="p">)</span>
+                   <span class="n">Inlet</span>      <span class="mi">288</span>      <span class="mi">339</span>  <span class="n">ok</span> <span class="p">(</span><span class="n">non</span><span class="o">-</span><span class="n">closed</span> <span class="n">singly</span> <span class="n">connected</span><span class="p">)</span>
+                <span class="n">Obstacle</span>    <span class="mi">27076</span>    <span class="mi">27416</span>  <span class="n">ok</span> <span class="p">(</span><span class="n">non</span><span class="o">-</span><span class="n">closed</span> <span class="n">singly</span> <span class="n">connected</span><span class="p">)</span>
+                  <span class="n">Outlet</span>    <span class="mi">20610</span>    <span class="mi">21252</span>  <span class="n">ok</span> <span class="p">(</span><span class="n">non</span><span class="o">-</span><span class="n">closed</span> <span class="n">singly</span> <span class="n">connected</span><span class="p">)</span>
+
+  <span class="n">Checking</span> <span class="n">geometry</span><span class="o">...</span>
+    <span class="n">Overall</span> <span class="n">domain</span> <span class="n">bounding</span> <span class="n">box</span> <span class="p">(</span><span class="o">-</span><span class="mf">2.5</span> <span class="o">-</span><span class="mf">1e-06</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="mf">56.7409</span> <span class="mi">10</span> <span class="mf">6.2461</span><span class="p">)</span>
+    <span class="n">Mesh</span> <span class="n">has</span> <span class="mi">3</span> <span class="n">geometric</span> <span class="p">(</span><span class="n">non</span><span class="o">-</span><span class="n">empty</span><span class="o">/</span><span class="n">wedge</span><span class="p">)</span> <span class="n">directions</span> <span class="p">(</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">Mesh</span> <span class="n">has</span> <span class="mi">3</span> <span class="n">solution</span> <span class="p">(</span><span class="n">non</span><span class="o">-</span><span class="n">empty</span><span class="p">)</span> <span class="n">directions</span> <span class="p">(</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">Boundary</span> <span class="n">openness</span> <span class="p">(</span><span class="o">-</span><span class="mf">5.71676e-15</span> <span class="mf">7.42351e-15</span> <span class="mf">8.33816e-16</span><span class="p">)</span> <span class="n">OK</span><span class="o">.</span>
+    <span class="n">Max</span> <span class="n">cell</span> <span class="n">openness</span> <span class="o">=</span> <span class="mf">4.76547e-16</span> <span class="n">OK</span><span class="o">.</span>
+    <span class="n">Max</span> <span class="n">aspect</span> <span class="n">ratio</span> <span class="o">=</span> <span class="mf">7.03771</span> <span class="n">OK</span><span class="o">.</span>
+    <span class="n">Minimum</span> <span class="n">face</span> <span class="n">area</span> <span class="o">=</span> <span class="mf">3.89097e-05</span><span class="o">.</span> <span class="n">Maximum</span> <span class="n">face</span> <span class="n">area</span> <span class="o">=</span> <span class="mf">0.0910262</span><span class="o">.</span>  <span class="n">Face</span> <span class="n">area</span> <span class="n">magnitudes</span> <span class="n">OK</span><span class="o">.</span>
+    <span class="n">Min</span> <span class="n">volume</span> <span class="o">=</span> <span class="mf">2.62118e-06</span><span class="o">.</span> <span class="n">Max</span> <span class="n">volume</span> <span class="o">=</span> <span class="mf">0.0180894</span><span class="o">.</span>  <span class="n">Total</span> <span class="n">volume</span> <span class="o">=</span> <span class="mf">2271.44</span><span class="o">.</span>  <span class="n">Cell</span> <span class="n">volumes</span> <span class="n">OK</span><span class="o">.</span>
+    <span class="n">Mesh</span> <span class="n">non</span><span class="o">-</span><span class="n">orthogonality</span> <span class="n">Max</span><span class="p">:</span> <span class="mf">47.7783</span> <span class="n">average</span><span class="p">:</span> <span class="mf">6.72481</span>
+    <span class="n">Non</span><span class="o">-</span><span class="n">orthogonality</span> <span class="n">check</span> <span class="n">OK</span><span class="o">.</span>
+    <span class="n">Face</span> <span class="n">pyramids</span> <span class="n">OK</span><span class="o">.</span>
+    <span class="n">Max</span> <span class="n">skewness</span> <span class="o">=</span> <span class="mf">3.12739</span> <span class="n">OK</span><span class="o">.</span>
+    <span class="n">Coupled</span> <span class="n">point</span> <span class="n">location</span> <span class="n">match</span> <span class="p">(</span><span class="n">average</span> <span class="mi">0</span><span class="p">)</span> <span class="n">OK</span><span class="o">.</span>
+
+  <span class="n">Mesh</span> <span class="n">OK</span><span class="o">.</span>
+
+  <span class="n">End</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The generated meh can be visualized in ParaView by typing <code class="docutils literal notranslate"><span class="pre">paraFoam</span></code> in the terminal.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>user@user123:~/OpenFOAM-9/channel/Mesh$ paraFoam
+</pre></div>
+</div>
+</section>
+<section id="mesh-visualization">
+<h2>Mesh Visualization<a class="headerlink" href="#mesh-visualization" title="Permalink to this headline">#</a></h2>
+<p>In order to visualize the generated mesh in ParaView, select the <em>Apply</em> option in the <em>Properties</em> section.</p>
+<figure class="align-default" id="of-parafoam-mesh">
+<img alt="openfoam snappyHexMesh paraFoam" src="../../_images/paraFoam-mesh.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 168 </span><span class="caption-text">Visualization of the resulting mesh in ParaView.</span><a class="headerlink" href="#of-parafoam-mesh" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The image below highlights some features required to adequately visualize the created mesh. Firstly, to analyze the cells, it is possible to select the option <em>Surface with Edges</em>. The various elements composing the mesh can then be selected/deselected to analyze specific parts in detail. Finally, in the case in which the Mesh Check returned some errors, for instance  faces with high skewness, they can be visualized by selecting the <em>Include Sets</em> option.</p>
+<figure class="align-default" id="of-parafoam-mesh-cells">
+<img alt="openfoam snappyHexMesh paraFoam" src="../../_images/paraFoam-mesh-cells.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 169 </span><span class="caption-text">Visualization of the resulting mesh in ParaView, highlighting the created cells.</span><a class="headerlink" href="#of-parafoam-mesh-cells" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "hydro-informatics/jupyter-python-course",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./numerics/openfoam"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="of-tutorial-multiphase.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Multiphase Solver (interFoam Tutorial)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="of-tutorial-multiphase-setup.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Case set-up</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creation-of-the-background-hex-mesh">Creation of the Background Hex Mesh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#surfacefeaturesdict">SurfaceFeaturesDict</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decomposepardict">decomposeParDict</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#snappyhexmesh">SnappyHexMesh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-meshing-blockmesh">Run Meshing (blockMesh)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mesh-visualization">Mesh Visualization</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Sebastian Schwindt, Beatriz Negreiros, Federica Scolari, Ricardo Barros
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

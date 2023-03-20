@@ -18,8 +18,9 @@ git clone https://github.com/Ecohydraulics/Exercise-git.git
 
 ***Activity:*** Describe your favorite dam, fish or river in a markdown file named `README.md`.
 
-````{panels}
-Features to implement in the `README.md` file:
+```{admonition} Features to implement in the `README.md` file
+:class: attention
+
 
 * Link to picture online
 * Write at least 150 words about the object
@@ -30,4 +31,4 @@ Features to implement in the `README.md` file:
 ---
 
 ![illustration](https://raw.githubusercontent.com/hydro-informatics/hypy-assignment-1/master/illustration.png?token=AOVQATAW6L3T7V5SXCNQH7K6XQKYS)
-````
+```

@@ -1,961 +1,553 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Script a Habitat Suitability Map &#8212; Hydro-Informatics</title>
-    
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script src="../_static/tabs.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'exercises/ex-geco';</script>
     <link rel="canonical" href="https://hydro-informatics.com/exercises/ex-geco.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Fundamentals (Coming soon)" href="../datascience/data-science.html" />
+    <link rel="next" title="Principles" href="../numerics/numerical-modeling.html" />
     <link rel="prev" title="Exercises" href="geo-exercises.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/icon.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Get Started
- </span>
-</p>
+    
+    
+    <img src="../_static/icon.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/icon.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../lectures/classroom.html">
-   The Virtual Classroom
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/principles.html">
-     Principles
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/lectures.html">
-     Lectures and Exercises
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/take_seat.html">
-     Take a Seat
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../get-started/software.html">
-   Software Resources
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/vm.html">
-     Virtual Machines and Linux
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/ide.html">
-     Integrated Development Environments (IDEs)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../python-basics/pyinstall.html">
-     Python (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/git.html">
-     Version Control : git
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/geo.html">
-     Geospatial Software
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/install-openfoam.html">
-     OpenFOAM (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/install-telemac.html">
-     TELEMAC (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/others.html">
-     Other Software Resources
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/classroom.html">The Virtual Classroom</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/principles.html">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/lectures.html">Lectures and Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/take_seat.html">Take a Seat</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Python Basics
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../get-started/software.html">Software Resources</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/vm.html">Virtual Machines and Linux</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../get-started/ide.html">Integrated Development Environments (IDEs)</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../python-basics/pyinstall.html">Python (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/git.html">Version Control : git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/geo.html">Geospatial Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/install-openfoam.html">OpenFOAM (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/install-telemac.html">TELEMAC (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/others.html">Other Software Resources</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Basics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/python.html">
-   First Steps
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pybase.html">
-     Hello Data Types
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyerror.html">
-     Errors, Logging, and Debugging
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyloop.html">
-     Loops and Conditional Statements
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/modularize.html">
-   Object Orientation
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyfun.html">
-     Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pypckg.html">
-     Packages, Modules and Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/classes.html">
-     Object Orientation and Classes
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/data-handling.html">
-   Data and File Handling
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pynum.html">
-     Data Files, NumPy &amp; Pandas
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/xml.html">
-     Structured Data (XML, xlsx &amp; JSON)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyplot.html">
-     Plotting
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../jupyter/pystyle.html">
-   Code Style and Conventions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../jupyter/gui.html">
-   Graphical User Interfaces (GUIs)
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="python-exercises.html">
-   Python Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="ex-ms.html">
-     1d Hydraulics (Manning-Strickler Formula)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="ex-sp.html">
-     Reservoir Volume (Sequent Peak Algorithm)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="ex-floods.html">
-     Flood Return Periods
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="ex-sediment.html">
-     1d Sediment Transport
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="ex-gui.html">
-     Create a GUI
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/python.html">First Steps</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pybase.html">Hello Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyerror.html">Errors, Logging, and Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyloop.html">Loops and Conditional Statements</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Geospatial Analysis
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/modularize.html">Object Orientation</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyfun.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pypckg.html">Packages, Modules and Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/classes.html">Object Orientation and Classes</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/data-handling.html">Data and File Handling</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pynum.html">Data Files, NumPy &amp; Pandas</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/xml.html">Structured Data (XML, xlsx &amp; JSON)</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyplot.html">Plotting</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/pystyle.html">Code Style and Conventions</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/gui.html">Graphical User Interfaces (GUIs)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="python-exercises.html">Python Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="ex-ms.html">1d Hydraulics (Manning-Strickler Formula)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex-sp.html">Reservoir Volume (Sequent Peak Algorithm)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex-floods.html">Flood Return Periods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex-sediment.html">1d Sediment Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex-gui.html">Create a GUI</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Geospatial Analysis</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/geospatial-data.html">
-   Geospatial Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/use-qgis.html">
-   QGIS Tutorial
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/drone-processing.html">
-   Process Drone (UAV) Imagery
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../geopy/geo-python.html">
-   Geospatial Python
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/geo-pckg.html">
-     Geospatial Open Source Python Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-shp.html">
-     Shapefile (Vector) Handling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-raster.html">
-     Raster (Grid) Handling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-convert.html">
-     Vectorize and Rasterize
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-arcpy.html">
-     The Commercial arcpy Library
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="geo-exercises.html">
-   Exercises
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Script a Habitat Suitability Map
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/geospatial-data.html">Geospatial Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/use-qgis.html">QGIS Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/drone-processing.html">Process Drone (UAV) Imagery</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../geopy/geo-python.html">Geospatial Python</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geopy/geo-pckg.html">Geospatial Open Source Python Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-shp.html">Shapefile (Vector) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-raster.html">Raster (Grid) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-convert.html">Vectorize and Rasterize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-arcpy.html">The Commercial arcpy Library</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Data Science
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../datascience/data-science.html">
-   Fundamentals (Coming soon)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/py-requirements.html">
-     Python Requirements
-    </a>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../datascience/data-prepro.html">
-     Data Pre-Processing
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-    <label for="toctree-checkbox-10">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/data-types.html">
-       The Nature of Data
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/data-cleaning.html">
-       Dataset Cleaning
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/dimensional-analysis.html">
-       Dimensional Analysis
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../datascience/theory.html">
-   Techniques (Coming soon)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/techniques.html">
-     Overview of Fundamental Techniques
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/calibrate-validate.html">
-     Model Calibration and Validation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
-     Support Vector Machine (SVM)
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="geo-exercises.html">Exercises</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Script a Habitat Suitability Map</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Numerical Modeling
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../numerics/numerical-modeling.html">
-   Principles
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../numerics/basement.html">
-   BASEMENT
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/pre-qgis-bm.html">
-     Pre-processing with QGIS
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/basement2d.html">
-     Run and Check a Steady 2d Simulation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../numerics/telemac.html">
-   TELEMAC
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/pre-slf-tm.html">
-     Pre-processing
-    </a>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac2d.html">
-     Telemac2d
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-    <label for="toctree-checkbox-14">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac2d-steady.html">
-       Steady 2d
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac2d-unsteady.html">
-       Unsteady 2d
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac3d.html">
-     Telemac3d
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-    <label for="toctree-checkbox-15">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac3d-slf.html">
-       Steady 3d (SLF - Selafin)
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac3d-med.html">
-       Steady 3d (MED and Salome)
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac-gaia.html">
-     Gaia (Morphodynamics)
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-    <label for="toctree-checkbox-16">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-coupling.html">
-       Introduction and Coupling
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-basics.html">
-       Basic Setup of Gaia
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-bedload.html">
-       Bedload
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-suspended.html">
-       Suspended Load
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-run.html">
-       Run and Analyze
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
+</li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Documentation
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Modeling</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/documentation.html">
-   How to Markdown and Document
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/glossary.html">
-   Glossary
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/notation.html">
-   Notation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/bibliography.html">
-   References
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="docs-exercises.html">
-   Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
-  <label for="toctree-checkbox-17">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="ex-git.html">
-     Git and Markdown
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../numerics/numerical-modeling.html">Principles</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerics/basement.html">BASEMENT</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/pre-qgis-bm.html">Pre-processing with QGIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/basement2d.html">Run and Check a Steady 2d Simulation</a></li>
+
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Troubleshoot
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
-   Programming Tools and IDEs
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
-  <label for="toctree-checkbox-18">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
-     Debugging Anaconda
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-python.html">
-     Debugging Python Code
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
-     Debugging Jupyter
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
-   Numerical Models
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
-  <label for="toctree-checkbox-19">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
-     Debugging BASEMENT
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
-     Debugging TELEMAC
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-os.html">
-   Operating Systems (Linux and VMs)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
-  <label for="toctree-checkbox-20">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
-     Debugging Debian Linux
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
-     Debugging Virtual Machines
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerics/telemac.html">TELEMAC</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/pre-slf-tm.html">Pre-processing</a></li>
+
+
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac2d.html">Telemac2d</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac2d-steady.html">Steady 2d</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac2d-unsteady.html">Unsteady 2d</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Disclaimer and License
- </span>
-</p>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac3d.html">Telemac3d</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac3d-slf.html">Steady 3d (SLF - Selafin)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac3d-med.html">Steady 3d (MED and Salome)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac-gaia.html">Gaia (Morphodynamics)</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-coupling.html">Introduction and Coupling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-basics.html">Basic Setup of Gaia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-bedload.html">Bedload</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-suspended.html">Suspended Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-run.html">Run and Analyze</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerics/openfoam/of-intro.html">OpenFOAM</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase.html">Multiphase Solver (interFoam Tutorial)</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-mesh.html">Geometry and Mesh Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-setup.html">Case set-up</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-run.html">Run OpenFOAM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-post.html">Post-processing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Science</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../terms/license.html">
-   License
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../terms/disclaimer.html">
-   Disclaimer
-  </a>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/data-science.html">Fundamentals (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/py-requirements.html">Python Requirements</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../datascience/data-prepro.html">Data Pre-Processing</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/data-types.html">The Nature of Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/data-cleaning.html">Dataset Cleaning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/dimensional-analysis.html">Dimensional Analysis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/theory.html">Techniques (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/techniques.html">Overview of Fundamental Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/calibrate-validate.html">Model Calibration and Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/morphology-predictor-svm.html">Support Vector Machine (SVM)</a></li>
+
+
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../documentation/documentation.html">How to Markdown and Document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/notation.html">Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/bibliography.html">References</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="docs-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="ex-git.html">Git and Markdown</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Troubleshoot</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-programming.html">Programming Tools and IDEs</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-anaconda.html">Debugging Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-python.html">Debugging Python Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-jupyter.html">Debugging Jupyter</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">Numerical Models</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-basement.html">Debugging BASEMENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-telemac.html">Debugging TELEMAC</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-os.html">Operating Systems (Linux and VMs)</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-linux.html">Debugging Debian Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-vm.html">Debugging Virtual Machines</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-scilife.html">Science Life Hacks</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-zotero.html">Zotero Utilities</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Disclaimer and License</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../terms/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terms/disclaimer.html">Disclaimer</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a> and Ricardo Barros
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/exercises/ex-geco.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/hydro-informatics/jupyter-python-course"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
         
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/hydro-informatics/jupyter-python-course" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/exercises/ex-geco.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-        </div>
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Script a Habitat Suitability Map</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-is-habitat-suitability">
-   What is Habitat Suitability?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#available-data-and-code-structure">
-   Available Data and Code Structure
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#two-dimensional-2d-hydrodynamic-modelling-folder-basement">
-     Two-dimensional (2d) Hydrodynamic Modelling (Folder:
-     <em>
-      BASEMENT
-     </em>
-     )
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#habitat-suitability-index-hsi-curves-folder-habitat">
-     Habitat Suitability Index HSI Curves (folder:
-     <strong>
-      habitat
-     </strong>
-     )
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#code">
-     Code
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-and-combine-hsi-rasters">
-   Create and Combine HSI Rasters
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#complete-the-init-method-of-the-raster-class-raster-py">
-     Complete the
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       __init__
-      </span>
-     </code>
-     Method of the
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       Raster
-      </span>
-     </code>
-     Class (
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       raster.py
-      </span>
-     </code>
-     )
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#complete-magic-methods-of-the-raster-class-raster-py">
-     Complete Magic Methods of the
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       Raster
-      </span>
-     </code>
-     Class (
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       raster.py
-      </span>
-     </code>
-     )
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#write-hsi-and-chsi-raster-creation-script">
-     Write HSI and cHSI Raster Creation Script
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#run-the-hsi-and-chsi-code">
-     Run the HSI and cHSI Code
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#result-interpretation">
-     Result Interpretation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#calculate-usable-habitat-area-uha">
-   Calculate Usable Habitat Area UHA
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#write-the-code">
-     Write the Code
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#run-the-usable-habitat-area-calculation-code">
-     Run the Usable Habitat Area Calculation Code
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
-     Result Interpretation
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-habitat-suitability">What is Habitat Suitability?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#available-data-and-code-structure">Available Data and Code Structure</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-dimensional-2d-hydrodynamic-modelling-folder-basement">Two-dimensional (2d) Hydrodynamic Modelling (Folder: <em>BASEMENT</em>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#habitat-suitability-index-hsi-curves-folder-habitat">Habitat Suitability Index HSI Curves (folder: <strong>habitat</strong>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code">Code</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-combine-hsi-rasters">Create and Combine HSI Rasters</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-the-init-method-of-the-raster-class-raster-py">Complete the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> Method of the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> Class (<code class="docutils literal notranslate"><span class="pre">raster.py</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-magic-methods-of-the-raster-class-raster-py">Complete Magic Methods of the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> Class (<code class="docutils literal notranslate"><span class="pre">raster.py</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#write-hsi-and-chsi-raster-creation-script">Write HSI and cHSI Raster Creation Script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-hsi-and-chsi-code">Run the HSI and cHSI Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#result-interpretation">Result Interpretation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-usable-habitat-area-uha">Calculate Usable Habitat Area UHA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#write-the-code">Write the Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-usable-habitat-area-calculation-code">Run the Usable Habitat Area Calculation Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Result Interpretation</a></li>
+</ul>
+</li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="script-a-habitat-suitability-map">
-<span id="ex-geco"></span><h1>Script a Habitat Suitability Map<a class="headerlink" href="#script-a-habitat-suitability-map" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="script-a-habitat-suitability-map">
+<span id="ex-geco"></span><h1>Script a Habitat Suitability Map<a class="headerlink" href="#script-a-habitat-suitability-map" title="Permalink to this headline">#</a></h1>
 <div class="admonition-goals admonition">
 <p class="admonition-title">Goals</p>
 <p>This exercise guides through the creation of rasters (<code class="docutils literal notranslate"><span class="pre">osgeo.gdal.Dataset</span></code>), the usage of georeferences, raster array calculations, as well as the conversion of a raster to a polygon shapefile and modifications to the shapefile’s <em>Attribute Table</em> to calculate usable (physical) habitat area. For this purpose, a <code class="docutils literal notranslate"><span class="pre">Raster</span></code> class is written, which enables mathematical operations between its instances through the implementation of magic methods. The exercise also shows how <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> can be used to leverage complex challenges with just a few lines of code.</p>
@@ -970,26 +562,34 @@
 </div>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/8LO1KeYNSXA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sacramento suckers in the South Yuba River (source: Sebastian Schwindt <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>).</p>
-<div class="section" id="what-is-habitat-suitability">
-<h2>What is Habitat Suitability?<a class="headerlink" href="#what-is-habitat-suitability" title="Permalink to this headline">¶</a></h2>
+<section id="what-is-habitat-suitability">
+<h2>What is Habitat Suitability?<a class="headerlink" href="#what-is-habitat-suitability" title="Permalink to this headline">#</a></h2>
 <p>Fish and other aquatic species rest, orient, and reproduce in a fluvial environment that represents their physical habitat. Throughout their different life stages, different fish have specific physical habitat preferences which are defined, for instance, as a function of water depth, flow velocity, and grain size of the riverbed. The so-called <em>Habitat Suitability Index</em> <span class="math notranslate nohighlight">\(HSI\)</span> can be calculated for hydraulic (water depth or flow velocity) and morphological (e.g., grain size or cover in the form of large wood) parameters individually to describe the quality of physical habitat for a fish and at a specific life stage. The figure below shows exemplary <span class="math notranslate nohighlight">\(HSI\)</span> curves for the fry, juvenile, and adult life stages of rainbow trout as a function of water depth. The <span class="math notranslate nohighlight">\(HSI\)</span> curves look different in every river and should be established individually by an aquatic ecologist.</p>
-<div class="figure align-default" id="hsi-image">
+<figure class="align-default" id="hsi-image">
 <img alt="HSI curves examples trout" src="https://github.com/Ecohydraulics/media/raw/main/png/hsi-curves.png" />
-<p class="caption"><span class="caption-number">Fig. 25 </span><span class="caption-text">Habitat Suitability Index <span class="math notranslate nohighlight">\(HSI\)</span> curves for the fry, juvenile, and adult life stages of rainbow trout in a cobble-bed river. Take care: HSI curves look different in any river and need to be established by an aquatic ecologist.</span><a class="headerlink" href="#hsi-image" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 25 </span><span class="caption-text">Habitat Suitability Index <span class="math notranslate nohighlight">\(HSI\)</span> curves for the fry, juvenile, and adult life stages of rainbow trout in a cobble-bed river. Take care: HSI curves look different in any river and need to be established by an aquatic ecologist.</span><a class="headerlink" href="#hsi-image" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>The <span class="math notranslate nohighlight">\(HSI\)</span> concept also accounts for the so-called cover habitat in the form of the <em>cover Habitat Suitability Index</em> <span class="math notranslate nohighlight">\(HSI_{cov}\)</span>. Cover habitat is the result of local turbulence caused by roughness elements such as wood, boulders, or bridge piers. However, in this exercise, we will only deal with hydraulic habitat characteristics (not cover habitat).</p>
 <p><img alt="cover-habitat" src="https://github.com/Ecohydraulics/media/raw/main/jpg/neckar-fish-cover.jpg" /><br>
 <em>Adult trout swimming in cover habitat created by a bridge pier in the upper Neckar River.</em></p>
-<p>The combination of multiple <span class="math notranslate nohighlight">\(HSI\)</span> values (e.g., water depth-related <span class="math notranslate nohighlight">\(HSI_{h}\)</span>, flow velocity-related <span class="math notranslate nohighlight">\(HSI_{u}\)</span>, grain size-related <span class="math notranslate nohighlight">\(HSI_{d}\)</span>, and/or cover <span class="math notranslate nohighlight">\(HSI_{cov}\)</span>) results in the <strong>combined Habitat Suitability Index</strong> <span class="math notranslate nohighlight">\(cHSI\)</span>. There are various calculation methods for combining different <span class="math notranslate nohighlight">\(HSI_{par}\)</span> values into one <span class="math notranslate nohighlight">\(cHSI\)</span> value, where the geometric mean and the product are the most widely used deterministic combination methods: <a name="combine-methods"></a></p>
+<p>The combination of multiple <span class="math notranslate nohighlight">\(HSI\)</span> values (e.g., water depth-related <span class="math notranslate nohighlight">\(HSI_{h}\)</span>, flow velocity-related <span class="math notranslate nohighlight">\(HSI_{u}\)</span>, grain size-related <span class="math notranslate nohighlight">\(HSI_{d}\)</span>, and/or cover <span class="math notranslate nohighlight">\(HSI_{cov}\)</span>) results in the <strong>combined Habitat Suitability Index</strong> <span class="math notranslate nohighlight">\(cHSI\)</span>. There are various calculation methods for combining different <span class="math notranslate nohighlight">\(HSI_{par}\)</span> values into one <span class="math notranslate nohighlight">\(cHSI\)</span> value, where the geometric mean and the product are the most widely used deterministic combination methods:</p>
+<div class="admonition-combined-habitat-suitability-index-chsi-calculation-methods admonition" id="combine-methods">
+<p class="admonition-title">combined Habitat Suitability Index (cHSI) calculation methods</p>
 <ul class="simple">
 <li><p>Geometric mean:  <span class="math notranslate nohighlight">\(cHSI = (\prod_{par} HSI_{par})^{1/n}\)</span>
 <br>For instance, the combination of the water depth-related <span class="math notranslate nohighlight">\(HSI_{h}\)</span> and flow velocity-related <span class="math notranslate nohighlight">\(HSI_{u}\)</span> with the geometric mean method is: <span class="math notranslate nohighlight">\(cHSI = (HSI_{h} \cdot HSI_{u})^{1/2}\)</span></p></li>
 <li><p>Product:  <span class="math notranslate nohighlight">\(cHSI = \prod_{par} HSI_{par}\)</span>
 <br>For example, the combination of the water depth-related <span class="math notranslate nohighlight">\(HSI_{h}\)</span> and flow velocity-related <span class="math notranslate nohighlight">\(HSI_{u}\)</span> with the product method is: <span class="math notranslate nohighlight">\(cHSI = (HSI_{h} \cdot HSI_{u})\)</span></p></li>
+<li><p>Fuzzy rule sets <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id1175" title="M. Noack, M. Schneider, and S. Wieprecht. Ecohydraulics: an integrated approach. Wiley-Blackwell, Chichester, UK, 2013. ISBN 978-0-470-97600-5. URL: https://onlinelibrary.wiley.com/doi/pdf/10.1002/9781118526576.">NSW13</a>]</span></p></li>
 </ul>
+</div>
 <p>Therefore, if the pixel-based <span class="math notranslate nohighlight">\(HSI\)</span> values for water depth and flow velocity are known from a two-dimensional (2d) hydrodynamic model, then for each pixel the <span class="math notranslate nohighlight">\(cHSI\)</span> value can be calculated either as the product or geometric mean of the single-parameter <span class="math notranslate nohighlight">\(HSI_{par}\)</span> rasters.</p>
-<p>This habitat assessment concept was introduced by <span id="id1">Bovee [<a class="reference internal" href="../documentation/bibliography.html#id836">Bov86</a>]</span> and <span id="id2">Stalnaker <em>et al.</em> [<a class="reference internal" href="../documentation/bibliography.html#id795">SLH+95</a>]</span> (<a class="reference external" href="https://apps.dtic.mil/sti/pdfs/ADA322762.pdf">direct download</a>). However, these authors built their usable (physical) habitat assessment based on one-dimensional (1d) numerical models that were commonly used in the last millennium. Today, 2d numerical models are the state-of-the-art to determine physical habitat geospatially explicit based on pixel-based <span class="math notranslate nohighlight">\(cHSI\)</span> values. There are two different options for calculating the usable habitat area (<span class="math notranslate nohighlight">\(UHA\)</span>) based on pixel-based <span class="math notranslate nohighlight">\(cHSI\)</span> values (and even more options can be found in the scientific literature). <a name="uha-methods"></a></p>
-<ol class="simple">
+<p>This habitat assessment concept was introduced by <span id="id2">Bovee [<a class="reference internal" href="../documentation/bibliography.html#id836" title="Ken D. Bovee. Development and evaluation of Habitat Suitability Criteria for use in the instream flow incremental methodology. Technical Report 21, National Ecology Center, U.S. Fish and Wildlife Service, Fort Collins, CO, USA, September 1986. URL: https://pubs.er.usgs.gov/publication/70121265.">Bov86</a>]</span> and <span id="id3">Stalnaker <em>et al.</em> [<a class="reference internal" href="../documentation/bibliography.html#id795" title="C. Stalnaker, B. L. Lamb, J. Henriksen, K. Bovee, and J. Bartholow. The Instream Flow Incremental Methodology - A Primer for IFIM. Number 29 in Biological Report. National Biological Service, U.S. Department of the Interior, Opler, Paul A. and Rockwell, Elizabeth D. and Zuboy, James R. and Cox, Jerry D. and Harris, Deborah K. (eds.), Washington, D.C., USA, March 1995. URL: www.dtic.mil/cgi-bin/GetTRDoc?AD=ADA322762.">SLH+95</a>]</span> (<a class="reference external" href="https://apps.dtic.mil/sti/pdfs/ADA322762.pdf">direct download</a>). However, these authors built their usable (physical) habitat assessment based on one-dimensional (1d) numerical models that were commonly used in the last millennium. Today, 2d numerical models are the state-of-the-art to determine physical habitat geospatially explicit based on pixel-based <span class="math notranslate nohighlight">\(cHSI\)</span> values. There are two different options for calculating the usable habitat area (<span class="math notranslate nohighlight">\(UHA\)</span>) based on pixel-based <span class="math notranslate nohighlight">\(cHSI\)</span> values (and even more options can be found in the scientific literature).</p>
+<div class="admonition-calculate-usable-habitat-area-uha admonition" id="uha-methods">
+<p class="admonition-title">Calculate Usable Habitat Area (UHA)</p>
+<ol class="arabic simple">
 <li><p>Use a threshold value above which a pixel is classified as a usable habitat.</p>
 <ul class="simple">
 <li><p>Typical values for the threshold value <span class="math notranslate nohighlight">\(cHSI_{crit}\)</span> are between 0.4 (tolerant) and 0.75 (strict).</p></li>
@@ -1006,32 +606,35 @@
 </ol>
 <div class="attention admonition">
 <p class="admonition-title">Weighted Usable Area (WUA) vs. UHA</p>
-<p>Some authors (e.g., <span id="id3">Yao <em>et al.</em> [<a class="reference internal" href="../documentation/bibliography.html#id1037">YBR18</a>]</span>, <span id="id4">Tuhtan <em>et al.</em> [<a class="reference internal" href="../documentation/bibliography.html#id1153">TNW12</a>]</span>) incorrectly refer to this weighting as Weighted Usable Area (<em>WUA</em>), which conflicts with the original definition of <em>WUA</em> <span id="id5">[<a class="reference internal" href="../documentation/bibliography.html#id836">Bov86</a>]</span>.</p>
+<p>Some authors (e.g., <span id="id4">Yao <em>et al.</em> [<a class="reference internal" href="../documentation/bibliography.html#id1037" title="Weiwei Yao, Minh Duc Bui, and Peter Rutschmann. Development of eco-hydraulic model for assessing fish habitat and population status in freshwater ecosystems. Ecohydrology, 11(5):1–17, 2018. URL: https://onlinelibrary.wiley.com/doi/abs/10.1002/eco.1961, doi:10.1002/eco.1961.">YBR18</a>]</span>, <span id="id5">Tuhtan <em>et al.</em> [<a class="reference internal" href="../documentation/bibliography.html#id1153" title="Jeff A. Tuhtan, Markus Noack, and Silke Wieprecht. Estimating stranding risk due to hydropeaking for juvenile European grayling considering river morphology. KSCE Journal of Civil Engineering, 16(2):197–206, 2012. URL: https://doi.org/10.1007/s12205-012-0002-5, doi:10.1007/s12205-012-0002-5.">TNW12</a>]</span>) incorrectly refer to this weighting as Weighted Usable Area (<em>WUA</em>), which conflicts with the original definition of <em>WUA</em> <span id="id6">[<a class="reference internal" href="../documentation/bibliography.html#id836" title="Ken D. Bovee. Development and evaluation of Habitat Suitability Criteria for use in the instream flow incremental methodology. Technical Report 21, National Ecology Center, U.S. Fish and Wildlife Service, Fort Collins, CO, USA, September 1986. URL: https://pubs.er.usgs.gov/publication/70121265.">Bov86</a>]</span>.</p>
 <p>The threshold method is preferable over the weighting method because the <span class="math notranslate nohighlight">\(HSI\)</span>  has the unit of <em>Index</em> and is therefore not dimensionless. As a result, unrealistic units of <em>Index</em> areas (e.g., <em>Index</em>-m<span class="math notranslate nohighlight">\(^2\)</span>) are created in the weighting method, which is also introducing non-measurable uncertainty.</p>
 </div>
-<p>An alternative to the deterministic calculation of the <span class="math notranslate nohighlight">\(HSI\)</span> and <span class="math notranslate nohighlight">\(cHSI\)</span> values of a pixel is a fuzzy logic approach <span id="id6">[<a class="reference internal" href="../documentation/bibliography.html#id1175">NSW13</a>]</span>. In the fuzzy logic approach, pixels are classified, for instance, as <em>low</em>, <em>medium</em>, or <em>high</em> habitat quality as a function of the associated water depth or flow velocity using categorical (<em>low</em>, <em>medium</em>, or <em>high</em>), expert assessment-based <span class="math notranslate nohighlight">\(HSI\)</span> curves. The <span class="math notranslate nohighlight">\(cHSI\)</span> value results from the center of gravity of superimposed membership functions of considered parameters (e.g., water depth and flow velocity).</p>
+</div>
+<p>An alternative to the deterministic calculation of the <span class="math notranslate nohighlight">\(HSI\)</span> and <span class="math notranslate nohighlight">\(cHSI\)</span> values of a pixel is a fuzzy logic approach <span id="id7">[<a class="reference internal" href="../documentation/bibliography.html#id1175" title="M. Noack, M. Schneider, and S. Wieprecht. Ecohydraulics: an integrated approach. Wiley-Blackwell, Chichester, UK, 2013. ISBN 978-0-470-97600-5. URL: https://onlinelibrary.wiley.com/doi/pdf/10.1002/9781118526576.">NSW13</a>]</span>. In the fuzzy logic approach, pixels are classified, for instance, as <em>low</em>, <em>medium</em>, or <em>high</em> habitat quality as a function of the associated water depth or flow velocity using categorical (<em>low</em>, <em>medium</em>, or <em>high</em>), expert assessment-based <span class="math notranslate nohighlight">\(HSI\)</span> curves. The <span class="math notranslate nohighlight">\(cHSI\)</span> value results from the center of gravity of superimposed membership functions of considered parameters (e.g., water depth and flow velocity).</p>
 <p>Sustainable river management involves the challenge of designing an aquatic habitat for target fish species at different life stages. The concept of usable physical habitat area represents a powerful tool to leverage the assessment of the ecological integrity of river management and engineering measures. For example, by calculating the usable habitat area before and after the implementation of measures, valuable conclusions can be drawn about the ecological integrity of restoration efforts.</p>
 <p>This exercise demonstrates the use of 2d hydrodynamic modeling results to algorithmically evaluate usable habitat area based on the calculation of geospatially explicit <span class="math notranslate nohighlight">\(cHSI\)</span> values.</p>
-</div>
-<div class="section" id="available-data-and-code-structure">
-<h2>Available Data and Code Structure<a class="headerlink" href="#available-data-and-code-structure" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="available-data-and-code-structure">
+<h2>Available Data and Code Structure<a class="headerlink" href="#available-data-and-code-structure" title="Permalink to this headline">#</a></h2>
 <p>The following flow chart illustrates the provided code and data. Functions, methods, and files to be created in this exercise are highlighted in bold, italic, <em>YELLOW</em>-ish font.</p>
-<div class="figure align-default" id="uml">
+<figure class="align-default" id="uml">
 <img alt="HSI curves examples trout" src="https://github.com/Ecohydraulics/Exercise-geco/raw/main/graphs/geo_eco_uml.png" />
-<p class="caption"><span class="caption-number">Fig. 26 </span><span class="caption-text">Structure of the provided template file tree and their relations.</span><a class="headerlink" href="#uml" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 26 </span><span class="caption-text">Structure of the provided template file tree and their relations.</span><a class="headerlink" href="#uml" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>The provided QGIS project file <code class="docutils literal notranslate"><span class="pre">visualize_with_QGIS.qgz</span></code> helps to verify input raster datasets and results.</p>
-<div class="section" id="two-dimensional-2d-hydrodynamic-modelling-folder-basement">
-<span id="ecox-2dm"></span><h3>Two-dimensional (2d) Hydrodynamic Modelling (Folder: <em>BASEMENT</em>)<a class="headerlink" href="#two-dimensional-2d-hydrodynamic-modelling-folder-basement" title="Permalink to this headline">¶</a></h3>
+<section id="two-dimensional-2d-hydrodynamic-modelling-folder-basement">
+<span id="ecox-2dm"></span><h3>Two-dimensional (2d) Hydrodynamic Modelling (Folder: <em>BASEMENT</em>)<a class="headerlink" href="#two-dimensional-2d-hydrodynamic-modelling-folder-basement" title="Permalink to this headline">#</a></h3>
 <p>This exercise uses (hydraulic) flow velocity and water depth rasters (<a class="reference internal" href="../documentation/glossary.html#term-GeoTIFF"><span class="xref std std-term">GeoTIFF</span></a>s) produced with the <a class="reference external" href="https://basement.ethz.ch/">ETH Zurich*s BASEMENT</a> software. Read more about hydrodynamic modeling with BASEMENT in the <a class="reference internal" href="../numerics/basement.html#chpt-basement"><span class="std std-ref">BASEMENT</span></a> chapter. The hydraulic rasters were produced with the BASEMENT developer’s <a class="reference external" href="http://people.ee.ethz.ch/~basement/baseweb/download/tutorials/Flaz_2d_v3.zip">example data from the <em>Flaz River</em></a> in Switzerland (<a class="reference external" href="https://basement.ethz.ch/download/tutorials/tutorials3.html">read more on their website</a>).
 The water depth <code class="docutils literal notranslate"><span class="pre">water_depth.tif</span></code> and flow velocity <code class="docutils literal notranslate"><span class="pre">flow_velocity.tif</span></code> rasters are provided for this exercise in the folder <code class="docutils literal notranslate"><span class="pre">/basement/</span></code>.</p>
-</div>
-<div class="section" id="habitat-suitability-index-hsi-curves-folder-habitat">
-<span id="hsi-curves"></span><h3>Habitat Suitability Index HSI Curves (folder: <strong>habitat</strong>)<a class="headerlink" href="#habitat-suitability-index-hsi-curves-folder-habitat" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="habitat-suitability-index-hsi-curves-folder-habitat">
+<span id="hsi-curves"></span><h3>Habitat Suitability Index HSI Curves (folder: <strong>habitat</strong>)<a class="headerlink" href="#habitat-suitability-index-hsi-curves-folder-habitat" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">/habitat/</span></code> folder in the exercise repository contains <span class="math notranslate nohighlight">\(HSI\)</span> curves in the form of an <em>xlsx</em> workbook (<code class="docutils literal notranslate"><span class="pre">trout.xlsx</span></code>) and in the form of a <a class="reference internal" href="../jupyter/xml.html#json"><span class="std std-ref">JSON</span></a> file (<code class="docutils literal notranslate"><span class="pre">trout.json</span></code>). Both files contain the same data for rainbow trout of a hypothetical cobble-bed river and this exercise only uses the <a class="reference internal" href="../jupyter/xml.html#json"><span class="std std-ref">JSON</span></a> file (the workbook serves for visual verification only).</p>
-</div>
-<div class="section" id="code">
-<h3>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="code">
+<h3>Code<a class="headerlink" href="#code" title="Permalink to this headline">#</a></h3>
 <div class="tip admonition">
 <p class="admonition-title">GEO_UTILS (Folder: geo_utils)</p>
 <p>A couple of <code class="docutils literal notranslate"><span class="pre">gdal</span></code>-based functions for processing rasters and shapefiles were introduced in the lecture. This exercise re-uses some of these functions, which are available in the geo-processing code repository specifically for this ebook. The repository contains a functional block from <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a>.geotools (in the <code class="docutils literal notranslate"><span class="pre">geo_utils</span></code> folder) that enables to better understand and modify the behavior of <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a>.
@@ -1063,10 +666,9 @@ Even though already provided in this exercise, make sure that the <em>geo_utils<
 </pre></div>
 </div>
 </div>
-<div class="tip admonition">
+<div class="tip admonition" id="funs">
 <p class="admonition-title"><a class="reference external" href="http://FUN.PY">FUN.PY</a> (FUNCTIONS)</p>
-<p>At this point in the course, it is assumed that students are familiar with object orientation and especially with writing functions. Therefore, many basic functions for this exercise are already provided with the script <code class="docutils literal notranslate"><span class="pre">fun.py</span></code> (alphabetically ordered list):
-<a name="funs"></a></p>
+<p>At this point in the course, it is assumed that students are familiar with object orientation and especially with writing functions. Therefore, many basic functions for this exercise are already provided with the script <code class="docutils literal notranslate"><span class="pre">fun.py</span></code> (alphabetically ordered list):</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">cache</span></code> is a wrapper for parent functions to enforce that intermediate geospatial datasets (e.g., the intermediate product of a sum of rasters) are stored in a temporary <em>cache</em> folder that is deleted after the script ran.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">check_cache</span></code> verifies if the cache folder defined in <code class="docutils literal notranslate"><span class="pre">config.py</span></code> already exists. The function is automatically called by the <code class="docutils literal notranslate"><span class="pre">cache</span></code> wrapper.</p></li>
@@ -1096,12 +698,12 @@ The <code class="docutils literal notranslate"><span class="pre">HSIRaster</span
 <p class="admonition-title">CREATE_HSI_RASTERS.PY / CALCULATE_HABITAT_AREA.PY</p>
 <p>The two scripts <code class="docutils literal notranslate"><span class="pre">reate_hsi_rasters.py</span></code> and <code class="docutils literal notranslate"><span class="pre">calculate_habitat_area.py</span></code> represent the focal point of this exercise and make use of the provided data and <em>Python</em> scripts. Therefore, only the basic framework functions and imports are pre-existing in these two template scripts.</p>
 </div>
-</div>
-</div>
-<div class="section" id="create-and-combine-hsi-rasters">
-<span id="py-raster-calculator"></span><h2>Create and Combine HSI Rasters<a class="headerlink" href="#create-and-combine-hsi-rasters" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="complete-the-init-method-of-the-raster-class-raster-py">
-<span id="raster-class"></span><h3>Complete the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> Method of the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> Class (<code class="docutils literal notranslate"><span class="pre">raster.py</span></code>)<a class="headerlink" href="#complete-the-init-method-of-the-raster-class-raster-py" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="create-and-combine-hsi-rasters">
+<span id="py-raster-calculator"></span><h2>Create and Combine HSI Rasters<a class="headerlink" href="#create-and-combine-hsi-rasters" title="Permalink to this headline">#</a></h2>
+<section id="complete-the-init-method-of-the-raster-class-raster-py">
+<span id="raster-class"></span><h3>Complete the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> Method of the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> Class (<code class="docutils literal notranslate"><span class="pre">raster.py</span></code>)<a class="headerlink" href="#complete-the-init-method-of-the-raster-class-raster-py" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">raster.py</span></code> script imports the functions and libraries loaded in the <code class="docutils literal notranslate"><span class="pre">fun.py</span></code> script, and therefore, also the <code class="docutils literal notranslate"><span class="pre">config.py</span></code> script. For this reason, the <a class="reference internal" href="../jupyter/pynum.html#numpy"><span class="std std-ref">NumPy</span></a> and <a class="reference internal" href="../jupyter/pynum.html#pandas"><span class="std std-ref">Pandas</span></a> libraries are already available (<code class="docutils literal notranslate"><span class="pre">as</span></code> <code class="docutils literal notranslate"><span class="pre">np</span></code> and <code class="docutils literal notranslate"><span class="pre">pd</span></code>, respectively), and the <em>geo_utils</em> package is already imported as <code class="docutils literal notranslate"><span class="pre">geo</span></code> (<code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">geo_utils</span> <span class="pre">as</span> <span class="pre">geo</span></code> in <code class="docutils literal notranslate"><span class="pre">config.py</span></code>).</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">Raster</span></code> class will load any <em>GeoTIFF</em> file name as a geo-referenced array object that can be used with mathematical operators. First, we will complement the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method by a <code class="docutils literal notranslate"><span class="pre">Raster.name</span></code> (extract from the <code class="docutils literal notranslate"><span class="pre">file_name</span></code> argument), as well as georeferences and array datasets:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># __init__(...) of Raster class in raster.py</span>
@@ -1121,9 +723,9 @@ Next, load the <code class="docutils literal notranslate"><span class="pre">osge
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method of the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> class is complete.</p>
-</div>
-<div class="section" id="complete-magic-methods-of-the-raster-class-raster-py">
-<h3>Complete Magic Methods of the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> Class (<code class="docutils literal notranslate"><span class="pre">raster.py</span></code>)<a class="headerlink" href="#complete-magic-methods-of-the-raster-class-raster-py" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="complete-magic-methods-of-the-raster-class-raster-py">
+<h3>Complete Magic Methods of the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> Class (<code class="docutils literal notranslate"><span class="pre">raster.py</span></code>)<a class="headerlink" href="#complete-magic-methods-of-the-raster-class-raster-py" title="Permalink to this headline">#</a></h3>
 <p>To enable mathematical operations between multiple instances of the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> class, implement <a class="reference internal" href="../jupyter/classes.html#magic"><span class="std std-ref">Overloading and Magic Methods</span></a> that tell the class what to do when two <code class="docutils literal notranslate"><span class="pre">Raster</span></code> instances are for example added (<code class="docutils literal notranslate"><span class="pre">+</span></code> sign), multiplied (<code class="docutils literal notranslate"><span class="pre">*</span></code> sign), or subtracted (<code class="docutils literal notranslate"><span class="pre">-</span></code> sign). For instance, implementing the magic methods <code class="docutils literal notranslate"><span class="pre">__truediv__</span></code> (for using the <code class="docutils literal notranslate"><span class="pre">/</span></code> operator), <code class="docutils literal notranslate"><span class="pre">__mul__</span></code> (for using the <code class="docutils literal notranslate"><span class="pre">*</span></code> operator), and <code class="docutils literal notranslate"><span class="pre">__pow__</span></code> (for using the <code class="docutils literal notranslate"><span class="pre">**</span></code> operator) will enable the usage of <code class="docutils literal notranslate"><span class="pre">Raster</span></code> instances like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># example for Raster instances, when operators are defined through magic methods</span>
 
@@ -1157,19 +759,22 @@ Next, load the <code class="docutils literal notranslate"><span class="pre">osge
 <li><p>If <code class="docutils literal notranslate"><span class="pre">constant_or_raster</span></code> is a numeric value, then invoking <code class="docutils literal notranslate"><span class="pre">contant_or_raster.array</span></code> results in an <code class="docutils literal notranslate"><span class="pre">AttributeError</span></code> and the <code class="docutils literal notranslate"><span class="pre">__truediv__</span></code> method falls in the <code class="docutils literal notranslate"><span class="pre">except</span> <span class="pre">AttributeError</span></code> statement, where <code class="docutils literal notranslate"><span class="pre">self.array</span></code> is simply divided by <code class="docutils literal notranslate"><span class="pre">constant_or_raster</span></code>.</p></li>
 </ul>
 </li>
-<li><p>The method returns the result of the pseudo private method <code class="docutils literal notranslate"><span class="pre">self._make_raster(&quot;div&quot;)</span></code> ([recall <em>PEP 8</em> <a class="reference internal" href="../jupyter/pystyle.html#chpt-style"><span class="std std-ref">Code Style and Conventions</span></a>, which corresponds to a new <code class="docutils literal notranslate"><span class="pre">Raster</span></code> instance of the actual <code class="docutils literal notranslate"><span class="pre">Raster</span></code> instance divided by <code class="docutils literal notranslate"><span class="pre">constant_or_raster</span></code>. The new <code class="docutils literal notranslate"><span class="pre">Raster</span></code> instance is a temporary <em>GeoTIFF</em>  file in the <em>cache</em> folder (<a class="reference external" href="#funs">recall the cache function</a>). This is how the pseudo-private method <code class="docutils literal notranslate"><span class="pre">_make_raster(self,</span> <span class="pre">file_marker)</span></code> looks like:<a name="make-raster"></a></p></li>
+<li><p>The method returns the result of the pseudo private method <code class="docutils literal notranslate"><span class="pre">self._make_raster(&quot;div&quot;)</span></code> ([recall <em>PEP 8</em> <a class="reference internal" href="../jupyter/pystyle.html#chpt-style"><span class="std std-ref">Code Style and Conventions</span></a>, which corresponds to a new <code class="docutils literal notranslate"><span class="pre">Raster</span></code> instance of the actual <code class="docutils literal notranslate"><span class="pre">Raster</span></code> instance divided by <code class="docutils literal notranslate"><span class="pre">constant_or_raster</span></code>. The new <code class="docutils literal notranslate"><span class="pre">Raster</span></code> instance is a temporary <em>GeoTIFF</em>  file in the <em>cache</em> folder (recall the <a class="reference internal" href="#funs"><span class="std std-ref">cache function</span></a>). This is how the pseudo-private method <code class="docutils literal notranslate"><span class="pre">_make_raster(self,</span> <span class="pre">file_marker)</span></code> looks like:</a></p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">_make_raster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_marker</span><span class="p">):</span>
-        <span class="n">f_ending</span> <span class="o">=</span> <span class="s2">&quot;__</span><span class="si">{0}{1}</span><span class="s2">__.tif&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file_marker</span><span class="p">,</span> <span class="n">create_random_string</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-        <span class="n">geo</span><span class="o">.</span><span class="n">create_raster</span><span class="p">(</span><span class="n">cache_folder</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="n">f_ending</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">epsg</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">epsg</span><span class="p">,</span>
-                          <span class="n">nan_val</span><span class="o">=</span><span class="n">nan_value</span><span class="p">,</span>
-                          <span class="n">geo_info</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">geo_transformation</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">Raster</span><span class="p">(</span><span class="n">cache_folder</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="n">f_ending</span><span class="p">)</span>
+<div class="python admonition" id="make-raster">
+<p class="admonition-title">Make Raster function</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>def _make_raster(self, file_marker):
+    f_ending = &quot;__{0}{1}__.tif&quot;.format(file_marker, create_random_string(4)
+    geo.create_raster(cache_folder + self.name + f_ending, self.array, epsg=self.epsg,
+                      nan_val=nan_value,
+                      geo_info=self.geo_transformation)
+    return Raster(cache_folder + self.name + f_ending)
 </pre></div>
+</div>
 </div>
 <p>This function:</p>
 <ul class="simple">
-<li><p>Uses the <em>string</em>-type argument <code class="docutils literal notranslate"><span class="pre">file_marker</span></code> to add it to the file name of the base <em>GeoTIFF</em> along with a random, four characters-long <em>string</em> (recall the <a class="reference external" href="#funs"><code class="docutils literal notranslate"><span class="pre">create_random_string</span></code> function</a>). <code class="docutils literal notranslate"><span class="pre">file_marker</span></code> is unique for every implemented operator. For the <code class="docutils literal notranslate"><span class="pre">__truediv__</span></code> method use <code class="docutils literal notranslate"><span class="pre">file_marker=&quot;div&quot;</span></code>. Thus, the temporary <em>GeoTIFF</em> file name is defined as <code class="docutils literal notranslate"><span class="pre">cache_folder</span> <span class="pre">+</span> <span class="pre">self.name</span> <span class="pre">+</span> <span class="pre">f_ending</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;C:\Excercise-geco\__cache__\velocity__divhjev__.tif&quot;</span></code>).</p></li>
+<li><p>Uses the <em>string</em>-type argument <code class="docutils literal notranslate"><span class="pre">file_marker</span></code> to add it to the file name of the base <em>GeoTIFF</em> along with a random, four characters-long <em>string</em> (recall the <a class="reference internal" href="#funs"><span class="std std-ref">create_random_string</span></a>). <code class="docutils literal notranslate"><span class="pre">file_marker</span></code> is unique for every implemented operator. For the <code class="docutils literal notranslate"><span class="pre">__truediv__</span></code> method use <code class="docutils literal notranslate"><span class="pre">file_marker=&quot;div&quot;</span></code>. Thus, the temporary <em>GeoTIFF</em> file name is defined as <code class="docutils literal notranslate"><span class="pre">cache_folder</span> <span class="pre">+</span> <span class="pre">self.name</span> <span class="pre">+</span> <span class="pre">f_ending</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;C:\Excercise-geco\__cache__\velocity__divhjev__.tif&quot;</span></code>).</p></li>
 <li><p>Applies the <a class="reference internal" href="../jupyter/geo-raster.html#create-raster"><span class="std std-ref">Create a Raster (Array to Raster)</span></a> function from <code class="docutils literal notranslate"><span class="pre">geo_utils</span></code> to write the temporary <em>GeoTIFF</em> to the <code class="docutils literal notranslate"><span class="pre">__cache__</span></code> folder with the original raster’s spatial reference system.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">return</span></code>s a new <code class="docutils literal notranslate"><span class="pre">Raster</span></code> instance of the temporary, cached <em>GeoTIFF</em> file.</p></li>
 </ul>
@@ -1237,29 +842,31 @@ Next, load the <code class="docutils literal notranslate"><span class="pre">osge
 </pre></div>
 </div>
 <p>Why do we need the <code class="docutils literal notranslate"><span class="pre">save_status</span></code> variable? First, it states if saving the raster was successful (<code class="docutils literal notranslate"><span class="pre">save_status=0</span></code>), and second, this information could be used to delete the raster from the <code class="docutils literal notranslate"><span class="pre">__cache__</span></code> folder and flush the memory (feel free to do so for speeding up the code).</p>
-</div>
-<div class="section" id="write-hsi-and-chsi-raster-creation-script">
-<h3>Write HSI and cHSI Raster Creation Script<a class="headerlink" href="#write-hsi-and-chsi-raster-creation-script" title="Permalink to this headline">¶</a></h3>
-<p>The provided <code class="docutils literal notranslate"><span class="pre">create_hsi_rasters.py</span></code> script already contains required package imports, an <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">'__main__'</span></code> stand-alone statement as well as the void <code class="docutils literal notranslate"><span class="pre">main</span></code>, <code class="docutils literal notranslate"><span class="pre">get_hsi_curve</span></code>, <code class="docutils literal notranslate"><span class="pre">get_hsi_raster</span></code>, and <code class="docutils literal notranslate"><span class="pre">combine_hsi_rasters</span></code> functions:<a name="chsi-template"></a></p>
+</section>
+<section id="write-hsi-and-chsi-raster-creation-script">
+<h3>Write HSI and cHSI Raster Creation Script<a class="headerlink" href="#write-hsi-and-chsi-raster-creation-script" title="Permalink to this headline">#</a></h3>
+<p>The provided <code class="docutils literal notranslate"><span class="pre">create_hsi_rasters.py</span></code> script already contains required package imports, an <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">'__main__'</span></code> stand-alone statement as well as the void <code class="docutils literal notranslate"><span class="pre">main</span></code>, <code class="docutils literal notranslate"><span class="pre">get_hsi_curve</span></code>, <code class="docutils literal notranslate"><span class="pre">get_hsi_raster</span></code>, and <code class="docutils literal notranslate"><span class="pre">combine_hsi_rasters</span></code> functions:</p>
+<div class="admonition-chsi-template-script admonition" id="chsi-template">
+<p class="admonition-title">cHSI Template script</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create_hsi_rasters.py</span>
 <span class="kn">from</span> <span class="nn">fun</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">raster_hsi</span> <span class="kn">import</span> <span class="n">HSIRaster</span><span class="p">,</span> <span class="n">Raster</span>
 <span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">perf_counter</span>
 
 <span class="k">def</span> <span class="nf">combine_hsi_rasters</span><span class="p">(</span><span class="n">raster_list</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;geometric_mean&quot;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;...</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;...</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span>
 
 
 <span class="k">def</span> <span class="nf">get_hsi_curve</span><span class="p">(</span><span class="n">json_file</span><span class="p">,</span> <span class="n">life_stage</span><span class="p">,</span> <span class="n">parameters</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;...</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;...</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span>
 
 
 <span class="k">def</span> <span class="nf">get_hsi_raster</span><span class="p">(</span><span class="n">tif_dir</span><span class="p">,</span> <span class="n">hsi_curve</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;...</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;...</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span>
 
@@ -1282,8 +889,8 @@ Next, load the <code class="docutils literal notranslate"><span class="pre">osge
     <span class="n">main</span><span class="p">()</span>
     <span class="n">t1</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Time elapsed: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)</span>
-
 </pre></div>
+</div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">'__main__'</span></code> statement contains a time counter (<code class="docutils literal notranslate"><span class="pre">perf_counter</span></code>) that prompts how long the script takes to run (typically between 3 to 6 seconds). Make sure that</p>
 <ul class="simple">
@@ -1292,9 +899,9 @@ Next, load the <code class="docutils literal notranslate"><span class="pre">osge
 <li><p>a life stage is defined (i.e., either <code class="docutils literal notranslate"><span class="pre">&quot;fry&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;juvenile&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;adult&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;spawning&quot;</span></code> as per the <em>/habitat/fish.xlsx</em>  workbook).</p></li>
 </ul>
 <p>The following paragraphs show step by step how to load the <span class="math notranslate nohighlight">\(HSI\)</span> curves from the <a class="reference internal" href="../jupyter/xml.html#json"><span class="std std-ref">JSON</span></a> file (<code class="docutils literal notranslate"><span class="pre">get_hsi_curve</span></code>), apply them to the <code class="docutils literal notranslate"><span class="pre">flow_velocity</span></code> and <code class="docutils literal notranslate"><span class="pre">water_depth</span></code> rasters (<code class="docutils literal notranslate"><span class="pre">get_hsi_raster</span></code>), and combine the resulting <span class="math notranslate nohighlight">\(HSI\)</span> rasters into <span class="math notranslate nohighlight">\(cHSI\)</span> rasters (<code class="docutils literal notranslate"><span class="pre">combine_hsi_rasters</span></code>).</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">get_hsi_curve</span></code> function will load the <span class="math notranslate nohighlight">\(HSI\)</span> curve from the <a class="reference internal" href="../jupyter/xml.html#json"><span class="std std-ref">JSON</span></a> file (<em>/habitat/trout.json</em>) in a dictionary for the two parameters <code class="docutils literal notranslate"><span class="pre">&quot;velocity&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;depth&quot;</span></code>. Thus, the goal is to create a <code class="docutils literal notranslate"><span class="pre">curve_data</span></code> dictionary that contains one <a class="reference internal" href="../jupyter/pynum.html#pandas"><span class="std std-ref">Pandas</span></a> <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> object for all parameters (i.e., velocity and depth). For example, <code class="docutils literal notranslate"><span class="pre">curve_data[&quot;velocity&quot;][&quot;u&quot;]</span></code> will be a <a class="reference internal" href="../jupyter/pynum.html#pandas"><span class="std std-ref">Pandas</span></a> <code class="docutils literal notranslate"><span class="pre">Series</span></code> of velocity entries (in m/s) that corresponds to <code class="docutils literal notranslate"><span class="pre">curve_data[&quot;velocity&quot;][&quot;HSI&quot;]</span></code>, which is a <a class="reference internal" href="../jupyter/pynum.html#pandas"><span class="std std-ref">Pandas</span></a> <code class="docutils literal notranslate"><span class="pre">Series</span></code> of <span class="math notranslate nohighlight">\(HSI\)</span> values. Similarly, <code class="docutils literal notranslate"><span class="pre">curve_data[&quot;depth&quot;][&quot;h&quot;]</span></code> is a <a class="reference internal" href="../jupyter/pynum.html#pandas"><span class="std std-ref">Pandas</span></a> <code class="docutils literal notranslate"><span class="pre">Series</span></code> of depth entries (in meters) that corresponds to <code class="docutils literal notranslate"><span class="pre">curve_data[&quot;depth&quot;][&quot;HSI&quot;]</span></code>, which is a <a class="reference internal" href="../jupyter/pynum.html#pandas"><span class="std std-ref">Pandas</span></a> <code class="docutils literal notranslate"><span class="pre">Series</span></code> of <span class="math notranslate nohighlight">\(HSI\)</span> values (corresponds to the curves shown in the <a class="reference external" href="#hsi-image"><span class="math notranslate nohighlight">\(HSI\)</span> graphs</a> above). To extract the desired information from the <a class="reference internal" href="../jupyter/xml.html#json"><span class="std std-ref">JSON</span></a> file, <code class="docutils literal notranslate"><span class="pre">get_hsi_curve</span></code> takes three arguments (<code class="docutils literal notranslate"><span class="pre">json_file</span></code>, <code class="docutils literal notranslate"><span class="pre">life_stage</span></code>, and <code class="docutils literal notranslate"><span class="pre">parameters</span></code>) in order to:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">get_hsi_curve</span></code> function will load the <span class="math notranslate nohighlight">\(HSI\)</span> curve from the <a class="reference internal" href="../jupyter/xml.html#json"><span class="std std-ref">JSON</span></a> file (<em>/habitat/trout.json</em>) in a dictionary for the two parameters <code class="docutils literal notranslate"><span class="pre">&quot;velocity&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;depth&quot;</span></code>. Thus, the goal is to create a <code class="docutils literal notranslate"><span class="pre">curve_data</span></code> dictionary that contains one <a class="reference internal" href="../jupyter/pynum.html#pandas"><span class="std std-ref">Pandas</span></a> <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> object for all parameters (i.e., velocity and depth). For example, <code class="docutils literal notranslate"><span class="pre">curve_data[&quot;velocity&quot;][&quot;u&quot;]</span></code> will be a <a class="reference internal" href="../jupyter/pynum.html#pandas"><span class="std std-ref">Pandas</span></a> <code class="docutils literal notranslate"><span class="pre">Series</span></code> of velocity entries (in m/s) that corresponds to <code class="docutils literal notranslate"><span class="pre">curve_data[&quot;velocity&quot;][&quot;HSI&quot;]</span></code>, which is a <a class="reference internal" href="../jupyter/pynum.html#pandas"><span class="std std-ref">Pandas</span></a> <code class="docutils literal notranslate"><span class="pre">Series</span></code> of <span class="math notranslate nohighlight">\(HSI\)</span> values. Similarly, <code class="docutils literal notranslate"><span class="pre">curve_data[&quot;depth&quot;][&quot;h&quot;]</span></code> is a <a class="reference internal" href="../jupyter/pynum.html#pandas"><span class="std std-ref">Pandas</span></a> <code class="docutils literal notranslate"><span class="pre">Series</span></code> of depth entries (in meters) that corresponds to <code class="docutils literal notranslate"><span class="pre">curve_data[&quot;depth&quot;][&quot;HSI&quot;]</span></code>, which is a <a class="reference internal" href="../jupyter/pynum.html#pandas"><span class="std std-ref">Pandas</span></a> <code class="docutils literal notranslate"><span class="pre">Series</span></code> of <span class="math notranslate nohighlight">\(HSI\)</span> values (corresponds to the curves shown in the <a class="reference internal" href="#hsi-image"><span class="std std-ref">HSI graphs</span></a> above). To extract the desired information from the <a class="reference internal" href="../jupyter/xml.html#json"><span class="std std-ref">JSON</span></a> file, <code class="docutils literal notranslate"><span class="pre">get_hsi_curve</span></code> takes three arguments (<code class="docutils literal notranslate"><span class="pre">json_file</span></code>, <code class="docutils literal notranslate"><span class="pre">life_stage</span></code>, and <code class="docutils literal notranslate"><span class="pre">parameters</span></code>) in order to:</p>
 <ul class="simple">
-<li><p>Get the information stored in the <a class="reference internal" href="../jupyter/xml.html#json"><span class="std std-ref">JSON</span></a> file with the <code class="docutils literal notranslate"><span class="pre">read_json</span></code> function (<a class="reference external" href="#funs">see above</a>).</p></li>
+<li><p>Get the information stored in the <a class="reference internal" href="../jupyter/xml.html#json"><span class="std std-ref">JSON</span></a> file with the <code class="docutils literal notranslate"><span class="pre">read_json</span></code> function (<a class="reference internal" href="#funs"><span class="std std-ref">see above</span></a>).</p></li>
 <li><p>Instantiate a void <code class="docutils literal notranslate"><span class="pre">curve_data</span></code> <a class="reference internal" href="../jupyter/pybase.html#dict"><span class="std std-ref">Dictionary</span></a> that will contain the <a class="reference internal" href="../jupyter/pynum.html#pandas"><span class="std std-ref">Pandas</span></a> <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>s for <code class="docutils literal notranslate"><span class="pre">&quot;velocity&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;depth&quot;</span></code>.</p></li>
 <li><p>Run a loop over the (two) parameters (<code class="docutils literal notranslate"><span class="pre">&quot;velocity&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;depth&quot;</span></code>), in which it:</p>
 <ul>
@@ -1330,7 +937,7 @@ Next, load the <code class="docutils literal notranslate"><span class="pre">osge
     <span class="k">return</span> <span class="n">curve_data</span>
 </pre></div>
 </div>
-<p>In the <code class="docutils literal notranslate"><span class="pre">main</span></code> function, call <code class="docutils literal notranslate"><span class="pre">get_hsi_curves</span></code> to get the <span class="math notranslate nohighlight">\(HSI\)</span> curves as a <a class="reference internal" href="../jupyter/pybase.html#dict"><span class="std std-ref">Dictionary</span></a>. In addition, implement the <code class="docutils literal notranslate"><span class="pre">cache</span></code> and the <code class="docutils literal notranslate"><span class="pre">log_actions</span></code> wrappers  (<a class="reference external" href="#funs">recall the descriptions of provided functions</a> for the <code class="docutils literal notranslate"><span class="pre">main</span></code> function:</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">main</span></code> function, call <code class="docutils literal notranslate"><span class="pre">get_hsi_curves</span></code> to get the <span class="math notranslate nohighlight">\(HSI\)</span> curves as a <a class="reference internal" href="../jupyter/pybase.html#dict"><span class="std std-ref">Dictionary</span></a>. In addition, implement the <code class="docutils literal notranslate"><span class="pre">cache</span></code> and the <code class="docutils literal notranslate"><span class="pre">log_actions</span></code> wrappers  (recall the descriptions of <a class="reference internal" href="#funs"><span class="std std-ref">provided functions</span></a>) for the <code class="docutils literal notranslate"><span class="pre">main</span></code> function:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create_hsi_rasters.py</span>
 
 <span class="o">...</span>
@@ -1349,14 +956,14 @@ Next, load the <code class="docutils literal notranslate"><span class="pre">osge
 <li><p>Extracts parameter values (e.g., depth or velocity) from the first element of the nested <code class="docutils literal notranslate"><span class="pre">hsi_curves</span></code> <a class="reference internal" href="../jupyter/pybase.html#list"><span class="std std-ref">List</span></a>, and <span class="math notranslate nohighlight">\(HSI\)</span> values from the second element of the nested <code class="docutils literal notranslate"><span class="pre">hsi_curves</span></code> <a class="reference internal" href="../jupyter/pybase.html#list"><span class="std std-ref">List</span></a>.</p></li>
 <li><p>Uses <a class="reference internal" href="../jupyter/pynum.html#numpy"><span class="std std-ref">NumPy</span></a>s built-in <code class="docutils literal notranslate"><span class="pre">np.nditer</span></code> function, which iterates through <a class="reference internal" href="../jupyter/pynum.html#numpy"><span class="std std-ref">NumPy</span></a> arrays with high computational efficiency (read more about <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.nditer.html"><code class="docutils literal notranslate"><span class="pre">nditer</span></code></a>).</p>
 <ul>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">nditer</span></code> loop passes the <code class="docutils literal notranslate"><span class="pre">par_values</span></code> as <code class="docutils literal notranslate"><span class="pre">x_values</span></code> <a class="reference internal" href="../jupyter/pybase.html#list"><span class="std std-ref">List</span></a> argument and the <code class="docutils literal notranslate"><span class="pre">hsi_values</span></code> as <code class="docutils literal notranslate"><span class="pre">y_values</span></code> <a class="reference internal" href="../jupyter/pybase.html#list"><span class="std std-ref">List</span></a> arguments to the <code class="docutils literal notranslate"><span class="pre">interpolate_from_list</span></code> function (<a class="reference external" href="#funs">recall the function descriptions above</a>).</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">nditer</span></code> loop passes the <code class="docutils literal notranslate"><span class="pre">par_values</span></code> as <code class="docutils literal notranslate"><span class="pre">x_values</span></code> <a class="reference internal" href="../jupyter/pybase.html#list"><span class="std std-ref">List</span></a> argument and the <code class="docutils literal notranslate"><span class="pre">hsi_values</span></code> as <code class="docutils literal notranslate"><span class="pre">y_values</span></code> <a class="reference internal" href="../jupyter/pybase.html#list"><span class="std std-ref">List</span></a> arguments to the <code class="docutils literal notranslate"><span class="pre">interpolate_from_list</span></code> function (recall the <a class="reference internal" href="#funs"><span class="std std-ref">function descriptions above</span></a>).</p></li>
 <li><p>The array values (i.e., flow velocity or water depth) correspond to the <code class="docutils literal notranslate"><span class="pre">xi_values</span></code> <a class="reference internal" href="../jupyter/pybase.html#list"><span class="std std-ref">List</span></a> argument of the <code class="docutils literal notranslate"><span class="pre">interpolate_from_list</span></code> function.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">interpolate_from_list</span></code> function then identifies for each element of the <code class="docutils literal notranslate"><span class="pre">xi_values</span></code> <a class="reference internal" href="../jupyter/pybase.html#list"><span class="std std-ref">List</span></a> the closest elements (<span class="math notranslate nohighlight">\(x_{i}\)</span> values) in the <code class="docutils literal notranslate"><span class="pre">x_values</span></code> <a class="reference internal" href="../jupyter/pybase.html#list"><span class="std std-ref">List</span></a> and the corresponding positions in the <code class="docutils literal notranslate"><span class="pre">y_values</span></code> <a class="reference internal" href="../jupyter/pybase.html#list"><span class="std std-ref">List</span></a>.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">interpolate_from_list</span></code> function passes the identified values to the <code class="docutils literal notranslate"><span class="pre">interpolate_y</span></code> function, which then linearly interpolates the corresponding <code class="docutils literal notranslate"><span class="pre">yi</span></code> value (i.e., an <span class="math notranslate nohighlight">\(HSI\)</span> value).</p></li>
 <li><p>Thus, the flow velocity or water depths in <code class="docutils literal notranslate"><span class="pre">self.array</span></code> are row-wise (row-by-row) replaced by <span class="math notranslate nohighlight">\(HSI\)</span> values.</p></li>
 </ul>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">return</span></code>s a <code class="docutils literal notranslate"><span class="pre">Raster</span></code> instance using the pseudo-private <code class="docutils literal notranslate"><span class="pre">_make_raster</span></code> method (<a class="reference external" href="#make-raster">recall its contents</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">return</span></code>s a <code class="docutils literal notranslate"><span class="pre">Raster</span></code> instance using the pseudo-private <code class="docutils literal notranslate"><span class="pre">_make_raster</span></code> method (<a class="reference internal" href="#make-raster"><span class="std std-ref">recall its contents</span></a>).</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># raster_hsi.py</span>
 <span class="kn">from</span> <span class="nn">raster</span> <span class="kn">import</span> <span class="o">*</span>
@@ -1389,7 +996,7 @@ Next, load the <code class="docutils literal notranslate"><span class="pre">osge
 
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">get_hsi_raster</span></code> function requires two arguments, which it must receive from the <code class="docutils literal notranslate"><span class="pre">main</span></code> function. For this reason, iterate over the <code class="docutils literal notranslate"><span class="pre">parameters</span></code> <a class="reference internal" href="../jupyter/pybase.html#list"><span class="std std-ref">List</span></a> in the <code class="docutils literal notranslate"><span class="pre">main</span></code> function and extract the corresponding raster directories from the <code class="docutils literal notranslate"><span class="pre">tifs</span></code> <a class="reference internal" href="../jupyter/pybase.html#dict"><span class="std std-ref">Dictionary</span></a> (recall the variable definition in the <a class="reference external" href="#chsi-template">standalone statement</a>). In addition, save the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> objects returned by the <code class="docutils literal notranslate"><span class="pre">get_hsi_raster</span></code> function in another <a class="reference internal" href="../jupyter/pybase.html#dict"><span class="std std-ref">Dictionary</span></a> (<code class="docutils literal notranslate"><span class="pre">eco_rasters</span></code>) to combine them in the next step into a <span class="math notranslate nohighlight">\(cHSI\)</span> raster.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">get_hsi_raster</span></code> function requires two arguments, which it must receive from the <code class="docutils literal notranslate"><span class="pre">main</span></code> function. For this reason, iterate over the <code class="docutils literal notranslate"><span class="pre">parameters</span></code> <a class="reference internal" href="../jupyter/pybase.html#list"><span class="std std-ref">List</span></a> in the <code class="docutils literal notranslate"><span class="pre">main</span></code> function and extract the corresponding raster directories from the <code class="docutils literal notranslate"><span class="pre">tifs</span></code> <a class="reference internal" href="../jupyter/pybase.html#dict"><span class="std std-ref">Dictionary</span></a> (recall the variable definition in the <a class="reference internal" href="#chsi-template"><span class="std std-ref">standalone statement</span></a>). In addition, save the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> objects returned by the <code class="docutils literal notranslate"><span class="pre">get_hsi_raster</span></code> function in another <a class="reference internal" href="../jupyter/pybase.html#dict"><span class="std std-ref">Dictionary</span></a> (<code class="docutils literal notranslate"><span class="pre">eco_rasters</span></code>) to combine them in the next step into a <span class="math notranslate nohighlight">\(cHSI\)</span> raster.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create_hsi_rasters.py</span>
 
 <span class="o">...</span>
@@ -1415,7 +1022,7 @@ Next, load the <code class="docutils literal notranslate"><span class="pre">osge
 <p class="admonition-title">Test if the code works</p>
 <p>This is a good moment to test if the code works. Run <code class="docutils literal notranslate"><span class="pre">create_hsi_rasters.py</span></code> and verify that the two <em>GeoTIFF</em> files (<em>/habitat/hsi_velocity.tif</em> and <em>/habitat/hsi_depth.tif</em>) are created correctly. QGIS visualizes the <em>GeoTIFF</em>-products and the activated <em>Identify Features</em> button in QGIS enables to check if the linearly interpolated <span class="math notranslate nohighlight">\(HSI\)</span> values agree with the <span class="math notranslate nohighlight">\(HSI\)</span> curves in the provided workbook (<em>/habitat/trout.xlsx</em>). Thus, load both <em>GeoTIFF</em> pairs in QGIS: <em>/habitat/hsi_velocity.tif</em> + <em>/basement/flow_velocity.tif</em> and <em>/habitat/hsi_depth.tif</em>  + <em>/basement/water_depth.tif</em>.</p>
 </div>
-<p>Next, we come to the reason why we had to define magic methods for the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> class: combine the <span class="math notranslate nohighlight">\(HSI\)</span> rasters using both combination formulae presented above (recall the <a class="reference external" href="#combine-methods">product and geometric mean</a> formulae), where <code class="docutils literal notranslate"><span class="pre">&quot;geometric_mean&quot;</span></code> should be used by default. The <code class="docutils literal notranslate"><span class="pre">combine_hsi_rasters</span></code> function accepts two arguments (a <a class="reference internal" href="../jupyter/pybase.html#list"><span class="std std-ref">List</span></a> of <code class="docutils literal notranslate"><span class="pre">Raster</span></code> objects corresponding to <span class="math notranslate nohighlight">\(HSI\)</span> rasters and the <code class="docutils literal notranslate"><span class="pre">method</span></code> to use as <em>string</em>).</p>
+<p>Next, we come to the reason why we had to define magic methods for the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> class: combine the <span class="math notranslate nohighlight">\(HSI\)</span> rasters using both combination formulae presented above (recall the <a class="reference internal" href="#combine-methods"><span class="std std-ref">product and geometric mean</span></a> formulae), where <code class="docutils literal notranslate"><span class="pre">&quot;geometric_mean&quot;</span></code> should be used by default. The <code class="docutils literal notranslate"><span class="pre">combine_hsi_rasters</span></code> function accepts two arguments (a <a class="reference internal" href="../jupyter/pybase.html#list"><span class="std std-ref">List</span></a> of <code class="docutils literal notranslate"><span class="pre">Raster</span></code> objects corresponding to <span class="math notranslate nohighlight">\(HSI\)</span> rasters and the <code class="docutils literal notranslate"><span class="pre">method</span></code> to use as <em>string</em>).</p>
 <p>If the method corresponds to the default value <code class="docutils literal notranslate"><span class="pre">&quot;geometric_mean&quot;</span></code>, then the <code class="docutils literal notranslate"><span class="pre">power</span></code> to be applied to the product of the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> <a class="reference internal" href="../jupyter/pybase.html#list"><span class="std std-ref">List</span></a> is calculated from the <em>n</em>th root, where <em>n</em> corresponds to the number of <code class="docutils literal notranslate"><span class="pre">Raster</span></code> objects in the <code class="docutils literal notranslate"><span class="pre">raster_list</span></code>. Otherwise (e.g., <code class="docutils literal notranslate"><span class="pre">method=&quot;product&quot;</span></code>), the <code class="docutils literal notranslate"><span class="pre">power</span></code> is exactly 1.0.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">combine_hsi_rasters</span></code> function initially creates an empty <span class="math notranslate nohighlight">\(cHSI\)</span> <code class="docutils literal notranslate"><span class="pre">Raster</span></code> in the <code class="docutils literal notranslate"><span class="pre">cache_folder</span></code>, with each cell having the value <code class="docutils literal notranslate"><span class="pre">1.0</span></code> (filled through <code class="docutils literal notranslate"><span class="pre">np.ones</span></code>). In a loop over the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> elements of the <code class="docutils literal notranslate"><span class="pre">raster_list</span></code>, the function multiplies each <span class="math notranslate nohighlight">\(HSI\)</span> raster with the <span class="math notranslate nohighlight">\(cHSI\)</span> raster.</p>
 <p>Finally, the function returns the product of all <span class="math notranslate nohighlight">\(HSI\)</span> rasters to the power of the previously determined <code class="docutils literal notranslate"><span class="pre">power</span></code> value.</p>
@@ -1460,30 +1067,34 @@ Next, load the <code class="docutils literal notranslate"><span class="pre">osge
 <span class="o">...</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="run-the-hsi-and-chsi-code">
-<h3>Run the HSI and cHSI Code<a class="headerlink" href="#run-the-hsi-and-chsi-code" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="run-the-hsi-and-chsi-code">
+<h3>Run the HSI and cHSI Code<a class="headerlink" href="#run-the-hsi-and-chsi-code" title="Permalink to this headline">#</a></h3>
 <p>A successful run of the script <code class="docutils literal notranslate"><span class="pre">create_hsi_rasters.py</span></code> should look like this (in <em>PyCharm</em>):</p>
-<div class="figure align-default" id="run-chsi">
+<figure class="align-default" id="run-chsi">
 <img alt="run execute script calculation combined habitat suitability index raster map" src="https://github.com/Ecohydraulics/Exercise-geco/raw/main/graphs/run_create_chsi_rasters.png" />
-<p class="caption"><span class="caption-number">Fig. 27 </span><span class="caption-text">A Windows Python console running the above-created scripts.</span><a class="headerlink" href="#run-chsi" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 27 </span><span class="caption-text">A Windows Python console running the above-created scripts.</span><a class="headerlink" href="#run-chsi" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Plotted in QGIS, the <span class="math notranslate nohighlight">\(cHSI\)</span> <a class="reference internal" href="../documentation/glossary.html#term-GeoTIFF"><span class="xref std std-term">GeoTIFF</span></a> raster should look like this:</p>
-<div class="figure align-default" id="chsi-results">
+<figure class="align-default" id="chsi-results">
 <img alt="chsi calculation" src="https://github.com/Ecohydraulics/Exercise-geco/raw/main/graphs/ex-chsi.png" />
-<p class="caption"><span class="caption-number">Fig. 28 </span><span class="caption-text">The cHSI raster plotted in QGIS, where poor physical habitat quality (cHSI close to 0.0) is colored in red and high physical habitat quality (cHSI close to 1.0) is colored in green.</span><a class="headerlink" href="#chsi-results" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="result-interpretation">
-<h3>Result Interpretation<a class="headerlink" href="#result-interpretation" title="Permalink to this headline">¶</a></h3>
+<figcaption>
+<p><span class="caption-number">Fig. 28 </span><span class="caption-text">The cHSI raster plotted in QGIS, where poor physical habitat quality (cHSI close to 0.0) is colored in red and high physical habitat quality (cHSI close to 1.0) is colored in green.</span><a class="headerlink" href="#chsi-results" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="result-interpretation">
+<h3>Result Interpretation<a class="headerlink" href="#result-interpretation" title="Permalink to this headline">#</a></h3>
 <p>The presentation of the <span class="math notranslate nohighlight">\(cHSI\)</span> raster shows that preferred habitat areas for juvenile trout exist only close to the banks. Also, numerical artifacts of the triangular mesh used by <a class="reference internal" href="../numerics/basement.html#chpt-basement"><span class="std std-ref">BASEMENT</span></a> are visible. Therefore, the question arises whether the calculated flow velocities and water depths, and in consequence also the <span class="math notranslate nohighlight">\(cHSI\)</span> values, close to the banks can be considered representative.</p>
-</div>
-</div>
-<div class="section" id="calculate-usable-habitat-area-uha">
-<h2>Calculate Usable Habitat Area UHA<a class="headerlink" href="#calculate-usable-habitat-area-uha" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="write-the-code">
-<h3>Write the Code<a class="headerlink" href="#write-the-code" title="Permalink to this headline">¶</a></h3>
-<p>The <span class="math notranslate nohighlight">\(cHSI\)</span> rasters enable the calculation of the available usable habitat area. The previous section featured examples using the fish species <em>trout</em> and its <em>juvenile</em> life stage, for which we will determine here the usable habitat area <span class="math notranslate nohighlight">\(UHA\)</span> (in m<span class="math notranslate nohighlight">\(^2\)</span>) using a <span class="math notranslate nohighlight">\(cHSI\)</span> threshold value (rather than the pixel area weighting approach). So we follow the <a class="reference external" href="#uha-methods">threshold formula described above</a>, using a threshold value of <span class="math notranslate nohighlight">\(cHSI_{crit} = 0.4\)</span>. Thus, every pixel that has a <span class="math notranslate nohighlight">\(cHSI\)</span> value of 0.4 or greater counts as usable habitat area.</p>
+</section>
+</section>
+<section id="calculate-usable-habitat-area-uha">
+<h2>Calculate Usable Habitat Area UHA<a class="headerlink" href="#calculate-usable-habitat-area-uha" title="Permalink to this headline">#</a></h2>
+<section id="write-the-code">
+<h3>Write the Code<a class="headerlink" href="#write-the-code" title="Permalink to this headline">#</a></h3>
+<p>The <span class="math notranslate nohighlight">\(cHSI\)</span> rasters enable the calculation of the available usable habitat area. The previous section featured examples using the fish species <em>trout</em> and its <em>juvenile</em> life stage, for which we will determine here the usable habitat area <span class="math notranslate nohighlight">\(UHA\)</span> (in m<span class="math notranslate nohighlight">\(^2\)</span>) using a <span class="math notranslate nohighlight">\(cHSI\)</span> threshold value (rather than the pixel area weighting approach). So we follow the <a class="reference internal" href="#uha-methods"><span class="std std-ref">threshold formula described above</span></a>, using a threshold value of <span class="math notranslate nohighlight">\(cHSI_{crit} = 0.4\)</span>. Thus, every pixel that has a <span class="math notranslate nohighlight">\(cHSI\)</span> value of 0.4 or greater counts as usable habitat area.</p>
 <p>From a technical point of view, this part of the exercise is about converting a raster into a polygon shapefile as well as accessing and modifying the <em>Attribute Table</em> of the shapefile.</p>
 <p>Similar to the creation of the <span class="math notranslate nohighlight">\(cHSI\)</span> raster, there is a template script available for this part of the exercise, called <code class="docutils literal notranslate"><span class="pre">calculate_habitat_area.py</span></code>, which contains package and module imports, an <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">'__main__'</span></code> stand-alone statement, as well as the void <code class="docutils literal notranslate"><span class="pre">main</span></code> and <code class="docutils literal notranslate"><span class="pre">calculate_habitat_area</span></code> functions. The template script looks like this:<a name="uha-template"></a></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># this is calculate_habitat_area.py (template)</span>
@@ -1506,8 +1117,8 @@ Next, load the <code class="docutils literal notranslate"><span class="pre">osge
     <span class="n">main</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>In the <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">'__main__'</span></code> statement, make sure that the global variable <code class="docutils literal notranslate"><span class="pre">chsi_raster_name</span></code> corresponds to the directory of the <span class="math notranslate nohighlight">\(cHSI\)</span> raster created in the previous section. The other global variable (<code class="docutils literal notranslate"><span class="pre">chsi_threshold</span></code>) corresponds to the <span class="math notranslate nohighlight">\(cHSI_{crit}\)</span> value of 0.4 that we will use with the <a class="reference external" href="#uha-methods">threshold formula</a>.</p>
-<p>In the <code class="docutils literal notranslate"><span class="pre">main</span></code> function, start with loading the <span class="math notranslate nohighlight">\(cHSI\)</span> raster (<code class="docutils literal notranslate"><span class="pre">chsi_raster</span></code>) as a <a class="reference external" href="#raster-class">Raster object</a>. Then, access the <a class="reference internal" href="../jupyter/pynum.html#numpy"><span class="std std-ref">NumPy</span></a> array of the <span class="math notranslate nohighlight">\(cHSI\)</span> raster and compare it with <code class="docutils literal notranslate"><span class="pre">chsi_threshold</span></code> using <a class="reference internal" href="../jupyter/pynum.html#numpy"><span class="std std-ref">NumPy</span></a>s built-in <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.greater_equal.html"><em>greater_equal</em></a> function. <code class="docutils literal notranslate"><span class="pre">np.greater_equal</span></code> takes an array as first argument and a second argument, which is the condition that can be a numeric variable or another <a class="reference internal" href="../jupyter/pynum.html#numpy"><span class="std std-ref">NumPy</span></a> array. Then, <code class="docutils literal notranslate"><span class="pre">np.greater_equal</span></code> checks if the elements of the first array are greater than or equal to the second argument. In the case of the second argument being an array, this is an element-wise <span class="math notranslate nohighlight">\(\geq\)</span> comparison. The result of <code class="docutils literal notranslate"><span class="pre">np.greater_equal</span></code> is a <a class="reference internal" href="../jupyter/pybase.html#bool"><span class="std std-ref">Boolean</span></a> array (<code class="docutils literal notranslate"><span class="pre">True</span></code> where the greater-or-equal condition is fulfilled and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise). However, to create an <code class="docutils literal notranslate"><span class="pre">osgeo.gdal.Dataset</span></code> object from the result of <code class="docutils literal notranslate"><span class="pre">np.greater_equal</span></code>, we need a numeric array. For this reason, multiply the result of <code class="docutils literal notranslate"><span class="pre">np.greater_equal</span></code> by 1.0 and assign it as a new <a class="reference internal" href="../jupyter/pynum.html#numpy"><span class="std std-ref">NumPy</span></a> array of zeros (<code class="docutils literal notranslate"><span class="pre">False</span></code>) and ones (<code class="docutils literal notranslate"><span class="pre">True</span></code>) to a variable named <code class="docutils literal notranslate"><span class="pre">habitat_pixels</span></code> (see the code block below).</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">'__main__'</span></code> statement, make sure that the global variable <code class="docutils literal notranslate"><span class="pre">chsi_raster_name</span></code> corresponds to the directory of the <span class="math notranslate nohighlight">\(cHSI\)</span> raster created in the previous section. The other global variable (<code class="docutils literal notranslate"><span class="pre">chsi_threshold</span></code>) corresponds to the <span class="math notranslate nohighlight">\(cHSI_{crit}\)</span> value of 0.4 that we will use with the <a class="reference internal" href="#uha-methods"><span class="std std-ref">threshold formula</span></a>.</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">main</span></code> function, start with loading the <span class="math notranslate nohighlight">\(cHSI\)</span> raster (<code class="docutils literal notranslate"><span class="pre">chsi_raster</span></code>) as a <a class="reference internal" href="#raster-class"><span class="std std-ref">Raster object</span></a>. Then, access the <a class="reference internal" href="../jupyter/pynum.html#numpy"><span class="std std-ref">NumPy</span></a> array of the <span class="math notranslate nohighlight">\(cHSI\)</span> raster and compare it with <code class="docutils literal notranslate"><span class="pre">chsi_threshold</span></code> using <a class="reference internal" href="../jupyter/pynum.html#numpy"><span class="std std-ref">NumPy</span></a>s built-in <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.greater_equal.html"><em>greater_equal</em></a> function. <code class="docutils literal notranslate"><span class="pre">np.greater_equal</span></code> takes an array as first argument and a second argument, which is the condition that can be a numeric variable or another <a class="reference internal" href="../jupyter/pynum.html#numpy"><span class="std std-ref">NumPy</span></a> array. Then, <code class="docutils literal notranslate"><span class="pre">np.greater_equal</span></code> checks if the elements of the first array are greater than or equal to the second argument. In the case of the second argument being an array, this is an element-wise <span class="math notranslate nohighlight">\(\geq\)</span> comparison. The result of <code class="docutils literal notranslate"><span class="pre">np.greater_equal</span></code> is a <a class="reference internal" href="../jupyter/pybase.html#bool"><span class="std std-ref">Boolean</span></a> array (<code class="docutils literal notranslate"><span class="pre">True</span></code> where the greater-or-equal condition is fulfilled and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise). However, to create an <code class="docutils literal notranslate"><span class="pre">osgeo.gdal.Dataset</span></code> object from the result of <code class="docutils literal notranslate"><span class="pre">np.greater_equal</span></code>, we need a numeric array. For this reason, multiply the result of <code class="docutils literal notranslate"><span class="pre">np.greater_equal</span></code> by 1.0 and assign it as a new <a class="reference internal" href="../jupyter/pynum.html#numpy"><span class="std std-ref">NumPy</span></a> array of zeros (<code class="docutils literal notranslate"><span class="pre">False</span></code>) and ones (<code class="docutils literal notranslate"><span class="pre">True</span></code>) to a variable named <code class="docutils literal notranslate"><span class="pre">habitat_pixels</span></code> (see the code block below).</p>
 <p>With the <code class="docutils literal notranslate"><span class="pre">habitat_pixels</span></code> array and the georeference of <code class="docutils literal notranslate"><span class="pre">chsi_raster</span></code>, create a new <a class="reference internal" href="../jupyter/pybase.html#num"><span class="std std-ref">integer</span></a> <em>GeoTIFF</em> raster with the <em>create_raster</em> function (also available in <a class="reference external" href="https://flusstools.readthedocs.io/en/latest/geotools.html#module-flusstools.geotools.raster_mgmt">flusstools.geotools</a>); here, use <code class="docutils literal notranslate"><span class="pre">geo.create_raster</span></code>. In the following code block the new raster is saved in the <em>/habitat/</em> folder of the exercise as <code class="docutils literal notranslate"><span class="pre">habitat-pixels.tif</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate_habitat_area.py</span>
 <span class="o">...</span>
@@ -1605,22 +1216,26 @@ Then, create a void <a class="reference internal" href="../jupyter/pybase.html#l
 <p class="admonition-title">Note</p>
 <p>To calculate other geometry attributes than the polygon area (e.g., envelope extents, derive a convex hull, or get the length of lines), refer to the <a class="reference internal" href="../jupyter/geo-shp.html#calc"><span class="std std-ref">Calculate Geometric Attributes</span></a> section and use those functions in lieu of <code class="docutils literal notranslate"><span class="pre">polygon.GetArea()</span></code>.</p>
 </div>
-</div>
-<div class="section" id="run-the-usable-habitat-area-calculation-code">
-<h3>Run the Usable Habitat Area Calculation Code<a class="headerlink" href="#run-the-usable-habitat-area-calculation-code" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="run-the-usable-habitat-area-calculation-code">
+<h3>Run the Usable Habitat Area Calculation Code<a class="headerlink" href="#run-the-usable-habitat-area-calculation-code" title="Permalink to this headline">#</a></h3>
 <p>A successful run of the script <code class="docutils literal notranslate"><span class="pre">calculate_habitat_area.py</span></code> should look like this (in <em>PyCharm</em>):</p>
-<div class="figure align-default" id="ran-chsi">
+<figure class="align-default" id="ran-chsi">
 <img alt="calculate usable habitat area Python gdal" src="https://github.com/Ecohydraulics/Exercise-geco/raw/main/graphs/run_habitat_area.png" />
-<p class="caption"><span class="caption-number">Fig. 29 </span><span class="caption-text">Successful run of the <em>calculate_habitat_area.py</em> script.</span><a class="headerlink" href="#ran-chsi" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 29 </span><span class="caption-text">Successful run of the <em>calculate_habitat_area.py</em> script.</span><a class="headerlink" href="#ran-chsi" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Plotted in QGIS, the <em>habitat-area</em> shapefile looks like this (use <em>Categorized</em> symbology):</p>
-<div class="figure align-default" id="uha-results">
+<figure class="align-default" id="uha-results">
 <img alt="calculate usable habitat area Python gdal map raster QGIS" src="https://github.com/Ecohydraulics/Exercise-geco/raw/main/graphs/ex-uha.png" />
-<p class="caption"><span class="caption-number">Fig. 30 </span><span class="caption-text">The habitat-area shapefile plotted in QGIS with Categorized symbology, where the usable habitat area <span class="math notranslate nohighlight">\(UHA\)</span> (<span class="math notranslate nohighlight">\(cHSI &gt;\)</span> 0.4) is delineated by the hatched purple patches and their dashed outlines.</span><a class="headerlink" href="#uha-results" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="id7">
-<h3>Result Interpretation<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<figcaption>
+<p><span class="caption-number">Fig. 30 </span><span class="caption-text">The habitat-area shapefile plotted in QGIS with Categorized symbology, where the usable habitat area <span class="math notranslate nohighlight">\(UHA\)</span> (<span class="math notranslate nohighlight">\(cHSI &gt;\)</span> 0.4) is delineated by the hatched purple patches and their dashed outlines.</span><a class="headerlink" href="#uha-results" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="id8">
+<h3>Result Interpretation<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
 <p>The <span class="math notranslate nohighlight">\(UHA\)</span> of the analyzed river section represents a very small share of the total wetted area, which can be interpreted as an ecologically poor status of the river. However, a glance at a map and the simulation files of the Flaz example of BASEMENT suggests that at a discharge of 50 m<span class="math notranslate nohighlight">\(^3\)</span>/s, a flood situation can be assumed. As during floods, there are generally higher flow velocities, which are out-of-favor of juvenile fish, the small usable habitat area is finally not surprising.</p>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
@@ -1631,9 +1246,9 @@ Then, create a void <a class="reference internal" href="../jupyter/pybase.html#l
 <p>HOMEWORK 1: Rewrite the magic methods of the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> class by using <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">__METHOD__(self,</span> <span class="pre">other:</span> <span class="pre">Raster)</span> <span class="pre">-&gt;</span> <span class="pre">Raster:</span></code> instead of <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">__METHOD__(self,</span> <span class="pre">constant_or_raster):</span></code> and the <code class="docutils literal notranslate"><span class="pre">_make_raster</span></code> method.</p>
 <p>HOMEWORK 2: Abandon (delete) the <em>geo_utils</em> folder and replace the <code class="docutils literal notranslate"><span class="pre">import</span>&#160; <span class="pre">geo_utils</span> <span class="pre">as</span> <span class="pre">geo</span></code> with <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">flusstools.geotools</span> <span class="pre">as</span> <span class="pre">geo</span></code></p>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1647,7 +1262,7 @@ Then, create a void <a class="reference internal" href="../jupyter/pybase.html#l
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./exercises"
         },
         predefinedOutput: true
@@ -1655,46 +1270,119 @@ Then, create a void <a class="reference internal" href="../jupyter/pybase.html#l
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="geo-exercises.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Exercises</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="geo-exercises.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Exercises</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="../datascience/data-science.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="../numerics/numerical-modeling.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Fundamentals (Coming soon)</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+        <p class="prev-next-title">Principles</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-        
-        </div>
-    </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Sebastian Schwindt, Ricardo Barros<br/>
-        
-            &copy; Copyright 2023.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-habitat-suitability">What is Habitat Suitability?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#available-data-and-code-structure">Available Data and Code Structure</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-dimensional-2d-hydrodynamic-modelling-folder-basement">Two-dimensional (2d) Hydrodynamic Modelling (Folder: <em>BASEMENT</em>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#habitat-suitability-index-hsi-curves-folder-habitat">Habitat Suitability Index HSI Curves (folder: <strong>habitat</strong>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code">Code</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-combine-hsi-rasters">Create and Combine HSI Rasters</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-the-init-method-of-the-raster-class-raster-py">Complete the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> Method of the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> Class (<code class="docutils literal notranslate"><span class="pre">raster.py</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-magic-methods-of-the-raster-class-raster-py">Complete Magic Methods of the <code class="docutils literal notranslate"><span class="pre">Raster</span></code> Class (<code class="docutils literal notranslate"><span class="pre">raster.py</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#write-hsi-and-chsi-raster-creation-script">Write HSI and cHSI Raster Creation Script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-hsi-and-chsi-code">Run the HSI and cHSI Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#result-interpretation">Result Interpretation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-usable-habitat-area-uha">Calculate Usable Habitat Area UHA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#write-the-code">Write the Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-usable-habitat-area-calculation-code">Run the Usable Habitat Area Calculation Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Result Interpretation</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
 
-      </div>
-    </div>
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By Sebastian Schwindt, Beatriz Negreiros, Federica Scolari, Ricardo Barros
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

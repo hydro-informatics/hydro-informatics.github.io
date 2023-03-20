@@ -27,7 +27,8 @@ The channel types may strongly vary in space between river sections or segments 
 
 The following figures feature sediment supply-limited river sections and a transport capacity-limited river section.
 
-````{tabbed} Artificially sediment supply-limited
+`````{tab-set}
+````{tab-item} Artificially sediment supply-limited
 ```{figure} ../img/nature/doubs-capacity-2015.JPG
 :height: 350px
 :alt: channel doubs france sediment supply transport limited
@@ -37,7 +38,7 @@ The Doubs in the Franche-Comté (France) during a small flood. The sediment supp
 ```
 ````
 
-````{tabbed} Naturally sediment supply-limited
+````{tab-item} Naturally sediment supply-limited
 ```{figure} ../img/nature/krimmler-ache-2010.jpg
 :height: 350px
 :alt: naturally channel krimmler ache austria sediment supply transport limited
@@ -48,7 +49,7 @@ The Krimmler Ache in Austria during a small flood event. Even though the watersh
 ```
 ````
 
-````{tabbed} Capacity-limited
+````{tab-item} Capacity-limited
 ```{figure} ../img/nature/jenbach-alluvial-2020.jpg
 :height: 350px
 :alt: alluvial channel jenbach sediment supply transport limited
@@ -57,6 +58,7 @@ The Krimmler Ache in Austria during a small flood event. Even though the watersh
 The Jenbach in the Bavarian Alps (Germany) after an intense natural sediment supply in an upstream reach in the form of a landslide. The river section can be characterized as transport capacity-limited (picture: Sebastian Schwindt 2020).
 ```
 ````
+`````
 
 **Why is the differentiation between sediment supply and transport capacity-limited rivers important for numerical modeling?**
 
@@ -307,7 +309,8 @@ $$ (eq-cf-skin)
 
 where $\kappa$ is the {cite:t}`von_karman_mechanische_1930` constant (0.4), $h$ is water depth, and $k'_{s}$ is the representative roughness length, which is often assumed as a multiple of the characteristic grain size (read more in the section on {ref}`bedload calibration <bl-calibration>`).
 
-````{tabbed} Skin Friction
+`````{tab-set}
+````{tab-item} Skin Friction
 Gaia uses by default the skin friction correction coefficient that it derives from the hydrodynamic solver (i.e., Telemac2d/3d). In very shallow waters, this behavior might cause instabilities. Therefore, the **SKIN FRICTION CORRECTION** (integer on-off, default is `1`) keyword can be defined in Gaia to disable the correction factor calculation and setting $f_{fr}$ to 1. To disable skin friction correction (i.e., set $f_{fr}$ to 1), add the following to the Gaia steering file (not used in this tutorial):
 
 ```fortran
@@ -317,7 +320,7 @@ SKIN FRICTION CORRECTION : 0 / default is 1 to enable skin friction correction
 On ripple riverbeds (i.e., fine sandy hills as typically observed at ocean beaches during low tides), the skin friction correction should be set to `2` for enabling a bedform predictor. Read more in section 3.1.8 of the {{ gaia }}.
 ````
 
-````{tabbed} Bedform Roughness
+````{tab-item} Bedform Roughness
 The finer the sediment of the riverbed, the more important turbulence created by the bed shape becomes. For instance, skin friction calculated based on a multiple of the diameter of a sand grain's characteristic roughness length $k'_{s}$ is very small. However, sand tends to shape the riverbed into ripple or dune forms, which cause additional *bedform turbulence*, as featured in the video below.
 
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/q4eRwyeLKfA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -332,6 +335,7 @@ By default, Gaia does not account for turbulence (i.e., roughness effects) of be
 The {{ gaia }} (section 3.1.9) summarizes the set of equations that go into the calculation of the **BED ROUGHNESS PREDICTOR OPTION**.
 
 ````
+`````
 
 (gaia-dir)=
 ### Direction and Magnitude (Intensity)

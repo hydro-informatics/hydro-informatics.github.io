@@ -1,951 +1,619 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Raster (Grid) Handling &#8212; Hydro-Informatics</title>
-    
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script src="../_static/tabs.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'jupyter/geo-raster';</script>
     <link rel="canonical" href="https://hydro-informatics.com/jupyter/geo-raster.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Vectorize and Rasterize" href="geo-convert.html" />
     <link rel="prev" title="Shapefile (Vector) Handling" href="geo-shp.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/icon.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Get Started
- </span>
-</p>
+    
+    
+    <img src="../_static/icon.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/icon.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../lectures/classroom.html">
-   The Virtual Classroom
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/principles.html">
-     Principles
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/lectures.html">
-     Lectures and Exercises
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/take_seat.html">
-     Take a Seat
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../get-started/software.html">
-   Software Resources
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/vm.html">
-     Virtual Machines and Linux
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/ide.html">
-     Integrated Development Environments (IDEs)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../python-basics/pyinstall.html">
-     Python (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/git.html">
-     Version Control : git
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/geo.html">
-     Geospatial Software
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/install-openfoam.html">
-     OpenFOAM (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/install-telemac.html">
-     TELEMAC (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/others.html">
-     Other Software Resources
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/classroom.html">The Virtual Classroom</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/principles.html">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/lectures.html">Lectures and Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/take_seat.html">Take a Seat</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Python Basics
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../get-started/software.html">Software Resources</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/vm.html">Virtual Machines and Linux</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../get-started/ide.html">Integrated Development Environments (IDEs)</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../python-basics/pyinstall.html">Python (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/git.html">Version Control : git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/geo.html">Geospatial Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/install-openfoam.html">OpenFOAM (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/install-telemac.html">TELEMAC (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/others.html">Other Software Resources</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Basics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/python.html">
-   First Steps
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pybase.html">
-     Hello Data Types
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pyerror.html">
-     Errors, Logging, and Debugging
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pyloop.html">
-     Loops and Conditional Statements
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/modularize.html">
-   Object Orientation
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pyfun.html">
-     Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pypckg.html">
-     Packages, Modules and Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="classes.html">
-     Object Orientation and Classes
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/data-handling.html">
-   Data and File Handling
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pynum.html">
-     Data Files, NumPy &amp; Pandas
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="xml.html">
-     Structured Data (XML, xlsx &amp; JSON)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pyplot.html">
-     Plotting
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="pystyle.html">
-   Code Style and Conventions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="gui.html">
-   Graphical User Interfaces (GUIs)
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/python-exercises.html">
-   Python Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-ms.html">
-     1d Hydraulics (Manning-Strickler Formula)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-sp.html">
-     Reservoir Volume (Sequent Peak Algorithm)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-floods.html">
-     Flood Return Periods
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-sediment.html">
-     1d Sediment Transport
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-gui.html">
-     Create a GUI
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/python.html">First Steps</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="pybase.html">Hello Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyerror.html">Errors, Logging, and Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyloop.html">Loops and Conditional Statements</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Geospatial Analysis
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/modularize.html">Object Orientation</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyfun.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypckg.html">Packages, Modules and Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html">Object Orientation and Classes</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/data-handling.html">Data and File Handling</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="pynum.html">Data Files, NumPy &amp; Pandas</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="xml.html">Structured Data (XML, xlsx &amp; JSON)</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="pyplot.html">Plotting</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pystyle.html">Code Style and Conventions</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="gui.html">Graphical User Interfaces (GUIs)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/python-exercises.html">Python Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-ms.html">1d Hydraulics (Manning-Strickler Formula)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-sp.html">Reservoir Volume (Sequent Peak Algorithm)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-floods.html">Flood Return Periods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-sediment.html">1d Sediment Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-gui.html">Create a GUI</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Geospatial Analysis</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/geospatial-data.html">
-   Geospatial Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/use-qgis.html">
-   QGIS Tutorial
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/drone-processing.html">
-   Process Drone (UAV) Imagery
-  </a>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="../geopy/geo-python.html">
-   Geospatial Python
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/geo-pckg.html">
-     Geospatial Open Source Python Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="geo-shp.html">
-     Shapefile (Vector) Handling
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Raster (Grid) Handling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="geo-convert.html">
-     Vectorize and Rasterize
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="geo-arcpy.html">
-     The Commercial arcpy Library
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/geo-exercises.html">
-   Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-geco.html">
-     Script a Habitat Suitability Map
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/geospatial-data.html">Geospatial Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/use-qgis.html">QGIS Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/drone-processing.html">Process Drone (UAV) Imagery</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../geopy/geo-python.html">Geospatial Python</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../geopy/geo-pckg.html">Geospatial Open Source Python Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geo-shp.html">Shapefile (Vector) Handling</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Raster (Grid) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geo-convert.html">Vectorize and Rasterize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geo-arcpy.html">The Commercial arcpy Library</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Data Science
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../datascience/data-science.html">
-   Fundamentals (Coming soon)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/py-requirements.html">
-     Python Requirements
-    </a>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../datascience/data-prepro.html">
-     Data Pre-Processing
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-    <label for="toctree-checkbox-10">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/data-types.html">
-       The Nature of Data
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/data-cleaning.html">
-       Dataset Cleaning
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/dimensional-analysis.html">
-       Dimensional Analysis
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../datascience/theory.html">
-   Techniques (Coming soon)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/techniques.html">
-     Overview of Fundamental Techniques
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/calibrate-validate.html">
-     Model Calibration and Validation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
-     Support Vector Machine (SVM)
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/geo-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-geco.html">Script a Habitat Suitability Map</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Numerical Modeling
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../numerics/numerical-modeling.html">
-   Principles
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../numerics/basement.html">
-   BASEMENT
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/pre-qgis-bm.html">
-     Pre-processing with QGIS
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/basement2d.html">
-     Run and Check a Steady 2d Simulation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../numerics/telemac.html">
-   TELEMAC
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/pre-slf-tm.html">
-     Pre-processing
-    </a>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac2d.html">
-     Telemac2d
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-    <label for="toctree-checkbox-14">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac2d-steady.html">
-       Steady 2d
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac2d-unsteady.html">
-       Unsteady 2d
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac3d.html">
-     Telemac3d
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-    <label for="toctree-checkbox-15">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac3d-slf.html">
-       Steady 3d (SLF - Selafin)
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac3d-med.html">
-       Steady 3d (MED and Salome)
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac-gaia.html">
-     Gaia (Morphodynamics)
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-    <label for="toctree-checkbox-16">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-coupling.html">
-       Introduction and Coupling
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-basics.html">
-       Basic Setup of Gaia
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-bedload.html">
-       Bedload
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-suspended.html">
-       Suspended Load
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-run.html">
-       Run and Analyze
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
+</li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Documentation
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Modeling</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/documentation.html">
-   How to Markdown and Document
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/glossary.html">
-   Glossary
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/notation.html">
-   Notation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/bibliography.html">
-   References
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/docs-exercises.html">
-   Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
-  <label for="toctree-checkbox-17">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-git.html">
-     Git and Markdown
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../numerics/numerical-modeling.html">Principles</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerics/basement.html">BASEMENT</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/pre-qgis-bm.html">Pre-processing with QGIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/basement2d.html">Run and Check a Steady 2d Simulation</a></li>
+
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Troubleshoot
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
-   Programming Tools and IDEs
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
-  <label for="toctree-checkbox-18">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
-     Debugging Anaconda
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-python.html">
-     Debugging Python Code
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
-     Debugging Jupyter
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
-   Numerical Models
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
-  <label for="toctree-checkbox-19">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
-     Debugging BASEMENT
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
-     Debugging TELEMAC
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-os.html">
-   Operating Systems (Linux and VMs)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
-  <label for="toctree-checkbox-20">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
-     Debugging Debian Linux
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
-     Debugging Virtual Machines
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerics/telemac.html">TELEMAC</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/pre-slf-tm.html">Pre-processing</a></li>
+
+
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac2d.html">Telemac2d</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac2d-steady.html">Steady 2d</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac2d-unsteady.html">Unsteady 2d</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Disclaimer and License
- </span>
-</p>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac3d.html">Telemac3d</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac3d-slf.html">Steady 3d (SLF - Selafin)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac3d-med.html">Steady 3d (MED and Salome)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac-gaia.html">Gaia (Morphodynamics)</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-coupling.html">Introduction and Coupling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-basics.html">Basic Setup of Gaia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-bedload.html">Bedload</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-suspended.html">Suspended Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-run.html">Run and Analyze</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerics/openfoam/of-intro.html">OpenFOAM</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase.html">Multiphase Solver (interFoam Tutorial)</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-mesh.html">Geometry and Mesh Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-setup.html">Case set-up</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-run.html">Run OpenFOAM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-post.html">Post-processing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Science</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../terms/license.html">
-   License
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../terms/disclaimer.html">
-   Disclaimer
-  </a>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/data-science.html">Fundamentals (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/py-requirements.html">Python Requirements</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../datascience/data-prepro.html">Data Pre-Processing</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/data-types.html">The Nature of Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/data-cleaning.html">Dataset Cleaning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/dimensional-analysis.html">Dimensional Analysis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/theory.html">Techniques (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/techniques.html">Overview of Fundamental Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/calibrate-validate.html">Model Calibration and Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/morphology-predictor-svm.html">Support Vector Machine (SVM)</a></li>
+
+
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../documentation/documentation.html">How to Markdown and Document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/notation.html">Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/bibliography.html">References</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/docs-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-git.html">Git and Markdown</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Troubleshoot</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-programming.html">Programming Tools and IDEs</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-anaconda.html">Debugging Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-python.html">Debugging Python Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-jupyter.html">Debugging Jupyter</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">Numerical Models</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-basement.html">Debugging BASEMENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-telemac.html">Debugging TELEMAC</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-os.html">Operating Systems (Linux and VMs)</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-linux.html">Debugging Debian Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-vm.html">Debugging Virtual Machines</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-scilife.html">Science Life Hacks</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-zotero.html">Zotero Utilities</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Disclaimer and License</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../terms/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terms/disclaimer.html">Disclaimer</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a> and Ricardo Barros
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/jupyter/geo-raster.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/hydro-informatics/jupyter-python-course"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
         
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/hydro-informatics/jupyter-python-course/main/v2/gh/hydro-informatics/jupyter-python-course/main?urlpath=lab/tree/jupyter/geo-raster.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/hydro-informatics/jupyter-python-course/blob/main/jupyter/geo-raster.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
+<a href="https://github.com/hydro-informatics/jupyter-python-course" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/hydro-informatics/jupyter-python-course/main/v2/gh/hydro-informatics/jupyter-python-course/main?urlpath=lab/tree/jupyter/geo-raster.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com//github/hydro-informatics/jupyter-python-course/blob/main/jupyter/geo-raster.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="../_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/jupyter/geo-raster.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
+  
 </div>
+</div>
+              
+              
 
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Raster (Grid) Handling</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#load-raster">
-   Load raster
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#open-existing-raster-data">
-     Open Existing Raster Data
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#raster-band-statistics-and-toolbox-scripts">
-     Raster Band Statistics and Toolbox Scripts
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-and-save-a-raster-from-array">
-   Create and Save a Raster (from Array)
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#raster-drivers">
-     Raster Drivers
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#raster-data-types">
-     Raster Data Types
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#create-a-raster-array-to-raster">
-     Create a Raster (Array to Raster)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#raster-calculus-raster-band-to-array">
-     Raster Calculus (Raster / Band to Array)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#reproject-a-raster">
-     Reproject a Raster
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#zonal-statistics-for-morphological-units">
-   Zonal Statistics for Morphological Units
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#clip-a-raster">
-   Clip a Raster
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#slope-aspect-maps-and-built-in-command-line-scripts">
-   Slope / Aspect Maps and Built-in Command Line Scripts
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#least-cost-path-between-pixels-and-another-way-of-reprojection">
-   Least Cost Path between Pixels (and another Way of Reprojection)
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ecohydraulic-background">
-     Ecohydraulic Background
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#functions-and-libraries-involved">
-     Functions and Libraries Involved
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#application">
-     Application
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-raster">Load raster</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-existing-raster-data">Open Existing Raster Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-band-statistics-and-toolbox-scripts">Raster Band Statistics and Toolbox Scripts</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-save-a-raster-from-array">Create and Save a Raster (from Array)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-drivers">Raster Drivers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-data-types">Raster Data Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-raster-array-to-raster">Create a Raster (Array to Raster)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-calculus-raster-band-to-array">Raster Calculus (Raster / Band to Array)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reproject-a-raster">Reproject a Raster</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zonal-statistics-for-morphological-units">Zonal Statistics for Morphological Units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clip-a-raster">Clip a Raster</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slope-aspect-maps-and-built-in-command-line-scripts">Slope / Aspect Maps and Built-in Command Line Scripts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#least-cost-path-between-pixels-and-another-way-of-reprojection">Least Cost Path between Pixels (and another Way of Reprojection)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ecohydraulic-background">Ecohydraulic Background</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-and-libraries-involved">Functions and Libraries Involved</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#application">Application</a></li>
+</ul>
+</li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="raster-grid-handling">
-<span id="py-raster"></span><h1>Raster (Grid) Handling<a class="headerlink" href="#raster-grid-handling" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="raster-grid-handling">
+<span id="py-raster"></span><h1>Raster (Grid) Handling<a class="headerlink" href="#raster-grid-handling" title="Permalink to this headline">#</a></h1>
 <p>This section introduces geospatial analysis of raster (gridded) data with <code class="docutils literal notranslate"><span class="pre">gdal</span></code> and <code class="docutils literal notranslate"><span class="pre">rasterstats</span></code>.  For interactive reading and executing code blocks <a class="reference external" href="https://mybinder.org/v2/gh/hydro-informatics/jupyter-python-course/main?filepath=jupyter"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> and find <em>geo02-raster.ipynb</em>, or install <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Python</span></a> and <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a> locally.</p>
 <div class="admonition-requirements admonition">
 <p class="admonition-title">Requirements</p>
@@ -967,12 +635,12 @@
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/yrouMoQJ7mA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Watch this section as a video on the <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@Hydro-Morphodynamics channel on YouTube</a>.</p>
 </div>
-<div class="section" id="load-raster">
-<h2>Load raster<a class="headerlink" href="#load-raster" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="open-existing-raster-data">
-<span id="open-raster"></span><h3>Open Existing Raster Data<a class="headerlink" href="#open-existing-raster-data" title="Permalink to this headline">¶</a></h3>
+<section id="load-raster">
+<h2>Load raster<a class="headerlink" href="#load-raster" title="Permalink to this headline">#</a></h2>
+<section id="open-existing-raster-data">
+<span id="open-raster"></span><h3>Open Existing Raster Data<a class="headerlink" href="#open-existing-raster-data" title="Permalink to this headline">#</a></h3>
 <p>Raster data can be opened in Python code as an instance of <code class="docutils literal notranslate"><span class="pre">gdal.Open(&quot;FILENAME&quot;)</span></code>. The following code block provides a function to open any raster specified with the <code class="docutils literal notranslate"><span class="pre">file_name</span></code> input argument. One of the most important elements when dealing with raster data is the raster band, which takes on a similar data carrier role as <code class="docutils literal notranslate"><span class="pre">GetLayer</span></code> in shapefile handling. To access the raster band, the below-shown <code class="docutils literal notranslate"><span class="pre">open_raster</span></code> function:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Enables error and warning feedback with <code class="docutils literal notranslate"><span class="pre">gdal.UseExceptions()</span></code> (this step is vital when using gdal).</p></li>
 <li><p>Opens the provided raster <code class="docutils literal notranslate"><span class="pre">file_name</span></code> embraced by <code class="docutils literal notranslate"><span class="pre">try</span></code> - <code class="docutils literal notranslate"><span class="pre">except</span></code> statements to inform if and why a potential error occurred while opening the raster.</p></li>
 <li><p>Opens the raster band number stated in the optional <code class="docutils literal notranslate"><span class="pre">band_number</span></code> keyword argument with <code class="docutils literal notranslate"><span class="pre">raster_band</span> <span class="pre">=</span> <span class="pre">raster.GetRasterBand(band_number)</span></code> (the default value is <code class="docutils literal notranslate"><span class="pre">1</span></code>).</p></li>
@@ -984,7 +652,7 @@
 
 
 <span class="k">def</span> <span class="nf">open_raster</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">band_number</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Open a raster file and access its bands</span>
 <span class="sd">    :param file_name: STR of a raster file directory and name</span>
 <span class="sd">    :param band_number: INT of the raster band number to open (default: 1)</span>
@@ -1033,9 +701,9 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="raster-band-statistics-and-toolbox-scripts">
-<h3>Raster Band Statistics and Toolbox Scripts<a class="headerlink" href="#raster-band-statistics-and-toolbox-scripts" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="raster-band-statistics-and-toolbox-scripts">
+<h3>Raster Band Statistics and Toolbox Scripts<a class="headerlink" href="#raster-band-statistics-and-toolbox-scripts" title="Permalink to this headline">#</a></h3>
 <p>Once the raster and its band are loaded with the above <code class="docutils literal notranslate"><span class="pre">open_raster</span></code> function, we can access statistical information (e.g., the minimum or the maximum), identify the <em>no-data</em> value (i.e., a pre-defined value that is assigned to pixels without value), or the type of units used.</p>
 <p>Python scripts for processing geospatial data can also be embedded as plugins in GIS desktop applications (e.g., as plugins in QGIS or Toolbox in ArcGIS Pro). To run a Python script in a GIS desktop application, it should be written as a standalone script that can receive input arguments. The interested reader can learn more about implementing plugins in QGIS in the <a class="reference external" href="https://docs.qgis.org/3.22/en/docs/pyqgis_developer_cookbook/plugins/index.html">QGIS docs</a>.</p>
 <div class="admonition note">
@@ -1056,7 +724,7 @@
     
 
 <span class="k">def</span> <span class="nf">get_color_bands</span><span class="p">(</span><span class="n">raster_band</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    :param raster_band: osgeo.gdal.Band object</span>
 <span class="sd">    :output: list of color bands used in raster_band</span>
 <span class="sd">    &quot;&quot;&quot;</span> 
@@ -1118,12 +786,12 @@
 <span class="n">ColorTable</span><span class="p">:</span> <span class="kc">None</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="create-and-save-a-raster-from-array">
-<h2>Create and Save a Raster (from Array)<a class="headerlink" href="#create-and-save-a-raster-from-array" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="raster-drivers">
-<span id="id1"></span><h3>Raster Drivers<a class="headerlink" href="#raster-drivers" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="create-and-save-a-raster-from-array">
+<h2>Create and Save a Raster (from Array)<a class="headerlink" href="#create-and-save-a-raster-from-array" title="Permalink to this headline">#</a></h2>
+<section id="raster-drivers">
+<span id="id1"></span><h3>Raster Drivers<a class="headerlink" href="#raster-drivers" title="Permalink to this headline">#</a></h3>
 <p>Just like for shapefile files, the appropriate <code class="docutils literal notranslate"><span class="pre">gdal</span></code> driver (analogous to <code class="docutils literal notranslate"><span class="pre">ogr</span></code> drivers) must be loaded to save a raster. To get a full list of <code class="docutils literal notranslate"><span class="pre">gdal</span></code> raster drivers run:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1139,9 +807,9 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="raster-data-types">
-<span id="etypes"></span><h3>Raster Data Types<a class="headerlink" href="#raster-data-types" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="raster-data-types">
+<span id="etypes"></span><h3>Raster Data Types<a class="headerlink" href="#raster-data-types" title="Permalink to this headline">#</a></h3>
 <p>The output raster pixels can be one of the following data types (source: <a class="reference external" href="https://gdal.org/doxygen/classGDALDataset.html">gdal.org/doxygen/</a>):</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">GDT_Unknown</span></code> Unknown or unspecified type</p></li>
@@ -1157,11 +825,11 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">GDT_CFloat32</span></code> Complex Float32</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">GDT_CFloat64</span></code> Complex Float64</p></li>
 </ul>
-</div>
-<div class="section" id="create-a-raster-array-to-raster">
-<span id="create-raster"></span><h3>Create a Raster (Array to Raster)<a class="headerlink" href="#create-a-raster-array-to-raster" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="create-a-raster-array-to-raster">
+<span id="create-raster"></span><h3>Create a Raster (Array to Raster)<a class="headerlink" href="#create-a-raster-array-to-raster" title="Permalink to this headline">#</a></h3>
 <p>Knowing the basics of raster handling, data types, and Python, we can create a raster from a numeric array. Since a raster is basically a georeferenced array, it is convenient to convert a <a class="reference internal" href="pynum.html#array-matrix-operations"><span class="std std-ref">numpy array</span></a> into a raster (band). The function blocks feature the conversion of a <em>numpy</em> array into a GeoTIFF raster according to the following workflow:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Check out the GeoTIFF driver (<code class="docutils literal notranslate"><span class="pre">driver</span> <span class="pre">=</span> <span class="pre">gdal.GetDriverByName('GTiff')</span></code>).</p></li>
 <li><p>Retrieve the array size and (number of rows <code class="docutils literal notranslate"><span class="pre">rows</span></code> and columns <code class="docutils literal notranslate"><span class="pre">cols</span></code>).</p></li>
 <li><p>Create a new GeoTIFF raster (<code class="docutils literal notranslate"><span class="pre">new_raster</span> <span class="pre">=</span> <span class="pre">driver.Create(file_name,</span> <span class="pre">cols,</span> <span class="pre">rows,</span> <span class="pre">1,</span> <span class="pre">eType=rdtype)</span></code>), where</p>
@@ -1187,7 +855,7 @@
 
 <span class="k">def</span> <span class="nf">create_raster</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">raster_array</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">epsg</span><span class="o">=</span><span class="mi">4326</span><span class="p">,</span> <span class="n">pixel_width</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pixel_height</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
                   <span class="n">nan_value</span><span class="o">=-</span><span class="mf">9999.0</span><span class="p">,</span> <span class="n">rdtype</span><span class="o">=</span><span class="n">gdal</span><span class="o">.</span><span class="n">GDT_Float32</span><span class="p">,</span> <span class="n">geo_info</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert a numpy.array to a GeoTIFF raster with the following parameters</span>
 <span class="sd">    :param file_name: STR of target file name, including directory; must end on &quot;.tif&quot;</span>
 <span class="sd">    :param raster_array: np.array of values to rasterize</span>
@@ -1255,15 +923,15 @@
 </div>
 </div>
 <p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-ras-unis.png" /></p>
-</div>
-<div class="section" id="raster-calculus-raster-band-to-array">
-<span id="createarray"></span><h3>Raster Calculus (Raster / Band to Array)<a class="headerlink" href="#raster-calculus-raster-band-to-array" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="raster-calculus-raster-band-to-array">
+<span id="createarray"></span><h3>Raster Calculus (Raster / Band to Array)<a class="headerlink" href="#raster-calculus-raster-band-to-array" title="Permalink to this headline">#</a></h3>
 <p>The procedure described with the <code class="docutils literal notranslate"><span class="pre">create_raster()</span></code> function can be used vice-versa, to create <a class="reference internal" href="pynum.html#array-matrix-operations"><span class="std std-ref">numpy array</span></a> from raster bands. The raster converted to a numpy array enables algebraic or other logical operations to be applied to existing raster data.</p>
 <p>Need an example? In the <em>RiverArchitect SampleData</em>, the units of the water depth raster <code class="docutils literal notranslate"><span class="pre">h001000.tif</span></code> are in U.S. customary feet and the units of the flow velocity raster <code class="docutils literal notranslate"><span class="pre">u001000.tif</span></code> are in feet per second. However, to calculate the <a class="reference internal" href="../documentation/glossary.html#term-Froude-number"><span class="xref std std-term">Froude number</span></a> (involves the gravity constant) for every pixel based on the two rasters (water depth and flow velocity), it is convenient to convert both rasters into m and m/s, respectively. For this purpose, the following code block features another re-usable, custom function that loads a raster as an array and overwrites <code class="docutils literal notranslate"><span class="pre">NoDataValues</span></code> with <code class="docutils literal notranslate"><span class="pre">np.nan</span></code> (<code class="docutils literal notranslate"><span class="pre">raster</span></code> and <code class="docutils literal notranslate"><span class="pre">band</span></code> can be instantiated with the above <code class="docutils literal notranslate"><span class="pre">open_raster</span></code> function):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">raster2array</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">band_number</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    :param file_name: STR of target file name, including directory; must end on &quot;.tif&quot;</span>
 <span class="sd">    :param band_number: INT of the raster band number to open (default: 1)</span>
 <span class="sd">    :output: (1) ndarray() of the indicated raster band, where no-data values are replaced with np.nan</span>
@@ -1318,11 +986,11 @@
 </div>
 </div>
 <p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-py-fr.png" /></p>
-</div>
-<div class="section" id="reproject-a-raster">
-<span id="reproject-raster"></span><h3>Reproject a Raster<a class="headerlink" href="#reproject-a-raster" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="reproject-a-raster">
+<span id="reproject-raster"></span><h3>Reproject a Raster<a class="headerlink" href="#reproject-a-raster" title="Permalink to this headline">#</a></h3>
 <p>The transformation (and reprojection) of a raster into another coordinate system involves rotating, shifting, and shearing pixels. If one of these operations is skipped, the reprojected raster may be squeezed, twisted, or placed anywhere in the world but not where it should be placed. Therefore, the approach for the reprojection of a raster into another coordinate reference system implies the following steps:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Retrieve the source and target spatial reference systems (e.g., derive from a <code class="docutils literal notranslate"><span class="pre">gdal.Dataset</span></code> or an <code class="docutils literal notranslate"><span class="pre">EPSG</span></code> authority code).</p></li>
 <li><p>Read the geo transformation of the source dataset ( <code class="docutils literal notranslate"><span class="pre">gdal.Dataset.GetGeoTransform()</span></code>).</p></li>
 <li><p>Derive the number of pixels and the spacing between pixels in the new (reprojected) dataset.</p></li>
@@ -1333,7 +1001,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_srs</span><span class="p">(</span><span class="n">dataset</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get the spatial reference of any gdal.Dataset</span>
 <span class="sd">    :param dataset: osgeo.gdal.Dataset (raster)</span>
 <span class="sd">    :output: osr.SpatialReference</span>
@@ -1356,7 +1024,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">reproject_raster</span><span class="p">(</span><span class="n">source_dataset</span><span class="p">,</span> <span class="n">source_srs</span><span class="p">,</span> <span class="n">target_srs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Reproject a raster dataset (preferably use through reproject function)</span>
 <span class="sd">    :param source_dataset: osgeo.ogr.DataSource (instantiate with ogr.Open(SHP-FILE))</span>
 <span class="sd">    :param source_srs: osgeo.osr.SpatialReference (instantiate with get_srs(source_dataset))</span>
@@ -1454,15 +1122,15 @@ Target EPSG: 3857
 <p class="admonition-title">Transformation errors</p>
 <p>The coordinate transformation fails when no transformation between the indicated source and target spatial reference system can be established (i.e., <code class="docutils literal notranslate"><span class="pre">gdal</span></code> does not know the transformation). This problem occurs often when old, regional coordinate systems are transformed to coordinate systems for web applications (e.g., <code class="docutils literal notranslate"><span class="pre">EPSG=3857</span></code>). Read more in the <a class="reference external" href="https://gdal.org/tutorials/osr_api_tut.html#coordinate-transformation">gdal docs</a>.</p>
 </div>
-</div>
-</div>
-<div class="section" id="zonal-statistics-for-morphological-units">
-<span id="zonal"></span><h2>Zonal Statistics for Morphological Units<a class="headerlink" href="#zonal-statistics-for-morphological-units" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="zonal-statistics-for-morphological-units">
+<span id="zonal"></span><h2>Zonal Statistics for Morphological Units<a class="headerlink" href="#zonal-statistics-for-morphological-units" title="Permalink to this headline">#</a></h2>
 <p>In hydraulic and geospatial analyses, the question of statistical values of certain areas of one or more rasters often arises. For instance, we may be interested in mean values and standard deviations in specific zones of a water body. For this purpose, <em>Zonal statistics</em> enable the delineation of an area of a raster by using a polygon shapefile.</p>
 <p>The <em>River Architect</em> dataset includes a slackwater zone and zonal statistics help to identify the mean water depth and flow velocity of slackwaters, which are a so-called morphological unit (<a class="reference internal" href="geo-shp.html#create-shp"><span class="std std-ref">recall the create-shapefile section</span></a>).</p>
 <div class="admonition-background admonition">
 <p class="admonition-title">Background</p>
-<p>Instream morphological units aid to describe the geospatial organization of fluvial landforms, which play an important role in ecohydraulic analyses and river restoration. For instance, <em>pool</em> units describe deep water zones with low flow velocity, <em>riffle</em> units are typically characterized by shallow water depths and high velocity, and <em>slackwater</em> units are shallow flow zones with low flow velocity (many juvenile fish love slackwaters). <span id="id2">Wyrick and Pasternack [<a class="reference internal" href="../documentation/bibliography.html#id963">WP14</a>]</span> introduce the delineation of morphological units and an open-access summary can be found in the <a class="reference external" href="https://ars.els-cdn.com/content/image/1-s2.0-S235271101930281X-mmc1.pdf">Appendix Sect. 5</a> in <span id="id3">Schwindt <em>et al.</em> [<a class="reference internal" href="../documentation/bibliography.html#id1233">SLPR20</a>]</span>.</p>
+<p>Instream morphological units aid to describe the geospatial organization of fluvial landforms, which play an important role in ecohydraulic analyses and river restoration. For instance, <em>pool</em> units describe deep water zones with low flow velocity, <em>riffle</em> units are typically characterized by shallow water depths and high velocity, and <em>slackwater</em> units are shallow flow zones with low flow velocity (many juvenile fish love slackwaters). <span id="id2">Wyrick and Pasternack [<a class="reference internal" href="../documentation/bibliography.html#id963" title="J. R. Wyrick and G. B. Pasternack. Geospatial organization of fluvial landforms in a gravel-cobble river: Beyond the riffle-pool couplet. Geomorphology, 213(Supplement C):48–65, 2014. URL: http://www.sciencedirect.com/science/article/pii/S0169555X14000099, doi:10.1016/j.geomorph.2013.12.040.">WP14</a>]</span> introduce the delineation of morphological units and an open-access summary can be found in the <a class="reference external" href="https://ars.els-cdn.com/content/image/1-s2.0-S235271101930281X-mmc1.pdf">Appendix Sect. 5</a> in <span id="id3">Schwindt <em>et al.</em> [<a class="reference internal" href="../documentation/bibliography.html#id1233" title="Sebastian Schwindt, Kenneth Larrieu, Gregory B. Pasternack, and Geoff Rabone. River Architect. SoftwareX, 11:100438, January 2020. URL: http://www.sciencedirect.com/science/article/pii/S235271101930281X (visited on 2020-03-20), doi:10.1016/j.softx.2020.100438.">SLPR20</a>]</span>.</p>
 </div>
 <p>To analyze a visually apparent slackwater unit, we can draw a polygon in a new shapefile that delineates morphological units. The following figures guide through the creation of a polygon shapefile and the delineation of the riffle with QGIS. Start with opening QGIS and create a new project. Import the water depth and flow velocity rasters showing the slow and shallow water zone. Then follow the workflow in the illustrations below.</p>
 <p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-create-shp.png" />
@@ -1529,9 +1197,9 @@ Target EPSG: 3857
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="clip-a-raster">
-<span id="clip"></span><h2>Clip a Raster<a class="headerlink" href="#clip-a-raster" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="clip-a-raster">
+<span id="clip"></span><h2>Clip a Raster<a class="headerlink" href="#clip-a-raster" title="Permalink to this headline">#</a></h2>
 <p>The above-introduced <code class="docutils literal notranslate"><span class="pre">rasterstats.zonal_stats</span></code> method works with <em>“Mini-Rasters”</em>, which represent clips of the input raster to the user-defined polygon shapefile. Moreover, a mini-raster itself can be obtained by defining the optional keyword argument <code class="docutils literal notranslate"><span class="pre">raster_out=True</span></code>. In the case that we want to get the original raster clipped without and statistical operation, we can use a little trick by defining an additional statistics function that returns the original array:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1578,9 +1246,9 @@ Target EPSG: 3857
 <p class="admonition-title">Tip</p>
 <p>Use the above-shown methods to assign a projection and save the clipped array as a GeoTIFF raster. The functions are also implemented in [flusstools] (more precisely, in [<code class="docutils literal notranslate"><span class="pre">flusstools.geotools.raster_mgmt()</span></code>](<a class="reference external" href="https://flusstools.readthedocs.io/en/latest/geotools.html#module-flusstools.geotools.raster_mgmt">https://flusstools.readthedocs.io/en/latest/geotools.html#module-flusstools.geotools.raster_mgmt</a>, which can be used as <code class="docutils literal notranslate"><span class="pre">geotools.raster_mgmt()</span></code>).</p>
 </div>
-</div>
-<div class="section" id="slope-aspect-maps-and-built-in-command-line-scripts">
-<span id="terminal"></span><h2>Slope / Aspect Maps and Built-in Command Line Scripts<a class="headerlink" href="#slope-aspect-maps-and-built-in-command-line-scripts" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="slope-aspect-maps-and-built-in-command-line-scripts">
+<span id="terminal"></span><h2>Slope / Aspect Maps and Built-in Command Line Scripts<a class="headerlink" href="#slope-aspect-maps-and-built-in-command-line-scripts" title="Permalink to this headline">#</a></h2>
 <p>Hillslope maps are an important parameter in hydraulics, hydrology, and ecology. For instance, the slope determines the flow direction of water and it is also a criterion for delineating the habitat of many species. To calculate hill slope gradients and directions, <code class="docutils literal notranslate"><span class="pre">gdal</span></code> has a command-line tool called <code class="docutils literal notranslate"><span class="pre">gdaldem</span></code> , which requires a DEM (Digital Elevation Model) raster. The general use of <code class="docutils literal notranslate"><span class="pre">gdaldem</span></code> in the command line is (arguments in brackets are optional):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gdaldem</span> <span class="n">slope</span> <span class="n">input_dem</span> <span class="n">output_slope_map</span>  <span class="p">[</span><span class="o">-</span><span class="n">p</span> <span class="n">use</span> <span class="n">percent</span> <span class="n">slope</span> <span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">degrees</span><span class="p">)]</span> <span class="p">[</span><span class="o">-</span><span class="n">s</span> <span class="n">scale</span><span class="o">*</span> <span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span> <span class="p">[</span><span class="o">-</span><span class="n">alg</span> <span class="n">ZevenbergenThorne</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">compute_edges</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">b</span> <span class="n">Band</span> <span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span> <span class="p">[</span><span class="o">-</span><span class="n">of</span> <span class="nb">format</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">co</span> <span class="s2">&quot;NAME=VALUE&quot;</span><span class="p">]</span><span class="o">*</span> <span class="p">[</span><span class="o">-</span><span class="n">q</span><span class="p">]</span>
 </pre></div>
@@ -1621,11 +1289,11 @@ Target EPSG: 3857
 </div>
 </div>
 <p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-aspect.png" /></p>
-</div>
-<div class="section" id="least-cost-path-between-pixels-and-another-way-of-reprojection">
-<span id="leastcost"></span><h2>Least Cost Path between Pixels (and another Way of Reprojection)<a class="headerlink" href="#least-cost-path-between-pixels-and-another-way-of-reprojection" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="ecohydraulic-background">
-<h3>Ecohydraulic Background<a class="headerlink" href="#ecohydraulic-background" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="least-cost-path-between-pixels-and-another-way-of-reprojection">
+<span id="leastcost"></span><h2>Least Cost Path between Pixels (and another Way of Reprojection)<a class="headerlink" href="#least-cost-path-between-pixels-and-another-way-of-reprojection" title="Permalink to this headline">#</a></h2>
+<section id="ecohydraulic-background">
+<h3>Ecohydraulic Background<a class="headerlink" href="#ecohydraulic-background" title="Permalink to this headline">#</a></h3>
 <p>Least cost paths are important to plan efficient routes for navigation (e.g., in a car) and they can also be helpful in ecohydraulics. Let’s take for a moment the position of a fish that, after a flood with decreasing discharge, wants to swim as fast as possible from the floodplain back into the main channel where there is enough water. In the figure below, point 1 shows the starting point on the floodplain and point 2 the destination in the main channel. The reddish background represents the above-produced slope raster (<em>slope-percent.tif</em>) and the water depth at average annual discharge is colored in blue.</p>
 <p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-slope-pts.png" /></p>
 <p>Naturally, the path of least costs corresponds to the path of the steepest, monotonously downward-facing slope and we will assume that a fish is able to find it.</p>
@@ -1635,9 +1303,9 @@ Target EPSG: 3857
 </div>
 <p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/ra-stranding.png" /></p>
 <p><em>Image source: <a class="reference external" href="https://riverarchitect.github.io/RA_wiki/StrandingRisk">The River Architect Wiki / Kenneth Larrieu</a></em></p>
-</div>
-<div class="section" id="functions-and-libraries-involved">
-<span id="lc-fun"></span><h3>Functions and Libraries Involved<a class="headerlink" href="#functions-and-libraries-involved" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="functions-and-libraries-involved">
+<span id="lc-fun"></span><h3>Functions and Libraries Involved<a class="headerlink" href="#functions-and-libraries-involved" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">skimage</span></code> (<code class="docutils literal notranslate"><span class="pre">scikit-image</span></code>) library (cf. <a class="reference internal" href="../geopy/geo-pckg.html#other-geo-pckgs"><span class="std std-ref">Other packages in the Open source libraries section</span></a>) provides with <a class="reference external" href="https://scikit-image.org/docs/0.19.x/api/skimage.graph.html"><code class="docutils literal notranslate"><span class="pre">skimage.graph.route_through_array</span></code></a> a smart method to calculate the least cost path by summing up pixel-wise connections from point 1 to point 2.</p>
 <p>Here is how it works: Assume a numpy array (e.g., with random slope values) that looks like this:</p>
 <div class="cell docutils container">
@@ -1700,7 +1368,7 @@ Target EPSG: 3857
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">coords2offset</span><span class="p">(</span><span class="n">geo_transform</span><span class="p">,</span> <span class="n">x_coord</span><span class="p">,</span> <span class="n">y_coord</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns x-y pixel offset</span>
 <span class="sd">    :param geo_transform: osgeo.gdal.Dataset.GetGeoTransform() object</span>
 <span class="sd">    :param x_coord: FLOAT of x-coordinate</span>
@@ -1723,7 +1391,7 @@ Target EPSG: 3857
 <p>The <code class="docutils literal notranslate"><span class="pre">coords2offset()</span></code> function is also available in <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> with more robust raise-exception notation: use with <code class="docutils literal notranslate"><span class="pre">geotools.coords2offset()</span></code> and have a look into the script located in <a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/flusstools-pckg/main/flusstools/geotools/dataset_mgmt.py"><code class="docutils literal notranslate"><span class="pre">flusstools.geotools.dataset_mgmt</span></code></a>.</p>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">coords2offset()</span></code> function converts a raster array (e.g., produced with the above-defined <code class="docutils literal notranslate"><span class="pre">geotools.raster2array()</span></code> function) into an array that can be used with <code class="docutils literal notranslate"><span class="pre">route_through_array()</span></code> with the following workflow:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Use the raster’s <code class="docutils literal notranslate"><span class="pre">geo_transform</span></code> (<code class="docutils literal notranslate"><span class="pre">gdal.Dataset.GetGeoTransform</span> <span class="pre">=</span> <span class="pre">(origin_x,</span> <span class="pre">pixel_width,</span> <span class="pre">0,</span> <span class="pre">origin_y,</span> <span class="pre">0,</span> <span class="pre">pixel_height)</span></code>) and the start and end point coordinates (i.e, <code class="docutils literal notranslate"><span class="pre">start_coord</span></code> of point 1 and <code class="docutils literal notranslate"><span class="pre">stop_coord</span></code> of point 2) in <code class="docutils literal notranslate"><span class="pre">coords2offset()</span></code> to get their pixel indices (<code class="docutils literal notranslate"><span class="pre">start_index_x</span></code>, <code class="docutils literal notranslate"><span class="pre">start_index_y</span></code>, <code class="docutils literal notranslate"><span class="pre">stop_index_x</span></code>, and <code class="docutils literal notranslate"><span class="pre">stop_index_y</span></code>) in the raster array.</p></li>
 <li><p>Replace <code class="docutils literal notranslate"><span class="pre">np.nan</span></code> values in the raster array with values that are higher than the maximum value of the array. Do not use zeros, because we want to exclude the <code class="docutils literal notranslate"><span class="pre">np.nan</span></code> pixels from the least cost path later by overwriting <code class="docutils literal notranslate"><span class="pre">np.nan</span></code> with very high pixel costs.</p></li>
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">route_through_array()</span></code> as above explained with the optional arguments <code class="docutils literal notranslate"><span class="pre">geometric=True</span></code> (use the <a class="reference external" href="https://scikit-image.org/docs/0.19.x/api/skimage.graph.html#skimage.graph.MCP_Geometric"><em>MCP_Geometric</em> class</a> rather than <a class="reference external" href="https://scikit-image.org/docs/0.19.x/api/skimage.graph.html#skimage.graph.MCP"><em>MCP_base</em></a> to calculate costs) and <code class="docutils literal notranslate"><span class="pre">fully_connected=True</span></code> (enables using diagonal pixels as direct neighbors).</p></li>
@@ -1753,9 +1421,9 @@ Target EPSG: 3857
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="application">
-<span id="lc-app"></span><h3>Application<a class="headerlink" href="#application" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="application">
+<span id="lc-app"></span><h3>Application<a class="headerlink" href="#application" title="Permalink to this headline">#</a></h3>
 <p>Recall, we defined the following functions (all are available in <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> through <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">flusstools</span> <span class="pre">import</span> <span class="pre">geotools</span></code>) that we can use for the calculation of the least cost path to get from point 1 to point 2 in the <em>slope-percent.tif</em> raster:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">geotools.raster2array()</span></code></p></li>
@@ -1764,7 +1432,7 @@ Target EPSG: 3857
 <li><p><code class="docutils literal notranslate"><span class="pre">geotools.create_raster()</span></code></p></li>
 </ul>
 <p>The below code block uses these functions as follows:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Define input (<em>slope-percent.tif</em>) and output (<em>least_cost.tif</em>) raster names (with directories).</p></li>
 <li><p>Define the coordinates of points 1 and 2 as <em>tuple</em>s (x, y) in the <em>EPSG:6418</em> projection.</p></li>
 <li><p>Load the input raster(<code class="docutils literal notranslate"><span class="pre">src_raster</span></code>), its band as array (<code class="docutils literal notranslate"><span class="pre">raster_array</span></code>), and geotransformation (<code class="docutils literal notranslate"><span class="pre">geo_transform</span></code>) with the <code class="docutils literal notranslate"><span class="pre">raster2array()</span></code> function.</p></li>
@@ -1802,9 +1470,9 @@ Target EPSG: 3857
 <p class="admonition-title">Exercise</p>
 <p>Familiarize with raster handling in the <a class="reference internal" href="../exercises/ex-geco.html#ex-geco"><span class="std std-ref">geospatial ecohydraulics</span></a> exercise.</p>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1818,7 +1486,7 @@ Target EPSG: 3857
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./jupyter"
         },
         predefinedOutput: true
@@ -1826,46 +1494,120 @@ Target EPSG: 3857
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="geo-shp.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Shapefile (Vector) Handling</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="geo-shp.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Shapefile (Vector) Handling</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="geo-convert.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="geo-convert.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Vectorize and Rasterize</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-        
-        </div>
-    </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Sebastian Schwindt, Ricardo Barros<br/>
-        
-            &copy; Copyright 2023.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-raster">Load raster</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-existing-raster-data">Open Existing Raster Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-band-statistics-and-toolbox-scripts">Raster Band Statistics and Toolbox Scripts</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-save-a-raster-from-array">Create and Save a Raster (from Array)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-drivers">Raster Drivers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-data-types">Raster Data Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-raster-array-to-raster">Create a Raster (Array to Raster)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-calculus-raster-band-to-array">Raster Calculus (Raster / Band to Array)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reproject-a-raster">Reproject a Raster</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zonal-statistics-for-morphological-units">Zonal Statistics for Morphological Units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clip-a-raster">Clip a Raster</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slope-aspect-maps-and-built-in-command-line-scripts">Slope / Aspect Maps and Built-in Command Line Scripts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#least-cost-path-between-pixels-and-another-way-of-reprojection">Least Cost Path between Pixels (and another Way of Reprojection)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ecohydraulic-background">Ecohydraulic Background</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-and-libraries-involved">Functions and Libraries Involved</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#application">Application</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
 
-      </div>
-    </div>
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By Sebastian Schwindt, Beatriz Negreiros, Federica Scolari, Ricardo Barros
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

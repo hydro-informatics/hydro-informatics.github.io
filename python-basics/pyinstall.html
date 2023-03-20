@@ -1,916 +1,550 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Python (Installation) &#8212; Hydro-Informatics</title>
-    
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script src="../_static/tabs.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'python-basics/pyinstall';</script>
     <link rel="canonical" href="https://hydro-informatics.com/python-basics/pyinstall.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Version Control : git" href="../get-started/git.html" />
     <link rel="prev" title="Integrated Development Environments (IDEs)" href="../get-started/ide.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/icon.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Get Started
- </span>
-</p>
+    
+    
+    <img src="../_static/icon.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/icon.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../lectures/classroom.html">
-   The Virtual Classroom
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/principles.html">
-     Principles
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/lectures.html">
-     Lectures and Exercises
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/take_seat.html">
-     Take a Seat
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="../get-started/software.html">
-   Software Resources
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/vm.html">
-     Virtual Machines and Linux
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/ide.html">
-     Integrated Development Environments (IDEs)
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Python (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/git.html">
-     Version Control : git
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/geo.html">
-     Geospatial Software
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/install-openfoam.html">
-     OpenFOAM (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/install-telemac.html">
-     TELEMAC (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/others.html">
-     Other Software Resources
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/classroom.html">The Virtual Classroom</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/principles.html">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/lectures.html">Lectures and Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/take_seat.html">Take a Seat</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Python Basics
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="python.html">
-   First Steps
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pybase.html">
-     Hello Data Types
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyerror.html">
-     Errors, Logging, and Debugging
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyloop.html">
-     Loops and Conditional Statements
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="modularize.html">
-   Object Orientation
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyfun.html">
-     Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pypckg.html">
-     Packages, Modules and Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/classes.html">
-     Object Orientation and Classes
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="data-handling.html">
-   Data and File Handling
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pynum.html">
-     Data Files, NumPy &amp; Pandas
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/xml.html">
-     Structured Data (XML, xlsx &amp; JSON)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyplot.html">
-     Plotting
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../jupyter/pystyle.html">
-   Code Style and Conventions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../jupyter/gui.html">
-   Graphical User Interfaces (GUIs)
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/python-exercises.html">
-   Python Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-ms.html">
-     1d Hydraulics (Manning-Strickler Formula)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-sp.html">
-     Reservoir Volume (Sequent Peak Algorithm)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-floods.html">
-     Flood Return Periods
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-sediment.html">
-     1d Sediment Transport
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-gui.html">
-     Create a GUI
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../get-started/software.html">Software Resources</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../get-started/vm.html">Virtual Machines and Linux</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../get-started/ide.html">Integrated Development Environments (IDEs)</a></li>
+
+
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Python (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/git.html">Version Control : git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/geo.html">Geospatial Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/install-openfoam.html">OpenFOAM (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/install-telemac.html">TELEMAC (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/others.html">Other Software Resources</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Geospatial Analysis
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/geospatial-data.html">
-   Geospatial Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/use-qgis.html">
-   QGIS Tutorial
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/drone-processing.html">
-   Process Drone (UAV) Imagery
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../geopy/geo-python.html">
-   Geospatial Python
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/geo-pckg.html">
-     Geospatial Open Source Python Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-shp.html">
-     Shapefile (Vector) Handling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-raster.html">
-     Raster (Grid) Handling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-convert.html">
-     Vectorize and Rasterize
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-arcpy.html">
-     The Commercial arcpy Library
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/geo-exercises.html">
-   Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-geco.html">
-     Script a Habitat Suitability Map
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Data Science
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Basics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../datascience/data-science.html">
-   Fundamentals (Coming soon)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/py-requirements.html">
-     Python Requirements
-    </a>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../datascience/data-prepro.html">
-     Data Pre-Processing
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-    <label for="toctree-checkbox-10">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/data-types.html">
-       The Nature of Data
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/data-cleaning.html">
-       Dataset Cleaning
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/dimensional-analysis.html">
-       Dimensional Analysis
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../datascience/theory.html">
-   Techniques (Coming soon)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/techniques.html">
-     Overview of Fundamental Techniques
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/calibrate-validate.html">
-     Model Calibration and Validation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
-     Support Vector Machine (SVM)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="python.html">First Steps</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pybase.html">Hello Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyerror.html">Errors, Logging, and Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyloop.html">Loops and Conditional Statements</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Numerical Modeling
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../numerics/numerical-modeling.html">
-   Principles
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../numerics/basement.html">
-   BASEMENT
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/pre-qgis-bm.html">
-     Pre-processing with QGIS
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/basement2d.html">
-     Run and Check a Steady 2d Simulation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../numerics/telemac.html">
-   TELEMAC
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/pre-slf-tm.html">
-     Pre-processing
-    </a>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac2d.html">
-     Telemac2d
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-    <label for="toctree-checkbox-14">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac2d-steady.html">
-       Steady 2d
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac2d-unsteady.html">
-       Unsteady 2d
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac3d.html">
-     Telemac3d
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-    <label for="toctree-checkbox-15">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac3d-slf.html">
-       Steady 3d (SLF - Selafin)
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac3d-med.html">
-       Steady 3d (MED and Salome)
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac-gaia.html">
-     Gaia (Morphodynamics)
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-    <label for="toctree-checkbox-16">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-coupling.html">
-       Introduction and Coupling
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-basics.html">
-       Basic Setup of Gaia
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-bedload.html">
-       Bedload
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-suspended.html">
-       Suspended Load
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-run.html">
-       Run and Analyze
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="modularize.html">Object Orientation</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyfun.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pypckg.html">Packages, Modules and Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/classes.html">Object Orientation and Classes</a></li>
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Documentation
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/documentation.html">
-   How to Markdown and Document
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/glossary.html">
-   Glossary
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/notation.html">
-   Notation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/bibliography.html">
-   References
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/docs-exercises.html">
-   Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
-  <label for="toctree-checkbox-17">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-git.html">
-     Git and Markdown
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="data-handling.html">Data and File Handling</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pynum.html">Data Files, NumPy &amp; Pandas</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/xml.html">Structured Data (XML, xlsx &amp; JSON)</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyplot.html">Plotting</a></li>
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Troubleshoot
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
-   Programming Tools and IDEs
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
-  <label for="toctree-checkbox-18">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
-     Debugging Anaconda
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-python.html">
-     Debugging Python Code
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
-     Debugging Jupyter
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
-   Numerical Models
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
-  <label for="toctree-checkbox-19">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
-     Debugging BASEMENT
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
-     Debugging TELEMAC
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-os.html">
-   Operating Systems (Linux and VMs)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
-  <label for="toctree-checkbox-20">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
-     Debugging Debian Linux
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
-     Debugging Virtual Machines
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/pystyle.html">Code Style and Conventions</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/gui.html">Graphical User Interfaces (GUIs)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/python-exercises.html">Python Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-ms.html">1d Hydraulics (Manning-Strickler Formula)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-sp.html">Reservoir Volume (Sequent Peak Algorithm)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-floods.html">Flood Return Periods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-sediment.html">1d Sediment Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-gui.html">Create a GUI</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Disclaimer and License
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Geospatial Analysis</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../terms/license.html">
-   License
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../terms/disclaimer.html">
-   Disclaimer
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/geospatial-data.html">Geospatial Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/use-qgis.html">QGIS Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/drone-processing.html">Process Drone (UAV) Imagery</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../geopy/geo-python.html">Geospatial Python</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geopy/geo-pckg.html">Geospatial Open Source Python Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-shp.html">Shapefile (Vector) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-raster.html">Raster (Grid) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-convert.html">Vectorize and Rasterize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-arcpy.html">The Commercial arcpy Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/geo-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-geco.html">Script a Habitat Suitability Map</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../numerics/numerical-modeling.html">Principles</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerics/basement.html">BASEMENT</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/pre-qgis-bm.html">Pre-processing with QGIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/basement2d.html">Run and Check a Steady 2d Simulation</a></li>
+
+
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerics/telemac.html">TELEMAC</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/pre-slf-tm.html">Pre-processing</a></li>
+
+
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac2d.html">Telemac2d</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac2d-steady.html">Steady 2d</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac2d-unsteady.html">Unsteady 2d</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac3d.html">Telemac3d</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac3d-slf.html">Steady 3d (SLF - Selafin)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac3d-med.html">Steady 3d (MED and Salome)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac-gaia.html">Gaia (Morphodynamics)</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-coupling.html">Introduction and Coupling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-basics.html">Basic Setup of Gaia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-bedload.html">Bedload</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-suspended.html">Suspended Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-run.html">Run and Analyze</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerics/openfoam/of-intro.html">OpenFOAM</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase.html">Multiphase Solver (interFoam Tutorial)</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-mesh.html">Geometry and Mesh Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-setup.html">Case set-up</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-run.html">Run OpenFOAM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-post.html">Post-processing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/data-science.html">Fundamentals (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/py-requirements.html">Python Requirements</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../datascience/data-prepro.html">Data Pre-Processing</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/data-types.html">The Nature of Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/data-cleaning.html">Dataset Cleaning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/dimensional-analysis.html">Dimensional Analysis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/theory.html">Techniques (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/techniques.html">Overview of Fundamental Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/calibrate-validate.html">Model Calibration and Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/morphology-predictor-svm.html">Support Vector Machine (SVM)</a></li>
+
+
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../documentation/documentation.html">How to Markdown and Document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/notation.html">Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/bibliography.html">References</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/docs-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-git.html">Git and Markdown</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Troubleshoot</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-programming.html">Programming Tools and IDEs</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-anaconda.html">Debugging Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-python.html">Debugging Python Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-jupyter.html">Debugging Jupyter</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">Numerical Models</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-basement.html">Debugging BASEMENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-telemac.html">Debugging TELEMAC</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-os.html">Operating Systems (Linux and VMs)</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-linux.html">Debugging Debian Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-vm.html">Debugging Virtual Machines</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-scilife.html">Science Life Hacks</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-zotero.html">Zotero Utilities</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Disclaimer and License</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../terms/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terms/disclaimer.html">Disclaimer</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a> and Ricardo Barros
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/python-basics/pyinstall.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/hydro-informatics/jupyter-python-course"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
         
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/hydro-informatics/jupyter-python-course" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/python-basics/pyinstall.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-        </div>
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Python (Installation)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pip-and-venv-linux-preference">
-   pip and venv (Linux Preference)
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#quick-guide">
-     Quick Guide
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ipykernel-jupyterlab-for-flusstools">
-     Ipykernel (JupyterLab) for FlussTools
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#manage-pip-install-uninstall-or-upgrade-modules-or-packages">
-     Manage pip (Install, Uninstall, or Upgrade) Modules or Packages
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#conda-env-windows-preference">
-   conda env (Windows Preference)
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#conda-quick">
-     Quick Guide
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#create-and-install">
-     Create and Install
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#activate-environment">
-     Activate Environment
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#install-additional-python-packages">
-     Install Additional Python Packages
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#remove-delete-environment">
-     Remove (Delete) Environment
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#setup-interfaces-and-ides">
-   Setup Interfaces and IDEs
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#jupyterlab">
-     JupyterLab
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#atom-and-python">
-     Atom and Python
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pycharm-python-projects">
-     PyCharm Python Projects
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pip-and-venv-linux-preference">pip and venv (Linux Preference)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-guide">Quick Guide</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ipykernel-jupyterlab-for-flusstools">Ipykernel (JupyterLab) for FlussTools</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manage-pip-install-uninstall-or-upgrade-modules-or-packages">Manage pip (Install, Uninstall, or Upgrade) Modules or Packages</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conda-env-windows-preference">conda env (Windows Preference)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conda-quick">Quick Guide</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-install">Create and Install</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#activate-environment">Activate Environment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-additional-python-packages">Install Additional Python Packages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-delete-environment">Remove (Delete) Environment</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-interfaces-and-ides">Setup Interfaces and IDEs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterlab">JupyterLab</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atom-and-python">Atom and Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pycharm-python-projects">PyCharm Python Projects</a></li>
+</ul>
+</li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="python-installation">
-<span id="install-python"></span><h1>Python (Installation)<a class="headerlink" href="#python-installation" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="python-installation">
+<span id="install-python"></span><h1>Python (Installation)<a class="headerlink" href="#python-installation" title="Permalink to this headline">#</a></h1>
 <p><em>Python</em>’s two-fold development (<em>Python2</em> and <em>Python3</em>) and other parallel versions of <em>Python</em> (e.g., ESRI’s ArcGIS or Nvidia’s cuda <em>Python</em> versions) may cause that multiple versions of <em>Python</em> are installed on your computer (even though <em>Python2</em> is about to disappear). As consequence packages might have been unintentionally or unknowingly installed for another <em>Python</em> interpreter than used in a project. However, the parallel existence of multiple <em>Python</em> interpreters is sometimes beneficial, for instance, when packages are installed that are not compatible with each other. So how to <strong>deal with the challenge of having multiple <em>Python</em> interpreters (or environments) installed?</strong></p>
 <p>There are multiple answers to this question and the best option depends, to some extent, on personal preferences and the <strong>Operating System</strong> (<strong>OS</strong>) - also referred to as <strong>platform</strong>. For instance, <em>conda</em> environments are preferable on <em>Windows</em> and <em>pip</em> environments on <em>Linux</em> (e.g., <em>Debian</em>/<em>Ubuntu</em>) platforms. <em>conda</em> environments work well on both platforms (and also with <em>macOS</em>), but <em>pip</em> will not work smoothly on <em>Windows</em> because of an issue with the geospatial GDAL library. To work with <em>conda</em> environments, the installation of <a class="reference internal" href="../get-started/ide.html#anaconda"><span class="std std-ref">Anaconda</span></a> is required (no additional installation of <em>Python</em> is necessary in this case).</p>
 <dl class="simple myst">
@@ -920,19 +554,19 @@
 </dd>
 </dl>
 <p>This section guides through the installation of a computational environment that is tailored for working with contents in this eBook. The environment uses the <strong>flusstools</strong> pip-package, which provides many useful routines for river analyses.</p>
-<div class="section" id="pip-and-venv-linux-preference">
-<span id="pip-env"></span><h2>pip and venv (Linux Preference)<a class="headerlink" href="#pip-and-venv-linux-preference" title="Permalink to this headline">¶</a></h2>
+<section id="pip-and-venv-linux-preference">
+<span id="pip-env"></span><h2>pip and venv (Linux Preference)<a class="headerlink" href="#pip-and-venv-linux-preference" title="Permalink to this headline">#</a></h2>
 <div class="hint admonition">
 <p class="admonition-title">Use pip and venv on Linux</p>
 <p>pip and virtual environments are preferable with <em>Linux</em> systems for working with this eBook and the <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> library.</p>
 </div>
-<div class="section" id="quick-guide">
-<span id="pip-quick"></span><h3>Quick Guide<a class="headerlink" href="#quick-guide" title="Permalink to this headline">¶</a></h3>
+<section id="quick-guide">
+<span id="pip-quick"></span><h3>Quick Guide<a class="headerlink" href="#quick-guide" title="Permalink to this headline">#</a></h3>
 <p>Consider installing, creating, and activating a new virtual environment for working with the contents of this eBook as explained in the following platform-dependent paragraphs.</p>
-<div class="tabbed-set docutils">
-<input checked="checked" id="485fbd3b-beb6-47c4-94ab-c5a1fd84999d" name="9d92b2bf-48c1-4529-9919-e4f63d57a5c9" type="radio">
-</input><label class="tabbed-label" for="485fbd3b-beb6-47c4-94ab-c5a1fd84999d">
-Linux</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
+Linux</label><div class="sd-tab-content docutils">
 <p>To avoid affecting the system’s Python interpreter, set up a virtual environment with <em>venv</em>. The first step is to make sure that Python3 and <em>venv</em> are installed on the system:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">python3</span> <span class="n">python3</span><span class="o">-</span><span class="n">venv</span>
 </pre></div>
@@ -1003,9 +637,9 @@ Python 3.X.X (default, MMM DD YYYY, hh:mm:ss)
 </div>
 <p>Recall that newer <em>Linux</em> versions may not differentiate between <em>Python2</em> and <em>Python3</em> (i.e., use <code class="docutils literal notranslate"><span class="pre">python</span></code> rather than <code class="docutils literal notranslate"><span class="pre">python3</span></code>).</p>
 </div>
-<input id="d9861ad6-c695-44ff-b6e6-d148491a9ef3" name="9d92b2bf-48c1-4529-9919-e4f63d57a5c9" type="radio">
-</input><label class="tabbed-label" for="d9861ad6-c695-44ff-b6e6-d148491a9ef3">
-Windows</label><div class="tabbed-content docutils">
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
+Windows</label><div class="sd-tab-content docutils">
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Because GDAL can currently not be directly installed with <code class="docutils literal notranslate"><span class="pre">pip</span></code> on <em>Windows</em>, trying to set up the computational environment with <code class="docutils literal notranslate"><span class="pre">pip</span></code> on <em>Windows</em> will very likely fail. <strong>Windows users preferably use <a class="reference internal" href="#conda-env"><span class="std std-ref">conda env (Windows Preference)</span></a></strong>, but can alternatively continue with a virtual <em>pip</em> environment for learning <em>Python</em> basics. In this case, geospatial programming contents require an installation of <a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a>, which comes with a built-in <em>Python</em> terminal for algorithmic geospatial analyses.</p>
@@ -1060,9 +694,9 @@ Windows</label><div class="tabbed-content docutils">
 </div>
 </div>
 <p>The import of <em>flusstools</em> should not return any import error. If there is an import error, find out the troublesome package’s name and re-install it. In particular, the installation of <em>GDAL</em> may be challenging when working with <code class="docutils literal notranslate"><span class="pre">pip</span></code>, in particular on <em>Windows</em>. To learn more about the installation of <em>GDAL</em> visit the <a class="reference external" href="https://gdal.org/download.html#binaries">Download &gt; Binaries section on the developer’s website</a>.</p>
-</div>
-<div class="section" id="ipykernel-jupyterlab-for-flusstools">
-<h3>Ipykernel (JupyterLab) for FlussTools<a class="headerlink" href="#ipykernel-jupyterlab-for-flusstools" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="ipykernel-jupyterlab-for-flusstools">
+<h3>Ipykernel (JupyterLab) for FlussTools<a class="headerlink" href="#ipykernel-jupyterlab-for-flusstools" title="Permalink to this headline">#</a></h3>
 <p>To use the new <em>vflussenv</em> in <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">Jupyter Lab</span></a>, a new <em>ipykernel</em> needs to be created as follows:</p>
 <ul class="simple">
 <li><p>Activate the environment (in Terminal): <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">path/to/vflussenv/bin/activate</span></code> (change path to where you installed <code class="docutils literal notranslate"><span class="pre">vflussenv</span></code>)</p></li>
@@ -1070,21 +704,21 @@ Windows</label><div class="tabbed-content docutils">
 <li><p>Create a new <em>ipykernel</em>: <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">-m</span> <span class="pre">ipykernel</span> <span class="pre">install</span> <span class="pre">--user</span> <span class="pre">--name=fluss_kernel</span></code></p></li>
 <li><p>Now the new kernel called <em>fluss_kernel</em> (referring to <em>vflussenv</em>) is available in Jupyter Lab (<strong>Kernel</strong> &gt; <strong>Change Kernel…</strong>)</p></li>
 </ul>
-</div>
-<div class="section" id="manage-pip-install-uninstall-or-upgrade-modules-or-packages">
-<span id="pip-install-pckg"></span><h3>Manage pip (Install, Uninstall, or Upgrade) Modules or Packages<a class="headerlink" href="#manage-pip-install-uninstall-or-upgrade-modules-or-packages" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="manage-pip-install-uninstall-or-upgrade-modules-or-packages">
+<span id="pip-install-pckg"></span><h3>Manage pip (Install, Uninstall, or Upgrade) Modules or Packages<a class="headerlink" href="#manage-pip-install-uninstall-or-upgrade-modules-or-packages" title="Permalink to this headline">#</a></h3>
 <p>More than 300,000 projects live on <a class="reference external" href="https://pypi.org/">pypi.org</a> and there are packages available for many purposes. To find suitable packages visit <a class="reference external" href="https://pypi.org/search/">https://pypi.org/search/</a>. To install (i.e., add) one of these <code class="docutils literal notranslate"><span class="pre">pip</span></code>/<code class="docutils literal notranslate"><span class="pre">pip3</span></code> packages use:</p>
-<div class="tabbed-set docutils">
-<input checked="checked" id="0b555cf8-c4c0-42e7-9615-764f95a08228" name="80e308c0-a112-49b4-b2f7-736399190982" type="radio">
-</input><label class="tabbed-label" for="0b555cf8-c4c0-42e7-9615-764f95a08228">
-Linux Terminal</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-2">
+Linux Terminal</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
 </div>
 </div>
-<input id="926c314e-cad5-4533-bfcc-40c543cd6d21" name="80e308c0-a112-49b4-b2f7-736399190982" type="radio">
-</input><label class="tabbed-label" for="926c314e-cad5-4533-bfcc-40c543cd6d21">
-Windows Command Prompt</label><div class="tabbed-content docutils">
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-3">
+Windows Command Prompt</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
 </div>
@@ -1107,34 +741,34 @@ Windows Command Prompt</label><div class="tabbed-content docutils">
 </ul>
 <p>To install all-in-one, tap: <code class="docutils literal notranslate"><span class="pre">pip3</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">fitter</span> <span class="pre">missingno</span> <span class="pre">seaborn</span> <span class="pre">scikit-learn</span> <span class="pre">statsmodels</span> <span class="pre">openpyxl</span></code></p>
 <p>To remove (i.e., uninstall) a <code class="docutils literal notranslate"><span class="pre">pip</span></code>/<code class="docutils literal notranslate"><span class="pre">pip3</span></code>-installed package use:</p>
-<div class="tabbed-set docutils">
-<input checked="checked" id="09e8618a-3957-40cd-a513-e6b6a688e1b9" name="7c68beaa-57a4-4dad-9b6e-19f7083c9dc5" type="radio">
-</input><label class="tabbed-label" for="09e8618a-3957-40cd-a513-e6b6a688e1b9">
-Linux Terminal</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-4">
+Linux Terminal</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">uninstall</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
 </div>
 </div>
-<input id="fc6ffcd3-c0e6-4ad2-9f9e-bda9ca72ad15" name="7c68beaa-57a4-4dad-9b6e-19f7083c9dc5" type="radio">
-</input><label class="tabbed-label" for="fc6ffcd3-c0e6-4ad2-9f9e-bda9ca72ad15">
-Windows Command Prompt</label><div class="tabbed-content docutils">
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-5">
+Windows Command Prompt</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">uninstall</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>To upgrade (update) a package that lives in a local user environment use:</p>
-<div class="tabbed-set docutils">
-<input checked="checked" id="2b881bd6-e020-44ad-b2cd-b3aa480eb07e" name="9c081910-a1c1-48a0-b209-ffa2e21030f7" type="radio">
-</input><label class="tabbed-label" for="2b881bd6-e020-44ad-b2cd-b3aa480eb07e">
-Linux Terminal</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-6">
+Linux Terminal</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
 </div>
 </div>
-<input id="b2e45507-ec49-497e-9c42-e5b4ff56e017" name="9c081910-a1c1-48a0-b209-ffa2e21030f7" type="radio">
-</input><label class="tabbed-label" for="b2e45507-ec49-497e-9c42-e5b4ff56e017">
-Windows Command Prompt</label><div class="tabbed-content docutils">
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-7">
+Windows Command Prompt</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="o">--</span><span class="n">user</span> <span class="n">PACKAGE_NAME</span>
 </pre></div>
 </div>
@@ -1145,19 +779,19 @@ Windows Command Prompt</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 <p>Read more about virtual environments and pip at <a class="reference external" href="https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/">https://packaging.python.org</a>.</p>
-</div>
-</div>
-<div class="section" id="conda-env-windows-preference">
-<span id="conda-env"></span><h2>conda env (Windows Preference)<a class="headerlink" href="#conda-env-windows-preference" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="conda-env-windows-preference">
+<span id="conda-env"></span><h2>conda env (Windows Preference)<a class="headerlink" href="#conda-env-windows-preference" title="Permalink to this headline">#</a></h2>
 <p>This section features the quick installation of the <a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/flusstools-pckg/main/environment.yml">flussenv environment.yml</a> for <em>Anaconda</em> followed by more detailed explanations on the creation and management of <em>conda</em> environments.</p>
 <div class="hint admonition">
 <p class="admonition-title">Use conda on Windows</p>
 <p>Anaconda and conda environments are preferable with <em>Windows</em> systems for working with this eBook and the <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> library.</p>
 </div>
-<div class="section" id="conda-quick">
-<span id="id1"></span><h3>Quick Guide<a class="headerlink" href="#conda-quick" title="Permalink to this headline">¶</a></h3>
+<section id="conda-quick">
+<span id="id1"></span><h3>Quick Guide<a class="headerlink" href="#conda-quick" title="Permalink to this headline">#</a></h3>
 <p>The quick guide to installing Python with Anaconda on Windows is accompanied by a video embedded below the numbered workflow (though the number steps reduced since the video was published):</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Download the <em>flussenv</em> <a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/flusstools-pckg/main/environment.yml">environment file</a> (right-click &gt; <em>Save Link as …</em> &gt; select target directory). If needed, copy the file contents of <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> in a local text editor, such as <a class="reference internal" href="../get-started/others.html#npp"><span class="std std-ref">NotepadPlusPlus (Text Editor)</span></a>, and save the file for example in a directory called <em>C:/temp/</em>).</p></li>
 <li><p>Open a command line</p>
 <ul class="simple">
@@ -1177,33 +811,33 @@ Windows Command Prompt</label><div class="tabbed-content docutils">
 <p>When running Jupyter, the <code class="docutils literal notranslate"><span class="pre">fluss_kernel</span></code> will be available in the top menu <strong>Kernel</strong> &gt; <strong>Change Kernel…</strong></p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/cbIPRGOUAVA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
-</div>
-<div class="section" id="create-and-install">
-<h3>Create and Install<a class="headerlink" href="#create-and-install" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="create-and-install">
+<h3>Create and Install<a class="headerlink" href="#create-and-install" title="Permalink to this headline">#</a></h3>
 <p>To create a new <em>conda</em> environment from scratch, which differs from the <a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/flusstools-pckg/main/environment.yml">flussenv environment.yml</a>, open <em>Anaconda Prompt</em> and type (replace <code class="docutils literal notranslate"><span class="pre">ENV-NAME</span></code> for example with <code class="docutils literal notranslate"><span class="pre">flussenv</span></code>):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="n">ENV</span><span class="o">-</span><span class="n">NAME</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.8</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="activate-environment">
-<h3>Activate Environment<a class="headerlink" href="#activate-environment" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="activate-environment">
+<h3>Activate Environment<a class="headerlink" href="#activate-environment" title="Permalink to this headline">#</a></h3>
 <p>The active environment corresponds to the environment that you are working in (e.g., for installing libraries or using <em>Jupyter</em>). To activate the above-created <em>flussenv</em> environment:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Open <em>Anaconda Prompt</em> (<code class="docutils literal notranslate"><span class="pre">Windows</span></code> key or click on the start menu of your operating system &gt; type <code class="docutils literal notranslate"><span class="pre">Anaconda</span> <span class="pre">Prompt</span></code> &gt; hit <code class="docutils literal notranslate"><span class="pre">Enter</span></code>).</p></li>
 <li><p>Activate the desired environment with <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">ENV-NAME</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">flussenv</span></code>)</p></li>
 </ol>
-</div>
-<div class="section" id="install-additional-python-packages">
-<span id="install-pckg"></span><h3>Install Additional Python Packages<a class="headerlink" href="#install-additional-python-packages" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="install-additional-python-packages">
+<span id="install-pckg"></span><h3>Install Additional Python Packages<a class="headerlink" href="#install-additional-python-packages" title="Permalink to this headline">#</a></h3>
 <p>To install (more) <a class="reference internal" href="../jupyter/pypckg.html#sec-pypckg"><span class="std std-ref">Python packages</span></a> in a <em>conda</em> environment:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Activate the environment where you want to install, remove, or modify packages (e.g., <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">flussenv</span></code> - see above).</p></li>
 <li><p>Install a package by typing <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">PACKAGE_NAME</span></code> (if the package cannot be found, try <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">PACKAGE_NAME</span></code>).</p></li>
 </ol>
 <p>Alternatively, press the <code class="docutils literal notranslate"><span class="pre">Windows</span></code> key (or click on the start menu of your operating system) &gt; type <code class="docutils literal notranslate"><span class="pre">Anaconda</span> <span class="pre">Navigator</span></code> &gt; got to the <code class="docutils literal notranslate"><span class="pre">Environments</span></code> tab &gt; select the <code class="docutils literal notranslate"><span class="pre">flussenv</span></code> environment (or create another environment) &gt; <em>install</em> &gt; install packages.</p>
-</div>
-<div class="section" id="remove-delete-environment">
-<h3>Remove (Delete) Environment<a class="headerlink" href="#remove-delete-environment" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="remove-delete-environment">
+<h3>Remove (Delete) Environment<a class="headerlink" href="#remove-delete-environment" title="Permalink to this headline">#</a></h3>
 <p>To remove a conda environment open <em>Anaconda Prompt</em> and type:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">env</span> <span class="n">remove</span> <span class="o">--</span><span class="n">name</span> <span class="n">ENV</span><span class="o">-</span><span class="n">NAME</span><span class="o">-</span><span class="n">TO</span><span class="o">-</span><span class="n">REMOVE</span>
 </pre></div>
@@ -1213,18 +847,18 @@ Windows Command Prompt</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 <p>There are many more <code class="docutils literal notranslate"><span class="pre">conda</span></code> commands and the most important ones are summarized in the developer’s <a class="reference external" href="https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf"><em>conda</em> cheat sheet</a>.</p>
-</div>
-</div>
-<div class="section" id="setup-interfaces-and-ides">
-<span id="python-ide-setup"></span><h2>Setup Interfaces and IDEs<a class="headerlink" href="#setup-interfaces-and-ides" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="setup-interfaces-and-ides">
+<span id="python-ide-setup"></span><h2>Setup Interfaces and IDEs<a class="headerlink" href="#setup-interfaces-and-ides" title="Permalink to this headline">#</a></h2>
 <p>To follow the contents of this eBook and run code cells, it is recommended to use <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a>, which can be installed locally or run it remotely by clicking on <a class="reference external" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> - the batch is implemented at the top of all Jupyter notebook-based sections. To create projects, develop programs, or simply complete course assignments, it is recommended to use an Integrated Development Environment (<em>IDE</em>), such as <a class="reference internal" href="../get-started/ide.html#pycharm"><span class="std std-ref">PyCharm with Anaconda</span></a>.</p>
-<div class="section" id="jupyterlab">
-<span id="ipython-config"></span><h3>JupyterLab<a class="headerlink" href="#jupyterlab" title="Permalink to this headline">¶</a></h3>
+<section id="jupyterlab">
+<span id="ipython-config"></span><h3>JupyterLab<a class="headerlink" href="#jupyterlab" title="Permalink to this headline">#</a></h3>
 <p>The following descriptions require that <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a> is installed for locally editing <em>Jupyter</em> notebooks (<em>.ipynb</em> files), <em>Python</em> scripts (<em>.py</em> files), and folders.</p>
-<div class="tabbed-set docutils">
-<input checked="checked" id="38d0c4d5-d91e-4ba2-81ef-df255fe6b5cc" name="db0f2e75-be8b-4658-9859-7caf15ee2f2b" type="radio">
-</input><label class="tabbed-label" for="38d0c4d5-d91e-4ba2-81ef-df255fe6b5cc">
-Linux</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-8">
+Linux</label><div class="sd-tab-content docutils">
 <p>Start <em>JupyterLab</em> by typing <code class="docutils literal notranslate"><span class="pre">jupyter-lab</span></code> in <em>Terminal</em>.</p>
 <p>If you are working with <em>vflussenv</em>, you may need to add the environment and its packages to a new ipykernel:</p>
 <ul class="simple">
@@ -1234,9 +868,9 @@ Linux</label><div class="tabbed-content docutils">
 <li><p>Now the new kernel called <em>fluss_kernel</em> (referring to <em>vflussenv</em>) is available in Jupyter Lab (<strong>Kernel</strong> &gt; <strong>Change Kernel…</strong>)</p></li>
 </ul>
 </div>
-<input id="d69fa395-3e43-4b05-aab6-fd03562bc901" name="db0f2e75-be8b-4658-9859-7caf15ee2f2b" type="radio">
-</input><label class="tabbed-label" for="d69fa395-3e43-4b05-aab6-fd03562bc901">
-Windows</label><div class="tabbed-content docutils">
+<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-9">
+Windows</label><div class="sd-tab-content docutils">
 <p>Start <em>JupyterLab</em> by typing <code class="docutils literal notranslate"><span class="pre">jupyter-lab</span></code> in <em>Anaconda Prompt</em>.</p>
 <p>If you are working with <em>flussenv</em>, you may need to add the environment and its packages to a new ipykernel:</p>
 <ul class="simple">
@@ -1249,13 +883,15 @@ Windows</label><div class="tabbed-content docutils">
 <dl class="simple myst">
 <dt>Setup Styles</dt><dd><p>The <em>Kernel</em> menu runs the defined programming language (<em>Python3</em> in the example below). The <em>Settings</em> menu provides options to configure styles (e.g., choose the <em>JupyterLab Dark</em> theme shown in the below figure).
 <em>JupyterLab</em> runs on a local server (typically on <code class="docutils literal notranslate"><span class="pre">localhost:XXPORTXX/lab</span></code>), which is why it is just like an interactive website in your browser. In the beginning, it takes some getting used to, but one gets quickly familiar with it and there are many advantages such as the inline use of online graphics.</p>
-<div class="figure align-default" id="id2">
+<figure class="align-default" id="id2">
 <img alt="pyc-prj-setup" src="../_images/jupyter-illu.png" />
-<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">JupyterLab in Dark theme appearance with a Jupyter notebook (xml.ipynb) opened showing the combination of a markdown cell (Charts (plots) and a Python3 cell).</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">JupyterLab in Dark theme appearance with a Jupyter notebook (xml.ipynb) opened showing the combination of a markdown cell (Charts (plots) and a Python3 cell).</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </dd>
 <dt>Package Controls</dt><dd><p><em>JupyterLab</em> runs an <a class="reference external" href="https://ipython.org/"><em>IPython</em></a> kernel, which refers to the currently activated <em>conda</em> environment. Thus, for installing a package for usage in <em>JupyterLab</em>, follow the above instructions for the chosen environment (learn more about packages in the <a class="reference internal" href="../jupyter/pypckg.html#sec-pypckg"><span class="std std-ref">Packages, Modules and Libraries</span></a> section). It might be useful to define <strong>default imports</strong> for <em>IPython</em> and this works as follows:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Look for the (hidden) <code class="docutils literal notranslate"><span class="pre">.ipython</span></code> folder on your computer</p>
 <ul class="simple">
 <li><p><em>Windows</em>: Typically in the user folder (<code class="docutils literal notranslate"><span class="pre">C:\Users\USER-NAME\.ipython\</span></code>) (<a class="reference external" href="https://support.microsoft.com/en-us/help/14201/windows-show-hidden-files">how to show hidden files in <em>Windows</em></a></p></li>
@@ -1276,7 +912,7 @@ Windows</label><div class="tabbed-content docutils">
 <span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">ttk</span>
 </pre></div>
 </div>
-<p>For the geospatial <em>Python</em> section, consider to add (<a class="reference external" href="../geopy/geo-pckg.html#gdal">read <code class="docutils literal notranslate"><span class="pre">gdal</span></code> installation instructions</a> first):</p>
+<p>For the geospatial Python section, consider to add (read the <a class="reference internal" href="../geopy/geo-pckg.html#gdal"><span class="std std-ref">GDAL installation instructions</span></a> first):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">gdal</span>
 <span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">ogr</span>
 <span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">osr</span>
@@ -1288,14 +924,14 @@ Windows</label><div class="tabbed-content docutils">
 </div>
 </dd>
 </dl>
-</div>
-<div class="section" id="atom-and-python">
-<span id="atom-setup"></span><h3>Atom and Python<a class="headerlink" href="#atom-and-python" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="atom-and-python">
+<span id="atom-setup"></span><h3>Atom and Python<a class="headerlink" href="#atom-and-python" title="Permalink to this headline">#</a></h3>
 <p>Depending on your platform make sure that all requirements are installed to configure Atom’s <code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code> package:</p>
-<div class="tabbed-set docutils">
-<input checked="checked" id="6f6d4c36-984d-4c20-8749-4d0ca5317292" name="89ff8d55-8f9a-4b32-ad78-6fcc975136dc" type="radio">
-</input><label class="tabbed-label" for="6f6d4c36-984d-4c20-8749-4d0ca5317292">
-Linux</label><div class="tabbed-content docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-10">
+Linux</label><div class="sd-tab-content docutils">
 <div class="admonition-requirements admonition">
 <p class="admonition-title">Requirements</p>
 <ul class="simple">
@@ -1325,9 +961,9 @@ Linux</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="a56a5524-1670-4229-a22c-2e6ead0062c2" name="89ff8d55-8f9a-4b32-ad78-6fcc975136dc" type="radio">
-</input><label class="tabbed-label" for="a56a5524-1670-4229-a22c-2e6ead0062c2">
-Windows</label><div class="tabbed-content docutils">
+<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-11">
+Windows</label><div class="sd-tab-content docutils">
 <div class="admonition-requirements admonition">
 <p class="admonition-title">Requirements</p>
 <ul class="simple">
@@ -1357,17 +993,19 @@ Windows</label><div class="tabbed-content docutils">
 </div>
 </div>
 <p>Read more about the integration of Python and environments in Atom in the section on the <a class="reference internal" href="../get-started/ide.html#atom-python"><span class="std std-ref">installation of Atom (IDE)</span></a>.</p>
-</div>
-<div class="section" id="pycharm-python-projects">
-<span id="ide-setup"></span><h3>PyCharm Python Projects<a class="headerlink" href="#pycharm-python-projects" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="pycharm-python-projects">
+<span id="ide-setup"></span><h3>PyCharm Python Projects<a class="headerlink" href="#pycharm-python-projects" title="Permalink to this headline">#</a></h3>
 <p>After the successful installation of <a class="reference internal" href="../get-started/ide.html#pycharm"><span class="std std-ref">PyCharm with Anaconda</span></a>, use a <em>conda</em> (or <em>pip</em>) environment as interpreter. The following steps guide through the setup of PyCharm for using <em>conda</em> environments.</p>
 <ul class="simple">
 <li><p>Launch <em>PyCharm</em> and create a new project.</p></li>
 </ul>
-<div class="figure align-default" id="id3">
+<figure class="align-default" id="id3">
 <img alt="pyc-prj&quot; max-width=&quot;500px" src="../_images/pyc-project.png" />
-<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Create a new project in PyCharm.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Create a new project in PyCharm.</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <ul class="simple">
 <li><p>Define The new <code class="docutils literal notranslate"><span class="pre">flussenv</span></code> environment as <em>Pure Python</em> project interpreter:</p>
 <ul>
@@ -1377,10 +1015,12 @@ Windows</label><div class="tabbed-content docutils">
 </ul>
 </li>
 </ul>
-<div class="figure align-default" id="id4">
+<figure class="align-default" id="id4">
 <img alt="pyc-prj-setup" src="../_images/pyc-prj-setup.png" />
-<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Setup the <code class="docutils literal notranslate"><span class="pre">flussenv</span></code> conda environment for the new project.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Setup the <code class="docutils literal notranslate"><span class="pre">flussenv</span></code> conda environment for the new project.</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <ul class="simple">
 <li><p>Verify that the project interpreter is correctly defined:</p>
 <ul>
@@ -1390,17 +1030,19 @@ Windows</label><div class="tabbed-content docutils">
 </ul>
 </li>
 </ul>
-<div class="figure align-default" id="id5">
+<figure class="align-default" id="id5">
 <img alt="pyc-prj-interp" src="../_images/pyc-prj-interp.png" />
-<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Verify the correct setup of the Project Interpreter.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Verify the correct setup of the Project Interpreter.</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="tip dropdown admonition">
 <p class="admonition-title">Struggling with setting up PyCharm?</p>
 <p>PyCharm and Anaconda are designed for working hand-in-hand and the developers provide an <a class="reference external" href="https://docs.anaconda.com/anaconda/user-guide/tasks/pycharm/">up-to-date documentation</a> for setting up PyCharm to work with <em>conda</em> environments.</p>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1414,7 +1056,7 @@ Windows</label><div class="tabbed-content docutils">
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./python-basics"
         },
         predefinedOutput: true
@@ -1422,46 +1064,118 @@ Windows</label><div class="tabbed-content docutils">
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="../get-started/ide.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Integrated Development Environments (IDEs)</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../get-started/ide.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Integrated Development Environments (IDEs)</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="../get-started/git.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="../get-started/git.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Version Control : git</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-        
-        </div>
-    </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Sebastian Schwindt, Ricardo Barros<br/>
-        
-            &copy; Copyright 2023.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pip-and-venv-linux-preference">pip and venv (Linux Preference)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-guide">Quick Guide</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ipykernel-jupyterlab-for-flusstools">Ipykernel (JupyterLab) for FlussTools</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manage-pip-install-uninstall-or-upgrade-modules-or-packages">Manage pip (Install, Uninstall, or Upgrade) Modules or Packages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conda-env-windows-preference">conda env (Windows Preference)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conda-quick">Quick Guide</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-install">Create and Install</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#activate-environment">Activate Environment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-additional-python-packages">Install Additional Python Packages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-delete-environment">Remove (Delete) Environment</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-interfaces-and-ides">Setup Interfaces and IDEs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterlab">JupyterLab</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atom-and-python">Atom and Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pycharm-python-projects">PyCharm Python Projects</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
 
-      </div>
-    </div>
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By Sebastian Schwindt, Beatriz Negreiros, Federica Scolari, Ricardo Barros
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

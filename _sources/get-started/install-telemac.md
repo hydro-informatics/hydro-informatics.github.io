@@ -427,15 +427,16 @@ cd ~/telemac-mascaret/configs
 vim systel.cis-debian.cfg
 ```
 
-Make the following adaptations in *Debian gfortran open MPI* section to enable parallelism:<a name="parcmd"></a>
+````{admonition} Enable Parallelism
+:name: parcmd
+Make the following adaptations in *Debian gfortran open MPI* section to enable parallelism:
 
 * Remove `par_cmdexec` from the configuration file; that means delete the line (otherwise, parallel processing will crash with a message that says *cannot find PARTEL.PAR*):<br>`par_cmdexec:   <config>/partel < PARTEL.PAR >> <partel.log>`
-* Find `libs_all` to add and adapt:
+* Find `libs_all` to add and adapt the following items:
     + *metis* (all *metis*-related directories to `/home/USERNAME/telemac-mascaret/optionals/metis-5.1.0/build/lib/libmetis.a`).
     + *openmpi* (correct the library file to `/usr/lib/x86_64-linux-gnu/openmpi/libmpi.so.40.20.3` or wherever `libmpi.so.xx.xx.x` lives on your machine).
     + *med* including *hdf5* (`~/telemac-mascaret/optionals/`).
     + *aed2* (`~/telemac-mascaret/optionals/aed2/libaed2.a`).
-
 ```
 libs_all:    /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so.40.20.3 /home/USERNAME/telemac-mascaret/optionals/metis-5.1.0/build/lib/libmetis.a /home/USERNAME/telemac-mascaret/optionals/aed2/libaed2.a /home/USERNAME/telemac-mascaret/optionals/med-3.2.0/lib/libmed.so /home/USERNAME/telemac-mascaret/optionals/hdf5/lib/libhdf5.so
 ```
@@ -454,7 +455,7 @@ cmd_obj:    /usr/bin/mpif90 -cpp -c -O3 -DHAVE_AED2 -DHAVE_MPI -DHAVE_MED -fconv
 ```
 
 An additional keyword in the configurations is `options:` that accepts multiple keywords including `mpi`, `api` (*TelApy* - *TELEMAC's Python API*), `hpc`, and `dyn` or `static`.  The provided `cfg` file primarily uses the `mpi` keyword. To use other installation options (e.g., HPC or dynamic), read the instructions for HPC installation on [opentelemac.org](http://wiki.opentelemac.org/doku.php?id=installation_on_linux) and have a look at the most advanced default config file from EDF (`~/telemac-mascaret/configs/systel.edf.cfg`).
-
+````
 
 ### Setup Python Source File
 
@@ -598,7 +599,7 @@ telemac2d.py t2d_gouttedo.cas --ncsize=4
 
 ```{admonition} Cannot find <<PARTEL.PAR>>?
 :class: note, dropdown
-If there is an error message such as **`Cannot find << PARTEL.PAR >>`** ... **`TypeError: can only concatenate str (not ...) to str`**, make sure that `par_cmdexec` is removed from the configuration file ([see above](#parcmd)).
+If there is an error message such as **`Cannot find << PARTEL.PAR >>`** ... **`TypeError: can only concatenate str (not ...) to str`**, make sure that `par_cmdexec` is removed from the configuration file ({ref}`see above <parcmd>`).
 ```
 
 When the computation is running, observe the CPU charge. If the CPUs are all working with different percentages, the parallel version is working well.

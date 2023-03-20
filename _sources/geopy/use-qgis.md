@@ -39,7 +39,7 @@ Once you installed QGIS, launch the program and walk through the following steps
 
 
 ```{hint}
-All files created in this tutorial can be downloaded [here](https://github.com/Ecohydraulics/qgis-tutorial).
+All files created in this tutorial can be downloaded from the {{ qgis_tutorial_repo }}.
 ```
 
 (qgis-tbx-install)=
@@ -58,9 +58,12 @@ The conversion between geospatial data types and numerical (computational) grids
 
 In the context of river analysis, the following plugins are recommended and used at multiple places on this website:
 
+```{admonition} QGIS plugins for hydro-informatics
+:name: qgis-plugins
 * The *Crayfish* plugin for post-processing of numerical model output.
 * The *BASEmesh2* plugin provides routines for creating computational meshes for numerical simulations with {ref}`chpt-basement`.
 * The *PostTelemac* plugin enables geospatial visualization and conversions of numerical model results produced with {ref}`chpt-telemac`.
+```
 
 BASEmesh is only one (very well working) mesh generator for QGIS and {numref}`Tab. %s <tab-mesh-plugins>` lists of other plugins for generating computational meshes for numerical models along with target file formats and models
 
@@ -126,7 +129,8 @@ The following URL can be used for retrieving online XYZ tiles (more URLs can be 
 | OSM Black and White   | `http://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png`                                               |
 
 ```{admonition} Coordinate reference systems of basemaps
-:class:
+:class: tip
+
 Most basemaps are provided in the `EPSG:3857 -WGS84 / Pseudo Mercator` coordinate system (CRS). To use custom geodata products, make sure that all other layers have the same coordinate system. Read more about coordinate systems and projections in the {ref}`geospatial-data` and {ref}`shapefile projection <prj-shp>` sections.
 ```
 
@@ -352,7 +356,8 @@ qgs.exitQgis()
 
 However, when opening your system's terminal or Anaconda Prompt to run a PyQGIS code, you may get stuck on the first line of code already: `from qgis.core import *` yields `ImportError: No module named qgis.core`. According to the [QGIS developer docs](https://docs.qgis.org/latest/en/docs/pyqgis_developer_cookbook/intro.html), this error happens because your system's Python does not know where the PyQGIS environment lives. To make your terminal recognize PyQGIS, take the following action according to your system:
 
-````{tabbed} Linux
+`````{tab-set}
+````{tab-item} Linux
 
 Open Terminal and install `python-qgis`:
 
@@ -394,9 +399,9 @@ export PYTHONPATH=/usr/lib/python3/dist-packages/
 ```
 
 Afterward, log out and re-login to your system (i.e., reload `.bashrc`). The command `from qgis.core import *` should now work in Python.
-
 ````
-````{tabbed} Windows
+
+````{tab-item} Windows
 
 Make sure your system knows the where PyGIS lives by adding the following line to the Environment Variables (Windows 10: **My Computer** > **Properties** > **Advanced System Settings** > **Environment Variables**). Replace `<qgispath>` with the path where QGIS lives on your system.
 
@@ -410,5 +415,6 @@ set PYTHONPATH=C:\<qgispath>\python
 ```
 
 ````
+`````
 
 

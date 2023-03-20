@@ -204,7 +204,8 @@ The prescription of time-dependent solid flowrates with a liquid boundaries file
 
 The below boxes feature the setup of the **boundaries.cli** and **boundaries-gaia.cli** files for this tutorial according to the above descriptions.
 
-````{tabbed} Upstream boundary
+`````{tab-set}
+````{tab-item} Upstream boundary
 ```
 [go to line 7]
 4 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000         144           7   # upstream (144 - 32)
@@ -229,7 +230,7 @@ The below boxes feature the setup of the **boundaries.cli** and **boundaries-gai
 ```
 ````
 
-````{tabbed} Downstream boundary
+````{tab-item} Downstream boundary
 ```
 [go to line 312]
 5 4 4  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000          34         312   # downstream (34 - 5)
@@ -247,6 +248,7 @@ The below boxes feature the setup of the **boundaries.cli** and **boundaries-gai
 5 4 4  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000           5         324   # downstream (34 - 5)
 ```
 ````
+`````
 
 This section only explains the **geometric** assignment of boundary types in the `*.cli` files. In addition, (sediment) **fluxes** across these open boundaries are to be **defined in the (Gaia) steering file**. The prescription (and initialization) of sediment fluxes differs for bedload (discharge per boundary) and suspended load (concentration per sediment class fraction) and this is why the implementation of sediment flux prescriptions is defined in separate sections (i.e., {ref}`boundary prescriptions for bedload <gaia-bc-bl>` and {ref}`concentration prescriptions for suspended load <gaia-bc-sl>`).
 
