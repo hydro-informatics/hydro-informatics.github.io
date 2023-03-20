@@ -27,7 +27,8 @@ pip and virtual environments are preferable with *Linux* systems for working wit
 
 Consider installing, creating, and activating a new virtual environment for working with the contents of this eBook as explained in the following platform-dependent paragraphs.
 
-````{tabbed} Linux
+`````{tab-set}
+````{tab-item} Linux
 To avoid affecting the system's Python interpreter, set up a virtual environment with *venv*. The first step is to make sure that Python3 and *venv* are installed on the system:
 
 ```
@@ -130,7 +131,7 @@ Python 3.X.X (default, MMM DD YYYY, hh:mm:ss)
 
 Recall that newer *Linux* versions may not differentiate between *Python2* and *Python3* (i.e., use `python` rather than `python3`).
 ````
-````{tabbed} Windows
+````{tab-item} Windows
 
 ```{warning}
 Because GDAL can currently not be directly installed with `pip` on *Windows*, trying to set up the computational environment with `pip` on *Windows* will very likely fail. **Windows users preferably use {ref}`conda-env`**, but can alternatively continue with a virtual *pip* environment for learning *Python* basics. In this case, geospatial programming contents require an installation of {ref}`qgis-install`, which comes with a built-in *Python* terminal for algorithmic geospatial analyses.
@@ -195,8 +196,8 @@ Try the following not cross-platform verified solution: Install {ref}`qgis-insta
 
 Alternatively, find the *OSGeo4W* from the *Windows* start menu and type `py3_env` followed by `python -m pip install flusstools`. **Preferably use a {ref}`conda-env`.**
 ```
-
 ````
+`````
 
 The import of *flusstools* should not return any import error. If there is an import error, find out the troublesome package's name and re-install it. In particular, the installation of *GDAL* may be challenging when working with `pip`, in particular on *Windows*. To learn more about the installation of *GDAL* visit the [Download > Binaries section on the developer's website](https://gdal.org/download.html#binaries).
 
@@ -215,18 +216,19 @@ To use the new *vflussenv* in {ref}`Jupyter Lab <jupyter>`, a new *ipykernel* ne
 
 More than 300,000 projects live on [pypi.org](https://pypi.org/) and there are packages available for many purposes. To find suitable packages visit [https://pypi.org/search/](https://pypi.org/search/). To install (i.e., add) one of these `pip`/`pip3` packages use:
 
-
-````{tabbed} Linux Terminal
+`````{tab-set}
+````{tab-item} Linux Terminal
 ```
 pip3 install PACKAGE_NAME
 ```
 ````
 
-````{tabbed} Windows Command Prompt
+````{tab-item} Windows Command Prompt
 ```
 python -m pip install --user PACKAGE_NAME
 ```
 ````
+`````
 
 ```{note}
 The `--user` flag is only required if you are not working in a virtual environment. Otherwise, normal users can only manage packages in the local user directory (on *Windows*: `C\Users\USER-NAME\`); system packages can only be managed by administrators (on *Linux* with the `sudo` command).
@@ -249,31 +251,35 @@ To install all-in-one, tap: `pip3 install -U fitter missingno seaborn scikit-lea
 
 To remove (i.e., uninstall) a `pip`/`pip3`-installed package use:
 
-````{tabbed} Linux Terminal
+`````{tab-set}
+````{tab-item} Linux Terminal
 ```
 pip3 uninstall PACKAGE_NAME
 ```
 ````
 
-````{tabbed} Windows Command Prompt
+````{tab-item} Windows Command Prompt
 ```
 python -m pip uninstall PACKAGE_NAME
 ```
 ````
+`````
 
 To upgrade (update) a package that lives in a local user environment use:
 
-````{tabbed} Linux Terminal
+`````{tab-set}
+````{tab-item} Linux Terminal
 ```
 pip3 install --upgrade PACKAGE_NAME
 ```
 ````
 
-````{tabbed} Windows Command Prompt
+````{tab-item} Windows Command Prompt
 ```
 python -m pip install --upgrade --user PACKAGE_NAME
 ```
 ````
+`````
 
 To leave a virtual environment on any platform tab:
 
@@ -373,7 +379,8 @@ To follow the contents of this eBook and run code cells, it is recommended to us
 
 The following descriptions require that {ref}`jupyter` is installed for locally editing *Jupyter* notebooks (*.ipynb* files), *Python* scripts (*.py* files), and folders.
 
-````{tabbed} Linux
+`````{tab-set}
+````{tab-item} Linux
 Start *JupyterLab* by typing `jupyter-lab` in *Terminal*.
 
 If you are working with *vflussenv*, you may need to add the environment and its packages to a new ipykernel:
@@ -385,7 +392,7 @@ If you are working with *vflussenv*, you may need to add the environment and its
 
 ````
 
-````{tabbed} Windows
+````{tab-item} Windows
 Start *JupyterLab* by typing `jupyter-lab` in *Anaconda Prompt*.
 
 If you are working with *flussenv*, you may need to add the environment and its packages to a new ipykernel:
@@ -394,6 +401,7 @@ If you are working with *flussenv*, you may need to add the environment and its 
 * Create a new *ipykernel*: `ipykernel install --user --name=fluss_kernel`
 * Now the new kernel called *fluss_kernel* is available in Jupyter Lab (**Kernel** > **Change Kernel...**)
 ````
+`````
 
 Setup Styles
 : The *Kernel* menu runs the defined programming language (*Python3* in the example below). The *Settings* menu provides options to configure styles (e.g., choose the *JupyterLab Dark* theme shown in the below figure).
@@ -426,7 +434,8 @@ Package Controls
   from tkinter import ttk
   ```
 
-  For the geospatial *Python* section, consider to add ([read `gdal` installation instructions](../geopy/geo-pckg.html#gdal) first):
+  For the geospatial Python section, consider to add (read the {ref}`GDAL installation instructions <gdal>` first):
+
   ```python
   from osgeo import gdal
   from osgeo import ogr
@@ -442,8 +451,8 @@ Package Controls
 
 Depending on your platform make sure that all requirements are installed to configure Atom's `platformio-ide-terminal` package:
 
-
-````{tabbed} Linux
+`````{tab-set}
+````{tab-item} Linux
 
 ```{admonition} Requirements
 * `platformio-ide-terminal`:
@@ -471,7 +480,7 @@ user:~$ atom
 
 ````
 
-````{tabbed} Windows
+````{tab-item} Windows
 
 ```{admonition} Requirements
 * `platformio-ide-terminal`: In *Atom* go to **File** > **Settings** > **+ Install** and install the `platformio-ide-terminal` package (see also {ref}`atom-packages`).
@@ -495,6 +504,7 @@ Once this is done, the *flusstools* package **can be activated and used for regu
 * In the terminal activate the *flussenv* environment: `conda activate flussenv`
 * In the activated environment launch python `atom`
 ````
+`````
 
 Read more about the integration of Python and environments in Atom in the section on the {ref}`installation of Atom (IDE) <atom-python>`.
 

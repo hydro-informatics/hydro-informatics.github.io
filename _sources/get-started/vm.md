@@ -307,7 +307,7 @@ If visually nothing happens, you are good to go. Otherwise, if you get a message
 ***Estimated duration: 5-10 minutes.***
 
 ```{admonition} Requirements
-Make sure to install *Guest Additions* to enable folder sharing (see the above [Setup Linux](#setup-debian) section).
+Make sure to install *Guest Additions* to enable folder sharing (see the above {ref}`Setup Linux <setup-debian>` section).
 ```
 
 Sharing data between the host system (e.g., *Windows 10*) and the guest system (*Debian Linux VM*) enables the transfer of files to and from the VM to the host system.

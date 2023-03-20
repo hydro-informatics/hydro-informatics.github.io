@@ -1,1090 +1,629 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Data Files, NumPy &amp; Pandas &#8212; Hydro-Informatics</title>
-    
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script src="../_static/tabs.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'jupyter/pynum';</script>
     <link rel="canonical" href="https://hydro-informatics.com/jupyter/pynum.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Structured Data (XML, xlsx &amp; JSON)" href="xml.html" />
     <link rel="prev" title="Data and File Handling" href="../python-basics/data-handling.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/icon.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Get Started
- </span>
-</p>
+    
+    
+    <img src="../_static/icon.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/icon.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../lectures/classroom.html">
-   The Virtual Classroom
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/principles.html">
-     Principles
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/lectures.html">
-     Lectures and Exercises
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/take_seat.html">
-     Take a Seat
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../get-started/software.html">
-   Software Resources
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/vm.html">
-     Virtual Machines and Linux
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/ide.html">
-     Integrated Development Environments (IDEs)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../python-basics/pyinstall.html">
-     Python (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/git.html">
-     Version Control : git
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/geo.html">
-     Geospatial Software
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/install-openfoam.html">
-     OpenFOAM (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/install-telemac.html">
-     TELEMAC (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/others.html">
-     Other Software Resources
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/classroom.html">The Virtual Classroom</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/principles.html">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/lectures.html">Lectures and Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/take_seat.html">Take a Seat</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Python Basics
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../get-started/software.html">Software Resources</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/vm.html">Virtual Machines and Linux</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../get-started/ide.html">Integrated Development Environments (IDEs)</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../python-basics/pyinstall.html">Python (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/git.html">Version Control : git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/geo.html">Geospatial Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/install-openfoam.html">OpenFOAM (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/install-telemac.html">TELEMAC (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/others.html">Other Software Resources</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Basics</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/python.html">
-   First Steps
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pybase.html">
-     Hello Data Types
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pyerror.html">
-     Errors, Logging, and Debugging
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pyloop.html">
-     Loops and Conditional Statements
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/modularize.html">
-   Object Orientation
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pyfun.html">
-     Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pypckg.html">
-     Packages, Modules and Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="classes.html">
-     Object Orientation and Classes
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="../python-basics/data-handling.html">
-   Data and File Handling
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Data Files, NumPy &amp; Pandas
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="xml.html">
-     Structured Data (XML, xlsx &amp; JSON)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pyplot.html">
-     Plotting
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="pystyle.html">
-   Code Style and Conventions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="gui.html">
-   Graphical User Interfaces (GUIs)
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/python-exercises.html">
-   Python Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-ms.html">
-     1d Hydraulics (Manning-Strickler Formula)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-sp.html">
-     Reservoir Volume (Sequent Peak Algorithm)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-floods.html">
-     Flood Return Periods
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-sediment.html">
-     1d Sediment Transport
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-gui.html">
-     Create a GUI
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/python.html">First Steps</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="pybase.html">Hello Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyerror.html">Errors, Logging, and Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyloop.html">Loops and Conditional Statements</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Geospatial Analysis
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/geospatial-data.html">
-   Geospatial Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/use-qgis.html">
-   QGIS Tutorial
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/drone-processing.html">
-   Process Drone (UAV) Imagery
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../geopy/geo-python.html">
-   Geospatial Python
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/geo-pckg.html">
-     Geospatial Open Source Python Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="geo-shp.html">
-     Shapefile (Vector) Handling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="geo-raster.html">
-     Raster (Grid) Handling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="geo-convert.html">
-     Vectorize and Rasterize
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="geo-arcpy.html">
-     The Commercial arcpy Library
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/geo-exercises.html">
-   Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-geco.html">
-     Script a Habitat Suitability Map
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/modularize.html">Object Orientation</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyfun.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypckg.html">Packages, Modules and Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html">Object Orientation and Classes</a></li>
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Data Science
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../datascience/data-science.html">
-   Fundamentals (Coming soon)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/py-requirements.html">
-     Python Requirements
-    </a>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../datascience/data-prepro.html">
-     Data Pre-Processing
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-    <label for="toctree-checkbox-10">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/data-types.html">
-       The Nature of Data
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/data-cleaning.html">
-       Dataset Cleaning
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/dimensional-analysis.html">
-       Dimensional Analysis
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../datascience/theory.html">
-   Techniques (Coming soon)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/techniques.html">
-     Overview of Fundamental Techniques
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/calibrate-validate.html">
-     Model Calibration and Validation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
-     Support Vector Machine (SVM)
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../python-basics/data-handling.html">Data and File Handling</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Data Files, NumPy &amp; Pandas</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="xml.html">Structured Data (XML, xlsx &amp; JSON)</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="pyplot.html">Plotting</a></li>
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Numerical Modeling
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../numerics/numerical-modeling.html">
-   Principles
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../numerics/basement.html">
-   BASEMENT
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/pre-qgis-bm.html">
-     Pre-processing with QGIS
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/basement2d.html">
-     Run and Check a Steady 2d Simulation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../numerics/telemac.html">
-   TELEMAC
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/pre-slf-tm.html">
-     Pre-processing
-    </a>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac2d.html">
-     Telemac2d
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-    <label for="toctree-checkbox-14">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac2d-steady.html">
-       Steady 2d
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac2d-unsteady.html">
-       Unsteady 2d
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac3d.html">
-     Telemac3d
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-    <label for="toctree-checkbox-15">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac3d-slf.html">
-       Steady 3d (SLF - Selafin)
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac3d-med.html">
-       Steady 3d (MED and Salome)
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac-gaia.html">
-     Gaia (Morphodynamics)
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-    <label for="toctree-checkbox-16">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-coupling.html">
-       Introduction and Coupling
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-basics.html">
-       Basic Setup of Gaia
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-bedload.html">
-       Bedload
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-suspended.html">
-       Suspended Load
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-run.html">
-       Run and Analyze
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pystyle.html">Code Style and Conventions</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="gui.html">Graphical User Interfaces (GUIs)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/python-exercises.html">Python Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-ms.html">1d Hydraulics (Manning-Strickler Formula)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-sp.html">Reservoir Volume (Sequent Peak Algorithm)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-floods.html">Flood Return Periods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-sediment.html">1d Sediment Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-gui.html">Create a GUI</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Documentation
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/documentation.html">
-   How to Markdown and Document
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/glossary.html">
-   Glossary
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/notation.html">
-   Notation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/bibliography.html">
-   References
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/docs-exercises.html">
-   Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
-  <label for="toctree-checkbox-17">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-git.html">
-     Git and Markdown
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Troubleshoot
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Geospatial Analysis</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
-   Programming Tools and IDEs
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
-  <label for="toctree-checkbox-18">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
-     Debugging Anaconda
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-python.html">
-     Debugging Python Code
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
-     Debugging Jupyter
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
-   Numerical Models
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
-  <label for="toctree-checkbox-19">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
-     Debugging BASEMENT
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
-     Debugging TELEMAC
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-os.html">
-   Operating Systems (Linux and VMs)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
-  <label for="toctree-checkbox-20">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
-     Debugging Debian Linux
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
-     Debugging Virtual Machines
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-scilife.html">
-   Science Life Hacks
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/>
-  <label for="toctree-checkbox-21">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-zotero.html">
-     Zotero Utilities
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/geospatial-data.html">Geospatial Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/use-qgis.html">QGIS Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/drone-processing.html">Process Drone (UAV) Imagery</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../geopy/geo-python.html">Geospatial Python</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geopy/geo-pckg.html">Geospatial Open Source Python Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geo-shp.html">Shapefile (Vector) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geo-raster.html">Raster (Grid) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geo-convert.html">Vectorize and Rasterize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geo-arcpy.html">The Commercial arcpy Library</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Disclaimer and License
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/geo-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-geco.html">Script a Habitat Suitability Map</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Modeling</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../terms/license.html">
-   License
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../terms/disclaimer.html">
-   Disclaimer
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../numerics/numerical-modeling.html">Principles</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerics/basement.html">BASEMENT</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/pre-qgis-bm.html">Pre-processing with QGIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/basement2d.html">Run and Check a Steady 2d Simulation</a></li>
+
+
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerics/telemac.html">TELEMAC</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/pre-slf-tm.html">Pre-processing</a></li>
+
+
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac2d.html">Telemac2d</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac2d-steady.html">Steady 2d</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac2d-unsteady.html">Unsteady 2d</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac3d.html">Telemac3d</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac3d-slf.html">Steady 3d (SLF - Selafin)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac3d-med.html">Steady 3d (MED and Salome)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac-gaia.html">Gaia (Morphodynamics)</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-coupling.html">Introduction and Coupling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-basics.html">Basic Setup of Gaia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-bedload.html">Bedload</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-suspended.html">Suspended Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-run.html">Run and Analyze</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/data-science.html">Fundamentals (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/py-requirements.html">Python Requirements</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../datascience/data-prepro.html">Data Pre-Processing</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/data-types.html">The Nature of Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/data-cleaning.html">Dataset Cleaning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/dimensional-analysis.html">Dimensional Analysis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/theory.html">Techniques (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/techniques.html">Overview of Fundamental Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/calibrate-validate.html">Model Calibration and Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/morphology-predictor-svm.html">Support Vector Machine (SVM)</a></li>
+
+
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../documentation/documentation.html">How to Markdown and Document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/notation.html">Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/bibliography.html">References</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/docs-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-git.html">Git and Markdown</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Troubleshoot</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-programming.html">Programming Tools and IDEs</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-anaconda.html">Debugging Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-python.html">Debugging Python Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-jupyter.html">Debugging Jupyter</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">Numerical Models</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-basement.html">Debugging BASEMENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-telemac.html">Debugging TELEMAC</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-os.html">Operating Systems (Linux and VMs)</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-linux.html">Debugging Debian Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-vm.html">Debugging Virtual Machines</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-scilife.html">Science Life Hacks</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-zotero.html">Zotero Utilities</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Disclaimer and License</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../terms/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terms/disclaimer.html">Disclaimer</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a> and Ricardo Barros
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/jupyter/pynum.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/hydro-informatics/jupyter-python-course"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
         
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/hydro-informatics/jupyter-python-course/main/v2/gh/hydro-informatics/jupyter-python-course/main?urlpath=lab/tree/jupyter/pynum.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/hydro-informatics/jupyter-python-course/blob/main/jupyter/pynum.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
+<a href="https://github.com/hydro-informatics/jupyter-python-course" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/hydro-informatics/jupyter-python-course/main/v2/gh/hydro-informatics/jupyter-python-course/main?urlpath=lab/tree/jupyter/pynum.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com//github/hydro-informatics/jupyter-python-course/blob/main/jupyter/pynum.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="../_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/jupyter/pynum.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
+  
 </div>
+</div>
+              
+              
 
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Data Files, NumPy & Pandas</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Data Files, NumPy &amp; Pandas
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#load-and-write-basic-data-files">
-   Load and Write Basic Data Files
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#load-open-text-file-data">
-     Load (Open) Text File Data
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#read-only">
-     Read-only
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#create-and-write-files">
-     Create and Write Files
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#modify-existing-files">
-     Modify Existing Files
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#numpy">
-   NumPy
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#installation">
-     Installation
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#usage">
-     Usage
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#color-arrays">
-     Color Arrays
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#array-matrix-operations">
-     Array (Matrix) Operations
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#array-shape-manipulation">
-     Array Shape Manipulation
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#numpy-file-handling-and-np-nan">
-     <em>
-      NumPy
-     </em>
-     File Handling and
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       np.nan
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#statistics">
-     Statistics
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#can-numpy-do-matlab">
-     Can
-     <em>
-      NumPy
-     </em>
-     do
-     <em>
-      MATLAB
-     </em>
-     ®?
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pandas">
-   Pandas
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
-     Installation
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id5">
-     Usage
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#data-frames-series">
-     Data Frames &amp; Series
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-create-a-pandas-dataframe-of-froude-numbers">
-     Example: Create a
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       pandas.DataFrame
-      </span>
-     </code>
-     of Froude Numbers
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#append-data-to-a-pandas-dataframe">
-     Append Data to a
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       pandas.DataFrame
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#numpy-arrays-and-pandas-data-frames">
-     <em>
-      NumPy
-     </em>
-     Arrays and
-     <em>
-      pandas
-     </em>
-     Data Frames
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#access-data-frames-entries">
-     Access Data Frames Entries
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#reshape-data-frames">
-     Reshape Data Frames
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#file-handling-csv-workbooks-and-more">
-     File Handling (
-     <em>
-      csv
-     </em>
-     , Workbooks, and More)
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#categorical-data">
-     Categorical Data
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#data-frame-statistics">
-     Data Frame Statistics
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#apply-custom-own-functions-to-data-frames">
-     Apply Custom (Own) Functions to Data Frames
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dates-and-time">
-   Dates and Time
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#learning-success-check-up">
-   Learning Success Check-up
-  </a>
- </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Data Files, NumPy &amp; Pandas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-and-write-basic-data-files">Load and Write Basic Data Files</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-open-text-file-data">Load (Open) Text File Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-only">Read-only</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-write-files">Create and Write Files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modify-existing-files">Modify Existing Files</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy">NumPy</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#color-arrays">Color Arrays</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#array-matrix-operations">Array (Matrix) Operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#array-shape-manipulation">Array Shape Manipulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-file-handling-and-np-nan"><em>NumPy</em> File Handling and <code class="docutils literal notranslate"><span class="pre">np.nan</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistics">Statistics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#can-numpy-do-matlab">Can <em>NumPy</em> do <em>MATLAB</em>®?</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas">Pandas</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Usage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-frames-series">Data Frames &amp; Series</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-create-a-pandas-dataframe-of-froude-numbers">Example: Create a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> of Froude Numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#append-data-to-a-pandas-dataframe">Append Data to a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-arrays-and-pandas-data-frames"><em>NumPy</em> Arrays and <em>pandas</em> Data Frames</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#access-data-frames-entries">Access Data Frames Entries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reshape-data-frames">Reshape Data Frames</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-handling-csv-workbooks-and-more">File Handling (<em>csv</em>, Workbooks, and More)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#categorical-data">Categorical Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-frame-statistics">Data Frame Statistics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-custom-own-functions-to-data-frames">Apply Custom (Own) Functions to Data Frames</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dates-and-time">Dates and Time</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-success-check-up">Learning Success Check-up</a></li>
 </ul>
 
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="data-files-numpy-pandas">
-<h1>Data Files, NumPy &amp; Pandas<a class="headerlink" href="#data-files-numpy-pandas" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="data-files-numpy-pandas">
+<h1>Data Files, NumPy &amp; Pandas<a class="headerlink" href="#data-files-numpy-pandas" title="Permalink to this headline">#</a></h1>
 <p>Basic (text) file handling, <em>NumPy</em>, <em>pandas</em>, and <em>DateTime</em>. For interactive reading and executing code blocks <a class="reference external" href="https://mybinder.org/v2/gh/hydro-informatics/jupyter-python-course/main"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> and find <em>b06-pybum.ipynb</em> or <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Python (Installation)</span></a> locally along with <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a>.</p>
 <div class="tip dropdown admonition">
 <p class="admonition-title">Watch this section in video format</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/fEYXfwvQfmo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Watch this section as a video on the <a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics channel on YouTube</a>.</p>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="load-and-write-basic-data-files">
-<h1>Load and Write Basic Data Files<a class="headerlink" href="#load-and-write-basic-data-files" title="Permalink to this headline">¶</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="load-and-write-basic-data-files">
+<h1>Load and Write Basic Data Files<a class="headerlink" href="#load-and-write-basic-data-files" title="Permalink to this headline">#</a></h1>
 <p>Data can be stored in many different (text) file formats such as <em>txt</em> or <em>csv</em> files. Python provides the <code class="docutils literal notranslate"><span class="pre">open(file)</span></code> and <code class="docutils literal notranslate"><span class="pre">write(...)</span></code> functions to read and write data from nearby every text file format. In addition, there are packages such as <code class="docutils literal notranslate"><span class="pre">csv</span></code> (for <em>csv</em> files), which simplify handling specific file types. The following sections illustrate the use of the <code class="docutils literal notranslate"><span class="pre">load(file)</span></code> and <code class="docutils literal notranslate"><span class="pre">write(...)</span></code> functions. The later shown <em>pandas</em> module provides more functions to import and export numeric data along with row and column headers.</p>
-<div class="section" id="load-open-text-file-data">
-<span id="open-modes"></span><h2>Load (Open) Text File Data<a class="headerlink" href="#load-open-text-file-data" title="Permalink to this headline">¶</a></h2>
+<section id="load-open-text-file-data">
+<span id="open-modes"></span><h2>Load (Open) Text File Data<a class="headerlink" href="#load-open-text-file-data" title="Permalink to this headline">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">open</span></code> command loads text files as file object in Python. The syntax of the <code class="docutils literal notranslate"><span class="pre">open</span></code> command is:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;file-name&quot;</span><span class="p">,</span> <span class="s2">&quot;mode&quot;</span><span class="p">)</span>
 </pre></div>
@@ -1118,9 +657,9 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="read-only">
-<span id="read"></span><h2>Read-only<a class="headerlink" href="#read-only" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="read-only">
+<span id="read"></span><h2>Read-only<a class="headerlink" href="#read-only" title="Permalink to this headline">#</a></h2>
 <p>Once the file object is created, we can parse the file and copy the file data content to a desired Python <a class="reference internal" href="pybase.html#var"><span class="std std-ref">data type</span></a> (e.g., a list, tuple or dictionary). Parsing the data works with <a class="reference internal" href="pyloop.html#for"><span class="std std-ref">for-loops</span></a> (other loop types will also work) to iterate on lines and line entries. The lines represent <em>strings</em> and data columns can be separated by using the built-in <em>string</em> function <code class="docutils literal notranslate"><span class="pre">line_as_list</span> <span class="pre">=</span> <span class="pre">str().split(&quot;SEPARATOR&quot;)</span></code>, where <code class="docutils literal notranslate"><span class="pre">&quot;SEPARATOR&quot;</span></code> can be <code class="docutils literal notranslate"><span class="pre">&quot;,&quot;</span></code> (comma), <code class="docutils literal notranslate"><span class="pre">&quot;;&quot;</span></code> (semicolon), <code class="docutils literal notranslate"><span class="pre">&quot;\t&quot;</span></code> (tab), or any other sign. After reading all data from a file, use <code class="docutils literal notranslate"><span class="pre">file_object.close()</span></code> to avoid that the file is locked by Python and cannot be opened by another program.</p>
 <p>The following example opens a text file called <em>pure-numbers.txt</em> (<a class="reference external" href="https://raw.githubusercontent.com/hydro-informatics/jupyter-python-course/main/data/pure-numbers.txt">download pure-numbers.txt</a> into a local sub-folder called <em>data</em>) that contains <em>float</em> numbers between 0.0 and 10.0. The file has 17 data rows (e.g., for 17 experimental runs) and 4 data columns (e.g., for 4 measurements per experimental run), which are separated by a <em>TAB</em> (<code class="docutils literal notranslate"><span class="pre">&quot;\t&quot;</span></code> separator) The below code block uses the built-in function <code class="docutils literal notranslate"><span class="pre">readlines()</span></code> to parse the file lines, splits the lines using the <code class="docutils literal notranslate"><span class="pre">&quot;\t&quot;</span></code> separator, and loops over the line entries to append them to the list variable <code class="docutils literal notranslate"><span class="pre">data_list</span></code> only if <code class="docutils literal notranslate"><span class="pre">entry</span></code> is numeric (verified with the <code class="docutils literal notranslate"><span class="pre">try</span></code> - <code class="docutils literal notranslate"><span class="pre">except</span></code> statement). <code class="docutils literal notranslate"><span class="pre">data_list</span></code> is a nested list that is initiated at the beginning of the script and a sub-list (nested list) is appended for every file line (row).</p>
 <div class="cell docutils container">
@@ -1163,9 +702,9 @@ Number of columns: 4
 <p class="admonition-title">Tip</p>
 <p>Recall the <code class="docutils literal notranslate"><span class="pre">with</span></code> statement from the above example. With the <code class="docutils literal notranslate"><span class="pre">with</span></code> statement, we do not have to write <code class="docutils literal notranslate"><span class="pre">file.close()</span></code>.</p>
 </div>
-</div>
-<div class="section" id="create-and-write-files">
-<span id="create"></span><h2>Create and Write Files<a class="headerlink" href="#create-and-write-files" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="create-and-write-files">
+<span id="create"></span><h2>Create and Write Files<a class="headerlink" href="#create-and-write-files" title="Permalink to this headline">#</a></h2>
 <p>A file is created with the <code class="docutils literal notranslate"><span class="pre">&quot;w&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;a&quot;</span></code> modes (e.g., <code class="docutils literal notranslate"><span class="pre">open(file_name,</span> <span class="pre">mode=&quot;a&quot;)</span></code>).</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -1201,9 +740,9 @@ With <code class="docutils literal notranslate"><span class="pre">open(&quot;dat
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="modify-existing-files">
-<h2>Modify Existing Files<a class="headerlink" href="#modify-existing-files" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="modify-existing-files">
+<h2>Modify Existing Files<a class="headerlink" href="#modify-existing-files" title="Permalink to this headline">#</a></h2>
 <p>Existing text files can be opened and modified in either <code class="docutils literal notranslate"><span class="pre">mode=&quot;r+&quot;</span></code> (pretending that information needs to be read before it is modified) or <code class="docutils literal notranslate"><span class="pre">mode=&quot;a+&quot;</span></code>. Recall that <code class="docutils literal notranslate"><span class="pre">&quot;r+&quot;</span></code> will place the pointer at the beginning of the file and <code class="docutils literal notranslate"><span class="pre">&quot;a+&quot;</span></code> will place the pointer at the end of the file. Thus, if we want to modify lines or entries of an existing file, <code class="docutils literal notranslate"><span class="pre">&quot;r+&quot;</span></code> is the good choice and if we want to append data at the end of the file, <code class="docutils literal notranslate"><span class="pre">&quot;a&quot;</span></code> is the good choice (<code class="docutils literal notranslate"><span class="pre">+</span></code> is not strictly needed in the case of <code class="docutils literal notranslate"><span class="pre">&quot;a&quot;</span></code>). This section shows two examples: (1) modification of existing data in a file using <code class="docutils literal notranslate"><span class="pre">&quot;r+&quot;</span></code>, and (2) appending data to an existing file using <code class="docutils literal notranslate"><span class="pre">&quot;a&quot;</span></code>.</p>
 <dl class="simple myst">
 <dt>Example 1 - Replace data in an existing file with <code class="docutils literal notranslate"><span class="pre">&quot;r+&quot;</span></code></dt><dd><p>In the previous code block, we eliminated all measurements that were smaller than 1 <em>mm</em> because of the precision of the measurement device. However, we have retained all other values with two-digit accuracy - an accuracy that is not given. Consequently, all decimal places in the measurements must also be eliminated. To achieve this, we have to round all measured values with Python’s built-in round function (<code class="docutils literal notranslate"><span class="pre">round(number,</span> <span class="pre">n-digits)</span></code>) to zero decimal places (i.e., <code class="docutils literal notranslate"><span class="pre">n-digits</span> <span class="pre">=</span> <span class="pre">0</span></code>).
@@ -1279,18 +818,18 @@ This example uses the <code class="docutils literal notranslate"><span class="pr
 <p class="admonition-title">Challenge</p>
 <p>The expression <code class="docutils literal notranslate"><span class="pre">&quot;,</span> <span class="pre">&quot;.join([str(e)</span> <span class="pre">for</span> <span class="pre">e</span> <span class="pre">in</span> <span class="pre">a_list])</span> <span class="pre">+</span> <span class="pre">'\n'</span></code> is a recurring expression in many of the above-shown code blocks. How does a function look like that automatically generates this expression for lists of different data types?</p>
 </div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="numpy">
-<span id="id1"></span><h1>NumPy<a class="headerlink" href="#numpy" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="numpy">
+<span id="id1"></span><h1>NumPy<a class="headerlink" href="#numpy" title="Permalink to this headline">#</a></h1>
 <p><em>NumPy</em> provides high-level mathematical functions for linear algebra including operations on multi-dimensional arrays and matrices. The open-source <em>NumPy</em> (for <em>Numerical Python</em>) library is written in Python and <a class="reference external" href="https://en.wikipedia.org/wiki/C_(programming_language)">C</a>, and comes with comprehensive documentation (<a class="reference external" href="https://numpy.org/doc/">download the latest version on the developer’s web site</a> or <a class="reference external" href="https://numpy.org/devdocs/user/quickstart.html">read the developer’s online tutorial</a>).</p>
 <div class="tip dropdown admonition">
 <p class="admonition-title">Watch the NumPy section in video format</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/P2t0z-t-l7w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Watch this section as a video on the <a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics channel on YouTube</a>.</p>
 </div>
-<div class="section" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">#</a></h2>
 <p><em>NumPy</em> can be installed through <em>Anaconda</em> (<a class="reference internal" href="../python-basics/pyinstall.html#install-pckg"><span class="std std-ref">recall instructions</span></a>) and the developers recommend using a scientific Python distribution (<em>Anaconda</em>) with <a class="reference external" href="https://www.scipy.org/install.html"><em>SciPy Stack</em></a>.</p>
 <p>The provided <em>Anaconda</em> <a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/flusstools-pckg/main/environment.yml">environment.yml (<code class="docutils literal notranslate"><span class="pre">flussenv</span></code>)</a> already includes <em>NumPy</em> (more information in the <a class="reference internal" href="../python-basics/pyinstall.html#conda-env"><span class="std std-ref">installation</span></a> section). Similarly, Linux users will have <em>NumPy</em> installed in a virtual environment (e.g., <code class="docutils literal notranslate"><span class="pre">vflussenv</span></code>) with <em>pip</em> (recall <a class="reference internal" href="../python-basics/pyinstall.html#pip-quick"><span class="std std-ref">pip-installing flusstools</span></a>). Otherwise, to install <em>NumPy</em> in any other <em>conda</em> environment, open <em>Anaconda Prompt</em> (<em>Start</em> &gt; type <em>Anaconda Prompt</em>) and type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">ENVIRONMENT</span><span class="o">-</span><span class="n">NAME</span>
@@ -1301,9 +840,9 @@ This example uses the <code class="docutils literal notranslate"><span class="pr
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">numpy</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">#</a></h2>
 <p>The <em>NumPy</em> library is typically imported with <strong><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">numpy</span> <span class="pre">as</span> <span class="pre">np</span></code></strong>. Array handling is the foundation of <em>NumPy</em> and linear algebra, where arrays represent a kind of nested data lists. To create a <em>NumPy</em> array, use <code class="docutils literal notranslate"><span class="pre">np.array((values))</span></code>, where <code class="docutils literal notranslate"><span class="pre">values</span></code> is a sequences of values.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -1455,9 +994,9 @@ Maximum: 6
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="color-arrays">
-<span id="colors"></span><h2>Color Arrays<a class="headerlink" href="#color-arrays" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="color-arrays">
+<span id="colors"></span><h2>Color Arrays<a class="headerlink" href="#color-arrays" title="Permalink to this headline">#</a></h2>
 <p>Arrays may also contain color information, where colors represent a mix of the three base colors red, green, and blue (<strong>RGB</strong>). Thus, one color can be defined as <code class="docutils literal notranslate"><span class="pre">[red-value,</span> <span class="pre">green-value,</span> <span class="pre">blue-value]</span></code>, and a value of <code class="docutils literal notranslate"><span class="pre">0</span></code> means that a color tone is not present, while <code class="docutils literal notranslate"><span class="pre">255</span></code> is its <strong>maximum</strong> value. There is no color when all color tone values are zero, which corresponds to <em>black</em>; when all color tones are maximum (255), the color mix corresponds to <em>white</em>. This way, array elements can be lists of color tones, and plotting such arrays produces images. The following example produces an array with 5 color-list elements, which could be plotted as a very basic image with 5 pixels (one black, red, green, blue, and white, respectively):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1470,9 +1009,9 @@ Maximum: 6
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="array-matrix-operations">
-<span id="id2"></span><h2>Array (Matrix) Operations<a class="headerlink" href="#array-matrix-operations" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="array-matrix-operations">
+<span id="id2"></span><h2>Array (Matrix) Operations<a class="headerlink" href="#array-matrix-operations" title="Permalink to this headline">#</a></h2>
 <p>Array calculations (matrix operations) follow the rules of linear algebra:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1528,9 +1067,9 @@ Boolean where A is smaller than 0.3: [[False  True False False]
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="array-shape-manipulation">
-<h2>Array Shape Manipulation<a class="headerlink" href="#array-shape-manipulation" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="array-shape-manipulation">
+<h2>Array Shape Manipulation<a class="headerlink" href="#array-shape-manipulation" title="Permalink to this headline">#</a></h2>
 <p>Sometimes it is necessary to stack a multi-dimensional array into a vector or recast the shape of an array. Beyond the <code class="docutils literal notranslate"><span class="pre">reshape()</span></code> function, there are a couple of other options to manipulate the shape of an array:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1565,9 +1104,9 @@ Transpose matrix A and append B and cast into a (4x4) array:
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="numpy-file-handling-and-np-nan">
-<h2><em>NumPy</em> File Handling and <code class="docutils literal notranslate"><span class="pre">np.nan</span></code><a class="headerlink" href="#numpy-file-handling-and-np-nan" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="numpy-file-handling-and-np-nan">
+<h2><em>NumPy</em> File Handling and <code class="docutils literal notranslate"><span class="pre">np.nan</span></code><a class="headerlink" href="#numpy-file-handling-and-np-nan" title="Permalink to this headline">#</a></h2>
 <p>In the above examples on file handling, measurement data were loaded from text files, manipulated (modified), and (re-)written. The data manipulation involved the introduction of <code class="docutils literal notranslate"><span class="pre">&quot;nan&quot;</span></code> (<em>not-a-number</em>) values, which were excluded because measurements <em>&lt;1 mm</em> were considered errors. Why didn’t we use zeros here? Zeros are numbers, too, and have a significant effect on data statistics (e.g., for calculating mean values). However, the <code class="docutils literal notranslate"><span class="pre">&quot;nan&quot;</span></code> <em>string</em> value may cause difficulties in data handling, in particular regarding the consistency of function output. <em>NumPy</em> provides with the <code class="docutils literal notranslate"><span class="pre">np.nan</span></code> data type a powerful alternative to the tedious <code class="docutils literal notranslate"><span class="pre">&quot;nan&quot;</span></code> <em>string</em>.</p>
 <p><em>NumPy</em> also has a text file load function called <code class="docutils literal notranslate"><span class="pre">np.loadtxt(file-name,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code>, which imports text files as <code class="docutils literal notranslate"><span class="pre">np.array</span></code>s of <em>float</em> values. The default <em>float</em> value type can be adapted with the optional keyword <code class="docutils literal notranslate"><span class="pre">dtype</span></code>. Other optional keyword arguments are:</p>
 <ul class="simple">
@@ -1593,9 +1132,9 @@ The data type of the 3rd (nan) entry is: &lt;class &#39;numpy.float64&#39;&gt;
 </div>
 </div>
 <p>In addition, or as an alternative, the function <code class="docutils literal notranslate"><span class="pre">np.load()</span></code> picks up data from file-like <code class="docutils literal notranslate"><span class="pre">.npz</span></code>, <code class="docutils literal notranslate"><span class="pre">.npy</span></code>, or pickled (saved Python objects) data sources (more information is available in the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.load.html#numpy.load"><em>NumPy</em> docs</a>).</p>
-</div>
-<div class="section" id="statistics">
-<h2>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="statistics">
+<h2>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline">#</a></h2>
 <p>The above examples featured array functions to assess basic array statistics such as the minimum and maximum. <em>NumPy</em> provides many more functions for array statistics such as the mean, median, or standard deviation, including functions that account for <code class="docutils literal notranslate"><span class="pre">np.nan</span></code> values. The following example illustrates some of the statistical functions with the experimental data from the above examples. Note the usage of <code class="docutils literal notranslate"><span class="pre">nanmean</span></code> instead of <code class="docutils literal notranslate"><span class="pre">mean</span></code> and statistics along array axis, where the optional keyword argument <code class="docutils literal notranslate"><span class="pre">axis=0</span></code> corresponds to columns and <code class="docutils literal notranslate"><span class="pre">axis=1</span></code> to statistics along rows in 2-dimensional arrays (maximum axis number corresponds to the array dimensions <em>n</em> minus 1, i.e., maximum <code class="docutils literal notranslate"><span class="pre">axis=n-1</span></code>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1725,9 +1264,9 @@ Mean value along axis 1 (rows): [4.25       2.5        6.25       4.33333333 6.7
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="can-numpy-do-matlab">
-<span id="numpy-matlab"></span><h2>Can <em>NumPy</em> do <em>MATLAB</em>®?<a class="headerlink" href="#can-numpy-do-matlab" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="can-numpy-do-matlab">
+<span id="numpy-matlab"></span><h2>Can <em>NumPy</em> do <em>MATLAB</em>®?<a class="headerlink" href="#can-numpy-do-matlab" title="Permalink to this headline">#</a></h2>
 <p>Are you considering switching to Python after starting softly into programming with <em>MATLAB®</em>-like software? There are many reasons for enhancing data analyses with Python and here are some facilitators for previous <em>MATLAB®</em> users:</p>
 <ul class="simple">
 <li><p><em>MATLAB®</em> matrices can be loaded and saved with <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.io.loadmat.html#scipy.io.loadmat"><code class="docutils literal notranslate"><span class="pre">scipy.io.loadmat(matrix-file-name)</span></code></a> (use <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">scipy</span></code>).</p></li>
@@ -1741,18 +1280,18 @@ Mean value along axis 1 (rows): [4.25       2.5        6.25       4.33333333 6.7
 <p class="admonition-title">Exercise</p>
 <p>Practice <em>numpy</em> and <em>csv</em> file handling in the <a class="reference internal" href="../exercises/ex-sp.html#ex-seq-peak"><span class="std std-ref">reservoir design exercise</span></a>.</p>
 </div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="pandas">
-<span id="id3"></span><h1>Pandas<a class="headerlink" href="#pandas" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="pandas">
+<span id="id3"></span><h1>Pandas<a class="headerlink" href="#pandas" title="Permalink to this headline">#</a></h1>
 <p><em>pandas</em> is a powerful library for data analyses and manipulation with Python. It can handle <em>NumPy</em> arrays, and both packages jointly represent a powerful data processing engine. The power of <em>pandas</em> lies in processing data frames, data labeling (e.g., workbook-like column names), and flexible file handling functions (e.g., the built-in <code class="docutils literal notranslate"><span class="pre">read_csv(csv-file)</span></code> function). While <em>NumPy</em> arrays enable calculations with multidimensional arrays (beyond 2-dimensional tables) and low memory consumption, <em>pandas</em> <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>s efficiently process and label tabular data with more than ~100,000 rows. Because of its labelling capacity, <em>pandas</em> also finds broad application in machine learning. In summary, <em>pandas</em>’ functionality builds on top of <em>NumPy</em> and both libraries are maintained by the <a class="reference external" href="https://www.scipy.org/"><em>SciPy</em></a> (<em>Scientific computing tools for Python</em>) community that also produces <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> (see the <a class="reference internal" href="pyplot.html#matplotlib"><span class="std std-ref">plotting section</span></a>) and <em>IPython</em> (<em>Jupyter</em>’s <em>Python</em> kernel).</p>
 <div class="tip dropdown admonition">
 <p class="admonition-title">Watch the pandas section on YouTube</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/ruB-r-0Vyjc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Watch this section as a video on the <a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics channel on YouTube</a>.</p>
 </div>
-<div class="section" id="id4">
-<h2>Installation<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<section id="id4">
+<h2>Installation<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
 <p><em>pandas</em> can be installed through <em>Anaconda</em> (<a class="reference internal" href="../python-basics/pyinstall.html#install-pckg"><span class="std std-ref">recall instructions</span></a>) and the developers recommend using a scientific Python distribution (<em>Anaconda</em>) with <a class="reference external" href="https://www.scipy.org/install.html"><em>SciPy Stack</em></a>.</p>
 <p>The provided <em>Anaconda</em> <a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/flusstools-pckg/main/environment.yml">environment.yml (<code class="docutils literal notranslate"><span class="pre">flussenv</span></code>)</a> already includes <em>pandas</em> (more information in the <a class="reference internal" href="../python-basics/pyinstall.html#conda-env"><span class="std std-ref">installation</span></a> section). Similarly, Linux users will have <em>pandas</em> installed in a virtual environment (e.g., <code class="docutils literal notranslate"><span class="pre">vflussenv</span></code>) with <em>pip</em> (recall <a class="reference internal" href="../python-basics/pyinstall.html#pip-quick"><span class="std std-ref">pip-installing flusstools</span></a>). Otherwise, to install <em>pandas</em> in any other <em>conda</em> environment, open <em>Anaconda Prompt</em> (<em>Start</em> &gt; type <em>Anaconda Prompt</em>) and type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">ENVIRONMENT</span><span class="o">-</span><span class="n">NAME</span>
@@ -1763,13 +1302,13 @@ Mean value along axis 1 (rows): [4.25       2.5        6.25       4.33333333 6.7
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pandas</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="id5">
-<h2>Usage<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id5">
+<h2>Usage<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
 <p><em>pandas</em> standard import alias is <code class="docutils literal notranslate"><span class="pre">pd</span></code>: <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">pandas</span> <span class="pre">as</span> <span class="pre">pd</span></code>. The following sections provide an overview of basic <em>pandas</em> functions and many more features are documented in the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/index.html">developer’s docs</a>.</p>
-</div>
-<div class="section" id="data-frames-series">
-<h2>Data Frames &amp; Series<a class="headerlink" href="#data-frames-series" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="data-frames-series">
+<h2>Data Frames &amp; Series<a class="headerlink" href="#data-frames-series" title="Permalink to this headline">#</a></h2>
 <p>The below code block illustrates one way to create a <em>pandas</em> data frame (<code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code>), one of <em>pandas</em> core objects. Note the difference between a 1-dimensional series <code class="docutils literal notranslate"><span class="pre">pd.Series</span></code> (corresponds to a one-column data frame), and an n-dimensional data frame with <strong>row (=index)</strong> and column names. The default row names number rows starting from 0 (unlike Office software that starts at row no. 1), without column names. Column names can be initially defined as a <a class="reference internal" href="pybase.html#list"><span class="std std-ref">list</span></a> and replaced with a <a class="reference internal" href="pybase.html#dict"><span class="std std-ref">dictionary</span></a> that maps the initial list entries to new names.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1866,9 +1405,9 @@ End (tail) of the dictionary-based dataframe (last row):
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="example-create-a-pandas-dataframe-of-froude-numbers">
-<span id="exp-froude"></span><h2>Example: Create a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> of Froude Numbers<a class="headerlink" href="#example-create-a-pandas-dataframe-of-froude-numbers" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="example-create-a-pandas-dataframe-of-froude-numbers">
+<span id="exp-froude"></span><h2>Example: Create a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> of Froude Numbers<a class="headerlink" href="#example-create-a-pandas-dataframe-of-froude-numbers" title="Permalink to this headline">#</a></h2>
 <p>In hydraulics, the <a class="reference internal" href="../documentation/glossary.html#term-Froude-number"><span class="xref std std-term">Froude number</span></a> <span class="math notranslate nohighlight">\(Fr\)</span> characterizes the flow regime as <em>“fluvial”</em> (<em>Fr&lt;1</em>), <em>“critical”</em> (<em>Fr=1</em>), or <em>“super-critical”</em> (<em>Fr&gt;1</em>). The precision of measurement devices in physical flume experiments makes the exact determination of the <em>critical</em> moment a challenge and forces researchers to apply an interval around 1, rather than the exact value of <code class="docutils literal notranslate"><span class="pre">1.0</span></code>:</p>
 <table class="colwidths-auto table">
 <thead>
@@ -1917,11 +1456,11 @@ End (tail) of the dictionary-based dataframe (last row):
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="append-data-to-a-pandas-dataframe">
-<h2>Append Data to a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code><a class="headerlink" href="#append-data-to-a-pandas-dataframe" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="append-data-to-a-pandas-dataframe">
+<h2>Append Data to a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code><a class="headerlink" href="#append-data-to-a-pandas-dataframe" title="Permalink to this headline">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">at</span></code>, <code class="docutils literal notranslate"><span class="pre">loc</span></code>, <code class="docutils literal notranslate"><span class="pre">concat</span></code>, and <code class="docutils literal notranslate"><span class="pre">append</span></code> methods of <em>pandas</em> provide direct options for inserting rows or columns into a <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code>. However, these built-in methods are approximately one order of magnitude slower than taking the detour via a dictionary. This applies especially to data frames with more than 10,000 elements. This means that the fastest method to insert data into a <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> is:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Convert an existing <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> object to a <em>dictionary</em> with <code class="docutils literal notranslate"><span class="pre">pd.DataFrame.to_dict()</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">dict_of_df</span> <span class="pre">=</span> <span class="pre">df.to_dict()</span></code>).</p></li>
 <li><p>Update the <em>dictionary</em> with the new data</p></li>
 </ol>
@@ -1929,7 +1468,7 @@ End (tail) of the dictionary-based dataframe (last row):
 <li><p>Append rows with <code class="docutils literal notranslate"><span class="pre">dict_of_df.update{&quot;existing-column-name&quot;:</span> <span class="pre">{&quot;new-row-name&quot;:</span> <span class="pre">NEW_DATA}}</span></code></p></li>
 <li><p>Append columns with <code class="docutils literal notranslate"><span class="pre">dict_of_df.update{&quot;newcolumn-name&quot;:</span> <span class="pre">{&quot;existing-row-names&quot;:</span> <span class="pre">NEW_DATA(size=existing-number-of-rows}}</span></code></p></li>
 </ul>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Re-convert the <em>dictionary</em> to a <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> with <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">pd.DataFrame.from_dict(dict_of_df)</span></code></p></li>
 </ol>
 <p>The following code block illustrates both adding a row and a column to an existing <em>pandas</em> data frame.</p>
@@ -1965,9 +1504,9 @@ End (tail) of the dictionary-based dataframe (last row):
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="numpy-arrays-and-pandas-data-frames">
-<h2><em>NumPy</em> Arrays and <em>pandas</em> Data Frames<a class="headerlink" href="#numpy-arrays-and-pandas-data-frames" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="numpy-arrays-and-pandas-data-frames">
+<h2><em>NumPy</em> Arrays and <em>pandas</em> Data Frames<a class="headerlink" href="#numpy-arrays-and-pandas-data-frames" title="Permalink to this headline">#</a></h2>
 <p>One major difference between a <em>NumPy</em> <code class="docutils literal notranslate"><span class="pre">array</span></code> and a <em>pandas</em> <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> is that <em>NumPy</em> arrays can only have one single data type (<code class="docutils literal notranslate"><span class="pre">dtype</span></code>), while a <em>pandas</em> <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> can have different data types (one <code class="docutils literal notranslate"><span class="pre">dtype</span></code> per column). This is why a <em>NumPy</em> <code class="docutils literal notranslate"><span class="pre">array</span></code> can be seamlessly converted to a <em>pandas</em> <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>, but the opposite conversion can cause high computational cost: <em>pandas</em> comes with a built-in function to convert a <em>pandas</em> <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> into a <em>NumPy</em> <code class="docutils literal notranslate"><span class="pre">array</span></code>, where numeric variables are maintained where possible. If one column of the <em>pandas</em> <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> is non-numeric, the conversion involves copying the object, which then causes high computational costs. Note that the <em>index</em> and <em>column</em> labels of a <em>pandas</em> <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> are lost in the conversion from <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> to <code class="docutils literal notranslate"><span class="pre">np.ndarray</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1991,9 +1530,9 @@ End (tail) of the dictionary-based dataframe (last row):
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="access-data-frames-entries">
-<h2>Access Data Frames Entries<a class="headerlink" href="#access-data-frames-entries" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="access-data-frames-entries">
+<h2>Access Data Frames Entries<a class="headerlink" href="#access-data-frames-entries" title="Permalink to this headline">#</a></h2>
 <p>Elements of data frames are accessible by the column and row label (<code class="docutils literal notranslate"><span class="pre">df.loc[index=row,</span> <span class="pre">column-label]</span></code>) or number (<code class="docutils literal notranslate"><span class="pre">df.iloc</span></code>):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2009,9 +1548,9 @@ Same result with integer grid location: 0.2472994
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="reshape-data-frames">
-<span id="pd-reshape"></span><h2>Reshape Data Frames<a class="headerlink" href="#reshape-data-frames" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="reshape-data-frames">
+<span id="pd-reshape"></span><h2>Reshape Data Frames<a class="headerlink" href="#reshape-data-frames" title="Permalink to this headline">#</a></h2>
 <p>Single or multiple rows (indices) and columns can be extracted from and combined into new or existing <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> objects:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2106,9 +1645,9 @@ yes               NaN  0.210366       0.247299
 </div>
 </div>
 <p>Read more about reshaping and pivoting data frames in the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/reshaping.html">developer’s docs</a>.</p>
-</div>
-<div class="section" id="file-handling-csv-workbooks-and-more">
-<span id="pd-files"></span><h2>File Handling (<em>csv</em>, Workbooks, and More)<a class="headerlink" href="#file-handling-csv-workbooks-and-more" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="file-handling-csv-workbooks-and-more">
+<span id="pd-files"></span><h2>File Handling (<em>csv</em>, Workbooks, and More)<a class="headerlink" href="#file-handling-csv-workbooks-and-more" title="Permalink to this headline">#</a></h2>
 <p><em>pandas</em> can read from and write to many data file types, which makes it extremely powerful for analyzing any data. The following table summarizes the most important file types for numerical hydraulic, morphodynamic, and fluvial landscape analyses, and more file type handlers can be found at the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html">developer’s docs</a>.</p>
 <table class="colwidths-auto table">
 <thead>
@@ -2200,9 +1739,9 @@ yes               NaN  0.210366       0.247299
 </div>
 </div>
 <p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-pandas-xlsx-out2.png" /></p>
-</div>
-<div class="section" id="categorical-data">
-<h2>Categorical Data<a class="headerlink" href="#categorical-data" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="categorical-data">
+<h2>Categorical Data<a class="headerlink" href="#categorical-data" title="Permalink to this headline">#</a></h2>
 <p><em>string</em> variables that represent statistically relevant categories are the baseline for data classification and statistics. <em>pandas</em> provides the special data type of <code class="docutils literal notranslate"><span class="pre">dtype=&quot;category&quot;</span></code> to facilitate statistical analyses.</p>
 <p>In the above <a class="reference internal" href="#exp-froude"><span class="std std-ref">Froude-number example</span></a>, we used five categories to classify the flow regime as a function of the <em>Froude number</em>, which can serve as categories. This is useful, for instance, when no water was flowing or when a sensor broke in an experiment and we want to categorize our measurements to filter valid tests only:</p>
 <div class="cell docutils container">
@@ -2226,9 +1765,9 @@ Categories (5, object): [&#39;fluvial&#39;, &#39;nearby critical (slow)&#39;, &#
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="data-frame-statistics">
-<h2>Data Frame Statistics<a class="headerlink" href="#data-frame-statistics" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="data-frame-statistics">
+<h2>Data Frame Statistics<a class="headerlink" href="#data-frame-statistics" title="Permalink to this headline">#</a></h2>
 <p><em>pandas</em> has efficient routines to perform workbook-like row or column sorting (e.g., <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sort_index.html"><code class="docutils literal notranslate"><span class="pre">df.sort_index()</span></code></a> or <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sort_values.html"><code class="docutils literal notranslate"><span class="pre">df.sort_values()</span></code></a>), and enables the fast calculation of data frame statistics with <code class="docutils literal notranslate"><span class="pre">df.describe()</span></code>, where 25%, 50%, and 75% represent the <em>i-th</em> percentiles:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2371,9 +1910,9 @@ dtype: float64
 <p class="admonition-title">Tip</p>
 <p><em>pandas</em> has many more built-in functionalities, for example, to plot histograms or any data using the <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> library, and machine learning.</p>
 </div>
-</div>
-<div class="section" id="apply-custom-own-functions-to-data-frames">
-<h2>Apply Custom (Own) Functions to Data Frames<a class="headerlink" href="#apply-custom-own-functions-to-data-frames" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="apply-custom-own-functions-to-data-frames">
+<h2>Apply Custom (Own) Functions to Data Frames<a class="headerlink" href="#apply-custom-own-functions-to-data-frames" title="Permalink to this headline">#</a></h2>
 <p><em>pandas</em> data frames have a built-in <code class="docutils literal notranslate"><span class="pre">apply(fun)</span></code> method that enables applying a custom function to (parts of) a <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> object. The following code block borrows from the <code class="docutils literal notranslate"><span class="pre">feet_to_meter</span></code> function from the <a class="reference internal" href="pyfun.html#kwargs"><span class="std std-ref">functions</span></a> chapter (<a class="reference external" href="https://raw.githubusercontent.com/hydro-informatics/jupyter-python-course/main/fun/converter.py">download converter.py</a>).  The <em>pandas</em> docs provide more information about the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.apply.html">pandas.apply</a> method.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2402,10 +1941,10 @@ dtype: float64
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="dates-and-time">
-<h1>Dates and Time<a class="headerlink" href="#dates-and-time" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="dates-and-time">
+<h1>Dates and Time<a class="headerlink" href="#dates-and-time" title="Permalink to this headline">#</a></h1>
 <p><em>pandas</em> involves methods for calculations and labeling with date and time values through <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Timestamp.html"><code class="docutils literal notranslate"><span class="pre">pd.Timestamp</span></code></a>, which converts date-time-like strings into timestamps or creates timestamps from keyword arguments:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2472,15 +2011,15 @@ The result is a &lt;class &#39;datetime.timedelta&#39;&gt; object.
 <p class="admonition-title">Exercise</p>
 <p>Practice <em>pandas</em> and its <em>csv</em> file handling routines, as well as basic date-time handling in the <a class="reference internal" href="../exercises/ex-floods.html#ex-floods"><span class="std std-ref">flood return period calculation exercise</span></a>.</p>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="learning-success-check-up">
-<h1>Learning Success Check-up<a class="headerlink" href="#learning-success-check-up" title="Permalink to this headline">¶</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="learning-success-check-up">
+<h1>Learning Success Check-up<a class="headerlink" href="#learning-success-check-up" title="Permalink to this headline">#</a></h1>
 <p>Take the <a class="reference external" href="https://forms.gle/V2EiNFEiszL38Aov8">learning success test for this Jupyter notebook</a>.</p>
 <div class="tip dropdown admonition">
 <p class="admonition-title">Unfold QR Code</p>
 <img alt="../_images/gle-pynum.png" src="../_images/gle-pynum.png" />
 </div>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -2494,7 +2033,7 @@ The result is a &lt;class &#39;datetime.timedelta&#39;&gt; object.
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./jupyter"
         },
         predefinedOutput: true
@@ -2502,46 +2041,135 @@ The result is a &lt;class &#39;datetime.timedelta&#39;&gt; object.
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="../python-basics/data-handling.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Data and File Handling</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../python-basics/data-handling.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Data and File Handling</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="xml.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="xml.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Structured Data (XML, xlsx &amp; JSON)</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-        
-        </div>
-    </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Sebastian Schwindt, Ricardo Barros<br/>
-        
-            &copy; Copyright 2023.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Data Files, NumPy &amp; Pandas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-and-write-basic-data-files">Load and Write Basic Data Files</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-open-text-file-data">Load (Open) Text File Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-only">Read-only</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-write-files">Create and Write Files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modify-existing-files">Modify Existing Files</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy">NumPy</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#color-arrays">Color Arrays</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#array-matrix-operations">Array (Matrix) Operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#array-shape-manipulation">Array Shape Manipulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-file-handling-and-np-nan"><em>NumPy</em> File Handling and <code class="docutils literal notranslate"><span class="pre">np.nan</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistics">Statistics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#can-numpy-do-matlab">Can <em>NumPy</em> do <em>MATLAB</em>®?</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas">Pandas</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Usage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-frames-series">Data Frames &amp; Series</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-create-a-pandas-dataframe-of-froude-numbers">Example: Create a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> of Froude Numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#append-data-to-a-pandas-dataframe">Append Data to a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-arrays-and-pandas-data-frames"><em>NumPy</em> Arrays and <em>pandas</em> Data Frames</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#access-data-frames-entries">Access Data Frames Entries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reshape-data-frames">Reshape Data Frames</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-handling-csv-workbooks-and-more">File Handling (<em>csv</em>, Workbooks, and More)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#categorical-data">Categorical Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-frame-statistics">Data Frame Statistics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-custom-own-functions-to-data-frames">Apply Custom (Own) Functions to Data Frames</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dates-and-time">Dates and Time</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-success-check-up">Learning Success Check-up</a></li>
+</ul>
 
-      </div>
-    </div>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By Sebastian Schwindt, Ricardo Barros
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

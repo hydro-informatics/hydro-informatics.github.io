@@ -13,7 +13,7 @@ Students of the University of Stuttgart may want to explore the [TIK's GitHub ac
 
  ## Open Access Videos
 
- Some contents of this website are accompanied by public videos hosted on *YouTube*. Find out more by visiting the [@ Hydro-Morphodynamics channel on YouTube](https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ).
+ Some contents of this website are accompanied by public videos hosted on *YouTube*. Find out more by visiting the {{ hytube }}.
 
 ## Exercises
 
@@ -88,10 +88,10 @@ Beyond the descriptions provided in documents along with the exercises, these de
 
 Make sure to install (or have installed on any accessible computer) the following programs:
 
-* [QGIS](../get-started/geo) aids to visualize and modify (edit) geospatial datasets. Add the [BASEmesh](bm-pre.html#get-ready-with-qgis) and [Crayfish](bm-post.html#add-the-crayfish-plugin) plugins.
-* [Notepad++](hy_get-started/others.html#npp) to modify boundary conditions and text-alike data file types.
-* [ParaView](bm-post.html#visualize-results-with-paraview) is a powerful visualization tool for model outputs (not mandatory).
-* [Libre Office](hy_get-started/others.html#lo) (or any other software) to edit workbooks (not mandatory).
+* {ref}QGIS <qgis-tutorial>` aid in visualizing and modifying (editing) geospatial datasets. Add the {ref}`BASEmesh <qgis-plugins>`` and {ref}`Crayfish <qgis-plugins>` plugins.
+* {ref}`Notepad++ <npp>` to modify boundary conditions and text-alike data file types.
+* [ParaView](https://www.paraview.org/) is a powerful visualization tool for model outputs (not mandatory).
+* {ref}`Libre Office <lo>` (or any other software) to edit workbooks (not mandatory).
 
 
 ### Online materials

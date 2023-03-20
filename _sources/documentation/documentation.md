@@ -52,8 +52,8 @@ Your software is brilliant. To make the software even more brilliant, foolproof,
 
 For writing a documentation of a code or project in web-publish-ready format, cross-platform typesetting is needed. For this purpose, *Markdown* represents a good choice (among others, such as {ref}`reStructuredText <rst>`). *Markdown* was created in 2004 and is a simple markup language that is intuitive and easy to learn. Markup languages structure the content of plain text documents regarding the way a document is displayed to end-users ({term}`Rich Text Format`). Other popular markup languages are for example [TeX](https://en.wikipedia.org/wiki/TeX) and [XML (Extensible Markup Language)](https://en.wikipedia.org/wiki/XML). *Markdown* became a popular tool for writing syntactically distinguishable computer text that is then translated into {term}`Rich Text Format` flavor. Here is an example of how *Markdown* works:
 
-
-````{tabbed} Raw Markdown
+`````{tab-set}
+````{tab-item} Raw Markdown
 ```markdown
 # Better than Word-like rich text editors
 *OS*-independent functionality:
@@ -64,7 +64,7 @@ For writing a documentation of a code or project in web-publish-ready format, cr
 ```
 ````
 
-````{tabbed} Rendered
+````{tab-item} Rendered
 **Better than Word-like rich text editors**
 
 *OS*-independent functionality:
@@ -74,13 +74,14 @@ For writing a documentation of a code or project in web-publish-ready format, cr
 - ... and many more ...
 
 ````
+`````
 
 
 ### Markdown Editors (IDEs)
 
 Many text editors provide *Markdown* add-ons and *Markdown*-only editors are losing their significance more and more. Editors that simultaneously support *Markdown* and programming languages like *Python* or *R* are state of the art and therefore recommended.
 
-Basic text editors that support *Markdown* are listed [here](../get-started/others.html#npp). Popular and multi-platform *IDE*s for editing *Markdown* (`.md`) files are {ref}`install-atom` (for combination with *Python*, *R*, *C/C++*, *JavaScript*, *html*, *CSS*, and many more), and {ref}`jupyter` or {ref}`pycharm` (for combination with *Python* or *R*).
+Basic text editors that support *Markdown* are listed {ref}`here <npp>`. Popular and multi-platform *IDE*s for editing *Markdown* (`.md`) files are {ref}`install-atom` (for combination with *Python*, *R*, *C/C++*, *JavaScript*, *html*, *CSS*, and many more), and {ref}`jupyter` or {ref}`pycharm` (for combination with *Python* or *R*).
 
 ### Markdown Command Overview and Image Implementation
 
@@ -108,7 +109,8 @@ The following table and sections provide an overview of basic markdown commands.
 
 Itemized list section can be produced using `*`, `+`, or `-` symbols with tabs that determine the list indentation:
 
-````{tabbed} Raw Markdown
+`````{tab-set}
+````{tab-item} Raw Markdown
 ```markdown
 * level 1 item
     - level 2 item
@@ -118,7 +120,7 @@ Itemized list section can be produced using `*`, `+`, or `-` symbols with tabs t
 ```
 ````
 
-````{tabbed} Rendered
+````{tab-item} Rendered
 
 * level 1 item
     - level 2 item
@@ -127,14 +129,14 @@ Itemized list section can be produced using `*`, `+`, or `-` symbols with tabs t
 * next level 1 item
 
 ````
-
-
+`````
 
 ### Tables
 
 Table columns are separated by a `|` sign. The first row determines row headers and the second row the alignment through the use of `:` (see below example).
 
-````{tabbed} Raw Markdown
+`````{tab-set}
+````{tab-item} Raw Markdown
 ```markdown
 | Fruit | Kingdom | Genus |
 |-------|:-------:|------:|
@@ -143,7 +145,7 @@ Table columns are separated by a `|` sign. The first row determines row headers 
 ```
 ````
 
-````{tabbed} Rendered
+````{tab-item} Rendered
 
 | Fruit | Kingdom | Genus |
 |-------|:-------:|------:|
@@ -151,6 +153,7 @@ Table columns are separated by a `|` sign. The first row determines row headers 
 |Jackfruit|Plantae|Artocarpus|
 
 ````
+`````
 
 Converting complex tables from workbooks (e.g., from *LibreOffice Calc* or *MS Excel*) is possible with many online tools, and here is just one example from Dave Johnson: [https://thisDaveJ.com](https://thisdavej.com/copy-table-in-excel-and-paste-as-a-markdown-table/).
 

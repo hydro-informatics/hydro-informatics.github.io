@@ -47,7 +47,7 @@ This eBook occasionally uses QGIS for plotting and creating georeferenced data (
 (qgis-conda-install)=
 ### Install QGIS conda Environment
 
-In [*Anaconda Prompt*](../get-started/ide.html#anaconda), you can create a new environment to specifically use QGIS features (i.e., tools and scripts) including its raster calculator. The environment is featured by *Open Data Cube* ([read more](https://datacube-qgis.readthedocs.io/en/latest/installation.html) and can be installed as follows:
+In {ref}`Anaconda Prompt <anaconda>`, you can create a new environment to specifically use QGIS features (i.e., tools and scripts) including its raster calculator. The environment is featured by *Open Data Cube* ([read more](https://datacube-qgis.readthedocs.io/en/latest/installation.html) and can be installed as follows:
 
 ```
 conda create  -c conda-forge -n qgiscube python=3.6 qgis=3 datacube

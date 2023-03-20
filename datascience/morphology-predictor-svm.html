@@ -1,980 +1,614 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Support Vector Machine (SVM) &#8212; Hydro-Informatics</title>
-    
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script src="../_static/tabs.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'datascience/morphology-predictor-svm';</script>
     <link rel="canonical" href="https://hydro-informatics.com/datascience/morphology-predictor-svm.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Principles" href="../numerics/numerical-modeling.html" />
+    <link rel="next" title="How to Markdown and Document" href="../documentation/documentation.html" />
     <link rel="prev" title="Model Calibration and Validation" href="calibrate-validate.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/icon.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Get Started
- </span>
-</p>
+    
+    
+    <img src="../_static/icon.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/icon.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../lectures/classroom.html">
-   The Virtual Classroom
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/principles.html">
-     Principles
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/lectures.html">
-     Lectures and Exercises
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/take_seat.html">
-     Take a Seat
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../get-started/software.html">
-   Software Resources
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/vm.html">
-     Virtual Machines and Linux
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/ide.html">
-     Integrated Development Environments (IDEs)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../python-basics/pyinstall.html">
-     Python (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/git.html">
-     Version Control : git
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/geo.html">
-     Geospatial Software
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/install-openfoam.html">
-     OpenFOAM (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/install-telemac.html">
-     TELEMAC (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/others.html">
-     Other Software Resources
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/classroom.html">The Virtual Classroom</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/principles.html">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/lectures.html">Lectures and Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/take_seat.html">Take a Seat</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Python Basics
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../get-started/software.html">Software Resources</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/vm.html">Virtual Machines and Linux</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../get-started/ide.html">Integrated Development Environments (IDEs)</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../python-basics/pyinstall.html">Python (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/git.html">Version Control : git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/geo.html">Geospatial Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/install-openfoam.html">OpenFOAM (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/install-telemac.html">TELEMAC (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/others.html">Other Software Resources</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Basics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/python.html">
-   First Steps
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pybase.html">
-     Hello Data Types
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyerror.html">
-     Errors, Logging, and Debugging
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyloop.html">
-     Loops and Conditional Statements
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/modularize.html">
-   Object Orientation
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyfun.html">
-     Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pypckg.html">
-     Packages, Modules and Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/classes.html">
-     Object Orientation and Classes
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/data-handling.html">
-   Data and File Handling
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pynum.html">
-     Data Files, NumPy &amp; Pandas
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/xml.html">
-     Structured Data (XML, xlsx &amp; JSON)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyplot.html">
-     Plotting
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../jupyter/pystyle.html">
-   Code Style and Conventions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../jupyter/gui.html">
-   Graphical User Interfaces (GUIs)
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/python-exercises.html">
-   Python Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-ms.html">
-     1d Hydraulics (Manning-Strickler Formula)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-sp.html">
-     Reservoir Volume (Sequent Peak Algorithm)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-floods.html">
-     Flood Return Periods
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-sediment.html">
-     1d Sediment Transport
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-gui.html">
-     Create a GUI
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/python.html">First Steps</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pybase.html">Hello Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyerror.html">Errors, Logging, and Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyloop.html">Loops and Conditional Statements</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Geospatial Analysis
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/modularize.html">Object Orientation</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyfun.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pypckg.html">Packages, Modules and Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/classes.html">Object Orientation and Classes</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/data-handling.html">Data and File Handling</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pynum.html">Data Files, NumPy &amp; Pandas</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/xml.html">Structured Data (XML, xlsx &amp; JSON)</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyplot.html">Plotting</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/pystyle.html">Code Style and Conventions</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/gui.html">Graphical User Interfaces (GUIs)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/python-exercises.html">Python Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-ms.html">1d Hydraulics (Manning-Strickler Formula)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-sp.html">Reservoir Volume (Sequent Peak Algorithm)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-floods.html">Flood Return Periods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-sediment.html">1d Sediment Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-gui.html">Create a GUI</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Geospatial Analysis</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/geospatial-data.html">
-   Geospatial Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/use-qgis.html">
-   QGIS Tutorial
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/drone-processing.html">
-   Process Drone (UAV) Imagery
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../geopy/geo-python.html">
-   Geospatial Python
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/geo-pckg.html">
-     Geospatial Open Source Python Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-shp.html">
-     Shapefile (Vector) Handling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-raster.html">
-     Raster (Grid) Handling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-convert.html">
-     Vectorize and Rasterize
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-arcpy.html">
-     The Commercial arcpy Library
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/geo-exercises.html">
-   Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-geco.html">
-     Script a Habitat Suitability Map
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/geospatial-data.html">Geospatial Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/use-qgis.html">QGIS Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/drone-processing.html">Process Drone (UAV) Imagery</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../geopy/geo-python.html">Geospatial Python</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geopy/geo-pckg.html">Geospatial Open Source Python Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-shp.html">Shapefile (Vector) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-raster.html">Raster (Grid) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-convert.html">Vectorize and Rasterize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-arcpy.html">The Commercial arcpy Library</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Data Science
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/geo-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-geco.html">Script a Habitat Suitability Map</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../numerics/numerical-modeling.html">Principles</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerics/basement.html">BASEMENT</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/pre-qgis-bm.html">Pre-processing with QGIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/basement2d.html">Run and Check a Steady 2d Simulation</a></li>
+
+
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerics/telemac.html">TELEMAC</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/pre-slf-tm.html">Pre-processing</a></li>
+
+
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac2d.html">Telemac2d</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac2d-steady.html">Steady 2d</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac2d-unsteady.html">Unsteady 2d</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac3d.html">Telemac3d</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac3d-slf.html">Steady 3d (SLF - Selafin)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac3d-med.html">Steady 3d (MED and Salome)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac-gaia.html">Gaia (Morphodynamics)</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-coupling.html">Introduction and Coupling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-basics.html">Basic Setup of Gaia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-bedload.html">Bedload</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-suspended.html">Suspended Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-run.html">Run and Analyze</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Science</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="data-science.html">
-   Fundamentals (Coming soon)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="py-requirements.html">
-     Python Requirements
-    </a>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="data-prepro.html">
-     Data Pre-Processing
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-    <label for="toctree-checkbox-10">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="data-types.html">
-       The Nature of Data
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="data-cleaning.html">
-       Dataset Cleaning
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="dimensional-analysis.html">
-       Dimensional Analysis
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="theory.html">
-   Techniques (Coming soon)
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="techniques.html">
-     Overview of Fundamental Techniques
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="calibrate-validate.html">
-     Model Calibration and Validation
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Support Vector Machine (SVM)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="data-science.html">Fundamentals (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="py-requirements.html">Python Requirements</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="data-prepro.html">Data Pre-Processing</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="data-types.html">The Nature of Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-cleaning.html">Dataset Cleaning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dimensional-analysis.html">Dimensional Analysis</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Numerical Modeling
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../numerics/numerical-modeling.html">
-   Principles
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../numerics/basement.html">
-   BASEMENT
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/pre-qgis-bm.html">
-     Pre-processing with QGIS
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/basement2d.html">
-     Run and Check a Steady 2d Simulation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../numerics/telemac.html">
-   TELEMAC
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/pre-slf-tm.html">
-     Pre-processing
-    </a>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac2d.html">
-     Telemac2d
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-    <label for="toctree-checkbox-14">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac2d-steady.html">
-       Steady 2d
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac2d-unsteady.html">
-       Unsteady 2d
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac3d.html">
-     Telemac3d
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-    <label for="toctree-checkbox-15">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac3d-slf.html">
-       Steady 3d (SLF - Selafin)
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac3d-med.html">
-       Steady 3d (MED and Salome)
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac-gaia.html">
-     Gaia (Morphodynamics)
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-    <label for="toctree-checkbox-16">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-coupling.html">
-       Introduction and Coupling
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-basics.html">
-       Basic Setup of Gaia
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-bedload.html">
-       Bedload
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-suspended.html">
-       Suspended Load
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-run.html">
-       Run and Analyze
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
+</li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Documentation
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/documentation.html">
-   How to Markdown and Document
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/glossary.html">
-   Glossary
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/notation.html">
-   Notation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/bibliography.html">
-   References
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/docs-exercises.html">
-   Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
-  <label for="toctree-checkbox-17">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-git.html">
-     Git and Markdown
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="theory.html">Techniques (Coming soon)</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="techniques.html">Overview of Fundamental Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibrate-validate.html">Model Calibration and Validation</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Support Vector Machine (SVM)</a></li>
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Troubleshoot
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
-   Programming Tools and IDEs
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
-  <label for="toctree-checkbox-18">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
-     Debugging Anaconda
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-python.html">
-     Debugging Python Code
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
-     Debugging Jupyter
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
-   Numerical Models
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
-  <label for="toctree-checkbox-19">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
-     Debugging BASEMENT
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
-     Debugging TELEMAC
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-os.html">
-   Operating Systems (Linux and VMs)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
-  <label for="toctree-checkbox-20">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
-     Debugging Debian Linux
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
-     Debugging Virtual Machines
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Disclaimer and License
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Documentation</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../terms/license.html">
-   License
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../terms/disclaimer.html">
-   Disclaimer
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/documentation.html">How to Markdown and Document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/notation.html">Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/bibliography.html">References</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/docs-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-git.html">Git and Markdown</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Troubleshoot</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-programming.html">Programming Tools and IDEs</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-anaconda.html">Debugging Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-python.html">Debugging Python Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-jupyter.html">Debugging Jupyter</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">Numerical Models</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-basement.html">Debugging BASEMENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-telemac.html">Debugging TELEMAC</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-os.html">Operating Systems (Linux and VMs)</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-linux.html">Debugging Debian Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-vm.html">Debugging Virtual Machines</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-scilife.html">Science Life Hacks</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-zotero.html">Zotero Utilities</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Disclaimer and License</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../terms/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terms/disclaimer.html">Disclaimer</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a> and Ricardo Barros
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/datascience/morphology-predictor-svm.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/hydro-informatics/jupyter-python-course"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
         
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/hydro-informatics/jupyter-python-course/main/v2/gh/hydro-informatics/jupyter-python-course/main?urlpath=lab/tree/datascience/morphology-predictor-svm.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/hydro-informatics/jupyter-python-course/blob/main/datascience/morphology-predictor-svm.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
+<a href="https://github.com/hydro-informatics/jupyter-python-course" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/hydro-informatics/jupyter-python-course/main/v2/gh/hydro-informatics/jupyter-python-course/main?urlpath=lab/tree/datascience/morphology-predictor-svm.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com//github/hydro-informatics/jupyter-python-course/blob/main/datascience/morphology-predictor-svm.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="../_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/datascience/morphology-predictor-svm.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
+  
 </div>
+</div>
+              
+              
 
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Support Vector Machine (SVM)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Support Vector Machine (SVM)
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#theory">
-     Theory
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pre-processing">
-   Pre-processing
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#load-data">
-     Load Data
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#clean-the-dataset">
-     Clean the Dataset
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#remove-nan-values">
-       Remove NaN Values
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#search-outliers">
-       Search Outliers
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#remove-outliers">
-       Remove Outliers
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#verify-class-proportions">
-     Verify Class Proportions
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#derive-new-predictors">
-     Derive New Predictors
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#verify-multicolinearity">
-     Verify Multicolinearity
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#variance-inflation-factor-vif">
-     Variance Inflation Factor (VIF)
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#remove-features-to-reduce-vif">
-     Remove Features to Reduce VIF
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#split-test-and-training-datasets">
-     Split Test and Training Datasets
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#build-the-svm-model">
-   Build the SVM Model
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#working-principle">
-     Working Principle
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#k-fold-cross-validation">
-     k-fold Cross Validation
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#select-optimum-parameters">
-     Select Optimum Parameters
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#train-optimum-hypothesis-svm-model">
-     Train Optimum Hypothesis SVM Model
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#performance-evaluation-confusion-matrix">
-     Performance Evaluation (Confusion Matrix)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Support Vector Machine (SVM)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#theory">Theory</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-processing">Pre-processing</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-the-dataset">Clean the Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-nan-values">Remove NaN Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#search-outliers">Search Outliers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-outliers">Remove Outliers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-class-proportions">Verify Class Proportions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derive-new-predictors">Derive New Predictors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-multicolinearity">Verify Multicolinearity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-inflation-factor-vif">Variance Inflation Factor (VIF)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-features-to-reduce-vif">Remove Features to Reduce VIF</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#split-test-and-training-datasets">Split Test and Training Datasets</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-svm-model">Build the SVM Model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-principle">Working Principle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-fold-cross-validation">k-fold Cross Validation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-optimum-parameters">Select Optimum Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-optimum-hypothesis-svm-model">Train Optimum Hypothesis SVM Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-evaluation-confusion-matrix">Performance Evaluation (Confusion Matrix)</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="support-vector-machine-svm">
-<h1>Support Vector Machine (SVM)<a class="headerlink" href="#support-vector-machine-svm" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="support-vector-machine-svm">
+<h1>Support Vector Machine (SVM)<a class="headerlink" href="#support-vector-machine-svm" title="Permalink to this headline">#</a></h1>
 <p>This tutorial features the Support Vector Machine (SVM) technique for classifying riverbed morphology types as a function of hydraulic and sediment transport data.</p>
 <div class="admonition-goals admonition">
 <p class="admonition-title">Goals</p>
 <ul class="simple">
-<li><p>Pre-process a dataset containing hydrodynamic measurements and five river bed morphology classes according to <span id="id1">Montgomery and Buffington [<a class="reference internal" href="../documentation/bibliography.html#id401">MB97</a>]</span>.</p></li>
+<li><p>Pre-process a dataset containing hydrodynamic measurements and five river bed morphology classes according to <span id="id1">Montgomery and Buffington [<a class="reference internal" href="../documentation/bibliography.html#id401" title="David R. Montgomery and J. Buffington. Channel-reach morphology in mountain drainage basins. Geological Society of America Bulletin, 109(5):596–611, 1997. doi:10.1130/0016-7606(1997)109$&lt;$0596:CRMIMD$&gt;$2.3.CO;2.">MB97</a>]</span>.</p></li>
 <li><p>Use Variance Inflation Index (VIF) to evaluate Multicollinearity among features.</p></li>
 <li><p>Train and test a Support Vector Machine (SVM) model to classify river bed morphology using a Radial Basis Function (RBF) kernel.</p></li>
 </ul>
@@ -984,10 +618,10 @@
 <p>Read and understand data handling with <a class="reference internal" href="../jupyter/pynum.html#numpy"><span class="std std-ref">NumPy</span></a>, <a class="reference internal" href="../jupyter/pynum.html#pandas"><span class="std std-ref">Pandas</span></a>, <a class="reference internal" href="../jupyter/pyplot.html#matplotlib"><span class="std std-ref">Matplotlib</span></a>, and <a class="reference internal" href="../jupyter/pyfun.html#chpt-functions"><span class="std std-ref">functions</span></a>. We assume that you are familiar with basic statistic parameters, such as Gaussian probability distributions, their mean, and their standard deviation values.</p>
 </div>
 <p>Enable interactive reading and executing code blocks with <a class="reference external" href="https://mybinder.org/v2/gh/hydro-informatics/jupyter-python-course/main"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> and find <em>morphology-predictor-svm.ipynb</em> Alternatively, install <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Python</span></a> and <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a> locally and <strong><a class="reference external" href="https://github.com/ricardovobarros/hydro-informatics/tree/main/morphology_predictor">download</a></strong> this Jupyter notebook.</p>
-<div class="section" id="theory">
-<h2>Theory<a class="headerlink" href="#theory" title="Permalink to this headline">¶</a></h2>
-<p>In the field of restoration science, the identification of river morphology provides essential insights, for instance, to guide target terraforming aiming at re-instating a near-census natural state of a fluvial landscape. In addition, morphological pattern may serve as a predictor for estimating fluvial <a class="reference internal" href="../documentation/glossary.html#term-Sediment-transport"><span class="xref std std-term">sediment transport</span></a> and vice versa. Thus, there is a bidirectional relationship between fluvial hydraulics, sediment transport, and morphological pattern, which represent physical habitat for aquatic species and may even affect energy production <span id="id2">[<a class="reference internal" href="../documentation/bibliography.html#id1402">RPVTP16</a>]</span>.</p>
-<p>Yet, classifying and predicting fluvial morphodynamics is challenging because of the complexity of river ecosystems and every river being a unique environment. However,there are repeating morphological units of rivers with similar characteristics. A basic set of repetitive morphological features was introduced by <span id="id3">Montgomery and Buffington [<a class="reference internal" href="../documentation/bibliography.html#id401">MB97</a>]</span>, and we will focus in this tutorial on the following five morphological units (click on the items to read more):</p>
+<section id="theory">
+<h2>Theory<a class="headerlink" href="#theory" title="Permalink to this headline">#</a></h2>
+<p>In the field of restoration science, the identification of river morphology provides essential insights, for instance, to guide target terraforming aiming at re-instating a near-census natural state of a fluvial landscape. In addition, morphological pattern may serve as a predictor for estimating fluvial <a class="reference internal" href="../documentation/glossary.html#term-Sediment-transport"><span class="xref std std-term">sediment transport</span></a> and vice versa. Thus, there is a bidirectional relationship between fluvial hydraulics, sediment transport, and morphological pattern, which represent physical habitat for aquatic species and may even affect energy production <span id="id2">[<a class="reference internal" href="../documentation/bibliography.html#id1402" title="Alain Recking, Guillaume Piton, Daniel Vazquez-Tarrio, and Gary Parker. Quantifying the morphological print of bedload transport. Earth Surface Processes and Landforms, 41(6):809–822, 2016.">RPVTP16</a>]</span>.</p>
+<p>Yet, classifying and predicting fluvial morphodynamics is challenging because of the complexity of river ecosystems and every river being a unique environment. However,there are repeating morphological units of rivers with similar characteristics. A basic set of repetitive morphological features was introduced by <span id="id3">Montgomery and Buffington [<a class="reference internal" href="../documentation/bibliography.html#id401" title="David R. Montgomery and J. Buffington. Channel-reach morphology in mountain drainage basins. Geological Society of America Bulletin, 109(5):596–611, 1997. doi:10.1130/0016-7606(1997)109$&lt;$0596:CRMIMD$&gt;$2.3.CO;2.">MB97</a>]</span>, and we will focus in this tutorial on the following five morphological units (click on the items to read more):</p>
 <ul class="simple">
 <li><p><strong><a class="reference internal" href="../documentation/glossary.html#term-Step-pool"><span class="xref std std-term">Step pool</span></a></strong></p></li>
 <li><p><strong><a class="reference internal" href="../documentation/glossary.html#term-Plane-bed"><span class="xref std std-term">Plane bed</span></a></strong></p></li>
@@ -995,18 +629,20 @@
 <li><p><strong><a class="reference internal" href="../documentation/glossary.html#term-Braiding"><span class="xref std std-term">Braiding</span></a></strong></p></li>
 <li><p><strong><a class="reference internal" href="../documentation/glossary.html#term-Sand-bed"><span class="xref std std-term">Sand bed</span></a></strong></p></li>
 </ul>
-<p>These morphological units can be found in the above-listed order along a river, starting at the source and ending with its estuary. Thus, <em>step pool</em> units can typically be found in upstream (mountain) river section, while <em>sand beds</em> are predominantly existent in shallower river sections, close to estuaries or confluences. Note that there are many other morphological units besides, such as slackwater, swales, or bars <span id="id4">[<a class="reference internal" href="../documentation/bibliography.html#id963">WP14</a>]</span>. Fig. <a class="reference internal" href="#fig-bed-morphology"><span class="std std-numref">Fig. 31</span></a> illustrates some morphological units of near-census natural rivers.</p>
-<div class="figure align-default" id="fig-bed-morphology">
+<p>These morphological units can be found in the above-listed order along a river, starting at the source and ending with its estuary. Thus, <em>step pool</em> units can typically be found in upstream (mountain) river section, while <em>sand beds</em> are predominantly existent in shallower river sections, close to estuaries or confluences. Note that there are many other morphological units besides, such as slackwater, swales, or bars <span id="id4">[<a class="reference internal" href="../documentation/bibliography.html#id963" title="J. R. Wyrick and G. B. Pasternack. Geospatial organization of fluvial landforms in a gravel-cobble river: Beyond the riffle-pool couplet. Geomorphology, 213(Supplement C):48–65, 2014. URL: http://www.sciencedirect.com/science/article/pii/S0169555X14000099, doi:10.1016/j.geomorph.2013.12.040.">WP14</a>]</span>. Fig. <a class="reference internal" href="#fig-bed-morphology"><span class="std std-numref">Fig. 155</span></a> illustrates some morphological units of near-census natural rivers.</p>
+<figure class="align-default" id="fig-bed-morphology">
 <img alt="riverbed morphologies" src="../_images/morphology-overview.jpg" />
-<p class="caption"><span class="caption-number">Fig. 31 </span><span class="caption-text">a) A colluvial headwater stream (Furtschaglbach, Austria), b) a cascade stream (Torrent des Favrands, France), c) a bedrock stream (Anse St-Jean, Québec, Canada), d) a step-pool stream (Dessoubre, France), e) a plane-bed stream (Dranse, Switzerland), f) a riffle-pool stream (Le diable, Québec, Canada), g) a braided stream (Jenbach, Germany). Source: <span id="id5">Schwindt [<a class="reference internal" href="../documentation/bibliography.html#id523">Sch17</a>]</span></span><a class="headerlink" href="#fig-bed-morphology" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 155 </span><span class="caption-text">a) A colluvial headwater stream (Furtschaglbach, Austria), b) a cascade stream (Torrent des Favrands, France), c) a bedrock stream (Anse St-Jean, Québec, Canada), d) a step-pool stream (Dessoubre, France), e) a plane-bed stream (Dranse, Switzerland), f) a riffle-pool stream (Le diable, Québec, Canada), g) a braided stream (Jenbach, Germany). Source: <span id="id5">Schwindt [<a class="reference internal" href="../documentation/bibliography.html#id523" title="Sebastian Schwindt. Hydro-morphological processes through permeable sediment traps. Thesis No. 7655, Laboratory of Hydraulic Constructions (LCH), Ecole Polytechnique fédérale de Lausanne (EPFL), Lausanne, Switzerland, 2017. URL: https://infoscience.epfl.ch/record/231182, doi:10.5075/epfl-thesis-7655.">Sch17</a>]</span></span><a class="headerlink" href="#fig-bed-morphology" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>To guide restoration actions, experts often visually classify morphology units on-site, though some of them may also be distinguishable on aerial imagery. On-site (<em>in-situ</em>) expert assessments may also serve as ground truth for machine learning models. In this exercise, we will use hydrodynamic parameters with expert-based ground truth from the database <a class="reference external" href="https://en.bedloadweb.com/">https://bedloadweb.com</a>. Thus, at the end of this tutorial, you may be able to reduce a necessary amount of fieldwork, just by using hydraulic parameters that can sometimes also be retrieved from gauging stations. To this end, we will train and test an SVM model that classifies morphological units as a function of data that can be collected <em>in-situ</em> or derived from aerial imagery.</p>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="pre-processing">
-<h1>Pre-processing<a class="headerlink" href="#pre-processing" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="load-data">
-<h2>Load Data<a class="headerlink" href="#load-data" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="pre-processing">
+<h1>Pre-processing<a class="headerlink" href="#pre-processing" title="Permalink to this headline">#</a></h1>
+<section id="load-data">
+<h2>Load Data<a class="headerlink" href="#load-data" title="Permalink to this headline">#</a></h2>
 <p>We downloaded a dataset from <a class="reference external" href="https://en.bedloadweb.com/">https://bedloadweb.com</a> (<a class="reference external" href="https://raw.githubusercontent.com/hydro-informatics/jupyter-python-course/main/data/bedload_dataset">download the <em>bedload_dataset</em></a> sample):</p>
 <ul class="simple">
 <li><p>Every sample is derived from the cross-sections of 146 different rivers around the globe.</p></li>
@@ -1162,12 +798,12 @@
 <p>1067 rows × 6 columns</p>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="clean-the-dataset">
-<h2>Clean the Dataset<a class="headerlink" href="#clean-the-dataset" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="clean-the-dataset">
+<h2>Clean the Dataset<a class="headerlink" href="#clean-the-dataset" title="Permalink to this headline">#</a></h2>
 <p>To avoid the SVM model being affected by statics made based on nonsense entries (e.g., Not-a-Number <strong>NaN</strong>) values or extreme outliers, for instance, resulting from typos, we will make apply some cleaning methods.</p>
-<div class="section" id="remove-nan-values">
-<h3>Remove NaN Values<a class="headerlink" href="#remove-nan-values" title="Permalink to this headline">¶</a></h3>
+<section id="remove-nan-values">
+<h3>Remove NaN Values<a class="headerlink" href="#remove-nan-values" title="Permalink to this headline">#</a></h3>
 <p>The first cleaning step is to remove <em>NaN</em>s that may lead the SVM model later to making bad conclusions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1214,9 +850,9 @@ Morphology : False
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="search-outliers">
-<h3>Search Outliers<a class="headerlink" href="#search-outliers" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="search-outliers">
+<h3>Search Outliers<a class="headerlink" href="#search-outliers" title="Permalink to this headline">#</a></h3>
 <p>Outliers may occur in extreme environment or under extreme conditions (e.g., intense precipitation), but some of them also stem from equipment failures that will affect the performance of the SVM model. Thus, recognizing and removing such device-related outliers is an essential step.</p>
 <p>Visualizing the plotted features in a scatter plot can be helpful to spot outliers candidates. The following code block creates scatter plots of every feature, marks the expected value, and the distance of 2 standard deviations (assuming a Gaussian-like distribution) from it.</p>
 <div class="cell docutils container">
@@ -1265,14 +901,14 @@ Morphology : False
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/morphology-predictor-svm_6_0.png" src="../_images/morphology-predictor-svm_6_0.png" />
+<img alt="../_images/f43043c7e237f5cf56e68b42135e7ce15976ce3431213811a00d51902fe74b15.png" src="../_images/f43043c7e237f5cf56e68b42135e7ce15976ce3431213811a00d51902fe74b15.png" />
 </div>
 </div>
-</div>
-<div class="section" id="remove-outliers">
-<h3>Remove Outliers<a class="headerlink" href="#remove-outliers" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="remove-outliers">
+<h3>Remove Outliers<a class="headerlink" href="#remove-outliers" title="Permalink to this headline">#</a></h3>
 <p>Outliers can be removed with two different methods:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Manual (i.e., expert judgment): identify outliers of the features and remove them by setting limits of their interval.</p></li>
 <li><p>Automated: assume a probability distribution and set limits based on low probability of observation occurrence.</p></li>
 </ol>
@@ -1432,10 +1068,10 @@ Morphology : False
 <p>1038 rows × 6 columns</p>
 </div></div></div>
 </div>
-</div>
-</div>
-<div class="section" id="verify-class-proportions">
-<h2>Verify Class Proportions<a class="headerlink" href="#verify-class-proportions" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="verify-class-proportions">
+<h2>Verify Class Proportions<a class="headerlink" href="#verify-class-proportions" title="Permalink to this headline">#</a></h2>
 <p>A machine learning model requires the ground truth data to comply with some quality standard. Those involve (among others):</p>
 <ul class="simple">
 <li><p>Every combination of models needs a different minimum number of samples to have <a class="reference external" href="https://en.wikipedia.org/wiki/Statistical_significance">statistical significance</a>. It is not a trivial task to identify the minimum number of samples that yield a trustworthy model. However, to represent a class properly (whatever that means), the so-called <a class="reference external" href="https://www.investopedia.com/terms/f/frequencydistribution.asp#:~:text=A%20frequency%20distribution%20is%20a,observations%20within%20a%20given%20interval.&amp;text=The%20intervals%20must%20be%20mutually,used%20within%20a%20statistical%20context.">frequency distribution</a> of every feature must be similar to the <a class="reference external" href="https://www.bmj.com/about-bmj/resources-readers/publications/statistics-square-one/3-populations-and-samples">population</a> frequency distribution.</p></li>
@@ -1466,9 +1102,9 @@ Name: Morphology, dtype: int64
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="derive-new-predictors">
-<h2>Derive New Predictors<a class="headerlink" href="#derive-new-predictors" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="derive-new-predictors">
+<h2>Derive New Predictors<a class="headerlink" href="#derive-new-predictors" title="Permalink to this headline">#</a></h2>
 <p>Sometimes it is possible to compute new meaningful features from the existing ones. For instance, known predictors for morphology are:</p>
 <ul class="simple">
 <li><p>the product of (energy) slope <span class="math notranslate nohighlight">\(S\)</span> (-), bulk flow velocity <span class="math notranslate nohighlight">\(U\)</span> (m/s), and water depth <span class="math notranslate nohighlight">\(H\)</span> (m), which basically represents <a class="reference internal" href="../documentation/glossary.html#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">shear stress</span></a></p></li>
@@ -1647,9 +1283,9 @@ Name: Morphology, dtype: int64
 <p>1038 rows × 8 columns</p>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="verify-multicolinearity">
-<h2>Verify Multicolinearity<a class="headerlink" href="#verify-multicolinearity" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="verify-multicolinearity">
+<h2>Verify Multicolinearity<a class="headerlink" href="#verify-multicolinearity" title="Permalink to this headline">#</a></h2>
 <p>Correlated features (i.e., statistically dependent measurement parameters) may result in unreliable models. For instance, consider a scientist who wants to use machine learning (ML) models to predict the number of tourists that get sun-burned in Brazil during their vacation. She wants to use solar radiation intensity and the number of icecream scoops sold as features. The scientist may find that both features are relevant to predict the number of sun-burned tourist, but the reason for this finding is that the number of icecream scoops sold, and sun intensity are correlated. Thus, the scientist has no way to know what is the real importance of each feature in predicting sun-burned tourists because the features grow and decrease simultaneously. By the way, icecream consumption and sun burns have no causality in common, but that is another subject.</p>
 <p>To this end, it is important to investigate the correlation among features and consider eliminating the correlated features to produce a more reliable model. One way to visually spot colinearity is plotting the combination of two variables in a scatter plot. For this purpose, the below figure aids in spotting the following aspects of the <code class="docutils literal notranslate"><span class="pre">bedload_dataset</span></code>:</p>
 <ul class="simple">
@@ -1668,7 +1304,7 @@ Name: Morphology, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/morphology-predictor-svm_14_0.png" src="../_images/morphology-predictor-svm_14_0.png" />
+<img alt="../_images/69a5a5d966c0452da2e7f7a30529dd7daef3d91680730acde792944c8497d225.png" src="../_images/69a5a5d966c0452da2e7f7a30529dd7daef3d91680730acde792944c8497d225.png" />
 </div>
 </div>
 <p>In addition, a <a class="reference external" href="https://en.wikipedia.org/wiki/Heat_map#:~:text=A%20heat%20map%20">heatmap</a> is another efficient method to visualize linear correlation among features. Also computing <a class="reference external" href="https://en.wikiversity.org/wiki/Correlation#:~:text=Linear%20correlation%20refers%20to%20straight,late%2019th%20century%5B1%5D.">linear correlation</a> enables quantitative analysis.</p>
@@ -1691,12 +1327,12 @@ Name: Morphology, dtype: int64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
 </pre></div>
 </div>
-<img alt="../_images/morphology-predictor-svm_16_1.png" src="../_images/morphology-predictor-svm_16_1.png" />
+<img alt="../_images/9b3f789d25afc222c36fed562d6eb2ed58f651887c56d3e7d05759b343daf567.png" src="../_images/9b3f789d25afc222c36fed562d6eb2ed58f651887c56d3e7d05759b343daf567.png" />
 </div>
 </div>
-</div>
-<div class="section" id="variance-inflation-factor-vif">
-<h2>Variance Inflation Factor (VIF)<a class="headerlink" href="#variance-inflation-factor-vif" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="variance-inflation-factor-vif">
+<h2>Variance Inflation Factor (VIF)<a class="headerlink" href="#variance-inflation-factor-vif" title="Permalink to this headline">#</a></h2>
 <p>A straightforward method to evaluate <a class="reference external" href="https://towardsdatascience.com/statistics-in-python-collinearity-and-multicollinearity-4cc4dcd82b3f">multicollinerity</a> is computing the Variance Inflation Factor (<strong>VIF</strong>) for every feature, which quantifies the correlation among features.</p>
 <p>The first step to compute the VIF is treating a feature as a <a class="reference external" href="https://www.scribbr.com/methodology/independent-and-dependent-variables/#:~:text=The%20independent%20variable%20is%20the,changes%20in%20the%20independent%20variable.">dependent variable</a> and fit a <a class="reference external" href="https://www.youtube.com/watch?v=nk2CQITm_eo">linear regression model</a> using the other features as <a class="reference external" href="https://www.scribbr.com/methodology/independent-and-dependent-variables/#:~:text=The%20independent%20variable%20is%20the,changes%20in%20the%20independent%20variable.">independent variable</a>. Second, store the corresponding mean square errors <span class="math notranslate nohighlight">\(MSE\)</span> yielded by the linear model.</p>
 <p>Finally, VIF can be computed for each feature by the following equation:</p>
@@ -1709,7 +1345,7 @@ VIF_{feature(n)} = 1/(1-MSE^2_{feature(n)})
 <li><p><span class="math notranslate nohighlight">\(MSE^2_{feature(n)}\)</span> is the mean square error resulting from the linear regression of the <span class="math notranslate nohighlight">\(n_{th}\)</span> feature.</p></li>
 </ul>
 <p>Note that the smaller the MSE (better linear regression model), the greater is the inflation. In other words, large VIF values indicate high correlation of the feature under consideration with <em>at least</em> one of the other features. Still, it is not possible to say based on VIF only, which <em>other feature</em> is causing VIF to inflate.</p>
-<p>As rule of thumb, a VIF greater than 10 (ten) indicates an unsuitable set of features to produce a reliable ML model. Ideally, the VIF should remain smaller than 5 (five), which is considered moderate correlation <span id="id6">[<a class="reference internal" href="../documentation/bibliography.html#id1404">Fra10</a>]</span>. However, these reference values are not a generally and always applicable rule. VIF equal to or greater than 10 can still yield a good model.</p>
+<p>As rule of thumb, a VIF greater than 10 (ten) indicates an unsuitable set of features to produce a reliable ML model. Ideally, the VIF should remain smaller than 5 (five), which is considered moderate correlation <span id="id6">[<a class="reference internal" href="../documentation/bibliography.html#id1404" title="George R Franke. Multicollinearity. Wiley international encyclopedia of marketing, 2010.">Fra10</a>]</span>. However, these reference values are not a generally and always applicable rule. VIF equal to or greater than 10 can still yield a good model.</p>
 <p>Further analysis to study the impact of a high VIF on correlated features can be carried out by removing each feature at a time and investigate how the feature removal affects the variation of the <a class="reference external" href="https://en.wikipedia.org/wiki/Standard_error">standard error</a> and <a class="reference external" href="https://www.youtube.com/watch?v=Cba9LJ9lS8s&amp;t=53s">p-value</a> of the model.</p>
 <p>In this tutorial, 2 features have a VIF <span class="math notranslate nohighlight">\(&gt; \)</span>10 (notably, <span class="math notranslate nohighlight">\(H\)</span> and <span class="math notranslate nohighlight">\(Q/W\)</span>), as the following code block shows.</p>
 <div class="cell docutils container">
@@ -1794,9 +1430,9 @@ VIF_{feature(n)} = 1/(1-MSE^2_{feature(n)})
 </table>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="remove-features-to-reduce-vif">
-<h2>Remove Features to Reduce VIF<a class="headerlink" href="#remove-features-to-reduce-vif" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="remove-features-to-reduce-vif">
+<h2>Remove Features to Reduce VIF<a class="headerlink" href="#remove-features-to-reduce-vif" title="Permalink to this headline">#</a></h2>
 <p>With the goal of reducing the feature VIFs to less than 5, we use a trial-and-error approach in this tutorial. Modifying the below code block shows that removing <span class="math notranslate nohighlight">\(H\)</span> and <span class="math notranslate nohighlight">\(Q\)</span> is enough to reduce the VIFs of the remaining features to less than 5. In particular, these two removed variables also go into above-introduced features <span class="math notranslate nohighlight">\(Q/W\)</span> and <span class="math notranslate nohighlight">\(SUH\)</span>. Thus, although <span class="math notranslate nohighlight">\(H\)</span> and <span class="math notranslate nohighlight">\(Q\)</span> are removed, they still “contribute information” to the final model.</p>
 <p>Combining correlated features to procduce a new one, and later removing them, is a common approach to reduce VIFs. Since we yielded good VIF values by removing some of the features, no further analysis is necessary.</p>
 <div class="admonition-principal-component-analysis-pca admonition">
@@ -1865,9 +1501,9 @@ VIF_{feature(n)} = 1/(1-MSE^2_{feature(n)})
 </table>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="split-test-and-training-datasets">
-<h2>Split Test and Training Datasets<a class="headerlink" href="#split-test-and-training-datasets" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="split-test-and-training-datasets">
+<h2>Split Test and Training Datasets<a class="headerlink" href="#split-test-and-training-datasets" title="Permalink to this headline">#</a></h2>
 <p>The last preparation step for building the SVM model is to derive a training and a testing dataset from the entire <code class="docutils literal notranslate"><span class="pre">bedload_dataset</span></code>. Choosing a share for data to compose a training and a testing dataset is commonly a heuristic choice. Here,  we use 33% of the data for testing a final hypothesis later. Note that inside the split datasets, the index of the samples (rows of the tabular data) have their corresponding class inside the <em>target datasets</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1958,17 +1594,19 @@ Vector size (312,)
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="build-the-svm-model">
-<h1>Build the SVM Model<a class="headerlink" href="#build-the-svm-model" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="working-principle">
-<h2>Working Principle<a class="headerlink" href="#working-principle" title="Permalink to this headline">¶</a></h2>
-<p>A Support Vector Machine (SVM) is a learning algorithm that searches for a so-called <strong>hyperplane</strong> that optimally separates feature classes. To find an optimal separation, the algorithm tries to maximize the distance (or margin) from the hyperplane to the nearest data points. The data points near to the limits of the margin are also denominated <strong>support vectors</strong> because they work as a reference to <em>draw</em> the hyperplane (see Fig. <a class="reference internal" href="#svm-margin-morphology"><span class="std std-numref">Fig. 32</span></a> below).</p>
-<div class="figure align-default" id="svm-margin-morphology">
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="build-the-svm-model">
+<h1>Build the SVM Model<a class="headerlink" href="#build-the-svm-model" title="Permalink to this headline">#</a></h1>
+<section id="working-principle">
+<h2>Working Principle<a class="headerlink" href="#working-principle" title="Permalink to this headline">#</a></h2>
+<p>A Support Vector Machine (SVM) is a learning algorithm that searches for a so-called <strong>hyperplane</strong> that optimally separates feature classes. To find an optimal separation, the algorithm tries to maximize the distance (or margin) from the hyperplane to the nearest data points. The data points near to the limits of the margin are also denominated <strong>support vectors</strong> because they work as a reference to <em>draw</em> the hyperplane (see Fig. <a class="reference internal" href="#svm-margin-morphology"><span class="std std-numref">Fig. 156</span></a> below).</p>
+<figure class="align-default" id="svm-margin-morphology">
 <img alt="datascience" src="../_images/svm-margin.jpg" />
-<p class="caption"><span class="caption-number">Fig. 32 </span><span class="caption-text">Illustration of a hyperplane and margins of an SVM. Source: Ricardo Barros</span><a class="headerlink" href="#svm-margin-morphology" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 156 </span><span class="caption-text">Illustration of a hyperplane and margins of an SVM. Source: Ricardo Barros</span><a class="headerlink" href="#svm-margin-morphology" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>For instance, assume that two of the above classes are linearly separable. We can define the regions that contain each class by means of the following hyperplane:</p>
 <p><span class="math notranslate nohighlight">\( \vec{w}  \vec{X} + b &gt; 1 \)</span> –&gt; <strong>Class Red</strong>, and
 <span class="math notranslate nohighlight">\( \vec{w}  \vec{X} + b &lt; 1 \)</span> –&gt; <strong>Class Blue</strong></p>
@@ -1991,11 +1629,11 @@ Vector size (312,)
 <li><p>For a complete lecture on <em>SVM</em> (provided by the <a class="reference external" href="https://mit.edu">MIT</a>), visit their <a class="reference external" href="https://www.youtube.com/watch?v=eHsErlPJWUU">YouTube channel</a>.</p></li>
 </ul>
 </div>
-</div>
-<div class="section" id="k-fold-cross-validation">
-<h2>k-fold Cross Validation<a class="headerlink" href="#k-fold-cross-validation" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="k-fold-cross-validation">
+<h2>k-fold Cross Validation<a class="headerlink" href="#k-fold-cross-validation" title="Permalink to this headline">#</a></h2>
 <p>SVMs composed by an RBF kernel can be validated by tuning two parameters:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p><strong>C</strong>: determines how much are the margins are permissive. It differentiates between a <strong>hard margin</strong> (i.e., a margin that enables little or no penetration of data points) and a <strong>soft margin</strong> (i.e., a margin that enables penetration of data points inside the margin). A higher <strong>C</strong> corresponds to a harder the margin.</p></li>
 <li><p><strong>gamma</strong>: determines the region of similarity among samples. It is the only variable of the RBF kernel. The higher gamma is, the broader is the influence of a labeled sample on classifying a new sample.</p></li>
 </ol>
@@ -2074,12 +1712,12 @@ Vector size (312,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/morphology-predictor-svm_25_0.png" src="../_images/morphology-predictor-svm_25_0.png" />
+<img alt="../_images/70c862097cbb771a7fa020240c6208da43fe68fb2bbf941c2259da4525658ede.png" src="../_images/70c862097cbb771a7fa020240c6208da43fe68fb2bbf941c2259da4525658ede.png" />
 </div>
 </div>
-</div>
-<div class="section" id="select-optimum-parameters">
-<h2>Select Optimum Parameters<a class="headerlink" href="#select-optimum-parameters" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="select-optimum-parameters">
+<h2>Select Optimum Parameters<a class="headerlink" href="#select-optimum-parameters" title="Permalink to this headline">#</a></h2>
 <p>The decision on optimum parameters for the SVM depends on your opinion. For the purpose of selecting optimum parameters in this tutorial, the below code block quantifies the above-shown plot (in particular, the blue curve) in tabular form and saves the gamma that yields the smallest error (<strong>gamma_opt</strong>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2120,9 +1758,9 @@ optimal gamma: 0.46415888336127725
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="train-optimum-hypothesis-svm-model">
-<h2>Train Optimum Hypothesis SVM Model<a class="headerlink" href="#train-optimum-hypothesis-svm-model" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="train-optimum-hypothesis-svm-model">
+<h2>Train Optimum Hypothesis SVM Model<a class="headerlink" href="#train-optimum-hypothesis-svm-model" title="Permalink to this headline">#</a></h2>
 <p>After defining a gamma yielding the smallest validation error (<strong>gamma_opt</strong>), we can train an optimal hypothesis (<strong>h_opt</strong>) model on the entire training dataset. In addition, we can evaluate the accuracy of the model by using it to classify the testing dataset. The below code block features the training procedure, fitting of the SVM (i.e., an optimum hypothesis), and prints the score of the optimum hypothesis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2142,9 +1780,9 @@ optimal gamma: 0.46415888336127725
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="performance-evaluation-confusion-matrix">
-<h2>Performance Evaluation (Confusion Matrix)<a class="headerlink" href="#performance-evaluation-confusion-matrix" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="performance-evaluation-confusion-matrix">
+<h2>Performance Evaluation (Confusion Matrix)<a class="headerlink" href="#performance-evaluation-confusion-matrix" title="Permalink to this headline">#</a></h2>
 <p>Finally, the following code block generates the so-called <strong>confusion matrix</strong> to evaluate the optimum hypothesis model performance when classifying the samples with distinct morphologies. The confusion matrix uses the total number of samples and visualizes their true and predicted morphological units.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2161,12 +1799,12 @@ optimal gamma: 0.46415888336127725
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/morphology-predictor-svm_31_0.png" src="../_images/morphology-predictor-svm_31_0.png" />
+<img alt="../_images/435c6bdeac3b6198b66aac77a67f8de93e770bd80c0e94450f469d6ece2e4ac7.png" src="../_images/435c6bdeac3b6198b66aac77a67f8de93e770bd80c0e94450f469d6ece2e4ac7.png" />
 </div>
 </div>
 <p>The confusion matrix of an exact model only has diagonal entries larger than zero, while all others are zero. Thus, the above-shown confusion matrix shows that our SVM model performs very well in predicting step-pool and riffle-pool morphologies, but unreliably predicts sand bed morphologies because of not many observations. However, the model also made wrong predictions of step-pool and riffle pool features. For instance, according to the confusion matrix, the model predicted 6 times step-pool, where in reality (true label), plane bed morphological units prevailed, and it wrongly predicted one braiding observation to be a step-pool observation. The sand bed predictions are unreliable because there are only 25 true-label sand bed observations (opposed to 66 step-pool observations). Thus, the sand bed observations are unbalanced and a solution to removing the unreliability could be to sample more sand bed morphological units (as above explained).</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -2180,7 +1818,7 @@ optimal gamma: 0.46415888336127725
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./datascience"
         },
         predefinedOutput: true
@@ -2188,46 +1826,127 @@ optimal gamma: 0.46415888336127725
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="calibrate-validate.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Model Calibration and Validation</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="calibrate-validate.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Model Calibration and Validation</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="../numerics/numerical-modeling.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="../documentation/documentation.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Principles</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+        <p class="prev-next-title">How to Markdown and Document</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-        
-        </div>
-    </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Sebastian Schwindt, Ricardo Barros<br/>
-        
-            &copy; Copyright 2023.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Support Vector Machine (SVM)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#theory">Theory</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-processing">Pre-processing</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-the-dataset">Clean the Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-nan-values">Remove NaN Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#search-outliers">Search Outliers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-outliers">Remove Outliers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-class-proportions">Verify Class Proportions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derive-new-predictors">Derive New Predictors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-multicolinearity">Verify Multicolinearity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-inflation-factor-vif">Variance Inflation Factor (VIF)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-features-to-reduce-vif">Remove Features to Reduce VIF</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#split-test-and-training-datasets">Split Test and Training Datasets</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-svm-model">Build the SVM Model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-principle">Working Principle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-fold-cross-validation">k-fold Cross Validation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-optimum-parameters">Select Optimum Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-optimum-hypothesis-svm-model">Train Optimum Hypothesis SVM Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-evaluation-confusion-matrix">Performance Evaluation (Confusion Matrix)</a></li>
+</ul>
+</li>
+</ul>
 
-      </div>
-    </div>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By Sebastian Schwindt, Ricardo Barros
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

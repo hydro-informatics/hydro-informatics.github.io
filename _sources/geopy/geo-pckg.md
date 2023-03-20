@@ -26,19 +26,21 @@ The tutorials in this eBook build on `gdal` and `ogr` (including `osr` for spati
 
 Select your platform for more specific installation instructions:
 
-````{tabbed} Linux / pip
+`````{tab-set}
+````{tab-item} Linux / pip
 
 GDAL requires sudo-installation. Find more details in the {ref}`Python installation instructions <pip-env>` of this eBook.
 
 ````
 
-````{tabbed} Windows / conda
+````{tab-item} Windows / conda
 To install `GDAL` for Python through {ref}`Anaconda Prompt <install-pckg>` enter:
 
 ```python
 conda install -c conda-forge gdal
 ```
 ````
+`````
 
 ````{admonition} Import GDAL, ogr, and osr from OSGeo
 :class: important
@@ -56,7 +58,8 @@ from osgeo import ogr
 ## geojson
 The [geojson](https://pypi.org/project/geojson/) library is the most direct option for handling {ref}`geojson` data and is also already installed along with {{ ft_url }}.
 
-````{tabbed} Linux / pip
+`````{tab-set}
+````{tab-item} Linux / pip
 To install `geojson`, open *Terminal* and type:
 
 ```python
@@ -64,19 +67,21 @@ pip install geojson
 ```
 ````
 
-````{tabbed} Windows / conda
+````{tab-item} Windows / conda
 To install `geojson` for Python Anaconda, open {ref}`Anaconda Prompt <install-pckg>` and type:
 
 ```python
 conda install -c conda-forge geojson
 ```
 ````
+`````
 
 (descartes)=
 ## Descartes Labs
 Even though of proprietary origin, the [`descarteslabs`](https://docs.descarteslabs.com/api.html) library (developed and maintained by [Descartes Labs](https://www.descarteslabs.com/)) comes with many open-sourced functions. Moreover, Descartes Labs hosts the showcase platform [GeoVisual Search](https://search.descarteslabs.com/) with juicy illustrations of artificial intelligence (AI) applications in geoscience. Note that `descarteslabs` is not installed along with {{ ft_url }}.
 
-````{tabbed} Linux / pip
+`````{tab-set}
+````{tab-item} Linux / pip
 To install `descarteslabs`, open Terminal and type:
 
 ```python
@@ -84,7 +89,7 @@ pip install descarteslabs
 ```
 ````
 
-````{tabbed} Windows / conda
+````{tab-item} Windows / conda
 To install `descarteslabs` for Python, open {ref}`Anaconda Prompt <install-pckg>` and type:
 
 ```python
@@ -98,6 +103,7 @@ conda install shapely
 pip install descarteslabs
 ```
 ````
+`````
 
 ## Python Imaging Library (PIL) / pillow
 Processing images with Python is enabled with the *Python Imaging Library* (*PIL*). *PIL* supports many image file formats and has efficient graphics processing capabilities. The `pillow` library is a user-friendly *PIL* fork and provides `Image*` modules (e.g., `Image`, `ImageDraw`, `ImageMath`, and many more). If {{ ft_url }} is installed, no further action is required for working with the *PIL*/*pillow*-related contents of this eBook.
@@ -108,7 +114,8 @@ Note that the `conda base` environment includes `PIL` (test with `import PIL`), 
 
 A preferable and very well documented package for {ref}`shp` handling is [`shapely`](https://shapely.readthedocs.io/). `shapely` is already installed along with {{ ft_url }}.
 
-````{tabbed} Linux / pip
+`````{tab-set}
+````{tab-item} Linux / pip
 To install `shapely`, open Terminal and type:
 
 ```python
@@ -116,19 +123,20 @@ pip install Shapely
 ```
 ````
 
-````{tabbed} Windows / conda
+````{tab-item} Windows / conda
 To install `shapely` for Python Anaconda, open {ref}`Anaconda Prompt <install-pckg>` and type:
 
 ```python
 conda install -c conda-forge shapely
 ```
 ````
-
+`````
 
 ## pyshp
 [pyshp](https://pypi.org/project/pyshp/) is another {ref}`shapefile <shp>` handling package, which builds on pure Python code (rather than wrappers) to simplify direct dealing with shapefiles in Python. `pyshp` is already installed along with {{ ft_url }}.
 
-````{tabbed} Linux / pip
+`````{tab-set}
+````{tab-item} Linux / pip
 To install `pyshp`, open Terminal and type:
 
 ```python
@@ -136,13 +144,14 @@ pip install pyshp
 ```
 ````
 
-````{tabbed} Windows / conda
+````{tab-item} Windows / conda
 To install `pyshp` for Python Anaconda, open {ref}`Anaconda Prompt <install-pckg>` and type:
 
 ```python
 conda install -c conda-forge pyshp
 ```
 ````
+`````
 
 (other-geo-pckgs)=
 ## Other packages

@@ -223,7 +223,8 @@ The Atom developers at *GitHub* (i.e., Microsoft) announced that they sunset (ar
 
 ## Installation
 
-````{tabbed} Linux
+`````{tab-set}
+````{tab-item} Linux
 **Linux** users find installers for various distributions at [atom.io](https://atom.io/). **Debian** (**Ubuntu**), **Red Hat** / **CentOS**, **Fedora**, and **SUSE** find easy installation guides at [https://flight-manual.atom.io](https://flight-manual.atom.io/getting-started/sections/installing-atom/).
 
 The short version for **Debian** (**Ubuntu**) is:
@@ -243,10 +244,10 @@ sudo apt install atom
 ```
 ````
 
-````{tabbed} Windows
+````{tab-item} Windows
 **Windows** users can download *Atom* from [atom.io](https://atom.io/) and install the executable.
 ````
-
+`````
 
 
 (atom-packages)=
@@ -309,7 +310,8 @@ Read more at [atom.io](https://atom.io/packages/spell-check) for more informatio
 To enable Python compatibility, first, visit the {ref}`install-python` section and install {{ ft_url }} for your system (i.e., either in a virtual or conda environment).
 ```
 
-````{tabbed} Linux
+`````{tab-set}
+````{tab-item} Linux
 
 Open Terminal and activate the environment where `flusstools` is installed. For instance, if `flusstools` is installed in a virtual environment called `vflussenv` that lives in the user home directory (`/home/USER/`) according to the Python installation instructions in this eBook (see {ref}`pip quick guide <pip-quick>`), activate the environment as follows:
 
@@ -320,13 +322,14 @@ source vflussenv/bin/activate
 
 ````
 
-````{tabbed} Windows
+````{tab-item} Windows
 Open Anaconda Prompt and activate `flussenv` (given that {{ ft_url }} is installed according to the {ref}`conda quick guide <conda-quick>`):
 
 ```
 conda activate flussenv
 ```
 ````
+`````
 
 Then, start *Atom* in the (pip or conda) environment through Terminal (Linux) or Anaconda Prompt (Windows):
 
@@ -336,8 +339,8 @@ atom
 
 *Atom* should open and provide the option to select a folder where a Python project will live or is already living. After selecting a folder, start editing your Python (`.py`) files. For running Python scripts, there are two options:
 
-
-````{tabbed} Option 1: Use Script Package
+`````{tab-set}
+````{tab-item} Option 1: Use Script Package
  first set up the *Script* package:
 
 * Make sure that the [script package](https://atom.io/packages/script) is installed.
@@ -350,7 +353,7 @@ To run a Python script:
 * Either go to **Packages** > **Script** > **Run with profile** and select **flussprofile**
 * Or press `Alt` + `Ctrl` + `Shift` + `B`
 ````
-````{tabbed} Option 2: Use atom-python-virtualenv Package
+````{tab-item} Option 2: Use atom-python-virtualenv Package
 Make sure to install the `atom-python-virtualenv` package (see the section on {ref}`installing Atom packages <atom-packages>`) and select `vflussenv` from the status bar at the bottom of the window as indicated in the below figure.
 
 ```{image} ../img/python/atom-enable-env.png
@@ -358,6 +361,7 @@ Make sure to install the `atom-python-virtualenv` package (see the section on {r
 
 To run a Python script press cd`Ctrl` + `Shift` + `B`
 ````
+`````
 
 ## More Console Options
 

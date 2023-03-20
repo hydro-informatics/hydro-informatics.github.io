@@ -1,894 +1,525 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Steady 3d (SLF - Selafin) &#8212; Hydro-Informatics</title>
-    
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script src="../_static/tabs.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'numerics/telemac3d-slf';</script>
     <link rel="canonical" href="https://hydro-informatics.com/numerics/telemac3d-slf.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Steady 3d (MED and Salome)" href="telemac3d-med.html" />
     <link rel="prev" title="Telemac3d" href="telemac3d.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/icon.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Get Started
- </span>
-</p>
+    
+    
+    <img src="../_static/icon.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/icon.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../lectures/classroom.html">
-   The Virtual Classroom
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/principles.html">
-     Principles
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/lectures.html">
-     Lectures and Exercises
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/take_seat.html">
-     Take a Seat
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../get-started/software.html">
-   Software Resources
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/vm.html">
-     Virtual Machines and Linux
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/ide.html">
-     Integrated Development Environments (IDEs)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../python-basics/pyinstall.html">
-     Python (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/git.html">
-     Version Control : git
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/geo.html">
-     Geospatial Software
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/install-openfoam.html">
-     OpenFOAM (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/install-telemac.html">
-     TELEMAC (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/others.html">
-     Other Software Resources
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/classroom.html">The Virtual Classroom</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/principles.html">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/lectures.html">Lectures and Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/take_seat.html">Take a Seat</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Python Basics
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../get-started/software.html">Software Resources</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/vm.html">Virtual Machines and Linux</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../get-started/ide.html">Integrated Development Environments (IDEs)</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../python-basics/pyinstall.html">Python (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/git.html">Version Control : git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/geo.html">Geospatial Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/install-openfoam.html">OpenFOAM (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/install-telemac.html">TELEMAC (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/others.html">Other Software Resources</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Basics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/python.html">
-   First Steps
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pybase.html">
-     Hello Data Types
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyerror.html">
-     Errors, Logging, and Debugging
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyloop.html">
-     Loops and Conditional Statements
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/modularize.html">
-   Object Orientation
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyfun.html">
-     Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pypckg.html">
-     Packages, Modules and Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/classes.html">
-     Object Orientation and Classes
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/data-handling.html">
-   Data and File Handling
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pynum.html">
-     Data Files, NumPy &amp; Pandas
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/xml.html">
-     Structured Data (XML, xlsx &amp; JSON)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyplot.html">
-     Plotting
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../jupyter/pystyle.html">
-   Code Style and Conventions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../jupyter/gui.html">
-   Graphical User Interfaces (GUIs)
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/python-exercises.html">
-   Python Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-ms.html">
-     1d Hydraulics (Manning-Strickler Formula)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-sp.html">
-     Reservoir Volume (Sequent Peak Algorithm)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-floods.html">
-     Flood Return Periods
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-sediment.html">
-     1d Sediment Transport
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-gui.html">
-     Create a GUI
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/python.html">First Steps</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pybase.html">Hello Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyerror.html">Errors, Logging, and Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyloop.html">Loops and Conditional Statements</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Geospatial Analysis
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/modularize.html">Object Orientation</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyfun.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pypckg.html">Packages, Modules and Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/classes.html">Object Orientation and Classes</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/data-handling.html">Data and File Handling</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pynum.html">Data Files, NumPy &amp; Pandas</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/xml.html">Structured Data (XML, xlsx &amp; JSON)</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyplot.html">Plotting</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/pystyle.html">Code Style and Conventions</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/gui.html">Graphical User Interfaces (GUIs)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/python-exercises.html">Python Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-ms.html">1d Hydraulics (Manning-Strickler Formula)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-sp.html">Reservoir Volume (Sequent Peak Algorithm)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-floods.html">Flood Return Periods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-sediment.html">1d Sediment Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-gui.html">Create a GUI</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Geospatial Analysis</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/geospatial-data.html">
-   Geospatial Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/use-qgis.html">
-   QGIS Tutorial
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/drone-processing.html">
-   Process Drone (UAV) Imagery
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../geopy/geo-python.html">
-   Geospatial Python
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/geo-pckg.html">
-     Geospatial Open Source Python Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-shp.html">
-     Shapefile (Vector) Handling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-raster.html">
-     Raster (Grid) Handling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-convert.html">
-     Vectorize and Rasterize
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-arcpy.html">
-     The Commercial arcpy Library
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/geo-exercises.html">
-   Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-geco.html">
-     Script a Habitat Suitability Map
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/geospatial-data.html">Geospatial Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/use-qgis.html">QGIS Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/drone-processing.html">Process Drone (UAV) Imagery</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../geopy/geo-python.html">Geospatial Python</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geopy/geo-pckg.html">Geospatial Open Source Python Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-shp.html">Shapefile (Vector) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-raster.html">Raster (Grid) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-convert.html">Vectorize and Rasterize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-arcpy.html">The Commercial arcpy Library</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Data Science
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../datascience/data-science.html">
-   Fundamentals (Coming soon)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/py-requirements.html">
-     Python Requirements
-    </a>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../datascience/data-prepro.html">
-     Data Pre-Processing
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-    <label for="toctree-checkbox-10">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/data-types.html">
-       The Nature of Data
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/data-cleaning.html">
-       Dataset Cleaning
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/dimensional-analysis.html">
-       Dimensional Analysis
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../datascience/theory.html">
-   Techniques (Coming soon)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/techniques.html">
-     Overview of Fundamental Techniques
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/calibrate-validate.html">
-     Model Calibration and Validation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
-     Support Vector Machine (SVM)
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/geo-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-geco.html">Script a Habitat Suitability Map</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Numerical Modeling
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Modeling</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="numerical-modeling.html">
-   Principles
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="basement.html">
-   BASEMENT
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pre-qgis-bm.html">
-     Pre-processing with QGIS
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="basement2d.html">
-     Run and Check a Steady 2d Simulation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="telemac.html">
-   TELEMAC
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="pre-slf-tm.html">
-     Pre-processing
-    </a>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="telemac2d.html">
-     Telemac2d
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-    <label for="toctree-checkbox-14">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="telemac2d-steady.html">
-       Steady 2d
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="telemac2d-unsteady.html">
-       Unsteady 2d
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 current active has-children">
-    <a class="reference internal" href="telemac3d.html">
-     Telemac3d
-    </a>
-    <input checked="" class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-    <label for="toctree-checkbox-15">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul class="current">
-     <li class="toctree-l3 current active">
-      <a class="current reference internal" href="#">
-       Steady 3d (SLF - Selafin)
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="telemac3d-med.html">
-       Steady 3d (MED and Salome)
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="telemac-gaia.html">
-     Gaia (Morphodynamics)
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-    <label for="toctree-checkbox-16">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="gaia-coupling.html">
-       Introduction and Coupling
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="gaia-basics.html">
-       Basic Setup of Gaia
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="gaia-bedload.html">
-       Bedload
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="gaia-suspended.html">
-       Suspended Load
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="gaia-run.html">
-       Run and Analyze
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="numerical-modeling.html">Principles</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="basement.html">BASEMENT</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="pre-qgis-bm.html">Pre-processing with QGIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basement2d.html">Run and Check a Steady 2d Simulation</a></li>
+
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Documentation
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/documentation.html">
-   How to Markdown and Document
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/glossary.html">
-   Glossary
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/notation.html">
-   Notation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/bibliography.html">
-   References
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/docs-exercises.html">
-   Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
-  <label for="toctree-checkbox-17">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-git.html">
-     Git and Markdown
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="telemac.html">TELEMAC</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pre-slf-tm.html">Pre-processing</a></li>
+
+
+<li class="toctree-l2 has-children"><a class="reference internal" href="telemac2d.html">Telemac2d</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="telemac2d-steady.html">Steady 2d</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="telemac2d-unsteady.html">Unsteady 2d</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Troubleshoot
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
-   Programming Tools and IDEs
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
-  <label for="toctree-checkbox-18">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
-     Debugging Anaconda
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-python.html">
-     Debugging Python Code
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
-     Debugging Jupyter
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
-   Numerical Models
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
-  <label for="toctree-checkbox-19">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
-     Debugging BASEMENT
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
-     Debugging TELEMAC
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-os.html">
-   Operating Systems (Linux and VMs)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
-  <label for="toctree-checkbox-20">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
-     Debugging Debian Linux
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
-     Debugging Virtual Machines
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="telemac3d.html">Telemac3d</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Steady 3d (SLF - Selafin)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="telemac3d-med.html">Steady 3d (MED and Salome)</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Disclaimer and License
- </span>
-</p>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="telemac-gaia.html">Gaia (Morphodynamics)</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="gaia-coupling.html">Introduction and Coupling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gaia-basics.html">Basic Setup of Gaia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gaia-bedload.html">Bedload</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gaia-suspended.html">Suspended Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gaia-run.html">Run and Analyze</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Science</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../terms/license.html">
-   License
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../terms/disclaimer.html">
-   Disclaimer
-  </a>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/data-science.html">Fundamentals (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/py-requirements.html">Python Requirements</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../datascience/data-prepro.html">Data Pre-Processing</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/data-types.html">The Nature of Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/data-cleaning.html">Dataset Cleaning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/dimensional-analysis.html">Dimensional Analysis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/theory.html">Techniques (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/techniques.html">Overview of Fundamental Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/calibrate-validate.html">Model Calibration and Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/morphology-predictor-svm.html">Support Vector Machine (SVM)</a></li>
+
+
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../documentation/documentation.html">How to Markdown and Document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/notation.html">Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/bibliography.html">References</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/docs-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-git.html">Git and Markdown</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Troubleshoot</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-programming.html">Programming Tools and IDEs</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-anaconda.html">Debugging Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-python.html">Debugging Python Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-jupyter.html">Debugging Jupyter</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">Numerical Models</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-basement.html">Debugging BASEMENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-telemac.html">Debugging TELEMAC</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-os.html">Operating Systems (Linux and VMs)</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-linux.html">Debugging Debian Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-vm.html">Debugging Virtual Machines</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-scilife.html">Science Life Hacks</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-zotero.html">Zotero Utilities</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Disclaimer and License</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../terms/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terms/disclaimer.html">Disclaimer</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a> and Ricardo Barros
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/numerics/telemac3d-slf.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/hydro-informatics/jupyter-python-course"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
         
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/hydro-informatics/jupyter-python-course" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/numerics/telemac3d-slf.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-        </div>
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Steady 3d (SLF - Selafin)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#re-use-the-2d-model">
-   Re-use the 2d Model
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#steering-file">
-   Steering File
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#computation-environment">
-     Computation Environment
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#general-parameters">
-     General Parameters
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#numerical-parameters">
-     Numerical Parameters
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#vertical-3d-parameters">
-     Vertical (3d) Parameters
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#open-liquid-boundaries">
-     Open (Liquid) Boundaries
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#initial-conditions">
-     Initial Conditions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#turbulence">
-     Turbulence
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#run-telemac3d">
-   Run Telemac3d
-  </a>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#re-use-the-2d-model">Re-use the 2d Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steering-file">Steering File</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computation-environment">Computation Environment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-parameters">General Parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-parameters">Numerical Parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vertical-3d-parameters">Vertical (3d) Parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-liquid-boundaries">Open (Liquid) Boundaries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-conditions">Initial Conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#turbulence">Turbulence</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-telemac3d">Run Telemac3d</a></li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="steady-3d-slf-selafin">
-<span id="chpt-telemac3d-slf"></span><h1>Steady 3d (SLF - Selafin)<a class="headerlink" href="#steady-3d-slf-selafin" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="steady-3d-slf-selafin">
+<span id="chpt-telemac3d-slf"></span><h1>Steady 3d (SLF - Selafin)<a class="headerlink" href="#steady-3d-slf-selafin" title="Permalink to this headline">#</a></h1>
 <div class="warning admonition">
 <p class="admonition-title">Tutorial under construction</p>
 <p>This tutorial is still growing and provides currently only rough guidance to constructing a 3d steady, hydrodynamic model with TELEMAC.</p>
@@ -913,18 +544,18 @@
 <p>Consider saving the files in a new folder, such as <code class="docutils literal notranslate"><span class="pre">/steady3d-tutorial/</span></code>.</p>
 <div class="admonition-d-steady-simulation-file-repository admonition">
 <p class="admonition-title">3d-steady simulation file repository</p>
-<p>The simulation files used in this tutorial are available at <a class="reference external" href="https://github.com/hydro-informatics/telemac/tree/main/steady3d-tutorial/">https://github.com/hydro-informatics/telemac/tree/main/steady3d-tutorial/</a>.</p>
+<p>The simulation files used in this tutorial are available at <a class="github reference external" href="https://github.com/hydro-informatics/telemac/tree/main/steady3d-tutorial/">hydro-informatics/telemac</a>.</p>
 </div>
-<div class="section" id="re-use-the-2d-model">
-<span id="prepro-3dsteady-slf"></span><h2>Re-use the 2d Model<a class="headerlink" href="#re-use-the-2d-model" title="Permalink to this headline">¶</a></h2>
+<section id="re-use-the-2d-model">
+<span id="prepro-3dsteady-slf"></span><h2>Re-use the 2d Model<a class="headerlink" href="#re-use-the-2d-model" title="Permalink to this headline">#</a></h2>
 <p>The simulation of 3d flow phenomena flows requires the adaptation of keywords and additional keywords (e.g., for linking liquid boundary files) in the steering (<code class="docutils literal notranslate"><span class="pre">*.cas</span></code>) file from the steady2d tutorial (<a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/steady2d.cas">download steady2d.cas</a>).</p>
 <div class="admonition-view-the-steady3d-steering-file admonition">
 <p class="admonition-title">View the steady3d steering file</p>
 <p>To view the integration of the steady3d simulation keywords in the steering file, the <code class="docutils literal notranslate"><span class="pre">steady3d.cas</span></code> file can be <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady3d-tutorial/steady3d.cas">downloaded here</a>.</p>
 </div>
-</div>
-<div class="section" id="steering-file">
-<h2>Steering File<a class="headerlink" href="#steering-file" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="steering-file">
+<h2>Steering File<a class="headerlink" href="#steering-file" title="Permalink to this headline">#</a></h2>
 <p>This tutorial features a steady, hydrodynamic model with an inflow rate of 35 m<span class="math notranslate nohighlight">\(^3\)</span>/s (prescribed upstream flow rate boundary) and an outflow depth of 2 m (prescribed downstream elevation). The simulation uses 5 vertical layers that constitute a numerical grid of prisms. 3d outputs of <em>U</em> (<em>x</em>-direction), <em>V</em> (<em>y</em>-direction), and <em>W</em> (<em>z</em>-direction) velocities, as well as the elevation <em>Z</em>, are written to a file named <code class="docutils literal notranslate"><span class="pre">r3dsteady.slf</span></code>. 2d outputs of depth-averaged <em>U</em> velocity (<em>x</em>-direction), depth-averaged <em>V</em> velocity (<em>y</em>-direction), and water depth <em>h</em> are written to a file named <code class="docutils literal notranslate"><span class="pre">r2d3dsteady.slf</span></code>.</p>
 <p>The below code block shows the steering file <code class="docutils literal notranslate"><span class="pre">t3d_flume.cas</span></code> and details for every parameter are provided after the code block. The slash <code class="docutils literal notranslate"><span class="pre">/</span></code> character comments out lines (i.e., TELEMAC will ignore anything in a line the <code class="docutils literal notranslate"><span class="pre">/</span></code> character). The <code class="docutils literal notranslate"><span class="pre">:</span></code> character separates <code class="docutils literal notranslate"><span class="pre">VARIABLE</span> <span class="pre">NAME</span></code> and <code class="docutils literal notranslate"><span class="pre">VALUE</span></code>s. Alternatively to the <code class="docutils literal notranslate"><span class="pre">:</span></code>, also a <code class="docutils literal notranslate"><span class="pre">=</span></code> sign may be used. The <code class="docutils literal notranslate"><span class="pre">&amp;ETA</span></code> at the end of the file makes TELEMAC printing out a list of keywords applied (in the <em>DAMOCLES</em> routine).</p>
 <div class="admonition tip">
@@ -933,169 +564,169 @@
 </div>
 <div class="note dropdown admonition">
 <p class="admonition-title">Expand to view the steady3d.cas steering file</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="n">steady3d</span><span class="p">.</span><span class="n">cas</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">steady3d</span><span class="p">.</span><span class="n">cas</span>
 <span class="o">/------------------------------------------------------------------/</span>
-<span class="o">/</span>			<span class="n">COMPUTATION</span> <span class="n">ENVIRONMENT</span>
-<span class="o">/------------------------------------------------------------------/</span>
-<span class="o">/</span>
-<span class="n">TITLE</span> <span class="p">:</span> <span class="s1">&#39;3d steady&#39;</span>
-<span class="n">MASS</span><span class="o">-</span><span class="n">BALANCE</span> <span class="p">:</span> <span class="n">YES</span>
-<span class="o">/</span>
-<span class="n">BOUNDARY</span> <span class="n">CONDITIONS</span> <span class="k">FILE</span> <span class="p">:</span> <span class="n">boundaries</span><span class="p">.</span><span class="n">cli</span>
-<span class="n">GEOMETRY</span> <span class="k">FILE</span>            <span class="p">:</span> <span class="n">qgismesh</span><span class="p">.</span><span class="n">slf</span>
-<span class="mi">3</span><span class="n">D</span> <span class="k">RESULT FILE</span>           <span class="p">:</span> <span class="n">r3dsteady</span><span class="p">.</span><span class="n">slf</span>
-<span class="mi">2</span><span class="n">D</span> <span class="k">RESULT FILE</span>           <span class="p">:</span> <span class="n">r2d3dsteady</span><span class="p">.</span><span class="n">med</span>
-<span class="o">/</span> <span class="k">FILE </span><span class="n">FOR</span> <span class="mi">2</span><span class="n">D</span> <span class="n">CONTINUATION</span> <span class="p">:</span> <span class="n">r2dsteady</span><span class="p">.</span><span class="n">slf</span> <span class="o">/</span> <span class="n">sec</span><span class="p">.</span> <span class="mf">3.1</span><span class="p">.</span><span class="mi">1</span>
-<span class="o">/</span>
-<span class="n">VARIABLES</span> <span class="n">FOR</span> <span class="mi">2</span><span class="n">D</span> <span class="n">GRAPHIC</span> <span class="n">PRINTOUTS</span> <span class="p">:</span> <span class="n">U</span><span class="p">,</span><span class="n">V</span><span class="p">,</span><span class="n">H</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">Q</span><span class="p">,</span><span class="n">F</span> <span class="o">/</span> <span class="n">Q</span> <span class="n">enables</span> <span class="n">boundary</span> <span class="n">flux</span> <span class="n">equilibrium</span> <span class="n">controls</span>
-<span class="n">VARIABLES</span> <span class="n">FOR</span> <span class="mi">3</span><span class="n">D</span> <span class="n">GRAPHIC</span> <span class="n">PRINTOUTS</span> <span class="p">:</span> <span class="n">Z</span><span class="p">,</span><span class="n">U</span><span class="p">,</span><span class="n">V</span><span class="p">,</span><span class="n">W</span>
-<span class="o">/</span>
-<span class="o">/------------------------------------------------------------------/</span>
-<span class="o">/</span>			<span class="n">GENERAL</span> <span class="n">PARAMETERS</span>
+<span class="o">/</span><span class="w">			</span><span class="n">COMPUTATION</span><span class="w"> </span><span class="n">ENVIRONMENT</span>
 <span class="o">/------------------------------------------------------------------/</span>
 <span class="o">/</span>
-<span class="o">/</span> <span class="mi">2</span><span class="n">D</span> <span class="n">CONTINUATION</span> <span class="p">:</span> <span class="n">YES</span> <span class="o">/</span> <span class="n">enable</span> <span class="n">to</span> <span class="n">start</span> <span class="n">off</span> <span class="n">from</span> <span class="mi">2</span><span class="n">d</span> <span class="n">simulation</span>
-<span class="nb">TIME </span><span class="n">STEP</span> <span class="p">:</span> <span class="mf">1.</span>
-<span class="n">NUMBER</span> <span class="n">OF</span> <span class="nb">TIME </span><span class="n">STEPS</span> <span class="p">:</span> <span class="mi">8000</span>
-<span class="n">GRAPHIC</span> <span class="n">PRINTOUT</span> <span class="n">PERIOD</span> <span class="p">:</span> <span class="mi">500</span>
-<span class="n">LISTING</span> <span class="n">PRINTOUT</span> <span class="n">PERIOD</span> <span class="p">:</span> <span class="mi">200</span>
+<span class="n">TITLE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;3d steady&#39;</span>
+<span class="n">MASS</span><span class="o">-</span><span class="n">BALANCE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">YES</span>
+<span class="o">/</span>
+<span class="n">BOUNDARY</span><span class="w"> </span><span class="n">CONDITIONS</span><span class="w"> </span><span class="k">FILE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">boundaries</span><span class="p">.</span><span class="n">cli</span>
+<span class="n">GEOMETRY</span><span class="w"> </span><span class="k">FILE</span><span class="w">            </span><span class="p">:</span><span class="w"> </span><span class="n">qgismesh</span><span class="p">.</span><span class="n">slf</span>
+<span class="mi">3</span><span class="n">D</span><span class="w"> </span><span class="k">RESULT FILE</span><span class="w">           </span><span class="p">:</span><span class="w"> </span><span class="n">r3dsteady</span><span class="p">.</span><span class="n">slf</span>
+<span class="mi">2</span><span class="n">D</span><span class="w"> </span><span class="k">RESULT FILE</span><span class="w">           </span><span class="p">:</span><span class="w"> </span><span class="n">r2d3dsteady</span><span class="p">.</span><span class="n">med</span>
+<span class="o">/</span><span class="w"> </span><span class="k">FILE </span><span class="n">FOR</span><span class="w"> </span><span class="mi">2</span><span class="n">D</span><span class="w"> </span><span class="n">CONTINUATION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">r2dsteady</span><span class="p">.</span><span class="n">slf</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">sec</span><span class="p">.</span><span class="w"> </span><span class="mf">3.1</span><span class="p">.</span><span class="mi">1</span>
+<span class="o">/</span>
+<span class="n">VARIABLES</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="mi">2</span><span class="n">D</span><span class="w"> </span><span class="n">GRAPHIC</span><span class="w"> </span><span class="n">PRINTOUTS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">U</span><span class="p">,</span><span class="n">V</span><span class="p">,</span><span class="n">H</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">Q</span><span class="p">,</span><span class="n">F</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Q</span><span class="w"> </span><span class="n">enables</span><span class="w"> </span><span class="n">boundary</span><span class="w"> </span><span class="n">flux</span><span class="w"> </span><span class="n">equilibrium</span><span class="w"> </span><span class="n">controls</span>
+<span class="n">VARIABLES</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="mi">3</span><span class="n">D</span><span class="w"> </span><span class="n">GRAPHIC</span><span class="w"> </span><span class="n">PRINTOUTS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Z</span><span class="p">,</span><span class="n">U</span><span class="p">,</span><span class="n">V</span><span class="p">,</span><span class="n">W</span>
 <span class="o">/</span>
 <span class="o">/------------------------------------------------------------------/</span>
-<span class="o">/</span>			<span class="n">VERTICAL</span>
-<span class="o">/------------------------------------------------------------------/</span>
-<span class="o">/</span> <span class="n">vertical</span> <span class="n">cell</span> <span class="n">height</span> <span class="n">defined</span> <span class="n">by</span> <span class="n">initial</span> <span class="n">condition</span> <span class="n">x</span> <span class="n">no</span><span class="p">.</span> <span class="n">of</span> <span class="n">levels</span>
-<span class="o">/</span> <span class="n">will</span> <span class="n">be</span> <span class="n">adapted</span> <span class="n">for</span> <span class="n">every</span> <span class="nb">time </span><span class="n">step</span>
-<span class="n">NUMBER</span> <span class="n">OF</span> <span class="n">HORIZONTAL</span> <span class="n">LEVELS</span> <span class="p">:</span> <span class="mi">5</span> <span class="o">/</span> <span class="n">default</span> <span class="nb">and </span><span class="n">minimum</span> <span class="k">is </span><span class="mi">2</span><span class="p">,</span> <span class="n">upward</span> <span class="n">vertical</span> <span class="n">direction</span>
-<span class="n">MESH</span> <span class="n">TRANSFORMATION</span> <span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span><span class="o">-</span><span class="n">CALCOT</span> <span class="p">(</span><span class="n">user</span> <span class="n">defined</span><span class="p">)</span> <span class="mi">1</span><span class="o">-</span><span class="n">SIGMA</span> <span class="p">(</span><span class="n">default</span><span class="p">)</span> <span class="mi">3</span><span class="o">-</span><span class="n">user</span> <span class="n">defined</span>
-<span class="n">ELEMENT</span> <span class="p">:</span> <span class="s1">&#39;PRISM&#39;</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is</span> <span class="s1">&#39;PRISM&#39;</span> <span class="n">but</span> <span class="n">preferably</span> <span class="k">use</span> <span class="s1">&#39;TETRAHEDRON&#39;</span>
-<span class="o">/</span>
-<span class="o">/------------------------------------------------------------------/</span>
-<span class="o">/</span>			<span class="n">NUMERICAL</span> <span class="n">PARAMETERS</span>
+<span class="o">/</span><span class="w">			</span><span class="n">GENERAL</span><span class="w"> </span><span class="n">PARAMETERS</span>
 <span class="o">/------------------------------------------------------------------/</span>
 <span class="o">/</span>
-<span class="o">/</span> <span class="n">ADVECTION</span><span class="o">-</span><span class="n">DIFFUSION</span>
+<span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="n">D</span><span class="w"> </span><span class="n">CONTINUATION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">YES</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">enable</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="n">off</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="mi">2</span><span class="n">d</span><span class="w"> </span><span class="n">simulation</span>
+<span class="nb">TIME </span><span class="n">STEP</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.</span>
+<span class="n">NUMBER</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="nb">TIME </span><span class="n">STEPS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">8000</span>
+<span class="n">GRAPHIC</span><span class="w"> </span><span class="n">PRINTOUT</span><span class="w"> </span><span class="n">PERIOD</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+<span class="n">LISTING</span><span class="w"> </span><span class="n">PRINTOUT</span><span class="w"> </span><span class="n">PERIOD</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">200</span>
+<span class="o">/</span>
+<span class="o">/------------------------------------------------------------------/</span>
+<span class="o">/</span><span class="w">			</span><span class="n">VERTICAL</span>
+<span class="o">/------------------------------------------------------------------/</span>
+<span class="o">/</span><span class="w"> </span><span class="n">vertical</span><span class="w"> </span><span class="n">cell</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="n">defined</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">initial</span><span class="w"> </span><span class="n">condition</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">no</span><span class="p">.</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">levels</span>
+<span class="o">/</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">adapted</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="n">every</span><span class="w"> </span><span class="nb">time </span><span class="n">step</span>
+<span class="n">NUMBER</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">HORIZONTAL</span><span class="w"> </span><span class="n">LEVELS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="nb">and </span><span class="n">minimum</span><span class="w"> </span><span class="k">is </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">upward</span><span class="w"> </span><span class="n">vertical</span><span class="w"> </span><span class="n">direction</span>
+<span class="n">MESH</span><span class="w"> </span><span class="n">TRANSFORMATION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">0</span><span class="o">-</span><span class="n">CALCOT</span><span class="w"> </span><span class="p">(</span><span class="n">user</span><span class="w"> </span><span class="n">defined</span><span class="p">)</span><span class="w"> </span><span class="mi">1</span><span class="o">-</span><span class="n">SIGMA</span><span class="w"> </span><span class="p">(</span><span class="n">default</span><span class="p">)</span><span class="w"> </span><span class="mi">3</span><span class="o">-</span><span class="n">user</span><span class="w"> </span><span class="n">defined</span>
+<span class="n">ELEMENT</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;PRISM&#39;</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="s1">&#39;PRISM&#39;</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="n">preferably</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="s1">&#39;TETRAHEDRON&#39;</span>
+<span class="o">/</span>
+<span class="o">/------------------------------------------------------------------/</span>
+<span class="o">/</span><span class="w">			</span><span class="n">NUMERICAL</span><span class="w"> </span><span class="n">PARAMETERS</span>
+<span class="o">/------------------------------------------------------------------/</span>
+<span class="o">/</span>
+<span class="o">/</span><span class="w"> </span><span class="n">ADVECTION</span><span class="o">-</span><span class="n">DIFFUSION</span>
 <span class="o">/------------------------------------------------------------------</span>
-<span class="n">SCHEME</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">VELOCITIES</span> <span class="p">:</span> <span class="mi">5</span>
-<span class="n">SCHEME</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">K</span><span class="o">-</span><span class="nb">EPSILON</span> <span class="p">:</span> <span class="mi">5</span>
-<span class="n">SCHEME</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">TRACERS</span> <span class="p">:</span> <span class="mi">5</span>
-<span class="n">SCHEME</span> <span class="n">OPTION</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">VELOCITIES</span> <span class="p">:</span> <span class="mi">4</span> <span class="o">/</span> <span class="k">use </span><span class="mi">2</span> <span class="n">for</span> <span class="n">without</span> <span class="n">tidal</span> <span class="n">flats</span> <span class="n">for</span> <span class="n">speed</span>
-<span class="n">SCHEME</span> <span class="n">OPTION</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">K</span><span class="o">-</span><span class="nb">EPSILON</span> <span class="p">:</span> <span class="mi">4</span>
-<span class="n">SCHEME</span> <span class="n">OPTION</span> <span class="n">FOR</span> <span class="n">ADVECTION</span> <span class="n">OF</span> <span class="n">TRACERS</span> <span class="p">:</span> <span class="mi">4</span>
+<span class="n">SCHEME</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">ADVECTION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">VELOCITIES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">5</span>
+<span class="n">SCHEME</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">ADVECTION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">K</span><span class="o">-</span><span class="nb">EPSILON</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">5</span>
+<span class="n">SCHEME</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">ADVECTION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">TRACERS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">5</span>
+<span class="n">SCHEME</span><span class="w"> </span><span class="n">OPTION</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">ADVECTION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">VELOCITIES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">use </span><span class="mi">2</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="n">without</span><span class="w"> </span><span class="n">tidal</span><span class="w"> </span><span class="n">flats</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="n">speed</span>
+<span class="n">SCHEME</span><span class="w"> </span><span class="n">OPTION</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">ADVECTION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">K</span><span class="o">-</span><span class="nb">EPSILON</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">4</span>
+<span class="n">SCHEME</span><span class="w"> </span><span class="n">OPTION</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">ADVECTION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">TRACERS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">4</span>
 <span class="o">/</span>
-<span class="n">MATRIX</span> <span class="n">STORAGE</span> <span class="p">:</span> <span class="mi">3</span> <span class="o">/</span> <span class="mi">1</span> <span class="p">(</span><span class="n">element</span><span class="o">-</span><span class="n">by</span><span class="o">-</span><span class="n">element</span><span class="p">),</span> <span class="mi">3</span> <span class="p">(</span><span class="n">segment</span><span class="o">-</span><span class="n">wise</span> <span class="n">faster</span><span class="p">)</span>
-<span class="n">SUPG</span> <span class="n">OPTION</span> <span class="p">:</span> <span class="mi">2</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">2</span>  <span class="o">/</span> <span class="n">classic</span> <span class="n">supg</span> <span class="n">for</span> <span class="n">U</span> <span class="nb">and </span><span class="n">V</span>  <span class="n">see</span> <span class="n">docs</span> <span class="n">sec</span> <span class="mf">6.2</span><span class="p">.</span><span class="mi">2</span>
+<span class="n">MATRIX</span><span class="w"> </span><span class="n">STORAGE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="n">element</span><span class="o">-</span><span class="n">by</span><span class="o">-</span><span class="n">element</span><span class="p">),</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">(</span><span class="n">segment</span><span class="o">-</span><span class="n">wise</span><span class="w"> </span><span class="n">faster</span><span class="p">)</span>
+<span class="n">SUPG</span><span class="w"> </span><span class="n">OPTION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">2</span><span class="w">  </span><span class="o">/</span><span class="w"> </span><span class="n">classic</span><span class="w"> </span><span class="n">supg</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="nb">and </span><span class="n">V</span><span class="w">  </span><span class="n">see</span><span class="w"> </span><span class="n">docs</span><span class="w"> </span><span class="n">sec</span><span class="w"> </span><span class="mf">6.2</span><span class="p">.</span><span class="mi">2</span>
 <span class="o">/</span>
-<span class="o">/</span> <span class="n">PROPAGATION</span> <span class="n">HEIGHT</span> <span class="nb">AND </span><span class="n">STABILITY</span>
-<span class="o">/</span> <span class="o">------------------------------------------------------------------</span>
-<span class="n">IMPLICITATION</span> <span class="n">FOR</span> <span class="n">DEPTH</span> <span class="p">:</span> <span class="mf">0.55</span> <span class="o">/</span> <span class="n">should</span> <span class="n">be</span> <span class="n">between</span> <span class="mf">0.55</span> <span class="nb">and </span><span class="mf">0.6</span>
-<span class="n">IMPLICITATION</span> <span class="n">FOR</span> <span class="n">VELOCITIES</span> <span class="p">:</span> <span class="mf">0.55</span> <span class="o">/</span> <span class="n">should</span> <span class="n">be</span> <span class="n">between</span> <span class="mf">0.55</span> <span class="nb">and </span><span class="mf">0.6</span>
-<span class="n">IMPLICITATION</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="p">:</span> <span class="mf">1.</span>
-<span class="n">FREE</span> <span class="n">SURFACE</span> <span class="n">GRADIENT</span> <span class="n">COMPATIBILITY</span> <span class="p">:</span> <span class="mf">0.1</span>  <span class="o">/</span> <span class="n">default</span> <span class="mf">1.</span>
+<span class="o">/</span><span class="w"> </span><span class="n">PROPAGATION</span><span class="w"> </span><span class="n">HEIGHT</span><span class="w"> </span><span class="nb">AND </span><span class="n">STABILITY</span>
+<span class="o">/</span><span class="w"> </span><span class="o">------------------------------------------------------------------</span>
+<span class="n">IMPLICITATION</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">DEPTH</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.55</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">between</span><span class="w"> </span><span class="mf">0.55</span><span class="w"> </span><span class="nb">and </span><span class="mf">0.6</span>
+<span class="n">IMPLICITATION</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">VELOCITIES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.55</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">between</span><span class="w"> </span><span class="mf">0.55</span><span class="w"> </span><span class="nb">and </span><span class="mf">0.6</span>
+<span class="n">IMPLICITATION</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">DIFFUSION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.</span>
+<span class="n">FREE</span><span class="w"> </span><span class="n">SURFACE</span><span class="w"> </span><span class="n">GRADIENT</span><span class="w"> </span><span class="n">COMPATIBILITY</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="w">  </span><span class="o">/</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="mf">1.</span>
 <span class="o">/</span>
-<span class="o">/</span> <span class="n">MASS</span> <span class="n">LUMPING</span> <span class="o">-</span> <span class="n">enable</span> <span class="n">to</span> <span class="n">fasten</span> <span class="n">calculations</span> <span class="p">(</span><span class="n">smoothens</span><span class="p">)</span> <span class="o">-</span> <span class="n">possibly</span> <span class="n">avoid</span> <span class="n">in</span> <span class="mi">3</span><span class="n">d</span>
-<span class="o">/</span> <span class="o">------------------------------------------------------------------</span>
-<span class="o">/</span> <span class="n">MASS</span><span class="o">-</span><span class="n">LUMPING</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">1</span> <span class="k">is </span><span class="n">ON</span> <span class="o">-</span> <span class="mi">0</span> <span class="k">is </span><span class="n">OFF</span> <span class="p">(</span><span class="n">default</span><span class="p">)</span>
-<span class="o">/</span> <span class="n">MASS</span><span class="o">-</span><span class="n">LUMPING</span> <span class="n">FOR</span> <span class="n">DEPTH</span> <span class="p">:</span> <span class="mf">1.</span>  <span class="o">/</span> <span class="n">VELOCITY</span> <span class="n">has</span> <span class="n">no</span> <span class="n">effect</span>
-<span class="o">/</span> <span class="n">MASS</span><span class="o">-</span><span class="n">LUMPING</span> <span class="n">FOR</span> <span class="n">WEAK</span> <span class="n">CHARACTERISTICS</span> <span class="p">:</span> <span class="mi">1</span>
+<span class="o">/</span><span class="w"> </span><span class="n">MASS</span><span class="w"> </span><span class="n">LUMPING</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">enable</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">fasten</span><span class="w"> </span><span class="n">calculations</span><span class="w"> </span><span class="p">(</span><span class="n">smoothens</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">possibly</span><span class="w"> </span><span class="n">avoid</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="mi">3</span><span class="n">d</span>
+<span class="o">/</span><span class="w"> </span><span class="o">------------------------------------------------------------------</span>
+<span class="o">/</span><span class="w"> </span><span class="n">MASS</span><span class="o">-</span><span class="n">LUMPING</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">DIFFUSION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">is </span><span class="n">ON</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">is </span><span class="n">OFF</span><span class="w"> </span><span class="p">(</span><span class="n">default</span><span class="p">)</span>
+<span class="o">/</span><span class="w"> </span><span class="n">MASS</span><span class="o">-</span><span class="n">LUMPING</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">DEPTH</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.</span><span class="w">  </span><span class="o">/</span><span class="w"> </span><span class="n">VELOCITY</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">no</span><span class="w"> </span><span class="n">effect</span>
+<span class="o">/</span><span class="w"> </span><span class="n">MASS</span><span class="o">-</span><span class="n">LUMPING</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">WEAK</span><span class="w"> </span><span class="n">CHARACTERISTICS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="o">/</span>
 <span class="o">/------------------------------------------------------------------/</span>
-<span class="o">/</span>			<span class="n">HYDRODYNAMICS</span>
+<span class="o">/</span><span class="w">			</span><span class="n">HYDRODYNAMICS</span>
 <span class="o">/------------------------------------------------------------------/</span>
 <span class="o">/</span>
-<span class="o">/</span> <span class="n">HYDRODYNAMIC</span> <span class="n">SOLVER</span>
+<span class="o">/</span><span class="w"> </span><span class="n">HYDRODYNAMIC</span><span class="w"> </span><span class="n">SOLVER</span>
 <span class="o">/------------------------------------------------------------------</span>
-<span class="n">NON</span><span class="o">-</span><span class="n">HYDROSTATIC</span> <span class="n">VERSION</span> <span class="p">:</span> <span class="n">YES</span>
-<span class="o">/</span> <span class="n">solver</span> <span class="k">options </span><span class="n">are</span>
-<span class="o">/</span> <span class="mi">1</span><span class="o">-</span><span class="n">conjugate</span> <span class="n">method</span> <span class="mi">2</span><span class="o">-</span><span class="n">conjugate</span> <span class="n">residual</span> <span class="n">method</span> <span class="mi">3</span><span class="o">-</span><span class="n">conjugate</span> <span class="n">gradient</span>
-<span class="o">/</span> <span class="mi">4</span><span class="o">-</span><span class="n">minimum</span> <span class="n">error</span> <span class="mi">5</span><span class="o">-</span><span class="n">square</span> <span class="n">conjugate</span> <span class="n">gradient</span> <span class="mi">6</span><span class="o">-</span><span class="n">stabilized</span> <span class="n">conjugate</span> <span class="n">gradient</span> <span class="n">CGSTAB</span>
-<span class="o">/</span> <span class="mi">7</span><span class="o">-</span><span class="n">Generalised</span> <span class="n">Minimum</span> <span class="n">RESidual</span> <span class="n">GMRES</span> <span class="k">is </span><span class="n">the</span> <span class="n">favorite</span> <span class="n">for</span> <span class="n">improperly</span> <span class="n">conditioned</span> <span class="n">systems</span> <span class="o">-</span> <span class="n">RECOMMENDED</span> <span class="n">in</span> <span class="mi">3</span><span class="n">d</span>
-<span class="o">/</span> <span class="mi">8</span><span class="o">-</span><span class="n">direct</span> <span class="n">solver</span> <span class="n">YSMP</span> <span class="p">(</span><span class="n">Yale</span><span class="p">)</span> <span class="k">is </span><span class="nb">not </span><span class="n">working</span> <span class="n">with</span> <span class="n">parallel</span> <span class="n">versions</span>
-<span class="n">SOLVER</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">VELOCITIES</span> <span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">1</span><span class="o">-</span><span class="n">default</span>
-<span class="n">SOLVER</span> <span class="n">FOR</span> <span class="n">PROPAGATION</span> <span class="p">:</span> <span class="mi">7</span> <span class="o">/</span> <span class="mi">7</span><span class="o">-</span><span class="n">default</span>
-<span class="n">SOLVER</span> <span class="n">FOR</span> <span class="n">PPE</span> <span class="p">:</span> <span class="mi">7</span> <span class="o">/</span> <span class="mi">7</span><span class="o">-</span><span class="n">default</span>
-<span class="o">/</span> <span class="n">SOLVER</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">TRACERS</span> <span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">one</span> <span class="k">value </span><span class="n">per</span> <span class="n">tracer</span>
-<span class="n">SOLVER</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">K</span><span class="o">-</span><span class="nb">EPSILON</span> <span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">1</span><span class="o">-</span><span class="n">default</span>
+<span class="n">NON</span><span class="o">-</span><span class="n">HYDROSTATIC</span><span class="w"> </span><span class="n">VERSION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">YES</span>
+<span class="o">/</span><span class="w"> </span><span class="n">solver</span><span class="w"> </span><span class="k">options </span><span class="n">are</span>
+<span class="o">/</span><span class="w"> </span><span class="mi">1</span><span class="o">-</span><span class="n">conjugate</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="mi">2</span><span class="o">-</span><span class="n">conjugate</span><span class="w"> </span><span class="n">residual</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="mi">3</span><span class="o">-</span><span class="n">conjugate</span><span class="w"> </span><span class="n">gradient</span>
+<span class="o">/</span><span class="w"> </span><span class="mi">4</span><span class="o">-</span><span class="n">minimum</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="mi">5</span><span class="o">-</span><span class="n">square</span><span class="w"> </span><span class="n">conjugate</span><span class="w"> </span><span class="n">gradient</span><span class="w"> </span><span class="mi">6</span><span class="o">-</span><span class="n">stabilized</span><span class="w"> </span><span class="n">conjugate</span><span class="w"> </span><span class="n">gradient</span><span class="w"> </span><span class="n">CGSTAB</span>
+<span class="o">/</span><span class="w"> </span><span class="mi">7</span><span class="o">-</span><span class="n">Generalised</span><span class="w"> </span><span class="n">Minimum</span><span class="w"> </span><span class="n">RESidual</span><span class="w"> </span><span class="n">GMRES</span><span class="w"> </span><span class="k">is </span><span class="n">the</span><span class="w"> </span><span class="n">favorite</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="n">improperly</span><span class="w"> </span><span class="n">conditioned</span><span class="w"> </span><span class="n">systems</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">RECOMMENDED</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="mi">3</span><span class="n">d</span>
+<span class="o">/</span><span class="w"> </span><span class="mi">8</span><span class="o">-</span><span class="n">direct</span><span class="w"> </span><span class="n">solver</span><span class="w"> </span><span class="n">YSMP</span><span class="w"> </span><span class="p">(</span><span class="n">Yale</span><span class="p">)</span><span class="w"> </span><span class="k">is </span><span class="nb">not </span><span class="n">working</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">parallel</span><span class="w"> </span><span class="n">versions</span>
+<span class="n">SOLVER</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">DIFFUSION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">VELOCITIES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1</span><span class="o">-</span><span class="n">default</span>
+<span class="n">SOLVER</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">PROPAGATION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">7</span><span class="o">-</span><span class="n">default</span>
+<span class="n">SOLVER</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">PPE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">7</span><span class="o">-</span><span class="n">default</span>
+<span class="o">/</span><span class="w"> </span><span class="n">SOLVER</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">DIFFUSION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">TRACERS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">one</span><span class="w"> </span><span class="k">value </span><span class="n">per</span><span class="w"> </span><span class="n">tracer</span>
+<span class="n">SOLVER</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">DIFFUSION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">K</span><span class="o">-</span><span class="nb">EPSILON</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1</span><span class="o">-</span><span class="n">default</span>
 <span class="o">/</span>
-<span class="o">/</span> <span class="n">Set</span> <span class="k">OPTIONS </span><span class="n">for</span> <span class="n">GMRES</span>
-<span class="o">/</span> <span class="n">Increasing</span> <span class="n">values</span> <span class="n">for</span> <span class="nb">precision</span><span class="p">,</span> <span class="n">but</span> <span class="n">also</span> <span class="n">more</span> <span class="k">memory </span><span class="n">consumption</span>
-<span class="n">OPTION</span> <span class="n">OF</span> <span class="n">SOLVER</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">VELOCITIES</span> <span class="p">:</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">5</span><span class="o">-</span><span class="n">default</span> <span class="n">since</span> <span class="n">v8</span>
-<span class="n">OPTION</span> <span class="n">OF</span> <span class="n">SOLVER</span> <span class="n">FOR</span> <span class="n">PROPAGATION</span> <span class="p">:</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">5</span><span class="o">-</span><span class="n">default</span> <span class="n">since</span> <span class="n">v8</span>
-<span class="n">OPTION</span> <span class="n">OF</span> <span class="n">SOLVER</span> <span class="n">FOR</span> <span class="n">PPE</span> <span class="p">:</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">5</span><span class="o">-</span><span class="n">default</span> <span class="n">since</span> <span class="n">v8</span>
-<span class="n">OPTION</span> <span class="n">OF</span> <span class="n">SOLVER</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">K</span><span class="o">-</span><span class="nb">EPSILON</span> <span class="p">:</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">5</span><span class="o">-</span><span class="n">default</span> <span class="n">since</span> <span class="n">v8</span>
+<span class="o">/</span><span class="w"> </span><span class="n">Set</span><span class="w"> </span><span class="k">OPTIONS </span><span class="n">for</span><span class="w"> </span><span class="n">GMRES</span>
+<span class="o">/</span><span class="w"> </span><span class="n">Increasing</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="nb">precision</span><span class="p">,</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="n">also</span><span class="w"> </span><span class="n">more</span><span class="w"> </span><span class="k">memory </span><span class="n">consumption</span>
+<span class="n">OPTION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">SOLVER</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">DIFFUSION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">VELOCITIES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">5</span><span class="o">-</span><span class="n">default</span><span class="w"> </span><span class="n">since</span><span class="w"> </span><span class="n">v8</span>
+<span class="n">OPTION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">SOLVER</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">PROPAGATION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">5</span><span class="o">-</span><span class="n">default</span><span class="w"> </span><span class="n">since</span><span class="w"> </span><span class="n">v8</span>
+<span class="n">OPTION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">SOLVER</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">PPE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">5</span><span class="o">-</span><span class="n">default</span><span class="w"> </span><span class="n">since</span><span class="w"> </span><span class="n">v8</span>
+<span class="n">OPTION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">SOLVER</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">DIFFUSION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">K</span><span class="o">-</span><span class="nb">EPSILON</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">5</span><span class="o">-</span><span class="n">default</span><span class="w"> </span><span class="n">since</span><span class="w"> </span><span class="n">v8</span>
 <span class="o">/</span>
-<span class="o">/</span> <span class="n">Solver</span> <span class="n">ACCURACY</span>
-<span class="n">ACCURACY</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">VELOCITIES</span> <span class="p">:</span> <span class="mf">1.E-8</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="mf">1.E-8</span>
-<span class="n">ACCURACY</span> <span class="n">FOR</span> <span class="n">PROPAGATION</span> <span class="p">:</span> <span class="mf">1.E-8</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="mf">1.E-8</span>
-<span class="n">ACCURACY</span> <span class="n">FOR</span> <span class="n">PPE</span> <span class="p">:</span> <span class="mf">1.E-6</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="mf">1.E-8</span>
-<span class="n">ACCURACY</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">K</span><span class="o">-</span><span class="nb">EPSILON</span> <span class="p">:</span> <span class="mf">1.E-8</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="mf">1.E-8</span>
+<span class="o">/</span><span class="w"> </span><span class="n">Solver</span><span class="w"> </span><span class="n">ACCURACY</span>
+<span class="n">ACCURACY</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">DIFFUSION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">VELOCITIES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.E-8</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="k">is </span><span class="mf">1.E-8</span>
+<span class="n">ACCURACY</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">PROPAGATION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.E-8</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="k">is </span><span class="mf">1.E-8</span>
+<span class="n">ACCURACY</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">PPE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.E-6</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="k">is </span><span class="mf">1.E-8</span>
+<span class="n">ACCURACY</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">DIFFUSION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">K</span><span class="o">-</span><span class="nb">EPSILON</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.E-8</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="k">is </span><span class="mf">1.E-8</span>
 <span class="o">/</span>
-<span class="o">/</span> <span class="n">Solver</span> <span class="n">MAXIMUM</span> <span class="n">ITERATIONS</span>
-<span class="n">MAXIMUM</span> <span class="n">NUMBER</span> <span class="n">OF</span> <span class="n">ITERATIONS</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">VELOCITIES</span> <span class="p">:</span> <span class="mi">100</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="mi">60</span>
-<span class="n">MAXIMUM</span> <span class="n">NUMBER</span> <span class="n">OF</span> <span class="n">ITERATIONS</span> <span class="n">FOR</span> <span class="n">PROPAGATION</span> <span class="p">:</span> <span class="mi">200</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="mi">100</span>
-<span class="n">MAXIMUM</span> <span class="n">NUMBER</span> <span class="n">OF</span> <span class="n">ITERATIONS</span> <span class="n">FOR</span> <span class="n">PPE</span> <span class="p">:</span> <span class="mi">100</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="mi">100</span>
-<span class="n">MAXIMUM</span> <span class="n">NUMBER</span> <span class="n">OF</span> <span class="n">ITERATIONS</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">K</span><span class="o">-</span><span class="nb">EPSILON</span> <span class="p">:</span> <span class="mi">150</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="mi">200</span>
+<span class="o">/</span><span class="w"> </span><span class="n">Solver</span><span class="w"> </span><span class="n">MAXIMUM</span><span class="w"> </span><span class="n">ITERATIONS</span>
+<span class="n">MAXIMUM</span><span class="w"> </span><span class="n">NUMBER</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">ITERATIONS</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">DIFFUSION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">VELOCITIES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="k">is </span><span class="mi">60</span>
+<span class="n">MAXIMUM</span><span class="w"> </span><span class="n">NUMBER</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">ITERATIONS</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">PROPAGATION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="k">is </span><span class="mi">100</span>
+<span class="n">MAXIMUM</span><span class="w"> </span><span class="n">NUMBER</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">ITERATIONS</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">PPE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="k">is </span><span class="mi">100</span>
+<span class="n">MAXIMUM</span><span class="w"> </span><span class="n">NUMBER</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">ITERATIONS</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">DIFFUSION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">K</span><span class="o">-</span><span class="nb">EPSILON</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="k">is </span><span class="mi">200</span>
 <span class="o">/</span>
-<span class="o">/</span> <span class="n">PRECONDITIONING</span> <span class="o">-</span> <span class="n">DEFAULT</span> <span class="k">Value is </span><span class="mi">2</span> <span class="n">for</span> <span class="k">all</span>
-<span class="n">PRECONDITIONING</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">VELOCITIES</span> <span class="p">:</span> <span class="mi">2</span>
-<span class="n">PRECONDITIONING</span> <span class="n">FOR</span> <span class="n">PROPAGATION</span> <span class="p">:</span> <span class="mi">2</span>
-<span class="n">PRECONDITIONING</span> <span class="n">FOR</span> <span class="n">PPE</span> <span class="p">:</span> <span class="mi">2</span>
-<span class="n">PRECONDITIONING</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">TRACERS</span> <span class="p">:</span> <span class="mi">2</span>
-<span class="n">PRECONDITIONING</span> <span class="n">FOR</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">K</span><span class="o">-</span><span class="nb">EPSILON</span> <span class="p">:</span> <span class="mi">2</span>
+<span class="o">/</span><span class="w"> </span><span class="n">PRECONDITIONING</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">DEFAULT</span><span class="w"> </span><span class="k">Value is </span><span class="mi">2</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="k">all</span>
+<span class="n">PRECONDITIONING</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">DIFFUSION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">VELOCITIES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="n">PRECONDITIONING</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">PROPAGATION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="n">PRECONDITIONING</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">PPE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="n">PRECONDITIONING</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">DIFFUSION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">TRACERS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="n">PRECONDITIONING</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">DIFFUSION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">K</span><span class="o">-</span><span class="nb">EPSILON</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
 <span class="o">/</span>
-<span class="o">/</span> <span class="n">BOUNDARY</span> <span class="n">CONDITIONS</span>
+<span class="o">/</span><span class="w"> </span><span class="n">BOUNDARY</span><span class="w"> </span><span class="n">CONDITIONS</span>
 <span class="o">/------------------------------------------------------------------</span>
-<span class="o">/</span> <span class="k">Use </span><span class="n">Nikuradse</span> <span class="n">roughness</span> <span class="n">law</span> <span class="o">-</span> <span class="k">all </span><span class="n">others</span> <span class="n">are</span> <span class="nb">not </span><span class="mi">3</span><span class="n">D</span> <span class="n">compatible</span>
-<span class="n">LAW</span> <span class="n">OF</span> <span class="n">BOTTOM</span> <span class="n">FRICTION</span> <span class="p">:</span> <span class="mi">5</span>
-<span class="n">LAW</span> <span class="n">OF</span> <span class="n">FRICTION</span> <span class="n">ON</span> <span class="n">LATERAL</span> <span class="n">BOUNDARIES</span> <span class="p">:</span> <span class="mi">5</span>  <span class="o">/</span> <span class="n">for</span> <span class="n">natural</span> <span class="n">banks</span> <span class="o">-</span> <span class="mi">0</span> <span class="n">for</span> <span class="n">symmetry</span>
-<span class="n">FRICTION</span> <span class="n">COEFFICIENT</span> <span class="n">FOR</span> <span class="n">THE</span> <span class="n">BOTTOM</span> <span class="p">:</span> <span class="mf">0.1</span> <span class="o">/</span> <span class="mi">3</span> <span class="n">times</span> <span class="n">d90</span> <span class="n">according</span> <span class="n">to</span> <span class="n">van</span> <span class="n">Rijn</span>
+<span class="o">/</span><span class="w"> </span><span class="k">Use </span><span class="n">Nikuradse</span><span class="w"> </span><span class="n">roughness</span><span class="w"> </span><span class="n">law</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">all </span><span class="n">others</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="nb">not </span><span class="mi">3</span><span class="n">D</span><span class="w"> </span><span class="n">compatible</span>
+<span class="n">LAW</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">BOTTOM</span><span class="w"> </span><span class="n">FRICTION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">5</span>
+<span class="n">LAW</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">FRICTION</span><span class="w"> </span><span class="n">ON</span><span class="w"> </span><span class="n">LATERAL</span><span class="w"> </span><span class="n">BOUNDARIES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">  </span><span class="o">/</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="n">natural</span><span class="w"> </span><span class="n">banks</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="n">symmetry</span>
+<span class="n">FRICTION</span><span class="w"> </span><span class="n">COEFFICIENT</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">THE</span><span class="w"> </span><span class="n">BOTTOM</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="n">d90</span><span class="w"> </span><span class="n">according</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">van</span><span class="w"> </span><span class="n">Rijn</span>
 <span class="o">/</span>
-<span class="o">/</span> <span class="n">Liquid</span> <span class="n">boundaries</span> <span class="o">-</span> <span class="n">avoid</span> <span class="n">Thompson</span> <span class="p">(</span><span class="n">invalid</span> <span class="n">in</span> <span class="mi">3</span><span class="n">d</span><span class="p">)</span>
-<span class="n">PRESCRIBED</span> <span class="n">FLOWRATES</span>  <span class="p">:</span> <span class="mi">3</span><span class="mf">5.</span><span class="p">;</span><span class="mi">3</span><span class="mf">5.</span>
-<span class="n">PRESCRIBED</span> <span class="n">ELEVATIONS</span> <span class="p">:</span> <span class="mf">0.</span><span class="p">;</span><span class="mi">37</span><span class="mf">1.33</span>
+<span class="o">/</span><span class="w"> </span><span class="n">Liquid</span><span class="w"> </span><span class="n">boundaries</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">avoid</span><span class="w"> </span><span class="n">Thompson</span><span class="w"> </span><span class="p">(</span><span class="n">invalid</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="mi">3</span><span class="n">d</span><span class="p">)</span>
+<span class="n">PRESCRIBED</span><span class="w"> </span><span class="n">FLOWRATES</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="mf">5.</span><span class="p">;</span><span class="mi">3</span><span class="mf">5.</span>
+<span class="n">PRESCRIBED</span><span class="w"> </span><span class="n">ELEVATIONS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.</span><span class="p">;</span><span class="mi">37</span><span class="mf">1.33</span>
 <span class="o">/</span>
-<span class="o">/</span> <span class="n">INITIAL</span> <span class="n">CONDITIONS</span>
-<span class="o">/</span> <span class="o">------------------------------------------------------------------</span>
-<span class="n">INITIAL</span> <span class="n">CONDITIONS</span> <span class="p">:</span> <span class="s1">&#39;CONSTANT DEPTH&#39;</span> <span class="o">/</span> <span class="nb">or </span><span class="n">CONSTANT</span> <span class="n">DEPTH</span> <span class="n">see</span> <span class="n">docs</span> <span class="n">sec</span><span class="p">.</span> <span class="mf">4.2</span>
-<span class="n">INITIAL</span> <span class="n">DEPTH</span> <span class="p">:</span> <span class="mf">0.1</span>
-<span class="n">INITIAL</span> <span class="n">GUESS</span> <span class="n">FOR</span> <span class="n">DEPTH</span> <span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="kt">INTEGER </span><span class="n">for</span> <span class="n">speeding</span> <span class="n">up</span> <span class="n">calculations</span>
+<span class="o">/</span><span class="w"> </span><span class="n">INITIAL</span><span class="w"> </span><span class="n">CONDITIONS</span>
+<span class="o">/</span><span class="w"> </span><span class="o">------------------------------------------------------------------</span>
+<span class="n">INITIAL</span><span class="w"> </span><span class="n">CONDITIONS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;CONSTANT DEPTH&#39;</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">or </span><span class="n">CONSTANT</span><span class="w"> </span><span class="n">DEPTH</span><span class="w"> </span><span class="n">see</span><span class="w"> </span><span class="n">docs</span><span class="w"> </span><span class="n">sec</span><span class="p">.</span><span class="w"> </span><span class="mf">4.2</span>
+<span class="n">INITIAL</span><span class="w"> </span><span class="n">DEPTH</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span>
+<span class="n">INITIAL</span><span class="w"> </span><span class="n">GUESS</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">DEPTH</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="kt">INTEGER </span><span class="n">for</span><span class="w"> </span><span class="n">speeding</span><span class="w"> </span><span class="n">up</span><span class="w"> </span><span class="n">calculations</span>
 <span class="o">/</span>
-<span class="o">/</span> <span class="n">Other</span>
+<span class="o">/</span><span class="w"> </span><span class="n">Other</span>
 <span class="o">/------------------------------------------------------------------</span>
-<span class="n">VELOCITY</span> <span class="n">VERTICAL</span> <span class="n">PROFILES</span> <span class="p">:</span> <span class="mi">2</span><span class="p">;</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">0</span> <span class="p">(</span><span class="n">user</span><span class="o">-</span><span class="n">defined</span><span class="p">),</span> <span class="mi">1</span> <span class="p">(</span><span class="n">Constant</span><span class="p">),</span> <span class="mi">2</span> <span class="p">(</span><span class="nb">Log</span><span class="p">)</span>
-<span class="n">VELOCITY</span> <span class="n">PROFILES</span> <span class="p">:</span> <span class="mi">1</span><span class="p">;</span><span class="mi">1</span> <span class="o">/</span> <span class="n">horizontal</span> <span class="n">profile</span>
+<span class="n">VELOCITY</span><span class="w"> </span><span class="n">VERTICAL</span><span class="w"> </span><span class="n">PROFILES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="mi">2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">(</span><span class="n">user</span><span class="o">-</span><span class="n">defined</span><span class="p">),</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="n">Constant</span><span class="p">),</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">(</span><span class="nb">Log</span><span class="p">)</span>
+<span class="n">VELOCITY</span><span class="w"> </span><span class="n">PROFILES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">horizontal</span><span class="w"> </span><span class="n">profile</span>
 <span class="o">/</span>
 <span class="o">/------------------------------------------------------------------/</span>
-<span class="o">/</span>			<span class="n">TIDAL</span> <span class="n">FLATS</span>
+<span class="o">/</span><span class="w">			</span><span class="n">TIDAL</span><span class="w"> </span><span class="n">FLATS</span>
 <span class="o">/------------------------------------------------------------------/</span>
-<span class="n">TIDAL</span> <span class="n">FLATS</span> <span class="p">:</span> <span class="n">YES</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="n">YES</span> <span class="o">-</span> <span class="n">disable</span> <span class="n">for</span> <span class="n">faster</span> <span class="n">model</span> <span class="n">runs</span>
-<span class="o">/</span> <span class="n">TREATMENT</span> <span class="n">OF</span> <span class="n">NEGATIVE</span> <span class="n">DEPTHS</span> <span class="p">:</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">requires</span> <span class="n">mass</span> <span class="n">lumping</span> <span class="n">for</span> <span class="n">depth</span> <span class="n">set</span> <span class="n">to</span> <span class="mi">1</span>
-<span class="n">TREATMENT</span> <span class="n">ON</span> <span class="n">TIDAL</span> <span class="n">FLATS</span> <span class="n">FOR</span> <span class="n">TRACERS</span> <span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">ensure</span> <span class="n">conservation</span>
-<span class="o">/</span> <span class="n">more</span> <span class="n">in</span> <span class="n">section</span> <span class="n">docs</span> <span class="mf">6.6</span>
+<span class="n">TIDAL</span><span class="w"> </span><span class="n">FLATS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">YES</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="k">is </span><span class="n">YES</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">disable</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="n">faster</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="n">runs</span>
+<span class="o">/</span><span class="w"> </span><span class="n">TREATMENT</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">NEGATIVE</span><span class="w"> </span><span class="n">DEPTHS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">requires</span><span class="w"> </span><span class="n">mass</span><span class="w"> </span><span class="n">lumping</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="n">depth</span><span class="w"> </span><span class="n">set</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="mi">1</span>
+<span class="n">TREATMENT</span><span class="w"> </span><span class="n">ON</span><span class="w"> </span><span class="n">TIDAL</span><span class="w"> </span><span class="n">FLATS</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">TRACERS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">ensure</span><span class="w"> </span><span class="n">conservation</span>
+<span class="o">/</span><span class="w"> </span><span class="n">more</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">section</span><span class="w"> </span><span class="n">docs</span><span class="w"> </span><span class="mf">6.6</span>
 <span class="o">/</span>
 <span class="o">/------------------------------------------------------------------/</span>
-<span class="o">/</span>			<span class="n">TURBULENCE</span>
+<span class="o">/</span><span class="w">			</span><span class="n">TURBULENCE</span>
 <span class="o">/------------------------------------------------------------------/</span>
-<span class="o">/</span> <span class="n">in</span> <span class="mi">3</span><span class="n">d</span> <span class="k">use </span><span class="n">k</span><span class="o">-</span><span class="nb">epsilon </span><span class="n">model</span><span class="p">,</span> <span class="n">alternatively</span> <span class="n">Spalart</span><span class="o">-</span><span class="n">Allmaras</span> <span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="nb">or</span>
-<span class="o">/</span>  <span class="n">Smagorinsky</span> <span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="n">for</span> <span class="n">highly</span> <span class="n">non</span><span class="o">-</span><span class="n">linear</span> <span class="n">flow</span>
-<span class="n">HORIZONTAL</span> <span class="n">TURBULENCE</span> <span class="n">MODEL</span> <span class="p">:</span> <span class="mi">3</span>
-<span class="n">VERTICAL</span> <span class="n">TURBULENCE</span> <span class="n">MODEL</span> <span class="p">:</span> <span class="mi">3</span>
-<span class="n">MIXING</span> <span class="n">LENGTH</span> <span class="n">MODEL</span> <span class="p">:</span> <span class="mi">3</span> <span class="o">/</span> <span class="n">telemac</span> <span class="n">docs</span> <span class="n">sec</span><span class="p">.</span> <span class="mf">5.2</span><span class="p">.</span><span class="mi">2</span>
-<span class="n">COEFFICIENT</span> <span class="n">FOR</span> <span class="n">HORIZONTAL</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">VELOCITIES</span> <span class="p">:</span> <span class="mf">1.E-6</span> <span class="o">/</span> <span class="k">is </span><span class="n">default</span>
-<span class="n">COEFFICIENT</span> <span class="n">FOR</span> <span class="n">VERTICAL</span> <span class="n">DIFFUSION</span> <span class="n">OF</span> <span class="n">VELOCITIES</span>   <span class="p">:</span> <span class="mf">1.E-6</span> <span class="o">/</span> <span class="k">is </span><span class="n">default</span>
+<span class="o">/</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="mi">3</span><span class="n">d</span><span class="w"> </span><span class="k">use </span><span class="n">k</span><span class="o">-</span><span class="nb">epsilon </span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">alternatively</span><span class="w"> </span><span class="n">Spalart</span><span class="o">-</span><span class="n">Allmaras</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="nb">or</span>
+<span class="o">/</span><span class="w">  </span><span class="n">Smagorinsky</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="n">highly</span><span class="w"> </span><span class="n">non</span><span class="o">-</span><span class="n">linear</span><span class="w"> </span><span class="n">flow</span>
+<span class="n">HORIZONTAL</span><span class="w"> </span><span class="n">TURBULENCE</span><span class="w"> </span><span class="n">MODEL</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
+<span class="n">VERTICAL</span><span class="w"> </span><span class="n">TURBULENCE</span><span class="w"> </span><span class="n">MODEL</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
+<span class="n">MIXING</span><span class="w"> </span><span class="n">LENGTH</span><span class="w"> </span><span class="n">MODEL</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">telemac</span><span class="w"> </span><span class="n">docs</span><span class="w"> </span><span class="n">sec</span><span class="p">.</span><span class="w"> </span><span class="mf">5.2</span><span class="p">.</span><span class="mi">2</span>
+<span class="n">COEFFICIENT</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">HORIZONTAL</span><span class="w"> </span><span class="n">DIFFUSION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">VELOCITIES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.E-6</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">is </span><span class="n">default</span>
+<span class="n">COEFFICIENT</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">VERTICAL</span><span class="w"> </span><span class="n">DIFFUSION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">VELOCITIES</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="mf">1.E-6</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">is </span><span class="n">default</span>
 <span class="o">/</span>
 <span class="o">/------------------------------------------------------------------/</span>
-<span class="o">/</span>			<span class="n">PARALLELISM</span>
+<span class="o">/</span><span class="w">			</span><span class="n">PARALLELISM</span>
 <span class="o">/------------------------------------------------------------------/</span>
-<span class="n">PARALLEL</span> <span class="n">PROCESSORS</span> <span class="p">:</span> <span class="mi">0</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="mi">0</span> <span class="o">-</span> <span class="k">all </span><span class="n">others</span> <span class="n">define</span> <span class="n">number</span> <span class="n">of</span> <span class="n">processors</span>
-<span class="o">/</span> <span class="n">PARTIONING</span> <span class="n">TOOL</span> <span class="p">:</span> <span class="n">METIS</span> <span class="o">/</span> <span class="n">default</span> <span class="k">is </span><span class="n">METIS</span><span class="p">,</span> <span class="n">others</span> <span class="n">are</span> <span class="n">SCOTCH</span><span class="p">,</span> <span class="n">PARMETIS</span><span class="p">,</span> <span class="n">PTSCOTCH</span>
+<span class="n">PARALLEL</span><span class="w"> </span><span class="n">PROCESSORS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="k">is </span><span class="mi">0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">all </span><span class="n">others</span><span class="w"> </span><span class="n">define</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">processors</span>
+<span class="o">/</span><span class="w"> </span><span class="n">PARTIONING</span><span class="w"> </span><span class="n">TOOL</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">METIS</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="k">is </span><span class="n">METIS</span><span class="p">,</span><span class="w"> </span><span class="n">others</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">SCOTCH</span><span class="p">,</span><span class="w"> </span><span class="n">PARMETIS</span><span class="p">,</span><span class="w"> </span><span class="n">PTSCOTCH</span>
 <span class="o">/</span>
-<span class="o">/</span> <span class="n">ENABLE</span> <span class="n">COMMAND</span> <span class="n">PRINTS</span> <span class="n">IN</span> <span class="n">TERMINAL</span>
+<span class="o">/</span><span class="w"> </span><span class="n">ENABLE</span><span class="w"> </span><span class="n">COMMAND</span><span class="w"> </span><span class="n">PRINTS</span><span class="w"> </span><span class="n">IN</span><span class="w"> </span><span class="n">TERMINAL</span>
 <span class="p">&amp;</span><span class="n">ETA</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="computation-environment">
-<span id="tm3d-slf-env"></span><h3>Computation Environment<a class="headerlink" href="#computation-environment" title="Permalink to this headline">¶</a></h3>
+<section id="computation-environment">
+<span id="tm3d-slf-env"></span><h3>Computation Environment<a class="headerlink" href="#computation-environment" title="Permalink to this headline">#</a></h3>
 <p><strong>The following descriptions refer to section 3 in the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p4r0/documentation/telemac3d/user/telemac3d_user_v8p4.pdf">Telemac3d manual</a>.</strong></p>
 <p>The computation environment defines a <strong>Title</strong> (e.g., <code class="docutils literal notranslate"><span class="pre">TELEMAC</span> <span class="pre">3D</span> <span class="pre">FLUME</span></code>). The most important parameters involve the <strong>input</strong> files:</p>
 <ul class="simple">
@@ -1110,9 +741,9 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">VARIABLES</span> <span class="pre">FOR</span> <span class="pre">2D</span> <span class="pre">GRAPHIC</span> <span class="pre">PRINTOUTS</span></code>:  <code class="docutils literal notranslate"><span class="pre">U,V,H</span></code> - many more options can be found in section 3.13 of the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p4r0/documentation/telemac3d/user/telemac3d_user_v8p4.pdf">Telemac3d manual</a></p></li>
 </ul>
 <p>In addition, the <code class="docutils literal notranslate"><span class="pre">MASS-BALANCE</span> <span class="pre">:</span> <span class="pre">YES</span></code> setting will printout the mass fluxes and errors in the computation region, which is an important parameter for verifying the plausibility of the model.</p>
-</div>
-<div class="section" id="general-parameters">
-<h3>General Parameters<a class="headerlink" href="#general-parameters" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="general-parameters">
+<h3>General Parameters<a class="headerlink" href="#general-parameters" title="Permalink to this headline">#</a></h3>
 <p><strong>The following descriptions refer to section 3.2 in the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p4r0/documentation/telemac3d/user/telemac3d_user_v8p4.pdf">Telemac3d manual</a>.</strong></p>
 <p>The <em>General parameters</em> specify <em>time</em> and <em>location</em> settings for the simulation:</p>
 <ul class="simple">
@@ -1131,9 +762,9 @@
 <p class="admonition-title">Attention</p>
 <p>Graphic printouts, just like all other data printouts, are time consuming and will slow down the simulation.</p>
 </div>
-</div>
-<div class="section" id="numerical-parameters">
-<h3>Numerical Parameters<a class="headerlink" href="#numerical-parameters" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="numerical-parameters">
+<h3>Numerical Parameters<a class="headerlink" href="#numerical-parameters" title="Permalink to this headline">#</a></h3>
 <p><strong>The following descriptions refer to section 6 in the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p4r0/documentation/telemac3d/user/telemac3d_user_v8p4.pdf">Telemac3d manual</a>.</strong></p>
 <p>This section defines internal numerical parameters for the <a class="reference internal" href="../documentation/glossary.html#term-Advection"><span class="xref std std-term">Advection</span></a> and  <a class="reference internal" href="../documentation/glossary.html#term-Diffusion"><span class="xref std std-term">Diffusion</span></a> solvers.</p>
 <p>In Telemac3d, it is recommended to use the so-called distributive predictor-corrector (PSI) scheme (<a class="reference external" href="https://henry.baw.de/bitstream/handle/20.500.11970/104314/13_Hervouet_2015.pdf?sequence=1&amp;isAllowed=y">read more</a> at the BAW’s hydraulic engineering repository) with local implication for tidal flats (for velocity, tracers, and k-epsilon):</p>
@@ -1165,9 +796,9 @@
 <p>An additional option for speeding up is to enable mass lumping for diffusion, depth, and/or weak characteristics. Mass lumping results in faster convergence, but it introduces artificial dispersion in the results, which is why enabling mass lumping is discouraged by the TELEMAC developers. The provided <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady3d-tutorial/steady3d.cas">steady3d.cas</a> includes the keywords for mass lumping, though they are disabled through the <code class="docutils literal notranslate"><span class="pre">/</span></code> at the beginning of the line.</p>
 <p><strong>Implication parameters</strong> (<code class="docutils literal notranslate"><span class="pre">IMPLICITATION</span> <span class="pre">FOR</span> <span class="pre">DEPTH</span></code> and <code class="docutils literal notranslate"><span class="pre">IMPLICITATION</span> <span class="pre">FOR</span> <span class="pre">VELOCITIES</span></code>) should be set between 0.55 and 0.60 (default is 0.55 since <em>TELEMAC v8p1</em>) and can be considered as a degree of implicitation. <code class="docutils literal notranslate"><span class="pre">IMPLICITATION</span> <span class="pre">FOR</span> <span class="pre">DIFFUSION</span></code> is set to <code class="docutils literal notranslate"><span class="pre">1.0</span></code> by default. Read more in section 6.4 of the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p4r0/documentation/telemac3d/user/telemac3d_user_v8p4.pdf">Telemac3d manual</a>.</p>
 <p>The parameter <code class="docutils literal notranslate"><span class="pre">FREE</span> <span class="pre">SURFACE</span> <span class="pre">GRADIENT</span></code> can be used for increasing the stability of a model. Its default value is <code class="docutils literal notranslate"><span class="pre">1.0</span></code>, but it can be reduced to <code class="docutils literal notranslate"><span class="pre">0.1</span></code> to achieve stability.</p>
-</div>
-<div class="section" id="vertical-3d-parameters">
-<span id="tm3d-slf-vertical"></span><h3>Vertical (3d) Parameters<a class="headerlink" href="#vertical-3d-parameters" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="vertical-3d-parameters">
+<span id="tm3d-slf-vertical"></span><h3>Vertical (3d) Parameters<a class="headerlink" href="#vertical-3d-parameters" title="Permalink to this headline">#</a></h3>
 <p><strong>The following descriptions refer to section 4.1 in the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p4r0/documentation/telemac3d/user/telemac3d_user_v8p4.pdf">Telemac3d manual</a>.</strong></p>
 <p>Telemac3d will add <em>Horizontal levels</em> (i.e., layers) that correspond to copies of the 2d-mesh to build a 3d-mesh of prisms (default) or tetrahedrons. These parameters can be defined with:</p>
 <ul class="simple">
@@ -1180,18 +811,18 @@
 <p>For unsteady simulations (time-variable inflow/outflow rates), pre-define the thickness of vertical layers with the <code class="docutils literal notranslate"><span class="pre">ZSTAR</span></code> parameter in a user Fortran file (subroutine) as described in section 4.1 of the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p4r0/documentation/telemac3d/user/telemac3d_user_v8p4.pdf">Telemac3d manual</a>. Read more about setting up an unsteady simulation with TELEMAC in the <a class="reference internal" href="telemac2d-unsteady.html#chpt-unsteady"><span class="std std-ref">Telemac2d unsteady tutorial</span></a>.</p>
 </div>
 <p>To get started with writing subroutines (it is no magic neither), have a look at the <strong>bottom_bc</strong> example (<code class="docutils literal notranslate"><span class="pre">~/telemac/v8p2/examples/telemac3d/bottom_bc/</span></code>). In particular, examine the user fortran file <code class="docutils literal notranslate"><span class="pre">/user_fortran-source/user_mesh_transf.f</span></code> and its call in the steering file <code class="docutils literal notranslate"><span class="pre">t3d_bottom_source.cas</span></code> through the definition of the <code class="docutils literal notranslate"><span class="pre">FORTRAN</span> <span class="pre">FILE</span></code> keyword and setting of <code class="docutils literal notranslate"><span class="pre">MESH</span> <span class="pre">TRANSFORMATION</span> <span class="pre">:</span> <span class="pre">2</span></code>.</p>
-</div>
-<div class="section" id="open-liquid-boundaries">
-<span id="tm3d-slf-boundaries"></span><h3>Open (Liquid) Boundaries<a class="headerlink" href="#open-liquid-boundaries" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="open-liquid-boundaries">
+<span id="tm3d-slf-boundaries"></span><h3>Open (Liquid) Boundaries<a class="headerlink" href="#open-liquid-boundaries" title="Permalink to this headline">#</a></h3>
 <p><strong>The following descriptions refer to section 4.2 in the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p4r0/documentation/telemac3d/user/telemac3d_user_v8p4.pdf">Telemac3d manual</a>.</strong></p>
 <p>In river analyses, the non-hydrostatic version of TELEMAC should be used through the following keyword: <code class="docutils literal notranslate"><span class="pre">NON-HYDROSTATIC</span> <span class="pre">VERSION</span> <span class="pre">:</span> <span class="pre">YES</span></code>.</p>
 <p>Depending on the type of analysis, the solver-related parameters of <code class="docutils literal notranslate"><span class="pre">SOLVER</span></code>, <code class="docutils literal notranslate"><span class="pre">SOLVER</span> <span class="pre">OPTIONS</span></code>, <code class="docutils literal notranslate"><span class="pre">MAXIMUM</span> <span class="pre">NUMBER</span> <span class="pre">OF</span> <span class="pre">ITERATION</span></code>, <code class="docutils literal notranslate"><span class="pre">ACCURACY</span></code>, and <code class="docutils literal notranslate"><span class="pre">PRECONDITIONING</span></code> may be modified. The provided <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady3d-tutorial/steady3d.cas">steady3d.cas</a> includes solver keywords and comments for modifications, but the default options already provide a coherent a stable setup. Read more about solver parameters in section 6.5 of the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p4r0/documentation/telemac3d/user/telemac3d_user_v8p4.pdf">Telemac3d manual</a>.</p>
 <p>Parameters for <strong>Boundary Conditions</strong> enable the definition of roughness laws and properties of liquid boundaries.</p>
-<p>With respect to roughness, TELEMAC developers recommend using the <span id="id1">Nikuradse [<a class="reference internal" href="../documentation/bibliography.html#id420">Nik33</a>]</span> roughness law in 3d (number <code class="docutils literal notranslate"><span class="pre">5</span></code>), because all others are not meaningful or not integrally implemented in the 3d version. To apply the <span id="id2">Nikuradse [<a class="reference internal" href="../documentation/bibliography.html#id420">Nik33</a>]</span> roughness law to the bottom and the boundaries use:</p>
+<p>With respect to roughness, TELEMAC developers recommend using the <span id="id1">Nikuradse [<a class="reference internal" href="../documentation/bibliography.html#id420" title="Johann Nikuradse. Strömungsgesetze in rauhen Rohren [Laws of flow in rough pipes]. VDI Forschungsheft, Beilage zu 'Forschung auf dem Gebiete des Ingenieurwesens', Ausgabe B, Band 4(361):26, 1933.">Nik33</a>]</span> roughness law in 3d (number <code class="docutils literal notranslate"><span class="pre">5</span></code>), because all others are not meaningful or not integrally implemented in the 3d version. To apply the <span id="id2">Nikuradse [<a class="reference internal" href="../documentation/bibliography.html#id420" title="Johann Nikuradse. Strömungsgesetze in rauhen Rohren [Laws of flow in rough pipes]. VDI Forschungsheft, Beilage zu 'Forschung auf dem Gebiete des Ingenieurwesens', Ausgabe B, Band 4(361):26, 1933.">Nik33</a>]</span> roughness law to the bottom and the boundaries use:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">LAW</span> <span class="pre">OF</span> <span class="pre">BOTTOM</span> <span class="pre">FRICTION</span></code>: <code class="docutils literal notranslate"><span class="pre">5</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">LAW</span> <span class="pre">OF</span> <span class="pre">FRICTION</span> <span class="pre">ON</span> <span class="pre">LATERAL</span> <span class="pre">BOUNDARIES</span></code>: <code class="docutils literal notranslate"><span class="pre">5</span></code>, which can well be applied to model natural banks, or set to <code class="docutils literal notranslate"><span class="pre">0</span></code> (no-slip) for symmetry.<br>*Note that the <a class="reference internal" href="telemac3d-med.html#bnd-mod"><span class="std std-ref">boundary conditions file</span></a> sets the <code class="docutils literal notranslate"><span class="pre">LIUBOR</span></code> and <code class="docutils literal notranslate"><span class="pre">LIVBOR</span></code> for the <code class="docutils literal notranslate"><span class="pre">leftwall</span></code> and <code class="docutils literal notranslate"><span class="pre">rightwall</span></code> boundary edges to zero, to enable friction.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">FRICTION</span> <span class="pre">COEFFICIENT</span> <span class="pre">FOR</span> <span class="pre">THE</span> <span class="pre">BOTTOM</span></code>: <code class="docutils literal notranslate"><span class="pre">0.1</span></code> corresponds to 3 times a hypothetical <em>d90</em> (grain diameter of which 90% of the surface grain mixture are finer) according to <span id="id3">[<a class="reference internal" href="../documentation/bibliography.html#id1356">vR19</a>]</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FRICTION</span> <span class="pre">COEFFICIENT</span> <span class="pre">FOR</span> <span class="pre">THE</span> <span class="pre">BOTTOM</span></code>: <code class="docutils literal notranslate"><span class="pre">0.1</span></code> corresponds to 3 times a hypothetical <em>d90</em> (grain diameter of which 90% of the surface grain mixture are finer) according to <span id="id3">[<a class="reference internal" href="../documentation/bibliography.html#id1356" title="L. C. van Rijn. Critical movement of large rocks in currents and waves. International Journal of Sediment Research, 34(4):387–398, August 2019. URL: https://www.sciencedirect.com/science/article/pii/S100162791830177X (visited on 2021-06-25), doi:10.1016/j.ijsrc.2018.12.005.">vR19</a>]</span>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">FRICTION</span> <span class="pre">COEFFICIENT</span> <span class="pre">FOR</span> <span class="pre">LATERAL</span> <span class="pre">SOLID</span> <span class="pre">BOUNDARIES</span></code>: <code class="docutils literal notranslate"><span class="pre">0.1</span></code> corresponds to 3 times a hypothetical <em>d90</em>, similar as for the bottom.</p></li>
 </ul>
 <p>The liquid boundary definitions for <code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">FLOWRATES</span></code> and <code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">ELEVATIONS</span></code> correspond to the definitions of the <strong>downstream</strong> boundary edge in line 2 and the <strong>upstream</strong> boundary edge in line 3 (see <a class="reference internal" href="telemac3d-med.html#bnd-mod"><span class="std std-ref">boundary definitions section</span></a>). From the boundary file, TELEMAC will understand the <strong>downstream</strong> boundary as edge number <strong>1</strong> (first list element) and the <strong>upstream</strong> boundary as edge number <strong>2</strong> (second list element). Hence:</p>
@@ -1203,11 +834,11 @@
 <p>Instead of a list in the steering <code class="docutils literal notranslate"><span class="pre">*.cas</span></code> file, the liquid boundary conditions can also be defined with a liquid boundary condition file in <em>ASCII</em> text format. For this purpose, a <code class="docutils literal notranslate"><span class="pre">LIQUID</span> <span class="pre">BOUNDARIES</span> <span class="pre">FILE</span></code> or a <code class="docutils literal notranslate"><span class="pre">STAGE-DISCHARGE</span> <span class="pre">CURVES</span> <span class="pre">FILE</span></code> (sections 4.3.8 and 4.3.10 in the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p4r0/documentation/telemac3d/user/telemac3d_user_v8p4.pdf">Telemac3d manual</a>, respectively can be defined. The <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady3d-tutorial/steady3d.cas">steady3d.cas</a> file includes these keywords in the <em>COMPUTATION ENVIRONMENT</em> section, though they are disabled through the <code class="docutils literal notranslate"><span class="pre">/</span></code> character at the beginning of the line. A liquid boundary file (<em>QSL</em>) may look like this:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="cp"># t3d_canal.qsl</span>
 <span class="cp"># time-dependent inflow upstream-discharge Q(2) and outflow downstream-depth SL(1)</span>
-<span class="n">T</span>           <span class="n">Q</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>     <span class="n">SL</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">s</span>           <span class="n">m3</span><span class="o">/</span><span class="n">s</span>     <span class="n">m</span>
-<span class="mf">0.</span>            <span class="mf">0.</span>     <span class="mi">37</span><span class="mf">4.0</span>
-<span class="mi">50</span><span class="mf">0.</span>        <span class="mi">10</span><span class="mf">0.</span>     <span class="mi">37</span><span class="mf">5.0</span>
-<span class="mi">500</span><span class="mf">0.</span>       <span class="mi">15</span><span class="mf">0.</span>     <span class="mi">57</span><span class="mf">5.7</span>
+<span class="n">T</span><span class="w">           </span><span class="n">Q</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w">     </span><span class="n">SL</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">s</span><span class="w">           </span><span class="n">m3</span><span class="o">/</span><span class="n">s</span><span class="w">     </span><span class="n">m</span>
+<span class="mf">0.</span><span class="w">            </span><span class="mf">0.</span><span class="w">     </span><span class="mi">37</span><span class="mf">4.0</span>
+<span class="mi">50</span><span class="mf">0.</span><span class="w">        </span><span class="mi">10</span><span class="mf">0.</span><span class="w">     </span><span class="mi">37</span><span class="mf">5.0</span>
+<span class="mi">500</span><span class="mf">0.</span><span class="w">       </span><span class="mi">15</span><span class="mf">0.</span><span class="w">     </span><span class="mi">57</span><span class="mf">5.7</span>
 </pre></div>
 </div>
 <div class="note admonition">
@@ -1220,29 +851,29 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">VELOCITY</span> <span class="pre">VERTICAL</span> <span class="pre">PROFILES</span></code>: <code class="docutils literal notranslate"><span class="pre">2;2</span></code> sets the <strong>vertical</strong> velocity profiles to logarithmic. The default is <code class="docutils literal notranslate"><span class="pre">1;1</span></code> (constant). Alternatively, a user-defined <code class="docutils literal notranslate"><span class="pre">USER_VEL_PROF_Z</span></code> subroutine can be implemented in a Fortran file.</p></li>
 </ul>
 <p>Read more about options for defining velocity profiles in section 4.3.12 of the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p4r0/documentation/telemac3d/user/telemac3d_user_v8p4.pdf">Telemac3d manual</a>.</p>
-</div>
-<div class="section" id="initial-conditions">
-<span id="tm3d-slf-init"></span><h3>Initial Conditions<a class="headerlink" href="#initial-conditions" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="initial-conditions">
+<span id="tm3d-slf-init"></span><h3>Initial Conditions<a class="headerlink" href="#initial-conditions" title="Permalink to this headline">#</a></h3>
 <p>The <strong>initial conditions</strong> describe the condition at the beginning of the simulation. This tutorial uses a constant elevation (corresponding to a constant water depth) of <code class="docutils literal notranslate"><span class="pre">2.</span></code>, and enables using an initial guess for the water depth to speed up the simulation:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">INITIAL</span> <span class="pre">CONDITIONS</span></code>: <code class="docutils literal notranslate"><span class="pre">'CONSTANT</span> <span class="pre">ELEVATION'</span></code> can alternatively be set to <code class="docutils literal notranslate"><span class="pre">'CONSTANT</span> <span class="pre">DEPTH'</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">INITIAL</span> <span class="pre">DEPTH</span></code>: <code class="docutils literal notranslate"><span class="pre">0.1</span></code> corresponds to water depth.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">INITIAL</span> <span class="pre">GUESS</span> <span class="pre">FOR</span> <span class="pre">DEPTH</span></code>: <code class="docutils literal notranslate"><span class="pre">1</span></code> must be an <strong>integer</strong> value and speeds up the calculation (convergence).</p></li>
 </ul>
-</div>
-<div class="section" id="turbulence">
-<h3>Turbulence<a class="headerlink" href="#turbulence" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="turbulence">
+<h3>Turbulence<a class="headerlink" href="#turbulence" title="Permalink to this headline">#</a></h3>
 <p><strong>The following descriptions refer to section 5.2 in the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p4r0/documentation/telemac3d/user/telemac3d_user_v8p4.pdf">Telemac3d manual</a>.</strong></p>
-<p>The fundamental principles of turbulence and its application to the <a class="reference internal" href="../documentation/glossary.html#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a> are explained in the <a class="reference internal" href="telemac2d-steady.html#tm2d-turbulence"><span class="std std-ref">steady Telemac2d tutorial</span></a>. In 3d, TELEMAC developers recommend using either the <span class="math notranslate nohighlight">\(k-\epsilon\)</span> model (<code class="docutils literal notranslate"><span class="pre">3</span></code>) or the <span id="id4">Spalart and Allmaras [<a class="reference internal" href="../documentation/bibliography.html#id1363">SA92</a>]</span> model (<code class="docutils literal notranslate"><span class="pre">5</span></code>) in lieu of the mixing length model (<code class="docutils literal notranslate"><span class="pre">2</span></code>):</p>
+<p>The fundamental principles of turbulence and its application to the <a class="reference internal" href="../documentation/glossary.html#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a> are explained in the <a class="reference internal" href="telemac2d-steady.html#tm2d-turbulence"><span class="std std-ref">steady Telemac2d tutorial</span></a>. In 3d, TELEMAC developers recommend using either the <span class="math notranslate nohighlight">\(k-\epsilon\)</span> model (<code class="docutils literal notranslate"><span class="pre">3</span></code>) or the <span id="id4">Spalart and Allmaras [<a class="reference internal" href="../documentation/bibliography.html#id1363" title="P. Spalart and S. Allmaras. A one-equation turbulence model for aerodynamic flows. In 30th Aerospace Sciences Meeting and Exhibit, Aerospace Sciences Meetings, pages 22. American Institute of Aeronautics and Astronautics, Reno, NV, USA, January 1992. URL: https://arc.aiaa.org/doi/10.2514/6.1992-439 (visited on 2021-07-06).">SA92</a>]</span> model (<code class="docutils literal notranslate"><span class="pre">5</span></code>) in lieu of the mixing length model (<code class="docutils literal notranslate"><span class="pre">2</span></code>):</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">HORIZONTAL</span> <span class="pre">TURBULENCE</span> <span class="pre">MODEL</span></code>: <code class="docutils literal notranslate"><span class="pre">3</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">VERTICAL</span> <span class="pre">TURBULENCE</span> <span class="pre">MODEL</span></code>: <code class="docutils literal notranslate"><span class="pre">3</span></code></p></li>
 </ul>
-<p>If the <code class="docutils literal notranslate"><span class="pre">VERTICAL</span> <span class="pre">TURBULENCE</span> <span class="pre">MODEL</span></code> is set to <code class="docutils literal notranslate"><span class="pre">2</span></code> (<code class="docutils literal notranslate"><span class="pre">'MIXING</span> <span class="pre">LENGTH'</span></code>), a <code class="docutils literal notranslate"><span class="pre">MIXING</span> <span class="pre">LENGTH</span> <span class="pre">MODEL</span></code> can be assigned. The default is <code class="docutils literal notranslate"><span class="pre">1</span></code>, which is preferable for strong tidal influences and a value of <code class="docutils literal notranslate"><span class="pre">3</span></code> sets the length for computing vertical diffusivity to <span id="id5">Nezu and Nakagawa [<a class="reference internal" href="../documentation/bibliography.html#id1362">NN93</a>]</span>.</p>
-</div>
-</div>
-<div class="section" id="run-telemac3d">
-<h2>Run Telemac3d<a class="headerlink" href="#run-telemac3d" title="Permalink to this headline">¶</a></h2>
+<p>If the <code class="docutils literal notranslate"><span class="pre">VERTICAL</span> <span class="pre">TURBULENCE</span> <span class="pre">MODEL</span></code> is set to <code class="docutils literal notranslate"><span class="pre">2</span></code> (<code class="docutils literal notranslate"><span class="pre">'MIXING</span> <span class="pre">LENGTH'</span></code>), a <code class="docutils literal notranslate"><span class="pre">MIXING</span> <span class="pre">LENGTH</span> <span class="pre">MODEL</span></code> can be assigned. The default is <code class="docutils literal notranslate"><span class="pre">1</span></code>, which is preferable for strong tidal influences and a value of <code class="docutils literal notranslate"><span class="pre">3</span></code> sets the length for computing vertical diffusivity to <span id="id5">Nezu and Nakagawa [<a class="reference internal" href="../documentation/bibliography.html#id1362" title="Iehisa Nezu and Hiroji Nakagawa. Turbulence in Open-Channel Flows. Routledge, London, UK, 1 edition, 1993. ISBN 978-0-203-73490-2. doi: 10.1201/9780203734902. URL: https://doi.org/10.1201/9780203734902.">NN93</a>]</span>.</p>
+</section>
+</section>
+<section id="run-telemac3d">
+<h2>Run Telemac3d<a class="headerlink" href="#run-telemac3d" title="Permalink to this headline">#</a></h2>
 <p>Go to the configuration folder of the local TELEMAC installation (e.g., <code class="docutils literal notranslate"><span class="pre">~/telemac/v8p2/configs/</span></code>) and launch the environment (e.g., <code class="docutils literal notranslate"><span class="pre">pysource.openmpi.sh</span></code> - use the same as for compiling TELEMAC).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">configs</span>
 <span class="n">source</span> <span class="n">pysource</span><span class="o">.</span><span class="n">openmpi</span><span class="o">.</span><span class="n">sh</span>
@@ -1263,26 +894,26 @@
 </div>
 <p>As a result, a successful computation should end with the following lines (or similar) in <em>Terminal</em>:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">[...]</span>
-                    <span class="o">*************************************</span>
-                    <span class="o">*</span>    <span class="k">END </span><span class="n">OF</span> <span class="k">MEMORY </span><span class="n">ORGANIZATION</span><span class="p">:</span>    <span class="o">*</span>
-                    <span class="o">*************************************</span>
+<span class="w">                    </span><span class="o">*************************************</span>
+<span class="w">                    </span><span class="o">*</span><span class="w">    </span><span class="k">END </span><span class="n">OF</span><span class="w"> </span><span class="k">MEMORY </span><span class="n">ORGANIZATION</span><span class="p">:</span><span class="w">    </span><span class="o">*</span>
+<span class="w">                    </span><span class="o">*************************************</span>
 
-<span class="n">CORRECT</span> <span class="k">END </span><span class="n">OF</span> <span class="n">RUN</span>
+<span class="n">CORRECT</span><span class="w"> </span><span class="k">END </span><span class="n">OF</span><span class="w"> </span><span class="n">RUN</span>
 
-<span class="n">ELAPSE</span> <span class="nb">TIME</span> <span class="p">:</span>
-                            <span class="mi">10</span>  <span class="n">MINUTES</span>
-                            <span class="mi">17</span>  <span class="n">SECONDS</span>
-<span class="p">...</span> <span class="n">merging</span> <span class="n">separated</span> <span class="k">result </span><span class="n">files</span>
+<span class="n">ELAPSE</span><span class="w"> </span><span class="nb">TIME</span><span class="w"> </span><span class="p">:</span>
+<span class="w">                            </span><span class="mi">10</span><span class="w">  </span><span class="n">MINUTES</span>
+<span class="w">                            </span><span class="mi">17</span><span class="w">  </span><span class="n">SECONDS</span>
+<span class="p">...</span><span class="w"> </span><span class="n">merging</span><span class="w"> </span><span class="n">separated</span><span class="w"> </span><span class="k">result </span><span class="n">files</span>
 
-<span class="p">...</span> <span class="n">handling</span> <span class="k">result </span><span class="n">files</span>
-       <span class="n">moving</span><span class="p">:</span> <span class="n">r3dsteady</span><span class="p">.</span><span class="n">slf</span>
-<span class="p">...</span> <span class="n">deleting</span> <span class="n">working</span> <span class="n">dir</span>
+<span class="p">...</span><span class="w"> </span><span class="n">handling</span><span class="w"> </span><span class="k">result </span><span class="n">files</span>
+<span class="w">       </span><span class="n">moving</span><span class="p">:</span><span class="w"> </span><span class="n">r3dsteady</span><span class="p">.</span><span class="n">slf</span>
+<span class="p">...</span><span class="w"> </span><span class="n">deleting</span><span class="w"> </span><span class="n">working</span><span class="w"> </span><span class="n">dir</span>
 
-<span class="n">My</span> <span class="n">work</span> <span class="k">is </span><span class="n">done</span>
+<span class="n">My</span><span class="w"> </span><span class="n">work</span><span class="w"> </span><span class="k">is </span><span class="n">done</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1296,7 +927,7 @@
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./numerics"
         },
         predefinedOutput: true
@@ -1304,46 +935,110 @@
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="telemac3d.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Telemac3d</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="telemac3d.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Telemac3d</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="telemac3d-med.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="telemac3d-med.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Steady 3d (MED and Salome)</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-        
-        </div>
-    </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Sebastian Schwindt, Ricardo Barros<br/>
-        
-            &copy; Copyright 2023.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#re-use-the-2d-model">Re-use the 2d Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steering-file">Steering File</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computation-environment">Computation Environment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-parameters">General Parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-parameters">Numerical Parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vertical-3d-parameters">Vertical (3d) Parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-liquid-boundaries">Open (Liquid) Boundaries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-conditions">Initial Conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#turbulence">Turbulence</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-telemac3d">Run Telemac3d</a></li>
+</ul>
+  </nav></div>
 
-      </div>
-    </div>
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By Sebastian Schwindt, Ricardo Barros
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

@@ -1,982 +1,550 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Pre-processing &#8212; Hydro-Informatics</title>
-    
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script src="../_static/tabs.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'numerics/pre-slf-tm';</script>
     <link rel="canonical" href="https://hydro-informatics.com/numerics/pre-slf-tm.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Telemac2d" href="telemac2d.html" />
     <link rel="prev" title="TELEMAC" href="telemac.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/icon.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Get Started
- </span>
-</p>
+    
+    
+    <img src="../_static/icon.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/icon.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../lectures/classroom.html">
-   The Virtual Classroom
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/principles.html">
-     Principles
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/lectures.html">
-     Lectures and Exercises
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/take_seat.html">
-     Take a Seat
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../get-started/software.html">
-   Software Resources
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/vm.html">
-     Virtual Machines and Linux
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/ide.html">
-     Integrated Development Environments (IDEs)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../python-basics/pyinstall.html">
-     Python (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/git.html">
-     Version Control : git
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/geo.html">
-     Geospatial Software
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/install-openfoam.html">
-     OpenFOAM (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/install-telemac.html">
-     TELEMAC (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/others.html">
-     Other Software Resources
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/classroom.html">The Virtual Classroom</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/principles.html">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/lectures.html">Lectures and Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/take_seat.html">Take a Seat</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Python Basics
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../get-started/software.html">Software Resources</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/vm.html">Virtual Machines and Linux</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../get-started/ide.html">Integrated Development Environments (IDEs)</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../python-basics/pyinstall.html">Python (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/git.html">Version Control : git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/geo.html">Geospatial Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/install-openfoam.html">OpenFOAM (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/install-telemac.html">TELEMAC (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/others.html">Other Software Resources</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Basics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/python.html">
-   First Steps
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pybase.html">
-     Hello Data Types
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyerror.html">
-     Errors, Logging, and Debugging
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyloop.html">
-     Loops and Conditional Statements
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/modularize.html">
-   Object Orientation
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyfun.html">
-     Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pypckg.html">
-     Packages, Modules and Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/classes.html">
-     Object Orientation and Classes
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/data-handling.html">
-   Data and File Handling
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pynum.html">
-     Data Files, NumPy &amp; Pandas
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/xml.html">
-     Structured Data (XML, xlsx &amp; JSON)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyplot.html">
-     Plotting
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../jupyter/pystyle.html">
-   Code Style and Conventions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../jupyter/gui.html">
-   Graphical User Interfaces (GUIs)
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/python-exercises.html">
-   Python Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-ms.html">
-     1d Hydraulics (Manning-Strickler Formula)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-sp.html">
-     Reservoir Volume (Sequent Peak Algorithm)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-floods.html">
-     Flood Return Periods
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-sediment.html">
-     1d Sediment Transport
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-gui.html">
-     Create a GUI
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/python.html">First Steps</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pybase.html">Hello Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyerror.html">Errors, Logging, and Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyloop.html">Loops and Conditional Statements</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Geospatial Analysis
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/modularize.html">Object Orientation</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyfun.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pypckg.html">Packages, Modules and Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/classes.html">Object Orientation and Classes</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/data-handling.html">Data and File Handling</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pynum.html">Data Files, NumPy &amp; Pandas</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/xml.html">Structured Data (XML, xlsx &amp; JSON)</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyplot.html">Plotting</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/pystyle.html">Code Style and Conventions</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/gui.html">Graphical User Interfaces (GUIs)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/python-exercises.html">Python Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-ms.html">1d Hydraulics (Manning-Strickler Formula)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-sp.html">Reservoir Volume (Sequent Peak Algorithm)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-floods.html">Flood Return Periods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-sediment.html">1d Sediment Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-gui.html">Create a GUI</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Geospatial Analysis</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/geospatial-data.html">
-   Geospatial Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/use-qgis.html">
-   QGIS Tutorial
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/drone-processing.html">
-   Process Drone (UAV) Imagery
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../geopy/geo-python.html">
-   Geospatial Python
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/geo-pckg.html">
-     Geospatial Open Source Python Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-shp.html">
-     Shapefile (Vector) Handling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-raster.html">
-     Raster (Grid) Handling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-convert.html">
-     Vectorize and Rasterize
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-arcpy.html">
-     The Commercial arcpy Library
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/geo-exercises.html">
-   Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-geco.html">
-     Script a Habitat Suitability Map
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/geospatial-data.html">Geospatial Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/use-qgis.html">QGIS Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/drone-processing.html">Process Drone (UAV) Imagery</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../geopy/geo-python.html">Geospatial Python</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geopy/geo-pckg.html">Geospatial Open Source Python Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-shp.html">Shapefile (Vector) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-raster.html">Raster (Grid) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-convert.html">Vectorize and Rasterize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-arcpy.html">The Commercial arcpy Library</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Data Science
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../datascience/data-science.html">
-   Fundamentals (Coming soon)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/py-requirements.html">
-     Python Requirements
-    </a>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../datascience/data-prepro.html">
-     Data Pre-Processing
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-    <label for="toctree-checkbox-10">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/data-types.html">
-       The Nature of Data
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/data-cleaning.html">
-       Dataset Cleaning
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/dimensional-analysis.html">
-       Dimensional Analysis
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../datascience/theory.html">
-   Techniques (Coming soon)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/techniques.html">
-     Overview of Fundamental Techniques
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/calibrate-validate.html">
-     Model Calibration and Validation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
-     Support Vector Machine (SVM)
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/geo-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-geco.html">Script a Habitat Suitability Map</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Numerical Modeling
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Modeling</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="numerical-modeling.html">
-   Principles
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="basement.html">
-   BASEMENT
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pre-qgis-bm.html">
-     Pre-processing with QGIS
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="basement2d.html">
-     Run and Check a Steady 2d Simulation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="telemac.html">
-   TELEMAC
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Pre-processing
-    </a>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="telemac2d.html">
-     Telemac2d
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-    <label for="toctree-checkbox-14">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="telemac2d-steady.html">
-       Steady 2d
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="telemac2d-unsteady.html">
-       Unsteady 2d
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="telemac3d.html">
-     Telemac3d
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-    <label for="toctree-checkbox-15">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="telemac3d-slf.html">
-       Steady 3d (SLF - Selafin)
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="telemac3d-med.html">
-       Steady 3d (MED and Salome)
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="telemac-gaia.html">
-     Gaia (Morphodynamics)
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-    <label for="toctree-checkbox-16">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="gaia-coupling.html">
-       Introduction and Coupling
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="gaia-basics.html">
-       Basic Setup of Gaia
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="gaia-bedload.html">
-       Bedload
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="gaia-suspended.html">
-       Suspended Load
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="gaia-run.html">
-       Run and Analyze
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="numerical-modeling.html">Principles</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="basement.html">BASEMENT</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="pre-qgis-bm.html">Pre-processing with QGIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basement2d.html">Run and Check a Steady 2d Simulation</a></li>
+
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Documentation
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/documentation.html">
-   How to Markdown and Document
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/glossary.html">
-   Glossary
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/notation.html">
-   Notation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/bibliography.html">
-   References
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/docs-exercises.html">
-   Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
-  <label for="toctree-checkbox-17">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-git.html">
-     Git and Markdown
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="telemac.html">TELEMAC</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Pre-processing</a></li>
+
+
+<li class="toctree-l2 has-children"><a class="reference internal" href="telemac2d.html">Telemac2d</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="telemac2d-steady.html">Steady 2d</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="telemac2d-unsteady.html">Unsteady 2d</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Troubleshoot
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
-   Programming Tools and IDEs
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
-  <label for="toctree-checkbox-18">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
-     Debugging Anaconda
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-python.html">
-     Debugging Python Code
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
-     Debugging Jupyter
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
-   Numerical Models
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
-  <label for="toctree-checkbox-19">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
-     Debugging BASEMENT
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
-     Debugging TELEMAC
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-os.html">
-   Operating Systems (Linux and VMs)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
-  <label for="toctree-checkbox-20">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
-     Debugging Debian Linux
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
-     Debugging Virtual Machines
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="telemac3d.html">Telemac3d</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="telemac3d-slf.html">Steady 3d (SLF - Selafin)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="telemac3d-med.html">Steady 3d (MED and Salome)</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Disclaimer and License
- </span>
-</p>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="telemac-gaia.html">Gaia (Morphodynamics)</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="gaia-coupling.html">Introduction and Coupling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gaia-basics.html">Basic Setup of Gaia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gaia-bedload.html">Bedload</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gaia-suspended.html">Suspended Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gaia-run.html">Run and Analyze</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Science</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../terms/license.html">
-   License
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../terms/disclaimer.html">
-   Disclaimer
-  </a>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/data-science.html">Fundamentals (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/py-requirements.html">Python Requirements</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../datascience/data-prepro.html">Data Pre-Processing</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/data-types.html">The Nature of Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/data-cleaning.html">Dataset Cleaning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/dimensional-analysis.html">Dimensional Analysis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/theory.html">Techniques (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/techniques.html">Overview of Fundamental Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/calibrate-validate.html">Model Calibration and Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/morphology-predictor-svm.html">Support Vector Machine (SVM)</a></li>
+
+
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../documentation/documentation.html">How to Markdown and Document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/notation.html">Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/bibliography.html">References</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/docs-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-git.html">Git and Markdown</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Troubleshoot</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-programming.html">Programming Tools and IDEs</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-anaconda.html">Debugging Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-python.html">Debugging Python Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-jupyter.html">Debugging Jupyter</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">Numerical Models</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-basement.html">Debugging BASEMENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-telemac.html">Debugging TELEMAC</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-os.html">Operating Systems (Linux and VMs)</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-linux.html">Debugging Debian Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-vm.html">Debugging Virtual Machines</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-scilife.html">Science Life Hacks</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-zotero.html">Zotero Utilities</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Disclaimer and License</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../terms/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terms/disclaimer.html">Disclaimer</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a> and Ricardo Barros
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/numerics/pre-slf-tm.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/hydro-informatics/jupyter-python-course"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
         
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/hydro-informatics/jupyter-python-course" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/numerics/pre-slf-tm.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-        </div>
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Pre-processing</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Pre-processing
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#qgis">
-   QGIS
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#create-and-setup-a-new-project">
-     Create and Setup a New Project
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#third-party-plugins">
-     Third-party Plugins
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#load-dem">
-     Load DEM
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#enable-snapping">
-     Enable Snapping
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#model-boundaries-and-breaklines">
-     Model Boundaries and Breaklines
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#breaklines-and-model-outline">
-       Breaklines and Model Outline
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#liquid-boundaries">
-       Liquid Boundaries
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#region-point-markers">
-       Region Point Markers
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#quality-meshing-2dm">
-     Quality Meshing (*.2dm)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#bluekenue">
-   BlueKenue
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#get-started">
-     Get Started
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#files-and-objects">
-     Files and Objects
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#load-xyz-points">
-     Load XYZ Points
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#bluekenue-meshing-optional">
-     BlueKenue Meshing (Optional)
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#draw-model-boundary-closed-line">
-       Draw Model Boundary (Closed Line)
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#draw-open-lines-of-the-channel-banks">
-       Draw Open Lines of the Channel Banks
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#generate-mesh-es">
-       Generate Mesh(es)
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#selafin">
-     SELAFIN
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#open-and-import-ingredients">
-       Open and Import Ingredients
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#create-selafin-object">
-       Create SELAFIN Object
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#create-2d-interpolator">
-       Create 2D Interpolator
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#boundary-conditions-conlim-cli">
-     Boundary Conditions (Conlim - CLI)
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#create-conlim-object">
-       Create Conlim Object
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#define-liquid-boundaries">
-       Define Liquid Boundaries
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Pre-processing</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#qgis">QGIS</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-setup-a-new-project">Create and Setup a New Project</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#third-party-plugins">Third-party Plugins</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dem">Load DEM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enable-snapping">Enable Snapping</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-boundaries-and-breaklines">Model Boundaries and Breaklines</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#breaklines-and-model-outline">Breaklines and Model Outline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#liquid-boundaries">Liquid Boundaries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#region-point-markers">Region Point Markers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-meshing-2dm">Quality Meshing (*.2dm)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#bluekenue">BlueKenue</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-started">Get Started</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#files-and-objects">Files and Objects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-xyz-points">Load XYZ Points</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bluekenue-meshing-optional">BlueKenue Meshing (Optional)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#draw-model-boundary-closed-line">Draw Model Boundary (Closed Line)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#draw-open-lines-of-the-channel-banks">Draw Open Lines of the Channel Banks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-mesh-es">Generate Mesh(es)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#selafin">SELAFIN</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-and-import-ingredients">Open and Import Ingredients</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-selafin-object">Create SELAFIN Object</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-2d-interpolator">Create 2D Interpolator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-conditions-conlim-cli">Boundary Conditions (Conlim - CLI)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-conlim-object">Create Conlim Object</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-liquid-boundaries">Define Liquid Boundaries</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="pre-processing">
-<span id="slf-prepro-tm"></span><h1>Pre-processing<a class="headerlink" href="#pre-processing" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pre-processing">
+<span id="slf-prepro-tm"></span><h1>Pre-processing<a class="headerlink" href="#pre-processing" title="Permalink to this headline">#</a></h1>
 <div class="attention admonition">
 <p class="admonition-title">Requirements</p>
 <p>This tutorial is designed for <strong>advanced beginners</strong> and before diving into this tutorial make sure to:</p>
@@ -997,41 +565,45 @@
 <p class="admonition-title">Platform compatibility</p>
 <p>All software applications featured in this tutorial can be run on <em>Linux</em>, <em>Windows</em>, and also potentially <em>macOS</em> (not tested) platforms.</p>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="qgis">
-<span id="tm-qgis-prepro"></span><h1>QGIS<a class="headerlink" href="#qgis" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="create-and-setup-a-new-project">
-<h2>Create and Setup a New Project<a class="headerlink" href="#create-and-setup-a-new-project" title="Permalink to this headline">¶</a></h2>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="qgis">
+<span id="tm-qgis-prepro"></span><h1>QGIS<a class="headerlink" href="#qgis" title="Permalink to this headline">#</a></h1>
+<section id="create-and-setup-a-new-project">
+<h2>Create and Setup a New Project<a class="headerlink" href="#create-and-setup-a-new-project" title="Permalink to this headline">#</a></h2>
 <p>Launch QGIS and <a class="reference internal" href="../geopy/use-qgis.html#qgis-project"><span class="std std-ref">create a new QGIS project</span></a> to get started with this tutorial. As featured in the <a class="reference internal" href="../geopy/use-qgis.html#qgis-tutorial"><span class="std std-ref">QGIS Tutorial</span></a>, set up a coordinate reference system (<a class="reference internal" href="../documentation/glossary.html#term-CRS"><span class="xref std std-term">CRS</span></a>) for the project. This example uses data of a river in Bavaria (Germany, UTM zone 33N), which requires the following <a class="reference internal" href="../documentation/glossary.html#term-CRS"><span class="xref std std-term">CRS</span></a>:</p>
 <ul class="simple">
 <li><p>In the QGIS top menu go to <strong>Project</strong> &gt; <strong>Properties</strong>.</p></li>
 <li><p>Activate the <strong>CRS</strong> tab.</p></li>
-<li><p>Enter <code class="docutils literal notranslate"><span class="pre">UTM</span> <span class="pre">zone</span> <span class="pre">33N</span></code> and select the CRS shown in <a class="reference internal" href="#qgis-crs-utm33n"><span class="std std-numref">Fig. 66</span></a>.</p></li>
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">UTM</span> <span class="pre">zone</span> <span class="pre">33N</span></code> and select the CRS shown in <a class="reference internal" href="#qgis-crs-utm33n"><span class="std std-numref">Fig. 64</span></a>.</p></li>
 <li><p>Click <strong>Apply</strong> and <strong>OK</strong>.</p></li>
 </ul>
 <p>Note that the CRS used with TELEMAC differs from the one used with BASEMENT to enable the compatibility of geospatial data products from QGIS with <a class="reference internal" href="../get-started/install-telemac.html#bluekenue"><span class="std std-ref">BlueKenue</span></a>.</p>
-<div class="figure align-default" id="qgis-crs-utm33n">
+<figure class="align-default" id="qgis-crs-utm33n">
 <img alt="qgis set coordinate reference system crs germany utm zone 33n Inn river" src="../_images/crs-utm-33n.png" />
-<p class="caption"><span class="caption-number">Fig. 66 </span><span class="caption-text">Define UTM zone 33N (WGS84) as project CRS.</span><a class="headerlink" href="#qgis-crs-utm33n" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 64 </span><span class="caption-text">Define UTM zone 33N (WGS84) as project CRS.</span><a class="headerlink" href="#qgis-crs-utm33n" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="tip admonition">
 <p class="admonition-title">Save the project…</p>
 <p>Save the QGIS project (<strong>Project</strong> &gt; <strong>Save As…</strong>), for example, with the name <strong>prepro-tutorial.qgz</strong>.</p>
 </div>
-</div>
-<div class="section" id="third-party-plugins">
-<span id="tm-qgis-plugins"></span><h2>Third-party Plugins<a class="headerlink" href="#third-party-plugins" title="Permalink to this headline">¶</a></h2>
-<p>The TELEMAC tutorials rely on the BASEmesh plugin and the <em>PostTelemac</em> plugin. To this end, <strong>open</strong> the <strong>QGIS plugin manager</strong> (<strong>Plugins</strong> menu &gt; <strong>Manage and Install Plugins</strong>) to open the <strong>Plugins</strong> window (<a class="reference internal" href="#open-qgis-plugin-manager"><span class="std std-numref">Fig. 67</span></a>).</p>
-<div class="figure align-default" id="open-qgis-plugin-manager">
+</section>
+<section id="third-party-plugins">
+<span id="tm-qgis-plugins"></span><h2>Third-party Plugins<a class="headerlink" href="#third-party-plugins" title="Permalink to this headline">#</a></h2>
+<p>The TELEMAC tutorials rely on the BASEmesh plugin and the <em>PostTelemac</em> plugin. To this end, <strong>open</strong> the <strong>QGIS plugin manager</strong> (<strong>Plugins</strong> menu &gt; <strong>Manage and Install Plugins</strong>) to open the <strong>Plugins</strong> window (<a class="reference internal" href="#open-qgis-plugin-manager"><span class="std std-numref">Fig. 65</span></a>).</p>
+<figure class="align-default" id="open-qgis-plugin-manager">
 <img alt="qgis basement telemac plugins manager" src="../_images/plugin-manager-open.png" />
-<p class="caption"><span class="caption-number">Fig. 67 </span><span class="caption-text">Open QGIS’ Plugins Manager.</span><a class="headerlink" href="#open-qgis-plugin-manager" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 65 </span><span class="caption-text">Open QGIS’ Plugins Manager.</span><a class="headerlink" href="#open-qgis-plugin-manager" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>In the <strong>Plugins</strong> window, add both plugins as follows:</p>
 <ul class="simple">
 <li><p>BASEmesh requires to add the developer’s plugin repository (more details are available in the <a class="reference internal" href="pre-qgis-bm.html#get-basemesh"><span class="std std-ref">BASEMENT pre-processing</span></a> tutorial):</p>
 <ul>
 <li><p>Go to the <strong>Settings</strong> tab.</p></li>
-<li><p>Scroll to the bottom (<strong>Plugin Repositories</strong> listbox in <a class="reference internal" href="pre-qgis-bm.html#qgis-plugins"><span class="std std-numref">Fig. 34</span></a>), click on <strong>Add…</strong>.</p></li>
+<li><p>Scroll to the bottom (<strong>Plugin Repositories</strong> listbox in <a class="reference internal" href="pre-qgis-bm.html#qgis-plugins"><span class="std std-numref">Fig. 32</span></a>), click on <strong>Add…</strong>.</p></li>
 <li><p>In the popup window enter:</p>
 <ul>
 <li><p>a name for the new repository, for instance, <code class="docutils literal notranslate"><span class="pre">BASEmesh</span> <span class="pre">Plugin</span> <span class="pre">Repository</span></code>;</p></li>
@@ -1055,9 +627,9 @@
 <p class="admonition-title">Why use BASEmesh for TELEMAC?</p>
 <p>By using BASEmesh, this tutorial employs BASEMENT’s efficient mesh generator to minimize the number of work steps to be made in BlueKenue<sup>TM</sup>. The rationale behind this approach is that QGIS is more stable and user-friendly than BlueKenue<sup>TM</sup>, for instance, to correct drawing errors of boundary lines.</p>
 </div>
-</div>
-<div class="section" id="load-dem">
-<span id="get-dem-xyz"></span><h2>Load DEM<a class="headerlink" href="#load-dem" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="load-dem">
+<span id="get-dem-xyz"></span><h2>Load DEM<a class="headerlink" href="#load-dem" title="Permalink to this headline">#</a></h2>
 <p>This tutorial uses height information that is stored in a <a class="reference internal" href="../documentation/glossary.html#term-DEM"><span class="xref std std-term">DEM</span></a>. For the QGIS section, preferably use the <a class="reference internal" href="../documentation/glossary.html#term-GeoTIFF"><span class="xref std std-term">GeoTIFF</span></a> <a class="reference internal" href="../documentation/glossary.html#term-DEM"><span class="xref std std-term">DEM</span></a> with UTM zone 33N as {term} <code class="docutils literal notranslate"><span class="pre">CRS</span></code> as follows:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/rasters/dem-utm33n.tif"><strong>Download the GeoTIFF DEM</strong></a> and save it in the same folder (<code class="docutils literal notranslate"><span class="pre">/Project</span> <span class="pre">Home/</span></code> or a sub-directory) as the above-create <strong>qgz</strong> project.</p></li>
@@ -1076,7 +648,7 @@
 <p>The <strong>dem-utm33n</strong> layer should now be visible in the viewport and listed in the <strong>Layers</strong> panel. <strong>Right-click</strong> on the <strong>dem-utm33n</strong> layer and select <strong>Zoom to Layer(s)</strong> to view the layer.</p>
 <div class="note dropdown admonition">
 <p class="admonition-title">Alternatively work with a .xyz DEM pointcloud</p>
-<p>This tutorial uses later in the section on BlueKenue<sup>TM</sup> a <code class="docutils literal notranslate"><span class="pre">*.xyz</span></code> file as <a class="reference internal" href="../documentation/glossary.html#term-DEM"><span class="xref std std-term">DEM</span></a>, which was derived from the <a class="reference internal" href="../documentation/glossary.html#term-GeoTIFF"><span class="xref std std-term">GeoTIFF</span></a> using the workflow described in the <a class="reference internal" href="../geopy/use-qgis.html#make-xyz"><span class="std std-ref">QGIS tutorial</span></a>. The <code class="docutils literal notranslate"><span class="pre">*.xyz</span></code> file can also be used with QGIS and it can be <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/rasters/dem.xyz">downloaded here</a>. To <strong>import</strong> the <strong>dem.xyz</strong> file in QGIS, open the <em>Data Source Manager</em> from the <strong>Layer</strong> top menu, select <strong>Add Layer</strong> and <strong>Add Delimited Text Layer…</strong>. In the opening <strong>Data Source Manager</strong> window (see <a class="reference internal" href="#qgis-import-xyz"><span class="std std-numref">Fig. 68</span></a>) take the following actions:</p>
+<p>This tutorial uses later in the section on BlueKenue<sup>TM</sup> a <code class="docutils literal notranslate"><span class="pre">*.xyz</span></code> file as <a class="reference internal" href="../documentation/glossary.html#term-DEM"><span class="xref std std-term">DEM</span></a>, which was derived from the <a class="reference internal" href="../documentation/glossary.html#term-GeoTIFF"><span class="xref std std-term">GeoTIFF</span></a> using the workflow described in the <a class="reference internal" href="../geopy/use-qgis.html#make-xyz"><span class="std std-ref">QGIS tutorial</span></a>. The <code class="docutils literal notranslate"><span class="pre">*.xyz</span></code> file can also be used with QGIS and it can be <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/rasters/dem.xyz">downloaded here</a>. To <strong>import</strong> the <strong>dem.xyz</strong> file in QGIS, open the <em>Data Source Manager</em> from the <strong>Layer</strong> top menu, select <strong>Add Layer</strong> and <strong>Add Delimited Text Layer…</strong>. In the opening <strong>Data Source Manager</strong> window (see <a class="reference internal" href="#qgis-import-xyz"><span class="std std-numref">Fig. 66</span></a>) take the following actions:</p>
 <ul class="simple">
 <li><p>Select the downloaded <code class="docutils literal notranslate"><span class="pre">dem.xyz</span></code> file in the <strong>file name</strong> field.</p></li>
 <li><p>In the <strong>File Format</strong> frame, make sure to select <strong>Custom delimiters</strong> and check the <strong>Space</strong> delimiter box.</p></li>
@@ -1084,14 +656,16 @@
 <li><p>In the <strong>Geometry Definition</strong> frame, select <code class="docutils literal notranslate"><span class="pre">:EndHeader</span></code> as <strong>X field</strong>, <code class="docutils literal notranslate"><span class="pre">field_2</span></code> as <strong>Y field</strong>, and <code class="docutils literal notranslate"><span class="pre">field_3</span></code> as <strong>Z field</strong>. Select <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">CRS:</span> <span class="pre">ESRI:32633</span> <span class="pre">-</span> <span class="pre">WGS</span> <span class="pre">84</span> <span class="pre">/</span> <span class="pre">UTM</span> <span class="pre">zone</span> <span class="pre">33N</span></code> as <strong>Geometry CRS</strong>.</p></li>
 <li><p>Click <strong>Add</strong> and <strong>Close</strong> the <em>Data Source Manager</em> window.</p></li>
 </ul>
-<div class="figure align-default" id="qgis-import-xyz">
+<figure class="align-default" id="qgis-import-xyz">
 <img alt="qgis import XYZ point cloud file dem" src="../_images/import-dem-xyz.png" />
-<p class="caption"><span class="caption-number">Fig. 68 </span><span class="caption-text">Import the <code class="docutils literal notranslate"><span class="pre">*.xyz</span></code> point cloud as QGIS layer.</span><a class="headerlink" href="#qgis-import-xyz" title="Permalink to this image">¶</a></p>
+<figcaption>
+<p><span class="caption-number">Fig. 66 </span><span class="caption-text">Import the <code class="docutils literal notranslate"><span class="pre">*.xyz</span></code> point cloud as QGIS layer.</span><a class="headerlink" href="#qgis-import-xyz" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
-</div>
-</div>
-<div class="section" id="enable-snapping">
-<h2>Enable Snapping<a class="headerlink" href="#enable-snapping" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="enable-snapping">
+<h2>Enable Snapping<a class="headerlink" href="#enable-snapping" title="Permalink to this headline">#</a></h2>
 <p>It is important that the lines do not overlap to avoid ambiguous or missing definitions of regions and to ensure that boundary lines are closed. Therefore, activate snapping:</p>
 <ul class="simple">
 <li><p>Activate the <em>Snapping Toolbar</em>: <strong>View</strong> &gt; <strong>Toolbars</strong> &gt; <strong>Snapping Toolbar</strong></p></li>
@@ -1104,28 +678,32 @@
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="model-boundaries-and-breaklines">
-<span id="make-tm-shp"></span><h2>Model Boundaries and Breaklines<a class="headerlink" href="#model-boundaries-and-breaklines" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="model-boundaries-and-breaklines">
+<span id="make-tm-shp"></span><h2>Model Boundaries and Breaklines<a class="headerlink" href="#model-boundaries-and-breaklines" title="Permalink to this headline">#</a></h2>
 <p>This section resembles the instructions of the <a class="reference internal" href="pre-qgis-bm.html#make-2dm"><span class="std std-ref">BASEMENT pre-processing</span></a> tutorial to generate an <a class="reference internal" href="../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> mesh file. The differences are that the shapefiles for the TELEMAC pre-processing use the <em>UTM zone 33N</em> <a class="reference internal" href="../documentation/glossary.html#term-CRS"><span class="xref std std-term">CRS</span></a> and that the height (elevation) interpolation needs to be done with the BlueKenue<sup>TM</sup> software to generate liquid boundary lines and an <code class="docutils literal notranslate"><span class="pre">*.slf</span></code> geometry file for TELEMAC. The generation of the <a class="reference internal" href="../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> mesh relies on the <a class="reference internal" href="pre-qgis-bm.html#get-basemesh"><span class="std std-ref">QGIS BASEmesh plugin</span></a> and requires drawing a</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../geopy/use-qgis.html#create-line-shp"><span class="std std-ref">Line Shapefile</span></a> called <em>breaklines.shp</em> that contains model boundaries and internal breaklines between model regions with different characteristics;</p></li>
 <li><p><a class="reference internal" href="../geopy/use-qgis.html#create-line-shp"><span class="std std-ref">Line Shapefile</span></a> called <em>liquid-boundaries.shp</em> that contains model boundaries for assigning inflow and outflow conditions;</p></li>
 <li><p><a class="reference internal" href="../geopy/use-qgis.html#create-point-shp"><span class="std std-ref">Point Shapefile</span></a> called <em>region-pts.shp</em> that contains markers for the definition of characteristics of model regions.</p></li>
 </ul>
-<p><a class="reference internal" href="#tm-shapefiles"><span class="std std-numref">Figure 69</span></a> provides an overview of the shapefiles to be drawn for generating a quality mesh with the BASEmesh plugin.</p>
-<div class="figure align-default" id="tm-shapefiles">
+<p><a class="reference internal" href="#tm-shapefiles"><span class="std std-numref">Figure 67</span></a> provides an overview of the shapefiles to be drawn for generating a quality mesh with the BASEmesh plugin.</p>
+<figure class="align-default" id="tm-shapefiles">
 <img alt="qgis telemac basemesh point line shapefiles" src="../_images/tm-prepro-illu.png" />
-<p class="caption"><span class="caption-number">Fig. 69 </span><span class="caption-text">The breaklines, liquid boundaries, and region points shapefile to draw for creating a 2dm quality mesh with the BASEmesh plugin (background map: <span id="id1">Google [<a class="reference internal" href="../documentation/bibliography.html#id1370">Goond</a>]</span> satellite imagery).</span><a class="headerlink" href="#tm-shapefiles" title="Permalink to this image">¶</a></p>
-</div>
-<div class="section" id="breaklines-and-model-outline">
-<span id="tm-bm-breaklines"></span><h3>Breaklines and Model Outline<a class="headerlink" href="#breaklines-and-model-outline" title="Permalink to this headline">¶</a></h3>
-<p>The model boundary defines the model extent and can be divided into regions with different characteristics (e.g., roughness values) through <strong>breaklines</strong>. Breaklines indicate, for instance, channel banks and the riverbed (main channel), and need to be inside the DEM extents. Boundary lines and breaklines are stored in a <a class="reference internal" href="../geopy/use-qgis.html#create-line-shp"><span class="std std-ref">Line Shapefile</span></a> that BASEmesh uses to find both model boundaries and internal breaklines between model regions. For this purpose, <a class="reference internal" href="../geopy/use-qgis.html#create-line-shp"><span class="std std-ref">Create a Line Shapefile</span></a> and call it <strong>breaklines.shp</strong> (<strong>Layer</strong> &gt; <strong>Create Layer</strong> &gt; <strong>New Shapefile Layer</strong>). Click on QGIS’ <strong>Layers</strong> menu &gt; <strong>Create Layer</strong> &gt; <strong>New Shapefile Layer…</strong> (see <a class="reference internal" href="#tm-qgis-new-lyr"><span class="std std-numref">Fig. 70</span></a>). Make sure to select <code class="docutils literal notranslate"><span class="pre">EPSG:</span> <span class="pre">32633</span> <span class="pre">-</span> <span class="pre">WGS</span> <span class="pre">84</span> <span class="pre">/</span> <span class="pre">UTM</span> <span class="pre">zone</span> <span class="pre">33N</span></code> as <a class="reference internal" href="../documentation/glossary.html#term-CRS"><span class="xref std std-term">CRS</span></a> <img alt="../_images/sym-crs.png" src="../_images/sym-crs.png" />. Do not add any field.</p>
-<div class="figure align-default" id="tm-qgis-new-lyr">
+<figcaption>
+<p><span class="caption-number">Fig. 67 </span><span class="caption-text">The breaklines, liquid boundaries, and region points shapefile to draw for creating a 2dm quality mesh with the BASEmesh plugin (background map: <span id="id1">Google [<a class="reference internal" href="../documentation/bibliography.html#id1370" title="Google. Google Satellite imagery. nd. URL: https://mt1.google.com/vt/lyrs=s&amp;x={x}&amp;y={y}&amp;z={z}.">Goond</a>]</span> satellite imagery).</span><a class="headerlink" href="#tm-shapefiles" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="breaklines-and-model-outline">
+<span id="tm-bm-breaklines"></span><h3>Breaklines and Model Outline<a class="headerlink" href="#breaklines-and-model-outline" title="Permalink to this headline">#</a></h3>
+<p>The model boundary defines the model extent and can be divided into regions with different characteristics (e.g., roughness values) through <strong>breaklines</strong>. Breaklines indicate, for instance, channel banks and the riverbed (main channel), and need to be inside the DEM extents. Boundary lines and breaklines are stored in a <a class="reference internal" href="../geopy/use-qgis.html#create-line-shp"><span class="std std-ref">Line Shapefile</span></a> that BASEmesh uses to find both model boundaries and internal breaklines between model regions. For this purpose, <a class="reference internal" href="../geopy/use-qgis.html#create-line-shp"><span class="std std-ref">Create a Line Shapefile</span></a> and call it <strong>breaklines.shp</strong> (<strong>Layer</strong> &gt; <strong>Create Layer</strong> &gt; <strong>New Shapefile Layer</strong>). Click on QGIS’ <strong>Layers</strong> menu &gt; <strong>Create Layer</strong> &gt; <strong>New Shapefile Layer…</strong> (see <a class="reference internal" href="#tm-qgis-new-lyr"><span class="std std-numref">Fig. 68</span></a>). Make sure to select <code class="docutils literal notranslate"><span class="pre">EPSG:</span> <span class="pre">32633</span> <span class="pre">-</span> <span class="pre">WGS</span> <span class="pre">84</span> <span class="pre">/</span> <span class="pre">UTM</span> <span class="pre">zone</span> <span class="pre">33N</span></code> as <a class="reference internal" href="../documentation/glossary.html#term-CRS"><span class="xref std std-term">CRS</span></a> <img alt="../_images/sym-crs.png" src="../_images/sym-crs.png" />. Do not add any field.</p>
+<figure class="align-default" id="tm-qgis-new-lyr">
 <img alt="qgis new layer basemesh" src="../_images/create-shp-layer.png" />
-<p class="caption"><span class="caption-number">Fig. 70 </span><span class="caption-text">Create a new shapefile from QGIS’ Layers menu.</span><a class="headerlink" href="#tm-qgis-new-lyr" title="Permalink to this image">¶</a></p>
-</div>
-<p>Start editing <strong>breaklines.shp</strong> by clicking on the yellow pen <img alt="../_images/yellow-pen.png" src="../_images/yellow-pen.png" /> and draw the breaklines indicated in <a class="reference internal" href="#tm-shapefiles"><span class="std std-numref">Fig. 69</span></a> by activating <strong>Add Line Feature</strong> <img alt="../_images/sym-add-line.png" src="../_images/sym-add-line.png" />, which involves:</p>
+<figcaption>
+<p><span class="caption-number">Fig. 68 </span><span class="caption-text">Create a new shapefile from QGIS’ Layers menu.</span><a class="headerlink" href="#tm-qgis-new-lyr" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Start editing <strong>breaklines.shp</strong> by clicking on the yellow pen <img alt="../_images/yellow-pen.png" src="../_images/yellow-pen.png" /> and draw the breaklines indicated in <a class="reference internal" href="#tm-shapefiles"><span class="std std-numref">Fig. 67</span></a> by activating <strong>Add Line Feature</strong> <img alt="../_images/sym-add-line.png" src="../_images/sym-add-line.png" />, which involves:</p>
 <ul class="simple">
 <li><p>The <strong>boundaries of the</strong> model at the left and the right <strong>floodplain limits</strong>:</p>
 <ul>
@@ -1165,13 +743,13 @@
 <p>If you are dealing with a point cloud, consider using <em>QGIS</em> <a class="reference external" href="https://docs.qgis.org/3.16/en/docs/training_manual/vector_analysis/spatial_statistics.html?highlight=convex%20hull#basic-fa-create-a-test-dataset">Convex Hull tool</a> that draws a tight bounding polygon around points.</p>
 <p>If you are dealing with a large <a class="reference internal" href="../documentation/glossary.html#term-GeoTIFF"><span class="xref std std-term">GeoTIFF</span></a>, consider using QGIS’ <a class="reference external" href="https://docs.qgis.org/3.16/en/docs/training_manual/complete_analysis/raster_to_vector.html">Raster to Vector</a> tool.</p>
 </div>
-</div>
-<div class="section" id="liquid-boundaries">
-<span id="tm-bm-liquid-boundaries"></span><h3>Liquid Boundaries<a class="headerlink" href="#liquid-boundaries" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="liquid-boundaries">
+<span id="tm-bm-liquid-boundaries"></span><h3>Liquid Boundaries<a class="headerlink" href="#liquid-boundaries" title="Permalink to this headline">#</a></h3>
 <p>The <strong>liquid boundaries</strong> define where hydraulic conditions, such as a given discharge or stage-discharge relationship, apply at the model inflow (upstream) and outflow (downstream) limits. Thus, a functional river model requires at least one inflow boundary (line) where mass fluxes enter the model and one outflow boundary (line) where mass fluxes leave the model. For this purpose, <a class="reference internal" href="../geopy/use-qgis.html#create-line-shp"><span class="std std-ref">Create a Line Shapefile</span></a> called <strong>liquid-boundaries.shp</strong>, select <code class="docutils literal notranslate"><span class="pre">EPSG:</span> <span class="pre">32633</span> <span class="pre">-</span> <span class="pre">WGS</span> <span class="pre">84</span> <span class="pre">/</span> <span class="pre">UTM</span> <span class="pre">zone</span> <span class="pre">33N</span></code> as <a class="reference internal" href="../documentation/glossary.html#term-CRS"><span class="xref std std-term">CRS</span></a> <img alt="../_images/sym-crs.png" src="../_images/sym-crs.png" />, and define <strong>two text data fields</strong> named <strong>type</strong> and <strong>stringdef</strong>. Make sure that <strong>snapping</strong> is still <strong>enabled</strong> and <strong>Toggle (Start) Editing</strong> <img alt="../_images/yellow-pen.png" src="../_images/yellow-pen.png" /> the new <strong>liquid-boundaries.shp</strong>. Then draw two lines:</p>
 <ul class="simple">
 <li><p>Activate <strong>Add Line Feature</strong> <img alt="../_images/sym-add-line.png" src="../_images/sym-add-line.png" />.</p></li>
-<li><p>Draw an inflow boundary line (light blue line on the left of <a class="reference internal" href="#tm-shapefiles"><span class="std std-numref">Fig. 69</span></a>):</p>
+<li><p>Draw an inflow boundary line (light blue line on the left of <a class="reference internal" href="#tm-shapefiles"><span class="std std-numref">Fig. 67</span></a>):</p>
 <ul>
 <li><p>Zoom to the inflow region of the DEM limits, where there is a <strong>gap between</strong> the above-created <strong>floodplain boundary breaklines</strong>.</p></li>
 <li><p>Start drawing a line on one bank (top of the below figure) and move to the other bank to make approximately seven more points across the river.</p></li>
@@ -1179,7 +757,7 @@
 <li><p><strong>Finalize</strong> the line with a <strong>right-click</strong>, and enter <code class="docutils literal notranslate"><span class="pre">Inflow</span></code> in the <strong>type</strong> field and <code class="docutils literal notranslate"><span class="pre">inflow</span></code> in the <strong>stringdef</strong> field (the case matters).</p></li>
 </ul>
 </li>
-<li><p>Draw an outflow boundary line (light blue line on the right of <a class="reference internal" href="#tm-shapefiles"><span class="std std-numref">Fig. 69</span></a>):</p>
+<li><p>Draw an outflow boundary line (light blue line on the right of <a class="reference internal" href="#tm-shapefiles"><span class="std std-numref">Fig. 67</span></a>):</p>
 <ul>
 <li><p>Zoom to the outflow region of the DEM limits, where there is a <strong>gap between</strong> the above-created <strong>floodplain boundary breaklines</strong>.</p></li>
 <li><p>Start drawing a line on one bank (top of the below figure) and move to the other bank to make approximately seven more points across the river.</p></li>
@@ -1194,10 +772,10 @@
 <p class="admonition-title">Troubles with drawing the liquid boundary lines?</p>
 <p>Download the <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/shapefiles/liquid-boundaries.zip">zipped liquid-boundaries shapefile</a> and unpack it into the project folder, for instance, <code class="docutils literal notranslate"><span class="pre">/Project</span> <span class="pre">Home/shapefiles/liquid-boundaries.[SHP]</span></code>.</p>
 </div>
-</div>
-<div class="section" id="region-point-markers">
-<h3>Region Point Markers<a class="headerlink" href="#region-point-markers" title="Permalink to this headline">¶</a></h3>
-<p><strong>Region point</strong> markers are placed inside regions defined by boundary lines and breaklines. Every region marker (i.e., a point somewhere in the region area) assigns, for instance, a material identifier (MATIDs) and a maximum mesh cell area. The MATID is (currently) not needed for TELEMAC (BASEMENT only), but the entries in the <strong>max_area</strong> field will determine the cell size of the mesh regions and have major effects on the quality and efficiency of the TELEMAC simulation. To draw region points, <a class="reference internal" href="../geopy/use-qgis.html#create-point-shp"><span class="std std-ref">create a new point shapefile</span></a> named <strong>raster-points.shp</strong> with the following definitions (similar to <a class="reference internal" href="pre-qgis-bm.html#qgis-reg-lyr"><span class="std std-numref">Fig. 41</span></a> in the BASEMENT pre-processing tutorial):</p>
+</section>
+<section id="region-point-markers">
+<h3>Region Point Markers<a class="headerlink" href="#region-point-markers" title="Permalink to this headline">#</a></h3>
+<p><strong>Region point</strong> markers are placed inside regions defined by boundary lines and breaklines. Every region marker (i.e., a point somewhere in the region area) assigns, for instance, a material identifier (MATIDs) and a maximum mesh cell area. The MATID is (currently) not needed for TELEMAC (BASEMENT only), but the entries in the <strong>max_area</strong> field will determine the cell size of the mesh regions and have major effects on the quality and efficiency of the TELEMAC simulation. To draw region points, <a class="reference internal" href="../geopy/use-qgis.html#create-point-shp"><span class="std std-ref">create a new point shapefile</span></a> named <strong>raster-points.shp</strong> with the following definitions (similar to <a class="reference internal" href="pre-qgis-bm.html#qgis-reg-lyr"><span class="std std-numref">Fig. 39</span></a> in the BASEMENT pre-processing tutorial):</p>
 <ul class="simple">
 <li><p>Define the <strong>File name</strong> as <strong>region-points.shp</strong> (or similar)</p></li>
 <li><p>Ensure the <strong>Geometry type</strong> is <strong>Point</strong></p></li>
@@ -1211,9 +789,9 @@
 </li>
 <li><p>Click <strong>OK</strong> to create the new point shapefile.</p></li>
 </ul>
-<p>Consider to <strong>deactivate snapping</strong> for drawing the region markers because the points should not coincide with any line. Then, <strong>Toggle (Start) Editing</strong> <img alt="../_images/yellow-pen.png" src="../_images/yellow-pen.png" /> the new <strong>region-points.shp</strong> file and activate <strong>Add Point Feature</strong> <img alt="../_images/sym-add-point.png" src="../_images/sym-add-point.png" />. Draw one point in every area section that is enclosed by breaklines and (liquid) boundary lines (refer to the round and triangular-shaped points in <a class="reference internal" href="#tm-shapefiles"><span class="std std-numref">Fig. 69</span></a>). Depending on the apparent area type from the satellite imagery basemap, assign one of the four regions listed in <a class="reference internal" href="#tab-tm-region-defs"><span class="std std-numref">Tab. 6</span></a> to every point.</p>
+<p>Consider to <strong>deactivate snapping</strong> for drawing the region markers because the points should not coincide with any line. Then, <strong>Toggle (Start) Editing</strong> <img alt="../_images/yellow-pen.png" src="../_images/yellow-pen.png" /> the new <strong>region-points.shp</strong> file and activate <strong>Add Point Feature</strong> <img alt="../_images/sym-add-point.png" src="../_images/sym-add-point.png" />. Draw one point in every area section that is enclosed by breaklines and (liquid) boundary lines (refer to the round and triangular-shaped points in <a class="reference internal" href="#tm-shapefiles"><span class="std std-numref">Fig. 67</span></a>). Depending on the apparent area type from the satellite imagery basemap, assign one of the four regions listed in <a class="reference internal" href="#tab-tm-region-defs"><span class="std std-numref">Tab. 6</span></a> to every point.</p>
 <table class="table" id="tab-tm-region-defs">
-<caption><span class="caption-number">Table 6 </span><span class="caption-text">Region names and their <strong>max_area</strong>, <strong>MATID</strong>, and <strong>type</strong> field values.</span><a class="headerlink" href="#tab-tm-region-defs" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-number">Table 6 </span><span class="caption-text">Region names and their <strong>max_area</strong>, <strong>MATID</strong>, and <strong>type</strong> field values.</span><a class="headerlink" href="#tab-tm-region-defs" title="Permalink to this table">#</a></caption>
 <colgroup>
 <col style="width: 20%" />
 <col style="width: 20%" />
@@ -1255,11 +833,11 @@
 <p class="admonition-title">Troubles with drawing the region marker points?</p>
 <p>Download the <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/shapefiles/region-points.zip">zipped region-points shapefile</a> and unpack it into the project folder, for instance, <code class="docutils literal notranslate"><span class="pre">/Project</span> <span class="pre">Home/shapefiles/region-points.[SHP]</span></code>.</p>
 </div>
-</div>
-</div>
-<div class="section" id="quality-meshing-2dm">
-<span id="tm-qualm"></span><h2>Quality Meshing (*.2dm)<a class="headerlink" href="#quality-meshing-2dm" title="Permalink to this headline">¶</a></h2>
-<p><em>BASEmesh</em>’s quality mesh tool creates a computationally efficient triangular mesh based on <span id="id2">Shewchuk [<a class="reference internal" href="../documentation/bibliography.html#id1341">She96</a>]</span> and within the above-defined model boundaries. The tool associates mesh properties with the regions shapefile, but it does not include elevation data. Thus, after generating a quality mesh in <a class="reference internal" href="../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> format, elevation information needs to be added with the BlueKenue<sup>TM</sup> software. To generate the quality mesh, open BASEmesh’s <strong>QUALITY MESHING</strong> tool (QGIS’ <strong>Plugins</strong> &gt; <strong>BASEmesh 2</strong> &gt; <strong>QUALITY MESHING</strong>). Make the following settings in the popup window (see also <a class="reference internal" href="#fig-tm-qualm"><span class="std std-numref">Fig. 71</span></a>):</p>
+</section>
+</section>
+<section id="quality-meshing-2dm">
+<span id="tm-qualm"></span><h2>Quality Meshing (*.2dm)<a class="headerlink" href="#quality-meshing-2dm" title="Permalink to this headline">#</a></h2>
+<p><em>BASEmesh</em>’s quality mesh tool creates a computationally efficient triangular mesh based on <span id="id2">Shewchuk [<a class="reference internal" href="../documentation/bibliography.html#id1341" title="Jonathan Richard Shewchuk. Triangle: Engineering a 2D quality mesh generator and Delaunay triangulator. In Ming C. Lin and Dinesh Manocha, editors, Applied Computational Geometry Towards Geometric Engineering, Lecture Notes in Computer Science, 203–222. Berlin, Heidelberg, 1996. Springer. URL: https://link.springer.com/chapter/10.1007/BFb0014497, doi:10.1007/BFb0014497.">She96</a>]</span> and within the above-defined model boundaries. The tool associates mesh properties with the regions shapefile, but it does not include elevation data. Thus, after generating a quality mesh in <a class="reference internal" href="../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> format, elevation information needs to be added with the BlueKenue<sup>TM</sup> software. To generate the quality mesh, open BASEmesh’s <strong>QUALITY MESHING</strong> tool (QGIS’ <strong>Plugins</strong> &gt; <strong>BASEmesh 2</strong> &gt; <strong>QUALITY MESHING</strong>). Make the following settings in the popup window (see also <a class="reference internal" href="#fig-tm-qualm"><span class="std std-numref">Fig. 69</span></a>):</p>
 <ul class="simple">
 <li><p>Triangulation constraints frame:</p>
 <ul>
@@ -1293,21 +871,23 @@
 </li>
 <li><p>Click on the <strong>Run</strong> button to create the quality mesh.</p></li>
 </ul>
-<div class="figure align-default" id="fig-tm-qualm">
+<figure class="align-default" id="fig-tm-qualm">
 <img alt="basement qgis quality mesh tin" src="../_images/bm-quality-meshing-success.png" />
-<p class="caption"><span class="caption-number">Fig. 71 </span><span class="caption-text">Definitions to be made in BASEmesh’s Quality meshing tool.</span><a class="headerlink" href="#fig-tm-qualm" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 69 </span><span class="caption-text">Definitions to be made in BASEmesh’s Quality meshing tool.</span><a class="headerlink" href="#fig-tm-qualm" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Quality meshing may take a short while. After a successful mesh generation the file <strong>prepro-tutorial_quality-mesh-interp.2dm</strong> will have been generated and it automatically shows up in QGIS as a single-color surface with <code class="docutils literal notranslate"><span class="pre">0-0</span></code> <strong>Bed Elevation</strong>. The next section shows the interpolation of elevation data with the BlueKenue<sup>TM</sup> software.</p>
 <div class="tip admonition">
 <p class="admonition-title">Troubles with running the quality mesh generator?</p>
 <p>Download the <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/meshes/prepro-tutorial_quality-mesh-utm33n.2dm">tutorial quality mesh file</a> and save it in the project folder, for instance, <code class="docutils literal notranslate"><span class="pre">/Project</span> <span class="pre">Home/meshes/prepro-tutorial_quality-mesh-utm33n.2dm</span></code>.</p>
 </div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="bluekenue">
-<span id="bk-tutorial"></span><h1>BlueKenue<a class="headerlink" href="#bluekenue" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="get-started">
-<span id="bk-intro"></span><h2>Get Started<a class="headerlink" href="#get-started" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="bluekenue">
+<span id="bk-tutorial"></span><h1>BlueKenue<a class="headerlink" href="#bluekenue" title="Permalink to this headline">#</a></h1>
+<section id="get-started">
+<span id="bk-intro"></span><h2>Get Started<a class="headerlink" href="#get-started" title="Permalink to this headline">#</a></h2>
 <p>This section features the <a class="reference internal" href="../get-started/install-telemac.html#bluekenue"><span class="std std-ref">BlueKenue</span></a> software to interpolate terrain elevations from a <a class="reference internal" href="../documentation/glossary.html#term-DEM"><span class="xref std std-term">DEM</span></a>.xyz file on an <a class="reference internal" href="../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> mesh, export the mesh to the SELAFIN/SERAFIN (<code class="docutils literal notranslate"><span class="pre">*.slf</span></code>) geometry format for TELEMAC, and define boundary lines.</p>
 <p>In addition, the <a class="reference internal" href="#bk-meshing"><span class="std std-ref">Meshing with BlueKenue</span></a> section explains the mesh generation with BlueKenue<sup>TM</sup>, which might be unstable because of program crashes and inflexible for correcting line drawing errors. Still, meshing with BlueKenue<sup>TM</sup> might be desirable to create a computational mesh with long triangular cells that approximately follow the river streamlines (i.e., using a channel sub-mesh).</p>
 <p>To familiarize with BlueKenue<sup>TM</sup>, launch the software (more details in the <a class="reference internal" href="../get-started/install-telemac.html#bluekenue"><span class="std std-ref">installation chapter</span></a>) and locate</p>
@@ -1330,9 +910,9 @@
 </ul>
 <p>The <strong>Edit</strong> menu enables editing BlueKenue<sup>TM</sup> objects, such as lines, point sets, or meshes.</p>
 <p>The <strong>Tools</strong> menu provides routines that can be applied to particular BlueKenue<sup>TM</sup> objects or for combining objects. In particular, this tutorial will make use of the <strong>Map Objects…</strong> tool.</p>
-</div>
-<div class="section" id="files-and-objects">
-<span id="bk-files"></span><h2>Files and Objects<a class="headerlink" href="#files-and-objects" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="files-and-objects">
+<span id="bk-files"></span><h2>Files and Objects<a class="headerlink" href="#files-and-objects" title="Permalink to this headline">#</a></h2>
 <p>BlueKenue<sup>TM</sup> saves every object in software specific file formats and this eBook refers to the following BlueKenue<sup>TM</sup> file objects (alphabetic order of file endings):</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">*.bc2</span></code> files contain Conlim Boundary Conditions.</p></li>
@@ -1345,9 +925,9 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">*.t3s</span></code> files contain BlueKenue<sup>TM</sup> mesh objects that can either be imported (e.g., from an <a class="reference internal" href="../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> file) or created with a <code class="docutils literal notranslate"><span class="pre">*.t3m</span></code> mesh generator.</p></li>
 </ul>
 <p>All files that are created with BlueKenue<sup>TM</sup> are based on the ASCII EnSim 1.0 file type standard. The EnSim Core builds on <a class="reference internal" href="../documentation/glossary.html#term-HDF"><span class="xref std std-term">HDF</span></a> and it is documented in BlueKenue<sup>TM</sup>’s <a class="reference external" href="https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/2011_UserManual.pdf">user manual PDF</a> that comes along with the <a class="reference external" href="https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/Installer/BlueKenue_3.12.0-alpha+20201006_64bit.msi">BlueKenue installer</a> (in BlueKenue<sup>TM</sup> press the <code class="docutils literal notranslate"><span class="pre">F1</span></code> key to open the manual). Note that understanding the EnSim Core can significantly facilitate troubleshooting structural errors of BlueKenue<sup>TM</sup> files.</p>
-</div>
-<div class="section" id="load-xyz-points">
-<span id="bk-xyz"></span><h2>Load XYZ Points<a class="headerlink" href="#load-xyz-points" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="load-xyz-points">
+<span id="bk-xyz"></span><h2>Load XYZ Points<a class="headerlink" href="#load-xyz-points" title="Permalink to this headline">#</a></h2>
 <p>Download the provided <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/rasters/dem.xyz">dem.xyz</a> point cloud that contains EnSim-formatted 3d coordinates of the river ecosystem <a class="reference internal" href="../documentation/glossary.html#term-DEM"><span class="xref std std-term">DEM</span></a> that will be modelled in this tutorial. The <code class="docutils literal notranslate"><span class="pre">*.xyz</span></code> file was derived from the <a class="reference internal" href="../documentation/glossary.html#term-GeoTIFF"><span class="xref std std-term">GeoTIFF</span></a> <a class="reference internal" href="../documentation/glossary.html#term-DEM"><span class="xref std std-term">DEM</span></a> used in the <a class="reference internal" href="#get-dem-xyz"><span class="std std-ref">QGIS pre-processing</span></a>.</p>
 <div class="tip admonition">
 <p class="admonition-title">A .xyz file is not an XYZ tile</p>
@@ -1359,23 +939,25 @@
 <li><p>Next to the <strong>File name:</strong> field, locate the file type drop-down menu and <strong>change the default from Telemac Selafin File (<code class="docutils literal notranslate"><span class="pre">*.slf</span></code>) to Point Sets (<code class="docutils literal notranslate"><span class="pre">*.pt2</span></code>, <code class="docutils literal notranslate"><span class="pre">*.xyz</span></code>, <code class="docutils literal notranslate"><span class="pre">*.pcl</span></code>)</strong>.</p></li>
 <li><p>Click <strong>Open</strong> to finalize the import.</p></li>
 </ul>
-<p>To verify if the point cloud was correctly imported, <strong>drag</strong> the new <strong>dem (Z)</strong> data items to the <strong>2D View (1)</strong> entry. <a class="reference internal" href="#bk-import-xyz"><span class="std std-numref">Figure 72</span></a> shows the imported XYZ point cloud in BlueKenue<sup>TM</sup>.</p>
-<div class="figure align-default" id="bk-import-xyz">
+<p>To verify if the point cloud was correctly imported, <strong>drag</strong> the new <strong>dem (Z)</strong> data items to the <strong>2D View (1)</strong> entry. <a class="reference internal" href="#bk-import-xyz"><span class="std std-numref">Figure 70</span></a> shows the imported XYZ point cloud in BlueKenue<sup>TM</sup>.</p>
+<figure class="align-default" id="bk-import-xyz">
 <img alt="bluekenue import xyz point cloud DEM" src="../_images/bk-imported-pts.png" />
-<p class="caption"><span class="caption-number">Fig. 72 </span><span class="caption-text">The provided dem.xyz imported in BlueKenue<sup>TM</sup>.</span><a class="headerlink" href="#bk-import-xyz" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 70 </span><span class="caption-text">The provided dem.xyz imported in BlueKenue<sup>TM</sup>.</span><a class="headerlink" href="#bk-import-xyz" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>To verify the <a class="reference internal" href="../documentation/glossary.html#term-CRS"><span class="xref std std-term">CRS</span></a> of the point dataset, right-click on <strong>dem (Z)</strong>, select properties, go to the <strong>Spatial</strong> tab, and make sure that BlueKenue<sup>TM</sup> correctly identified <strong>UTM Zone 33</strong> in the <strong>Coordinate System</strong> frame and <strong>WGS 84</strong> as <strong>Ellipsoid</strong>.</p>
-</div>
-<div class="section" id="bluekenue-meshing-optional">
-<span id="bk-meshing"></span><h2>BlueKenue Meshing (Optional)<a class="headerlink" href="#bluekenue-meshing-optional" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="bluekenue-meshing-optional">
+<span id="bk-meshing"></span><h2>BlueKenue Meshing (Optional)<a class="headerlink" href="#bluekenue-meshing-optional" title="Permalink to this headline">#</a></h2>
 <div class="admonition-skip-this-section-if-you-created-a-2dm-quality-mesh-with-basemesh admonition">
 <p class="admonition-title">Skip this section if you created a <em>.2dm</em> quality mesh with BASEMESH</p>
 <p>This is an optional section for users who do not want to use QGIS and the BASEmesh plugin for meshing. Generating a mesh with BlueKenue<sup>TM</sup> can be useful, for instance, to produce a computational grid that has triangular cells oriented parallel to the riverbanks (i.e., a channel sub-mesh). Otherwise, <strong>if the <code class="docutils literal notranslate"><span class="pre">*.2dm</span></code> mesh file was created</strong> with QGIS, <strong>jump to the section on creating a <a class="reference internal" href="#bk-create-slf"><span class="std std-ref">Selafin Object</span></a></strong>.</p>
 </div>
-<p>This section features the basic mesh generation with BlueKenue<sup>TM</sup>. The Baxter tutorial <span id="id3">[<a class="reference internal" href="../documentation/bibliography.html#id1345">GML13</a>]</span> provides more details with detailed screenshots.</p>
-<div class="section" id="draw-model-boundary-closed-line">
-<h3>Draw Model Boundary (Closed Line)<a class="headerlink" href="#draw-model-boundary-closed-line" title="Permalink to this headline">¶</a></h3>
-<p>Delineate the model boundary (outline) with a closed line object (see also <a class="reference internal" href="#bk-model-outline"><span class="std std-numref">Fig. 73</span></a>):</p>
+<p>This section features the basic mesh generation with BlueKenue<sup>TM</sup>. The Baxter tutorial <span id="id3">[<a class="reference internal" href="../documentation/bibliography.html#id1345" title="C. Gifford-Miears and A. Leon. Tutorial on the use of TELEMAC-2D Hydrodynamics model and Pre-/Post-processing with BlueKenue for flood-inundation mapping in Unsteady Flow Conditions. Oregon State University, Corvallis, USA, 2013. URL: https://web.eng.fiu.edu/arleon/courses/Transient_flows/Tutorials/TELEMAC_2D/TELEMAC_2D_Tutorial_Baxter.pdf.">GML13</a>]</span> provides more details with detailed screenshots.</p>
+<section id="draw-model-boundary-closed-line">
+<h3>Draw Model Boundary (Closed Line)<a class="headerlink" href="#draw-model-boundary-closed-line" title="Permalink to this headline">#</a></h3>
+<p>Delineate the model boundary (outline) with a closed line object (see also <a class="reference internal" href="#bk-model-outline"><span class="std std-numref">Fig. 71</span></a>):</p>
 <ul class="simple">
 <li><p>Create a new <strong>Closed Line</strong> by clicking on the <img alt="../_images/bk-sym-cl.png" src="../_images/bk-sym-cl.png" /> symbol in the BlueKenue<sup>TM</sup> menu.</p></li>
 <li><p><strong>Draw</strong> the new closed line:</p>
@@ -1387,10 +969,12 @@
 <li><p>Name the closed line, for instance, <code class="docutils literal notranslate"><span class="pre">model-outline</span></code>.</p></li>
 <li><p><strong>Skip</strong> <strong>Adding a New Attribute</strong> by just clicking <strong>OK</strong>.</p></li>
 </ul>
-<div class="figure align-default" id="bk-model-outline">
+<figure class="align-default" id="bk-model-outline">
 <img alt="bluekenue draw closed line model boundary outline" src="../_images/bk-model-outline.png" />
-<p class="caption"><span class="caption-number">Fig. 73 </span><span class="caption-text">The Closed Line of the model boundaries in BlueKenue<sup>TM</sup>’s 2D View window.</span><a class="headerlink" href="#bk-model-outline" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 71 </span><span class="caption-text">The Closed Line of the model boundaries in BlueKenue<sup>TM</sup>’s 2D View window.</span><a class="headerlink" href="#bk-model-outline" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>To <strong>save the model outline</strong>, highlight the new Closed Line object in the <strong>WorkSpace</strong> browser and click on the disk <img alt="../_images/bk-sym-save.png" src="../_images/bk-sym-save.png" /> symbol. Consider creating a new folder called <code class="docutils literal notranslate"><span class="pre">bk-mesh</span></code> that will contain all BlueKenue<sup>TM</sup> objects required for meshing. Thus, save the model outline (Closed Line), for example, as <strong>/bk-mesh/model-outline.i2s</strong>.</p>
 <div class="tip admonition">
 <p class="admonition-title">Troubles with drawing the model outline?</p>
@@ -1401,81 +985,89 @@
 <p class="admonition-title">Loading a WorkSpace</p>
 <p>In theory, the saved workspace can be loaded after closing BlueKenue<sup>TM</sup>, but the <strong>Load WorkSpace…</strong> operation often <strong>fails</strong> for apparently arbitrary reasons. This issue is one of the reasons that make QGIS a better option for meshing.</p>
 </div>
-</div>
-<div class="section" id="draw-open-lines-of-the-channel-banks">
-<span id="bk-draw-ol"></span><h3>Draw Open Lines of the Channel Banks<a class="headerlink" href="#draw-open-lines-of-the-channel-banks" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="draw-open-lines-of-the-channel-banks">
+<span id="bk-draw-ol"></span><h3>Draw Open Lines of the Channel Banks<a class="headerlink" href="#draw-open-lines-of-the-channel-banks" title="Permalink to this headline">#</a></h3>
 <p>Similar to the <a class="reference internal" href="#make-tm-shp"><span class="std std-ref">above-created breaklines in QGIS</span></a>, the channel banks can be delineated with Open Line objects. For this purpose create two Open Line objects as follows:</p>
 <ul class="simple">
 <li><p>Create a new <strong>Open Line</strong> by clicking on the <img alt="../_images/bk-sym-ol.png" src="../_images/bk-sym-ol.png" /> symbol in the BlueKenue<sup>TM</sup> menu.</p></li>
 <li><p><strong>Draw</strong> the new open line:</p>
 <ul>
-<li><p>Make points by following the blue-ish-green areas as indicated in <a class="reference internal" href="#bk-lines-all"><span class="std std-numref">Fig. 74</span></a> <strong>2D Views (1)</strong> window (flow direction from left to right).</p></li>
+<li><p>Make points by following the blue-ish-green areas as indicated in <a class="reference internal" href="#bk-lines-all"><span class="std std-numref">Fig. 72</span></a> <strong>2D Views (1)</strong> window (flow direction from left to right).</p></li>
 </ul>
 </li>
 <li><p>Finalize the open line by pressing <strong>Esc</strong>.</p></li>
 <li><p>Name one open line <code class="docutils literal notranslate"><span class="pre">LeftBank</span></code> and the other <code class="docutils literal notranslate"><span class="pre">RightBank</span></code>.</p></li>
 <li><p><strong>Skip</strong> <strong>Adding a New Attribute to:</strong> by just clicking <strong>OK</strong>.</p></li>
 </ul>
-<div class="figure align-default" id="bk-lines-all">
+<figure class="align-default" id="bk-lines-all">
 <img alt="bluekenue draw open line channel river banks" src="../_images/bk-lines-all.png" />
-<p class="caption"><span class="caption-number">Fig. 74 </span><span class="caption-text">The finalized Open and Closed Line objects delineating the model boundaries and the channel banks. The RightBank Open Line is represented by the dashed black line and the LeftBank Open Line is represented in red.</span><a class="headerlink" href="#bk-lines-all" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 72 </span><span class="caption-text">The finalized Open and Closed Line objects delineating the model boundaries and the channel banks. The RightBank Open Line is represented by the dashed black line and the LeftBank Open Line is represented in red.</span><a class="headerlink" href="#bk-lines-all" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="tip admonition">
 <p class="admonition-title">Troubles with drawing the open lines of the channel banks?</p>
 <p>Download the lines from the supplemental materials repository. Notably download <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/LeftBank.i2s">LeftBank.i2s</a> and <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/RightBank.i2s">RightBank.i2s</a>. To open the Open Line objects from the repository in BlueKenue<sup>TM</sup>, go to <strong>File</strong> &gt; <strong>Open…</strong> &gt; select <strong>Line Sets (<code class="docutils literal notranslate"><span class="pre">*.i2s</span></code>, <code class="docutils literal notranslate"><span class="pre">*.i3s</span></code>)</strong> as file type and navigate to the download directory.</p>
 </div>
-</div>
-<div class="section" id="generate-mesh-es">
-<h3>Generate Mesh(es)<a class="headerlink" href="#generate-mesh-es" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="generate-mesh-es">
+<h3>Generate Mesh(es)<a class="headerlink" href="#generate-mesh-es" title="Permalink to this headline">#</a></h3>
 <p>BlueKenue<sup>TM</sup> provides mesh generators for creating regular or unstructured computational grids (meshes). This example features the <strong>T3 Channel Mesher</strong> to generate a triangular mesh, which involves first creating a channel mesh (sub-mesh) and second generating a compound mesh that embeds the channel sub-mesh in a coarser mesh of the floodplains. To this end, start with creating a new <strong>T3 Channel Mesher</strong> object (<strong>File</strong> &gt; <strong>New</strong> &gt; <strong>T3 Channel Mesher</strong>). In the popup window set:</p>
 <ul class="simple">
 <li><p><strong>CrossChannelNodeCount</strong> to <code class="docutils literal notranslate"><span class="pre">20</span></code> and</p></li>
 <li><p><strong>AlongChannelInterval</strong> to <code class="docutils literal notranslate"><span class="pre">15</span></code>.</p></li>
 </ul>
-<p>Click <strong>OK</strong> (<strong>not Run</strong>) to close the new T3 Channel Mesh window. Next, drag and drop the above-created <strong>LeftBank</strong> and <strong>RightBank</strong> Open Line objects on their equivalent attributes of the <strong>new T3 Channel Mesh</strong> object in the WorkSpace browser as indicated in <a class="reference internal" href="#bk-channel-mesh"><span class="std std-numref">Fig. 75</span></a>. Next, generate the channel mesh by double-clicking on the <strong>new T3 Channel Mesh</strong> object and click <strong>Run</strong>. To visualize the resulting <strong>Mesh</strong>, drag it on the <strong>2D View (1)</strong> object.</p>
-<div class="figure align-default" id="bk-channel-mesh">
+<p>Click <strong>OK</strong> (<strong>not Run</strong>) to close the new T3 Channel Mesh window. Next, drag and drop the above-created <strong>LeftBank</strong> and <strong>RightBank</strong> Open Line objects on their equivalent attributes of the <strong>new T3 Channel Mesh</strong> object in the WorkSpace browser as indicated in <a class="reference internal" href="#bk-channel-mesh"><span class="std std-numref">Fig. 73</span></a>. Next, generate the channel mesh by double-clicking on the <strong>new T3 Channel Mesh</strong> object and click <strong>Run</strong>. To visualize the resulting <strong>Mesh</strong>, drag it on the <strong>2D View (1)</strong> object.</p>
+<figure class="align-default" id="bk-channel-mesh">
 <img alt="bluekenue create channel mesh" src="../_images/bk-channel-mesh.png" />
-<p class="caption"><span class="caption-number">Fig. 75 </span><span class="caption-text">Create and visualize the channel mesh after dragging the LeftBank and RightBank Open Line Objects on their name equivalents of the T3 Channel Mesh object.</span><a class="headerlink" href="#bk-channel-mesh" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 73 </span><span class="caption-text">Create and visualize the channel mesh after dragging the LeftBank and RightBank Open Line Objects on their name equivalents of the T3 Channel Mesh object.</span><a class="headerlink" href="#bk-channel-mesh" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="tip admonition">
 <p class="admonition-title">Troubles with creating the channel mesh?</p>
 <p>Download the <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/channel-mesh.t3c">channel-mesh.t3c</a> mesh generator and the <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/channel-mesh.t3">channel-mesh.t3s</a> mesh objects from the supplemental materials repository. To open the T3 Mesh object from the repository in BlueKenue<sup>TM</sup>, go to <strong>File</strong> &gt; <strong>Open…</strong> &gt; select <strong>2D T3 Mesh (<code class="docutils literal notranslate"><span class="pre">*.t...</span></code>)</strong> as file type and navigate to the download directory.</p>
 </div>
-<p>Next, embed the channel mesh in a coarser floodplain mesh by creating a <strong>new T3 Mesh Generator</strong> object (<strong>File</strong> &gt; <strong>New</strong> &gt; <strong>T3 Mesh Generator</strong>). In the <strong>T3 Mesh</strong> popup window make the following settings (see also <a class="reference internal" href="#bk-t3-mesher"><span class="std std-numref">Fig. 76</span></a>):</p>
+<p>Next, embed the channel mesh in a coarser floodplain mesh by creating a <strong>new T3 Mesh Generator</strong> object (<strong>File</strong> &gt; <strong>New</strong> &gt; <strong>T3 Mesh Generator</strong>). In the <strong>T3 Mesh</strong> popup window make the following settings (see also <a class="reference internal" href="#bk-t3-mesher"><span class="std std-numref">Fig. 74</span></a>):</p>
 <ul class="simple">
 <li><p><strong>Enable</strong> the <strong>Resample Outline</strong> checkbox.</p></li>
 <li><p>Set the <strong>Default Edge Length</strong> to <code class="docutils literal notranslate"><span class="pre">20</span></code>.</p></li>
 <li><p>Keep all other defaults.</p></li>
 <li><p>Press <strong>OK</strong> (<strong>not Run</strong>).</p></li>
 </ul>
-<div class="figure align-default" id="bk-t3-mesher">
+<figure class="align-default" id="bk-t3-mesher">
 <img alt="bluekenue create combined mesh generator" src="../_images/bk-t3-mesher.png" />
-<p class="caption"><span class="caption-number">Fig. 76 </span><span class="caption-text">Setup the properties of the new T3 Mesh Generator object.</span><a class="headerlink" href="#bk-t3-mesher" title="Permalink to this image">¶</a></p>
-</div>
-<p>Define the <strong>Outline (Value)</strong> by dragging (see also <a class="reference internal" href="#bk-mesh-compound"><span class="std std-numref">Fig. 77</span></a>):</p>
+<figcaption>
+<p><span class="caption-number">Fig. 74 </span><span class="caption-text">Setup the properties of the new T3 Mesh Generator object.</span><a class="headerlink" href="#bk-t3-mesher" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Define the <strong>Outline (Value)</strong> by dragging (see also <a class="reference internal" href="#bk-mesh-compound"><span class="std std-numref">Fig. 75</span></a>):</p>
 <ul class="simple">
 <li><p>The above-created <strong>model-outline</strong> object on the <strong>Outline (Value)</strong> of the <strong>new T3 Mesh</strong>, and</p></li>
 <li><p>The channel <strong>Mesh</strong> on the <strong>SubMeshes</strong> attribute of the <strong>new T3 Mesh</strong>.</p></li>
 </ul>
 <p>Generate the compound mesh by double-clicking on the <strong>new T3 Mesh</strong> object and single-clicking on <strong>Run</strong>. Confirm the question box (<em>Continue?</em> &gt; <strong>Yes</strong>) and press <strong>OK</strong> after the mesh generator is finished (<em>Done…</em>). To visualize the resulting <strong>Mesh</strong>, drag it on the <strong>2D View (1)</strong>.</p>
-<div class="figure align-default" id="bk-mesh-compound">
+<figure class="align-default" id="bk-mesh-compound">
 <img alt="bluekenue generate combined mesh drag and drop" src="../_images/bk-mesh-compound.png" />
-<p class="caption"><span class="caption-number">Fig. 77 </span><span class="caption-text">The compound mesh after dragging the model outline on the Outline (Value) and the channel Mesh on the SubMeshes attribute of the new T3 Mesh generator object.</span><a class="headerlink" href="#bk-mesh-compound" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 75 </span><span class="caption-text">The compound mesh after dragging the model outline on the Outline (Value) and the channel Mesh on the SubMeshes attribute of the new T3 Mesh generator object.</span><a class="headerlink" href="#bk-mesh-compound" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="note admonition">
 <p class="admonition-title">What is the difference between the channel mesher and the mesh generator?</p>
-<p><a class="reference internal" href="#bk-mesh-compound"><span class="std std-numref">Figure 77</span></a> shows that the channel mesh is streamline-adjusted following the channel banks. This kind of mesh is known to be advantageous for computation speed and model stability. Thus, the availability of the channel mesher in BlueKenue<sup>TM</sup> is a strength and the <strong>best argument for not using BASEmesh</strong> in QGIS for the mesh generation.</p>
+<p><a class="reference internal" href="#bk-mesh-compound"><span class="std std-numref">Figure 75</span></a> shows that the channel mesh is streamline-adjusted following the channel banks. This kind of mesh is known to be advantageous for computation speed and model stability. Thus, the availability of the channel mesher in BlueKenue<sup>TM</sup> is a strength and the <strong>best argument for not using BASEmesh</strong> in QGIS for the mesh generation.</p>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Troubles with creating the compound mesh?</p>
 <p>Download the <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/compound-mesher.t3m">compound-mesher.t3m</a> and the <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/compound-mesh.t3s">compound-mesh.t3s</a> objects from the supplemental materials repository. To open the T3 Mesh object from the repository in BlueKenue<sup>TM</sup>, go to <strong>File</strong> &gt; <strong>Open…</strong> &gt; select <strong>2D T3 Mesh (<code class="docutils literal notranslate"><span class="pre">*.t...</span></code>)</strong> as file type and navigate to the download directory.</p>
 </div>
-</div>
-</div>
-<div class="section" id="selafin">
-<span id="bk-slf"></span><h2>SELAFIN<a class="headerlink" href="#selafin" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="open-and-import-ingredients">
-<h3>Open and Import Ingredients<a class="headerlink" href="#open-and-import-ingredients" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="selafin">
+<span id="bk-slf"></span><h2>SELAFIN<a class="headerlink" href="#selafin" title="Permalink to this headline">#</a></h2>
+<section id="open-and-import-ingredients">
+<h3>Open and Import Ingredients<a class="headerlink" href="#open-and-import-ingredients" title="Permalink to this headline">#</a></h3>
 <p>Whether the mesh was created with BlueKenue<sup>TM</sup> or QGIS (and the BASEmesh plugin), make sure to have now a BlueKenue<sup>TM</sup> workspace with only the XYZ point cloud loaded (see the <a class="reference internal" href="#bk-xyz"><span class="std std-ref">Load XYZ Points</span></a> section). Before a SELAFIN object can be created, the previously created mesh (i.e., either the <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/meshes/prepro-tutorial_quality-mesh-utm33n.2dm">quality-mesh.2dm</a> or the <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/compound-mesh.t3s">compound-mesh.t3s</a>) needs to be imported into the WorkSpace in addition to the point cloud. The following instructions show the import and use of the <code class="docutils literal notranslate"><span class="pre">*.2dm</span></code> file:</p>
 <ul class="simple">
 <li><p>In BlueKenue<sup>TM</sup> go to <strong>File</strong> &gt; <strong>Import</strong> &gt; <strong>SMS 2DM Mesh</strong>.</p></li>
@@ -1486,14 +1078,16 @@
 <p class="admonition-title">How to load a BlueKenue .T3S mesh file?</p>
 <p>In contrast to an <a class="reference internal" href="../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> (<code class="docutils literal notranslate"><span class="pre">*.2dm</span></code>) file that has to be <em>imported</em>, a <code class="docutils literal notranslate"><span class="pre">*.t3s</span></code> file has to be <strong>opened</strong> in BlueKenue<sup>TM</sup>. To this end, <strong>open</strong> the T3 Mesh (<code class="docutils literal notranslate"><span class="pre">*.t3s</span></code>) from <strong>File</strong> &gt; <strong>Open…</strong> &gt; select <strong>2D T3 Mesh (<code class="docutils literal notranslate"><span class="pre">*.t...</span></code>)</strong> as file type and navigate to the download directory. Select the <code class="docutils literal notranslate"><span class="pre">*.t3s</span></code> mesh file and click <strong>Open</strong>.</p>
 </div>
-<p>Ignore warning messages regarding the projection, but make sure that BlueKenue<sup>TM</sup> correctly read the mesh coordinates by <strong>dragging</strong> the imported (or opened) mesh onto the <strong>2D View (1)</strong>. The BlueKenue<sup>TM</sup> window should now look similar to <a class="reference internal" href="#bk-imported-mesh"><span class="std std-numref">Fig. 78</span></a>.</p>
-<div class="figure align-default" id="bk-imported-mesh">
+<p>Ignore warning messages regarding the projection, but make sure that BlueKenue<sup>TM</sup> correctly read the mesh coordinates by <strong>dragging</strong> the imported (or opened) mesh onto the <strong>2D View (1)</strong>. The BlueKenue<sup>TM</sup> window should now look similar to <a class="reference internal" href="#bk-imported-mesh"><span class="std std-numref">Fig. 76</span></a>.</p>
+<figure class="align-default" id="bk-imported-mesh">
 <img alt="bluekenue import open 2dm t3s mesh drag" src="../_images/bk-imported-mesh.png" />
-<p class="caption"><span class="caption-number">Fig. 78 </span><span class="caption-text">The imported mesh in the 2D View (1).</span><a class="headerlink" href="#bk-imported-mesh" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="create-selafin-object">
-<span id="bk-create-slf"></span><h3>Create SELAFIN Object<a class="headerlink" href="#create-selafin-object" title="Permalink to this headline">¶</a></h3>
+<figcaption>
+<p><span class="caption-number">Fig. 76 </span><span class="caption-text">The imported mesh in the 2D View (1).</span><a class="headerlink" href="#bk-imported-mesh" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="create-selafin-object">
+<span id="bk-create-slf"></span><h3>Create SELAFIN Object<a class="headerlink" href="#create-selafin-object" title="Permalink to this headline">#</a></h3>
 <p>With the open <em>dem.xyz</em> and the imported (or opened) mesh, all ingredients required by a BlueKenue<sup>TM</sup> SELAFIN object are available. Now, create a new SELAFIN object:</p>
 <ul class="simple">
 <li><p>Go to <strong>File</strong> &gt; <strong>New</strong> &gt; <strong>SELAFIN Object…</strong></p></li>
@@ -1512,16 +1106,16 @@
 </li>
 <li><p>Save the new Selafin object by highlighting it in the <strong>Data Item</strong> tree of the WorkSpace and clicking the disk <img alt="../_images/bk-sym-save.png" src="../_images/bk-sym-save.png" /> symbol. Give the mesh a meaningful and short name, such as <code class="docutils literal notranslate"><span class="pre">qgismesh.slf</span></code>.</p></li>
 </ul>
-</div>
-<div class="section" id="create-2d-interpolator">
-<span id="bk-2dinterp"></span><h3>Create 2D Interpolator<a class="headerlink" href="#create-2d-interpolator" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="create-2d-interpolator">
+<span id="bk-2dinterp"></span><h3>Create 2D Interpolator<a class="headerlink" href="#create-2d-interpolator" title="Permalink to this headline">#</a></h3>
 <p>A 2D Interpolator object is required to map elevation information onto the Selafin mesh. To this end, create a new 2D Interpolator object and map elevations onto the BOTTOM mesh:</p>
 <ul class="simple">
 <li><p>Go to <strong>File</strong> &gt; <strong>New</strong> &gt; <strong>2D Interpolator…</strong> and a <strong>new 2D Interpolator</strong> object will appear in the <strong>Data Items</strong> of the WorkSpace.</p></li>
 </ul>
 <img alt="../_images/bk-create-2Dinterpolator.png" src="../_images/bk-create-2Dinterpolator.png" />
 <ul class="simple">
-<li><p><strong>Drag dem (Z)</strong> (i.e., the above-opened <em>dem.xyz</em> pointcloud) onto the <strong>new 2D Interpolator</strong> object (red arrow in <a class="reference internal" href="#bk-mesh-interpolated"><span class="std std-numref">Fig. 79</span></a>).</p></li>
+<li><p><strong>Drag dem (Z)</strong> (i.e., the above-opened <em>dem.xyz</em> pointcloud) onto the <strong>new 2D Interpolator</strong> object (red arrow in <a class="reference internal" href="#bk-mesh-interpolated"><span class="std std-numref">Fig. 77</span></a>).</p></li>
 <li><p><strong>Highlight</strong> (click on) the <strong>BOTTOM (Anonymous Attribute)</strong> mesh attribute of the above-created SELAFIN object (e.g., called <code class="docutils literal notranslate"><span class="pre">qgismesh</span></code>).</p></li>
 <li><p>With the mesh highlighted, go to the <strong>Tools</strong> top menu &gt; <strong>Map Object…</strong>.</p></li>
 <li><p>In the opening <strong>Available Objects</strong> window select the <strong>new 2D Interpolator</strong> and click <strong>OK</strong>.</p></li>
@@ -1533,11 +1127,13 @@
 </ul>
 </li>
 </ul>
-<p>To verify if the 2D interpolator correctly interpolated the elevations on the BOTTOM mesh, drag the BOTTOM mesh onto the <strong>2D View (1)</strong>. Uncheck the visibility of dem (Z) and the imported (or opened) mesh with a right-click on these elements in the 2D View (1) tree and <strong>deselect</strong> the <strong>Visible</strong> entry. Thus, only the height-interpolated mesh should be visible now, as indicated in <a class="reference internal" href="#bk-mesh-interpolated"><span class="std std-numref">Fig. 79</span></a>. If the <strong>interpolation has been successful, the mesh is displayed in a variety of (rainbow) colors</strong>. Otherwise, <strong>if the mesh is</strong> completely, monotonously <strong>monochrome (red)</strong>, the elevation <strong>interpolation</strong> has <strong>not</strong> been <strong>successful</strong> and must be repeated (the numerical model cannot work properly without elevation information).</p>
-<div class="figure align-default" id="bk-mesh-interpolated">
+<p>To verify if the 2D interpolator correctly interpolated the elevations on the BOTTOM mesh, drag the BOTTOM mesh onto the <strong>2D View (1)</strong>. Uncheck the visibility of dem (Z) and the imported (or opened) mesh with a right-click on these elements in the 2D View (1) tree and <strong>deselect</strong> the <strong>Visible</strong> entry. Thus, only the height-interpolated mesh should be visible now, as indicated in <a class="reference internal" href="#bk-mesh-interpolated"><span class="std std-numref">Fig. 77</span></a>. If the <strong>interpolation has been successful, the mesh is displayed in a variety of (rainbow) colors</strong>. Otherwise, <strong>if the mesh is</strong> completely, monotonously <strong>monochrome (red)</strong>, the elevation <strong>interpolation</strong> has <strong>not</strong> been <strong>successful</strong> and must be repeated (the numerical model cannot work properly without elevation information).</p>
+<figure class="align-default" id="bk-mesh-interpolated">
 <img alt="bluekenue 2dm t3s mesh interpolate height elevation 2D interpolator map object" src="../_images/bk-mesh-interpolated.png" />
-<p class="caption"><span class="caption-number">Fig. 79 </span><span class="caption-text">The height-interpolated mesh in the 2D View (1) with indication of drag and drop actions for running the object mapping with a new 2D Interpolator object.</span><a class="headerlink" href="#bk-mesh-interpolated" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 77 </span><span class="caption-text">The height-interpolated mesh in the 2D View (1) with indication of drag and drop actions for running the object mapping with a new 2D Interpolator object.</span><a class="headerlink" href="#bk-mesh-interpolated" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="tip admonition">
 <p class="admonition-title">Troubles with creating the Selafin mesh and or the height interpolation?</p>
 <p>Download the BOTTOM mesh and the SELAFIN object from the supplemental materials repository:</p>
@@ -1546,12 +1142,12 @@
 <li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf">Download qgismesh.slf</a> (<strong>EPSG:6173</strong> - ETRS 89 / UTM zone 33N).</p></li>
 </ul>
 </div>
-</div>
-</div>
-<div class="section" id="boundary-conditions-conlim-cli">
-<span id="bk-bc"></span><h2>Boundary Conditions (Conlim - CLI)<a class="headerlink" href="#boundary-conditions-conlim-cli" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="create-conlim-object">
-<h3>Create Conlim Object<a class="headerlink" href="#create-conlim-object" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="boundary-conditions-conlim-cli">
+<span id="bk-bc"></span><h2>Boundary Conditions (Conlim - CLI)<a class="headerlink" href="#boundary-conditions-conlim-cli" title="Permalink to this headline">#</a></h2>
+<section id="create-conlim-object">
+<h3>Create Conlim Object<a class="headerlink" href="#create-conlim-object" title="Permalink to this headline">#</a></h3>
 <p>TELEMAC needs to know how to treat the outer edges of the model (mesh). For this purpose, boundary conditions have to be assigned to all nodes that constitute the <code class="docutils literal notranslate"><span class="pre">*.slf</span></code>mesh outline:</p>
 <ul class="simple">
 <li><p>Go to <strong>File</strong> &gt; <strong>New</strong> &gt; <strong>Boundary Conditions (Conlim )…</strong> and a <strong>new 2D Interpolator</strong> object will appear in the <strong>Data Items</strong> of the WorkSpace.</p></li>
@@ -1561,29 +1157,31 @@
 <li><p>In the opening popup window (<strong>Available t3s Objects</strong>), select the above-created <strong>BOTTOM</strong> mesh (i.e., the mesh with elevation information) and click <strong>OK</strong>. A new <strong>BOTTOM_BC</strong> object will occur in the <strong>Data Items</strong> tree of the WorkSpace.</p></li>
 <li><p>Drag the new <strong>BOTTOM_BC</strong> object onto the <strong>2D View (1)</strong>, which will <strong>enable the <em>prescription</em> of boundary condition types</strong> (details in the next section).</p></li>
 </ul>
-<p><a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Figure 80</span></a> illustrates the new BOTTOM_BC object in the 2D View (1) and indicates where upstream and downstream liquid boundaries will be applied in the next section.</p>
-<div class="figure align-default" id="bk-bc-types">
+<p><a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Figure 78</span></a> illustrates the new BOTTOM_BC object in the 2D View (1) and indicates where upstream and downstream liquid boundaries will be applied in the next section.</p>
+<figure class="align-default" id="bk-bc-types">
 <img alt="bluekenue boundary conditions conlim create upstream downstream" src="../_images/bk-bc-types.png" />
-<p class="caption"><span class="caption-number">Fig. 80 </span><span class="caption-text">The new Boundary Conditions (Conlim) object (BOTTOM_BC) in the 2D View (1) with a qualitative overview of the position of upstream and downstream boundaries where prescribed flow (Q) and prescribed flow (Q) and Depth (H) will be applied later in the TELEMAC setup.</span><a class="headerlink" href="#bk-bc-types" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 78 </span><span class="caption-text">The new Boundary Conditions (Conlim) object (BOTTOM_BC) in the 2D View (1) with a qualitative overview of the position of upstream and downstream boundaries where prescribed flow (Q) and prescribed flow (Q) and Depth (H) will be applied later in the TELEMAC setup.</span><a class="headerlink" href="#bk-bc-types" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>To <strong>save the new BOTTOM_BC object</strong>, highlight it in the <strong>Data Items</strong> tree and click on the disk <img alt="../_images/bk-sym-save.png" src="../_images/bk-sym-save.png" /> symbol. Define a filename such as <strong><code class="docutils literal notranslate"><span class="pre">boundaries.bc2</span></code></strong>. As a result of saving the object, the BOTTOM_BC object takes on the new file name (e.g., <strong>boundaries</strong>).</p>
-</div>
-<div class="section" id="define-liquid-boundaries">
-<span id="bk-liquid-bc"></span><h3>Define Liquid Boundaries<a class="headerlink" href="#define-liquid-boundaries" title="Permalink to this headline">¶</a></h3>
-<p>The default boundary type of the <strong>boundaries</strong> object is <strong>Closed boundary (wall)</strong>. Therefore, to enable mass (i.e., water, sediment, and/or tracer) fluxes through the model, at least two openings must be drawn into the closed boundary. For this purpose, at least one inflow and one outflow open boundary for liquids must be defined. This tutorial uses this minimum number of required open boundaries (i.e., one upstream inflow and one downstream outflow boundary), which are indicated in <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 80</span></a>.</p>
+</section>
+<section id="define-liquid-boundaries">
+<span id="bk-liquid-bc"></span><h3>Define Liquid Boundaries<a class="headerlink" href="#define-liquid-boundaries" title="Permalink to this headline">#</a></h3>
+<p>The default boundary type of the <strong>boundaries</strong> object is <strong>Closed boundary (wall)</strong>. Therefore, to enable mass (i.e., water, sediment, and/or tracer) fluxes through the model, at least two openings must be drawn into the closed boundary. For this purpose, at least one inflow and one outflow open boundary for liquids must be defined. This tutorial uses this minimum number of required open boundaries (i.e., one upstream inflow and one downstream outflow boundary), which are indicated in <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 78</span></a>.</p>
 <div class="admonition-liquid-boundaries-must-be-defined-in-bluekenue admonition">
 <p class="admonition-title">Liquid boundaries must be defined in BlueKenue</p>
 <p>Even though the liquid boundaries are already defined in QGIS (see the <a class="reference internal" href="#tm-bm-liquid-boundaries"><span class="std std-ref">QGIS section on Liquid Boundaries</span></a>), it is always necessary to define the liquid boundaries in BlueKenue<sup>TM</sup> to fit the node numbers (IDs) of the Selafin mesh.</p>
 </div>
-<p>The upstream (inflow) liquid boundary will constitute an <strong>Open boundary with prescribed Q</strong> (discharge) and the downstream outflow (liquid) boundary will constitute an <strong>Open boundary with prescribed Q and H</strong> (i.e., prescribed <a class="reference internal" href="../documentation/glossary.html#term-Rating-curve"><span class="xref std std-term">Rating curve</span></a> / <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a>). These types of boundary conditions are commonly used in practice, with the downstream boundary typically chosen to be at a gauging station where a <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a> (<a class="reference internal" href="../documentation/glossary.html#term-Rating-curve"><span class="xref std std-term">Rating curve</span></a>) has been calibrated with historic data. To assign the two liquid boundary lines, zoom into the downstream and upstream regions indicated in  <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 80</span></a> and create both boundaries as follows (toggle tabs):</p>
-<div class="tabbed-set docutils">
-<input checked="checked" id="31c02e1a-d56c-47f8-883b-16c55c741f33" name="62cee94f-75fc-4175-af26-22e4d4b009c5" type="radio">
-</input><label class="tabbed-label" for="31c02e1a-d56c-47f8-883b-16c55c741f33">
-Upstream boundary</label><div class="tabbed-content docutils">
+<p>The upstream (inflow) liquid boundary will constitute an <strong>Open boundary with prescribed Q</strong> (discharge) and the downstream outflow (liquid) boundary will constitute an <strong>Open boundary with prescribed Q and H</strong> (i.e., prescribed <a class="reference internal" href="../documentation/glossary.html#term-Rating-curve"><span class="xref std std-term">Rating curve</span></a> / <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a>). These types of boundary conditions are commonly used in practice, with the downstream boundary typically chosen to be at a gauging station where a <a class="reference internal" href="../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a> (<a class="reference internal" href="../documentation/glossary.html#term-Rating-curve"><span class="xref std std-term">Rating curve</span></a>) has been calibrated with historic data. To assign the two liquid boundary lines, zoom into the downstream and upstream regions indicated in  <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 78</span></a> and create both boundaries as follows (toggle tabs):</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
+Upstream boundary</label><div class="sd-tab-content docutils">
 <ul class="simple">
-<li><p>Zoom into the <strong>upstream</strong> region indicated in  <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 80</span></a>.</p></li>
+<li><p>Zoom into the <strong>upstream</strong> region indicated in  <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 78</span></a>.</p></li>
 <li><p>Locate the main channel banks corresponding to the breaklines drawn in QGIS (<a class="reference internal" href="#tm-bm-breaklines"><span class="std std-ref">see above</span></a>) or BlueKenue<sup>TM</sup> (<a class="reference internal" href="#bk-draw-ol"><span class="std std-ref">see above</span></a>).</p></li>
-<li><p><strong>Double-click</strong> on a <strong>node at one bank</strong> of the model outline (no matter what bank), then <strong>hold</strong> the <strong>Shift</strong> key and <strong>double-click</strong> on a <strong>node at the other bank</strong> to highlight the inflow (purple) line (see <a class="reference internal" href="#bk-boundary-us"><span class="std std-numref">Fig. 81</span></a>).</p></li>
+<li><p><strong>Double-click</strong> on a <strong>node at one bank</strong> of the model outline (no matter what bank), then <strong>hold</strong> the <strong>Shift</strong> key and <strong>double-click</strong> on a <strong>node at the other bank</strong> to highlight the inflow (purple) line (see <a class="reference internal" href="#bk-boundary-us"><span class="std std-numref">Fig. 79</span></a>).</p></li>
 <li><p><strong>Right-click</strong> on the purple inflow line and select <strong>Add Boundary Segment</strong>.</p></li>
 <li><p>In the opening window (<strong>CONLIM Boundary Segment Editor</strong>) make the following settings:</p>
 <ul>
@@ -1594,19 +1192,21 @@ Upstream boundary</label><div class="tabbed-content docutils">
 </li>
 <li><p><strong>Save</strong> the <strong>boundaries</strong> object by clicking on the disk <img alt="../_images/bk-sym-save.png" src="../_images/bk-sym-save.png" /> symbol and confirm overwriting <code class="docutils literal notranslate"><span class="pre">boundaries.bc2</span></code> (i.e., click <strong>Yes</strong>).</p></li>
 </ul>
-<p><strong>Switch to</strong> the <strong>Downstream boundary tab</strong> to define the outflow conditions according to <a class="reference internal" href="#bk-boundary-ds"><span class="std std-numref">Fig. 82</span></a>.</p>
-<div class="figure align-default" id="bk-boundary-us">
+<p><strong>Switch to</strong> the <strong>Downstream boundary tab</strong> to define the outflow conditions according to <a class="reference internal" href="#bk-boundary-ds"><span class="std std-numref">Fig. 80</span></a>.</p>
+<figure class="align-default" id="bk-boundary-us">
 <img alt="bluekenue boundary conditions conlim create upstream prescribed discharge flow" src="../_images/bk-bm-boundary-us.png" />
-<p class="caption"><span class="caption-number">Fig. 81 </span><span class="caption-text">The upstream boundary definition. Double-click on a node at one bank, then hold the <strong>Shift</strong> key and double-click on a node at the other bank to highlight the inflow (purple) line. Note that BOTTOM_BC might appear with the name <em>boundaries</em> if the object was saved as <em>boundaries.bc2</em>.</span><a class="headerlink" href="#bk-boundary-us" title="Permalink to this image">¶</a></p>
+<figcaption>
+<p><span class="caption-number">Fig. 79 </span><span class="caption-text">The upstream boundary definition. Double-click on a node at one bank, then hold the <strong>Shift</strong> key and double-click on a node at the other bank to highlight the inflow (purple) line. Note that BOTTOM_BC might appear with the name <em>boundaries</em> if the object was saved as <em>boundaries.bc2</em>.</span><a class="headerlink" href="#bk-boundary-us" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
-</div>
-<input id="d2ce87ed-e221-44a7-8ec0-3bebbf481a11" name="62cee94f-75fc-4175-af26-22e4d4b009c5" type="radio">
-</input><label class="tabbed-label" for="d2ce87ed-e221-44a7-8ec0-3bebbf481a11">
-Downstream boundary</label><div class="tabbed-content docutils">
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
+Downstream boundary</label><div class="sd-tab-content docutils">
 <ul class="simple">
-<li><p>Zoom into the <strong>downstream</strong> region indicated in <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 80</span></a>.</p></li>
-<li><p>Locate the main channel banks corresponding to the breaklines drawn in QGIS (<a class="reference internal" href="#tm-bm-breaklines"><span class="std std-ref">see above</span></a>) or BlueKenue<sup>TM</sup> (<a class="reference internal" href="#bk-draw-ol"><span class="std std-ref">see above</span></a>), which are indicated by the red-dotted lines in <a class="reference internal" href="#bk-boundary-ds"><span class="std std-numref">Fig. 82</span></a>.</p></li>
-<li><p><strong>Double-click</strong> on a <strong>node at one bank</strong> of the model outline (no matter what bank), then <strong>hold</strong> the <strong>Shift</strong> key and <strong>double-click</strong> on a <strong>node at the other bank</strong> to highlight the outflow (purple) line (see <a class="reference internal" href="#bk-boundary-ds"><span class="std std-numref">Fig. 82</span></a>).</p></li>
+<li><p>Zoom into the <strong>downstream</strong> region indicated in <a class="reference internal" href="#bk-bc-types"><span class="std std-numref">Fig. 78</span></a>.</p></li>
+<li><p>Locate the main channel banks corresponding to the breaklines drawn in QGIS (<a class="reference internal" href="#tm-bm-breaklines"><span class="std std-ref">see above</span></a>) or BlueKenue<sup>TM</sup> (<a class="reference internal" href="#bk-draw-ol"><span class="std std-ref">see above</span></a>), which are indicated by the red-dotted lines in <a class="reference internal" href="#bk-boundary-ds"><span class="std std-numref">Fig. 80</span></a>.</p></li>
+<li><p><strong>Double-click</strong> on a <strong>node at one bank</strong> of the model outline (no matter what bank), then <strong>hold</strong> the <strong>Shift</strong> key and <strong>double-click</strong> on a <strong>node at the other bank</strong> to highlight the outflow (purple) line (see <a class="reference internal" href="#bk-boundary-ds"><span class="std std-numref">Fig. 80</span></a>).</p></li>
 <li><p><strong>Right-click</strong> on the purple outflow line and select <strong>Add Boundary Segment</strong>.</p></li>
 <li><p>In the opening window (<strong>CONLIM Boundary Segment Editor</strong>) make the following settings:</p>
 <ul>
@@ -1617,22 +1217,26 @@ Downstream boundary</label><div class="tabbed-content docutils">
 </li>
 <li><p><strong>Save</strong> the <strong>boundaries</strong> object by clicking on the disk <img alt="../_images/bk-sym-save.png" src="../_images/bk-sym-save.png" /> symbol and confirm overwriting <code class="docutils literal notranslate"><span class="pre">boundaries.bc2</span></code> (i.e., click <strong>Yes</strong>).</p></li>
 </ul>
-<div class="figure align-default" id="bk-boundary-ds">
+<figure class="align-default" id="bk-boundary-ds">
 <img alt="bluekenue boundary conditions conlim create upstream prescribed discharge depth flow" src="../_images/bk-bm-boundary-ds.png" />
-<p class="caption"><span class="caption-number">Fig. 82 </span><span class="caption-text">The downstream boundary definition. Double-click on a node at one bank, then hold the <strong>Shift</strong> key and double-click on a node at the other bank to highlight the outflow (purple) line. Note that BOTTOM_BC might appear with the name <em>boundaries</em> if the object was saved as <em>boundaries.bc2</em>.</span><a class="headerlink" href="#bk-boundary-ds" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 80 </span><span class="caption-text">The downstream boundary definition. Double-click on a node at one bank, then hold the <strong>Shift</strong> key and double-click on a node at the other bank to highlight the outflow (purple) line. Note that BOTTOM_BC might appear with the name <em>boundaries</em> if the object was saved as <em>boundaries.bc2</em>.</span><a class="headerlink" href="#bk-boundary-ds" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
 </div>
 <p>Ultimately, TELEMAC will need a <strong><code class="docutils literal notranslate"><span class="pre">*.cli</span></code> file (<em>Conlim Table</em>)</strong> that can be created by</p>
 <ul class="simple">
 <li><p>highlighting the <strong>boundaries (LIHBOR)</strong> entry of the <strong>boundaries</strong> (or BOTTOM_BC) object in the <strong>Data Items</strong> tree and</p></li>
-<li><p>pressing the disk <img alt="../_images/bk-sym-save.png" src="../_images/bk-sym-save.png" /> symbol (see <a class="reference internal" href="#bk-bc-fin"><span class="std std-numref">Fig. 83</span></a>).</p></li>
+<li><p>pressing the disk <img alt="../_images/bk-sym-save.png" src="../_images/bk-sym-save.png" /> symbol (see <a class="reference internal" href="#bk-bc-fin"><span class="std std-numref">Fig. 81</span></a>).</p></li>
 </ul>
 <p>Save the boundaries file, for instance, as <strong>boundaries.cli</strong>.</p>
-<div class="figure align-default" id="bk-bc-fin">
+<figure class="align-default" id="bk-bc-fin">
 <img alt="bluekenue liquid boundary conditions conlim upstream inflow outflow downstream cli" src="../_images/bk-bc-fin.png" />
-<p class="caption"><span class="caption-number">Fig. 83 </span><span class="caption-text">The finalized boundary conditions are saved in a .CLI file by highlighting the <strong>boundaries (LIHBOR)</strong> entry of the <strong>boundaries</strong> (or BOTTOM_BC) object in the <strong>Data Items</strong> tree.</span><a class="headerlink" href="#bk-bc-fin" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 81 </span><span class="caption-text">The finalized boundary conditions are saved in a .CLI file by highlighting the <strong>boundaries (LIHBOR)</strong> entry of the <strong>boundaries</strong> (or BOTTOM_BC) object in the <strong>Data Items</strong> tree.</span><a class="headerlink" href="#bk-bc-fin" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="tip admonition">
 <p class="admonition-title">Troubles with creating and defining the liquid boundaries?</p>
 <p>Download the <strong>boundaries</strong> (BOTTOM_BC) BlueKenue<sup>TM</sup> and TELEMAC boundaries (LIHBOR)-CLI objects from the supplemental materials repository:</p>
@@ -1642,9 +1246,9 @@ Downstream boundary</label><div class="tabbed-content docutils">
 </ul>
 </div>
 <p>The here created Selafin/Serafin (<code class="docutils literal notranslate"><span class="pre">*.slf</span></code>) and boundary conditions (<code class="docutils literal notranslate"><span class="pre">*.cli</span></code>) files are the main products that are needed for running any other SELAFIN-based TELEMAC tutorial in this eBook. The <a class="reference internal" href="telemac2d-steady.html#telemac2d-steady"><span class="std std-ref">steady 2d</span></a> tutorial assigns a constant discharge at the upstream (inflow) and a constant discharge plus constant depth at the downstream (outflow) boundaries. To perform an unsteady calculation, the steady flow rates can be replaced with a <code class="docutils literal notranslate"><span class="pre">*.qsl</span></code> ASCII text file. To this end, the <code class="docutils literal notranslate"><span class="pre">*.cli</span></code> file can be easily adapted any time later with a basic text editor (e.g., <a class="reference internal" href="../get-started/others.html#npp"><span class="std std-ref">NotepadPlusPlus (Text Editor)</span></a> on Windows or <a class="reference internal" href="../get-started/ide.html#install-atom"><span class="std std-ref">Atom</span></a>).</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1658,7 +1262,7 @@ Downstream boundary</label><div class="tabbed-content docutils">
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./numerics"
         },
         predefinedOutput: true
@@ -1666,46 +1270,137 @@ Downstream boundary</label><div class="tabbed-content docutils">
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="telemac.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">TELEMAC</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="telemac.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">TELEMAC</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="telemac2d.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="telemac2d.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Telemac2d</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-        
-        </div>
-    </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Sebastian Schwindt, Ricardo Barros<br/>
-        
-            &copy; Copyright 2023.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Pre-processing</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#qgis">QGIS</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-setup-a-new-project">Create and Setup a New Project</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#third-party-plugins">Third-party Plugins</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dem">Load DEM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enable-snapping">Enable Snapping</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-boundaries-and-breaklines">Model Boundaries and Breaklines</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#breaklines-and-model-outline">Breaklines and Model Outline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#liquid-boundaries">Liquid Boundaries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#region-point-markers">Region Point Markers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-meshing-2dm">Quality Meshing (*.2dm)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#bluekenue">BlueKenue</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-started">Get Started</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#files-and-objects">Files and Objects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-xyz-points">Load XYZ Points</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bluekenue-meshing-optional">BlueKenue Meshing (Optional)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#draw-model-boundary-closed-line">Draw Model Boundary (Closed Line)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#draw-open-lines-of-the-channel-banks">Draw Open Lines of the Channel Banks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-mesh-es">Generate Mesh(es)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#selafin">SELAFIN</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-and-import-ingredients">Open and Import Ingredients</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-selafin-object">Create SELAFIN Object</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-2d-interpolator">Create 2D Interpolator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-conditions-conlim-cli">Boundary Conditions (Conlim - CLI)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-conlim-object">Create Conlim Object</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-liquid-boundaries">Define Liquid Boundaries</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
-      </div>
-    </div>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By Sebastian Schwindt, Ricardo Barros
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

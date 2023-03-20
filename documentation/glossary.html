@@ -1,915 +1,589 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Glossary &#8212; Hydro-Informatics</title>
-    
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script src="../_static/tabs.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/glossary';</script>
     <link rel="canonical" href="https://hydro-informatics.com/documentation/glossary.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Notation" href="notation.html" />
     <link rel="prev" title="How to Markdown and Document" href="documentation.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/icon.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Get Started
- </span>
-</p>
+    
+    
+    <img src="../_static/icon.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/icon.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../lectures/classroom.html">
-   The Virtual Classroom
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/principles.html">
-     Principles
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/lectures.html">
-     Lectures and Exercises
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/take_seat.html">
-     Take a Seat
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../get-started/software.html">
-   Software Resources
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/vm.html">
-     Virtual Machines and Linux
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/ide.html">
-     Integrated Development Environments (IDEs)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../python-basics/pyinstall.html">
-     Python (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/git.html">
-     Version Control : git
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/geo.html">
-     Geospatial Software
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/install-openfoam.html">
-     OpenFOAM (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/install-telemac.html">
-     TELEMAC (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/others.html">
-     Other Software Resources
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/classroom.html">The Virtual Classroom</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/principles.html">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/lectures.html">Lectures and Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/take_seat.html">Take a Seat</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Python Basics
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../get-started/software.html">Software Resources</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/vm.html">Virtual Machines and Linux</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../get-started/ide.html">Integrated Development Environments (IDEs)</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../python-basics/pyinstall.html">Python (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/git.html">Version Control : git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/geo.html">Geospatial Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/install-openfoam.html">OpenFOAM (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/install-telemac.html">TELEMAC (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/others.html">Other Software Resources</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Basics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/python.html">
-   First Steps
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pybase.html">
-     Hello Data Types
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyerror.html">
-     Errors, Logging, and Debugging
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyloop.html">
-     Loops and Conditional Statements
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/modularize.html">
-   Object Orientation
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyfun.html">
-     Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pypckg.html">
-     Packages, Modules and Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/classes.html">
-     Object Orientation and Classes
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/data-handling.html">
-   Data and File Handling
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pynum.html">
-     Data Files, NumPy &amp; Pandas
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/xml.html">
-     Structured Data (XML, xlsx &amp; JSON)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/pyplot.html">
-     Plotting
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../jupyter/pystyle.html">
-   Code Style and Conventions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../jupyter/gui.html">
-   Graphical User Interfaces (GUIs)
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/python-exercises.html">
-   Python Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-ms.html">
-     1d Hydraulics (Manning-Strickler Formula)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-sp.html">
-     Reservoir Volume (Sequent Peak Algorithm)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-floods.html">
-     Flood Return Periods
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-sediment.html">
-     1d Sediment Transport
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-gui.html">
-     Create a GUI
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/python.html">First Steps</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pybase.html">Hello Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyerror.html">Errors, Logging, and Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyloop.html">Loops and Conditional Statements</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Geospatial Analysis
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/modularize.html">Object Orientation</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyfun.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pypckg.html">Packages, Modules and Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/classes.html">Object Orientation and Classes</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/data-handling.html">Data and File Handling</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pynum.html">Data Files, NumPy &amp; Pandas</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/xml.html">Structured Data (XML, xlsx &amp; JSON)</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/pyplot.html">Plotting</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/pystyle.html">Code Style and Conventions</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/gui.html">Graphical User Interfaces (GUIs)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/python-exercises.html">Python Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-ms.html">1d Hydraulics (Manning-Strickler Formula)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-sp.html">Reservoir Volume (Sequent Peak Algorithm)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-floods.html">Flood Return Periods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-sediment.html">1d Sediment Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-gui.html">Create a GUI</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Geospatial Analysis</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/geospatial-data.html">
-   Geospatial Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/use-qgis.html">
-   QGIS Tutorial
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/drone-processing.html">
-   Process Drone (UAV) Imagery
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../geopy/geo-python.html">
-   Geospatial Python
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/geo-pckg.html">
-     Geospatial Open Source Python Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-shp.html">
-     Shapefile (Vector) Handling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-raster.html">
-     Raster (Grid) Handling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-convert.html">
-     Vectorize and Rasterize
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../jupyter/geo-arcpy.html">
-     The Commercial arcpy Library
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/geo-exercises.html">
-   Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-geco.html">
-     Script a Habitat Suitability Map
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/geospatial-data.html">Geospatial Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/use-qgis.html">QGIS Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/drone-processing.html">Process Drone (UAV) Imagery</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../geopy/geo-python.html">Geospatial Python</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geopy/geo-pckg.html">Geospatial Open Source Python Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-shp.html">Shapefile (Vector) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-raster.html">Raster (Grid) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-convert.html">Vectorize and Rasterize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/geo-arcpy.html">The Commercial arcpy Library</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Data Science
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/geo-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-geco.html">Script a Habitat Suitability Map</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Modeling</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../datascience/data-science.html">
-   Fundamentals (Coming soon)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/py-requirements.html">
-     Python Requirements
-    </a>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../datascience/data-prepro.html">
-     Data Pre-Processing
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-    <label for="toctree-checkbox-10">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/data-types.html">
-       The Nature of Data
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/data-cleaning.html">
-       Dataset Cleaning
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/dimensional-analysis.html">
-       Dimensional Analysis
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../datascience/theory.html">
-   Techniques (Coming soon)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/techniques.html">
-     Overview of Fundamental Techniques
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/calibrate-validate.html">
-     Model Calibration and Validation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
-     Support Vector Machine (SVM)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../numerics/numerical-modeling.html">Principles</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerics/basement.html">BASEMENT</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/pre-qgis-bm.html">Pre-processing with QGIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/basement2d.html">Run and Check a Steady 2d Simulation</a></li>
+
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Numerical Modeling
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerics/telemac.html">TELEMAC</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/pre-slf-tm.html">Pre-processing</a></li>
+
+
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac2d.html">Telemac2d</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac2d-steady.html">Steady 2d</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac2d-unsteady.html">Unsteady 2d</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac3d.html">Telemac3d</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac3d-slf.html">Steady 3d (SLF - Selafin)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac3d-med.html">Steady 3d (MED and Salome)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac-gaia.html">Gaia (Morphodynamics)</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-coupling.html">Introduction and Coupling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-basics.html">Basic Setup of Gaia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-bedload.html">Bedload</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-suspended.html">Suspended Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-run.html">Run and Analyze</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Science</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../numerics/numerical-modeling.html">
-   Principles
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../numerics/basement.html">
-   BASEMENT
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/pre-qgis-bm.html">
-     Pre-processing with QGIS
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/basement2d.html">
-     Run and Check a Steady 2d Simulation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../numerics/telemac.html">
-   TELEMAC
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/pre-slf-tm.html">
-     Pre-processing
-    </a>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac2d.html">
-     Telemac2d
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-    <label for="toctree-checkbox-14">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac2d-steady.html">
-       Steady 2d
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac2d-unsteady.html">
-       Unsteady 2d
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac3d.html">
-     Telemac3d
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-    <label for="toctree-checkbox-15">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac3d-slf.html">
-       Steady 3d (SLF - Selafin)
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac3d-med.html">
-       Steady 3d (MED and Salome)
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac-gaia.html">
-     Gaia (Morphodynamics)
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-    <label for="toctree-checkbox-16">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-coupling.html">
-       Introduction and Coupling
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-basics.html">
-       Basic Setup of Gaia
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-bedload.html">
-       Bedload
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-suspended.html">
-       Suspended Load
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-run.html">
-       Run and Analyze
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/data-science.html">Fundamentals (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/py-requirements.html">Python Requirements</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../datascience/data-prepro.html">Data Pre-Processing</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/data-types.html">The Nature of Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/data-cleaning.html">Dataset Cleaning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/dimensional-analysis.html">Dimensional Analysis</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Documentation
- </span>
-</p>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/theory.html">Techniques (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/techniques.html">Overview of Fundamental Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/calibrate-validate.html">Model Calibration and Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/morphology-predictor-svm.html">Support Vector Machine (SVM)</a></li>
+
+
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Documentation</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="documentation.html">
-   How to Markdown and Document
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Glossary
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="notation.html">
-   Notation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="bibliography.html">
-   References
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/docs-exercises.html">
-   Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
-  <label for="toctree-checkbox-17">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-git.html">
-     Git and Markdown
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">How to Markdown and Document</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notation.html">Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">References</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/docs-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-git.html">Git and Markdown</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Troubleshoot
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Troubleshoot</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
-   Programming Tools and IDEs
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
-  <label for="toctree-checkbox-18">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
-     Debugging Anaconda
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-python.html">
-     Debugging Python Code
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
-     Debugging Jupyter
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
-   Numerical Models
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
-  <label for="toctree-checkbox-19">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
-     Debugging BASEMENT
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
-     Debugging TELEMAC
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-os.html">
-   Operating Systems (Linux and VMs)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
-  <label for="toctree-checkbox-20">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
-     Debugging Debian Linux
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
-     Debugging Virtual Machines
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-programming.html">Programming Tools and IDEs</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-anaconda.html">Debugging Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-python.html">Debugging Python Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-jupyter.html">Debugging Jupyter</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Disclaimer and License
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">Numerical Models</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-basement.html">Debugging BASEMENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-telemac.html">Debugging TELEMAC</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-os.html">Operating Systems (Linux and VMs)</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-linux.html">Debugging Debian Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-vm.html">Debugging Virtual Machines</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-scilife.html">Science Life Hacks</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-zotero.html">Zotero Utilities</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Disclaimer and License</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../terms/license.html">
-   License
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../terms/disclaimer.html">
-   Disclaimer
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../terms/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terms/disclaimer.html">Disclaimer</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a> and Ricardo Barros
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/documentation/glossary.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/hydro-informatics/jupyter-python-course"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
         
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/hydro-informatics/jupyter-python-course" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/documentation/glossary.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-        </div>
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Glossary</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="glossary">
-<span id="id1"></span><h1>Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="glossary">
+<span id="id1"></span><h1>Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">#</a></h1>
 <p>Using common and consistent vocabulary is vital for working in teams. This section exemplifies a glossary with technical terms recurring in this eBook.</p>
 <dl class="glossary">
-<dt id="term-Advection">Advection<a class="headerlink" href="#term-Advection" title="Permalink to this term">¶</a></dt><dd><p>Advection is the motion of particles along with the bulk flow. The properties (e.g., heat) of an advected particle or substance are conserved. Mathematically, advection of incompressible fluids (e.g., water) is described by the <a class="reference internal" href="#term-Continuity-equation"><span class="xref std std-term">Continuity equation</span></a> <span id="id2">[<a class="reference internal" href="bibliography.html#id333">KC08</a>]</span>.</p>
+<dt id="term-Advection">Advection<a class="headerlink" href="#term-Advection" title="Permalink to this term">#</a></dt><dd><p>Advection is the motion of particles along with the bulk flow. The properties (e.g., heat) of an advected particle or substance are conserved. Mathematically, advection of incompressible fluids (e.g., water) is described by the <a class="reference internal" href="#term-Continuity-equation"><span class="xref std std-term">Continuity equation</span></a> <span id="id2">[<a class="reference internal" href="bibliography.html#id333" title="P.K. Kundu and I.M. Cohen. Fluid Mechanics. Elsevier Inc., San Diego, CA, USA, 4th edition, 2008. ISBN 978-0-12-373735-9.">KC08</a>]</span>.</p>
 <p><em>French: Advection <br>German: Advektion</em></p>
 </dd>
-<dt id="term-Anabranch">Anabranch<a class="headerlink" href="#term-Anabranch" title="Permalink to this term">¶</a></dt><dd><p>An anabranched river (section) is characterized by one or more side channels diverting from the main river stem. Anabranching (or also anastomosing) channels occur primarily in alluvial channel beds where more sediment is available than the water runoff can transport (transport capacity-limited rivers). Thus, an anabranching river has high sediment loads and channel avulsion is likely to occur during floods <span id="id3">[<a class="reference internal" href="bibliography.html#id714">HN07</a>, <a class="reference internal" href="bibliography.html#id713">NK96</a>, <a class="reference internal" href="bibliography.html#id692">RPLV17</a>]</span>. This eBook shows an example for an anabranching river section in the morphdynamic modeling tutorial in <a class="reference internal" href="../numerics/gaia-bedload.html#jenbach-2020"><span class="std std-numref">Fig. 154</span></a>.</p>
+<dt id="term-Anabranch">Anabranch<a class="headerlink" href="#term-Anabranch" title="Permalink to this term">#</a></dt><dd><p>An anabranched river (section) is characterized by one or more side channels diverting from the main river stem. Anabranching (or also anastomosing) channels occur primarily in alluvial channel beds where more sediment is available than the water runoff can transport (transport capacity-limited rivers). Thus, an anabranching river has high sediment loads and channel avulsion is likely to occur during floods <span id="id3">[<a class="reference internal" href="bibliography.html#id714" title="He Qing Huang and Gerald C. Nanson. Why some alluvial rivers develop an anabranching pattern. Water Resources Research, 43(W07441):1–12, 2007. doi:10.1029/2006WR005223.">HN07</a>, <a class="reference internal" href="bibliography.html#id713" title="Gerald C. Nanson and A. David Knighton. Anabranching Rivers: Their cause, character and classification. Earth Surface Processes and Landforms, 21(3):217–239, 1996. doi:10.1002/(SICI)1096-9837(199603)21:3$&lt;$217::AID-ESP611$&gt;$3.0.CO;2-U.">NK96</a>, <a class="reference internal" href="bibliography.html#id692" title="J Riquier, Hervé Piégay, Nicolas Lamouroux, and Lise Vaudor. Are restored side channels sustainable aquatic habitat features? Predicting the potential persistence of side channels as aquatic habitats based on their fine sedimentation dynamics. Geomorphology, 295(Supplement C):507–528, 2017. doi:10.1016/j.geomorph.2017.08.001.">RPLV17</a>]</span>. This eBook shows an example for an anabranching river section in the morphdynamic modeling tutorial in <a class="reference internal" href="../numerics/gaia-bedload.html#jenbach-2020"><span class="std std-numref">Fig. 152</span></a>.</p>
 <p><em>French: Anabranche <br>German: Flussarm</em></p>
 </dd>
-<dt id="term-Anastomosing-rivers">Anastomosing rivers<a class="headerlink" href="#term-Anastomosing-rivers" title="Permalink to this term">¶</a></dt><dd><p>See <a class="reference internal" href="#term-Anabranch"><span class="xref std std-term">Anabranch</span></a>.</p>
+<dt id="term-Anastomosing-rivers">Anastomosing rivers<a class="headerlink" href="#term-Anastomosing-rivers" title="Permalink to this term">#</a></dt><dd><p>See <a class="reference internal" href="#term-Anabranch"><span class="xref std std-term">Anabranch</span></a>.</p>
 </dd>
-<dt id="term-ASCII">ASCII<a class="headerlink" href="#term-ASCII" title="Permalink to this term">¶</a></dt><dd><p>The American Standard Code for Information Interchange (ASCII) is an encoding standard for text on computers. The development of ASCII goes back to telegraphy and was first published in 1961 for the Latin alphabet. It was later extended by other alphabets and special characters <span id="id4">[<a class="reference internal" href="bibliography.html#id1369">Mac80</a>]</span>. ASCII code represents characters in the form of numbers. For instance, the ASCII code <code class="docutils literal notranslate"><span class="pre">65</span></code> represents uppercase <code class="docutils literal notranslate"><span class="pre">A</span></code> (utf-8 encoding). In Python applications, ASCII code numbers can be useful to iterate through the alphabet (e.g., alphabetic column names), where <code class="docutils literal notranslate"><span class="pre">chr(ASCII)</span></code> returns a letter as a function of the system encoding. For instance, in Python, <code class="docutils literal notranslate"><span class="pre">print(chr(78))</span></code> returns uppercase <code class="docutils literal notranslate"><span class="pre">N</span></code> for <strong>utf-8</strong> encoding (default on many Linux systems). To find out the encoding type of your Python installation, open a Python terminal, tap <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">sys</span></code> and <code class="docutils literal notranslate"><span class="pre">sys.getdefaultencoding()</span></code>.</p>
+<dt id="term-ASCII">ASCII<a class="headerlink" href="#term-ASCII" title="Permalink to this term">#</a></dt><dd><p>The American Standard Code for Information Interchange (ASCII) is an encoding standard for text on computers. The development of ASCII goes back to telegraphy and was first published in 1961 for the Latin alphabet. It was later extended by other alphabets and special characters <span id="id4">[<a class="reference internal" href="bibliography.html#id1369" title="C.E. Mackenzie. Coded-Character Sets: History and Development. Addison-Wesley Longman Publishing Co., Inc., Boston, MA, USA, 1980. ISBN 0201144603. URL: https://textfiles.meulie.net/bitsaved/Books/Mackenzie_CodedCharSets.pdf.">Mac80</a>]</span>. ASCII code represents characters in the form of numbers. For instance, the ASCII code <code class="docutils literal notranslate"><span class="pre">65</span></code> represents uppercase <code class="docutils literal notranslate"><span class="pre">A</span></code> (utf-8 encoding). In Python applications, ASCII code numbers can be useful to iterate through the alphabet (e.g., alphabetic column names), where <code class="docutils literal notranslate"><span class="pre">chr(ASCII)</span></code> returns a letter as a function of the system encoding. For instance, in Python, <code class="docutils literal notranslate"><span class="pre">print(chr(78))</span></code> returns uppercase <code class="docutils literal notranslate"><span class="pre">N</span></code> for <strong>utf-8</strong> encoding (default on many Linux systems). To find out the encoding type of your Python installation, open a Python terminal, tap <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">sys</span></code> and <code class="docutils literal notranslate"><span class="pre">sys.getdefaultencoding()</span></code>.</p>
 </dd>
-<dt id="term-Bedload">Bedload<a class="headerlink" href="#term-Bedload" title="Permalink to this term">¶</a></dt><dd><p>Bedload (also referred to as <em>bed load</em>) <span class="math notranslate nohighlight">\(Q_b\)</span> (or <span class="math notranslate nohighlight">\(q_b\)</span> for unit bedload) in kg<span class="math notranslate nohighlight">\(\cdot\)</span>s<span class="math notranslate nohighlight">\(^{-1}\)</span> (or kg<span class="math notranslate nohighlight">\(\cdot\)</span>s<span class="math notranslate nohighlight">\(^{-1}\cdot\)</span>m<span class="math notranslate nohighlight">\(^{-1}\)</span>) is a special type of <a class="reference internal" href="#term-Sediment-transport"><span class="xref std std-term">Sediment transport</span></a> describing the displacement of coarse particles by rolling, sliding, and/or jumping on the riverbed. In river hydraulics, the so-called <a class="reference internal" href="#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a> or also referred to as <a class="reference internal" href="#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a> <span id="id5">[<a class="reference internal" href="bibliography.html#id536">Shi36</a>]</span> is often used as the threshold value for the mobilization of sediment from the riverbed. The dimensionless expression of bedload transport is <span id="id6">[<a class="reference internal" href="bibliography.html#id179">Ein50</a>]</span>:</p>
+<dt id="term-Bedload">Bedload<a class="headerlink" href="#term-Bedload" title="Permalink to this term">#</a></dt><dd><p>Bedload (also referred to as <em>bed load</em>) <span class="math notranslate nohighlight">\(Q_b\)</span> (or <span class="math notranslate nohighlight">\(q_b\)</span> for unit bedload) in kg<span class="math notranslate nohighlight">\(\cdot\)</span>s<span class="math notranslate nohighlight">\(^{-1}\)</span> (or kg<span class="math notranslate nohighlight">\(\cdot\)</span>s<span class="math notranslate nohighlight">\(^{-1}\cdot\)</span>m<span class="math notranslate nohighlight">\(^{-1}\)</span>) is a special type of <a class="reference internal" href="#term-Sediment-transport"><span class="xref std std-term">Sediment transport</span></a> describing the displacement of coarse particles by rolling, sliding, and/or jumping on the riverbed. In river hydraulics, the so-called <a class="reference internal" href="#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a> or also referred to as <a class="reference internal" href="#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a> <span id="id5">[<a class="reference internal" href="bibliography.html#id536" title="A Shields. Anwendung der Ähnlichkeitsmechanik und der Turbulenzforschung auf die Geschiebebewegung [Application of the similarity in mechanics and turbulence research on the mobility of bed load]. Volume 26. Preußische Versuchsanstalt für Wasserbau und Schiffbau, Berlin, Germany, 1936. URL: http://resolver.tudelft.nl/uuid:61a19716-a994-4942-9906-f680eb9952d6.">Shi36</a>]</span> is often used as the threshold value for the mobilization of sediment from the riverbed. The dimensionless expression of bedload transport is <span id="id6">[<a class="reference internal" href="bibliography.html#id179" title="Hans Albert Einstein. The Bed-Load Function for Sediment Transport in Open Channel Flows. Technical Bulletin of the USDA Soil Conservation Service, 1026:71, 1950. URL: https://ageconsearch.umn.edu/record/156389, doi:10.22004/ag.econ.156389.">Ein50</a>]</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 \Phi_b = \frac{q_b}{\rho_{w} \sqrt{(s - 1) g D^{3}_{pq}}} \approx \frac{Q_b}{0.5\cdot(b + B)\rho_{w} \sqrt{(s - 1) g D^{3}_{pq}}}
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\rho_{w}\)</span> is the density of water; <span class="math notranslate nohighlight">\(s\)</span> is the ratio of sediment grain and water density (typically 2.68) <span id="id7">[<a class="reference internal" href="bibliography.html#id523">Sch17</a>]</span>; <span class="math notranslate nohighlight">\(g\)</span> is gravitational acceleration; <span class="math notranslate nohighlight">\(D_{pq}\)</span> is the grain diameter of which <span class="math notranslate nohighlight">\(pq \%\)</span> of the mixture are finer; and <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are the channel bottom and surface width, respectively (or cell width/height in a 2d numerical model).</p>
+<p>where <span class="math notranslate nohighlight">\(\rho_{w}\)</span> is the density of water; <span class="math notranslate nohighlight">\(s\)</span> is the ratio of sediment grain and water density (typically 2.68) <span id="id7">[<a class="reference internal" href="bibliography.html#id523" title="Sebastian Schwindt. Hydro-morphological processes through permeable sediment traps. Thesis No. 7655, Laboratory of Hydraulic Constructions (LCH), Ecole Polytechnique fédérale de Lausanne (EPFL), Lausanne, Switzerland, 2017. URL: https://infoscience.epfl.ch/record/231182, doi:10.5075/epfl-thesis-7655.">Sch17</a>]</span>; <span class="math notranslate nohighlight">\(g\)</span> is gravitational acceleration; <span class="math notranslate nohighlight">\(D_{pq}\)</span> is the grain diameter of which <span class="math notranslate nohighlight">\(pq \%\)</span> of the mixture are finer; and <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are the channel bottom and surface width, respectively (or cell width/height in a 2d numerical model).</p>
 <p>Read more about the calculation of bedload in this eBook in the <a class="reference internal" href="../exercises/ex-sediment.html#mpm"><span class="std std-ref">Python exercises</span></a> or the <a class="reference internal" href="../numerics/telemac-gaia.html#tm-gaia"><span class="std std-ref">Telemac2d-Gaia tutorial</span></a>. In numerical models, bedload transport is often computed using the <a class="reference internal" href="#term-Exner-equation"><span class="xref std std-term">Exner equation</span></a>.</p>
 <img alt="https://github.com/Ecohydraulics/media/raw/main/png/sediment-uptake.png" src="https://github.com/Ecohydraulics/media/raw/main/png/sediment-uptake.png" />
-<p>In addition, the term <em>traveling bedload</em> refers to a transport mode that is similar to wash load, but without suspended load <span id="id8">[<a class="reference internal" href="bibliography.html#id458">Pit16</a>, <a class="reference internal" href="bibliography.html#id644">YWZ+09</a>]</span>.</p>
+<p>In addition, the term <em>traveling bedload</em> refers to a transport mode that is similar to wash load, but without suspended load <span id="id8">[<a class="reference internal" href="bibliography.html#id458" title="Guillaume Piton. Sediment control by check dams and open check dams in Alpine torrents. PhD Thesis, Irstea Grenoble - Equipe ETNA: Erosion Torrentielle, Neige et Avalanches, 2016.">Pit16</a>, <a class="reference internal" href="bibliography.html#id644" title="G. Yu, Z. Wang, K. Zhang, T. Chang, and H. Liu. Effect of incoming sediment on the transport rate of bed load in mountain streams. International Journal of Sediment Research, 24(3):260–273, 2009. doi:10.1016/S1001-6279(10)60002-9.">YWZ+09</a>]</span>.</p>
 <p><em>French: Charriage <br>German: Geschiebtransport</em></p>
 </dd>
-<dt id="term-Boussinesq">Boussinesq<a class="headerlink" href="#term-Boussinesq" title="Permalink to this term">¶</a></dt><dd><p>The Boussinesq approximation of the <a class="reference internal" href="#term-Continuity-equation"><span class="xref std std-term">Continuity equation</span></a> assumes that density variations can be neglected except for the gravity term (i.e., in the vertical momentum equations). In addition, the Boussinesq approximation assumes that a fluid is incompressible and that wave motion is inviscid <span id="id9">[<a class="reference internal" href="bibliography.html#id1346">SV60</a>]</span>.</p>
+<dt id="term-Boussinesq">Boussinesq<a class="headerlink" href="#term-Boussinesq" title="Permalink to this term">#</a></dt><dd><p>The Boussinesq approximation of the <a class="reference internal" href="#term-Continuity-equation"><span class="xref std std-term">Continuity equation</span></a> assumes that density variations can be neglected except for the gravity term (i.e., in the vertical momentum equations). In addition, the Boussinesq approximation assumes that a fluid is incompressible and that wave motion is inviscid <span id="id9">[<a class="reference internal" href="bibliography.html#id1346" title="E. A. Spiegel and G. Veronis. On the Boussinesq Approximation for a Compressible Fluid. The Astrophysical Journal, 131:442, March 1960. URL: https://ui.adsabs.harvard.edu/abs/1960ApJ...131..442S (visited on 2021-06-24), doi:10.1086/146849.">SV60</a>]</span>.</p>
 </dd>
-<dt id="term-Braiding">Braiding<a class="headerlink" href="#term-Braiding" title="Permalink to this term">¶</a></dt><dd><p>A braiding river morphology refers to anabranched channel networks with high <a class="reference internal" href="#term-Bedload"><span class="xref std std-term">bedload</span></a> supply, mostly located in moderately steep mid-land to mountain rivers <span id="id10">[<a class="reference internal" href="bibliography.html#id359">LW57</a>, <a class="reference internal" href="bibliography.html#id501">Ros94</a>]</span>.</p>
-<div class="figure align-default" id="braided-channel">
+<dt id="term-Braiding">Braiding<a class="headerlink" href="#term-Braiding" title="Permalink to this term">#</a></dt><dd><p>A braiding river morphology refers to anabranched channel networks with high <a class="reference internal" href="#term-Bedload"><span class="xref std std-term">bedload</span></a> supply, mostly located in moderately steep mid-land to mountain rivers <span id="id10">[<a class="reference internal" href="bibliography.html#id359" title="L B Leopold and M G Wolman. River Channel patterns: Braided meandering and straight. USGS professional paper, 282-B:45–62, 1957.">LW57</a>, <a class="reference internal" href="bibliography.html#id501" title="David L Rosgen. A classification of natural rivers. Catena, 22:169–199, 1994.">Ros94</a>]</span>.</p>
+<figure class="align-default" id="braided-channel">
 <img alt="river geomorphology anabranch tresse zopfform" src="../_images/devoll-alluvial-braided-2021.jpg" />
-<p class="caption"><span class="caption-number">Fig. 157 </span><span class="caption-text">A braided-channel section of the Devolli River (Albania). Source: Sebastian Schwindt (2021)</span><a class="headerlink" href="#braided-channel" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 157 </span><span class="caption-text">A braided-channel section of the Devolli River (Albania). Source: Sebastian Schwindt (2021)</span><a class="headerlink" href="#braided-channel" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </dd>
-<dt id="term-CFL">CFL<a class="headerlink" href="#term-CFL" title="Permalink to this term">¶</a></dt><dd><p>In the field of hydrodynamics, the abbreviation CFL commonly refers to the <strong>Courant-Friedrichs-Lewy</strong> condition, which represents a convergence criterion for the numerical solution to the <em>Navier-Stokes</em> partial differential equations. The CFL applies to explicit time integration schemes that may become unstable for large time steps as a function of the size of mesh cells. Today, most numerical software uses an internal value for the CFL to adaptively calculate the maximum time step that is required for the stability of explicit solvers. In 2d modelling, the CFL condition is defined as <span class="math notranslate nohighlight">\(c_{cfl}={u_x \cdot \Delta t}/\Delta x + {u_y \cdot \Delta t}/\Delta y\)</span>, where <span class="math notranslate nohighlight">\(\Delta t\)</span> is the time step, <span class="math notranslate nohighlight">\(\Delta x\)</span> and <span class="math notranslate nohighlight">\(\Delta y\)</span> are grid cell sizes in <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions of the coordinate reference system, and <span class="math notranslate nohighlight">\(u_x\)</span> and <span class="math notranslate nohighlight">\(u_y\)</span> are the flow velocities in the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions. An explicit solver is assumed to be stable when <span class="math notranslate nohighlight">\(c_{cfl} \leq c_{cfl, crit}\)</span>, where the critical value <span class="math notranslate nohighlight">\(c_{cfl, crit}\)</span> for the CFL condition must be smaller than 1.0. To this end, numerical modelling software, such as BASEMENT, uses a default value of <span class="math notranslate nohighlight">\(c_{cfl, crit} = 0.9\)</span>.</p>
+<dt id="term-CFL">CFL<a class="headerlink" href="#term-CFL" title="Permalink to this term">#</a></dt><dd><p>In the field of hydrodynamics, the abbreviation CFL commonly refers to the <strong>Courant-Friedrichs-Lewy</strong> condition, which represents a convergence criterion for the numerical solution to the <em>Navier-Stokes</em> partial differential equations. The CFL applies to explicit time integration schemes that may become unstable for large time steps as a function of the size of mesh cells. Today, most numerical software uses an internal value for the CFL to adaptively calculate the maximum time step that is required for the stability of explicit solvers. In 2d modelling, the CFL condition is defined as <span class="math notranslate nohighlight">\(c_{cfl}={u_x \cdot \Delta t}/\Delta x + {u_y \cdot \Delta t}/\Delta y\)</span>, where <span class="math notranslate nohighlight">\(\Delta t\)</span> is the time step, <span class="math notranslate nohighlight">\(\Delta x\)</span> and <span class="math notranslate nohighlight">\(\Delta y\)</span> are grid cell sizes in <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions of the coordinate reference system, and <span class="math notranslate nohighlight">\(u_x\)</span> and <span class="math notranslate nohighlight">\(u_y\)</span> are the flow velocities in the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions. An explicit solver is assumed to be stable when <span class="math notranslate nohighlight">\(c_{cfl} \leq c_{cfl, crit}\)</span>, where the critical value <span class="math notranslate nohighlight">\(c_{cfl, crit}\)</span> for the CFL condition must be smaller than 1.0. To this end, numerical modelling software, such as BASEMENT, uses a default value of <span class="math notranslate nohighlight">\(c_{cfl, crit} = 0.9\)</span>.</p>
 <p><em>French: Nombre de Courant <br>German: CFL-Zahl</em></p>
 </dd>
-<dt id="term-Clogging">Clogging<a class="headerlink" href="#term-Clogging" title="Permalink to this term">¶</a></dt><dd><p>Riverbed clogging describes the sedimentation of the porous coarse sediment matrix of the hyporheic zone under and along gravel-cobble-bed rivers. We differentiate between external and internal clogging: external clogging affects surficial layers and is a direct consequence of the deposition of fine, cohesive sediment; internal clogging occurs in deeper layers of the hyporheic zone and is the consequence of spontaneous percolation or grain sorting at the surface <span id="id11">[<a class="reference internal" href="bibliography.html#id1407">BR87</a>, <a class="reference internal" href="bibliography.html#id1408">Sch92</a>]</span>.</p>
-<div class="figure align-default" id="outer-clogging">
+<dt id="term-Clogging">Clogging<a class="headerlink" href="#term-Clogging" title="Permalink to this term">#</a></dt><dd><p>Riverbed clogging describes the sedimentation of the porous coarse sediment matrix of the hyporheic zone under and along gravel-cobble-bed rivers. We differentiate between external and internal clogging: external clogging affects surficial layers and is a direct consequence of the deposition of fine, cohesive sediment; internal clogging occurs in deeper layers of the hyporheic zone and is the consequence of spontaneous percolation or grain sorting at the surface <span id="id11">[<a class="reference internal" href="bibliography.html#id1407" title="Hilary E. Berkman and Charles F. Rabeni. Effect of siltation on stream fish communities. Environmental Biology of Fishes, 18(4):285–294, 1987. doi:10.1007/BF00004881.">BR87</a>, <a class="reference internal" href="bibliography.html#id1408" title="Ueli Schaelchli. The clogging of coarse gravel river beds by fine sediment. Hydrobiologia, 235(1):189–197, 1992.">Sch92</a>]</span>.</p>
+<figure class="align-default" id="outer-clogging">
 <img alt="riverbed clogging siltation colmation colmatation Kolmation" src="../_images/outer-clogging.jpg" />
-<p class="caption"><span class="caption-number">Fig. 158 </span><span class="caption-text">Example of outer riverbed clogging of a coarse sediment matrix with fine muddy sediment. Picture: Sebastian Schwindt (2021).</span><a class="headerlink" href="#outer-clogging" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 158 </span><span class="caption-text">Example of outer riverbed clogging of a coarse sediment matrix with fine muddy sediment. Picture: Sebastian Schwindt (2021).</span><a class="headerlink" href="#outer-clogging" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><em>French: Colmation/colmatation <br>German: Kolmation</em></p>
 </dd>
-<dt id="term-Continuity-equation">Continuity equation<a class="headerlink" href="#term-Continuity-equation" title="Permalink to this term">¶</a></dt><dd><p>The differential form of the continuity equation is <span class="math notranslate nohighlight">\(\frac{\partial \psi}{\partial t}+\mathbf{u} \cdot \nabla \psi = 0\)</span> where <span class="math notranslate nohighlight">\(\psi\)</span> is a constant of the particle/substance in consideration and <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> is the fluid velocity vector. The <span class="math notranslate nohighlight">\(\nabla\)</span> operator is literally a vector of partial differential operators <span class="math notranslate nohighlight">\(\frac{\partial}{\partial x_i}\)</span> where <span class="math notranslate nohighlight">\(x_i\)</span> refers to the dimensions of the flow field. In the case of steady flow (no variability in time) the advection equation becomes <span class="math notranslate nohighlight">\(\mathbf{u} \cdot \nabla \psi = 0\)</span> <span id="id12">[<a class="reference internal" href="bibliography.html#id333">KC08</a>]</span>.</p>
-<p>The mass continuity equation of an incompressible fluid, such as water, considers the constant <span class="math notranslate nohighlight">\(\Psi\)</span> as a mass and has the form <span class="math notranslate nohighlight">\(\nabla \cdot \mathbf{u} = 0\)</span> or <span class="math notranslate nohighlight">\(\frac{\partial u_i}{\partial x_i} = 0\)</span> <span id="id13">[<a class="reference internal" href="bibliography.html#id333">KC08</a>]</span>.</p>
+<dt id="term-Continuity-equation">Continuity equation<a class="headerlink" href="#term-Continuity-equation" title="Permalink to this term">#</a></dt><dd><p>The differential form of the continuity equation is <span class="math notranslate nohighlight">\(\frac{\partial \psi}{\partial t}+\mathbf{u} \cdot \nabla \psi = 0\)</span> where <span class="math notranslate nohighlight">\(\psi\)</span> is a constant of the particle/substance in consideration and <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> is the fluid velocity vector. The <span class="math notranslate nohighlight">\(\nabla\)</span> operator is literally a vector of partial differential operators <span class="math notranslate nohighlight">\(\frac{\partial}{\partial x_i}\)</span> where <span class="math notranslate nohighlight">\(x_i\)</span> refers to the dimensions of the flow field. In the case of steady flow (no variability in time) the advection equation becomes <span class="math notranslate nohighlight">\(\mathbf{u} \cdot \nabla \psi = 0\)</span> <span id="id12">[<a class="reference internal" href="bibliography.html#id333" title="P.K. Kundu and I.M. Cohen. Fluid Mechanics. Elsevier Inc., San Diego, CA, USA, 4th edition, 2008. ISBN 978-0-12-373735-9.">KC08</a>]</span>.</p>
+<p>The mass continuity equation of an incompressible fluid, such as water, considers the constant <span class="math notranslate nohighlight">\(\Psi\)</span> as a mass and has the form <span class="math notranslate nohighlight">\(\nabla \cdot \mathbf{u} = 0\)</span> or <span class="math notranslate nohighlight">\(\frac{\partial u_i}{\partial x_i} = 0\)</span> <span id="id13">[<a class="reference internal" href="bibliography.html#id333" title="P.K. Kundu and I.M. Cohen. Fluid Mechanics. Elsevier Inc., San Diego, CA, USA, 4th edition, 2008. ISBN 978-0-12-373735-9.">KC08</a>]</span>.</p>
 <p><em>French: Équation de continuité <br>German: Kontinuitätsgleichung</em></p>
 </dd>
-<dt id="term-Convection">Convection<a class="headerlink" href="#term-Convection" title="Permalink to this term">¶</a></dt><dd><p>Convection encompasses <a class="reference internal" href="#term-Advection"><span class="xref std std-term">Advection</span></a> and <a class="reference internal" href="#term-Diffusion"><span class="xref std std-term">Diffusion</span></a> <span id="id14">[<a class="reference internal" href="bibliography.html#id333">KC08</a>]</span>. Thus, convection is fluid motion because of bulk transport (water flowing in a river with reference to <a class="reference internal" href="#term-Advection"><span class="xref std std-term">Advection</span></a>) and dispersion of a fluid component from high-density to low-density regions (<a class="reference internal" href="#term-Diffusion"><span class="xref std std-term">Diffusion</span></a>) in the flow field (e.g., an ink drop dispersing in a river).</p>
+<dt id="term-Convection">Convection<a class="headerlink" href="#term-Convection" title="Permalink to this term">#</a></dt><dd><p>Convection encompasses <a class="reference internal" href="#term-Advection"><span class="xref std std-term">Advection</span></a> and <a class="reference internal" href="#term-Diffusion"><span class="xref std std-term">Diffusion</span></a> <span id="id14">[<a class="reference internal" href="bibliography.html#id333" title="P.K. Kundu and I.M. Cohen. Fluid Mechanics. Elsevier Inc., San Diego, CA, USA, 4th edition, 2008. ISBN 978-0-12-373735-9.">KC08</a>]</span>. Thus, convection is fluid motion because of bulk transport (water flowing in a river with reference to <a class="reference internal" href="#term-Advection"><span class="xref std std-term">Advection</span></a>) and dispersion of a fluid component from high-density to low-density regions (<a class="reference internal" href="#term-Diffusion"><span class="xref std std-term">Diffusion</span></a>) in the flow field (e.g., an ink drop dispersing in a river).</p>
 <p><em>French: Convection <br>German: Konvektion</em></p>
 </dd>
-<dt id="term-CRS">CRS<a class="headerlink" href="#term-CRS" title="Permalink to this term">¶</a></dt><dd><p>A Coordinate Reference System (CRS), also referred to as Spatial Reference System (<strong>SRS</strong>), is an orientation unit system to geographically locate objects in a map. The CRS involves an origin (<span class="math notranslate nohighlight">\(x\)</span>=0.0 and <span class="math notranslate nohighlight">\(y\)</span>=0.0) and a projection. Objects of one map can be put into another map through the transformation of their CRS with respect to the coordinates and the projection. Read more about CRS in the section on <a class="reference internal" href="../geopy/geospatial-data.html#prj"><span class="std std-ref">Projections and Coordinate Systems</span></a>.</p>
+<dt id="term-CRS">CRS<a class="headerlink" href="#term-CRS" title="Permalink to this term">#</a></dt><dd><p>A Coordinate Reference System (CRS), also referred to as Spatial Reference System (<strong>SRS</strong>), is an orientation unit system to geographically locate objects in a map. The CRS involves an origin (<span class="math notranslate nohighlight">\(x\)</span>=0.0 and <span class="math notranslate nohighlight">\(y\)</span>=0.0) and a projection. Objects of one map can be put into another map through the transformation of their CRS with respect to the coordinates and the projection. Read more about CRS in the section on <a class="reference internal" href="../geopy/geospatial-data.html#prj"><span class="std std-ref">Projections and Coordinate Systems</span></a>.</p>
 <p><em>French: Système de coordonnées <br>German: Koordinatenreferenzsystem / Koordinatenbezugsystem (KBS)</em></p>
 </dd>
-<dt id="term-CSV">CSV<a class="headerlink" href="#term-CSV" title="Permalink to this term">¶</a></dt><dd><p>The Comma-Separated Values (CSV) file format describes the structure of a text file storing simply structured data. The file name extension is <code class="docutils literal notranslate"><span class="pre">*.csv</span></code>, which may also contain Tab-Separated Values (TSV). The separator (i.e., comma, semicolon, or tab) sign delimits (or separates) colon values in one line of a <code class="docutils literal notranslate"><span class="pre">*.csv</span></code> file. Spreadsheet software, such as <a class="reference internal" href="../get-started/others.html#lo"><span class="std std-ref">Libre Office Calc</span></a>, enables to import and process <code class="docutils literal notranslate"><span class="pre">*.csv</span></code> files for cell-formula based data analyses.</p>
+<dt id="term-CSV">CSV<a class="headerlink" href="#term-CSV" title="Permalink to this term">#</a></dt><dd><p>The Comma-Separated Values (CSV) file format describes the structure of a text file storing simply structured data. The file name extension is <code class="docutils literal notranslate"><span class="pre">*.csv</span></code>, which may also contain Tab-Separated Values (TSV). The separator (i.e., comma, semicolon, or tab) sign delimits (or separates) colon values in one line of a <code class="docutils literal notranslate"><span class="pre">*.csv</span></code> file. Spreadsheet software, such as <a class="reference internal" href="../get-started/others.html#lo"><span class="std std-ref">Libre Office Calc</span></a>, enables to import and process <code class="docutils literal notranslate"><span class="pre">*.csv</span></code> files for cell-formula based data analyses.</p>
 </dd>
-<dt id="term-DEM">DEM<a class="headerlink" href="#term-DEM" title="Permalink to this term">¶</a></dt><dd><p>A Digital Elevation Model (DEM) represents the bare Earth’s topographic surface excluding objects such as buildings or trees. In contrast, a Digital Surface Model (DSM) includes objects such as trees or buildings. In addition, a Digital Terrain Model (DTM) represents similar data to a DEM and both DEM and DTM can be used synonymously in many regions of the world. However, in the United States, a DTM refers to a <a class="reference internal" href="../geopy/geospatial-data.html#vector"><span class="std std-ref">Vector</span></a> (regularly spaced points) dataset while a DEM is a <a class="reference internal" href="../geopy/geospatial-data.html#raster"><span class="std std-ref">Gridded Cell (Raster) Data</span></a> dataset. The translation into other languages does not go along with the same definition of a DEM, DSM, and DTM, and the following translations refer to the English definitions rather than the same (translated) words.</p>
+<dt id="term-DEM">DEM<a class="headerlink" href="#term-DEM" title="Permalink to this term">#</a></dt><dd><p>A Digital Elevation Model (DEM) represents the bare Earth’s topographic surface excluding objects such as buildings or trees. In contrast, a Digital Surface Model (DSM) includes objects such as trees or buildings. In addition, a Digital Terrain Model (DTM) represents similar data to a DEM and both DEM and DTM can be used synonymously in many regions of the world. However, in the United States, a DTM refers to a <a class="reference internal" href="../geopy/geospatial-data.html#vector"><span class="std std-ref">Vector</span></a> (regularly spaced points) dataset while a DEM is a <a class="reference internal" href="../geopy/geospatial-data.html#raster"><span class="std std-ref">Gridded Cell (Raster) Data</span></a> dataset. The translation into other languages does not go along with the same definition of a DEM, DSM, and DTM, and the following translations refer to the English definitions rather than the same (translated) words.</p>
 <p><em>French for DSM: Modèle numérique d’élévation (MNE) <br>German for DSM: Digitales Höhenmodell (DHM)</em></p>
 <p><em>French for DEM: Modèle numérique de terrain (MNT) <br>German for DEM: Digitales Oberflächenmodell (DOM)</em></p>
 <p><em>French for DTM: Modèle numérique d’élévation (MNE) <br>German for DTM: Digitales Geländemodell (DGM)</em></p>
 <p>Ultimately, there are many options for <em>correct</em> DEM-terminology depending on the region where you are. Now, what is the correct term in which language? There is no universal answer to this question and a good choice is to be patient with the communication partner.</p>
 </dd>
-<dt id="term-Diadromous">Diadromous<a class="headerlink" href="#term-Diadromous" title="Permalink to this term">¶</a></dt><dd><p>Diadromous fish <a class="reference internal" href="#term-Guild"><span class="xref std std-term">guilds</span></a> migrate between the sea and freshwater in their life cycle, as opposed to <a class="reference internal" href="#term-Potamodromous"><span class="xref std std-term">potamodromous fish</span></a> that only migrates in freshwater regions. Within diadromous fish guilds, further distinction is made between sub-guilds <span id="id15">[<a class="reference internal" href="bibliography.html#id1410">Mye49</a>]</span>:</p>
+<dt id="term-Diadromous">Diadromous<a class="headerlink" href="#term-Diadromous" title="Permalink to this term">#</a></dt><dd><p>Diadromous fish <a class="reference internal" href="#term-Guild"><span class="xref std std-term">guilds</span></a> migrate between the sea and freshwater in their life cycle, as opposed to <a class="reference internal" href="#term-Potamodromous"><span class="xref std std-term">potamodromous fish</span></a> that only migrates in freshwater regions. Within diadromous fish guilds, further distinction is made between sub-guilds <span id="id15">[<a class="reference internal" href="bibliography.html#id1410" title="George S. Myers. Usage of anadromous, catadromous and allied terms for migratory fishes. Copeia, 1949(2):89–97, 1949. URL: https://doi.org/10.2307/1438482 (visited on 2022-09-13), doi:10.2307/1438482.">Mye49</a>]</span>:</p>
 <ul class="simple">
 <li><p><em>Anadromous</em> fish live in the seas and migrate to freshwaters, mainly for reproduction. Examples for anadromous fish are sea trout (<em>Salmo trutta trutta</em>) or Pacific salmon (<em>Oncorhynchus</em>).</p></li>
 <li><p><em>Catadromous</em> fish live in freshwaters and migrate to the sea for reproduction. An example for catadromous fish is American eel (<em>Anguilla rostrata</em>).</p></li>
-<li><p><em>Amphidromous</em> fish migrate regularly between the sea and freshwaters. An example for amphidromous fish is round goby (<em>Neogobius melanostomus</em>) <span id="id16">[<a class="reference internal" href="bibliography.html#id1411">LSK+19</a>]</span>.</p></li>
+<li><p><em>Amphidromous</em> fish migrate regularly between the sea and freshwaters. An example for amphidromous fish is round goby (<em>Neogobius melanostomus</em>) <span id="id16">[<a class="reference internal" href="bibliography.html#id1411" title="L. A. Lecaudey, M. Schletterer, V. V. Kuzovlev, C. Hahn, and S. J. Weiss. Fish diversity assessment in the headwaters of the Volga River using environmental DNA metabarcoding. Aquatic Conservation: Marine and Freshwater Ecosystems, 29(10):1785–1800, 2019. URL: https://onlinelibrary.wiley.com/doi/pdf/10.1002/aqc.3163, doi:10.1002/aqc.3163.">LSK+19</a>]</span>.</p></li>
 </ul>
 </dd>
-<dt id="term-Diffusion">Diffusion<a class="headerlink" href="#term-Diffusion" title="Permalink to this term">¶</a></dt><dd><p>Diffusion is the result of random motion of particles, driven by differences in concentration (e.g., dissipation of highly concentrated particles towards regions of low concentration). Mathematically, diffusion is described by <span class="math notranslate nohighlight">\(\frac{\partial \psi}{\partial t} = \nabla \cdot (D \nabla \psi)\)</span> where <span class="math notranslate nohighlight">\(\psi\)</span> is a constant of the particle/substance in consideration; <span class="math notranslate nohighlight">\(D\)</span> is a diffusion coefficient (or diffusivity) in m<span class="math notranslate nohighlight">\(^2\)</span>/s, which is a proportionality constant between molecular flux and the gradient of a substance (or species). The <span class="math notranslate nohighlight">\(\nabla\)</span> (<em>nabla</em>) operator is a vector of partial differentials <span class="math notranslate nohighlight">\(\frac{\partial}{\partial x_i}\)</span> where <span class="math notranslate nohighlight">\(x_i\)</span> refers to the dimensions of the flow field <span id="id17">[<a class="reference internal" href="bibliography.html#id333">KC08</a>]</span>.</p>
+<dt id="term-Diffusion">Diffusion<a class="headerlink" href="#term-Diffusion" title="Permalink to this term">#</a></dt><dd><p>Diffusion is the result of random motion of particles, driven by differences in concentration (e.g., dissipation of highly concentrated particles towards regions of low concentration). Mathematically, diffusion is described by <span class="math notranslate nohighlight">\(\frac{\partial \psi}{\partial t} = \nabla \cdot (D \nabla \psi)\)</span> where <span class="math notranslate nohighlight">\(\psi\)</span> is a constant of the particle/substance in consideration; <span class="math notranslate nohighlight">\(D\)</span> is a diffusion coefficient (or diffusivity) in m<span class="math notranslate nohighlight">\(^2\)</span>/s, which is a proportionality constant between molecular flux and the gradient of a substance (or species). The <span class="math notranslate nohighlight">\(\nabla\)</span> (<em>nabla</em>) operator is a vector of partial differentials <span class="math notranslate nohighlight">\(\frac{\partial}{\partial x_i}\)</span> where <span class="math notranslate nohighlight">\(x_i\)</span> refers to the dimensions of the flow field <span id="id17">[<a class="reference internal" href="bibliography.html#id333" title="P.K. Kundu and I.M. Cohen. Fluid Mechanics. Elsevier Inc., San Diego, CA, USA, 4th edition, 2008. ISBN 978-0-12-373735-9.">KC08</a>]</span>.</p>
 <p><em>French: Diffusion <br>German: Diffusion</em></p>
 </dd>
-<dt id="term-Dimensionless-bed-shear-stress">Dimensionless bed shear stress<a class="headerlink" href="#term-Dimensionless-bed-shear-stress" title="Permalink to this term">¶</a></dt><dd><p>The dimensionless bed shear stress <span class="math notranslate nohighlight">\(\tau_x\)</span> (in the literature often called <span class="math notranslate nohighlight">\(\theta\)</span>) is derived from the shear forces that act on the riverbed as a result of flowing water. <span class="math notranslate nohighlight">\(\tau_x\)</span> is a key parameter in the calculation of <a class="reference internal" href="#term-Bedload"><span class="xref std std-term">Bedload</span></a> transport where many semi-empiric equations assume that a sediment grain is mobile when a particle size-related, critical value of the dimensionless bed shear stress is exceeded. This critical value of dimensionless bed shear stress is also referred to as <a class="reference internal" href="#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a>. To this end, <span class="math notranslate nohighlight">\(\tau_x\)</span> is calculated based on hydraulic characteristics and the characteristic grain size <span class="math notranslate nohighlight">\(D_{pq}\)</span> <span id="id18">[<a class="reference internal" href="bibliography.html#id326">Kra32</a>, <a class="reference internal" href="bibliography.html#id596">VK30</a>]</span>:</p>
+<dt id="term-Dimensionless-bed-shear-stress">Dimensionless bed shear stress<a class="headerlink" href="#term-Dimensionless-bed-shear-stress" title="Permalink to this term">#</a></dt><dd><p>The dimensionless bed shear stress <span class="math notranslate nohighlight">\(\tau_x\)</span> (in the literature often called <span class="math notranslate nohighlight">\(\theta\)</span>) is derived from the shear forces that act on the riverbed as a result of flowing water. <span class="math notranslate nohighlight">\(\tau_x\)</span> is a key parameter in the calculation of <a class="reference internal" href="#term-Bedload"><span class="xref std std-term">Bedload</span></a> transport where many semi-empiric equations assume that a sediment grain is mobile when a particle size-related, critical value of the dimensionless bed shear stress is exceeded. This critical value of dimensionless bed shear stress is also referred to as <a class="reference internal" href="#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a>. To this end, <span class="math notranslate nohighlight">\(\tau_x\)</span> is calculated based on hydraulic characteristics and the characteristic grain size <span class="math notranslate nohighlight">\(D_{pq}\)</span> <span id="id18">[<a class="reference internal" href="bibliography.html#id326" title="H Kramer. Modellgeschiebe und Schleppkraft [Modelling bed load and drag force]. Volume 9. Preuß ische Versuchsanstalt für Wasserbau und Schiffbau, 1932.">Kra32</a>, <a class="reference internal" href="bibliography.html#id596" title="Theodor Von Karmàn. Mechanische ähnlichkeit und Turbulenz [Mechanical similarity and turbulence]. In Third International Congress for Applied Mechanics, volume 1, pages 79–93. Stockholm, 1930.">VK30</a>]</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 \tau_{x} = \frac{R_h~\cdot~S_e}{\left(s-1\right)~\cdot~D_{pq}}
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(R_h\)</span> is the hydraulic radius (cf. calculation in the <a class="reference internal" href="../exercises/ex-ms.html#calc-1d-hyd"><span class="std std-ref">1d hydraulic Python exercise</span></a>); <span class="math notranslate nohighlight">\(S_{e}\)</span> is energy slope; and <span class="math notranslate nohighlight">\(s\)</span> is the ratio of sediment grain and water density (typically 2.68) <span id="id19">[<a class="reference internal" href="bibliography.html#id523">Sch17</a>]</span>. <span class="math notranslate nohighlight">\(R_h\)</span> may be substituted by water depth in wide rivers with monotonous cross-sectional shape and for (grid) cells of a 2d numerical model.</p>
+<p>where <span class="math notranslate nohighlight">\(R_h\)</span> is the hydraulic radius (cf. calculation in the <a class="reference internal" href="../exercises/ex-ms.html#calc-1d-hyd"><span class="std std-ref">1d hydraulic Python exercise</span></a>); <span class="math notranslate nohighlight">\(S_{e}\)</span> is energy slope; and <span class="math notranslate nohighlight">\(s\)</span> is the ratio of sediment grain and water density (typically 2.68) <span id="id19">[<a class="reference internal" href="bibliography.html#id523" title="Sebastian Schwindt. Hydro-morphological processes through permeable sediment traps. Thesis No. 7655, Laboratory of Hydraulic Constructions (LCH), Ecole Polytechnique fédérale de Lausanne (EPFL), Lausanne, Switzerland, 2017. URL: https://infoscience.epfl.ch/record/231182, doi:10.5075/epfl-thesis-7655.">Sch17</a>]</span>. <span class="math notranslate nohighlight">\(R_h\)</span> may be substituted by water depth in wide rivers with monotonous cross-sectional shape and for (grid) cells of a 2d numerical model.</p>
 <p><em>French: Cisaillement adimensionel <br>German: Dimensionslose Schubspannung</em></p>
 </dd>
-<dt id="term-Echo-sounder">Echo sounder<a class="headerlink" href="#term-Echo-sounder" title="Permalink to this term">¶</a></dt><dd><p>An echo sounder emits an acoustic signal under water, which is reflected by the objects of the underwater landscape. Echo sounding is an active <a class="reference internal" href="#term-Sonar"><span class="xref std std-term">Sonar</span></a> technique and enables the creation of an underwater DEM, which is also referred to as bathymetry. To perform echo sounding a probe must be installed on a boat that requires a minimum navigable water depth. In addition, the use of the echo sounder (probe) itself also requires a minimum water depth to operate with little noise inference. Therefore, by experience, a minimum water depth of 1-2 m is necessary to survey the bathymetry of a river by echo sounding. Echo sounding can be performed with single-beam (one underwater spot) or multi-beam (underwater surface) devices.</p>
+<dt id="term-Echo-sounder">Echo sounder<a class="headerlink" href="#term-Echo-sounder" title="Permalink to this term">#</a></dt><dd><p>An echo sounder emits an acoustic signal under water, which is reflected by the objects of the underwater landscape. Echo sounding is an active <a class="reference internal" href="#term-Sonar"><span class="xref std std-term">Sonar</span></a> technique and enables the creation of an underwater DEM, which is also referred to as bathymetry. To perform echo sounding a probe must be installed on a boat that requires a minimum navigable water depth. In addition, the use of the echo sounder (probe) itself also requires a minimum water depth to operate with little noise inference. Therefore, by experience, a minimum water depth of 1-2 m is necessary to survey the bathymetry of a river by echo sounding. Echo sounding can be performed with single-beam (one underwater spot) or multi-beam (underwater surface) devices.</p>
 <p><em>French: Échosondeur / Sondeur acoustique <br>German: Echolot / Fächerecholot</em></p>
 </dd>
-<dt id="term-Exner-equation">Exner equation<a class="headerlink" href="#term-Exner-equation" title="Permalink to this term">¶</a></dt><dd><p>The <span id="id20">Exner [<a class="reference internal" href="bibliography.html#id185">Exn25</a>]</span> equation yields sediment mass conservation in a hydro-morphodynamic model (see also the <a class="reference internal" href="../numerics/telemac-gaia.html#tm-gaia"><span class="std std-ref">TELEMAC-Gaia tutorial</span></a>) and expresses that the time-dependent <a class="reference internal" href="#term-Topographic-change"><span class="xref std std-term">Topographic change</span></a> rate <span class="math notranslate nohighlight">\(\frac{\partial \eta}{\partial t}\)</span> equals the unit sediment (<a class="reference internal" href="#term-Bedload"><span class="xref std std-term">Bedload</span></a>) fluxes <span class="math notranslate nohighlight">\(q_b\)</span> over the boundaries <span id="id21">[<a class="reference internal" href="bibliography.html#id1372">BRP03</a>, <a class="reference internal" href="bibliography.html#id1371">Hir71</a>]</span>:</p>
+<dt id="term-Exner-equation">Exner equation<a class="headerlink" href="#term-Exner-equation" title="Permalink to this term">#</a></dt><dd><p>The <span id="id20">Exner [<a class="reference internal" href="bibliography.html#id185" title="Felix M Exner. Über die Wechselwirkung zwischen Wasser und Geschiebe in Flüssen [About the Interdependency of Water and Bed load in Rivers]. Akademie der Wissenschaften in Wien, math.-naturw. Klasse, Sitzungsberichte, Abt. IIa, 134:165–203, 1925.">Exn25</a>]</span> equation yields sediment mass conservation in a hydro-morphodynamic model (see also the <a class="reference internal" href="../numerics/telemac-gaia.html#tm-gaia"><span class="std std-ref">TELEMAC-Gaia tutorial</span></a>) and expresses that the time-dependent <a class="reference internal" href="#term-Topographic-change"><span class="xref std std-term">Topographic change</span></a> rate <span class="math notranslate nohighlight">\(\frac{\partial \eta}{\partial t}\)</span> equals the unit sediment (<a class="reference internal" href="#term-Bedload"><span class="xref std std-term">Bedload</span></a>) fluxes <span class="math notranslate nohighlight">\(q_b\)</span> over the boundaries <span id="id21">[<a class="reference internal" href="bibliography.html#id1372" title="Astrid Blom, Jan S. Ribberink, and Gary Parker. Sediment Continuity for Rivers with Non-Uniform Sediment, Dunes, and Bed Load Transport. In A. Gyr and W. Kinzelbach, editors, Sedimentation and Sediment Transport, 179–182. Dordrecht, Netherlands, 2003. Springer Netherlands. URL: https://link.springer.com/chapter/10.1007/978-94-017-0347-5_28, doi:10.1007/978-94-017-0347-5_28.">BRP03</a>, <a class="reference internal" href="bibliography.html#id1371" title="Muneo Hirano. River-Bed Degradation with Armoring. Proceedings of the Japan Society of Civil Engineers, 1971(195):55–65, 1971. doi:10.2208/jscej1969.1971.195_55.">Hir71</a>]</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{\partial \eta}{\partial t} = -\frac{1}{\epsilon}\frac{\partial q_b}{\partial x}
@@ -922,7 +596,7 @@
 \[
 \left(1 - \epsilon\right) \frac{\partial \left(\rho_s \eta\right)}{\partial t} + \nabla \cdot \left(\rho_s \boldsymbol{q_b} \eta \right) = 0
 \]</div>
-<p>The <span class="math notranslate nohighlight">\(\nabla\)</span> operator is a vector of partial differentials <span class="math notranslate nohighlight">\(\frac{\partial}{\partial x_i}\)</span> where <span class="math notranslate nohighlight">\(x_i\)</span> refers to the dimensions of the flow field <span id="id22">[<a class="reference internal" href="bibliography.html#id333">KC08</a>]</span>.  The unit bedload transport vector <span class="math notranslate nohighlight">\(\boldsymbol{q_b}\)</span> is composed of an <span class="math notranslate nohighlight">\(x\)</span> and a <span class="math notranslate nohighlight">\(y\)</span> component:</p>
+<p>The <span class="math notranslate nohighlight">\(\nabla\)</span> operator is a vector of partial differentials <span class="math notranslate nohighlight">\(\frac{\partial}{\partial x_i}\)</span> where <span class="math notranslate nohighlight">\(x_i\)</span> refers to the dimensions of the flow field <span id="id22">[<a class="reference internal" href="bibliography.html#id333" title="P.K. Kundu and I.M. Cohen. Fluid Mechanics. Elsevier Inc., San Diego, CA, USA, 4th edition, 2008. ISBN 978-0-12-373735-9.">KC08</a>]</span>.  The unit bedload transport vector <span class="math notranslate nohighlight">\(\boldsymbol{q_b}\)</span> is composed of an <span class="math notranslate nohighlight">\(x\)</span> and a <span class="math notranslate nohighlight">\(y\)</span> component:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \boldsymbol{q_b} =  \begin{pmatrix}q_{b_x} \\ q_{b_y} \end{pmatrix}  =  \begin{pmatrix}q_{b} \cos \alpha \\ q_{b} \sin \alpha  \end{pmatrix}
@@ -931,7 +605,7 @@
 </div>
 <p><em>French: Équation de Exner <br>German: Exner-Gleichung (?)</em></p>
 </dd>
-<dt id="term-Froude-number">Froude number<a class="headerlink" href="#term-Froude-number" title="Permalink to this term">¶</a></dt><dd><p>The Froude number <span class="math notranslate nohighlight">\(Fr\)</span> is the ratio between inertia and gravity forces and it is a key number of wave propagation. Thus, <span class="math notranslate nohighlight">\(Fr\)</span> states whether information can be transmitted in upstream direction or not <span id="id23">[<a class="reference internal" href="bibliography.html#id123">Cho59</a>, <a class="reference internal" href="bibliography.html#id239">Hag10</a>, <a class="reference internal" href="bibliography.html#id240">HS09</a>]</span>:</p>
+<dt id="term-Froude-number">Froude number<a class="headerlink" href="#term-Froude-number" title="Permalink to this term">#</a></dt><dd><p>The Froude number <span class="math notranslate nohighlight">\(Fr\)</span> is the ratio between inertia and gravity forces and it is a key number of wave propagation. Thus, <span class="math notranslate nohighlight">\(Fr\)</span> states whether information can be transmitted in upstream direction or not <span id="id23">[<a class="reference internal" href="bibliography.html#id123" title="Ven Te Chow. Open-Channel Hydraulics. Civil Engineering. McGraw-Hill, Tokyo, Japan, 1959.">Cho59</a>, <a class="reference internal" href="bibliography.html#id239" title="Willi H Hager. Wastewater Hydraulics, Theory and Practice, Second Edition. Springer-Verlag, Berlin, Heidelberg, 2010.">Hag10</a>, <a class="reference internal" href="bibliography.html#id240" title="Willi H Hager and Anton J Schleiss. Constructions hydrauliques [Hydraulic structures]. Volume 15. Presses polytechniques et universitaires romandes, 2009.">HS09</a>]</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 Fr^2 = \frac{Q^2}{A^3 g} \frac{\partial A}{\partial h}\begin{cases} &lt; 1 \rightarrow \mbox{ subcritical flow (upstream and downstream wave propagation)} \\ = 1 \rightarrow \mbox{critical flow (standing waves in upstream direction)} \\ &gt; 1 \rightarrow \mbox{ supercritical flow (downstream wave propagation only)} \end{cases}
@@ -941,137 +615,145 @@ Fr^2 = \frac{Q^2}{A^3 g} \frac{\partial A}{\partial h}\begin{cases} &lt; 1 \righ
 \[
 Fr = \frac{u}{\sqrt{g \cdot h}}
 \]</div>
-<p>The Froude number is also the basis for scaling many sediment transport phenomena in open channel flow <span id="id24">[<a class="reference internal" href="bibliography.html#id640">Yal71</a>, <a class="reference internal" href="bibliography.html#id639">Yal77</a>]</span>.</p>
+<p>The Froude number is also the basis for scaling many sediment transport phenomena in open channel flow <span id="id24">[<a class="reference internal" href="bibliography.html#id640" title="M.S. Yalin. Theory of hydraulic models. Volume 266 of Civil Engineering Hydraulics. Macmillan, London, 1971.">Yal71</a>, <a class="reference internal" href="bibliography.html#id639" title="M.S. Yalin. Mechanics of sediment transport. Volume 2. Pergamon press Oxford, Oxford and New York, 1977.">Yal77</a>]</span>.</p>
 <p><em>French: Nombre de Froude <br>German: Froude-Zahl</em></p>
 </dd>
-<dt id="term-GeoTIFF">GeoTIFF<a class="headerlink" href="#term-GeoTIFF" title="Permalink to this term">¶</a></dt><dd><p>The Georeferenced Tag Image File Format (GeoTIFF) links geographic positions to <a class="reference internal" href="../geopy/geospatial-data.html#raster"><span class="std std-ref">Gridded Cell (Raster) Data</span></a> images. A GeoTIFF involves multiple files containing the tagged image itself (<code class="docutils literal notranslate"><span class="pre">*.tif</span></code> file), a world file (<code class="docutils literal notranslate"><span class="pre">*.tfw</span></code> file) containing information about the geographic reference and projection system, and potentially an <code class="docutils literal notranslate"><span class="pre">*.ovr</span></code> file that links the GeoTIFF with other resource data. Read more at the <em>Open Geospatial Consortium</em>’s <a class="reference external" href="https://www.ogc.org/standards/geotiff">standard for GeoTIFF</a>.</p>
+<dt id="term-GeoTIFF">GeoTIFF<a class="headerlink" href="#term-GeoTIFF" title="Permalink to this term">#</a></dt><dd><p>The Georeferenced Tag Image File Format (GeoTIFF) links geographic positions to <a class="reference internal" href="../geopy/geospatial-data.html#raster"><span class="std std-ref">Gridded Cell (Raster) Data</span></a> images. A GeoTIFF involves multiple files containing the tagged image itself (<code class="docutils literal notranslate"><span class="pre">*.tif</span></code> file), a world file (<code class="docutils literal notranslate"><span class="pre">*.tfw</span></code> file) containing information about the geographic reference and projection system, and potentially an <code class="docutils literal notranslate"><span class="pre">*.ovr</span></code> file that links the GeoTIFF with other resource data. Read more at the <em>Open Geospatial Consortium</em>’s <a class="reference external" href="https://www.ogc.org/standards/geotiff">standard for GeoTIFF</a>.</p>
 </dd>
-<dt id="term-Geomorphic-heterogeneity">Geomorphic heterogeneity<a class="headerlink" href="#term-Geomorphic-heterogeneity" title="Permalink to this term">¶</a></dt><dd><p>Geomorphic heterogeneity describes the spatial pattern of gemorphic units (e.g., <a class="reference internal" href="#term-Riffle-pool"><span class="xref std std-term">Riffle pool</span></a>) within the <a class="reference internal" href="#term-River-corridor"><span class="xref std std-term">River corridor</span></a>. It describes the non-uniformity of a river compared with a monotonous trapezoidal or rectangular artificial channel <span id="id25">[<a class="reference internal" href="bibliography.html#id1405">Woh22</a>]</span>.</p>
+<dt id="term-Geomorphic-heterogeneity">Geomorphic heterogeneity<a class="headerlink" href="#term-Geomorphic-heterogeneity" title="Permalink to this term">#</a></dt><dd><p>Geomorphic heterogeneity describes the spatial pattern of gemorphic units (e.g., <a class="reference internal" href="#term-Riffle-pool"><span class="xref std std-term">Riffle pool</span></a>) within the <a class="reference internal" href="#term-River-corridor"><span class="xref std std-term">River corridor</span></a>. It describes the non-uniformity of a river compared with a monotonous trapezoidal or rectangular artificial channel <span id="id25">[<a class="reference internal" href="bibliography.html#id1405" title="Ellen Wohl. Geomorphic Heterogeneity in River Corridors as a Source of Resilience to Changing Climate. In EGU22, EGU22-1552. Vienna, Austria, March 2022. Copernicus Meetings. doi:10.5194/egusphere-egu22-1552.">Woh22</a>]</span>.</p>
 </dd>
-<dt id="term-Guild">Guild<a class="headerlink" href="#term-Guild" title="Permalink to this term">¶</a></dt><dd><p>An ecological guild describes a group of species that share common ecosystem resources. Species in a guild are not necessarily related to each other, nor do they necessarily use similar ecological niches. The term guild was introduced by <span id="id26">Root [<a class="reference internal" href="bibliography.html#id1409">Roo67</a>]</span> and is used in ecohydraulics to describe (physical) habitat preferences of fish species and their lifestages. For instance, we may differentiate between <a class="reference internal" href="#term-Reophile"><span class="xref std std-term">reophilic</span></a> and <a class="reference internal" href="#term-Limnophile"><span class="xref std std-term">limnophilous</span></a> fish guilds. In addition, we can distinguish between fish <a class="reference internal" href="#term-Spawning-guild"><span class="xref std std-term">spawning guilds</span></a>, and <a class="reference internal" href="#term-Potamodromous"><span class="xref std std-term">potamodromous</span></a>, <a class="reference internal" href="#term-Oceanodromous"><span class="xref std std-term">oceanmodromous</span></a> and <a class="reference internal" href="#term-Diadromous"><span class="xref std std-term">diadromous</span></a> migration guilds.</p>
+<dt id="term-Guild">Guild<a class="headerlink" href="#term-Guild" title="Permalink to this term">#</a></dt><dd><p>An ecological guild describes a group of species that share common ecosystem resources. Species in a guild are not necessarily related to each other, nor do they necessarily use similar ecological niches. The term guild was introduced by <span id="id26">Root [<a class="reference internal" href="bibliography.html#id1409" title="Richard B. Root. The niche exploitation pattern of the blue-gray gnatcatcher. Ecological Monographs, 37(4):317-350, 1967. URL: https://esajournals.onlinelibrary.wiley.com/doi/abs/10.2307/1942327, arXiv:https://esajournals.onlinelibrary.wiley.com/doi/pdf/10.2307/1942327, doi:https://doi.org/10.2307/1942327.">Roo67</a>]</span> and is used in ecohydraulics to describe (physical) habitat preferences of fish species and their lifestages. For instance, we may differentiate between <a class="reference internal" href="#term-Reophile"><span class="xref std std-term">reophilic</span></a> and <a class="reference internal" href="#term-Limnophile"><span class="xref std std-term">limnophilous</span></a> fish guilds. In addition, we can distinguish between fish <a class="reference internal" href="#term-Spawning-guild"><span class="xref std std-term">spawning guilds</span></a>, and <a class="reference internal" href="#term-Potamodromous"><span class="xref std std-term">potamodromous</span></a>, <a class="reference internal" href="#term-Oceanodromous"><span class="xref std std-term">oceanmodromous</span></a> and <a class="reference internal" href="#term-Diadromous"><span class="xref std std-term">diadromous</span></a> migration guilds.</p>
 <p><em>French: Guilde (f) <br>German: Gilde (w)</em></p>
 </dd>
-<dt id="term-HDF">HDF<a class="headerlink" href="#term-HDF" title="Permalink to this term">¶</a></dt><dd><p>The <a class="reference external" href="https://www.hdfgroup.org/">Hierarchical Data Format (HDF)</a> provides the <code class="docutils literal notranslate"><span class="pre">*.h5</span></code> (HDF4) and <code class="docutils literal notranslate"><span class="pre">*.h5</span></code> (HDF5) file formats that store large datasets in an organized manner. HDF is often used with high-performance computing (HPC) applications, such as numerical models, to store large amounts of data output. This eBook impinges on HDF datasets in the <a class="reference internal" href="../numerics/basement.html#chpt-basement"><span class="std std-ref">BASEMENT</span></a> tutorial where <a class="reference internal" href="#term-xdmf"><span class="xref std std-term">xdmf</span></a> files represent the model output, and in the <a class="reference internal" href="../numerics/telemac.html#chpt-telemac"><span class="std std-ref">TELEMAC</span></a> tutorials. In particular, TELEMAC builds on mesh and boundary files of the EnSim Core that is described in the user manual of the pre- and post-processing software <a class="reference external" href="https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/2011_UserManual.pdf">Blue Kenue</a><sup>TM</sup> (the newest <a class="reference external" href="https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/Installer/BlueKenue_3.12.0-alpha+20201006_64bit.msi">Blue Kenue installer</a> contains an updated version of the user manual). Understanding the HDF format significantly facilitates troubleshooting structural errors of computational meshes for numerical models.</p>
+<dt id="term-HDF">HDF<a class="headerlink" href="#term-HDF" title="Permalink to this term">#</a></dt><dd><p>The <a class="reference external" href="https://www.hdfgroup.org/">Hierarchical Data Format (HDF)</a> provides the <code class="docutils literal notranslate"><span class="pre">*.h5</span></code> (HDF4) and <code class="docutils literal notranslate"><span class="pre">*.h5</span></code> (HDF5) file formats that store large datasets in an organized manner. HDF is often used with high-performance computing (HPC) applications, such as numerical models, to store large amounts of data output. This eBook impinges on HDF datasets in the <a class="reference internal" href="../numerics/basement.html#chpt-basement"><span class="std std-ref">BASEMENT</span></a> tutorial where <a class="reference internal" href="#term-xdmf"><span class="xref std std-term">xdmf</span></a> files represent the model output, and in the <a class="reference internal" href="../numerics/telemac.html#chpt-telemac"><span class="std std-ref">TELEMAC</span></a> tutorials. In particular, TELEMAC builds on mesh and boundary files of the EnSim Core that is described in the user manual of the pre- and post-processing software <a class="reference external" href="https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/2011_UserManual.pdf">Blue Kenue</a><sup>TM</sup> (the newest <a class="reference external" href="https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/Installer/BlueKenue_3.12.0-alpha+20201006_64bit.msi">Blue Kenue installer</a> contains an updated version of the user manual). Understanding the HDF format significantly facilitates troubleshooting structural errors of computational meshes for numerical models.</p>
 </dd>
-<dt id="term-Hyporheic-zone">Hyporheic zone<a class="headerlink" href="#term-Hyporheic-zone" title="Permalink to this term">¶</a></dt><dd><p>The hyporheic zone is the space under and along rivers where surface water and groundwater exchange takes place. The exchange processes of a functional, non-<a class="reference internal" href="#term-Clogging"><span class="xref std std-term">clogged</span></a> hyporheic zone are important for the ecosystem, in particular for fish spawning <span id="id27">[<a class="reference internal" href="bibliography.html#id1406">BFM+98</a>]</span>.</p>
+<dt id="term-Hyporheic-zone">Hyporheic zone<a class="headerlink" href="#term-Hyporheic-zone" title="Permalink to this term">#</a></dt><dd><p>The hyporheic zone is the space under and along rivers where surface water and groundwater exchange takes place. The exchange processes of a functional, non-<a class="reference internal" href="#term-Clogging"><span class="xref std std-term">clogged</span></a> hyporheic zone are important for the ecosystem, in particular for fish spawning <span id="id27">[<a class="reference internal" href="bibliography.html#id1406" title="Andrew J. Boulton, Stuart Findlay, Pierre Marmonier, Emily H. Stanley, and H. Maurice Valett. The functional significance of the hyporheic zone in streams and rivers. Annual Review of Ecology and Systematics, 29(1):59-81, 1998. URL: https://doi.org/10.1146/annurev.ecolsys.29.1.59, doi:10.1146/annurev.ecolsys.29.1.59.">BFM+98</a>]</span>.</p>
 </dd>
-<dt id="term-Krylov-space">Krylov space<a class="headerlink" href="#term-Krylov-space" title="Permalink to this term">¶</a></dt><dd><p>Krylov (sub) spaces are used in numerical approximation schemes for finding solutions to sparse (many zero entries), high-dimensional linear systems <span id="id28">[<a class="reference internal" href="bibliography.html#id1360">BH74</a>]</span>. To this end, Krylov (sub) space methods use Gaussian elimination (e.g., <a class="reference internal" href="#term-LU-decomposition"><span class="xref std std-term">LU decomposition</span></a>) to speed up calculations <span id="id29">[<a class="reference internal" href="bibliography.html#id1355">Gut07</a>]</span>.</p>
+<dt id="term-Krylov-space">Krylov space<a class="headerlink" href="#term-Krylov-space" title="Permalink to this term">#</a></dt><dd><p>Krylov (sub) spaces are used in numerical approximation schemes for finding solutions to sparse (many zero entries), high-dimensional linear systems <span id="id28">[<a class="reference internal" href="bibliography.html#id1360" title="James R. Bunch and John E. Hopcroft. Triangular factorization and inversion by fast matrix multiplication. Mathematics of Computation, 28(125):231–236, 1974. URL: https://www.ams.org/mcom/1974-28-125/S0025-5718-1974-0331751-8/ (visited on 2021-06-25), doi:10.1090/S0025-5718-1974-0331751-8.">BH74</a>]</span>. To this end, Krylov (sub) space methods use Gaussian elimination (e.g., <a class="reference internal" href="#term-LU-decomposition"><span class="xref std std-term">LU decomposition</span></a>) to speed up calculations <span id="id29">[<a class="reference internal" href="bibliography.html#id1355" title="M. H. Gutknecht. A brief introduction to krylov space methods for solving linear systems. In Yukio Kaneda, Hiroshi Kawamura, and Masaki Sasai, editors, Frontiers of computational science, pages 53–62. Springer Berlin Heidelberg, Berlin, Heidelberg, Germany, 2007. URL: https://link.springer.com/chapter/10.1007%2F978-3-540-46375-7_5.">Gut07</a>]</span>.</p>
 <p><em>French: Sous-espaces de Krylov / Méthode de la puissance itérée <br>German: Krylowraum</em></p>
 </dd>
-<dt id="term-IAHR">IAHR<a class="headerlink" href="#term-IAHR" title="Permalink to this term">¶</a></dt><dd><p>The International Association for Hydro-Environment Engineering and Research (IAHR) is an independent non-profit organization that unites professionals in the field of water resources. The IAHR has multiple branches and publishes several journals in collaboration with external publishing companies. Read more about the IAHR at <a class="reference external" href="https://www.iahr.org">https://www.iahr.org</a>.</p>
+<dt id="term-IAHR">IAHR<a class="headerlink" href="#term-IAHR" title="Permalink to this term">#</a></dt><dd><p>The International Association for Hydro-Environment Engineering and Research (IAHR) is an independent non-profit organization that unites professionals in the field of water resources. The IAHR has multiple branches and publishes several journals in collaboration with external publishing companies. Read more about the IAHR at <a class="reference external" href="https://www.iahr.org">https://www.iahr.org</a>.</p>
 </dd>
-<dt id="term-Lidar">Lidar<a class="headerlink" href="#term-Lidar" title="Permalink to this term">¶</a></dt><dd><p>Light Detection and Ranging (<em>LiDAR</em> or <em>lidar</em>) uses laser pulses to measure earth surface properties such as canopy or terrain elevation. The laser pulses are sent from a remote sensing platform (fix station or airborne) to surfaces, which reflect the pulses with different speed (time-of-flight informs about terrain elevation) and energy pattern (leaves behave differently than rock). In its raw form, lidar data is a point cloud with various, geo-referenced information about the reflected signal. Lidar point clouds for end users are typically stored in <em>las</em> format or compressed <em>laz</em> format. <em>las</em>-formatted data are much faster to process, but also much larger than <em>laz</em>-formatted data. For this reason, lidar data are preferably transferred in <em>laz</em> format, while the <em>las</em> format is preferably used for processing lidar data.</p>
+<dt id="term-Lidar">Lidar<a class="headerlink" href="#term-Lidar" title="Permalink to this term">#</a></dt><dd><p>Light Detection and Ranging (<em>LiDAR</em> or <em>lidar</em>) uses laser pulses to measure earth surface properties such as canopy or terrain elevation. The laser pulses are sent from a remote sensing platform (fix station or airborne) to surfaces, which reflect the pulses with different speed (time-of-flight informs about terrain elevation) and energy pattern (leaves behave differently than rock). In its raw form, lidar data is a point cloud with various, geo-referenced information about the reflected signal. Lidar point clouds for end users are typically stored in <em>las</em> format or compressed <em>laz</em> format. <em>las</em>-formatted data are much faster to process, but also much larger than <em>laz</em>-formatted data. For this reason, lidar data are preferably transferred in <em>laz</em> format, while the <em>las</em> format is preferably used for processing lidar data.</p>
 </dd>
-<dt id="term-Limnophile">Limnophile<a class="headerlink" href="#term-Limnophile" title="Permalink to this term">¶</a></dt><dd><p>The term limnophile is used as a noun in reference to species that prefer to live in calm waters. Thus, limnophilous species, such as common rudd (<em>Scardinius erythrophthalmus</em>), colonize slow-flowing to stagnant fresh water regions. Unlike limnophilous species, reophilic species prefer fast flowing regions (see also <a class="reference internal" href="#term-Reophile"><span class="xref std std-term">Reophile</span></a>).</p>
+<dt id="term-Limnophile">Limnophile<a class="headerlink" href="#term-Limnophile" title="Permalink to this term">#</a></dt><dd><p>The term limnophile is used as a noun in reference to species that prefer to live in calm waters. Thus, limnophilous species, such as common rudd (<em>Scardinius erythrophthalmus</em>), colonize slow-flowing to stagnant fresh water regions. Unlike limnophilous species, reophilic species prefer fast flowing regions (see also <a class="reference internal" href="#term-Reophile"><span class="xref std std-term">Reophile</span></a>).</p>
 <p><em>French: inconnue <br>German: Limnophil</em></p>
 </dd>
-<dt id="term-LU-decomposition">LU decomposition<a class="headerlink" href="#term-LU-decomposition" title="Permalink to this term">¶</a></dt><dd><p>A lower-upper (LU) decomposition applies to the solution of linear systems (matrices) by re-organizing a matrix of equations into an upper and a lower triangular matrix. Thus, LU decomposition is a form of Gaussian elimination, which is typically applied in numerical analysis (e.g., <a class="reference internal" href="../numerics/telemac2d-steady.html#tm2d-solver-pars"><span class="std std-ref">Telemac2d</span></a>) or machine learning.</p>
+<dt id="term-LU-decomposition">LU decomposition<a class="headerlink" href="#term-LU-decomposition" title="Permalink to this term">#</a></dt><dd><p>A lower-upper (LU) decomposition applies to the solution of linear systems (matrices) by re-organizing a matrix of equations into an upper and a lower triangular matrix. Thus, LU decomposition is a form of Gaussian elimination, which is typically applied in numerical analysis (e.g., <a class="reference internal" href="../numerics/telemac2d-steady.html#tm2d-solver-pars"><span class="std std-ref">Telemac2d</span></a>) or machine learning.</p>
 <p><em>French: Décomposition LU <br>German: LR Zerlegung (Gaußsches Eliminationsverfahren)</em></p>
 </dd>
-<dt id="term-MPI">MPI<a class="headerlink" href="#term-MPI" title="Permalink to this term">¶</a></dt><dd><p>In computing, MPI stands for <em>Message Passing Interface</em>, which is a portable message passing standard. MPI is implemented in many open-source C, C++, and Fortran applications to enable parallel computing.</p>
+<dt id="term-MPI">MPI<a class="headerlink" href="#term-MPI" title="Permalink to this term">#</a></dt><dd><p>In computing, MPI stands for <em>Message Passing Interface</em>, which is a portable message passing standard. MPI is implemented in many open-source C, C++, and Fortran applications to enable parallel computing.</p>
 </dd>
-<dt id="term-Navier-Stokes-equations">Navier-Stokes equations<a class="headerlink" href="#term-Navier-Stokes-equations" title="Permalink to this term">¶</a></dt><dd><p>The general form of the Navier-Stokes equations describes the motion of a Newtonian fluid and expresses the conservation of mass and momentum <span id="id30">[<a class="reference internal" href="bibliography.html#id1348">Bat00</a>]</span>. The Navier-Stokes equations is a special type of <a class="reference internal" href="#term-Continuity-equation"><span class="xref std std-term">Continuity equation</span></a> that is derived from Cauchy’s equation (conservation of momentum). The equation simplifies with the assumption of incompressible fluids and reduces to the <em>Euler equation</em> when viscous effects are negligible, which is generally the case in far distance from the boundaries <span id="id31">[<a class="reference internal" href="bibliography.html#id333">KC08</a>]</span>.
+<dt id="term-Navier-Stokes-equations">Navier-Stokes equations<a class="headerlink" href="#term-Navier-Stokes-equations" title="Permalink to this term">#</a></dt><dd><p>The general form of the Navier-Stokes equations describes the motion of a Newtonian fluid and expresses the conservation of mass and momentum <span id="id30">[<a class="reference internal" href="bibliography.html#id1348" title="G. K. Batchelor. Equations Governing the Motion of a Fluid, pages 131–173. Cambridge Mathematical Library. Cambridge University Press, 2000. doi:10.1017/CBO9780511800955.005.">Bat00</a>]</span>. The Navier-Stokes equations is a special type of <a class="reference internal" href="#term-Continuity-equation"><span class="xref std std-term">Continuity equation</span></a> that is derived from Cauchy’s equation (conservation of momentum). The equation simplifies with the assumption of incompressible fluids and reduces to the <em>Euler equation</em> when viscous effects are negligible, which is generally the case in far distance from the boundaries <span id="id31">[<a class="reference internal" href="bibliography.html#id333" title="P.K. Kundu and I.M. Cohen. Fluid Mechanics. Elsevier Inc., San Diego, CA, USA, 4th edition, 2008. ISBN 978-0-12-373735-9.">KC08</a>]</span>.
 A theoretical, exact solution of the Navier-Stokes equations would yield a perfect description of many natural processes. However, the underlying system equations involves more unknown parameters than equations. For this reason, rigorous simplifications (e.g., the <a class="reference internal" href="#term-Shallow-water-equations"><span class="xref std std-term">Shallow water equations</span></a>) and numerical approximations with considerably larger computational effort than for an analytical solution are necessary for the solution of the Navier-Stokes equations. Simplification hypotheses are, for example, a hydrostatic pressure distribution (leading to the shallow water equations) or the assumption that a fluid is incompressible.</p>
 <p><em>French: Équations de Navier-Stokes <br>German: Navier-Stokes-Gleichungen</em></p>
 </dd>
-<dt id="term-Oceanodromous">Oceanodromous<a class="headerlink" href="#term-Oceanodromous" title="Permalink to this term">¶</a></dt><dd><p>Oceanodromous <a class="reference internal" href="#term-Guild"><span class="xref std std-term">fish guilds</span></a> exclusively live in oceans. while oceanodromous fish may encounter <a class="reference internal" href="#term-Diadromous"><span class="xref std std-term">diadromous fish</span></a> (migrate from the sea to freshwaters), they will very likely never meet <a class="reference internal" href="#term-Potamodromous"><span class="xref std std-term">potamodromous</span></a> fish <span id="id32">[<a class="reference internal" href="bibliography.html#id1410">Mye49</a>]</span>. Examples for oceanmodromous fish are Atlantic mackerels (<em>Scomber scombrus</em>) or Atlantic herring (<em>Clupea harengus</em>).</p>
+<dt id="term-Oceanodromous">Oceanodromous<a class="headerlink" href="#term-Oceanodromous" title="Permalink to this term">#</a></dt><dd><p>Oceanodromous <a class="reference internal" href="#term-Guild"><span class="xref std std-term">fish guilds</span></a> exclusively live in oceans. while oceanodromous fish may encounter <a class="reference internal" href="#term-Diadromous"><span class="xref std std-term">diadromous fish</span></a> (migrate from the sea to freshwaters), they will very likely never meet <a class="reference internal" href="#term-Potamodromous"><span class="xref std std-term">potamodromous</span></a> fish <span id="id32">[<a class="reference internal" href="bibliography.html#id1410" title="George S. Myers. Usage of anadromous, catadromous and allied terms for migratory fishes. Copeia, 1949(2):89–97, 1949. URL: https://doi.org/10.2307/1438482 (visited on 2022-09-13), doi:10.2307/1438482.">Mye49</a>]</span>. Examples for oceanmodromous fish are Atlantic mackerels (<em>Scomber scombrus</em>) or Atlantic herring (<em>Clupea harengus</em>).</p>
 </dd>
-<dt id="term-Operating-System">Operating System<a class="headerlink" href="#term-Operating-System" title="Permalink to this term">¶</a></dt><dd><p>An Operating System (OS) manages the hardware of a computer, software (resources), and services for any program you want to install.</p>
+<dt id="term-Operating-System">Operating System<a class="headerlink" href="#term-Operating-System" title="Permalink to this term">#</a></dt><dd><p>An Operating System (OS) manages the hardware of a computer, software (resources), and services for any program you want to install.</p>
 <p><em>French: Système d’exploitation <br>German: Betriebssystem</em></p>
 </dd>
-<dt id="term-Plane-bed">Plane bed<a class="headerlink" href="#term-Plane-bed" title="Permalink to this term">¶</a></dt><dd><p>A plane bed refers to a type of riverbed that is characterized by irregular bedforms with distant, varying confinement, often in transition between transport capacity-limited and sediment supply-limited river sections <span id="id33">[<a class="reference internal" href="bibliography.html#id523">Sch17</a>]</span>.</p>
-<div class="figure align-default" id="plane-bed">
+<dt id="term-Plane-bed">Plane bed<a class="headerlink" href="#term-Plane-bed" title="Permalink to this term">#</a></dt><dd><p>A plane bed refers to a type of riverbed that is characterized by irregular bedforms with distant, varying confinement, often in transition between transport capacity-limited and sediment supply-limited river sections <span id="id33">[<a class="reference internal" href="bibliography.html#id523" title="Sebastian Schwindt. Hydro-morphological processes through permeable sediment traps. Thesis No. 7655, Laboratory of Hydraulic Constructions (LCH), Ecole Polytechnique fédérale de Lausanne (EPFL), Lausanne, Switzerland, 2017. URL: https://infoscience.epfl.ch/record/231182, doi:10.5075/epfl-thesis-7655.">Sch17</a>]</span>.</p>
+<figure class="align-default" id="plane-bed">
 <img alt="planebed plane bed river stream example geomorphology" src="../_images/plane_bed_Drance.jpg" />
-<p class="caption"><span class="caption-number">Fig. 159 </span><span class="caption-text">Example of a plane bed river section at the Drance (VS, Switzerland). Picture: Sebastian Schwindt (2016).</span><a class="headerlink" href="#plane-bed" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 159 </span><span class="caption-text">Example of a plane bed river section at the Drance (VS, Switzerland). Picture: Sebastian Schwindt (2016).</span><a class="headerlink" href="#plane-bed" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </dd>
-<dt id="term-Potamodromous">Potamodromous<a class="headerlink" href="#term-Potamodromous" title="Permalink to this term">¶</a></dt><dd><p>Potamodromous <a class="reference internal" href="#term-Guild"><span class="xref std std-term">fish guilds</span></a> live and migrate in freshwater regions. Their migration is mostly due to reproduction. The difference with <a class="reference internal" href="#term-Diadromous"><span class="xref std std-term">diadromous fish</span></a> is that those migrate from the sea to freshwater regions. In addition, potamodromous fish will very likely never meet <a class="reference internal" href="#term-Oceanodromous"><span class="xref std std-term">oceanmodromous</span></a> fish <span id="id34">[<a class="reference internal" href="bibliography.html#id1410">Mye49</a>]</span>. Examples for potamodromous fish are eal (<em>Anguilla anguilla</em>) and river trout (<em>Salmo trutta fario</em>).</p>
+<dt id="term-Potamodromous">Potamodromous<a class="headerlink" href="#term-Potamodromous" title="Permalink to this term">#</a></dt><dd><p>Potamodromous <a class="reference internal" href="#term-Guild"><span class="xref std std-term">fish guilds</span></a> live and migrate in freshwater regions. Their migration is mostly due to reproduction. The difference with <a class="reference internal" href="#term-Diadromous"><span class="xref std std-term">diadromous fish</span></a> is that those migrate from the sea to freshwater regions. In addition, potamodromous fish will very likely never meet <a class="reference internal" href="#term-Oceanodromous"><span class="xref std std-term">oceanmodromous</span></a> fish <span id="id34">[<a class="reference internal" href="bibliography.html#id1410" title="George S. Myers. Usage of anadromous, catadromous and allied terms for migratory fishes. Copeia, 1949(2):89–97, 1949. URL: https://doi.org/10.2307/1438482 (visited on 2022-09-13), doi:10.2307/1438482.">Mye49</a>]</span>. Examples for potamodromous fish are eal (<em>Anguilla anguilla</em>) and river trout (<em>Salmo trutta fario</em>).</p>
 </dd>
-<dt id="term-Rating-curve">Rating curve<a class="headerlink" href="#term-Rating-curve" title="Permalink to this term">¶</a></dt><dd><p>See <a class="reference internal" href="#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a>.</p>
+<dt id="term-Rating-curve">Rating curve<a class="headerlink" href="#term-Rating-curve" title="Permalink to this term">#</a></dt><dd><p>See <a class="reference internal" href="#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a>.</p>
 </dd>
-<dt id="term-Reophile">Reophile<a class="headerlink" href="#term-Reophile" title="Permalink to this term">¶</a></dt><dd><p>The term reophile is used as a noun in reference to species that prefer to live in fast-flowing water. In addition, a distinction is made between reophilic A and B species. Reophilic A species (e.g., brown/river trout <em>Salmo trutta (fario)</em> or minnow <em>Phoxinus phoxinus</em>) colonize the main stream of a river at all lifestages. Reophilic B species (e.g., gudgeon <em>Gobio gobio</em>) occupy calmer flow regions (e.g., oxbows) in some lifestages. Unlike reophilic species, limnophilic species (e.g., common rudd <em>Scardinius erythrophthalmus</em>) prefer calm (stagnant) flow regions (see also <a class="reference internal" href="#term-Limnophile"><span class="xref std std-term">Limnophile</span></a>).</p>
+<dt id="term-Reophile">Reophile<a class="headerlink" href="#term-Reophile" title="Permalink to this term">#</a></dt><dd><p>The term reophile is used as a noun in reference to species that prefer to live in fast-flowing water. In addition, a distinction is made between reophilic A and B species. Reophilic A species (e.g., brown/river trout <em>Salmo trutta (fario)</em> or minnow <em>Phoxinus phoxinus</em>) colonize the main stream of a river at all lifestages. Reophilic B species (e.g., gudgeon <em>Gobio gobio</em>) occupy calmer flow regions (e.g., oxbows) in some lifestages. Unlike reophilic species, limnophilic species (e.g., common rudd <em>Scardinius erythrophthalmus</em>) prefer calm (stagnant) flow regions (see also <a class="reference internal" href="#term-Limnophile"><span class="xref std std-term">Limnophile</span></a>).</p>
 <p><em>French: inconnue <br>German: Reophil</em></p>
 </dd>
-<dt id="term-Reynolds-number">Reynolds number<a class="headerlink" href="#term-Reynolds-number" title="Permalink to this term">¶</a></dt><dd><p>The Reynolds number <span class="math notranslate nohighlight">\(Re\)</span> relates viscous forces to inertia and is a key parameter for flow turbulence <span id="id35">[<a class="reference internal" href="bibliography.html#id123">Cho59</a>]</span>:</p>
+<dt id="term-Reynolds-number">Reynolds number<a class="headerlink" href="#term-Reynolds-number" title="Permalink to this term">#</a></dt><dd><p>The Reynolds number <span class="math notranslate nohighlight">\(Re\)</span> relates viscous forces to inertia and is a key parameter for flow turbulence <span id="id35">[<a class="reference internal" href="bibliography.html#id123" title="Ven Te Chow. Open-Channel Hydraulics. Civil Engineering. McGraw-Hill, Tokyo, Japan, 1959.">Cho59</a>]</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 Re = \frac{u h}{\nu} \begin{cases} &lt; 800 \rightarrow \mbox{ laminar flow} \\ \geq 800 \mbox{ and } \leq 2000 \rightarrow \mbox{ transitional flow} \\ &gt; 10000 \rightarrow \mbox{ turbulent flow} \end{cases}
 \end{split}\]</div>
-<p>Where <span class="math notranslate nohighlight">\(\nu\)</span> denotes the kinematic viscosity (10<span class="math notranslate nohighlight">\(^{-6}\)</span> m<span class="math notranslate nohighlight">\(^{2}\)</span> s<span class="math notranslate nohighlight">\(^{-1}\)</span> for water at 20<span class="math notranslate nohighlight">\(^{\circ}\)</span>C). In gravel-cobble bed rivers, inertia forces are typically dominant compared with viscous forces; therefore <span class="math notranslate nohighlight">\(Re\)</span> is generally larger than 2000 and the flow is turbulent <span id="id36">[<a class="reference internal" href="bibliography.html#id123">Cho59</a>, <a class="reference internal" href="bibliography.html#id625">Woh00</a>]</span>.</p>
+<p>Where <span class="math notranslate nohighlight">\(\nu\)</span> denotes the kinematic viscosity (10<span class="math notranslate nohighlight">\(^{-6}\)</span> m<span class="math notranslate nohighlight">\(^{2}\)</span> s<span class="math notranslate nohighlight">\(^{-1}\)</span> for water at 20<span class="math notranslate nohighlight">\(^{\circ}\)</span>C). In gravel-cobble bed rivers, inertia forces are typically dominant compared with viscous forces; therefore <span class="math notranslate nohighlight">\(Re\)</span> is generally larger than 2000 and the flow is turbulent <span id="id36">[<a class="reference internal" href="bibliography.html#id123" title="Ven Te Chow. Open-Channel Hydraulics. Civil Engineering. McGraw-Hill, Tokyo, Japan, 1959.">Cho59</a>, <a class="reference internal" href="bibliography.html#id625" title="Ellen E Wohl. Mountain rivers. Volume 14. American Geophysical Union, Washington, DC, 2000. ISBN 0-87590-318-5.">Woh00</a>]</span>.</p>
 <p><em>French: Nombre de Reynolds <br>German: Reynolds-Zahl</em></p>
 </dd>
-<dt id="term-Rich-Text-Format">Rich Text Format<a class="headerlink" href="#term-Rich-Text-Format" title="Permalink to this term">¶</a></dt><dd><p>The proprietary Rich Text Format (RTF) wraps raw text in functional blocks that enable graphically flavored <em>Word</em>-like processors to identify document properties such as font size and type. Common RTFs are, for instance, <em>docx</em> or <em>odf</em> and enable exchanging text files between different <em>Word</em>-like processors on different operating systems.</p>
+<dt id="term-Rich-Text-Format">Rich Text Format<a class="headerlink" href="#term-Rich-Text-Format" title="Permalink to this term">#</a></dt><dd><p>The proprietary Rich Text Format (RTF) wraps raw text in functional blocks that enable graphically flavored <em>Word</em>-like processors to identify document properties such as font size and type. Common RTFs are, for instance, <em>docx</em> or <em>odf</em> and enable exchanging text files between different <em>Word</em>-like processors on different operating systems.</p>
 </dd>
-<dt id="term-Riffle-pool">Riffle pool<a class="headerlink" href="#term-Riffle-pool" title="Permalink to this term">¶</a></dt><dd><p>Riffle-pool (or pool-riffle) sequences are a sequence of fast-flowing, shallow flow units and deeper, slower flowing units of a river, where the dimensions of one unit correspond approximately to one channel width <span id="id37">[<a class="reference internal" href="bibliography.html#id8">Lis79</a>]</span>. The maintenance of riffle-pool channels requires sufficient sediment supply during smaller floods and a velocity reversal when those floods occur <span id="id38">[<a class="reference internal" href="bibliography.html#id977">CGB+09</a>]</span>.</p>
-<div class="figure align-default" id="riffle-pool">
+<dt id="term-Riffle-pool">Riffle pool<a class="headerlink" href="#term-Riffle-pool" title="Permalink to this term">#</a></dt><dd><p>Riffle-pool (or pool-riffle) sequences are a sequence of fast-flowing, shallow flow units and deeper, slower flowing units of a river, where the dimensions of one unit correspond approximately to one channel width <span id="id37">[<a class="reference internal" href="bibliography.html#id8" title="Thomas Lisle. A sorting mechanism for a riffle-pool sequence. Geological Society of America Bulletin, 90(7_Part_II):1142–1157, 1979.">Lis79</a>]</span>. The maintenance of riffle-pool channels requires sufficient sediment supply during smaller floods and a velocity reversal when those floods occur <span id="id38">[<a class="reference internal" href="bibliography.html#id977" title="Diego Caamaño, Peter Goodwin, John M. Buffington, Jim C. Liou, and Steve Daley-Laursen. Unifying Criterion for the Velocity Reversal Hypothesis in Gravel-Bed Rivers. Journal of Hydraulic Engineering, 135(1):66–70, 2009. URL: https://ascelibrary.org/doi/abs/10.1061/$%$28ASCE$%$290733-9429$%$282009$%$29135$%$3A1$%$2866$%$29, doi:10.1061/(ASCE)0733-9429(2009)135:1(66).">CGB+09</a>]</span>.</p>
+<figure class="align-default" id="riffle-pool">
 <img alt="riffle pool bedform gravel bed" src="../_images/pool-riffle.jpg" />
-<p class="caption"><span class="caption-number">Fig. 160 </span><span class="caption-text">A pool-riffle sequence at the American River close to Sacramento (CA, USA). Source: Sebastian Schwindt (2018)</span><a class="headerlink" href="#riffle-pool" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 160 </span><span class="caption-text">A pool-riffle sequence at the American River close to Sacramento (CA, USA). Source: Sebastian Schwindt (2018)</span><a class="headerlink" href="#riffle-pool" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </dd>
-<dt id="term-River-corridor">River corridor<a class="headerlink" href="#term-River-corridor" title="Permalink to this term">¶</a></dt><dd><p>The river corridor embraces the active river channel(s), floodplains, and the hyporheic zone underneath <span id="id39">[<a class="reference internal" href="bibliography.html#id1405">Woh22</a>]</span>.</p>
+<dt id="term-River-corridor">River corridor<a class="headerlink" href="#term-River-corridor" title="Permalink to this term">#</a></dt><dd><p>The river corridor embraces the active river channel(s), floodplains, and the hyporheic zone underneath <span id="id39">[<a class="reference internal" href="bibliography.html#id1405" title="Ellen Wohl. Geomorphic Heterogeneity in River Corridors as a Source of Resilience to Changing Climate. In EGU22, EGU22-1552. Vienna, Austria, March 2022. Copernicus Meetings. doi:10.5194/egusphere-egu22-1552.">Woh22</a>]</span>.</p>
 </dd>
-<dt id="term-Riverbed-clogging">Riverbed clogging<a class="headerlink" href="#term-Riverbed-clogging" title="Permalink to this term">¶</a></dt><dd><p>See <a class="reference internal" href="#term-Clogging"><span class="xref std std-term">Clogging</span></a>.</p>
+<dt id="term-Riverbed-clogging">Riverbed clogging<a class="headerlink" href="#term-Riverbed-clogging" title="Permalink to this term">#</a></dt><dd><p>See <a class="reference internal" href="#term-Clogging"><span class="xref std std-term">Clogging</span></a>.</p>
 </dd>
-<dt id="term-Saint-Venant-equations">Saint-Venant equations<a class="headerlink" href="#term-Saint-Venant-equations" title="Permalink to this term">¶</a></dt><dd><p>The French mathematician Adhémar Jean Claude Barré de Saint-Venant introduced dimensional simplifications of the <a class="reference internal" href="#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a>. For simple cross-sections, the one-dimensional (1d), cross-section averaged Saint-Venant equations can be applied, and represent the baseline for the Manning-Strickler Formula (cf. the <a class="reference internal" href="../exercises/ex-ms.html#ex-1d-hydraulics"><span class="std std-ref">1d Hydraulics Python exercise</span></a>). The two-dimensional (2d), depth-averaged Saint-Venant equations are more frequently referred to as the <a class="reference internal" href="#term-Shallow-water-equations"><span class="xref std std-term">Shallow water equations</span></a>, which imply a hydrostatic pressure distribution <span id="id40">[<a class="reference internal" href="bibliography.html#id224">GA11</a>]</span>.</p>
+<dt id="term-Saint-Venant-equations">Saint-Venant equations<a class="headerlink" href="#term-Saint-Venant-equations" title="Permalink to this term">#</a></dt><dd><p>The French mathematician Adhémar Jean Claude Barré de Saint-Venant introduced dimensional simplifications of the <a class="reference internal" href="#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a>. For simple cross-sections, the one-dimensional (1d), cross-section averaged Saint-Venant equations can be applied, and represent the baseline for the Manning-Strickler Formula (cf. the <a class="reference internal" href="../exercises/ex-ms.html#ex-1d-hydraulics"><span class="std std-ref">1d Hydraulics Python exercise</span></a>). The two-dimensional (2d), depth-averaged Saint-Venant equations are more frequently referred to as the <a class="reference internal" href="#term-Shallow-water-equations"><span class="xref std std-term">Shallow water equations</span></a>, which imply a hydrostatic pressure distribution <span id="id40">[<a class="reference internal" href="bibliography.html#id224" title="WH Graf and MS Altinakar. Hydraulique fluviale. Volume 16 of Traité de Génie Civil. Presses polytechniques et universitaires romandes, Lausanne, Switzerland, 2011. URL: https://www.epflpress.org/produit/66/9782880748128/hydraulique-fluviale-tgc-volume-16.">GA11</a>]</span>.</p>
 <p><em>French: Équations (de Barré) de Saint-Venant <br>German: Saint-Venant-Gleichungen</em></p>
 </dd>
-<dt id="term-Sand-bed">Sand bed<a class="headerlink" href="#term-Sand-bed" title="Permalink to this term">¶</a></dt><dd><p>Sand bed rivers are characterized by the abundance of fine sediment and sand bars. Compared with a gravel bed, a sand bed tends to have higher suspended load. This type of morphology is often observed lowland and coastal regions where the the hypothetic energy grade is low is less intense than in steeper regions <span id="id41">[<a class="reference internal" href="bibliography.html#id1394">Kle05</a>, <a class="reference internal" href="bibliography.html#id1395">ZF94</a>]</span>.</p>
-<div class="figure align-default" id="sand-bed">
+<dt id="term-Sand-bed">Sand bed<a class="headerlink" href="#term-Sand-bed" title="Permalink to this term">#</a></dt><dd><p>Sand bed rivers are characterized by the abundance of fine sediment and sand bars. Compared with a gravel bed, a sand bed tends to have higher suspended load. This type of morphology is often observed lowland and coastal regions where the the hypothetic energy grade is low is less intense than in steeper regions <span id="id41">[<a class="reference internal" href="bibliography.html#id1394" title="Maarten G. Kleinhans. Dune-Phase Fluvial Transport and Deposition Model of Gravelly Sand. In Fluvial Sedimentology VII, International Conference on Fluvial Sedimentology, pages 75–97. John Wiley &amp; Sons, Ltd, Lincoln, NE, USA, 2005. URL: https://onlinelibrary.wiley.com/doi/abs/10.1002/9781444304350.ch5 (visited on 2021-08-05).">Kle05</a>, <a class="reference internal" href="bibliography.html#id1395" title="J.A. Zyserman and J. Fredsøe. Data Analysis of Bed Concentration of Suspended Sediment. Journal of Hydraulic Engineering, 120(9):1021–1042, September 1994. Publisher: American Society of Civil Engineers. URL: https://ascelibrary.org/doi/abs/10.1061/%28ASCE%290733-9429%281994%29120%3A9%281021%29 (visited on 2021-08-06), doi:10.1061/(ASCE)0733-9429(1994)120:9(1021).">ZF94</a>]</span>.</p>
+<figure class="align-default" id="sand-bed">
 <img alt="sandbed dunes anti-dunes" src="../_images/sand-bed.jpg" />
-<p class="caption"><span class="caption-number">Fig. 161 </span><span class="caption-text">Dune bedforms of a sand bed in a side channel of the Inn River in Bavaria, Germany. Source. Sebastian Schwindt (2022)</span><a class="headerlink" href="#sand-bed" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 161 </span><span class="caption-text">Dune bedforms of a sand bed in a side channel of the Inn River in Bavaria, Germany. Source. Sebastian Schwindt (2022)</span><a class="headerlink" href="#sand-bed" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </dd>
-<dt id="term-Sediment-transport">Sediment transport<a class="headerlink" href="#term-Sediment-transport" title="Permalink to this term">¶</a></dt><dd><p>Fluvial sediment transport encompasses two modes of particle displacement: (1) suspended load and (2) bedload (see figure below). Finer particles with a weight that can be carried by the fluid (water) are transported as <a class="reference internal" href="#term-Suspended-load"><span class="xref std std-term">Suspended load</span></a>. Coarser particles rolling, sliding, and jumping on the channel bed are transported as <a class="reference internal" href="#term-Bedload"><span class="xref std std-term">Bedload</span></a>. There is third type of transport, the so-called wash load, which is finer than the coarse bed load, but too heavy (large) to be transported in suspension <span id="id42">[<a class="reference internal" href="bibliography.html#id179">Ein50</a>]</span>. The units for sediment transport are for an integral flow cross-section kg<span class="math notranslate nohighlight">\(^3\cdot\)</span>s<span class="math notranslate nohighlight">\(^{-1}\)</span> or per unit width kg<span class="math notranslate nohighlight">\(^3\cdot\)</span>s<span class="math notranslate nohighlight">\(^{-1}\)</span>m<span class="math notranslate nohighlight">\(^{-1}\)</span>.</p>
+<dt id="term-Sediment-transport">Sediment transport<a class="headerlink" href="#term-Sediment-transport" title="Permalink to this term">#</a></dt><dd><p>Fluvial sediment transport encompasses two modes of particle displacement: (1) suspended load and (2) bedload (see figure below). Finer particles with a weight that can be carried by the fluid (water) are transported as <a class="reference internal" href="#term-Suspended-load"><span class="xref std std-term">Suspended load</span></a>. Coarser particles rolling, sliding, and jumping on the channel bed are transported as <a class="reference internal" href="#term-Bedload"><span class="xref std std-term">Bedload</span></a>. There is third type of transport, the so-called wash load, which is finer than the coarse bed load, but too heavy (large) to be transported in suspension <span id="id42">[<a class="reference internal" href="bibliography.html#id179" title="Hans Albert Einstein. The Bed-Load Function for Sediment Transport in Open Channel Flows. Technical Bulletin of the USDA Soil Conservation Service, 1026:71, 1950. URL: https://ageconsearch.umn.edu/record/156389, doi:10.22004/ag.econ.156389.">Ein50</a>]</span>. The units for sediment transport are for an integral flow cross-section kg<span class="math notranslate nohighlight">\(^3\cdot\)</span>s<span class="math notranslate nohighlight">\(^{-1}\)</span> or per unit width kg<span class="math notranslate nohighlight">\(^3\cdot\)</span>s<span class="math notranslate nohighlight">\(^{-1}\)</span>m<span class="math notranslate nohighlight">\(^{-1}\)</span>.</p>
 <img alt="https://github.com/Ecohydraulics/media/raw/main/png/sediment-transport.png" src="https://github.com/Ecohydraulics/media/raw/main/png/sediment-transport.png" />
 <p><em>French: Transport solide <br>German: Sedimenttransport</em></p>
 </dd>
-<dt id="term-Sediment-yield">Sediment yield<a class="headerlink" href="#term-Sediment-yield" title="Permalink to this term">¶</a></dt><dd><p>The sediment yield is the amount of sediment eroded per unit area (tons<span class="math notranslate nohighlight">\(\cdot\)</span>km<span class="math notranslate nohighlight">\(^{-2}\cdot\)</span>year<span class="math notranslate nohighlight">\(^{-1}\)</span>) of a watershed <span id="id43">[<a class="reference internal" href="bibliography.html#id1373">GHW06</a>]</span>.</p>
+<dt id="term-Sediment-yield">Sediment yield<a class="headerlink" href="#term-Sediment-yield" title="Permalink to this term">#</a></dt><dd><p>The sediment yield is the amount of sediment eroded per unit area (tons<span class="math notranslate nohighlight">\(\cdot\)</span>km<span class="math notranslate nohighlight">\(^{-2}\cdot\)</span>year<span class="math notranslate nohighlight">\(^{-1}\)</span>) of a watershed <span id="id43">[<a class="reference internal" href="bibliography.html#id1373" title="Peter G. Griffiths, Richard Hereford, and Robert H. Webb. Sediment yield and runoff frequency of small drainage basins in the Mojave Desert, U.S.A. Geomorphology, 74(1):232–244, March 2006. URL: https://www.sciencedirect.com/science/article/pii/S0169555X05002722 (visited on 2021-07-27), doi:10.1016/j.geomorph.2005.07.017.">GHW06</a>]</span>.</p>
 <p><em>French: Apport solide <br>German: Feststoffeintrag</em></p>
 </dd>
-<dt id="term-Shallow-water-equations">Shallow water equations<a class="headerlink" href="#term-Shallow-water-equations" title="Permalink to this term">¶</a></dt><dd><p>In shallow (i.e., small water depths) and wide waters (many rivers), the assumption of hydrostatic pressure distribution can be made to simplify the <a class="reference internal" href="#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a>. The corresponding simplified form of the <a class="reference internal" href="#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a> is referred to as the shallow water equations. The shallow water equations imply that vertical flow velocity is negligible compared to horizontal (and longitudinal) flow velocity. This assumption is valid in many river systems, but there are several cases for which the shallow water equations are not suited <span id="id44">[<a class="reference internal" href="bibliography.html#id333">KC08</a>]</span>.</p>
+<dt id="term-Shallow-water-equations">Shallow water equations<a class="headerlink" href="#term-Shallow-water-equations" title="Permalink to this term">#</a></dt><dd><p>In shallow (i.e., small water depths) and wide waters (many rivers), the assumption of hydrostatic pressure distribution can be made to simplify the <a class="reference internal" href="#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a>. The corresponding simplified form of the <a class="reference internal" href="#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a> is referred to as the shallow water equations. The shallow water equations imply that vertical flow velocity is negligible compared to horizontal (and longitudinal) flow velocity. This assumption is valid in many river systems, but there are several cases for which the shallow water equations are not suited <span id="id44">[<a class="reference internal" href="bibliography.html#id333" title="P.K. Kundu and I.M. Cohen. Fluid Mechanics. Elsevier Inc., San Diego, CA, USA, 4th edition, 2008. ISBN 978-0-12-373735-9.">KC08</a>]</span>.</p>
 <p>For instance, the depth-averaged shallow water equations are <strong>not suited</strong> for any pressurized flows (e.g., at weirs or in pipes). This eBook recommends to <strong>use the shallow water equations</strong> only when the water depth is smaller than a 1/20 times the characteristic wavelength (e.g., flood waves or in tsunami/oceanic models) and when the water depth is smaller than 1/10 of the wetted channel width. The application of the shallow water equations is featured in this eBook with the tutorials on 2d numerical modeling (i.e., in the <a class="reference internal" href="../numerics/basement2d.html#basement2d"><span class="std std-ref">BASEMENT</span></a> and <a class="reference internal" href="../numerics/telemac2d-steady.html#telemac2d-steady"><span class="std std-ref">Telemac2d</span></a> chapters).</p>
 <p><em>French: Équations (de Barré) de Saint-Venant <br>German: Flachwassergleichungen</em></p>
 </dd>
-<dt id="term-Shields-parameter">Shields parameter<a class="headerlink" href="#term-Shields-parameter" title="Permalink to this term">¶</a></dt><dd><p>The <span id="id45">Shields [<a class="reference internal" href="bibliography.html#id536">Shi36</a>]</span> parameter <span class="math notranslate nohighlight">\(\tau_{x,cr}\)</span> (in the literature also often named <span class="math notranslate nohighlight">\(\theta_{cr}\)</span>) is a dimensionless value of critical bed shear stress for sediment mobility. For this reason, the Shields parameter is also often referred to as <strong>dimensionless critical bed shear stress</strong>. Flow conditions and grain sizes with a <a class="reference internal" href="#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a> <span class="math notranslate nohighlight">\(\tau_x\)</span> smaller than the Shields parameter curve are considered immobile. Vice versa, flow conditions and grains associated with a <a class="reference internal" href="#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a> larger than the Shields parameter are considered mobile. In fully turbulent flow, the Shields parameter can be taken as a constant value of approximately 0.047<span class="math notranslate nohighlight">\(\pm\)</span>0.15 <span id="id46">[<a class="reference internal" href="bibliography.html#id326">Kra32</a>, <a class="reference internal" href="bibliography.html#id547">SJ83</a>, <a class="reference internal" href="bibliography.html#id596">VK30</a>]</span>. To evaluate if a grain is in motion, its <a class="reference internal" href="#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a> value is plotted against its dimensionless diameter <span class="math notranslate nohighlight">\(D_x\)</span> in the so-called Shields diagram (also referred to as the <em>Hunter-Rouse</em> <span id="id47">[<a class="reference internal" href="bibliography.html#id998">Rou65</a>]</span> diagram). <span class="math notranslate nohighlight">\(D_x\)</span> is calculated for any grain with a diameter <span class="math notranslate nohighlight">\(D_{pq}\)</span> (in m) as <span id="id48">[<a class="reference internal" href="bibliography.html#id179">Ein50</a>]</span>:</p>
+<dt id="term-Shields-parameter">Shields parameter<a class="headerlink" href="#term-Shields-parameter" title="Permalink to this term">#</a></dt><dd><p>The <span id="id45">Shields [<a class="reference internal" href="bibliography.html#id536" title="A Shields. Anwendung der Ähnlichkeitsmechanik und der Turbulenzforschung auf die Geschiebebewegung [Application of the similarity in mechanics and turbulence research on the mobility of bed load]. Volume 26. Preußische Versuchsanstalt für Wasserbau und Schiffbau, Berlin, Germany, 1936. URL: http://resolver.tudelft.nl/uuid:61a19716-a994-4942-9906-f680eb9952d6.">Shi36</a>]</span> parameter <span class="math notranslate nohighlight">\(\tau_{x,cr}\)</span> (in the literature also often named <span class="math notranslate nohighlight">\(\theta_{cr}\)</span>) is a dimensionless value of critical bed shear stress for sediment mobility. For this reason, the Shields parameter is also often referred to as <strong>dimensionless critical bed shear stress</strong>. Flow conditions and grain sizes with a <a class="reference internal" href="#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a> <span class="math notranslate nohighlight">\(\tau_x\)</span> smaller than the Shields parameter curve are considered immobile. Vice versa, flow conditions and grains associated with a <a class="reference internal" href="#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a> larger than the Shields parameter are considered mobile. In fully turbulent flow, the Shields parameter can be taken as a constant value of approximately 0.047<span class="math notranslate nohighlight">\(\pm\)</span>0.15 <span id="id46">[<a class="reference internal" href="bibliography.html#id326" title="H Kramer. Modellgeschiebe und Schleppkraft [Modelling bed load and drag force]. Volume 9. Preuß ische Versuchsanstalt für Wasserbau und Schiffbau, 1932.">Kra32</a>, <a class="reference internal" href="bibliography.html#id547" title="Graeme M Smart and Martin N R Jaeggi. Sedimenttransport in steilen Gerinnen [Sediment Transport on Steep Slopes]. Mitteilung Nr. 64 der Versuchsanstalt für Wasserbau, Hydrologie und Glaziologie an der Eidgenössischen Technischen Hochschule Zürich, Zürich, 1983. URL: https://ethz.ch/content/dam/ethz/special-interest/baug/vaw/vaw-dam/documents/das-institut/mitteilungen/1980-1989/064.pdf.">SJ83</a>, <a class="reference internal" href="bibliography.html#id596" title="Theodor Von Karmàn. Mechanische ähnlichkeit und Turbulenz [Mechanical similarity and turbulence]. In Third International Congress for Applied Mechanics, volume 1, pages 79–93. Stockholm, 1930.">VK30</a>]</span>. To evaluate if a grain is in motion, its <a class="reference internal" href="#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a> value is plotted against its dimensionless diameter <span class="math notranslate nohighlight">\(D_x\)</span> in the so-called Shields diagram (also referred to as the <em>Hunter-Rouse</em> <span id="id47">[<a class="reference internal" href="bibliography.html#id998" title="Hunter Rouse. Critical Analysis of Open-Channel Resistance. Journal of the Hydraulics Division, 91(HY4):1–25, 1965.">Rou65</a>]</span> diagram). <span class="math notranslate nohighlight">\(D_x\)</span> is calculated for any grain with a diameter <span class="math notranslate nohighlight">\(D_{pq}\)</span> (in m) as <span id="id48">[<a class="reference internal" href="bibliography.html#id179" title="Hans Albert Einstein. The Bed-Load Function for Sediment Transport in Open Channel Flows. Technical Bulletin of the USDA Soil Conservation Service, 1026:71, 1950. URL: https://ageconsearch.umn.edu/record/156389, doi:10.22004/ag.econ.156389.">Ein50</a>]</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 D_x = \left[\frac{(s-1)\cdot g}{\nu^2}\right]^{1/3}\cdot D_{pq}
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(s\)</span> is the ratio of sediment grain and water density (typically 2.68); <span class="math notranslate nohighlight">\(g\)</span> is gravitational acceleration; and <span class="math notranslate nohighlight">\(\nu\)</span> is the kinematic viscosity of water (<span class="math notranslate nohighlight">\(\approx\)</span>10<span class="math notranslate nohighlight">\(^{-6}\)</span>m<span class="math notranslate nohighlight">\(^{2}\)</span> s<span class="math notranslate nohighlight">\(^{-1}\)</span>) <span id="id49">[<a class="reference internal" href="bibliography.html#id523">Sch17</a>]</span>. Read the definition of <a class="reference internal" href="#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a> for the calculation of <span class="math notranslate nohighlight">\(\tau_{x}\)</span>. <a class="reference internal" href="#shields-diagram"><span class="std std-numref">Figure 162</span></a> shows the Shields diagram where the Shields curve is plotted based on descriptions in <span id="id50">Guo [<a class="reference internal" href="bibliography.html#id956">Guo02</a>]</span>.</p>
-<div class="figure align-default" id="shields-diagram">
+<p>where <span class="math notranslate nohighlight">\(s\)</span> is the ratio of sediment grain and water density (typically 2.68); <span class="math notranslate nohighlight">\(g\)</span> is gravitational acceleration; and <span class="math notranslate nohighlight">\(\nu\)</span> is the kinematic viscosity of water (<span class="math notranslate nohighlight">\(\approx\)</span>10<span class="math notranslate nohighlight">\(^{-6}\)</span>m<span class="math notranslate nohighlight">\(^{2}\)</span> s<span class="math notranslate nohighlight">\(^{-1}\)</span>) <span id="id49">[<a class="reference internal" href="bibliography.html#id523" title="Sebastian Schwindt. Hydro-morphological processes through permeable sediment traps. Thesis No. 7655, Laboratory of Hydraulic Constructions (LCH), Ecole Polytechnique fédérale de Lausanne (EPFL), Lausanne, Switzerland, 2017. URL: https://infoscience.epfl.ch/record/231182, doi:10.5075/epfl-thesis-7655.">Sch17</a>]</span>. Read the definition of <a class="reference internal" href="#term-Dimensionless-bed-shear-stress"><span class="xref std std-term">Dimensionless bed shear stress</span></a> for the calculation of <span class="math notranslate nohighlight">\(\tau_{x}\)</span>. <a class="reference internal" href="#shields-diagram"><span class="std std-numref">Figure 162</span></a> shows the Shields diagram where the Shields curve is plotted based on descriptions in <span id="id50">Guo [<a class="reference internal" href="bibliography.html#id956" title="Junke Guo. Logarithmic matching and its applications in computational hydraulics and sediment transport. Journal of Hydraulic Research, 40(5):555–565, 2002. URL: https://doi.org/10.1080/00221680209499900, doi:10.1080/00221680209499900.">Guo02</a>]</span>.</p>
+<figure class="align-default" id="shields-diagram">
 <img alt="Shields diagram guo hunter critical bed shear stress" src="../_images/shields-diagram.jpg" />
-<p class="caption"><span class="caption-number">Fig. 162 </span><span class="caption-text">The Shields parameter <span class="math notranslate nohighlight">\(\tau_{x,cr}\)</span> (critical dimensionless bed shear stress) for grain mobility as a function of the dimensionless particle diameter <span class="math notranslate nohighlight">\(D_x\)</span>, according to <span id="id51">Guo [<a class="reference internal" href="bibliography.html#id956">Guo02</a>]</span> (image source: <span id="id52">Schwindt [<a class="reference internal" href="bibliography.html#id523">Sch17</a>]</span>).</span><a class="headerlink" href="#shields-diagram" title="Permalink to this image">¶</a></p>
-</div>
-<p>Beyond grain size and local hydrodynamics, <span class="math notranslate nohighlight">\(\tau_{x,cr}\)</span> is also a function of global channel roughness and slope, relative submergence and bedload transport intensity <span id="id53">[<a class="reference internal" href="bibliography.html#id189">Fer12</a>, <a class="reference internal" href="bibliography.html#id227">Gre08</a>, <a class="reference internal" href="bibliography.html#id337">LDV08</a>, <a class="reference internal" href="bibliography.html#id479">RFP+08</a>, <a class="reference internal" href="bibliography.html#id617">Wil93</a>]</span>.</p>
+<figcaption>
+<p><span class="caption-number">Fig. 162 </span><span class="caption-text">The Shields parameter <span class="math notranslate nohighlight">\(\tau_{x,cr}\)</span> (critical dimensionless bed shear stress) for grain mobility as a function of the dimensionless particle diameter <span class="math notranslate nohighlight">\(D_x\)</span>, according to <span id="id51">Guo [<a class="reference internal" href="bibliography.html#id956" title="Junke Guo. Logarithmic matching and its applications in computational hydraulics and sediment transport. Journal of Hydraulic Research, 40(5):555–565, 2002. URL: https://doi.org/10.1080/00221680209499900, doi:10.1080/00221680209499900.">Guo02</a>]</span> (image source: <span id="id52">Schwindt [<a class="reference internal" href="bibliography.html#id523" title="Sebastian Schwindt. Hydro-morphological processes through permeable sediment traps. Thesis No. 7655, Laboratory of Hydraulic Constructions (LCH), Ecole Polytechnique fédérale de Lausanne (EPFL), Lausanne, Switzerland, 2017. URL: https://infoscience.epfl.ch/record/231182, doi:10.5075/epfl-thesis-7655.">Sch17</a>]</span>).</span><a class="headerlink" href="#shields-diagram" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Beyond grain size and local hydrodynamics, <span class="math notranslate nohighlight">\(\tau_{x,cr}\)</span> is also a function of global channel roughness and slope, relative submergence and bedload transport intensity <span id="id53">[<a class="reference internal" href="bibliography.html#id189" title="Robert I Ferguson. River channel slope, flow resistance, and gravel entrainment thresholds. Water Resources Research, 48:1–13, 2012. doi:10.1029/2011WR010850.">Fer12</a>, <a class="reference internal" href="bibliography.html#id227" title="Carlo Gregoretti. Inception Sediment Transport Relationships at High Slopes. Journal of Hydraulic Engineering, 134(11):1620–1629, 2008. doi:10.1061/(ASCE)0733-9429(2008)134:11(1620).">Gre08</a>, <a class="reference internal" href="bibliography.html#id337" title="Michael P Lamb, William E Dietrich, and Jeremy G Venditti. Is the critical Shields stress for incipient sediment motion dependent on channel-bed slope? Journal of Geophysical Research, 113(F2):F02008, 2008. doi:10.1029/2007JF000831.">LDV08</a>, <a class="reference internal" href="bibliography.html#id479" title="Alain Recking, P Frey, A Paquier, P Belleudy, and J Y Champagne. Bed-Load Transport Flume Experiments on Steep Slopes. Journal of Hydraulic Engineering, 134:1302–1310, 2008. doi:10.1061/(ASCE)0733-9429(2008)134:9(1302).">RFP+08</a>, <a class="reference internal" href="bibliography.html#id617" title="Peter Wilcock. Critical shear stress of natural sediments. Journal of Hydraulic Engineering, 119:491–505, 1993.">Wil93</a>]</span>.</p>
 </dd>
-<dt id="term-Spawning-guild">Spawning guild<a class="headerlink" href="#term-Spawning-guild" title="Permalink to this term">¶</a></dt><dd><p>Different groups of fish (i.e., <a class="reference internal" href="#term-Guild"><span class="xref std std-term">fish guilds</span></a>) have different practices and preference for spawning their eggs. In ecohydraulics, a distinction is made, for instance,  between <a class="reference internal" href="#term-Guild"><span class="xref std std-term">fish guilds</span></a> that prefer to build nests in the surface of the riverbed (<em>lithophilous</em>) or glue their eggs to sediment (<em>psamnophilous</em>) or plants (<em>phytophilous</em>). Also, <em>pelagophilous</em> fish release their eggs into the free-flowing water.</p>
+<dt id="term-Spawning-guild">Spawning guild<a class="headerlink" href="#term-Spawning-guild" title="Permalink to this term">#</a></dt><dd><p>Different groups of fish (i.e., <a class="reference internal" href="#term-Guild"><span class="xref std std-term">fish guilds</span></a>) have different practices and preference for spawning their eggs. In ecohydraulics, a distinction is made, for instance,  between <a class="reference internal" href="#term-Guild"><span class="xref std std-term">fish guilds</span></a> that prefer to build nests in the surface of the riverbed (<em>lithophilous</em>) or glue their eggs to sediment (<em>psamnophilous</em>) or plants (<em>phytophilous</em>). Also, <em>pelagophilous</em> fish release their eggs into the free-flowing water.</p>
 </dd>
-<dt id="term-Suspended-load">Suspended load<a class="headerlink" href="#term-Suspended-load" title="Permalink to this term">¶</a></dt><dd><p>Suspended load is a special type of <a class="reference internal" href="#term-Sediment-transport"><span class="xref std std-term">Sediment transport</span></a> describing the displacement of fine particles with the bulk flow.</p>
+<dt id="term-Suspended-load">Suspended load<a class="headerlink" href="#term-Suspended-load" title="Permalink to this term">#</a></dt><dd><p>Suspended load is a special type of <a class="reference internal" href="#term-Sediment-transport"><span class="xref std std-term">Sediment transport</span></a> describing the displacement of fine particles with the bulk flow.</p>
 <p><em>French: Transport en suspension <br>German: Schwebstofftransport</em></p>
 </dd>
-<dt id="term-SMS-2dm">SMS 2dm<a class="headerlink" href="#term-SMS-2dm" title="Permalink to this term">¶</a></dt><dd><p>SMS (Surface-water Modeling System) is a proprietary software suite from <em>Aquaveo</em> for surface water modeling. <code class="docutils literal notranslate"><span class="pre">2dm</span></code> file format is natively produced with SMS and represents a computational grid with x, y, and z coordinates of nodes along with node ids. The <a class="reference external" href="https://www.xmswiki.com/wiki/SMS:2D_Mesh_Files_*.2dm">developer’s wiki</a> provides a comprehensive description of the file format.</p>
+<dt id="term-SMS-2dm">SMS 2dm<a class="headerlink" href="#term-SMS-2dm" title="Permalink to this term">#</a></dt><dd><p>SMS (Surface-water Modeling System) is a proprietary software suite from <em>Aquaveo</em> for surface water modeling. <code class="docutils literal notranslate"><span class="pre">2dm</span></code> file format is natively produced with SMS and represents a computational grid with x, y, and z coordinates of nodes along with node ids. The <a class="reference external" href="https://www.xmswiki.com/wiki/SMS:2D_Mesh_Files_*.2dm">developer’s wiki</a> provides a comprehensive description of the file format.</p>
 </dd>
-<dt id="term-Sonar">Sonar<a class="headerlink" href="#term-Sonar" title="Permalink to this term">¶</a></dt><dd><p>Sound navigation and ranging (<em>Sonar</em>) is a technique for locating objects in space and underwater by emitting sound pulses. An active <em>Sonar</em> system, such as radio detecting and ranging (<em>radar</em>), emits and receives sound signals to map objects underwater (time-of-flight measurement). Passive <em>Sonar</em> detects signals emitted by an object itself (e.g., vibrations from fish motion or Whale chant), but cannot accurately map underwater objects.</p>
+<dt id="term-Sonar">Sonar<a class="headerlink" href="#term-Sonar" title="Permalink to this term">#</a></dt><dd><p>Sound navigation and ranging (<em>Sonar</em>) is a technique for locating objects in space and underwater by emitting sound pulses. An active <em>Sonar</em> system, such as radio detecting and ranging (<em>radar</em>), emits and receives sound signals to map objects underwater (time-of-flight measurement). Passive <em>Sonar</em> detects signals emitted by an object itself (e.g., vibrations from fish motion or Whale chant), but cannot accurately map underwater objects.</p>
 </dd>
-<dt id="term-SRS">SRS<a class="headerlink" href="#term-SRS" title="Permalink to this term">¶</a></dt><dd><p>See <a class="reference internal" href="#term-CRS"><span class="xref std std-term">CRS</span></a>.</p>
+<dt id="term-SRS">SRS<a class="headerlink" href="#term-SRS" title="Permalink to this term">#</a></dt><dd><p>See <a class="reference internal" href="#term-CRS"><span class="xref std std-term">CRS</span></a>.</p>
 </dd>
-<dt id="term-Stage-discharge-relation">Stage-discharge relation<a class="headerlink" href="#term-Stage-discharge-relation" title="Permalink to this term">¶</a></dt><dd><p>A stage-discharge relation (also referred to as <strong>rating curve</strong>) plots discharge (in m<span class="math notranslate nohighlight">\(^3\)</span>/s or CFS) as a function of water surface elevation function (in m above sea level or ft) at a specific river cross-section. Most stream gauging stations have a regularly calibrated stage-discharge relation that is often maintained by a state authority. This is why, it is mostly state authorities that provide stage-discharge functions for their gauging stations online, such as the state of Bavaria at the <a class="reference external" href="https://www.hnd.bayern.de/pegel/donau_bis_passau/muehldorf-18004506/abflusstafel">Mühldorf am Inn gauge</a>.</p>
+<dt id="term-Stage-discharge-relation">Stage-discharge relation<a class="headerlink" href="#term-Stage-discharge-relation" title="Permalink to this term">#</a></dt><dd><p>A stage-discharge relation (also referred to as <strong>rating curve</strong>) plots discharge (in m<span class="math notranslate nohighlight">\(^3\)</span>/s or CFS) as a function of water surface elevation function (in m above sea level or ft) at a specific river cross-section. Most stream gauging stations have a regularly calibrated stage-discharge relation that is often maintained by a state authority. This is why, it is mostly state authorities that provide stage-discharge functions for their gauging stations online, such as the state of Bavaria at the <a class="reference external" href="https://www.hnd.bayern.de/pegel/donau_bis_passau/muehldorf-18004506/abflusstafel?">Mühldorf am Inn gauge</a>.</p>
 <p><em>French: Courbe d’étalonnage / Courbe hauteur-débit / Courbe de tarage <br>German: Wasserstands-Abfluss Beziehung, bzw. Abflusskurve / Abflussschlüsselkurve / Eichkurve</em></p>
 </dd>
-<dt id="term-Step-pool">Step pool<a class="headerlink" href="#term-Step-pool" title="Permalink to this term">¶</a></dt><dd><p>Step pools are a type of morphological units, typically  found in steep mountain rivers. They are characterized by high gradients (exceeding 2%) and a rough surface composed of cobble and bedrock <span id="id54">[<a class="reference internal" href="bibliography.html#id7">GONK08</a>]</span>.</p>
+<dt id="term-Step-pool">Step pool<a class="headerlink" href="#term-Step-pool" title="Permalink to this term">#</a></dt><dd><p>Step pools are a type of morphological units, typically  found in steep mountain rivers. They are characterized by high gradients (exceeding 2%) and a rough surface composed of cobble and bedrock <span id="id54">[<a class="reference internal" href="bibliography.html#id7" title="Y Gonda, T Okazaki, Y Nishii, and H Kawabe. Characteristics of step-pool morphology in the mountain streams of japan. Bulletin of the Faculty of Agriculture-Niigata University (Japan), 2008.">GONK08</a>]</span>.</p>
 </dd>
-<dt id="term-STL">STL<a class="headerlink" href="#term-STL" title="Permalink to this term">¶</a></dt><dd><p>The Standard Tessellation Language (STL) file format is native to a three-dimensional (3d) printing CAD software type called <a class="reference external" href="https://en.wikipedia.org/wiki/Stereolithography">stereolithography</a>. An STL file describes 3d structures in the form of unstructured triangulated surfaces with arbitrary units.</p>
+<dt id="term-STL">STL<a class="headerlink" href="#term-STL" title="Permalink to this term">#</a></dt><dd><p>The Standard Tessellation Language (STL) file format is native to a three-dimensional (3d) printing CAD software type called <a class="reference external" href="https://en.wikipedia.org/wiki/Stereolithography">stereolithography</a>. An STL file describes 3d structures in the form of unstructured triangulated surfaces with arbitrary units.</p>
 </dd>
-<dt id="term-Thalweg">Thalweg<a class="headerlink" href="#term-Thalweg" title="Permalink to this term">¶</a></dt><dd><p>The term Thalweg stems from old German spelling for valley (today: <em>Tal</em>) and should be more correctly referred to as <em>Talweg</em>. The literal translation of Talweg is valley path and originally refers to a line that longitudinally connects the lowest points of valley cross-section profiles. Geomorphologists sometimes use slightly different definitions of Talweg. International law is more explicit, referring to the Thalweg as the primary navigable channel at boarders between two countries.</p>
+<dt id="term-Thalweg">Thalweg<a class="headerlink" href="#term-Thalweg" title="Permalink to this term">#</a></dt><dd><p>The term Thalweg stems from old German spelling for valley (today: <em>Tal</em>) and should be more correctly referred to as <em>Talweg</em>. The literal translation of Talweg is valley path and originally refers to a line that longitudinally connects the lowest points of valley cross-section profiles. Geomorphologists sometimes use slightly different definitions of Talweg. International law is more explicit, referring to the Thalweg as the primary navigable channel at boarders between two countries.</p>
 <p><em>French: talweg / thalweg <br>German: Talweg</em></p>
 </dd>
-<dt id="term-Topographic-change">Topographic change<a class="headerlink" href="#term-Topographic-change" title="Permalink to this term">¶</a></dt><dd><p>Topographic change is the increase or decrease in elevation of the Earth’s surface as a function of time. Conceptually, tracking topographic changes could consist of a simple comparison (i.e., subtraction) of elevation changes at two different moments. However, topographic change detection is not quite that simple, since every measurement technique has spatial inaccuracies with regards to the exact location and elevation of recorded points. For this reason, methods have been developed that, based on a level of detection (LoD), generate topographic change maps conveying and accounting for spatial uncertainty. Depending on the method, either strict global LoD raster <span id="id55">[<a class="reference internal" href="bibliography.html#id448">PW17</a>]</span> or less strict pixel-based LoD values <span id="id56">[<a class="reference internal" href="bibliography.html#id832">WBDS10</a>]</span> are used to remove uncertainty from topographic change maps. Topographic change maps also enable the visualization of soil loss (i.e., erosion), which is a growing challenge for agriculture and beyond. To this end, the USGS developed a publicly available website that is dedicated to topographic change (visit <a class="reference external" href="https://www.usgs.gov/core-science-systems/eros/topochange">https://usgs.gov</a>).</p>
+<dt id="term-Topographic-change">Topographic change<a class="headerlink" href="#term-Topographic-change" title="Permalink to this term">#</a></dt><dd><p>Topographic change is the increase or decrease in elevation of the Earth’s surface as a function of time. Conceptually, tracking topographic changes could consist of a simple comparison (i.e., subtraction) of elevation changes at two different moments. However, topographic change detection is not quite that simple, since every measurement technique has spatial inaccuracies with regards to the exact location and elevation of recorded points. For this reason, methods have been developed that, based on a level of detection (LoD), generate topographic change maps conveying and accounting for spatial uncertainty. Depending on the method, either strict global LoD raster <span id="id55">[<a class="reference internal" href="bibliography.html#id448" title="Gregory B. Pasternack and Joshua R. Wyrick. Flood-driven topographic changes in a gravel-cobble river over segment, reach, and morphological unit scales. Earth Surface Processes and Landforms, 42(3):487–502, 2017. URL: http://dx.doi.org/10.1002/esp.4064, doi:10.1002/esp.4064.">PW17</a>]</span> or less strict pixel-based LoD values <span id="id56">[<a class="reference internal" href="bibliography.html#id832" title="Joseph M. Wheaton, James Brasington, Stephen E. Darby, and David A. Sear. Accounting for uncertainty in DEMs from repeat topographic surveys: improved sediment budgets. Earth Surface Processes and Landforms, 35(2):136–156, 2010. URL: http://dx.doi.org/10.1002/esp.1886, doi:10.1002/esp.1886.">WBDS10</a>]</span> are used to remove uncertainty from topographic change maps. Topographic change maps also enable the visualization of soil loss (i.e., erosion), which is a growing challenge for agriculture and beyond. To this end, the USGS developed a publicly available website that is dedicated to topographic change (visit <a class="reference external" href="https://www.usgs.gov/core-science-systems/eros/topochange">https://usgs.gov</a>).</p>
 <p><em>French: Changement du terrain (non-technique) <br>German: Topografischer Wandel (kein technischer Begriff)</em></p>
 </dd>
-<dt id="term-xdmf">xdmf<a class="headerlink" href="#term-xdmf" title="Permalink to this term">¶</a></dt><dd><p>The <a class="reference external" href="https://www.xdmf.org/">eXtensible Data Model and Format (XDMF)</a> library provides standard routines for exchanging (scientific) datasets that result from high performance computing (HPC) tasks. XDMF files redundantly store <em>light</em> and <em>heavy</em> data in XML and HDF5 format and <em>Python</em> interfaces exist for both formats. Thus, XDMF or XMF files are often linked to a <code class="docutils literal notranslate"><span class="pre">*.h4</span></code> or <code class="docutils literal notranslate"><span class="pre">*.h5</span></code> (<a class="reference internal" href="#term-HDF"><span class="xref std std-term">HDF</span></a>) file that contains heavy simulation datasets.</p>
+<dt id="term-xdmf">xdmf<a class="headerlink" href="#term-xdmf" title="Permalink to this term">#</a></dt><dd><p>The <a class="reference external" href="https://www.xdmf.org/">eXtensible Data Model and Format (XDMF)</a> library provides standard routines for exchanging (scientific) datasets that result from high performance computing (HPC) tasks. XDMF files redundantly store <em>light</em> and <em>heavy</em> data in XML and HDF5 format and <em>Python</em> interfaces exist for both formats. Thus, XDMF or XMF files are often linked to a <code class="docutils literal notranslate"><span class="pre">*.h4</span></code> or <code class="docutils literal notranslate"><span class="pre">*.h5</span></code> (<a class="reference internal" href="#term-HDF"><span class="xref std std-term">HDF</span></a>) file that contains heavy simulation datasets.</p>
 </dd>
 </dl>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1085,7 +767,7 @@ D_x = \left[\frac{(s-1)\cdot g}{\nu^2}\right]^{1/3}\cdot D_{pq}
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./documentation"
         },
         predefinedOutput: true
@@ -1093,46 +775,85 @@ D_x = \left[\frac{(s-1)\cdot g}{\nu^2}\right]^{1/3}\cdot D_{pq}
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="documentation.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">How to Markdown and Document</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="documentation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">How to Markdown and Document</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="notation.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="notation.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Notation</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-        
-        </div>
-    </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Sebastian Schwindt, Ricardo Barros<br/>
-        
-            &copy; Copyright 2023.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
-      </div>
-    </div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By Sebastian Schwindt, Ricardo Barros
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

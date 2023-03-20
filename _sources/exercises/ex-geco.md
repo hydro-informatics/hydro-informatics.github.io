@@ -36,16 +36,24 @@ The $HSI$ concept also accounts for the so-called cover habitat in the form of t
 ![cover-habitat](https://github.com/Ecohydraulics/media/raw/main/jpg/neckar-fish-cover.jpg)<br>
 *Adult trout swimming in cover habitat created by a bridge pier in the upper Neckar River.*
 
-The combination of multiple $HSI$ values (e.g., water depth-related $HSI_{h}$, flow velocity-related $HSI_{u}$, grain size-related $HSI_{d}$, and/or cover $HSI_{cov}$) results in the **combined Habitat Suitability Index** $cHSI$. There are various calculation methods for combining different $HSI_{par}$ values into one $cHSI$ value, where the geometric mean and the product are the most widely used deterministic combination methods: <a name="combine-methods"></a>
+The combination of multiple $HSI$ values (e.g., water depth-related $HSI_{h}$, flow velocity-related $HSI_{u}$, grain size-related $HSI_{d}$, and/or cover $HSI_{cov}$) results in the **combined Habitat Suitability Index** $cHSI$. There are various calculation methods for combining different $HSI_{par}$ values into one $cHSI$ value, where the geometric mean and the product are the most widely used deterministic combination methods: 
+
+```{admonition} combined Habitat Suitability Index (cHSI) calculation methods
+:name: combine-methods
 
 * Geometric mean:  $cHSI = (\prod_{par} HSI_{par})^{1/n}$
   <br>For instance, the combination of the water depth-related $HSI_{h}$ and flow velocity-related $HSI_{u}$ with the geometric mean method is: $cHSI = (HSI_{h} \cdot HSI_{u})^{1/2}$
 * Product:  $cHSI = \prod_{par} HSI_{par}$
   <br>For example, the combination of the water depth-related $HSI_{h}$ and flow velocity-related $HSI_{u}$ with the product method is: $cHSI = (HSI_{h} \cdot HSI_{u})$
+* Fuzzy rule sets {cite:p}`noack_ecohydraulics_2013`
+```
 
 Therefore, if the pixel-based $HSI$ values for water depth and flow velocity are known from a two-dimensional (2d) hydrodynamic model, then for each pixel the $cHSI$ value can be calculated either as the product or geometric mean of the single-parameter $HSI_{par}$ rasters.
 
-This habitat assessment concept was introduced by {cite:t}`bovee_development_1986` and {cite:t}`stalnaker_instream_1995` ([direct download](https://apps.dtic.mil/sti/pdfs/ADA322762.pdf)). However, these authors built their usable (physical) habitat assessment based on one-dimensional (1d) numerical models that were commonly used in the last millennium. Today, 2d numerical models are the state-of-the-art to determine physical habitat geospatially explicit based on pixel-based $cHSI$ values. There are two different options for calculating the usable habitat area ($UHA$) based on pixel-based $cHSI$ values (and even more options can be found in the scientific literature). <a name="uha-methods"></a>
+This habitat assessment concept was introduced by {cite:t}`bovee_development_1986` and {cite:t}`stalnaker_instream_1995` ([direct download](https://apps.dtic.mil/sti/pdfs/ADA322762.pdf)). However, these authors built their usable (physical) habitat assessment based on one-dimensional (1d) numerical models that were commonly used in the last millennium. Today, 2d numerical models are the state-of-the-art to determine physical habitat geospatially explicit based on pixel-based $cHSI$ values. There are two different options for calculating the usable habitat area ($UHA$) based on pixel-based $cHSI$ values (and even more options can be found in the scientific literature). 
+
+````{admonition} Calculate Usable Habitat Area (UHA)
+:name: uha-methods
 
 1. Use a threshold value above which a pixel is classified as a usable habitat.
     * Typical values for the threshold value $cHSI_{crit}$ are between 0.4 (tolerant) and 0.75 (strict).
@@ -55,12 +63,14 @@ This habitat assessment concept was introduced by {cite:t}`bovee_development_198
     * The pixel area is weighted by its habitat quality expressed by the $cHSI$ value:
     <br>$UHA = px_{a} \cdot \sum cHSI_{px_{i}}$
 
+
 ```{admonition} Weighted Usable Area (WUA) vs. UHA
 :class: attention
 Some authors (e.g., {cite:t}`yao_development_2018`, {cite:t}`tuhtan_estimating_2012`) incorrectly refer to this weighting as Weighted Usable Area (*WUA*), which conflicts with the original definition of *WUA* {cite:p}`bovee_development_1986`.
 
  The threshold method is preferable over the weighting method because the $HSI$  has the unit of *Index* and is therefore not dimensionless. As a result, unrealistic units of *Index* areas (e.g., *Index*-m$^2$) are created in the weighting method, which is also introducing non-measurable uncertainty.
 ```
+````
 
 An alternative to the deterministic calculation of the $HSI$ and $cHSI$ values of a pixel is a fuzzy logic approach {cite:p}`noack_ecohydraulics_2013`. In the fuzzy logic approach, pixels are classified, for instance, as *low*, *medium*, or *high* habitat quality as a function of the associated water depth or flow velocity using categorical (*low*, *medium*, or *high*), expert assessment-based $HSI$ curves. The $cHSI$ value results from the center of gravity of superimposed membership functions of considered parameters (e.g., water depth and flow velocity).
 
@@ -132,8 +142,9 @@ nan_value = 0.0
 
 ````{admonition} FUN.PY (FUNCTIONS)
 :class: tip
+:name: funs
+
 At this point in the course, it is assumed that students are familiar with object orientation and especially with writing functions. Therefore, many basic functions for this exercise are already provided with the script `fun.py` (alphabetically ordered list):
-<a name="funs"></a>
 
 * `cache` is a wrapper for parent functions to enforce that intermediate geospatial datasets (e.g., the intermediate product of a sum of rasters) are stored in a temporary *cache* folder that is deleted after the script ran.
 * `check_cache` verifies if the cache folder defined in `config.py` already exists. The function is automatically called by the `cache` wrapper.
@@ -234,9 +245,12 @@ Here is what the `__truediv__` method does:
 * The method tries to invoke the array attribute of `constant_or_raster`.
     - If `constant_or_raster` is a raster object, then invoking `contant_or_raster.array` is successful. In this case `self.array` is overwritten with the element-wise division of the array by `contant_or_raster.array`. The element-wise division builds on {ref}`numpy`s built-in function [*np.divide*](https://numpy.org/doc/stable/reference/generated/numpy.divide.html), which is a computationally efficient wrapper of C/C++ code (much faster than a *Python* loop over array elements).
    - If `constant_or_raster` is a numeric value, then invoking `contant_or_raster.array` results in an `AttributeError` and the `__truediv__` method falls in the `except AttributeError` statement, where `self.array` is simply divided by `constant_or_raster`.
-* The method returns the result of the pseudo private method `self._make_raster("div")` ([recall *PEP 8* {ref}`chpt-style`, which corresponds to a new `Raster` instance of the actual `Raster` instance divided by `constant_or_raster`. The new `Raster` instance is a temporary *GeoTIFF*  file in the *cache* folder ([recall the cache function](#funs)). This is how the pseudo-private method `_make_raster(self, file_marker)` looks like:<a name="make-raster"></a>
+* The method returns the result of the pseudo private method `self._make_raster("div")` ([recall *PEP 8* {ref}`chpt-style`, which corresponds to a new `Raster` instance of the actual `Raster` instance divided by `constant_or_raster`. The new `Raster` instance is a temporary *GeoTIFF*  file in the *cache* folder (recall the {ref}`cache function <funs>`). This is how the pseudo-private method `_make_raster(self, file_marker)` looks like:</a>
 
-```python
+```{admonition} Make Raster function
+:class: python
+:name: make-raster
+
     def _make_raster(self, file_marker):
         f_ending = "__{0}{1}__.tif".format(file_marker, create_random_string(4)
         geo.create_raster(cache_folder + self.name + f_ending, self.array, epsg=self.epsg,
@@ -246,7 +260,7 @@ Here is what the `__truediv__` method does:
 ```
 
 This function:
-* Uses the *string*-type argument `file_marker` to add it to the file name of the base *GeoTIFF* along with a random, four characters-long *string* (recall the [`create_random_string` function](#funs)). `file_marker` is unique for every implemented operator. For the `__truediv__` method use `file_marker="div"`. Thus, the temporary *GeoTIFF* file name is defined as `cache_folder + self.name + f_ending` (e.g. `"C:\Excercise-geco\__cache__\velocity__divhjev__.tif"`).
+* Uses the *string*-type argument `file_marker` to add it to the file name of the base *GeoTIFF* along with a random, four characters-long *string* (recall the {ref}`create_random_string <funs>`). `file_marker` is unique for every implemented operator. For the `__truediv__` method use `file_marker="div"`. Thus, the temporary *GeoTIFF* file name is defined as `cache_folder + self.name + f_ending` (e.g. `"C:\Excercise-geco\__cache__\velocity__divhjev__.tif"`).
 * Applies the {ref}`create-raster` function from `geo_utils` to write the temporary *GeoTIFF* to the `__cache__` folder with the original raster's spatial reference system.
 * `return`s a new `Raster` instance of the temporary, cached *GeoTIFF* file.
 
@@ -320,7 +334,11 @@ Why do we need the `save_status` variable? First, it states if saving the raster
 
 
 ### Write HSI and cHSI Raster Creation Script
-The provided `create_hsi_rasters.py` script already contains required package imports, an `if __name__ == '__main__'` stand-alone statement as well as the void `main`, `get_hsi_curve`, `get_hsi_raster`, and `combine_hsi_rasters` functions:<a name="chsi-template"></a>
+
+The provided `create_hsi_rasters.py` script already contains required package imports, an `if __name__ == '__main__'` stand-alone statement as well as the void `main`, `get_hsi_curve`, `get_hsi_raster`, and `combine_hsi_rasters` functions:
+
+````{admonition} cHSI Template script
+:name: chsi-template
 
 ```python
 # create_hsi_rasters.py
@@ -365,7 +383,7 @@ if __name__ == '__main__':
     t1 = perf_counter()
     print("Time elapsed: " + str(t1 - t0)
 
-```
+````
 
 The `if __name__ == '__main__'` statement contains a time counter (`perf_counter`) that prompts how long the script takes to run (typically between 3 to 6 seconds). Make sure that
 
@@ -375,9 +393,9 @@ The `if __name__ == '__main__'` statement contains a time counter (`perf_counter
 
 The following paragraphs show step by step how to load the $HSI$ curves from the {ref}`json` file (`get_hsi_curve`), apply them to the `flow_velocity` and `water_depth` rasters (`get_hsi_raster`), and combine the resulting $HSI$ rasters into $cHSI$ rasters (`combine_hsi_rasters`).
 
-The `get_hsi_curve` function will load the $HSI$ curve from the {ref}`json` file (*/habitat/trout.json*) in a dictionary for the two parameters `"velocity"` and `"depth"`. Thus, the goal is to create a `curve_data` dictionary that contains one {ref}`pandas` `DataFrame` object for all parameters (i.e., velocity and depth). For example, `curve_data["velocity"]["u"]` will be a {ref}`pandas` `Series` of velocity entries (in m/s) that corresponds to `curve_data["velocity"]["HSI"]`, which is a {ref}`pandas` `Series` of $HSI$ values. Similarly, `curve_data["depth"]["h"]` is a {ref}`pandas` `Series` of depth entries (in meters) that corresponds to `curve_data["depth"]["HSI"]`, which is a {ref}`pandas` `Series` of $HSI$ values (corresponds to the curves shown in the [$HSI$ graphs](#hsi-image) above). To extract the desired information from the {ref}`json` file, `get_hsi_curve` takes three arguments (`json_file`, `life_stage`, and `parameters`) in order to:
+The `get_hsi_curve` function will load the $HSI$ curve from the {ref}`json` file (*/habitat/trout.json*) in a dictionary for the two parameters `"velocity"` and `"depth"`. Thus, the goal is to create a `curve_data` dictionary that contains one {ref}`pandas` `DataFrame` object for all parameters (i.e., velocity and depth). For example, `curve_data["velocity"]["u"]` will be a {ref}`pandas` `Series` of velocity entries (in m/s) that corresponds to `curve_data["velocity"]["HSI"]`, which is a {ref}`pandas` `Series` of $HSI$ values. Similarly, `curve_data["depth"]["h"]` is a {ref}`pandas` `Series` of depth entries (in meters) that corresponds to `curve_data["depth"]["HSI"]`, which is a {ref}`pandas` `Series` of $HSI$ values (corresponds to the curves shown in the {ref}`HSI graphs <hsi-image>` above). To extract the desired information from the {ref}`json` file, `get_hsi_curve` takes three arguments (`json_file`, `life_stage`, and `parameters`) in order to:
 
-* Get the information stored in the {ref}`json` file with the `read_json` function ([see above](#funs)).
+* Get the information stored in the {ref}`json` file with the `read_json` function ({ref}`see above <funs>`).
 * Instantiate a void `curve_data` {ref}`dict` that will contain the {ref}`pandas` `DataFrame`s for `"velocity"` and `"depth"`.
 * Run a loop over the (two) parameters (`"velocity"` and `"depth"`), in which it:
     - Creates a void `par_pairs` {ref}`list` for storing pairs of parameter (`par`) - $HSI$ values as nested lists.
@@ -411,7 +429,7 @@ def get_hsi_curve(json_file, life_stage, parameters):
     return curve_data
 ```
 
-In the `main` function, call `get_hsi_curves` to get the $HSI$ curves as a {ref}`dict`. In addition, implement the `cache` and the `log_actions` wrappers  ([recall the descriptions of provided functions](#funs) for the `main` function:
+In the `main` function, call `get_hsi_curves` to get the $HSI$ curves as a {ref}`dict`. In addition, implement the `cache` and the `log_actions` wrappers  (recall the descriptions of {ref}`provided functions <funs>`) for the `main` function:
 
 ```python
 # create_hsi_rasters.py
@@ -431,12 +449,12 @@ With the provided `HSIRaster` (`raster_hsi.py`) class, the $HSI$ rasters can be 
 
 * Extracts parameter values (e.g., depth or velocity) from the first element of the nested `hsi_curves` {ref}`list`, and $HSI$ values from the second element of the nested `hsi_curves` {ref}`list`.
 * Uses {ref}`numpy`s built-in `np.nditer` function, which iterates through {ref}`numpy` arrays with high computational efficiency (read more about [`nditer`](https://numpy.org/doc/stable/reference/generated/numpy.nditer.html)).
-    - The `nditer` loop passes the `par_values` as `x_values` {ref}`list` argument and the `hsi_values` as `y_values` {ref}`list` arguments to the `interpolate_from_list` function ([recall the function descriptions above](#funs)).
+    - The `nditer` loop passes the `par_values` as `x_values` {ref}`list` argument and the `hsi_values` as `y_values` {ref}`list` arguments to the `interpolate_from_list` function (recall the {ref}`function descriptions above <funs>`).
     - The array values (i.e., flow velocity or water depth) correspond to the `xi_values` {ref}`list` argument of the `interpolate_from_list` function.
     - The `interpolate_from_list` function then identifies for each element of the `xi_values` {ref}`list` the closest elements ($x_{i}$ values) in the `x_values` {ref}`list` and the corresponding positions in the `y_values` {ref}`list`.
     - The `interpolate_from_list` function passes the identified values to the `interpolate_y` function, which then linearly interpolates the corresponding `yi` value (i.e., an $HSI$ value).
     - Thus, the flow velocity or water depths in `self.array` are row-wise (row-by-row) replaced by $HSI$ values.
-* `return`s a `Raster` instance using the pseudo-private `_make_raster` method ([recall its contents](#make-raster)).
+* `return`s a `Raster` instance using the pseudo-private `_make_raster` method ({ref}`recall its contents <make-raster>`).
 
 ```python
 # raster_hsi.py
@@ -472,7 +490,7 @@ def get_hsi_raster(tif_dir, hsi_curve):
 
 ```
 
-The `get_hsi_raster` function requires two arguments, which it must receive from the `main` function. For this reason, iterate over the `parameters` {ref}`list` in the `main` function and extract the corresponding raster directories from the `tifs` {ref}`dict` (recall the variable definition in the [standalone statement](#chsi-template)). In addition, save the `Raster` objects returned by the `get_hsi_raster` function in another {ref}`dict` (`eco_rasters`) to combine them in the next step into a $cHSI$ raster.
+The `get_hsi_raster` function requires two arguments, which it must receive from the `main` function. For this reason, iterate over the `parameters` {ref}`list` in the `main` function and extract the corresponding raster directories from the `tifs` {ref}`dict` (recall the variable definition in the {ref}`standalone statement <chsi-template>`). In addition, save the `Raster` objects returned by the `get_hsi_raster` function in another {ref}`dict` (`eco_rasters`) to combine them in the next step into a $cHSI$ raster.
 
 ```python
 # create_hsi_rasters.py
@@ -502,7 +520,7 @@ Of course, one can also loop over the parameters {ref}`list` directly in the `ge
 This is a good moment to test if the code works. Run `create_hsi_rasters.py` and verify that the two *GeoTIFF* files (*/habitat/hsi_velocity.tif* and */habitat/hsi_depth.tif*) are created correctly. QGIS visualizes the *GeoTIFF*-products and the activated *Identify Features* button in QGIS enables to check if the linearly interpolated $HSI$ values agree with the $HSI$ curves in the provided workbook (*/habitat/trout.xlsx*). Thus, load both *GeoTIFF* pairs in QGIS: */habitat/hsi_velocity.tif* + */basement/flow_velocity.tif* and */habitat/hsi_depth.tif*  + */basement/water_depth.tif*.
 ```
 
-Next, we come to the reason why we had to define magic methods for the `Raster` class: combine the $HSI$ rasters using both combination formulae presented above (recall the [product and geometric mean](#combine-methods) formulae), where `"geometric_mean"` should be used by default. The `combine_hsi_rasters` function accepts two arguments (a {ref}`list` of `Raster` objects corresponding to $HSI$ rasters and the `method` to use as *string*).
+Next, we come to the reason why we had to define magic methods for the `Raster` class: combine the $HSI$ rasters using both combination formulae presented above (recall the {ref}`product and geometric mean <combine-methods>` formulae), where `"geometric_mean"` should be used by default. The `combine_hsi_rasters` function accepts two arguments (a {ref}`list` of `Raster` objects corresponding to $HSI$ rasters and the `method` to use as *string*).
 
 If the method corresponds to the default value `"geometric_mean"`, then the `power` to be applied to the product of the `Raster` {ref}`list` is calculated from the *n*th root, where *n* corresponds to the number of `Raster` objects in the `raster_list`. Otherwise (e.g., `method="product"`), the `power` is exactly 1.0.
 
@@ -581,7 +599,7 @@ The presentation of the $cHSI$ raster shows that preferred habitat areas for juv
 ## Calculate Usable Habitat Area UHA
 
 ### Write the Code
-The $cHSI$ rasters enable the calculation of the available usable habitat area. The previous section featured examples using the fish species *trout* and its *juvenile* life stage, for which we will determine here the usable habitat area $UHA$ (in m$^2$) using a $cHSI$ threshold value (rather than the pixel area weighting approach). So we follow the [threshold formula described above](#uha-methods), using a threshold value of $cHSI_{crit} = 0.4$. Thus, every pixel that has a $cHSI$ value of 0.4 or greater counts as usable habitat area.
+The $cHSI$ rasters enable the calculation of the available usable habitat area. The previous section featured examples using the fish species *trout* and its *juvenile* life stage, for which we will determine here the usable habitat area $UHA$ (in m$^2$) using a $cHSI$ threshold value (rather than the pixel area weighting approach). So we follow the {ref}`threshold formula described above <uha-methods>`, using a threshold value of $cHSI_{crit} = 0.4$. Thus, every pixel that has a $cHSI$ value of 0.4 or greater counts as usable habitat area.
 
 From a technical point of view, this part of the exercise is about converting a raster into a polygon shapefile as well as accessing and modifying the *Attribute Table* of the shapefile.
 
@@ -608,9 +626,9 @@ if __name__ == '__main__':
     main()
 ```
 
-In the `if __name__ == '__main__'` statement, make sure that the global variable `chsi_raster_name` corresponds to the directory of the $cHSI$ raster created in the previous section. The other global variable (`chsi_threshold`) corresponds to the $cHSI_{crit}$ value of 0.4 that we will use with the [threshold formula](#uha-methods).
+In the `if __name__ == '__main__'` statement, make sure that the global variable `chsi_raster_name` corresponds to the directory of the $cHSI$ raster created in the previous section. The other global variable (`chsi_threshold`) corresponds to the $cHSI_{crit}$ value of 0.4 that we will use with the {ref}`threshold formula <uha-methods>`.
 
-In the `main` function, start with loading the $cHSI$ raster (`chsi_raster`) as a [Raster object](#raster-class). Then, access the {ref}`numpy` array of the $cHSI$ raster and compare it with `chsi_threshold` using {ref}`numpy`s built-in [*greater_equal*](https://numpy.org/doc/stable/reference/generated/numpy.greater_equal.html) function. `np.greater_equal` takes an array as first argument and a second argument, which is the condition that can be a numeric variable or another {ref}`numpy` array. Then, `np.greater_equal` checks if the elements of the first array are greater than or equal to the second argument. In the case of the second argument being an array, this is an element-wise $\geq$ comparison. The result of `np.greater_equal` is a {ref}`bool` array (`True` where the greater-or-equal condition is fulfilled and `False` otherwise). However, to create an `osgeo.gdal.Dataset` object from the result of `np.greater_equal`, we need a numeric array. For this reason, multiply the result of `np.greater_equal` by 1.0 and assign it as a new {ref}`numpy` array of zeros (`False`) and ones (`True`) to a variable named `habitat_pixels` (see the code block below).
+In the `main` function, start with loading the $cHSI$ raster (`chsi_raster`) as a {ref}`Raster object <raster-class>`. Then, access the {ref}`numpy` array of the $cHSI$ raster and compare it with `chsi_threshold` using {ref}`numpy`s built-in [*greater_equal*](https://numpy.org/doc/stable/reference/generated/numpy.greater_equal.html) function. `np.greater_equal` takes an array as first argument and a second argument, which is the condition that can be a numeric variable or another {ref}`numpy` array. Then, `np.greater_equal` checks if the elements of the first array are greater than or equal to the second argument. In the case of the second argument being an array, this is an element-wise $\geq$ comparison. The result of `np.greater_equal` is a {ref}`bool` array (`True` where the greater-or-equal condition is fulfilled and `False` otherwise). However, to create an `osgeo.gdal.Dataset` object from the result of `np.greater_equal`, we need a numeric array. For this reason, multiply the result of `np.greater_equal` by 1.0 and assign it as a new {ref}`numpy` array of zeros (`False`) and ones (`True`) to a variable named `habitat_pixels` (see the code block below).
 
 With the `habitat_pixels` array and the georeference of `chsi_raster`, create a new {ref}`integer <num>` *GeoTIFF* raster with the *create_raster* function (also available in [flusstools.geotools](https://flusstools.readthedocs.io/en/latest/geotools.html#module-flusstools.geotools.raster_mgmt)); here, use `geo.create_raster`. In the following code block the new raster is saved in the */habitat/* folder of the exercise as `habitat-pixels.tif`.
 

@@ -15,18 +15,19 @@ The concept of git and basic vocabulary. The REMOTE frame is online (i.e., someo
 ## Install git
 The materials provided with this eBook are best downloaded and updated using *git*-able environments (avoid downloading materials as *zip* file).
 
-````{tabbed} Linux
+`````{tab-set}
+````{tab-item} Linux
 Although git is an integral feature of most Linux distributions, Debian users might still need to install it. For this purpse, open Terminal and tap:
 ```
 sudo apt install git
 ```
 ````
 
-````{tabbed} Windows
+````{tab-item} Windows
 Download and install [Git Bash](https://git-scm.com/downloads) and use it for example [PyCharm's Community Edition](https://www.jetbrains.com/pycharm/) or [Atom](https://atom.io).
 ````
 
-````{tabbed} macOS
+````{tab-item} macOS
 macOS users may use [Homebrew](https://developer.apple.com/xcode/) for installing git, but there are other options, such as [Xcode](https://developer.apple.com/xcode/).
 
 To use Homebrew for installing git, start with installing Homebrew through the [macOS Terminal](https://support.apple.com/guide/terminal/open-or-quit-terminal-apd5265185d-f365-44cb-8b09-71a064a42125/mac):
@@ -55,6 +56,7 @@ Ultimately, Homewbrew provides many more packages, which are essentially useful 
 Read more installation instructions and about options for git on macOS at [https://git-scm.com/download/mac](https://git-scm.com/download/mac).
 
 ````
+`````
 
 The repositories for this course are mainly hosted on *GitHub*. There are many other *git* service providers out there, such as [GitLab](https://gitlab.com/pages), [plan.io](https://plan.io/knowledge-management/), or [BitBucket](https://bitbucket.org/).
 

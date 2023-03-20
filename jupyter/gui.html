@@ -1,978 +1,600 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Graphical User Interfaces (GUIs) &#8212; Hydro-Informatics</title>
-    
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script src="../_static/tabs.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'jupyter/gui';</script>
     <link rel="canonical" href="https://hydro-informatics.com/jupyter/gui.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Python Exercises" href="../exercises/python-exercises.html" />
     <link rel="prev" title="Code Style and Conventions" href="pystyle.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/icon.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Hydro-Informatics</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Get Started
- </span>
-</p>
+    
+    
+    <img src="../_static/icon.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/icon.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../lectures/classroom.html">
-   The Virtual Classroom
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/principles.html">
-     Principles
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/lectures.html">
-     Lectures and Exercises
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/take_seat.html">
-     Take a Seat
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../get-started/software.html">
-   Software Resources
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/vm.html">
-     Virtual Machines and Linux
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/ide.html">
-     Integrated Development Environments (IDEs)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../python-basics/pyinstall.html">
-     Python (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/git.html">
-     Version Control : git
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/geo.html">
-     Geospatial Software
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/install-openfoam.html">
-     OpenFOAM (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/install-telemac.html">
-     TELEMAC (Installation)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../get-started/others.html">
-     Other Software Resources
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/classroom.html">The Virtual Classroom</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/principles.html">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/lectures.html">Lectures and Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/take_seat.html">Take a Seat</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Python Basics
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../get-started/software.html">Software Resources</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/vm.html">Virtual Machines and Linux</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../get-started/ide.html">Integrated Development Environments (IDEs)</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../python-basics/pyinstall.html">Python (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/git.html">Version Control : git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/geo.html">Geospatial Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/install-openfoam.html">OpenFOAM (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/install-telemac.html">TELEMAC (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/others.html">Other Software Resources</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Basics</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/python.html">
-   First Steps
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pybase.html">
-     Hello Data Types
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pyerror.html">
-     Errors, Logging, and Debugging
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pyloop.html">
-     Loops and Conditional Statements
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/modularize.html">
-   Object Orientation
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pyfun.html">
-     Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pypckg.html">
-     Packages, Modules and Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="classes.html">
-     Object Orientation and Classes
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python-basics/data-handling.html">
-   Data and File Handling
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pynum.html">
-     Data Files, NumPy &amp; Pandas
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="xml.html">
-     Structured Data (XML, xlsx &amp; JSON)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pyplot.html">
-     Plotting
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="pystyle.html">
-   Code Style and Conventions
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Graphical User Interfaces (GUIs)
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/python-exercises.html">
-   Python Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-ms.html">
-     1d Hydraulics (Manning-Strickler Formula)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-sp.html">
-     Reservoir Volume (Sequent Peak Algorithm)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-floods.html">
-     Flood Return Periods
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-sediment.html">
-     1d Sediment Transport
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-gui.html">
-     Create a GUI
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/python.html">First Steps</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="pybase.html">Hello Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyerror.html">Errors, Logging, and Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyloop.html">Loops and Conditional Statements</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Geospatial Analysis
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/geospatial-data.html">
-   Geospatial Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/use-qgis.html">
-   QGIS Tutorial
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../geopy/drone-processing.html">
-   Process Drone (UAV) Imagery
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../geopy/geo-python.html">
-   Geospatial Python
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../geopy/geo-pckg.html">
-     Geospatial Open Source Python Libraries
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="geo-shp.html">
-     Shapefile (Vector) Handling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="geo-raster.html">
-     Raster (Grid) Handling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="geo-convert.html">
-     Vectorize and Rasterize
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="geo-arcpy.html">
-     The Commercial arcpy Library
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/geo-exercises.html">
-   Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-geco.html">
-     Script a Habitat Suitability Map
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/modularize.html">Object Orientation</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyfun.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypckg.html">Packages, Modules and Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html">Object Orientation and Classes</a></li>
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Data Science
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../datascience/data-science.html">
-   Fundamentals (Coming soon)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/py-requirements.html">
-     Python Requirements
-    </a>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../datascience/data-prepro.html">
-     Data Pre-Processing
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-    <label for="toctree-checkbox-10">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/data-types.html">
-       The Nature of Data
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/data-cleaning.html">
-       Dataset Cleaning
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../datascience/dimensional-analysis.html">
-       Dimensional Analysis
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../datascience/theory.html">
-   Techniques (Coming soon)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/techniques.html">
-     Overview of Fundamental Techniques
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/calibrate-validate.html">
-     Model Calibration and Validation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../datascience/morphology-predictor-svm.html">
-     Support Vector Machine (SVM)
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python-basics/data-handling.html">Data and File Handling</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="pynum.html">Data Files, NumPy &amp; Pandas</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="xml.html">Structured Data (XML, xlsx &amp; JSON)</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="pyplot.html">Plotting</a></li>
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Numerical Modeling
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../numerics/numerical-modeling.html">
-   Principles
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../numerics/basement.html">
-   BASEMENT
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/pre-qgis-bm.html">
-     Pre-processing with QGIS
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/basement2d.html">
-     Run and Check a Steady 2d Simulation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../numerics/telemac.html">
-   TELEMAC
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerics/pre-slf-tm.html">
-     Pre-processing
-    </a>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac2d.html">
-     Telemac2d
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-    <label for="toctree-checkbox-14">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac2d-steady.html">
-       Steady 2d
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac2d-unsteady.html">
-       Unsteady 2d
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac3d.html">
-     Telemac3d
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-    <label for="toctree-checkbox-15">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac3d-slf.html">
-       Steady 3d (SLF - Selafin)
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/telemac3d-med.html">
-       Steady 3d (MED and Salome)
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../numerics/telemac-gaia.html">
-     Gaia (Morphodynamics)
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
-    <label for="toctree-checkbox-16">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-coupling.html">
-       Introduction and Coupling
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-basics.html">
-       Basic Setup of Gaia
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-bedload.html">
-       Bedload
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-suspended.html">
-       Suspended Load
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="../numerics/gaia-run.html">
-       Run and Analyze
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pystyle.html">Code Style and Conventions</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Graphical User Interfaces (GUIs)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/python-exercises.html">Python Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-ms.html">1d Hydraulics (Manning-Strickler Formula)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-sp.html">Reservoir Volume (Sequent Peak Algorithm)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-floods.html">Flood Return Periods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-sediment.html">1d Sediment Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-gui.html">Create a GUI</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Documentation
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/documentation.html">
-   How to Markdown and Document
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/glossary.html">
-   Glossary
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/notation.html">
-   Notation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../documentation/bibliography.html">
-   References
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../exercises/docs-exercises.html">
-   Exercises
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
-  <label for="toctree-checkbox-17">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../exercises/ex-git.html">
-     Git and Markdown
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Troubleshoot
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Geospatial Analysis</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-programming.html">
-   Programming Tools and IDEs
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
-  <label for="toctree-checkbox-18">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-anaconda.html">
-     Debugging Anaconda
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-python.html">
-     Debugging Python Code
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-jupyter.html">
-     Debugging Jupyter
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">
-   Numerical Models
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
-  <label for="toctree-checkbox-19">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-basement.html">
-     Debugging BASEMENT
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-telemac.html">
-     Debugging TELEMAC
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../troubleshoot/dbg-os.html">
-   Operating Systems (Linux and VMs)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
-  <label for="toctree-checkbox-20">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-linux.html">
-     Debugging Debian Linux
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../troubleshoot/dbg-vm.html">
-     Debugging Virtual Machines
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/geospatial-data.html">Geospatial Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/use-qgis.html">QGIS Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geopy/drone-processing.html">Process Drone (UAV) Imagery</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../geopy/geo-python.html">Geospatial Python</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geopy/geo-pckg.html">Geospatial Open Source Python Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geo-shp.html">Shapefile (Vector) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geo-raster.html">Raster (Grid) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geo-convert.html">Vectorize and Rasterize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geo-arcpy.html">The Commercial arcpy Library</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Disclaimer and License
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/geo-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-geco.html">Script a Habitat Suitability Map</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Modeling</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../terms/license.html">
-   License
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../terms/disclaimer.html">
-   Disclaimer
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../numerics/numerical-modeling.html">Principles</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerics/basement.html">BASEMENT</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/pre-qgis-bm.html">Pre-processing with QGIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/basement2d.html">Run and Check a Steady 2d Simulation</a></li>
+
+
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerics/telemac.html">TELEMAC</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/pre-slf-tm.html">Pre-processing</a></li>
+
+
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac2d.html">Telemac2d</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac2d-steady.html">Steady 2d</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac2d-unsteady.html">Unsteady 2d</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac3d.html">Telemac3d</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac3d-slf.html">Steady 3d (SLF - Selafin)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/telemac3d-med.html">Steady 3d (MED and Salome)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../numerics/telemac-gaia.html">Gaia (Morphodynamics)</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-coupling.html">Introduction and Coupling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-basics.html">Basic Setup of Gaia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-bedload.html">Bedload</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-suspended.html">Suspended Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../numerics/gaia-run.html">Run and Analyze</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/data-science.html">Fundamentals (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/py-requirements.html">Python Requirements</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../datascience/data-prepro.html">Data Pre-Processing</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/data-types.html">The Nature of Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/data-cleaning.html">Dataset Cleaning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datascience/dimensional-analysis.html">Dimensional Analysis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/theory.html">Techniques (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/techniques.html">Overview of Fundamental Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/calibrate-validate.html">Model Calibration and Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/morphology-predictor-svm.html">Support Vector Machine (SVM)</a></li>
+
+
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../documentation/documentation.html">How to Markdown and Document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/notation.html">Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/bibliography.html">References</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/docs-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/ex-git.html">Git and Markdown</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Troubleshoot</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-programming.html">Programming Tools and IDEs</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-anaconda.html">Debugging Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-python.html">Debugging Python Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-jupyter.html">Debugging Jupyter</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">Numerical Models</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-basement.html">Debugging BASEMENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-telemac.html">Debugging TELEMAC</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-os.html">Operating Systems (Linux and VMs)</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-linux.html">Debugging Debian Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-vm.html">Debugging Virtual Machines</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-scilife.html">Science Life Hacks</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-zotero.html">Zotero Utilities</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Disclaimer and License</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../terms/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terms/disclaimer.html">Disclaimer</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Written by <a href="https://sebastian-schwindt.org">Sebastian Schwindt</a> and Ricardo Barros
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/jupyter/gui.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/hydro-informatics/jupyter-python-course"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
         
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/hydro-informatics/jupyter-python-course/main/v2/gh/hydro-informatics/jupyter-python-course/main?urlpath=lab/tree/jupyter/gui.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/hydro-informatics/jupyter-python-course/blob/main/jupyter/gui.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
+<a href="https://github.com/hydro-informatics/jupyter-python-course" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/hydro-informatics/jupyter-python-course/main/v2/gh/hydro-informatics/jupyter-python-course/main?urlpath=lab/tree/jupyter/gui.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com//github/hydro-informatics/jupyter-python-course/blob/main/jupyter/gui.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="../_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/jupyter/gui.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
+  
 </div>
+</div>
+              
+              
 
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Graphical User Interfaces (GUIs)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-first-gui">
-   The First GUI
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#add-a-button-to-call-a-function">
-   Add a Button to Call a Function
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#a-vanilla-tkinter-program">
-   A Vanilla
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     tkinter
-    </span>
-   </code>
-   Program
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#make-script-a-stand-alone-app">
-     Make Script a Stand-alone App
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#more-widgets">
-   More Widgets
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#tkinter-variables">
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     tkinter
-    </span>
-   </code>
-   Variables
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#design-place-and-modify-widgets">
-   Design, Place and Modify Widgets
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#place-with-place-and-use-object-colors">
-     Place with
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       place
-      </span>
-     </code>
-     and Use Object Colors
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#place-objects-with-grid">
-     Place Objects with
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       grid
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#configure-widgets">
-     Configure Widgets
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pop-up-windows">
-   Pop-up Windows
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#default-messages-from-tkinter-messagebox">
-     Default Messages from
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       tkinter.messagebox
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#top-level-custom-pop-ups">
-     Top-level Custom Pop-ups
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#file-dialog-open">
-     File Dialog (Open …)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#quit">
-   Quit
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#learning-success-check-up">
-   Learning Success Check-up
-  </a>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-first-gui">The First GUI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-button-to-call-a-function">Add a Button to Call a Function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-vanilla-tkinter-program">A Vanilla <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> Program</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-script-a-stand-alone-app">Make Script a Stand-alone App</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-widgets">More Widgets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tkinter-variables"><code class="docutils literal notranslate"><span class="pre">tkinter</span></code> Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-place-and-modify-widgets">Design, Place and Modify Widgets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#place-with-place-and-use-object-colors">Place with <code class="docutils literal notranslate"><span class="pre">place</span></code> and Use Object Colors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#place-objects-with-grid">Place Objects with <code class="docutils literal notranslate"><span class="pre">grid</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-widgets">Configure Widgets</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pop-up-windows">Pop-up Windows</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#default-messages-from-tkinter-messagebox">Default Messages from <code class="docutils literal notranslate"><span class="pre">tkinter.messagebox</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-level-custom-pop-ups">Top-level Custom Pop-ups</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-dialog-open">File Dialog (Open …)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quit">Quit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-success-check-up">Learning Success Check-up</a></li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="graphical-user-interfaces-guis">
-<span id="chpt-gui"></span><h1>Graphical User Interfaces (GUIs)<a class="headerlink" href="#graphical-user-interfaces-guis" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="graphical-user-interfaces-guis">
+<span id="chpt-gui"></span><h1>Graphical User Interfaces (GUIs)<a class="headerlink" href="#graphical-user-interfaces-guis" title="Permalink to this headline">#</a></h1>
 <p>Make code user-friendly. For interactive reading and executing code blocks <a class="reference external" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> and find <em>b10-gui.ipynb</em>, or install <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Python</span></a> and <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a> locally.</p>
 <img alt="../_images/hello-gui.png" src="../_images/hello-gui.png" />
 <p>A Graphical User Interface (GUI) facilitates setting input variables of scripts. This is particularly useful for reusing a script that you have written a long time ago, without having to study the whole script again in detail. Although it is arguable whether GUIs are still appropriate in times of web applications, large and in particular copyrighted data must be processed locally. Ultimately, for local data processing, a GUI can be very convenient to run self-written, custom programs.</p>
@@ -997,8 +619,8 @@
 <li><p>Consider using another IDE than Jupyter (e.g., PyCharm, Atom, or Spyder) for running the code blocks provided in this notebook.</p></li>
 </ul>
 </div>
-<div class="section" id="the-first-gui">
-<h2>The First GUI<a class="headerlink" href="#the-first-gui" title="Permalink to this headline">¶</a></h2>
+<section id="the-first-gui">
+<h2>The First GUI<a class="headerlink" href="#the-first-gui" title="Permalink to this headline">#</a></h2>
 <p>The very first step is to <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">tkinter</span></code>, usually using the alias <code class="docutils literal notranslate"><span class="pre">as</span> <span class="pre">tk</span></code>. With <code class="docutils literal notranslate"><span class="pre">tk.Tk()</span></code>, a so-called parent window (e.g., <code class="docutils literal notranslate"><span class="pre">top</span></code>) can be created, in which further elements will be accommodated. All further elements are created as <code class="docutils literal notranslate"><span class="pre">tk</span></code> child-objects of the parent window and placed (arranged) in the parent window using the <code class="docutils literal notranslate"><span class="pre">pack()</span></code> or <code class="docutils literal notranslate"><span class="pre">grid()</span></code> method. Here, we will use <code class="docutils literal notranslate"><span class="pre">pack</span></code> most of the time and <code class="docutils literal notranslate"><span class="pre">grid</span></code> will be useful to place elements at an exact position on the window (e.g., <code class="docutils literal notranslate"><span class="pre">tk.ELEMENT.grid(row=INT,</span> <span class="pre">column=INT)</span></code>). To display the GUI, the parent window <code class="docutils literal notranslate"><span class="pre">top</span></code> must be launched with <code class="docutils literal notranslate"><span class="pre">top.mainloop()</span></code> after arranging all elements. The following code block shows how to create a parent window with a label element (<code class="docutils literal notranslate"><span class="pre">tk.Label</span></code>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1029,9 +651,9 @@
 </div>
 </div>
 <p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-first-config.png" /></p>
-</div>
-<div class="section" id="add-a-button-to-call-a-function">
-<span id="add-button"></span><h2>Add a Button to Call a Function<a class="headerlink" href="#add-a-button-to-call-a-function" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="add-a-button-to-call-a-function">
+<span id="add-button"></span><h2>Add a Button to Call a Function<a class="headerlink" href="#add-a-button-to-call-a-function" title="Permalink to this headline">#</a></h2>
 <p>Currently, the window only shows a (boring) label and waits for events that do not exist. With a <code class="docutils literal notranslate"><span class="pre">tk.Button</span></code> we can add an event trigger, which still needs something to trigger. To this end, define a <code class="docutils literal notranslate"><span class="pre">call_back</span></code> function that creates an infobox, which is an object of <code class="docutils literal notranslate"><span class="pre">showinfo</span></code> from <code class="docutils literal notranslate"><span class="pre">tkinter.messagebox</span></code> (i.e., it needs to be imported).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1058,9 +680,9 @@
 <p class="admonition-title">Note</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">command</span></code> keyword receives a <a class="reference internal" href="pyfun.html#lambda"><span class="std std-ref">lambda</span></a> function that links to the <code class="docutils literal notranslate"><span class="pre">call_back</span></code> function. Why do we need this complication? The answer is that the <code class="docutils literal notranslate"><span class="pre">call_back</span></code> function would be automatically triggered with the <code class="docutils literal notranslate"><span class="pre">mainloop()</span></code> method if we were not using a <code class="docutils literal notranslate"><span class="pre">lambda</span></code> function.</p>
 </div>
-</div>
-<div class="section" id="a-vanilla-tkinter-program">
-<h2>A Vanilla <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> Program<a class="headerlink" href="#a-vanilla-tkinter-program" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="a-vanilla-tkinter-program">
+<h2>A Vanilla <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> Program<a class="headerlink" href="#a-vanilla-tkinter-program" title="Permalink to this headline">#</a></h2>
 <p>The above code blocks instantiate <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> objects (<em>widgets</em>) in non-object-oriented script style. However, when we write a GUI, we most likely want to start an application (<em>App</em>) by running the script. This is why <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> widgets are usually created as objects of custom classes that typically inherit from <code class="docutils literal notranslate"><span class="pre">tk.Frame</span></code>. Therefore, the following code block recasts the previous example into an object-oriented code with the template from the <a class="reference internal" href="classes.html#template"><span class="std std-ref">section on Python classes</span></a>.</p>
 <p>The below example creates a <code class="docutils literal notranslate"><span class="pre">VanillaApp</span></code>, which is a child of <code class="docutils literal notranslate"><span class="pre">tk.Frame</span></code> (<code class="docutils literal notranslate"><span class="pre">tkinters</span></code> <em>master</em> frame). The initialization method <code class="docutils literal notranslate"><span class="pre">__init__</span></code> needs to invoke <code class="docutils literal notranslate"><span class="pre">tk.Frame</span></code> and <code class="docutils literal notranslate"><span class="pre">pack()</span></code> it to initialize the window. After that, we can place other <code class="docutils literal notranslate"><span class="pre">widget</span></code>s such as labels and buttons as before. In the <code class="docutils literal notranslate"><span class="pre">VanillaApp</span></code>, we can also directly implement the above <code class="docutils literal notranslate"><span class="pre">call_back</span></code> function as a method. In addition, make script running stand-alone (not supported by a beautiful Jupyter notebook) by adding an <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;:</span> <span class="pre">VanillaApp().mainloop()</span></code> statement at the bottom of the script (read more about the <code class="docutils literal notranslate"><span class="pre">__main__</span></code> statement in the <a class="reference internal" href="pypckg.html#standalone"><span class="std std-ref">section on packages</span></a>).</p>
 <div class="cell docutils container">
@@ -1090,10 +712,10 @@
 </div>
 </div>
 <p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-vanilla.png" /></p>
-<div class="section" id="make-script-a-stand-alone-app">
-<h3>Make Script a Stand-alone App<a class="headerlink" href="#make-script-a-stand-alone-app" title="Permalink to this headline">¶</a></h3>
+<section id="make-script-a-stand-alone-app">
+<h3>Make Script a Stand-alone App<a class="headerlink" href="#make-script-a-stand-alone-app" title="Permalink to this headline">#</a></h3>
 <p>The above code block providing the <code class="docutils literal notranslate"><span class="pre">VanillaApp</span></code> class can be copied to any external Python file and saved as, for example, <code class="docutils literal notranslate"><span class="pre">vanilla_app.py</span></code>. Next, in <em>Anaconda Prompt</em> (Windows) or <em>Linux Terminal</em> start the GUI as follows (depends on the <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Python installation</span></a> used):</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Activate the required environment, for example:</p>
 <ul class="simple">
 <li><p>Windows/Anaconda: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">flussenv</span></code></p></li>
@@ -1104,10 +726,10 @@
 <li><p>Type <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">vanilla_app.py</span></code> (or <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">vanilla_app.py</span></code>) to launch the GUI.</p></li>
 </ol>
 <p>This sequence of commands can also be written to a batch or bash file (<a class="reference external" href="https://www.wikihow.com/Write-a-Batch-File"><code class="docutils literal notranslate"><span class="pre">.bat</span></code> on Windows</a>) or shell script (<a class="reference external" href="https://www.linux.com/training-tutorials/writing-simple-bash-script/">.sh on Linux/macOS</a> - <a class="reference external" href="http://linuxcommand.org/lc3_writing_shell_scripts.php">alternative documentation</a>). After writing and saving a batch or bash file, double click on the file to start the Python-based GUI.</p>
-</div>
-</div>
-<div class="section" id="more-widgets">
-<h2>More Widgets<a class="headerlink" href="#more-widgets" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="more-widgets">
+<h2>More Widgets<a class="headerlink" href="#more-widgets" title="Permalink to this headline">#</a></h2>
 <p>There are many more widgets than labels and buttons and the below figure features some of them including:</p>
 <ul class="simple">
 <li><p>A definition of the GUI window name with <code class="docutils literal notranslate"><span class="pre">master.title(&quot;Window</span> <span class="pre">name&quot;)</span></code></p></li>
@@ -1218,9 +840,9 @@
 </div>
 </div>
 <p>There are many more options (widgets) available and <a class="reference external" href="http://effbot.org/tkinterbook/">effbot.org</a> provides a detailed overview of available <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> objects.</p>
-</div>
-<div class="section" id="tkinter-variables">
-<h2><code class="docutils literal notranslate"><span class="pre">tkinter</span></code> Variables<a class="headerlink" href="#tkinter-variables" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="tkinter-variables">
+<h2><code class="docutils literal notranslate"><span class="pre">tkinter</span></code> Variables<a class="headerlink" href="#tkinter-variables" title="Permalink to this headline">#</a></h2>
 <p>In the above example, the checkbox receives a <code class="docutils literal notranslate"><span class="pre">tk.BooleanVar()</span></code>, which takes a <code class="docutils literal notranslate"><span class="pre">True</span></code> value when a user checks the checkbox. There are more variables that can be associated with <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> widgets (e.g., <code class="docutils literal notranslate"><span class="pre">tk.Entry</span></code>, <code class="docutils literal notranslate"><span class="pre">tk.Listbox</span></code>, or <code class="docutils literal notranslate"><span class="pre">ttk.Combobox</span></code>). <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> variables correspond basically to <a class="reference internal" href="pybase.html#var"><span class="std std-ref">Python data types</span></a> with special methods that are required to set or retrieve (get) user-defined values of these data types. Here is an overview of <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> variables:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">tk.BooleanVar()</span></code> is a <em>boolean</em> that can be <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code></p></li>
@@ -1286,9 +908,9 @@
 </div>
 </div>
 <p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-variables.png" /></p>
-</div>
-<div class="section" id="design-place-and-modify-widgets">
-<span id="place-widget"></span><h2>Design, Place and Modify Widgets<a class="headerlink" href="#design-place-and-modify-widgets" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="design-place-and-modify-widgets">
+<span id="place-widget"></span><h2>Design, Place and Modify Widgets<a class="headerlink" href="#design-place-and-modify-widgets" title="Permalink to this headline">#</a></h2>
 <p>The above code examples use both the <code class="docutils literal notranslate"><span class="pre">OBJECT.grid()</span></code> and the <code class="docutils literal notranslate"><span class="pre">OBJECT.pack()</span></code> methods (geometry managers) to place widgets in the GUI. There is an additional geometry manager in the form of the <code class="docutils literal notranslate"><span class="pre">place</span></code> method. The choice of a convenient geometry manager depends on your preferences and there are pros and cons for the three geometry managers:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">pack</span></code></p>
@@ -1313,8 +935,8 @@
 </ul>
 <p>To enable more graphical flexibility, widgets accept many optional keywords to change their foreground (<code class="docutils literal notranslate"><span class="pre">fg</span></code>) or background (<code class="docutils literal notranslate"><span class="pre">bg</span></code>) color. In addition, widgets can be modified with the <code class="docutils literal notranslate"><span class="pre">tk.OBJECT.config(PARAMETER_TO_CONMFIGURE=NEW_CONFIG)</span></code> method.</p>
 <p>The following sections provide more details on the <code class="docutils literal notranslate"><span class="pre">place</span></code> and <code class="docutils literal notranslate"><span class="pre">grid</span></code> geometry managers (the relevant functions of <code class="docutils literal notranslate"><span class="pre">pack</span></code> are already above shown: <code class="docutils literal notranslate"><span class="pre">pack()</span></code> -  that is all) and illustrate keyword arguments along with widget methods to modify widgets.</p>
-<div class="section" id="place-with-place-and-use-object-colors">
-<h3>Place with <code class="docutils literal notranslate"><span class="pre">place</span></code> and Use Object Colors<a class="headerlink" href="#place-with-place-and-use-object-colors" title="Permalink to this headline">¶</a></h3>
+<section id="place-with-place-and-use-object-colors">
+<h3>Place with <code class="docutils literal notranslate"><span class="pre">place</span></code> and Use Object Colors<a class="headerlink" href="#place-with-place-and-use-object-colors" title="Permalink to this headline">#</a></h3>
 <p>The simplest geometry manager is the <code class="docutils literal notranslate"><span class="pre">pack</span></code> method, which works even without any keyword provided (see the very first examples in this section). With the <code class="docutils literal notranslate"><span class="pre">pack</span></code> method, widgets can be placed relatively in the window (<code class="docutils literal notranslate"><span class="pre">relx</span></code> and <code class="docutils literal notranslate"><span class="pre">rely</span></code>, where both must be &lt; 1) or with absolute positions (<code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>, where both should fit into the window dimensions defined through <code class="docutils literal notranslate"><span class="pre">self.config(width=INT,</span> <span class="pre">height=INT)</span></code>). The axis origin (zero positions of <em>x</em> and <em>y</em>) are determined with the <code class="docutils literal notranslate"><span class="pre">anchor</span></code> keyword.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1340,9 +962,9 @@
 <p class="admonition-title">Note</p>
 <p>The above example does not create class objects of <code class="docutils literal notranslate"><span class="pre">tk.Labels</span></code>, which makes the labels non-modifiable. This definition of widgets is acceptable to shorten the often long GUI scripts, but only if the widgets should not be modified later.</p>
 </div>
-</div>
-<div class="section" id="place-objects-with-grid">
-<h3>Place Objects with <code class="docutils literal notranslate"><span class="pre">grid</span></code><a class="headerlink" href="#place-objects-with-grid" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="place-objects-with-grid">
+<h3>Place Objects with <code class="docutils literal notranslate"><span class="pre">grid</span></code><a class="headerlink" href="#place-objects-with-grid" title="Permalink to this headline">#</a></h3>
 <p>In <code class="docutils literal notranslate"><span class="pre">grid</span></code>-ed GUIs, the widget alignment can be controlled with the <code class="docutils literal notranslate"><span class="pre">sticky</span></code> argument that uses cardinal directions (e.g., <code class="docutils literal notranslate"><span class="pre">sticky=tk.W</span></code> aligns or “sticks” a widget at the west, meaning, left side, of a GUI). The <code class="docutils literal notranslate"><span class="pre">padx</span></code> and <code class="docutils literal notranslate"><span class="pre">pady</span></code> keywords arguments enable the implementation of pixel space around widgets.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1367,9 +989,9 @@
 </div>
 </div>
 <p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-grid.png" /></p>
-</div>
-<div class="section" id="configure-widgets">
-<h3>Configure Widgets<a class="headerlink" href="#configure-widgets" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="configure-widgets">
+<h3>Configure Widgets<a class="headerlink" href="#configure-widgets" title="Permalink to this headline">#</a></h3>
 <p>Upon user action (an event), we may want to modify previously defined widgets. For instance, we may want to change the text of a label or the layout of a button to indicate successful or failed operations. For this purpose, <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> objects can be modified with <code class="docutils literal notranslate"><span class="pre">tk.OBJECT.config(PARAMETER_TO_CONMFIGURE=NEW_CONFIG)</span></code>. Moreover, objects can be deleted (destroyed) with <code class="docutils literal notranslate"><span class="pre">tk.OBJECT.destroy()</span></code>, even though this is not an elegant method for any other widgets than pop-up windows (child frames of the master frame).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1421,19 +1043,19 @@
 <hr class="docutils" />
 <div class="admonition-challenges admonition">
 <p class="admonition-title">Challenges</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>The roughness value varies as a function of surface characteristics. Can you implement a <code class="docutils literal notranslate"><span class="pre">ttk.Combobox</span></code> to let a user choose a Strickler <em>k<sub>st</sub></em> roughness value between 10 and 85 (integers) and define the channel slope in a <code class="docutils literal notranslate"><span class="pre">tk.Entry</span></code> or a custom pop-up window (see below)?</p></li>
 <li><p>The cross-section averaged flow velocity also depends on the cross-section geometry. Can you implement <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> widgets to enable the definition of a bank slope <code class="docutils literal notranslate"><span class="pre">m</span></code> and channel base width <code class="docutils literal notranslate"><span class="pre">w</span></code> for calculating the hydraulic radius?</p></li>
 </ol>
 </div>
 <hr class="docutils" />
 <p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/flowVariables_xs.png" /></p>
-</div>
-</div>
-<div class="section" id="pop-up-windows">
-<h2>Pop-up Windows<a class="headerlink" href="#pop-up-windows" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="default-messages-from-tkinter-messagebox">
-<h3>Default Messages from <code class="docutils literal notranslate"><span class="pre">tkinter.messagebox</span></code><a class="headerlink" href="#default-messages-from-tkinter-messagebox" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="pop-up-windows">
+<h2>Pop-up Windows<a class="headerlink" href="#pop-up-windows" title="Permalink to this headline">#</a></h2>
+<section id="default-messages-from-tkinter-messagebox">
+<h3>Default Messages from <code class="docutils literal notranslate"><span class="pre">tkinter.messagebox</span></code><a class="headerlink" href="#default-messages-from-tkinter-messagebox" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">tkinter.messagebox</span></code> library provides standard pop-up windows, such as:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">showinfo(title=STR,</span> <span class="pre">message=STR)</span></code> that prints an information message (see above examples).</p></li>
@@ -1444,9 +1066,9 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">askokcancel(title=STR,</span> <span class="pre">message=STR)</span></code> that returns <code class="docutils literal notranslate"><span class="pre">False</span></code> or <code class="docutils literal notranslate"><span class="pre">True</span></code> depending on a user’s answers to an <em>OK</em> question.</p></li>
 </ul>
 <p>Read more about default pop-up windows in the <a class="reference external" href="https://docs.python.org/3.9/library/tkinter.messagebox.html">Python docs</a>.</p>
-</div>
-<div class="section" id="top-level-custom-pop-ups">
-<h3>Top-level Custom Pop-ups<a class="headerlink" href="#top-level-custom-pop-ups" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="top-level-custom-pop-ups">
+<h3>Top-level Custom Pop-ups<a class="headerlink" href="#top-level-custom-pop-ups" title="Permalink to this headline">#</a></h3>
 <p>The default windows may not meet the needs for every application, for instance, to invite users to enter a custom value. In this case, a <code class="docutils literal notranslate"><span class="pre">tk.Toplevel</span></code> object aids to produce a customized pop-up window and the below example shows how a customized top-level pop-up window can be called within a method. With the <code class="docutils literal notranslate"><span class="pre">tk.Toplevel</span></code> widget and the <code class="docutils literal notranslate"><span class="pre">tk.Frame</span></code> (master) widgets, the code block produces two frames, in which buttons, labels, or any other <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> object can be placed. The very first argument of any <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> widget-object created determines whether the object is placed in the master or the top-level frame. For example, <code class="docutils literal notranslate"><span class="pre">tk.Entry(self).pack()</span></code> creates an entry in the master <code class="docutils literal notranslate"><span class="pre">tk.Frame</span></code>, and <code class="docutils literal notranslate"><span class="pre">tk.Entry(pop_up).pack()</span></code> creates an entry in the child <code class="docutils literal notranslate"><span class="pre">tk.Toplevel</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1485,9 +1107,9 @@
 </div>
 </div>
 <p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-popup-custom.png" /></p>
-</div>
-<div class="section" id="file-dialog-open">
-<h3>File Dialog (Open …)<a class="headerlink" href="#file-dialog-open" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="file-dialog-open">
+<h3>File Dialog (Open …)<a class="headerlink" href="#file-dialog-open" title="Permalink to this headline">#</a></h3>
 <p>When a custom function’s argument is a file or file name, we most likely want the user to be able to select the file type needed. The <a class="reference external" href="https://docs.python.org/3.10/library/dialog.html#module-tkinter.filedialog">tkinter.filedialog</a> library provides methods to let users choose general or specific file types. Specific file types can be defined with the <code class="docutils literal notranslate"><span class="pre">filetypes=(&quot;Name&quot;,</span> <span class="pre">&quot;*.ending&quot;)</span></code> (or <code class="docutils literal notranslate"><span class="pre">filetypes=(&quot;Name&quot;,</span> <span class="pre">&quot;*.ending1;*.ending2;...&quot;)</span></code> for multiple file types) keyword argument. The following example illustrates the usage of <code class="docutils literal notranslate"><span class="pre">tkinter.filedialog</span></code>’s <code class="docutils literal notranslate"><span class="pre">askopenfilename</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1518,10 +1140,10 @@
 </div>
 </div>
 <p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-filedialog.png" /></p>
-</div>
-</div>
-<div class="section" id="quit">
-<h2>Quit<a class="headerlink" href="#quit" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="quit">
+<h2>Quit<a class="headerlink" href="#quit" title="Permalink to this headline">#</a></h2>
 <p>To cleanly quit a GUI, use <code class="docutils literal notranslate"><span class="pre">tk.Frame.quit()</span></code> (i.e., in a custom class, write <code class="docutils literal notranslate"><span class="pre">self.quit()</span></code> or <code class="docutils literal notranslate"><span class="pre">master.quit()</span></code>). The above example of the <code class="docutils literal notranslate"><span class="pre">PopApp</span></code> class also features the <code class="docutils literal notranslate"><span class="pre">destroy()</span></code> method, which helps to remove particular widgets.</p>
 <p><code class="docutils literal notranslate"><span class="pre">tkinter</span></code> provides many more options such as the implementation of tabs with <code class="docutils literal notranslate"><span class="pre">ttk.Notebook()</span></code> (requires <a class="reference external" href="https://effbot.org/tkinterbook/tkinter-events-and-bindings.htm">binding</a> of tab objects), tables (<code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">tkintertable</span> <span class="pre">import</span> <span class="pre">TableCanvas,</span> <span class="pre">TableModel</span></code>), or interactive graphic objects with <a class="reference internal" href="pyplot.html#matplotlib"><span class="std std-ref">matplotib</span></a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span>
@@ -1536,16 +1158,16 @@
 <p class="admonition-title">Exercise</p>
 <p>Get familiar with creating GUIs and object orientation in the <a class="reference internal" href="../exercises/ex-gui.html#ex-gui"><span class="std std-ref">GUI exercise</span></a>.</p>
 </div>
-</div>
-<div class="section" id="learning-success-check-up">
-<h2>Learning Success Check-up<a class="headerlink" href="#learning-success-check-up" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="learning-success-check-up">
+<h2>Learning Success Check-up<a class="headerlink" href="#learning-success-check-up" title="Permalink to this headline">#</a></h2>
 <p>Take the <a class="reference external" href="https://forms.gle/zdxuwmEBz8D1GjQN9">learning success test for this Jupyter notebook</a>.</p>
 <div class="tip dropdown admonition">
 <p class="admonition-title">Unfold QR Code</p>
 <img alt="../_images/gle-gui.png" src="../_images/gle-gui.png" />
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1559,7 +1181,7 @@
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./jupyter"
         },
         predefinedOutput: true
@@ -1567,46 +1189,120 @@
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="pystyle.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Code Style and Conventions</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="pystyle.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Code Style and Conventions</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="../exercises/python-exercises.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="../exercises/python-exercises.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Python Exercises</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-        
-        </div>
-    </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Sebastian Schwindt, Ricardo Barros<br/>
-        
-            &copy; Copyright 2023.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-first-gui">The First GUI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-button-to-call-a-function">Add a Button to Call a Function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-vanilla-tkinter-program">A Vanilla <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> Program</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-script-a-stand-alone-app">Make Script a Stand-alone App</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-widgets">More Widgets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tkinter-variables"><code class="docutils literal notranslate"><span class="pre">tkinter</span></code> Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-place-and-modify-widgets">Design, Place and Modify Widgets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#place-with-place-and-use-object-colors">Place with <code class="docutils literal notranslate"><span class="pre">place</span></code> and Use Object Colors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#place-objects-with-grid">Place Objects with <code class="docutils literal notranslate"><span class="pre">grid</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-widgets">Configure Widgets</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pop-up-windows">Pop-up Windows</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#default-messages-from-tkinter-messagebox">Default Messages from <code class="docutils literal notranslate"><span class="pre">tkinter.messagebox</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-level-custom-pop-ups">Top-level Custom Pop-ups</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-dialog-open">File Dialog (Open …)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quit">Quit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-success-check-up">Learning Success Check-up</a></li>
+</ul>
+  </nav></div>
 
-      </div>
-    </div>
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By Sebastian Schwindt, Ricardo Barros
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

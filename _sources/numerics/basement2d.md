@@ -498,7 +498,8 @@ For running the *Python* script on any platform:
 
 In detail, this looks as follows:
 
-````{tabbed} Windows / conda
+`````{tab-set}
+````{tab-item} Windows / conda
 Launch *Windows* or *Anaconda Prompt* and tap (requires that the conda environment {ref}`flussenv <conda-quick>` is installed):
 ```
 conda activate flussenv
@@ -507,7 +508,7 @@ python BMv3NodestringResults.py
 ```
 ````
 
-````{tabbed} Linux / pip
+````{tab-item} Linux / pip
 Launch *Linux Terminal* and tap (requires that the pip environment {ref}`vflussenv <pip-quick>` is installed in the HOME directory):
 ```
 cd ~
@@ -518,6 +519,7 @@ python BMv3NodestringResults.py
 
 If {ref}`vflussenv <pip-quick>` is installed in another directory than HOME, replace `cd ~` in the first line of the above code block with the parent installation directory of {ref}`vflussenv <pip-quick>`.
 ````
+`````
 
 {numref}`Figure %s <export-py>` illustrates running *BMv3NodestringResults.py* on *Windows* in *Anaconda Prompt*.
 
