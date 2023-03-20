@@ -39,7 +39,7 @@ Once you installed QGIS, launch the program and walk through the following steps
 
 
 ```{hint}
-All files created in this tutorial can be downloaded [here](https://github.com/Ecohydraulics/qgis-tutorial).
+All files created in this tutorial can be downloaded from the {{ qgis_tutorial_repo }}.
 ```
 
 (qgis-tbx-install)=
