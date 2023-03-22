@@ -592,7 +592,7 @@ document.write(`
 <p>The mesh contains regions, which need to be defined in the model setup:</p>
 <ul class="simple">
 <li><p><strong>Right-click</strong> on <strong>GEOMETRY</strong> &gt; <strong>Add item REGIONDEF</strong></p></li>
-<li><p><strong>Add 5 region items</strong> by <strong>right-clicking</strong> on the new <strong>REGIONDEF</strong> entry &gt; <strong>Add item</strong>. The number of regions should correspond to the regions defined in the <a class="reference internal" href="pre-qgis-bm.html#region-defs"><span class="std std-ref">pre-processing tutorial</span></a> (see also <a class="reference internal" href="#region-defs-bm"><span class="std std-numref">Tab. 4</span></a>).</p></li>
+<li><p><strong>Add 5 region items</strong> by <strong>right-clicking</strong> on the new <strong>REGIONDEF</strong> entry &gt; <strong>Add item</strong>. The number of regions should correspond to the regions defined in the <a class="reference internal" href="pre-qgis-bm.html#region-defs"><span class="std std-ref">pre-processing tutorial</span></a> (see also <a class="reference internal" href="#region-defs-bm"><span class="std std-numref">Tab. 5</span></a>).</p></li>
 <li><p>Define the five regions by a <strong>right-click</strong> on <strong>index</strong> &gt; <strong>Add item</strong>.</p>
 <ul>
 <li><p>Every <strong>index</strong> item gets an integer number assigned corresponding to the <strong>MATID</strong> field in the region points shapefile (see the <a class="reference internal" href="pre-qgis-bm.html#regions"><span class="std std-ref">Region Markers</span></a> section in the <a class="reference internal" href="pre-qgis-bm.html#qgis-prepro-bm"><span class="std std-ref">Pre-processing with QGIS</span></a> tutorial).</p></li>
@@ -600,9 +600,9 @@ document.write(`
 </ul>
 </li>
 </ul>
-<p><a class="reference internal" href="#region-defs-bm"><span class="std std-numref">Table 4</span></a> summarizes the required region definitions. With the regions and the mesh file defined, the GEOMETRY group should resemble <a class="reference internal" href="#bm-regions"><span class="std std-numref">Fig. 45</span></a>.</p>
+<p><a class="reference internal" href="#region-defs-bm"><span class="std std-numref">Table 5</span></a> summarizes the required region definitions. With the regions and the mesh file defined, the GEOMETRY group should resemble <a class="reference internal" href="#bm-regions"><span class="std std-numref">Fig. 45</span></a>.</p>
 <table class="table" id="region-defs-bm">
-<caption><span class="caption-number">Table 4 </span><span class="caption-text">REGIONDEF items and their definitions to be defined in BASEMENT’s model setup.</span><a class="headerlink" href="#region-defs-bm" title="Permalink to this table">#</a></caption>
+<caption><span class="caption-number">Table 5 </span><span class="caption-text">REGIONDEF items and their definitions to be defined in BASEMENT’s model setup.</span><a class="headerlink" href="#region-defs-bm" title="Permalink to this table">#</a></caption>
 <colgroup>
 <col style="width: 17%" />
 <col style="width: 17%" />
@@ -717,15 +717,15 @@ document.write(`
 <li><p><strong>default_friction</strong> = 30.0</p></li>
 <li><p><strong>type</strong> = <code class="docutils literal notranslate"><span class="pre">strickler</span></code></p></li>
 </ul>
-<p>Next, assign region-specific Strickler values for the five regions defined in <a class="reference internal" href="#region-defs-bm"><span class="std std-numref">Tab. 4</span></a>:</p>
+<p>Next, assign region-specific Strickler values for the five regions defined in <a class="reference internal" href="#region-defs-bm"><span class="std std-numref">Tab. 5</span></a>:</p>
 <ul class="simple">
 <li><p><strong>Right-click</strong> on <strong>FRICTION</strong> &gt; <strong>Add item regions</strong>.</p></li>
 <li><p><strong>Right-click</strong> on the new <strong>regions</strong> item and select <strong>Add item</strong> (<strong>five times</strong> for the five regions).</p></li>
-<li><p>Assign the <strong>friction</strong> and <strong>region_def</strong> values listed in <a class="reference internal" href="#region-kst"><span class="std std-numref">Tab. 5</span></a> to the <strong>five regions items</strong>.</p></li>
+<li><p>Assign the <strong>friction</strong> and <strong>region_def</strong> values listed in <a class="reference internal" href="#region-kst"><span class="std std-numref">Tab. 6</span></a> to the <strong>five regions items</strong>.</p></li>
 <li><p>Set the <strong>type</strong> of the five regions to <strong>“strickler”</strong>.</p></li>
 </ul>
 <table class="table" id="region-kst">
-<caption><span class="caption-number">Table 5 </span><span class="caption-text">Strickler values for HYDRAULIC FRICTION regions.</span><a class="headerlink" href="#region-kst" title="Permalink to this table">#</a></caption>
+<caption><span class="caption-number">Table 6 </span><span class="caption-text">Strickler values for HYDRAULIC FRICTION regions.</span><a class="headerlink" href="#region-kst" title="Permalink to this table">#</a></caption>
 <colgroup>
 <col style="width: 17%" />
 <col style="width: 17%" />

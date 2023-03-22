@@ -1,18 +1,23 @@
 (qgis-tutorial)=
 # QGIS Tutorial
 
-```{admonition} Requirements
+````{admonition} Requirements
 This tutorial is designed for **beginners** and has embedded videos featuring the text descriptions in every section. Before diving into this tutorial make sure to install {ref}`QGIS <qgis-install>`.
-```
 
-To get ready, watch the following video and/or make sure to install {ref}`qgis-install` (detailed instructions).
+
+```{admonition} Expand to watch the video for installing QGIS
+:class: dropdown, tip
+Find for explanation in the {ref}`qgis-install` section in this eBook.
 
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/_0_NOKi-RxY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Sebastian Schwindt <a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
+
+```
 
 ```{admonition} If you read: *Videos not showing up (Firefox Can’t Open This Page)*...
 :class: attention, dropdown
 If videos are not displaying, this might be caused by strict privacy settings. To resolve the issue, either open the video links by clicking on the **Open Site in New Window** button or by changing browser privacy settings (e.g., in [Mozilla Firefox](https://support.mozilla.org/en-US/questions/1108783)).
 ```
+````
 
 (qgis-project)=
 ## First Project
@@ -112,21 +117,38 @@ To add a base map (e.g., satellite data, streets, or administrative boundaries),
 Add a base map to QGIS: (1) locate the Browser (2) right-click on XYZ-Tiles and select New Connection... (3) enter a Name and a URL (see below table) for the new connection, click OK (4) drag and drop the new tile (here: Google Satellite) into the Layers Panel.
 ```
 
+```{admonition} Expand to watch the video tutorial on basemaps
+:class: tip, dropdown
+
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/GJsiEdMzCeQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
-
+```
 
 The following URL can be used for retrieving online XYZ tiles (more URLs can be found on the internet).
 
-| Provider (Layer Name) | URL                                                                                              |
-|-----------------------|--------------------------------------------------------------------------------------------------|
-| ESRI World Imagery    | `https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}`  |
-| ESRI Street           | `https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}` |
-| ESRI Topo             | `https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}`   |
-| Google Satellite      | `https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}`                                               |
-| Google Street         | `https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}`                                               |
-| OpenStreetMap (OSM)   | `http://tile.openstreetmap.org/{z}/{x}/{y}.png`                                                    |
-| OSM Black and White   | `http://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png`                                               |
+````{div} full-width
+```{list-table} Providers of XYZ basemap tiles
+:header-rows: 1
+:name: basemap-providers
+
+* - Provider (Layer Name)
+  - URL
+* - ESRI World Imagery
+  - ```https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}```
+* - ESRI Street
+  - `https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}`
+* - ESRI Topo
+  - `https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}`
+* - Google Satellite
+  - `https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}`
+* - Google Street
+  - `https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}`
+* - OpenStreetMap (OSM)
+  - `http://tile.openstreetmap.org/{z}/{x}/{y}.png`
+* - OSM Black and White
+  - `http://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png`
+```
+````
 
 ```{admonition} Coordinate reference systems of basemaps
 :class: tip
@@ -405,8 +427,8 @@ Afterward, log out and re-login to your system (i.e., reload `.bashrc`). The com
 
 Make sure your system knows the where PyGIS lives by adding the following line to the Environment Variables (Windows 10: **My Computer** > **Properties** > **Advanced System Settings** > **Environment Variables**). Replace `<qgispath>` with the path where QGIS lives on your system.
 
-* Variable name = PYTHONPATH
-* Variable value = C:\<qgispath>\python
+* Variable name = `PYTHONPATH`
+* Variable value = `C:\<qgispath>\python`
 
 Or use the Windows prompt:
 
