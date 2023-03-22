@@ -1098,42 +1098,17 @@ When <code class="docutils literal notranslate"><span class="pre">config.py</spa
 <section id="bluekenue-windows-or-linux-wine">
 <span id="bluekenue"></span><h3>BlueKenue (Windows or Linux+Wine)<a class="headerlink" href="#bluekenue-windows-or-linux-wine" title="Permalink to this headline">#</a></h3>
 <p><em><strong>Estimated duration: 10 minutes.</strong></em></p>
-<p><a class="reference external" href="https://nrc.canada.ca/en/research-development/products-services/software-applications/blue-kenuetm-software-tool-hydraulic-modellers">BlueKenue</a><sup>TM</sup> is a pre- and post-processing software provided by the <a class="reference external" href="https://nrc.canada.ca/en">National Research Council Canada</a>, which is compatible with TELEMAC. It provides similar functions as the <a class="reference external" href="http://www.opentelemac.org/index.php/latest-news-development-and-distribution/240-fudaa-mascaret-3-6">Fudaa</a> software featured by the TELEMAC developers and additionally comes with a powerful mesh generator. It is in particular for the mesh generator that you want to install BlueKenue<sup>TM</sup>. The only drawback is that BlueKenue<sup>TM</sup> is designed for <em>Windows</em>. So there are two options for installing BlueKenue<sup>TM</sup>:</p>
+<p><a class="reference external" href="https://nrc.canada.ca/en/research-development/products-services/software-applications/blue-kenuetm-software-tool-hydraulic-modellers">BlueKenue</a><sup>TM</sup> is a pre- and post-processing software provided by the <a class="reference external" href="https://nrc.canada.ca/en">National Research Council Canada</a>, which is compatible with TELEMAC. It provides similar functions as the <a class="reference external" href="http://www.opentelemac.org/index.php/latest-news-development-and-distribution/240-fudaa-mascaret-3-6">Fudaa</a> software featured by the TELEMAC developers and additionally comes with a powerful mesh generator. It is particularly for the mesh generator that you want to install BlueKenue<sup>TM</sup> after <a class="reference external" href="https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/Installer/BlueKenue_3.12.0-alpha+20201006_64bit.msi">downloading the latest version</a> (login details in the <a class="reference external" href="http://www.opentelemac.org/index.php/assistance/forum5/blue-kenue">Telemac Forum</a>). Next, there are two options for installing BlueKenue<sup>TM</sup> depending on your platform:</p>
 <ol class="arabic simple">
-<li><p>TELEMAC is running on a Debian Linux VM and your host system is <em>Windows</em>:<br><a class="reference external" href="https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/Installer/BlueKenue_3.12.0-alpha+20201006_64bit.msi">Download</a> (login details in the <a class="reference external" href="http://www.opentelemac.org/index.php/assistance/forum5/blue-kenue">Telemac Forum</a>) and install BlueKenue<sup>TM</sup> on <em>Windows</em> and use the <a class="reference internal" href="vm.html#vm-share"><span class="std std-ref">shared folder</span></a> of the VM to transfer mesh files.</p></li>
-<li><p>Use <a class="reference external" href="https://wiki.debian.org/Wine"><em>Wine</em></a> (compatibility layer in <em>Linux</em> that enables running <em>Windows</em> applications) to install BlueKenue<sup>TM</sup> on <em>Linux</em>.</p></li>
+<li><p>On Windows: directly use the BLueKenue (<code class="docutils literal notranslate"><span class="pre">.msi</span></code>) installer.</p></li>
+<li><p>On Linux: use <a class="reference external" href="https://wiki.debian.org/Wine">Wine amd64</a> through <a class="reference internal" href="vm.html#play-on-linux"><span class="std std-ref">PlayOneLinux</span></a> to install BlueKenue<sup>TM</sup> on <em>Linux</em>. For Ubuntu (Debian) - based Linux, the <a class="reference internal" href="vm.html#play-on-linux"><span class="std std-ref">PlayOnLinux</span></a> section in this eBook provides detailed instructions. Direct installation of BlueKenue through Wine only is discouraged because of severe compatibility issues.</p></li>
 </ol>
-<p>Here are the steps for installing BlueKenue<sup>TM</sup> on Debian Linux with <a class="reference internal" href="vm.html#wine"><span class="std std-ref">wine</span></a>:</p>
+<p>Note the typical installation directories of BlueKenue<sup>TM</sup> executable are:</p>
 <ul class="simple">
-<li><p>Make sure to install <a class="reference internal" href="vm.html#wine"><span class="std std-ref">wine</span></a> (Virtual Machines chapter).</p></li>
-<li><p>Download the BlueKenue<sup>TM</sup> <em>msi</em> installer (<strong>32-bit</strong>) from the <a class="reference external" href="https://nrc.canada.ca/en/research-development/products-services/software-applications/blue-kenuetm-software-tool-hydraulic-modellers">developer’s website</a> (follow the instructions on the website - <a class="reference external" href="https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/Installer/BlueKenue_3.3.4_32bit.msi">direct download</a>).</p></li>
-<li><p>Step-wise approach: Go to <a class="reference external" href="https://chyms.nrc.gc.ca">https://chyms.nrc.gc.ca</a> and log in with the login details provided in the <a class="reference external" href="http://www.opentelemac.org/index.php/community-old/forum4/blue-kenue/12464-4-ways-to-report-bugs-and-suggestions-for-blue-kenue">Telemac User Forum</a>.</p></li>
+<li><p>32-bit version is typically installed in <code class="docutils literal notranslate"><span class="pre">&quot;C:\\Program</span> <span class="pre">Files</span> <span class="pre">(x86)\\CHC\\BlueKenue\\BlueKenue.exe&quot;</span></code></p></li>
+<li><p>64-bit version is typically installed in <code class="docutils literal notranslate"><span class="pre">&quot;C:\\Program</span> <span class="pre">Files\\CHC\\BlueKenue\\BlueKenue.exe&quot;</span></code></p></li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The latest 64-bit version (or any 64-bit version) will not install with <em>wine</em>. <strong>Make sure to use the 32-bit installer.</strong></p>
-</div>
-<ul class="simple">
-<li><p>Install BlueKenue<sup>TM</sup> by using the <em>Wine</em>: In Terminal type <code class="docutils literal notranslate"><span class="pre">wine</span> <span class="pre">control</span></code>.</p></li>
-<li><p>After running <code class="docutils literal notranslate"><span class="pre">wine</span> <span class="pre">control</span></code> in Terminal, a windows-like window opens.</p></li>
-<li><p>Click on the <em>Add/Remove…</em> button in the window, which opens up another window (<em>Add/Remove Programs</em>).</p></li>
-<li><p>Click on the <em>Install…</em> button and select the downloaded <em>msi</em> installer for BlueKenue<sup>TM</sup>.</p></li>
-<li><p>Follow the instructions to install BlueKenue<sup>TM</sup> for <em>Everyone</em> (all users) and create a <em>Desktop Icon</em>.</p></li>
-</ul>
-<p>After the successful installation, launch BlueKenue<sup>TM</sup> with <em>Wine</em> (read more about starting <em>Windows</em> applications through <a class="reference internal" href="vm.html#wine"><span class="std std-ref">wine in the Virtual Machines chapter</span></a>):</p>
-<ul class="simple">
-<li><p>In Terminal type <code class="docutils literal notranslate"><span class="pre">wine</span> <span class="pre">explorer</span></code></p></li>
-<li><p>In the <em>Wine Explorer</em> window, navigate to <em>Desktop</em> and find the BlueKenue shortcut.</p></li>
-<li><p>Start BlueKenue by double-clicking on the shortcut.</p></li>
-<li><p>Alternatively, identify the installation path and the BlueKenue<sup>TM</sup> executable.</p>
-<ul>
-<li><p>The 32-bit version is typically installed in <code class="docutils literal notranslate"><span class="pre">&quot;C:\\Program</span> <span class="pre">Files</span> <span class="pre">(x86)\\CHC\\BlueKenue\\BlueKenue.exe&quot;</span></code>.</p></li>
-<li><p>The 64-bit version is typically installed in <code class="docutils literal notranslate"><span class="pre">&quot;C:\\Program</span> <span class="pre">Files\\CHC\\BlueKenue\\BlueKenue.exe&quot;</span></code>.</p></li>
-<li><p>Start BlueKenue<sup>TM</sup> with <code class="docutils literal notranslate"><span class="pre">wine</span> <span class="pre">&quot;C:\\Program</span> <span class="pre">Files\\CHC\\BlueKenue\\BlueKenue.exe&quot;</span></code>.</p></li>
-</ul>
-</li>
-</ul>
-<p>The Canadian Hydrological Model Stewardship (CHyMS) provides more guidance for installing BlueKenue<sup>TM</sup> on other platforms than <em>Windows</em> on their <a class="reference external" href="https://chyms.nrc.gc.ca/docs/FAQ.html">FAQ</a> page in the troubleshooting section (<a class="reference external" href="https://chyms.nrc.gc.ca/docs/FAQ.html#troubleshooting-how-run-on-another-os">direct link to <em>how to run Blue Kenue on another operating system</em></a>).</p>
+<p>Additionally, the Canadian Hydrological Model Stewardship (CHyMS) provides more guidance for installing BlueKenue<sup>TM</sup> on other platforms than <em>Windows</em> on their <a class="reference external" href="https://chyms.nrc.gc.ca/docs/FAQ.html">FAQ</a> page in the troubleshooting section (<a class="reference external" href="https://chyms.nrc.gc.ca/docs/FAQ.html#troubleshooting-how-run-on-another-os">direct link to <em>how to run Blue Kenue on another operating system</em></a>).</p>
 </section>
 <section id="fudaa-prepro-linux-and-windows">
 <span id="fudaa"></span><h3>Fudaa-PrePro (Linux and Windows)<a class="headerlink" href="#fudaa-prepro-linux-and-windows" title="Permalink to this headline">#</a></h3>

@@ -655,38 +655,17 @@ Note that *DEMto3D* will be available in the *Raster* menu: *DEMto3D* > *DEM 3D 
 
 ***Estimated duration: 10 minutes.***
 
-[BlueKenue](https://nrc.canada.ca/en/research-development/products-services/software-applications/blue-kenuetm-software-tool-hydraulic-modellers)<sup>TM</sup> is a pre- and post-processing software provided by the [National Research Council Canada](https://nrc.canada.ca/en), which is compatible with TELEMAC. It provides similar functions as the [Fudaa](http://www.opentelemac.org/index.php/latest-news-development-and-distribution/240-fudaa-mascaret-3-6) software featured by the TELEMAC developers and additionally comes with a powerful mesh generator. It is in particular for the mesh generator that you want to install BlueKenue<sup>TM</sup>. The only drawback is that BlueKenue<sup>TM</sup> is designed for *Windows*. So there are two options for installing BlueKenue<sup>TM</sup>:
+[BlueKenue](https://nrc.canada.ca/en/research-development/products-services/software-applications/blue-kenuetm-software-tool-hydraulic-modellers)<sup>TM</sup> is a pre- and post-processing software provided by the [National Research Council Canada](https://nrc.canada.ca/en), which is compatible with TELEMAC. It provides similar functions as the [Fudaa](http://www.opentelemac.org/index.php/latest-news-development-and-distribution/240-fudaa-mascaret-3-6) software featured by the TELEMAC developers and additionally comes with a powerful mesh generator. It is particularly for the mesh generator that you want to install BlueKenue<sup>TM</sup> after [downloading the latest version](https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/Installer/BlueKenue_3.12.0-alpha+20201006_64bit.msi) (login details in the [Telemac Forum](http://www.opentelemac.org/index.php/assistance/forum5/blue-kenue)). Next, there are two options for installing BlueKenue<sup>TM</sup> depending on your platform:
 
-1. TELEMAC is running on a Debian Linux VM and your host system is *Windows*:<br>[Download](https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/Installer/BlueKenue_3.12.0-alpha+20201006_64bit.msi) (login details in the [Telemac Forum](http://www.opentelemac.org/index.php/assistance/forum5/blue-kenue)) and install BlueKenue<sup>TM</sup> on *Windows* and use the {ref}`shared folder <vm-share>` of the VM to transfer mesh files.
-1. Use [*Wine*](https://wiki.debian.org/Wine) (compatibility layer in *Linux* that enables running *Windows* applications) to install BlueKenue<sup>TM</sup> on *Linux*.
+1. On Windows: directly use the BLueKenue (`.msi`) installer.
+1. On Linux: use [Wine amd64](https://wiki.debian.org/Wine) through {ref}`PlayOneLinux <play-on-linux>` to install BlueKenue<sup>TM</sup> on *Linux*. For Ubuntu (Debian) - based Linux, the {ref}`PlayOnLinux <play-on-linux>` section in this eBook provides detailed instructions. Direct installation of BlueKenue through Wine only is discouraged because of severe compatibility issues.
 
-Here are the steps for installing BlueKenue<sup>TM</sup> on Debian Linux with {ref}`wine <wine>`:
+Note the typical installation directories of BlueKenue<sup>TM</sup> executable are:
 
-* Make sure to install {ref}`wine <wine>` (Virtual Machines chapter).
-* Download the BlueKenue<sup>TM</sup> *msi* installer (**32-bit**) from the [developer's website](https://nrc.canada.ca/en/research-development/products-services/software-applications/blue-kenuetm-software-tool-hydraulic-modellers) (follow the instructions on the website - [direct download](https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/Installer/BlueKenue_3.3.4_32bit.msi)).
-* Step-wise approach: Go to [https://chyms.nrc.gc.ca](https://chyms.nrc.gc.ca) and log in with the login details provided in the [Telemac User Forum](http://www.opentelemac.org/index.php/community-old/forum4/blue-kenue/12464-4-ways-to-report-bugs-and-suggestions-for-blue-kenue).
+* 32-bit version is typically installed in `"C:\\Program Files (x86)\\CHC\\BlueKenue\\BlueKenue.exe"`
+* 64-bit version is typically installed in `"C:\\Program Files\\CHC\\BlueKenue\\BlueKenue.exe"`
 
-```{note}
-The latest 64-bit version (or any 64-bit version) will not install with *wine*. **Make sure to use the 32-bit installer.**
-```
-
-* Install BlueKenue<sup>TM</sup> by using the *Wine*: In Terminal type `wine control`.
-* After running `wine control` in Terminal, a windows-like window opens.
-* Click on the *Add/Remove...* button in the window, which opens up another window (*Add/Remove Programs*).
-* Click on the *Install...* button and select the downloaded *msi* installer for BlueKenue<sup>TM</sup>.
-* Follow the instructions to install BlueKenue<sup>TM</sup> for *Everyone* (all users) and create a *Desktop Icon*.
-
-After the successful installation, launch BlueKenue<sup>TM</sup> with *Wine* (read more about starting *Windows* applications through {ref}`wine in the Virtual Machines chapter <wine>`):
-
-* In Terminal type `wine explorer`
-* In the *Wine Explorer* window, navigate to *Desktop* and find the BlueKenue shortcut.
-* Start BlueKenue by double-clicking on the shortcut.
-* Alternatively, identify the installation path and the BlueKenue<sup>TM</sup> executable.
-    + The 32-bit version is typically installed in `"C:\\Program Files (x86)\\CHC\\BlueKenue\\BlueKenue.exe"`.
-    + The 64-bit version is typically installed in `"C:\\Program Files\\CHC\\BlueKenue\\BlueKenue.exe"`.
-    + Start BlueKenue<sup>TM</sup> with `wine "C:\\Program Files\\CHC\\BlueKenue\\BlueKenue.exe"`.
-
-The Canadian Hydrological Model Stewardship (CHyMS) provides more guidance for installing BlueKenue<sup>TM</sup> on other platforms than *Windows* on their [FAQ](https://chyms.nrc.gc.ca/docs/FAQ.html) page in the troubleshooting section ([direct link to *how to run Blue Kenue on another operating system*](https://chyms.nrc.gc.ca/docs/FAQ.html#troubleshooting-how-run-on-another-os)).
+Additionally, the Canadian Hydrological Model Stewardship (CHyMS) provides more guidance for installing BlueKenue<sup>TM</sup> on other platforms than *Windows* on their [FAQ](https://chyms.nrc.gc.ca/docs/FAQ.html) page in the troubleshooting section ([direct link to *how to run Blue Kenue on another operating system*](https://chyms.nrc.gc.ca/docs/FAQ.html#troubleshooting-how-run-on-another-os)).
 
 (fudaa)=
 ### Fudaa-PrePro (Linux and Windows)
