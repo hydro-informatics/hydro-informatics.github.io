@@ -206,7 +206,7 @@ Lidar
 Limnophile
   The term limnophile is used as a noun in reference to species that prefer to live in calm waters. Thus, limnophilous species, such as common rudd (*Scardinius erythrophthalmus*), colonize slow-flowing to stagnant fresh water regions. Unlike limnophilous species, reophilic species prefer fast flowing regions (see also {term}`Reophile`).
 
-  *French: inconnue <br>German: Limnophil*
+  *French: <br>German: limnophil*
 
 LU decomposition
   A lower-upper (LU) decomposition applies to the solution of linear systems (matrices) by re-organizing a matrix of equations into an upper and a lower triangular matrix. Thus, LU decomposition is a form of Gaussian elimination, which is typically applied in numerical analysis (e.g., {ref}`Telemac2d <tm2d-solver-pars>`) or machine learning.
@@ -249,7 +249,7 @@ Rating curve
 Reophile
   The term reophile is used as a noun in reference to species that prefer to live in fast-flowing water. In addition, a distinction is made between reophilic A and B species. Reophilic A species (e.g., brown/river trout *Salmo trutta (fario)* or minnow *Phoxinus phoxinus*) colonize the main stream of a river at all lifestages. Reophilic B species (e.g., gudgeon *Gobio gobio*) occupy calmer flow regions (e.g., oxbows) in some lifestages. Unlike reophilic species, limnophilic species (e.g., common rudd *Scardinius erythrophthalmus*) prefer calm (stagnant) flow regions (see also {term}`Limnophile`).
 
-  *French: inconnue <br>German: Reophil*
+  *French: <br>German: reophil*
 
 Reynolds number
   The Reynolds number $Re$ relates viscous forces to inertia and is a key parameter for flow turbulence {cite:p}`chow59`:

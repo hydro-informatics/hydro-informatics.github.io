@@ -483,7 +483,7 @@ The installation examples feature the meshing tool BlueKenue, which enables us t
 `````{tab-set}
 ````{tab-item} PlayOnLinux
 :name: play-on-linux
-On top of wine, the currently maybe best available frameworks is [playonlinux](https://www.playonlinux.com), which can be installed as follows:
+On top of wine, the currently maybe best available frameworks is [PlayOnLinux](https://www.playonlinux.com), which can be installed as follows:
 
 ```
 sudo apt install winbind playonlinux winetricks -y 
