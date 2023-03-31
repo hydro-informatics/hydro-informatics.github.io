@@ -282,11 +282,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-
-
-
-
-
 <li class="toctree-l3"><a class="reference internal" href="of-tutorial-multiphase-run.html">Run OpenFOAM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="of-tutorial-multiphase-post.html">Post-processing</a></li>
 </ul>
@@ -518,12 +513,15 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-constant-subdirectory">The <em>Constant</em> Subdirectory</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-system-directory">The <em>System</em> Directory</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-0-directory">The <em>0</em> Directory</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#u-field-dictionary"><strong>U field Dictionary</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#p-rgh-field-dictionary"><strong>p-rgh field dictionary</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#nut-field-dictionary"><strong>nut field Dictionary</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#k-field-dictionary"><strong>k field Dictionary</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#epsilon-field-dictionary"><strong>epsilon field Dictionary</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#alpha-water-field-dictionary"><strong>alpha.water field Dictionary</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-dictionaries">Variable Dictionaries</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#u-field-dictionary">U field Dictionary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#p-rgh-field-dictionary">p-rgh field dictionary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nut-field-dictionary">nut field Dictionary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-field-dictionary">k field Dictionary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#epsilon-field-dictionary">epsilon field Dictionary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alpha-water-field-dictionary">alpha.water field Dictionary</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
@@ -597,7 +595,7 @@ document.write(`
 </figure>
 <p>In the <em>turbulenceProperties</em> files, the turbulence model is defined. OpenFOAM includes support for the following types of turbulence modeling:</p>
 <ul class="simple">
-<li><p>Reynolds Averaged (Navier-Stokes) Simulation (RANS, referred to as RAS in OpenFOAM),</p></li>
+<li><p><a class="reference internal" href="../../documentation/glossary.html#term-RANS"><span class="xref std std-term">Reynolds Averaged (Navier-Stokes)</span></a> Simulation (RANS, referred to as RAS in OpenFOAM),</p></li>
 <li><p>Detached Eddy Simulation (DES), and</p></li>
 <li><p>Large Eddy Simulation (LES)</p></li>
 </ul>
@@ -718,7 +716,7 @@ document.write(`
 <span class="n">maxDeltaT</span>       <span class="mf">1.0</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>The <em>fvSchemes</em> dictionary in the system directory sets the numerical schemes for the terms that appear in the application that is being run. For the time schemes <em>ddtSchemes</em>, apart from the first-order accurate Euler scheme, other options are for instance the second-order Crank-Nicholson and backward schemes. The gradient schemes <em>gradSchemes</em> are then defined. The available schemes are the Gauss gradient scheme and the Least-squares gradient scheme. The interpolation scheme can be either cell-based linear (linear) or point-based linear (pointLinear) or least squares (leastSquares). The divergence scheme to be used can be defined with the <em>divSchemes</em> keyword. Detailed information regarding the available options and corresponding syntax can be found in the <a class="reference external" href="https://www.openfoam.com/documentation/guides/latest/doc/guide-schemes-divergence.html">divergence schemes</a> section of the <a class="reference external" href="https://foam.sourceforge.net/docs/Guides-a4/OpenFOAMUserGuide-A4.pdf">OpenFOAM User Guide</a>. For the <em>laplacianSchemes</em>, all options are based on the application of the Gauss theorem, requiring thus an interpolation scheme to transform the coefficients from cell values to the faces, and a surface-normal gradient scheme. The <em>interpolationSchemes</em> are required to transform cell-centre quantities to face centres Several interpolation schemes are available, from the ones based uniquely on the geometry to for example convection schemes that are a function of the local flow.</p>
+<p>The <em>fvSchemes</em> dictionary in the system directory sets the numerical schemes for the terms that appear in the application that is being run. For the time schemes <em>ddtSchemes</em>, apart from the first-order accurate Euler scheme, other options are for instance the second-order Crank-Nicholson and backward schemes. The gradient schemes <em>gradSchemes</em> are then defined. The available schemes are the Gauss gradient scheme and the Least-squares gradient scheme. The interpolation scheme can be either cell-based linear (linear) or point-based linear (pointLinear) or least squares (leastSquares). The divergence scheme to be used can be defined with the <em>divSchemes</em> keyword. Detailed information regarding the available options and corresponding syntax can be found in the <a class="reference external" href="https://www.openfoam.com/documentation/guides/latest/doc/guide-schemes-divergence.html">divergence schemes</a> section of the <a class="reference external" href="https://foam.sourceforge.net/docs/Guides-a4/OpenFOAMUserGuide-A4.pdf">OpenFOAM User Guide</a>. For the <em>laplacianSchemes</em>, all options are based on the application of the Gauss theorem, requiring thus an interpolation scheme to transform the coefficients from cell values to the faces, and a surface-normal gradient scheme. The <em>interpolationSchemes</em> are required to transform cell-centre quantities to face centers. Several interpolation schemes are available, from the ones based uniquely on the geometry to, for example, <a class="reference internal" href="../../documentation/glossary.html#term-Convection"><span class="xref std std-term">convection</span></a> schemes that are a function of the local flow.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ddtSchemes</span>
 <span class="p">{</span>    <span class="n">default</span>         <span class="n">Euler</span><span class="p">;}</span>
 
@@ -748,7 +746,7 @@ document.write(`
 </pre></div>
 </div>
 <p>The <em>fvSolution</em> files contains a set of sub-dictionaries that are specific to the solver being run. Additionally, there is also a set of standard sub-dictionaries, including the <em>solvers</em>, <em>relaxationFactors</em>, <em>PISO</em> and <em>SIMPLE</em>, that cover most of the ones used by the standard solvers. An example of the set of entries required for the interFoam solver can be found in the <a class="reference external" href="https://github.com/hydro-informatics/openfoam.git">case folder</a> (<em>Simulation</em> folder).  A detailed overview of all available options can be found in the <a class="reference external" href="https://foam.sourceforge.net/docs/Guides-a4/OpenFOAMUserGuide-A4.pdf">OpenFOAM User Guide</a> (<a class="reference external" href="https://www.openfoam.com/documentation/user-guide/6-solving/6.3-solution-and-algorithm-control">Solution and Algorithm Control</a>).</p>
-<p>The <em>setFieldsDict</em> allows the user to assign a certain value to a selected set of cells/patch-faces. For the present tutorial this dictionary was used to assign an initial water level to the inlet of the model. Multiple options are available for selecting the cells of interest. In the example shown below the <em>boxToCell</em> option was selected, which selects all cells whose cell centre is located inside the given bounding box.</p>
+<p>The <em>setFieldsDict</em> allows the user to assign a certain value to a selected set of cells/patch-faces. For the present tutorial this dictionary was used to assign an initial water level to the inlet of the model. Multiple options are available for selecting the cells of interest. In the example shown below the <em>boxToCell</em> option was selected, which selects all cells whose cell center is located inside the given bounding box.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">defaultFieldValues</span>
 <span class="p">(</span>
     <span class="n">volScalarFieldValue</span> <span class="n">alpha</span><span class="o">.</span><span class="n">water</span> <span class="mi">0</span>
@@ -797,10 +795,12 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="the-0-directory">
 <h1>The <em>0</em> Directory<a class="headerlink" href="#the-0-directory" title="Permalink to this headline">#</a></h1>
-<p>The <em>0</em> directory is the time directory containing the files describing the initial conditions of the simulation. Inside this directory one text file for each field that is required for the interFoam solver executable is stored. In the present case these files include: <em>U</em> for the flow velocity, <em>p-rgh</em> for the dynamic pressure, <em>nut</em> for the turbulent viscosity, <em>k</em> for the turbulent kinetic energy, <em>epsilon</em> for the rate of dissipation of turbulent kinetic energy and  <em>alpha.water.orig</em> for the initial phases. The complete version of the files used for this tutorial can be found in the <a class="reference external" href="https://github.com/hydro-informatics/openfoam.git">case folder</a>.</p>
+<p>The <em>0</em> directory is the time directory containing the files describing the initial conditions of the simulation. Inside this directory one text file for each field that is required for the interFoam solver executable is stored. In the present case these files include: <span class="math notranslate nohighlight">\(U\)</span> for the flow velocity, <em>p-rgh</em> for the dynamic pressure, <em>nut</em> for the turbulent viscosity, <span class="math notranslate nohighlight">\(k\)</span> for the <a class="reference internal" href="../../documentation/glossary.html#term-Turbulent-kinetic-energy"><span class="xref std std-term">turbulent kinetic energy</span></a>, <span class="math notranslate nohighlight">\(\epsilon\)</span> for the rate of dissipation of turbulent kinetic energy and  <em>alpha.water.orig</em> for the initial phases. The complete version of the files used for this tutorial can be found in the <a class="reference external" href="https://github.com/hydro-informatics/openfoam.git">case folder</a>.</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="u-field-dictionary">
-<h1><strong>U field Dictionary</strong><a class="headerlink" href="#u-field-dictionary" title="Permalink to this headline">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="variable-dictionaries">
+<h1>Variable Dictionaries<a class="headerlink" href="#variable-dictionaries" title="Permalink to this headline">#</a></h1>
+<section id="u-field-dictionary">
+<h2>U field Dictionary<a class="headerlink" href="#u-field-dictionary" title="Permalink to this headline">#</a></h2>
 <p>This dictionary defines the boundary conditions and initial set up for the vector field U. For the <em>internalField</em> uniform initial conditions with a value of (0 0 0) were set. For all remaining walls and patches, the following were assigned:</p>
 <ul class="simple">
 <li><p><strong>Air patch</strong> : <em>pressureInletOutletVelocity</em> condition, which assigns a zero gradient condition to the flow out of the domain and a velocity based on the flux in the patch-normal direction to the flow into the domain.</p></li>
@@ -848,8 +848,8 @@ document.write(`
 </pre></div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="p-rgh-field-dictionary">
-<h1><strong>p-rgh field dictionary</strong><a class="headerlink" href="#p-rgh-field-dictionary" title="Permalink to this headline">#</a></h1>
+<section id="p-rgh-field-dictionary">
+<h2>p-rgh field dictionary<a class="headerlink" href="#p-rgh-field-dictionary" title="Permalink to this headline">#</a></h2>
 <p>This dictionary defines the boundary conditions and initial set up for the dimensional field p-rgh, expressed in Pa. The <em>internalField</em> was initialized with a 0 value in the entire domain. The remaining fields were set as follows:</p>
 <ul class="simple">
 <li><p><strong>Air patch</strong>: the <em>totalPressure</em> was assigned. This condition sets the static pressure at the patch based on the specification of the total pressure and it allows to adequately represent the atmospheric pressure.</p></li>
@@ -899,11 +899,11 @@ document.write(`
 </pre></div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="nut-field-dictionary">
-<h1><strong>nut field Dictionary</strong><a class="headerlink" href="#nut-field-dictionary" title="Permalink to this headline">#</a></h1>
+<section id="nut-field-dictionary">
+<h2>nut field Dictionary<a class="headerlink" href="#nut-field-dictionary" title="Permalink to this headline">#</a></h2>
 <p>This dictionary defines the boundary conditions and initial set up for the turbulent viscosity nut, expressed in m<span class="math notranslate nohighlight">\(^2\)</span>/s. The <em>internalField</em> was initialized with a 0 value in the entire domain. The remaining fields were set as shown below:</p>
 <ul class="simple">
-<li><p><strong>Air, Inlet and Outlet patch</strong>: the condition was set to <em>calculated</em>, meaning that no value is prescribed and that it is calculated from the turbulence model and the values for k and epsilon in this case.</p></li>
+<li><p><strong>Air, Inlet and Outlet patch</strong>: the condition was set to <em>calculated</em>, meaning that no value is prescribed and that it is calculated from the turbulence model and the values for <span class="math notranslate nohighlight">\(k\)</span> (<a class="reference internal" href="../../documentation/glossary.html#term-Turbulent-kinetic-energy"><span class="xref std std-term">turbulent kinetic energy</span></a>) and <span class="math notranslate nohighlight">\(\epsilon\)</span> in this case.</p></li>
 <li><p><strong>All remaining walls</strong>: the <em>nutkRoughWallFunction</em> boundary condition was applied.</p></li>
 </ul>
 <p>This boundary condition provides a wall constraint on the turbulent viscosity. This allows to account for the effects of roughness. The implementation of the different materials present in the model was done by defining the different roughness heights ks (e.g., 0.0052 for the concrete walls).</p>
@@ -958,9 +958,9 @@ document.write(`
 </pre></div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="k-field-dictionary">
-<h1><strong>k field Dictionary</strong><a class="headerlink" href="#k-field-dictionary" title="Permalink to this headline">#</a></h1>
-<p>This dictionary defines the boundary conditions and initial set up for the turbulent kinetic energy k, expressed in m<sup>2</sup>/s. The <em>internalField</em> was initialized with a uniform value in the entire domain. The remaining fields were set as shown below:</p>
+<section id="k-field-dictionary">
+<h2>k field Dictionary<a class="headerlink" href="#k-field-dictionary" title="Permalink to this headline">#</a></h2>
+<p>This dictionary defines the boundary conditions and initial set up for the <a class="reference internal" href="../../documentation/glossary.html#term-Turbulent-kinetic-energy"><span class="xref std std-term">turbulent kinetic energy</span></a> <span class="math notranslate nohighlight">\(k\)</span>, expressed in m<sup>2</sup>/s. The <em>internalField</em> was initialized with a uniform value in the entire domain. The remaining fields were set as shown below:</p>
 <ul class="simple">
 <li><p><strong>Air and Outlet patch</strong>: the condition was set to <em>inletOutlet</em>, which corresponds to the <em>zeroGradient</em> condition, with the exception of the case in which the velocity vector next to the boundary is directed inside the domain. In the latter case it switches to a <em>fixedValue</em> condition.</p></li>
 <li><p><strong>Inlet patch</strong>: in this case the assigned boundary condition was <em>fixedValue</em>. The corresponding value was the one assigned to the internalField.</p></li>
@@ -1014,9 +1014,9 @@ boundaryField
 </pre></div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="epsilon-field-dictionary">
-<h1><strong>epsilon field Dictionary</strong><a class="headerlink" href="#epsilon-field-dictionary" title="Permalink to this headline">#</a></h1>
-<p>This dictionary defines the boundary conditions and initial set up for the rate of dissipation of turbulent kinetic energy epsilon, expressed in m<sup>2</sup>/s<sup>3</sup>. The <em>internalField</em> was initialized with a uniform value in the entire domain. The remaining fields were set as shown below:</p>
+<section id="epsilon-field-dictionary">
+<h2>epsilon field Dictionary<a class="headerlink" href="#epsilon-field-dictionary" title="Permalink to this headline">#</a></h2>
+<p>This dictionary defines the boundary conditions and initial set up for the rate of dissipation <span class="math notranslate nohighlight">\(\epsilon\)</span> of <a class="reference internal" href="../../documentation/glossary.html#term-Turbulent-kinetic-energy"><span class="xref std std-term">turbulent kinetic energy</span></a>, expressed in m<sup>2</sup>/s<sup>3</sup>. The <em>internalField</em> was initialized with a uniform value in the entire domain. The remaining fields were set as shown below:</p>
 <ul class="simple">
 <li><p><strong>Air and Outlet patch</strong>: the condition was set to <em>inletOutlet</em> as described above for <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
 <li><p><strong>Inlet patch</strong>: also in this case the boundary condition assigned to the <em>inlet</em> patch was <em>fixedValue</em>, corresponding to the internalField value.</p></li>
@@ -1068,11 +1068,11 @@ boundaryField
 </pre></div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="alpha-water-field-dictionary">
-<h1><strong>alpha.water field Dictionary</strong><a class="headerlink" href="#alpha-water-field-dictionary" title="Permalink to this headline">#</a></h1>
+<section id="alpha-water-field-dictionary">
+<h2>alpha.water field Dictionary<a class="headerlink" href="#alpha-water-field-dictionary" title="Permalink to this headline">#</a></h2>
 <p>This dictionary defines the boundary conditions and initial conditions for the non-dimensional field alpha.water. The <em>internalField</em> was initialized with a uniform value equal to 0 in the entire domain, meaning no water is present in the domain at time 0. The water will then be initialized running the <em>setFields</em> command with the settings defined in the corresponding dictionary. The remaining fields were set as shown below:</p>
 <ul class="simple">
-<li><p><strong>Air patch</strong>: the condition was set to <em>inletOutlet</em> which avoid the possibility of water back-flowing into the domain. In the case in which th flow is exiting, a <em>zeroGradient</em> condition is applied and if the flow is returning a value equal to the one defined as <em>inletValue</em>.</p></li>
+<li><p><strong>Air patch</strong>: the condition was set to <em>inletOutlet</em> which avoid the possibility of water back-flowing into the domain. In the case in which the flow is exiting, a <em>zeroGradient</em> condition is applied and if the flow is returning a value equal to the one defined as <em>inletValue</em>.</p></li>
 <li><p><strong>Inlet patch</strong>: also in this case the boundary condition assigned was <em>fixedValue</em>, corresponding to a uniform value of 1, meaning the entire patch is only composed by water (no air phase present).</p></li>
 <li><p><strong>Outlet patch and all remaining walls</strong>: a <em>zeroGradient</em> boundary condition was applied. In this case the internal values are extrapolated to the boundary face.</p></li>
 </ul>
@@ -1117,6 +1117,7 @@ boundaryField
 <span class="p">}</span>
 </pre></div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1184,12 +1185,15 @@ boundaryField
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-constant-subdirectory">The <em>Constant</em> Subdirectory</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-system-directory">The <em>System</em> Directory</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-0-directory">The <em>0</em> Directory</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#u-field-dictionary"><strong>U field Dictionary</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#p-rgh-field-dictionary"><strong>p-rgh field dictionary</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#nut-field-dictionary"><strong>nut field Dictionary</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#k-field-dictionary"><strong>k field Dictionary</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#epsilon-field-dictionary"><strong>epsilon field Dictionary</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#alpha-water-field-dictionary"><strong>alpha.water field Dictionary</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-dictionaries">Variable Dictionaries</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#u-field-dictionary">U field Dictionary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#p-rgh-field-dictionary">p-rgh field dictionary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nut-field-dictionary">nut field Dictionary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-field-dictionary">k field Dictionary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#epsilon-field-dictionary">epsilon field Dictionary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alpha-water-field-dictionary">alpha.water field Dictionary</a></li>
+</ul>
+</li>
 </ul>
 
   </nav></div>

@@ -3,7 +3,7 @@ This chapter is developed by {{ scolari }}.
 
 # Multiphase Solver (interFoam Tutorial)
 
-In this tutorial we will solve a problem of a 50-m long straight channel with two basins, one smaller one at the inlet and a larger one at the outlet, and an obstacle located in the middle. 
+In this tutorial we will solve a problem of a 50-m long straight channel with two basins, one smaller one at the inlet, and a larger one at the outlet, and an obstacle located in the middle. 
 
 ```{figure} ../../img/openfoam/blender/study-area.png
 :alt: openfoam 
@@ -12,7 +12,7 @@ In this tutorial we will solve a problem of a 50-m long straight channel with tw
 3D view of the analyzed structure.
 ```
 
-In this case we will use the multiphase solver interFoam coupled with a k-epsilon turbulence model. interFoam identifies the water-air interface based on the Volume of Fluid (VOF) method, which solves the transport equations for a single or multiple phase fractions alpha, where alpha is 0.5 at the interface between the fluids. (cf. [OpenFOAM Standard Solvers](https://www.openfoam.com/documentation/user-guide/a-reference/a.1-standard-solvers)). Additionally, we will focus on the implementation of multiple roughness zones related to the engineered and nature-oriented elements present in the model, and we will apply a specific roughness height. 
+In this case, we will use the multiphase solver interFoam coupled with a {term}`k <Turbulent kinetic energy>` - $\epsilon$ (epsilon) turbulence model. interFoam identifies the water-air interface based on the Volume of Fluid (VOF) method, which solves the transport equations for a single or multiple phase fractions alpha, where alpha is 0.5 at the interface between the fluids. (cf. [OpenFOAM Standard Solvers](https://www.openfoam.com/documentation/user-guide/a-reference/a.1-standard-solvers)). Additionally, we will focus on the implementation of multiple roughness zones related to the engineered and nature-oriented elements present in the model, and we will apply a specific roughness height. 
 
 ```{figure} ../../img/openfoam/blender/channel-view2-final.png
 :alt: openfoam 

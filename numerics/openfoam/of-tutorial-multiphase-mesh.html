@@ -280,11 +280,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-
-
-
-
-
 <li class="toctree-l3"><a class="reference internal" href="of-tutorial-multiphase-run.html">Run OpenFOAM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="of-tutorial-multiphase-post.html">Post-processing</a></li>
 </ul>
@@ -532,7 +527,7 @@ document.write(`
   <p>This chapter is developed by <a class="reference external" href="https://www.iws.uni-stuttgart.de/institut/team/Scolari/">Federica Scolari</a>.</p>
 <section class="tex2jax_ignore mathjax_ignore" id="geometry-and-mesh-generation">
 <h1>Geometry and Mesh Generation<a class="headerlink" href="#geometry-and-mesh-generation" title="Permalink to this headline">#</a></h1>
-<p>The mesh is an essential part of the numerical solution and must meet certain criteria in order to guarantee a valid and precise solution. The following section describes the the <a class="reference external" href="https://www.openfoam.com/documentation/user-guide/4-mesh-generation-and-conversion/4.4-mesh-generation-with-the-snappyhexmesh-utility">snappyHexMesh utility</a> for creating 3D meshes containing hexahedral and split-hexahedral cells from triangulated surface geometries.</p>
+<p>The mesh is an essential part of the numerical solution and must meet certain criteria in order to guarantee a valid and precise solution. The following section describes the the <a class="reference external" href="https://www.openfoam.com/documentation/user-guide/4-mesh-generation-and-conversion/4.4-mesh-generation-with-the-snappyhexmesh-utility">snappyHexMesh utility</a> for creating 3d meshes containing hexahedral and split-hexahedral cells from triangulated surface geometries.</p>
 <p>Further details regarding the mesh specification and validity constraints can be found in <a class="reference external" href="https://www.openfoam.com/documentation/user-guide/4-mesh-generation-and-conversion/4.1-mesh-description#x11-290004.1">Chapter 4</a> of the <a class="reference external" href="https://foam.sourceforge.net/docs/Guides-a4/OpenFOAMUserGuide-A4.pdf">OpenFOAM User Guide</a>. In order to run snappyHexMesh, in addition to an existing geometry base mesh, the following files are required:</p>
 <figure class="align-default" id="of-folder-structure">
 <img alt="openfoam" src="../../_images/folder-structure.png" />
@@ -543,7 +538,7 @@ document.write(`
 <p>The following sections describe the steps that need to be followed.</p>
 <section id="creation-of-the-background-hex-mesh">
 <h2>Creation of the Background Hex Mesh<a class="headerlink" href="#creation-of-the-background-hex-mesh" title="Permalink to this headline">#</a></h2>
-<p>Before being able to run snappyHexMesh, a background mesh characterized by hexahedral cells has to be created. This mesh needs to contain the entire region that wants to be meshes with snappyHexMesh, as shown in the figure below.</p>
+<p>Before being able to run <em>snappyHexMesh</em>, a background mesh characterized by hexahedral cells has to be created. This mesh needs to contain the entire region that wants to be meshes with <em>snappyHexMesh</em>, as shown in the figure below.</p>
 <figure class="align-default" id="of-block-mesh-init">
 <img alt="openfoam" src="../../_images/block-mesh-init.png" />
 <figcaption>

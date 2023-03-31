@@ -14,9 +14,9 @@ The case featured in this tutorial was established with the following software:
 A hydro-morphodynamic simulation implies modeling runoff-driven **{term}`Sediment transport`** processes. The previous sections in this eBook focus on hydrodynamics defined as *the study of liquids in motion* and this section focuses on **morphodynamics** defined as **the study of time-dependent changes in the forms of alluvial beds and their underlying processes**.
 
 (gaia-seditrans)=
-## Sediment Transport, Gaia, and Sisyphe
+## Sediment Transport Modes
 
-TELEMAC has a dedicated module called Gaia for modeling morphodynamics. Gaia enables modeling sediment transport and morphological evolution (i.e., {term}`Topographic change`) in rivers, lakes, and estuaries. It comes with particular routines to consider a spatio-temporal variation of grain sizes, grading curves, and riverbed layering for simulating sediment transport in the form of **{term}`Bedload` (coarse sediment)** and/or **{term}`Suspended load` (fine sediment)**. {term}`Bedload` is calculated by solving semi-empiric equations, such as the {cite:t}`meyer-peter_formulas_1948` formula (read more later in this tutorial). {term}`Suspended load` is modeled by solving the {term}`Advection`-{term}`Diffusion` equations, require closures for sediment erosion and deposition fluxes. {numref}`Figure %s <bl-vs-sl>` qualitatively illustrates the two basic modes of sediment transport in the form of suspended load and bedload.
+TELEMAC has a dedicated module called Gaia for modeling morphodynamics. Gaia enables modeling sediment transport and morphological evolution (i.e., {term}`Topographic change`) in rivers, lakes, and estuaries. It comes with particular routines to consider a spatio-temporal variation of grain sizes, grading curves, and riverbed layering for simulating sediment transport in the form of **{term}`Bedload` (coarse sediment)** and/or **{term}`Suspended load` (fine sediment)**. {term}`Bedload` is calculated by solving semi-empiric equations, such as the {cite:t}`meyer-peter_formulas_1948` formula (read more later in this tutorial). {term}`Suspended load` is modeled by solving the {term}`Advection`-{term}`Diffusion` equations (typically, the {term}`RANS` form), require closures for sediment erosion and deposition fluxes. {numref}`Figure %s <bl-vs-sl>` qualitatively illustrates the two basic modes of sediment transport in the form of suspended load and bedload. Whether a particle is transported in suspension or as bedload can also be determined by calculating of the {term}`Rouse number`.
 
 ```{figure} https://github.com/Ecohydraulics/media/raw/main/png/sediment-transport.png
 :alt: sediment transport bedload suspended load
@@ -29,14 +29,15 @@ Sediment is further distinguished between very fine, **cohesive** sediment and c
 
 The recruitment of sediment for both suspended load and bedload transport requires a detailed look at the riverbed, which will be provided later in the section on the definition of {ref}`the riverbed composition and the active layer <gaia-active-lyr>`.
 
-```{dropdown} The difference between Gaia and SISYPHE
-To get specifications beyond the features presented here in the TELEMAC documentation and the TELEMAC forum, it is useful to know that there has been a predecessor module of Gaia called SISYPHE. SISYPHE and its routines are still available in recent TELEMAC versions in addition to and through Gaia. Although the use of SISYPHE routines through Gaia with functional enhancements require adjustments of some keywords. Read more in the {{ gaia }} in Appendix 8.1 and in the [gaia.dico](http://svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/sources/gaia/gaia.dico) file (lives in the TELEMAC installation directory: `telemac/v8p2/sources/gaia/gaia.dico`).
-```
 
 (tm-coupling)=
 ## Coupling TELEMAC and Gaia
 
 The morphodynamics module Gaia can be internally **coupled** with the hydrodynamic models Telemac2d (solving the {term}`Shallow water equations`) or Telemac3d (solving the Reynolds-averaged {term}`Navier-Stokes (RANS) equations <Navier-Stokes equations>`). This section explains types of coupling Telemac2d/Telemac3d (hydrodynamics) with Gaia (morphodynamics).
+
+### From Sisyphe to Gaia
+
+Sisyphe is the traditional sediment transport module in TELEMAC, which has already largely been replaced by the more logical Gaia module. To get specifications beyond the features presented here in the TELEMAC documentation and the TELEMAC forum, it is useful to know that there has been a predecessor module of Gaia called SISYPHE. SISYPHE and its routines are still available in recent TELEMAC versions in addition to and through Gaia. Although the use of SISYPHE routines through Gaia with functional enhancements require adjustments of some keywords. Read more in the {{ gaia }} in Appendix 8.1 and in the [gaia.dico](http://svn.opentelemac.org/svn/opentelemac/tags/v8p2r1/sources/gaia/gaia.dico) file (lives in the TELEMAC installation directory: `telemac/v8p2/sources/gaia/gaia.dico`).
 
 ### Coupling Hydrodynamics (Telemac2d/3d) and Morphodynamics (Gaia)
 

@@ -3,7 +3,7 @@ This chapter is developed by {{ scolari }}.
 
 # Geometry and Mesh Generation
 
-The mesh is an essential part of the numerical solution and must meet certain criteria in order to guarantee a valid and precise solution. The following section describes the the [snappyHexMesh utility](https://www.openfoam.com/documentation/user-guide/4-mesh-generation-and-conversion/4.4-mesh-generation-with-the-snappyhexmesh-utility) for creating 3D meshes containing hexahedral and split-hexahedral cells from triangulated surface geometries.
+The mesh is an essential part of the numerical solution and must meet certain criteria in order to guarantee a valid and precise solution. The following section describes the the [snappyHexMesh utility](https://www.openfoam.com/documentation/user-guide/4-mesh-generation-and-conversion/4.4-mesh-generation-with-the-snappyhexmesh-utility) for creating 3d meshes containing hexahedral and split-hexahedral cells from triangulated surface geometries.
 
 Further details regarding the mesh specification and validity constraints can be found in [Chapter 4](https://www.openfoam.com/documentation/user-guide/4-mesh-generation-and-conversion/4.1-mesh-description#x11-290004.1) of the {{ of_usr }}. In order to run snappyHexMesh, in addition to an existing geometry base mesh, the following files are required:
 
@@ -17,7 +17,7 @@ Case directory containing the files necessary to run snappyHexMesh.
 The following sections describe the steps that need to be followed.
 
 ## Creation of the Background Hex Mesh
-Before being able to run snappyHexMesh, a background mesh characterized by hexahedral cells has to be created. This mesh needs to contain the entire region that wants to be meshes with snappyHexMesh, as shown in the figure below.
+Before being able to run *snappyHexMesh*, a background mesh characterized by hexahedral cells has to be created. This mesh needs to contain the entire region that wants to be meshes with *snappyHexMesh*, as shown in the figure below.
 
 
 ```{figure} ../../img/openfoam/snappyHexMesh/block-mesh-init.png

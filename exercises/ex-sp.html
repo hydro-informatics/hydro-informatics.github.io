@@ -282,11 +282,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-
-
-
-
-
 <li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-run.html">Run OpenFOAM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-post.html">Post-processing</a></li>
 </ul>
@@ -562,7 +557,7 @@ document.write(`
 <h2>Theory<a class="headerlink" href="#theory" title="Permalink to this headline">#</a></h2>
 <p>Seasonal storage reservoirs retain water during wet months (e.g., monsoon, or rainy winters in Mediterranean climates) to ensure sufficient drinking water and agricultural supply during dry months. For this purpose, enormous storage volumes are necessary, which often exceed 1,000,000 m<span class="math notranslate nohighlight">\(^3\)</span>.</p>
 <p>The necessary storage volume is determined from historical inflow measurements and target discharge volumes (e.g., agriculture, drinking water, hydropower, or ecological residual water quantities).
-The sequent peak algorithm <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id1342" title="Kenneth W. Potter. Sequent Peak Procedure: Minimum Reservoir Capacity Subject to Constraint on Final Storage. JAWRA Journal of the American Water Resources Association, 13(3):521–528, 1977. URL: https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1752-1688.1977.tb05564.x (visited on 2021-06-07), doi:10.1111/j.1752-1688.1977.tb05564.x.">Pot77</a>]</span> based on <span id="id2">Rippl [<a class="reference internal" href="../documentation/bibliography.html#id1343" title="W Rippl. The capacity of storage-reservoirs for water-slpply. (including plate). Minutes of the Proceedings of the Institution of Civil Engineers, 71(1883):270–278, January 1883. Publisher: ICE Publishing. URL: https://www.icevirtuallibrary.com/doi/10.1680/imotp.1883.21797 (visited on 2021-06-07), doi:10.1680/imotp.1883.21797.">Rip83</a>]</span> is a decades-old procedure for determining the necessary seasonal storage volume based on a storage volume curve (<em><strong>SD curve</strong></em>). The below figure shows an exemplary <span class="math notranslate nohighlight">\(SD\)</span> curve with volume peaks (local maxima) approximately every 6 months and local volume minima between the peaks. The volume between the last local maximum and the lowest following local minimum determines the required storage volume (see the bright-blue line in the figure).</p>
+The sequent peak algorithm <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id1341" title="Kenneth W. Potter. Sequent Peak Procedure: Minimum Reservoir Capacity Subject to Constraint on Final Storage. JAWRA Journal of the American Water Resources Association, 13(3):521–528, 1977. URL: https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1752-1688.1977.tb05564.x (visited on 2021-06-07), doi:10.1111/j.1752-1688.1977.tb05564.x.">Pot77</a>]</span> based on <span id="id2">Rippl [<a class="reference internal" href="../documentation/bibliography.html#id1342" title="W Rippl. The capacity of storage-reservoirs for water-slpply. (including plate). Minutes of the Proceedings of the Institution of Civil Engineers, 71(1883):270–278, January 1883. Publisher: ICE Publishing. URL: https://www.icevirtuallibrary.com/doi/10.1680/imotp.1883.21797 (visited on 2021-06-07), doi:10.1680/imotp.1883.21797.">Rip83</a>]</span> is a decades-old procedure for determining the necessary seasonal storage volume based on a storage volume curve (<em><strong>SD curve</strong></em>). The below figure shows an exemplary <span class="math notranslate nohighlight">\(SD\)</span> curve with volume peaks (local maxima) approximately every 6 months and local volume minima between the peaks. The volume between the last local maximum and the lowest following local minimum determines the required storage volume (see the bright-blue line in the figure).</p>
 <figure class="align-default" id="sequentpeak">
 <img alt="sequent peak algorithm" src="https://github.com/Ecohydraulics/media/raw/main/png/sequent_peak.png" />
 <figcaption>

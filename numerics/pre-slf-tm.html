@@ -280,11 +280,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-
-
-
-
-
 <li class="toctree-l3"><a class="reference internal" href="openfoam/of-tutorial-multiphase-run.html">Run OpenFOAM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="openfoam/of-tutorial-multiphase-post.html">Post-processing</a></li>
 </ul>
@@ -710,7 +705,7 @@ document.write(`
 <figure class="align-default" id="tm-shapefiles">
 <img alt="qgis telemac basemesh point line shapefiles" src="../_images/tm-prepro-illu.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 67 </span><span class="caption-text">The breaklines, liquid boundaries, and region points shapefile to draw for creating a 2dm quality mesh with the BASEmesh plugin (background map: <span id="id1">Google [<a class="reference internal" href="../documentation/bibliography.html#id1370" title="Google. Google Satellite imagery. nd. URL: https://mt1.google.com/vt/lyrs=s&amp;x={x}&amp;y={y}&amp;z={z}.">Goond</a>]</span> satellite imagery).</span><a class="headerlink" href="#tm-shapefiles" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 67 </span><span class="caption-text">The breaklines, liquid boundaries, and region points shapefile to draw for creating a 2dm quality mesh with the BASEmesh plugin (background map: <span id="id1">Google [<a class="reference internal" href="../documentation/bibliography.html#id1369" title="Google. Google Satellite imagery. nd. URL: https://mt1.google.com/vt/lyrs=s&amp;x={x}&amp;y={y}&amp;z={z}.">Goond</a>]</span> satellite imagery).</span><a class="headerlink" href="#tm-shapefiles" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="breaklines-and-model-outline">
@@ -856,7 +851,7 @@ document.write(`
 </section>
 <section id="quality-meshing-2dm">
 <span id="tm-qualm"></span><h2>Quality Meshing (*.2dm)<a class="headerlink" href="#quality-meshing-2dm" title="Permalink to this headline">#</a></h2>
-<p><em>BASEmesh</em>’s quality mesh tool creates a computationally efficient triangular mesh based on <span id="id2">Shewchuk [<a class="reference internal" href="../documentation/bibliography.html#id1341" title="Jonathan Richard Shewchuk. Triangle: Engineering a 2D quality mesh generator and Delaunay triangulator. In Ming C. Lin and Dinesh Manocha, editors, Applied Computational Geometry Towards Geometric Engineering, Lecture Notes in Computer Science, 203–222. Berlin, Heidelberg, 1996. Springer. URL: https://link.springer.com/chapter/10.1007/BFb0014497, doi:10.1007/BFb0014497.">She96</a>]</span> and within the above-defined model boundaries. The tool associates mesh properties with the regions shapefile, but it does not include elevation data. Thus, after generating a quality mesh in <a class="reference internal" href="../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> format, elevation information needs to be added with the BlueKenue<sup>TM</sup> software. To generate the quality mesh, open BASEmesh’s <strong>QUALITY MESHING</strong> tool (QGIS’ <strong>Plugins</strong> &gt; <strong>BASEmesh 2</strong> &gt; <strong>QUALITY MESHING</strong>). Make the following settings in the popup window (see also <a class="reference internal" href="#fig-tm-qualm"><span class="std std-numref">Fig. 69</span></a>):</p>
+<p><em>BASEmesh</em>’s quality mesh tool creates a computationally efficient triangular mesh based on <span id="id2">Shewchuk [<a class="reference internal" href="../documentation/bibliography.html#id1340" title="Jonathan Richard Shewchuk. Triangle: Engineering a 2D quality mesh generator and Delaunay triangulator. In Ming C. Lin and Dinesh Manocha, editors, Applied Computational Geometry Towards Geometric Engineering, Lecture Notes in Computer Science, 203–222. Berlin, Heidelberg, 1996. Springer. URL: https://link.springer.com/chapter/10.1007/BFb0014497, doi:10.1007/BFb0014497.">She96</a>]</span> and within the above-defined model boundaries. The tool associates mesh properties with the regions shapefile, but it does not include elevation data. Thus, after generating a quality mesh in <a class="reference internal" href="../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> format, elevation information needs to be added with the BlueKenue<sup>TM</sup> software. To generate the quality mesh, open BASEmesh’s <strong>QUALITY MESHING</strong> tool (QGIS’ <strong>Plugins</strong> &gt; <strong>BASEmesh 2</strong> &gt; <strong>QUALITY MESHING</strong>). Make the following settings in the popup window (see also <a class="reference internal" href="#fig-tm-qualm"><span class="std std-numref">Fig. 69</span></a>):</p>
 <ul class="simple">
 <li><p>Triangulation constraints frame:</p>
 <ul>
@@ -973,7 +968,7 @@ document.write(`
 <p class="admonition-title">Skip this section if you created a <em>.2dm</em> quality mesh with BASEMESH</p>
 <p>This is an optional section for users who do not want to use QGIS and the BASEmesh plugin for meshing. Generating a mesh with BlueKenue<sup>TM</sup> can be useful, for instance, to produce a computational grid that has triangular cells oriented parallel to the riverbanks (i.e., a channel sub-mesh). Otherwise, <strong>if the <code class="docutils literal notranslate"><span class="pre">*.2dm</span></code> mesh file was created</strong> with QGIS, <strong>jump to the section on creating a <a class="reference internal" href="#bk-create-slf"><span class="std std-ref">Selafin Object</span></a></strong>.</p>
 </div>
-<p>This section features the basic mesh generation with BlueKenue<sup>TM</sup>, which also runs smoothly on Linux through the <a class="reference internal" href="../get-started/vm.html#play-on-linux"><span class="std std-ref">PlayOnLinux</span></a> app. Additionall, the Baxter tutorial <span id="id3">[<a class="reference internal" href="../documentation/bibliography.html#id1345" title="C. Gifford-Miears and A. Leon. Tutorial on the use of TELEMAC-2D Hydrodynamics model and Pre-/Post-processing with BlueKenue for flood-inundation mapping in Unsteady Flow Conditions. Oregon State University, Corvallis, USA, 2013. URL: https://web.eng.fiu.edu/arleon/courses/Transient_flows/Tutorials/TELEMAC_2D/TELEMAC_2D_Tutorial_Baxter.pdf.">GML13</a>]</span> provides more details for getting started with BlueKenue along with detailed screenshots.</p>
+<p>This section features the basic mesh generation with BlueKenue<sup>TM</sup>, which also runs smoothly on Linux through the <a class="reference internal" href="../get-started/vm.html#play-on-linux"><span class="std std-ref">PlayOnLinux</span></a> app. Additionall, the Baxter tutorial <span id="id3">[<a class="reference internal" href="../documentation/bibliography.html#id1344" title="C. Gifford-Miears and A. Leon. Tutorial on the use of TELEMAC-2D Hydrodynamics model and Pre-/Post-processing with BlueKenue for flood-inundation mapping in Unsteady Flow Conditions. Oregon State University, Corvallis, USA, 2013. URL: https://web.eng.fiu.edu/arleon/courses/Transient_flows/Tutorials/TELEMAC_2D/TELEMAC_2D_Tutorial_Baxter.pdf.">GML13</a>]</span> provides more details for getting started with BlueKenue along with detailed screenshots.</p>
 <section id="draw-model-boundary-closed-line">
 <h3>Draw Model Boundary (Closed Line)<a class="headerlink" href="#draw-model-boundary-closed-line" title="Permalink to this headline">#</a></h3>
 <p>Delineate the model boundary (outline) with a closed line object (see also <a class="reference internal" href="#bk-model-outline"><span class="std std-numref">Fig. 71</span></a>):</p>
