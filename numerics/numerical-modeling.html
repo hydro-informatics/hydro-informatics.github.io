@@ -507,7 +507,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-setup">Model Setup</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calibration-and-validation">Calibration and Validation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-to-do-with-numerical-model-results">What to do with Numerical Model Results?</a></li>
 </ul>
@@ -523,9 +522,11 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="principles">
 <h1>Principles<a class="headerlink" href="#principles" title="Permalink to this headline">#</a></h1>
-<section id="model-setup">
-<h2>Model Setup<a class="headerlink" href="#model-setup" title="Permalink to this headline">#</a></h2>
-<p>Numerical models in water resources engineering approximate the motion of fluids through iterative solutions of the <a class="reference internal" href="../documentation/glossary.html#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a>. The role of numerical models is becoming more and more important where models are distinguished regarding simplification hypotheses (e.g., for dimensions or fluid characteristics). Purely hydrodynamic models simulate the motion of water and have high accuracy for simulating flow phenomena, but major challenges remain for morphodynamic modeling. While one-dimensional (<strong>1d</strong> cross-section-averaged) modeling is slowly abandoned for its incapacity to account for complex flow phenomena in natural rivers, two-dimensional (<strong>2d</strong>) and three-dimensional (<strong>3d</strong>) models are becoming more and more popular. Still, there are challenges in model choices and understanding numerical models. In this context, <span id="id1">Mosselman and Le [<a class="reference internal" href="../documentation/bibliography.html#id1169" title="Erik Mosselman and Thai Binh Le. Five common mistakes in fluvial morphodynamic modeling. Advances in Water Resources, 93:15–20, 2016. URL: http://www.sciencedirect.com/science/article/pii/S0309170815001761, doi:10.1016/j.advwatres.2015.07.025.">ML16</a>]</span> highlight five widespread and common problems in the creation and interpretation of numerical models. These five mistakes are:</p>
+<div class="tip admonition">
+<p class="admonition-title">Theory chapter under development</p>
+<p>We are working on a more exhaustive theory section on numerical modeling of rivers and reservoirs. Until then, please use our <a class="reference internal" href="../documentation/glossary.html#glossary"><span class="std std-ref">Glossary</span></a> for detailed explanations of technical terms that might be unclear.</p>
+</div>
+<p>Numerical models in water resources engineering approximate the motion of fluids through iterative solutions of the <a class="reference internal" href="../documentation/glossary.html#term-Navier-Stokes-equations"><span class="xref std std-term">Navier-Stokes equations</span></a> and their statistical approximation with the <a class="reference internal" href="../documentation/glossary.html#term-RANS"><span class="xref std std-term">Reynolds-averaged Navier-Stokes</span></a> equations. The role of numerical models is becoming more and more important where models can be distinguished regarding their simplification hypotheses (e.g., for dimensions or fluid characteristics). Purely hydrodynamic models simulate the motion of water and have high accuracy for simulating flow phenomena, but major challenges remain for morphodynamic modeling. While one-dimensional (<strong>1d</strong> cross-section-averaged) modeling is slowly abandoned for its incapacity to account for complex flow phenomena in natural rivers, two-dimensional (<strong>2d</strong>) and three-dimensional (<strong>3d</strong>) models are becoming more and more popular. Still, there are challenges in model choices and understanding numerical models. In this context, <span id="id1">Mosselman and Le [<a class="reference internal" href="../documentation/bibliography.html#id1169" title="Erik Mosselman and Thai Binh Le. Five common mistakes in fluvial morphodynamic modeling. Advances in Water Resources, 93:15–20, 2016. URL: http://www.sciencedirect.com/science/article/pii/S0309170815001761, doi:10.1016/j.advwatres.2015.07.025.">ML16</a>]</span> highlight five widespread and common problems in the creation and interpretation of numerical models. These five mistakes are:</p>
 <ol class="arabic simple">
 <li><p>Preparation: One-dimensional (1d), two-dimensional (2d), and three-dimensional (3d) models require similar input data (flow series, stage-discharge relation, roughness, digital elevation model, grain sizes). What varies are the computation (3d &gt; 2d &gt; 1d) and the calibration (1d &gt; 2d &gt; 3d) efforts.</p></li>
 <li><p>Grid setup: The model boundaries need to be at an adequate distance to the area of interest. An inflow boundary should only be along the permanently wetted riverbed and the most upstream 1-2% of the modeled channel bed should have a non-erosive constraint assigned to the cells. Otherwise, the model may be unstable because of locally very high velocity and erosion rates close to the inflow boundary.</p></li>
@@ -544,8 +545,7 @@ document.write(`
 </ul>
 </li>
 </ul>
-<p><strong>OpenFOAM</strong> represents another powerful modeling tool, which <strong>is recommended here for modeling flow-structure interactions</strong>, but not particularly featured in this eBook. OpenFOAM developers provide detailed documentation with high-quality tutorials on their website. Especially, their <a class="reference external" href="https://wiki.openfoam.com/index.php?title=%223_weeks%22_series">3-week tutorial</a> is a very good start into OpenFOAM modeling for PhD students or engineers. On <a class="reference internal" href="../get-started/vm.html#linux-install"><span class="std std-ref">Debian Linux / Ubuntu / Mint</span></a>, preferably install OpenFOAM from the <a class="reference external" href="https://develop.openfoam.com/Development/openfoam/-/wikis/precompiled/debian#ubuntu">Ubuntu repository</a>.</p>
-</section>
+<p><strong>OpenFOAM</strong> represents another powerful modeling tool, which <strong>is recommended for modeling flow-structure interactions</strong>, and this eBook provides a basic introduction by <a class="reference external" href="https://www.iws.uni-stuttgart.de/institut/team/Scolari/">Federica Scolari</a> in the <a class="reference internal" href="openfoam/of-intro.html#chpt-openfoam"><span class="std std-ref">OpenFOAM section</span></a>. In addition, the OpenFOAM developer’s <a class="reference external" href="https://wiki.openfoam.com/index.php?title=%223_weeks%22_series">3-week tutorial</a> is a good start into OpenFOAM modeling for PhD students or engineers. On <a class="reference internal" href="../get-started/vm.html#linux-install"><span class="std std-ref">Debian Linux / Ubuntu / Mint</span></a>, preferably install OpenFOAM from the <a class="reference external" href="https://develop.openfoam.com/Development/openfoam/-/wikis/precompiled/debian#ubuntu">Ubuntu repository</a>.</p>
 <section id="calibration-and-validation">
 <span id="calibration"></span><h2>Calibration and Validation<a class="headerlink" href="#calibration-and-validation" title="Permalink to this headline">#</a></h2>
 <p>A numerical model may provide good data, which is not meaningful unless a model is calibrated and validated. There are three possibilities to do so.</p>
@@ -558,7 +558,7 @@ document.write(`
 <p class="admonition-title">The Difference between Calibration and Validation</p>
 <p><strong>Calibration</strong> is the iterative adaptation of a simulation to reality using measurement (observation) data with the goal of minimizing the error between modeled and observed results. <strong>Validation</strong> only assess the goodness (or error) of the model without adapting the model itself.</p>
 </div>
-<p>This eBooks provides hints for model calibration (parameters) in the TELEMAC sections on <a class="reference internal" href="telemac2d-steady.html#tm2d-calibration"><span class="std std-ref">hydrodynamics</span></a> and <a class="reference internal" href="gaia-run.html#gaia-calibration"><span class="std std-ref">morphodynamics</span></a>.</p>
+<p>This eBook provides hints for model calibration (parameters) in the TELEMAC sections on <a class="reference internal" href="telemac2d-steady.html#tm2d-calibration"><span class="std std-ref">hydrodynamics</span></a> and <a class="reference internal" href="gaia-run.html#gaia-calibration"><span class="std std-ref">morphodynamics</span></a>.</p>
 </section>
 <section id="what-to-do-with-numerical-model-results">
 <h2>What to do with Numerical Model Results?<a class="headerlink" href="#what-to-do-with-numerical-model-results" title="Permalink to this headline">#</a></h2>
@@ -627,7 +627,6 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-setup">Model Setup</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calibration-and-validation">Calibration and Validation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-to-do-with-numerical-model-results">What to do with Numerical Model Results?</a></li>
 </ul>

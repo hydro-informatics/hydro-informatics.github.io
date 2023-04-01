@@ -1,9 +1,10 @@
 (glossary)=
 # Glossary
 
-Using common and consistent vocabulary is vital for working in teams. This section exemplifies a glossary with technical terms recurring in this eBook.
+This section provides a glossary with technical terms recurring in this eBook. While it is intended to be as exhaustive as possible, some terms might not yet be defined. 
 
 ````{glossary}
+  
 Advection
   Advection is the motion of particles along with the bulk flow. The properties (e.g., heat) of an advected particle or substance are conserved. Mathematically, advection of incompressible fluids (e.g., water) is described by the {term}`Continuity equation` {cite:p}`kundu_fluid_2008`.
 
@@ -207,19 +208,19 @@ Kolmogorov microscales
   The Kolmogorov length scale $\eta_L$ is calculated as follows, and typically is in the order of 0.1-10 m$^{-3}$ {cite:p}`dey_fluvial_2014`:
 
   $$
-  \eta_L = \ļeft(\frac{\nu^3}{\epsilon}\right)^{1/4}
+  \eta_L = {\left( \frac{\nu^3 }{\epsilon } \right)} ^{1/4}
   $$
 
-  The Kolmogorov time scale $\eta_L$ is calculated as {cite:p}`dey_fluvial_2014`:
+  The Kolmogorov time scale $\eta_T$ is calculated as {cite:p}`dey_fluvial_2014`:
 
   $$
-  \eta_T = \ļeft(\frac{\nu}{\epsilon}\right)^{1/2}
+  \eta_T = {\left( \frac{\nu}{\epsilon } \right)} ^{1/2}
   $$
 
   The Kolmogorov velocity scale $\eta_U$ is calculated as {cite:p}`dey_fluvial_2014`:
 
   $$
-  \eta_U = \ļeft(\nu\cdot \epsilon}\right)^{1/4}
+  \eta_U = ( \nu \cdot \epsilon )^{1/4}
   $$
 
 Krylov space
@@ -276,13 +277,13 @@ Potamodromous
 
 
 RANS
-  The Reynolds-averaged Navier-Stokes (RANS) equations are a statistical approximation of the {term}`Navier-Stokes equations` to model turbulence with a time average and variance of velocity and pressure. Specifically, RANS solutions at coarse scales (i.e., coarser than {term}`Kolmogorov microscales`) account for turbulence by replacing velocity $u_k$ (and pressure) components by a mean value $\overline{u_k}$ and fluctuations $u'k$ around the mean value {cite:p}`nikora_double-averaging_2007`. The subscript $k$ indicates flow directions 1 (streamwise/longitudinal), 2 (lateral / $y$-direction), and 3 (vertical / $z$-direction). The RANS equations read as follows {cite:p}`franca_turbulence_2015` for mass balance:
+  The Reynolds-averaged Navier-Stokes (RANS) equations are a statistical approximation of the {term}`Navier-Stokes equations` to model turbulence with a time average and variance of velocity and pressure. Specifically, RANS solutions at coarse scales (i.e., coarser than {term}`Kolmogorov microscales`) account for turbulence by replacing velocity $u_k$ (and pressure) components by a mean value $\overline{u_k}$ and fluctuations $u'k$ around the mean value {cite:p}`nikora_double-averaging_2007`. The subscript $k$ indicates flow directions 1 (streamwise/longitudinal), 2 (lateral / $y$-direction), and 3 (vertical / $z$-direction). The RANS equations read as follows {cite:p}`franca_turbulence_2015` for mass balance (Reynolds-averaged {term}`continuity equation <Continuity equation>`):
 
   $$
   \frac{\partial \left(\rho_w\overline{u_k}\right)}{\partial x_k} = 0
   $$
 
-  where $\rho_w$ denotes water density and $u$ is velocity. The RANS momentum balance reads as follows:
+  where $\rho_w$ denotes water density and $u$ is velocity. The RANS momentum balance reads as follows {cite:p}`franca_turbulence_2015`:
 
   $$
   \overbrace{\frac{\partial \left(\rho_w \overline{u_j}\right)}{\partial t}}^{I} + \textcolor{orange}{\overbrace{\frac{\partial \left(\overline{\rho'_w u'_j}\right)}{\partial t}}^{II}} + \overbrace{\frac{\partial \left(\overline{u_k} \overline{\rho_w} \overline{u_j}\right)}{\partial x_k}}^{III} + \textcolor{orange}{\overbrace{\frac{\partial \left(\overline{u_k} \overline{\rho'_w u_j'}\right)}{\partial x_k}}^{IV}} + \textcolor{orange}{\overbrace{\frac{\partial \left(\overline{u_j} \overline{\rho'_w u_k'}\right)}{\partial x_k}}^{V}} =\\\ \overbrace{-\frac{\partial \overline{p}}{\partial x_j}}^{VI} + \overbrace{\mu \frac{\partial^2 u_j}{\partial x_k \partial x_k}}^{VII}
@@ -351,7 +352,7 @@ Rouse number
   The Rouse number $Ro$ determines the transport mode (essentially, {term}`bedload <Bedload>` or {term}`suspended load <Suspended load>`) of a sediment particle and it serves for calculation of the concentration profile of suspended sediment. In its function of a characteristic of a vertical suspended load profile and because of its original definition of an *exponent in the suspended load function* (see page 13ff in {cite:t}`rouse_analysis_1939`), the Rouse number is also referred to as with a capital $Z$. It is calculated as:
 
   $$
-  Ro = \frac{w_s}{\kappa\cdot \u_*}
+  Ro = \frac{w_s}{\kappa\cdot u_*}
   $$
 
   where $w_s$ denotes the {term}`settling velocity <Settling velocity>`, $\kappa$ (=0.41) is the van Karmàn constant {cite:p}`von_karman_mechanische_1930`, and $u_*$ is the {term}`shear velocity <shear velocity>`.
@@ -375,7 +376,7 @@ Sand bed
   ```
 
 Sediment transport
-  Fluvial sediment transport encompasses two modes of particle displacement: (1) suspended load and (2) bedload (see figure below). Finer particles with a weight that can be carried by the fluid (water) are transported as {term}`Suspended load`. Coarser particles rolling, sliding, and jumping on the channel bed are transported as {term}`Bedload`. There is third type of transport, the so-called wash load, which is finer than the coarse bed load, but too heavy (large) to be transported in suspension {cite:p}`einstein_bed-load_1950`. The units for sediment transport are for an integral flow cross-section kg$^3\cdot$s$^{-1}$ or per unit width kg$^3\cdot$s$^{-1}$m$^{-1}$.
+  Fluvial sediment transport encompasses two modes of particle displacement: (1) suspended load and (2) bedload (see figure below). Finer particles with a weight that can be carried by the fluid (water) are transported as {term}`Suspended load`. Coarser particles rolling, sliding, and jumping on the channel bed are transported as {term}`Bedload`. There is third type of transport, the so-called wash load, which is finer than the coarse bed load, but too heavy (large) to be transported in suspension {cite:p}`einstein_bed-load_1950`. The units for sediment transport are for an integral flow cross-section kg$^3\cdot$s$^{-1}$ or per unit width kg$^3\cdot$s$^{-1}$m$^{-1}$. Additionally, the {term}`Rouse number` can be used to determine whether a particle is transported in suspension, as bedload, or not at all.
 
   ```{image} https://github.com/Ecohydraulics/media/raw/main/png/sediment-transport.png
   ```
@@ -484,10 +485,10 @@ Turbulent kinetic energy
   Turbulence kinetic energy (TKE, or $k$ in this eBook) is the mean kinetic energy per unit mass associated with turbulent eddies. It is measured as the quadratic velocity fluctuations. In a river or lab flume, TKE can be indirectly measured with an Acoustic Doppler Velocimeter (ADV) that enables to derive the streamwise ($u_x$ or just $u$), later/spanwise ($u_y$ or $v$), and vertical ($u_z$ or $w$) velocity fluctuations (i.e., $u'_x$, $u'_y$, and $u'_z$, respectively) with the following expression {cite:p}`nikora_adv_1998,kundu_fluid_2008`:
 
   $$
-  k={\frac {1}{2}}\left(\,{\overline {(u'_x)^{2}}}+{\overline {(u'_y)^{2}}}+{\overline {(u'_z)^{2}}}\,\right),}
-  $$:
+  k = \frac{1}{2} \cdot \left( {\overline{{u'_x}^{2}} + \overline{{u'_y}^{2}} + \overline{{u'_z}^{2}}} \right)
+  $$ (eq-tke)
 
-  For evaluating $k$ for field and lab experiments, have a look at our Python packages [TKE-calculator (standalone scripts)](https://tke-calculator.readthedocs.io) and [TKE-analyst (pip-installer)](https://tkeanalyst.readthedocs.io).
+  Thus, $k$ is the half trace of the Reynolds stress tensor (see {term}`RANS`) {cite:p}`franca_turbulence_2015`. For evaluating $k$ in field or lab experiments, have a look at our Python packages [TKE-calculator (standalone scripts)](https://tke-calculator.readthedocs.io) and [TKE-analyst (pip-installer)](https://tkeanalyst.readthedocs.io).
 
   In numerics, the TKE ($k$) is calculated by turbulence closure methods, such as the $k$-$\epsilon$ closure, which are required for numerically solving the {term}`Reynolds-averaged Navier-Stokes <RANS>` equations.
 

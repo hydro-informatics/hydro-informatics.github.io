@@ -1,4 +1,7 @@
-This chapter is developed by {{ scolari }}.
+```{admonition} Contributor
+:class: tip
+This chapter was written and developed by {{ scolari }} <img src="../../img/authors/federica.jpg" alt="Federica Scolari" width="30" height="30">.
+```
 
 
 # Multiphase Solver (interFoam Tutorial)
