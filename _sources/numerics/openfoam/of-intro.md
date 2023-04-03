@@ -1,19 +1,18 @@
 ```{admonition} Contributor
 :class: tip
-This chapter was written and developed by {{ scolari }} <img src="../../img/authors/federica.jpg" alt="Federica Scolari" width="30" height="30">.
+This chapter was written and developed by {{ scolari }} <img src="../../img/authors/federica.jpg" alt="Federica Scolari" width="50" height="50">
 ```
 
 (chpt-openfoam)=
 # OpenFOAM
 
-<img src="https://www.openfoam.com/themes/bs4esi/img/openfoam-logo.png" width="91" height="16"> is a free, open source CFD software developed primarily by OpenCFD Ltd since 2004. OpenFOAM ([Open Field Operation and Manipulation](https://www.openfoam.com)) is a C++ toolbox that can be used to deploy Finite Volume Method (FVM)-based solvers for general continuum mechanics problems, mostly for fluid flow and heat transfer.
+<img src="https://www.openfoam.com/themes/bs4esi/img/openfoam-logo.png" width="91" height="16"> ([Open Field Operation and Manipulation](https://www.openfoam.com)) is a free, open source CFD software developed primarily by OpenCFD Ltd since 2004. OpenFOAM is a C++ toolbox that can be used to deploy Finite Volume Method (FVM)-based solvers for general continuum mechanics problems, mostly for fluid flow and heat transfer.
 
 OpenFOAM has a wide range of functions, such as:
 
 * The ability to simulate anything related to CFD, such as turbulent flows in automotive aerodynamics, fires and fire suppression in buildings, combustion, chemical reactions, heat transfer, liquid sprinklers, or films.  
 * It includes tools for dealing with complex geometries (e.g., a fish pass) and for data processing and visualization.   
 * It performs parallel calculations allowing to take full advantage of modern multicore processors and multiprocessor computers.
-
 
 
 
