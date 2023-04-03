@@ -1,6 +1,6 @@
 ```{admonition} Contributor
 :class: tip
-This chapter was written and developed by {{ scolari }} <img src="../../img/authors/federica.jpg" alt="Federica Scolari" width="30" height="30">
+This chapter was written and developed by {{ scolari }} <img src="../../img/authors/federica.jpg" alt="Federica Scolari" width="50" height="50">
 ```
 
 # Post-processing
