@@ -305,6 +305,10 @@ RANS
 
   The <font color='orange'>orange-color</font> terms involve <font color='orange'>density fluctuation</font>, and thus, <font color='orange'>cancel out</font> when using the {term}`Boussinesq approximation`. In term VIII, $\overline{u'_k u'_j}$ denotes the Reynolds stress tensor, which is an additional stress that results from Reynolds averaging, and poses a closure problem. To this end, the (in)famous $k$-$\epsilon$ model is often used, where $k$ stands for {term}`turbulent kinetic energy <Turbulent kinetic energy>` and $\epsilon$ for its dissipation rate.
 
+  ```{margin} TELEMAC Implementation
+  Telemac3d users can activate the Spalart-Allamaras model to enable so-called *Detached Eddy Simulation* (DES) by setting the `HORIZONTAL TURBULENCE MODEL` and `VERTICAL TURBULENCE MODEL` keywords to `5`, while LES can be activated through the Smagorinsky model (`4`).
+  ```
+
   RANS solvers are computationally highly efficient but physically imprecise because they represent turbulence only as statistical moments {cite:p}`nikora_double-averaging_2007`. For this reason, there is a growing trend in numerical modeling toward the use of so-called Large Eddy Simulations (LES), which can be used at high {term}`Reynolds numbers <Reynolds number>` to precisely model large eddies and simulate smaller eddies with a fine structure model. A precise representation of turbulence was possible by means of Direct Numerical Simulation (DNS), which is currently and for the time being not computationally feasible for most free-surface waters {cite:p}`georgiou_direct_2018`.
 
   *French: Moyenne de Reynolds <br>German: (Osborne) Reynolds-gemittelte Navier-Stokes-Gleichungen*  
