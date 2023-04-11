@@ -6,9 +6,9 @@ This tutorial is designed for **advanced beginners** and before diving into this
 
 The case featured in this tutorial was established with the following software:
 * {ref}`Notepad++ <npp>` text editor (any other text editor will do just as well.)
-* TELEMAC v8p2r0 ({ref}`stand-alone installation <modular-install>`).
+* TELEMAC v8p2r0 or newer ({ref}`stand-alone installation <modular-install>`).
 * {ref}`QGIS <qgis-install>` and the {ref}`PostTelemac plugin <tm-qgis-plugins>`.
-* Debian Linux 10 (Buster) installed on a Virtual Machine (read more in the {ref}`software chapter <chpt-vm-linux>`).
+* Debian Linux 10 (Buster) / Debian 11 installed on a Virtual Machine (read more in the {ref}`software chapter <chpt-vm-linux>`).
 ```
 
 ## Get Started
@@ -197,7 +197,7 @@ Telemac2d comes with three solvers for approximating the depth-averaged {term}`N
 
 * `EQUATIONS : SAINT-VENANT FE` is the **default** that makes Telemac2d use a Saint-Venant finite element method,
 * `EQUATIONS : SAINT-VENANT FV` makes Telemac2d use a Saint-Venant finite volume method, and
-* `EQUATIONS : BOUSSINESQ` makes Telemac2d use the {term}`Boussinesq approximation`, which use constant density (incrompressible fluid assumption) and is not to be confused with the {term}`Boussinesq hypothesis`).
+* `EQUATIONS : BOUSSINESQ` makes Telemac2d use the {term}`Boussinesq approximation`, which assumes constant density (incrompressible fluid assumption) and is not to be confused with the {term}`Boussinesq hypothesis`.
 
 In addition, a type of discretization has to be specified with the **DISCRETIZATIONS IN SPACE** keyword, which is a list of five integer values. The five list elements define spatial discretization schemes for (1) velocity, (2) depth, (3) tracers, (4) $k-\epsilon$ turbulence, and (5) $\tilde{\nu}$ advection (Spalart-Allmaras), respectively. The minimum length of the keyword list is 2 (for velocity and depth) and all other elements are optional. The list elements may take the following values defining spatial discretization:
 
@@ -314,7 +314,7 @@ None of these options should be used with tracers because they are not mass-cons
 The finite volume method is mentioned here for completeness and detailed descriptions are available in section 7.2.2 of the {{ tm2d }}.
 
 ```{admonition} Use finite volumes only with v8p2 or later
-Earlier versions of Telemac2d's finite volume solver are buggy, but since major improvements were implemented wit v8p2, the newest versions run stable.
+Earlier versions of Telemac2d's finite volume solver are buggy, but since major improvements were implemented with v8p2, the newest versions run stable.
 ```
 
 The finite volume method involves the definition of a scheme through the **FINITE VOLUME SCHEME** keyword that can take one of the following integer values:
@@ -326,7 +326,7 @@ The finite volume method involves the definition of a scheme through the **FINIT
 * `5` enables the Harten Lax Leer-Contact (HLLC) scheme {cite:p}`toro2009a`, and
 * `6` enables the Weighted Average Flux (WAF) {cite:p}`ata2012` scheme for which parallelism is currently not implemented.
 
-All finite volume schemes are explicit and potentially subjected to instability. For this reason, a desired {term}`CFL` condition and a variable timestep are recommended to be defined:
+The finite volume/elements schemes are (semi-) explicit and potentially subjected to instability. For this reason, a desired {term}`CFL` condition and a variable timestep are recommended to be defined:
 
 ```fortran
 DESIRED COURANT NUMBER : 0.9
@@ -336,7 +336,7 @@ DURATION : 10000
 
 The **DURATION** keyword is required to terminate the simulation.
 
-The variable timestep will cause irregular listing outputs, while the graphic output frequency is written as a function of the above-defined **TIME STEP**. Note that **this tutorial uses `VARIABLE TIME-STEP : NO`**, though **variable timesteps do also work with FINITE ELEMENTS**.
+The variable timestep will cause irregular listing outputs, while the graphic output frequency is written as a function of the above-defined **TIME STEP**. Note that **this tutorial uses `VARIABLE TIME-STEP : NO`**.
 
 The **FINITE VOLUME SCHEME TIME ORDER** keyword defines the second-order time scheme, which is by default set to *Euler explicit* (`1`). Setting the time scheme order to `2` makes Telemac2d using the Newmark scheme where an integration coefficient may be used to change the integration parameter. Note that `NEWMARK TIME INTEGRATION COEFFICIENT : 1` corresponds to *Euler explicit*. To implement these options in the steering file, use the following settings:
 

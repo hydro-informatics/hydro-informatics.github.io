@@ -235,7 +235,7 @@ To convert a geospatial vector dataset, use the *Rasterize* tool:
 * In the **Processing Toolbox** > search (tap) **Rasterize** > select **Rasterize (vector to raster)**
 
 ```{hint}
-If the *Crayfish* plugin is installed, an additional *Rasterize* tool will show up, which we will not use in this tutorial (i.e., make sure to select *Rasterize (vector to raster)*).
+If the *Crayfish* plugin is installed, an additional *Rasterize* tool will show up, which we will not use in this tutorial (i.e., make sure to select *Rasterize (vector to raster)* ).
 ```
 
 * In the **Rasterize (Vector to Raster)** window set:
