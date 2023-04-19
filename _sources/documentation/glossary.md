@@ -394,17 +394,18 @@ Sediment yield
 
 
 Settling velocity
-  The settling velocity is computed as {cite:p}`dey_fluvial_2014`:
+  The settling velocity $w_s$ is computed as a function of the ratio of sediment grain and water density $s$, gravitational acceleration $g$, grain size $D_x$, and the dimensionless drag coefficient $C_D$ {cite:p}`dey_fluvial_2014`:
 
   $$
-  w_{s} = \sqrt{\frac{4}{3}\cdot \frac{(s-1)\cdot g\cdot h}{C_{D}}}
+  w_{s} = \sqrt{\frac{4}{3}\cdot \frac{(s-1)\cdot g\cdot D_x}{C_{D}}}
   $$
 
-  where $C_{D}$ is the dimensionless drag coefficient that is a function of the {term}`Reynolds number`, and can be calculated as follows {cite:p}`stokes1850`:
+  In turn, $C_{D}$ is a function of the {term}`Reynolds number`, and can be approximated (not generally valid!) as follows {cite:p}`stokes1850`:
 
   $$
   C_{D} = \frac{24}{Re}
   $$
+
 
 
 Shallow water equations

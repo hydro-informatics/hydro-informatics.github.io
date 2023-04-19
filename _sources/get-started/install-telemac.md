@@ -167,7 +167,7 @@ sudo apt install -y cmake build-essential dialog vim gedit gedit-plugins
 
 ***Estimated duration: 25-40 minutes (large downloads).***
 
-Before getting more packages to enable parallelism and compiling, download the latest version of TELEMAC with git in which additional packages will be embedded. To download (i.e., `git clone`) TELEMAC, open Terminal, which will by default start in your home directory (`/home/USERNAME/`). The following instructions assume you want to install TELEMAC directly in your home directory. However, it might make sense to create a new sub-folder (e.g., called `/modeling`) to better organize your system (`mkdir ~/modeling/` > `cd ~/modeling`). To download TELEMAC into the home (or a new) directory, type (enter `no` when asked for password encryption):
+Before getting more packages to enable parallelism and compiling, download the latest version of TELEMAC with git in which additional packages will be embedded. To download (i.e., `git clone`) TELEMAC, open Terminal, which will by default start in your home directory (`/home/USERNAME/`). The following instructions assume you want to install TELEMAC directly in your home directory. However, it might make sense to create a new sub-folder (e.g., called `/modeling`) to better organize your file system (`mkdir ~/modeling/` > `cd ~/modeling`). To download TELEMAC into the home (or a new) directory, type (enter `no` when asked for password encryption):
 
 ```
 git clone https://gitlab.pam-retd.fr/otm/telemac-mascaret.git
@@ -205,6 +205,7 @@ This section guides through the installation of additional packages required for
 * For the MED file format (input mesh and computation results):
     + Hdf5
     + MEDFichier 3.2.0
+
 
 (mpi)=
 ### Parallelism: Install MPI
@@ -245,7 +246,6 @@ The [Telemac installation wiki](http://wiki.opentelemac.org/doku.php?id=installa
 ```
 
 To install Metis, use the [hydro-informatics/metis](https://github.com/hydro-informatics/metis) v5.1.1 fork from the Karypis Lab's [METIS Github repository](https://github.com/KarypisLab/METIS), which is tweaked for the Telemac installation:
-
 
 
 ```
@@ -315,6 +315,18 @@ make install
 ```
 
 To verify the successful installation, make sure that the file `~/telemac/optionals/metis/build/lib/libmetis.a` exists (i.e., `<install_path>/lib/libmetis.a` ).
+
+````{admonition} Debian alternative: apt-install libmetis-dev
+:class: tip, dropdown
+
+Alternatively, on Debian-based systems, install `libmetis-dev` with: 
+
+```
+sudo apt install libmetis-dev
+```
+
+This package currently provides Metis v5.1.0, but verify the version on [https://packages.debian.org](https://packages.debian.org/sid/libmetis-dev) to be sure having a workable version of Metis available. However, we did not test the integration of Metis in the Telemac installation.
+````
 
 
 (med-hdf)=
