@@ -491,7 +491,7 @@ The **LAW OF BOTTOM FRICTION** keyword defines a friction law for topographic bo
 * `6` for the logarithmic law of the wall for turbulent flows. This option assumes that the average flow velocity is a logarithmic function of the distance from the wall beyond the viscous and buffer layers. The thickness of these layers is a function of the wall roughness length {cite:p}`von_karman_mechanische_1930`.
 * `7` for the {cite:t}`colebrook1937` equation that calculates the Darcy-Weisbach friction factor $f_D$ for turbulent flows in smooth pipes.
 
-With respect to the 2d applications in this eBook, the most relevant bottom friction laws are `3` {cite:p}`strickler_beitrage_1923`, `4` {cite:p}`manning_transactions_1891`, and `6` (log law). The {cite:t}`nikuradse_stromungsgesetze_1933` roughness law (`5`) is recommended for 3d simulations (see the {ref}`Telemac3d tutorial <tm3d-hydrodynamics>`). Moreover, friction is more generally referred to with the general coefficient $c_{f}$, which has a particular relevance for {term}`Bedload` transport (cf. {ref}`morphodynamic calculations with Gaia <c-friction>`).
+With respect to the 2d applications in this eBook, the most relevant bottom friction laws are `3` {cite:p}`strickler_beitrage_1923`, `4` {cite:p}`manning_transactions_1891`, and `6` (log law). The {cite:t}`nikuradse_stromungsgesetze_1933` roughness law (`5`) is recommended for 3d simulations (see the {ref}`Telemac3d tutorial <tm3d-hydrodynamics>`). Friction is more generally referred to as with the general coefficient $c_{f}$, which has a particular relevance for {term}`bedload <Bedload>` transport (cf. {ref}`morphodynamic calculations with Gaia <c-friction>`).
 
 The **FRICTION COEFFICIENT FOR THE BOTTOM** keyword sets the value for a characteristic roughness coefficient. For instance, when the friction law keyword is set to `3` {cite:p}`strickler_beitrage_1923`, the friction corresponds to the Strickler roughness coefficient $k_{st}$ (in fictive units of m$^{1/3}$ s$^{-1}$). For rough channels (e.g., mountain rivers) $k_{st} \approx 20$ m$^{1/3}$ s$^{-1}$ and for smooth concrete-lined channels $k_{st} \approx 75$ m$^{1/3}$ s$^{-1}$. In fully turbulent flows, the Strickler roughness can be approximated with $k_{st} \approx \frac{26}{D_{90}^{1/6}}$ {cite:p}`meyer-peter_formulas_1948` where $D_{90}$ is the grain diameter of which 90% of the surface grain mixture are finer.
 This tutorial features the application of a *Manning* roughness coefficient of $n_m$= 0.03, which is the inverse of $k_{st}$ and implemented with:
@@ -540,25 +540,28 @@ FRICTION COEFFICIENT : 0.03 / Roughness coefficient
 
 ```{admonition} Friction zones (regional friction values)
 :class: tip, dropdown
-Similar to the assignment of multiple friction coefficient values to multiple model regions featured in the {ref}`BASEMENT tutorial <bm-geometry>`, Telemac2d provides routines for domain-wise (i.e., zonal) friction area definitions in the geometry (e.g., `*.slf`) file. To create a zonal roughness Selafin geometry with QGIS and BlueKenue use the *[Create Roughness Selafin File PDF workflow](https://github.com/hydro-informatics/telemac/raw/main/friction/create-friction-zone-slf.pdf)*. Some additional hints for using the workflow:
+:name: tm-friction-zones
+
+Similar to the assignment of multiple friction coefficient values to multiple model regions featured in the {ref}`BASEMENT tutorial <bm-geometry>`, Telemac2d provides routines for domain-wise (i.e., zonal) friction area definitions in the geometry (`*.slf`) file. To create a zonal roughness Selafin geometry with QGIS and BlueKenue use the *[Create Roughness Selafin File PDF workflow](https://github.com/hydro-informatics/telemac/raw/main/friction/create-friction-zone-slf.pdf)*. Some additional hints for using the workflow:
 
 * Delineate zones with different roughness coefficients by drawing polygons (e.g., following landscapes characteristics on a basemap) in separate shapefiles with QGIS (see also the {ref}`pre-processing tutorial on QGIS <tm-qgis-prepro>`).
 * Import the separate polygons as XYZ file or closed lines in BlueKenue (see also the {ref}`pre-processing tutorial on BlueKenue <bk-tutorial>`).
-* Assign elevations to the polygons (closed lines) in BlueKenue (requires {ref}`elevation information <bk-xyz>`).
-* Add a new variable to the {ref}`Selafin <bk-create-slf>` geometry and call it BOTTOM FRICTION.
-* Use the {ref}`Map Object <bk-2dinterp>` function (*Tools* > *Map Object...*) to add the polygons (closed lines) to the BOTTOM FRICTION mesh variable.
-* In the `*.cas` file, make sure to set a value for the **FRICTION** parameter according to the above descriptions and to set the `*.slf` file with the BOTTOM FRICTION variable for the **ZONES FILE** keyword.
+* Assign friction values to the polygons (closed lines) in BlueKenue (similar to {ref}`XYZ elevation information <bk-xyz>`).
+* Add a new variable to the {ref}`Selafin <bk-create-slf>` geometry and call it `BOTTOM FRICTION`.
+* Use the {ref}`Map Object <bk-2dinterp>` function (*Tools* > *Map Object...*) to add the polygons (closed lines) to the `BOTTOM FRICTION` mesh variable.
+* In the `*.cas` file, make sure to set a value for the **FRICTION** parameter according to the above descriptions and the `*.slf` file with the `BOTTOM FRICTION` variable for the **ZONES FILE** keyword.
 
 
 Useful examples for creating roughness zones are:
-* The BAW's Donau case study that lives in `/telemac/v8p2/examples/telemac2d/donau/` and features the usage of a `*.bfr` **ZONES FILE**, and a `roughness.tbl` **FRICTION DATA FILE**. Zonal friction values are enabled through the `FRICTION DATA : YES` keyword in the `t2d_donau.cas` file. The Donau example was also presented at the XXth Telemac-Mascaret user conference and the conference proceedings are available at the BAW's [HENRY portal](https://hdl.handle.net/20.500.11970/100418) (look for the contribution *Reverse engineering of initial & boundary conditions with TELEMAC and algorithmic differentiation*).
-* The [Baxter tutorial](http://www.opentelemac.org/index.php/component/jdownloads/summary/4-training-and-tutorials/185-telemac-2d-tutorial?Itemid=55).
+* The BAW's Donau case study that lives in `/telemac/v8p2/examples/telemac2d/donau/` features the usage of a `*.bfr` **ZONES FILE**, and a `roughness.tbl` **FRICTION DATA FILE**. Zonal friction values are enabled through the `FRICTION DATA : YES` keyword in the `t2d_donau.cas` file. The Donau example was also presented at the XXth Telemac-Mascaret user conference and the conference proceedings are available at the BAW's [HENRY portal](https://hdl.handle.net/20.500.11970/100418) (look for the contribution *Reverse engineering of initial & boundary conditions with TELEMAC and algorithmic differentiation*).
+* Also, the [Baxter tutorial](http://www.opentelemac.org/index.php/component/jdownloads/summary/4-training-and-tutorials/185-telemac-2d-tutorial?Itemid=55) features friction zones.
 
-In addition, Appendix E of the {{ tm2d }} provides explanations for the implementation of zonal friction values. Note that the proposed modification of the **FRICTION_USER** Fortran function (subroutine) is not mandatory. Here are some hints if the FRICTION_USER subroutines must be enabled anyway (e.g., to implement a new roughness law such as the {cite:t}`ferguson_flow_2007` equation):
+In addition, Appendix E of the {{ tm2d }} provides explanations for the implementation of zonal friction values. Note that the proposed modification of the **FRICTION_USER** Fortran function (subroutine) is not mandatory. Here are some tips for when the FRICTION_USER subroutines must be enabled anyway (e.g., to implement a new roughness law, such as the {cite:t}`ferguson_flow_2007` equation):
+
 * The FICTION_USER subroutine can be found in `/telemac/v8p2/sources/telemac2d/friction_user.f`.
 * To use a modified version, copy `friction_user.f` to a new subfolder called `/user_fortran/` in your simulation case folder.
 * Modify and save edits in `/your/simulation/case/user_fortran/friction_user.f`.
-* Tell the steering (`*.cas`) file to use the modified FRICTION_USER Fortran file by adding the keyword `FORTRAN FILE : 'user_fortran'` (makes Telemac2d looking up Fortran files in the `/user_fortran/` subfolder).
+* Tell the steering (`*.cas`) file to use the modified FRICTION_USER Fortran file by adding the keyword `FORTRAN FILE : 'user_fortran'`, which makes Telemac2d look up Fortran files in the `/user_fortran/` subfolder.
 ```
 
 (tm2d-bounds)=
