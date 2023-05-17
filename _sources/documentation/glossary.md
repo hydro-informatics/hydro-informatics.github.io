@@ -277,33 +277,33 @@ Potamodromous
 
 
 RANS
-  The Reynolds-averaged Navier-Stokes (RANS) equations are a statistical approximation of the {term}`Navier-Stokes equations` to model turbulence with a time average and variance of velocity and pressure. Specifically, RANS solutions at coarse scales (i.e., coarser than {term}`Kolmogorov microscales`) account for turbulence by replacing velocity $u_k$ (and pressure) components by a mean value $\overline{u_k}$ and fluctuations $u'k$ around the mean value {cite:p}`nikora_double-averaging_2007`. The subscript $k$ indicates flow directions 1 (streamwise/longitudinal), 2 (lateral / $y$-direction), and 3 (vertical / $z$-direction). The RANS equations read as follows {cite:p}`franca_turbulence_2015` for mass balance (Reynolds-averaged {term}`continuity equation <Continuity equation>`):
+  The Reynolds-averaged Navier-Stokes (RANS) equations are a statistical approximation of the {term}`Navier-Stokes equations` to model turbulence with a time average and variance of velocity and pressure. Specifically, RANS solutions at coarse scales (i.e., coarser than {term}`Kolmogorov microscales`) account for turbulence by replacing velocity $u_k$ (and pressure) components by a mean value $\overline{u_k}$ and fluctuations $u'_k$ around this mean value {cite:p}`nikora_double-averaging_2007`. The subscript $_k$ indicates flow directions 1 (streamwise/longitudinal $x$-direction), 2 (lateral / $y$-direction), and 3 (vertical / $z$-direction). The RANS equations read as follows {cite:p}`franca_turbulence_2015` for mass balance (Reynolds-averaged {term}`continuity equation <Continuity equation>`):
 
   $$
   \frac{\partial \left(\rho_w\overline{u_k}\right)}{\partial x_k} = 0
   $$
 
-  where $\rho_w$ denotes water density and $u$ is velocity. The RANS momentum balance reads as follows {cite:p}`franca_turbulence_2015`:
+  where $\rho_w$ denotes water density and $u$ is the flow velocity. The RANS momentum balance reads as follows {cite:p}`franca_turbulence_2015`:
 
   $$
   \overbrace{\frac{\partial \left(\rho_w \overline{u_j}\right)}{\partial t}}^{I} + \textcolor{orange}{\overbrace{\frac{\partial \left(\overline{\rho'_w u'_j}\right)}{\partial t}}^{II}} + \overbrace{\frac{\partial \left(\overline{u_k} \overline{\rho_w} \overline{u_j}\right)}{\partial x_k}}^{III} + \textcolor{orange}{\overbrace{\frac{\partial \left(\overline{u_k} \overline{\rho'_w u_j'}\right)}{\partial x_k}}^{IV}} + \textcolor{orange}{\overbrace{\frac{\partial \left(\overline{u_j} \overline{\rho'_w u_k'}\right)}{\partial x_k}}^{V}} =\\\ \overbrace{-\frac{\partial \overline{p}}{\partial x_j}}^{VI} + \overbrace{\mu \frac{\partial^2 u_j}{\partial x_k \partial x_k}}^{VII}
    -\overbrace{\frac{\partial \overline{\rho_w} \overline{u'_k u'_j}}{\partial x_k}}^{VIII} - \textcolor{orange}{\overbrace{\frac{\partial \overline{\rho'_w u'_k u'_j}}{\partial x_k}}^{IX}} + \overbrace{\overline{\rho_w} g}^{X}
   $$
 
-  where subscript $j$ is analogous to $k$, $t$ is time, $p$ is pressure, and $\mu$ is dynamic viscosity (of water). The terms I ti X have the following significance:
+  where subscript $_j$ is analogous to $_k$, $t$ denotes time, $p$ is pressure, and $\mu$ is the dynamic viscosity (of water). The terms I to X have the following meanings:
 
   * I local derivative of (time) averaged momentum
-  * II local derivative averaged momentum fluctuation
+  * II local derivative of averaged momentum fluctuation
   * III mean {term}`advection <Advection>` of averaged momentum
-  * IV mean {term}`advection <Advection>` of momentum fluctuation (in $k$ direction)
-  * V mean {term}`advection <Advection>` of momentum fluctuation (in $j$ direction)
+  * IV mean {term}`advection <Advection>` of momentum fluctuation (in $_k$ direction)
+  * V mean {term}`advection <Advection>` of momentum fluctuation (in $_j$ direction)
   * VI averaged pressure
   * VII viscous diffusion
   * VIII Reynolds stress
   * IX turbulent {term}`diffusion <Diffusion>` (i.e., turbulent transport of momentum fluctuation)
   * X average body force / gravity
 
-  The <font color='orange'>orange-color</font> terms involve <font color='orange'>density fluctuation</font>, and thus, <font color='orange'>cancel out</font> when using the {term}`Boussinesq approximation`. In term VIII, $\overline{u'_k u'_j}$ denotes the Reynolds stress tensor, which is an additional stress that results from Reynolds averaging, and poses a closure problem. To this end, the (in)famous $k$-$\epsilon$ model is often used, where $k$ stands for {term}`turbulent kinetic energy <Turbulent kinetic energy>` and $\epsilon$ for its dissipation rate.
+  The <font color='orange'>orange-color</font> terms involve <font color='orange'>density fluctuation</font>, and thus, <font color='orange'>cancel out</font> when using the {term}`Boussinesq approximation`. In term VIII, $\overline{u'_k u'_j}$ denotes the Reynolds stress tensor, which is an additional stress that results from Reynolds averaging, and poses a closure problem. To this end, the (in)famous $k$-$\epsilon$ model is often used, where $k$ denotes the {term}`turbulent kinetic energy <Turbulent kinetic energy>` and $\epsilon$ its dissipation rate.
 
   ```{margin} TELEMAC Implementation
   Telemac3d users can activate the Spalart-Allamaras model to enable so-called *Detached Eddy Simulation* (DES) by setting the `HORIZONTAL TURBULENCE MODEL` and `VERTICAL TURBULENCE MODEL` keywords to `5`, while LES can be activated through the Smagorinsky model (`4`).
