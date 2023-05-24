@@ -282,11 +282,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-
-
-
-
-
 <li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-run.html">Run OpenFOAM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-post.html">Post-processing</a></li>
 </ul>
@@ -348,10 +343,11 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Disclaimer and License</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../terms/license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../terms/disclaimer.html">Disclaimer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/contributors.html">Contributors</a></li>
 </ul>
 
     </div>
@@ -811,7 +807,7 @@ In addition, we need a Spatial Analyst license to run this script. Therefore, it
 <section id="shapefile-operations">
 <h2>Shapefile Operations<a class="headerlink" href="#shapefile-operations" title="Permalink to this headline">#</a></h2>
 <p>The geospatial <a class="reference internal" href="geo-shp.html#chpt-shp"><span class="std std-ref">shapefile</span></a> vector format is an Esri invention. No wonder, <code class="docutils literal notranslate"><span class="pre">arcpy</span></code> is good at handling this vector data format. In hydraulic engineering, however, we usually create (draw) shapefiles manually either directly with ArcGIS or its open-source competitor <a class="reference external" href="https://www.qgis.org/">QGIS</a> to delineate, for example, particular flow regions. Examples can be found <a class="reference internal" href="../numerics/basement.html#chpt-basement"><span class="std std-ref">in the BASEMENT tutorial</span></a> (explore the creation of elevation point, boundary polygon, and breakline polyline shapefiles). In codes, the processing of shapefiles only becomes important in the analysis of the output of numerical models (e.g., to classify morphological unit features, exactly calculate patch areas, or automatically place reinforcements in construction plans). At this stage, raster data (output of numerical models) must first be converted into shapefiles. This is why this tutorial starts with the conversion of raster data to shapefiles along with the illustration of other functions such as calculating patch area and accessing shapefile attribute tables.</p>
-<p>Rasters can be converted to polygon and other shapefile types (e.g., point). The following example features the conversion of a raster to a polygon shapefile. It uses an integer raster of all pixels where the flow depth and velocity are smaller than 1.4 m and 0.15 m/s, respectively. Such shallow and slow-flow regions are called <em>slackwater</em> (according to <span id="id1">Wyrick and Pasternack [<a class="reference internal" href="../documentation/bibliography.html#id963" title="J. R. Wyrick and G. B. Pasternack. Geospatial organization of fluvial landforms in a gravel-cobble river: Beyond the riffle-pool couplet. Geomorphology, 213(Supplement C):48–65, 2014. URL: http://www.sciencedirect.com/science/article/pii/S0169555X14000099, doi:10.1016/j.geomorph.2013.12.040.">WP14</a>]</span>). Because slackwater is designated preferred habitat of some aquatic species, we are wondering now how much slackwater area the numerical model predicts in the simulated river section. For this purpose, we convert the slackwater raster to a shapefile and calculate the surface area of the shapefile with the following <code class="docutils literal notranslate"><span class="pre">arcpy</span></code> methods:</p>
+<p>Rasters can be converted to polygon and other shapefile types (e.g., point). The following example features the conversion of a raster to a polygon shapefile. It uses an integer raster of all pixels where the flow depth and velocity are smaller than 1.4 m and 0.15 m/s, respectively. Such shallow and slow-flow regions are called <em>slackwater</em> (according to <span id="id1">Wyrick and Pasternack [<a class="reference internal" href="../documentation/bibliography.html#id962" title="J. R. Wyrick and G. B. Pasternack. Geospatial organization of fluvial landforms in a gravel-cobble river: Beyond the riffle-pool couplet. Geomorphology, 213(Supplement C):48–65, 2014. URL: http://www.sciencedirect.com/science/article/pii/S0169555X14000099, doi:10.1016/j.geomorph.2013.12.040.">WP14</a>]</span>). Because slackwater is designated preferred habitat of some aquatic species, we are wondering now how much slackwater area the numerical model predicts in the simulated river section. For this purpose, we convert the slackwater raster to a shapefile and calculate the surface area of the shapefile with the following <code class="docutils literal notranslate"><span class="pre">arcpy</span></code> methods:</p>
 <ul class="simple">
 <li><p>Convert the raster to a shapefile with <a class="reference external" href="https://pro.arcgis.com/en/pro-app/tool-reference/conversion/raster-to-polygon.htm"><code class="docutils literal notranslate"><span class="pre">arcpy.RasterToPolygon_conversion()</span></code></a> with arguments:</p>
 <ul>

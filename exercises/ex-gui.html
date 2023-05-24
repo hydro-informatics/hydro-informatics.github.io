@@ -280,11 +280,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-
-
-
-
-
 <li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-run.html">Run OpenFOAM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-post.html">Post-processing</a></li>
 </ul>
@@ -346,10 +341,11 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Disclaimer and License</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../terms/license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../terms/disclaimer.html">Disclaimer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/contributors.html">Contributors</a></li>
 </ul>
 
     </div>
@@ -739,7 +735,7 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">cbx_D_char</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;D84&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>To enable the selection of a <em>HEC-RAS</em> <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id582" title="U.S. Army Corps of Engineeers. Hydrologic Engineering Centers River Analysis System (HEC-RAS). U.S. Army Corps of Engineeers (USACE), Davis, CA, USA, 2016. URL: http://www.hec.usace.army.mil/software/hec-ras/.">USACoEngineeers16</a>]</span> output workbook, define a <code class="docutils literal notranslate"><span class="pre">set_hec_file</span></code> method as used in the above <code class="docutils literal notranslate"><span class="pre">tk.Button</span></code>. After the user’s file selection, the method needs to update the <em>hec</em>-label object (<code class="docutils literal notranslate"><span class="pre">self.hec_label</span></code>).</p>
+<p>To enable the selection of a <em>HEC-RAS</em> <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id581" title="U.S. Army Corps of Engineeers. Hydrologic Engineering Centers River Analysis System (HEC-RAS). U.S. Army Corps of Engineeers (USACE), Davis, CA, USA, 2016. URL: http://www.hec.usace.army.mil/software/hec-ras/.">USACoEngineeers16</a>]</span> output workbook, define a <code class="docutils literal notranslate"><span class="pre">set_hec_file</span></code> method as used in the above <code class="docutils literal notranslate"><span class="pre">tk.Button</span></code>. After the user’s file selection, the method needs to update the <em>hec</em>-label object (<code class="docutils literal notranslate"><span class="pre">self.hec_label</span></code>).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">set_hec_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">hec_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">select_file</span><span class="p">(</span><span class="s2">&quot;HEC-RAS output file&quot;</span><span class="p">,</span> <span class="s2">&quot;xlsx&quot;</span><span class="p">)</span>
         <span class="c1"># update hec label</span>

@@ -280,11 +280,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-
-
-
-
-
 <li class="toctree-l3"><a class="reference internal" href="of-tutorial-multiphase-run.html">Run OpenFOAM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="of-tutorial-multiphase-post.html">Post-processing</a></li>
 </ul>
@@ -346,10 +341,11 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Disclaimer and License</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../terms/license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../terms/disclaimer.html">Disclaimer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/contributors.html">Contributors</a></li>
 </ul>
 
     </div>
@@ -528,10 +524,13 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <p>This chapter is developed by <a class="reference external" href="https://www.iws.uni-stuttgart.de/institut/team/Scolari/">Federica Scolari</a>.</p>
+  <div class="tip admonition">
+<p class="admonition-title">Contributor</p>
+<p>This chapter was written and developed by <a class="reference external" href="https://www.iws.uni-stuttgart.de/institut/team/Scolari/">Federica Scolari</a> <a class="reference internal" href="../../_images/federica.jpg"><img alt="Federica Scolari" src="../../_images/federica.jpg" style="width: 50px; height: 50px;" /></a></p>
+</div>
 <section class="tex2jax_ignore mathjax_ignore" id="geometry-and-mesh-generation">
 <h1>Geometry and Mesh Generation<a class="headerlink" href="#geometry-and-mesh-generation" title="Permalink to this headline">#</a></h1>
-<p>The mesh is an essential part of the numerical solution and must meet certain criteria in order to guarantee a valid and precise solution. The following section describes the the <a class="reference external" href="https://www.openfoam.com/documentation/user-guide/4-mesh-generation-and-conversion/4.4-mesh-generation-with-the-snappyhexmesh-utility">snappyHexMesh utility</a> for creating 3D meshes containing hexahedral and split-hexahedral cells from triangulated surface geometries.</p>
+<p>The mesh is an essential part of the numerical solution and must meet certain criteria in order to generate a valid and precise solution. The following section describes the <a class="reference external" href="https://www.openfoam.com/documentation/user-guide/4-mesh-generation-and-conversion/4.4-mesh-generation-with-the-snappyhexmesh-utility">snappyHexMesh utility</a> for creating 3d meshes containing hexahedral and split-hexahedral cells from triangulated surface geometries.</p>
 <p>Further details regarding the mesh specification and validity constraints can be found in <a class="reference external" href="https://www.openfoam.com/documentation/user-guide/4-mesh-generation-and-conversion/4.1-mesh-description#x11-290004.1">Chapter 4</a> of the <a class="reference external" href="https://foam.sourceforge.net/docs/Guides-a4/OpenFOAMUserGuide-A4.pdf">OpenFOAM User Guide</a>. In order to run snappyHexMesh, in addition to an existing geometry base mesh, the following files are required:</p>
 <figure class="align-default" id="of-folder-structure">
 <img alt="openfoam" src="../../_images/folder-structure.png" />
@@ -542,22 +541,22 @@ document.write(`
 <p>The following sections describe the steps that need to be followed.</p>
 <section id="creation-of-the-background-hex-mesh">
 <h2>Creation of the Background Hex Mesh<a class="headerlink" href="#creation-of-the-background-hex-mesh" title="Permalink to this headline">#</a></h2>
-<p>Before being able to run snappyHexMesh, a background mesh characterized by hexahedral cells has to be created. This mesh needs to contain the entire region that wants to be meshes with snappyHexMesh, as shown in the figure below.</p>
+<p>Before being able to run <em>snappyHexMesh</em>, a background mesh characterized by hexahedral cells has to be created. This mesh needs to contain the entire region that should be meshed with <em>snappyHexMesh</em>, as shown in the figure below.</p>
 <figure class="align-default" id="of-block-mesh-init">
 <img alt="openfoam" src="../../_images/block-mesh-init.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 164 </span><span class="caption-text">Background mesh created with blockMesh containing the structure to be meshed.</span><a class="headerlink" href="#of-block-mesh-init" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>In the <em>blockMeshDict</em> file the following need to be added:</p>
+<p>In the <em>blockMeshDict</em> file, the following items need to be added:</p>
 <ul class="simple">
-<li><p>The scaling factor for the vertex coordinates.</p></li>
+<li><p>The scaling factor for the vertex coordinates</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">convertToMeters</span> <span class="mi">1</span><span class="p">;</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Coordinates of the vertices of the background mesh.</p></li>
+<li><p>Coordinates of the vertices of the background mesh</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">vertices</span>
         <span class="p">(</span>
@@ -573,7 +572,7 @@ document.write(`
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>The coordinates of the vertices are indicated following the order presented below.</p></li>
+<li><p>The coordinates of the vertices, following the order indicated below</p></li>
 </ul>
 <figure class="align-default" id="of-block-mesh-vertexorder">
 <img alt="openfoam" src="../../_images/block-mesh-vertexorder.png" />
@@ -582,7 +581,7 @@ document.write(`
 </figcaption>
 </figure>
 <ul class="simple">
-<li><p>Ordered list of vertex labels and mesh size.</p></li>
+<li><p>Ordered list of vertex labels and mesh size</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">blocks</span>
         <span class="p">(</span>
@@ -592,12 +591,12 @@ document.write(`
         <span class="p">);</span>
 </pre></div>
 </div>
-<p>For further details regarding the blockMesh utility please refer to <a class="reference external" href="https://www.openfoam.com/documentation/user-guide/4-mesh-generation-and-conversion/4.3-mesh-generation-with-the-blockmesh-utility">blockMesh</a> in the <a class="reference external" href="https://foam.sourceforge.net/docs/Guides-a4/OpenFOAMUserGuide-A4.pdf">OpenFOAM User Guide</a>.</p>
+<p>For further details regarding the blockMesh utility refer to <a class="reference external" href="https://www.openfoam.com/documentation/user-guide/4-mesh-generation-and-conversion/4.3-mesh-generation-with-the-blockmesh-utility">blockMesh</a> in the <a class="reference external" href="https://foam.sourceforge.net/docs/Guides-a4/OpenFOAMUserGuide-A4.pdf">OpenFOAM User Guide</a>.</p>
 </section>
 <hr class="docutils" />
 <section id="surfacefeaturesdict">
 <h2>SurfaceFeaturesDict<a class="headerlink" href="#surfacefeaturesdict" title="Permalink to this headline">#</a></h2>
-<p>The surfaceFeaturesDict extracts and write all surface features to file. In this file all the STL files that have been saved in the triSurface folder have to be added as follows:</p>
+<p>The surfaceFeaturesDict extracts and writes all surface features to a file. In this file, all the <a class="reference internal" href="../../documentation/glossary.html#term-STL"><span class="xref std std-term">STL</span></a> files that have been saved in the triSurface folder have to be added as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">Air</span>
     <span class="p">{</span>
         <span class="n">surfaces</span>
@@ -614,7 +613,7 @@ document.write(`
 <hr class="docutils" />
 <section id="decomposepardict">
 <h2>decomposeParDict<a class="headerlink" href="#decomposepardict" title="Permalink to this headline">#</a></h2>
-<p>The decomposeParDict is used to decompose a mesh and fields of a case for parallel execution. When running in parallel, the geometry has to first be segmented into individual geometries for each MPI process. The <em>numberOfSubdomains</em> entry is mandatory, and the <em>Method</em> defines the decomposition method type. Several decomposition methods are available. Therefore, the <em>decomposeParDict</em> file shown below presents only one option as example.</p>
+<p>The decomposeParDict is used to decompose a mesh and fields of a case for parallel execution. When running in parallel, the geometry has to first be segmented into individual geometries for each MPI process. The <em>numberOfSubdomains</em> entry is mandatory, and the <em>Method</em> defines the decomposition method type. Several decomposition methods are available. Therefore, the <em>decomposeParDict</em> file shown below presents only one exemplary option.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">numberOfSubdomains</span> <span class="mi">8</span><span class="p">;</span>
     <span class="n">method</span>          <span class="n">simple</span><span class="p">;</span>
 
@@ -645,26 +644,25 @@ document.write(`
 <hr class="docutils" />
 <section id="snappyhexmesh">
 <h2>SnappyHexMesh<a class="headerlink" href="#snappyhexmesh" title="Permalink to this headline">#</a></h2>
-<p>The snappyHexMeshDict dictionary contains a series of commands that control the various steps of the meshing process. The main ones are summarized below:</p>
+<p>The snappyHexMeshDict dictionary contains a series of commands that control the various steps of the meshing process. The main ones are the following:</p>
 <ul class="simple">
-<li><p><em>castellatedMesh</em>: to enable the creation of the castellated mesh.</p></li>
-<li><p><em>snap</em>: to enable the surface snapping stage.</p></li>
-<li><p><em>addLayers</em>: to enable the surface layer insertion.</p></li>
-<li><p><em>geometry</em>: sub-dictionary of all surface geometry used.</p></li>
-<li><p><em>castellatedMeshControls</em>: sub-dictionary of controls for castellated mesh.</p></li>
-<li><p><em>snapControls</em>: sub-dictionary of controls for surface snapping.</p></li>
-<li><p><em>addLayersControls</em>:  sub-dictionary of controls for layer addition.</p></li>
-<li><p><em>meshQualityControls</em>: sub-dictionary of controls for mesh quality.</p></li>
-<li><p><em>mergeTolerance</em>: merge tolerance as a fraction of the initial bounding mesh.</p></li>
+<li><p><em>castellatedMesh</em> enables the creation of the castellated mesh.</p></li>
+<li><p><em>snap</em> enables the surface snapping stage.</p></li>
+<li><p><em>addLayers</em> enables the surface layer insertion.</p></li>
+<li><p><em>geometry</em> is a sub-dictionary of all surface geometry used.</p></li>
+<li><p><em>castellatedMeshControls</em> is a sub-dictionary of controls for castellated mesh.</p></li>
+<li><p><em>snapControls</em> is a sub-dictionary of controls for surface snapping.</p></li>
+<li><p><em>addLayersControls</em> is a sub-dictionary of controls for layer addition.</p></li>
+<li><p><em>meshQualityControls</em> is a sub-dictionary of controls for mesh quality.</p></li>
+<li><p><em>mergeTolerance</em> is the merge tolerance as a fraction of the initial bounding mesh.</p></li>
 </ul>
 <p>The key steps involved when running snappyHexMesh are:</p>
 <ul class="simple">
-<li><p><em>Castellation</em>: The cells which are beyond a region defined by a predefined point are removed</p></li>
-<li><p><em>Snapping</em>: Reconstructs the cells to move the edges from inside the region to the required boundary</p></li>
-<li><p><em>Layering</em>: Creates additional layers in the boundary region.</p></li>
+<li><p><em>Castellation</em>: the cells that are beyond a region defined by a predefined point are removed.</p></li>
+<li><p><em>Snapping</em>: reconstructs the cells to move the edges from inside the region to the required boundary.</p></li>
+<li><p><em>Layering</em>: creates additional layers in the boundary region.</p></li>
 </ul>
-<p>For this example the <em>add Layers</em> option, which enables the addition of viscous
-layers, was set to <em>false</em>.</p>
+<p>For this example, the <em>add Layers</em> option, which enables the addition of viscous layers, was set to <em>false</em>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*--------------------------------*-</span> <span class="n">C</span><span class="o">++</span> <span class="o">-*----------------------------------*</span>\
 <span class="o">|</span> <span class="o">=========</span>                 <span class="o">|</span>                                                 <span class="o">|</span>
 <span class="o">|</span> \\      <span class="o">/</span>  <span class="n">F</span> <span class="n">ield</span>         <span class="o">|</span> <span class="n">OpenFOAM</span><span class="p">:</span> <span class="n">The</span> <span class="n">Open</span> <span class="n">Source</span> <span class="n">CFD</span> <span class="n">Toolbox</span>           <span class="o">|</span>
@@ -698,20 +696,20 @@ layers, was set to <em>false</em>.</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>The <strong>CastellatedMeshControls</strong> settings then allow the definition of themesh refinement. The level of refinement can be set in the <em>features</em>, <em>refinementSurfaces</em> and <em>refinementRegions</em> sections. Starting from level 0, which corresponds to no refinement, each subsequentrefinement level divides the cell in 4 parts.</p>
+<p>The <strong>CastellatedMeshControls</strong> settings then allow the definition of the mesh refinement. The level of refinement can be set in the <em>features</em>, <em>refinementSurfaces</em>, and <em>refinementRegions</em> sections. Starting from level 0, which corresponds to no refinement, each subsequentrefinement level divides the cell in 4 parts.</p>
 <figure class="align-default" id="of-refinement-levels">
 <img alt="openfoam" src="../../_images/refinement-levels.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 166 </span><span class="caption-text">Example of different mesh refinement levels.</span><a class="headerlink" href="#of-refinement-levels" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Additionally, the following are set:</p>
+<p>Additionally, the following items are set:</p>
 <ul class="simple">
 <li><p><em>maxGlobalCells</em>: defines the overall number of cells limit.</p></li>
-<li><p><em>maxLocalCells</em>: this setting is used in the case of parallel running and defines the maximum number   of cells for each processor.</p></li>
-<li><p><em>nCellsBetweenLevels</em>: avoids having sudden cell size changes, meaning consecutiverefinement level changes close together.</p></li>
+<li><p><em>maxLocalCells</em>: this setting is used in the case of parallel running, and defines the maximum number of cells for each processor.</p></li>
+<li><p><em>nCellsBetweenLevels</em>: avoids having sudden cell size changes, meaning consecutive refinement level changes close together.</p></li>
 </ul>
-<p>For all further details regarding the settings please refer to the <a class="reference external" href="https://www.openfoam.com/documentation/guides/latest/doc/guide-meshing-snappyhexmesh-castellation.html#meshing-snappyhexmesh-global-castellation">castellation and refinement</a> section of the <a class="reference external" href="https://foam.sourceforge.net/docs/Guides-a4/OpenFOAMUserGuide-A4.pdf">OpenFOAM User Guide</a>.</p>
+<p>For further details regarding these settings refer to the <a class="reference external" href="https://www.openfoam.com/documentation/guides/latest/doc/guide-meshing-snappyhexmesh-castellation.html#meshing-snappyhexmesh-global-castellation">castellation and refinement</a> section of the <a class="reference external" href="https://foam.sourceforge.net/docs/Guides-a4/OpenFOAMUserGuide-A4.pdf">OpenFOAM User Guide</a>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">castellatedMeshControls</span>
 <span class="p">{</span>
     <span class="n">maxLocalCells</span> <span class="mi">50000000</span><span class="p">;</span>  <span class="o">//</span><span class="nb">max</span> <span class="n">cells</span> <span class="n">per</span> <span class="n">CPU</span> <span class="n">core</span>
@@ -751,7 +749,7 @@ layers, was set to <em>false</em>.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>In the <em>refinementSurfaces</em> section shown in the example here above, different refinement levels were set for each constituent element. A detailed example of the resulting refinement for the Gravel-bottom and Obstacle elements is shown below:</p>
+<p>In the <em>refinementSurfaces</em> section shown in the example above, different refinement levels were set for each constituent element. A detailed example of the resulting refinement for the gravel-bottom and obstacle elements is shown below.</p>
 <figure class="align-default" id="of-obstacle-refinement">
 <img alt="openfoam" src="../../_images/obstacle-refinement.png" />
 <figcaption>
@@ -763,7 +761,7 @@ layers, was set to <em>false</em>.</p>
 
 </pre></div>
 </div>
-<p>After having completed the cell splitting and cell removal processes, the <strong>Snapping</strong> process can take place. This task deals with moving the cell vertex points on the surface to create a conforming mesh, meaning to conform the input geometry. below is a list of the keywords to be set:</p>
+<p>After having completed the cell splitting and cell removal processes, the <strong>Snapping</strong> process can take place. This task deals with moving the cell vertex points on the surface to create a conforming mesh, meaning to conform the input geometry. Here is a list of the keywords to be set:</p>
 <ul class="simple">
 <li><p><em>nSmoothpatch</em>: defines the number of smoothing iterations along the surface.</p></li>
 <li><p><em>tolerance</em>: specifies the region along the surface within which the points are attracted by the surface.</p></li>
@@ -792,9 +790,8 @@ snapControls
 }
 </pre></div>
 </div>
-<p>In the case in which some irregular cells are present along the boundaries in the mesh obtained with the snapping stage, it is possible to introduce additional layers composed of hexahedral cells along the boundary. This stage  includes shrinking the existing mesh in order to insert the layer of cells.</p>
-<p>The user can choose between 4 different layer thickness parameters: <em>expansionRatio</em>, <em>finalLayerThickness</em>, <em>firstLayerThickness</em>, <em>thickness</em>. In this case the user must specify only two to avoid an over-specification of the problem.</p>
-<p>below some keywords are explained. For further details please refer to the <a class="reference external" href="https://www.openfoam.com/documentation/guides/latest/doc/guide-meshing-snappyhexmesh-layers.html#snappyhexmesh-layers-relativeSizes">layer addition</a> section of the <a class="reference external" href="https://foam.sourceforge.net/docs/Guides-a4/OpenFOAMUserGuide-A4.pdf">OpenFOAM User Guide</a>.</p>
+<p>In the case in which some irregular cells are present along the boundaries in the mesh obtained with the snapping stage, it is possible to introduce additional layers composed of hexahedral cells along the boundary. This stage includes shrinking the existing mesh in order to insert the layer of cells.</p>
+<p>A user can choose between 4 different layer thickness parameters: <em>expansionRatio</em>, <em>finalLayerThickness</em>, <em>firstLayerThickness</em>, <em>thickness</em>. In this example case, specify only two to avoid an over-specification of the problem. The parameters to be set have the following meanings:</p>
 <ul class="simple">
 <li><p><em>expansionRatio</em>: necessary in order to calculate the relative size to the prescribed thickness of either first or final layer.</p></li>
 <li><p><em>minThickness</em>: indicates the minimum thickness of the layer.</p></li>
@@ -802,6 +799,7 @@ snapControls
 <li><p><em>nRelaxIter</em>: indicates the number of relaxation steps.</p></li>
 <li><p><em>minMedialAxisAngle</em>: indicates the minimum angle to select the medial axis points</p></li>
 </ul>
+<p>For further details refer to the <a class="reference external" href="https://www.openfoam.com/documentation/guides/latest/doc/guide-meshing-snappyhexmesh-layers.html#snappyhexmesh-layers-relativeSizes">layer addition</a> section of the <a class="reference external" href="https://foam.sourceforge.net/docs/Guides-a4/OpenFOAMUserGuide-A4.pdf">OpenFOAM User Guide</a>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Settings</span> <span class="k">for</span> <span class="n">the</span> <span class="n">layer</span> <span class="n">addition</span><span class="o">.</span>
 
 <span class="n">addLayersControls</span> 
@@ -833,19 +831,19 @@ snapControls
  <span class="p">}</span>
 </pre></div>
 </div>
-<p>The final part of the <em>snappyHexMeshDict</em> file deals with the <strong>Mesh Quality</strong>. In this section, the values of the extrema encountered in during the meshing process are defined. The purpose is to ensure the adequate quality of the  resulting mesh. The keywords that can be defined are summarized below:</p>
+<p>The final part of the <em>snappyHexMeshDict</em> file deals with the <strong>Mesh Quality</strong>. In this section, the values of the extrema encountered during the meshing process are defined. The purpose is to ensure an adequate quality of the resulting mesh. The keywords that can be defined are:</p>
 <ul class="simple">
-<li><p><em>maxNonOrtho</em>: maximum face non-orthogonality angle</p></li>
-<li><p><em>maxBoundarySkewness</em>: maximum boundary skewness</p></li>
-<li><p><em>maxInternalSkewness</em>: maximum internal face skewness</p></li>
-<li><p><em>maxConcave</em>: maximum cell concavity</p></li>
-<li><p><em>minVol</em>: minimum cell pyramid volume</p></li>
-<li><p><em>minTetQuality</em>: minimum tetrahedron quality</p></li>
-<li><p><em>minArea</em>: minimum face area</p></li>
-<li><p><em>minDeterminant</em>: minimum cell determinant</p></li>
-<li><p><em>minFaceWeight</em>: minimum face interpolation weight</p></li>
-<li><p><em>nSmoothScale</em>: smoothing iterations</p></li>
-<li><p><em>errorReduction</em>: error reduction</p></li>
+<li><p><em>maxNonOrtho</em>: maximum face non-orthogonality angle.</p></li>
+<li><p><em>maxBoundarySkewness</em>: maximum boundary skewness.</p></li>
+<li><p><em>maxInternalSkewness</em>: maximum internal face skewness.</p></li>
+<li><p><em>maxConcave</em>: maximum cell concavity.</p></li>
+<li><p><em>minVol</em>: minimum cell pyramid volume.</p></li>
+<li><p><em>minTetQuality</em>: minimum tetrahedron quality.</p></li>
+<li><p><em>minArea</em>: minimum face area.</p></li>
+<li><p><em>minDeterminant</em>: minimum cell determinant.</p></li>
+<li><p><em>minFaceWeight</em>: minimum face interpolation weight.</p></li>
+<li><p><em>nSmoothScale</em>: smoothing iterations.</p></li>
+<li><p><em>errorReduction</em>: error reduction.</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Generic</span> <span class="n">mesh</span> <span class="n">quality</span> <span class="n">settings</span>
 
@@ -878,7 +876,7 @@ snapControls
 <hr class="docutils" />
 <section id="run-meshing-blockmesh">
 <h2>Run Meshing (blockMesh)<a class="headerlink" href="#run-meshing-blockmesh" title="Permalink to this headline">#</a></h2>
-<p>Once the necessary keywords have been defined in the required dictionaries, the final step consists in <strong>running the commands</strong> in the terminal in the following order:</p>
+<p>Once the necessary keywords have been defined in the required dictionaries, the final step consists in <strong>running commands</strong> in the terminal in the following order:</p>
 <ul class="simple">
 <li><p>Run the<code class="docutils literal notranslate"><span class="pre">blockMesh</span></code> command to create the background mesh:</p></li>
 </ul>
@@ -886,13 +884,13 @@ snapControls
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Run the <code class="docutils literal notranslate"><span class="pre">surfaceFeatures</span></code> command to create the <em>.obj</em> and <em>.eMesh</em> files from the initially imported STL files. These files are stored in the <em>extendedFeatureEdgeMesh</em> folder (channel/constant/extendedFeatureEdgeMesh).</p></li>
+<li><p>Run the <code class="docutils literal notranslate"><span class="pre">surfaceFeatures</span></code> command to create the <em>.obj</em> and <em>.eMesh</em> files from the initially imported <a class="reference internal" href="../../documentation/glossary.html#term-STL"><span class="xref std std-term">STL</span></a> files. These files are stored in the <em>extendedFeatureEdgeMesh</em> folder (channel/constant/extendedFeatureEdgeMesh).</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>user@user123:~/OpenFOAM-9/channel/Mesh$ surfaceFeatures
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>In the case of parallel runs, run the<code class="docutils literal notranslate"><span class="pre">decomposePar</span></code> command to decompose the geometry into individual geometries for each MPI process.</p></li>
+<li><p>For parallel runs, use the <code class="docutils literal notranslate"><span class="pre">decomposePar</span></code> command to decompose the geometry into individual geometries for each MPI process.</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>user@user123:~/OpenFOAM-9/channel/Mesh$ decomposePar
 </pre></div>
@@ -900,7 +898,7 @@ snapControls
 <ul class="simple">
 <li><p>Run the <code class="docutils literal notranslate"><span class="pre">snappyHexMesh</span></code> command to generate the mesh:</p>
 <ul>
-<li><p>In the case of parallel runs (substitute “x” with the number of cores):</p></li>
+<li><p>For parallel runs (substitute “x” with the number of cores):</p></li>
 </ul>
 </li>
 </ul>
@@ -914,7 +912,7 @@ snapControls
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>In the case of parallel runs, run the <code class="docutils literal notranslate"><span class="pre">reconstructParMesh</span></code> command to reconstruct the geometry.</p></li>
+<li><p>For parallel runs, use the <code class="docutils literal notranslate"><span class="pre">reconstructParMesh</span></code> command to reconstruct the geometry.</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>user@user123:~/OpenFOAM-9/channel/Mesh$ reconstructparMesh -constant
 </pre></div>
@@ -926,7 +924,7 @@ snapControls
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>In the case of a successful mesh generation, this should return the following:</p></li>
+<li><p>A successful mesh generation returns the following (or similar):</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">Checking</span> <span class="n">topology</span><span class="o">...</span>
     <span class="n">Boundary</span> <span class="n">definition</span> <span class="n">OK</span><span class="o">.</span>
@@ -981,7 +979,7 @@ snapControls
 <p><span class="caption-number">Fig. 168 </span><span class="caption-text">Visualization of the resulting mesh in ParaView.</span><a class="headerlink" href="#of-parafoam-mesh" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>The image below highlights some features required to adequately visualize the created mesh. Firstly, to analyze the cells, it is possible to select the option <em>Surface with Edges</em>. The various elements composing the mesh can then be selected/deselected to analyze specific parts in detail. Finally, in the case in which the Mesh Check returned some errors, for instance  faces with high skewness, they can be visualized by selecting the <em>Include Sets</em> option.</p>
+<p>The image below highlights some features required to adequately visualize the created mesh. Specifically, to analyze the cells, it is possible to select the option <em>Surface with Edges</em>. The various elements composing the mesh can then be selected/deselected to analyze specific parts in detail. Finally, in the case in which the Mesh Check returned errors, for instance, faces with high skewness, they can be visualized by selecting the <em>Include Sets</em> option.</p>
 <figure class="align-default" id="of-parafoam-mesh-cells">
 <img alt="openfoam snappyHexMesh paraFoam" src="../../_images/paraFoam-mesh-cells.png" />
 <figcaption>
@@ -1004,7 +1002,7 @@ snapControls
         },
         kernelOptions: {
             name: "python3",
-            path: "./numerics\openfoam"
+            path: "./numerics/openfoam"
         },
         predefinedOutput: true
     }

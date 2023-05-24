@@ -280,11 +280,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-
-
-
-
-
 <li class="toctree-l3"><a class="reference internal" href="of-tutorial-multiphase-run.html">Run OpenFOAM</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">Post-processing</a></li>
 </ul>
@@ -346,10 +341,11 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Disclaimer and License</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../terms/license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../terms/disclaimer.html">Disclaimer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/contributors.html">Contributors</a></li>
 </ul>
 
     </div>
@@ -513,10 +509,13 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <p>This chapter is developed by <a class="reference external" href="https://www.iws.uni-stuttgart.de/institut/team/Scolari/">Federica Scolari</a>.</p>
+  <div class="tip admonition">
+<p class="admonition-title">Contributor</p>
+<p>This chapter was written and developed by <a class="reference external" href="https://www.iws.uni-stuttgart.de/institut/team/Scolari/">Federica Scolari</a> <a class="reference internal" href="../../_images/federica.jpg"><img alt="Federica Scolari" src="../../_images/federica.jpg" style="width: 50px; height: 50px;" /></a></p>
+</div>
 <section class="tex2jax_ignore mathjax_ignore" id="post-processing">
 <h1>Post-processing<a class="headerlink" href="#post-processing" title="Permalink to this headline">#</a></h1>
-<p>In the case in which the simulations were run in parallel, before post-processing the data, the first step consists in reconstructing all solution steps of the analyzed case. This can either be done for all time steps or only for a specific one. The commands that need to be typed in the terminal window are shown below:</p>
+<p>In the case in which the simulations were run in parallel, before post-processing the data, the first step consists in reconstructing (i.e., reassembling) all solution steps of the analyzed case. This can either be done for all time steps or only for a specific one. The commands that need to be typed in the terminal window are shown below:</p>
 <ul class="simple">
 <li><p>To reconstruct all solution steps:</p></li>
 </ul>
@@ -529,18 +528,18 @@ document.write(`
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>user@user123:~/OpenFOAM-9/channel/Simulation$ reconstructPar -time x
 </pre></div>
 </div>
-<p>Once the case has been reconstructed, as for the meshing process, the following command should be used to visualize the case in ParaView:</p>
+<p>Once the case has been reconstructed, as for the meshing process, the following command should be used to visualize the case in the software ParaView:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>user@user123:~/OpenFOAM-9/channel/Simulation$ paraFoam
 </pre></div>
 </div>
-<p>The <em>channel.OpenFOAM</em> should now be present in the Pipeline Browser and to visualize it in the layout the <em>Apply</em> button can be used. Additionally, in the <em>Fields</em> section, the various fields that can be visualized are shown and can be selected/deselected according to the focus of the analysis.</p>
+<p>The <em>channel.OpenFOAM</em> should now be present in the Pipeline Browser and to visualize it in the layout, press the <em>Apply</em> button. Additionally, in the <em>Fields</em> section, the various fields that can be visualized are shown and can be selected/deselected according to the focus of the analysis.</p>
 <figure class="align-default" id="of-channelopenfoam">
 <img alt="openfoam" src="../../_images/channelOpenFOAM.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 171 </span><span class="caption-text">Visualization of the case results in ParaView.</span><a class="headerlink" href="#of-channelopenfoam" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>In order to visualize the air and water phases, <em>alpha.water</em> should then be selected in the drop-down menu as shown in the image.</p>
+<p>In order to visualize the air and water phases, <em>alpha.water</em> should then be selected in the drop-down menu as shown in the image below.</p>
 <figure class="align-default" id="of-view-alphawater">
 <img alt="openfoam" src="../../_images/view-alpha-water.png" />
 <figcaption>
@@ -554,7 +553,7 @@ document.write(`
 <p><span class="caption-number">Fig. 173 </span><span class="caption-text">Options for changing the time step to be visualized.</span><a class="headerlink" href="#of-final-time-step" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Next, to visualize only the water phase, the <em>Clip</em> filter is used. This can either be found in the <em>Filters</em> section in the menu or alternatively the shortcut can be used. The <em>Clip Type</em> should be set to <em>Scalar</em>, selecting <em>alpha.water</em> as scalar and setting the value to 0.5, which represents the interface between air and water. To view the air phase the <em>Invert</em> option should be selected whereas for the water phase it should be deselected.</p>
+<p>Next, to visualize only the water phase, the <em>Clip</em> filter is used. This can either be found in the <em>Filters</em> section in the menu, or alternatively, the shortcut can be used. The <em>Clip Type</em> should be set to <em>Scalar</em>, selecting <em>alpha.water</em> as scalar and setting the value to 0.5, which represents the interface between air and water. To view the air phase, the <em>Invert</em> option should be selected whereas for the water phase it should be deselected.</p>
 <figure class="align-default" id="of-clip-water">
 <img alt="openfoam clip water interFoam" src="../../_images/clip-water.png" />
 <figcaption>
@@ -568,7 +567,7 @@ document.write(`
 <p><span class="caption-number">Fig. 175 </span><span class="caption-text">List of filters available in ParaView, highlighting ExtractBlock.</span><a class="headerlink" href="#of-extract-block" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>The patches of interest can the be either selected or deselected and the <em>Coloring</em> can be set to Solid Color.</p>
+<p>The patches of interest can then be either selected or deselected, and the <em>Coloring</em> can be set to Solid Color.</p>
 <figure class="align-default" id="of-choose-patches">
 <img alt="openfoam" src="../../_images/choose-patches.png" />
 <figcaption>
@@ -604,7 +603,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./numerics\openfoam"
+            path: "./numerics/openfoam"
         },
         predefinedOutput: true
     }

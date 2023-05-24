@@ -6,13 +6,20 @@
 
 ```{admonition} Bedload basics
 :class: important
-For a better reading experience of this section, the {ref}`glossary` helps with explanations of the terms {term}`Sediment transport`, (dimensionless) {term}`Bedload` transport $\Phi_b$, {term}`Dimensionless bed shear stress` $\tau_{x}$, and the {term}`Shields parameter` $\tau_{x,cr}$ (in that order).
+
+For a better learning experience, the {ref}`glossary` helps with explanations of the terms {term}`Sediment transport`, (dimensionless) {term}`bedload <Bedload>` transport $\Phi_b$, {term}`dimensionless bed shear stress <Dimensionless bed shear stress>` $\tau_{x}$, and the {term}`Shields parameter` $\tau_{x,cr}$ (in this order).
+```
+
+```{admonition} Sediment replenishment, gravel augmentation, bedload addition (etc.)
+:class: tip
+
+The placement of coarser sediment for the restoration of bedload transport can take many different forms and it is described by a broad range of terms. In TELEMAC, the best option for simulating such bedload restoration efforts is the [**Nestor**](http://www.opentelemac.org/index.php/modules-list/163-dredgesim-modeling-dredging-operations-in-the-river-bed) module that requires Gaia (or SISYPHE). Read more in the most recent {{ nestor }}.
 ```
 
 (bl-principles)=
 ## Principles
 
-The calculation of {term}`Bedload` transport requires expert knowledge about the modeled ecosystem for judging whether the system is sediment supply-limited or transport capacity-limited {cite:p}`church_morphodynamics_2015`.
+The calculation of {term}`bedload <Bedload>` transport requires expert knowledge about the modeled ecosystem for judging whether the system is sediment supply-limited or transport capacity-limited {cite:p}`church_morphodynamics_2015`.
 
 Sediment supply-limited rivers
 : A sediment supply-limited river is characterized by clearly visible incision trends indicating that the river's runoff could potentially transport more sediment than is available in the river. Sediment-supply limited river sections typically occur downstream of dams, which represent an insurmountable barrier for sediment. Thus, in a supply-limited river, the **flow competence** (hydrodynamic force or **transport capacity**) is insufficient to mobilize a typically coarse riverbed, but it is sufficient for transporting external sediment supply.

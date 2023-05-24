@@ -125,7 +125,7 @@ The consistent use of parameters and symbols for parameters is summarized in a n
 
 * - $k$
   - m$^2$ s$^{-2}$ or J kg$^{-1}$
-  - turbulent energy
+  - {term}`turbulent kinetic energy <Turbulent kinetic energy>`
 
 * - $k_{st}$
   - m$^{1/3}$ s$^{-1}$
@@ -231,13 +231,17 @@ The consistent use of parameters and symbols for parameters is summarized in a n
   - s
   - time, duration
 
-* - $u$
+* - $u$ or $u_j$ or $u_k$
   - m s$^{-1}$
-  - flow velocity in $x$-direction
+  - flow velocity in $x$, $j$, and $k$ directions, respectively
 
 * - $\mathbf{u}$ (bold)
   - m s$^{-1}$
   - flow velocity vector (multidimensional)
+
+* - $u_{*}$
+  - m s$^{-1}$
+  - shear velocity
 
 * - $u_{cr}$
   - m s$^{-1}$
@@ -309,11 +313,27 @@ The consistent use of parameters and symbols for parameters is summarized in a n
   - m
   - active layer thickness
 
+* - $\eta_L$
+  - $-$
+  - Kolmogorov length scale
+
+* - $\eta_T$
+  - $-$
+  - Kolmogorov time scale
+
+* - $\eta_U$
+  - $-$
+  - Kolmogorov velocity scale
+
 * - $\nabla$
   - $-$
   - operator vector (*nabla*) of partial differentials $\frac{\partial}{\partial x_i}$ where $x_i$ refers to the dimensions of the flow field {cite:p}`kundu_fluid_2008`
 
-* - $\nu$
+* - $\mu$ = $\nu \cdot \rho_w$
+  - kg m$^{-1}$ s$^{-1}$
+  - dynamic viscosity
+
+* - $\nu$ = $\mu \cdot \rho_w^{-1}$
   - m$^{2}$ s$^{-1}$
   - kinematic viscosity
 

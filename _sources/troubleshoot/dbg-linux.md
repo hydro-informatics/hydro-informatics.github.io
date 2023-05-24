@@ -175,6 +175,34 @@ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D155B8E6A
 
 To test if the key update worked, tap `sudo apt update`
 
+### No module named OpenGL 
+
+If QGIS throws the error message `ModuleNotFoundError: No module named 'OpenGL'`, install *Mesa* as follows on Ubuntu (i.e., Debian Linux) based operating systems (including Mint and Lubuntu).
+
+Bring `apt` and `pip` to up-to-date:
+
+```
+sudo apt update
+python -m install --upgrade pip
+```
+
+Install the following system packages (if not yet done):
+
+```
+sudo apt install build-essential freeglut3 freeglut3-dev mesa-common-dev binutils-gold libglew-dev libglm-dev python-pyqt5
+```
+
+Install the following Python pip packages:
+
+```
+python -m pip install pyOpenGL
+python -m pip install pyOpenGL_accelerate
+python -m pip install pyqt5
+
+```
+
+A system restart (or just reload the user environment with `source ~/.bashsrc`) may be necessary for QGIS to work now without the OpenGL error.
+
 
 ### LAStools
 

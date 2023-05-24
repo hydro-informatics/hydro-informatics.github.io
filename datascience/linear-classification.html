@@ -282,11 +282,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-
-
-
-
-
 <li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-run.html">Run OpenFOAM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-post.html">Post-processing</a></li>
 </ul>
@@ -348,10 +343,11 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Disclaimer and License</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../terms/license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../terms/disclaimer.html">Disclaimer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/contributors.html">Contributors</a></li>
 </ul>
 
     </div>
@@ -566,26 +562,84 @@ document.write(`
 <p>Our classifier <span class="math notranslate nohighlight">\(h(x, \theta, \theta_0)\)</span> is thus equal to <span class="math notranslate nohighlight">\(sign(\theta \cdot X + \theta_0)\)</span> where <span class="math notranslate nohighlight">\(\theta \in \mathbb{R}^2 \)</span> and <span class="math notranslate nohighlight">\(\theta_0 \in \mathbb{R}\)</span>. Recall the sign function, also known as the signum function, is a mathematical function that returns the sign or direction of a real number. That is, if the input number is positive, negative, or 0, the sign function returns +1, -1, or 0, respectively.</p>
 <div class="tip admonition">
 <p class="admonition-title">Exercise 1</p>
-<p>Try to answer whether the pair of training examples below are linearly separable. Which ones are linearly separable through the origing?</p>
-</div>
+<p>Try to answer whether the pair of training examples below are linearly separable. Which ones are linearly separable through the origin?</p>
 <figure class="align-default" id="exercise-db">
-<img alt="ex-decisionbound" src="../_images/exercise-decision-bound.png" />
+<img alt="ex-decision-bound" src="../_images/exercise-decision-bound.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 180 </span><span class="caption-text">Exercise 1 on linearly separable pair of examples. Solution is in the end of the page</span><a class="headerlink" href="#exercise-db" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution</p>
+<table class="table" id="tab-ml-ex1-solution">
+<caption><span class="caption-number">Table 11 </span><span class="caption-text">Solution to the Machine Learning Exercise 1.</span><a class="headerlink" href="#tab-ml-ex1-solution" title="Permalink to this table">#</a></caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Dataset</p></th>
+<th class="head"><p>a</p></th>
+<th class="head"><p>b</p></th>
+<th class="head"><p>c</p></th>
+<th class="head"><p>d</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Linearly-separable (LS)?</p></td>
+<td><p>Yes</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>LS through origin?</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>No</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </section>
 <section id="perceptron-algorithm">
 <h2>Perceptron algorithm<a class="headerlink" href="#perceptron-algorithm" title="Permalink to this headline">#</a></h2>
-<p>In the perceptron algorithm, we tipically initialize <span class="math notranslate nohighlight">\(\theta\)</span> as zero (zero vector) and loop through the pair of training examples. At every iteration, we will check if the classifier makes a mistake classifying that training example (i-th example), and if so, then we update the parameters of <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+<p>In the perceptron algorithm, we typically initialize <span class="math notranslate nohighlight">\(\theta\)</span> as zero (zero vector) and loop through the pair of training examples. At every iteration, we will check if the classifier makes a mistake classifying that training example (i-th example), and if so, then we update the parameters of <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
 <p>Assume that <span class="math notranslate nohighlight">\(\theta_0 =0\)</span> for simplicity (the decision boundary must pass through the origin). Our perceptron classifier will make a mistake <code class="docutils literal notranslate"><span class="pre">if</span></code> <span class="math notranslate nohighlight">\(y^{(i)}(\theta \cdot x^{(i)}) \leq 0\)</span>. We will then update our <span class="math notranslate nohighlight">\(\theta\)</span> to no longer misclassify that training example. The way to do this is by adding <span class="math notranslate nohighlight">\(y^{(i)}x^{(i)}\)</span> to the previous <span class="math notranslate nohighlight">\(\theta\)</span>. Thus, the update would look like:</p>
 <div class="math notranslate nohighlight">
 \[
 	\theta = \theta + y^{(i)}x^{(i)}
   \]</div>
-<div class="tip admonition">
-<p class="admonition-title">Exercise 2</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
+Exercise 2</label><div class="sd-tab-content docutils">
 <p>Try to understand why is this update useful. Hint: substitute the expression for the updates <span class="math notranslate nohighlight">\(\theta\)</span> in the <code class="docutils literal notranslate"><span class="pre">if</span></code> check.</p>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
+Solution of Exercise 2</label><div class="sd-tab-content docutils">
+<p>Substituting the expression for the updated <span class="math notranslate nohighlight">\(\theta\)</span> to check if the classifier still makes a mistake in that example:</p>
+<div class="math notranslate nohighlight">
+\[
+  y^{(i)}(\theta + y^{(i)}x^{(i)})x^{(i)}
+  \]</div>
+<p>We initialize <span class="math notranslate nohighlight">\(\theta\)</span> as zero, thus the expression is simplified to:</p>
+<div class="math notranslate nohighlight">
+\[
+  y^{(i)}(y^{(i)}x^{(i)})x^{(i)}
+  \]</div>
+<p>Since any label time itself is equal to one (both <span class="math notranslate nohighlight">\(1 * 1\)</span> and <span class="math notranslate nohighlight">\(-1 * -1\)</span> equal 1), the expression turns into:</p>
+<div class="math notranslate nohighlight">
+\[
+  x^{(i)}x^{(i)} = \| x^{(i)} \|^2 &gt; 0 
+  \]</div>
+<p>This means that that the expression <span class="math notranslate nohighlight">\(y^{(i)}(\theta \cdot x^{(i)}) &gt; 0\)</span> (no mistake). Thus, <span class="math notranslate nohighlight">\(\theta\)</span> was updated so that it doesn’t misclassify the i-th example anymore.</p>
+</div>
 </div>
 <p>We have in hands a set of different training examples which have the potential to nudge/update our classifier in many directions. Thus, it is possible and even expected that the last training examples cause updates that will overwrite earlier, initial updates. This will result that earlier examples will no longer be correctly classified. For this reason, we need to loop through the whole training set multiple <span class="math notranslate nohighlight">\(T\)</span> times to ensure that all examples are correctly classified. Such iterations can be performed both in order or randomly selected from the training examples.</p>
 <p>We can code the algorithm as following:</p>
@@ -644,7 +698,7 @@ document.write(`
 <p>As you may have noticed, the perceptron algorithm features no regularization term. The goal was simply to find any decision boundary that can split the data correctly. Here, we will introduce the concept of <em>hinge loss</em> and <em>margin boundaries</em> to transform the problem of learning a decision boundary into an optimization problem considering regularization.</p>
 <section id="motivation-behind-margin-boundaries">
 <h3>Motivation behind margin boundaries<a class="headerlink" href="#motivation-behind-margin-boundaries" title="Permalink to this headline">#</a></h3>
-<p>Let’s take a look at our previously presented training dataset (figure below). Any decision boundary within the dashed grey lines correctly splits the training examples. However, intuitively, we would like to favour a decision boundary that can maximize the distances between the decision boundary and the training points. The reason to do so is because it’s likely that the points we wish to classify in the future have statistical noise, such that a decision boundary located too close to the training examples is more likely to misclassify sligthly changed (noisier) versions of the training examples. In contrast, a classifier that holds a relatively higher margin between the decision boundary and the examples will be probably more successfull in classifying future, unseen data.</p>
+<p>Let’s take a look at our previously presented training dataset (figure below). Any decision boundary within the dashed grey lines correctly splits the training examples. However, intuitively, we would like to favor a decision boundary that can maximize the distances between the decision boundary and the training points. The reason to do so is because it’s likely that the points we wish to classify in the future have statistical noise, such that a decision boundary located too close to the training examples is more likely to misclassify slightly changed (noisier) versions of the training examples. In contrast, a classifier that holds a relatively higher margin between the decision boundary and the examples will be probably more successful in classifying future, unseen data.</p>
 <figure class="align-default" id="margin-bound">
 <img alt="marginbound" src="../_images/margin-bound.png" />
 <figcaption>
@@ -698,7 +752,7 @@ document.write(`
   \end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(z\)</span> is the agreement (signed distance from the decision boundary) <span class="math notranslate nohighlight">\(y^{(i)}(\theta \cdot x^{(i)}+\theta_0)\)</span>.</p>
 <p>The figure below illustrates how the hinge loss operates along the z-axis (distance from boundary):</p>
-<p><img alt="hinge-loss" src="https://www.researchgate.net/publication/341468721/figure/fig5/AS:963539095257091&#64;1606737030212/The-margin-based-Hinge-loss-function.png" /></p>
+<a class="bg-primary mb-1 reference internal image-reference" href="https://www.researchgate.net/publication/341468721/figure/fig5/AS:963539095257091&#64;1606737030212/The-margin-based-Hinge-loss-function.png"><img alt="hinge-loss-function" class="bg-primary mb-1" src="https://www.researchgate.net/publication/341468721/figure/fig5/AS:963539095257091&#64;1606737030212/The-margin-based-Hinge-loss-function.png" style="width: 400px;" /></a>
 </section>
 <section id="optimization-function">
 <h3>Optimization function<a class="headerlink" href="#optimization-function" title="Permalink to this headline">#</a></h3>

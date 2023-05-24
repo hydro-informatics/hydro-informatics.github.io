@@ -34,22 +34,47 @@ A hyperplane with $d$ dimensions is conventially denoted by the vector normal to
  Our classifier $h(x, \theta, \theta_0)$ is thus equal to $sign(\theta \cdot X + \theta_0)$ where $\theta \in \mathbb{R}^2 $ and $\theta_0 \in \mathbb{R}$. Recall the sign function, also known as the signum function, is a mathematical function that returns the sign or direction of a real number. That is, if the input number is positive, negative, or 0, the sign function returns +1, -1, or 0, respectively.
  
  
-```{admonition} Exercise 1
+`````{admonition} Exercise 1
 :class: tip
-Try to answer whether the pair of training examples below are linearly separable. Which ones are linearly separable through the origing?
+Try to answer whether the pair of training examples below are linearly separable. Which ones are linearly separable through the origin?
 
-```
- 
-```{figure} ../img/datascience/exercise-decision-bound.png
-:alt: ex-decisionbound
+````{figure} ../img/datascience/exercise-decision-bound.png
+:alt: ex-decision-bound
 :name: exercise-db
 
 Exercise 1 on linearly separable pair of examples. Solution is in the end of the page
+````
+
+````{admonition} Solution
+:class: dropdown
+
+```{list-table} Solution to the Machine Learning Exercise 1.
+:header-rows: 1
+:name: tab-ml-ex1-solution
+
+* - Dataset
+  - a
+  - b 
+  - c
+  - d
+* - Linearly-separable (LS)?
+  - Yes
+  - No
+  - Yes
+  - No
+* - LS through origin?
+  - No
+  - No
+  - Yes
+  - No
+
 ```
+````
+`````
 
 ## Perceptron algorithm
 
-In the perceptron algorithm, we tipically initialize $\theta$ as zero (zero vector) and loop through the pair of training examples. At every iteration, we will check if the classifier makes a mistake classifying that training example (i-th example), and if so, then we update the parameters of $\theta$. 
+In the perceptron algorithm, we typically initialize $\theta$ as zero (zero vector) and loop through the pair of training examples. At every iteration, we will check if the classifier makes a mistake classifying that training example (i-th example), and if so, then we update the parameters of $\theta$. 
 
 
 Assume that $\theta_0 =0$ for simplicity (the decision boundary must pass through the origin). Our perceptron classifier will make a mistake ``if`` $y^{(i)}(\theta \cdot x^{(i)}) \leq 0$. We will then update our $\theta$ to no longer misclassify that training example. The way to do this is by adding $y^{(i)}x^{(i)}$ to the previous $\theta$. Thus, the update would look like:
@@ -58,10 +83,31 @@ Assume that $\theta_0 =0$ for simplicity (the decision boundary must pass throug
 	\theta = \theta + y^{(i)}x^{(i)}
   $$
 
-```{admonition} Exercise 2
-:class: tip
+`````{tab-set}
+````{tab-item} Exercise 2
 Try to understand why is this update useful. Hint: substitute the expression for the updates $\theta$ in the ``if`` check. 
-```
+````
+````{tab-item} Solution of Exercise 2
+Substituting the expression for the updated $\theta$ to check if the classifier still makes a mistake in that example:
+
+  $$
+  y^{(i)}(\theta + y^{(i)}x^{(i)})x^{(i)}
+  $$
+  
+We initialize $\theta$ as zero, thus the expression is simplified to:
+ 
+   $$
+  y^{(i)}(y^{(i)}x^{(i)})x^{(i)}
+  $$
+  
+Since any label time itself is equal to one (both $1 * 1$ and $-1 * -1$ equal 1), the expression turns into:
+
+   $$
+  x^{(i)}x^{(i)} = \| x^{(i)} \|^2 > 0 
+  $$
+This means that that the expression $y^{(i)}(\theta \cdot x^{(i)}) > 0$ (no mistake). Thus, $\theta$ was updated so that it doesn't misclassify the i-th example anymore.
+````
+`````
 
 We have in hands a set of different training examples which have the potential to nudge/update our classifier in many directions. Thus, it is possible and even expected that the last training examples cause updates that will overwrite earlier, initial updates. This will result that earlier examples will no longer be correctly classified. For this reason, we need to loop through the whole training set multiple $T$ times to ensure that all examples are correctly classified. Such iterations can be performed both in order or randomly selected from the training examples. 
 
@@ -123,7 +169,7 @@ As you may have noticed, the perceptron algorithm features no regularization ter
 
 ### Motivation behind margin boundaries
 
-Let's take a look at our previously presented training dataset (figure below). Any decision boundary within the dashed grey lines correctly splits the training examples. However, intuitively, we would like to favour a decision boundary that can maximize the distances between the decision boundary and the training points. The reason to do so is because it's likely that the points we wish to classify in the future have statistical noise, such that a decision boundary located too close to the training examples is more likely to misclassify sligthly changed (noisier) versions of the training examples. In contrast, a classifier that holds a relatively higher margin between the decision boundary and the examples will be probably more successfull in classifying future, unseen data.
+Let's take a look at our previously presented training dataset (figure below). Any decision boundary within the dashed grey lines correctly splits the training examples. However, intuitively, we would like to favor a decision boundary that can maximize the distances between the decision boundary and the training points. The reason to do so is because it's likely that the points we wish to classify in the future have statistical noise, such that a decision boundary located too close to the training examples is more likely to misclassify slightly changed (noisier) versions of the training examples. In contrast, a classifier that holds a relatively higher margin between the decision boundary and the examples will be probably more successful in classifying future, unseen data.
 
 ```{figure} ../img/datascience/margin-bound.png
 :alt: marginbound
@@ -186,7 +232,7 @@ where $z$ is the agreement (signed distance from the decision boundary) $y^{(i)}
 
 The figure below illustrates how the hinge loss operates along the z-axis (distance from boundary):
 
-![hinge-loss](https://www.researchgate.net/publication/341468721/figure/fig5/AS:963539095257091@1606737030212/The-margin-based-Hinge-loss-function.png)
+<img src="https://www.researchgate.net/publication/341468721/figure/fig5/AS:963539095257091@1606737030212/The-margin-based-Hinge-loss-function.png" alt="hinge-loss-function" class="bg-primary mb-1" width="400px">
 
 
 ### Optimization function

@@ -1,9 +1,10 @@
 (glossary)=
 # Glossary
 
-Using common and consistent vocabulary is vital for working in teams. This section exemplifies a glossary with technical terms recurring in this eBook.
+This section provides a glossary with technical terms recurring in this eBook. While it is intended to be as exhaustive as possible, some terms might not yet be defined. 
 
 ````{glossary}
+  
 Advection
   Advection is the motion of particles along with the bulk flow. The properties (e.g., heat) of an advected particle or substance are conserved. Mathematically, advection of incompressible fluids (e.g., water) is described by the {term}`Continuity equation` {cite:p}`kundu_fluid_2008`.
 
@@ -21,7 +22,7 @@ ASCII
   The American Standard Code for Information Interchange (ASCII) is an encoding standard for text on computers. The development of ASCII goes back to telegraphy and was first published in 1961 for the Latin alphabet. It was later extended by other alphabets and special characters {cite:p}`ascii1980`. ASCII code represents characters in the form of numbers. For instance, the ASCII code `65` represents uppercase `A` (utf-8 encoding). In Python applications, ASCII code numbers can be useful to iterate through the alphabet (e.g., alphabetic column names), where `chr(ASCII)` returns a letter as a function of the system encoding. For instance, in Python, `print(chr(78))` returns uppercase `N` for **utf-8** encoding (default on many Linux systems). To find out the encoding type of your Python installation, open a Python terminal, tap `import sys` and `sys.getdefaultencoding()`.
 
 Bedload
-  Bedload (also referred to as *bed load*) $Q_b$ (or $q_b$ for unit bedload) in kg$\cdot$s$^{-1}$ (or kg$\cdot$s$^{-1}\cdot$m$^{-1}$) is a special type of {term}`Sediment transport` describing the displacement of coarse particles by rolling, sliding, and/or jumping on the riverbed. In river hydraulics, the so-called {term}`Dimensionless bed shear stress` or also referred to as {term}`Shields parameter` {cite:p}`shields_anwendung_1936` is often used as the threshold value for the mobilization of sediment from the riverbed. The dimensionless expression of bedload transport is {cite:p}`einstein_bed-load_1950`:
+  Bedload (also referred to as *bed load*) $Q_b$ (or $q_b$ for unit bedload) in kg$\cdot$s$^{-1}$ (or kg$\cdot$s$^{-1}\cdot$m$^{-1}$) is a special type of {term}`Sediment transport` describing the displacement of coarse particles by rolling, sliding, and/or jumping on the riverbed. In river hydraulics, the so-called {term}`dimensionless bed shear stress <Dimensionless bed shear stress>` or also referred to as {term}`Shields parameter` {cite:p}`shields_anwendung_1936` is often used as the threshold value for the mobilization of sediment from the riverbed. The dimensionless expression of bedload transport is {cite:p}`einstein_bed-load_1950`:
 
   $$
   \Phi_b = \frac{q_b}{\rho_{w} \sqrt{(s - 1) g D^{3}_{pq}}} \approx \frac{Q_b}{0.5\cdot(b + B)\rho_{w} \sqrt{(s - 1) g D^{3}_{pq}}}
@@ -38,8 +39,15 @@ Bedload
 
   *French: Charriage <br>German: Geschiebtransport*
 
-Boussinesq
-  The Boussinesq approximation of the {term}`Continuity equation` assumes that density variations can be neglected except for the gravity term (i.e., in the vertical momentum equations). In addition, the Boussinesq approximation assumes that a fluid is incompressible and that wave motion is inviscid {cite:p}`spiegel1960`.
+Boussinesq approximation
+  The Boussinesq approximation of the {term}`Continuity equation` assumes that density variations can be neglected except for the gravity term (i.e., in the vertical momentum equations). In addition, the Boussinesq approximation assumes that a fluid is incompressible and that wave motion is inviscid {cite:p}`boussinesq_essai_1877,spiegel1960`. Caution: not to be confused with the {term}`Boussinesq hypothesis`.
+
+  *French: approximation de Boussinesq<br>German: Boussinesq-Approximation*
+
+Boussinesq hypothesis
+  The Boussinesq hypothesis states that the turbulent stresses are related to the mean velocity gradients in a similar way as the viscous stresses are related to the total velocity gradients {cite:p}`glegg_chapter_2017`. In practice, the Boussinesq hypothesis corresponds to the assumption that the momentum transfer caused by turbulent eddies can be modeled with an eddy viscosity, which is important, for example, for turbulence terminations (e.g., in {term}`RANS` models) {cite:p}`boussinesq_essai_1877,schmitt_boussinesq_2007`. Caution: not to be confused with the {term}`Boussinesq approximation`.
+
+  *French: hypothèse de Boussinesq<br>German: Näherung von Boussinesq*
 
 Braiding
   A braiding river morphology refers to anabranched channel networks with high {term}`bedload <Bedload>` supply, mostly located in moderately steep mid-land to mountain rivers {cite:p}`leopold_river_1957, rosgen_classification_1994`.
@@ -50,6 +58,8 @@ Braiding
 
   A braided-channel section of the Devolli River (Albania). Source: Sebastian Schwindt (2021)
   ```
+
+  *French: en tresse <br>German: Geflecht- bzw. Zopfausbildung (?)*
 
 CFL
   In the field of hydrodynamics, the abbreviation CFL commonly refers to the **Courant-Friedrichs-Lewy** condition, which represents a convergence criterion for the numerical solution to the *Navier-Stokes* partial differential equations. The CFL applies to explicit time integration schemes that may become unstable for large time steps as a function of the size of mesh cells. Today, most numerical software uses an internal value for the CFL to adaptively calculate the maximum time step that is required for the stability of explicit solvers. In 2d modelling, the CFL condition is defined as $c_{cfl}={u_x \cdot \Delta t}/\Delta x + {u_y \cdot \Delta t}/\Delta y$, where $\Delta t$ is the time step, $\Delta x$ and $\Delta y$ are grid cell sizes in $x$ and $y$ directions of the coordinate reference system, and $u_x$ and $u_y$ are the flow velocities in the $x$ and $y$ directions. An explicit solver is assumed to be stable when $c_{cfl} \leq c_{cfl, crit}$, where the critical value $c_{cfl, crit}$ for the CFL condition must be smaller than 1.0. To this end, numerical modelling software, such as BASEMENT, uses a default value of $c_{cfl, crit} = 0.9$.
@@ -113,13 +123,13 @@ Diffusion
   *French: Diffusion <br>German: Diffusion*
 
 Dimensionless bed shear stress
-  The dimensionless bed shear stress $\tau_x$ (in the literature often called $\theta$) is derived from the shear forces that act on the riverbed as a result of flowing water. $\tau_x$ is a key parameter in the calculation of {term}`Bedload` transport where many semi-empiric equations assume that a sediment grain is mobile when a particle size-related, critical value of the dimensionless bed shear stress is exceeded. This critical value of dimensionless bed shear stress is also referred to as {term}`Shields parameter`. To this end, $\tau_x$ is calculated based on hydraulic characteristics and the characteristic grain size $D_{pq}$ {cite:p}`von_karman_mechanische_1930,kramer_modellgeschiebe_1932`:
+  The dimensionless bed shear stress $\tau_x$ (in the literature often called $\theta$) is derived from the shear forces that act on the riverbed as a result of flowing water. $\tau_x$ is a key parameter in the calculation of {term}`bedload <Bedload>` transport where many semi-empiric equations assume that a sediment grain is mobile when a particle size-related, critical value of the dimensionless bed shear stress is exceeded. This critical value of dimensionless bed shear stress is also referred to as {term}`Shields parameter`. To this end, $\tau_x$ is calculated based on hydraulic characteristics and the characteristic grain size $D_{pq}$ {cite:p}`von_karman_mechanische_1930,kramer_modellgeschiebe_1932`:
 
   $$
-  \tau_{x} = \frac{R_h~\cdot~S_e}{\left(s-1\right)~\cdot~D_{pq}}
+  \tau_{x} = \frac{\rho_w \cdot g \cdot R_h \cdot S_e}{\rho_w \cdot g \cdot \left(s-1\right) \cdot D_{pq}}
   $$
 
-  where $R_h$ is the hydraulic radius (cf. calculation in the {ref}`1d hydraulic Python exercise <calc-1d-hyd>`); $S_{e}$ is energy slope; and $s$ is the ratio of sediment grain and water density (typically 2.68) {cite:p}`schwindt_hydro-morphological_2017`. $R_h$ may be substituted by water depth in wide rivers with monotonous cross-sectional shape and for (grid) cells of a 2d numerical model.
+  where $R_h$ is the hydraulic radius (cf. calculation in the {ref}`1d hydraulic Python exercise <calc-1d-hyd>`); $S_{e}$ is energy slope; and $s$ is the ratio of sediment grain and water density (typically 2.68) {cite:p}`schwindt_hydro-morphological_2017`. $R_h$ may be substituted by water depth in wide rivers with monotonous cross-sectional shape and for (grid) cells of a 2d numerical model. The terms $\rho_w$ (water density) and $g$ (gravitational acceleration) cancel in the nominator and denominator, and are provided here to make clear that the nominator essentially is (dimensional) bed shear stress.
 
   *French: Cisaillement adimensionel <br>German: Dimensionslose Schubspannung*
 
@@ -129,7 +139,7 @@ Echo sounder
   *French: Échosondeur / Sondeur acoustique <br>German: Echolot / Fächerecholot*
 
 Exner equation
-  The {cite:t}`exner_uber_1925` equation yields sediment mass conservation in a hydro-morphodynamic model (see also the {ref}`TELEMAC-Gaia tutorial <tm-gaia>`) and expresses that the time-dependent {term}`Topographic change` rate $\frac{\partial \eta}{\partial t}$ equals the unit sediment ({term}`Bedload`) fluxes $q_b$ over the boundaries {cite:p}`hirano1971,blom2003`:
+  The {cite:t}`exner_uber_1925` equation yields sediment mass conservation in a hydro-morphodynamic model (see also the {ref}`TELEMAC-Gaia tutorial <tm-gaia>`) and expresses that the time-dependent {term}`Topographic change` rate $\frac{\partial \eta}{\partial t}$ equals the unit sediment ({term}`bedload <Bedload>`) fluxes $q_b$ over the boundaries {cite:p}`hirano1971,blom2003`:
 
   $$
   \frac{\partial \eta}{\partial t} = -\frac{1}{\epsilon}\frac{\partial q_b}{\partial x}
@@ -155,7 +165,7 @@ Exner equation
   where $\alpha$ is the angle between the longitudinal channel ($x$) axis and the bedload transport vector $\boldsymbol{q_b}$.
   ```
 
-  *French: Équation de Exner <br>German: Exner-Gleichung (?)*
+  *French: Équation de Exner <br>German: Exner-Gleichung*
 
 
 Froude number
@@ -192,6 +202,27 @@ HDF
 Hyporheic zone
   The hyporheic zone is the space under and along rivers where surface water and groundwater exchange takes place. The exchange processes of a functional, non-{term}`clogged <Clogging>` hyporheic zone are important for the ecosystem, in particular for fish spawning {cite:p}`boulton_hyporheic_1998`.
 
+Kolmogorov microscales
+  The Russian mathematician Andrey Nikolaevich Kolmogorov the concept that the smallest scales of turbulence are similar for any turbulent flow (i.e. universal) {cite:p}`youschkevitch_kolmogorov_1983`. According to this concept, the so-called Kolmogorov microscales, the {term}`turbulent kinetic energy <Turbulent kinetic energy>` dissipates to heat when viscosity dominates. The Kolmogorov microscales can be calculated for length, time, and velocity units as a function of the kinematic viscosity $\nu$, and the dissipation rate $\epsilon$ of {term}`turbulent kinetic energy <Turbulent kinetic energy>` (per unit mass).
+
+  The Kolmogorov length scale $\eta_L$ is calculated as follows, and typically is in the order of 0.1-10 m$^{-3}$ {cite:p}`dey_fluvial_2014`:
+
+  $$
+  \eta_L = {\left( \frac{\nu^3 }{\epsilon } \right)} ^{1/4}
+  $$
+
+  The Kolmogorov time scale $\eta_T$ is calculated as {cite:p}`dey_fluvial_2014`:
+
+  $$
+  \eta_T = {\left( \frac{\nu}{\epsilon } \right)} ^{1/2}
+  $$
+
+  The Kolmogorov velocity scale $\eta_U$ is calculated as {cite:p}`dey_fluvial_2014`:
+
+  $$
+  \eta_U = ( \nu \cdot \epsilon )^{1/4}
+  $$
+
 Krylov space
   Krylov (sub) spaces are used in numerical approximation schemes for finding solutions to sparse (many zero entries), high-dimensional linear systems {cite:p}`bunch1974`. To this end, Krylov (sub) space methods use Gaussian elimination (e.g., {term}`LU decomposition`) to speed up calculations {cite:p}`gutknecht2007`.
 
@@ -206,7 +237,7 @@ Lidar
 Limnophile
   The term limnophile is used as a noun in reference to species that prefer to live in calm waters. Thus, limnophilous species, such as common rudd (*Scardinius erythrophthalmus*), colonize slow-flowing to stagnant fresh water regions. Unlike limnophilous species, reophilic species prefer fast flowing regions (see also {term}`Reophile`).
 
-  *French: inconnue <br>German: Limnophil*
+  *French: <br>German: limnophil*
 
 LU decomposition
   A lower-upper (LU) decomposition applies to the solution of linear systems (matrices) by re-organizing a matrix of equations into an upper and a lower triangular matrix. Thus, LU decomposition is a form of Gaussian elimination, which is typically applied in numerical analysis (e.g., {ref}`Telemac2d <tm2d-solver-pars>`) or machine learning.
@@ -219,6 +250,7 @@ MPI
 Navier-Stokes equations
   The general form of the Navier-Stokes equations describes the motion of a Newtonian fluid and expresses the conservation of mass and momentum {cite:p}`batchelor_2000_chpt3`. The Navier-Stokes equations is a special type of {term}`Continuity equation` that is derived from Cauchy's equation (conservation of momentum). The equation simplifies with the assumption of incompressible fluids and reduces to the *Euler equation* when viscous effects are negligible, which is generally the case in far distance from the boundaries {cite:p}`kundu_fluid_2008`.
   A theoretical, exact solution of the Navier-Stokes equations would yield a perfect description of many natural processes. However, the underlying system equations involves more unknown parameters than equations. For this reason, rigorous simplifications (e.g., the {term}`Shallow water equations`) and numerical approximations with considerably larger computational effort than for an analytical solution are necessary for the solution of the Navier-Stokes equations. Simplification hypotheses are, for example, a hydrostatic pressure distribution (leading to the shallow water equations) or the assumption that a fluid is incompressible.
+  Contemporary models predominantly use a specific form of the Navier-Stokes equations, notably the {term}`Reynolds-averaged Navier-Stokes (RANS) <RANS>` equations.
 
   *French: Équations de Navier-Stokes <br>German: Navier-Stokes-Gleichungen*
 
@@ -243,13 +275,52 @@ Plane bed
 Potamodromous
   Potamodromous {term}`fish guilds <Guild>` live and migrate in freshwater regions. Their migration is mostly due to reproduction. The difference with {term}`diadromous fish <Diadromous>` is that those migrate from the sea to freshwater regions. In addition, potamodromous fish will very likely never meet {term}`oceanmodromous <Oceanodromous>` fish {cite:p}`myers_fish_1949`. Examples for potamodromous fish are eal (*Anguilla anguilla*) and river trout (*Salmo trutta fario*).
 
+
+RANS
+  The Reynolds-averaged Navier-Stokes (RANS) equations are a statistical approximation of the {term}`Navier-Stokes equations` to model turbulence with a time average and variance of velocity and pressure. Specifically, RANS solutions at coarse scales (i.e., coarser than {term}`Kolmogorov microscales`) account for turbulence by replacing velocity $u_k$ (and pressure) components by a mean value $\overline{u_k}$ and fluctuations $u'_k$ around this mean value {cite:p}`nikora_double-averaging_2007`. The subscript $_k$ indicates flow directions 1 (streamwise/longitudinal $x$-direction), 2 (lateral / $y$-direction), and 3 (vertical / $z$-direction). The RANS equations read as follows {cite:p}`franca_turbulence_2015` for mass balance (Reynolds-averaged {term}`continuity equation <Continuity equation>`):
+
+  $$
+  \frac{\partial \left(\rho_w\overline{u_k}\right)}{\partial x_k} = 0
+  $$
+
+  where $\rho_w$ denotes water density and $u$ is the flow velocity. The RANS momentum balance reads as follows {cite:p}`franca_turbulence_2015`:
+
+  $$
+  \overbrace{\frac{\partial \left(\rho_w \overline{u_j}\right)}{\partial t}}^{I} + \textcolor{orange}{\overbrace{\frac{\partial \left(\overline{\rho'_w u'_j}\right)}{\partial t}}^{II}} + \overbrace{\frac{\partial \left(\overline{u_k} \overline{\rho_w} \overline{u_j}\right)}{\partial x_k}}^{III} + \textcolor{orange}{\overbrace{\frac{\partial \left(\overline{u_k} \overline{\rho'_w u_j'}\right)}{\partial x_k}}^{IV}} + \textcolor{orange}{\overbrace{\frac{\partial \left(\overline{u_j} \overline{\rho'_w u_k'}\right)}{\partial x_k}}^{V}} =\\\ \overbrace{-\frac{\partial \overline{p}}{\partial x_j}}^{VI} + \overbrace{\mu \frac{\partial^2 u_j}{\partial x_k \partial x_k}}^{VII}
+   -\overbrace{\frac{\partial \overline{\rho_w} \overline{u'_k u'_j}}{\partial x_k}}^{VIII} - \textcolor{orange}{\overbrace{\frac{\partial \overline{\rho'_w u'_k u'_j}}{\partial x_k}}^{IX}} + \overbrace{\overline{\rho_w} g}^{X}
+  $$
+
+  where subscript $_j$ is analogous to $_k$, $t$ denotes time, $p$ is pressure, and $\mu$ is the dynamic viscosity (of water). The terms I to X have the following meanings:
+
+  * I local derivative of (time) averaged momentum
+  * II local derivative of averaged momentum fluctuation
+  * III mean {term}`advection <Advection>` of averaged momentum
+  * IV mean {term}`advection <Advection>` of momentum fluctuation (in $_k$ direction)
+  * V mean {term}`advection <Advection>` of momentum fluctuation (in $_j$ direction)
+  * VI averaged pressure
+  * VII viscous diffusion
+  * VIII Reynolds stress
+  * IX turbulent {term}`diffusion <Diffusion>` (i.e., turbulent transport of momentum fluctuation)
+  * X average body force / gravity
+
+  The <font color='orange'>orange-color</font> terms involve <font color='orange'>density fluctuation</font>, and thus, <font color='orange'>cancel out</font> when using the {term}`Boussinesq approximation`. In term VIII, $\overline{u'_k u'_j}$ denotes the Reynolds stress tensor, which is an additional stress that results from Reynolds averaging, and poses a closure problem. To this end, the (in)famous $k$-$\epsilon$ model is often used, where $k$ denotes the {term}`turbulent kinetic energy <Turbulent kinetic energy>` and $\epsilon$ its dissipation rate.
+
+  ```{margin} TELEMAC Implementation
+  Telemac3d users can activate the Spalart-Allamaras model to enable so-called *Detached Eddy Simulation* (DES) by setting the `HORIZONTAL TURBULENCE MODEL` and `VERTICAL TURBULENCE MODEL` keywords to `5`, while LES can be activated through the Smagorinsky model (`4`).
+  ```
+
+  RANS solvers are computationally highly efficient but physically imprecise because they represent turbulence only as statistical moments {cite:p}`nikora_double-averaging_2007`. For this reason, there is a growing trend in numerical modeling toward the use of so-called Large Eddy Simulations (LES), which can be used at high {term}`Reynolds numbers <Reynolds number>` to precisely model large eddies and simulate smaller eddies with a fine structure model. A precise representation of turbulence was possible by means of Direct Numerical Simulation (DNS), which is currently and for the time being not computationally feasible for most free-surface waters {cite:p}`georgiou_direct_2018`.
+
+  *French: Moyenne de Reynolds <br>German: (Osborne) Reynolds-gemittelte Navier-Stokes-Gleichungen*  
+
+
 Rating curve
   See {term}`Stage-discharge relation`.
 
 Reophile
   The term reophile is used as a noun in reference to species that prefer to live in fast-flowing water. In addition, a distinction is made between reophilic A and B species. Reophilic A species (e.g., brown/river trout *Salmo trutta (fario)* or minnow *Phoxinus phoxinus*) colonize the main stream of a river at all lifestages. Reophilic B species (e.g., gudgeon *Gobio gobio*) occupy calmer flow regions (e.g., oxbows) in some lifestages. Unlike reophilic species, limnophilic species (e.g., common rudd *Scardinius erythrophthalmus*) prefer calm (stagnant) flow regions (see also {term}`Limnophile`).
 
-  *French: inconnue <br>German: Reophil*
+  *French: <br>German: reophil*
 
 Reynolds number
   The Reynolds number $Re$ relates viscous forces to inertia and is a key parameter for flow turbulence {cite:p}`chow59`:
@@ -281,6 +352,18 @@ River corridor
 Riverbed clogging
   See {term}`Clogging`.
 
+Rouse number
+  The Rouse number $Ro$ determines the transport mode (essentially, {term}`bedload <Bedload>` or {term}`suspended load <Suspended load>`) of a sediment particle and it serves for calculation of the concentration profile of suspended sediment. In its function of a characteristic of a vertical suspended load profile and because of its original definition of an *exponent in the suspended load function* (see page 13ff in {cite:t}`rouse_analysis_1939`), the Rouse number is also referred to as with a capital $Z$. It is calculated as:
+
+  $$
+  Ro = \frac{w_s}{\kappa\cdot u_*}
+  $$
+
+  where $w_s$ denotes the {term}`settling velocity <Settling velocity>`, $\kappa$ (=0.41) is the van Karmàn constant {cite:p}`von_karman_mechanische_1930`, and $u_*$ is the {term}`shear velocity <shear velocity>`.
+
+  A particle is typically transported in suspension when it has a low Rouse number ($Ro \lessapprox 0.5$), in the water column when it has a Rouse number between approximately 0.5 and 2.0, as bedload when its Rouse number is higher, and tends to deposit for very high Rouse numbers ($Ro \gtrapprox 12$) {cite:p}`dubuis_clogging_2023`.
+
+
 Saint-Venant equations
   The French mathematician Adhémar Jean Claude Barré de Saint-Venant introduced dimensional simplifications of the {term}`Navier-Stokes equations`. For simple cross-sections, the one-dimensional (1d), cross-section averaged Saint-Venant equations can be applied, and represent the baseline for the Manning-Strickler Formula (cf. the {ref}`1d Hydraulics Python exercise <ex-1d-hydraulics>`). The two-dimensional (2d), depth-averaged Saint-Venant equations are more frequently referred to as the {term}`Shallow water equations`, which imply a hydrostatic pressure distribution {cite:p}`graf_hydraulique_2011`.
 
@@ -297,7 +380,7 @@ Sand bed
   ```
 
 Sediment transport
-  Fluvial sediment transport encompasses two modes of particle displacement: (1) suspended load and (2) bedload (see figure below). Finer particles with a weight that can be carried by the fluid (water) are transported as {term}`Suspended load`. Coarser particles rolling, sliding, and jumping on the channel bed are transported as {term}`Bedload`. There is third type of transport, the so-called wash load, which is finer than the coarse bed load, but too heavy (large) to be transported in suspension {cite:p}`einstein_bed-load_1950`. The units for sediment transport are for an integral flow cross-section kg$^3\cdot$s$^{-1}$ or per unit width kg$^3\cdot$s$^{-1}$m$^{-1}$.
+  Fluvial sediment transport encompasses two modes of particle displacement: (1) suspended load and (2) bedload (see figure below). Finer particles with a weight that can be carried by the fluid (water) are transported as {term}`Suspended load`. Coarser particles rolling, sliding, and jumping on the channel bed are transported as {term}`bedload <Bedload>`. There is third type of transport, the so-called wash load, which is finer than the coarse bed load, but too heavy (large) to be transported in suspension {cite:p}`einstein_bed-load_1950`. The units for sediment transport are for an integral flow cross-section kg$^3\cdot$s$^{-1}$ or per unit width kg$^3\cdot$s$^{-1}$m$^{-1}$. Additionally, the {term}`Rouse number` can be used to determine whether a particle is transported in suspension, as bedload, or not at all.
 
   ```{image} https://github.com/Ecohydraulics/media/raw/main/png/sediment-transport.png
   ```
@@ -309,6 +392,22 @@ Sediment yield
 
   *French: Apport solide <br>German: Feststoffeintrag*
 
+
+Settling velocity
+  The settling velocity $w_s$ is computed as a function of the ratio of sediment grain and water density $s$, gravitational acceleration $g$, grain size $D_x$, and the dimensionless drag coefficient $C_D$ {cite:p}`dey_fluvial_2014`:
+
+  $$
+  w_{s} = \sqrt{\frac{4}{3}\cdot \frac{(s-1)\cdot g\cdot D_x}{C_{D}}}
+  $$
+
+  In turn, $C_{D}$ is a function of the {term}`Reynolds number`, and can be approximated (not generally valid!) as follows {cite:p}`stokes1850`:
+
+  $$
+  C_{D} = \frac{24}{Re}
+  $$
+
+
+
 Shallow water equations
   In shallow (i.e., small water depths) and wide waters (many rivers), the assumption of hydrostatic pressure distribution can be made to simplify the {term}`Navier-Stokes equations`. The corresponding simplified form of the {term}`Navier-Stokes equations` is referred to as the shallow water equations. The shallow water equations imply that vertical flow velocity is negligible compared to horizontal (and longitudinal) flow velocity. This assumption is valid in many river systems, but there are several cases for which the shallow water equations are not suited {cite:p}`kundu_fluid_2008`.
 
@@ -316,14 +415,26 @@ Shallow water equations
 
   *French: Équations (de Barré) de Saint-Venant <br>German: Flachwassergleichungen*
 
+Shear velocity
+  Shear velocity $u_*$ (or friction velocity) expresses shear stress in units of velocity. The parameter is useful, for example, to describe the shear effect of depth-averaged flow velocity. It can be calculated as follows {cite:p}`schwindt_hydro-morphological_2017`:
+
+  $$
+  u_* \approx \sqrt{\tau_b / \rho_w} = g\cdot R_h \cdot S_e \approx g\cdot h \cdot S_e
+  $$
+
+  where $\tau_b$ denotes the {term}`bed shear stress <Dimensionless bed shear stress>`, $rho_w$ is the density of water, $R_h$ is the hydraulic radius (see also the {ref}`1d hydraulic Python exercise <calc-1d-hyd>`), $g$ is gravitational acceleration, and $S_{e}$ is energy slope. $R_h$ may be substituted by water depth $h$ in wide rivers with monotonous cross-sectional shape and for (grid) cells of a 2d numerical model.
+
+  *French: Vitesse de frottement <br>German: Schubspannungsgeschwindigkeit*  
+
+
 Shields parameter
-  The {cite:t}`shields_anwendung_1936` parameter $\tau_{x,cr}$ (in the literature also often named $\theta_{cr}$) is a dimensionless value of critical bed shear stress for sediment mobility. For this reason, the Shields parameter is also often referred to as **dimensionless critical bed shear stress**. Flow conditions and grain sizes with a {term}`Dimensionless bed shear stress` $\tau_x$ smaller than the Shields parameter curve are considered immobile. Vice versa, flow conditions and grains associated with a {term}`Dimensionless bed shear stress` larger than the Shields parameter are considered mobile. In fully turbulent flow, the Shields parameter can be taken as a constant value of approximately 0.047$\pm$0.15 {cite:p}`von_karman_mechanische_1930,kramer_modellgeschiebe_1932,smart_sedimenttransport_1983`. To evaluate if a grain is in motion, its {term}`Dimensionless bed shear stress` value is plotted against its dimensionless diameter $D_x$ in the so-called Shields diagram (also referred to as the *Hunter-Rouse* {cite:p}`rouse_critical_1965` diagram). $D_x$ is calculated for any grain with a diameter $D_{pq}$ (in m) as {cite:p}`einstein_bed-load_1950`:
+  The {cite:t}`shields_anwendung_1936` parameter $\tau_{x,cr}$ (in the literature also often named $\theta_{cr}$) is a dimensionless value of critical bed shear stress for sediment mobility. For this reason, the Shields parameter is also often referred to as **dimensionless critical bed shear stress**. Flow conditions and grain sizes with a {term}`dimensionless bed shear stress <Dimensionless bed shear stress>` $\tau_x$ smaller than the Shields parameter curve are considered immobile. Vice versa, flow conditions and grains associated with a {term}`dimensionless bed shear stress <Dimensionless bed shear stress>` larger than the Shields parameter are considered mobile. In fully turbulent flow, the Shields parameter can be considered a constant value of approximately 0.047$\pm$0.15 {cite:p}`von_karman_mechanische_1930,kramer_modellgeschiebe_1932,smart_sedimenttransport_1983`. To evaluate if a grain is in motion, its {term}`dimensionless bed shear stress <Dimensionless bed shear stress>` value is plotted against its dimensionless diameter $D_x$ in the so-called Shields diagram (also referred to as the *Hunter-Rouse* {cite:p}`rouse_critical_1965` diagram). $D_x$ is calculated for any grain with a diameter $D_{pq}$ (in m) as {cite:p}`einstein_bed-load_1950`:
 
   $$
   D_x = \left[\frac{(s-1)\cdot g}{\nu^2}\right]^{1/3}\cdot D_{pq}
   $$
 
-  where $s$ is the ratio of sediment grain and water density (typically 2.68); $g$ is gravitational acceleration; and $\nu$ is the kinematic viscosity of water ($\approx$10$^{-6}$m$^{2}$ s$^{-1}$) {cite:p}`schwindt_hydro-morphological_2017`. Read the definition of {term}`Dimensionless bed shear stress` for the calculation of $\tau_{x}$. {numref}`Figure %s <shields-diagram>` shows the Shields diagram where the Shields curve is plotted based on descriptions in {cite:t}`guo_logarithmic_2002`.
+  where $s$ is the ratio of sediment grain and water density (typically 2.68); $g$ is gravitational acceleration; and $\nu$ is the kinematic viscosity of water ($\approx$10$^{-6}$m$^{2}$ s$^{-1}$) {cite:p}`schwindt_hydro-morphological_2017`. Read the definition of {term}`dimensionless bed shear stress <Dimensionless bed shear stress>` for the calculation of $\tau_{x}$. {numref}`Figure %s <shields-diagram>` shows the Shields diagram where the Shields curve is plotted based on descriptions in {cite:t}`guo_logarithmic_2002`.
 
   ```{figure} ../img/shields-diagram.jpg
   :alt: Shields diagram guo hunter critical bed shear stress
@@ -371,6 +482,20 @@ Topographic change
   Topographic change is the increase or decrease in elevation of the Earth's surface as a function of time. Conceptually, tracking topographic changes could consist of a simple comparison (i.e., subtraction) of elevation changes at two different moments. However, topographic change detection is not quite that simple, since every measurement technique has spatial inaccuracies with regards to the exact location and elevation of recorded points. For this reason, methods have been developed that, based on a level of detection (LoD), generate topographic change maps conveying and accounting for spatial uncertainty. Depending on the method, either strict global LoD raster {cite:p}`pasternack_flood-driven_2017` or less strict pixel-based LoD values {cite:p}`wheaton_accounting_2010` are used to remove uncertainty from topographic change maps. Topographic change maps also enable the visualization of soil loss (i.e., erosion), which is a growing challenge for agriculture and beyond. To this end, the USGS developed a publicly available website that is dedicated to topographic change (visit [https://usgs.gov](https://www.usgs.gov/core-science-systems/eros/topochange)).
 
   *French: Changement du terrain (non-technique) <br>German: Topografischer Wandel (kein technischer Begriff)*
+
+Turbulence
+  See {term}`Reynolds-averaged Navier-Stokes <RANS>` equations.
+
+Turbulent kinetic energy
+  Turbulence kinetic energy (TKE, or $k$ in this eBook) is the mean kinetic energy per unit mass associated with turbulent eddies. It is measured as the quadratic velocity fluctuations. In a river or lab flume, TKE can be indirectly measured with an Acoustic Doppler Velocimeter (ADV) that enables to derive the streamwise ($u_x$ or just $u$), later/spanwise ($u_y$ or $v$), and vertical ($u_z$ or $w$) velocity fluctuations (i.e., $u'_x$, $u'_y$, and $u'_z$, respectively) with the following expression {cite:p}`nikora_adv_1998,kundu_fluid_2008`:
+
+  $$
+  k = \frac{1}{2} \cdot \left( {\overline{{u'_x}^{2}} + \overline{{u'_y}^{2}} + \overline{{u'_z}^{2}}} \right)
+  $$ (eq-tke)
+
+  Thus, $k$ is the half trace of the Reynolds stress tensor (see {term}`RANS`) {cite:p}`franca_turbulence_2015`. For evaluating $k$ in field or lab experiments, have a look at our Python packages [TKE-calculator (standalone scripts)](https://tke-calculator.readthedocs.io) and [TKE-analyst (pip-installer)](https://tkeanalyst.readthedocs.io).
+
+  In numerics, the TKE ($k$) is calculated by turbulence closure methods, such as the $k$-$\epsilon$ closure, which are required for numerically solving the {term}`Reynolds-averaged Navier-Stokes <RANS>` equations.
 
 xdmf
   The [eXtensible Data Model and Format (XDMF)](https://www.xdmf.org/) library provides standard routines for exchanging (scientific) datasets that result from high performance computing (HPC) tasks. XDMF files redundantly store *light* and *heavy* data in XML and HDF5 format and *Python* interfaces exist for both formats. Thus, XDMF or XMF files are often linked to a `*.h4` or `*.h5` ({term}`HDF`) file that contains heavy simulation datasets.
