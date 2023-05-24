@@ -282,6 +282,11 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+
+
+
+
+
 <li class="toctree-l3"><a class="reference internal" href="openfoam/of-tutorial-multiphase-run.html">Run OpenFOAM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="openfoam/of-tutorial-multiphase-post.html">Post-processing</a></li>
 </ul>
@@ -301,9 +306,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/theory.html">Techniques (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../datascience/techniques.html">Overview of Fundamental Techniques</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../datascience/calibrate-validate.html">Model Calibration and Validation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/machinelearning.html">Machine Learning (ML)</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/linear-classification.html">Linear Classification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../datascience/morphology-predictor-svm.html">Support Vector Machine (SVM)</a></li>
 
 
@@ -344,11 +348,10 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Disclaimer and License</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../terms/license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../terms/disclaimer.html">Disclaimer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../documentation/contributors.html">Contributors</a></li>
 </ul>
 
     </div>
@@ -588,7 +591,7 @@ document.write(`
 <p>The mesh contains regions, which need to be defined in the model setup:</p>
 <ul class="simple">
 <li><p><strong>Right-click</strong> on <strong>GEOMETRY</strong> &gt; <strong>Add item REGIONDEF</strong></p></li>
-<li><p><strong>Add 5 region items</strong> by <strong>right-clicking</strong> on the new <strong>REGIONDEF</strong> entry &gt; <strong>Add item</strong>. The number of regions should correspond to the regions defined in the <a class="reference internal" href="pre-qgis-bm.html#region-defs"><span class="std std-ref">pre-processing tutorial</span></a> (see also <a class="reference internal" href="#region-defs-bm"><span class="std std-numref">Tab. 5</span></a>).</p></li>
+<li><p><strong>Add 5 region items</strong> by <strong>right-clicking</strong> on the new <strong>REGIONDEF</strong> entry &gt; <strong>Add item</strong>. The number of regions should correspond to the regions defined in the <a class="reference internal" href="pre-qgis-bm.html#region-defs"><span class="std std-ref">pre-processing tutorial</span></a> (see also <a class="reference internal" href="#region-defs-bm"><span class="std std-numref">Tab. 4</span></a>).</p></li>
 <li><p>Define the five regions by a <strong>right-click</strong> on <strong>index</strong> &gt; <strong>Add item</strong>.</p>
 <ul>
 <li><p>Every <strong>index</strong> item gets an integer number assigned corresponding to the <strong>MATID</strong> field in the region points shapefile (see the <a class="reference internal" href="pre-qgis-bm.html#regions"><span class="std std-ref">Region Markers</span></a> section in the <a class="reference internal" href="pre-qgis-bm.html#qgis-prepro-bm"><span class="std std-ref">Pre-processing with QGIS</span></a> tutorial).</p></li>
@@ -596,9 +599,9 @@ document.write(`
 </ul>
 </li>
 </ul>
-<p><a class="reference internal" href="#region-defs-bm"><span class="std std-numref">Table 5</span></a> summarizes the required region definitions. With the regions and the mesh file defined, the GEOMETRY group should resemble <a class="reference internal" href="#bm-regions"><span class="std std-numref">Fig. 45</span></a>.</p>
+<p><a class="reference internal" href="#region-defs-bm"><span class="std std-numref">Table 4</span></a> summarizes the required region definitions. With the regions and the mesh file defined, the GEOMETRY group should resemble <a class="reference internal" href="#bm-regions"><span class="std std-numref">Fig. 45</span></a>.</p>
 <table class="table" id="region-defs-bm">
-<caption><span class="caption-number">Table 5 </span><span class="caption-text">REGIONDEF items and their definitions to be defined in BASEMENT’s model setup.</span><a class="headerlink" href="#region-defs-bm" title="Permalink to this table">#</a></caption>
+<caption><span class="caption-number">Table 4 </span><span class="caption-text">REGIONDEF items and their definitions to be defined in BASEMENT’s model setup.</span><a class="headerlink" href="#region-defs-bm" title="Permalink to this table">#</a></caption>
 <colgroup>
 <col style="width: 17%" />
 <col style="width: 17%" />
@@ -708,20 +711,20 @@ document.write(`
 <p><span class="caption-number">Fig. 47 </span><span class="caption-text">The HYDRAULIC entry with BOUNDARY &gt; STANDARD definitions for the upstream (inflow) and downstream (outflow) liquid model boundaries.</span><a class="headerlink" href="#bm-hy-standard" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Every surface has imperfections that cause turbulence when fluids such as water flow over it. The turbulences caused by surface imperfections result in decelerated flows near the surface. Since the water in rivers is almost always very close to the Earth’s surface in the form of the riverbed relative to the imperfections of a riverbed, the influence of friction-induced turbulence is considerable. In hydrodynamic models, the friction-induced turbulence of the rough surface of riverbeds is accounted for by a <strong>friction coefficient</strong>, such as the <strong>Strickler <span class="math notranslate nohighlight">\(k_{st}\)</span></strong> coefficient <strong>or</strong> its <strong>inverse</strong> value called <strong>Manning’s <span class="math notranslate nohighlight">\(n\)</span></strong>. The exercise on <a class="reference internal" href="../exercises/ex-ms.html#ex-1d-hydraulics"><span class="std std-ref">1d Hydraulics (Manning-Strickler Formula)</span></a> in the <em>Python</em> chapter explains both roughness coefficients in more detail. This tutorial uses a global Strickler coefficient of <span class="math notranslate nohighlight">\(k_{st}\)</span>=30 (fictive units of m<span class="math notranslate nohighlight">\(^{1/3}\)</span>/s), which accounts for the characteristics of a meandering gravel-cobble riverbed <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id560" title="Albert Strickler. Beiträge zur Frage der Geschwindigkeitsformel und der Rauhigkeitszahlen für Ströme, Kanäle und geschlossene Leitungen [Contributions to the question of the velocity formula and the roughness figures for streams, channels and closed pipes]. Mitteilungen des Eidgenössischen Amtes für Wasserwirtschaft, Switzerland, 16:357, 1923.">Str23</a>]</span>. To this end, <strong>right-click</strong> on the <strong>HYDRAULICS</strong> group and select <strong>Add item FRICTION</strong>. Define the new  <strong>FRICTION</strong> item with:</p>
+<p>Every surface has imperfections that cause turbulence when fluids such as water flow over it. The turbulences caused by surface imperfections result in decelerated flows near the surface. Since the water in rivers is almost always very close to the Earth’s surface in the form of the riverbed relative to the imperfections of a riverbed, the influence of friction-induced turbulence is considerable. In hydrodynamic models, the friction-induced turbulence of the rough surface of riverbeds is accounted for by a <strong>friction coefficient</strong>, such as the <strong>Strickler <span class="math notranslate nohighlight">\(k_{st}\)</span></strong> coefficient <strong>or</strong> its <strong>inverse</strong> value called <strong>Manning’s <span class="math notranslate nohighlight">\(n\)</span></strong>. The exercise on <a class="reference internal" href="../exercises/ex-ms.html#ex-1d-hydraulics"><span class="std std-ref">1d Hydraulics (Manning-Strickler Formula)</span></a> in the <em>Python</em> chapter explains both roughness coefficients in more detail. This tutorial uses a global Strickler coefficient of <span class="math notranslate nohighlight">\(k_{st}\)</span>=30 (fictive units of m<span class="math notranslate nohighlight">\(^{1/3}\)</span>/s), which accounts for the characteristics of a meandering gravel-cobble riverbed <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id561" title="Albert Strickler. Beiträge zur Frage der Geschwindigkeitsformel und der Rauhigkeitszahlen für Ströme, Kanäle und geschlossene Leitungen [Contributions to the question of the velocity formula and the roughness figures for streams, channels and closed pipes]. Mitteilungen des Eidgenössischen Amtes für Wasserwirtschaft, Switzerland, 16:357, 1923.">Str23</a>]</span>. To this end, <strong>right-click</strong> on the <strong>HYDRAULICS</strong> group and select <strong>Add item FRICTION</strong>. Define the new  <strong>FRICTION</strong> item with:</p>
 <ul class="simple">
 <li><p><strong>default_friction</strong> = 30.0</p></li>
 <li><p><strong>type</strong> = <code class="docutils literal notranslate"><span class="pre">strickler</span></code></p></li>
 </ul>
-<p>Next, assign region-specific Strickler values for the five regions defined in <a class="reference internal" href="#region-defs-bm"><span class="std std-numref">Tab. 5</span></a>:</p>
+<p>Next, assign region-specific Strickler values for the five regions defined in <a class="reference internal" href="#region-defs-bm"><span class="std std-numref">Tab. 4</span></a>:</p>
 <ul class="simple">
 <li><p><strong>Right-click</strong> on <strong>FRICTION</strong> &gt; <strong>Add item regions</strong>.</p></li>
 <li><p><strong>Right-click</strong> on the new <strong>regions</strong> item and select <strong>Add item</strong> (<strong>five times</strong> for the five regions).</p></li>
-<li><p>Assign the <strong>friction</strong> and <strong>region_def</strong> values listed in <a class="reference internal" href="#region-kst"><span class="std std-numref">Tab. 6</span></a> to the <strong>five regions items</strong>.</p></li>
+<li><p>Assign the <strong>friction</strong> and <strong>region_def</strong> values listed in <a class="reference internal" href="#region-kst"><span class="std std-numref">Tab. 5</span></a> to the <strong>five regions items</strong>.</p></li>
 <li><p>Set the <strong>type</strong> of the five regions to <strong>“strickler”</strong>.</p></li>
 </ul>
 <table class="table" id="region-kst">
-<caption><span class="caption-number">Table 6 </span><span class="caption-text">Strickler values for HYDRAULIC FRICTION regions.</span><a class="headerlink" href="#region-kst" title="Permalink to this table">#</a></caption>
+<caption><span class="caption-number">Table 5 </span><span class="caption-text">Strickler values for HYDRAULIC FRICTION regions.</span><a class="headerlink" href="#region-kst" title="Permalink to this table">#</a></caption>
 <colgroup>
 <col style="width: 17%" />
 <col style="width: 17%" />
@@ -934,7 +937,7 @@ document.write(`
 <figure class="align-default" id="bm-exported-u-raster">
 <img alt="basement output rasterize mesh geotiff visualization singleband pseudocolor" src="../_images/bm-exported-u.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 58 </span><span class="caption-text">A Singleband pseudocolor (Layer Properties &gt; Symbology) represents the exported GeoTIFF flow velocity raster with a <em>Reds</em> color ramp and zero-value pixels set to zero-opacity, superpositioned on google satellite imagery <span id="id2">[<a class="reference internal" href="../documentation/bibliography.html#id1369" title="Google. Google Satellite imagery. nd. URL: https://mt1.google.com/vt/lyrs=s&amp;x={x}&amp;y={y}&amp;z={z}.">Goond</a>]</span>.</span><a class="headerlink" href="#bm-exported-u-raster" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 58 </span><span class="caption-text">A Singleband pseudocolor (Layer Properties &gt; Symbology) represents the exported GeoTIFF flow velocity raster with a <em>Reds</em> color ramp and zero-value pixels set to zero-opacity, superpositioned on google satellite imagery <span id="id2">[<a class="reference internal" href="../documentation/bibliography.html#id1370" title="Google. Google Satellite imagery. nd. URL: https://mt1.google.com/vt/lyrs=s&amp;x={x}&amp;y={y}&amp;z={z}.">Goond</a>]</span>.</span><a class="headerlink" href="#bm-exported-u-raster" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="admonition-analyze-geodata-results-with-python admonition">

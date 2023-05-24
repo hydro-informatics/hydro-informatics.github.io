@@ -62,8 +62,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'numerics/openfoam/of-tutorial-multiphase';</script>
     <link rel="canonical" href="https://hydro-informatics.com/numerics/openfoam/of-tutorial-multiphase.html" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
@@ -282,6 +280,11 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+
+
+
+
+
 <li class="toctree-l3"><a class="reference internal" href="of-tutorial-multiphase-run.html">Run OpenFOAM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="of-tutorial-multiphase-post.html">Post-processing</a></li>
 </ul>
@@ -301,9 +304,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../datascience/theory.html">Techniques (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../datascience/techniques.html">Overview of Fundamental Techniques</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../datascience/calibrate-validate.html">Model Calibration and Validation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../datascience/machinelearning.html">Machine Learning (ML)</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../datascience/linear-classification.html">Linear Classification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../datascience/morphology-predictor-svm.html">Support Vector Machine (SVM)</a></li>
 
 
@@ -344,11 +346,10 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Disclaimer and License</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../terms/license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../terms/disclaimer.html">Disclaimer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../documentation/contributors.html">Contributors</a></li>
 </ul>
 
     </div>
@@ -522,20 +523,17 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tip admonition">
-<p class="admonition-title">Contributor</p>
-<p>This chapter was written and developed by <a class="reference external" href="https://www.iws.uni-stuttgart.de/institut/team/Scolari/">Federica Scolari</a> <a class="reference internal" href="../../_images/federica.jpg"><img alt="Federica Scolari" src="../../_images/federica.jpg" style="width: 50px; height: 50px;" /></a></p>
-</div>
+  <p>This chapter is developed by <a class="reference external" href="https://www.iws.uni-stuttgart.de/institut/team/Scolari/">Federica Scolari</a>.</p>
 <section class="tex2jax_ignore mathjax_ignore" id="multiphase-solver-interfoam-tutorial">
 <h1>Multiphase Solver (interFoam Tutorial)<a class="headerlink" href="#multiphase-solver-interfoam-tutorial" title="Permalink to this headline">#</a></h1>
-<p>In this tutorial we will solve a problem of a 50-m long straight channel with two basins, one smaller one at the inlet, and a larger one at the outlet, and an obstacle located in the middle.</p>
+<p>In this tutorial we will solve a problem of a 50-m long straight channel with two basins, one smaller one at the inlet and a larger one at the outlet, and an obstacle located in the middle.</p>
 <figure class="align-default" id="of-study-area">
 <img alt="openfoam" src="../../_images/study-area.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 159 </span><span class="caption-text">3D view of the analyzed structure.</span><a class="headerlink" href="#of-study-area" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>In this case, we will use the multiphase solver interFoam coupled with a <a class="reference internal" href="../../documentation/glossary.html#term-Turbulent-kinetic-energy"><span class="xref std std-term">k</span></a> - <span class="math notranslate nohighlight">\(\epsilon\)</span> (epsilon) turbulence model. interFoam identifies the water-air interface based on the Volume of Fluid (VOF) method, which solves the transport equations for a single or multiple phase fractions alpha, where alpha is 0.5 at the interface between the fluids. (cf. <a class="reference external" href="https://www.openfoam.com/documentation/user-guide/a-reference/a.1-standard-solvers">OpenFOAM Standard Solvers</a>). Additionally, we will focus on the implementation of multiple roughness zones related to the engineered and nature-oriented elements present in the model, and we will apply a specific roughness height.</p>
+<p>In this case we will use the multiphase solver interFoam coupled with a k-epsilon turbulence model. interFoam identifies the water-air interface based on the Volume of Fluid (VOF) method, which solves the transport equations for a single or multiple phase fractions alpha, where alpha is 0.5 at the interface between the fluids. (cf. <a class="reference external" href="https://www.openfoam.com/documentation/user-guide/a-reference/a.1-standard-solvers">OpenFOAM Standard Solvers</a>). Additionally, we will focus on the implementation of multiple roughness zones related to the engineered and nature-oriented elements present in the model, and we will apply a specific roughness height.</p>
 <figure class="align-default" id="of-channel-view2-final">
 <img alt="openfoam" src="../../_images/channel-view2-final.png" />
 <figcaption>
@@ -604,7 +602,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./numerics/openfoam"
+            path: "./numerics\openfoam"
         },
         predefinedOutput: true
     }

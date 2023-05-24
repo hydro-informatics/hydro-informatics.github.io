@@ -280,6 +280,11 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+
+
+
+
+
 <li class="toctree-l3"><a class="reference internal" href="openfoam/of-tutorial-multiphase-run.html">Run OpenFOAM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="openfoam/of-tutorial-multiphase-post.html">Post-processing</a></li>
 </ul>
@@ -299,9 +304,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/theory.html">Techniques (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../datascience/techniques.html">Overview of Fundamental Techniques</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../datascience/calibrate-validate.html">Model Calibration and Validation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/machinelearning.html">Machine Learning (ML)</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/linear-classification.html">Linear Classification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../datascience/morphology-predictor-svm.html">Support Vector Machine (SVM)</a></li>
 
 
@@ -342,11 +346,10 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Disclaimer and License</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../terms/license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../terms/disclaimer.html">Disclaimer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../documentation/contributors.html">Contributors</a></li>
 </ul>
 
     </div>
@@ -706,7 +709,7 @@ document.write(`
 <figure class="align-default" id="tm-shapefiles">
 <img alt="qgis telemac basemesh point line shapefiles" src="../_images/tm-prepro-illu.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 67 </span><span class="caption-text">The breaklines, liquid boundaries, and region points shapefile to draw for creating a 2dm quality mesh with the BASEmesh plugin (background map: <span id="id1">Google [<a class="reference internal" href="../documentation/bibliography.html#id1369" title="Google. Google Satellite imagery. nd. URL: https://mt1.google.com/vt/lyrs=s&amp;x={x}&amp;y={y}&amp;z={z}.">Goond</a>]</span> satellite imagery).</span><a class="headerlink" href="#tm-shapefiles" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 67 </span><span class="caption-text">The breaklines, liquid boundaries, and region points shapefile to draw for creating a 2dm quality mesh with the BASEmesh plugin (background map: <span id="id1">Google [<a class="reference internal" href="../documentation/bibliography.html#id1370" title="Google. Google Satellite imagery. nd. URL: https://mt1.google.com/vt/lyrs=s&amp;x={x}&amp;y={y}&amp;z={z}.">Goond</a>]</span> satellite imagery).</span><a class="headerlink" href="#tm-shapefiles" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="breaklines-and-model-outline">
@@ -804,9 +807,9 @@ document.write(`
 </li>
 <li><p>Click <strong>OK</strong> to create the new point shapefile.</p></li>
 </ul>
-<p>Consider to <strong>deactivate snapping</strong> for drawing the region markers because the points should not coincide with any line. Then, <strong>Toggle (Start) Editing</strong> <img alt="../_images/yellow-pen.png" src="../_images/yellow-pen.png" /> the new <strong>region-points.shp</strong> file and activate <strong>Add Point Feature</strong> <img alt="../_images/sym-add-point.png" src="../_images/sym-add-point.png" />. Draw one point in every area section that is enclosed by breaklines and (liquid) boundary lines (refer to the round and triangular-shaped points in <a class="reference internal" href="#tm-shapefiles"><span class="std std-numref">Fig. 67</span></a>). Depending on the apparent area type from the satellite imagery basemap, assign one of the four regions listed in <a class="reference internal" href="#tab-tm-region-defs"><span class="std std-numref">Tab. 7</span></a> to every point.</p>
+<p>Consider to <strong>deactivate snapping</strong> for drawing the region markers because the points should not coincide with any line. Then, <strong>Toggle (Start) Editing</strong> <img alt="../_images/yellow-pen.png" src="../_images/yellow-pen.png" /> the new <strong>region-points.shp</strong> file and activate <strong>Add Point Feature</strong> <img alt="../_images/sym-add-point.png" src="../_images/sym-add-point.png" />. Draw one point in every area section that is enclosed by breaklines and (liquid) boundary lines (refer to the round and triangular-shaped points in <a class="reference internal" href="#tm-shapefiles"><span class="std std-numref">Fig. 67</span></a>). Depending on the apparent area type from the satellite imagery basemap, assign one of the four regions listed in <a class="reference internal" href="#tab-tm-region-defs"><span class="std std-numref">Tab. 6</span></a> to every point.</p>
 <table class="table" id="tab-tm-region-defs">
-<caption><span class="caption-number">Table 7 </span><span class="caption-text">Region names and their <strong>max_area</strong>, <strong>MATID</strong>, and <strong>type</strong> field values.</span><a class="headerlink" href="#tab-tm-region-defs" title="Permalink to this table">#</a></caption>
+<caption><span class="caption-number">Table 6 </span><span class="caption-text">Region names and their <strong>max_area</strong>, <strong>MATID</strong>, and <strong>type</strong> field values.</span><a class="headerlink" href="#tab-tm-region-defs" title="Permalink to this table">#</a></caption>
 <colgroup>
 <col style="width: 20%" />
 <col style="width: 20%" />
@@ -852,7 +855,7 @@ document.write(`
 </section>
 <section id="quality-meshing-2dm">
 <span id="tm-qualm"></span><h2>Quality Meshing (*.2dm)<a class="headerlink" href="#quality-meshing-2dm" title="Permalink to this headline">#</a></h2>
-<p><em>BASEmesh</em>’s quality mesh tool creates a computationally efficient triangular mesh based on <span id="id2">Shewchuk [<a class="reference internal" href="../documentation/bibliography.html#id1340" title="Jonathan Richard Shewchuk. Triangle: Engineering a 2D quality mesh generator and Delaunay triangulator. In Ming C. Lin and Dinesh Manocha, editors, Applied Computational Geometry Towards Geometric Engineering, Lecture Notes in Computer Science, 203–222. Berlin, Heidelberg, 1996. Springer. URL: https://link.springer.com/chapter/10.1007/BFb0014497, doi:10.1007/BFb0014497.">She96</a>]</span> and within the above-defined model boundaries. The tool associates mesh properties with the regions shapefile, but it does not include elevation data. Thus, after generating a quality mesh in <a class="reference internal" href="../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> format, elevation information needs to be added with the BlueKenue<sup>TM</sup> software. To generate the quality mesh, open BASEmesh’s <strong>QUALITY MESHING</strong> tool (QGIS’ <strong>Plugins</strong> &gt; <strong>BASEmesh 2</strong> &gt; <strong>QUALITY MESHING</strong>). Make the following settings in the popup window (see also <a class="reference internal" href="#fig-tm-qualm"><span class="std std-numref">Fig. 69</span></a>):</p>
+<p><em>BASEmesh</em>’s quality mesh tool creates a computationally efficient triangular mesh based on <span id="id2">Shewchuk [<a class="reference internal" href="../documentation/bibliography.html#id1341" title="Jonathan Richard Shewchuk. Triangle: Engineering a 2D quality mesh generator and Delaunay triangulator. In Ming C. Lin and Dinesh Manocha, editors, Applied Computational Geometry Towards Geometric Engineering, Lecture Notes in Computer Science, 203–222. Berlin, Heidelberg, 1996. Springer. URL: https://link.springer.com/chapter/10.1007/BFb0014497, doi:10.1007/BFb0014497.">She96</a>]</span> and within the above-defined model boundaries. The tool associates mesh properties with the regions shapefile, but it does not include elevation data. Thus, after generating a quality mesh in <a class="reference internal" href="../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> format, elevation information needs to be added with the BlueKenue<sup>TM</sup> software. To generate the quality mesh, open BASEmesh’s <strong>QUALITY MESHING</strong> tool (QGIS’ <strong>Plugins</strong> &gt; <strong>BASEmesh 2</strong> &gt; <strong>QUALITY MESHING</strong>). Make the following settings in the popup window (see also <a class="reference internal" href="#fig-tm-qualm"><span class="std std-numref">Fig. 69</span></a>):</p>
 <ul class="simple">
 <li><p>Triangulation constraints frame:</p>
 <ul>
@@ -944,10 +947,10 @@ document.write(`
 <section id="load-xyz-points">
 <span id="bk-xyz"></span><h2>Load XYZ Points<a class="headerlink" href="#load-xyz-points" title="Permalink to this headline">#</a></h2>
 <p>Download the provided <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/rasters/dem.xyz">dem.xyz</a> point cloud that contains EnSim-formatted 3d coordinates of the river ecosystem <a class="reference internal" href="../documentation/glossary.html#term-DEM"><span class="xref std std-term">DEM</span></a> that will be modelled in this tutorial. The <code class="docutils literal notranslate"><span class="pre">*.xyz</span></code> file was derived from the <a class="reference internal" href="../documentation/glossary.html#term-GeoTIFF"><span class="xref std std-term">GeoTIFF</span></a> <a class="reference internal" href="../documentation/glossary.html#term-DEM"><span class="xref std std-term">DEM</span></a> used in the <a class="reference internal" href="#get-dem-xyz"><span class="std std-ref">QGIS pre-processing</span></a>.</p>
-<aside class="margin sidebar">
-<p class="sidebar-title">The .xyz file is not an XYZ tile</p>
+<div class="tip admonition">
+<p class="admonition-title">A .xyz file is not an XYZ tile</p>
 <p>The point cloud in the <code class="docutils literal notranslate"><span class="pre">*.xyz</span></code> file is different than the regular XYZ tile raster that constitutes the <a class="reference internal" href="../geopy/use-qgis.html#basemap"><span class="std std-ref">satellite imagery basemap</span></a>.</p>
-</aside>
+</div>
 <p>To load the <strong>dem.xyz</strong> file in BlueKenue<sup>TM</sup>, open it from the <strong>File</strong> menu (<strong>File</strong> &gt; <strong>Open…</strong>) and take the following actions in the popup window:</p>
 <ul class="simple">
 <li><p>Navigate to the download folder.</p></li>
@@ -969,7 +972,7 @@ document.write(`
 <p class="admonition-title">Skip this section if you created a <em>.2dm</em> quality mesh with BASEMESH</p>
 <p>This is an optional section for users who do not want to use QGIS and the BASEmesh plugin for meshing. Generating a mesh with BlueKenue<sup>TM</sup> can be useful, for instance, to produce a computational grid that has triangular cells oriented parallel to the riverbanks (i.e., a channel sub-mesh). Otherwise, <strong>if the <code class="docutils literal notranslate"><span class="pre">*.2dm</span></code> mesh file was created</strong> with QGIS, <strong>jump to the section on creating a <a class="reference internal" href="#bk-create-slf"><span class="std std-ref">Selafin Object</span></a></strong>.</p>
 </div>
-<p>This section features the basic mesh generation with BlueKenue<sup>TM</sup>, which also runs smoothly on Linux through the <a class="reference internal" href="../get-started/vm.html#play-on-linux"><span class="std std-ref">PlayOnLinux</span></a> app. Additionall, the Baxter tutorial <span id="id3">[<a class="reference internal" href="../documentation/bibliography.html#id1344" title="C. Gifford-Miears and A. Leon. Tutorial on the use of TELEMAC-2D Hydrodynamics model and Pre-/Post-processing with BlueKenue for flood-inundation mapping in Unsteady Flow Conditions. Oregon State University, Corvallis, USA, 2013. URL: https://web.eng.fiu.edu/arleon/courses/Transient_flows/Tutorials/TELEMAC_2D/TELEMAC_2D_Tutorial_Baxter.pdf.">GML13</a>]</span> provides more details for getting started with BlueKenue along with detailed screenshots.</p>
+<p>This section features the basic mesh generation with BlueKenue<sup>TM</sup>. The Baxter tutorial <span id="id3">[<a class="reference internal" href="../documentation/bibliography.html#id1345" title="C. Gifford-Miears and A. Leon. Tutorial on the use of TELEMAC-2D Hydrodynamics model and Pre-/Post-processing with BlueKenue for flood-inundation mapping in Unsteady Flow Conditions. Oregon State University, Corvallis, USA, 2013. URL: https://web.eng.fiu.edu/arleon/courses/Transient_flows/Tutorials/TELEMAC_2D/TELEMAC_2D_Tutorial_Baxter.pdf.">GML13</a>]</span> provides more details with detailed screenshots.</p>
 <section id="draw-model-boundary-closed-line">
 <h3>Draw Model Boundary (Closed Line)<a class="headerlink" href="#draw-model-boundary-closed-line" title="Permalink to this headline">#</a></h3>
 <p>Delineate the model boundary (outline) with a closed line object (see also <a class="reference internal" href="#bk-model-outline"><span class="std std-numref">Fig. 71</span></a>):</p>

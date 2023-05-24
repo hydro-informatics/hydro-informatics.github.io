@@ -280,6 +280,11 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+
+
+
+
+
 <li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-run.html">Run OpenFOAM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-post.html">Post-processing</a></li>
 </ul>
@@ -299,9 +304,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/theory.html">Techniques (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../datascience/techniques.html">Overview of Fundamental Techniques</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../datascience/calibrate-validate.html">Model Calibration and Validation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/machinelearning.html">Machine Learning (ML)</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/linear-classification.html">Linear Classification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../datascience/morphology-predictor-svm.html">Support Vector Machine (SVM)</a></li>
 
 
@@ -342,11 +346,10 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Disclaimer and License</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../terms/license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../terms/disclaimer.html">Disclaimer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../documentation/contributors.html">Contributors</a></li>
 </ul>
 
     </div>
@@ -525,7 +528,6 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qgis">QGIS</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gpg-error-public-key-not-available-apt-update">GPG error - public key not available (APT UPDATE)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#no-module-named-opengl">No module named OpenGL</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lastools">LAStools</a></li>
 </ul>
 </li>
@@ -700,36 +702,15 @@ sudo apt-add-repository https://dl.winehq.org/wine-builds/debian/
 </div>
 <p>To test if the key update worked, tap <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">update</span></code></p>
 </section>
-<section id="no-module-named-opengl">
-<h3>No module named OpenGL<a class="headerlink" href="#no-module-named-opengl" title="Permalink to this headline">#</a></h3>
-<p>If QGIS throws the error message <code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">'OpenGL'</span></code>, install <em>Mesa</em> as follows on Ubuntu (i.e., Debian Linux) based operating systems (including Mint and Lubuntu).</p>
-<p>Bring <code class="docutils literal notranslate"><span class="pre">apt</span></code> and <code class="docutils literal notranslate"><span class="pre">pip</span></code> to up-to-date:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
-<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
-</pre></div>
-</div>
-<p>Install the following system packages (if not yet done):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">build</span><span class="o">-</span><span class="n">essential</span> <span class="n">freeglut3</span> <span class="n">freeglut3</span><span class="o">-</span><span class="n">dev</span> <span class="n">mesa</span><span class="o">-</span><span class="n">common</span><span class="o">-</span><span class="n">dev</span> <span class="n">binutils</span><span class="o">-</span><span class="n">gold</span> <span class="n">libglew</span><span class="o">-</span><span class="n">dev</span> <span class="n">libglm</span><span class="o">-</span><span class="n">dev</span> <span class="n">python</span><span class="o">-</span><span class="n">pyqt5</span>
-</pre></div>
-</div>
-<p>Install the following Python pip packages:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">pyOpenGL</span>
-<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">pyOpenGL_accelerate</span>
-<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">pyqt5</span>
-
-</pre></div>
-</div>
-<p>A system restart (or just reload the user environment with <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">~/.bashsrc</span></code>) may be necessary for QGIS to work now without the OpenGL error.</p>
-</section>
 <section id="lastools">
 <h3>LAStools<a class="headerlink" href="#lastools" title="Permalink to this headline">#</a></h3>
-<p>To get LAStools working in QGIS on Ubuntu (make sure to have <a class="reference internal" href="../get-started/vm.html#wine"><span class="std std-ref">Windows Apps on Linux</span></a> installed):</p>
+<p>To get LAStools working in QGIS on Ubuntu (make sure to have <a class="reference internal" href="../get-started/vm.html#wine"><span class="std std-ref">Install &amp; Use Windows Applications (Wine)</span></a> installed):</p>
 <ul class="simple">
 <li><p>Download the LAStools (ZIP) from <a class="reference external" href="http://rapidlasso.com/LAStools">http://rapidlasso.com/LAStools</a> and extract the ZIP file</p></li>
 <li><p>In QGIS, edit the processing options (Providers &gt; Tools for LiDAR data):</p>
 <ul>
 <li><p>LasTools folder: enter here the path to the folder that where the extracted ZIP files live (<code class="docutils literal notranslate"><span class="pre">/dir/to/LAStools/</span></code>)</p></li>
-<li><p>Wine folder: enter the path to the <a class="reference internal" href="../get-started/vm.html#wine"><span class="std std-ref">Windows Apps on Linux</span></a> binary (typically <code class="docutils literal notranslate"><span class="pre">/usr/bin/</span></code>). Alternatively, find where Wine lives with the <code class="docutils literal notranslate"><span class="pre">whereis</span> <span class="pre">wine</span></code> command</p></li>
+<li><p>Wine folder: enter the path to the <a class="reference internal" href="../get-started/vm.html#wine"><span class="std std-ref">Install &amp; Use Windows Applications (Wine)</span></a> binary (typically <code class="docutils literal notranslate"><span class="pre">/usr/bin/</span></code>). Alternatively, find where Wine lives with the <code class="docutils literal notranslate"><span class="pre">whereis</span> <span class="pre">wine</span></code> command</p></li>
 </ul>
 </li>
 <li><p>If required: edit <code class="docutils literal notranslate"><span class="pre">LidarToolsAlgorithmProvider.py</span></code> (two files exist), for instance:</p>
@@ -865,7 +846,6 @@ line 188:         if (True):</p></li>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qgis">QGIS</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gpg-error-public-key-not-available-apt-update">GPG error - public key not available (APT UPDATE)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#no-module-named-opengl">No module named OpenGL</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lastools">LAStools</a></li>
 </ul>
 </li>

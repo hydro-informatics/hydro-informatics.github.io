@@ -282,6 +282,11 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+
+
+
+
+
 <li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-run.html">Run OpenFOAM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-post.html">Post-processing</a></li>
 </ul>
@@ -301,9 +306,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/theory.html">Techniques (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../datascience/techniques.html">Overview of Fundamental Techniques</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../datascience/calibrate-validate.html">Model Calibration and Validation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/machinelearning.html">Machine Learning (ML)</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/linear-classification.html">Linear Classification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../datascience/morphology-predictor-svm.html">Support Vector Machine (SVM)</a></li>
 
 
@@ -344,11 +348,10 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Disclaimer and License</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../terms/license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../terms/disclaimer.html">Disclaimer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../documentation/contributors.html">Contributors</a></li>
 </ul>
 
     </div>
@@ -543,15 +546,12 @@ document.write(`
 <div class="admonition-requirements admonition">
 <p class="admonition-title">Requirements</p>
 <p>This tutorial is designed for <strong>beginners</strong> and has embedded videos featuring the text descriptions in every section. Before diving into this tutorial make sure to install <a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a>.</p>
-<div class="dropdown tip admonition">
-<p class="admonition-title">Expand to watch the video for installing QGIS</p>
-<p>Find for explanation in the <a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a> section in this eBook.</p>
-<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/_0_NOKi-RxY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Sebastian Schwindt <a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
 </div>
+<p>To get ready, watch the following video and/or make sure to install <a class="reference internal" href="../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a> (detailed instructions).</p>
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/_0_NOKi-RxY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Sebastian Schwindt <a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
 <div class="attention dropdown admonition">
 <p class="admonition-title">If you read: <em>Videos not showing up (Firefox Can’t Open This Page)</em>…</p>
 <p>If videos are not displaying, this might be caused by strict privacy settings. To resolve the issue, either open the video links by clicking on the <strong>Open Site in New Window</strong> button or by changing browser privacy settings (e.g., in <a class="reference external" href="https://support.mozilla.org/en-US/questions/1108783">Mozilla Firefox</a>).</p>
-</div>
 </div>
 <section id="first-project">
 <span id="qgis-project"></span><h2>First Project<a class="headerlink" href="#first-project" title="Permalink to this headline">#</a></h2>
@@ -642,7 +642,7 @@ document.write(`
 <tr class="row-odd"><td><p><a class="reference external" href="https://github.com/jdugge/MeshTools">MeshTools</a></p></td>
 <td><p><a class="reference internal" href="../numerics/basement.html#chpt-basement"><span class="std std-ref">BASEMENT</span></a>, Hydro FT/AS (proprietary), indirectly: <a class="reference internal" href="../numerics/telemac.html#chpt-telemac"><span class="std std-ref">TELEMAC</span></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">*.2dm</span></code> (conversion to <code class="docutils literal notranslate"><span class="pre">.slf</span></code> possible with Crayfish)</p></td>
-<td><p>Tweaks into multiple mesh algorithms (among others: <span id="id2">Shewchuk [<a class="reference internal" href="../documentation/bibliography.html#id1340" title="Jonathan Richard Shewchuk. Triangle: Engineering a 2D quality mesh generator and Delaunay triangulator. In Ming C. Lin and Dinesh Manocha, editors, Applied Computational Geometry Towards Geometric Engineering, Lecture Notes in Computer Science, 203–222. Berlin, Heidelberg, 1996. Springer. URL: https://link.springer.com/chapter/10.1007/BFb0014497, doi:10.1007/BFb0014497.">She96</a>]</span>)</p></td>
+<td><p>Tweaks into multiple mesh algorithms (among others: <span id="id2">Shewchuk [<a class="reference internal" href="../documentation/bibliography.html#id1341" title="Jonathan Richard Shewchuk. Triangle: Engineering a 2D quality mesh generator and Delaunay triangulator. In Ming C. Lin and Dinesh Manocha, editors, Applied Computational Geometry Towards Geometric Engineering, Lecture Notes in Computer Science, 203–222. Berlin, Heidelberg, 1996. Springer. URL: https://link.springer.com/chapter/10.1007/BFb0014497, doi:10.1007/BFb0014497.">She96</a>]</span>)</p></td>
 </tr>
 <tr class="row-even"><td><p>DEMto3D</p></td>
 <td><p>Raster to STL (style) files for Blender</p></td>
@@ -665,19 +665,10 @@ document.write(`
 <p><span class="caption-number">Fig. 19 </span><span class="caption-text">Add a base map to QGIS: (1) locate the Browser (2) right-click on XYZ-Tiles and select New Connection… (3) enter a Name and a URL (see below table) for the new connection, click OK (4) drag and drop the new tile (here: Google Satellite) into the Layers Panel.</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<div class="tip dropdown admonition">
-<p class="admonition-title">Expand to watch the video tutorial on basemaps</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/GJsiEdMzCeQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
-</div>
 <p>The following URL can be used for retrieving online XYZ tiles (more URLs can be found on the internet).</p>
-<div class="full-width docutils">
-<table class="table" id="basemap-providers">
-<caption><span class="caption-number">Table 3 </span><span class="caption-text">Providers of XYZ basemap tiles</span><a class="headerlink" href="#basemap-providers" title="Permalink to this table">#</a></caption>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
+<table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Provider (Layer Name)</p></th>
 <th class="head"><p>URL</p></th>
@@ -707,7 +698,6 @@ document.write(`
 </tr>
 </tbody>
 </table>
-</div>
 <div class="tip admonition">
 <p class="admonition-title">Coordinate reference systems of basemaps</p>
 <p>Most basemaps are provided in the <code class="docutils literal notranslate"><span class="pre">EPSG:3857</span> <span class="pre">-WGS84</span> <span class="pre">/</span> <span class="pre">Pseudo</span> <span class="pre">Mercator</span></code> coordinate system (CRS). To use custom geodata products, make sure that all other layers have the same coordinate system. Read more about coordinate systems and projections in the <a class="reference internal" href="geospatial-data.html#geospatial-data"><span class="std std-ref">Geospatial Data</span></a> and <a class="reference internal" href="../jupyter/geo-shp.html#prj-shp"><span class="std std-ref">shapefile projection</span></a> sections.</p>
@@ -809,7 +799,7 @@ document.write(`
 </ul>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
-<p>If the <em>Crayfish</em> plugin is installed, an additional <em>Rasterize</em> tool will show up, which we will not use in this tutorial (i.e., make sure to select <em>Rasterize (vector to raster)</em> ).</p>
+<p>If the <em>Crayfish</em> plugin is installed, an additional <em>Rasterize</em> tool will show up, which we will not use in this tutorial (i.e., make sure to select <em>Rasterize (vector to raster)</em>).</p>
 </div>
 <ul class="simple">
 <li><p>In the <strong>Rasterize (Vector to Raster)</strong> window set:</p>
@@ -995,8 +985,8 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 Windows</label><div class="sd-tab-content docutils">
 <p>Make sure your system knows the where PyGIS lives by adding the following line to the Environment Variables (Windows 10: <strong>My Computer</strong> &gt; <strong>Properties</strong> &gt; <strong>Advanced System Settings</strong> &gt; <strong>Environment Variables</strong>). Replace <code class="docutils literal notranslate"><span class="pre">&lt;qgispath&gt;</span></code> with the path where QGIS lives on your system.</p>
 <ul class="simple">
-<li><p>Variable name = <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code></p></li>
-<li><p>Variable value = <code class="docutils literal notranslate"><span class="pre">C:\&lt;qgispath&gt;\python</span></code></p></li>
+<li><p>Variable name = PYTHONPATH</p></li>
+<li><p>Variable value = C:&lt;qgispath&gt;\python</p></li>
 </ul>
 <p>Or use the Windows prompt:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="n">PYTHONPATH</span><span class="o">=</span><span class="n">C</span><span class="p">:</span>\<span class="o">&lt;</span><span class="n">qgispath</span><span class="o">&gt;</span>\<span class="n">python</span>

@@ -1,8 +1,4 @@
-
-```{admonition} Contributor
-:class: tip
-This chapter was written and developed by {{ scolari }} <img src="../../img/authors/federica.jpg" alt="Federica Scolari" width="50" height="50">
-```
+This chapter is developed by {{ scolari }}.
 
 # Case set-up
 
@@ -14,7 +10,7 @@ When setting up the case folder, edits need to be done to the following files:
 
 # The *Constant* Subdirectory
 
-After having copied the *polyMesh* folder from the *snappyHexMesh* results, it is necessary to correctly define the type of the different composing elements in the **boundary** file. For instance, in the example below, the *Gravel-bottom* element was defined as *wall* whereas the *Inlet* was defined as a *patch*. 
+After having copied the *polyMesh* folder from the *snappyHexMesh* results, it is necessary to correctly define the type of the different composing elements in the **boundary** file,. For instance, in the example below, the *Gravel-bottom* element was defined as *wall* whereas the *Inlet* was defined as a *patch*. 
 
 ```
 FoamFile
@@ -56,7 +52,7 @@ Different patch types are available in OpenFOAM. For a detailed explanation refe
 * *wall*: used to define wall functions in turbulent flow
 * *processor*: inter-processor boundary
 
-The following files need to be added for defining the case properties along with a list of property files for the present case.
+The following files that need to be added are the ones defining the case properties. The list of property files for the present case are summarized in the image below.
 
 ```{figure} ../../img/openfoam/interFoam/cases/constant-folder.png
 :alt: openfoam 
@@ -67,7 +63,7 @@ Contents of the constant folder.
 
 In the *turbulenceProperties* files, the turbulence model is defined. OpenFOAM includes support for the following types of turbulence modeling:
 
-* {term}`Reynolds Averaged (Navier-Stokes) <RANS>` Simulation (RANS, referred to as RAS in OpenFOAM),
+* Reynolds Averaged (Navier-Stokes) Simulation (RANS, referred to as RAS in OpenFOAM),
 * Detached Eddy Simulation (DES), and
 * Large Eddy Simulation (LES)
 
@@ -136,7 +132,7 @@ air
 sigma           [1 0 -2 0 0 0 0] 0.072;
 ```
 
-When selecting the RAS turbulence model, also the *RASproperties* sub-dictionary must be added. This file contains the keywords defining the name of the RAS turbulence model, the option to either turn turbulence modeling on or off, and a switch to print the model coefficients to the terminal at the simulation startup.
+When selecting the RAS turbulence model, also the *RASproperties* sub-dictionary must be added. This file contains the keywords defining the name of the RAS turbulence model, the option to either turn the turbulence modeling on or off and the switch to print the model coefficients to the terminal at the simulation startup.
 
 ```
 RASModel        kEpsilon;
@@ -174,9 +170,9 @@ value           ( 0 0 -9.8065 );
 
 # The *System* Directory
 
-The *System Folder* contains the parameters associated with the solution procedure itself. The mandatory files for running the simulation are the *controlDict* in which the run control parameters are set and those for data output; notably, the *fvSchemes* where the discretization schemes used in the solution can be selected and the *fvSolution* in which the equation solvers, tolerances, and other algorithm controls are set. Additionally, the *setFieldsDict* is added, which enables the user to set values on a selected set of cells/patch-faces. 
+The *System Folder* contains the parameters associated with the solution procedure itself. The mandatory files for running the simulation are the *controlDict* in which the run control parameters are set and those for data output; the *fvSchemes* where the discretization schemes used in the solution can be selected at run-time and the *fvSolution* in which the equation solvers, tolerances and other algorithm controls are set. Additionally, the *setFieldsDict* is also added, which enables the user to set values on a selected set of cells/patch-faces. 
 
-In the *controlDict* file, several control parameters can be set as, for instance, the start & end times, and time step dT of the simulation. In particular, when running a cold start simulation (i.e., a case in which the channel is initially dry), the time step should be set to *adjustable* enabling the adjustment of the time step according to maximum {term}`CFL` condition in the transient simulation. Additionally, the maximum value of the {term}`CFL` condition *maxCo* and the maximum value at the interface *maxAlphaCo* should be assigned.
+In *controlDict* file several control parameters can be set as, for instance, the start, end time and time step dT of the simulation. In particular when running a cold start simulation (i.e., a case in which the channel is initially dry) the time step should be set to *adjustable* enabling the adjustment of the time step according to maximum {term}`CFL` condition in the transient simulation. Additionally, also the maximum value of the {term}`CFL` condition *maxCo* and the maximum value at the interface *maxAlphaCo* should be assigned.
 
 ```
 application     interFoam;
@@ -202,7 +198,7 @@ maxAlphaCo      1.0;
 maxDeltaT       1.0;
 ```
 
-The *fvSchemes* dictionary in the system directory sets the numerical schemes for the terms that appear in the application that is being run. For the time schemes *ddtSchemes*, apart from the first-order accurate Euler scheme, other options are available, such as the second-order Crank-Nicholson and backward schemes. The gradient schemes *gradSchemes* are then defined. The available schemes are the Gauss gradient scheme and the Least-squares gradient scheme. The interpolation scheme can be either cell-based linear (linear) or point-based linear (pointLinear) or least squares (leastSquares). The divergence scheme to be used can be defined with the *divSchemes* keyword. Detailed information regarding the available options and corresponding syntax can be found in the [divergence schemes](https://www.openfoam.com/documentation/guides/latest/doc/guide-schemes-divergence.html) section of the {{ of_usr }}. For the *laplacianSchemes*, all options are based on the application of the Gauss theorem, requiring thus an interpolation scheme to transform the coefficients from cell values to the faces, and a surface-normal gradient scheme. The *interpolationSchemes* are required to transform cell-center quantities to face centers. Several interpolation schemes are available, from the ones based uniquely on the geometry to, for example, {term}`convection <Convection>` schemes that are a function of the local flow.
+The *fvSchemes* dictionary in the system directory sets the numerical schemes for the terms that appear in the application that is being run. For the time schemes *ddtSchemes*, apart from the first-order accurate Euler scheme, other options are for instance the second-order Crank-Nicholson and backward schemes. The gradient schemes *gradSchemes* are then defined. The available schemes are the Gauss gradient scheme and the Least-squares gradient scheme. The interpolation scheme can be either cell-based linear (linear) or point-based linear (pointLinear) or least squares (leastSquares). The divergence scheme to be used can be defined with the *divSchemes* keyword. Detailed information regarding the available options and corresponding syntax can be found in the [divergence schemes](https://www.openfoam.com/documentation/guides/latest/doc/guide-schemes-divergence.html) section of the {{ of_usr }}. For the *laplacianSchemes*, all options are based on the application of the Gauss theorem, requiring thus an interpolation scheme to transform the coefficients from cell values to the faces, and a surface-normal gradient scheme. The *interpolationSchemes* are required to transform cell-centre quantities to face centres Several interpolation schemes are available, from the ones based uniquely on the geometry to for example convection schemes that are a function of the local flow.
 
 ```
 ddtSchemes
@@ -233,9 +229,9 @@ wallDist
 {    method meshWave;}
 ```
 
-The *fvSolution* files contains a set of sub-dictionaries that are specific to the solver being run. Additionally, there is a set of standard sub-dictionaries, including the *solvers*, *relaxationFactors*, *PISO* and *SIMPLE*, which cover most of the ones used by the standard solvers. An example of the set of entries required for the interFoam solver can be found in this eBook's [case folder](https://github.com/hydro-informatics/openfoam.git) (*Simulation* folder).  A detailed overview of all available options can be found in the {{ of_usr }} ([Solution and Algorithm Control](https://www.openfoam.com/documentation/user-guide/6-solving/6.3-solution-and-algorithm-control)).
+The *fvSolution* files contains a set of sub-dictionaries that are specific to the solver being run. Additionally, there is also a set of standard sub-dictionaries, including the *solvers*, *relaxationFactors*, *PISO* and *SIMPLE*, that cover most of the ones used by the standard solvers. An example of the set of entries required for the interFoam solver can be found in the [case folder](https://github.com/hydro-informatics/openfoam.git) (*Simulation* folder).  A detailed overview of all available options can be found in the {{ of_usr }} ([Solution and Algorithm Control](https://www.openfoam.com/documentation/user-guide/6-solving/6.3-solution-and-algorithm-control)).
 
-The *setFieldsDict* allows the user to assign a certain value to a selected set of cells/patch-faces. For the present tutorial this dictionary was used to assign an initial water level to the inlet of the model. Multiple options are available for selecting the cells of interest. In the example shown below, the *boxToCell* option was selected, which selects all cells whose cell center is located inside the given bounding box.
+The *setFieldsDict* allows the user to assign a certain value to a selected set of cells/patch-faces. For the present tutorial this dictionary was used to assign an initial water level to the inlet of the model. Multiple options are available for selecting the cells of interest. In the example shown below the *boxToCell* option was selected, which selects all cells whose cell centre is located inside the given bounding box.
 
 ```
 defaultFieldValues
@@ -256,7 +252,7 @@ regions    // Select based on surface
 );
 ```
 
-Alternatively, other sources can be used, such as *fieldToCell*, which selects all cells characterized by a field value within the selected range [min; max]. A very useful option when setting the initial water level is also the *surfaceToCell* source that selects the cells using a surface, based on an imported {term}`STL` surface. In this case the dictionary would look like:
+Alternatively, other sources can be used such as *fieldToCell* which selects all cells characterized by a field value within the selected range [min; max]. A very useful option when setting the initial water level is also the *surfaceToCell* source that selects the cells using a surface, meaning based on an imported STL surface. In this case the dictionary would look like:
 
 ```
 defaultFieldValues
@@ -283,19 +279,16 @@ regions    // Select based on surface
  );
 ```
 
-The *outsidePoints* keyword defines the outside of the surface. *IncludeCut*, *includeInside*, and *IncludeOutside* are booleans that determine whether to include in the selection the cells cut by the surface, the cells inside the surface, and/or outside the surface, respectively. The *nearDistance* keyword is a scalar that determines which cells with the center near to the surface to include. Finally, *curvature* includes the cells close to a strong curvature on the surface.
+The *outsidePoints* keyword defines the outside of the surface. *IncludeCut*, *includeInside* and *IncludeOutside* are instead booleans that determine whether to include in the selection the cells cut by the surface, the cells inside the surface and outside the surface respectively. The *nearDistance* keyword is a scalar that determines which cells with the center near to the surface to include. Finally, *curvature* includes the cells close to a strong curvature on the surface.
 
 A complete list of all available sources can be found in the [OpenFOAM Wiki](https://openfoamwiki.net/index.php/TopoSet) in the *TopoSet* section.
 
 # The *0* Directory
-The *0* directory is the time directory containing the files describing the initial conditions of the simulation. Inside this directory, one text file for each field is required for the interFoam solver executable. In the present case, these files include: $U$ for the flow velocity, *p-rgh* for the dynamic pressure, *nut* for the turbulent viscosity, $k$ for the {term}`turbulent kinetic energy <Turbulent kinetic energy>`, $\epsilon$ for the rate of dissipation of turbulent kinetic energy, and  *alpha.water.orig* for the initial phases. The complete set of the files used for this tutorial can be found in the [case folder](https://github.com/hydro-informatics/openfoam.git).
+The *0* directory is the time directory containing the files describing the initial conditions of the simulation. Inside this directory one text file for each field that is required for the interFoam solver executable is stored. In the present case these files include: *U* for the flow velocity, *p-rgh* for the dynamic pressure, *nut* for the turbulent viscosity, *k* for the turbulent kinetic energy, *epsilon* for the rate of dissipation of turbulent kinetic energy and  *alpha.water.orig* for the initial phases. The complete version of the files used for this tutorial can be found in the [case folder](https://github.com/hydro-informatics/openfoam.git).
 
+# **U field Dictionary**
 
-# Variable Dictionaries
-
-## U field Dictionary
-
-This dictionary defines the boundary conditions and initial set up for the $U$ vector field. For the *internalField* uniform initial conditions with a value of (0 0 0) were set. For all remaining walls and patches, the following were assigned:
+This dictionary defines the boundary conditions and initial set up for the vector field U. For the *internalField* uniform initial conditions with a value of (0 0 0) were set. For all remaining walls and patches, the following were assigned:
 
 * **Air patch** : *pressureInletOutletVelocity* condition, which assigns a zero gradient condition to the flow out of the domain and a velocity based on the flux in the patch-normal direction to the flow into the domain.
 * **Concrete-sides, Gravel-bottom and Obstacle patches**: *noSlip* condition. The patch velocity is set to (0 0 0)
@@ -342,7 +335,7 @@ boundaryField
 }
 ```
 
-## p-rgh field dictionary
+# **p-rgh field dictionary**
 
 This dictionary defines the boundary conditions and initial set up for the dimensional field p-rgh, expressed in Pa. The *internalField* was initialized with a 0 value in the entire domain. The remaining fields were set as follows:
 
@@ -393,11 +386,11 @@ boundaryField
 }
 ```
 
-## nut field Dictionary
+# **nut field Dictionary**
 
 This dictionary defines the boundary conditions and initial set up for the turbulent viscosity nut, expressed in m$^2$/s. The *internalField* was initialized with a 0 value in the entire domain. The remaining fields were set as shown below:
 
-* **Air, Inlet and Outlet patch**: the condition was set to *calculated*, meaning that no value is prescribed and that it is calculated from the here used {term}`RANS` turbulence model and the values for $k$ ({term}`turbulent kinetic energy <Turbulent kinetic energy>`) and $\epsilon$ in this case.
+* **Air, Inlet and Outlet patch**: the condition was set to *calculated*, meaning that no value is prescribed and that it is calculated from the turbulence model and the values for k and epsilon in this case.
 * **All remaining walls**: the *nutkRoughWallFunction* boundary condition was applied.
 
 This boundary condition provides a wall constraint on the turbulent viscosity. This allows to account for the effects of roughness. The implementation of the different materials present in the model was done by defining the different roughness heights ks (e.g., 0.0052 for the concrete walls).
@@ -453,18 +446,15 @@ boundaryField
 }
 ```
 
-## k field Dictionary
+# **k field Dictionary**
 
-This dictionary defines the boundary conditions and initial setup for the {term}`turbulent kinetic energy <Turbulent kinetic energy>` $k$, expressed in m$^2$/s. The *internalField* was initialized with a uniform value in the entire domain. The remaining fields were set as follows:
+This dictionary defines the boundary conditions and initial set up for the turbulent kinetic energy k, expressed in m<sup>2</sup>/s. The *internalField* was initialized with a uniform value in the entire domain. The remaining fields were set as shown below:
 
-```{margin} Meaning of letters
-*q* for the square-root of the turbulent kinetic energy and *R* for the Reynolds stress tensor (read more in the glossary entry on {term}`turbulent kinetic energy <Turbulent kinetic energy>`.
-```
+* **Air and Outlet patch**: the condition was set to *inletOutlet*, which corresponds to the *zeroGradient* condition, with the exception of the case in which the velocity vector next to the boundary is directed inside the domain. In the latter case it switches to a *fixedValue* condition.
+* **Inlet patch**: in this case the assigned boundary condition was *fixedValue*. The corresponding value was the one assigned to the internalField.
+* **All remaining walls**: the *kqRWallFunction* boundary condition was applied. This boundary condition provides a simple wrapper around the zero-gradient condition.
 
-* **Air and Outlet patch**: *inletOutlet*, which corresponds to a *zeroGradient* condition, with the exception of the case in which the velocity vector next to the boundary is directed inside the domain. In the latter case, it switches to a *fixedValue* condition.
-* **Inlet patch**: *fixedValue*. The corresponding value was the one assigned to the *internalField*.
-* **All remaining walls**: *kqRWallFunction*. This boundary condition provides a simple wrapper around the zero-gradient condition.
-
+*k* stands for the turbulent kinetic energy, *q* for the square-root of the turbulent kinetic energy and *R* for the Reynolds stress tensor.
 
 ```
 dimensions      [0 2 -2 0 0 0 0];
@@ -513,13 +503,13 @@ boundaryField
 }
 ```
 
-## epsilon field Dictionary
+# **epsilon field Dictionary**
 
-This dictionary defines the boundary conditions and initial set up for the rate of dissipation $\epsilon$ of {term}`turbulent kinetic energy <Turbulent kinetic energy>`, expressed in m$^2~$s$^{-3}$. The *internalField* was initialized with a uniform value in the entire domain. The remaining fields were set as shown below:
+This dictionary defines the boundary conditions and initial set up for the rate of dissipation of turbulent kinetic energy epsilon, expressed in m<sup>2</sup>/s<sup>3</sup>. The *internalField* was initialized with a uniform value in the entire domain. The remaining fields were set as shown below:
 
-* **Air and Outlet patch**: *inletOutlet*, as described above for $k$.
-* **Inlet patch**: *fixedValue*, corresponding to the internalField value.
-* **All remaining walls**: *epsilonWallFunction*. This boundary condition provides a wall constraint on the turbulent kinetic energy dissipation rate $\epsilon$ and the turbulent kinetic energy $k$ production contribution for low and high Reynolds number turbulence models.
+* **Air and Outlet patch**: the condition was set to *inletOutlet* as described above for $k$.
+* **Inlet patch**: also in this case the boundary condition assigned to the *inlet* patch was *fixedValue*, corresponding to the internalField value.
+* **All remaining walls**: the *epsilonWallFunction* boundary condition was applied. This boundary condition provides a wall constraint on the turbulent kinetic energy dissipation rate and the turbulent kinetic energy production contribution for low and high Reynolds number turbulence models.
 
 ```
 dimensions      [0 2 -3 0 0 0 0];
@@ -567,13 +557,13 @@ boundaryField
 }
 ```
 
-## alpha.water field Dictionary
+# **alpha.water field Dictionary**
 
 This dictionary defines the boundary conditions and initial conditions for the non-dimensional field alpha.water. The *internalField* was initialized with a uniform value equal to 0 in the entire domain, meaning no water is present in the domain at time 0. The water will then be initialized running the *setFields* command with the settings defined in the corresponding dictionary. The remaining fields were set as shown below:
 
-* **Air patch**: *inletOutlet*, which avoids the possibility of water flowing back into the domain. In the case in which the flow is exiting, a *zeroGradient* condition is applied, and similarly, if the flow is returning a value equal to the one defined as *inletValue*.
-* **Inlet patch**: *fixedValue*, corresponding to a uniform value of 1, meaning the entire patch is only composed by water (no air phase present).
-* **Outlet patch and all remaining walls**: *zeroGradient*. In this case, the internal values are extrapolated to the boundary face.
+* **Air patch**: the condition was set to *inletOutlet* which avoid the possibility of water back-flowing into the domain. In the case in which th flow is exiting, a *zeroGradient* condition is applied and if the flow is returning a value equal to the one defined as *inletValue*.
+* **Inlet patch**: also in this case the boundary condition assigned was *fixedValue*, corresponding to a uniform value of 1, meaning the entire patch is only composed by water (no air phase present).
+* **Outlet patch and all remaining walls**: a *zeroGradient* boundary condition was applied. In this case the internal values are extrapolated to the boundary face.
 
 ```
 dimensions      [0 0 0 0 0 0 0];

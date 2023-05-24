@@ -6,9 +6,9 @@ This tutorial is designed for **advanced beginners** and before diving into this
 
 The case featured in this tutorial was established with the following software:
 * {ref}`Notepad++ <npp>` text editor (any other text editor will do just as well.)
-* TELEMAC v8p2r0 or newer ({ref}`stand-alone installation <modular-install>`).
+* TELEMAC v8p2r0 ({ref}`stand-alone installation <modular-install>`).
 * {ref}`QGIS <qgis-install>` and the {ref}`PostTelemac plugin <tm-qgis-plugins>`.
-* Debian Linux 10 (Buster) / Debian 11 installed on a Virtual Machine (read more in the {ref}`software chapter <chpt-vm-linux>`).
+* Debian Linux 10 (Buster) installed on a Virtual Machine (read more in the {ref}`software chapter <chpt-vm-linux>`).
 ```
 
 ## Get Started
@@ -197,7 +197,7 @@ Telemac2d comes with three solvers for approximating the depth-averaged {term}`N
 
 * `EQUATIONS : SAINT-VENANT FE` is the **default** that makes Telemac2d use a Saint-Venant finite element method,
 * `EQUATIONS : SAINT-VENANT FV` makes Telemac2d use a Saint-Venant finite volume method, and
-* `EQUATIONS : BOUSSINESQ` makes Telemac2d use the {term}`Boussinesq approximation`, which assumes constant density (incrompressible fluid assumption) and is not to be confused with the {term}`Boussinesq hypothesis`.
+* `EQUATIONS : BOUSSINESQ` makes Telemac2d use the {term}`Boussinesq` approximations (constant density except in the vertical momentum equation).
 
 In addition, a type of discretization has to be specified with the **DISCRETIZATIONS IN SPACE** keyword, which is a list of five integer values. The five list elements define spatial discretization schemes for (1) velocity, (2) depth, (3) tracers, (4) $k-\epsilon$ turbulence, and (5) $\tilde{\nu}$ advection (Spalart-Allmaras), respectively. The minimum length of the keyword list is 2 (for velocity and depth) and all other elements are optional. The list elements may take the following values defining spatial discretization:
 
@@ -314,7 +314,7 @@ None of these options should be used with tracers because they are not mass-cons
 The finite volume method is mentioned here for completeness and detailed descriptions are available in section 7.2.2 of the {{ tm2d }}.
 
 ```{admonition} Use finite volumes only with v8p2 or later
-Earlier versions of Telemac2d's finite volume solver are buggy, but since major improvements were implemented with v8p2, the newest versions run stable.
+Earlier versions of Telemac2d's finite volume solver are buggy, but since major improvements were implemented wit v8p2, the newest versions run stable.
 ```
 
 The finite volume method involves the definition of a scheme through the **FINITE VOLUME SCHEME** keyword that can take one of the following integer values:
@@ -326,7 +326,7 @@ The finite volume method involves the definition of a scheme through the **FINIT
 * `5` enables the Harten Lax Leer-Contact (HLLC) scheme {cite:p}`toro2009a`, and
 * `6` enables the Weighted Average Flux (WAF) {cite:p}`ata2012` scheme for which parallelism is currently not implemented.
 
-The finite volume/elements schemes are (semi-) explicit and potentially subjected to instability. For this reason, a desired {term}`CFL` condition and a variable timestep are recommended to be defined:
+All finite volume schemes are explicit and potentially subjected to instability. For this reason, a desired {term}`CFL` condition and a variable timestep are recommended to be defined:
 
 ```fortran
 DESIRED COURANT NUMBER : 0.9
@@ -336,7 +336,7 @@ DURATION : 10000
 
 The **DURATION** keyword is required to terminate the simulation.
 
-The variable timestep will cause irregular listing outputs, while the graphic output frequency is written as a function of the above-defined **TIME STEP**. Note that **this tutorial uses `VARIABLE TIME-STEP : NO`**.
+The variable timestep will cause irregular listing outputs, while the graphic output frequency is written as a function of the above-defined **TIME STEP**. Note that **this tutorial uses `VARIABLE TIME-STEP : NO`**, though **variable timesteps do also work with FINITE ELEMENTS**.
 
 The **FINITE VOLUME SCHEME TIME ORDER** keyword defines the second-order time scheme, which is by default set to *Euler explicit* (`1`). Setting the time scheme order to `2` makes Telemac2d using the Newmark scheme where an integration coefficient may be used to change the integration parameter. Note that `NEWMARK TIME INTEGRATION COEFFICIENT : 1` corresponds to *Euler explicit*. To implement these options in the steering file, use the following settings:
 
@@ -491,7 +491,7 @@ The **LAW OF BOTTOM FRICTION** keyword defines a friction law for topographic bo
 * `6` for the logarithmic law of the wall for turbulent flows. This option assumes that the average flow velocity is a logarithmic function of the distance from the wall beyond the viscous and buffer layers. The thickness of these layers is a function of the wall roughness length {cite:p}`von_karman_mechanische_1930`.
 * `7` for the {cite:t}`colebrook1937` equation that calculates the Darcy-Weisbach friction factor $f_D$ for turbulent flows in smooth pipes.
 
-With respect to the 2d applications in this eBook, the most relevant bottom friction laws are `3` {cite:p}`strickler_beitrage_1923`, `4` {cite:p}`manning_transactions_1891`, and `6` (log law). The {cite:t}`nikuradse_stromungsgesetze_1933` roughness law (`5`) is recommended for 3d simulations (see the {ref}`Telemac3d tutorial <tm3d-hydrodynamics>`). Friction is more generally referred to as with the general coefficient $c_{f}$, which has a particular relevance for {term}`bedload <Bedload>` transport (cf. {ref}`morphodynamic calculations with Gaia <c-friction>`).
+With respect to the 2d applications in this eBook, the most relevant bottom friction laws are `3` {cite:p}`strickler_beitrage_1923`, `4` {cite:p}`manning_transactions_1891`, and `6` (log law). The {cite:t}`nikuradse_stromungsgesetze_1933` roughness law (`5`) is recommended for 3d simulations (see the {ref}`Telemac3d tutorial <tm3d-hydrodynamics>`). Moreover, friction is more generally referred to with the general coefficient $c_{f}$, which has a particular relevance for {term}`Bedload` transport (cf. {ref}`morphodynamic calculations with Gaia <c-friction>`).
 
 The **FRICTION COEFFICIENT FOR THE BOTTOM** keyword sets the value for a characteristic roughness coefficient. For instance, when the friction law keyword is set to `3` {cite:p}`strickler_beitrage_1923`, the friction corresponds to the Strickler roughness coefficient $k_{st}$ (in fictive units of m$^{1/3}$ s$^{-1}$). For rough channels (e.g., mountain rivers) $k_{st} \approx 20$ m$^{1/3}$ s$^{-1}$ and for smooth concrete-lined channels $k_{st} \approx 75$ m$^{1/3}$ s$^{-1}$. In fully turbulent flows, the Strickler roughness can be approximated with $k_{st} \approx \frac{26}{D_{90}^{1/6}}$ {cite:p}`meyer-peter_formulas_1948` where $D_{90}$ is the grain diameter of which 90% of the surface grain mixture are finer.
 This tutorial features the application of a *Manning* roughness coefficient of $n_m$= 0.03, which is the inverse of $k_{st}$ and implemented with:
@@ -540,28 +540,25 @@ FRICTION COEFFICIENT : 0.03 / Roughness coefficient
 
 ```{admonition} Friction zones (regional friction values)
 :class: tip, dropdown
-:name: tm-friction-zones
-
-Similar to the assignment of multiple friction coefficient values to multiple model regions featured in the {ref}`BASEMENT tutorial <bm-geometry>`, Telemac2d provides routines for domain-wise (i.e., zonal) friction area definitions in the geometry (`*.slf`) file. To create a zonal roughness Selafin geometry with QGIS and BlueKenue use the *[Create Roughness Selafin File PDF workflow](https://github.com/hydro-informatics/telemac/raw/main/friction/create-friction-zone-slf.pdf)*. Some additional hints for using the workflow:
+Similar to the assignment of multiple friction coefficient values to multiple model regions featured in the {ref}`BASEMENT tutorial <bm-geometry>`, Telemac2d provides routines for domain-wise (i.e., zonal) friction area definitions in the geometry (e.g., `*.slf`) file. To create a zonal roughness Selafin geometry with QGIS and BlueKenue use the *[Create Roughness Selafin File PDF workflow](https://github.com/hydro-informatics/telemac/raw/main/friction/create-friction-zone-slf.pdf)*. Some additional hints for using the workflow:
 
 * Delineate zones with different roughness coefficients by drawing polygons (e.g., following landscapes characteristics on a basemap) in separate shapefiles with QGIS (see also the {ref}`pre-processing tutorial on QGIS <tm-qgis-prepro>`).
 * Import the separate polygons as XYZ file or closed lines in BlueKenue (see also the {ref}`pre-processing tutorial on BlueKenue <bk-tutorial>`).
-* Assign friction values to the polygons (closed lines) in BlueKenue (similar to {ref}`XYZ elevation information <bk-xyz>`).
-* Add a new variable to the {ref}`Selafin <bk-create-slf>` geometry and call it `BOTTOM FRICTION`.
-* Use the {ref}`Map Object <bk-2dinterp>` function (*Tools* > *Map Object...*) to add the polygons (closed lines) to the `BOTTOM FRICTION` mesh variable.
-* In the `*.cas` file, make sure to set a value for the **FRICTION** parameter according to the above descriptions and the `*.slf` file with the `BOTTOM FRICTION` variable for the **ZONES FILE** keyword.
+* Assign elevations to the polygons (closed lines) in BlueKenue (requires {ref}`elevation information <bk-xyz>`).
+* Add a new variable to the {ref}`Selafin <bk-create-slf>` geometry and call it BOTTOM FRICTION.
+* Use the {ref}`Map Object <bk-2dinterp>` function (*Tools* > *Map Object...*) to add the polygons (closed lines) to the BOTTOM FRICTION mesh variable.
+* In the `*.cas` file, make sure to set a value for the **FRICTION** parameter according to the above descriptions and to set the `*.slf` file with the BOTTOM FRICTION variable for the **ZONES FILE** keyword.
 
 
 Useful examples for creating roughness zones are:
-* The BAW's Donau case study that lives in `/telemac/v8p2/examples/telemac2d/donau/` features the usage of a `*.bfr` **ZONES FILE**, and a `roughness.tbl` **FRICTION DATA FILE**. Zonal friction values are enabled through the `FRICTION DATA : YES` keyword in the `t2d_donau.cas` file. The Donau example was also presented at the XXth Telemac-Mascaret user conference and the conference proceedings are available at the BAW's [HENRY portal](https://hdl.handle.net/20.500.11970/100418) (look for the contribution *Reverse engineering of initial & boundary conditions with TELEMAC and algorithmic differentiation*).
-* Also, the [Baxter tutorial](http://www.opentelemac.org/index.php/component/jdownloads/summary/4-training-and-tutorials/185-telemac-2d-tutorial?Itemid=55) features friction zones.
+* The BAW's Donau case study that lives in `/telemac/v8p2/examples/telemac2d/donau/` and features the usage of a `*.bfr` **ZONES FILE**, and a `roughness.tbl` **FRICTION DATA FILE**. Zonal friction values are enabled through the `FRICTION DATA : YES` keyword in the `t2d_donau.cas` file. The Donau example was also presented at the XXth Telemac-Mascaret user conference and the conference proceedings are available at the BAW's [HENRY portal](https://hdl.handle.net/20.500.11970/100418) (look for the contribution *Reverse engineering of initial & boundary conditions with TELEMAC and algorithmic differentiation*).
+* The [Baxter tutorial](http://www.opentelemac.org/index.php/component/jdownloads/summary/4-training-and-tutorials/185-telemac-2d-tutorial?Itemid=55).
 
-In addition, Appendix E of the {{ tm2d }} provides explanations for the implementation of zonal friction values. Note that the proposed modification of the **FRICTION_USER** Fortran function (subroutine) is not mandatory. Here are some tips for when the FRICTION_USER subroutines must be enabled anyway (e.g., to implement a new roughness law, such as the {cite:t}`ferguson_flow_2007` equation):
-
+In addition, Appendix E of the {{ tm2d }} provides explanations for the implementation of zonal friction values. Note that the proposed modification of the **FRICTION_USER** Fortran function (subroutine) is not mandatory. Here are some hints if the FRICTION_USER subroutines must be enabled anyway (e.g., to implement a new roughness law such as the {cite:t}`ferguson_flow_2007` equation):
 * The FICTION_USER subroutine can be found in `/telemac/v8p2/sources/telemac2d/friction_user.f`.
 * To use a modified version, copy `friction_user.f` to a new subfolder called `/user_fortran/` in your simulation case folder.
 * Modify and save edits in `/your/simulation/case/user_fortran/friction_user.f`.
-* Tell the steering (`*.cas`) file to use the modified FRICTION_USER Fortran file by adding the keyword `FORTRAN FILE : 'user_fortran'`, which makes Telemac2d look up Fortran files in the `/user_fortran/` subfolder.
+* Tell the steering (`*.cas`) file to use the modified FRICTION_USER Fortran file by adding the keyword `FORTRAN FILE : 'user_fortran'` (makes Telemac2d looking up Fortran files in the `/user_fortran/` subfolder).
 ```
 
 (tm2d-bounds)=
@@ -632,13 +629,13 @@ The simulation speed can be significantly increased when the model has already b
 
 **The following descriptions refer to section 6.2 in the {{ tm2d }}.**
 
-Turbulence describes a seemingly random and chaotic state of fluid motion in the form of three-dimensional vortices (eddies). True turbulence is only present in 3d vorticity and when it occurs, it mostly dominates all other flow phenomena through increases in energy dissipation, drag, heat transfer, and mixing {cite:p}`kundu_fluid_2008`. The phenomenon of turbulence has been a mystery to science for a long time, since turbulent flows ({term}`read more about the implementation in RANS <RANS>`) have been observed, but could not be explained by the linear equations systems. Today, turbulence is considered a random phenomenon that can be accounted for in linear equations, for instance, by introducing statistical parameters. For instance, when turbulence applies to the depth-averaged {term}`Navier-Stokes equations` a numerical solution for a quantity (e.g., flow velocity) corresponds to $value = \overline{mean value} + value fluctuation'$. For this purpose, there are a variety of options for implementing turbulence in numerical models {cite:p}`nezu1993`.
+Turbulence describes a seemingly random and chaotic state of fluid motion in the form of three-dimensional vortices (eddies). True turbulence is only present in 3d vorticity and when it occurs, it mostly dominates all other flow phenomena through increases in energy dissipation, drag, heat transfer, and mixing {cite:p}`kundu_fluid_2008`. The phenomenon of turbulence has been a mystery to science for a long time, since turbulent flows have been observed, but could not be explained by the linear equations systems. Today, turbulence is considered a random phenomenon that can be accounted for in linear equations, for instance, by introducing statistical parameters. For instance, when turbulence applies to the depth-averaged {term}`Navier-Stokes equations` a numerical solution for a quantity (e.g., flow velocity) corresponds to $value = \overline{mean value} + value fluctuation'$. For this purpose, there are a variety of options for implementing turbulence in numerical models {cite:p}`nezu1993`.
 
-The horizontal and vertical dimensions of turbulent eddies can vary greatly, especially in rivers and transitions to backwater zones (tidal flats) where the wide horizontal flow dimension (river width $w$) is significantly larger than the vertical flow dimension (water depth $h$): $w >> h$. Telemac2d provides multiple turbulence models that can be applied to the vertical and/or horizontal dimensions and defined with the **TURBULENCE MODEL** (see also: {term}`RANS`) keyword being an integer number for one of the following options:
+The horizontal and vertical dimensions of turbulent eddies can vary greatly, especially in rivers and transitions to backwater zones (tidal flats) where the wide horizontal flow dimension (river width $w$) is significantly larger than the vertical flow dimension (water depth $h$): $w >> h$. Telemac2d provides multiple turbulence models that can be applied to the vertical and/or horizontal dimensions and defined with the **TURBULENCE MODEL** keyword being an integer number for one of the following options:
 
 * `1` to use a constant viscosity coefficient (**default**) for turbulent viscosity, molecular viscosity, and {term}`Diffusion`. This closure option should not be used with {term}`Stage-discharge relation` open boundaries (i.e., do not use with prescribed Q and H) {cite:p}`wilson2002`.
 * `2` to use the Elder formula for the {term}`Diffusion` coefficient $D$. The Elder turbulence closure also yields small errors for {term}`Stage-discharge relation` open boundaries (i.e., do not use this option with prescribed Q and H) {cite:p}`wilson2002`.
-* `3` to use the $k-\epsilon$ two-equation model solving the {term}`Navier-Stokes equations`. The first equation represents a turbulence closure for the {term}`turbulent kinetic energy <Turbulent kinetic energy>` $k$; the second equation is a turbulence closure for the turbulent dissipation $\epsilon$. Both equations express that the sum of change of (I) $k$ and $\epsilon$ in time, and (II) {term}`Advection` transport of $k$ and $\epsilon$ equal the sum of (1) {term}`Diffusion` transport of $k$ and $\epsilon$, (2) the production rate of $k$/$\epsilon$, and (3) the destruction rate of $k$/$\epsilon$ {cite:p}`launder1974`. The $k-\epsilon$ model is a generalization of the mixing length model (see option `5`) and assumes that the turbulent viscosity is isotropic (valid for many river applications, but not for circular-rotating flows or groundwater) {cite:p}`bradshaw1987`. Thus, the $k-\epsilon$ model introduces two additional equations and requires a finer mesh than the constant viscosity option `1`, which leads to a longer computation time. Yet, the $k-\epsilon$ model generally yields accurate results and small errors with {term}`Stage-discharge relation` open boundaries {cite:p}`wilson2002`. The following default keywords are associated with the $k-\epsilon$ model:
+* `3` to use the $k-\epsilon$ two-equation model solving the {term}`Navier-Stokes equations`. The first equation represents a turbulence closure for the turbulent energy $k$; the second equation is a turbulence closure for the turbulent dissipation $\epsilon$. Both equations express that the sum of change of (I) $k$ and $\epsilon$ in time, and (II) {term}`Advection` transport of $k$ and $\epsilon$ equal the sum of (1) {term}`Diffusion` transport of $k$ and $\epsilon$, (2) the production rate of $k$/$\epsilon$, and (3) the destruction rate of $k$/$\epsilon$ {cite:p}`launder1974`. The $k-\epsilon$ model is a generalization of the mixing length model (see option `5`) and assumes that the turbulent viscosity is isotropic (valid for many river applications, but not for circular-rotating flows or groundwater) {cite:p}`bradshaw1987`. Thus, the $k-\epsilon$ model introduces two additional equations and requires a finer mesh than the constant viscosity option `1`, which leads to a longer computation time. Yet, the $k-\epsilon$ model generally yields accurate results and small errors with {term}`Stage-discharge relation` open boundaries {cite:p}`wilson2002`. The following default keywords are associated with the $k-\epsilon$ model:
   * `VELOCITY DIFFUSIVITY : 1.E-6` corresponding to the kinematic viscosity $\nu$ of water (10$^{-6}$ m$^2$/s).
   * `TURBULENCE REGIME FOR SOLID BOUNDARIES : 2` **for rough walls** of closed boundaries to apply the value chosen for the **LAW OF BOTTOM FRICTION** and **ROUGHNESS COEFFICIENT OF BOUNDARIES** keywords (recall section {ref}`tm2d-friction`). For **smooth closed boundary walls** set `TURBULENCE REGIME FOR SOLID BOUNDARIES : 1`.
   * `INFORMATION ABOUT K-EPSILON MODEL : YES` enables console output of information on the $k-\epsilon$ closure solution.

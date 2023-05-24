@@ -282,6 +282,11 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+
+
+
+
+
 <li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-run.html">Run OpenFOAM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-post.html">Post-processing</a></li>
 </ul>
@@ -301,9 +306,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/theory.html">Techniques (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../datascience/techniques.html">Overview of Fundamental Techniques</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../datascience/calibrate-validate.html">Model Calibration and Validation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/machinelearning.html">Machine Learning (ML)</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/linear-classification.html">Linear Classification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../datascience/morphology-predictor-svm.html">Support Vector Machine (SVM)</a></li>
 
 
@@ -344,11 +348,10 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Disclaimer and License</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../terms/license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../terms/disclaimer.html">Disclaimer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../documentation/contributors.html">Contributors</a></li>
 </ul>
 
     </div>
@@ -742,18 +745,18 @@ document.write(`
 <span class="n">STOP</span> <span class="n">CRITERIA</span> <span class="p">:</span> <span class="mf">1.E-3</span><span class="p">;</span><span class="mf">1.E-3</span><span class="p">;</span><span class="mf">1.E-3</span> <span class="o">/</span> <span class="n">use</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">three</span> <span class="n">values</span> <span class="o">-</span> <span class="n">defaults</span> <span class="n">are</span> <span class="mf">1.E-4</span>
 </pre></div>
 </div>
-<p>However, stop criteria are not functional for non-stationary flows (e.g., <span id="id1">Von Karmàn [<a class="reference internal" href="../documentation/bibliography.html#id595" title="Theodor Von Karmàn. Mechanische ähnlichkeit und Turbulenz [Mechanical similarity and turbulence]. In Third International Congress for Applied Mechanics, volume 1, pages 79–93. Stockholm, 1930.">VK30</a>]</span> vortex street downstream of bridge piers). Read more about the convergence stop criteria in the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p4r0/documentation/telemac2d/user/telemac2d_user_v8p4.pdf">Telemac2d manual</a> (section 5.1).</p>
+<p>However, stop criteria are not functional for non-stationary flows (e.g., <span id="id1">Von Karmàn [<a class="reference internal" href="../documentation/bibliography.html#id596" title="Theodor Von Karmàn. Mechanische ähnlichkeit und Turbulenz [Mechanical similarity and turbulence]. In Third International Congress for Applied Mechanics, volume 1, pages 79–93. Stockholm, 1930.">VK30</a>]</span> vortex street downstream of bridge piers). Read more about the convergence stop criteria in the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p4r0/documentation/telemac2d/user/telemac2d_user_v8p4.pdf">Telemac2d manual</a> (section 5.1).</p>
 </section>
 <section id="mesh-file">
 <h2>Mesh File<a class="headerlink" href="#mesh-file" title="Permalink to this headline">#</a></h2>
 <section id="fine-high-resolution-meshes">
 <h3>Fine High-resolution Meshes<a class="headerlink" href="#fine-high-resolution-meshes" title="Permalink to this headline">#</a></h3>
 <p><em>This section is co-authored by <a class="reference external" href="https://www.iws.uni-stuttgart.de/institut/team/Scolari/">Federica Scolari</a></em>.</p>
-<p>For creating very fine meshes with a grid size smaller than 1.0 m, a selafin (<code class="docutils literal notranslate"><span class="pre">*.slf</span></code>) geometry file should be saved in double precision format (SERAFIND). Otherwise, model boundary edges may not be well represented in the computational mesh. <a class="reference internal" href="#mesh-precision"><span class="std std-numref">Figure 187</span></a> illustrates the loss in boundary accuracy when single-precision (a) is used instead of double-precision (b).</p>
+<p>For creating very fine meshes with a grid size smaller than 1.0 m, a selafin (<code class="docutils literal notranslate"><span class="pre">*.slf</span></code>) geometry file should be saved in double precision format (SERAFIND). Otherwise, model boundary edges may not be well represented in the computational mesh. <a class="reference internal" href="#mesh-precision"><span class="std std-numref">Figure 191</span></a> illustrates the loss in boundary accuracy when single-precision (a) is used instead of double-precision (b).</p>
 <figure class="align-default" id="mesh-precision">
 <img alt="telemac slf selafin single double precision serafind" src="../_images/single-double-precision-mesh.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 187 </span><span class="caption-text">The loss boundary precision in a single-precision selafin mesh (a) compared to a double-precision selafin mesh (b).</span><a class="headerlink" href="#mesh-precision" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 191 </span><span class="caption-text">The loss boundary precision in a single-precision selafin mesh (a) compared to a double-precision selafin mesh (b).</span><a class="headerlink" href="#mesh-precision" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -818,18 +821,18 @@ document.write(`
 <p><em>This section is co-authored by <a class="reference external" href="https://www.iws.uni-stuttgart.de/institut/team/Scolari/">Federica Scolari</a></em>.</p>
 <section id="no-water-in-the-model">
 <h3>No Water in the Model<a class="headerlink" href="#no-water-in-the-model" title="Permalink to this headline">#</a></h3>
-<p>Erroneous simulations where <strong>no water is entering or exiting</strong> the domain have most likely improperly defined boundary conditions. For instance, consider the open  boundaries shown in <a class="reference internal" href="#dbg-bc-bk"><span class="std std-numref">Fig. 188</span></a> with <code class="docutils literal notranslate"><span class="pre">prescribed</span> <span class="pre">Q</span> <span class="pre">(4</span> <span class="pre">5</span> <span class="pre">5)</span></code> upstream and <code class="docutils literal notranslate"><span class="pre">prescribed</span> <span class="pre">H</span> <span class="pre">(5</span> <span class="pre">4</span> <span class="pre">4)</span></code> downstream.</p>
+<p>Erroneous simulations where <strong>no water is entering or exiting</strong> the domain have most likely improperly defined boundary conditions. For instance, consider the open  boundaries shown in <a class="reference internal" href="#dbg-bc-bk"><span class="std std-numref">Fig. 192</span></a> with <code class="docutils literal notranslate"><span class="pre">prescribed</span> <span class="pre">Q</span> <span class="pre">(4</span> <span class="pre">5</span> <span class="pre">5)</span></code> upstream and <code class="docutils literal notranslate"><span class="pre">prescribed</span> <span class="pre">H</span> <span class="pre">(5</span> <span class="pre">4</span> <span class="pre">4)</span></code> downstream.</p>
 <figure class="align-default" id="dbg-bc-bk">
 <img alt="debugging boundary conditions cli bluekenue" src="../_images/dbg-bc-bk.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 188 </span><span class="caption-text">The definition of open (liquid) boundaries with <code class="docutils literal notranslate"><span class="pre">prescribed</span> <span class="pre">Q</span> <span class="pre">(4</span> <span class="pre">5</span> <span class="pre">5)</span></code> upstream and <code class="docutils literal notranslate"><span class="pre">prescribed</span> <span class="pre">H</span> <span class="pre">(5</span> <span class="pre">4</span> <span class="pre">4)</span></code> downstream.</span><a class="headerlink" href="#dbg-bc-bk" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 192 </span><span class="caption-text">The definition of open (liquid) boundaries with <code class="docutils literal notranslate"><span class="pre">prescribed</span> <span class="pre">Q</span> <span class="pre">(4</span> <span class="pre">5</span> <span class="pre">5)</span></code> upstream and <code class="docutils literal notranslate"><span class="pre">prescribed</span> <span class="pre">H</span> <span class="pre">(5</span> <span class="pre">4</span> <span class="pre">4)</span></code> downstream.</span><a class="headerlink" href="#dbg-bc-bk" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Intuitively, you may think that the upstream boundary is number (1) and the downstream boundary is number (2). However, the order of boundary numbering depends on the definition order during the setup of the boundaries (e.g., described in the <a class="reference internal" href="../numerics/pre-slf-tm.html#bk-bc"><span class="std std-ref">BlueKenue pre-processing tutorial</span></a>). If you do not remember the definition order, it can be read in the boundary (<code class="docutils literal notranslate"><span class="pre">*.cli</span></code>) file at any time. For instance, the boundary file for the above-shown mesh (<a class="reference internal" href="#dbg-bc-bk"><span class="std std-numref">Fig. 188</span></a>) looks like the representation in <a class="reference internal" href="#dbg-boundaries"><span class="std std-numref">Fig. 189</span></a> where the <strong>Outlet</strong> is defined <strong>above</strong> the <strong>Inlet</strong>. Therefore, the <strong>downstream (Outlet) open boundary is number (1)</strong> and the <strong>upstream (Inlet) open boundary is number (2)</strong> in this simulation.</p>
+<p>Intuitively, you may think that the upstream boundary is number (1) and the downstream boundary is number (2). However, the order of boundary numbering depends on the definition order during the setup of the boundaries (e.g., described in the <a class="reference internal" href="../numerics/pre-slf-tm.html#bk-bc"><span class="std std-ref">BlueKenue pre-processing tutorial</span></a>). If you do not remember the definition order, it can be read in the boundary (<code class="docutils literal notranslate"><span class="pre">*.cli</span></code>) file at any time. For instance, the boundary file for the above-shown mesh (<a class="reference internal" href="#dbg-bc-bk"><span class="std std-numref">Fig. 192</span></a>) looks like the representation in <a class="reference internal" href="#dbg-boundaries"><span class="std std-numref">Fig. 193</span></a> where the <strong>Outlet</strong> is defined <strong>above</strong> the <strong>Inlet</strong>. Therefore, the <strong>downstream (Outlet) open boundary is number (1)</strong> and the <strong>upstream (Inlet) open boundary is number (2)</strong> in this simulation.</p>
 <figure class="align-default" id="dbg-boundaries">
 <img alt="debugging boundary conditions cli bluekenue" src="../_images/dbg-boundaries.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 189 </span><span class="caption-text">Exemplary definition of a downstream (Outlet) and an upstream (Inlet) open boundary in a boundary.cli file corresponding to <a class="reference internal" href="#dbg-bc-bk"><span class="std std-numref">Fig. 188</span></a>.</span><a class="headerlink" href="#dbg-boundaries" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 193 </span><span class="caption-text">Exemplary definition of a downstream (Outlet) and an upstream (Inlet) open boundary in a boundary.cli file corresponding to <a class="reference internal" href="#dbg-bc-bk"><span class="std std-numref">Fig. 192</span></a>.</span><a class="headerlink" href="#dbg-boundaries" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Thus, these two boundaries must be referenced in the steering (<code class="docutils literal notranslate"><span class="pre">*.cas</span></code>) file as follows to prescribe a flow rate <code class="docutils literal notranslate"><span class="pre">Q</span></code> (e.g., 10 m<span class="math notranslate nohighlight">\(^3\)</span>/s) at the upstream and a depth <code class="docutils literal notranslate"><span class="pre">H</span></code> (e.g., 0.75 m) at the downstream boundary:</p>
@@ -855,7 +858,7 @@ document.write(`
 </div>
 <p>With a more precise of the cause for the error, try one of the following options:</p>
 <dl class="simple myst">
-<dt>Supercritical boundaries at the entrance</dt><dd><p>For supercritical flow conditions at the entrance, make sure that a <code class="docutils literal notranslate"><span class="pre">prescribed</span> <span class="pre">Q</span> <span class="pre">and</span> <span class="pre">H</span></code> boundary also gets a discharge and a depth assigned in the steering file. For instance, if the Inlet in Figures <a class="reference internal" href="#dbg-bc-bk"><span class="std std-numref">188</span></a> and <a class="reference internal" href="#dbg-boundaries"><span class="std std-numref">189</span></a> was <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">5</span> <span class="pre">5</span></code> (<code class="docutils literal notranslate"><span class="pre">prescribed</span> <span class="pre">Q</span> <span class="pre">and</span> <span class="pre">H</span></code>) instead of <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">5</span> <span class="pre">5</span></code>, the steering file needs to prescribe flowrates and depths. For instance, add a depth of <code class="docutils literal notranslate"><span class="pre">0.9</span></code> for the Inlet as follows:</p>
+<dt>Supercritical boundaries at the entrance</dt><dd><p>For supercritical flow conditions at the entrance, make sure that a <code class="docutils literal notranslate"><span class="pre">prescribed</span> <span class="pre">Q</span> <span class="pre">and</span> <span class="pre">H</span></code> boundary also gets a discharge and a depth assigned in the steering file. For instance, if the Inlet in Figures <a class="reference internal" href="#dbg-bc-bk"><span class="std std-numref">192</span></a> and <a class="reference internal" href="#dbg-boundaries"><span class="std std-numref">193</span></a> was <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">5</span> <span class="pre">5</span></code> (<code class="docutils literal notranslate"><span class="pre">prescribed</span> <span class="pre">Q</span> <span class="pre">and</span> <span class="pre">H</span></code>) instead of <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">5</span> <span class="pre">5</span></code>, the steering file needs to prescribe flowrates and depths. For instance, add a depth of <code class="docutils literal notranslate"><span class="pre">0.9</span></code> for the Inlet as follows:</p>
 <p><code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">FLOWRATES</span> <span class="pre">:</span> <span class="pre">0.;10</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">DEPTHS</span> <span class="pre">:</span> <span class="pre">0.75;0.9</span></code></p>
 </dd>

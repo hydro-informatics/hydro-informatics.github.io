@@ -282,6 +282,11 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+
+
+
+
+
 <li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-run.html">Run OpenFOAM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-post.html">Post-processing</a></li>
 </ul>
@@ -301,9 +306,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/theory.html">Techniques (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../datascience/techniques.html">Overview of Fundamental Techniques</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../datascience/calibrate-validate.html">Model Calibration and Validation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/machinelearning.html">Machine Learning (ML)</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/linear-classification.html">Linear Classification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../datascience/morphology-predictor-svm.html">Support Vector Machine (SVM)</a></li>
 
 
@@ -344,11 +348,10 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Disclaimer and License</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../terms/license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../terms/disclaimer.html">Disclaimer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../documentation/contributors.html">Contributors</a></li>
 </ul>
 
     </div>
@@ -730,7 +733,7 @@ Pr(i) = (N - i + 1) / (N + 1)
 <section id="outside-the-box">
 <h2>Outside the Box<a class="headerlink" href="#outside-the-box" title="Permalink to this headline">#</a></h2>
 <p>The here shown method is only an interpolation. For extrapolating return periods beyond the length of the observation period (e.g., for extreme events such as a 1000-year flood), a prediction model is necessary (e.g., Gumbel distributed-extrapolation).</p>
-<p>After all, there is already software that calculates return periods, freely available at the U.S. Army Corps of Engineers Hydrologic Engineering Center (<em>HEC</em>) <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id581" title="U.S. Army Corps of Engineeers. Hydrologic Engineering Centers River Analysis System (HEC-RAS). U.S. Army Corps of Engineeers (USACE), Davis, CA, USA, 2016. URL: http://www.hec.usace.army.mil/software/hec-ras/.">USACoEngineeers16</a>]</span>: <a class="reference external" href="https://www.hec.usace.army.mil/software/hec-ssp/">HEC-SPP</a>. HEC-SPP enables the calculation of flow event frequencies and return periods according to US standards. So if you are not working in or for the United States, you still may want to have your code ready. Moreover, <em>HEC-SPP</em> requires pre-processing of discharge data (i.e., it only works with annual maxima).</p>
+<p>After all, there is already software that calculates return periods, freely available at the U.S. Army Corps of Engineers Hydrologic Engineering Center (<em>HEC</em>) <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id582" title="U.S. Army Corps of Engineeers. Hydrologic Engineering Centers River Analysis System (HEC-RAS). U.S. Army Corps of Engineeers (USACE), Davis, CA, USA, 2016. URL: http://www.hec.usace.army.mil/software/hec-ras/.">USACoEngineeers16</a>]</span>: <a class="reference external" href="https://www.hec.usace.army.mil/software/hec-ssp/">HEC-SPP</a>. HEC-SPP enables the calculation of flow event frequencies and return periods according to US standards. So if you are not working in or for the United States, you still may want to have your code ready. Moreover, <em>HEC-SPP</em> requires pre-processing of discharge data (i.e., it only works with annual maxima).</p>
 <div class="admonition-homework admonition">
 <p class="admonition-title">Homework</p>
 <p>Use the formulae in the our <a class="reference external" href="https://github.com/Ecohydraulics/Exercise-FloodReturn/raw/main/flow-data/flood-statistics-gumble-template.xlsx">Gumble-template workbook</a> to implement the Gumbel distribution for extrapolating a 200, 500, and 1000-years flood. Interpolations discharges of 2, 5, 10, 20, and 50-year flow events. <em>Use loops and functions!</em></p>

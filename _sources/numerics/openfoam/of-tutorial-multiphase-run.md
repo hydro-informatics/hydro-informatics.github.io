@@ -1,11 +1,8 @@
-```{admonition} Contributor
-:class: tip
-This chapter was written and developed by {{ scolari }} <img src="../../img/authors/federica.jpg" alt="Federica Scolari" width="50" height="50">
-```
+This chapter is developed by {{ scolari }}.
 
 # Run OpenFOAM
 
-After having created and filled in all necessary dictionaries, the case can finally be run. 
+After having correctly created and filled in all the necessary dictionaries, the case can finally be run. 
 
 * The first step consists in initializing a region containing water as defined in the *setFieldsDict* file.
 
@@ -13,7 +10,7 @@ After having created and filled in all necessary dictionaries, the case can fina
 user@user123:~/OpenFOAM-9/channel/Simulation$ setFields
 ```
 
-* For parallel runs, use the `decomposePar` command, as done during the meshing process, to decompose the geometry into individual geometries for each MPI process.
+* In the case of parallel runs, run the decomposePar command, as done during the meshing process, to decompose the geometry into individual geometries for each MPI process.
 
 ```
 user@user123:~/OpenFOAM-9/channel/Simulation$ decomposePar
@@ -34,14 +31,14 @@ user@user123:~/OpenFOAM-9/channel/Simulation$ mpirun -np x interFoam -parallel
 user@user123:~/OpenFOAM-9/channel/Simulation$ interFoam
 ```
 
-Below, an example of the output screen of the *interFoam* solvers is shown. The main aspects are the following:
+Below, an example of the output screen of the *interFoam* solvers is shown. The main aspects to be mentioned are the following:
 
 * The first line shows the mean and maximum flow {term}`CFL` condition.
-* Line 2 shows instead the interface {term}`CFL` condition, which is more restrictive than the previous and should be strictly below 1 when solving multiphase flows.
+* Line 2 shows instead the interface {term}`CFL` condition which is more restrictive than the previous and should be kept below 1 when solving multiphase flows.
 * "MULES: Correcting alpha.water" depends on the value set to *nAlphaCorr* set in the *fvSolution* file.
-* Lines 7 and 9 refer to the *nAlphaSubCycles*, which was set to 1, meaning only one loop.
-* Lines 11, 13, and 15 refer to the three pressure correctors and no non-orthogonal corrections are present.
-* As shown in line 16, a tighter tolerance is applied only to this iteration (p-rghFinal).
+* lines 7 and 9 refer to the *nAlphaSubCycles* which was set to 1, meaning only one loop.
+* lines 11, 13 and 15 refer to the three pressure correctors and no non-orthogonal corrections are present.
+* As shown in line 16 a tighter tolerance is applied only to this iteration (p-rghFinal)
   
 ```
 1    Courant Number mean: 0.00233217 max: 0.961058

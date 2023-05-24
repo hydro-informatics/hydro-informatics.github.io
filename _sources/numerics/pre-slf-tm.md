@@ -356,7 +356,8 @@ All files that are created with BlueKenue<sup>TM</sup> are based on the ASCII En
 
 Download the provided [dem.xyz](https://github.com/hydro-informatics/telemac/raw/main/rasters/dem.xyz) point cloud that contains EnSim-formatted 3d coordinates of the river ecosystem {term}`DEM` that will be modelled in this tutorial. The `*.xyz` file was derived from the {term}`GeoTIFF` {term}`DEM` used in the {ref}`QGIS pre-processing <get-dem-xyz>`.
 
- ```{margin} The .xyz file is not an XYZ tile
+ ```{admonition} A .xyz file is not an XYZ tile
+ :class: tip
  The point cloud in the `*.xyz` file is different than the regular XYZ tile raster that constitutes the {ref}`satellite imagery basemap <basemap>`.
  ```
 
@@ -385,7 +386,7 @@ To verify the {term}`CRS` of the point dataset, right-click on **dem (Z)**, sele
 This is an optional section for users who do not want to use QGIS and the BASEmesh plugin for meshing. Generating a mesh with BlueKenue<sup>TM</sup> can be useful, for instance, to produce a computational grid that has triangular cells oriented parallel to the riverbanks (i.e., a channel sub-mesh). Otherwise, **if the `*.2dm` mesh file was created** with QGIS, **jump to the section on creating a {ref}`Selafin Object <bk-create-slf>`**.
 ```
 
-This section features the basic mesh generation with BlueKenue<sup>TM</sup>, which also runs smoothly on Linux through the {ref}`PlayOnLinux <play-on-linux>` app. Additionall, the Baxter tutorial {cite:p}`baxter2013` provides more details for getting started with BlueKenue along with detailed screenshots.
+This section features the basic mesh generation with BlueKenue<sup>TM</sup>. The Baxter tutorial {cite:p}`baxter2013` provides more details with detailed screenshots.
 
 ### Draw Model Boundary (Closed Line)
 

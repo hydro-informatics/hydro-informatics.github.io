@@ -280,6 +280,11 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+
+
+
+
+
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">Run OpenFOAM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="of-tutorial-multiphase-post.html">Post-processing</a></li>
 </ul>
@@ -299,9 +304,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../datascience/theory.html">Techniques (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../datascience/techniques.html">Overview of Fundamental Techniques</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../datascience/calibrate-validate.html">Model Calibration and Validation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../datascience/machinelearning.html">Machine Learning (ML)</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../datascience/linear-classification.html">Linear Classification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../datascience/morphology-predictor-svm.html">Support Vector Machine (SVM)</a></li>
 
 
@@ -342,11 +346,10 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Disclaimer and License</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../terms/license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../terms/disclaimer.html">Disclaimer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../documentation/contributors.html">Contributors</a></li>
 </ul>
 
     </div>
@@ -510,13 +513,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tip admonition">
-<p class="admonition-title">Contributor</p>
-<p>This chapter was written and developed by <a class="reference external" href="https://www.iws.uni-stuttgart.de/institut/team/Scolari/">Federica Scolari</a> <a class="reference internal" href="../../_images/federica.jpg"><img alt="Federica Scolari" src="../../_images/federica.jpg" style="width: 50px; height: 50px;" /></a></p>
-</div>
+  <p>This chapter is developed by <a class="reference external" href="https://www.iws.uni-stuttgart.de/institut/team/Scolari/">Federica Scolari</a>.</p>
 <section class="tex2jax_ignore mathjax_ignore" id="run-openfoam">
 <h1>Run OpenFOAM<a class="headerlink" href="#run-openfoam" title="Permalink to this headline">#</a></h1>
-<p>After having created and filled in all necessary dictionaries, the case can finally be run.</p>
+<p>After having correctly created and filled in all the necessary dictionaries, the case can finally be run.</p>
 <ul class="simple">
 <li><p>The first step consists in initializing a region containing water as defined in the <em>setFieldsDict</em> file.</p></li>
 </ul>
@@ -524,7 +524,7 @@ document.write(`
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>For parallel runs, use the <code class="docutils literal notranslate"><span class="pre">decomposePar</span></code> command, as done during the meshing process, to decompose the geometry into individual geometries for each MPI process.</p></li>
+<li><p>In the case of parallel runs, run the decomposePar command, as done during the meshing process, to decompose the geometry into individual geometries for each MPI process.</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>user@user123:~/OpenFOAM-9/channel/Simulation$ decomposePar
 
@@ -546,14 +546,14 @@ document.write(`
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>user@user123:~/OpenFOAM-9/channel/Simulation$ interFoam
 </pre></div>
 </div>
-<p>Below, an example of the output screen of the <em>interFoam</em> solvers is shown. The main aspects are the following:</p>
+<p>Below, an example of the output screen of the <em>interFoam</em> solvers is shown. The main aspects to be mentioned are the following:</p>
 <ul class="simple">
 <li><p>The first line shows the mean and maximum flow <a class="reference internal" href="../../documentation/glossary.html#term-CFL"><span class="xref std std-term">CFL</span></a> condition.</p></li>
-<li><p>Line 2 shows instead the interface <a class="reference internal" href="../../documentation/glossary.html#term-CFL"><span class="xref std std-term">CFL</span></a> condition, which is more restrictive than the previous and should be strictly below 1 when solving multiphase flows.</p></li>
+<li><p>Line 2 shows instead the interface <a class="reference internal" href="../../documentation/glossary.html#term-CFL"><span class="xref std std-term">CFL</span></a> condition which is more restrictive than the previous and should be kept below 1 when solving multiphase flows.</p></li>
 <li><p>“MULES: Correcting alpha.water” depends on the value set to <em>nAlphaCorr</em> set in the <em>fvSolution</em> file.</p></li>
-<li><p>Lines 7 and 9 refer to the <em>nAlphaSubCycles</em>, which was set to 1, meaning only one loop.</p></li>
-<li><p>Lines 11, 13, and 15 refer to the three pressure correctors and no non-orthogonal corrections are present.</p></li>
-<li><p>As shown in line 16, a tighter tolerance is applied only to this iteration (p-rghFinal).</p></li>
+<li><p>lines 7 and 9 refer to the <em>nAlphaSubCycles</em> which was set to 1, meaning only one loop.</p></li>
+<li><p>lines 11, 13 and 15 refer to the three pressure correctors and no non-orthogonal corrections are present.</p></li>
+<li><p>As shown in line 16 a tighter tolerance is applied only to this iteration (p-rghFinal)</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>    <span class="n">Courant</span> <span class="n">Number</span> <span class="n">mean</span><span class="p">:</span> <span class="mf">0.00233217</span> <span class="nb">max</span><span class="p">:</span> <span class="mf">0.961058</span>
 <span class="mi">2</span>    <span class="n">Interface</span> <span class="n">Courant</span> <span class="n">Number</span> <span class="n">mean</span><span class="p">:</span> <span class="mf">0.000313967</span> <span class="nb">max</span><span class="p">:</span> <span class="mf">0.234243</span>
@@ -592,7 +592,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./numerics/openfoam"
+            path: "./numerics\openfoam"
         },
         predefinedOutput: true
     }

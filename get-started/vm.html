@@ -280,6 +280,11 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+
+
+
+
+
 <li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-run.html">Run OpenFOAM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../numerics/openfoam/of-tutorial-multiphase-post.html">Post-processing</a></li>
 </ul>
@@ -299,9 +304,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/theory.html">Techniques (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../datascience/techniques.html">Overview of Fundamental Techniques</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../datascience/calibrate-validate.html">Model Calibration and Validation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datascience/machinelearning.html">Machine Learning (ML)</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datascience/linear-classification.html">Linear Classification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../datascience/morphology-predictor-svm.html">Support Vector Machine (SVM)</a></li>
 
 
@@ -342,11 +346,10 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Disclaimer and License</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../terms/license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../terms/disclaimer.html">Disclaimer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../documentation/contributors.html">Contributors</a></li>
 </ul>
 
     </div>
@@ -542,9 +545,9 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-software-management">Package &amp; Software Management</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-package-repositories">Add Package Repositories</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-packages">Find Packages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-use-windows-applications-wine">Install &amp; Use <em>Windows</em> Applications (<em>Wine</em>)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#windows-apps-on-linux">Windows Apps on Linux</a></li>
 </ul>
 </li>
 </ul>
@@ -995,33 +998,10 @@ To shutdown Debian Linux (i.e., the VM), click on the top-right corner arrow and
 </pre></div>
 </div>
 </section>
-</section>
-<section id="windows-apps-on-linux">
-<span id="wine"></span><h2>Windows Apps on Linux<a class="headerlink" href="#windows-apps-on-linux" title="Permalink to this headline">#</a></h2>
+<section id="install-use-windows-applications-wine">
+<span id="wine"></span><h3>Install &amp; Use <em>Windows</em> Applications (<em>Wine</em>)<a class="headerlink" href="#install-use-windows-applications-wine" title="Permalink to this headline">#</a></h3>
 <p><em><strong>Estimated duration: 10-15 minutes.</strong></em></p>
-<p>The <a class="reference external" href="https://wiki.debian.org/Wine">Wine</a> application provides a Windows-like environment on any <em>Linux</em> system, which enables installing and running Windows applications. Wine can be either used through the convenient PlayOnLinux app or directly installed on Linux.</p>
-<aside class="margin sidebar">
-<p class="sidebar-title">What is BlueKenue?</p>
-<p>The installation examples feature the meshing tool BlueKenue, which enables us to create a computational mesh for the TELEMAC software. Find out more about the installation of BlueKenue as a pre-processor in the <a class="reference internal" href="install-telemac.html#bluekenue"><span class="std std-ref">TELEMAC installation</span></a> section and the <a class="reference internal" href="../numerics/telemac.html#chpt-telemac"><span class="std std-ref">TELEMAC tutorials</span></a> in this eBook.</p>
-</aside>
-<div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-0" id="play-on-linux">
-PlayOnLinux</label><div class="sd-tab-content docutils">
-<p>On top of wine, the currently maybe best available frameworks is <a class="reference external" href="https://www.playonlinux.com">PlayOnLinux</a>, which can be installed as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">winbind</span> <span class="n">playonlinux</span> <span class="n">winetricks</span> <span class="o">-</span><span class="n">y</span> 
-</pre></div>
-</div>
-<p>After the installation, go to the system <strong>Menu</strong> &gt; <strong>Applications</strong> &gt; search for <em>PlayOnLinux</em>. Before continuing, setup a wine version to use by clicking on <strong>Tools</strong> &gt; <strong>Manage Wine Versions</strong>. Most applications now run on 64 bit architectures, so adding the newest amd64 Wine version might be a good choice. After installing a wine version, click on the <strong>Configure</strong> button in the main window to select a wine configuration to use and click on <strong>New</strong> to setup an environment (e.g., <strong>HYINFO-ENVIRONMENT</strong>. Follow the installation instructions.</p>
-<p>The <strong>+Install</strong> button opens a pop-up window with a search box to look for Windows applications that can be directly installed. Additionally, on the bottom of the pop-up window, the <strong>Install a non-listed program</strong> option enables to install other Windows installers, which are not listed. During the first installation of a Windows application, PlayOnLinux shows a couple of <strong>messages with very important information - take the time to read them</strong>.</p>
-<p>To install a particular <strong>.exe</strong> or <strong>.msi</strong> that you downloaded, such as <strong>BlueKenue</strong>, click on the <strong>Configure</strong> button in the main window and highlight your above-created environment. Go to the <strong>Miscellaneous</strong> tab and click on <strong>Run a .exe file in this virtual drive</strong>. Follow the installation process. To run such manually installed software, click again on <strong>Configure</strong> &gt; <strong>Miscellaneous</strong> &gt; <strong>Run a .exe file in this virtual drive</strong> and navigate to where the program was just installed. If no direct shortcut is available, finding the software can be a bit confusing, but, worry not, here is how you find it:</p>
-<p>In the pop-up window (after <em>Run a .exe file …</em>), go to your Linux user home folder (e.g., <code class="docutils literal notranslate"><span class="pre">/home/hydro-informatics/</span></code>), then enable viewing of hidden files (press <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">H</span></code> on your keyboard), which will make the hidden folder <code class="docutils literal notranslate"><span class="pre">/home/hydro-informatics/.PlayOnLinux/</span></code> visible. Double-click on this hidden folder, then on <strong>wineprefix</strong> &gt; <strong>YOUR-ENVIRONMENT-NAME</strong> (e.g., <strong>HYINFO-ENVIRONMENT</strong>) &gt; <strong>drive_c</strong> and find the installed program either in the <strong>Program Files</strong> or <strong>Program Files (x86)</strong> directory.
-For instance, to open a 64-bit installation of BlueKenue, navigate to <code class="docutils literal notranslate"><span class="pre">/home/hydro-informatics/.PlayOnLinux/wineprefix/HYINFO-ENVIRONMENT/drive_c/Program</span> <span class="pre">Files/CHC/BlueKenue64</span></code> and double-click on <strong>BlueKenue64.exe</strong> (replace <code class="docutils literal notranslate"><span class="pre">hydro-informatics</span></code> and <code class="docutils literal notranslate"><span class="pre">HYINFO-ENVIRONMENT</span></code> with your local directory names). The program should now open.</p>
-</div>
-<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-1">
-Wine (Direct Installation)</label><div class="sd-tab-content docutils">
-<p>The above-described installation of Debian Linux creates a 64-bit VM and to enable program compatibility with 32-bit architectures, add 32-bit architectures through <em>Terminal</em>:</p>
+<p>If you want to emulate a <em>Windows</em> environment on any <em>Linux</em> system (for whatever reason), use the <a class="reference external" href="https://wiki.debian.org/Wine"><em>Wine</em></a> compatibility layer, which enables installing and running <em>Windows</em> applications. The above-described installation of Debian Linux creates a 64-bit VM and to enable program compatibility with 32-bit architectures, add 32-bit architectures through <em>Terminal</em>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dpkg</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">architecture</span> <span class="n">i386</span> <span class="o">&amp;&amp;</span> <span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
 </pre></div>
 </div>
@@ -1068,8 +1048,7 @@ More information is available in the <a class="reference external" href="https:/
 </ul>
 </li>
 </ul>
-</div>
-</div>
+</section>
 </section>
 </section>
 
@@ -1168,9 +1147,9 @@ More information is available in the <a class="reference external" href="https:/
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-software-management">Package &amp; Software Management</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-package-repositories">Add Package Repositories</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-packages">Find Packages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-use-windows-applications-wine">Install &amp; Use <em>Windows</em> Applications (<em>Wine</em>)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#windows-apps-on-linux">Windows Apps on Linux</a></li>
 </ul>
 </li>
 </ul>

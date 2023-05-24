@@ -470,37 +470,11 @@ sudo apt install libglx0-glvnd-nvidia
 ```
 
 (wine)=
-## Windows Apps on Linux
+### Install & Use *Windows* Applications (*Wine*)
+
 ***Estimated duration: 10-15 minutes.***
 
-The [Wine](https://wiki.debian.org/Wine) application provides a Windows-like environment on any *Linux* system, which enables installing and running Windows applications. Wine can be either used through the convenient PlayOnLinux app or directly installed on Linux.
-
-```{margin} What is BlueKenue?
-The installation examples feature the meshing tool BlueKenue, which enables us to create a computational mesh for the TELEMAC software. Find out more about the installation of BlueKenue as a pre-processor in the {ref}`TELEMAC installation <bluekenue>` section and the {ref}`TELEMAC tutorials <chpt-telemac>` in this eBook.
-```
-
-
-`````{tab-set}
-````{tab-item} PlayOnLinux
-:name: play-on-linux
-On top of wine, the currently maybe best available frameworks is [PlayOnLinux](https://www.playonlinux.com), which can be installed as follows:
-
-```
-sudo apt install winbind playonlinux winetricks -y 
-```
-
-After the installation, go to the system **Menu** > **Applications** > search for *PlayOnLinux*. Before continuing, setup a wine version to use by clicking on **Tools** > **Manage Wine Versions**. Most applications now run on 64 bit architectures, so adding the newest amd64 Wine version might be a good choice. After installing a wine version, click on the **Configure** button in the main window to select a wine configuration to use and click on **New** to setup an environment (e.g., **HYINFO-ENVIRONMENT**. Follow the installation instructions.
-
-The **+Install** button opens a pop-up window with a search box to look for Windows applications that can be directly installed. Additionally, on the bottom of the pop-up window, the **Install a non-listed program** option enables to install other Windows installers, which are not listed. During the first installation of a Windows application, PlayOnLinux shows a couple of **messages with very important information - take the time to read them**.
-
-To install a particular **.exe** or **.msi** that you downloaded, such as **BlueKenue**, click on the **Configure** button in the main window and highlight your above-created environment. Go to the **Miscellaneous** tab and click on **Run a .exe file in this virtual drive**. Follow the installation process. To run such manually installed software, click again on **Configure** > **Miscellaneous** > **Run a .exe file in this virtual drive** and navigate to where the program was just installed. If no direct shortcut is available, finding the software can be a bit confusing, but, worry not, here is how you find it:
-
-In the pop-up window (after *Run a .exe file ...*), go to your Linux user home folder (e.g., `/home/hydro-informatics/`), then enable viewing of hidden files (press `CTRL` + `H` on your keyboard), which will make the hidden folder `/home/hydro-informatics/.PlayOnLinux/` visible. Double-click on this hidden folder, then on **wineprefix** > **YOUR-ENVIRONMENT-NAME** (e.g., **HYINFO-ENVIRONMENT**) > **drive_c** and find the installed program either in the **Program Files** or **Program Files (x86)** directory.
-For instance, to open a 64-bit installation of BlueKenue, navigate to `/home/hydro-informatics/.PlayOnLinux/wineprefix/HYINFO-ENVIRONMENT/drive_c/Program Files/CHC/BlueKenue64` and double-click on **BlueKenue64.exe** (replace `hydro-informatics` and `HYINFO-ENVIRONMENT` with your local directory names). The program should now open.
-````
-
-````{tab-item} Wine (Direct Installation)
-The above-described installation of Debian Linux creates a 64-bit VM and to enable program compatibility with 32-bit architectures, add 32-bit architectures through *Terminal*:
+If you want to emulate a *Windows* environment on any *Linux* system (for whatever reason), use the [*Wine*](https://wiki.debian.org/Wine) compatibility layer, which enables installing and running *Windows* applications. The above-described installation of Debian Linux creates a 64-bit VM and to enable program compatibility with 32-bit architectures, add 32-bit architectures through *Terminal*:
 
 ```
 sudo dpkg --add-architecture i386 && sudo apt update
@@ -511,7 +485,6 @@ Then, install *Wine* with:
 ```
 sudo apt install wine wine32 wine64 libwine libwine:i386 fonts-wine
 ```
-
 
 After installing *Wine*, verify or configure folder links and compatibility environments by typing  `wine winecfg`, which opens the *Wine configuration* window, where:
 
@@ -543,6 +516,3 @@ More information is available in the [wine docs](https://wiki.winehq.org/FAQ#Sho
 * With the installation path, any *Windows* application can be launched through *Terminal* with:
    * `wine "C:\\path\\to\\the.exe"` (use `\\` to separate sub-directories).
    * For example, `wine "C:\\Program Files (x86)\\CHC\\BlueKenue\\BlueKenue.exe"` typically starts *Blue Kenue<sup>TM</sup>*.
-
-````
-`````
