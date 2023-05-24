@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Overview of Fundamental Techniques &#8212; Hydro-Informatics</title>
+    <title>Linear Classification &#8212; Hydro-Informatics</title>
   
   
   
@@ -62,12 +62,14 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'datascience/techniques';</script>
-    <link rel="canonical" href="https://hydro-informatics.com/datascience/techniques.html" />
+    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'datascience/linear-classification';</script>
+    <link rel="canonical" href="https://hydro-informatics.com/datascience/linear-classification.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Linear Classification" href="linear-classification.html" />
+    <link rel="next" title="Support Vector Machine (SVM)" href="morphology-predictor-svm.html" />
     <link rel="prev" title="Machine Learning (ML)" href="machinelearning.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
@@ -305,8 +307,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="machinelearning.html">Machine Learning (ML)</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Overview of Fundamental Techniques</a></li>
-<li class="toctree-l2"><a class="reference internal" href="linear-classification.html">Linear Classification</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Linear Classification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="morphology-predictor-svm.html">Support Vector Machine (SVM)</a></li>
 
 
@@ -420,7 +421,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/datascience/techniques.md" target="_blank"
+      <li><a href="../_sources/datascience/linear-classification.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -502,7 +503,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Overview of Fundamental Techniques</h1>
+    <h1>Linear Classification</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -512,8 +513,20 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-inference">Bayesian Inference</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rejection-sampling">Rejection Sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperplanes">Hyperplanes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perceptron-algorithm">Perceptron algorithm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#margin-boundaries-and-hinge-loss">Margin boundaries and hinge loss</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation-behind-margin-boundaries">Motivation behind margin boundaries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization-problem">Optimization problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#margin-boundaries">Margin boundaries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hinge-loss">Hinge loss</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization-function">Optimization function</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-to-exercises">Solution to exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linearly-separable-example-pairs">1: Linearly separable example pairs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-perceptron-update">2: Understanding the perceptron update</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-influence-of-lambda">3: Understanding the influence of <span class="math notranslate nohighlight">\(\lambda\)</span></a></li>
 </ul>
 </li>
 </ul>
@@ -527,14 +540,260 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="overview-of-fundamental-techniques">
-<h1>Overview of Fundamental Techniques<a class="headerlink" href="#overview-of-fundamental-techniques" title="Permalink to this headline">#</a></h1>
-<section id="bayesian-inference">
-<h2>Bayesian Inference<a class="headerlink" href="#bayesian-inference" title="Permalink to this headline">#</a></h2>
-<p>coming</p>
-<section id="rejection-sampling">
-<h3>Rejection Sampling<a class="headerlink" href="#rejection-sampling" title="Permalink to this headline">#</a></h3>
-<p>later</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="linear-classification">
+<h1>Linear Classification<a class="headerlink" href="#linear-classification" title="Permalink to this headline">#</a></h1>
+<p>In the last section, we shortly mentioned decision boundaries and classifiers. In this section, we will cover the fundamentals of linear classification through a simple ML algorithm, the Perceptron. Throughout this section, we will assume that you are familiar with fundamental linear algebra concepts (such as a dot product, vector projections, planes, eingenvectors and eigenvalues). Please refer to the videos of <a class="reference external" href="https://youtu.be/kjBOesZCoqc">3Blue1Brown</a> for a suitable revision if necessary.</p>
+<section id="hyperplanes">
+<h2>Hyperplanes<a class="headerlink" href="#hyperplanes" title="Permalink to this headline">#</a></h2>
+<p>Suppose we wish to classify positive and negative objects from the training set of points below (figure on the left):</p>
+<figure class="align-default" id="cloud-points-ml">
+<img alt="decisionbound" src="../_images/decision-boundary.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 179 </span><span class="caption-text">Training set of points with binary labels (+1, -1) and two-dimensional <span class="math notranslate nohighlight">\((x_1, x_2)\)</span> features. The decision boundary (grey line) is defined by the parameter vector <span class="math notranslate nohighlight">\(\theta\)</span>, which is normal to the decision boundary, and offset parameter <span class="math notranslate nohighlight">\(\theta_0\)</span> that linearly separates the data.</span><a class="headerlink" href="#cloud-points-ml" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The dataset above is considered linearly separable because it exists at least one linear decision boundary capable of splitting the entire dataset correctly. For instance, we could pass a decision boundary like the grey line above (figure on the right)</p>
+<p>In this case, since the features <span class="math notranslate nohighlight">\((x_1, x_2) \in \mathbb{R}^2 \)</span>, that is, the feature set belongs to the two-dimensional space, the decision boundary constitutes a line. If we were dealing with a set of features in the three-dimensional space <span class="math notranslate nohighlight">\((x_1, x_2, x_3)\)</span>, the decision boundary would be a plane. Analogonously, if our feature set were in a higher-dimensional space, the decision boundary would constitute a <em>hyperplane</em>.</p>
+<p>A hyperplane with <span class="math notranslate nohighlight">\(d\)</span> dimensions is conventially denoted by the vector normal to the plane, <span class="math notranslate nohighlight">\(\theta \in \mathbb{R}^d\)</span>, and offset (scalar) parameter <span class="math notranslate nohighlight">\(\theta_0\)</span>. In the example above, we would define the hyperplane (or decision boundary) as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+	\theta \cdot X + \theta_0 =0 \equiv \begin{bmatrix} \theta_1 &amp; \theta_2 \end{bmatrix} \cdot \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} + \theta_0 = 0
+  \end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that <span class="math notranslate nohighlight">\(\theta\)</span> controls the orientation (slope, or inclination) of the boundary, whereas <span class="math notranslate nohighlight">\(\theta_0\)</span> controls the location (or offset, or bias) of the boundary. Thus, if <span class="math notranslate nohighlight">\(\theta_0 = 0\)</span>, then the decision boundary crosses the origin. <span class="math notranslate nohighlight">\(\theta_0\)</span> is also often called the <em>bias term</em>.</p>
+</div>
+<p>Our classifier <span class="math notranslate nohighlight">\(h(x, \theta, \theta_0)\)</span> is thus equal to <span class="math notranslate nohighlight">\(sign(\theta \cdot X + \theta_0)\)</span> where <span class="math notranslate nohighlight">\(\theta \in \mathbb{R}^2 \)</span> and <span class="math notranslate nohighlight">\(\theta_0 \in \mathbb{R}\)</span>. Recall the sign function, also known as the signum function, is a mathematical function that returns the sign or direction of a real number. That is, if the input number is positive, negative, or 0, the sign function returns +1, -1, or 0, respectively.</p>
+<div class="tip admonition">
+<p class="admonition-title">Exercise 1</p>
+<p>Try to answer whether the pair of training examples below are linearly separable. Which ones are linearly separable through the origing?</p>
+</div>
+<figure class="align-default" id="exercise-db">
+<img alt="ex-decisionbound" src="../_images/exercise-decision-bound.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 180 </span><span class="caption-text">Exercise 1 on linearly separable pair of examples. Solution is in the end of the page</span><a class="headerlink" href="#exercise-db" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="perceptron-algorithm">
+<h2>Perceptron algorithm<a class="headerlink" href="#perceptron-algorithm" title="Permalink to this headline">#</a></h2>
+<p>In the perceptron algorithm, we tipically initialize <span class="math notranslate nohighlight">\(\theta\)</span> as zero (zero vector) and loop through the pair of training examples. At every iteration, we will check if the classifier makes a mistake classifying that training example (i-th example), and if so, then we update the parameters of <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+<p>Assume that <span class="math notranslate nohighlight">\(\theta_0 =0\)</span> for simplicity (the decision boundary must pass through the origin). Our perceptron classifier will make a mistake <code class="docutils literal notranslate"><span class="pre">if</span></code> <span class="math notranslate nohighlight">\(y^{(i)}(\theta \cdot x^{(i)}) \leq 0\)</span>. We will then update our <span class="math notranslate nohighlight">\(\theta\)</span> to no longer misclassify that training example. The way to do this is by adding <span class="math notranslate nohighlight">\(y^{(i)}x^{(i)}\)</span> to the previous <span class="math notranslate nohighlight">\(\theta\)</span>. Thus, the update would look like:</p>
+<div class="math notranslate nohighlight">
+\[
+	\theta = \theta + y^{(i)}x^{(i)}
+  \]</div>
+<div class="tip admonition">
+<p class="admonition-title">Exercise 2</p>
+<p>Try to understand why is this update useful. Hint: substitute the expression for the updates <span class="math notranslate nohighlight">\(\theta\)</span> in the <code class="docutils literal notranslate"><span class="pre">if</span></code> check.</p>
+</div>
+<p>We have in hands a set of different training examples which have the potential to nudge/update our classifier in many directions. Thus, it is possible and even expected that the last training examples cause updates that will overwrite earlier, initial updates. This will result that earlier examples will no longer be correctly classified. For this reason, we need to loop through the whole training set multiple <span class="math notranslate nohighlight">\(T\)</span> times to ensure that all examples are correctly classified. Such iterations can be performed both in order or randomly selected from the training examples.</p>
+<p>We can code the algorithm as following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="c1"># Algorithm always starting to loop from x1</span>
+<span class="k">def</span> <span class="nf">perceptron</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">t_times</span><span class="p">):</span>
+    <span class="n">n_mistakes</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Initialize list to show the progress (updates) of theta</span>
+    <span class="n">progress_theta</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Initialize an array with same size as the total number of examples to count how many mistake are made at each training example</span>
+    <span class="n">explicit_mistakes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="c1"># Loop through the training set T times</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">t_times</span><span class="p">:</span>
+
+        <span class="c1"># Loop through the training examples in order</span>
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+
+            <span class="c1"># Check if the algorithm makes a mistake in the i-th (or index-th) example</span>
+            <span class="k">if</span> <span class="n">y</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># Update theta to no longer misclassify the i-th example</span>
+                <span class="n">theta</span> <span class="o">=</span> <span class="n">theta</span> <span class="o">+</span> <span class="n">y</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span>
+
+                <span class="c1"># Save the update theta</span>
+                <span class="n">progress_theta</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+
+                <span class="c1"># Update total number of mistakes</span>
+                <span class="n">n_mistakes</span> <span class="o">+=</span> <span class="mi">1</span>
+
+                <span class="c1"># Update total number of mistakes at the i-th training example</span>
+                <span class="n">explicit_mistakes</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The perceptron did </span><span class="si">{}</span><span class="s1"> mistakes until convergence&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_mistakes</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">progress_theta</span><span class="p">,</span> <span class="n">n_mistakes</span><span class="p">,</span> <span class="n">explicit_mistakes</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">]])</span>
+    <span class="c1"># X = np.array([[-1, -1], [1, 0], [-1, 10]])</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+    <span class="n">t_times</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">perceptron</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">t_times</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="margin-boundaries-and-hinge-loss">
+<h2>Margin boundaries and hinge loss<a class="headerlink" href="#margin-boundaries-and-hinge-loss" title="Permalink to this headline">#</a></h2>
+<p>As you may have noticed, the perceptron algorithm features no regularization term. The goal was simply to find any decision boundary that can split the data correctly. Here, we will introduce the concept of <em>hinge loss</em> and <em>margin boundaries</em> to transform the problem of learning a decision boundary into an optimization problem considering regularization.</p>
+<section id="motivation-behind-margin-boundaries">
+<h3>Motivation behind margin boundaries<a class="headerlink" href="#motivation-behind-margin-boundaries" title="Permalink to this headline">#</a></h3>
+<p>Let’s take a look at our previously presented training dataset (figure below). Any decision boundary within the dashed grey lines correctly splits the training examples. However, intuitively, we would like to favour a decision boundary that can maximize the distances between the decision boundary and the training points. The reason to do so is because it’s likely that the points we wish to classify in the future have statistical noise, such that a decision boundary located too close to the training examples is more likely to misclassify sligthly changed (noisier) versions of the training examples. In contrast, a classifier that holds a relatively higher margin between the decision boundary and the examples will be probably more successfull in classifying future, unseen data.</p>
+<figure class="align-default" id="margin-bound">
+<img alt="marginbound" src="../_images/margin-bound.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 181 </span><span class="caption-text">Training set of points with binary labels (+1, -1) in the two-dimensional feature space <span class="math notranslate nohighlight">\((x_1, x_2)\)</span>.  Any decision boundary within the dashed grey lines can correctly split the data.</span><a class="headerlink" href="#margin-bound" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="optimization-problem">
+<h3>Optimization problem<a class="headerlink" href="#optimization-problem" title="Permalink to this headline">#</a></h3>
+<p>Recall that our goal is to find a linear classifier that maximizes the distances between the decision boundary and the training points (margin linear classifier), but also minimizes the training error. Thus, this constitutes an optimization problem that needs to counterbalance these two factors, which we can state as:</p>
+<ul class="simple">
+<li><p>The margins (distances between the decision boundary and the training points) should be maximized.</p></li>
+<li><p>The training error should be minimized. We will express this in term of <em>hinge loss</em>.</p></li>
+</ul>
+</section>
+<section id="margin-boundaries">
+<h3>Margin boundaries<a class="headerlink" href="#margin-boundaries" title="Permalink to this headline">#</a></h3>
+<p>Previously, we saw that the equation defining a decision boundary satisfies <span class="math notranslate nohighlight">\(\theta \cdot X + \theta_0 =0\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that according to <span class="math notranslate nohighlight">\(\theta \cdot X + \theta_0 =0\)</span>, any point living exactly at the plane would be misclassified.</p>
+</div>
+<p>We can now define parallel margin boundaries (dashed line in the previous figure) as:</p>
+<div class="math notranslate nohighlight">
+\[
+	\theta \cdot X + \theta_0 = \pm 1
+  \]</div>
+<p>Note that we can define the boundaries like this because we have a degree of freedom in our definition of the decision boundary, namely, the magnitude of the normal vector <span class="math notranslate nohighlight">\(\| \theta \|\)</span>. That is, regardless of the value <span class="math notranslate nohighlight">\(\| \theta \|\)</span>, our decision boundary remains unaltered.</p>
+<p>Recall the problem of computing the <a class="reference external" href="https://en.wikipedia.org/wiki/Distance_from_a_point_to_a_plane">smallest distance of a point to a plane</a>. This distance is:</p>
+<div class="math notranslate nohighlight">
+\[
+	\frac{\theta \cdot x^{(i)} + \theta_0 }{\| \theta \|}
+  \]</div>
+<p>We can now calculate the signed distance between the decision boundary and the i-th example as:</p>
+<div class="math notranslate nohighlight">
+\[
+	\gamma_i (\theta, \theta_0) = \frac{\theta \cdot x^{(i)} + \theta_0 }{\| \theta \|}
+  \]</div>
+<p>Thus, the distance between the margin boundaries and the decision boundary is:</p>
+<div class="math notranslate nohighlight">
+\[
+	\gamma_i (\theta, \theta_0) = \frac{1}{\| \theta \|}
+  \]</div>
+</section>
+<section id="hinge-loss">
+<h3>Hinge loss<a class="headerlink" href="#hinge-loss" title="Permalink to this headline">#</a></h3>
+<p>We so far know that <span class="math notranslate nohighlight">\(sign(\theta \cdot x^{(i)} + \theta_0 )\)</span> will classify the i-th example. The way to know if the classification agrees with the label is by multiplying it by <span class="math notranslate nohighlight">\(y^{(i)}\)</span>. We can express this agreement also in a slightly modified version, using the hinge loss:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+	Loss_h(z)= \begin{cases} = 0 \;\; \mbox{if} \;\; z \geq 1 \\ =1-z \;\; \mbox{if} \;\;&lt; 1\end{cases}
+  \end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(z\)</span> is the agreement (signed distance from the decision boundary) <span class="math notranslate nohighlight">\(y^{(i)}(\theta \cdot x^{(i)}+\theta_0)\)</span>.</p>
+<p>The figure below illustrates how the hinge loss operates along the z-axis (distance from boundary):</p>
+<p><img alt="hinge-loss" src="https://www.researchgate.net/publication/341468721/figure/fig5/AS:963539095257091&#64;1606737030212/The-margin-based-Hinge-loss-function.png" /></p>
+</section>
+<section id="optimization-function">
+<h3>Optimization function<a class="headerlink" href="#optimization-function" title="Permalink to this headline">#</a></h3>
+<p>So now we can create an objective function that (1) minimizes the average hinge loss over the training examples, and (2) maximizes <span class="math notranslate nohighlight">\(\frac{1}{\| \theta \|}\)</span>. Expression (2) can be also reformulated towards minimizing <span class="math notranslate nohighlight">\(\frac{1}{2}\| \theta \|^2\)</span>. Thus we define the optimization function as:</p>
+<div class="math notranslate nohighlight">
+\[
+	C(\theta, \theta_0) = \frac{1}{n}\sum_{i=1}^n Loss_h(y^{(i)}(\theta \cdot x^{(i)}+\theta_0)) + \frac{\lambda}{2} \| \theta \|^2
+  \]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda\)</span> is the regularization parameter that balances the importance of minimizing the regularization term <span class="math notranslate nohighlight">\(\frac{\lambda}{2}\| \theta \|^2\)</span> at the cost of incurring more losses (increasing the loss term). Vice versa, the smaller the value of <span class="math notranslate nohighlight">\(\lambda\)</span>, the more emphasis we will give to minimizing average loss.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In optimization, the goal is typically to minimize the optimization function, and this is also the established convention in ML, although maximizing can also be a valid objective in certain cases.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Exercise 3</p>
+<p>Try to understand pictorially the influence of the <span class="math notranslate nohighlight">\(\lambda\)</span> parameter on the margin boundaries and decision boundary. Which of the plots showing optimized margin boundaries below are most likely to correspond to a <span class="math notranslate nohighlight">\(\lambda = 1, 10, \mbox{and} \;1000\)</span></p>
+</div>
+<figure class="align-default" id="lambda-influence">
+<img alt="lambdainfluence" src="../_images/exercise-lambda.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 182 </span><span class="caption-text">Effect of the regularization parameter <span class="math notranslate nohighlight">\(\lambda\)</span> on the optimization solution.</span><a class="headerlink" href="#lambda-influence" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="solution-to-exercises">
+<h2>Solution to exercises<a class="headerlink" href="#solution-to-exercises" title="Permalink to this headline">#</a></h2>
+<section id="linearly-separable-example-pairs">
+<h3>1: Linearly separable example pairs<a class="headerlink" href="#linearly-separable-example-pairs" title="Permalink to this headline">#</a></h3>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Dataset</p></th>
+<th class="head"><p>Linearly-separable (LS)?</p></th>
+<th class="head"><p>LS through origin?</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>a</p></td>
+<td><p>Yes</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>b</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p>c</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>d</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="understanding-the-perceptron-update">
+<h3>2: Understanding the perceptron update<a class="headerlink" href="#understanding-the-perceptron-update" title="Permalink to this headline">#</a></h3>
+<p>Substituting the expression for the updated <span class="math notranslate nohighlight">\(\theta\)</span> to check if the classifier still makes a mistake in that example:</p>
+<div class="math notranslate nohighlight">
+\[
+	y^{(i)}(\theta + y^{(i)}x^{(i)})x^{(i)}
+  \]</div>
+<p>We initialize <span class="math notranslate nohighlight">\(\theta\)</span> as zero, thus the expression is simplified to:</p>
+<div class="math notranslate nohighlight">
+\[
+	y^{(i)}(y^{(i)}x^{(i)})x^{(i)}
+  \]</div>
+<p>Since any label time itself is equal to one (both <span class="math notranslate nohighlight">\(1 * 1\)</span> and <span class="math notranslate nohighlight">\(-1 * -1\)</span> equal 1), the expression turns into:</p>
+<div class="math notranslate nohighlight">
+\[
+	x^{(i)}x^{(i)} = \| x^{(i)} \|^2 &gt; 0 
+  \]</div>
+<p>This means that that the expression <span class="math notranslate nohighlight">\(y^{(i)}(\theta \cdot x^{(i)}) &gt; 0\)</span> (no mistake). Thus, <span class="math notranslate nohighlight">\(\theta\)</span> was updated so that it doesn’t misclassify the i-th example anymore.</p>
+</section>
+<section id="understanding-the-influence-of-lambda">
+<h3>3: Understanding the influence of <span class="math notranslate nohighlight">\(\lambda\)</span><a class="headerlink" href="#understanding-the-influence-of-lambda" title="Permalink to this headline">#</a></h3>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Plot</p></th>
+<th class="head"><p>Lambda value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>a</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>b</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-even"><td><p>c</p></td>
+<td><p>1000</p></td>
+</tr>
+</tbody>
+</table>
 </section>
 </section>
 </section>
@@ -577,11 +836,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="linear-classification.html"
+       href="morphology-predictor-svm.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Linear Classification</p>
+        <p class="prev-next-title">Support Vector Machine (SVM)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -600,8 +859,20 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-inference">Bayesian Inference</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rejection-sampling">Rejection Sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperplanes">Hyperplanes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perceptron-algorithm">Perceptron algorithm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#margin-boundaries-and-hinge-loss">Margin boundaries and hinge loss</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation-behind-margin-boundaries">Motivation behind margin boundaries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization-problem">Optimization problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#margin-boundaries">Margin boundaries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hinge-loss">Hinge loss</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization-function">Optimization function</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-to-exercises">Solution to exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linearly-separable-example-pairs">1: Linearly separable example pairs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-perceptron-update">2: Understanding the perceptron update</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-influence-of-lambda">3: Understanding the influence of <span class="math notranslate nohighlight">\(\lambda\)</span></a></li>
 </ul>
 </li>
 </ul>

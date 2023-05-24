@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Fundamentals (Coming soon) &#8212; Hydro-Informatics</title>
+    <title>Introduction to Machine Learning (ML) &#8212; Hydro-Informatics</title>
   
   
   
@@ -62,13 +62,15 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'datascience/data-science';</script>
-    <link rel="canonical" href="https://hydro-informatics.com/datascience/data-science.html" />
+    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'datascience/intro-ml';</script>
+    <link rel="canonical" href="https://hydro-informatics.com/datascience/intro-ml.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Python Requirements" href="py-requirements.html" />
-    <link rel="prev" title="Post-processing" href="../numerics/openfoam/of-tutorial-multiphase-post.html" />
+    <link rel="next" title="Overview of Fundamental Techniques" href="techniques.html" />
+    <link rel="prev" title="Techniques (Coming soon)" href="theory.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -294,7 +296,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Science</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Fundamentals (Coming soon)</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="data-science.html">Fundamentals (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="py-requirements.html">Python Requirements</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="data-prepro.html">Data Pre-Processing</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="data-types.html">The Nature of Data</a></li>
@@ -304,8 +306,10 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="machinelearning.html">Machine Learning (ML)</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="linear-classification.html">Linear Classification</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="theory.html">Techniques (Coming soon)</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Introduction to Machine Learning (ML)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="techniques.html">Overview of Fundamental Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear-classification.html">Model Calibration and Validation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="morphology-predictor-svm.html">Support Vector Machine (SVM)</a></li>
 
 
@@ -419,7 +423,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/datascience/data-science.md" target="_blank"
+      <li><a href="../_sources/datascience/intro-ml.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -488,7 +492,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -499,11 +505,26 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Fundamentals (Coming soon)</h1>
+    <h1>Introduction to Machine Learning (ML)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-goal-of-machine-learning">The goal of machine learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elements-of-supervised-learning">Elements of supervised learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-and-testing">Training and testing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization-function-loss-and-regularization-terms">Optimization function: Loss and Regularization terms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-and-regression">Classification and regression</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-machine-learning">Types of machine learning</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -513,11 +534,70 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="fundamentals-coming-soon">
-<span id="data-science"></span><h1>Fundamentals (Coming soon)<a class="headerlink" href="#fundamentals-coming-soon" title="Permalink to this headline">#</a></h1>
-<p>This chapter is currently developed by <a class="reference external" href="https://github.com/ricardovobarros">Ricardo Barros</a>.</p>
-<div class="toctree-wrapper compound">
-</div>
+  <p>This chapter is developed by <a class="reference external" href="https://beatriznegreiros.com/">Beatriz Negreiros</a>.</p>
+<section class="tex2jax_ignore mathjax_ignore" id="introduction-to-machine-learning-ml">
+<h1>Introduction to Machine Learning (ML)<a class="headerlink" href="#introduction-to-machine-learning-ml" title="Permalink to this headline">#</a></h1>
+<p>Machine learning (ML) is argually one of the most prominent tools in data science to advance water resources research. ML models are capable of learning complex underlying relationships of a natural system, and thus finds its application in various water resources topics: from river ecosystem to water distribution nets. This section has the following objectives:</p>
+<ul class="simple">
+<li><p>Understand the overall concept of machine learning</p></li>
+<li><p>Understand elements of supervised learning</p></li>
+</ul>
+<section id="the-goal-of-machine-learning">
+<h2>The goal of machine learning<a class="headerlink" href="#the-goal-of-machine-learning" title="Permalink to this headline">#</a></h2>
+<p>Machine learning aims at computationally learning complex relationships from experience (i.e., data). <em>Computational learning</em> because programs are created (or coded) to learn from example data. This task may be, for instance, predicting or modelling complex phenomena. Note that predicting here does not refers only to the future but to any non-identified event. For instance, we can predict whether a chemical substance will be, or was (or is), dissolved in water given a set of conditions.</p>
+<p>Contrary to popular thinking, ML algorithms have been around for several decades. However, they were only given stark attention in the last decade when limitations in computing power were no longer an impecile for applying such <em>algorithms</em> for making helpful <em>ML models</em>. We refer to <em>algorithms</em> as the baseline commands that instruct a model <em>how to learn</em> from data, whereas a <em>ML model</em> is the result (i.e., the learned program) of learning the target task from the selected set of rules (<em>ML algorithm</em>) and examples (i.e., data).</p>
+<p>Existing ML algorithms are various and their applicability depends on the target task (or <em>mapping</em>) to be learned. Perceptron, Support Vector Machine, Pegasos, Decision trees, Random Forests, Neural Networks, are all examples of ML algorithms that follow a <em>supervised learning</em> approach.</p>
+</section>
+<section id="elements-of-supervised-learning">
+<h2>Elements of supervised learning<a class="headerlink" href="#elements-of-supervised-learning" title="Permalink to this headline">#</a></h2>
+<p>In supervised learning, we are given examples (i.e., measurements) along with the target solution (i.e., labels) that we wish the ML model to learn how to map. By contrast, in unsupervised learning problems, we are given examples but we do not know the target solution, or <em>labels</em>. A typical example of unsupervised learning problem is clustering.</p>
+<section id="training-and-testing">
+<h3>Training and testing<a class="headerlink" href="#training-and-testing" title="Permalink to this headline">#</a></h3>
+<p>The goal of a ML algorithm following a supervised learning approach is to find out how to reproduce the target solution from <em>training</em> examples. Thus, a ML model is a function that maps the target solution from the set of parameters of the examples. We begin by hypothesizing a set of possible mappers (or functions) that take a set of parameters (or <em>features</em>) as arguments/input to yield the target solutions. We thus define the <em>hypothesis space</em> as the set of possible models (classifiers, regressors). The algorithm will then automate the process of finding the best <em>model parameters</em> (or the best model) that agree with the example-label pairs. This is done by optimizing the model with the  training dataset (<span class="math notranslate nohighlight">\(S\)</span>).</p>
+<p>Our machine’s target is to find an in-to-output rule, which is noting by a mathematical function <span class="math notranslate nohighlight">\(F(x)\)</span> so that:</p>
+<div class="math notranslate nohighlight">
+\[
+	F(x) \rightarrow y
+  \]</div>
+<p>where <span class="math notranslate nohighlight">\(x\)</span> are our attributes, also know as <em>features</em>, <span class="math notranslate nohighlight">\(y\)</span> are the dataset labels, the target values we aim to map.</p>
+<p>Our task is to find the best hypothesis (or best model) <span class="math notranslate nohighlight">\(h_{best}\)</span> among the set of hypotheses <span class="math notranslate nohighlight">\(\mathcal{H}\)</span>. We do this by updating our hypothesis every time we loop through a training example, thus computing an improved hypothesis <span class="math notranslate nohighlight">\(h_{t+1}\)</span> from our current hypothesis <span class="math notranslate nohighlight">\(h_t\)</span>. Intuitively, if <span class="math notranslate nohighlight">\(h_t\)</span> misclassifies a particular training pair <span class="math notranslate nohighlight">\((x_i, y_i) \in S\)</span>(training dataset), then we would like <span class="math notranslate nohighlight">\(h_{t+1}\)</span> to be like <span class="math notranslate nohighlight">\(h_t\)</span> but nudged toward accurately classifying <span class="math notranslate nohighlight">\((x_i, y_i)\)</span>. To make <span class="math notranslate nohighlight">\(h_t\)</span> less bad on a training example <span class="math notranslate nohighlight">\((x_i, y_i)\)</span>, we will nudge <span class="math notranslate nohighlight">\(h_t\)</span> in a tiny bit along the negative of the derivative of the optimization function (<span class="math notranslate nohighlight">\(\nabla C_t\)</span>). Such optimization method is called Gradient Descent (GD), because we use the gradient of the optimization function to update our hypothesis toward a better version.</p>
+<p>This is how the update would look like:</p>
+<div class="math notranslate nohighlight">
+\[
+	\vec{h_{t+1}} = \vec{h_t} - \eta_t \cdot \nabla C_t
+  \]</div>
+<p>Note that the hypothesis is here a vector with model parameters (not features), or weights.</p>
+</section>
+<section id="optimization-function-loss-and-regularization-terms">
+<h3>Optimization function: Loss and Regularization terms<a class="headerlink" href="#optimization-function-loss-and-regularization-terms" title="Permalink to this headline">#</a></h3>
+<p>The process of improving our hypothesis (or model) consists of an optimization problem, where we wish to minimize an optimization function (<span class="math notranslate nohighlight">\(C\)</span>). Intuitively, we would like to minimize discrepancies between predicted and actual values of <span class="math notranslate nohighlight">\(y\)</span>. These discrepancies are expressed in terms of a <em>loss function</em> that quantifies how well our model performed at a given example pair. At the same time, we do not wish that our model minimizes so much the loss function, and thus is so fitted to the training data, to the point that it is not applicable to a grand new dataset anymore. For this reason, we introduce a regularization term that aims at minimizing the complexity of the model. Finally, our optimization function would be:</p>
+<div class="math notranslate nohighlight">
+\[
+	C(h_t) = \sum_{i}^{n} Loss_i + Regularizer 
+  \]</div>
+<p>where <span class="math notranslate nohighlight">\(n\)</span> is the number of training examples.</p>
+<p>There some reasons why we do not wish to overfit our model to the training dataset. First, our training dataset may contain statistical noise that we do not wish to capture with our classifier. The figure below illustrates the concept:</p>
+<p><img alt="overfitting in ML" src="https://elitedatascience.com/wp-content/uploads/2017/09/Overfitting-Data-Points.png" /></p>
+<p>In the figure, we can clearly see that the green line is overfitted to the training datapoints denoted by two classes (blue and red points). The black line is probably a satisfactory decision boundary to split the red and blue points.</p>
+<p>The second reason why we do not wish to overfit our model is because, at the heart of machine learning problems, our goal is to be able to apply a model the learned from a training dataset to the world data. Thus, we wish that our model <em>generalizes</em> or applies correctly what was learned to a broader, unseen dataset. To verify if our model is performind well, it is not enough to minimize the training error. We must test the learned parameters on an unseen dataset, the so-called testing dataset.</p>
+<p>It is unlikely that our model will deliver better results in the testing than in the training data, but there is an ideal scenario that we wish to achieve, that is, to minimize both the training and testing error. We will cover this topic in the section about <em>cross-validation</em>.</p>
+</section>
+<section id="classification-and-regression">
+<h3>Classification and regression<a class="headerlink" href="#classification-and-regression" title="Permalink to this headline">#</a></h3>
+<p>More broadly, a ML model can be trained to learn how to predict categories or continuous values. In both these approaches, we will use the concepts above to build a <em>classifier</em> or a <em>regressor</em>, respectively. The main difference will be in the way how we compute the <em>training error</em>, or <em>loss</em>. In the next sections, we will cover both problems from a supervised learning perspective.</p>
+</section>
+</section>
+<section id="types-of-machine-learning">
+<h2>Types of machine learning<a class="headerlink" href="#types-of-machine-learning" title="Permalink to this headline">#</a></h2>
+<p>In this section, we dealed mainly with supervised learning, but note that there are several other types of ML problems. Some of which are:</p>
+<ul class="simple">
+<li><p>Unsupervised learning: we do not specific any correct behaviors (i.e., labels). Here we have some observations, but the task itself, is not well-defined.</p></li>
+<li><p>Semi-supervised learning: we may specify some parts of our model with some labels, but other parts need to be learned without explicit targets. For instance, we can use unsupervised learning to obtain clusters that define features to a supervised learning problem.</p></li>
+<li><p>Active learning: the algorithm itself can ask for additional, useful examples. For instance, learn to select only examples that are actually needed for learning.</p></li>
+<li><p>Transfer learning: when a methods is trained for an individual scenario and you wish to use it in a different scenario. This translates into: how to make use of what was learned from A on B?</p></li>
+<li><p>Reinforcement learning: the methods is trained to act, rather than jst to predict, and the algorithm itself uses outcomes from its experimented acts as feedback or <em>reinforcement</em> to achieve an optimized result of actions (e.g., a robot learning to walk).</p></li>
+</ul>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -549,20 +629,20 @@ document.write(`
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../numerics/openfoam/of-tutorial-multiphase-post.html"
+       href="theory.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Post-processing</p>
+        <p class="prev-next-title">Techniques (Coming soon)</p>
       </div>
     </a>
     <a class="right-next"
-       href="py-requirements.html"
+       href="techniques.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Python Requirements</p>
+        <p class="prev-next-title">Overview of Fundamental Techniques</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -572,6 +652,27 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-goal-of-machine-learning">The goal of machine learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elements-of-supervised-learning">Elements of supervised learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-and-testing">Training and testing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization-function-loss-and-regularization-terms">Optimization function: Loss and Regularization terms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-and-regression">Classification and regression</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-machine-learning">Types of machine learning</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
