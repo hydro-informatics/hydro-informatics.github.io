@@ -1,6 +1,19 @@
+```{admonition} Contributor
+:class: tip
+This chapter was written and developed by {{ negreiros }} <img src="../img/authors/beatriz.jpg" alt="Beatriz Negreiros" width="50" height="50">
+```
+
+(linearclassification)=
 # Linear Classification
 
-In the last section, we shortly mentioned decision boundaries and classifiers. In this section, we will cover the fundamentals of linear classification through a simple ML algorithm, the Perceptron. Throughout this section, we will assume that you are familiar with fundamental linear algebra concepts (such as a dot product, vector projections, planes, eingenvectors and eigenvalues). Please refer to the videos of [3Blue1Brown](https://youtu.be/kjBOesZCoqc) for a suitable revision if necessary.
+In the last section, we shortly mentioned decision boundaries and classifiers. In this section, we will cover the fundamentals of linear classification through a simple ML algorithm, the Perceptron. In addition, we will extend the concepts behind the Perceptron algorithm by considering aspects of *regularization* to build a margin linear classifier.
+
+```{admonition} Requirements
+:class: warning
+* You are familiar with machine learning terms. We recommend reading our [introduction to ML](https://hydro-informatics.com/datascience/machinelearning.html) section for familiarizing with the nomenclature we use throughout the website.
+* You are familiar with fundamental linear algebra concepts (such as a dot product, vector projections, planes, eingenvectors and eigenvalues). Please refer to the videos of [3Blue1Brown](https://youtu.be/kjBOesZCoqc) for a suitable revision if necessary.
+* Basic knowledge in Python and array computing with NumPy.
+```
 
 
 ## Hyperplanes
@@ -42,7 +55,7 @@ Try to answer whether the pair of training examples below are linearly separable
 :alt: ex-decision-bound
 :name: exercise-db
 
-Exercise 1 on linearly separable pair of examples. Solution is in the end of the page
+Exercise 1 on linearly separable pair of examples.
 ````
 
 ````{admonition} Solution
@@ -83,31 +96,36 @@ Assume that $\theta_0 =0$ for simplicity (the decision boundary must pass throug
 	\theta = \theta + y^{(i)}x^{(i)}
   $$
 
-`````{tab-set}
-````{tab-item} Exercise 2
+
+````{admonition} Exercise 2: Understanding the perceptron update
+:class: tip
 Try to understand why is this update useful. Hint: substitute the expression for the updates $\theta$ in the ``if`` check. 
-````
-````{tab-item} Solution of Exercise 2
+
+```{admonition} Solution
+:class: dropdown
+
 Substituting the expression for the updated $\theta$ to check if the classifier still makes a mistake in that example:
 
   $$
-  y^{(i)}(\theta + y^{(i)}x^{(i)})x^{(i)}
+	y^{(i)}(\theta + y^{(i)}x^{(i)})x^{(i)}
   $$
   
 We initialize $\theta$ as zero, thus the expression is simplified to:
  
-   $$
-  y^{(i)}(y^{(i)}x^{(i)})x^{(i)}
+  $$
+    y^{(i)}(y^{(i)}x^{(i)})x^{(i)}
   $$
   
 Since any label time itself is equal to one (both $1 * 1$ and $-1 * -1$ equal 1), the expression turns into:
 
-   $$
-  x^{(i)}x^{(i)} = \| x^{(i)} \|^2 > 0 
   $$
+    x^{(i)}x^{(i)} = \| x^{(i)} \|^2 > 0 
+  $$
+  
 This means that that the expression $y^{(i)}(\theta \cdot x^{(i)}) > 0$ (no mistake). Thus, $\theta$ was updated so that it doesn't misclassify the i-th example anymore.
+```
 ````
-`````
+
 
 We have in hands a set of different training examples which have the potential to nudge/update our classifier in many directions. Thus, it is possible and even expected that the last training examples cause updates that will overwrite earlier, initial updates. This will result that earlier examples will no longer be correctly classified. For this reason, we need to loop through the whole training set multiple $T$ times to ensure that all examples are correctly classified. Such iterations can be performed both in order or randomly selected from the training examples. 
 
@@ -235,9 +253,9 @@ The figure below illustrates how the hinge loss operates along the z-axis (dista
 <img src="https://www.researchgate.net/publication/341468721/figure/fig5/AS:963539095257091@1606737030212/The-margin-based-Hinge-loss-function.png" alt="hinge-loss-function" class="bg-primary mb-1" width="400px">
 
 
-### Optimization function
+### Objective function
 
-So now we can create an objective function that (1) minimizes the average hinge loss over the training examples, and (2) maximizes $\frac{1}{\| \theta \|}$. Expression (2) can be also reformulated towards minimizing $\frac{1}{2}\| \theta \|^2$. Thus we define the optimization function as:
+So now we can create an objective function that (1) minimizes the average hinge loss over the training examples, and (2) maximizes $\frac{1}{\| \theta \|}$. Expression (2) can be also reformulated towards minimizing $\frac{1}{2}\| \theta \|^2$. Thus we define the objective function as:
 
   $$
 	C(\theta, \theta_0) = \frac{1}{n}\sum_{i=1}^n Loss_h(y^{(i)}(\theta \cdot x^{(i)}+\theta_0)) + \frac{\lambda}{2} \| \theta \|^2
@@ -246,64 +264,41 @@ So now we can create an objective function that (1) minimizes the average hinge 
 where $\lambda$ is the regularization parameter that balances the importance of minimizing the regularization term $\frac{\lambda}{2}\| \theta \|^2$ at the cost of incurring more losses (increasing the loss term). Vice versa, the smaller the value of $\lambda$, the more emphasis we will give to minimizing average loss.
 
 ```{note}
-In optimization, the goal is typically to minimize the optimization function, and this is also the established convention in ML, although maximizing can also be a valid objective in certain cases.
+In optimization, the goal is typically to minimize the objective function, and this is also the established convention in ML, although maximizing can also be a valid objective in certain cases.
 ```
 
-```{admonition} Exercise 3
+
+ 
+`````{admonition} Exercise 3: Understanding the influence of $\lambda$
 :class: tip
 Try to understand pictorially the influence of the $\lambda$ parameter on the margin boundaries and decision boundary. Which of the plots showing optimized margin boundaries below are most likely to correspond to a $\lambda = 1, 10, \mbox{and} \;1000$
-```
 
-```{figure} ../img/datascience/exercise-lambda.png
+````{figure} ../img/datascience/exercise-lambda.png
 :alt: lambdainfluence
 :name: lambda-influence
 
 Effect of the regularization parameter $\lambda$ on the optimization solution.
+````
+
+````{admonition} Solution
+:class: dropdown
+
+```{list-table} Solution to the Machine Learning Exercise 3.
+:header-rows: 1
+:name: tab-ml-ex1-solution3
+
+* - Plot
+  - a
+  - b 
+  - c
+* - Lambda value
+  - 1
+  - 10
+  - 1000
+
 ```
-
- 
-## Solution to exercises
- 
-### 1: Linearly separable example pairs
-
-| Dataset   | Linearly-separable (LS)?  | LS through origin?   |
-|-----------|---------------------------|----------------------|
-| a        | Yes                       | No                   |
-| b        | No                        | No                   |
-| c        | Yes                       | Yes                  |
-| d        | No                        | No                   |
- 
- 
- ### 2: Understanding the perceptron update
-
-Substituting the expression for the updated $\theta$ to check if the classifier still makes a mistake in that example:
-
-  $$
-	y^{(i)}(\theta + y^{(i)}x^{(i)})x^{(i)}
-  $$
-  
-We initialize $\theta$ as zero, thus the expression is simplified to:
- 
-   $$
-	y^{(i)}(y^{(i)}x^{(i)})x^{(i)}
-  $$
-  
-Since any label time itself is equal to one (both $1 * 1$ and $-1 * -1$ equal 1), the expression turns into:
-
-   $$
-	x^{(i)}x^{(i)} = \| x^{(i)} \|^2 > 0 
-  $$
-This means that that the expression $y^{(i)}(\theta \cdot x^{(i)}) > 0$ (no mistake). Thus, $\theta$ was updated so that it doesn't misclassify the i-th example anymore.
-
-### 3: Understanding the influence of $\lambda$
- 
-| Plot     | Lambda value             |
-|-----------|--------------------------|
-| a         | 1                       | 
-| b         | 10                       |
-| c         | 1000                      |
-
- 
+````
+`````
  
  
  

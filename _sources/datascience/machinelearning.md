@@ -1,7 +1,11 @@
-(machinelearning)=
-This chapter is developed by {{ negreiros }}.
+```{admonition} Contributor
+:class: tip
+This chapter was written and developed by {{ negreiros }} <img src="../img/authors/beatriz.jpg" alt="Beatriz Negreiros" width="50" height="50">
+```
 
-# Machine Learning (ML)
+(machinelearning)=
+
+# Introduction to Machine Learning (ML)
 
 Machine learning (ML) is argually one of the most prominent tools in data science to advance water resources research. ML models are capable of learning complex underlying relationships of a system, and thus finds its applications in various water resources topics: from river ecosystems to water supply. This section has the following objectives:
 
@@ -84,3 +88,13 @@ In this section, we dealt mainly with basic elements of supervised learning, but
 * Active learning: the algorithm itself can ask for additional, useful examples. For instance, learn to select only examples that are actually needed for learning.
 * Transfer learning: when a methods is trained for an individual scenario and you wish to use it in a different scenario. This translates into: how to make use of what was learned from A on B? 
 * Reinforcement learning: the model is trained to act, rather than just to predict, and the algorithm itself uses outcomes from its experimented acts as feedback or *reinforcement* to achieve an optimized result of actions (e.g., a robot learning to walk).
+
+
+```{admonition} Recommended course
+:class: tip
+
+We highly recommend the the comprehensive [machine learning course](https://www.edx.org/course/machine-learning-with-python-from-linear-models-to) offered by MITx, the online learning initiative of the Massachusetts Institute of Technology.
+
+
+```
+
