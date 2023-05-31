@@ -6,7 +6,7 @@ This chapter was written and developed by {{ negreiros }} <img src="../img/autho
 (linearclassification)=
 # Linear Classification
 
-In the last section, we shortly mentioned decision boundaries and classifiers. In this section, we will cover the fundamentals of linear classification through a simple ML algorithm, the Perceptron. In addition, we will extend the concepts behind the Perceptron algorithm by considering aspects of *regularization* to build a margin linear classifier.
+In this section, we will cover the fundamentals of linear classification through a simple ML algorithm, the Perceptron. In addition, we will extend the concepts behind the Perceptron algorithm by considering aspects of *regularization* to build a margin linear classifier.
 
 ```{admonition} Requirements
 :class: warning

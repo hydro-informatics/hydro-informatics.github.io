@@ -3,7 +3,7 @@
 ***<span style="color: #707070 "> The educational platform and eBook for Data Analysis & Programming, Geospatial Analysis, and Modeling Tools in Water Resources Engineering & Research. </span>***
 
 ```{image} img/icons/banner-logo.jpg
-:alt: hydro-informatics github sebastian schwindt ricardo barros
+:alt: hydro-informatics github sebastian schwindt ricardo barros beatriz negreiros
 ```
 
 ## Preface
@@ -32,6 +32,7 @@ The eBook provides tutorials for:
 * Numerical modeling with
   * The {doc}`ETH Zurich's BASEMENT </numerics/basement>` (v3) software (2d hydrodynamics)
   * {doc}`TELEMAC </numerics/telemac>` (2d, 3d, and morphodynamics)
+* Machine learning, including the fundamentals of supervised and unsupervised learning with illustrative exercises and python implementations.
 
 All applications use open source or open access software, and the {ref}`software` chapter provides guidance on finding and installing appropriate and efficient software.
 

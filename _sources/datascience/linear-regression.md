@@ -6,11 +6,11 @@ This chapter was written and developed by {{ negreiros }} <img src="../img/autho
 (linearregression)=
 # Linear Regression
 
-In this section, we will further explore the concepts of linear ML algorithms, but now our task will focus on predicting responses in terms of continuous values, instead of discrete classes as we did in linear classification. Taking the ML application mentioned in the {ref}`machinelearning`, for instance, we may now want to predict *how much* is the amount of a chemical substance dissolved in water, rather than just if it is dissolved or not (binary classification).
+In this section, we will further explore the concepts of linear ML algorithms, but now our task will focus on predicting responses in terms of continuous values, instead of discrete classes as we did in linear classification. Taking the ML application mentioned in the [introduction to ML](https://hydro-informatics.com/datascience/machinelearning.html), for instance, we may now want to predict *how much* is the amount of a chemical substance dissolved in water, rather than just if it is dissolved or not (binary classification).
 
 ```{admonition} Requirements
 :class: warning
-* You are familiar with machine learning terms. We recommend reading the {ref}`machinelearning` section for familiarizing with the nomenclature we use throughout the website.
+* You are familiar with machine learning terms. We recommend reading the [introduction to ML](https://hydro-informatics.com/datascience/machinelearning.html) section for familiarizing with the nomenclature we use throughout the website.
 * You are familiar with fundamental linear algebra concepts (such as a dot product, vector projections, planes, eingenvectors and eigenvalues). Please refer to the videos of [3Blue1Brown](https://youtu.be/kjBOesZCoqc) for a suitable revision if necessary.
 * Basic knowledge in differential calculus (derivation through the chain rule, gradients).
 ```
@@ -33,7 +33,7 @@ Here our goal is again to find the best-fitting line (or hyperplane in higher di
 
 ### Objective function
 
-As we saw in the {ref}`machinelearning`, the goal of ML is to minimize the objective function by adjusting the model's parameters through techniques (i.e., optimization algorithms) such as gradient descent. 
+As we saw in the [introduction to ML](https://hydro-informatics.com/datascience/machinelearning.html), the goal of ML is to minimize the objective function by adjusting the model's parameters through techniques (i.e., optimization algorithms) such as gradient descent. 
 
 One of the objective functions that we may use in linear regression is *Empirical Risk ($R$)*. We express the empirical risk in terms of a loss measure, which reflects only the deviation between model predictions and the target values (or labels) of our training dataset, and thus does not consider regularization. The goal of empirical risk ($R$) minimization (ERM) is to find a model that minimizes the discrepancy between predictions and observations on the training data, with the assumption that it will generalize well to unseen data. So we can define $R$ as following:
 
@@ -168,7 +168,7 @@ Note that by adding a regularization term to our objective function, we are now 
 
 ## Structural vs. estimation error
 
-When selecting a ML model, we make certain assumptions about the relationship between the features and the labels. In the case of linear regression, the assumption is that the relationship between the features and the labels can be represented by a linear equation. If this assumption is violated, such as when the true relationship is nonlinear, then our model will have a high *structural error* because it cannot accurately capture the underlying patterns in the data. Thus, structural error encompasses the limitations or assumptions made by the chosen model, and it represents the irreducible error that cannot be eliminated regardless of the amount of training data. *Estimation error*, on the other hand, arises from the finite nature of the training data and the resulting inability of our model to fit or generalize from that data. Estimation errors can occur when the available training data is limited or does not adequately represent the true underlying distribution of the problem. In such cases, the model may struggle to capture the true patterns and relationships present in the data, leading to higher estimation errors.
+When selecting a ML algorithm, we make certain assumptions about the relationship between the features and the labels. In the case of linear regression, the assumption is that the relationship between the features and the labels can be represented by a linear equation. If this assumption is violated, such as when the true relationship is nonlinear, then our model will have a high *structural error* because it cannot accurately capture the underlying patterns in the data. Thus, structural error encompasses the limitations or assumptions made by the chosen model, and it represents the irreducible error that cannot be eliminated regardless of the amount of training data. *Estimation error*, on the other hand, arises from the finite nature of the training data and the resulting inability of our model to fit or generalize from that data. Estimation errors can occur when the available training data is limited or does not adequately represent the true underlying distribution of the problem. In such cases, the model may struggle to capture the true patterns and relationships present in the data, leading to higher estimation errors.
 
 `````{admonition} Exercise 3: Sources of error in linear regression
 :class: tip
