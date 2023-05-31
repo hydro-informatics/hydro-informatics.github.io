@@ -11,8 +11,7 @@
 Harness the potential of vast datasets, including airborne imagery and hydro-meteorological data, to advance water engineering and science. Traditional spreadsheet analysis tools often fall short when it comes to handling and interpreting extensive data. At hydro-informatics.com, our mission is to equip hydraulic engineers, geomorphologists, river ecologists, and anyone working with water resources-related challenges with the necessary knowledge and tools for efficient data analysis and presentation. Our approach leverages freely available software tools to facilitate international and interdisciplinary collaboration.
 
 
-
-```{admonition} What is hydro-informatics.com?
+```{admonition} What is hydro-informatics/hydroinformatics?
 :class: tip
 The term hydroinformatics (or hydro-informatics) refers to a sub-discipline of hydraulics, environmental engineering, and informatics and has its origins in computational hydraulics. The syllable *hydro* goes back to the Greek word for *water* and the term *informatics* can be used as a synonym for studying computational systems. Hydroinformatics involves numerical modeling as well as data science methods for the efficient and sustainable use of water resources (definition derived from the {term}`IAHR`'s and IWA [Joint Committee on Hydroinformatics](https://www.iahr.org/index/committe/15)). In addition, {cite:t}`abbott_central_1991` emphasizes that "*hydroinformatics is the technology of applying computational hydraulics within society*". Bearing this context in mind, the main purpose of this eBook is to make computational hydraulics knowledge freely available to society.
 
@@ -25,12 +24,11 @@ This eBook features a {doc}`virtual classroom </lectures/classroom>` with open s
 We provide tutorials for:
 
 * Coding with {ref}`Python <install-python>`, including
+  * Collaborative development with version control through {doc}`git </get-started/git>`
   * Guidance to {ref}`install-python`
   * A general introduction to {doc}`Python programming and object orientation </python-basics/python>`)
-  * Geospatial data analyses with {doc}`Python </geopy/geo-python>`
-* Code and project {doc}`documentation </documentation/documentation>` (e.g., with *Markdown* or *reStructuredText*)
-* Version control with {doc}`git </get-started/git>`
-* Geospatial analyses with {ref}`QGIS <qgis-tutorial>`
+  * Guides for code and project {doc}`documentation </documentation/documentation>` (*Markdown* / *reStructuredText*)
+* Geospatial analyses with {ref}`QGIS <qgis-tutorial>` and {doc}`Python </geopy/geo-python>`
 * {doc}`Machine learning <datascience/machinelearning>` with illustrative exercises and Python implementations to dive into:
   * the fundamentals of {doc}`supervised learning <datascience/supervised-learning>`
   * an introduction to {doc}`unsupervised learning <datascience/unsupervised-learning>`
