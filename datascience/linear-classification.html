@@ -555,7 +555,7 @@ document.write(`
 <p class="admonition-title">Requirements</p>
 <ul class="simple">
 <li><p>You are familiar with machine learning terms. We recommend reading our <a class="reference external" href="https://hydro-informatics.com/datascience/machinelearning.html">introduction to ML</a> section for familiarizing with the nomenclature we use throughout the website.</p></li>
-<li><p>You are familiar with fundamental linear algebra concepts (such as a dot product, vector projections, planes, eingenvectors and eigenvalues). Please refer to the videos of <a class="reference external" href="https://youtu.be/kjBOesZCoqc">3Blue1Brown</a> for a suitable revision if necessary.</p></li>
+<li><p>You are familiar with fundamental linear algebra concepts (such as a dot product, vector projections, planes, eigenvectors and eigenvalues). Please refer to the videos of <a class="reference external" href="https://youtu.be/kjBOesZCoqc">3Blue1Brown</a> for a suitable revision if necessary.</p></li>
 <li><p>Basic knowledge in Python and array computing with NumPy.</p></li>
 </ul>
 </div>
@@ -569,8 +569,8 @@ document.write(`
 </figcaption>
 </figure>
 <p>The dataset above is considered linearly separable because it exists at least one linear decision boundary capable of splitting the entire dataset correctly. For instance, we could pass a decision boundary like the grey line above (figure on the right)</p>
-<p>In this case, since the features <span class="math notranslate nohighlight">\((x_1, x_2) \in \mathbb{R}^2 \)</span>, that is, the feature set belongs to the two-dimensional space, the decision boundary constitutes a line. If we were dealing with a set of features in the three-dimensional space <span class="math notranslate nohighlight">\((x_1, x_2, x_3)\)</span>, the decision boundary would be a plane. Analogonously, if our feature set were in a higher-dimensional space, the decision boundary would constitute a <em>hyperplane</em>.</p>
-<p>A hyperplane with <span class="math notranslate nohighlight">\(d\)</span> dimensions is conventially denoted by the vector normal to the plane, <span class="math notranslate nohighlight">\(\theta \in \mathbb{R}^d\)</span>, and offset (scalar) parameter <span class="math notranslate nohighlight">\(\theta_0\)</span>. In the example above, we would define the hyperplane (or decision boundary) as:</p>
+<p>In this case, since the features <span class="math notranslate nohighlight">\((x_1, x_2) \in \mathbb{R}^2 \)</span>, that is, the feature set belongs to the two-dimensional space, the decision boundary constitutes a line. If we were dealing with a set of features in the three-dimensional space <span class="math notranslate nohighlight">\((x_1, x_2, x_3)\)</span>, the decision boundary would be a plane. Analogously, if our feature set were in a higher-dimensional space, the decision boundary would constitute a <em>hyperplane</em>.</p>
+<p>A hyperplane with <span class="math notranslate nohighlight">\(d\)</span> dimensions is conventionally denoted by the vector normal to the plane, <span class="math notranslate nohighlight">\(\theta \in \mathbb{R}^d\)</span>, and offset (scalar) parameter <span class="math notranslate nohighlight">\(\theta_0\)</span>. In the example above, we would define the hyperplane (or decision boundary) as:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 	\theta \cdot X + \theta_0 =0 \equiv \begin{bmatrix} \theta_1 &amp; \theta_2 \end{bmatrix} \cdot \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} + \theta_0 = 0

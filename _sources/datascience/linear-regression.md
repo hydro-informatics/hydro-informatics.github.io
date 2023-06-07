@@ -11,7 +11,7 @@ In this section, we will further explore the concepts of linear ML algorithms, b
 ```{admonition} Requirements
 :class: warning
 * You are familiar with machine learning terms. We recommend reading the [introduction to ML](https://hydro-informatics.com/datascience/machinelearning.html) section for familiarizing with the nomenclature we use throughout the website.
-* You are familiar with fundamental linear algebra concepts (such as a dot product, vector projections, planes, eingenvectors and eigenvalues). Please refer to the videos of [3Blue1Brown](https://youtu.be/kjBOesZCoqc) for a suitable revision if necessary.
+* You are familiar with fundamental linear algebra concepts (such as a dot product, vector projections, planes, eigenvectors and eigenvalues). Please refer to the videos of [3Blue1Brown](https://youtu.be/kjBOesZCoqc) for a suitable revision if necessary.
 * Basic knowledge in differential calculus (derivation through the chain rule, gradients).
 ```
 
@@ -23,7 +23,7 @@ A linear relationship is any relationship between two variables that follows a l
 
 Here our goal is again to find the best-fitting line (or hyperplane in higher dimensions) that minimizes the difference between predicted and actual target values. To this end, we will cover:
 
-* The least quares criterion for quantifying the training error in linear regression 
+* The least squares criterion for quantifying the training error in linear regression 
 * The stochastic gradient descent (SDG) algorithm, which is used in training process of a linear regression model
 * The regularization term for linear regression
 * The sources of error in linear regression

@@ -533,6 +533,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-rasterize-polygon-to-raster">Conversion: Rasterize (Polygon to Raster)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#polygonize">Polygonize</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-rasters">Working with Rasters</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qgis-raster-calculator-map-algebra">QGIS Raster Calculator (Map Algebra)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-to-xyz">Raster to XYZ</a></li>
@@ -594,8 +595,11 @@ document.write(`
 </li>
 <li><p><strong>Save</strong> the project as <strong>qgis-project.qgz</strong> in a new <strong>qgis-exercise</strong> folder</p></li>
 </ul>
+<div class="admonition-project-setup-video admonition">
+<p class="admonition-title">Project setup (video)</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/7_3QqbFonLg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
+</div>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>All files created in this tutorial can be downloaded from the <a class="reference external" href="https://github.com/Ecohydraulics/qgis-tutorial">QGIS tutorial repository</a>.</p>
@@ -732,8 +736,11 @@ document.write(`
 <section id="create-a-point-shapefile">
 <span id="create-point-shp"></span><h3>Create a Point Shapefile<a class="headerlink" href="#create-a-point-shapefile" title="Permalink to this headline">#</a></h3>
 <p>Start with loading satellite imagery and a street basemap (see above) in the layers pane. Zoom on central Europe and roughly locate Stuttgart in Southwest Germany. Find the heavily impaired Neckar River in the North of Stuttgart and move in the upstream direction (i.e., Eastern direction), pass the cities of Esslingen and Plochingen until you get to the confluence of the Neckar and the Fils rivers. From there, follow the Fils River in the upstream direction for a couple of hundred meters and locate the PEGELHAUS (i.e., a gauging station at the Fils River - <a class="reference external" href="https://www.hvz.baden-wuerttemberg.de/pegel.html?id=00025">click to visit</a>). To facilitate finding the gauging station in the future, we will now create a point shapefile as explained in the following video and the analogous instructions below the video.</p>
+<div class="admonition-create-point-shapefile-video admonition">
+<p class="admonition-title">Create point shapefile video</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/k2LqPM6wicA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
+</div>
 <ul class="simple">
 <li><p>In the QGIS top menu go to <strong>Layer</strong> &gt; <strong>Create Layer</strong> &gt; <strong>New Shapefile Layer</strong></p>
 <ul>
@@ -775,14 +782,20 @@ document.write(`
 <section id="create-a-line-shapefile">
 <span id="create-line-shp"></span><h3>Create a Line Shapefile<a class="headerlink" href="#create-a-line-shapefile" title="Permalink to this headline">#</a></h3>
 <p>Create a <strong>Line Shapefile</strong> called <strong>CenterLine.shp</strong> to draw a centerline of the Fils <span class="math notranslate nohighlight">\(\pm\)</span> 200 m around the PEGELHAUS gauge, similar to the above-created point shapefile. Add one <em>text</em> field and call it <code class="docutils literal notranslate"><span class="pre">RiverName</span></code>. Then draw a line along the Fils River starting 200 m upstream and ending 200 m downstream of the PEGELHAUS by following the river on the <strong>OpenStreetMap</strong> layer. See more in the following video.</p>
+<div class="admonition-create-line-shapefile-video admonition">
+<p class="admonition-title">Create Line shapefile video</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/yNuiIlPsguQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
+</div>
 </section>
 <section id="create-a-polygon-shapefile">
 <span id="create-polygon-shp"></span><h3>Create a Polygon Shapefile<a class="headerlink" href="#create-a-polygon-shapefile" title="Permalink to this headline">#</a></h3>
 <p>To delineate different zones of roughness (e.g., as needed for a two-dimensional numerical model), create a <strong>Polygon Shapefile</strong> called <strong>FlowAreas.shp</strong>. The file will contain polygons zoning the considered section of the Fils into the floodplain and main channel bed. Name the first field <code class="docutils literal notranslate"><span class="pre">AreaType</span></code> (type: <em>Text</em>) and the second field <code class="docutils literal notranslate"><span class="pre">ManningN</span></code> (type: <em>Decimal Number</em>). See more in the following video and the instructions below the video.</p>
+<div class="admonition-create-polygon-video admonition">
+<p class="admonition-title">Create Polygon video</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/zTrowT0ULfo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
+</div>
 <p>To draw the polygons:</p>
 <ul class="simple">
 <li><p>Enable snapping to avoid gaps between the floodplain and main channel polygons</p>
@@ -813,8 +826,11 @@ document.write(`
 <section id="conversion-rasterize-polygon-to-raster">
 <h2>Conversion: Rasterize (Polygon to Raster)<a class="headerlink" href="#conversion-rasterize-polygon-to-raster" title="Permalink to this headline">#</a></h2>
 <p>Many numerical models required that roughness is provided in <a class="reference internal" href="geospatial-data.html#raster"><span class="std std-ref">Gridded Cell (Raster) Data</span></a> format. To this end, this section features the conversion of the above-created polygon shapefile (<em>FlowAreas.shp</em>) to a roughness <a class="reference internal" href="geospatial-data.html#raster"><span class="std std-ref">Gridded Cell (Raster) Data</span></a>. The following video and the instructions below the video describe how the conversion works.</p>
+<div class="admonition-rasterization-video admonition">
+<p class="admonition-title">Rasterization video</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/IRLwYSUnjcE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
+</div>
 <p>To convert a geospatial vector dataset, use the <em>Rasterize</em> tool:</p>
 <ul class="simple">
 <li><p>In the QGIS menu bar make sure to enable the <em>Processing Toolbox</em> panel (<strong>View</strong> &gt; <strong>Panels</strong> &gt; <strong>Processing Toolbox</strong>)</p></li>
@@ -844,9 +860,17 @@ document.write(`
 <p class="admonition-title">File conversion with Python</p>
 <p>The conversion between geospatial data types can be facilitated by using Python. Read the section on <a class="reference internal" href="../jupyter/geo-convert.html#py-conversion"><span class="std std-ref">Vectorize and Rasterize</span></a> to learn more.</p>
 </div>
-<div class="admonition-raster-to-polygon-line-point-vector admonition">
-<p class="admonition-title">Raster to (polygon/line/point) Vector</p>
-<p>The inverse operation of <em>Rasterize</em> is called <strong>Raster to Vector</strong>, which is documented at <a class="reference external" href="https://docs.qgis.org/3.16/en/docs/training_manual/complete_analysis/raster_to_vector.html">https://docs.qgis.org</a>.</p>
+</section>
+<section id="polygonize">
+<h2>Polygonize<a class="headerlink" href="#polygonize" title="Permalink to this headline">#</a></h2>
+<p>The inverse operation of <em>Rasterize</em> is called <strong>Raster to Vector</strong>, which is documented at <a class="reference external" href="https://docs.qgis.org/testing/en/docs/training_manual/complete_analysis/raster_to_vector.html">https://docs.qgis.org</a>. The creation of a Polygon from a raster is described in a video [coming soon].</p>
+<div class="admonition-polygonize-video-coming-soon admonition">
+<p class="admonition-title">Polygonize (Video coming soon)</p>
+<p>Coming soon.</p>
+</div>
+<div class="admonition-raster-to-line-point-vector admonition">
+<p class="admonition-title">Raster to (line/point) Vector</p>
+<p>Other options for creating vector datasets from rasters are the <a class="reference external" href="https://docs.qgis.org/3.28/en/docs/training_manual/processing/interp_contour.html">Contour</a> tool (<strong>Raster</strong> menu &gt; <strong>Extraction</strong> &gt; <strong>Contour</strong>) or the <a class="reference external" href="https://docs.qgis.org/3.28/en/docs/user_manual/processing_algs/qgis/vectorcreation.html#raster-pixels-to-points">Raster pixels to points</a> algorithm (<strong>Processing</strong> toolbox &gt; enter <code class="docutils literal notranslate"><span class="pre">raster</span> <span class="pre">pixels</span> <span class="pre">to</span> <span class="pre">points</span></code>).</p>
 </div>
 </section>
 <section id="working-with-rasters">
@@ -1091,6 +1115,7 @@ Windows</label><div class="sd-tab-content docutils">
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-rasterize-polygon-to-raster">Conversion: Rasterize (Polygon to Raster)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#polygonize">Polygonize</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-rasters">Working with Rasters</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qgis-raster-calculator-map-algebra">QGIS Raster Calculator (Map Algebra)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-to-xyz">Raster to XYZ</a></li>

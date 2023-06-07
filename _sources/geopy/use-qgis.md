@@ -39,9 +39,10 @@ Once you installed QGIS, launch the program and walk through the following steps
     * Convert between different CRSs (e.g., convert 48.745, 9.103 from EPSG 3857 to EPSG 4326)
 - **Save** the project as **qgis-project.qgz** in a new **qgis-exercise** folder
 
+```{admonition} Project setup (video)
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/7_3QqbFonLg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
-
+```
 
 ```{hint}
 All files created in this tutorial can be downloaded from the {{ qgis_tutorial_repo }}.
@@ -165,8 +166,10 @@ This section guides through the creation of a point, a line, and a polygon {ref}
 
 Start with loading satellite imagery and a street basemap (see above) in the layers pane. Zoom on central Europe and roughly locate Stuttgart in Southwest Germany. Find the heavily impaired Neckar River in the North of Stuttgart and move in the upstream direction (i.e., Eastern direction), pass the cities of Esslingen and Plochingen until you get to the confluence of the Neckar and the Fils rivers. From there, follow the Fils River in the upstream direction for a couple of hundred meters and locate the PEGELHAUS (i.e., a gauging station at the Fils River - [click to visit](https://www.hvz.baden-wuerttemberg.de/pegel.html?id=00025)). To facilitate finding the gauging station in the future, we will now create a point shapefile as explained in the following video and the analogous instructions below the video.
 
+```{admonition} Create point shapefile video
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/k2LqPM6wicA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
+```
 
 * In the QGIS top menu go to **Layer** > **Create Layer** > **New Shapefile Layer**
   * Define a filename (e.g., **gauges.shp** - may not be longer than 13 characters), for instance, in a folder called *qgis-exercise*.
@@ -194,16 +197,20 @@ Start with loading satellite imagery and a street basemap (see above) in the lay
 
 Create a **Line Shapefile** called **CenterLine.shp** to draw a centerline of the Fils $\pm$ 200 m around the PEGELHAUS gauge, similar to the above-created point shapefile. Add one *text* field and call it `RiverName`. Then draw a line along the Fils River starting 200 m upstream and ending 200 m downstream of the PEGELHAUS by following the river on the **OpenStreetMap** layer. See more in the following video.
 
+```{admonition} Create Line shapefile video
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/yNuiIlPsguQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
+```
 
 (create-polygon-shp)=
 ### Create a Polygon Shapefile
 
 To delineate different zones of roughness (e.g., as needed for a two-dimensional numerical model), create a **Polygon Shapefile** called **FlowAreas.shp**. The file will contain polygons zoning the considered section of the Fils into the floodplain and main channel bed. Name the first field `AreaType` (type: *Text*) and the second field `ManningN` (type: *Decimal Number*). See more in the following video and the instructions below the video.
 
+```{admonition} Create Polygon video
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/zTrowT0ULfo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
+```
 
 To draw the polygons:
 
@@ -226,8 +233,10 @@ To draw the polygons:
 
 Many numerical models required that roughness is provided in {ref}`raster` format. To this end, this section features the conversion of the above-created polygon shapefile (*FlowAreas.shp*) to a roughness {ref}`raster`. The following video and the instructions below the video describe how the conversion works.
 
+```{admonition} Rasterization video
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/IRLwYSUnjcE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
+```
 
 To convert a geospatial vector dataset, use the *Rasterize* tool:
 
@@ -255,8 +264,21 @@ If the *Crayfish* plugin is installed, an additional *Rasterize* tool will show 
 The conversion between geospatial data types can be facilitated by using Python. Read the section on {ref}`py-conversion` to learn more.
 ```
 
-```{admonition} Raster to (polygon/line/point) Vector
-The inverse operation of *Rasterize* is called **Raster to Vector**, which is documented at [https://docs.qgis.org](https://docs.qgis.org/3.16/en/docs/training_manual/complete_analysis/raster_to_vector.html).
+## Polygonize
+
+The inverse operation of *Rasterize* is called **Raster to Vector**, which is documented at [https://docs.qgis.org](https://docs.qgis.org/testing/en/docs/training_manual/complete_analysis/raster_to_vector.html). The creation of a Polygon from a raster is described in a video [coming soon].
+
+```{admonition} Polygonize (Video coming soon)
+
+Coming soon.
+
+```
+
+
+```{admonition} Raster to (line/point) Vector
+
+Other options for creating vector datasets from rasters are the [Contour](https://docs.qgis.org/3.28/en/docs/training_manual/processing/interp_contour.html) tool (**Raster** menu > **Extraction** > **Contour**) or the [Raster pixels to points](https://docs.qgis.org/3.28/en/docs/user_manual/processing_algs/qgis/vectorcreation.html#raster-pixels-to-points) algorithm (**Processing** toolbox > enter `raster pixels to points`).
+
 ```
 
 ## Working with Rasters

@@ -57,7 +57,7 @@ There some reasons why we do not wish to overfit our model to the training datas
 
 In the figure, we can clearly see that the green line is overfitted to the training datapoints denoted by two classes (blue and red points). The black line is probably a satisfactory decision boundary to split the red and blue points. 
 
-The second reason why we do not wish to overfit our model is because, at the heart of machine learning problems, our goal is to be able to apply a model that learned from a training dataset to the world data. Thus, we wish that our model *generalizes* or applies correctly what was learned to a broader, unseen dataset. To verify if our model is performind well, it is not enough to minimize the training error. We must test the learned parameters on an unseen dataset, the so-called testing dataset. 
+The second reason why we do not wish to overfit our model is because, at the heart of machine learning problems, our goal is to be able to apply a model that learned from a training dataset to the world data. Thus, we wish that our model *generalizes* or applies correctly what was learned to a broader, unseen dataset. To verify if our model is performing well, it is not enough to minimize the training error. We must test the learned parameters on an unseen dataset, the so-called testing dataset. 
 
 
 ```{admonition} Keep in mind
