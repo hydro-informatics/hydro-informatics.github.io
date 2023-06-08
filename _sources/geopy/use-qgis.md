@@ -135,19 +135,19 @@ The following URL can be used for retrieving online XYZ tiles (more URLs can be 
 * - Provider (Layer Name)
   - URL
 * - ESRI World Imagery
-  - ```https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}```
+  - https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}
 * - ESRI Street
-  - `https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}`
+  - https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}
 * - ESRI Topo
-  - `https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}`
+  - https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}
 * - Google Satellite
-  - `https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}`
+  - https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}
 * - Google Street
-  - `https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}`
+  - https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}
 * - OpenStreetMap (OSM)
-  - `http://tile.openstreetmap.org/{z}/{x}/{y}.png`
+  - http://tile.openstreetmap.org/{z}/{x}/{y}.png
 * - OSM Black and White
-  - `http://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png`
+  - http://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png
 ```
 ````
 

@@ -833,21 +833,20 @@ The sequent peak algorithm <span id="id1">[<a class="reference internal" href=".
 </div>
 <ul class="simple">
 <li><p>Calculate the storage line with <code class="docutils literal notranslate"><span class="pre">storage_line</span> <span class="pre">=</span> <span class="pre">np.cumsum(SD_line)</span></code></p></li>
-<li><p>Find local extrema and there are two (and more) options:</p>
+<li><p>Find local extrema and there are two (and more) options:</p></li>
+</ul>
 <ol class="arabic simple">
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">scipy.signal</span> <span class="pre">import</span> <span class="pre">argrelextrema</span></code> and get the indices (positions of) local extrema and their value from the <code class="docutils literal notranslate"><span class="pre">storage_line</span></code>:</p></li>
 </ol>
-</li>
-</ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">seas_max_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">argrelextrema</span><span class="p">(</span><span class="n">storage_line</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">greater</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">12</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span> 
 <span class="n">seas_min_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">argrelextrema</span><span class="p">(</span><span class="n">storage_line</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">less</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">12</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">seas_max_vol</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">storage_line</span><span class="p">,</span> <span class="n">seas_max_index</span><span class="p">)</span>
 <span class="n">seas_min_vol</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">storage_line</span><span class="p">,</span> <span class="n">seas_min_index</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>2. Write two functions, which consecutively find local maxima and then local minima located between the extrema (course **homework**) OR use `from scipy.signal import find_peaks` to find the indices (positions) - consider to write a `find_seasonal_extrema(storage_line)` function.
-</pre></div>
-</div>
+<ol class="arabic simple" start="2">
+<li><p>Write two functions, which consecutively find local maxima and then local minima located between the extrema (course <strong>homework</strong>) OR use <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">scipy.signal</span> <span class="pre">import</span> <span class="pre">find_peaks</span></code> to find the indices (positions) - consider to write a <code class="docutils literal notranslate"><span class="pre">find_seasonal_extrema(storage_line)</span></code> function.</p></li>
+</ol>
 <ul class="simple">
 <li><p>Make sure that the curves and extrema are correct by copying the provided <code class="docutils literal notranslate"><span class="pre">plot_storage_curve</span></code> curve to your script (<a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/Exercise-SequentPeak/master/plot_function.py">available in the exercise repository</a>) and using it as follows:</p></li>
 </ul>
