@@ -287,8 +287,10 @@ Other options for creating vector datasets from rasters are the [Contour](https:
 
 Some models preferably (default use) Manning's *n*, others use the Strickler roughness coefficient $k_{st}$, which is the inverse of Manning's *n* (i.e., $k_{st} = 1/n$ - read more about roughness coefficients in the {ref}`ex-1d-hydraulics` exercise). Thus, transforming a Strickler roughness raster into a Manning roughness raster requires performing an algebraic raster (pixel-by-pixel) operation. The next video and the instructions below the video feature the usage of the QGIS **Raster Calculator** to perform such algebraic operations.
 
+```{admonition} Raster calculator (video)
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/DOkV03uij9k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
+```
 
 Start with opening **Raster Calculator** from QGIS menu bar (**Raster** > **Raster Calculator...**). Then, convert the above-created *roughness.tif* raster of Manning's *n* values to a Strickler roughness raster:
 
@@ -345,9 +347,10 @@ Save the changes. The `*.xyz` file is now slim and ready to use, for instance, f
 
 Georeferenced images in {term}`GeoTIFF` or other raster formats, possibly with super-positioned shapefiles on top, are handy and flexible for use with geospatial software, such as QGIS, but not appropriate for presentations or reports. For presentation purposes, geospatial imagery or maps should preferably be exported to common formats, such as the **P**ortable **D**ocument **F**ormat (PDF) or **JPEG/JPG**. To create commonly formatted maps with QGIS, first, a new (print) layout needs to be created, which can then be exported to a common map format (e.g., along with a legend, a scale bar, and a North arrow). The following video and the descriptions below the video guide through the map creation process with QGIS.
 
-
+```{admonition} Layout creation (video)
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/hmTByzVPVF0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
+```
 
 Start with creating a new print layout by clicking on the **Project** drop-down menu, then select **New Print Layout**. In the new print layout prepare the map and export the map as follows:
 

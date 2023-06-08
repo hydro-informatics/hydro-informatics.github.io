@@ -66,18 +66,27 @@ The function will loop over the *csv* file names and append the file contents to
         - *Note: We will use later on `fn_prefix="daily_flows_` and `fn_suffix=""` to turn the year contained in the *csv* file names to the key in `file_content_dict`.
         - Use `except ValueError:` in the case that the remaining *string* cannot be converted to `int`: `dict_key = raw_file_name.strip(fn_prefix).strip(fn_suffix)` (if everything is well coded, the script will not need to jump into this exception statement later).
     * Open the `file` (full directory) as a file: `with open(file, mode="r") as f:`
-        - Read the file content with `f_content = f.read()`. The *string*  variable `f_content` will look similar to something like `";0;0;0;0;0;0;0;0;0;2.1;0;0\n;0;0;0;0;0;0;0;0;0;6.4;0;0\n;0;0;0;0;9.9;0;0;0;0;0.2;0;0\n..."`.
+        - Read the file content with `f_content = f.read()`. The *string*  variable `f_content` will look similar to something like `";0;0;0;0;0;0;0;0;0;2.1;0;0\n;0..."`.
 
 ```{admonition} Some *string* explanations
 :class: tip
 The column data are delimited by a `";"` and every column represents one value per month (i.e., 12 values per row). The rows denote days (i.e., there are 31 rows in each file corresponding to the maximum number of days in one month of a year). In consequence, every row should contain 11 `";"` signs to separate 12 columns and the entire file (`f_content`) should contain 30 `"\n"` signs to separate 31 rows. However, we count 12 `";"` signs per row and 32 to 33 `"\n"` signs in `f_content` because the data logger wrote `";"` at the beginning of each row and added one to two more empty lines to the end of every file. Therefore, we need to `strip()` the bad `";"` and  `"\n"` signs in the following.
 ```
 
-  * To get the number of (valid) rows in every file use `rows = f_content.strip("\n").split("\n").__len__()`
-  * To get the number of (valid) columns in every file use `cols = f_content.strip("\n").split("\n")[0].strip(delimiter).split(delimiter).__len__()`
-  * Now we can create a void *numpy* array of the size (shape) corresponding to the number of valid rows and columns in every file: `data_array = np.empty((rows, cols), dtype=np.float32)`
+  * To get the number of (valid) rows in every file use 
+  ```
+  rows = f_content.strip("\n").split("\n").__len__()
+  ```
+  * To get the number of (valid) columns in every file use
+  ```
+  cols = f_content.strip("\n").split("\n")[0].strip(delimiter).split(delimiter).__len__()
+  ```
+  * Now we can create a void *numpy* array of the size (shape) corresponding to the number of valid rows and columns in every file: 
+  ```
+  data_array = np.empty((rows, cols), dtype=np.float32)
+  ```
   * *Why are we not using directly `np.empty((31, 12)` even though the shape of all files is the same?<br>We want to write a generally valid function and the two lines for deriving the valid number of rows and columns do the generalization job.*
-  * Next, we need to parse the values of every line and append them to the until now void `data_array`. Therefore, we split `f_content` into its lines with `split("\n)` and use a *for* loop: `for iteration, line in enumerate(f_content.strip("\n").split("\n"):`. Then,<br> Create an empty list to store line data `line_data = []`. <br>In another *for* loop, strip and split the line by the user-defined `delimiter` (recall: we will use `delimiter=";"`) `for e in line.strip(delimiter).split(delimiter):`. In the *e-for* loop, `try:` to append `e` as a *float* number `line_data.append(np.float32(e)` and use `except ValueError:` to `line_data.append(np.nan)` (i.e., append a not-a-number value that we will need because not all months have 31 days).<br>End the *e-for* loop by back-indenting to the `for iteration, line in ...` loop and appending the `line_data` *list* as a *numpy* array to `data_array`: `data_array[iteration] = np.array(line_data)`
+  * Next, we need to parse the values of every line and append them to the until now void `data_array`. Therefore, we split `f_content` into its lines with `split("\n)` and use a *for* loop: `for iteration, line in enumerate(f_content.strip("\n").split("\n"):`. <br> Create an empty list to store line data `line_data = []`. <br>In another *for* loop, strip and split the line by the user-defined `delimiter` (recall: we will use `delimiter=";"`) `for e in line.strip(delimiter).split(delimiter):`. In the *e-for* loop, `try:` to append `e` as a *float* number `line_data.append(np.float32(e)` and use `except ValueError:` to `line_data.append(np.nan)` (i.e., append a not-a-number value that we will need because not all months have 31 days).<br>End the *e-for* loop by back-indenting to the `for iteration, line in ...` loop and appending the `line_data` *list* as a *numpy* array to `data_array`: `data_array[iteration] = np.array(line_data)`
   * Back in the `with open(file, ...` statement (use correct indentation level!), update `file_content_dict` with the above-found `dict_key` and the `data_array` of the `file as f`: `file_content_dict.update({dict_key: data_array})`
 
 * Back at the level of the function (`def read_data(...):` - pay attention to the correct indentation!), `return file_content_dict`
@@ -146,11 +155,21 @@ The sequent peak algorithm takes monthly flow volumes, which corresponds to the 
 
 Write a function (e.g., `def daily2monthly(daily_flow_series)`) to perform the conversion of daily average flow series to monthly volumes in 10$^{6}$m$^3$:
 
-1. The function should be called for every dictionary entry (year) of the data series. Therefore, the input argument `daily_flow_series` should be a `numpy.array` with the shape being `(31, 12)`.
-1. To get column-wise (monthly) statistics, transpose the input array:<br> `daily_flow_series = np.transpose(daily_flow_series)`
-1. Create a void list to store monthly flow values:<br> `monthly_stats = []`
-1. Loop over the row of the (transposed) `daily_flow_series` and append the sum multiplied by `24 * 3600 / 10**6` to `monthly_stats`:<br> `for daily_flows_per_month in daily_flow_series:` <br> `monthly_stats.append(np.nansum(daily_flows_per_month * 24 * 3600) / 10**6)`
-1. Return `monthly_stats` as `numpy.array`: <br> `return np.array(monthly_stats)`
+* The function should be called for every dictionary entry (year) of the data series. Therefore, the input argument `daily_flow_series` should be a `numpy.array` with the shape being `(31, 12)`.
+* To get column-wise (monthly) statistics, transpose the input array:
+```
+daily_flow_series = np.transpose(daily_flow_series)
+```
+* Create a void list to store monthly flow values:<br> `monthly_stats = []`
+* Loop over the row of the (transposed) `daily_flow_series` and append the sum multiplied by `24 * 3600 / 10**6` to `monthly_stats`
+```
+for daily_flows_per_month in daily_flow_series:
+    monthly_stats.append(np.nansum(daily_flows_per_month * 24 * 3600) / 10**6)
+```
+* Return `monthly_stats` as `numpy.array`: 
+```
+return np.array(monthly_stats)
+```
 
 Using a for loop, we can now write the monthly volumes similar to the daily flows into a dictionary, which we extend by one year at a time within the `if __name__ == "__main__"` statement:
 
@@ -183,9 +202,11 @@ With the above routines for reading the flow data, we derived monthly inflow vol
 |----------------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 | ***Vol.*** (10$^{6}$ m$^3$) | 1.5 | 1.5 | 1.5 | 2   | 4   | 4   | 4   | 5   | 5   | 3   | 2   | 1.5 |
 
-Following the scheme of inflow volumes we can create a `numpy.array` for the monthly outflow volumes $Out_{m}$.<br>
+Following the scheme of inflow volumes we can create a `numpy.array` for the monthly outflow volumes $Out_{m}$.
 
-`monthly_supply = np.array([1.5, 1.5, 1.5, 2.0, 4.0, 4.0, 4.0, 5.0, 5.0, 3.0, 2.0, 1.5])`
+```
+monthly_supply = np.array([1.5, 1.5, 1.5, 2.0, 4.0, 4.0, 4.0, 5.0, 5.0, 3.0, 2.0, 1.5])
+```
 
 ### Storage Volume and Difference (SD-line) Curves
 The storage volume of the present month $S_{m}$ is calculated as the result of the water balance from the last month, for example:<br>
@@ -237,13 +258,21 @@ The new `def sequent_peak(in_vol_series, out_vol_target):` function needs to:
 
 * Calculate the storage line with `storage_line = np.cumsum(SD_line)`
 * Find local extrema and there are two (and more) options:
-    1. Use `from scipy.signal import argrelextrema` and get the indices (positions of) local extrema and their value from the `storage_line`:<br>
-    `seas_max_index = np.array(argrelextrema(storage_line, np.greater, order=12)[0])` <br>
-    `seas_min_index = np.array(argrelextrema(storage_line, np.less, order=12)[0])` <br>
-    `seas_max_vol = np.take(storage_line, seas_max_index)` <br>
-    `seas_min_vol = np.take(storage_line, seas_min_index)` <br>
-    1. Write two functions, which consecutively find local maxima and then local minima located between the extrema (HOMEWORK!) OR use `from scipy.signal import find_peaks` to find the indices (positions) - consider to write a `find_seasonal_extrema(storage_line)` function.
-* Make sure that the curves and extrema are correct by copying the provided `plot_storage_curve` curve to your script ([available in the exercise repository](https://raw.githubusercontent.com/Ecohydraulics/Exercise-SequentPeak/master/plot_function.py)) and using it as follows:<br>`plot_storage_curve(storage_line, seas_min_index, seas_max_index, seas_min_vol, seas_max_vol)`
+    1. Use `from scipy.signal import argrelextrema` and get the indices (positions of) local extrema and their value from the `storage_line`:
+
+```
+seas_max_index = np.array(argrelextrema(storage_line, np.greater, order=12)[0]) 
+seas_min_index = np.array(argrelextrema(storage_line, np.less, order=12)[0])
+seas_max_vol = np.take(storage_line, seas_max_index)
+seas_min_vol = np.take(storage_line, seas_min_index)
+```
+    2. Write two functions, which consecutively find local maxima and then local minima located between the extrema (course **homework**) OR use `from scipy.signal import find_peaks` to find the indices (positions) - consider to write a `find_seasonal_extrema(storage_line)` function.
+
+* Make sure that the curves and extrema are correct by copying the provided `plot_storage_curve` curve to your script ([available in the exercise repository](https://raw.githubusercontent.com/Ecohydraulics/Exercise-SequentPeak/master/plot_function.py)) and using it as follows:
+
+```
+plot_storage_curve(storage_line, seas_min_index, seas_max_index, seas_min_vol, seas_max_vol)
+```
 
 ```{figure} https://github.com/Ecohydraulics/media/raw/main/png/storage_curve.png
 :alt: sequent peak storage difference sd curve

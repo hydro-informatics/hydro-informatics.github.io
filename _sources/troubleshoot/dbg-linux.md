@@ -84,7 +84,8 @@ Or for all files in a directory:
 sudo chmod a+rwx /directory/*.*
 ```
 
-Or for all subdirectories and files in these directories:
+Or for all sub-directories and files in these directories:
+
 ```
 sudo chmod a+rwx /directory/*/*.*
 ```
@@ -97,7 +98,7 @@ sudo chmod -R 777 /directory/
 
 ## Python
 
-### `tkinter` Imports Fail (No Module Named Tkinter)
+### tkinter Imports Fail (No Module Named Tkinter)
 
 `tkinter` is sometimes still only installed for *Python2* on *Linux*, while we want to use it with *Python3*. To ensure that `tkinter` for *Python3* is installed, install via *Terminal*:
 
@@ -215,10 +216,7 @@ To get LAStools working in QGIS on Ubuntu (make sure to have {ref}`wine` install
 * In QGIS, edit the processing options (Providers > Tools for LiDAR data):
   * LasTools folder: enter here the path to the folder that where the extracted ZIP files live (`/dir/to/LAStools/`)
   * Wine folder: enter the path to the {ref}`wine` binary (typically `/usr/bin/`). Alternatively, find where Wine lives with the `whereis wine` command
-* If required: edit `LidarToolsAlgorithmProvider.py` (two files exist), for instance:
-  * `/usr/share/qgis/python/plugins/processing/algs/lidar/LidarToolsAlgorithmProvider.py` and
-  * `/home/[user]/.qgis3/python/plugins/processing/algs/lidar/LidarToolsAlgorithmProvider.py`
-  * Edit the second file:
+* If required: edit `LidarToolsAlgorithmProvider.py` (two files may exist):
     line 145:         if (True):
     line 168:         if (True):
     line 188:         if (True):
@@ -227,7 +225,7 @@ To troubleshoot a LAStools installation in QGIS read [this proposition on rapidl
 
 Read more about running [LAStools on Ubuntu](https://gis.stackexchange.com/questions/138149/wine-lastools-in-qgis-2-8-1-ubuntu-14-04).
 
-## 3D Graphics Drivers
+## 3d Graphics Drivers
 
 GPU intense software requiring strong graphics performance, such as the Unreal Engine, will require newest graphics cards and drivers. The default graphics drivers may not be able to satisfy the needs for such appliances. Latest releases of graphics drivers can be installed through proprietary drivers (e.g., nVidia's proprietary drivers to replace nouveau drivers).
 
@@ -236,8 +234,17 @@ Here is one option to update nVidia graphic drivers, though be aware that this a
 * Open Terminal
 * Find the appropriate driver for your system with `sudo apt search nvidia-driver`  (OR search for a driver package: `apt-cache search nvidia-driver`)
 * Check latest driver releases
-  * in nvidia drivers: `sudo apt-cache search 'nvidia-driver-' | grep '^nvidia-driver-[[:digit:]]*'`
-  * in dkms: `sudo apt-cache search 'nvidia-dkms-' | grep '^nvidia-dkms-[[:digit:]]*'`
+  * in nvidia drivers:
+
+```
+sudo apt-cache search 'nvidia-driver-' | grep '^nvidia-driver-[[:digit:]]*'
+```
+
+  * in dkms: 
+
+```
+sudo apt-cache search 'nvidia-dkms-' | grep '^nvidia-dkms-[[:digit:]]*'
+```
 
 ```
 [...]
@@ -259,7 +266,16 @@ sudo apt update
 sudo apt full-upgrade
 ```
 
-* Install the latest driver with: `sudo apt install nvidia-driver-515 nvidia-dkms-515`
-* Reboot your system: `sudo shutdown -r now`
-* Verify the installation (in Terminal: `nvidia-smi`
+* Install the latest driver with: 
+```
+sudo apt install nvidia-driver-515 nvidia-dkms-515
+```
+* Reboot your system: 
+```
+sudo shutdown -r now
+```
+* Verify the installation in Terminal:
+```
+nvidia-smi
+```
 

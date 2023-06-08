@@ -878,8 +878,11 @@ document.write(`
 <section id="qgis-raster-calculator-map-algebra">
 <h3>QGIS Raster Calculator (Map Algebra)<a class="headerlink" href="#qgis-raster-calculator-map-algebra" title="Permalink to this headline">#</a></h3>
 <p>Some models preferably (default use) Manning’s <em>n</em>, others use the Strickler roughness coefficient <span class="math notranslate nohighlight">\(k_{st}\)</span>, which is the inverse of Manning’s <em>n</em> (i.e., <span class="math notranslate nohighlight">\(k_{st} = 1/n\)</span> - read more about roughness coefficients in the <a class="reference internal" href="../exercises/ex-ms.html#ex-1d-hydraulics"><span class="std std-ref">1d Hydraulics (Manning-Strickler Formula)</span></a> exercise). Thus, transforming a Strickler roughness raster into a Manning roughness raster requires performing an algebraic raster (pixel-by-pixel) operation. The next video and the instructions below the video feature the usage of the QGIS <strong>Raster Calculator</strong> to perform such algebraic operations.</p>
+<div class="admonition-raster-calculator-video admonition">
+<p class="admonition-title">Raster calculator (video)</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/DOkV03uij9k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
+</div>
 <p>Start with opening <strong>Raster Calculator</strong> from QGIS menu bar (<strong>Raster</strong> &gt; <strong>Raster Calculator…</strong>). Then, convert the above-created <em>roughness.tif</em> raster of Manning’s <em>n</em> values to a Strickler roughness raster:</p>
 <ul class="simple">
 <li><p>Define an <strong>Output layer</strong> (e.g., <em>qgis-exercise/roughness-stickler.tif</em>) and keep the <strong>Output format</strong> of <strong><a class="reference internal" href="../documentation/glossary.html#term-GeoTIFF"><span class="xref std std-term">GeoTIFF</span></a></strong>.</p></li>
@@ -934,8 +937,11 @@ document.write(`
 <section id="create-layout-and-pdf-jpg-or-other-maps">
 <h2>Create Layout and PDF / JPG (or other) Maps<a class="headerlink" href="#create-layout-and-pdf-jpg-or-other-maps" title="Permalink to this headline">#</a></h2>
 <p>Georeferenced images in <a class="reference internal" href="../documentation/glossary.html#term-GeoTIFF"><span class="xref std std-term">GeoTIFF</span></a> or other raster formats, possibly with super-positioned shapefiles on top, are handy and flexible for use with geospatial software, such as QGIS, but not appropriate for presentations or reports. For presentation purposes, geospatial imagery or maps should preferably be exported to common formats, such as the <strong>P</strong>ortable <strong>D</strong>ocument <strong>F</strong>ormat (PDF) or <strong>JPEG/JPG</strong>. To create commonly formatted maps with QGIS, first, a new (print) layout needs to be created, which can then be exported to a common map format (e.g., along with a legend, a scale bar, and a North arrow). The following video and the descriptions below the video guide through the map creation process with QGIS.</p>
+<div class="admonition-layout-creation-video admonition">
+<p class="admonition-title">Layout creation (video)</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/hmTByzVPVF0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
+</div>
 <p>Start with creating a new print layout by clicking on the <strong>Project</strong> drop-down menu, then select <strong>New Print Layout</strong>. In the new print layout prepare the map and export the map as follows:</p>
 <ul class="simple">
 <li><p>Set a <strong>Layout title</strong> (e.g., <em>exercise-layout</em>).</p></li>

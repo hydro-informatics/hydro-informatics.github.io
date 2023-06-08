@@ -528,7 +528,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tkinter-imports-fail-no-module-named-tkinter"><code class="docutils literal notranslate"><span class="pre">tkinter</span></code> Imports Fail (No Module Named Tkinter)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tkinter-imports-fail-no-module-named-tkinter">tkinter Imports Fail (No Module Named Tkinter)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wine">Wine</a><ul class="nav section-nav flex-column">
@@ -542,7 +542,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lastools">LAStools</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-graphics-drivers">3D Graphics Drivers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-graphics-drivers">3d Graphics Drivers</a></li>
 </ul>
             </nav>
         </div>
@@ -630,7 +630,7 @@ document.write(`
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">chmod</span> <span class="n">a</span><span class="o">+</span><span class="n">rwx</span> <span class="o">/</span><span class="n">directory</span><span class="o">/*.*</span>
 </pre></div>
 </div>
-<p>Or for all subdirectories and files in these directories:</p>
+<p>Or for all sub-directories and files in these directories:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">chmod</span> <span class="n">a</span><span class="o">+</span><span class="n">rwx</span> <span class="o">/</span><span class="n">directory</span><span class="o">/*/*.*</span>
 </pre></div>
 </div>
@@ -643,7 +643,7 @@ document.write(`
 <section id="python">
 <h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">#</a></h2>
 <section id="tkinter-imports-fail-no-module-named-tkinter">
-<h3><code class="docutils literal notranslate"><span class="pre">tkinter</span></code> Imports Fail (No Module Named Tkinter)<a class="headerlink" href="#tkinter-imports-fail-no-module-named-tkinter" title="Permalink to this headline">#</a></h3>
+<h3>tkinter Imports Fail (No Module Named Tkinter)<a class="headerlink" href="#tkinter-imports-fail-no-module-named-tkinter" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">tkinter</span></code> is sometimes still only installed for <em>Python2</em> on <em>Linux</em>, while we want to use it with <em>Python3</em>. To ensure that <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> for <em>Python3</em> is installed, install via <em>Terminal</em>:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">python3-tk</span></code>  or</p></li>
@@ -746,23 +746,17 @@ sudo apt-add-repository https://dl.winehq.org/wine-builds/debian/
 <li><p>Wine folder: enter the path to the <a class="reference internal" href="../get-started/vm.html#wine"><span class="std std-ref">Windows Apps on Linux</span></a> binary (typically <code class="docutils literal notranslate"><span class="pre">/usr/bin/</span></code>). Alternatively, find where Wine lives with the <code class="docutils literal notranslate"><span class="pre">whereis</span> <span class="pre">wine</span></code> command</p></li>
 </ul>
 </li>
-<li><p>If required: edit <code class="docutils literal notranslate"><span class="pre">LidarToolsAlgorithmProvider.py</span></code> (two files exist), for instance:</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">/usr/share/qgis/python/plugins/processing/algs/lidar/LidarToolsAlgorithmProvider.py</span></code> and</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/home/[user]/.qgis3/python/plugins/processing/algs/lidar/LidarToolsAlgorithmProvider.py</span></code></p></li>
-<li><p>Edit the second file:
+<li><p>If required: edit <code class="docutils literal notranslate"><span class="pre">LidarToolsAlgorithmProvider.py</span></code> (two files may exist):
 line 145:         if (True):
 line 168:         if (True):
 line 188:         if (True):</p></li>
-</ul>
-</li>
 </ul>
 <p>To troubleshoot a LAStools installation in QGIS read <a class="reference external" href="https://rapidlasso.com/2013/09/29/how-to-install-lastools-toolbox-in-qgis/">this proposition on rapidlasso.com</a>.</p>
 <p>Read more about running <a class="reference external" href="https://gis.stackexchange.com/questions/138149/wine-lastools-in-qgis-2-8-1-ubuntu-14-04">LAStools on Ubuntu</a>.</p>
 </section>
 </section>
 <section id="d-graphics-drivers">
-<h2>3D Graphics Drivers<a class="headerlink" href="#d-graphics-drivers" title="Permalink to this headline">#</a></h2>
+<h2>3d Graphics Drivers<a class="headerlink" href="#d-graphics-drivers" title="Permalink to this headline">#</a></h2>
 <p>GPU intense software requiring strong graphics performance, such as the Unreal Engine, will require newest graphics cards and drivers. The default graphics drivers may not be able to satisfy the needs for such appliances. Latest releases of graphics drivers can be installed through proprietary drivers (e.g., nVidia’s proprietary drivers to replace nouveau drivers).</p>
 <p>Here is one option to update nVidia graphic drivers, though be aware that this action can substantially harm your system (it may not reboot) if you are not running an Ubuntu Linux (derivative) with an appropriate nVidia graphics card. So if you are OK with this warning:</p>
 <ul class="simple">
@@ -770,11 +764,19 @@ line 188:         if (True):</p></li>
 <li><p>Find the appropriate driver for your system with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">search</span> <span class="pre">nvidia-driver</span></code>  (OR search for a driver package: <code class="docutils literal notranslate"><span class="pre">apt-cache</span> <span class="pre">search</span> <span class="pre">nvidia-driver</span></code>)</p></li>
 <li><p>Check latest driver releases</p>
 <ul>
-<li><p>in nvidia drivers: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-cache</span> <span class="pre">search</span> <span class="pre">'nvidia-driver-'</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">'^nvidia-driver-[[:digit:]]*'</span></code></p></li>
-<li><p>in dkms: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-cache</span> <span class="pre">search</span> <span class="pre">'nvidia-dkms-'</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">'^nvidia-dkms-[[:digit:]]*'</span></code></p></li>
+<li><p>in nvidia drivers:</p></li>
 </ul>
 </li>
 </ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">cache</span> <span class="n">search</span> <span class="s1">&#39;nvidia-driver-&#39;</span> <span class="o">|</span> <span class="n">grep</span> <span class="s1">&#39;^nvidia-driver-[[:digit:]]*&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>in dkms:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">cache</span> <span class="n">search</span> <span class="s1">&#39;nvidia-dkms-&#39;</span> <span class="o">|</span> <span class="n">grep</span> <span class="s1">&#39;^nvidia-dkms-[[:digit:]]*&#39;</span>
+</pre></div>
+</div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">...</span><span class="p">]</span>
 <span class="n">nvidia</span><span class="o">-</span><span class="n">dkms</span><span class="o">-</span><span class="mi">470</span> <span class="o">-</span> <span class="n">NVIDIA</span> <span class="n">DKMS</span> <span class="n">package</span>
 <span class="n">nvidia</span><span class="o">-</span><span class="n">dkms</span><span class="o">-</span><span class="mi">470</span><span class="o">-</span><span class="n">server</span> <span class="o">-</span> <span class="n">NVIDIA</span> <span class="n">DKMS</span> <span class="n">package</span>
@@ -794,10 +796,23 @@ line 188:         if (True):</p></li>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Install the latest driver with: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">nvidia-driver-515</span> <span class="pre">nvidia-dkms-515</span></code></p></li>
-<li><p>Reboot your system: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">shutdown</span> <span class="pre">-r</span> <span class="pre">now</span></code></p></li>
-<li><p>Verify the installation (in Terminal: <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code></p></li>
+<li><p>Install the latest driver with:</p></li>
 </ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">nvidia</span><span class="o">-</span><span class="n">driver</span><span class="o">-</span><span class="mi">515</span> <span class="n">nvidia</span><span class="o">-</span><span class="n">dkms</span><span class="o">-</span><span class="mi">515</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Reboot your system:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">shutdown</span> <span class="o">-</span><span class="n">r</span> <span class="n">now</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Verify the installation in Terminal:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nvidia</span><span class="o">-</span><span class="n">smi</span>
+</pre></div>
+</div>
 </section>
 </section>
 
@@ -869,7 +884,7 @@ line 188:         if (True):</p></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tkinter-imports-fail-no-module-named-tkinter"><code class="docutils literal notranslate"><span class="pre">tkinter</span></code> Imports Fail (No Module Named Tkinter)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tkinter-imports-fail-no-module-named-tkinter">tkinter Imports Fail (No Module Named Tkinter)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wine">Wine</a><ul class="nav section-nav flex-column">
@@ -883,7 +898,7 @@ line 188:         if (True):</p></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lastools">LAStools</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-graphics-drivers">3D Graphics Drivers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-graphics-drivers">3d Graphics Drivers</a></li>
 </ul>
   </nav></div>
 
