@@ -556,7 +556,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="debugging-debian-linux">
 <h1>Debugging Debian Linux<a class="headerlink" href="#debugging-debian-linux" title="Permalink to this headline">#</a></h1>
-<p>Debian Linux is documented in a comprehensive <a class="reference external" href="https://wiki.debian.org/">Wiki</a> with descriptions for setting up the system, installing software (packages), and tutorials for trouble shooting. This page provides guidance for problems that may occur in particular when Debian Linux is installed on a Virtual Machine (VM).</p>
+<p>Debian Linux is documented in a comprehensive <a class="reference external" href="https://wiki.debian.org/">wiki</a> with descriptions for setting up the system, installing software (packages), and tutorials for trouble shooting. This page provides guidance for problems that may occur in particular when Debian Linux is installed on a Virtual Machine (VM).</p>
 <section id="particular-problems">
 <h2>Particular Problems<a class="headerlink" href="#particular-problems" title="Permalink to this headline">#</a></h2>
 <section id="root-drive-is-running-out-of-disk-space">
@@ -604,7 +604,7 @@ document.write(`
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>If you made undesired changes in the re-partitioning plan (before clicking on the apply-check mark), you can revert changes by clicking on the yellow return arrow next to the green apply-check mark.</p>
+<p>To revert undesired changes in the re-partitioning plan (before clicking on the apply-check mark), click on the yellow return arrow next to the green apply-check mark.</p>
 </div>
 </section>
 <section id="keep-system-and-software-up-to-date">
@@ -613,12 +613,12 @@ document.write(`
 </section>
 <section id="permission-denied-messages">
 <span id="dbg-permissions"></span><h3>Permission Denied Messages<a class="headerlink" href="#permission-denied-messages" title="Permalink to this headline">#</a></h3>
-<p><em><strong>Permission denied</strong></em> messages may occur because of the fail-safe design of Debian, but denied read and write rights may quickly become annoying, in particular if you need to switch between normal and superuser accounts for installing software packages.</p>
+<p><strong>Permission denied</strong> messages may occur because of the fail-safe design of Debian, but denied read and write rights may quickly become annoying, in particular if you need to switch between normal and superuser accounts for installing software packages.</p>
 <div class="warning admonition">
 <p class="admonition-title">Potentially harmful operation</p>
 <p>Never modify the access rights for folders in the <code class="docutils literal notranslate"><span class="pre">ROOT/</span></code> directory. Modifying permissions for folders such as <code class="docutils literal notranslate"><span class="pre">ROOT/etc/</span></code> or <code class="docutils literal notranslate"><span class="pre">ROOT/root/</span></code> may cause unrepairable system damage.</p>
 </div>
-<p>This is how you can unlock all read and write rights for a directory:</p>
+<p>This is how to unlock all read and write rights for a directory:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">chmod</span> <span class="n">a</span><span class="o">+</span><span class="n">rwx</span> <span class="o">/</span><span class="n">directory</span>
 </pre></div>
 </div>
@@ -644,7 +644,7 @@ document.write(`
 <h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">#</a></h2>
 <section id="tkinter-imports-fail-no-module-named-tkinter">
 <h3><code class="docutils literal notranslate"><span class="pre">tkinter</span></code> Imports Fail (No Module Named Tkinter)<a class="headerlink" href="#tkinter-imports-fail-no-module-named-tkinter" title="Permalink to this headline">#</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">tkinter</span></code> is sometimes still only installed for <em>Python2</em> on <em>Linux</em>, while we want to use it with <em>Python3</em>. To ensure that <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> for <em>Python3</em> is installed, install via *Terminal:</p>
+<p><code class="docutils literal notranslate"><span class="pre">tkinter</span></code> is sometimes still only installed for <em>Python2</em> on <em>Linux</em>, while we want to use it with <em>Python3</em>. To ensure that <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> for <em>Python3</em> is installed, install via <em>Terminal</em>:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">python3-tk</span></code>  or</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">python3.X-tk</span></code> (replace <code class="docutils literal notranslate"><span class="pre">X</span></code> with your <em>Python</em> version) or</p></li>
@@ -728,8 +728,9 @@ sudo apt-add-repository https://dl.winehq.org/wine-builds/debian/
 <p>Install the following Python pip packages:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">pyOpenGL</span>
 <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">pyOpenGL_accelerate</span>
-<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">pyqt5</span>
-
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">PyQt5</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">PyQt5</span><span class="o">-</span><span class="n">sip</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">PyQtWebEngine</span>
 </pre></div>
 </div>
 <p>A system restart (or just reload the user environment with <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">~/.bashsrc</span></code>) may be necessary for QGIS to work now without the OpenGL error.</p>
@@ -756,7 +757,7 @@ line 188:         if (True):</p></li>
 </ul>
 </li>
 </ul>
-<p>To troubleshoot LAStools installation in QGIS read <a class="reference external" href="https://rapidlasso.com/2013/09/29/how-to-install-lastools-toolbox-in-qgis/">this proposition on rapidlasso.com</a>.</p>
+<p>To troubleshoot a LAStools installation in QGIS read <a class="reference external" href="https://rapidlasso.com/2013/09/29/how-to-install-lastools-toolbox-in-qgis/">this proposition on rapidlasso.com</a>.</p>
 <p>Read more about running <a class="reference external" href="https://gis.stackexchange.com/questions/138149/wine-lastools-in-qgis-2-8-1-ubuntu-14-04">LAStools on Ubuntu</a>.</p>
 </section>
 </section>
@@ -765,7 +766,7 @@ line 188:         if (True):</p></li>
 <p>GPU intense software requiring strong graphics performance, such as the Unreal Engine, will require newest graphics cards and drivers. The default graphics drivers may not be able to satisfy the needs for such appliances. Latest releases of graphics drivers can be installed through proprietary drivers (e.g., nVidia’s proprietary drivers to replace nouveau drivers).</p>
 <p>Here is one option to update nVidia graphic drivers, though be aware that this action can substantially harm your system (it may not reboot) if you are not running an Ubuntu Linux (derivative) with an appropriate nVidia graphics card. So if you are OK with this warning:</p>
 <ul class="simple">
-<li><p>Open Terminal:</p></li>
+<li><p>Open Terminal</p></li>
 <li><p>Find the appropriate driver for your system with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">search</span> <span class="pre">nvidia-driver</span></code>  (OR search for a driver package: <code class="docutils literal notranslate"><span class="pre">apt-cache</span> <span class="pre">search</span> <span class="pre">nvidia-driver</span></code>)</p></li>
 <li><p>Check latest driver releases</p>
 <ul>
@@ -795,7 +796,7 @@ line 188:         if (True):</p></li>
 <ul class="simple">
 <li><p>Install the latest driver with: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">nvidia-driver-515</span> <span class="pre">nvidia-dkms-515</span></code></p></li>
 <li><p>Reboot your system: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">shutdown</span> <span class="pre">-r</span> <span class="pre">now</span></code></p></li>
-<li><p>Verify installation (in Terminal: <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code></p></li>
+<li><p>Verify the installation (in Terminal: <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code></p></li>
 </ul>
 </section>
 </section>

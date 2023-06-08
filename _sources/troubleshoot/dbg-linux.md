@@ -1,6 +1,6 @@
 # Debugging Debian Linux
 
-Debian Linux is documented in a comprehensive [Wiki](https://wiki.debian.org/) with descriptions for setting up the system, installing software (packages), and tutorials for trouble shooting. This page provides guidance for problems that may occur in particular when Debian Linux is installed on a Virtual Machine (VM).
+Debian Linux is documented in a comprehensive [wiki](https://wiki.debian.org/) with descriptions for setting up the system, installing software (packages), and tutorials for trouble shooting. This page provides guidance for problems that may occur in particular when Debian Linux is installed on a Virtual Machine (VM).
 
 ## Particular Problems
 
@@ -31,6 +31,7 @@ If the root partition of the virtual disk is running out of space, Debian prompt
 In the case that the disk space limitation problem occurs on a virtual disk created with *VirtualBox*, open *VirtualBox*, highlight the VM subjected to the problem (e.g. *Debian Linux*). Make sure that the VM is off. In *VirtualBox* locate the *File* drop-down menu (top-left), click on it and open the *Virtual Media Manager*. Highlight the virtual disk where Debian Linux is installed and increase the *Size*. Click *Apply* and *Close* the *Virtual Media Manager*.
 
 Increasing the virtual disk space alone is not sufficient, because the free disk space needs to be allocated to the root partition. To do so:
+
 * Start Debian Linux (e.g. in *VirtualBox*, click on *Start*).
 *Once Debian Linux started, go to *Activities* and type `gparted` in the search box. Find the *Gparted* software and click on it. If not yet installed, install and open *Gparted*.
 * In *Gparted* look for the `ext4` partition (typically `/dev/sda2`) and highlight the partition directly behind that partition (typically `/dev/sda3`).
@@ -47,7 +48,7 @@ Increasing the virtual disk space alone is not sufficient, because the free disk
 * After repartitioning successful finished, right-click on the partition after the root partition (`/dev/sda3`) and make sure that it is again in *Swapoff* mode. If this is not the case (i.e., you cannot find *Swapoff* in the context menu and only *Swapon* is visible), click on *Swapon*.
 
 ```{tip}
-If you made undesired changes in the re-partitioning plan (before clicking on the apply-check mark), you can revert changes by clicking on the yellow return arrow next to the green apply-check mark.
+To revert undesired changes in the re-partitioning plan (before clicking on the apply-check mark), click on the yellow return arrow next to the green apply-check mark.
 ```
 
 
@@ -58,14 +59,14 @@ Read more on the [developer's website](https://www.debian.org/doc/manuals/debian
 (dbg-permissions)=
 ### Permission Denied Messages
 
-***Permission denied*** messages may occur because of the fail-safe design of Debian, but denied read and write rights may quickly become annoying, in particular if you need to switch between normal and superuser accounts for installing software packages.
+**Permission denied** messages may occur because of the fail-safe design of Debian, but denied read and write rights may quickly become annoying, in particular if you need to switch between normal and superuser accounts for installing software packages.
 
 ```{admonition} Potentially harmful operation
 :class: warning
 Never modify the access rights for folders in the `ROOT/` directory. Modifying permissions for folders such as `ROOT/etc/` or `ROOT/root/` may cause unrepairable system damage.
 ```
 
-This is how you can unlock all read and write rights for a directory:
+This is how to unlock all read and write rights for a directory:
 
 ```
 sudo chmod a+rwx /directory
@@ -98,7 +99,7 @@ sudo chmod -R 777 /directory/
 
 ### `tkinter` Imports Fail (No Module Named Tkinter)
 
-`tkinter` is sometimes still only installed for *Python2* on *Linux*, while we want to use it with *Python3*. To ensure that `tkinter` for *Python3* is installed, install via *Terminal:
+`tkinter` is sometimes still only installed for *Python2* on *Linux*, while we want to use it with *Python3*. To ensure that `tkinter` for *Python3* is installed, install via *Terminal*:
 
  * `sudo apt install python3-tk`  or
  * `sudo apt install python3.X-tk` (replace `X` with your *Python* version) or
@@ -109,6 +110,7 @@ sudo chmod -R 777 /directory/
 ## Wine
 
 ### General wine issues
+
 If *wine* does not work as desired, remove the current installation via *Terminal*:
 
 ```
@@ -197,8 +199,9 @@ Install the following Python pip packages:
 ```
 python -m pip install pyOpenGL
 python -m pip install pyOpenGL_accelerate
-python -m pip install pyqt5
-
+python -m pip install PyQt5
+python -m pip install PyQt5-sip
+python -m pip install PyQtWebEngine
 ```
 
 A system restart (or just reload the user environment with `source ~/.bashsrc`) may be necessary for QGIS to work now without the OpenGL error.
@@ -211,7 +214,7 @@ To get LAStools working in QGIS on Ubuntu (make sure to have {ref}`wine` install
 * Download the LAStools (ZIP) from http://rapidlasso.com/LAStools and extract the ZIP file
 * In QGIS, edit the processing options (Providers > Tools for LiDAR data):
   * LasTools folder: enter here the path to the folder that where the extracted ZIP files live (`/dir/to/LAStools/`)
-  * Wine folder: enter the path to the {ref}`wine` binary (typically ``/usr/bin/``). Alternatively, find where Wine lives with the `whereis wine` command
+  * Wine folder: enter the path to the {ref}`wine` binary (typically `/usr/bin/`). Alternatively, find where Wine lives with the `whereis wine` command
 * If required: edit `LidarToolsAlgorithmProvider.py` (two files exist), for instance:
   * `/usr/share/qgis/python/plugins/processing/algs/lidar/LidarToolsAlgorithmProvider.py` and
   * `/home/[user]/.qgis3/python/plugins/processing/algs/lidar/LidarToolsAlgorithmProvider.py`
@@ -220,7 +223,7 @@ To get LAStools working in QGIS on Ubuntu (make sure to have {ref}`wine` install
     line 168:         if (True):
     line 188:         if (True):
 
-To troubleshoot LAStools installation in QGIS read [this proposition on rapidlasso.com](https://rapidlasso.com/2013/09/29/how-to-install-lastools-toolbox-in-qgis/).
+To troubleshoot a LAStools installation in QGIS read [this proposition on rapidlasso.com](https://rapidlasso.com/2013/09/29/how-to-install-lastools-toolbox-in-qgis/).
 
 Read more about running [LAStools on Ubuntu](https://gis.stackexchange.com/questions/138149/wine-lastools-in-qgis-2-8-1-ubuntu-14-04).
 
@@ -230,10 +233,8 @@ GPU intense software requiring strong graphics performance, such as the Unreal E
 
 Here is one option to update nVidia graphic drivers, though be aware that this action can substantially harm your system (it may not reboot) if you are not running an Ubuntu Linux (derivative) with an appropriate nVidia graphics card. So if you are OK with this warning:
 
-* Open Terminal:
-
+* Open Terminal
 * Find the appropriate driver for your system with `sudo apt search nvidia-driver`  (OR search for a driver package: `apt-cache search nvidia-driver`)
-
 * Check latest driver releases
   * in nvidia drivers: `sudo apt-cache search 'nvidia-driver-' | grep '^nvidia-driver-[[:digit:]]*'`
   * in dkms: `sudo apt-cache search 'nvidia-dkms-' | grep '^nvidia-dkms-[[:digit:]]*'`
@@ -248,6 +249,7 @@ nvidia-dkms-510-server - NVIDIA DKMS package
 nvidia-dkms-515 - NVIDIA DKMS package
 nvidia-dkms-515-server - NVIDIA DKMS package
 ```
+
   * in this example, the newest driver is `nvidia-driver-515` (with `nvidia-dkms-515`), which we note down to install them two steps later
 
 * Update package information and your system:
@@ -258,9 +260,6 @@ sudo apt full-upgrade
 ```
 
 * Install the latest driver with: `sudo apt install nvidia-driver-515 nvidia-dkms-515`
-
 * Reboot your system: `sudo shutdown -r now`
-
-* Verify installation (in Terminal: `nvidia-smi`
-
+* Verify the installation (in Terminal: `nvidia-smi`
 

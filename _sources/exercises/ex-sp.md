@@ -1,13 +1,12 @@
 (ex-seq-peak)=
 # Reservoir Volume (Sequent Peak Algorithm)
 
-```{admonition} Goals
-Write custom functions, load data from comma-type delimited text files, and manipulate data with *numpy*. Use loops and error exceptions efficiently.
-```
+```{admonition} Goals & requirements
+**Goals**: Write custom functions, load data from comma-type delimited text files, and manipulate data with *numpy*. Use loops and error exceptions efficiently.
 
-```{admonition} Requirements
-:class: attention
-Python libraries: {ref}`numpy` including *scipy* and *matplotlib*. Read and understand the data handling with {ref}`numpy` and {ref}`functions <chpt-functions>`.
+**Requirements**: 
+    * Python libraries: {ref}`numpy` including *scipy* and *matplotlib*.
+    * Read and understand the data handling with {ref}`numpy` and {ref}`functions <chpt-functions>`.
 ```
 
 Get ready by cloning the exercise repository:
@@ -74,12 +73,12 @@ The function will loop over the *csv* file names and append the file contents to
 The column data are delimited by a `";"` and every column represents one value per month (i.e., 12 values per row). The rows denote days (i.e., there are 31 rows in each file corresponding to the maximum number of days in one month of a year). In consequence, every row should contain 11 `";"` signs to separate 12 columns and the entire file (`f_content`) should contain 30 `"\n"` signs to separate 31 rows. However, we count 12 `";"` signs per row and 32 to 33 `"\n"` signs in `f_content` because the data logger wrote `";"` at the beginning of each row and added one to two more empty lines to the end of every file. Therefore, we need to `strip()` the bad `";"` and  `"\n"` signs in the following.
 ```
 
-  - To get the number of (valid) rows in every file use `rows = f_content.strip("\n").split("\n").__len__()`
-  - To get the number of (valid) columns in every file use `cols = f_content.strip("\n").split("\n")[0].strip(delimiter).split(delimiter).__len__()`
-  - Now we can create a void *numpy* array of the size (shape) corresponding to the number of valid rows and columns in every file: `data_array = np.empty((rows, cols), dtype=np.float32)`
-  - *Why are we not using directly `np.empty((31, 12)` even though the shape of all files is the same?<br>We want to write a generally valid function and the two lines for deriving the valid number of rows and columns do the generalization job.*
-  - Next, we need to parse the values of every line and append them to the until now void `data_array`. Therefore, we split `f_content` into its lines with `split("\n)` and use a *for* loop: `for iteration, line in enumerate(f_content.strip("\n").split("\n"):`. Then,<br> Create an empty list to store line data `line_data = []`. <br>In another *for* loop, strip and split the line by the user-defined `delimiter` (recall: we will use `delimiter=";"`) `for e in line.strip(delimiter).split(delimiter):`. In the *e-for* loop, `try:` to append `e` as a *float* number `line_data.append(np.float32(e)` and use `except ValueError:` to `line_data.append(np.nan)` (i.e., append a not-a-number value that we will need because not all months have 31 days).<br>End the *e-for* loop by back-indenting to the `for iteration, line in ...` loop and appending the `line_data` *list* as a *numpy* array to `data_array`: `data_array[iteration] = np.array(line_data)`
-  - Back in the `with open(file, ...` statement (use correct indentation level!), update `file_content_dict` with the above-found `dict_key` and the `data_array` of the `file as f`: `file_content_dict.update({dict_key: data_array})`
+  * To get the number of (valid) rows in every file use `rows = f_content.strip("\n").split("\n").__len__()`
+  * To get the number of (valid) columns in every file use `cols = f_content.strip("\n").split("\n")[0].strip(delimiter).split(delimiter).__len__()`
+  * Now we can create a void *numpy* array of the size (shape) corresponding to the number of valid rows and columns in every file: `data_array = np.empty((rows, cols), dtype=np.float32)`
+  * *Why are we not using directly `np.empty((31, 12)` even though the shape of all files is the same?<br>We want to write a generally valid function and the two lines for deriving the valid number of rows and columns do the generalization job.*
+  * Next, we need to parse the values of every line and append them to the until now void `data_array`. Therefore, we split `f_content` into its lines with `split("\n)` and use a *for* loop: `for iteration, line in enumerate(f_content.strip("\n").split("\n"):`. Then,<br> Create an empty list to store line data `line_data = []`. <br>In another *for* loop, strip and split the line by the user-defined `delimiter` (recall: we will use `delimiter=";"`) `for e in line.strip(delimiter).split(delimiter):`. In the *e-for* loop, `try:` to append `e` as a *float* number `line_data.append(np.float32(e)` and use `except ValueError:` to `line_data.append(np.nan)` (i.e., append a not-a-number value that we will need because not all months have 31 days).<br>End the *e-for* loop by back-indenting to the `for iteration, line in ...` loop and appending the `line_data` *list* as a *numpy* array to `data_array`: `data_array[iteration] = np.array(line_data)`
+  * Back in the `with open(file, ...` statement (use correct indentation level!), update `file_content_dict` with the above-found `dict_key` and the `data_array` of the `file as f`: `file_content_dict.update({dict_key: data_array})`
 
 * Back at the level of the function (`def read_data(...):` - pay attention to the correct indentation!), `return file_content_dict`
 
@@ -140,6 +139,7 @@ Running the script returns the `numpy.array` of daily average flows for the year
      [  0.    nan   0.    nan   0.    nan   0.    0.    nan   0.    nan   0. ]]
 ```
 
+
 ### Convert Daily Flows to Monthly Volumes
 
 The sequent peak algorithm takes monthly flow volumes, which corresponds to the sum of daily average discharge multiplied with the duration of one day (e.g, 11.0 m$^3$/s $\cdot$ 24 h/d $\cdot$ 3600 s/h). Reading the flow data as above shown results in annual flow tables (average daily flows in m$^3$/s) with the `numpy.array`s of the shape 31x12 arrays (matrices) for every year. We want to get the column sums and multiply the sum with 24 h/d $\cdot$ 3600 s/h. Because the monthly volumes are in the order of million cubic meters (CMS), dividing the monthly sums by `10**6` will simplify the representation of numbers.
@@ -147,10 +147,10 @@ The sequent peak algorithm takes monthly flow volumes, which corresponds to the 
 Write a function (e.g., `def daily2monthly(daily_flow_series)`) to perform the conversion of daily average flow series to monthly volumes in 10$^{6}$m$^3$:
 
 1. The function should be called for every dictionary entry (year) of the data series. Therefore, the input argument `daily_flow_series` should be a `numpy.array` with the shape being `(31, 12)`.
-1. To get column-wise (monthly) statistics, transpose the input array:<br>`daily_flow_series = np.transpose(daily_flow_series)`
-1. Create a void list to store monthly flow values:<br>`monthly_stats = []`
-1. Loop over the row of the (transposed) `daily_flow_series` and append the sum multiplied by `24 * 3600 / 10**6` to `monthly_stats`:<br>`for daily_flows_per_month in daily_flow_series:`<br>`    monthly_stats.append(np.nansum(daily_flows_per_month * 24 * 3600) / 10**6)`
-1. Return `monthly_stats` as `numpy.array`:<br>`return np.array(monthly_stats)`
+1. To get column-wise (monthly) statistics, transpose the input array:<br> `daily_flow_series = np.transpose(daily_flow_series)`
+1. Create a void list to store monthly flow values:<br> `monthly_stats = []`
+1. Loop over the row of the (transposed) `daily_flow_series` and append the sum multiplied by `24 * 3600 / 10**6` to `monthly_stats`:<br> `for daily_flows_per_month in daily_flow_series:` <br> `monthly_stats.append(np.nansum(daily_flows_per_month * 24 * 3600) / 10**6)`
+1. Return `monthly_stats` as `numpy.array`: <br> `return np.array(monthly_stats)`
 
 Using a for loop, we can now write the monthly volumes similar to the daily flows into a dictionary, which we extend by one year at a time within the `if __name__ == "__main__"` statement:
 
@@ -305,5 +305,6 @@ The usage of the sequent peak algorithm (also known as *Rippl's method*, owing t
 In the end, there are several algorithms and ways to code them. Many factors (e.g. terrain or climate zone) determine whether seasonal storage is possible or necessary. When determining the storage volume, social and environmental aspects must not be neglected. Every grain of sediment retained is missing in downstream sections of the river, every fish that is no longer able to migrate suffers a loss in habitat, and more than anything else, every inhabitant who suffers economic losses or is even forced to resettle because of the dam must be avoided or adequately compensated.
 
 ```{admonition} Homework
+
 Re-write the peak (extrema) analysis either with two consecutive functions or using [`from scipy.signal import find_peaks`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.find_peaks.html).
 ```
