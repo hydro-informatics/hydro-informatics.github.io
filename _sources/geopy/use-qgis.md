@@ -73,6 +73,7 @@ In the context of river analysis, the following plugins are recommended and used
 
 BASEmesh is only one (very well working) mesh generator for QGIS and {numref}`Tab. %s <tab-mesh-plugins>` lists of other plugins for generating computational meshes for numerical models along with target file formats and models
 
+````{div} full-width
 ```{list-table} A list of QGIS mesh generator plugins.
 :header-rows: 1
 :name: tab-mesh-plugins
@@ -102,6 +103,7 @@ BASEmesh is only one (very well working) mesh generator for QGIS and {numref}`Ta
   - `*.geo`, `*.stl`, `*.msh`
   - Create digital twins in Blender
 ```
+````
 
 (basemap)=
 ## Basemaps for QGIS (Google or Open Street Maps Worldmap Tiles)
@@ -127,7 +129,7 @@ Add a base map to QGIS: (1) locate the Browser (2) right-click on XYZ-Tiles and 
 
 The following URL can be used for retrieving online XYZ tiles (more URLs can be found on the internet).
 
-
+````{div} full-width
 ```{list-table} Providers of XYZ basemap tiles
 :header-rows: 1
 :name: basemap-providers
@@ -149,7 +151,7 @@ The following URL can be used for retrieving online XYZ tiles (more URLs can be 
 * - OSM Black and White
   - http://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png
 ```
-
+````
 
 ```{admonition} Coordinate reference systems of basemaps
 :class: tip
